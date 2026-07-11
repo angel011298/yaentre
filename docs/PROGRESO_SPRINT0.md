@@ -111,14 +111,68 @@
 
 ---
 
+## CC-01 — Schema de Prisma y migraciones
+
+**Fecha:** 11 de julio de 2026
+
+### ✅ Completado
+
+1. **Schema.prisma completo y validado**
+   - Copiado exactamente del Backend Schema v1.0 (§4)
+   - ✓ `npx prisma validate` pasó
+   - ✓ `npx prisma generate` generó el client tipado
+   - ✓ 24 tablas definidas
+   - ✓ Todos los enums de §3 presentes
+
+2. **Versiones de Prisma corregidas**
+   - Downgrade de Prisma 7 → Prisma 5 (versión estable)
+   - @prisma/client actualizado a versión 5
+   - Se evitaron incompatibilidades de configuración de Prisma 7
+
+3. **Configuración de ambiente**
+   - `.env.local` creado con placeholders para Supabase
+   - `.env` en raíz (aunque `.env.local` es estándar) para que Prisma lo lea
+   - Variables: DATABASE_URL, DIRECT_URL, keys de Stripe/Sentry/etc.
+
+4. **Migraciones SQL creadas**
+   - `prisma/migrations/0001_enable_rls.sql` — Políticas RLS para todas las tablas
+   - `prisma/migrations/0002_create_partial_indexes.sql` — Índices parciales de §6
+   - `prisma/seed.ts` — Script placeholder para seed de taxonomía
+
+5. **Scripts Prisma añadidos a package.json**
+   - `pnpm prisma:migrate` — ejecutar migraciones
+   - `pnpm prisma:generate` — regenerar client
+   - `pnpm prisma:seed` — poblar taxonomía
+   - `pnpm prisma:studio` — abrir Prisma Studio
+
+### 🟡 TODOs (Bloqueados por DB no configurada)
+
+- [ ] **CC-01 continuación:** Configurar Supabase real en `.env.local` (requiere proyecto Supabase)
+- [ ] `pnpm prisma:migrate` — aplicar migración acierta_init a BD real
+- [ ] Verificar que todas las 24 tablas se crean en Supabase
+- [ ] Ejecutar migraciones SQL de RLS manualmente en Supabase (si Prisma no las aplica)
+- [ ] `pnpm prisma:seed` — poblar Institution, Level, Exam, Area, Career, Subject, Topic
+
+### Comandos para cuando BD esté configurada
+
+```bash
+# Una vez configurado DATABASE_URL y DIRECT_URL
+pnpm prisma:migrate      # crea las tablas
+pnpm prisma:generate     # regenera client
+pnpm prisma:seed         # puebla taxonomía
+pnpm prisma:studio       # inspeccionar BD
+```
+
+---
+
 ## TODOs para próximas sesiones
 
-### CC-01 — Schema de Prisma y migraciones
-- [ ] Configurar DATABASE_URL y DIRECT_URL en `.env.local`
-- [ ] `pnpm prisma migrate dev --name acierta_init`
-- [ ] `pnpm prisma generate`
-- [ ] Crear índices parciales SQL (recomendado en schema.prisma §6)
-- [ ] Verificar que todas las tablas se crean correctamente
+### CC-02 — Autenticación con Supabase
+- [ ] Configurar NEXT_PUBLIC_SUPABASE_URL y keys en `.env.local`
+- [ ] Crear el cliente de Supabase en `src/lib/auth/supabase.ts`
+- [ ] Implementar Server Actions de registro, login, logout
+- [ ] Guards de autenticación (`requireAuth`, `requireOnboarding`)
+- [ ] Verificación diferida de email
 
 ### CC-02 — Autenticación con Supabase
 - [ ] Configurar NEXT_PUBLIC_SUPABASE_URL y claves en `.env.local`

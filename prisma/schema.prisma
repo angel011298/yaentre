@@ -10,8 +10,8 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")       // pooled (pgbouncer)
-  directUrl = env("DIRECT_URL")         // directa para migraciones
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // ─────────────────────────── ENUMS ───────────────────────────
