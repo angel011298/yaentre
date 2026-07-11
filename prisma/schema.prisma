@@ -1,0 +1,526 @@
+// ═══════════════════════════════════════════════════════════════════
+// Acierta — schema.prisma (v1.0)
+// Base: Supabase PostgreSQL · ORM: Prisma
+// Migración inicial: npx prisma migrate dev --name acierta_init
+// ═══════════════════════════════════════════════════════════════════
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")       // pooled (pgbouncer)
+  directUrl = env("DIRECT_URL")         // directa para migraciones
+}
+
+// ─────────────────────────── ENUMS ───────────────────────────
+
+enum InstitutionCode {
+  UNAM
+  IPN
+  UAM
+  CENEVAL
+  CNBV
+}
+
+enum LevelType {
+  MEDIA_SUPERIOR
+  SUPERIOR
+}
+
+enum SessionMode {
+  DIAGNOSTIC
+  TOPIC_DRILL
+  AREA_PRACTICE
+  FULL_SIMULATION
+}
+
+enum SessionStatus {
+  IN_PROGRESS
+  COMPLETED
+  COMPLETED_BY_TIMEOUT
+  ABANDONED
+}
+
+enum DifficultyLevel {
+  BEGINNER
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum UserRole {
+  STUDENT
+  PARENT
+  ADMIN
+}
+
+enum SubscriptionPlan {
+  MONTHLY
+  SEASON_PASS
+  PREMIUM
+}
+
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  FAILED
+  EXPIRED
+  CANCELED
+}
+
+enum PricingSeason {
+  EARLY_BIRD
+  HIGH_SEASON
+  LAST_MINUTE
+}
+
+enum PaymentMethod {
+  CARD
+  OXXO
+  SPEI
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+}
+
+enum ContentType {
+  VIDEO_LECTURE
+  LIVESTREAM
+  PROFESSOR_NOTE
+  PDF_MATERIAL
+  PRACTICE_SET
+}
+
+enum ContentStatus {
+  INACTIVE
+  DRAFT
+  ACTIVE
+}
+
+enum NotificationType {
+  STREAK_RISK
+  PARENT_WEEKLY
+  EXAM_COUNTDOWN
+  MARKETING
+}
+
+// ──────────────────── TAXONOMÍA DE CONTENIDO ────────────────────
+
+model Institution {
+  id        String          @id @default(cuid())
+  code      InstitutionCode @unique
+  name      String
+  logoUrl   String?
+  levels    Level[]
+  createdAt DateTime        @default(now())
+
+  @@map("institutions")
+}
+
+model Level {
+  id            String      @id @default(cuid())
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  type          LevelType
+  name          String
+  exams         Exam[]
+
+  @@unique([institutionId, type])
+  @@map("levels")
+}
+
+model Exam {
+  id             String        @id @default(cuid())
+  levelId        String
+  level          Level         @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  year           Int
+  name           String
+  durationMins   Int           // UNAM: 180, IPN: ~180
+  totalQuestions Int           // UNAM: 120, IPN: 140
+  examDate       DateTime?     // fecha oficial del examen (para countdown/vigencia)
+  isActive       Boolean       @default(true)
+  areas          Area[]
+  sessions       ExamSession[]
+  profiles       UserProfile[] @relation("TargetExam")
+
+  @@unique([levelId, year])
+  @@map("exams")
+}
+
+model Area {
+  id        String    @id @default(cuid())
+  examId    String
+  exam      Exam      @relation(fields: [examId], references: [id], onDelete: Cascade)
+  code      String    // "AREA_1", "IPN_FISMAT"...
+  name      String
+  colorHex  String
+  iconEmoji String?
+  position  Int
+  subjects  Subject[]
+  careers   Career[]
+
+  @@unique([examId, code])
+  @@map("areas")
+}
+
+model Career {
+  id              String        @id @default(cuid())
+  areaId          String
+  area            Area          @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  name            String
+  minAciertos     Int?          // aciertos mínimos históricos de ingreso
+  minAciertosYear Int?
+  acceptanceRate  Float?
+  targetedBy      UserProfile[] @relation("TargetCareer")
+
+  @@map("careers")
+}
+
+model Subject {
+  id             String        @id @default(cuid())
+  areaId         String
+  area           Area          @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  name           String
+  iconEmoji      String?
+  position       Int
+  questionWeight Int           @default(1) // # reactivos esperados en el examen real
+  topics         Topic[]
+  contentItems   ContentItem[]
+
+  @@map("subjects")
+}
+
+model Topic {
+  id           String        @id @default(cuid())
+  subjectId    String
+  subject      Subject       @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  name         String
+  position     Int
+  questions    Question[]
+  weakTopics   WeakTopic[]
+  contentItems ContentItem[]
+
+  @@map("topics")
+}
+
+model Question {
+  id         String             @id @default(cuid())
+  topicId    String
+  topic      Topic              @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  stem       String             @db.Text
+  imageUrl   String?
+  options    Json               // [{ id:"A", text, isCorrect }, ...]
+  difficulty DifficultyLevel    @default(INTERMEDIATE)
+  sourceYear Int?
+  isVerified Boolean            @default(false)
+
+  explanations ExplanationLayer[]
+  answers      SessionAnswer[]
+  reports      QuestionReport[]
+
+  // ── Fase 2 (nullable, INACTIVE en Fase 1) ──
+  videoLectureId  String?
+  videoLecture    ContentItem? @relation("QuestionVideo", fields: [videoLectureId], references: [id])
+  professorNoteId String?
+  professorNote   ContentItem? @relation("QuestionNote", fields: [professorNoteId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([topicId, isVerified])
+  @@index([difficulty])
+  @@map("questions")
+}
+
+model ExplanationLayer {
+  id           String   @id @default(cuid())
+  questionId   String
+  question     Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  layer        Int      // 1..4
+  title        String
+  content      String   @db.Text
+  latexContent String?
+
+  @@unique([questionId, layer])
+  @@map("explanation_layers")
+}
+
+model QuestionReport {
+  id         String   @id @default(cuid())
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  reportedBy String   // userId
+  reason     String?
+  resolved   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([questionId, resolved])
+  @@map("question_reports")
+}
+
+// ──────────────── CONTENIDO FASE 2 (INACTIVO) ────────────────
+
+model ContentItem {
+  id              String        @id @default(cuid())
+  type            ContentType
+  status          ContentStatus @default(INACTIVE) // ← NUNCA ACTIVE en Fase 1
+  title           String?
+  url             String?
+  thumbnailUrl    String?
+  durationSeconds Int?
+  scheduledAt     DateTime?
+
+  subjectId   String?
+  subject     Subject?   @relation(fields: [subjectId], references: [id])
+  topicId     String?
+  topic       Topic?     @relation(fields: [topicId], references: [id])
+  professorId String?
+  professor   Professor? @relation(fields: [professorId], references: [id])
+
+  questionsVideo Question[] @relation("QuestionVideo")
+  questionsNote  Question[] @relation("QuestionNote")
+
+  createdAt DateTime @default(now())
+
+  @@map("content_items")
+}
+
+model Professor {
+  id          String        @id @default(cuid())
+  name        String
+  bio         String?
+  avatarUrl   String?
+  subjectTags String[]
+  content     ContentItem[]
+
+  @@map("professors")
+}
+
+// ──────────────── USUARIO Y APRENDIZAJE ────────────────
+
+model UserProfile {
+  id       String   @id @default(cuid())
+  userId   String   @unique // Supabase Auth UID
+  role     UserRole @default(STUDENT)
+
+  displayName String?
+  avatarUrl   String?
+  themePref   String   @default("dark") // "dark" | "light"
+  badges      String[] @default([])    // ["EARLY_BIRD", ...]
+
+  // Examen objetivo
+  targetExamId   String?
+  targetExam     Exam?   @relation("TargetExam", fields: [targetExamId], references: [id])
+  targetCareerId String?
+  targetCareer   Career? @relation("TargetCareer", fields: [targetCareerId], references: [id])
+
+  // Onboarding
+  diagnosticDone Boolean @default(false)
+  onboardingStep Int     @default(0)
+
+  // Relaciones de aprendizaje
+  learningProfile LearningProfile?
+  streak          StreakRecord?
+  weakTopics      WeakTopic[]
+  sessions        ExamSession[]
+
+  // Comercial
+  subscriptions Subscription[]
+
+  // Preferencias
+  notificationPrefs NotificationPreference[]
+
+  // Vinculación parental (dos lados)
+  asParentLinks  ParentLink[] @relation("ParentSide")
+  asStudentLinks ParentLink[] @relation("StudentSide")
+  linkCodes      ParentLinkCode[]
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("user_profiles")
+}
+
+model LearningProfile {
+  userProfileId  String      @id
+  userProfile    UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  predictedScore Int?
+  lastPredicted  DateTime?
+  confidence     Float?
+  totalQuestions Int         @default(0)
+  correctAnswers Int         @default(0)
+  totalStudyMins Int         @default(0)
+  updatedAt      DateTime    @updatedAt
+
+  @@map("learning_profiles")
+}
+
+model WeakTopic {
+  userProfileId String
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  topicId       String
+  topic         Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  hitRate       Float
+  attempts      Int         @default(0)
+  updatedAt     DateTime    @updatedAt
+
+  @@id([userProfileId, topicId])
+  @@index([userProfileId, hitRate])
+  @@map("weak_topics")
+}
+
+model StreakRecord {
+  userProfileId    String      @id
+  userProfile      UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  currentStreak    Int         @default(0)
+  longestStreak    Int         @default(0)
+  lastActivityDate DateTime?
+  totalActiveDays  Int         @default(0)
+
+  @@index([lastActivityDate])
+  @@map("streak_records")
+}
+
+// ──────────────── SESIONES DE EXAMEN ────────────────
+
+model ExamSession {
+  id            String        @id @default(cuid())
+  userProfileId String
+  userProfile   UserProfile   @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  examId        String
+  exam          Exam          @relation(fields: [examId], references: [id])
+  mode          SessionMode
+  status        SessionStatus @default(IN_PROGRESS)
+
+  startedAt     DateTime  @default(now())
+  finishedAt    DateTime?
+  timeLimitSecs Int
+
+  score      Int?
+  percentile Float?
+
+  // Integridad del simulador
+  tabBlurCount             Int     @default(0)
+  rightClickAttempts       Int     @default(0)
+  keyboardShortcutAttempts Int     @default(0)
+  suspicionEvents          Json?
+  completedFullscreen      Boolean @default(false)
+
+  answers SessionAnswer[]
+
+  @@index([userProfileId, mode])
+  @@index([userProfileId, status])
+  @@map("exam_sessions")
+}
+
+model SessionAnswer {
+  id             String      @id @default(cuid())
+  sessionId      String
+  session        ExamSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  questionId     String
+  question       Question    @relation(fields: [questionId], references: [id])
+  selectedOption String?     // "A".."D" | null (omitida)
+  isCorrect      Boolean
+  timeSpentSecs  Int
+  position       Int
+
+  @@unique([sessionId, questionId])
+  @@index([sessionId])
+  @@map("session_answers")
+}
+
+// ──────────────── COMERCIAL (PAGOS) ────────────────
+
+model Subscription {
+  id            String             @id @default(cuid())
+  userProfileId String
+  userProfile   UserProfile        @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  plan          SubscriptionPlan
+  status        SubscriptionStatus @default(PENDING)
+  season        PricingSeason
+  hasGuarantee  Boolean            @default(false) // true para PREMIUM
+
+  // Referencias Stripe
+  stripeCustomerId        String?
+  stripeSubscriptionId    String? // solo MONTHLY (recurring)
+  stripeCheckoutSessionId String? @unique
+
+  startedAt DateTime?
+  expiresAt DateTime? // Pase/Premium: = fecha del examen
+
+  payments  Payment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userProfileId, status])
+  @@map("subscriptions")
+}
+
+model Payment {
+  id             String        @id @default(cuid())
+  subscriptionId String
+  subscription   Subscription  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  amountMxn      Int           // en centavos
+  method         PaymentMethod
+  status         PaymentStatus @default(PENDING)
+  stripePaymentIntentId String? @unique
+  createdAt      DateTime      @default(now())
+
+  @@map("payments")
+}
+
+// Idempotencia de webhooks de Stripe
+model ProcessedStripeEvent {
+  id          String   @id @default(cuid())
+  eventId     String   @unique // Stripe event.id
+  eventType   String
+  processedAt DateTime @default(now())
+
+  @@map("processed_stripe_events")
+}
+
+// ──────────────── VINCULACIÓN PARENTAL ────────────────
+
+model ParentLink {
+  id               String      @id @default(cuid())
+  parentProfileId  String
+  parentProfile    UserProfile @relation("ParentSide", fields: [parentProfileId], references: [id], onDelete: Cascade)
+  studentProfileId String
+  studentProfile   UserProfile @relation("StudentSide", fields: [studentProfileId], references: [id], onDelete: Cascade)
+  createdAt        DateTime    @default(now())
+
+  @@unique([parentProfileId, studentProfileId])
+  @@map("parent_links")
+}
+
+model ParentLinkCode {
+  id               String      @id @default(cuid())
+  code             String      @unique // 6 dígitos
+  studentProfileId String
+  studentProfile   UserProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  expiresAt        DateTime    // TTL 10 min
+  usedAt           DateTime?
+  createdAt        DateTime    @default(now())
+
+  @@index([code])
+  @@map("parent_link_codes")
+}
+
+// ──────────────── PREFERENCIAS DE NOTIFICACIÓN ────────────────
+
+model NotificationPreference {
+  id            String           @id @default(cuid())
+  userProfileId String
+  userProfile   UserProfile      @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  type          NotificationType
+  enabled       Boolean          @default(true)
+
+  @@unique([userProfileId, type])
+  @@map("notification_preferences")
+}
