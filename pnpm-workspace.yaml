@@ -1,11 +1,11 @@
-allowBuilds:
-  '@prisma/client': set this to true or false
-  '@prisma/engines': set this to true or false
-  '@sentry/cli': set this to true or false
-  core-js: set this to true or false
-  prisma: set this to true or false
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
+verifyDepsBeforeRun: false
+onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@sentry/cli'
+  - core-js
+  - esbuild
+  - prisma
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver

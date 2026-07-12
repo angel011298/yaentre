@@ -14,7 +14,9 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "prisma:seed": "prisma db seed",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "content:generate": "tsx scripts/generate-questions.ts",
+    "content:coverage": "tsx scripts/content-coverage.ts"
   },
   "dependencies": {
     "@number-flow/react": "^0.6.1",
@@ -36,19 +38,24 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.111.0",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
+    "@types/katex": "^0.16.8",
     "@types/node": "^20.19.43",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "@vitest/ui": "^4.1.10",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "jsdom": "^29.1.1",
+    "katex": "^0.17.0",
     "prettier": "^3.9.5",
     "prisma": "^5.22.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.0",
     "typescript": "^5",
     "vitest": "^4.1.10"
   }

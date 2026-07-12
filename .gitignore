@@ -44,6 +44,9 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+# Pipeline de contenido — reactivos rechazados (Etapa 2)
+scripts/logs/
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
