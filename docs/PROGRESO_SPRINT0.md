@@ -244,11 +244,126 @@ su §5 por si hay decisiones de autorización más específicas.
 - [ ] Probar el flujo completo end-to-end: registro → correo real → clic en enlace → `/auth/confirm` → sesión verificada
 - [ ] `requireOnboarding` (mencionado en Flujo_App §16.2) — no se implementó porque depende del flujo de onboarding (CC-10), que aún no existe
 
-### CC-03 — Motor de sesiones
-- [ ] Server Actions: `startSession`, `submitAnswer`, `finishSession`
-- [ ] Scoring server-side (nunca revelar respuesta correcta al cliente en FULL_SIMULATION)
-- [ ] Manejo de estados: IN_PROGRESS → COMPLETED / COMPLETED_BY_TIMEOUT / ABANDONED
-- [ ] Tests Vitest para scoring
+---
+
+## CC-03 — Motor de sesiones + scoring server-side
+
+**Fecha:** 11 de julio de 2026 · **Modelo:** Opus (lógica crítica del Sprint 0)
+
+**Nota sobre documentación:** de nuevo, `docs/04_TRD.md` no existe en el repo.
+Se usó `PRD_Acierta_v1.0.md` (F-03, simulador), `Flujo_App_Acierta_v1.0.md`
+(§8 flujo del simulador, §14.1 máquina de estados de ExamSession, §15 edge
+cases) y `Backend_Schema_Acierta_v1.0.md` (ExamSession, SessionAnswer,
+SessionStatus, SessionMode, `Question.options`) como fuentes de verdad.
+
+### Arquitectura elegida (decisión de diseño clave)
+
+Separé la lógica en tres capas para que **la lógica de seguridad sea probable
+por unit test sin una DB viva**:
+
+1. **`src/lib/sessions/scoring.ts` — módulo PURO** (sin Prisma, sin red, sin
+   async). Contiene todo el scoring, cálculo de tiempo, resolución de estado y
+   la política de revelado. Es determinista y se testea con casos fijos.
+2. **`src/lib/db/sessions.ts` — capa DB tipada.** Orquesta las funciones puras
+   contra Prisma. Valida propiedad de la sesión en cada mutación.
+3. **`app/actions/sessions.ts` — Server Actions.** `requireUser()` + Zod +
+   delega en la capa DB pasando el `userProfileId` del guard (nunca del cliente).
+
+La ventaja: la garantía crítica de "no filtrar respuestas en simulación" se
+reduce a una función pura (`buildSubmitResponse`) que es el **único punto de
+retorno** de `submitAnswer`, y se prueba directamente. No hay otra ruta por la
+que la correctitud pueda escapar al responder.
+
+### Lo que se construyó
+
+1. **`scoring.ts` (puro):** `parseQuestionOptions` (valida el JSON con Zod y
+   lanza si está corrupto), `getCorrectOptionId` (exige exactamente 1 correcta),
+   `isAnswerCorrect`, `computeScore`, `computeElapsedSecs`, `isTimeExceeded`,
+   `isSessionStale`, `resolveFinishStatus`, `appendSuspicionEvent`,
+   `revealsCorrectnessOnSubmit`, `buildSubmitResponse`. Constantes
+   `TIME_GRACE_SECS = 30`, `STALE_SESSION_HOURS = 24`.
+2. **`schemas.ts`:** Zod para `startSession`, `submitAnswer`, `finishSession`;
+   tipo `ActionResult<T>` discriminado (`{ ok: true, data } | { ok: false,
+   code, message }`).
+3. **`db/sessions.ts`:** `startSession`, `submitAnswer`, `finishSession`,
+   `abandonStaleSessions`, `loadOwnedSession` (privada), `SessionError` tipado
+   (`NOT_FOUND`, `FORBIDDEN`, `NOT_IN_PROGRESS`, `EXAM_NOT_AVAILABLE`,
+   `QUESTION_NOT_FOUND`, `INVALID_OPTION`).
+4. **`app/actions/sessions.ts`:** las tres Server Actions envolviendo la capa DB,
+   mapeando errores a `ActionResult`.
+5. **`tests/sessions/scoring.test.ts`:** 28 tests — scoring correcto, no-leak en
+   simulación/diagnóstico, validación de tiempo (fronteras exactas), transición
+   de estados, abandono >24h, appendSuspicionEvent.
+
+### Decisiones de diseño no triviales
+
+- **Scoring como suma de correctitud ya verificada.** `submitAnswer` calcula
+  `isCorrect` server-side contra la DB y lo persiste en `SessionAnswer`.
+  `finishSession` hace `score = Σ isCorrect` sobre las respuestas guardadas.
+  Nunca se confía en un score enviado por el cliente. (Guardrail no negociable.)
+
+- **`buildSubmitResponse` como único guardián del revelado.** En
+  `FULL_SIMULATION` y `DIAGNOSTIC` devuelve solo `{ recorded: true }` — sin
+  `isCorrect` ni `correctOption`. En drill (`TOPIC_DRILL`, `AREA_PRACTICE`)
+  revela al instante (ciclo de aprendizaje, Flujo_App §7).
+  - **Decisión ampliada:** el requisito solo exigía ocultar en `FULL_SIMULATION`.
+    Extendí el ocultamiento a `DIAGNOSTIC` porque un diagnóstico debe medir sin
+    sesgar y sus resultados llegan al finalizar (Flujo_App §5). Es defensible y
+    no rompe nada; queda documentado por si a futuro se quiere cambiar.
+
+- **TIME_EXCEEDED con frontera estricta.** "Supera el límite +30s" ⇒ `elapsed >
+  limite + 30` (mayor estricto): `limite+30` exacto NO excede, `limite+31` sí.
+  Cuando ocurre, se registra `{ type: 'TIME_EXCEEDED', at, elapsedSecs,
+  timeLimitSecs }` en `suspicionEvents` y el estado final es
+  `COMPLETED_BY_TIMEOUT`. `finishSession` acepta `reason` (`USER` | `TIMEOUT`):
+  `TIMEOUT` fuerza `COMPLETED_BY_TIMEOUT`; el servidor siempre es la autoridad
+  sobre el tiempo real (recalcula `elapsed` vs `startedAt`, ignora el reloj del
+  cliente).
+
+- **Abandono en dos caminos.** (a) Perezoso: `assertActionable` cierra como
+  `ABANDONED` cualquier sesión IN_PROGRESS con >24h al intentar operar sobre
+  ella, y rechaza. (b) Barrido: `abandonStaleSessions()` para un cron
+  (protegible con `CRON_SECRET`). Las ABANDONED quedan con `score = null` ⇒ no
+  cuentan para stats (el filtrado por estado lo aplicarán las agregaciones de
+  CC-11).
+
+- **`startSession` deriva el límite de tiempo** de `exam.durationMins * 60` si el
+  caller no lo provee, y valida `exam.isActive`. Así el diagnóstico/drill pueden
+  pasar su propio límite y el simulador usa el del examen real.
+
+- **`submitAnswer` es idempotente** vía `upsert` sobre la única
+  `(sessionId, questionId)`: re-enviar una respuesta la actualiza en vez de
+  duplicar (soporta reintentos de red del simulador, Flujo_App §15).
+
+### ⚠️ Guardrail heredado para CC-10 / CC-20 (importante)
+
+`Question.options` (JSON) **contiene `isCorrect` de cada opción**. CC-03 no
+construye la ruta de *lectura* de reactivos (la que envía la pregunta al cliente
+para renderizarla). **Cuando CC-10/CC-20 implementen esa lectura, DEBEN quitar
+`isCorrect` de las opciones antes de mandarlas al cliente**, o el simulador
+filtraría la respuesta en el payload de la pregunta. El scoring de CC-03 ya está
+a salvo; el riesgo vive en el read-path futuro. Anotado aquí para que no se
+escape.
+
+### Verificación
+
+- ✅ `pnpm typecheck` en verde
+- ✅ `pnpm lint` en verde
+- ✅ `pnpm test:unit` — 28 tests en verde (2 archivos: scoring + placeholder)
+- ✅ Se corrigió `vitest.config.ts`: ahora excluye `tests/e2e/**` (Vitest estaba
+  recolectando los specs de Playwright y fallaba; Playwright y Vitest no deben
+  solaparse en la recolección de archivos)
+
+### 🟡 TODOs (dependen de DB / sesiones posteriores)
+
+- [ ] Tests de integración de la capa DB (`db/sessions.ts`) contra una DB de
+  prueba — requieren Supabase/Postgres real (mismo bloqueo que CC-01/CC-02). La
+  lógica crítica ya está cubierta por los tests puros.
+- [ ] Route Handler de cron para `abandonStaleSessions` protegido con
+  `CRON_SECRET` (cuando se configure el cron de Vercel).
+- [ ] Persistir contadores de integridad del simulador (`tabBlurCount`,
+  `rightClickAttempts`, `keyboardShortcutAttempts`, `completedFullscreen`) — se
+  llenarán desde el cliente del simulador en CC-20; el schema ya los tiene.
 
 ### Prioridades
 1. **Alta:** Migraciones Prisma, Auth Supabase, Motor de sesiones (ruta crítica)
@@ -268,8 +383,13 @@ su §5 por si hay decisiones de autorización más específicas.
 
 ## Próximo paso
 
-Arrancar **CC-01** (Prisma schema + migraciones). Este es bloqueante para todo lo demás: auth, sesiones, contenido.
+Sprint 0 casi completo: CC-00 (scaffold), CC-01 (schema), CC-02 (auth) y CC-03
+(motor de sesiones) hechos. Falta **CC-04** (design tokens Tailwind + tema
+dark/light + tipografía + mascota Tino SVG) para cerrar el Sprint 0.
+
+Bloqueo transversal pendiente: configurar un proyecto Supabase real para aplicar
+migraciones, sembrar taxonomía y probar auth + sesiones end-to-end contra la DB.
 
 ---
 
-*Scaffold completado. Fundación lista para CC-01.*
+*Fundación Sprint 0: CC-00 → CC-01 → CC-02 → CC-03 completos. Sigue CC-04.*
