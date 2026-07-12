@@ -165,21 +165,84 @@ pnpm prisma:studio       # inspeccionar BD
 
 ---
 
-## TODOs para próximas sesiones
+## CC-02 — Autenticación con Supabase
 
-### CC-02 — Autenticación con Supabase
-- [ ] Configurar NEXT_PUBLIC_SUPABASE_URL y keys en `.env.local`
-- [ ] Crear el cliente de Supabase en `src/lib/auth/supabase.ts`
-- [ ] Implementar Server Actions de registro, login, logout
-- [ ] Guards de autenticación (`requireAuth`, `requireOnboarding`)
-- [ ] Verificación diferida de email
+**Fecha:** 11 de julio de 2026
 
-### CC-02 — Autenticación con Supabase
-- [ ] Configurar NEXT_PUBLIC_SUPABASE_URL y claves en `.env.local`
-- [ ] Crear el cliente de Supabase en `src/lib/auth/supabase.ts`
-- [ ] Implementar Server Actions de registro, login, logout
-- [ ] Guards de autenticación (`requireAuth`, `requireOnboarding`)
-- [ ] Verificación diferida de email
+**Nota sobre documentación:** `docs/04_TRD.md` no existe en este repo (nunca
+fue provisto — solo se recibieron PRD, Flujo_App, Backend_Schema,
+Plan_Implementación y UIUX_Spec). Se usó `Backend_Schema_Acierta_v1.0.md §7`
+(RLS) como referencia de autorización más cercana, y `Flujo_App_Acierta_v1.0.md
+§3, §4 y §16` (estados de usuario, registro, rutas/guards) como fuente de
+verdad del flujo. Si `04_TRD.md` llega a agregarse, revisar esta sesión contra
+su §5 por si hay decisiones de autorización más específicas.
+
+### ✅ Completado
+
+1. **Clientes de Supabase** (`src/lib/auth/`)
+   - `supabase-server.ts` — Server Components/Actions/Route Handlers (cookies httpOnly vía `@supabase/ssr`)
+   - `supabase-browser.ts` — Client Components (para uso futuro, p.ej. `onAuthStateChange`)
+   - `supabase-middleware.ts` — cliente ligado al ciclo request/response de `proxy.ts`
+   - `site-url.ts` — helper para construir URLs de `emailRedirectTo`/`redirectTo`
+   - Se instaló `@supabase/ssr` (no estaba en CC-00; es el reemplazo oficial de los auth-helpers deprecados, necesario para sesión vía cookies sin localStorage/sessionStorage)
+
+2. **Prisma singleton** — `src/lib/db/prisma.ts` (patrón estándar con cache en `globalThis` para hot-reload)
+
+3. **Errores tipados y guards** (`src/lib/auth/`)
+   - `errors.ts` — `AuthError` con `code: 'UNAUTHORIZED' | 'FORBIDDEN' | 'PAYWALL'`
+   - `types.ts` — `ActionState` (fuera del archivo `'use server'` porque esos archivos solo pueden exportar funciones async)
+   - `schemas.ts` — validación Zod (signUp, signIn, forgotPassword, updatePassword)
+   - `guards.ts` — `requireUser`, `requireRole`, `requirePaidPlan`, `requireVerifiedForPurchase`
+     - Solo `requireVerifiedForPurchase` bloquea por correo sin verificar (criterio de aceptación explícito)
+     - Todos devuelven `{ authUser, profile }` (y `subscription` en el caso de plan pago) o lanzan `AuthError`
+
+4. **Server Actions** (`app/actions/auth.ts`)
+   - `signUpAction` — crea usuario Supabase + UserProfile (role=STUDENT, onboardingStep=0), intenta sesión inmediata, detecta correo duplicado (patrón `identities: []` documentado por Supabase), redirige a `next`
+   - `signInAction` — mensaje genérico "Correo o contraseña incorrectos" (nunca revela cuál)
+   - `signOutAction`, `forgotPasswordAction` (respuesta genérica, no revela si el correo existe), `updatePasswordAction`, `resendVerificationAction`
+   - Todas validan con Zod en el borde; `redirect()` siempre fuera de cualquier try/catch (evita que el throw interno de Next se capture por error)
+
+5. **Proxy (antes middleware)** — `proxy.ts` en la raíz
+   - Next.js 16.2.10 deprecó la convención `middleware.ts` a favor de `proxy.ts` (confirmado con la doc oficial: mismo comportamiento, solo cambia el nombre del archivo y de la función exportada — `middleware` → `proxy`). Se implementó directamente con el nombre nuevo.
+   - Refresca la sesión en cada request; redirige a `/login?next=<ruta>` si falta sesión en rutas protegidas (`/app`, `/onboarding`, `/diagnostico`, `/checkout`, `/tutor`, `/admin`)
+   - Guard adicional: `/checkout` con correo sin verificar → redirige a `/app?verify=1` (chequeo de `email_confirmed_at` del JWT, sin tocar Prisma — el middleware corre en Edge runtime)
+   - Try/catch alrededor de `getUser()`: si Supabase está caído, se trata como "sin sesión" en vez de tumbar el sitio
+
+6. **Route Handler de confirmación** — `app/auth/confirm/route.ts`
+   - Patrón oficial de Supabase para Next.js SSR: `token_hash` + `type` (cubre tanto `type=signup` como `type=recovery` con el mismo handler)
+   - **TODO(infra):** el Supabase Dashboard debe tener las plantillas de correo (Confirm signup / Reset password) configuradas para enlazar a `/auth/confirm?token_hash=...&type=...&next=...` — esto es configuración manual del proyecto Supabase, documentado en la guía oficial, no algo que el código pueda forzar
+
+7. **UI de autenticación** (dark mode, tokens mínimos de CLAUDE.md)
+   - `app/globals.css` — subconjunto de tokens (`--brand`, `--bg-base`, `--text-primary`, etc.) bajo `[data-theme='dark']`; el sistema de diseño completo (Outfit/Inter, radios formales, Tino) queda para CC-04
+   - `src/components/ui/AuthShell.tsx`, `Button.tsx`, `TextField.tsx` — primitivos mínimos
+   - `src/components/ui/VerificationBanner.tsx` — client component con `useActionState`, botón "Reenviar"
+   - Pantallas: `app/(public)/registro`, `/login`, `/recuperar-password`, `/actualizar-password` (cada una con su form client component)
+   - `app/(app)/layout.tsx` — guard `requireUser()` con try/catch → redirect si falla (defensa en profundidad, el proxy ya bloquea `/app/*` sin sesión); muestra `VerificationBanner` si `!email_confirmed_at`
+   - `app/(app)/app/page.tsx` — dashboard placeholder mínimo (email, rol, paso de onboarding, botón de logout) — **TODO(CC-10):** reemplazar por el dashboard real y aplicar `requireOnboarding` una vez exista el flujo de onboarding
+
+8. **Alias de TypeScript** — se agregó `"@/app/*": ["./app/*"]` a `tsconfig.json` (además del `"@/*": ["./src/*"]` de CC-00), porque las Server Actions/rutas viven en `/app` (raíz) y las pantallas necesitan importarlas
+
+9. **`NEXT_PUBLIC_SITE_URL`** — variable nueva (no estaba en la lista original de CLAUDE.md), necesaria para construir los links de `emailRedirectTo`/`redirectTo` de Supabase. Agregada a `.env`, `.env.local` y `.env.example`
+
+10. **ESLint** — se agregó `argsIgnorePattern: '^_'` a `no-unused-vars` (las Server Actions usadas con `useActionState` deben aceptar `(prevState, formData)` aunque no siempre usen ambos)
+
+11. **`.claude/launch.json`** — se agregó la configuración `"acierta"` (puerto 3000) junto a la preexistente `"mundial-2026"` (otro proyecto del usuario), para poder levantar el dev server de este proyecto con el Browser pane
+
+### ✅ Verificación manual (dev server + navegador)
+
+- `pnpm typecheck` y `pnpm lint` en verde
+- `/registro`, `/login`, `/recuperar-password` renderizan correctamente en dark mode con los tokens
+- Envío del formulario de registro contra credenciales Supabase placeholder falla de forma controlada (mensaje amigable, sin crash 500) — confirmado en logs del servidor: `fetch failed` / `ENOTFOUND your-project.supabase.co`, capturado y convertido en `ActionState` de error
+- `/app` sin sesión redirige a `/login?next=%2Fapp` (confirmado en network requests) — el guard de rutas protegidas y la preservación de `next=` funcionan
+- Tras renombrar `middleware.ts` → `proxy.ts`, el warning de deprecación desapareció y las rutas siguen funcionando igual
+
+### 🟡 TODOs (dependen de un proyecto Supabase real)
+
+- [ ] Crear el proyecto Supabase y configurar `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` reales
+- [ ] **Confirmar que "Confirm email" permite sesión inmediata tras `signUp()`** (o que el fallback `signInWithPassword()` funciona antes de confirmar) — esto es un requisito de producto (`REGISTERED_UNVERIFIED` debe tener sesión) que depende de la configuración del Dashboard, no solo del código
+- [ ] Actualizar las plantillas de correo (Confirm signup, Reset password) en el Dashboard para usar el patrón `/auth/confirm?token_hash=...&type=...`
+- [ ] Probar el flujo completo end-to-end: registro → correo real → clic en enlace → `/auth/confirm` → sesión verificada
+- [ ] `requireOnboarding` (mencionado en Flujo_App §16.2) — no se implementó porque depende del flujo de onboarding (CC-10), que aún no existe
 
 ### CC-03 — Motor de sesiones
 - [ ] Server Actions: `startSession`, `submitAnswer`, `finishSession`

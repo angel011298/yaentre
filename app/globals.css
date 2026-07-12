@@ -24,3 +24,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+ * Tokens de marca y superficies oscuras (CLAUDE.md → Sistema de diseño).
+ * Subconjunto mínimo para las pantallas de auth (CC-02); el sistema de
+ * diseño completo (tipografía Outfit/Inter, radios, Tino) se formaliza en CC-04.
+ */
+[data-theme='dark'] {
+  --brand: #7c3aed;
+  --brand-hover: #6d28d9;
+  --brand-soft: #a78bfa;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --info: #38bdf8;
+  --warning: #fbbf24;
+
+  --bg-base: #0f0f14;
+  --bg-surface: #1a1a22;
+  --bg-elevated: #26262f;
+  --bg-input: #1e1e27;
+  --border-subtle: #33333f;
+  --border-strong: #4a4a57;
+  --text-primary: #fafafa;
+  --text-secondary: #b4b4c0;
+  --text-muted: #7a7a88;
+
+  --shadow-md-dark: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
