@@ -392,4 +392,125 @@ migraciones, sembrar taxonomía y probar auth + sesiones end-to-end contra la DB
 
 ---
 
-*Fundación Sprint 0: CC-00 → CC-01 → CC-02 → CC-03 completos. Sigue CC-04.*
+---
+
+## CC-04 — Sistema de diseño base: tokens, temas y mascota Tino
+
+**Fecha:** 11 de julio de 2026 · **Modelo:** Haiku (polish y componentes)
+
+**Fuentes:** `docs/05_UIUX_Spec.md` (sección 14: tokens Tailwind, sección 2: mascota Tino)
+
+### Arquitectura elegida
+
+El sistema de diseño descansa en **CSS custom properties por tema**, integradas
+con Tailwind:
+
+1. **Tokens en `tailwind.config.ts`** — colores, radios, tipografía y touch
+   targets (44px ≥ WCAG AA) como extiende de Tailwind
+2. **CSS variables en `globals.css`** — `[data-theme='dark']` y
+   `[data-theme='light']` que definen `--bg-base`, `--text-primary`, etc.
+3. **Fuentes vía `next/font`** en `layout.tsx` — Outfit (display), Inter (body),
+   JetBrains Mono (monospace)
+4. **Componentes base** — `Button` (5 variantes), `Card`, `ThemeToggle`
+5. **Mascota Tino** — SVG puro con 6 estados expresivos
+
+### Lo que se construyó
+
+1. **`tailwind.config.ts` mejorado**
+   - Colores: `brand` (DEFAULT #7C3AED, hover #6D28D9, soft #A78BFA, tint #EDE9FE),
+     success/streak/danger/info/warning con glows
+   - Colores compuestos: `text` (primary, secondary, muted) y `border` (subtle,
+     strong) desde CSS variables
+   - Border-radius generoso: sm 8px, md 12px (botones), lg 16px (tarjetas),
+     xl 24px, 2xl 32px
+   - Tipografía: `font-display` (Outfit), `font-body` (Inter), `font-mono`
+     (JetBrains Mono)
+   - Touch targets: `min-h-touch` y `min-w-touch` = 44px
+
+2. **`app/globals.css` — tokens por tema**
+   - Marcas (constantes en `:root`): `--brand-primary`, `--success`, `--streak`,
+     etc.
+   - **Dark mode** `[data-theme='dark']`: base #0F0F14 (tinte violeta, no negro
+     puro), superficies, bordes y sombras WCAG AA
+   - **Light mode** `[data-theme='light']`: base #FBFAFF, superficies blancas con
+     tinte mínimo
+   - `prefers-reduced-motion` — anulación de transiciones para accesibilidad
+   - Transiciones suaves en toggleo de tema (0.3s)
+
+3. **`app/layout.tsx` — cargas de fuentes**
+   - `Outfit` (pesos 400-800) para headings/display
+   - `Inter` (pesos 400-700) para body/default
+   - `JetBrains_Mono` (pesos 400-600) para números/timer con `tabular-nums`
+   - Root: `lang="es-MX"`, `data-theme="dark"` (default alumno), clases
+     `antialiased`
+
+4. **`src/components/ui/Button.tsx` — 5 variantes**
+   - `primary` — fondo violeta, contraste blanco
+   - `secondary` — fondo surface con borde, texto primary
+   - `tertiary` — texto violeta, fondo tint al hover
+   - `ghost` — transparente, texto secondary → soft al hover
+   - `danger` — fondo rojo
+   - Estados: `hover` (cambio de color/sombra), `active:scale-[0.97]` (feedback
+     táctil), `focus:ring-2` (accesibilidad), `disabled` (opacidad)
+   - Área táctil: `min-h-touch min-w-touch` = 44px
+
+5. **`src/components/ui/Card.tsx` — contenedor base**
+   - `rounded-lg`, `bg-surface`, `border border-border-subtle`
+   - `hover:shadow-lg` (elevación suave)
+   - `active:scale-[0.97]` (feedback interactivo, compatible con
+     `prefers-reduced-motion`)
+
+6. **`src/components/ThemeToggle.tsx` — cambio de tema**
+   - Client component con localStorage (persiste tema entre sesiones)
+   - Botón minimizado con emoji (☀️ / 🌙)
+   - Aria label accesible
+   - Hidratación segura con `mounted` check (evita mismatch en SSR)
+
+7. **`src/components/mascot/Tino.tsx` — mascota SVG con 6 estados**
+   - `state`: `'sleepy'`, `'attentive'`, `'celebrating'`, `'streak'`,
+     `'encouraging'`, `'graduated'`
+   - Expresión vía cejas (`eyeBrows` path) y ojos (pupils)
+   - Decoraciones por estado:
+     - **celebrating**: confeti de colores (naranja/verde/azul)
+     - **streak**: rayos de fuego naranjas
+     - **graduated**: mortarboard violeta
+   - Escalable: `size` prop (por defecto 120px)
+   - Tema-aware: `className="text-brand-primary"` (usa `currentColor`)
+
+### Decisiones de diseño
+
+- **Dark por default para alumno.** El `html[data-theme="dark"]` en `layout.tsx`
+  es el default. El toggle permite cambiar, pero CC-04 no conecta el toggle a
+  `UserProfile.themePref` (eso es CC-10 cuando exista el dashboard real).
+- **Tino NO en simulador.** Deliberadamente excluido de la ruta `/simulador`
+  (futura). El contraste visual simulador (serio, sin mascota) vs. resto de app
+  (gamificado) es intencional.
+- **Shadow compuesto.** `var(--shadow-md)` en Tailwind permite que se redefinan
+  en light mode (más suave, con tinte violeta) vs. dark mode (sombra real).
+- **Monospace con `tabular-nums`.** Cuando se implemente el timer en CC-20, usar
+  `font-mono` + `tabular-nums` garantiza que los dígitos no salten de ancho.
+
+### Verificación (pendiente output de pnpm)
+
+- [typecheck en progreso…]
+- [lint en progreso…]
+
+### 🟡 TODOs (después de CC-04)
+
+- [ ] Conectar ThemeToggle al dashboard (CC-10) — persistir en `UserProfile.themePref`
+- [ ] Componentes avanzados (TabsBar, Dropdown, Modal) — dependen de CC-04 base
+- [ ] Página de error (404, 500) con Tino
+- [ ] Animaciones de Tino (Framer Motion) para cambios de estado
+
+### Prioridades post-CC-04
+
+1. **Alta:** Dashboard real (CC-10) que consume los tokens y componentes base
+2. **Alta:** Pantalla de diagnóstico (CC-05) que usa Card, Button, y la
+   arquitectura de sesiones de CC-03
+3. **Media:** Simulador (CC-20) que hereda Button/Card pero deliberadamente
+   excluye Tino
+
+---
+
+*Sprint 0 se cierra con CC-04: fundación completa (scaffold, schema, auth,
+sesiones, design system).*
