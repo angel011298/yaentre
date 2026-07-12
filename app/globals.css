@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* KaTeX: fórmulas de reactivos STEM (renderizado server-side en /admin) */
+@import "katex/dist/katex.min.css";
 
 /* Tokens de marca (constantes en ambos modos) */
 :root {

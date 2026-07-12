@@ -177,6 +177,213 @@ Flags:
 
 ---
 
-*Sprint 1 arranca con CC-05: el pipeline de contenido está construido y validado
-en seco. Falta la credencial de Anthropic y la DB real para el primer batch en
-vivo.*
+## CC-06 — Panel admin de revisión de contenido (Etapa 3 del pipeline)
+
+**Fecha:** 12 de julio de 2026 · **Modelo de la sesión:** Sonnet (features de negocio, CRUD, Server Actions)
+
+**Fuentes:** `PRD_Acierta_v1.0.md` §8 (Etapa 3, revisión humana; Etapa 4, staging
+y umbral de reportes), `Backend_Schema_Acierta_v1.0.md` (Question,
+ExplanationLayer, QuestionReport). Depende de CC-05 (el pipeline que inserta
+reactivos con `isVerified=false`).
+
+> **Nota sobre documentación:** igual que en CC-05, `docs/04_TRD.md` no existe
+> con ese nombre en el repo — no hay una sección "10.3" a la que apuntar. Se
+> construyó sobre el PRD §8 (única fuente que describe el flujo de revisión
+> humana) + CLAUDE.md (guardrails de autorización y datos).
+
+### Bloqueo de infraestructura resuelto en el camino
+
+El **cliente de Prisma no estaba generado** (`node_modules/.pnpm/@prisma+client@5.22.0.../@prisma/client`
+solo tenía el stub de re-export, sin tipos de modelos — `UserRole`, etc. no
+existían). Esto habría hecho fallar el typecheck de cualquier código nuevo que
+importara tipos de `@prisma/client`. Corrido `npx prisma generate` al inicio de
+la sesión; quedó regenerado correctamente y confirmado con `pnpm typecheck`.
+Esto es independiente de la DB real (no requiere conexión, solo lee
+`schema.prisma`), así que no bloquea nada de lo demás.
+
+### Alcance entregado (Etapa 3 del PRD §8, más el umbral de Etapa 4)
+
+- **Cola de revisión** (`/admin/questions/queue`): todos los reactivos con
+  `isVerified=false`, filtrable por área/materia/tema/dificultad, paginada
+  (20/página), orden FIFO (más antiguo primero).
+- **Detalle** (`/admin/questions/[id]`): enunciado y opciones con la correcta
+  marcada, las 3 capas de explicación, LaTeX renderizado con KaTeX
+  (server-side, sin costo de JS en el cliente).
+- **Aprobar** → `isVerified=false → true`, sale de la cola.
+- **Rechazar** → ver decisión de diseño abajo (no es un soft-delete real).
+- **Editar**: modal con `<dialog>` nativo para corregir stem/opciones/
+  dificultad/explicaciones, validado con las MISMAS reglas de la Etapa 2.
+- **`/admin/reports`**: reactivos con ≥3 `QuestionReport` sin resolver (umbral
+  de Etapa 4), con acción para marcarlos resueltos.
+- **`/admin/coverage`**: dashboard visual del mismo cálculo de
+  `scripts/content-coverage.ts` (CC-05), pero servido con el Prisma singleton
+  de la app.
+
+### Arquitectura elegida
+
+Mismo patrón de 3 capas que CC-03 (motor de sesiones): capa DB tipada
+(`src/lib/db/admin-questions.ts`) → Server Actions (`app/actions/admin-questions.ts`)
+→ componentes. Guard único: `requireRole('ADMIN')` (ya existía desde CC-02),
+usado en `app/admin/layout.tsx` — es el punto real que discrimina ADMIN de
+STUDENT/PARENT; el proxy (`proxy.ts`) solo exige sesión, no rol.
+
+```
+app/admin/
+├── layout.tsx                 ← guard requireRole('ADMIN'), tema light, nav
+├── page.tsx                   ← redirect a /questions/queue
+├── questions/queue/page.tsx   ← cola con filtros (GET, sin JS) y paginación
+├── questions/[id]/page.tsx    ← detalle + edición + aprobar/rechazar
+├── reports/page.tsx           ← reactivos con ≥3 reportes sin resolver
+└── coverage/page.tsx          ← dashboard de cobertura
+
+app/actions/admin-questions.ts ← Server Actions (approve/reject/update/resolveReports)
+
+src/lib/admin/
+├── errors.ts                  ← AdminError (NOT_FOUND, VALIDATION)
+├── schemas.ts                 ← Zod de los inputs de las Server Actions
+├── audit-log.ts                ← log estructurado de auditoría (ver abajo)
+└── latex-segments.ts          ← split texto/LaTeX (PURO, testeado)
+
+src/lib/db/
+├── admin-questions.ts         ← capa DB: cola, detalle, approve/reject/update, reportes
+└── content-coverage.ts        ← mismo cálculo que scripts/content-coverage.ts
+
+src/components/admin/
+├── AdminNav.tsx                ← nav con estado activo (único client component "de paseo")
+├── LatexText.tsx               ← Server Component: KaTeX renderizado en el servidor
+├── QueueFilterBar.tsx          ← formulario GET puro (sin JS) para filtrar
+├── Pagination.tsx              ← paginación por Links (sin JS)
+├── ApproveRejectActions.tsx    ← client: useTransition + confirm() para rechazar
+├── EditQuestionModal.tsx       ← client: <dialog> nativo + useTransition
+└── ResolveReportsButton.tsx    ← client: useTransition
+```
+
+### Decisiones de diseño no triviales
+
+- **Reuso de `validateDraft` (Etapa 2) para la edición del admin.** En vez de
+  duplicar las reglas de "qué es un reactivo válido", `updateQuestionAction`
+  importa `validateDraft` directo de `scripts/lib/question-draft-schema.ts`
+  (import de solo función pura + tipo `QuestionDraft`, sin Prisma ni Anthropic
+  — seguro de traer a `src/`). Un admin no puede guardar una edición que
+  rompa lo que la generación automática ya exige: 4 opciones, exactamente 1
+  correcta, capas 1-3, LaTeX que compile con KaTeX. Una sola fuente de verdad
+  de calidad para todo el pipeline de contenido.
+
+- **`LatexText` es un Server Component, no un client component.**
+  `katex.renderToString` corre en Node sin DOM — el HTML de las fórmulas se
+  genera en el servidor y viaja ya renderizado, sin costo de JS en el cliente.
+  Solo el HTML que produce KaTeX se inyecta con `dangerouslySetInnerHTML`
+  (`src/lib/admin/latex-segments.ts` separa primero texto libre de fórmulas,
+  así el texto generado por IA o editado por un admin nunca se trata como
+  HTML). El CSS de KaTeX se importa una vez en `app/globals.css`
+  (`@import "katex/dist/katex.min.css"`) — más simple que restringirlo a un
+  layout, a cambio de ~23KB de CSS en el bundle global (aceptable).
+
+- **Filtros y paginación sin JavaScript.** `QueueFilterBar` es un
+  `<form method="GET">` plano y `Pagination` son `<Link>` que arman query
+  strings — Next.js re-renderiza el Server Component con los nuevos
+  `searchParams`. Cero estado de cliente, cero cascada de `<select>`
+  dependientes: si el admin combina filtros incompatibles (p. ej. un tema que
+  no pertenece al área elegida), simplemente ve 0 resultados. Aceptable para
+  una herramienta interna de bajo volumen de usuarios.
+
+- **"Rechazar" es un DELETE real, no un soft-delete — decisión forzada por la
+  restricción de no tocar el schema.** El schema no tiene un campo
+  `isRejected`/`deletedAt` en `Question`, y esta sesión tenía prohibido
+  agregarlo. Un reactivo rechazado en el PRD §8 "vuelve a Etapa 1" (se
+  regenera desde cero), lo que es consistente con eliminarlo de verdad en vez
+  de dejarlo archivado sin forma de distinguirlo de "aún pendiente". Mitigación:
+  (1) el botón exige `window.confirm()` antes de enviar — es la única acción
+  destructiva/irreversible del panel; (2) `rejectQuestion` toma un snapshot
+  del contenido (stem, topicId, dificultad) y lo escribe en el log de
+  auditoría ANTES de borrar, para que quede un rastro recuperable en los logs
+  de la función aunque no en la DB. **TODO real:** si el negocio necesita
+  trazabilidad de rechazos consultable (no solo en logs), la vía correcta es
+  un ALTER explícito (`isRejected Boolean` o tabla `RejectedQuestion`), fuera
+  del alcance de esta sesión.
+
+- **Auditoría "quién aprobó y cuándo" vía log estructurado, no en el schema**
+  (restricción explícita de la tarea). `src/lib/admin/audit-log.ts` hace
+  `console.log('[ADMIN_AUDIT] ' + JSON.stringify({...}))` en cada Server
+  Action (approve/reject/update/resolveReports), con `adminUserProfileId`,
+  `adminEmail` y `at` (ISO timestamp). En Vercel esto llega a los logs de la
+  función (inspeccionables desde el dashboard). Es una auditoría mínima real
+  para el MVP de Sprint 1, no un historial persistente y consultable —
+  **TODO:** si se necesita eso, requiere una tabla `AdminAuditLog` (ALTER
+  explícito, sesión futura).
+
+- **`content-coverage.ts` se reimplementó en `src/lib/db/` en vez de
+  importarse directo desde `scripts/`.** `scripts/lib/content-db.ts` crea su
+  propio `PrismaClient` (correcto para un script standalone de vida corta);
+  si `/admin/coverage` lo importara, abriría una SEGUNDA pool de conexiones
+  dentro del proceso de Next.js, redundante con el singleton de
+  `src/lib/db/prisma.ts`. Mismo cálculo, dos ubicaciones — documentado aquí
+  para que quede claro que es intencional, no un olvido de reutilización.
+
+- **`updateQuestion` usa una transacción interactiva** (`prisma.$transaction(async (tx) => ...)`,
+  no un array de promesas) para poder tipar el retorno como `Question` sin que
+  TypeScript infiera un union con `ExplanationLayer` por el spread dinámico de
+  `draft.explanations.map(...)`.
+
+### Verificación
+
+- ✅ `pnpm typecheck` en verde.
+- ✅ `pnpm lint` en verde.
+- ✅ **7 tests nuevos de Vitest** para `splitLatexSegments` (la única lógica
+  pura sin DB del panel); suite total: **60 tests en verde** (28 CC-03 + 25
+  CC-05 + 7 CC-06).
+- ✅ `npx next build` completo sin errores: las 5 rutas de `/admin/*` aparecen
+  correctamente como dinámicas (`ƒ`, server-rendered on demand) — valida que
+  todo el árbol de módulos (incluyendo el modal de edición, filtros y
+  componentes LaTeX) compila y empaqueta correctamente, más allá de lo que
+  cubre `tsc` solo.
+- ✅ Verificado en el navegador: `/admin` sin sesión redirige a
+  `/login?next=%2Fadmin` (confirmado en network requests), sin errores de
+  servidor. No fue posible probar el flujo autenticado como ADMIN (requiere
+  un usuario real con `role=ADMIN` en una DB con datos — bloqueo transversal,
+  ver abajo).
+- ✅ **Auditoría de visibilidad** (restricción "ningún reactivo no verificado
+  visible fuera de /admin"): `grep` confirma que `src/lib/db/admin-questions.ts`
+  solo se importa desde `app/admin/**` y `src/components/admin/**`. El único
+  otro lugar del código de la app que consulta `prisma.question` es
+  `src/lib/db/sessions.ts:142` (`submitAnswer`), y ese `findUnique` es sobre
+  un `questionId` puntual ya presentado al alumno dentro de una sesión activa
+  — no es una ruta de "listar/explorar reactivos", así que no hay fuga. No
+  existe todavía ningún read-path de estudiante que liste reactivos (CC-10/
+  CC-20 lo construirán) — el guardrail de CC-03 sigue vigente: **cuando se
+  construya, debe filtrar `isVerified: true` y quitar `isCorrect` de las
+  opciones antes de enviarlas al cliente.**
+
+### 🟡 TODOs (bloqueados por infraestructura o de sesiones posteriores)
+
+- [ ] **Verificación end-to-end con datos reales:** requiere un proyecto
+  Supabase real, la taxonomía sembrada, un usuario con `role=ADMIN` y al menos
+  un reactivo con `isVerified=false` (que CC-05 puede generar una vez haya
+  `ANTHROPIC_API_KEY` real). Mismo bloqueo transversal que CC-01/02/03/05.
+- [ ] **Auditoría persistente y consultable:** si el negocio lo requiere más
+  adelante, agregar una tabla `AdminAuditLog` vía ALTER explícito (fuera de
+  alcance de esta sesión, que tenía prohibido tocar el schema).
+- [ ] **Trazabilidad de rechazos:** si se necesita, agregar `isRejected` o una
+  tabla de rechazados en vez del DELETE real actual.
+- [ ] **Etapa 4 completa (staging):** el umbral de ≥3 reportes ya está en
+  `/admin/reports`; falta el flujo de "pool de staging por 2 semanas" descrito
+  en el PRD §8 (producto, no solo código).
+- [ ] Tests de integración de `src/lib/db/admin-questions.ts` contra una DB de
+  prueba real (mismo bloqueo que el resto del proyecto — la lógica pura ya
+  está cubierta).
+
+### Guardrails respetados
+
+- ✅ Solo `requireRole('ADMIN')` accede a `/admin/*` (verificado con guard;
+  RLS de `questions` desde CC-01 ya contempla `role = 'ADMIN'` viendo todas
+  las filas, sin cambios necesarios).
+- ✅ No se modificó `prisma/schema.prisma`.
+- ✅ Ningún reactivo con `isVerified=false` es alcanzable fuera de `/admin`
+  (ver auditoría de visibilidad arriba).
+
+---
+
+*Sprint 1: CC-05 (pipeline de generación) → CC-06 (panel admin de revisión)
+completos. El pipeline de contenido de principio a fin (Etapas 1-3 del PRD §8)
+está construido; falta la credencial de Anthropic y una DB real sembrada para
+probarlo end-to-end con datos reales.*
