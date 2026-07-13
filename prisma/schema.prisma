@@ -179,6 +179,7 @@ model Career {
   acceptanceRate  Float?
   targetedBy      UserProfile[] @relation("TargetCareer")
 
+  @@unique([areaId, name])
   @@map("careers")
 }
 
@@ -193,6 +194,7 @@ model Subject {
   topics         Topic[]
   contentItems   ContentItem[]
 
+  @@unique([areaId, name])
   @@map("subjects")
 }
 
@@ -206,6 +208,7 @@ model Topic {
   weakTopics   WeakTopic[]
   contentItems ContentItem[]
 
+  @@unique([subjectId, name])
   @@map("topics")
 }
 
