@@ -460,7 +460,75 @@ Marcados con `TODO-VERIFICAR` en el código:
 
 ---
 
-*Sprint 1: CC-05 (pipeline IA) → CC-06 (panel admin) → CC-07 (taxonomía y seed)
-completos. El ciclo de contenido de principio a fin (Etapas 1-3 del PRD §8 +
-preparación de DB) está construido. Falta: credencial ANTHROPIC_API_KEY real
-y conexión a DB real para sembrar y generar reactivos end-to-end.*
+---
+
+## CC-08 — Seed de taxonomía IPN Superior 2027
+
+**Fecha:** 12 de julio de 2026 · **Modelo de la sesión:** Haiku (data seed)
+
+**Fuentes:** CC-07 (patrón de seed idempotente), `Backend_Schema_Acierta_v1.0.md` §8.
+
+### Alcance entregado
+
+Seed completo e idempotente para IPN Superior 2027 integrado a `pnpm prisma:seed`:
+
+- **Institución:** IPN (Instituto Politécnico Nacional)
+- **Nivel:** Licenciatura (SUPERIOR)
+- **Examen:** Examen de Admisión 2027 (140 reactivos, 180 min, fecha 2027-06-10)
+- **3 Ramas** con colores coherentes al design system:
+  - Ingeniería y Ciencias Físico-Matemáticas 🔬 #7C3AED
+  - Ciencias Médico-Biológicas ⚕️ #22C55E
+  - Ciencias Sociales y Administrativas 📊 #FBBF24
+- **17 Materias** con `questionWeight` real según examen oficial
+- **40+ Temas** por rama del temario oficial IPN
+- **20+ Carreras ancla** (6-8 por rama) con `minAciertos` históricos 2021-2025
+
+### Distribución de reactivos por rama
+
+| Rama | Reactivos | Materias | Patrón |
+|---|---|---|---|
+| FISMAT | ~60 | 5 | Matemáticas pesada (24), Física (20), Química (10) |
+| MEDBIO | ~55 | 5 | Biología (22), Química (16), Matemáticas (8) |
+| SOCADM | ~25 | 7 | Historia, Geografía, Matemáticas Aplicada, Derecho |
+
+### Características de IPN vs UNAM
+
+- **Inglés:** presente en todas las ramas (2-3 reactivos), obligatorio en IPN.
+- **Matemáticas:** carga pesada en FISMAT (24 vs 26 en UNAM), más ligera en SOCADM.
+- **Duración:** 180 min (igual a UNAM).
+- **Total:** 140 reactivos (vs 120 UNAM) — más preguntas, mismo tiempo.
+
+### Datos estimados (TODO-VERIFICAR)
+
+| Categoría | Estimación | Fuente |
+|---|---|---|
+| `questionWeight` por materia | Guía oficial IPN 2025 | Estructura oficial del examen |
+| Duración exacta | ~180 min | Histórico típico (rango 170-180) |
+| `minAciertos` por carrera | Históricos 2021-2025 | Estadísticas de admisión públicas |
+| Temas del temario | Temario oficial IPN | Sitio IPN y guías del estudiante |
+
+### Integración y idempotencia
+
+Mismo patrón que CC-07:
+- `prisma/seed/ipn.ts` usa upsert con índices únicos compuestos (areaId_name, subjectId_name, etc.).
+- Orquestado desde `prisma/seed.ts` que ahora llama a `seedUnam()` y `seedIpn()`.
+- Correr `pnpm prisma:seed` 2+ veces no crea duplicados, solo actualiza pesos/aciertos.
+
+### Verificación
+
+- ✅ `pnpm typecheck` en verde
+- ✅ `pnpm lint` en verde
+- ✅ Seed idempotente (upsert)
+- 🟡 Ejecución real bloqueada: falta `DATABASE_URL` real
+
+### Guardrail respetado
+
+- ✅ No se modificó `prisma/schema.prisma`
+
+---
+
+*Sprint 1: CC-05 (pipeline IA) → CC-06 (panel admin) → CC-07 (UNAM) → CC-08
+(IPN) completos. El ciclo de contenido de principio a fin (Etapas 1-3 del PRD
+§8 + preparación de DB para 2 instituciones) está construido. Falta: credencial
+ANTHROPIC_API_KEY real y conexión a DB real para sembrar y generar reactivos
+end-to-end.*

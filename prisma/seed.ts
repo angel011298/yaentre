@@ -1,8 +1,9 @@
 import { seedUnam } from './seed/unam';
+import { seedIpn } from './seed/ipn';
 
 /**
  * Seed principal de Prisma. Ejecutado por `pnpm prisma db seed`.
- * Orquesta los seeds de todas las instituciones (MVP: solo UNAM).
+ * Orquesta los seeds de todas las instituciones (MVP: UNAM + IPN).
  *
  * Idempotente: corre múltiples veces sin duplicar datos (vía upsert).
  */
@@ -11,6 +12,7 @@ async function main() {
 
   try {
     await seedUnam();
+    await seedIpn();
     console.log('\n✅ Seed completado exitosamente');
   } catch (e) {
     console.error('❌ Error durante seed:', e);
