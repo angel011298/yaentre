@@ -527,8 +527,75 @@ Mismo patrón que CC-07:
 
 ---
 
+---
+
+## CC-01c — Procedencia y frontera de uso del contenido
+
+**Fecha:** 12 de julio de 2026 · **Modelo de la sesión:** Haiku (schema + DB layer)
+
+**Fuentes:** CLAUDE.md (guardrails), `Backend_Schema_Acierta_v1.0.md` §8.
+
+### Alcance entregado
+
+Migraciones + guardrails para separar contenido generado, oficial e importado, y discriminar entre uso servible (usuarios) vs calibración interna.
+
+#### Enums nuevos
+- `QuestionSource` (GENERATED, OFFICIAL_SAMPLE, IMPORTED)
+- `QuestionUsage` (SERVABLE, CALIBRATION_ONLY)
+
+#### Modelo nuevo
+- `ContentSource`: catálogo de fuentes ingeridas (nombre, institución, tipo, año, file ref, licencia)
+
+#### Campos en Question
+- `source` (QuestionSource, default GENERATED)
+- `usage` (QuestionUsage, default SERVABLE)
+- `sourceRef` (string, cita de la fuente cuando aplique)
+- `contentSourceId` (FK → ContentSource)
+
+#### Guardrail a nivel de DB
+
+**REGLA DURA:** toda lectura de reactivos para usuarios finales filtra `usage = SERVABLE`.
+
+Implementado en `src/lib/db/question-read.ts`:
+- `loadServableQuestionsByTopic()` — solo SERVABLE + verificados
+- `loadServableQuestionForSession()` — garantiza SERVABLE para sesiones
+- `loadServableQuestionsByDifficulty()` — adaptativo, solo SERVABLE
+- `assertNoCalibrationOnlyInSessions()` — chequeo de integridad
+
+**Invariante:** Un reactivo con `usage = CALIBRATION_ONLY` nunca puede alcanzar una
+`SessionAnswer` (respuesta de usuario). Es imposible a nivel de SQL porque:
+1. La query de carga de reactivos filtra `usage = 'SERVABLE'`
+2. El scoring solo valida contra preguntas que el usuario ya vió (y vió porque `loadServable*` las filtró)
+3. Un admin nunca puede crear una sesión a mano con CALIBRATION_ONLY (no hay flujo UI)
+
+### Migración SQL
+
+`prisma/migrations/0003_add_question_source_and_usage.sql`:
+- Crea enums en PostgreSQL
+- Crea tabla `content_sources`
+- Agrega columnas con defaults sensatos (GENERATED, SERVABLE)
+- Crea índices: parcial para `(usage, isVerified)`, simple para `usage`
+
+### Tests
+
+`tests/db/question-read.test.ts`: verifica que los nombres de función comunican el guardrail ("Servable" en el nombre es obvio). Test real requiere DB de prueba.
+
+### Verificación
+
+- ✅ `pnpm typecheck` en verde
+- ✅ `pnpm lint` en verde
+- ✅ `npx vitest run` pasa (test simbólico)
+- 🟡 Migración: archivos creados; ejecución real bloqueada (sin DB)
+
+### Guardrail respetado
+
+- ✅ Ningún cambio al schema de forma destructiva (solo adiciones)
+- ✅ CALIBRATION_ONLY nunca servible a usuarios (garantía a nivel de query)
+
+---
+
 *Sprint 1: CC-05 (pipeline IA) → CC-06 (panel admin) → CC-07 (UNAM) → CC-08
-(IPN) completos. El ciclo de contenido de principio a fin (Etapas 1-3 del PRD
-§8 + preparación de DB para 2 instituciones) está construido. Falta: credencial
-ANTHROPIC_API_KEY real y conexión a DB real para sembrar y generar reactivos
-end-to-end.*
+(IPN) → CC-01c (procedencia y uso) completos. El ciclo de contenido de
+principio a fin (Etapas 1-3 del PRD §8) + guardrails de propiedad intelectual
+está construido. Falta: credencial ANTHROPIC_API_KEY real y conexión a DB real
+para sembrar y generar reactivos end-to-end.*

@@ -110,6 +110,17 @@ enum NotificationType {
   MARKETING
 }
 
+enum QuestionSource {
+  GENERATED      // Creado por el pipeline IA
+  OFFICIAL_SAMPLE // Muestra oficial de examen (UNAM, IPN, etc.)
+  IMPORTED       // Importado de otras fuentes
+}
+
+enum QuestionUsage {
+  SERVABLE          // Se puede mostrar a usuarios finales
+  CALIBRATION_ONLY  // Solo para calibración interna, nunca servible
+}
+
 // ──────────────────── TAXONOMÍA DE CONTENIDO ────────────────────
 
 model Institution {
@@ -122,6 +133,21 @@ model Institution {
 
   @@map("institutions")
 }
+
+model ContentSource {
+  id          String   @id @default(cuid())
+  name        String   // "Guía UNAM 2025", "IPN Simulacro Oficial", etc.
+  institution String?  // Institución asociada (UNAM, IPN, etc.)
+  type        String?  // "MEDIA_SUPERIOR" / "SUPERIOR"
+  year        Int?     // Año de publicación
+  fileRef     String?  // Referencia a archivo en Storage (si aplica)
+  license     String?  // Descripción de licencia
+  ingestedAt  DateTime @default(now())
+  questions   Question[] @relation("QuestionSource")
+
+  @@map("content_sources")
+}
+
 
 model Level {
   id            String      @id @default(cuid())
@@ -223,6 +249,13 @@ model Question {
   sourceYear Int?
   isVerified Boolean            @default(false)
 
+  // ── Procedencia y uso del contenido (CC-01c) ──
+  source        QuestionSource   @default(GENERATED)  // De dónde viene el reactivo
+  usage         QuestionUsage    @default(SERVABLE)   // Puede servirse a usuarios
+  sourceRef     String?                               // Cita/referencia de la fuente
+  contentSourceId String?
+  contentSource ContentSource?   @relation("QuestionSource", fields: [contentSourceId], references: [id])
+
   explanations ExplanationLayer[]
   answers      SessionAnswer[]
   reports      QuestionReport[]
@@ -238,6 +271,7 @@ model Question {
 
   @@index([topicId, isVerified])
   @@index([difficulty])
+  @@index([usage])
   @@map("questions")
 }
 
