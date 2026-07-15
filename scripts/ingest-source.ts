@@ -120,7 +120,11 @@ async function main() {
   console.log(`\n📚 Ingesta de fuente: ${taxonomy.source.name}`);
   console.log(`   externalRef: ${taxonomy.source.externalRef}`);
   console.log(`   examen: ${taxonomy.exam.name} (${taxonomy.exam.totalQuestions} reactivos)`);
-  console.log(`   pesos oficiales por materia: sí (derivados del conteo real)`);
+  if (taxonomy.weightsNote) {
+    console.log(`   ⚠️  pesos por materia: PLACEHOLDER, no derivados (ver weightsNote en el artefacto)`);
+  } else {
+    console.log(`   pesos oficiales por materia: sí (derivados del conteo real)`);
+  }
   if (questions) {
     console.log(`   reactivos muestra: ${questions.questions.length} (OFFICIAL_SAMPLE + CALIBRATION_ONLY)`);
   }

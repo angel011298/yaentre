@@ -1,0 +1,50 @@
+{
+  "source": {
+    "externalRef": "UAM-CAD-2016",
+    "name": "Guía de estudio para el examen de selección — División de Ciencias y Artes para el Diseño",
+    "institution": "UAM",
+    "type": "SUPERIOR",
+    "year": 2016,
+    "fileRef": "docs/guias/uam_cad.pdf",
+    "license": "© Universidad Autónoma Metropolitana. Descarga pública oficial desde admision.uam.mx/adm_guias.html, sin login ni captcha."
+  },
+  "exam": {
+    "institutionCode": "UAM",
+    "level": "SUPERIOR",
+    "levelName": "Licenciatura",
+    "year": 2027,
+    "name": "Examen de Selección UAM 2027",
+    "durationMins": 180,
+    "totalQuestions": 120,
+    "note": "Mismo examen que UAM_CBI (dato oficial: 120 preguntas, 3 horas). Este artefacto cubre SOLO la división CAD. Es la única división con una tercera prueba de aptitudes (razonamiento simbólico-abstracto), además de verbal y matemático.",
+    "partialCoverage": true
+  },
+  "areas": [
+    {
+      "code": "UAM_CAD",
+      "name": "Ciencias y Artes para el Diseño",
+      "colorHex": "#F97316",
+      "iconEmoji": "🎨",
+      "position": 4,
+      "subjects": [
+        { "name": "Razonamiento verbal", "questionWeight": 1, "position": 1 },
+        { "name": "Razonamiento matemático", "questionWeight": 1, "position": 2 },
+        { "name": "Razonamiento simbólico-abstracto", "questionWeight": 1, "position": 3 },
+        { "name": "Matemáticas", "questionWeight": 1, "position": 4 },
+        { "name": "Fundamentos de física", "questionWeight": 1, "position": 5 },
+        { "name": "Contexto histórico", "questionWeight": 1, "position": 6 },
+        { "name": "Dibujo y modelado", "questionWeight": 1, "position": 7 }
+      ]
+    }
+  ],
+  "topics": {
+    "Razonamiento verbal": ["Comprensión lectora", "Comunicación escrita"],
+    "Razonamiento matemático": ["Razonamiento numérico"],
+    "Razonamiento simbólico-abstracto": ["Discriminación visual", "Sintaxis gráfica", "Forma y percepción del espacio"],
+    "Matemáticas": ["Aritmética", "Álgebra", "Geometría euclidiana", "Trigonometría", "Geometría analítica", "Teoría de conjuntos"],
+    "Fundamentos de física": ["Cinemática", "Dinámica", "Estática"],
+    "Contexto histórico": ["El arte universal", "El arte en México"],
+    "Dibujo y modelado": ["Tipos de líneas", "Formas geométricas planas", "Representación", "Perspectiva", "Escalas, ejes y cotas", "Textura", "Relieve", "Formas volumétricas"]
+  },
+  "weightsNote": "TODO-VERIFICAR: questionWeight=1 en todas las materias es un PLACEHOLDER explícito (ver nota completa en uam_cbi.taxonomy.json). Requiere derivar pesos reales de la sección 'Claves de respuestas' (p.57 impresa) no extraída en esta sesión."
+}

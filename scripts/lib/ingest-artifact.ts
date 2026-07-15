@@ -31,6 +31,15 @@ export interface ExamMeta {
   totalQuestions: number;
   examDate?: string;
   note?: string;
+  /**
+   * true cuando el artefacto solo cubre UNA área/división de un examen que
+   * tiene varias fuentes distintas (p. ej. UAM: 4 guías, una por división,
+   * todas apuntando al mismo Exam). En ese caso no se exige que la suma de
+   * questionWeight de este artefacto cierre con exam.totalQuestions — esa
+   * suma solo es verificable cuando UN artefacto trae el examen completo
+   * (como ECOEMS, una sola guía con las 10 asignaturas).
+   */
+  partialCoverage?: boolean;
 }
 
 export interface SubjectSpec {
@@ -55,6 +64,13 @@ export interface TaxonomyArtifact {
   exam: ExamMeta;
   areas: AreaSpec[];
   topics?: Record<string, string[]>;
+  /**
+   * Presente cuando questionWeight es un PLACEHOLDER (no derivado de un
+   * conteo real de examen muestra, como sí lo es en ECOEMS). El CLI de
+   * ingesta lo usa para no reportar "pesos oficiales" cuando en realidad
+   * son marcador de posición sin verificar.
+   */
+  weightsNote?: string;
 }
 
 export interface OptionSpec {
@@ -120,8 +136,11 @@ export function validateTaxonomy(art: TaxonomyArtifact): string[] {
     }
   }
 
-  // Si el artefacto declara pesos por materia, deben sumar el total oficial.
-  if (hasSubjects && weightSum !== art.exam.totalQuestions) {
+  // Si el artefacto declara pesos por materia Y cubre el examen completo
+  // (no partialCoverage), deben sumar el total oficial. Con partialCoverage
+  // (p. ej. una guía por división de un examen con varias fuentes) esta
+  // suma no es verificable desde un solo artefacto.
+  if (hasSubjects && !art.exam.partialCoverage && weightSum !== art.exam.totalQuestions) {
     errors.push(
       `Suma de questionWeight (${weightSum}) != exam.totalQuestions (${art.exam.totalQuestions})`,
     );

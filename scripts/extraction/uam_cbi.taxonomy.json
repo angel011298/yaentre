@@ -1,0 +1,65 @@
+{
+  "source": {
+    "externalRef": "UAM-CBI-2016",
+    "name": "Guía de estudio para el examen de selección — División de Ciencias Básicas e Ingeniería",
+    "institution": "UAM",
+    "type": "SUPERIOR",
+    "year": 2016,
+    "fileRef": "docs/guias/uam_cbi.pdf",
+    "license": "© Universidad Autónoma Metropolitana. Descarga pública oficial desde admision.uam.mx/adm_guias.html, sin login ni captcha. Copyright estándar (ISBN 978-607-477-498-6), comparable en alcance al aviso de la guía ECOEMS ya ingerida en CC-09."
+  },
+  "exam": {
+    "institutionCode": "UAM",
+    "level": "SUPERIOR",
+    "levelName": "Licenciatura",
+    "year": 2027,
+    "name": "Examen de Selección UAM 2027",
+    "durationMins": 180,
+    "totalQuestions": 120,
+    "note": "Dato oficial extraído del texto de la guía (p.1): '120 preguntas... tres partes: razonamientos o habilidades verbales, razonamiento matemático y conocimientos específicos', '3 horas'. Examen ÚNICO compartido por las 4 divisiones (CBI/CBS/CSH/CAD); cada división aporta su propia guía con la sección de 'conocimientos específicos' distinta. Este artefacto cubre SOLO la división CBI — ver partialCoverage.",
+    "partialCoverage": true
+  },
+  "areas": [
+    {
+      "code": "UAM_CBI",
+      "name": "Ciencias Básicas e Ingeniería",
+      "colorHex": "#7C3AED",
+      "iconEmoji": "⚙️",
+      "position": 1,
+      "subjects": [
+        { "name": "Razonamiento verbal", "questionWeight": 1, "position": 1 },
+        { "name": "Razonamiento matemático", "questionWeight": 1, "position": 2 },
+        { "name": "Matemática", "questionWeight": 1, "position": 3 },
+        { "name": "Física", "questionWeight": 1, "position": 4 },
+        { "name": "Química", "questionWeight": 1, "position": 5 }
+      ]
+    }
+  ],
+  "topics": {
+    "Razonamiento verbal": ["Comprensión lectora", "Comunicación escrita"],
+    "Razonamiento matemático": ["Razonamiento numérico"],
+    "Matemática": [
+      "Aritmética",
+      "Álgebra",
+      "Geometría euclidiana",
+      "Trigonometría plana",
+      "Geometría analítica",
+      "Cálculo diferencial e integral"
+    ],
+    "Física": [
+      "Análisis dimensional",
+      "Cinemática",
+      "Dinámica",
+      "Estática",
+      "Hidrostática",
+      "Electrostática"
+    ],
+    "Química": [
+      "Materia",
+      "Estructura del átomo",
+      "Nomenclatura",
+      "Reacciones químicas"
+    ]
+  },
+  "weightsNote": "TODO-VERIFICAR: questionWeight=1 en todas las materias es un PLACEHOLDER explícito, no una estimación de proporción. A diferencia de ECOEMS (donde el peso se derivó contando la clave real del examen muestra), esta guía UAM trae 'Claves de respuestas' de sus ejercicios de práctica en una página no extraída en esta sesión. Deriva los pesos reales leyendo esa sección antes de usar esta materia para el Aciertómetro."
+}

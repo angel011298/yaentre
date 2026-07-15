@@ -682,3 +682,105 @@ pipeline de contenido va de la guía oficial → temario/pesos reales + few-shot
 anclado en reactivos reales → generación IA → validación → revisión admin, con
 la frontera de propiedad intelectual (CALIBRATION_ONLY) garantizada a nivel de
 query. Falta credencial de Anthropic y DB real para el end-to-end.*
+
+---
+
+## CC-09b — Catálogo e ingesta de fuentes públicas adicionales
+
+**Fecha:** 12 de julio de 2026 · **Modelo de la sesión:** Sonnet (búsqueda web, verificación, integración)
+
+**Depende de:** CC-09 (mecanismo de ingesta ya existe). Catálogo completo en
+[`docs/FUENTES_ADICIONALES.md`](FUENTES_ADICIONALES.md).
+
+### Alcance
+
+Búsqueda web de fuentes oficiales adicionales (guía UNAM Superior por área,
+ediciones pasadas de ECOEMS, manual EXANI-II de CENEVAL, guía UAM), descarga de
+lo directamente público, e ingesta ligera vía `ingest-source.ts`.
+
+### Hallazgos
+
+- **UNAM Superior por área (el gap más importante de CC-07): NO es de acceso
+  público autónomo.** Se libera solo tras registrarse y pagar el examen de un
+  ciclo de admisión real. Instrucción exacta para el usuario documentada en
+  `FUENTES_ADICIONALES.md §1`.
+- **ECOEMS ediciones pasadas:** sin PDF individual público (IPN enlaza a una
+  plataforma web, no un archivo; ediciones viejas solo en venta). Prioridad
+  baja — CC-09 ya cubrió la edición vigente.
+- **CENEVAL EXANI-II / Nuevo EXANI-I:** ambas descargables directo desde
+  `ceneval.edu.mx` (HTTP 200, sin login), **pero con un aviso de copyright más
+  estricto que ECOEMS/UAM** (reproducción/distribución sin consentimiento
+  "cancela tu evaluación"). **Se descargaron pero NO se ingirió contenido** —
+  quedan en `docs/guias/` marcadas para tu revisión/decisión legal.
+- **UAM: 4 guías divisionales (CBI, CBS, CSH, CAD), todas públicas y
+  descargadas** desde `admision.uam.mx/guias/`. Copyright estándar (comparable
+  a ECOEMS) → sí se ingirió. **UAM nunca había sido sembrada** — es una
+  institución nueva para el proyecto, no una corrección de una existente.
+
+### Dato oficial confirmado (UAM)
+
+Examen único compartido por las 4 divisiones: **120 preguntas, 3 horas**,
+estructurado en Aptitudes (Razonamiento verbal + matemático, + simbólico-
+abstracto solo en CAD) y Conocimientos específicos (propio de cada división).
+Extraído textualmente de las guías (texto real, no escaneado — sin necesidad
+de visión).
+
+### Cambio de código: `partialCoverage`
+
+`validateTaxonomy()` (CC-09) exigía que la suma de `questionWeight` de un
+artefacto cerrara exacto con `exam.totalQuestions` — válido para ECOEMS (una
+guía = el examen completo) pero no para UAM (4 guías separadas, cada una cubre
+solo su división del mismo examen). Se agregó `exam.partialCoverage: true` a
+`ExamMeta` (`scripts/lib/ingest-artifact.ts`) para que la validación omita esa
+suma cuando el artefacto se declara explícitamente parcial.
+
+### Pesos: placeholder honesto, no inventado
+
+A diferencia de ECOEMS (pesos derivados de contar la clave real), las guías
+UAM traen su "Claves de respuestas" en páginas no extraídas en esta sesión
+(harían falta ~4 extracciones a fondo, una por división). Se usó
+`questionWeight = 1` como **placeholder explícito** (no una estimación de
+proporción) en las 4 divisiones, documentado en `weightsNote` de cada
+artefacto. Se corrigió además el CLI de ingesta: antes siempre imprimía
+"pesos oficiales... derivados del conteo real" sin importar el artefacto;
+ahora detecta `weightsNote` y reporta `⚠️ PLACEHOLDER, no derivados`
+honestamente.
+
+### Verificación de licencia (por fuente)
+
+Cada URL se comprobó con `curl -I` (HTTP 200 + `Content-Type: application/pdf`,
+sin autenticación) y el PDF se abrió para confirmar que el contenido
+corresponde a lo anunciado antes de tratarlo como válido. Fuentes de origen
+dudoso encontradas en la búsqueda (scribd, slideshare, sitios de "guías
+contestadas") **no se descargaron**, por instrucción explícita de la tarea.
+
+### Verificación
+
+- ✅ 8 PDFs descargados desde dominios oficiales (`dgae.unam.mx`,
+  `escolar1.unam.mx`, `ceneval.edu.mx`, `admision.uam.mx`), verificados antes
+  de tratarlos como fuente.
+- ✅ 4 artefactos de taxonomía UAM (`scripts/extraction/uam_c*.taxonomy.json`)
+  con temario real transcrito (texto extraíble, sin necesidad de visión).
+- ✅ `pnpm typecheck` y `pnpm lint` en verde.
+- ✅ Dry-run de los 4 artefactos UAM: validación OK, reporte honesto de pesos
+  placeholder.
+- ✅ Ninguna fuente dudosa descargada; CENEVAL descargado pero explícitamente
+  no ingerido, marcado para revisión.
+
+### 🟡 TODOs
+
+- [ ] UNAM Superior por área: requiere que el usuario decida si registra/paga
+  un ciclo de admisión real, o compra la edición impresa — ver instrucción
+  exacta en `FUENTES_ADICIONALES.md §1`.
+- [ ] CENEVAL EXANI-II / EXANI-I: pendiente confirmación del usuario sobre si
+  el uso interno CALIBRATION_ONLY es aceptable bajo su aviso de copyright,
+  antes de construir un artefacto de extracción.
+- [ ] UAM: derivar pesos reales de la sección "Claves de respuestas" de cada
+  guía (4 extracciones pendientes, una por división).
+
+---
+
+*Sprint 1 + CC-09b: el catálogo de fuentes de contenido está mapeado con
+URLs oficiales verificadas. UAM se siembra por primera vez (temario real, 4
+divisiones). Los gaps que quedan (UNAM Superior por área, CENEVAL) requieren
+una decisión o acción del usuario fuera del alcance autónomo de esta sesión.*

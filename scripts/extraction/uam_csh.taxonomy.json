@@ -1,0 +1,68 @@
+{
+  "source": {
+    "externalRef": "UAM-CSH-2016",
+    "name": "Guía de estudio para el examen de selección — División de Ciencias Sociales y Humanidades",
+    "institution": "UAM",
+    "type": "SUPERIOR",
+    "year": 2016,
+    "fileRef": "docs/guias/uam_csh.pdf",
+    "license": "© Universidad Autónoma Metropolitana. Descarga pública oficial desde admision.uam.mx/adm_guias.html, sin login ni captcha."
+  },
+  "exam": {
+    "institutionCode": "UAM",
+    "level": "SUPERIOR",
+    "levelName": "Licenciatura",
+    "year": 2027,
+    "name": "Examen de Selección UAM 2027",
+    "durationMins": 180,
+    "totalQuestions": 120,
+    "note": "Mismo examen que UAM_CBI (dato oficial: 120 preguntas, 3 horas). Este artefacto cubre SOLO la división CSH.",
+    "partialCoverage": true
+  },
+  "areas": [
+    {
+      "code": "UAM_CSH",
+      "name": "Ciencias Sociales y Humanidades",
+      "colorHex": "#FBBF24",
+      "iconEmoji": "📚",
+      "position": 3,
+      "subjects": [
+        { "name": "Razonamiento verbal", "questionWeight": 1, "position": 1 },
+        { "name": "Razonamiento matemático", "questionWeight": 1, "position": 2 },
+        { "name": "Literatura", "questionWeight": 1, "position": 3 },
+        { "name": "Historia de México", "questionWeight": 1, "position": 4 },
+        { "name": "Historia universal", "questionWeight": 1, "position": 5 },
+        { "name": "Formación cívica y política", "questionWeight": 1, "position": 6 },
+        { "name": "Filosofía", "questionWeight": 1, "position": 7 },
+        { "name": "Matemáticas", "questionWeight": 1, "position": 8 }
+      ]
+    }
+  ],
+  "topics": {
+    "Razonamiento verbal": ["Comprensión lectora", "Comunicación escrita"],
+    "Razonamiento matemático": ["Razonamiento numérico"],
+    "Literatura": ["El lenguaje literario", "Los géneros literarios", "Principales autores literarios hispanos y latinoamericanos"],
+    "Historia de México": [
+      "Mesoamérica",
+      "Independencia",
+      "La República Liberal",
+      "La República Restaurada",
+      "El Porfiriato",
+      "La Revolución",
+      "México posrevolucionario"
+    ],
+    "Historia universal": [
+      "Civilizaciones antiguas: Grecia y Roma",
+      "Feudalismo",
+      "Renacimiento",
+      "Expansión europea",
+      "Revolución industrial y revoluciones burguesas",
+      "Conflagraciones mundiales del siglo XX",
+      "Descolonización y democratización"
+    ],
+    "Formación cívica y política": ["Organización política", "Sistema político mexicano", "Organización social"],
+    "Filosofía": ["Principales problemas filosóficos", "Evolución de las cuestiones y perspectivas filosóficas", "Lógica"],
+    "Matemáticas": ["Aritmética", "Álgebra", "Geometría plana", "Geometría analítica"]
+  },
+  "weightsNote": "TODO-VERIFICAR: questionWeight=1 en todas las materias es un PLACEHOLDER explícito (ver nota completa en uam_cbi.taxonomy.json). El temario de Matemáticas puede estar incompleto: la extracción de la página de temas se cortó antes de confirmar si hay subtemas adicionales tras 'Geometría analítica'. Requiere derivar pesos reales de la sección 'Claves de respuestas' (p.53 impresa) no extraída en esta sesión."
+}
