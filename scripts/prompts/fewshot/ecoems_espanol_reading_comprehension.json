@@ -1,0 +1,72 @@
+{
+  "institution": "ecoems",
+  "subject": "espanol",
+  "format": "READING_COMPREHENSION",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "ECOEMS-2025#Q2",
+      "stem": "Selecciona el tema del siguiente texto.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Manuel Gutiérrez Nájera tuvo una carrera productiva desde joven.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Manuel Gutiérrez Nájera usó diferentes seudónimos para firmar su obra.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Manuel Gutiérrez Nájera escribía mucho para numerosas publicaciones.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Manuel Gutiérrez Nájera tenía, a los 17 años, más de 25 seudónimos.",
+          "isCorrect": false
+        }
+      ],
+      "format": "READING_COMPREHENSION",
+      "passage": {
+        "title": "Manuel Gutiérrez Nájera",
+        "sourceRef": "Clark de Lara, Belem. Por donde se sube al cielo, Introducción.",
+        "content": "Manuel Gutiérrez Nájera se inició, desde muy joven, como escritor. A los diecisiete años apareció su primera publicación, y durante las dos décadas siguientes, colaboró en cerca de treinta y seis diarios y revistas literarias de la época, en ocasiones hasta con cinco entregas al día. Para tan ardua tarea utilizó alrededor de veintiséis seudónimos..."
+      }
+    },
+    {
+      "ref": "ECOEMS-2025#Q11",
+      "stem": "En la frase subrayada (\"Este filme es importante para la cultura latina porque se hacen pocas películas tan reales y fuertes como ésta\") se advierte que la intención de quien habla es",
+      "options": [
+        {
+          "id": "A",
+          "text": "describir un acontecimiento.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "narrar un evento.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "justificar una acción.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "dar una opinión.",
+          "isCorrect": true
+        }
+      ],
+      "format": "READING_COMPREHENSION",
+      "passage": {
+        "title": "Triunfo de mexicanos indocumentados en concurso de robótica llega al cine",
+        "sourceRef": "Nota periodística (examen muestra ECOEMS).",
+        "content": "De la mano de Jamie Lee Curtis, Marisa Tomei y George López, Spare Parts lleva al cine la historia real de cuatro alumnos mexicanos e indocumentados que en 2004 ganaron un concurso de robótica persiguiendo su \"sueño americano\". Los jóvenes, guiados por sus profesores Fredi Lajvardi y Allan Cameron ganaron la competición patrocinada por la NASA con un presupuesto menor a mil dólares, superando los artilugios de los equipos de Stanford y del MIT, entre otros. La película plasma además las dificultades que afrontaban a diario estos adolescentes, deseosos de convertirse en estadunidenses pero que vivían con el miedo de ser deportados en cualquier momento. \"Este filme es importante para la cultura latina porque se hacen pocas películas tan reales y fuertes como ésta\", aseguró López en una reciente mesa redonda con periodistas en Los Ángeles."
+      }
+    }
+  ]
+}

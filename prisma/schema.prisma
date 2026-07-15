@@ -121,6 +121,14 @@ enum QuestionUsage {
   CALIBRATION_ONLY  // Solo para calibración interna, nunca servible
 }
 
+enum QuestionFormat {
+  MULTIPLE_CHOICE       // Reactivo estándar de opción múltiple (4 opciones de texto)
+  READING_COMPREHENSION // Depende de un Passage compartido (comprensión de lectura)
+  IMAGE_OPTIONS         // Las opciones son imágenes (imageUrl por opción)
+  CHART_TABLE           // El enunciado incluye una gráfica/tabla como estímulo
+  MATCHING              // Relacionar columnas (concepto ↔ descripción)
+}
+
 // ──────────────────── TAXONOMÍA DE CONTENIDO ────────────────────
 
 model Institution {
@@ -142,10 +150,25 @@ model ContentSource {
   year        Int?     // Año de publicación
   fileRef     String?  // Referencia a archivo en Storage (si aplica)
   license     String?  // Descripción de licencia
+  externalRef String?  @unique // Clave estable para idempotencia de ingesta (p. ej. "ECOEMS-2025")
   ingestedAt  DateTime @default(now())
   questions   Question[] @relation("QuestionSource")
+  passages    Passage[]  @relation("PassageSource")
 
   @@map("content_sources")
+}
+
+model Passage {
+  id              String         @id @default(cuid())
+  title           String?
+  content         String         @db.Text
+  sourceRef       String?        // Cita del texto (autor, obra)
+  contentSourceId String?
+  contentSource   ContentSource? @relation("PassageSource", fields: [contentSourceId], references: [id], onDelete: SetNull)
+  questions       Question[]
+  createdAt       DateTime       @default(now())
+
+  @@map("passages")
 }
 
 
@@ -255,6 +278,12 @@ model Question {
   sourceRef     String?                               // Cita/referencia de la fuente
   contentSourceId String?
   contentSource ContentSource?   @relation("QuestionSource", fields: [contentSourceId], references: [id])
+
+  // ── Formato y estímulo compartido (CC-01b / CC-09) ──
+  format        QuestionFormat   @default(MULTIPLE_CHOICE)
+  passageId     String?
+  passage       Passage?         @relation(fields: [passageId], references: [id], onDelete: SetNull)
+  externalRef   String?          @unique // Idempotencia de ingesta (p. ej. "ECOEMS-2025#Q29")
 
   explanations ExplanationLayer[]
   answers      SessionAnswer[]

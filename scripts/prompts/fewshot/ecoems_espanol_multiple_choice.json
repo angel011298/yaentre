@@ -1,0 +1,62 @@
+{
+  "institution": "ecoems",
+  "subject": "espanol",
+  "format": "MULTIPLE_CHOICE",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "ECOEMS-2025#Q1",
+      "stem": "La ficha bibliográfica es un instrumento de investigación que",
+      "options": [
+        {
+          "id": "A",
+          "text": "organiza la información con una base temporal o alfabética.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "da cuenta de estudios de campo, de laboratorio y estadísticas.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "permite almacenar datos de las publicaciones, por temas, títulos o autores.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "registra exclusivamente noticias de documentos de reciente creación.",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q12",
+      "stem": "Identifica el anuncio publicitario en el que se exageran las cualidades del producto.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Crema \"Vida nueva\", agradable e intensa compañía para tu piel.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "¿Cansado de pensar? Adquiere nuestro programa de habilidades, un botón que hará tareas por ti.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Si piensas seguir viviendo... no olvides tener a tu lado \"Esperanza\", la pastilla que realmente renovará tus ganas de vivir.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La alimentación mediante productos \"Paraíso terrenal\" favorecerá llevar una vida llena de salud.",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    }
+  ]
+}

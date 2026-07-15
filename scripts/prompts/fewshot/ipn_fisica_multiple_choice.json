@@ -1,0 +1,62 @@
+{
+  "institution": "ipn",
+  "subject": "fisica",
+  "format": "MULTIPLE_CHOICE",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "IPN-SUP-2025#FIS-Q24",
+      "stem": "¿Cuántas imágenes tuyas se pueden observar en la casa de los espejos al colocarte en una esquina con solo dos espejos planos que forman un ángulo de 40°?",
+      "options": [
+        {
+          "id": "A",
+          "text": "10 imágenes",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "9 imágenes",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "8 imágenes",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "7 imágenes",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "IPN-SUP-2025#FIS-Q25",
+      "stem": "Un rayo luminoso pasa del aire al vidrio con un ángulo de incidencia de $45°$. ¿Cuál es el ángulo de refracción? Considerar: índice de refracción del vidrio $n = 1.5$.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\operatorname{arcsen}\\dfrac{\\sqrt{2}}{3}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\operatorname{arcsen}\\dfrac{1}{\\sqrt{2}}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\operatorname{arcsen}\\sqrt{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\operatorname{arcsen}\\dfrac{\\sqrt{3}}{2}$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    }
+  ]
+}

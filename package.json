@@ -16,7 +16,8 @@
     "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
     "content:generate": "tsx scripts/generate-questions.ts",
-    "content:coverage": "tsx scripts/content-coverage.ts"
+    "content:coverage": "tsx scripts/content-coverage.ts",
+    "content:ingest": "tsx scripts/ingest-source.ts"
   },
   "dependencies": {
     "@number-flow/react": "^0.6.1",

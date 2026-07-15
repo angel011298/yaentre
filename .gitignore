@@ -55,3 +55,6 @@ next-env.d.ts
 Thumbs.db
 .turbo
 .vercel
+
+# Guías oficiales (material con licencia, grandes — no versionar el binario)
+docs/guias/*.pdf

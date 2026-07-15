@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "sourceExternalRef": "IPN-SUP-2025",
+    "extraction": "Muestra representativa extraída con visión de la guía escaneada (pág. PDF 132, sección Física). Respuesta correcta tomada de la tabla 'RESPUESTAS CORRECTAS (RC)' impresa en la misma página, verificada además por resolución física. NINGÚN reactivo inventado. La extracción completa de las 132 páginas es incremental (ver docs/EXTRACCION_IPN.md).",
+    "usage": "CALIBRATION_ONLY",
+    "source": "OFFICIAL_SAMPLE"
+  },
+  "questions": [
+    {
+      "ref": "IPN-SUP-2025#FIS-Q22", "subject": "Física", "topicName": "Ondas", "areaCode": "IPN_SOCADM",
+      "format": "MATCHING",
+      "stem": "Relacionar el concepto con su descripción. Conceptos: 1) Onda; 2) Ondas transversales; 3) Ondas longitudinales. Descripciones: A) Perturbación que se produce en un medio cualquiera y que se propaga; B) Son aquellas cuyas partículas vibran en la misma dirección de la propagación; C) La dirección de propagación de la energía es perpendicular a la dirección en la que oscilan las partículas del medio.",
+      "options": [
+        { "id": "A", "text": "1A, 2C, 3B", "isCorrect": true },
+        { "id": "B", "text": "1B, 2C, 3A", "isCorrect": false },
+        { "id": "C", "text": "1A, 2B, 3C", "isCorrect": false },
+        { "id": "D", "text": "1B, 2A, 3C", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "IPN-SUP-2025#FIS-Q24", "subject": "Física", "topicName": "Óptica", "areaCode": "IPN_SOCADM",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "¿Cuántas imágenes tuyas se pueden observar en la casa de los espejos al colocarte en una esquina con solo dos espejos planos que forman un ángulo de 40°?",
+      "options": [
+        { "id": "A", "text": "10 imágenes", "isCorrect": false },
+        { "id": "B", "text": "9 imágenes", "isCorrect": false },
+        { "id": "C", "text": "8 imágenes", "isCorrect": true },
+        { "id": "D", "text": "7 imágenes", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "IPN-SUP-2025#FIS-Q25", "subject": "Física", "topicName": "Óptica", "areaCode": "IPN_SOCADM",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Un rayo luminoso pasa del aire al vidrio con un ángulo de incidencia de $45°$. ¿Cuál es el ángulo de refracción? Considerar: índice de refracción del vidrio $n = 1.5$.",
+      "options": [
+        { "id": "A", "text": "$\\operatorname{arcsen}\\dfrac{\\sqrt{2}}{3}$", "isCorrect": true },
+        { "id": "B", "text": "$\\operatorname{arcsen}\\dfrac{1}{\\sqrt{2}}$", "isCorrect": false },
+        { "id": "C", "text": "$\\operatorname{arcsen}\\sqrt{2}$", "isCorrect": false },
+        { "id": "D", "text": "$\\operatorname{arcsen}\\dfrac{\\sqrt{3}}{2}$", "isCorrect": false }
+      ]
+    }
+  ]
+}

@@ -599,3 +599,86 @@ Implementado en `src/lib/db/question-read.ts`:
 principio a fin (Etapas 1-3 del PRD §8) + guardrails de propiedad intelectual
 está construido. Falta: credencial ANTHROPIC_API_KEY real y conexión a DB real
 para sembrar y generar reactivos end-to-end.*
+
+---
+
+## CC-09 — Ingesta re-ejecutable de guías oficiales
+
+**Fecha:** 12 de julio de 2026 · **Modelo de la sesión:** Fable (precisión sobre velocidad; cero invención)
+
+**Fuentes:** `guia_ECOEM.pdf` (UNAM-IPN Media Superior 2025) y `Guia_IPN.pdf` (IPN Superior 2025). Depende de CC-01b (integrado aquí) y CC-01c (procedencia).
+
+### Qué entrega
+
+Etapa 0 del pipeline: convertir UNA guía oficial en (1) temario real, (2) pesos oficiales derivados del **conteo real** del examen muestra, (3) reactivos oficiales como `OFFICIAL_SAMPLE + CALIBRATION_ONLY`, y (4) corpus few-shot por asignatura/formato. Re-ejecutable e idempotente por fuente.
+
+### Método de extracción (clave)
+
+El texto embebido de la guía ECOEMS usa un **cifrado de desplazamiento (+29)** con pérdida de acentos → `pdftotext` no sirve. La guía IPN es un **PDF escaneado** sin texto. En ambos casos la extracción fiable es **por visión**: render del PDF a imagen (PyMuPDF) + lectura. Diseño separado en dos pasos:
+- **Extracción** (no determinista, requiere visión, humano+Claude offline) → produce artefactos JSON en `scripts/extraction/`.
+- **Aplicación** (`scripts/ingest-source.ts`, determinista, idempotente por `externalRef`) → siembra la DB desde los artefactos.
+
+Esta separación es lo que hace la ingesta reproducible por guía sin romper lo anterior.
+
+### CC-01b integrado (el schema lo requería)
+
+- Enum `QuestionFormat` (MULTIPLE_CHOICE, READING_COMPREHENSION, IMAGE_OPTIONS, CHART_TABLE, MATCHING).
+- Modelo `Passage` (texto compartido de comprensión lectora, N reactivos → 1 pasaje).
+- `Question.format`, `Question.passageId`, `Question.externalRef` (idempotencia), `ContentSource.externalRef`.
+- Migración `0004_add_question_format_and_passage.sql` + `prisma generate`.
+
+### ECOEMS — extracción completa y verificada
+
+- **Dato oficial:** examen conjunto IPN-UNAM Media Superior, **128 preguntas** (pág. 9).
+- **Clave de respuestas completa (128/128):** extraída por visión de las págs. 82-84, con nº de pregunta, asignatura, código de tema y respuesta correcta. En `scripts/extraction/ecoems.answerkey.json`.
+- **Pesos oficiales DERIVADOS del conteo real** (no estimados), suma verificada = 128:
+
+| Asignatura | Peso | Asignatura | Peso |
+|---|---|---|---|
+| Español | 12 | Física | 12 |
+| Habilidad verbal | 16 | Química | 12 |
+| Matemáticas | 12 | Historia | 12 |
+| Habilidad matemática | 16 | Geografía | 12 |
+| Biología | 12 | Formación cívica y ética | 12 |
+
+- **17 reactivos** del examen muestra transcritos con fidelidad total (enunciado + 4 opciones + respuesta cruzada 1:1 contra la clave), con LaTeX en matemáticas y `Passage` en comprensión lectora.
+- **Temario oficial** jerárquico (10 asignaturas) sembrado.
+
+### IPN — carreras reales + muestra
+
+- **3 ramas** confirmadas (FISMAT/MEDBIO/SOCADM).
+- **Nombres reales de carrera** verificados contra la guía (corrigen/precisan CC-08).
+- **3 reactivos** de Física transcritos con su clave "RC" verificada (incluye MATCHING y LaTeX).
+- La guía **no publica** `minAciertos` → siguen `TODO-VERIFICAR` (no se inventan).
+
+### Discrepancias vs CC-07/CC-08 (hallazgo principal)
+
+- **ECOEMS es un examen NUEVO (Media Superior), no una corrección de CC-07/CC-08 (Superior).** Distinto nivel → sus pesos oficiales no contradicen las estimaciones Superior. Los `TODO-VERIFICAR` de CC-07/CC-08 (nivel Superior) **siguen abiertos**; ECOEMS no aporta evidencia sobre ellos.
+- **Media Superior queda sembrada tras el feature flag** (`NEXT_PUBLIC_ENABLE_MEDIA_SUPERIOR=false`): data lista, no expuesta en el launch Superior del 6-ene.
+- **CC-08 IPN:** nombres de carrera precisados con datos reales; `minAciertos` y `questionWeight` por materia **no** derivables de la guía → estimaciones se mantienen marcadas.
+- Detalle completo en `docs/EXTRACCION_ECOEMS.md` y `docs/EXTRACCION_IPN.md`.
+
+### Política "cero inventados"
+
+Solo se registró lo leído con certeza. Lo no transcrito está contabilizado en el log de omitidos con su motivo (extracción incremental / opciones-imagen pendientes / dato no publicado por la fuente). **Ningún reactivo fue inventado ni completado por inferencia.**
+
+### Guardrails
+
+- ✅ Reactivos oficiales entran `OFFICIAL_SAMPLE + CALIBRATION_ONLY` → nunca servibles (garantía de `src/lib/db/question-read.ts`, CC-01c).
+- ✅ Idempotente por `externalRef` (re-ejecutar no duplica).
+- ✅ Los PDF con licencia **no** se versionan (`.gitignore`); sí los artefactos JSON derivados.
+
+### Verificación
+
+- ✅ `pnpm typecheck` y `pnpm lint` en verde.
+- ✅ 62 tests en verde.
+- ✅ Dry-run de ambas guías OK (valida pesos = total, 1 correcta por reactivo, formatos, pasajes).
+- 🟡 Ingesta real a DB bloqueada por falta de `DATABASE_URL` (mismo bloqueo transversal).
+
+---
+
+*Sprint 1 cierra la Etapa 0 (ingesta de fuentes) además de las Etapas 1-3. El
+pipeline de contenido va de la guía oficial → temario/pesos reales + few-shot
+anclado en reactivos reales → generación IA → validación → revisión admin, con
+la frontera de propiedad intelectual (CALIBRATION_ONLY) garantizada a nivel de
+query. Falta credencial de Anthropic y DB real para el end-to-end.*

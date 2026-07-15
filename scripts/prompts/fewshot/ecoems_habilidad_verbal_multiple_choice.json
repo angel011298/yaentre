@@ -1,0 +1,35 @@
+{
+  "institution": "ecoems",
+  "subject": "habilidad_verbal",
+  "format": "MULTIPLE_CHOICE",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "ECOEMS-2025#Q28",
+      "stem": "El médico actuó con CELERIDAD.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rapidez.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Lentitud.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Dilación.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Sencillez.",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    }
+  ]
+}

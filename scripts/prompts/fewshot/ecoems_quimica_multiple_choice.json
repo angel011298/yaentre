@@ -1,0 +1,116 @@
+{
+  "institution": "ecoems",
+  "subject": "quimica",
+  "format": "MULTIPLE_CHOICE",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "ECOEMS-2025#Q81",
+      "stem": "Los distintos modelos de átomo han sido elaborados para",
+      "options": [
+        {
+          "id": "A",
+          "text": "cuantificar las sustancias en una reacción.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "explicar el comportamiento de la materia.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "representar los fenómenos naturales.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "comunicar los resultados de sus experimentos.",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q85",
+      "stem": "Partículas subatómicas responsables de que ocurran las reacciones químicas.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Neutrones.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Electrones internos.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Protones.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Electrones externos.",
+          "isCorrect": true
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q86",
+      "stem": "Un átomo con $Z = 20$ y $40$ neutrones, tiene ___ protones.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$60$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$10$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$20$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$40$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q87",
+      "stem": "La representación $\\text{H} \\cdot$ corresponde a",
+      "options": [
+        {
+          "id": "A",
+          "text": "ion hidrógeno.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "átomo de hidrógeno.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "la molécula de hidrógeno.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "ion hidronio.",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "institution": "ipn",
+  "subject": "fisica",
+  "format": "MATCHING",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "IPN-SUP-2025#FIS-Q22",
+      "stem": "Relacionar el concepto con su descripción. Conceptos: 1) Onda; 2) Ondas transversales; 3) Ondas longitudinales. Descripciones: A) Perturbación que se produce en un medio cualquiera y que se propaga; B) Son aquellas cuyas partículas vibran en la misma dirección de la propagación; C) La dirección de propagación de la energía es perpendicular a la dirección en la que oscilan las partículas del medio.",
+      "options": [
+        {
+          "id": "A",
+          "text": "1A, 2C, 3B",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "1B, 2C, 3A",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "1A, 2B, 3C",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "1B, 2A, 3C",
+          "isCorrect": false
+        }
+      ],
+      "format": "MATCHING"
+    }
+  ]
+}

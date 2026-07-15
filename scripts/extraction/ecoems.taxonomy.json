@@ -1,0 +1,135 @@
+{
+  "source": {
+    "externalRef": "ECOEMS-2025",
+    "name": "Guía para preparar el examen de ingreso a la Educación Media Superior (IPN-UNAM), 1ª edición 2025",
+    "institution": "UNAM",
+    "coInstitution": "IPN",
+    "type": "MEDIA_SUPERIOR",
+    "year": 2025,
+    "fileRef": "docs/guias/guia_ECOEM.pdf",
+    "license": "Guía oficial de uso público, D.R. © 2025 UNAM (CEIDE, DEE) e IPN — usada para calibración interna y atribución. Reproducción total/parcial sujeta a autorización del titular."
+  },
+  "exam": {
+    "institutionCode": "UNAM",
+    "level": "MEDIA_SUPERIOR",
+    "levelName": "Bachillerato",
+    "year": 2027,
+    "name": "Examen de ingreso a la Educación Media Superior IPN-UNAM 2027",
+    "durationMins": 180,
+    "totalQuestions": 128,
+    "examDate": "2027-06-14",
+    "note": "Examen conjunto IPN-UNAM (proceso de asignación a Media Superior). totalQuestions=128 es dato oficial de la guía (pág. 9). Los pesos por asignatura se derivaron del conteo real de la clave del examen muestra (págs. 82-84)."
+  },
+  "areas": [
+    {
+      "code": "ECOEMS_LENGUAJES",
+      "name": "Lenguajes",
+      "colorHex": "#7C3AED",
+      "iconEmoji": "📖",
+      "position": 1,
+      "subjects": [
+        { "name": "Español", "questionWeight": 12, "iconEmoji": "📝", "position": 1 },
+        { "name": "Habilidad verbal", "questionWeight": 16, "iconEmoji": "🗣️", "position": 2 }
+      ]
+    },
+    {
+      "code": "ECOEMS_SABERES",
+      "name": "Saberes y pensamiento científico",
+      "colorHex": "#22C55E",
+      "iconEmoji": "🔬",
+      "position": 2,
+      "subjects": [
+        { "name": "Matemáticas", "questionWeight": 12, "iconEmoji": "➗", "position": 1 },
+        { "name": "Habilidad matemática", "questionWeight": 16, "iconEmoji": "🧩", "position": 2 },
+        { "name": "Biología", "questionWeight": 12, "iconEmoji": "🦠", "position": 3 },
+        { "name": "Física", "questionWeight": 12, "iconEmoji": "⚛️", "position": 4 },
+        { "name": "Química", "questionWeight": 12, "iconEmoji": "🧪", "position": 5 }
+      ]
+    },
+    {
+      "code": "ECOEMS_ETICA",
+      "name": "Ética, naturaleza y sociedades",
+      "colorHex": "#FBBF24",
+      "iconEmoji": "🏛️",
+      "position": 3,
+      "subjects": [
+        { "name": "Historia", "questionWeight": 12, "iconEmoji": "📜", "position": 1 },
+        { "name": "Geografía", "questionWeight": 12, "iconEmoji": "🗺️", "position": 2 },
+        { "name": "Formación cívica y ética", "questionWeight": 12, "iconEmoji": "⚖️", "position": 3 }
+      ]
+    }
+  ],
+  "topics": {
+    "Español": [
+      "Obtención de información",
+      "Organización de información",
+      "Elementos de coherencia, cohesión y adecuación en los textos",
+      "Tipos de textos"
+    ],
+    "Habilidad verbal": [
+      "Comprensión de lectura",
+      "Manejo de vocabulario"
+    ],
+    "Matemáticas": [
+      "Significado y uso de los números",
+      "Álgebra",
+      "Manejo de la información estadística",
+      "Formas geométricas"
+    ],
+    "Habilidad matemática": [
+      "Sucesiones numéricas",
+      "Series espaciales",
+      "Imaginación espacial",
+      "Problemas de razonamiento"
+    ],
+    "Biología": [
+      "El valor de la biodiversidad",
+      "Tecnología y sociedad",
+      "Transformación de materia y energía",
+      "Nutrición y respiración para el cuidado de la salud",
+      "Reproducción y sexualidad",
+      "Genética, tecnología y sociedad"
+    ],
+    "Física": [
+      "El movimiento. La descripción de los cambios en la naturaleza",
+      "Las fuerzas. La explicación de los cambios",
+      "Las interacciones de la materia",
+      "Manifestaciones de la estructura interna de la materia"
+    ],
+    "Química": [
+      "Las características de los materiales",
+      "Estructura y periodicidad de los elementos",
+      "La reacción química"
+    ],
+    "Historia": [
+      "De principios del siglo XVI a principios del siglo XVIII",
+      "De mediados del siglo XVIII a mediados del siglo XIX",
+      "De mediados del siglo XIX a 1920",
+      "El mundo entre 1920 y 1960",
+      "Décadas recientes",
+      "Las culturas prehispánicas y la conformación de la Nueva España",
+      "Nueva España desde su consolidación hasta la independencia",
+      "De la consumación de la Independencia al inicio de la Revolución Mexicana (1821-1911)",
+      "Instituciones revolucionarias y desarrollo económico (1911-1979)",
+      "México en la era global (1970-2000)"
+    ],
+    "Geografía": [
+      "El espacio geográfico y los mapas",
+      "Recursos naturales y preservación del ambiente",
+      "Dinámica de la población y riesgos",
+      "Espacios económicos y desigualdad social",
+      "Espacios culturales y políticos"
+    ],
+    "Formación cívica y ética": [
+      "La formación cívica y ética en el desarrollo social y personal",
+      "La dimensión cívica y ética de la convivencia",
+      "Identidad e interculturalidad para una ciudadanía democrática",
+      "Los adolescentes y sus contextos de convivencia",
+      "Principios y valores de la democracia",
+      "Participación y ciudadanía democrática",
+      "Hacia una ciudadanía informada, comprometida y participativa",
+      "Compromiso con el entorno natural y social",
+      "Recursos y condiciones para la solución de conflictos sin violencia"
+    ]
+  }
+}

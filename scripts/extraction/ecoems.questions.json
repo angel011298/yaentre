@@ -1,0 +1,212 @@
+{
+  "_meta": {
+    "sourceExternalRef": "ECOEMS-2025",
+    "extraction": "Reactivos del examen muestra extraídos con visión (render a imagen 2x del PDF, págs. 55-81). Respuesta correcta tomada de la clave oficial (págs. 82-84), cruzada 1:1 por número de pregunta. NINGÚN reactivo inventado. Las preguntas del examen muestra no extraídas en esta corrida están en el log de omitidos (docs/EXTRACCION_ECOEMS.md).",
+    "usage": "CALIBRATION_ONLY",
+    "source": "OFFICIAL_SAMPLE"
+  },
+  "passages": [
+    {
+      "ref": "ECOEMS-2025#P-GutierrezNajera",
+      "title": "Manuel Gutiérrez Nájera",
+      "sourceRef": "Clark de Lara, Belem. Por donde se sube al cielo, Introducción.",
+      "content": "Manuel Gutiérrez Nájera se inició, desde muy joven, como escritor. A los diecisiete años apareció su primera publicación, y durante las dos décadas siguientes, colaboró en cerca de treinta y seis diarios y revistas literarias de la época, en ocasiones hasta con cinco entregas al día. Para tan ardua tarea utilizó alrededor de veintiséis seudónimos..."
+    },
+    {
+      "ref": "ECOEMS-2025#P-SpareParts",
+      "title": "Triunfo de mexicanos indocumentados en concurso de robótica llega al cine",
+      "sourceRef": "Nota periodística (examen muestra ECOEMS).",
+      "content": "De la mano de Jamie Lee Curtis, Marisa Tomei y George López, Spare Parts lleva al cine la historia real de cuatro alumnos mexicanos e indocumentados que en 2004 ganaron un concurso de robótica persiguiendo su \"sueño americano\". Los jóvenes, guiados por sus profesores Fredi Lajvardi y Allan Cameron ganaron la competición patrocinada por la NASA con un presupuesto menor a mil dólares, superando los artilugios de los equipos de Stanford y del MIT, entre otros. La película plasma además las dificultades que afrontaban a diario estos adolescentes, deseosos de convertirse en estadunidenses pero que vivían con el miedo de ser deportados en cualquier momento. \"Este filme es importante para la cultura latina porque se hacen pocas películas tan reales y fuertes como ésta\", aseguró López en una reciente mesa redonda con periodistas en Los Ángeles."
+    }
+  ],
+  "questions": [
+    {
+      "ref": "ECOEMS-2025#Q1", "q": 1, "subject": "Español", "topicName": "Obtención de información", "temaCode": "1.1",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "La ficha bibliográfica es un instrumento de investigación que",
+      "options": [
+        { "id": "A", "text": "organiza la información con una base temporal o alfabética.", "isCorrect": false },
+        { "id": "B", "text": "da cuenta de estudios de campo, de laboratorio y estadísticas.", "isCorrect": false },
+        { "id": "C", "text": "permite almacenar datos de las publicaciones, por temas, títulos o autores.", "isCorrect": true },
+        { "id": "D", "text": "registra exclusivamente noticias de documentos de reciente creación.", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q2", "q": 2, "subject": "Español", "topicName": "Organización de información", "temaCode": "2.2",
+      "format": "READING_COMPREHENSION", "passageRef": "ECOEMS-2025#P-GutierrezNajera",
+      "stem": "Selecciona el tema del siguiente texto.",
+      "options": [
+        { "id": "A", "text": "Manuel Gutiérrez Nájera tuvo una carrera productiva desde joven.", "isCorrect": true },
+        { "id": "B", "text": "Manuel Gutiérrez Nájera usó diferentes seudónimos para firmar su obra.", "isCorrect": false },
+        { "id": "C", "text": "Manuel Gutiérrez Nájera escribía mucho para numerosas publicaciones.", "isCorrect": false },
+        { "id": "D", "text": "Manuel Gutiérrez Nájera tenía, a los 17 años, más de 25 seudónimos.", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q11", "q": 11, "subject": "Español", "topicName": "Tipos de textos", "temaCode": "4.9",
+      "format": "READING_COMPREHENSION", "passageRef": "ECOEMS-2025#P-SpareParts",
+      "stem": "En la frase subrayada (\"Este filme es importante para la cultura latina porque se hacen pocas películas tan reales y fuertes como ésta\") se advierte que la intención de quien habla es",
+      "options": [
+        { "id": "A", "text": "describir un acontecimiento.", "isCorrect": false },
+        { "id": "B", "text": "narrar un evento.", "isCorrect": false },
+        { "id": "C", "text": "justificar una acción.", "isCorrect": false },
+        { "id": "D", "text": "dar una opinión.", "isCorrect": true }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q12", "q": 12, "subject": "Español", "topicName": "Tipos de textos", "temaCode": "4.11",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Identifica el anuncio publicitario en el que se exageran las cualidades del producto.",
+      "options": [
+        { "id": "A", "text": "Crema \"Vida nueva\", agradable e intensa compañía para tu piel.", "isCorrect": false },
+        { "id": "B", "text": "¿Cansado de pensar? Adquiere nuestro programa de habilidades, un botón que hará tareas por ti.", "isCorrect": false },
+        { "id": "C", "text": "Si piensas seguir viviendo... no olvides tener a tu lado \"Esperanza\", la pastilla que realmente renovará tus ganas de vivir.", "isCorrect": true },
+        { "id": "D", "text": "La alimentación mediante productos \"Paraíso terrenal\" favorecerá llevar una vida llena de salud.", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q28", "q": 28, "subject": "Habilidad verbal", "topicName": "Manejo de vocabulario", "temaCode": "2.3",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "El médico actuó con CELERIDAD.",
+      "options": [
+        { "id": "A", "text": "Rapidez.", "isCorrect": true },
+        { "id": "B", "text": "Lentitud.", "isCorrect": false },
+        { "id": "C", "text": "Dilación.", "isCorrect": false },
+        { "id": "D", "text": "Sencillez.", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q29", "q": 29, "subject": "Matemáticas", "topicName": "Significado y uso de los números", "temaCode": "1.1",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Encuentra el resultado de la siguiente operación. $2 - 5\\left[8 - 3(7 - 2) + 1\\right] - 3(4 - 1) =$",
+      "options": [
+        { "id": "A", "text": "$29$", "isCorrect": false },
+        { "id": "B", "text": "$23$", "isCorrect": true },
+        { "id": "C", "text": "$-11$", "isCorrect": false },
+        { "id": "D", "text": "$-73$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q30", "q": 30, "subject": "Matemáticas", "topicName": "Significado y uso de los números", "temaCode": "1.5",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "$120$ es el $75\\%$ de",
+      "options": [
+        { "id": "A", "text": "$200$", "isCorrect": false },
+        { "id": "B", "text": "$180$", "isCorrect": false },
+        { "id": "C", "text": "$160$", "isCorrect": true },
+        { "id": "D", "text": "$140$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q31", "q": 31, "subject": "Matemáticas", "topicName": "Significado y uso de los números", "temaCode": "1.6",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "El resultado que se obtiene al simplificar $\\left(\\dfrac{2}{3}\\right)^{4}$ es",
+      "options": [
+        { "id": "A", "text": "$\\dfrac{16}{81}$", "isCorrect": true },
+        { "id": "B", "text": "$\\dfrac{8}{27}$", "isCorrect": false },
+        { "id": "C", "text": "$\\dfrac{16}{18}$", "isCorrect": false },
+        { "id": "D", "text": "$\\dfrac{8}{12}$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q32", "q": 32, "subject": "Matemáticas", "topicName": "Álgebra", "temaCode": "2.1",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "¿Cuál de las siguientes expresiones representa el enunciado \"La semisuma de los cuadrados de $a$ y $b$\"?",
+      "options": [
+        { "id": "A", "text": "$\\dfrac{1}{2}(a + b)^{2}$", "isCorrect": false },
+        { "id": "B", "text": "$\\left(\\dfrac{1}{2}(a + b)\\right)^{2}$", "isCorrect": false },
+        { "id": "C", "text": "$\\dfrac{1}{2}\\left(a^{2} + b^{2}\\right)$", "isCorrect": true },
+        { "id": "D", "text": "$\\left(\\dfrac{1}{2}a + \\dfrac{1}{2}b\\right)^{2}$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q33", "q": 33, "subject": "Matemáticas", "topicName": "Álgebra", "temaCode": "2.3",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "En un triángulo equilátero, uno de sus lados mide $3x - 9$, ¿cuál de las siguientes expresiones representa el perímetro de dicho triángulo?",
+      "options": [
+        { "id": "A", "text": "$9x^{2} - 54x + 81$", "isCorrect": false },
+        { "id": "B", "text": "$9x - 27$", "isCorrect": true },
+        { "id": "C", "text": "$9x - 9$", "isCorrect": false },
+        { "id": "D", "text": "$9x^{2} - 81$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q34", "q": 34, "subject": "Matemáticas", "topicName": "Álgebra", "temaCode": "2.8",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Encuentra la factorización de $x^{2} - 3x - 18$.",
+      "options": [
+        { "id": "A", "text": "$(x - 6)(x + 3)$", "isCorrect": true },
+        { "id": "B", "text": "$(x - 9)(x + 2)$", "isCorrect": false },
+        { "id": "C", "text": "$(x + 9)(x - 2)$", "isCorrect": false },
+        { "id": "D", "text": "$(x + 6)(x - 3)$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q35", "q": 35, "subject": "Matemáticas", "topicName": "Álgebra", "temaCode": "2.9",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Una solución de la ecuación $x^{2} - 2x = 8$ es",
+      "options": [
+        { "id": "A", "text": "$4$", "isCorrect": true },
+        { "id": "B", "text": "$8$", "isCorrect": false },
+        { "id": "C", "text": "$6$", "isCorrect": false },
+        { "id": "D", "text": "$2$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q47", "q": 47, "subject": "Habilidad matemática", "topicName": "Series espaciales", "temaCode": "2",
+      "format": "CHART_TABLE",
+      "stem": "Si las primeras cuatro figuras de una serie de arreglos de puntos crecen como 2, 6, 12, 20 puntos (patrón n(n+1)), ¿cuántos puntos tendrá la que ocupa la octava posición?",
+      "imageNote": "El estímulo original es una secuencia de figuras de puntos (pág. 67). Se conserva el enunciado; la figura debe adjuntarse como imageUrl al ingerir.",
+      "options": [
+        { "id": "A", "text": "42", "isCorrect": false },
+        { "id": "B", "text": "72", "isCorrect": true },
+        { "id": "C", "text": "90", "isCorrect": false },
+        { "id": "D", "text": "56", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q81", "q": 81, "subject": "Química", "topicName": "Las características de los materiales", "temaCode": "1.1",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Los distintos modelos de átomo han sido elaborados para",
+      "options": [
+        { "id": "A", "text": "cuantificar las sustancias en una reacción.", "isCorrect": false },
+        { "id": "B", "text": "explicar el comportamiento de la materia.", "isCorrect": true },
+        { "id": "C", "text": "representar los fenómenos naturales.", "isCorrect": false },
+        { "id": "D", "text": "comunicar los resultados de sus experimentos.", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q85", "q": 85, "subject": "Química", "topicName": "Estructura y periodicidad de los elementos", "temaCode": "2.1",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Partículas subatómicas responsables de que ocurran las reacciones químicas.",
+      "options": [
+        { "id": "A", "text": "Neutrones.", "isCorrect": false },
+        { "id": "B", "text": "Electrones internos.", "isCorrect": false },
+        { "id": "C", "text": "Protones.", "isCorrect": false },
+        { "id": "D", "text": "Electrones externos.", "isCorrect": true }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q86", "q": 86, "subject": "Química", "topicName": "Estructura y periodicidad de los elementos", "temaCode": "2.2",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "Un átomo con $Z = 20$ y $40$ neutrones, tiene ___ protones.",
+      "options": [
+        { "id": "A", "text": "$60$", "isCorrect": false },
+        { "id": "B", "text": "$10$", "isCorrect": false },
+        { "id": "C", "text": "$20$", "isCorrect": true },
+        { "id": "D", "text": "$40$", "isCorrect": false }
+      ]
+    },
+    {
+      "ref": "ECOEMS-2025#Q87", "q": 87, "subject": "Química", "topicName": "Estructura y periodicidad de los elementos", "temaCode": "2.4",
+      "format": "MULTIPLE_CHOICE",
+      "stem": "La representación $\\text{H} \\cdot$ corresponde a",
+      "options": [
+        { "id": "A", "text": "ion hidrógeno.", "isCorrect": false },
+        { "id": "B", "text": "átomo de hidrógeno.", "isCorrect": true },
+        { "id": "C", "text": "la molécula de hidrógeno.", "isCorrect": false },
+        { "id": "D", "text": "ion hidronio.", "isCorrect": false }
+      ]
+    }
+  ]
+}

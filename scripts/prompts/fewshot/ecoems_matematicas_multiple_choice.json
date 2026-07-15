@@ -1,0 +1,197 @@
+{
+  "institution": "ecoems",
+  "subject": "matematicas",
+  "format": "MULTIPLE_CHOICE",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "ECOEMS-2025#Q29",
+      "stem": "Encuentra el resultado de la siguiente operación. $2 - 5\\left[8 - 3(7 - 2) + 1\\right] - 3(4 - 1) =$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$29$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$23$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$-11$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$-73$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q30",
+      "stem": "$120$ es el $75\\%$ de",
+      "options": [
+        {
+          "id": "A",
+          "text": "$200$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$180$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$160$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$140$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q31",
+      "stem": "El resultado que se obtiene al simplificar $\\left(\\dfrac{2}{3}\\right)^{4}$ es",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{16}{81}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{8}{27}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{16}{18}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{8}{12}$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q32",
+      "stem": "¿Cuál de las siguientes expresiones representa el enunciado \"La semisuma de los cuadrados de $a$ y $b$\"?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{1}{2}(a + b)^{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\left(\\dfrac{1}{2}(a + b)\\right)^{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{1}{2}\\left(a^{2} + b^{2}\\right)$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$\\left(\\dfrac{1}{2}a + \\dfrac{1}{2}b\\right)^{2}$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q33",
+      "stem": "En un triángulo equilátero, uno de sus lados mide $3x - 9$, ¿cuál de las siguientes expresiones representa el perímetro de dicho triángulo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$9x^{2} - 54x + 81$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$9x - 27$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$9x - 9$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$9x^{2} - 81$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q34",
+      "stem": "Encuentra la factorización de $x^{2} - 3x - 18$.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(x - 6)(x + 3)$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$(x - 9)(x + 2)$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(x + 9)(x - 2)$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$(x + 6)(x - 3)$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    },
+    {
+      "ref": "ECOEMS-2025#Q35",
+      "stem": "Una solución de la ecuación $x^{2} - 2x = 8$ es",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$8$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$2$",
+          "isCorrect": false
+        }
+      ],
+      "format": "MULTIPLE_CHOICE"
+    }
+  ]
+}

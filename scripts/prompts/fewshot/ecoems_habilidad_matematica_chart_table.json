@@ -1,0 +1,35 @@
+{
+  "institution": "ecoems",
+  "subject": "habilidad_matematica",
+  "format": "CHART_TABLE",
+  "note": "Ejemplos reales del examen muestra oficial (OFFICIAL_SAMPLE). Ancla de estilo para el generador. NO reproducir literalmente: son referencia de tono, estructura y dificultad.",
+  "examples": [
+    {
+      "ref": "ECOEMS-2025#Q47",
+      "stem": "Si las primeras cuatro figuras de una serie de arreglos de puntos crecen como 2, 6, 12, 20 puntos (patrón n(n+1)), ¿cuántos puntos tendrá la que ocupa la octava posición?",
+      "options": [
+        {
+          "id": "A",
+          "text": "42",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "72",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "90",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "56",
+          "isCorrect": false
+        }
+      ],
+      "format": "CHART_TABLE"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "source": {
+    "externalRef": "IPN-SUP-2025",
+    "name": "Guía de estudio para el examen de admisión a Nivel Superior del Instituto Politécnico Nacional",
+    "institution": "IPN",
+    "type": "SUPERIOR",
+    "year": 2025,
+    "fileRef": "docs/guias/Guia_IPN.pdf",
+    "license": "Guía oficial de uso público, © Instituto Politécnico Nacional — usada para calibración interna y atribución."
+  },
+  "exam": {
+    "institutionCode": "IPN",
+    "level": "SUPERIOR",
+    "levelName": "Licenciatura",
+    "year": 2027,
+    "name": "Examen de Admisión IPN Nivel Superior 2027",
+    "durationMins": 180,
+    "totalQuestions": 140,
+    "examDate": "2027-06-10",
+    "note": "PDF escaneado (132 páginas, doble página por hoja). Sin texto embebido: extracción por visión. La guía trae reactivos de práctica con tabla 'RESPUESTAS CORRECTAS (RC)' por sección/asignatura. totalQuestions=140 se mantiene de CC-08 (TODO-VERIFICAR: la guía no imprime un total oficial explícito consolidado)."
+  },
+  "areas": [
+    {
+      "code": "IPN_FISMAT",
+      "name": "Ingeniería y Ciencias Físico Matemáticas",
+      "colorHex": "#7C3AED",
+      "iconEmoji": "🔬",
+      "position": 1,
+      "careers": [
+        "Ingeniería en Inteligencia Artificial (ESCOM)",
+        "Ingeniería en Sistemas Computacionales (ESCOM)",
+        "Licenciatura en Ciencia de Datos (ESCOM)",
+        "Ingeniería Matemática (ESFM)",
+        "Licenciatura en Física y Matemáticas (ESFM)",
+        "Licenciatura en Matemática Algorítmica (ESFM)",
+        "Ingeniería Textil (ESIT)"
+      ]
+    },
+    {
+      "code": "IPN_MEDBIO",
+      "name": "Ciencias Médico Biológicas",
+      "colorHex": "#22C55E",
+      "iconEmoji": "⚕️",
+      "position": 2,
+      "careers": [
+        "Médico Cirujano y Partero (ESM)",
+        "Médico Cirujano Homeópata (ENMH)",
+        "Licenciatura en Enfermería y Obstetricia (ESEO)",
+        "Licenciatura en Odontología (CICS)",
+        "Licenciatura en Nutrición (CICS)",
+        "Licenciatura en Psicología (CICS)",
+        "Químico Farmacéutico Industrial (ENCB)",
+        "Licenciatura en Biología (ENCB)"
+      ]
+    },
+    {
+      "code": "IPN_SOCADM",
+      "name": "Ciencias Sociales y Administrativas",
+      "colorHex": "#FBBF24",
+      "iconEmoji": "📊",
+      "position": 3,
+      "careers": [
+        "Licenciatura en Administración Industrial (UPIICSA)",
+        "Ingeniería Industrial (UPIICSA)",
+        "Ingeniería en Informática (UPIICSA)",
+        "Ingeniería en Transporte (UPIICSA)",
+        "Licenciatura en Ciencias de la Informática (UPIICSA)",
+        "Ingeniería Ferroviaria (UPIICSA)"
+      ]
+    }
+  ],
+  "careersNote": "Nombres de carrera VERIFICADOS contra la guía oficial IPN (págs. de Oferta Educativa). La guía NO publica aciertos mínimos de ingreso, por lo que minAciertos permanece TODO-VERIFICAR (fuente externa: estadísticas históricas de admisión IPN). El ingest solo actualiza/crea el nombre; no inventa minAciertos."
+}
