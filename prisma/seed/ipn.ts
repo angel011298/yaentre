@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, type Prisma } from '@prisma/client';
+import type { CareerSeed } from './unam';
 
 const prisma = new PrismaClient();
 
@@ -189,12 +190,9 @@ async function seedSubjectsAndTopics(
   }
 }
 
-async function seedCareers(
-  prisma: PrismaClient,
-  areaId: string,
-  careers: Array<{ name: string; minAciertos: number; year: number }>,
-) {
+async function seedCareers(prisma: PrismaClient, areaId: string, careers: CareerSeed[]) {
   for (const career of careers) {
+    const sources = career.sources as unknown as Prisma.InputJsonValue;
     await prisma.career.upsert({
       where: { areaId_name: { areaId, name: career.name } },
       create: {
@@ -202,8 +200,15 @@ async function seedCareers(
         name: career.name,
         minAciertos: career.minAciertos,
         minAciertosYear: career.year,
+        minAciertosConfidence: career.confidence,
+        sources,
       },
-      update: { minAciertos: career.minAciertos },
+      update: {
+        minAciertos: career.minAciertos,
+        minAciertosYear: career.year,
+        minAciertosConfidence: career.confidence,
+        sources,
+      },
     });
   }
 }
@@ -366,40 +371,248 @@ function generateTopicsSocadm(): Record<string, string[]> {
 }
 
 // ─────────────────────────────────────────────────────────────────
-// Carreras ancla (con aciertos mínimos históricos 2021-2025)
+// Carreras ancla — minAciertos por triangulación multi-fuente (CC-13)
+//
+// A diferencia de UNAM, el IPN NO tiene un portal público de resultados por
+// carrera (admision.ipn.mx/nse/sitio/ exige cuenta de aspirante). Sin fuente
+// oficial primaria verificable, el techo de confianza aquí es MED (2 fuentes
+// coinciden) o más frecuentemente LOW (divergen). Las dos compilaciones
+// usadas citan ciclos/rondas distintos (regular 2024 vs "segunda vuelta"
+// enero-agosto 2026), lo que explica gran parte de la divergencia — no es
+// necesariamente un error de ninguna fuente, pero tampoco permite promediar.
+// Regla aplicada: cuando divergen, se usa el valor MÁS ALTO (más
+// conservador — asumir que se necesita más, no menos). Ver
+// docs/ACIERTOS_MINIMOS.md para el detalle completo, fuente por fuente.
+//
+// Nombres corregidos a los reales de scripts/extraction/ipn.taxonomy.json
+// (CC-09b, verificado contra la oferta educativa oficial del IPN) donde CC-08
+// había usado un nombre aproximado.
 
-function generateCareersFismat() {
+const UNIBETAS_2024 = 'unibetas.com — compilación de datos IPN, ciclo 2024';
+const FABRICA_2026 = 'fabricadeperiodismo.com — dato vía Plataforma Nacional de Transparencia (PNT), segunda vuelta ene-ago 2026';
+const WEB_CROSSCHECK = 'Corroboración cruzada por búsqueda web (coincide con unibetas.com)';
+
+function generateCareersFismat(): CareerSeed[] {
   return [
-    { name: 'Ingeniería en Sistemas Computacionales (ESCOM)', minAciertos: 102, year: 2025 },
-    { name: 'Ingeniería Eléctrica (ESIME)', minAciertos: 98, year: 2025 },
-    { name: 'Ingeniería Mecánica (ESIME)', minAciertos: 94, year: 2025 },
-    { name: 'Ingeniería en Comunicaciones y Electrónica', minAciertos: 96, year: 2025 },
-    { name: 'Ingeniería Civil (ESIA)', minAciertos: 88, year: 2025 },
-    { name: 'Ingeniería Química (ESIQIE)', minAciertos: 92, year: 2025 },
-    { name: 'Matemáticas (Ciencias Básicas)', minAciertos: 100, year: 2025 }, // TODO-VERIFICAR
-    { name: 'Física (Ciencias Básicas)', minAciertos: 98, year: 2025 }, // TODO-VERIFICAR
+    {
+      name: 'Ingeniería en Sistemas Computacionales (ESCOM)',
+      minAciertos: 97,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 67` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 97 (usado, más conservador)` },
+      ],
+    },
+    {
+      name: 'Ingeniería Eléctrica (ESIME)',
+      minAciertos: 99,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 99 (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 75` },
+      ],
+    },
+    {
+      name: 'Ingeniería Mecánica (ESIME)',
+      minAciertos: 94,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 94 (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 65` },
+      ],
+    },
+    {
+      name: 'Ingeniería en Comunicaciones y Electrónica',
+      minAciertos: 93,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 93 (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 43` },
+      ],
+    },
+    {
+      name: 'Ingeniería Civil (ESIA)',
+      minAciertos: 70,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 70 (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 59` },
+      ],
+    },
+    {
+      name: 'Ingeniería Química (ESIQIE)',
+      minAciertos: 94,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 94, "Industrial Chemical Engineering" (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 41-66 según variante de ingeniería química; mapeo con la fuente ambiguo` },
+      ],
+    },
+    {
+      // CC-08: "Matemáticas (Ciencias Básicas)" — nombre corregido al real
+      // (ESFM), ver scripts/extraction/ipn.taxonomy.json (CC-09b).
+      name: 'Ingeniería Matemática (ESFM)',
+      minAciertos: 95,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 95 (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 91` },
+      ],
+    },
+    {
+      // CC-08: "Física (Ciencias Básicas)" — nombre corregido al real (ESFM).
+      name: 'Licenciatura en Física y Matemáticas (ESFM)',
+      minAciertos: 104,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 91` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 104 (usado, más conservador)` },
+      ],
+    },
   ];
 }
 
-function generateCareersMedbio() {
+function generateCareersMedbio(): CareerSeed[] {
   return [
-    { name: 'Medicina (ESM)', minAciertos: 108, year: 2025 },
-    { name: 'Cirugía Dental (ESD)', minAciertos: 102, year: 2025 },
-    { name: 'Biología (Ciencias Biológicas)', minAciertos: 85, year: 2025 },
-    { name: 'Química Farmacéutica (ENCB)', minAciertos: 95, year: 2025 },
-    { name: 'Enfermería (ESM)', minAciertos: 80, year: 2025 },
-    { name: 'Psicología (CICS)', minAciertos: 82, year: 2025 }, // TODO-VERIFICAR
-    { name: 'Bioquímica Clínica (ENCB)', minAciertos: 92, year: 2025 }, // TODO-VERIFICAR
+    {
+      // CC-08: "Medicina (ESM)" — nombre corregido al real (CC-09b).
+      name: 'Médico Cirujano y Partero (ESM)',
+      minAciertos: 109,
+      year: 2024,
+      confidence: 'MED',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 109` },
+        { url: '', label: `${WEB_CROSSCHECK}: al menos 2 artículos adicionales citan 109 para el ciclo 2024-2025 (agregado de motor de búsqueda, sin una única URL trazable — no se afirma más certeza de la que esto sostiene)` },
+      ],
+    },
+    {
+      // CC-08: "Cirugía Dental (ESD)" no existe; el IPN ofrece Odontología
+      // en CICS (CC-09b).
+      name: 'Licenciatura en Odontología (CICS)',
+      minAciertos: 115,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: "Dentistry" 102` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: "Dental Medicine" 115 (usado, más conservador)` },
+      ],
+    },
+    {
+      name: 'Licenciatura en Biología (ENCB)',
+      minAciertos: 110,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 98` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 110 (usado, más conservador)` },
+      ],
+    },
+    {
+      // CC-08: "Química Farmacéutica (ENCB)" — nombre corregido al real.
+      name: 'Químico Farmacéutico Industrial (ENCB)',
+      minAciertos: 110,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 100` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: "Pharmaceutical Chemistry" 110 (usado, más conservador; mapeo QFB/QFI ambiguo)` },
+      ],
+    },
+    {
+      // CC-08: "Enfermería (ESM)" — el IPN la ofrece como Enfermería y
+      // Obstetricia en ESEO (CC-09b).
+      name: 'Licenciatura en Enfermería y Obstetricia (ESEO)',
+      minAciertos: 111,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: "Nursing and Obstetrics" 94` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: "Nursing" 111 (usado, más conservador; nombre no calza exacto)` },
+      ],
+    },
+    {
+      name: 'Licenciatura en Psicología (CICS)',
+      minAciertos: 93,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [{ url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 93 (única fuente encontrada, sin corroborar)` }],
+    },
+    {
+      name: 'Bioquímica Clínica (ENCB)',
+      minAciertos: 92,
+      year: 2025,
+      confidence: 'LOW',
+      sources: [{ url: '', label: 'Estimación previa de CC-08, sin verificación en CC-13 (no se encontró en ninguna de las 2 compilaciones consultadas)' }],
+    },
   ];
 }
 
-function generateCareersSocadm() {
+function generateCareersSocadm(): CareerSeed[] {
   return [
-    { name: 'Administración (CIMA)', minAciertos: 76, year: 2025 },
-    { name: 'Contabilidad (CIMA)', minAciertos: 74, year: 2025 },
-    { name: 'Comercio Internacional (CIMA)', minAciertos: 75, year: 2025 }, // TODO-VERIFICAR
-    { name: 'Economía (CICS)', minAciertos: 80, year: 2025 },
-    { name: 'Turismo (CIMA)', minAciertos: 70, year: 2025 }, // TODO-VERIFICAR
-    { name: 'Gestión y Dirección de Empresas', minAciertos: 78, year: 2025 }, // TODO-VERIFICAR
+    {
+      name: 'Administración (CIMA)',
+      minAciertos: 99,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: "Industrial Administration" 99 (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: "Industrial Administration" 87` },
+      ],
+    },
+    {
+      name: 'Contabilidad (CIMA)',
+      minAciertos: 97,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: "Public Accounting" 83` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: "Public Accounting" 97 (usado, más conservador)` },
+      ],
+    },
+    {
+      name: 'Comercio Internacional (CIMA)',
+      minAciertos: 107,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: "International Business" 93` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: "International Business" 107 (usado, más conservador)` },
+      ],
+    },
+    {
+      name: 'Economía (CICS)',
+      minAciertos: 94,
+      year: 2024,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 94 (usado, más conservador)` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 73 (listado como programa de licenciatura, no ingeniería; mapeo incierto)` },
+      ],
+    },
+    {
+      name: 'Turismo (CIMA)',
+      minAciertos: 100,
+      year: 2026,
+      confidence: 'LOW',
+      sources: [
+        { url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 76` },
+        { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 100 (usado, más conservador)` },
+      ],
+    },
+    {
+      name: 'Gestión y Dirección de Empresas',
+      minAciertos: 78,
+      year: 2025,
+      confidence: 'LOW',
+      sources: [{ url: '', label: 'Estimación previa de CC-08, sin verificación en CC-13 (no se encontró en ninguna de las 2 compilaciones consultadas)' }],
+    },
   ];
 }

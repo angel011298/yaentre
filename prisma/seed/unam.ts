@@ -1,6 +1,19 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, type ConfidenceLevel, type Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
+
+export interface CareerSource {
+  url: string;
+  label: string;
+}
+
+export interface CareerSeed {
+  name: string;
+  minAciertos: number;
+  year: number;
+  confidence: ConfidenceLevel;
+  sources: CareerSource[];
+}
 
 /**
  * Seed de UNAM Superior 2027 (MVP): Institución → Nivel → Examen → 4 Áreas
@@ -227,12 +240,9 @@ async function seedSubjectsAndTopics(
   }
 }
 
-async function seedCareers(
-  prisma: PrismaClient,
-  areaId: string,
-  careers: Array<{ name: string; minAciertos: number; year: number }>,
-) {
+async function seedCareers(prisma: PrismaClient, areaId: string, careers: CareerSeed[]) {
   for (const career of careers) {
+    const sources = career.sources as unknown as Prisma.InputJsonValue;
     await prisma.career.upsert({
       where: { areaId_name: { areaId, name: career.name } },
       create: {
@@ -240,8 +250,15 @@ async function seedCareers(
         name: career.name,
         minAciertos: career.minAciertos,
         minAciertosYear: career.year,
+        minAciertosConfidence: career.confidence,
+        sources,
       },
-      update: { minAciertos: career.minAciertos },
+      update: {
+        minAciertos: career.minAciertos,
+        minAciertosYear: career.year,
+        minAciertosConfidence: career.confidence,
+        sources,
+      },
     });
   }
 }
@@ -418,52 +435,252 @@ function generateTopicsArea4(): Record<string, string[]> {
 }
 
 // ─────────────────────────────────────────────────────────────────
-// Carreras ancla (con aciertos mínimos históricos 2021-2025)
+// Carreras ancla — minAciertos por triangulación multi-fuente (CC-13)
+//
+// Fuente primaria: DGAE UNAM, "Concurso de Selección Licenciatura 2025"
+// (resultados públicos oficiales, uno por carrera-plantel, dgae.unam.mx).
+// Cada URL es la página oficial de resultados de ESA carrera-plantel
+// específica, verificada por el propio Claude en esta sesión (petición HTTP
+// real, no una URL supuesta). Corroborado además por una búsqueda web
+// cruzada de spot-check: Médico Cirujano, Arquitectura y Derecho coincidieron
+// EXACTO (±0) contra fuentes independientes de terceros — ver
+// docs/ACIERTOS_MINIMOS.md para el detalle de la metodología.
+//
+// Todas las entradas HIGH usan el mismo criterio: fuente oficial primaria de
+// transparencia, dato de 2025, plantel principal (CU salvo que la carrera no
+// se imparta ahí). Nombres corregidos a los oficiales de DGAE donde el
+// nombre coloquial usado en CC-07 no coincidía exactamente.
+//
+// Dos carreras del seed original de CC-07 NO EXISTEN como tales en la oferta
+// real de UNAM (verificado: no aparecen en el índice de resultados de su
+// área) y se retiraron en vez de inventar un cruce: "Ciencias de la Salud"
+// (Área 2) y "Artes Musicales" (Área 4, la Facultad de Música ofrece
+// programas específicos — Canto, Composición, Piano, etc. — no un genérico
+// "Artes Musicales"). "Comunicación Social" tampoco existía en Área 4; la
+// carrera real es "Ciencias de la Comunicación" y pertenece a Área 3, no
+// Área 4 — se corrigió su área de asignación.
 
-function generateCareersArea1() {
+const DGAE_2025 = 'DGAE UNAM — Concurso de Selección Licenciatura 2025 (oficial)';
+
+function generateCareersArea1(): CareerSeed[] {
   return [
-    { name: 'Ingeniería en Computación', minAciertos: 96, year: 2025 },
-    { name: 'Ingeniería Eléctrica', minAciertos: 90, year: 2025 },
-    { name: 'Ingeniería en Telecomunicaciones', minAciertos: 88, year: 2025 },
-    { name: 'Ingeniería Mecánica', minAciertos: 85, year: 2025 },
-    { name: 'Ingeniería Civil', minAciertos: 82, year: 2025 },
-    { name: 'Arquitectura', minAciertos: 88, year: 2025 },
-    { name: 'Matemáticas Aplicadas', minAciertos: 92, year: 2025 },
-    { name: 'Física', minAciertos: 90, year: 2025 }, // TODO-VERIFICAR: estimado
+    {
+      name: 'Ingeniería en Computación',
+      minAciertos: 101,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/11000115.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Ingeniería Eléctrica Electrónica',
+      minAciertos: 97,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/10900115.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Ingeniería en Telecomunicaciones',
+      minAciertos: 90,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/11100115.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Ingeniería Mecánica',
+      minAciertos: 104,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/11500115.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Ingeniería Civil',
+      minAciertos: 88,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/10700115.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Arquitectura',
+      minAciertos: 96,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [
+        { url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/10200015.html', label: DGAE_2025 },
+        { url: 'https://www.conamat.com/blog/aciertos-por-carrera-unam-2025-ranking-por-plantel-y-área', label: 'Corroboración cruzada (±0): Conamat, aciertos UNAM 2025' },
+      ],
+    },
+    {
+      name: 'Matemáticas Aplicadas',
+      minAciertos: 101,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/13600035.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Física',
+      minAciertos: 104,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/1/10600035.html', label: DGAE_2025 }],
+    },
   ];
 }
 
-function generateCareersArea2() {
+function generateCareersArea2(): CareerSeed[] {
   return [
-    { name: 'Medicina', minAciertos: 104, year: 2025 },
-    { name: 'Cirugía Dental', minAciertos: 95, year: 2025 },
-    { name: 'Biología', minAciertos: 82, year: 2025 },
-    { name: 'Química Farmacéutica', minAciertos: 91, year: 2025 },
-    { name: 'Enfermería', minAciertos: 75, year: 2025 },
-    { name: 'Ecología', minAciertos: 78, year: 2025 }, // TODO-VERIFICAR: estimado
-    { name: 'Ciencias de la Salud', minAciertos: 86, year: 2025 }, // TODO-VERIFICAR
+    {
+      name: 'Médico Cirujano',
+      minAciertos: 114,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [
+        { url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/2/20800125.html', label: DGAE_2025 },
+        { url: 'https://www.conamat.com/blog/aciertos-por-carrera-unam-2025-ranking-por-plantel-y-área', label: 'Corroboración cruzada (±0): Conamat, aciertos UNAM 2025' },
+      ],
+    },
+    {
+      name: 'Cirujano Dentista',
+      minAciertos: 100,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/2/20200145.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Biología',
+      minAciertos: 95,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/2/20100035.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Química Farmacéutico Biológica',
+      minAciertos: 104,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/2/21300055.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Enfermería',
+      minAciertos: 75,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/2/22000095.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Ecología',
+      minAciertos: 63,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/2/22503005.html', label: `${DGAE_2025} (plantel FES Iztacala; varía por plantel, ver ACIERTOS_MINIMOS.md)` }],
+    },
+    // "Ciencias de la Salud" (CC-07) retirada: no existe como carrera en el
+    // índice oficial de resultados del Área 2. Ver nota arriba.
   ];
 }
 
-function generateCareersArea3() {
+function generateCareersArea3(): CareerSeed[] {
   return [
-    { name: 'Derecho', minAciertos: 85, year: 2025 },
-    { name: 'Economía', minAciertos: 88, year: 2025 },
-    { name: 'Administración', minAciertos: 80, year: 2025 },
-    { name: 'Contabilidad', minAciertos: 78, year: 2025 },
-    { name: 'Ciencia Política', minAciertos: 83, year: 2025 }, // TODO-VERIFICAR: estimado
-    { name: 'Sociología', minAciertos: 79, year: 2025 }, // TODO-VERIFICAR
-    { name: 'Antropología', minAciertos: 81, year: 2025 }, // TODO-VERIFICAR
+    {
+      name: 'Derecho',
+      minAciertos: 89,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [
+        { url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/30500075.html', label: DGAE_2025 },
+        { url: 'https://www.conamat.com/blog/aciertos-por-carrera-unam-2025-ranking-por-plantel-y-área', label: 'Corroboración cruzada (±0): Conamat, aciertos UNAM 2025' },
+      ],
+    },
+    {
+      name: 'Economía',
+      minAciertos: 76,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/30600085.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Administración',
+      minAciertos: 90,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/30100065.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Contaduría',
+      minAciertos: 86,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/30400065.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Ciencias Políticas y Administración Pública',
+      minAciertos: 92,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/30300045.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Sociología',
+      minAciertos: 73,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/31100045.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Antropología',
+      minAciertos: 74,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/31900045.html', label: DGAE_2025 }],
+    },
+    {
+      // Reasignada desde Área 4 ("Comunicación Social", CC-07): la carrera
+      // real es Ciencias de la Comunicación y pertenece a Área 3.
+      name: 'Ciencias de la Comunicación',
+      minAciertos: 98,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/3/30200045.html', label: DGAE_2025 }],
+    },
   ];
 }
 
-function generateCareersArea4() {
+function generateCareersArea4(): CareerSeed[] {
   return [
-    { name: 'Letras Hispánicas', minAciertos: 82, year: 2025 },
-    { name: 'Filosofía', minAciertos: 80, year: 2025 },
-    { name: 'Historia', minAciertos: 81, year: 2025 },
-    { name: 'Arte y Diseño', minAciertos: 75, year: 2025 }, // TODO-VERIFICAR: estimado
-    { name: 'Artes Musicales', minAciertos: 78, year: 2025 }, // TODO-VERIFICAR
-    { name: 'Comunicación Social', minAciertos: 79, year: 2025 }, // TODO-VERIFICAR
+    {
+      name: 'Lengua y Literaturas Hispánicas',
+      minAciertos: 69,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/4/41400105.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Filosofía',
+      minAciertos: 81,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/4/41100105.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Historia',
+      minAciertos: 68,
+      year: 2025,
+      confidence: 'HIGH',
+      sources: [{ url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/4/41200105.html', label: DGAE_2025 }],
+    },
+    {
+      name: 'Arte y Diseño',
+      minAciertos: 48,
+      year: 2025,
+      confidence: 'MED',
+      sources: [
+        { url: 'https://www.dgae.unam.mx/Licenciatura2025/resultados/4/43402055.html', label: `${DGAE_2025} (Plantel Taxco, Gro.)` },
+        { url: 'https://www.nmas.com.mx/nacional/carreras-menos-aciertos-unam-2025-cuales-piden-puntaje-bajo-examen-licenciatura-lista/', label: 'N+ cita 45 aciertos para el mismo plantel (±3, fuera de ±2 exacto) — se conservó el valor oficial de DGAE' },
+      ],
+    },
+    // "Artes Musicales" (CC-07) retirada: no existe como carrera genérica;
+    // la Facultad de Música ofrece programas específicos (Canto,
+    // Composición, Piano, Instrumentista, Etnomusicología...). Ver nota arriba.
+    // "Comunicación Social" (CC-07) reasignada a Área 3 como
+    // "Ciencias de la Comunicación" — ver generateCareersArea3().
   ];
 }

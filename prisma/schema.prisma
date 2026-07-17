@@ -129,6 +129,12 @@ enum QuestionFormat {
   MATCHING              // Relacionar columnas (concepto ↔ descripción)
 }
 
+enum ConfidenceLevel {
+  HIGH // Fuente oficial primaria (transparencia/resultados), dato verificado
+  MED  // ≥2 fuentes independientes coinciden (±2), sin fuente oficial primaria confirmada
+  LOW  // Fuentes divergen (>±2) o solo hay una fuente débil — se usa el valor más conservador
+}
+
 // ──────────────────── TAXONOMÍA DE CONTENIDO ────────────────────
 
 model Institution {
@@ -219,14 +225,16 @@ model Area {
 }
 
 model Career {
-  id              String        @id @default(cuid())
-  areaId          String
-  area            Area          @relation(fields: [areaId], references: [id], onDelete: Cascade)
-  name            String
-  minAciertos     Int?          // aciertos mínimos históricos de ingreso
-  minAciertosYear Int?
-  acceptanceRate  Float?
-  targetedBy      UserProfile[] @relation("TargetCareer")
+  id                    String           @id @default(cuid())
+  areaId                String
+  area                  Area             @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  name                  String
+  minAciertos           Int?             // aciertos mínimos históricos de ingreso (arranque en frío del Aciertómetro)
+  minAciertosYear       Int?
+  minAciertosConfidence ConfidenceLevel? // HIGH/MED/LOW — ver CC-13: triangulación multi-fuente
+  sources               Json?            // [{ url, label, retrievedAt }] — evidencia citable del dato
+  acceptanceRate        Float?
+  targetedBy            UserProfile[]    @relation("TargetCareer")
 
   @@unique([areaId, name])
   @@map("careers")

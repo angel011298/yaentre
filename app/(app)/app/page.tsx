@@ -4,6 +4,9 @@ import { requireUser } from '@/lib/auth/guards';
 // TODO(CC-10): reemplazar este placeholder por el dashboard real (Aciertómetro,
 // racha, heatmap, temas a reforzar — ver docs/UIUX_Spec_Acierta_v1.0.md §8.1)
 // y aplicar requireOnboarding una vez exista el flujo de onboarding.
+// El Aciertómetro DEBE presentar la meta de aciertos vía
+// formatAciertometroTarget (src/lib/adaptive/aciertometro.ts, CC-13) —
+// nunca como una cifra absoluta. Ver docs/ACIERTOS_MINIMOS.md.
 export default async function DashboardPage() {
   const { authUser, profile } = await requireUser();
 
