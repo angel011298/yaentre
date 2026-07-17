@@ -17,6 +17,11 @@ export interface SourceMeta {
   coInstitution?: string;
   type: string;
   year: number;
+  /**
+   * URL pública oficial directa (https://..., embebible/enlazable — ver
+   * CC-25) si se confirmó una, o un path local (docs/guias/..., no
+   * servible desde la app en producción) mientras no se confirme una.
+   */
   fileRef?: string;
   license: string;
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { signOutAction } from '@/app/actions/auth';
 import { requireUser } from '@/lib/auth/guards';
 
@@ -20,6 +21,12 @@ export default async function DashboardPage() {
       <p className="text-sm text-[var(--text-muted)]">
         Rol: {profile.role} · Onboarding: paso {profile.onboardingStep}
       </p>
+      <Link
+        href="/app/examen-oficial"
+        className="inline-flex min-h-touch w-fit items-center rounded-md border border-[var(--border-subtle)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-all hover:bg-[var(--elevated)] active:scale-[0.97]"
+      >
+        📄 Examen muestra oficial
+      </Link>
       <form action={signOutAction}>
         <button
           type="submit"

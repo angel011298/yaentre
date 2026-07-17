@@ -154,7 +154,8 @@ model ContentSource {
   institution String?  // Institución asociada (UNAM, IPN, etc.)
   type        String?  // "MEDIA_SUPERIOR" / "SUPERIOR"
   year        Int?     // Año de publicación
-  fileRef     String?  // Referencia a archivo en Storage (si aplica)
+  fileRef     String?  // Dónde vive el PDF: URL pública oficial (https://..., embebible/enlazable
+                        // directo, ver CC-25) o path local aún no publicado (docs/guias/..., no servible)
   license     String?  // Descripción de licencia
   externalRef String?  @unique // Clave estable para idempotencia de ingesta (p. ej. "ECOEMS-2025")
   ingestedAt  DateTime @default(now())
