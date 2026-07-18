@@ -32,6 +32,7 @@ ALTER TABLE "questions" ADD CONSTRAINT "questions_contentSourceId_fkey"
 CREATE INDEX "questions_usage_idx" ON "questions"("usage");
 
 -- 6. Agregar índice parcial para queries de usuario (solo SERVABLE + verificados)
+-- NOTA (F1): columnas en camelCase (Prisma no aplica @map a campos).
 CREATE INDEX "questions_servable_verified_idx"
-  ON "questions"("topic_id", "difficulty")
-  WHERE "usage" = 'SERVABLE' AND "is_verified" = true;
+  ON "questions"("topicId", "difficulty")
+  WHERE "usage" = 'SERVABLE' AND "isVerified" = true;
