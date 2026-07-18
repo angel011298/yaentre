@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 /**
  * Test: CALIBRATION_ONLY questions nunca aparecen en sesiones de usuario.

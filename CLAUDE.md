@@ -27,14 +27,12 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 
 | Documento | Para qué |
 |---|---|
-| `01_Estudio_Mercado.md` | Contexto de negocio, mercado, competidores |
-| `02_Blueprint_Tecnico.md` | Visión técnica general, animaciones, roadmap |
-| `03_PRD.md` | Requerimientos de producto, features, criterios de aceptación |
-| `04_TRD.md` | **Decisiones de arquitectura, contratos de API, motor adaptativo, testing** |
-| `05_UIUX_Spec.md` | Sistema de diseño, tokens, componentes, mascota Tino |
-| `06_Flujo_App.md` | Flujos de usuario, estados, edge cases, máquinas de estado |
-| `07_Backend_Schema.md` | **Schema de Prisma final, enums, índices, RLS, seeds** |
-| `08_Plan_Implementacion.md` | Sesiones CC, orden de construcción, dependencias |
+| `PRD_Acierta_v1.0.md` | Requerimientos de producto, features, criterios de aceptación |
+| `UIUX_Spec_Acierta_v1.0.md` | Sistema de diseño, tokens, componentes, mascota Tino |
+| `Flujo_App_Acierta_v1.0.md` | Flujos de usuario, estados, edge cases, máquinas de estado |
+| `Backend_Schema_Acierta_v1.0.md` | **Schema de Prisma final, enums, índices, RLS, seeds** |
+| `Plan_Implementacion_Acierta_v1.0.md` | Sesiones CC, orden de construcción, dependencias |
+| `ESTADO.md` | **Estado vivo del proyecto — consultar SIEMPRE antes de cualquier tarea** |
 
 ---
 
@@ -90,7 +88,7 @@ Estas decisiones vienen del TRD. **No las contradigas sin instrucción explícit
 
 ## Reglas de la capa de datos
 
-- El schema completo está en `/docs/07_Backend_Schema.md`. **Cópialo tal cual** a `prisma/schema.prisma`.
+- El schema completo está en `/docs/Backend_Schema_Acierta_v1.0.md`.
 - Taxonomía dinámica: Institución → Área → Materia → Tema es **data (seed)**, no código.
 - `Subject.questionWeight` = # de reactivos esperados de esa materia en el examen real. Es el input del Aciertómetro.
 - `Question.isVerified`: ningún reactivo con `false` es visible para usuarios. El pipeline de IA inserta `false`; el admin lo pasa a `true`.
@@ -101,7 +99,7 @@ Estas decisiones vienen del TRD. **No las contradigas sin instrucción explícit
 
 ## Sistema de diseño (resumen)
 
-Detalle completo en `/docs/05_UIUX_Spec.md`. Dirección: **cálido y gamificado (Duolingo/Brilliant)**, no corporativo.
+Detalle completo en `/docs/UIUX_Spec_Acierta_v1.0.md`. Dirección: **cálido y gamificado (Duolingo/Brilliant)**, no corporativo.
 
 ```css
 /* Marca */
@@ -137,14 +135,15 @@ NEXT_PUBLIC_ENABLE_MEDIA_SUPERIOR=false # sprint post-launch
 
 ## Convención de sesiones de Claude Code
 
-Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ver `/docs/08_Plan_Implementacion.md`).
+Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ver `/docs/Plan_Implementacion_Acierta_v1.0.md`).
 
 **Asignación de modelo por tipo de tarea:**
 
 | Tier | Cuándo | Ejemplos |
 |---|---|---|
-| 🔴 Opus | Lógica crítica / razonamiento denso | motor adaptativo, integridad del simulador, webhook Stripe, scoring |
-| 🟡 Sonnet | Features de negocio, CRUD, integración | dashboard, drill, onboarding, panel admin, Server Actions |
+| 🟣 Fable 5 | Lógica que define el negocio (máximo razonamiento) | pipeline de contenido, motor adaptativo, simulador, integración de pagos |
+| 🔴 Opus | Razonamiento denso y verificación de implementaciones críticas | scoring, webhook Stripe, integridad de integraciones |
+| 🟡 Sonnet | Features de negocio, CRUD, integración, búsqueda web | dashboard, drill, onboarding, panel admin, Server Actions |
 | 🟢 Haiku | DDL, seeds, boilerplate, polish | migraciones, seed de taxonomía, tokens, componentes de presentación |
 
 **Toda sesión debe:**
@@ -259,9 +258,9 @@ Enfoque calibrado a 1 dev: testear donde un bug cuesta dinero o confianza.
 
 ## Estado del proyecto
 
-- **Fase actual:** pre-implementación → Sprint 0 (fundación).
-- **Próxima sesión:** CC-00 (scaffold) → CC-01 (schema) → CC-02 (auth) → CC-03 (motor de sesiones).
-- **Track paralelo:** pipeline de contenido (reactivos) arranca en Sprint 1; revisión delegada a freelancers.
+**El estado vivo está en `/docs/ESTADO.md` — consúltalo SIEMPRE antes de empezar cualquier fase.**
+
+Pipeline de contenido: verificación adversarial garantiza calidad sin freelancers. Dos modelos de IA independientes deben coincidir para publicar un reactivo; las discrepancias sin resolver no se publican.
 
 ---
 
