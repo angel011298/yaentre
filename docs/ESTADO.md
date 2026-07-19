@@ -1,13 +1,13 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-07-18 · Última fase ejecutada: F1 (EN_PROGRESO)
+Última actualización: 2026-07-18 · Última fase ejecutada: F1 (COMPLETADA)
 
 ## Tabla de fases
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
 | F0 | Auditoría y reparación del repo | COMPLETADA | (esta sesión) | CLAUDE.md actualizado, ESTADO.md creado, .claude/settings.json agregado |
-| F1 | Infraestructura validada vs Supabase real | EN_PROGRESO | (WIP) | Proyecto Supabase real creado (ref fumluvvzskhdxcyljbmx). Schema+RLS+índices aplicados y verificados vía conector. Bug camelCase/snake_case en RLS corregido. Pendiente: seed real, guardrail, subida PDFs, prueba Anthropic — bloqueado por credenciales (ver Reanudación) |
+| F1 | Infraestructura validada vs Supabase real | COMPLETADA | (F1) | Proyecto Supabase real (ref fumluvvzskhdxcyljbmx). Schema=fuente de verdad (diff vacío), RLS verificada, seed real (2 inst/7 áreas/35 mat/217 temas/47 carreras), guardrail probado en vivo, 9/10 PDFs subidos. Bugs corregidos: camelCase en RLS + recursión infinita RLS. Pendiente externo: prueba Anthropic (falta key real) y guía IPN 80MB (>límite free-tier). Ver docs/VALIDACION_INFRA.md |
 | F2 | Pipeline adversarial de contenido | EN_PROGRESO | a4dbe82 | CC-05/CC-06: generación IA + panel admin. Verificación adversarial pendiente (CC-26) |
 | F3 | Panel de discrepancias y resolución | PENDIENTE | — | Construido parcialmente en CC-06; necesita sesión dedicada |
 | F4 | Producción de contenido en escala | COMPLETADA | b638576 | CC-07/CC-08/CC-01c/CC-09/CC-09b/CC-13/CC-25: seeds, ingesta, procedencia, aciertos mínimos, examen oficial |
@@ -34,34 +34,11 @@
 
 ## Reanudación
 
-**F1 — pausada por credenciales faltantes (2026-07-18).**
-
-### Ya completado (autónomo, vía conector Supabase MCP)
-- Proyecto Supabase real **Acierta** creado: ref `fumluvvzskhdxcyljbmx`, us-east-1.
-  (Se pausó `PLD-Master-V0` con autorización para liberar cupo del plan gratuito.)
-- Schema completo aplicado: 26 tablas, 18 enums, FKs, índices.
-- RLS + índices parciales aplicados (con el bug camelCase corregido).
-- RLS verificado en las 12 tablas de usuario.
-- Bucket público `guias-oficiales` creado.
-- `.env.local` con URL + anon key + publishable reales; connection strings con
-  `[DB_PASSWORD]` de placeholder.
-- Migraciones del repo (0001/0002/0003) corregidas a camelCase.
-- `docs/VALIDACION_INFRA.md` escrito.
-
-### Falta (bloqueado — credenciales que ningún tool puede generar)
-1. **Contraseña de DB** → para `.env.local` (DATABASE_URL/DIRECT_URL) y correr
-   `pnpm prisma db seed` + `prisma migrate status`. Resetear en:
-   Dashboard → proyecto Acierta → Settings → Database → Reset database password.
-2. **SUPABASE_SERVICE_ROLE_KEY** → subir los 11 PDFs de `docs/guias/` al bucket.
-   Dashboard → Settings → API → service_role.
-3. **ANTHROPIC_API_KEY real** → prueba de 1 token (Tarea 7). console.anthropic.com.
-
-### Paso exacto para continuar
-Con las 3 credenciales en `.env.local`: (a) `pnpm prisma db seed` y registrar
-conteos en VALIDACION_INFRA.md; (b) smoke test del guardrail SERVABLE vs
-CALIBRATION_ONLY; (c) script para subir PDFs al bucket; (d) script de prueba
-Anthropic; (e) marcar F1 COMPLETADA y pasar a F2.
+(Vacío. F1 cerrada. Dos ítems quedan fuera por dependencia externa, no por
+trabajo pendiente: la prueba Anthropic —falta una API key real— y la guía IPN
+de 80 MB —supera el límite del plan gratuito de Supabase—. Ambos con su script
+listo: `scripts/ping-anthropic.ts` y `scripts/upload-guias.ts`.)
 
 ## Siguiente
 
-**FASE:** F5 — **MODELO:** Haiku 4.5 (onboarding, boilerplate)
+**FASE:** F2 — **MODELO:** Fable 5 (pipeline adversarial de contenido)
