@@ -16,6 +16,8 @@
     "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
     "content:generate": "tsx scripts/generate-questions.ts",
+    "content:run": "tsx scripts/content-run.ts",
+    "content:verify": "tsx scripts/verify-questions.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",
     "content:ingest": "tsx scripts/ingest-source.ts"
   },

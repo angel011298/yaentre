@@ -927,3 +927,71 @@ FASE D — Reutilizar lógica
 
 *Fin del documento · Backend Schema Acierta v1.0 · Schema ejecutable, listo para `prisma migrate`*
 *Serie: Estudio → Blueprint → PRD → TRD → UI/UX → Flujo de App → **Backend Schema** → Plan de Implementación*
+
+---
+
+## Addendum F2 (2026-07-18) — Formatos de reactivo y verificación adversarial
+
+Cambios aplicados al schema DESPUÉS de v1.0 (migraciones 0003–0006; el
+`prisma/schema.prisma` del repo es la fuente de verdad ejecutable):
+
+### `enum QuestionFormat` (migraciones 0004 + 0006)
+
+Clasifica cada reactivo por el formato REAL con que aparece en los exámenes:
+
+| Valor | Formato del examen |
+|---|---|
+| `MULTIPLE_CHOICE` | Pregunta directa estándar (4 opciones) |
+| `READING_COMPREHENSION` | Comprensión de lectura (comparte un `Passage`) |
+| `IMAGE_OPTIONS` | Las opciones son imágenes |
+| `CHART_TABLE` | Estímulo con gráfica/tabla |
+| `MATCHING` | Relación de columnas |
+| `SENTENCE_COMPLETION` | Completar la oración |
+| `ANALOGY` | Analogías verbales |
+| `ORDERING` | Ordenamiento (cronológico/lógico/sintáctico) |
+| `NUMERIC_SERIES` | Series numéricas |
+| `PROBLEM_SOLVING` | Resolución de problemas con cálculo |
+| `SPATIAL_SERIES` | Series espaciales (secuencias de figuras) |
+| `SPATIAL_IMAGINATION` | Imaginación espacial (rotación/plegado) |
+
+### `model Passage` (migración 0004)
+
+Texto compartido por varios reactivos de comprensión de lectura
+(`Question.passageId → Passage`). Con `contentSourceId` para procedencia.
+
+### Imagen por opción
+
+`Question.options` es JSONB; el contrato (Zod en
+`scripts/lib/question-draft-schema.ts`) admite `imageUrl` opcional por opción:
+`{ id, text, isCorrect, imageUrl? }`. El texto sigue siendo obligatorio como
+canal accesible (WCAG). No requirió DDL.
+
+### `Question.verification` (JSONB, migración 0006) — pipeline adversarial
+
+Veredicto completo del pipeline de verificación sin humanos (F2):
+
+```jsonc
+{
+  "pipeline": "adversarial-v1",
+  "generatorModel": "claude-sonnet-4-6",
+  "generatorOption": "B",
+  "verdict": {            // del verificador (claude-fable-5), que NUNCA
+    "chosenOption": "B",  // recibe la respuesta marcada ni explicaciones
+    "confidence": 0.95,
+    "reasoning": "...",
+    "problems": [],        // AMBIGUOUS_STEM | MULTIPLE_VALID | NONE_VALID |
+                           // WEAK_DISTRACTORS | OFF_SYLLABUS | CALC_NOT_EXECUTED | OTHER
+    "usedCalculation": true,
+    "usage": { "inputTokens": 0, "outputTokens": 0 },
+    "verifiedAt": "ISO"
+  },
+  "decision": "AUTO_APPROVED" | "UNPUBLISHED",
+  "reasons": [],
+  "audit": null            // tercera pasada (claude-opus-4-8, muestreo 5%)
+}
+```
+
+Reglas: `isVerified=true` SOLO vía `decision=AUTO_APPROVED` (coincidencia +
+confianza ≥0.85 + cero problemas). Los no publicados conservan el veredicto
+para el panel de discrepancias (F3). La tasa de auto-aprobación (<75% ⇒
+mejorar el generador) se reporta en `scripts/content-coverage.ts`.

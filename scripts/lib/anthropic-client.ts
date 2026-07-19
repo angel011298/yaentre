@@ -16,13 +16,18 @@ export interface GenerateArgs {
   maxTokens?: number;
 }
 
-/** Llama al modelo y devuelve el texto crudo del primer bloque de texto. */
-export async function callAnthropic({
+export interface GenerationResult {
+  text: string;
+  usage: { inputTokens: number; outputTokens: number };
+}
+
+/** Llama al modelo generador y devuelve texto + usage (para costo, F2). */
+export async function callAnthropicMeta({
   apiKey,
   system,
   user,
   maxTokens = 8000,
-}: GenerateArgs): Promise<string> {
+}: GenerateArgs): Promise<GenerationResult> {
   const client = new Anthropic({ apiKey });
 
   const message = await client.messages.create({
@@ -39,5 +44,16 @@ export async function callAnthropic({
   if (!textBlock) {
     throw new Error('La respuesta del modelo no contiene texto');
   }
-  return textBlock.text;
+  return {
+    text: textBlock.text,
+    usage: {
+      inputTokens: message.usage.input_tokens,
+      outputTokens: message.usage.output_tokens,
+    },
+  };
+}
+
+/** Llama al modelo y devuelve el texto crudo del primer bloque de texto. */
+export async function callAnthropic(args: GenerateArgs): Promise<string> {
+  return (await callAnthropicMeta(args)).text;
 }

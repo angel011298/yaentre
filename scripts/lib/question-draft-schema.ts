@@ -20,6 +20,24 @@ export const DIFFICULTY_LEVELS = [
 
 export type DifficultyLevel = (typeof DIFFICULTY_LEVELS)[number];
 
+/** Formatos de reactivo (espejo del enum QuestionFormat de Prisma, F2). */
+export const QUESTION_FORMATS = [
+  'MULTIPLE_CHOICE',
+  'READING_COMPREHENSION',
+  'IMAGE_OPTIONS',
+  'CHART_TABLE',
+  'MATCHING',
+  'SENTENCE_COMPLETION',
+  'ANALOGY',
+  'ORDERING',
+  'NUMERIC_SERIES',
+  'PROBLEM_SOLVING',
+  'SPATIAL_SERIES',
+  'SPATIAL_IMAGINATION',
+] as const;
+
+export type QuestionFormat = (typeof QUESTION_FORMATS)[number];
+
 const OPTION_IDS = ['A', 'B', 'C', 'D'] as const;
 
 const nonEmpty = (label: string) =>
@@ -83,6 +101,11 @@ const optionSchema = z.object({
   id: z.enum(OPTION_IDS),
   text: nonEmpty('El texto de la opción'),
   isCorrect: z.boolean(),
+  // Soporte de imagen por opción (formato IMAGE_OPTIONS / SPATIAL_*): la
+  // opción puede llevar una imagen además del texto (el texto sigue siendo
+  // obligatorio como descripción accesible — WCAG, color/imagen nunca es el
+  // único canal).
+  imageUrl: z.string().url().nullable().optional().default(null),
 });
 
 /**
@@ -96,6 +119,9 @@ export const QuestionDraftSchema = z
     options: z.array(optionSchema),
     difficulty: z.enum(DIFFICULTY_LEVELS),
     explanations: z.array(explanationLayerSchema),
+    // Formato del reactivo (F2). Default MULTIPLE_CHOICE para compatibilidad
+    // con el corpus few-shot existente que no lo declara.
+    format: z.enum(QUESTION_FORMATS).optional().default('MULTIPLE_CHOICE'),
   })
   .superRefine((draft, ctx) => {
     // ── Opciones: exactamente 4, ids A/B/C/D únicos ──

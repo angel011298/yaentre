@@ -122,11 +122,18 @@ enum QuestionUsage {
 }
 
 enum QuestionFormat {
-  MULTIPLE_CHOICE       // Reactivo estándar de opción múltiple (4 opciones de texto)
+  MULTIPLE_CHOICE       // Pregunta directa estándar de opción múltiple (4 opciones de texto)
   READING_COMPREHENSION // Depende de un Passage compartido (comprensión de lectura)
   IMAGE_OPTIONS         // Las opciones son imágenes (imageUrl por opción)
   CHART_TABLE           // El enunciado incluye una gráfica/tabla como estímulo
   MATCHING              // Relacionar columnas (concepto ↔ descripción)
+  SENTENCE_COMPLETION   // Completar la oración / frase con la opción correcta
+  ANALOGY               // Analogías verbales (A es a B como C es a ...)
+  ORDERING              // Ordenamiento de elementos (cronológico, lógico, sintáctico)
+  NUMERIC_SERIES        // Series numéricas (sucesiones; hallar el siguiente término)
+  PROBLEM_SOLVING       // Resolución de problemas con cálculo (mat/fís/quím aplicadas)
+  SPATIAL_SERIES        // Series espaciales (secuencias de figuras)
+  SPATIAL_IMAGINATION   // Imaginación espacial (rotación, plegado, perspectiva)
 }
 
 enum ConfidenceLevel {
@@ -293,6 +300,13 @@ model Question {
   passageId     String?
   passage       Passage?         @relation(fields: [passageId], references: [id], onDelete: SetNull)
   externalRef   String?          @unique // Idempotencia de ingesta (p. ej. "ECOEMS-2025#Q29")
+
+  // ── Verificación adversarial (F2) ──
+  // Veredicto completo del pipeline: respuesta del verificador, confianza,
+  // problemas detectados, decisión, tercera pasada de auditoría si aplica.
+  // Un reactivo GENERATED solo pasa a isVerified=true vía este pipeline
+  // (dos modelos independientes coinciden). Sin resolver → queda sin publicar.
+  verification  Json?
 
   explanations ExplanationLayer[]
   answers      SessionAnswer[]

@@ -15,7 +15,7 @@
  *   --mock             usa el generador mock en vez de la API (sin tokens/red)
  *   --inject-invalid   (con --mock) añade un reactivo inválido para probar el rechazo
  */
-import 'dotenv/config';
+import './lib/env';
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -115,6 +115,7 @@ function toInsertable(draft: QuestionDraft): InsertableDraft {
     stem: draft.stem,
     options: draft.options,
     difficulty: draft.difficulty,
+    format: draft.format,
     explanations: draft.explanations.map((e) => ({
       layer: e.layer,
       title: e.title,

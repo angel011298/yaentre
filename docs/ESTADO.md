@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-07-18 · Última fase ejecutada: F1 (COMPLETADA)
+Última actualización: 2026-07-18 · Última fase ejecutada: F2 (EN_PROGRESO — solo falta la tanda real, bloqueada por créditos API)
 
 ## Tabla de fases
 
@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | F0 | Auditoría y reparación del repo | COMPLETADA | (esta sesión) | CLAUDE.md actualizado, ESTADO.md creado, .claude/settings.json agregado |
 | F1 | Infraestructura validada vs Supabase real | COMPLETADA | (F1) | Proyecto Supabase real (ref fumluvvzskhdxcyljbmx). Schema=fuente de verdad (diff vacío), RLS verificada, seed real (2 inst/7 áreas/35 mat/217 temas/47 carreras), guardrail probado en vivo, 9/10 PDFs subidos. Bugs corregidos: camelCase en RLS + recursión infinita RLS. Pendiente externo: prueba Anthropic (falta key real) y guía IPN 80MB (>límite free-tier). Ver docs/VALIDACION_INFRA.md |
-| F2 | Pipeline adversarial de contenido | EN_PROGRESO | a4dbe82 | CC-05/CC-06: generación IA + panel admin. Verificación adversarial pendiente (CC-26) |
+| F2 | Pipeline adversarial de contenido | EN_PROGRESO | (F2) | CONSTRUIDO Y PROBADO COMPLETO: verificador Fable 5 (sin respuesta, con test estructural), cálculo ejecutado en sandbox VM, resolución (coincidencia+conf≥0.85+0 problemas), 3a pasada Opus 5%, orquestador content-run, coverage con tasa auto-aprobación, 94 tests verdes, E2E mock vs DB real OK. Schema: +7 formatos, +verification JSONB. API key real creada y validada (auth OK). ÚNICO pendiente: tanda real de 10 — bloqueada por saldo API $0.00 (compra de créditos = decisión del dueño) |
 | F3 | Panel de discrepancias y resolución | PENDIENTE | — | Construido parcialmente en CC-06; necesita sesión dedicada |
 | F4 | Producción de contenido en escala | COMPLETADA | b638576 | CC-07/CC-08/CC-01c/CC-09/CC-09b/CC-13/CC-25: seeds, ingesta, procedencia, aciertos mínimos, examen oficial |
 | F5 | Onboarding y diagnóstico inicial | PENDIENTE | — | Quiz inicial, determinación de nivel, primera recomendación |
@@ -34,11 +34,26 @@
 
 ## Reanudación
 
-(Vacío. F1 cerrada. Dos ítems quedan fuera por dependencia externa, no por
-trabajo pendiente: la prueba Anthropic —falta una API key real— y la guía IPN
-de 80 MB —supera el límite del plan gratuito de Supabase—. Ambos con su script
-listo: `scripts/ping-anthropic.ts` y `scripts/upload-guias.ts`.)
+**F2 — un solo pendiente (2026-07-18): la tanda real de 10 reactivos.**
+
+Todo lo demás de F2 está construido, probado y commiteado. La API key
+`acierta-pipeline-f2` es real y autentica (validado: el error es 400 de saldo,
+no 401). El bloqueo es **saldo API $0.00** en el org de Anthropic
+(553angelortiz@gmail.com, plan evaluación) — comprar créditos es una acción
+financiera que solo el dueño puede hacer.
+
+### Paso exacto para continuar (5 minutos)
+1. Dueño: console.anthropic.com → Facturación → agregar créditos (con $5 USD
+   sobra; la tanda cuesta ~$0.50–$1.50).
+2. Correr: `pnpm content:run --topic cmrr1iv7r000ghi3n9ageokue --count 10`
+   (tema "Números reales y complejos", Matemáticas UNAM Área 1).
+3. Registrar la tasa de auto-aprobación observada en las Notas de F2 y en
+   docs/VALIDACION_INFRA.md; marcar F2 COMPLETADA.
+
+Nota: la key vence el 17 ago 2026 (renovar en Console → API Keys).
+Pendiente heredado de F1 sin cambio: guía IPN 80MB (>límite free-tier Supabase).
 
 ## Siguiente
 
-**FASE:** F2 — **MODELO:** Fable 5 (pipeline adversarial de contenido)
+**Inmediato:** cerrar F2 (ver Reanudación: créditos + tanda real de 10).
+**Después:** **FASE:** F3 — **MODELO:** Sonnet 4.6 (panel de discrepancias)

@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import type { PromptContext } from './prompt-loader';
 
 /**
@@ -96,11 +96,13 @@ export interface InsertableDraft {
     content: string;
     latexContent: string | null;
   }[];
+  format?: string;
 }
 
 /**
- * Inserta un reactivo válido con isVerified=false (Etapa 1 → cola de revisión
- * humana). Crea las ExplanationLayer en la misma transacción.
+ * Inserta un reactivo válido con isVerified=false (Etapa 1 → cola de
+ * verificación adversarial). Crea las ExplanationLayer en la misma transacción.
+ * Siempre GENERATED: la verificación (F2) es el único camino a isVerified=true.
  */
 export async function insertQuestion(
   topicId: string,
@@ -113,7 +115,10 @@ export async function insertQuestion(
       stem: draft.stem,
       options: draft.options as object,
       difficulty: draft.difficulty,
-      isVerified: false, // ← guardrail: nunca visible hasta revisión humana
+      isVerified: false, // ← guardrail: nunca visible sin verificación adversarial
+      source: 'GENERATED',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      format: (draft.format ?? 'MULTIPLE_CHOICE') as any,
       explanations: {
         create: draft.explanations.map((e) => ({
           layer: e.layer,
@@ -126,4 +131,54 @@ export async function insertQuestion(
     select: { id: true },
   });
   return created.id;
+}
+
+/**
+ * Persiste el resultado del pipeline adversarial (F2): el veredicto completo
+ * SIEMPRE se adjunta (publicado o no); isVerified solo si AUTO_APPROVED.
+ */
+export async function applyVerification(
+  questionId: string,
+  record: unknown,
+  approved: boolean,
+): Promise<void> {
+  const prisma = getPrisma();
+  await prisma.question.update({
+    where: { id: questionId },
+    data: {
+      verification: record as object,
+      isVerified: approved,
+    },
+  });
+}
+
+/** Reactivos GENERATED pendientes de verificación adversarial de un tema. */
+export async function loadPendingQuestions(topicId: string, limit = 50) {
+  const prisma = getPrisma();
+  return prisma.question.findMany({
+    where: {
+      topicId,
+      source: 'GENERATED',
+      isVerified: false,
+      verification: { equals: Prisma.DbNull },
+    },
+    select: { id: true, stem: true, options: true, format: true },
+    take: limit,
+  });
+}
+
+/**
+ * Borra reactivos por id SOLO si no tienen respuestas históricas (guardrail:
+ * nunca borrar reactivos con SessionAnswer). Para limpieza de corridas mock.
+ */
+export async function deleteQuestionsWithoutAnswers(ids: string[]): Promise<number> {
+  const prisma = getPrisma();
+  const deletable = await prisma.question.findMany({
+    where: { id: { in: ids }, answers: { none: {} } },
+    select: { id: true },
+  });
+  const deletableIds = deletable.map((q) => q.id);
+  if (deletableIds.length === 0) return 0;
+  await prisma.question.deleteMany({ where: { id: { in: deletableIds } } });
+  return deletableIds.length;
 }
