@@ -122,6 +122,10 @@ export const QuestionDraftSchema = z
     // Formato del reactivo (F2). Default MULTIPLE_CHOICE para compatibilidad
     // con el corpus few-shot existente que no lo declara.
     format: z.enum(QUESTION_FORMATS).optional().default('MULTIPLE_CHOICE'),
+    // Anclaje en fuentes (F2b): índices 1-based de los FRAGMENTOS FUENTE que
+    // el reactivo usó como base. La validación de rango y la obligatoriedad
+    // (cuando hay fragmentos disponibles) viven en lib/grounding.ts.
+    sourceChunks: z.array(z.number().int().min(1)).optional().default([]),
   })
   .superRefine((draft, ctx) => {
     // ── Opciones: exactamente 4, ids A/B/C/D únicos ──

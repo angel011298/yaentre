@@ -8,7 +8,12 @@ import type { PromptContext } from './prompt-loader';
  * Produce reactivos estructuralmente VÁLIDOS (pasan la Etapa 2). El primero de
  * cada lote impar incluye LaTeX para ejercitar la validación KaTeX.
  */
-export function mockGenerate(ctx: PromptContext, count: number): unknown[] {
+export function mockGenerate(
+  ctx: PromptContext,
+  count: number,
+  /** F2b: # de fragmentos fuente disponibles; >0 ⇒ cada draft cita uno. */
+  chunkCount = 0,
+): unknown[] {
   const items: unknown[] = [];
   for (let i = 0; i < count; i++) {
     const n = i + 1;
@@ -23,6 +28,8 @@ export function mockGenerate(ctx: PromptContext, count: number): unknown[] {
     items.push({
       stem: `[MOCK ${n}] Reactivo de ejemplo sobre "${ctx.topic}" (${ctx.subject}). ¿Cuál es la opción correcta?`,
       options,
+      // F2b: con fragmentos disponibles, el mock cita uno (rota entre ellos)
+      ...(chunkCount > 0 ? { sourceChunks: [(i % chunkCount) + 1] } : {}),
       difficulty: ['BASIC', 'INTERMEDIATE', 'ADVANCED'][i % 3],
       explanations: [
         {

@@ -26,6 +26,10 @@ interface SubjectRow {
   pendingResolution: number; // sin veredicto aún (no han pasado por F2)
   unpublished: number; // veredicto adverso: quedaron sin publicar
   autoApproved: number; // decision AUTO_APPROVED en verification
+  sourced: number; // F2b: anclados en fragmento fuente real
+  temarioOnly: number; // F2b: generados solo con el temario
+  topicsWithChunks: number; // F2b: temas de la materia con ≥1 SourceChunk
+  topicsTotal: number;
 }
 interface AreaRow {
   area: string;
@@ -59,7 +63,15 @@ async function main() {
         include: {
           topics: {
             include: {
-              questions: { select: { isVerified: true, verification: true, usage: true } },
+              questions: {
+                select: {
+                  isVerified: true,
+                  verification: true,
+                  usage: true,
+                  groundingStatus: true,
+                },
+              },
+              _count: { select: { sourceChunks: true } },
             },
           },
         },
@@ -82,6 +94,10 @@ async function main() {
   let totalPending = 0;
   let totalAutoApproved = 0;
   let totalResolved = 0;
+  let totalSourced = 0;
+  let totalTemarioOnly = 0;
+  let totalTopicsWithChunks = 0;
+  let totalTopics = 0;
   const report: AreaRow[] = [];
 
   for (const area of areas) {
@@ -93,10 +109,17 @@ async function main() {
         pendingResolution: 0,
         unpublished: 0,
         autoApproved: 0,
+        sourced: 0,
+        temarioOnly: 0,
+        topicsWithChunks: 0,
+        topicsTotal: subject.topics.length,
       };
       for (const topic of subject.topics) {
+        if (topic._count.sourceChunks > 0) row.topicsWithChunks++;
         for (const q of topic.questions) {
           if (q.isVerified) row.verified++;
+          if (q.groundingStatus === 'SOURCED') row.sourced++;
+          else row.temarioOnly++;
           const v = q.verification as VerificationShape | null;
           if (!v) {
             if (!q.isVerified) row.pendingResolution++;
@@ -112,6 +135,10 @@ async function main() {
       totalPending += row.pendingResolution;
       totalAutoApproved += row.autoApproved;
       totalResolved += row.autoApproved + row.unpublished;
+      totalSourced += row.sourced;
+      totalTemarioOnly += row.temarioOnly;
+      totalTopicsWithChunks += row.topicsWithChunks;
+      totalTopics += row.topicsTotal;
     }
     report.push({ area: area.name, subjects: subjectRows });
   }
@@ -125,9 +152,11 @@ async function main() {
         resolved > 0
           ? `${Math.round((s.autoApproved / resolved) * 100)}% auto-aprob.`
           : '— sin corridas';
+      const grounding =
+        s.sourced + s.temarioOnly > 0 ? ` · ⚓${s.sourced}/${s.temarioOnly}` : '';
       console.log(
         `   ${s.subject.padEnd(26)} ${bar(s.verified, Math.max(total, 1))} ` +
-          `${String(s.verified).padStart(4)}✓ ${String(s.pendingResolution).padStart(4)}⧗ ${String(s.unpublished).padStart(3)}✋  ${rateStr}`,
+          `${String(s.verified).padStart(4)}✓ ${String(s.pendingResolution).padStart(4)}⧗ ${String(s.unpublished).padStart(3)}✋  ${rateStr}${grounding} · fuentes ${s.topicsWithChunks}/${s.topicsTotal} temas`,
       );
     }
   }
@@ -151,6 +180,15 @@ async function main() {
   } else {
     console.log('TASA DE AUTO-APROBACIÓN: sin corridas del pipeline adversarial todavía.');
   }
+  const totalGrounded = totalSourced + totalTemarioOnly;
+  if (totalGrounded > 0) {
+    console.log(
+      `ANCLAJE EN FUENTES (F2b): ${totalSourced} SOURCED (${Math.round((totalSourced / totalGrounded) * 100)}%) · ${totalTemarioOnly} TEMARIO_ONLY`,
+    );
+  }
+  console.log(
+    `TEMARIO CON FRAGMENTOS FUENTE: ${totalTopicsWithChunks}/${totalTopics} temas · ${totalTopics - totalTopicsWithChunks} aún sin fuente (correr pnpm content:scan-sources tras agregar material)`,
+  );
   console.log(`META 1,500 servibles: ${bar(totalVerified, GOAL_VERIFIED, 30)} ${goalPct}%`);
   console.log('═'.repeat(72));
 }

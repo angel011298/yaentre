@@ -71,4 +71,5 @@ Cada reactivo lleva **exactamente 3 capas** de explicación:
 - `options`: exactamente 4, ids `"A"`, `"B"`, `"C"`, `"D"` en ese orden, **exactamente una** con `isCorrect: true`.
 - `explanations`: exactamente las capas 1, 2 y 3, en ese orden.
 - `format`: el formato REAL del reactivo según el examen oficial. Usa `PROBLEM_SOLVING` para problemas con cálculo, `NUMERIC_SERIES` para sucesiones, `SENTENCE_COMPLETION` para completar oración, `ANALOGY` para analogías, `ORDERING` para ordenamientos, `MATCHING` para relación de columnas. Si es pregunta directa estándar, `MULTIPLE_CHOICE`. Varía los formatos como lo hace el examen real de la institución.
+- Si el mensaje incluye una sección de **FRAGMENTOS FUENTE numerados**, cada reactivo DEBE derivarse de uno o más de esos fragmentos y declararlo con el campo adicional `"sourceChunks": [<números de fragmento>]`. Sin fragmentos en el mensaje, omite ese campo.
 - JSON estrictamente válido: comillas dobles, sin comas colgantes, diagonales invertidas escapadas.

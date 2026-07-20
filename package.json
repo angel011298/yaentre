@@ -17,6 +17,7 @@
     "prisma:studio": "prisma studio",
     "content:generate": "tsx scripts/generate-questions.ts",
     "content:run": "tsx scripts/content-run.ts",
+    "content:scan-sources": "tsx scripts/scan-and-ingest.ts",
     "content:verify": "tsx scripts/verify-questions.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",
     "content:ingest": "tsx scripts/ingest-source.ts"
@@ -55,6 +56,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "jsdom": "^29.1.1",
+    "mammoth": "^1.12.0",
+    "pdf-parse": "^2.4.5",
     "prettier": "^3.9.5",
     "prisma": "^5.22.0",
     "tailwindcss": "^4",

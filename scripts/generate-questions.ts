@@ -34,8 +34,14 @@ import {
 import { mockGenerate, mockInvalidDraft } from './lib/mock-generator';
 import { callAnthropic } from './lib/anthropic-client';
 import {
+  buildGroundingBlock,
+  resolveCitations,
+  type GroundingChunk,
+} from './lib/grounding';
+import {
   loadTopicContext,
   loadExistingStems,
+  loadTopicChunks,
   insertQuestion,
   disconnect,
   type InsertableDraft,
@@ -110,12 +116,13 @@ function logRejected(
   return file;
 }
 
-function toInsertable(draft: QuestionDraft): InsertableDraft {
+function toInsertable(draft: QuestionDraft, sourceChunkIds: string[]): InsertableDraft {
   return {
     stem: draft.stem,
     options: draft.options,
     difficulty: draft.difficulty,
     format: draft.format,
+    sourceChunkIds,
     explanations: draft.explanations.map((e) => ({
       layer: e.layer,
       title: e.title,
@@ -181,14 +188,27 @@ async function main() {
     }
   }
 
+  // ── Anclaje en fuentes (F2b): fragmentos del tema, si existen ──
+  let groundingChunks: GroundingChunk[] = [];
+  if (dbAvailable) {
+    groundingChunks = await loadTopicChunks(args.topicId);
+  }
+  if (groundingChunks.length > 0) {
+    console.log(`⚓ Anclaje: ${groundingChunks.length} fragmento(s) fuente — cita OBLIGATORIA`);
+  } else {
+    console.log('⚓ Sin fragmentos fuente para este tema → groundingStatus=TEMARIO_ONLY');
+  }
+
   // ── Etapa 1: generación ──
   const { system, subjectFile } = buildSystemPrompt(ctx);
-  const user = buildUserPrompt(ctx, args.count);
+  const user =
+    buildUserPrompt(ctx, args.count) +
+    (groundingChunks.length > 0 ? '\n' + buildGroundingBlock(groundingChunks) : '');
   console.log(`🧠 Prompt de materia: ${subjectFile}.md`);
 
   let items: unknown[];
   if (useMock) {
-    items = mockGenerate(ctx, args.count);
+    items = mockGenerate(ctx, args.count, groundingChunks.length);
     if (args.injectInvalid) items.push(mockInvalidDraft(ctx));
     console.log(`🤖 [MOCK] ${items.length} reactivo(s) generado(s)`);
   } else {
@@ -206,8 +226,8 @@ async function main() {
     console.log(`🤖 ${items.length} reactivo(s) recibido(s) del modelo`);
   }
 
-  // ── Etapa 2: validación + dedupe ──
-  const valid: QuestionDraft[] = [];
+  // ── Etapa 2: validación + citas de fuente + dedupe ──
+  const valid: { draft: QuestionDraft; chunkIds: string[] }[] = [];
   const rejected: { errors: string[]; raw: unknown }[] = [];
   const seenStems = new Set(existingStems.map(normalizeStem));
 
@@ -215,6 +235,12 @@ async function main() {
     const result = validateDraft(item);
     if (!result.ok) {
       rejected.push({ errors: result.errors, raw: result.raw });
+      continue;
+    }
+    // Anclaje estricto: con fragmentos disponibles, la cita es obligatoria
+    const citations = resolveCitations(result.draft.sourceChunks, groundingChunks);
+    if (!citations.ok) {
+      rejected.push({ errors: [`Anclaje: ${citations.error}`], raw: item });
       continue;
     }
     const key = normalizeStem(result.draft.stem);
@@ -226,7 +252,7 @@ async function main() {
       continue;
     }
     seenStems.add(key);
-    valid.push(result.draft);
+    valid.push({ draft: result.draft, chunkIds: citations.chunkIds });
   }
 
   console.log('─'.repeat(60));
@@ -252,12 +278,13 @@ async function main() {
     );
   } else {
     let inserted = 0;
-    for (const draft of valid) {
-      const id = await insertQuestion(args.topicId, toInsertable(draft));
+    for (const { draft, chunkIds } of valid) {
+      const id = await insertQuestion(args.topicId, toInsertable(draft, chunkIds));
       inserted++;
-      console.log(`   + ${id} (isVerified=false)`);
+      const grounding = chunkIds.length > 0 ? `SOURCED (${chunkIds.length} fuente(s))` : 'TEMARIO_ONLY';
+      console.log(`   + ${id} (isVerified=false, ${grounding})`);
     }
-    console.log(`💾 Insertados ${inserted} reactivo(s) en la cola de revisión.`);
+    console.log(`💾 Insertados ${inserted} reactivo(s) en la cola de verificación.`);
   }
 
   console.log('─'.repeat(60));

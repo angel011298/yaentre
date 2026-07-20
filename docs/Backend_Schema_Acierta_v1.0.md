@@ -995,3 +995,45 @@ Reglas: `isVerified=true` SOLO vía `decision=AUTO_APPROVED` (coincidencia +
 confianza ≥0.85 + cero problemas). Los no publicados conservan el veredicto
 para el panel de discrepancias (F3). La tasa de auto-aprobación (<75% ⇒
 mejorar el generador) se reporta en `scripts/content-coverage.ts`.
+
+---
+
+## Addendum F2b (2026-07-19) — Anclaje en documentos fuente e ingesta continua
+
+Migración 0007. Cada reactivo generado es rastreable a fragmentos REALES de
+documentos fuente; el escáner (`pnpm content:scan-sources`) detecta material
+nuevo en `docs/guias/` (canónica), la raíz del repo y carpetas
+`*fuente*/*material*/*guia*/*source*`, por **hash SHA-256 de contenido**.
+
+### `enum GroundingStatus` + `Question.groundingStatus`
+
+| Valor | Significado |
+|---|---|
+| `SOURCED` | El reactivo cita ≥1 `SourceChunk` real (trazabilidad en `QuestionSourceChunk`) |
+| `TEMARIO_ONLY` | Generado solo con el temario oficial (default; transparente, no bloquea) |
+
+### `model SourceChunk` (`source_chunks`)
+
+Fragmento real de un documento fuente: `contentSourceId` (FK), `topicId?` /
+`subjectId?` (clasificación contra la taxonomía; null+`classifiedAt` null =
+pendiente de clasificar; null+`classifiedAt` set = fuera del temario), `text`
+(fragmento completo), `excerpt` (cita breve ~200 chars para UI), `locationRef`
+("p. N"), `createdAt`.
+
+**RLS: NUNCA legible por usuarios finales.** Política SELECT solo
+`public.is_admin()`; sin política para STUDENT/PARENT (verificado en vivo:
+anon key → `[]`). El pipeline escribe con el rol de servicio. Guard de
+aplicación: ningún lector de `src/lib/db` expone chunks.
+
+### `model QuestionSourceChunk` (`question_source_chunks`)
+
+Unión muchos-a-muchos reactivo ↔ fragmento (PK compuesta, cascade en ambos
+lados). Se llena al insertar reactivos cuya salida citó `sourceChunks` (índices
+validados en `scripts/lib/grounding.ts`: cita OBLIGATORIA cuando el tema tiene
+fragmentos; fuera de rango ⇒ draft rechazado).
+
+### `ContentSource.contentHash` (SHA-256, unique)
+
+Detección de archivos nuevos O modificados por contenido (no por nombre).
+Registros pre-F2b sin hash se "adoptan" al primer escaneo (match por
+fileRef/basename). Fuentes con 0 fragmentos se reprocesan automáticamente.

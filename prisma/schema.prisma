@@ -142,6 +142,11 @@ enum ConfidenceLevel {
   LOW  // Fuentes divergen (>±2) o solo hay una fuente débil — se usa el valor más conservador
 }
 
+enum GroundingStatus {
+  SOURCED      // El reactivo cita ≥1 SourceChunk real (trazabilidad en QuestionSourceChunk)
+  TEMARIO_ONLY // Generado solo con el temario oficial (sin fragmento fuente disponible)
+}
+
 // ──────────────────── TAXONOMÍA DE CONTENIDO ────────────────────
 
 model Institution {
@@ -165,11 +170,49 @@ model ContentSource {
                         // directo, ver CC-25) o path local aún no publicado (docs/guias/..., no servible)
   license     String?  // Descripción de licencia
   externalRef String?  @unique // Clave estable para idempotencia de ingesta (p. ej. "ECOEMS-2025")
+  contentHash String?  @unique // SHA-256 del archivo (F2b): detección de nuevos/modificados por contenido
   ingestedAt  DateTime @default(now())
   questions   Question[] @relation("QuestionSource")
   passages    Passage[]  @relation("PassageSource")
+  chunks      SourceChunk[]
 
   @@map("content_sources")
+}
+
+// Fragmento REAL de un documento fuente (F2b). Ancla la generación: cada
+// reactivo SOURCED cita ≥1 chunk vía QuestionSourceChunk. NUNCA servible a
+// usuarios finales (RLS: solo ADMIN; el pipeline escribe con service role).
+model SourceChunk {
+  id              String        @id @default(cuid())
+  contentSourceId String
+  contentSource   ContentSource @relation(fields: [contentSourceId], references: [id], onDelete: Cascade)
+  topicId         String?       // Tema del temario al que corresponde (null = sin clasificar o fuera de temario)
+  topic           Topic?        @relation(fields: [topicId], references: [id], onDelete: SetNull)
+  subjectId       String?       // Materia (para chunks clasificables a materia pero no a tema puntual)
+  subject         Subject?      @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+  text            String        @db.Text // Fragmento completo (contexto de generación)
+  excerpt         String        // Cita breve para UI/admin (primeras ~200 chars limpias)
+  locationRef     String?       // Página/sección de origen (p. ej. "p. 34", "§2.3")
+  classifiedAt    DateTime?     // null = clasificación pendiente; set + topicId null = fuera de temario
+  createdAt       DateTime      @default(now())
+  questions       QuestionSourceChunk[]
+
+  @@index([topicId])
+  @@index([contentSourceId])
+  @@index([classifiedAt])
+  @@map("source_chunks")
+}
+
+// Trazabilidad muchos-a-muchos reactivo ↔ fragmento fuente (F2b).
+model QuestionSourceChunk {
+  questionId    String
+  question      Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  sourceChunkId String
+  sourceChunk   SourceChunk @relation(fields: [sourceChunkId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+
+  @@id([questionId, sourceChunkId])
+  @@map("question_source_chunks")
 }
 
 model Passage {
@@ -258,6 +301,7 @@ model Subject {
   questionWeight Int           @default(1) // # reactivos esperados en el examen real
   topics         Topic[]
   contentItems   ContentItem[]
+  sourceChunks   SourceChunk[]
 
   @@unique([areaId, name])
   @@map("subjects")
@@ -272,6 +316,7 @@ model Topic {
   questions    Question[]
   weakTopics   WeakTopic[]
   contentItems ContentItem[]
+  sourceChunks SourceChunk[]
 
   @@unique([subjectId, name])
   @@map("topics")
@@ -307,6 +352,12 @@ model Question {
   // Un reactivo GENERATED solo pasa a isVerified=true vía este pipeline
   // (dos modelos independientes coinciden). Sin resolver → queda sin publicar.
   verification  Json?
+
+  // ── Anclaje en documentos fuente (F2b) ──
+  // SOURCED = cita ≥1 SourceChunk real (relación en QuestionSourceChunk).
+  // TEMARIO_ONLY = generado solo con el temario (transparente, no bloqueante).
+  groundingStatus GroundingStatus       @default(TEMARIO_ONLY)
+  sourceChunks    QuestionSourceChunk[]
 
   explanations ExplanationLayer[]
   answers      SessionAnswer[]

@@ -97,6 +97,8 @@ export interface InsertableDraft {
     latexContent: string | null;
   }[];
   format?: string;
+  /** F2b: ids de SourceChunk citados. Vacío ⇒ TEMARIO_ONLY; con ids ⇒ SOURCED. */
+  sourceChunkIds?: string[];
 }
 
 /**
@@ -109,6 +111,7 @@ export async function insertQuestion(
   draft: InsertableDraft,
 ): Promise<string> {
   const prisma = getPrisma();
+  const chunkIds = draft.sourceChunkIds ?? [];
   const created = await prisma.question.create({
     data: {
       topicId,
@@ -119,6 +122,11 @@ export async function insertQuestion(
       source: 'GENERATED',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       format: (draft.format ?? 'MULTIPLE_CHOICE') as any,
+      // F2b: trazabilidad — SOURCED solo si cita fragmentos reales
+      groundingStatus: chunkIds.length > 0 ? 'SOURCED' : 'TEMARIO_ONLY',
+      sourceChunks: {
+        create: chunkIds.map((sourceChunkId) => ({ sourceChunkId })),
+      },
       explanations: {
         create: draft.explanations.map((e) => ({
           layer: e.layer,
@@ -131,6 +139,168 @@ export async function insertQuestion(
     select: { id: true },
   });
   return created.id;
+}
+
+// ── F2b: escáner de ingesta continua y anclaje en fuentes ──────────────
+
+export interface ScannedSourceInput {
+  name: string;
+  fileRef: string; // ruta relativa en el repo
+  contentHash: string; // SHA-256 del archivo
+  institution?: string | null;
+}
+
+/**
+ * Busca si un archivo YA está registrado: primero por hash de contenido
+ * (detecta renombrados), luego por fileRef (adopta registros pre-F2b sin hash,
+ * actualizándolos con el hash para futuras corridas). Devuelve null si es
+ * material nuevo o una versión modificada de un archivo conocido.
+ */
+export async function findRegisteredSource(
+  contentHash: string,
+  fileRef: string,
+): Promise<{ id: string; adopted: boolean; chunkCount: number } | null> {
+  const prisma = getPrisma();
+  const byHash = await prisma.contentSource.findUnique({
+    where: { contentHash },
+    include: { _count: { select: { chunks: true } } },
+  });
+  if (byHash) return { id: byHash.id, adopted: false, chunkCount: byHash._count.chunks };
+
+  const byRef = await prisma.contentSource.findFirst({
+    where: { fileRef, contentHash: null },
+    include: { _count: { select: { chunks: true } } },
+  });
+  if (byRef) {
+    await prisma.contentSource.update({
+      where: { id: byRef.id },
+      data: { contentHash },
+    });
+    return { id: byRef.id, adopted: true, chunkCount: byRef._count.chunks };
+  }
+  return null;
+}
+
+/** Variante por nombre base de archivo (los ContentSource de CC-09 guardan
+ *  fileRef con rutas distintas). Solo adopta registros sin hash. */
+export async function findSourceByBasename(
+  base: string,
+  contentHash: string,
+): Promise<{ id: string; adopted: boolean; chunkCount: number } | null> {
+  const prisma = getPrisma();
+  const candidate = await prisma.contentSource.findFirst({
+    where: { contentHash: null, fileRef: { contains: base } },
+    include: { _count: { select: { chunks: true } } },
+  });
+  if (!candidate) return null;
+  await prisma.contentSource.update({
+    where: { id: candidate.id },
+    data: { contentHash },
+  });
+  return { id: candidate.id, adopted: true, chunkCount: candidate._count.chunks };
+}
+
+export async function registerScannedSource(input: ScannedSourceInput): Promise<string> {
+  const prisma = getPrisma();
+  const created = await prisma.contentSource.create({
+    data: {
+      name: input.name,
+      fileRef: input.fileRef,
+      contentHash: input.contentHash,
+      institution: input.institution ?? null,
+      license: 'Material de estudio aportado por el propietario del proyecto',
+    },
+    select: { id: true },
+  });
+  return created.id;
+}
+
+export interface InsertableChunk {
+  text: string;
+  excerpt: string;
+  locationRef: string;
+}
+
+export async function insertSourceChunks(
+  contentSourceId: string,
+  chunks: InsertableChunk[],
+): Promise<number> {
+  const prisma = getPrisma();
+  const res = await prisma.sourceChunk.createMany({
+    data: chunks.map((c) => ({
+      contentSourceId,
+      text: c.text,
+      excerpt: c.excerpt,
+      locationRef: c.locationRef,
+    })),
+  });
+  return res.count;
+}
+
+/** Chunks sin clasificar (classifiedAt null) para pasarlos al clasificador. */
+export async function loadUnclassifiedChunks(limit = 5000) {
+  const prisma = getPrisma();
+  return prisma.sourceChunk.findMany({
+    where: { classifiedAt: null },
+    select: { id: true, text: true },
+    take: limit,
+    orderBy: { createdAt: 'asc' },
+  });
+}
+
+export async function applyChunkClassifications(
+  assignments: { chunkId: string; topicId: string | null; subjectId: string | null }[],
+): Promise<void> {
+  const prisma = getPrisma();
+  const now = new Date();
+  for (const a of assignments) {
+    await prisma.sourceChunk.update({
+      where: { id: a.chunkId },
+      data: { topicId: a.topicId, subjectId: a.subjectId, classifiedAt: now },
+    });
+  }
+}
+
+/** Taxonomía plana (tema + materia) para el prompt del clasificador. */
+export async function loadTaxonomyTopics() {
+  const prisma = getPrisma();
+  const topics = await prisma.topic.findMany({
+    include: { subject: { select: { id: true, name: true } } },
+    orderBy: [{ subjectId: 'asc' }, { position: 'asc' }],
+  });
+  return topics.map((t) => ({
+    topicId: t.id,
+    subjectId: t.subject.id,
+    subject: t.subject.name,
+    topic: t.name,
+  }));
+}
+
+/** Fragmentos clasificados de un tema, para anclar la generación (F2b). */
+export async function loadTopicChunks(topicId: string, limit = 12) {
+  const prisma = getPrisma();
+  const chunks = await prisma.sourceChunk.findMany({
+    where: { topicId },
+    include: { contentSource: { select: { name: true } } },
+    orderBy: { createdAt: 'asc' },
+    take: limit,
+  });
+  return chunks.map((c) => ({
+    id: c.id,
+    text: c.text,
+    locationRef: c.locationRef,
+    sourceName: c.contentSource.name,
+  }));
+}
+
+/** Cobertura del temario: temas con y sin fragmentos fuente. */
+export async function topicChunkCoverage() {
+  const prisma = getPrisma();
+  const topics = await prisma.topic.findMany({
+    select: { id: true, _count: { select: { sourceChunks: true } } },
+  });
+  const withChunks = topics.filter((t) => t._count.sourceChunks > 0).length;
+  return { totalTopics: topics.length, withChunks, withoutChunks: topics.length - withChunks };
 }
 
 /**

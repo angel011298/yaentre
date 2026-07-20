@@ -41,8 +41,14 @@ import {
   type VerificationRecord,
 } from './lib/resolution';
 import {
+  buildGroundingBlock,
+  resolveCitations,
+  type GroundingChunk,
+} from './lib/grounding';
+import {
   loadTopicContext,
   loadExistingStems,
+  loadTopicChunks,
   insertQuestion,
   applyVerification,
   deleteQuestionsWithoutAnswers,
@@ -123,16 +129,26 @@ async function main() {
   console.log(`📚 ${ctx.institution} · ${ctx.area} · ${ctx.subject} · ${ctx.topic}`);
   const existingStems = await loadExistingStems(args.topicId);
 
+  // ── Anclaje en fuentes (F2b) ──
+  const groundingChunks: GroundingChunk[] = await loadTopicChunks(args.topicId);
+  console.log(
+    groundingChunks.length > 0
+      ? `⚓ Anclaje: ${groundingChunks.length} fragmento(s) fuente — cita OBLIGATORIA → SOURCED`
+      : '⚓ Sin fragmentos fuente para este tema → TEMARIO_ONLY (no bloquea)',
+  );
+
   let totalCostUsd = 0;
 
   // ── Etapa 1: generación ──
   let items: unknown[];
   if (useMock) {
-    items = mockGenerate(ctx, args.count);
+    items = mockGenerate(ctx, args.count, groundingChunks.length);
     console.log(`🤖 [MOCK] ${items.length} reactivo(s) generado(s)`);
   } else {
     const { system } = buildSystemPrompt(ctx);
-    const user = buildUserPrompt(ctx, args.count);
+    const user =
+      buildUserPrompt(ctx, args.count) +
+      (groundingChunks.length > 0 ? '\n' + buildGroundingBlock(groundingChunks) : '');
     const gen = await callAnthropicMeta({ apiKey: apiKey as string, system, user });
     totalCostUsd += estimateCostUsd(GENERATION_MODEL, gen.usage);
     const parsed = parseModelOutput(gen.text);
@@ -141,8 +157,12 @@ async function main() {
     console.log(`🤖 ${items.length} reactivo(s) recibidos de ${GENERATION_MODEL}`);
   }
 
-  // ── Etapa 2: validación Zod + dedupe ──
-  const valid: QuestionDraft[] = [];
+  // ── Etapa 2: validación Zod + citas de fuente + dedupe ──
+  interface ValidEntry {
+    draft: QuestionDraft;
+    chunkIds: string[];
+  }
+  const valid: ValidEntry[] = [];
   let rejectedFormat = 0;
   const seen = new Set(existingStems.map(normalizeStem));
   for (const item of items) {
@@ -152,6 +172,12 @@ async function main() {
       console.log(`   ✗ descartado (formato): ${result.errors[0]}`);
       continue;
     }
+    const citations = resolveCitations(result.draft.sourceChunks, groundingChunks);
+    if (!citations.ok) {
+      rejectedFormat++;
+      console.log(`   ✗ descartado (anclaje): ${citations.error}`);
+      continue;
+    }
     const key = normalizeStem(result.draft.stem);
     if (seen.has(key)) {
       rejectedFormat++;
@@ -159,20 +185,21 @@ async function main() {
       continue;
     }
     seen.add(key);
-    valid.push(result.draft);
+    valid.push({ draft: result.draft, chunkIds: citations.chunkIds });
   }
-  console.log(`✅ Válidos: ${valid.length} · ❌ Descartados por formato/duplicado: ${rejectedFormat}`);
+  console.log(`✅ Válidos: ${valid.length} · ❌ Descartados por formato/anclaje/duplicado: ${rejectedFormat}`);
 
   // ── Etapas 3-4: verificación adversarial + resolución ──
   interface Processed {
     draft: QuestionDraft;
+    chunkIds: string[];
     record: VerificationRecord;
     questionId?: string;
   }
   const approved: Processed[] = [];
   const unpublished: Processed[] = [];
 
-  for (const [i, draft] of valid.entries()) {
+  for (const [i, { draft, chunkIds }] of valid.entries()) {
     const generatorOption = correctOptionOf(draft);
     const payload = buildVerifierPayload(
       { stem: draft.stem, options: draft.options, format: draft.format },
@@ -204,11 +231,11 @@ async function main() {
         : `✋ sin publicar (${resolution.reasons[0]})`;
     console.log(`   [${i + 1}/${valid.length}] ${verdict.chosenOption} vs ${generatorOption} · conf=${verdict.confidence.toFixed(2)} → ${status}`);
 
-    const entry: Processed = { draft, record };
+    const entry: Processed = { draft, chunkIds, record };
     (resolution.decision === 'AUTO_APPROVED' ? approved : unpublished).push(entry);
   }
 
-  // ── Inserción ──
+  // ── Inserción (con trazabilidad de fuentes, F2b) ──
   if (!args.dryRun) {
     for (const entry of [...approved, ...unpublished]) {
       const id = await insertQuestion(args.topicId, {
@@ -216,6 +243,7 @@ async function main() {
         options: entry.draft.options,
         difficulty: entry.draft.difficulty,
         format: entry.draft.format,
+        sourceChunkIds: entry.chunkIds,
         explanations: entry.draft.explanations.map((e) => ({
           layer: e.layer,
           title: e.title,
@@ -283,6 +311,8 @@ async function main() {
   console.log(`   Auto-aprobados (servibles):   ${finalApproved}`);
   console.log(`   Sin publicar (con veredicto): ${finalUnpublished}${degraded > 0 ? ` (${degraded} degradados por auditoría)` : ''}`);
   console.log(`   Descartados por formato:      ${rejectedFormat}`);
+  const sourcedCount = [...approved, ...unpublished].filter((e) => e.chunkIds.length > 0).length;
+  console.log(`   Anclaje: ${sourcedCount} SOURCED · ${approved.length + unpublished.length - sourcedCount} TEMARIO_ONLY`);
   console.log(`   Tasa de auto-aprobación:      ${(rate * 100).toFixed(1)}%${rate < 0.75 && valid.length > 0 ? '  ⚠️ <75%: mejorar el system prompt del GENERADOR' : ''}`);
   console.log(`   Costo estimado:               $${totalCostUsd.toFixed(4)} USD`);
   console.log('═'.repeat(64));
