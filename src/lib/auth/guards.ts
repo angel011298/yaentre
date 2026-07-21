@@ -1,6 +1,8 @@
 import type { Subscription, UserProfile, UserRole } from '@prisma/client';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
+import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db/prisma';
+import { isOnboardingComplete } from '@/lib/onboarding/steps';
 import { AuthError } from './errors';
 import { createSupabaseServerClient } from './supabase-server';
 
@@ -76,6 +78,22 @@ export async function requirePaidPlan(): Promise<
   }
 
   return { ...result, subscription };
+}
+
+/**
+ * Exige sesión Y onboarding completo (ver src/lib/onboarding/steps.ts). Es el
+ * guard que protege todo /app/* (Flujo_App §16.2, `requireOnboarding`) —
+ * a diferencia de los demás guards, redirige directamente en vez de lanzar,
+ * porque el único destino válido ante un onboarding incompleto es /onboarding.
+ */
+export async function requireOnboarding(): Promise<RequireUserResult> {
+  const result = await requireUser();
+
+  if (!isOnboardingComplete(result.profile.onboardingStep)) {
+    redirect('/onboarding');
+  }
+
+  return result;
 }
 
 /**

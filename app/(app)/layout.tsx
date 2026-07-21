@@ -2,14 +2,16 @@ import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { VerificationBanner } from '@/components/ui/VerificationBanner';
 import { AuthError } from '@/lib/auth/errors';
-import { requireUser } from '@/lib/auth/guards';
+import { requireOnboarding } from '@/lib/auth/guards';
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
   // El middleware ya bloquea /app/* sin sesión; este guard es defensa en
-  // profundidad (páginas cacheadas, cambios futuros de matcher, etc.).
+  // profundidad (páginas cacheadas, cambios futuros de matcher, etc.) y,
+  // además, exige onboarding completo — redirige a /onboarding si falta
+  // (F5, ver src/lib/onboarding/steps.ts).
   let authUser;
   try {
-    ({ authUser } = await requireUser());
+    ({ authUser } = await requireOnboarding());
   } catch (err) {
     if (err instanceof AuthError) {
       redirect('/login?next=/app');
