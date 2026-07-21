@@ -14,8 +14,10 @@
 
 export type AdminAuditEvent =
   | 'question.approved'
+  | 'question.approved_with_option'
   | 'question.rejected'
   | 'question.updated'
+  | 'question.updated_and_approved'
   | 'question.reports_resolved';
 
 export interface AdminActor {

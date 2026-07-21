@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const LINKS = [
-  { href: '/admin/questions/queue', label: 'Cola de revisión' },
+  { href: '/admin/questions/queue', label: 'Revisión' },
   { href: '/admin/reports', label: 'Reportes' },
   { href: '/admin/coverage', label: 'Cobertura' },
 ];

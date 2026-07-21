@@ -9,6 +9,7 @@ import { logAdminAction } from '@/lib/admin/audit-log';
 import {
   questionIdSchema,
   updateQuestionInputSchema,
+  approveWithOptionSchema,
   type ActionResult,
 } from '@/lib/admin/schemas';
 import * as adminDb from '@/lib/db/admin-questions';
@@ -55,6 +56,31 @@ export async function approveQuestionAction(
   }
 }
 
+/** F3: aprobar un reactivo pendiente marcando `optionId` como la correcta. */
+export async function approveWithOptionAction(
+  input: z.input<typeof approveWithOptionSchema>,
+): Promise<ActionResult<{ questionId: string; optionId: string }>> {
+  try {
+    const { profile, authUser } = await requireRole('ADMIN');
+    const { questionId, optionId } = approveWithOptionSchema.parse(input);
+
+    await adminDb.approveQuestionWithOption(questionId, optionId);
+
+    logAdminAction(
+      'question.approved_with_option',
+      { userProfileId: profile.id, email: authUser.email },
+      { questionId, optionId },
+    );
+
+    revalidatePath('/admin/questions/queue');
+    revalidatePath(`/admin/questions/${questionId}`);
+    revalidatePath('/admin/coverage');
+    return { ok: true, data: { questionId, optionId } };
+  } catch (err) {
+    return { ok: false, ...toError(err) };
+  }
+}
+
 export async function rejectQuestionAction(
   input: z.input<typeof questionIdSchema>,
 ): Promise<ActionResult<{ questionId: string }>> {
@@ -83,23 +109,24 @@ export async function updateQuestionAction(
 ): Promise<ActionResult<{ questionId: string }>> {
   try {
     const { profile, authUser } = await requireRole('ADMIN');
-    const { questionId, draft } = updateQuestionInputSchema.parse(input);
+    const { questionId, draft, markVerified } = updateQuestionInputSchema.parse(input);
 
     const validated = validateDraft(draft);
     if (!validated.ok) {
       return { ok: false, code: 'VALIDATION', message: validated.errors.join(' · ') };
     }
 
-    await adminDb.updateQuestion(questionId, validated.draft);
+    await adminDb.updateQuestion(questionId, validated.draft, { markVerified });
 
     logAdminAction(
-      'question.updated',
+      markVerified ? 'question.updated_and_approved' : 'question.updated',
       { userProfileId: profile.id, email: authUser.email },
       { questionId },
     );
 
     revalidatePath(`/admin/questions/${questionId}`);
     revalidatePath('/admin/questions/queue');
+    revalidatePath('/admin/coverage');
     return { ok: true, data: { questionId } };
   } catch (err) {
     return { ok: false, ...toError(err) };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useTransition } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import type { DifficultyLevel } from '@prisma/client';
 import { updateQuestionAction } from '@/app/actions/admin-questions';
@@ -19,6 +19,7 @@ interface OptionInput {
   id: string;
   text: string;
   isCorrect: boolean;
+  imageUrl?: string | null;
 }
 interface LayerInput {
   layer: number;
@@ -27,12 +28,23 @@ interface LayerInput {
   latexContent: string | null;
 }
 
+export interface EditQuestionModalHandle {
+  open: () => void;
+}
+
 interface Props {
   questionId: string;
   stem: string;
   options: OptionInput[];
   difficulty: DifficultyLevel;
   explanations: LayerInput[];
+  /** F3: si es true, guardar TAMBIÉN marca isVerified=true — editar desde el
+   * panel de revisión resuelve la cola en un solo paso, no dos. */
+  autoApprove?: boolean;
+  /** F3: oculta el botón "Editar" propio; el caller (p. ej.
+   * ReviewDecisionPanel) provee su propio botón con atajo de teclado y abre
+   * el modal vía ref.current?.open(). */
+  hideTrigger?: boolean;
 }
 
 /**
@@ -42,13 +54,11 @@ interface Props {
  * un admin no puede guardar un reactivo que rompa lo que la generación
  * automática ya exige (4 opciones, 1 correcta, capas 1-3, LaTeX válido).
  */
-export function EditQuestionModal({
-  questionId,
-  stem,
-  options,
-  difficulty,
-  explanations,
-}: Props) {
+export const EditQuestionModal = forwardRef<EditQuestionModalHandle, Props>(
+  function EditQuestionModal(
+    { questionId, stem, options, difficulty, explanations, autoApprove = false, hideTrigger = false },
+    ref,
+  ) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -58,7 +68,15 @@ export function EditQuestionModal({
   const [optionValues, setOptionValues] = useState<OptionInput[]>(() =>
     OPTION_IDS.map((id) => {
       const existing = options.find((o) => o.id === id);
-      return { id, text: existing?.text ?? '', isCorrect: existing?.isCorrect ?? false };
+      return {
+        id,
+        text: existing?.text ?? '',
+        isCorrect: existing?.isCorrect ?? false,
+        // Preservado sin UI de edición (no hay infraestructura de subida de
+        // imágenes todavía) — sin esto, guardar BORRARÍA silenciosamente la
+        // imagen de la opción al reescribir el JSON completo.
+        imageUrl: existing?.imageUrl ?? null,
+      };
     }),
   );
   const [difficultyValue, setDifficultyValue] = useState<DifficultyLevel>(difficulty);
@@ -82,13 +100,15 @@ export function EditQuestionModal({
     dialogRef.current?.close();
   }
 
+  useImperativeHandle(ref, () => ({ open }));
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
 
     const draft = {
       stem: stemValue,
-      options: optionValues,
+      options: optionValues.map((o) => ({ ...o, imageUrl: o.imageUrl ?? null })),
       difficulty: difficultyValue,
       explanations: layerValues.map((l) => ({
         layer: l.layer,
@@ -99,7 +119,7 @@ export function EditQuestionModal({
     };
 
     startTransition(async () => {
-      const result = await updateQuestionAction({ questionId, draft });
+      const result = await updateQuestionAction({ questionId, draft, markVerified: autoApprove });
       if (!result.ok) {
         setError(result.message);
         return;
@@ -111,9 +131,11 @@ export function EditQuestionModal({
 
   return (
     <>
-      <Button type="button" variant="secondary" onClick={open}>
-        Editar
-      </Button>
+      {!hideTrigger && (
+        <Button type="button" variant="secondary" onClick={open}>
+          Editar
+        </Button>
+      )}
 
       <dialog
         ref={dialogRef}
@@ -173,6 +195,15 @@ export function EditQuestionModal({
                   required
                   className="min-h-touch flex-1 rounded-md border border-border-subtle bg-input px-3 text-text-primary"
                 />
+                {opt.imageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={opt.imageUrl}
+                    alt={`Opción ${opt.id}`}
+                    title="Imagen de la opción (no editable aquí)"
+                    className="h-10 w-10 shrink-0 rounded border border-border-subtle object-cover"
+                  />
+                )}
               </div>
             ))}
           </fieldset>
@@ -254,4 +285,5 @@ export function EditQuestionModal({
       </dialog>
     </>
   );
-}
+  },
+);

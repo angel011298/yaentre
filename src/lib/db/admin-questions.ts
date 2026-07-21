@@ -1,83 +1,25 @@
 import { Prisma, type DifficultyLevel, type Question } from '@prisma/client';
 import { prisma } from './prisma';
 import { AdminError } from '@/lib/admin/errors';
+import { parseAdminOptions, withCorrectOption, withManualReview } from '@/lib/admin/verification';
 import type { QuestionDraft } from '../../../scripts/lib/question-draft-schema';
 
 /**
  * Capa de acceso a datos del panel admin de contenido (CC-06 — Etapa 3 del
- * pipeline, PRD §8). Reusa `QuestionDraft` de scripts/lib/question-draft-schema
- * (import de solo-tipo + la función pura `validateDraft`, sin Prisma ni
- * Anthropic) para que la edición de un reactivo pase por las MISMAS reglas de
- * calidad que la generación automática — no hay una segunda definición de
- * "qué es un reactivo válido".
+ * pipeline, PRD §8; extendida en F3 para el pipeline adversarial F2/F2b).
+ * Reusa `QuestionDraft` de scripts/lib/question-draft-schema (import de
+ * solo-tipo + la función pura `validateDraft`, sin Prisma ni Anthropic) para
+ * que la edición de un reactivo pase por las MISMAS reglas de calidad que la
+ * generación automática — no hay una segunda definición de "qué es un
+ * reactivo válido".
+ *
+ * La cola de revisión "plana" (CC-06, `isVerified=false` sin distinción de
+ * causa) se retiró en F3: todo reactivo GENERATED pasa por F2 y queda con un
+ * `verification` JSON adjunto (aprobado o no) — la cola relevante ahora es
+ * `src/lib/db/review-queue.ts`, que clasifica por la razón real del rechazo.
  */
 
 const REPORT_THRESHOLD = 3;
-const DEFAULT_PAGE_SIZE = 20;
-
-// ─────────────────────────── Cola de revisión ───────────────────────────
-
-export interface QueueFilters {
-  areaId?: string;
-  subjectId?: string;
-  topicId?: string;
-  difficulty?: DifficultyLevel;
-  page?: number;
-  pageSize?: number;
-}
-
-const queueItemInclude = {
-  topic: { include: { subject: { include: { area: true } } } },
-} satisfies Prisma.QuestionInclude;
-
-export type QueueItem = Prisma.QuestionGetPayload<{ include: typeof queueItemInclude }>;
-
-export interface QueueResult {
-  items: QueueItem[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
-}
-
-/** Lista reactivos con isVerified=false (cola de la Etapa 3), paginada y filtrable. */
-export async function listPendingQuestions(filters: QueueFilters): Promise<QueueResult> {
-  const page = Math.max(1, filters.page ?? 1);
-  const pageSize = filters.pageSize ?? DEFAULT_PAGE_SIZE;
-
-  const where: Prisma.QuestionWhereInput = {
-    isVerified: false,
-    ...(filters.topicId ? { topicId: filters.topicId } : {}),
-    ...(filters.difficulty ? { difficulty: filters.difficulty } : {}),
-    ...(filters.subjectId || filters.areaId
-      ? {
-          topic: {
-            ...(filters.subjectId ? { subjectId: filters.subjectId } : {}),
-            ...(filters.areaId ? { subject: { areaId: filters.areaId } } : {}),
-          },
-        }
-      : {}),
-  };
-
-  const [items, total] = await Promise.all([
-    prisma.question.findMany({
-      where,
-      include: queueItemInclude,
-      orderBy: { createdAt: 'asc' }, // FIFO: el más antiguo primero
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-    }),
-    prisma.question.count({ where }),
-  ]);
-
-  return {
-    items,
-    total,
-    page,
-    pageSize,
-    totalPages: Math.max(1, Math.ceil(total / pageSize)),
-  };
-}
 
 export interface FilterTaxonomyArea {
   id: string;
@@ -132,6 +74,11 @@ const questionDetailInclude = {
   },
   explanations: { orderBy: { layer: 'asc' as const } },
   reports: { orderBy: { createdAt: 'desc' as const } },
+  passage: true, // F3: comprensión de lectura — texto compartido, una sola vez en la UI
+  sourceChunks: {
+    // F3/F2b: trazabilidad — fragmento(s) fuente real(es) citados, si SOURCED
+    include: { sourceChunk: { include: { contentSource: { select: { name: true } } } } },
+  },
 } satisfies Prisma.QuestionInclude;
 
 export type QuestionDetail = Prisma.QuestionGetPayload<{
@@ -161,6 +108,48 @@ export async function approveQuestion(questionId: string): Promise<Question> {
     throw new AdminError('NOT_FOUND', 'No encontramos este reactivo.');
   }
   return prisma.question.update({ where: { id: questionId }, data: { isVerified: true } });
+}
+
+/**
+ * Aprueba un reactivo pendiente de revisión (F3) marcando `optionId` como la
+ * ÚNICA opción correcta — el admin resuelve una discrepancia o baja confianza
+ * eligiendo cuál de las opciones mostradas es la correcta (la del generador,
+ * la del verificador, o cualquier otra si ambos se equivocaron). Anota
+ * `manualReview` en el veredicto guardado para que la cola no lo vuelva a
+ * mostrar, preservando el veredicto original del pipeline para auditoría.
+ */
+export async function approveQuestionWithOption(
+  questionId: string,
+  optionId: string,
+): Promise<Question> {
+  const existing = await prisma.question.findUnique({
+    where: { id: questionId },
+    select: { id: true, options: true, verification: true },
+  });
+  if (!existing) {
+    throw new AdminError('NOT_FOUND', 'No encontramos este reactivo.');
+  }
+
+  const options = parseAdminOptions(existing.options);
+  if (!options.some((o) => o.id === optionId)) {
+    throw new AdminError('VALIDATION', `La opción "${optionId}" no existe en este reactivo.`);
+  }
+
+  const verification = withManualReview(existing.verification, {
+    action: 'approved_with_option',
+    optionId,
+  });
+
+  return prisma.question.update({
+    where: { id: questionId },
+    data: {
+      options: withCorrectOption(options, optionId) as unknown as Prisma.InputJsonValue,
+      isVerified: true,
+      ...(verification !== undefined
+        ? { verification: verification as unknown as Prisma.InputJsonValue }
+        : {}),
+    },
+  });
 }
 
 export interface RejectedSnapshot {
@@ -193,18 +182,29 @@ export async function rejectQuestion(questionId: string): Promise<RejectedSnapsh
  * Persiste una edición de stem/opciones/dificultad/explicaciones. `draft` ya
  * viene validado por `validateDraft` (mismas reglas que la Etapa 2 del
  * pipeline) — esta función asume que es válido.
+ *
+ * `markVerified` (F3): cuando la edición viene del panel de revisión, guardar
+ * TAMBIÉN resuelve la cola (isVerified=true + `manualReview` en el veredicto)
+ * — editar ahí es una acción de una sola vez, no dos. Default false preserva
+ * el comportamiento previo (CC-06) para ediciones desde Reportes, donde
+ * corregir contenido no implica aprobar.
  */
 export async function updateQuestion(
   questionId: string,
   draft: QuestionDraft,
+  opts: { markVerified?: boolean } = {},
 ): Promise<Question> {
   const existing = await prisma.question.findUnique({
     where: { id: questionId },
-    select: { id: true },
+    select: { id: true, verification: true },
   });
   if (!existing) {
     throw new AdminError('NOT_FOUND', 'No encontramos este reactivo.');
   }
+
+  const verification = opts.markVerified
+    ? withManualReview(existing.verification, { action: 'edited' })
+    : undefined;
 
   return prisma.$transaction(async (tx) => {
     const updated = await tx.question.update({
@@ -213,6 +213,10 @@ export async function updateQuestion(
         stem: draft.stem,
         options: draft.options as unknown as Prisma.InputJsonValue,
         difficulty: draft.difficulty,
+        ...(opts.markVerified ? { isVerified: true } : {}),
+        ...(verification !== undefined
+          ? { verification: verification as unknown as Prisma.InputJsonValue }
+          : {}),
       },
     });
 

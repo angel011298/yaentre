@@ -20,6 +20,9 @@ interface Props {
     difficulty?: string;
   };
   action: string;
+  /** F3: campos adicionales a preservar como <input type="hidden">, p. ej. la
+   * `kind` de la cola de revisión activa — filtrar no debe cambiar de pestaña. */
+  hiddenFields?: Record<string, string | undefined>;
 }
 
 /**
@@ -27,10 +30,16 @@ interface Props {
  * navegación real: Next.js re-renderiza el Server Component con los nuevos
  * searchParams. No necesita 'use client' ni cascada dinámica de selects.
  */
-export function QueueFilterBar({ taxonomy, current, action }: Props) {
+export function QueueFilterBar({ taxonomy, current, action, hiddenFields }: Props) {
   const hasFilters = Boolean(
     current.areaId || current.subjectId || current.topicId || current.difficulty,
   );
+
+  const clearParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(hiddenFields ?? {})) {
+    if (value) clearParams.set(key, value);
+  }
+  const clearHref = clearParams.toString() ? `${action}?${clearParams.toString()}` : action;
 
   return (
     <form
@@ -38,6 +47,10 @@ export function QueueFilterBar({ taxonomy, current, action }: Props) {
       method="GET"
       className="flex flex-wrap items-end gap-3 rounded-lg border border-border-subtle bg-surface p-4"
     >
+      {Object.entries(hiddenFields ?? {}).map(([key, value]) =>
+        value ? <input key={key} type="hidden" name={key} value={value} /> : null,
+      )}
+
       <FilterSelect name="areaId" label="Área" value={current.areaId}>
         {taxonomy.map((area) => (
           <option key={area.id} value={area.id}>
@@ -80,7 +93,7 @@ export function QueueFilterBar({ taxonomy, current, action }: Props) {
         Filtrar
       </Button>
       {hasFilters && (
-        <a href={action} className="text-sm text-text-secondary hover:underline">
+        <a href={clearHref} className="text-sm text-text-secondary hover:underline">
           Limpiar filtros
         </a>
       )}
