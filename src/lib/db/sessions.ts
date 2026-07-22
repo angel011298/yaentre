@@ -1,5 +1,6 @@
 import { Prisma, type ExamSession, type SessionMode } from '@prisma/client';
 import { prisma } from './prisma';
+import { onSessionFinished } from './adaptive';
 import {
   appendSuspicionEvent,
   buildSubmitResponse,
@@ -215,6 +216,12 @@ export async function finishSession(params: {
         : {}),
     },
   });
+
+  // Motor adaptativo (F6): al finalizar, recalcular temas débiles y predicción.
+  // La sesión ya quedó COMPLETED* y persistida arriba, así que onSessionFinished
+  // ve la sesión recién terminada en el historial. Es robusto internamente (no
+  // propaga errores): un fallo del recálculo no debe romper el cierre de sesión.
+  await onSessionFinished(session.userProfileId);
 
   // finishSession revela: aquí ya es seguro devolver la correctitud por reactivo.
   return {
