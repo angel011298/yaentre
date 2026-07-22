@@ -77,3 +77,17 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Aciertómetro (src/components/gamification/Aciertometro.tsx): el anillo
+   arranca en circunferencia completa (--ring-start) y se interpola hasta el
+   stroke-dashoffset real ya presente en el elemento — sin "to" explícito,
+   así el valor final siempre es el que React puso, nunca uno hardcodeado. */
+@keyframes ring-fill {
+  from {
+    stroke-dashoffset: var(--ring-start);
+  }
+}
+
+.animate-ring-fill {
+  animation: ring-fill 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}

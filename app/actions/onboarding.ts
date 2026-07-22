@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation';
 import * as onboardingDb from '@/lib/db/onboarding';
-import * as sessionsDb from '@/lib/db/sessions';
 import { requireUser } from '@/lib/auth/guards';
 import { isExamOptionEnabled } from '@/lib/onboarding/feature-flags';
 import { OnboardingStep } from '@/lib/onboarding/steps';
@@ -67,16 +66,18 @@ export async function selectCareerAction(formData: FormData): Promise<void> {
   redirect('/onboarding');
 }
 
+/**
+ * Cierra el asistente y manda a /diagnostico. La creación de la sesión real
+ * (45 min, 30 reactivos ponderados por materia — F7) vive por completo en
+ * `diagnosticDb`/la propia ruta: si no hay sesión abierta, /diagnostico la
+ * arma al vuelo. Así este Server Action no duplica esa lógica ni puede crear
+ * una sesión huérfana si el usuario llega aquí dos veces.
+ */
 export async function startDiagnosticAction(): Promise<void> {
   const { profile } = await requireUser();
 
   if (profile.onboardingStep >= OnboardingStep.DIAGNOSTIC_INTRO && profile.targetExamId) {
     await onboardingDb.completeOnboardingWizard(profile.id);
-    await sessionsDb.startSession({
-      userProfileId: profile.id,
-      examId: profile.targetExamId,
-      mode: 'DIAGNOSTIC',
-    });
     redirect('/diagnostico');
   }
 

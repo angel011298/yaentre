@@ -223,6 +223,16 @@ export async function finishSession(params: {
   // propaga errores): un fallo del recálculo no debe romper el cierre de sesión.
   await onSessionFinished(session.userProfileId);
 
+  // F7: el diagnóstico inicial marca el perfil como completado al terminar
+  // (independientemente del resultado) — es el único punto de cierre real de
+  // ese flujo, ya sea vía /diagnostico o cualquier futuro entry point.
+  if (session.mode === 'DIAGNOSTIC') {
+    await prisma.userProfile.update({
+      where: { id: session.userProfileId },
+      data: { diagnosticDone: true },
+    });
+  }
+
   // finishSession revela: aquí ya es seguro devolver la correctitud por reactivo.
   return {
     session: updated,
