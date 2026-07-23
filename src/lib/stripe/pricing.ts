@@ -97,3 +97,45 @@ export function currentSeason(now: Date): PricingSeason {
   if (t < lastMinuteStart) return 'HIGH_SEASON';
   return 'LAST_MINUTE';
 }
+
+/** Cupo de licencias Early Bird (F9 Task 4 / PRD §9: `max_redemptions: 500`). */
+export const EARLY_BIRD_LICENSE_LIMIT = 500;
+
+const PLAN_CODE: Record<SubscriptionPlan, string> = {
+  MONTHLY: 'MENSUAL',
+  SEASON_PASS: 'PASE',
+  PREMIUM: 'PREMIUM',
+};
+
+const SEASON_CODE: Record<PricingSeason, string> = {
+  EARLY_BIRD: 'EB',
+  HIGH_SEASON: 'REG',
+  LAST_MINUTE: 'LM',
+};
+
+/**
+ * Nombre de la variable de entorno que debe contener el Price ID real de
+ * Stripe para (plan × temporada) — mismos códigos que el PRD §9
+ * (`price_mensual_eb`, `price_pase_reg`, `price_premium_lm`, ...), en
+ * mayúsculas con el prefijo `STRIPE_PRICE_`. La escribe `scripts/setup-
+ * stripe-prices.ts`; la lee `app/actions/checkout.ts` (con fallback a
+ * `price_data` inline si aún no está configurada).
+ */
+export function stripePriceEnvVar(plan: SubscriptionPlan, season: PricingSeason): string {
+  return `STRIPE_PRICE_${PLAN_CODE[plan]}_${SEASON_CODE[season]}`;
+}
+
+/**
+ * Núcleo PURO del fallback de Early Bird (F9 Task 4): si la temporada
+ * calculada por fecha es Early Bird pero ya no quedan licencias, degrada a
+ * Temporada Alta. Separada de `resolveEffectiveSeason` (src/lib/db/billing.ts,
+ * que sí toca la DB para contar licencias) para poder testear la lógica de
+ * decisión sin Prisma.
+ */
+export function degradeIfEarlyBirdExhausted(
+  season: PricingSeason,
+  earlyBirdRemaining: number
+): PricingSeason {
+  if (season !== 'EARLY_BIRD') return season;
+  return earlyBirdRemaining > 0 ? 'EARLY_BIRD' : 'HIGH_SEASON';
+}

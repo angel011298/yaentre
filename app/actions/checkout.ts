@@ -6,8 +6,8 @@ import { AuthError } from '@/lib/auth/errors';
 import { requireVerifiedForPurchase } from '@/lib/auth/guards';
 import { getSiteUrl } from '@/lib/auth/site-url';
 import { getStripe } from '@/lib/stripe/client';
-import { currentSeason, getPlanPricing } from '@/lib/stripe/pricing';
-import { createPendingSubscription } from '@/lib/db/billing';
+import { getPlanPricing, stripePriceEnvVar } from '@/lib/stripe/pricing';
+import { createPendingSubscription, resolveEffectiveSeason } from '@/lib/db/billing';
 import type { ActionResult } from '@/lib/sessions/schemas';
 
 /**
@@ -46,7 +46,10 @@ export async function startCheckoutAction(
   }
 
   const { plan } = parsed.data;
-  const season = currentSeason(new Date());
+  // Temporada EFECTIVA (F9): si Early Bird ya agotó sus 500 licencias, esto
+  // degrada a Temporada Alta — es el MISMO cálculo que usa el paywall para
+  // decidir qué precio mostrar, así nunca se muestra un precio y se cobra otro.
+  const season = await resolveEffectiveSeason(new Date());
   const pricing = getPlanPricing(plan, season);
   const site = getSiteUrl();
 
@@ -54,19 +57,27 @@ export async function startCheckoutAction(
   const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] =
     pricing.isRecurring ? ['card'] : ['card', 'oxxo', 'customer_balance'];
 
+  // Si existe un Price ID real de Stripe para (plan, temporada) — creado por
+  // scripts/setup-stripe-prices.ts — se usa ese; si no, se calcula el precio
+  // al vuelo con price_data (idéntico monto, sin depender de tener el
+  // dashboard de Stripe configurado). Nunca coexisten ambos en el mismo line item.
+  const configuredPriceId = process.env[stripePriceEnvVar(plan, season)];
+
   const params: Stripe.Checkout.SessionCreateParams = {
     mode: pricing.mode,
     payment_method_types: paymentMethodTypes,
     line_items: [
-      {
-        quantity: 1,
-        price_data: {
-          currency: 'mxn',
-          unit_amount: pricing.amountMxn,
-          product_data: { name: pricing.productName },
-          ...(pricing.isRecurring ? { recurring: { interval: 'month' } } : {}),
-        },
-      },
+      configuredPriceId
+        ? { price: configuredPriceId, quantity: 1 }
+        : {
+            quantity: 1,
+            price_data: {
+              currency: 'mxn',
+              unit_amount: pricing.amountMxn,
+              product_data: { name: pricing.productName },
+              ...(pricing.isRecurring ? { recurring: { interval: 'month' } } : {}),
+            },
+          },
     ],
     // El acceso se resuelve leyendo el estado REAL de la Subscription (que el
     // webhook actualiza), nunca por el hecho de aterrizar en esta URL.

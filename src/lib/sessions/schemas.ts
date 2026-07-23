@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { PaywallTrigger } from '@/lib/paywall/gates';
 
 /**
  * Validación Zod en el borde de las Server Actions de sesiones. Todo input del
@@ -45,4 +46,6 @@ export type FinishSessionInput = z.infer<typeof finishSessionSchema>;
  */
 export type ActionResult<T> =
   | { ok: true; data: T }
-  | { ok: false; code: string; message: string };
+  // `trigger` (F9) va presente cuando code === 'PAYWALL': le dice al cliente
+  // qué gate lo bloqueó, para armar el redirect a /paywall?trigger=...
+  | { ok: false; code: string; message: string; trigger?: PaywallTrigger };

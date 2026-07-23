@@ -6,6 +6,7 @@ import { requireUser } from '@/lib/auth/guards';
 import * as sessionsDb from '@/lib/db/sessions';
 import { SessionError } from '@/lib/db/sessions';
 import type { FinishSessionResult } from '@/lib/db/sessions';
+import { evaluateSimulationGate } from '@/lib/db/paywall';
 import {
   finishSessionSchema,
   startSessionSchema,
@@ -37,6 +38,22 @@ export async function startSession(
   try {
     const { profile } = await requireUser();
     const parsed = startSessionSchema.parse(input);
+
+    // Muro suave (F9): un usuario FREE solo puede iniciar 1 simulacro completo.
+    // Revisar los resultados de uno ya hecho no pasa por aquí (es una lectura,
+    // no un nuevo startSession), así que nunca consume el gratuito.
+    if (parsed.mode === 'FULL_SIMULATION') {
+      const gate = await evaluateSimulationGate(profile.id);
+      if (!gate.allowed) {
+        return {
+          ok: false,
+          code: 'PAYWALL',
+          message: 'Ya usaste tu simulacro completo gratis. Desbloquea los ilimitados.',
+          trigger: gate.trigger,
+        };
+      }
+    }
+
     const session = await sessionsDb.startSession({ userProfileId: profile.id, ...parsed });
     return {
       ok: true,

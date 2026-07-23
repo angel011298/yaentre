@@ -1,7 +1,12 @@
 import { Prisma, type PricingSeason, type SubscriptionPlan } from '@prisma/client';
 import { prisma } from './prisma';
 import { computeExpiresAt } from '@/lib/stripe/expiry';
-import { getPlanPricing } from '@/lib/stripe/pricing';
+import {
+  currentSeason,
+  degradeIfEarlyBirdExhausted,
+  EARLY_BIRD_LICENSE_LIMIT,
+  getPlanPricing,
+} from '@/lib/stripe/pricing';
 import type {
   ApplyResult,
   BillingStore,
@@ -237,4 +242,38 @@ export async function getSubscriptionByCheckoutSession(
   });
   if (!sub || sub.userProfileId !== userProfileId) return null;
   return sub;
+}
+
+// ─────────────────────────── Early Bird (F9 Task 4) ───────────────────────────
+
+/**
+ * Licencias Early Bird "vendidas": suscripciones ACTIVAS compradas en esa
+ * temporada (no cuenta PENDING — un checkout iniciado y nunca pagado no debe
+ * agotar el cupo). Es un conteo best-effort en el momento de la consulta, no
+ * una reserva atómica: en una ráfaga de compras simultáneas justo al agotarse
+ * el cupo, es posible una sobreventa marginal — aceptable para el mecanismo
+ * de negocio (no es una restricción dura de inventario físico).
+ */
+export async function countActiveEarlyBirdSubscriptions(): Promise<number> {
+  return prisma.subscription.count({ where: { season: 'EARLY_BIRD', status: 'ACTIVE' } });
+}
+
+export async function earlyBirdLicensesRemaining(): Promise<number> {
+  const used = await countActiveEarlyBirdSubscriptions();
+  return Math.max(0, EARLY_BIRD_LICENSE_LIMIT - used);
+}
+
+/**
+ * Temporada de precios REAL a cobrar/mostrar: si la fecha cae en Early Bird
+ * pero el cupo de 500 licencias ya se agotó, degrada a Temporada Alta
+ * automáticamente. Este es el ÚNICO punto que debe consultar tanto el
+ * paywall (qué precio mostrar) como el checkout (qué precio cobrar) — así
+ * nunca se muestra un precio distinto al que se cobra.
+ */
+export async function resolveEffectiveSeason(now: Date): Promise<PricingSeason> {
+  const season = currentSeason(now);
+  if (season !== 'EARLY_BIRD') return season;
+
+  const remaining = await earlyBirdLicensesRemaining();
+  return degradeIfEarlyBirdExhausted(season, remaining);
 }

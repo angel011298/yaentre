@@ -10,7 +10,13 @@ import {
   type CheckoutActivation,
 } from '@/lib/stripe/webhook';
 import { computeExpiresAt } from '@/lib/stripe/expiry';
-import { currentSeason, getPlanPricing } from '@/lib/stripe/pricing';
+import {
+  currentSeason,
+  degradeIfEarlyBirdExhausted,
+  EARLY_BIRD_LICENSE_LIMIT,
+  getPlanPricing,
+  stripePriceEnvVar,
+} from '@/lib/stripe/pricing';
 
 /**
  * Tests de integración del webhook con el SDK de Stripe MOCKEADO (eventos
@@ -427,5 +433,39 @@ describe('expiry — vigencia por plan', () => {
     expect(result).not.toBeNull();
     const days = Math.round((result!.getTime() - now.getTime()) / (24 * 3600 * 1000));
     expect(days).toBe(150);
+  });
+});
+
+describe('degradeIfEarlyBirdExhausted — F9 Task 4: fallback al agotar el cupo', () => {
+  it('con licencias disponibles, se mantiene en Early Bird', () => {
+    expect(degradeIfEarlyBirdExhausted('EARLY_BIRD', 1)).toBe('EARLY_BIRD');
+    expect(degradeIfEarlyBirdExhausted('EARLY_BIRD', EARLY_BIRD_LICENSE_LIMIT)).toBe('EARLY_BIRD');
+  });
+
+  it('con 0 licencias restantes, cae a Temporada Alta', () => {
+    expect(degradeIfEarlyBirdExhausted('EARLY_BIRD', 0)).toBe('HIGH_SEASON');
+  });
+
+  it('nunca degrada si la fecha ya no era Early Bird de por sí', () => {
+    expect(degradeIfEarlyBirdExhausted('HIGH_SEASON', 0)).toBe('HIGH_SEASON');
+    expect(degradeIfEarlyBirdExhausted('LAST_MINUTE', 0)).toBe('LAST_MINUTE');
+  });
+
+  it('el cupo documentado es exactamente 500 (PRD §9: max_redemptions)', () => {
+    expect(EARLY_BIRD_LICENSE_LIMIT).toBe(500);
+  });
+});
+
+describe('stripePriceEnvVar — nombres de variable exactos del PRD §9', () => {
+  it('mapea plan y temporada a STRIPE_PRICE_<PLAN>_<TEMPORADA>', () => {
+    expect(stripePriceEnvVar('MONTHLY', 'EARLY_BIRD')).toBe('STRIPE_PRICE_MENSUAL_EB');
+    expect(stripePriceEnvVar('MONTHLY', 'HIGH_SEASON')).toBe('STRIPE_PRICE_MENSUAL_REG');
+    expect(stripePriceEnvVar('MONTHLY', 'LAST_MINUTE')).toBe('STRIPE_PRICE_MENSUAL_LM');
+    expect(stripePriceEnvVar('SEASON_PASS', 'EARLY_BIRD')).toBe('STRIPE_PRICE_PASE_EB');
+    expect(stripePriceEnvVar('SEASON_PASS', 'HIGH_SEASON')).toBe('STRIPE_PRICE_PASE_REG');
+    expect(stripePriceEnvVar('SEASON_PASS', 'LAST_MINUTE')).toBe('STRIPE_PRICE_PASE_LM');
+    expect(stripePriceEnvVar('PREMIUM', 'EARLY_BIRD')).toBe('STRIPE_PRICE_PREMIUM_EB');
+    expect(stripePriceEnvVar('PREMIUM', 'HIGH_SEASON')).toBe('STRIPE_PRICE_PREMIUM_REG');
+    expect(stripePriceEnvVar('PREMIUM', 'LAST_MINUTE')).toBe('STRIPE_PRICE_PREMIUM_LM');
   });
 });

@@ -4,6 +4,7 @@ import {
   getDefaultAreaId,
   selectNextAdaptiveQuestions,
 } from '@/lib/db/adaptive';
+import { evaluateDrillGate } from '@/lib/db/paywall';
 import { DEFAULT_ADAPTIVE_COUNT, nextQuestionsSchema } from '@/lib/adaptive/api';
 
 /**
@@ -11,6 +12,11 @@ import { DEFAULT_ADAPTIVE_COUNT, nextQuestionsSchema } from '@/lib/adaptive/api'
  * práctica libre. Requiere sesión y valida el cuerpo con Zod. El área se toma
  * del cuerpo o, si se omite, de la carrera meta del alumno. Si el motor no puede
  * clasificar temas, la capa DB cae a un respaldo aleatorio (fallbackUsed=true).
+ *
+ * Muro suave (F9): un usuario FREE tiene 10 reactivos de práctica libre por
+ * día (medianoche en huso de México). Al llegar al límite, 402 con el trigger
+ * del paywall; si le quedan menos de los pedidos, se recorta el batch al
+ * restante en vez de negarlo por completo.
  */
 export async function POST(request: NextRequest) {
   const guard = await guardApiUser();
@@ -31,6 +37,17 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const drillGate = await evaluateDrillGate(guard.profile.id);
+  if (!drillGate.decision.allowed) {
+    return NextResponse.json(
+      {
+        error: 'Llegaste a tu práctica gratis de hoy. Vuelve mañana o desbloquea ilimitado.',
+        trigger: drillGate.decision.trigger,
+      },
+      { status: 402 }
+    );
+  }
+
   const areaId = parsed.data.areaId ?? (await getDefaultAreaId(guard.profile.id));
   if (!areaId) {
     return NextResponse.json(
@@ -39,8 +56,13 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const count = parsed.data.count ?? DEFAULT_ADAPTIVE_COUNT;
+  const requestedCount = parsed.data.count ?? DEFAULT_ADAPTIVE_COUNT;
+  const count =
+    drillGate.remainingToday === null
+      ? requestedCount
+      : Math.min(requestedCount, drillGate.remainingToday);
+
   const result = await selectNextAdaptiveQuestions(guard.profile.id, areaId, count);
 
-  return NextResponse.json({ areaId, ...result });
+  return NextResponse.json({ areaId, remainingToday: drillGate.remainingToday, ...result });
 }
