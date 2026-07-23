@@ -3,7 +3,7 @@
    @config, TODOS los tokens custom (bg-brand, bg-surface, text-text-primary,
    rounded-lg de 16px, font-display, etc.) generan cero CSS en silencio y solo
    sobreviven los utilitarios default de Tailwind + la sintaxis de valor
-   arbitrario (bg-[var(--x)]). Encontrado en F10 al anidar modo claro dentro
+   arbitrario tipo "bg" con variable CSS entre corchetes. Encontrado en F10 al anidar modo claro dentro
    de un documento con data-theme="dark" en <html>: el color de fondo de las
    tarjetas resultó ser transparente en vez de tomar --bg-surface. */
 @config "../tailwind.config.ts";
@@ -98,4 +98,29 @@ body {
 
 .animate-ring-fill {
   animation: ring-fill 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Mapa de calor (F11, src/components/gamification/HeatmapCalendar.tsx):
+   react-calendar-heatmap asigna estas clases vía `classForValue` — nivel 0
+   sin actividad, 1 sesión corta (tenue), 2 sesión de 30+ min (lleno). */
+.acierta-heatmap .react-calendar-heatmap text {
+  fill: var(--text-muted);
+  font-size: 6px;
+}
+.acierta-heatmap .heatmap-level-0 {
+  fill: var(--border-subtle);
+}
+.acierta-heatmap .heatmap-level-1 {
+  fill: var(--brand-soft);
+  opacity: 0.55;
+}
+.acierta-heatmap .heatmap-level-2 {
+  fill: var(--brand-primary);
+}
+
+/* BottomNav (F11): padding para el safe-area de iOS. Como clase manual en
+   vez de la sintaxis de valor arbitrario de Tailwind — esa sintaxis con
+   env(...) rompe el escáner de CSS en modo dev (Turbopack y webpack). */
+.acierta-safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }

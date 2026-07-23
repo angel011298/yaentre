@@ -3,63 +3,182 @@ import { signOutAction } from '@/app/actions/auth';
 import { startDiagnosticAction } from '@/app/actions/onboarding';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { Tino } from '@/components/mascot/Tino';
+import { EmptyState } from '@/components/dashboard/EmptyState';
+import { RecentSimulations } from '@/components/dashboard/RecentSimulations';
+import { StartSimulationButton } from '@/components/dashboard/StartSimulationButton';
+import { TinoRecommendation } from '@/components/dashboard/TinoRecommendation';
+import { WeakTopicCard } from '@/components/dashboard/WeakTopicCard';
+import { AciertometroLoader } from '@/components/gamification/AciertometroLoader';
+import { AciertometroLocked } from '@/components/gamification/Aciertometro';
+import { HeatmapCalendar } from '@/components/gamification/HeatmapCalendar';
 import { requireOnboarding } from '@/lib/auth/guards';
+import { computeCareerStrategy, computeWeekOverWeekDelta } from '@/lib/db/adaptive';
+import {
+  loadAciertometroAccess,
+  loadExamCountdown,
+  loadHeatmapData,
+  loadRecentSimulations,
+  loadWeakestTopics,
+} from '@/lib/db/dashboard';
 
-// TODO(CC-10): reemplazar este placeholder por el dashboard real (Aciertómetro,
-// racha, heatmap, temas a reforzar — ver docs/UIUX_Spec_Acierta_v1.0.md §8.1).
-// El Aciertómetro DEBE presentar la meta de aciertos vía
-// formatAciertometroTarget (src/lib/adaptive/aciertometro.ts, CC-13) —
-// nunca como una cifra absoluta. Ver docs/ACIERTOS_MINIMOS.md.
+function greetingName(displayName: string | null, email: string | undefined): string {
+  if (displayName) return displayName;
+  return email?.split('@')[0] ?? 'de vuelta';
+}
+
+function countdownCopy(daysRemaining: number): string {
+  if (daysRemaining > 1) return `Faltan ${daysRemaining} días para tu examen`;
+  if (daysRemaining === 1) return 'Tu examen es mañana';
+  if (daysRemaining === 0) return 'Tu examen es hoy';
+  return 'Tu examen ya pasó';
+}
+
+/**
+ * Dashboard del alumno (F11) — pantalla principal, punto de partida diario.
+ * Server Component puro: TODA la data real se resuelve aquí en paralelo
+ * (Promise.all) antes del primer render; los únicos Client Components son
+ * las islas que de verdad lo necesitan (el anillo animado del Aciertómetro
+ * vía `AciertometroLoader`, el heatmap SVG, y el botón de simulacro) — así
+ * la carga inicial ya llega con datos reales, sin esperar hidratación
+ * (Task 12).
+ */
 export default async function DashboardPage() {
   const { authUser, profile } = await requireOnboarding();
+  const displayName = greetingName(profile.displayName, authUser.email);
+
+  // Sin diagnóstico, no hay Aciertómetro/temas/heatmap con sentido todavía —
+  // el dashboard entero se degrada a un único CTA claro (Task 10).
+  if (!profile.diagnosticDone) {
+    return (
+      <div className="space-y-4">
+        <h1 className="font-display text-2xl font-bold text-text-primary">
+          ¡Hola, {displayName}! 👋
+        </h1>
+        <EmptyState
+          title="Completa tu diagnóstico"
+          description="30 preguntas para armar tu ruta de estudio y calcular tu primer Aciertómetro. Tú decides cuándo."
+          action={
+            <form action={startDiagnosticAction}>
+              <Button type="submit" variant="primary">
+                Empezar ahora
+              </Button>
+            </form>
+          }
+        />
+      </div>
+    );
+  }
+
+  const now = new Date();
+  const [countdown, weakTopics, recentSims, heatmap, aciertometroAccess, strategy, weekDelta] =
+    await Promise.all([
+      loadExamCountdown(profile.id, now),
+      loadWeakestTopics(profile.id, 3),
+      loadRecentSimulations(profile.id, 3),
+      loadHeatmapData(profile.id, now),
+      loadAciertometroAccess(profile.id),
+      computeCareerStrategy(profile.id),
+      computeWeekOverWeekDelta(profile.id, now),
+    ]);
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-2xl font-bold">¡Hola! 👋</h1>
-      <p className="text-[var(--text-secondary)]">
-        Sesión iniciada como{' '}
-        <span className="text-[var(--text-primary)]">{authUser.email}</span>.
-      </p>
-      <p className="text-sm text-[var(--text-muted)]">
-        Rol: {profile.role} · Onboarding: paso {profile.onboardingStep}
-      </p>
+    <div className="space-y-6">
+      <div>
+        <h1 className="font-display text-2xl font-bold text-text-primary">
+          ¡Hola, {displayName}! 👋
+        </h1>
+        {countdown && (
+          <p className="text-text-secondary">{countdownCopy(countdown.daysRemaining)}</p>
+        )}
+      </div>
 
-      {!profile.diagnosticDone && (
-        <Card className="flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <Tino state="encouraging" size={56} />
-            <div>
-              <p className="font-display font-semibold text-text-primary">
-                Completa tu diagnóstico
-              </p>
-              <p className="text-sm text-text-secondary">
-                30 preguntas para saber en qué reforzar. Tú decides cuándo.
-              </p>
-            </div>
-          </div>
-          <form action={startDiagnosticAction}>
-            <Button type="submit" variant="primary" className="whitespace-nowrap">
-              Empezar ahora
-            </Button>
-          </form>
+      <Card className="p-6">
+        <p className="mb-4 text-center text-xs font-semibold uppercase tracking-wide text-text-muted">
+          Aciertómetro
+        </p>
+        {aciertometroAccess.unlocked ? (
+          strategy && countdown ? (
+            <AciertometroLoader
+              predictedScore={strategy.predictedScore}
+              totalQuestions={countdown.totalQuestions}
+              target={strategy.chosenTarget}
+              gap={strategy.gap}
+              weekDelta={weekDelta}
+            />
+          ) : (
+            <p className="text-center text-sm text-text-muted">
+              Haz tu diagnóstico para ver tu predicción.
+            </p>
+          )
+        ) : (
+          <AciertometroLocked />
+        )}
+      </Card>
+
+      {weakTopics.length > 0 && <TinoRecommendation weakestTopic={weakTopics[0]} />}
+
+      <section>
+        <h2 className="mb-3 font-display text-lg font-bold text-text-primary">Tu semana</h2>
+        <Card className="overflow-x-auto p-4">
+          <HeatmapCalendar data={heatmap} />
         </Card>
-      )}
+      </section>
 
-      <Link
-        href="/app/examen-oficial"
-        className="inline-flex min-h-touch w-fit items-center rounded-md border border-[var(--border-subtle)] bg-[var(--surface)] px-4 py-2 text-sm font-semibold text-[var(--text-primary)] transition-all hover:bg-[var(--elevated)] active:scale-[0.97]"
-      >
-        📄 Examen muestra oficial
-      </Link>
-      <form action={signOutAction}>
-        <button
-          type="submit"
-          className="text-sm font-semibold text-[var(--brand-soft)] hover:underline"
+      <section>
+        <h2 className="mb-3 font-display text-lg font-bold text-text-primary">Reforzar hoy</h2>
+        {weakTopics.length > 0 ? (
+          <div className="flex gap-3 overflow-x-auto pb-1 sm:grid sm:grid-cols-3 sm:overflow-visible">
+            {weakTopics.map((topic) => (
+              <WeakTopicCard key={topic.topicId} topic={topic} />
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            title="Todavía no identificamos temas débiles"
+            description="Sigue practicando y aquí van a aparecer los temas donde más te conviene enfocarte."
+            action={
+              <Link href="#simulacro-cta" className="text-sm font-semibold text-brand hover:underline">
+                Practicar ahora ↓
+              </Link>
+            }
+          />
+        )}
+      </section>
+
+      <section>
+        <h2 className="mb-3 font-display text-lg font-bold text-text-primary">
+          Simulacros recientes
+        </h2>
+        {recentSims.length > 0 ? (
+          <RecentSimulations simulations={recentSims} />
+        ) : (
+          <EmptyState
+            title="Aún no haces ningún simulacro"
+            description="¡El primero es el más importante! 🦉"
+            action={
+              <Link href="#simulacro-cta" className="text-sm font-semibold text-brand hover:underline">
+                Hacer mi primer simulacro ↓
+              </Link>
+            }
+          />
+        )}
+      </section>
+
+      {profile.targetExamId && <StartSimulationButton examId={profile.targetExamId} />}
+
+      <div className="flex flex-wrap items-center gap-4 border-t border-border-subtle pt-4">
+        <Link
+          href="/app/examen-oficial"
+          className="text-sm font-semibold text-text-muted hover:text-brand"
         >
-          Cerrar sesión
-        </button>
-      </form>
+          📄 Examen muestra oficial
+        </Link>
+        <form action={signOutAction}>
+          <button type="submit" className="text-sm font-semibold text-brand-soft hover:underline">
+            Cerrar sesión
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

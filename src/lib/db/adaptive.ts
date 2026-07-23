@@ -19,6 +19,7 @@ import {
   type CareerTarget,
   type StrategyResult,
 } from '@/lib/adaptive/career-strategy';
+import { recomputeStreak } from './streak';
 
 /**
  * Capa de orquestación del motor adaptativo (F6): conecta el motor PURO
@@ -182,6 +183,80 @@ export async function recomputeLearningProfile(
   };
 }
 
+const WEEK_MS = 7 * 24 * 3600 * 1000;
+
+/**
+ * Cambio del Aciertómetro respecto a hace una semana (F11 Task 2). NO existe
+ * una tabla de historial de predicciones (y no se agrega una — CLAUDE.md
+ * prohíbe tocar el schema sin instrucción explícita); en vez de eso, se
+ * RECALCULA qué habría predicho el motor hace una semana usando solo las
+ * respuestas de ese entonces (`predictScore` es puro y determinista, así que
+ * recalcular con un corte de fecha da el mismo resultado que si se hubiera
+ * guardado en su momento). El lado "actual" reusa el `LearningProfile.
+ * predictedScore` ya persistido (mismo método, sin recalcular dos veces).
+ *
+ * Devuelve `null` cuando no hay línea base real hace una semana (alumno
+ * nuevo) — mostrar "+87" de la nada sería inventar un dato, no medirlo.
+ */
+export async function computeWeekOverWeekDelta(
+  userProfileId: string,
+  now: Date = new Date()
+): Promise<number | null> {
+  const profile = await prisma.userProfile.findUnique({
+    where: { id: userProfileId },
+    select: { targetCareerId: true, learningProfile: { select: { predictedScore: true } } },
+  });
+  if (!profile?.targetCareerId || profile.learningProfile?.predictedScore == null) return null;
+
+  const career = await prisma.career.findUnique({
+    where: { id: profile.targetCareerId },
+    select: {
+      area: {
+        select: {
+          exam: { select: { totalQuestions: true } },
+          subjects: { select: { id: true, questionWeight: true } },
+        },
+      },
+    },
+  });
+  if (!career) return null;
+  const { exam, subjects } = career.area;
+
+  const weekAgo = new Date(now.getTime() - WEEK_MS);
+
+  const historicalAnswers = await prisma.sessionAnswer.findMany({
+    where: {
+      session: {
+        userProfileId,
+        status: { in: [...FINISHED_STATUSES] },
+        startedAt: { lt: weekAgo },
+      },
+    },
+    select: { isCorrect: true, question: { select: { topic: { select: { subjectId: true } } } } },
+  });
+
+  if (historicalAnswers.length === 0) return null;
+
+  const bySubject = new Map<string, { correct: number; attempts: number }>();
+  for (const a of historicalAnswers) {
+    const subjectId = a.question.topic.subjectId;
+    const prev = bySubject.get(subjectId) ?? { correct: 0, attempts: 0 };
+    bySubject.set(subjectId, {
+      correct: prev.correct + (a.isCorrect ? 1 : 0),
+      attempts: prev.attempts + 1,
+    });
+  }
+
+  const perf: SubjectPerformance[] = subjects.map((s) => {
+    const agg = bySubject.get(s.id) ?? { correct: 0, attempts: 0 };
+    return { subjectId: s.id, weight: s.questionWeight, correct: agg.correct, attempts: agg.attempts };
+  });
+
+  const historical = predictScore({ subjects: perf, totalQuestions: exam.totalQuestions });
+
+  return profile.learningProfile.predictedScore - historical.predictedScore;
+}
+
 /**
  * Disparador único tras finalizar una sesión (Task 6): recalcula temas débiles
  * y predicción. Robusto — un fallo del recálculo NUNCA debe romper el cierre de
@@ -198,6 +273,11 @@ export async function onSessionFinished(userProfileId: string): Promise<void> {
     await recomputeLearningProfile(userProfileId);
   } catch (err) {
     console.error('[adaptive] recomputeLearningProfile falló', { userProfileId, err });
+  }
+  try {
+    await recomputeStreak(userProfileId);
+  } catch (err) {
+    console.error('[adaptive] recomputeStreak falló', { userProfileId, err });
   }
 }
 

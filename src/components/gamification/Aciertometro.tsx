@@ -12,6 +12,9 @@ interface Props {
   totalQuestions: number;
   target: AciertometroDisplay;
   gap: number | null;
+  /** Cambio vs. hace una semana (F11). `null`/omitido = sin línea base todavía
+   *  (alumno nuevo) — no se muestra ninguna flecha en vez de inventar un "+0". */
+  weekDelta?: number | null;
 }
 
 /**
@@ -27,7 +30,13 @@ interface Props {
  * hasta ese valor al aparecer en el DOM. `prefers-reduced-motion` ya lo cubre
  * la regla global `* { animation-duration: 0.01ms !important }`.
  */
-export function Aciertometro({ predictedScore, totalQuestions, target, gap }: Props) {
+export function Aciertometro({
+  predictedScore,
+  totalQuestions,
+  target,
+  gap,
+  weekDelta,
+}: Props) {
   const fraction = totalQuestions > 0 ? Math.min(1, predictedScore / totalQuestions) : 0;
   const offset = CIRCUMFERENCE * (1 - fraction);
   const ringStyle = { '--ring-start': CIRCUMFERENCE } as CSSProperties;
@@ -59,6 +68,15 @@ export function Aciertometro({ predictedScore, totalQuestions, target, gap }: Pr
         </div>
       </div>
 
+      {weekDelta != null && weekDelta !== 0 && (
+        <p
+          className={`text-sm font-semibold ${weekDelta > 0 ? 'text-success' : 'text-danger'}`}
+        >
+          {weekDelta > 0 ? '↑' : '↓'} {weekDelta > 0 ? '+' : ''}
+          {weekDelta} esta semana
+        </p>
+      )}
+
       {target.hasTarget ? (
         <div className="text-center">
           <p className="text-sm text-text-secondary">
@@ -73,6 +91,39 @@ export function Aciertometro({ predictedScore, totalQuestions, target, gap }: Pr
       ) : (
         <p className="max-w-xs text-center text-sm text-text-muted">{target.disclaimer}</p>
       )}
+    </div>
+  );
+}
+
+/**
+ * Estado bloqueado del Aciertómetro (F11 Task 11): un alumno FREE que aún no
+ * hizo su primer simulacro completo no tiene predicción real que mostrar —
+ * en vez de un número inventado o "de $0", se explica cómo desbloquearlo.
+ * El enlace apunta al CTA primario del propio dashboard (`#simulacro-cta`,
+ * ya en la misma página) en vez de a un `/simulador` que todavía no existe
+ * (F12) — evita un link muerto sin inventar una ruta que no existe.
+ */
+export function AciertometroLocked() {
+  return (
+    <div className="flex flex-col items-center gap-3 py-2 text-center">
+      <div className="flex h-40 w-40 items-center justify-center rounded-full border-8 border-dashed border-border-subtle">
+        <span className="text-5xl" aria-hidden>
+          🔒
+        </span>
+      </div>
+      <div className="max-w-xs">
+        <p className="font-display font-semibold text-text-primary">Tu Aciertómetro te espera</p>
+        <p className="mt-1 text-sm text-text-secondary">
+          Termina tu primer simulacro completo (gratis) para desbloquear tu predicción real de
+          aciertos.
+        </p>
+        <a
+          href="#simulacro-cta"
+          className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
+        >
+          Ir a mi simulacro gratis ↓
+        </a>
+      </div>
     </div>
   );
 }
