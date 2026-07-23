@@ -1,4 +1,12 @@
 @import "tailwindcss";
+/* Tailwind 4 no autodetecta tailwind.config.ts (eso era v3) — sin este
+   @config, TODOS los tokens custom (bg-brand, bg-surface, text-text-primary,
+   rounded-lg de 16px, font-display, etc.) generan cero CSS en silencio y solo
+   sobreviven los utilitarios default de Tailwind + la sintaxis de valor
+   arbitrario (bg-[var(--x)]). Encontrado en F10 al anidar modo claro dentro
+   de un documento con data-theme="dark" en <html>: el color de fondo de las
+   tarjetas resultó ser transparente en vez de tomar --bg-surface. */
+@config "../tailwind.config.ts";
 /* KaTeX: fórmulas de reactivos STEM (renderizado server-side en /admin) */
 @import "katex/dist/katex.min.css";
 

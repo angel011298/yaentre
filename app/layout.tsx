@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, JetBrains_Mono } from "next/font/google";
+import { getSiteUrl } from "@/lib/auth/site-url";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -21,8 +22,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Acierta",
-  description: "Prepárate para tu examen de admisión",
+  metadataBase: new URL(getSiteUrl()),
+  title: "Acierta — Tu entrenador de admisión con IA",
+  description:
+    "Prepárate para tu examen de admisión a UNAM, IPN, UAM o CENEVAL con un simulador fiel al examen real y un Aciertómetro que predice tus aciertos.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
 };
 
