@@ -28,8 +28,13 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'pnpm dev',
+    // Servidor de PRODUCCIÓN (build + start), no `next dev`: el escáner de CSS
+    // de Tailwind 4 en modo dev tiene un bug con candidatos de valor arbitrario
+    // que rompe el server (documentado en F11). Producción compila sin ese
+    // problema, así que el E2E corre contra un entorno estable y realista.
+    command: 'pnpm build && pnpm start',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
+    timeout: 180_000,
   },
 });

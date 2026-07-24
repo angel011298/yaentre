@@ -164,7 +164,7 @@ export default async function DashboardPage() {
         )}
       </section>
 
-      {profile.targetExamId && <StartSimulationButton examId={profile.targetExamId} />}
+      {profile.targetExamId && <StartSimulationButton />}
 
       <div className="flex flex-wrap items-center gap-4 border-t border-border-subtle pt-4">
         <Link
