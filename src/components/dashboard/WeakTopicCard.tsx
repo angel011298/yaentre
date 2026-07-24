@@ -10,9 +10,8 @@ const URGENT_HIT_RATE = 0.4;
  * (débil pero no crítico) — ambos ya están por debajo del umbral de 0.60 que
  * los metió a `WeakTopic` en primer lugar (F6).
  *
- * El CTA apunta a `/app` (el propio dashboard) porque el Drill por tema (F14)
- * todavía no existe — mismo criterio ya usado en F7 para no dejar un link
- * roto a una pantalla que aún no se construye.
+ * El CTA lleva directo a una sesión de drill filtrada por ESE tema (F14,
+ * `/practicar?topicId=`) — ya no es un placeholder desde que el drill existe.
  */
 export function WeakTopicCard({ topic }: { topic: WeakTopicSummary }) {
   const pct = Math.round(topic.hitRate * 100);
@@ -40,7 +39,7 @@ export function WeakTopicCard({ topic }: { topic: WeakTopicSummary }) {
       </div>
 
       <Link
-        href="/app"
+        href={`/practicar?topicId=${topic.topicId}`}
         className="mt-auto inline-flex min-h-touch items-center justify-center rounded-md border border-border-subtle bg-elevated px-3 py-2 text-sm font-semibold text-text-primary transition-all hover:bg-brand-tint hover:text-brand active:scale-[0.97]"
       >
         Practicar

@@ -10,7 +10,7 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { href: '/app', label: 'Inicio', icon: '🏠', builtRoute: true },
-  { href: '/app', label: 'Practicar', icon: '✏️', builtRoute: false },
+  { href: '/practicar', label: 'Practicar', icon: '✏️', builtRoute: true },
   { href: '/simulador', label: 'Simulador', icon: '🎯', builtRoute: true },
   { href: '/app', label: 'Progreso', icon: '📊', builtRoute: false },
   { href: '/app', label: 'Perfil', icon: '👤', builtRoute: false },

@@ -432,6 +432,68 @@ export async function selectNextAdaptiveQuestions(
   }
 }
 
+/** Pool de reactivos servibles de UNA materia (GUARDRAIL: usage SERVABLE + verificado). */
+async function loadSubjectServablePool(subjectId: string): Promise<SelectableQuestion[]> {
+  const rows = await prisma.question.findMany({
+    where: { usage: 'SERVABLE', isVerified: true, topic: { subjectId } },
+    select: { id: true, topicId: true },
+  });
+  return rows.map((r) => ({ id: r.id, topicId: r.topicId }));
+}
+
+/**
+ * Selección adaptativa acotada a UNA materia (F14 Task 1: "practicar por
+ * materia"). Mismo motor y misma mezcla 60/25/15 que `selectNextAdaptiveQuestions`
+ * — la única diferencia es el pool de origen (una materia en vez de toda el
+ * área) — así que reusa exactamente la misma lógica de clasificación y respaldo.
+ */
+export async function selectSubjectAdaptiveQuestions(
+  userProfileId: string,
+  subjectId: string,
+  count: number
+): Promise<AdaptiveSelectionResult> {
+  const [pool, excludeQuestionIds] = await Promise.all([
+    loadSubjectServablePool(subjectId),
+    loadRecentlyAnsweredIds(userProfileId),
+  ]);
+
+  try {
+    const topicTier = await computeTopicTiers(userProfileId);
+    const questionIds = selectAdaptiveQuestions({ questions: pool, topicTier, excludeQuestionIds, count });
+    return { questionIds, fallbackUsed: false };
+  } catch (err) {
+    console.error('[adaptive] selección por materia falló, usando respaldo aleatorio', {
+      userProfileId,
+      subjectId,
+      err,
+    });
+    const questionIds = selectRandomFallback(pool, excludeQuestionIds, count);
+    return { questionIds, fallbackUsed: true };
+  }
+}
+
+/**
+ * Selección acotada a UN tema (F14 Task 1: "practicar por tema específico").
+ * Sin mezcla por tier: con un solo tema, la proporción 60/25/15 no aplica (no
+ * hay "otros temas" entre los que repartir) — simplemente aleatoria dentro del
+ * tema, excluyendo lo respondido en las últimas 72h.
+ */
+export async function selectTopicQuestions(
+  userProfileId: string,
+  topicId: string,
+  count: number
+): Promise<AdaptiveSelectionResult> {
+  const [rows, excludeQuestionIds] = await Promise.all([
+    prisma.question.findMany({
+      where: { usage: 'SERVABLE', isVerified: true, topicId },
+      select: { id: true, topicId: true },
+    }),
+    loadRecentlyAnsweredIds(userProfileId),
+  ]);
+  const questionIds = selectRandomFallback(rows, excludeQuestionIds, count);
+  return { questionIds, fallbackUsed: false };
+}
+
 export interface CareerStrategyResponse extends StrategyResult {
   predictedScore: number;
   predictionConfidence: number | null;

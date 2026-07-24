@@ -218,6 +218,7 @@ export interface RunnerQuestion {
   format: string;
   options: Array<{ id: string; text: string }>;
   passage: { title: string | null; content: string; sourceRef: string | null } | null;
+  topicId: string;
   topicName: string;
   subjectName: string;
 }
@@ -239,6 +240,7 @@ export function toRunnerQuestion(question: DiagnosticSessionWithAnswers['answers
     passage: question.passage
       ? { title: question.passage.title, content: question.passage.content, sourceRef: question.passage.sourceRef }
       : null,
+    topicId: question.topic.id,
     topicName: question.topic.name,
     subjectName: question.topic.subject.name,
   };
