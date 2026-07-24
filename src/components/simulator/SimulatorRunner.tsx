@@ -6,6 +6,7 @@ import screenfull from 'screenfull';
 import { finishSimulationAction } from '@/app/actions/simulator';
 import { Button } from '@/components/ui/Button';
 import type { SimulatorPayload } from '@/lib/db/simulator';
+import { encodeCelebrationParam } from '@/lib/gamification/celebrations';
 import { isSuspiciousKeyCombo } from '@/lib/simulator/integrity';
 import { useSimulatorStore } from '@/lib/stores/simulatorStore';
 import { SimQuestion } from './SimQuestion';
@@ -105,7 +106,13 @@ export function SimulatorRunner({
         await screenfull.exit().catch(() => {});
       }
       if (result.ok) {
-        router.push(`/simulador?view=result&session=${payload.sessionId}`);
+        // F15: la celebración ya se decidió server-side (a lo más una por
+        // sesión) — viaja en la URL porque este push es una navegación de
+        // página completa, no una actualización de estado local.
+        const celebrationParam = result.data.celebration
+          ? `&celebration=${encodeCelebrationParam(result.data.celebration)}`
+          : '';
+        router.push(`/simulador?view=result&session=${payload.sessionId}${celebrationParam}`);
       } else {
         setFinishing(false);
         setError('No pudimos cerrar tu simulacro. Intenta de nuevo.');

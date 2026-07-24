@@ -3,6 +3,7 @@
 import { useCallback, useState, useSyncExternalStore } from 'react';
 import { Tino } from '@/components/mascot/Tino';
 import { Button } from '@/components/ui/Button';
+import { simulatorFreeWelcome } from '@/lib/tino/copy';
 
 type CameraStatus = 'idle' | 'granted' | 'denied' | 'unsupported';
 
@@ -70,13 +71,8 @@ export function SimulatorPreflight({
     <div className="mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-6 px-4 py-10">
       {isFreeFirstTime && (
         <div className="flex items-start gap-3 rounded-lg border border-border-subtle bg-surface p-4">
-          <Tino state="encouraging" size={52} />
-          <p className="text-sm text-text-secondary">
-            <span className="font-semibold text-text-primary">Este primer simulacro va por mi
-            cuenta.</span>{' '}
-            Vívelo como el examen real: sin pausas, sin regresar. Así llegas sin sorpresas el día
-            que cuenta. 🦉
-          </p>
+          <Tino state={simulatorFreeWelcome().state} size={52} />
+          <p className="text-sm text-text-secondary">{simulatorFreeWelcome().message}</p>
         </div>
       )}
 

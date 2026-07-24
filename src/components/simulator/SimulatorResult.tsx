@@ -1,34 +1,45 @@
 import Link from 'next/link';
 import { AciertometroLoader as Aciertometro } from '@/components/gamification/AciertometroLoader';
+import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplay';
 import { StreakFlame } from '@/components/gamification/StreakFlame';
-import { Tino, type TinoState } from '@/components/mascot/Tino';
+import { Tino } from '@/components/mascot/Tino';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { formatAciertometroTarget } from '@/lib/adaptive/aciertometro';
+import type { Celebration } from '@/lib/gamification/celebrations';
 import type { SimulatorResultData } from '@/lib/db/simulator';
 import { isPerfectRound } from '@/lib/simulator/config';
 import { summarizeIntegrityEvents } from '@/lib/simulator/integrity';
 import { formatClock } from '@/lib/simulator/time';
-import { PerfectRoundReveal } from './PerfectRoundReveal';
+import { predictionUp, simulatorResult as simulatorResultCopy } from '@/lib/tino/copy';
 
 /**
  * Resultados del simulacro (F13). Aquí regresa la calidez (UIUX §13): tras el
  * modo serio del simulador, Tino, el color y la celebración reaparecen.
  * Server Component — las únicas islas de cliente son el anillo animado
- * (`Aciertometro`) y el estallido de partículas (`PerfectRoundReveal`, que
- * respeta `prefers-reduced-motion` por sí solo).
+ * (`Aciertometro`) y `CelebrationDisplay` (que respeta `prefers-reduced-motion`
+ * por sí solo).
  *
  * Guardrail de acceso (tarea 1): esta función NUNCA se llama sin que
  * `loadSimulatorResult`/`loadOwnedFinishedSession` ya hayan confirmado que la
  * sesión es del dueño Y ya terminó — es lo único que hace legítimo mostrar la
  * respuesta correcta de cada reactivo (tarea 8).
+ *
+ * `celebration` (F15): la ÚNICA celebración grande que `selectCelebration` ya
+ * decidió mostrar para esta sesión (o `null`) — viaja desde la página vía query
+ * params porque `finishSimulationAction` redirige antes de que este componente
+ * se monte. El tag textual "¡Ronda perfecta!" bajo el score es independiente
+ * (informativo, no es "una celebración grande") y se muestra siempre que
+ * aplique, gane o no la prioridad.
  */
 export function SimulatorResult({
   data,
   currentStreak,
+  celebration,
 }: {
   data: SimulatorResultData;
   currentStreak: number;
+  celebration?: Celebration | null;
 }) {
   const timedOut = data.status === 'COMPLETED_BY_TIMEOUT';
   const failedCount = data.servedCount - data.score;
@@ -44,14 +55,7 @@ export function SimulatorResult({
       });
 
   const fraction = data.servedCount > 0 ? data.score / data.servedCount : 0;
-  const tino: { state: TinoState; message: string } = perfectRound
-    ? { state: 'celebrating', message: '¡Ronda perfecta! Vas imparable. 🎉' }
-    : fraction >= 0.6
-      ? { state: 'attentive', message: 'Buen trabajo. Sigamos afinando los temas que te faltan.' }
-      : {
-          state: 'encouraging',
-          message: 'Este es tu punto de partida, no tu límite. Vamos por tus temas más débiles.',
-        };
+  const tino = simulatorResultCopy({ timedOut, perfectRound, fraction });
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 px-4 py-10">
@@ -61,16 +65,13 @@ export function SimulatorResult({
           <h1 className="font-display text-xl font-bold text-text-primary">
             Terminaste tu simulacro
           </h1>
-          <p className="text-sm text-text-secondary">
-            {timedOut
-              ? 'Se agotó el tiempo — guardamos todo lo que respondiste. Así es el examen real.'
-              : tino.message}
-          </p>
+          <p className="text-sm text-text-secondary">{tino.message}</p>
         </div>
       </div>
 
+      {celebration && <CelebrationDisplay celebration={celebration} />}
+
       <Card className="relative space-y-1 overflow-hidden p-5 text-center">
-        {perfectRound && <PerfectRoundReveal />}
         <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
           Aciertos del simulacro
         </p>
@@ -106,6 +107,14 @@ export function SimulatorResult({
             weekDelta={data.predictionDelta}
             deltaLabel="por este simulacro"
           />
+          {data.predictionDelta != null && data.predictionDelta > 0 && (
+            <div className="flex items-center gap-2">
+              <Tino state={predictionUp(data.predictionDelta).state} size={32} />
+              <p className="text-sm font-semibold text-success">
+                {predictionUp(data.predictionDelta).message}
+              </p>
+            </div>
+          )}
         </Card>
       )}
 

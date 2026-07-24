@@ -8,6 +8,7 @@ import * as sessionsDb from '@/lib/db/sessions';
 import { SessionError } from '@/lib/db/sessions';
 import type { ActionResult } from '@/lib/sessions/schemas';
 import type { SimulatorPayload } from '@/lib/db/simulator';
+import type { Celebration } from '@/lib/gamification/celebrations';
 
 /**
  * Server Actions del simulador (F12). El muro suave (F9) y el scoring
@@ -61,7 +62,7 @@ const finishSchema = z.object({
  */
 export async function finishSimulationAction(
   input: z.input<typeof finishSchema>
-): Promise<ActionResult<{ sessionId: string; status: string }>> {
+): Promise<ActionResult<{ sessionId: string; status: string; celebration: Celebration | null }>> {
   try {
     const { profile } = await requireUser();
     const parsed = finishSchema.parse(input);
@@ -70,7 +71,10 @@ export async function finishSimulationAction(
       sessionId: parsed.sessionId,
       reason: parsed.reason,
     });
-    return { ok: true, data: { sessionId: parsed.sessionId, status: result.status } };
+    return {
+      ok: true,
+      data: { sessionId: parsed.sessionId, status: result.status, celebration: result.celebration },
+    };
   } catch (err) {
     return { ok: false, ...toError(err) };
   }

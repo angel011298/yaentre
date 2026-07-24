@@ -5,16 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Tino } from '@/components/mascot/Tino';
 import { formatAciertometroTarget } from '@/lib/adaptive/aciertometro';
 import type { DiagnosticResultsData } from '@/lib/db/diagnostic';
-
-function tinoMessage(data: DiagnosticResultsData): string {
-  if (!data.strategy?.hasTarget) {
-    return '¡Terminaste tu diagnóstico! Ya sé por dónde empezar a ayudarte a mejorar.';
-  }
-  if (data.strategy.onTrack) {
-    return '¡Vas muy bien encaminado hacia tu meta! Sigamos afinando los temas que te faltan.';
-  }
-  return 'Este es tu punto de partida, no tu límite. Empecemos por tus temas más débiles.';
-}
+import { diagnosticResult } from '@/lib/tino/copy';
 
 /**
  * Pantalla de resultados del diagnóstico (F7 Task 3): score obtenido,
@@ -27,13 +18,18 @@ export function DiagnosticResults({ data }: { data: DiagnosticResultsData }) {
     ? data.strategy.chosenTarget
     : formatAciertometroTarget({ minAciertos: null, minAciertosYear: null, minAciertosConfidence: null });
 
+  const tino = diagnosticResult({
+    hasTarget: data.strategy?.hasTarget ?? false,
+    onTrack: data.strategy?.onTrack ?? false,
+  });
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <Tino state={data.strategy?.onTrack ? 'celebrating' : 'encouraging'} size={64} />
+        <Tino state={tino.state} size={64} />
         <div>
           <h1 className="font-display text-xl font-bold text-text-primary">Tu diagnóstico está listo</h1>
-          <p className="text-sm text-text-secondary">{tinoMessage(data)}</p>
+          <p className="text-sm text-text-secondary">{tino.message}</p>
         </div>
       </div>
 

@@ -11,6 +11,8 @@ import { WeakTopicCard } from '@/components/dashboard/WeakTopicCard';
 import { AciertometroLoader } from '@/components/gamification/AciertometroLoader';
 import { AciertometroLocked } from '@/components/gamification/Aciertometro';
 import { HeatmapCalendar } from '@/components/gamification/HeatmapCalendar';
+import { MasteredSubjectBadges } from '@/components/gamification/MasteredSubjectBadges';
+import { StreakRiskBanner } from '@/components/gamification/StreakRiskBanner';
 import { requireOnboarding } from '@/lib/auth/guards';
 import { computeCareerStrategy, computeWeekOverWeekDelta } from '@/lib/db/adaptive';
 import {
@@ -20,6 +22,8 @@ import {
   loadRecentSimulations,
   loadWeakestTopics,
 } from '@/lib/db/dashboard';
+import { loadMasteredSubjectBadges, loadStreakStatus } from '@/lib/db/gamification';
+import { emptySimulations, noWeakTopicsYet } from '@/lib/tino/copy';
 
 function greetingName(displayName: string | null, email: string | undefined): string {
   if (displayName) return displayName;
@@ -70,16 +74,27 @@ export default async function DashboardPage() {
   }
 
   const now = new Date();
-  const [countdown, weakTopics, recentSims, heatmap, aciertometroAccess, strategy, weekDelta] =
-    await Promise.all([
-      loadExamCountdown(profile.id, now),
-      loadWeakestTopics(profile.id, 3),
-      loadRecentSimulations(profile.id, 3),
-      loadHeatmapData(profile.id, now),
-      loadAciertometroAccess(profile.id),
-      computeCareerStrategy(profile.id),
-      computeWeekOverWeekDelta(profile.id, now),
-    ]);
+  const [
+    countdown,
+    weakTopics,
+    recentSims,
+    heatmap,
+    aciertometroAccess,
+    strategy,
+    weekDelta,
+    streakStatus,
+    masteredBadges,
+  ] = await Promise.all([
+    loadExamCountdown(profile.id, now),
+    loadWeakestTopics(profile.id, 3),
+    loadRecentSimulations(profile.id, 3),
+    loadHeatmapData(profile.id, now),
+    loadAciertometroAccess(profile.id),
+    computeCareerStrategy(profile.id),
+    computeWeekOverWeekDelta(profile.id, now),
+    loadStreakStatus(profile.id, now),
+    loadMasteredSubjectBadges(profile.id),
+  ]);
 
   return (
     <div className="space-y-6">
@@ -91,6 +106,10 @@ export default async function DashboardPage() {
           <p className="text-text-secondary">{countdownCopy(countdown.daysRemaining)}</p>
         )}
       </div>
+
+      {streakStatus.atRisk && <StreakRiskBanner days={streakStatus.currentStreak} />}
+
+      <MasteredSubjectBadges badges={masteredBadges} />
 
       <Card className="p-6">
         <p className="mb-4 text-center text-xs font-semibold uppercase tracking-wide text-text-muted">
@@ -135,7 +154,7 @@ export default async function DashboardPage() {
         ) : (
           <EmptyState
             title="Todavía no identificamos temas débiles"
-            description="Sigue practicando y aquí van a aparecer los temas donde más te conviene enfocarte."
+            description={noWeakTopicsYet().message}
             action={
               <Link href="#simulacro-cta" className="text-sm font-semibold text-brand hover:underline">
                 Practicar ahora ↓
@@ -154,7 +173,7 @@ export default async function DashboardPage() {
         ) : (
           <EmptyState
             title="Aún no haces ningún simulacro"
-            description="¡El primero es el más importante! 🦉"
+            description={emptySimulations().message}
             action={
               <Link href="#simulacro-cta" className="text-sm font-semibold text-brand hover:underline">
                 Hacer mi primer simulacro ↓

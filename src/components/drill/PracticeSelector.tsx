@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Tino } from '@/components/mascot/Tino';
 import type { PracticeOptions, PracticeScope } from '@/lib/db/drill';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
+import { drillLimitReached } from '@/lib/tino/copy';
 
 /**
  * Selector de práctica (F14 tarea 1): reforzar temas débiles (default, usa el
@@ -56,11 +57,9 @@ export function PracticeSelector({
 
       {limitReached && (
         <Card className="flex items-start gap-3 p-4">
-          <Tino state="encouraging" size={48} />
+          <Tino state={drillLimitReached().state} size={48} />
           <div>
-            <p className="text-sm font-semibold text-text-primary">
-              Vuelve mañana o desbloquea ilimitado
-            </p>
+            <p className="text-sm font-semibold text-text-primary">{drillLimitReached().message}</p>
             <Link
               href={`/paywall?trigger=${paywallTrigger ?? 'DRILL_DAILY_LIMIT'}&return=%2Fpracticar`}
               className="mt-1 inline-block text-sm font-semibold text-brand hover:underline"

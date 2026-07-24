@@ -4,10 +4,15 @@ import { motion, MotionConfig } from 'framer-motion';
 import { useMemo } from 'react';
 
 /**
- * Celebración de ronda perfecta (F13 tarea 2; UIUX §9 catálogo: "Perfect round
- * | Score ≥ 90% | 1200ms | PerfectRoundReveal"). Spring physics, no linear
- * (regla de movimiento del proyecto) — un estallido de partículas que rebotan
- * hacia afuera desde el centro, más un halo pulsante detrás del anillo.
+ * Celebración de partículas reusable (F13 tarea 2; UIUX §9 catálogo: "Perfect
+ * round | Score ≥ 90% | 1200ms | PerfectRoundReveal"). Spring physics, no
+ * linear (regla de movimiento del proyecto) — un estallido de partículas que
+ * rebotan hacia afuera desde el centro, más un halo pulsante detrás.
+ *
+ * F15 tarea 1: relocado de `components/simulator/` a `components/gamification/`
+ * y formalizado como pieza compartida — `CelebrationDisplay` lo reusa para las
+ * TRES celebraciones grandes (ronda perfecta, materia dominada, racha), no
+ * solo el simulador.
  *
  * `MotionConfig reducedMotion="user"` (mismo patrón que `StepTransition.tsx`)
  * hace que Framer Motion salte directo al estado final sin animar cuando el

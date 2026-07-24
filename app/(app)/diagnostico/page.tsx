@@ -4,6 +4,7 @@ import { Tino } from '@/components/mascot/Tino';
 import { requireOnboarding } from '@/lib/auth/guards';
 import * as diagnosticDb from '@/lib/db/diagnostic';
 import { toRunnerQuestion } from '@/lib/db/diagnostic';
+import { diagnosticNotReady } from '@/lib/tino/copy';
 
 /**
  * Ruta del diagnóstico inicial (F7). Server Component: resuelve el estado
@@ -52,17 +53,14 @@ export default async function DiagnosticoPage() {
 }
 
 function NoContentMessage({ code }: { code: diagnosticDb.DiagnosticStartError }) {
+  const copy = diagnosticNotReady(code);
   return (
     <div className="flex flex-col items-center gap-4 py-12 text-center">
-      <Tino state="sleepy" size={80} />
+      <Tino state={copy.state} size={80} />
       <h1 className="font-display text-xl font-bold text-text-primary">
         Todavía estamos preparando tu diagnóstico
       </h1>
-      <p className="max-w-sm text-sm text-text-secondary">
-        {code === 'NO_TARGET'
-          ? 'Necesitamos que termines de elegir tu examen y carrera antes de empezar.'
-          : 'Aún no tenemos suficientes reactivos verificados para tu área. Estamos generando más contenido — vuelve pronto.'}
-      </p>
+      <p className="max-w-sm text-sm text-text-secondary">{copy.message}</p>
     </div>
   );
 }

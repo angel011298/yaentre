@@ -1,6 +1,9 @@
 import { Prisma, type ExamSession, type SessionMode } from '@prisma/client';
 import { prisma } from './prisma';
 import { onSessionFinished } from './adaptive';
+import { getStreak } from './streak';
+import { computeSessionCelebration } from './gamification';
+import type { Celebration } from '@/lib/gamification/celebrations';
 import {
   appendSuspicionEvent,
   buildSubmitResponse,
@@ -53,6 +56,7 @@ export type FinishSessionResult = {
     isCorrect: boolean;
     position: number;
   }>;
+  celebration: Celebration | null;
 };
 
 /**
@@ -217,6 +221,11 @@ export async function finishSession(params: {
     },
   });
 
+  // F15: captura la racha ANTES del recálculo, para poder detectar si esta
+  // sesión es la que cruza un milestone (7/14/30) — después de
+  // onSessionFinished, StreakRecord ya refleja el "después".
+  const previousStreak = (await getStreak(session.userProfileId))?.currentStreak ?? 0;
+
   // Motor adaptativo (F6): al finalizar, recalcular temas débiles y predicción.
   // La sesión ya quedó COMPLETED* y persistida arriba, así que onSessionFinished
   // ve la sesión recién terminada en el historial. Es robusto internamente (no
@@ -233,6 +242,25 @@ export async function finishSession(params: {
     });
   }
 
+  // F15: como máximo una celebración grande por sesión (prioridad: materia
+  // dominada > ronda perfecta > racha) — decisión 100% centralizada en
+  // `computeSessionCelebration`/`selectCelebration`. Nunca debe romper el
+  // cierre de sesión: un fallo aquí se registra y la sesión se cierra igual.
+  let celebration: Celebration | null = null;
+  try {
+    const currentStreak = (await getStreak(session.userProfileId))?.currentStreak ?? 0;
+    celebration = await computeSessionCelebration({
+      userProfileId: session.userProfileId,
+      sessionId,
+      score,
+      servedCount: answers.length,
+      previousStreak,
+      currentStreak,
+    });
+  } catch (err) {
+    console.error('[gamification] computeSessionCelebration falló', { userProfileId: session.userProfileId, err });
+  }
+
   // finishSession revela: aquí ya es seguro devolver la correctitud por reactivo.
   return {
     session: updated,
@@ -246,6 +274,7 @@ export async function finishSession(params: {
       isCorrect: a.isCorrect,
       position: a.position,
     })),
+    celebration,
   };
 }
 

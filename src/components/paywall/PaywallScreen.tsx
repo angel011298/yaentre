@@ -2,31 +2,8 @@ import Link from 'next/link';
 import { Tino } from '@/components/mascot/Tino';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
 import type { PlanPricing } from '@/lib/stripe/pricing';
+import { paywallTriggerCopy } from '@/lib/tino/copy';
 import { PlanCard } from './PlanCard';
-
-const TRIGGER_COPY: Record<PaywallTrigger, { title: string; body: string }> = {
-  FULL_SIMULATION_LIMIT: {
-    title: 'Ya viviste tu primer simulacro',
-    body: 'Desbloquea los simulacros completos ilimitados para seguir practicando bajo condiciones reales.',
-  },
-  DRILL_DAILY_LIMIT: {
-    title: 'Llegaste a tu práctica de hoy',
-    body: 'Vuelve mañana con tu racha, o desbloquea reactivos ilimitados ahora mismo.',
-  },
-  EXPLANATION_LAYER: {
-    title: 'Desbloquea el paso a paso',
-    body: 'La Capa 1 siempre es gratis. El paso a paso, el concepto base y la práctica similar viven en los planes de pago.',
-  },
-  PARENT_DASHBOARD: {
-    title: 'El panel parental es para Pase o Premium',
-    body: 'Con el Pase de Temporada o Premium, ve el progreso de tu hijo desde tu propio dispositivo.',
-  },
-};
-
-const DEFAULT_COPY = {
-  title: 'Desbloquea todo Acierta',
-  body: 'Simulacros ilimitados, resolución por capas y tu Aciertómetro completo.',
-};
 
 interface Props {
   trigger: PaywallTrigger | null;
@@ -43,7 +20,7 @@ interface Props {
  * `returnTo` sin fricción ni penalización.
  */
 export function PaywallScreen({ trigger, returnTo, pricing, earlyBirdRemaining }: Props) {
-  const copy = trigger ? TRIGGER_COPY[trigger] : DEFAULT_COPY;
+  const copy = paywallTriggerCopy(trigger);
   const seasonPass = pricing.find((p) => p.plan === 'SEASON_PASS');
 
   return (

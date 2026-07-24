@@ -9,6 +9,8 @@ import { requireOnboarding } from '@/lib/auth/guards';
 import * as sessionsDb from '@/lib/db/sessions';
 import * as simulatorDb from '@/lib/db/simulator';
 import { getStreak } from '@/lib/db/streak';
+import { decodeCelebrationParam } from '@/lib/gamification/celebrations';
+import { noTargetChosen } from '@/lib/tino/copy';
 
 export const metadata = { title: 'Simulacro · Acierta' };
 
@@ -42,7 +44,14 @@ export default async function SimuladorPage({
     const result = await simulatorDb.loadSimulatorResult(profileId, sessionParam);
     if (result) {
       const streak = await getStreak(profileId);
-      return <SimulatorResult data={result} currentStreak={streak?.currentStreak ?? 0} />;
+      const celebrationParam = typeof sp.celebration === 'string' ? sp.celebration : undefined;
+      return (
+        <SimulatorResult
+          data={result}
+          currentStreak={streak?.currentStreak ?? 0}
+          celebration={decodeCelebrationParam(celebrationParam)}
+        />
+      );
     }
     // Sesión inexistente/ajena/no terminada: cae a la entrada normal.
   }
@@ -94,15 +103,14 @@ export default async function SimuladorPage({
 }
 
 function NoTargetMessage() {
+  const copy = noTargetChosen('simulacro');
   return (
     <div className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center gap-4 px-4 text-center">
-      <Tino state="sleepy" size={72} />
+      <Tino state={copy.state} size={72} />
       <h1 className="font-display text-xl font-bold text-text-primary">
         Primero elige tu examen
       </h1>
-      <p className="text-sm text-text-secondary">
-        Para hacer un simulacro necesitamos saber a qué examen y carrera apuntas.
-      </p>
+      <p className="text-sm text-text-secondary">{copy.message}</p>
       <Link href="/onboarding" className="font-semibold text-brand hover:underline">
         Completar mi perfil
       </Link>
