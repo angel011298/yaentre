@@ -258,6 +258,69 @@ export async function computeWeekOverWeekDelta(
 }
 
 /**
+ * Cambio del Aciertómetro causado ESPECÍFICAMENTE por una sesión (F13 tarea
+ * 5) — a diferencia de `computeWeekOverWeekDelta` (corte por FECHA), aquí el
+ * corte es por SESIÓN: la línea base "antes" se recalcula con TODO el
+ * historial EXCLUYENDO las respuestas de `sessionId`, y se compara contra la
+ * predicción "después" ya persistida en `LearningProfile` (que `finishSession`
+ * ya recalculó incluyendo esta sesión, vía `onSessionFinished`). Mismo patrón
+ * defensivo: si esta fue la primera sesión del alumno, no hay "antes" real que
+ * comparar — se devuelve `null` en vez de inventar un delta desde 0.
+ */
+export async function computeSessionPredictionDelta(
+  userProfileId: string,
+  sessionId: string
+): Promise<number | null> {
+  const profile = await prisma.userProfile.findUnique({
+    where: { id: userProfileId },
+    select: { targetCareerId: true, learningProfile: { select: { predictedScore: true } } },
+  });
+  if (!profile?.targetCareerId || profile.learningProfile?.predictedScore == null) return null;
+
+  const career = await prisma.career.findUnique({
+    where: { id: profile.targetCareerId },
+    select: {
+      area: {
+        select: {
+          exam: { select: { totalQuestions: true } },
+          subjects: { select: { id: true, questionWeight: true } },
+        },
+      },
+    },
+  });
+  if (!career) return null;
+  const { exam, subjects } = career.area;
+
+  const beforeAnswers = await prisma.sessionAnswer.findMany({
+    where: {
+      session: { userProfileId, status: { in: [...FINISHED_STATUSES] }, id: { not: sessionId } },
+    },
+    select: { isCorrect: true, question: { select: { topic: { select: { subjectId: true } } } } },
+  });
+
+  if (beforeAnswers.length === 0) return null;
+
+  const bySubject = new Map<string, { correct: number; attempts: number }>();
+  for (const a of beforeAnswers) {
+    const subjectId = a.question.topic.subjectId;
+    const prev = bySubject.get(subjectId) ?? { correct: 0, attempts: 0 };
+    bySubject.set(subjectId, {
+      correct: prev.correct + (a.isCorrect ? 1 : 0),
+      attempts: prev.attempts + 1,
+    });
+  }
+
+  const perf: SubjectPerformance[] = subjects.map((s) => {
+    const agg = bySubject.get(s.id) ?? { correct: 0, attempts: 0 };
+    return { subjectId: s.id, weight: s.questionWeight, correct: agg.correct, attempts: agg.attempts };
+  });
+
+  const before = predictScore({ subjects: perf, totalQuestions: exam.totalQuestions });
+
+  return profile.learningProfile.predictedScore - before.predictedScore;
+}
+
+/**
  * Disparador único tras finalizar una sesión (Task 6): recalcula temas débiles
  * y predicción. Robusto — un fallo del recálculo NUNCA debe romper el cierre de
  * la sesión del usuario (la sesión ya quedó finalizada y persistida). Por eso

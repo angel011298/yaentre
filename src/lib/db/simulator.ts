@@ -6,11 +6,17 @@ import {
   countCompletedFullSimulations,
   isUserPaid,
 } from './paywall';
-import { computeCareerStrategy, type CareerStrategyResponse } from './adaptive';
+import {
+  computeCareerStrategy,
+  computeSessionPredictionDelta,
+  type CareerStrategyResponse,
+} from './adaptive';
 import { canStartFullSimulation, type GateDecision, type PaywallTrigger } from '@/lib/paywall/gates';
 import { simulatorConfigFor } from '@/lib/simulator/config';
 import { orderQuestionOptions } from '@/lib/simulator/shuffle';
 import { computeRemainingSecs, isTimeUp } from '@/lib/simulator/time';
+import { computePercentileRank } from '@/lib/simulator/percentile';
+import { subjectColorFor } from '@/lib/simulator/subjectColors';
 import {
   mergeIntegrityCounters,
   type IntegrityCounters,
@@ -429,15 +435,36 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
 
 // ─────────────────────────────── Resultados ───────────────────────────────
 
+/**
+ * Carga la sesión con el guard de F13 tarea 1: SOLO el dueño, y SOLO si ya
+ * terminó. Único punto de esta verificación — lo comparten `loadSimulatorResult`
+ * y `loadSimulatorReview` para que ninguno pueda quedar desalineado del otro.
+ */
+async function loadOwnedFinishedSession(
+  userProfileId: string,
+  sessionId: string
+): Promise<SimulatorSessionWithAnswers | null> {
+  const session = await prisma.examSession.findUnique({
+    where: { id: sessionId },
+    include: simulatorSessionInclude,
+  });
+  if (!session || session.userProfileId !== userProfileId) return null;
+  if (!FINISHED_STATUSES.includes(session.status)) return null;
+  return session;
+}
+
 export interface SubjectResult {
   subjectId: string;
   subjectName: string;
   correct: number;
   total: number;
+  /** Color determinista para el desglose (F13 tarea 3) — ver subjectColors.ts. */
+  colorHex: string;
 }
 
 export interface SimulatorResultData {
   sessionId: string;
+  examId: string;
   score: number;
   servedCount: number;
   examTotalQuestions: number;
@@ -447,8 +474,12 @@ export interface SimulatorResultData {
   avgSecsPerQuestion: number;
   subjects: SubjectResult[];
   integrity: IntegrityCounters;
-  suspicionEventCount: number;
+  suspicionEvents: SuspicionInfoEvent[];
   strategy: CareerStrategyResponse | null;
+  /** Cambio del Aciertómetro causado por ESTA sesión. `null` sin línea base (F13 tarea 5). */
+  predictionDelta: number | null;
+  /** Percentil vs. otros usuarios del mismo examen. `null` con muestra chica (F13 tarea 6). */
+  percentile: number | null;
 }
 
 /** Sesión terminada del usuario, con desglose por materia (para resultados). */
@@ -456,28 +487,36 @@ export async function loadSimulatorResult(
   userProfileId: string,
   sessionId: string
 ): Promise<SimulatorResultData | null> {
-  const session = await prisma.examSession.findUnique({
-    where: { id: sessionId },
-    include: simulatorSessionInclude,
-  });
+  const session = await loadOwnedFinishedSession(userProfileId, sessionId);
+  if (!session) return null;
 
-  if (!session || session.userProfileId !== userProfileId) return null;
-  if (!FINISHED_STATUSES.includes(session.status)) return null;
-
-  const [exam, strategy] = await Promise.all([
+  const [exam, strategy, predictionDelta, otherScores] = await Promise.all([
     prisma.exam.findUnique({
       where: { id: session.examId },
       select: { totalQuestions: true },
     }),
     computeCareerStrategy(userProfileId),
+    computeSessionPredictionDelta(userProfileId, sessionId),
+    // Percentil (F13 tarea 6): otras sesiones COMPLETADAS del MISMO examen
+    // (mismo examId ⇒ misma institución+nivel+año, "mismo ciclo"), excluyendo
+    // esta sesión. Cualquier alumno, no solo este usuario — es una comparación
+    // contra la comunidad.
+    prisma.examSession.findMany({
+      where: {
+        examId: session.examId,
+        mode: 'FULL_SIMULATION',
+        status: { in: [...FINISHED_STATUSES] },
+        id: { not: sessionId },
+        score: { not: null },
+      },
+      select: { score: true },
+    }),
   ]);
 
-  const bySubject = new Map<string, SubjectResult>();
+  const bySubject = new Map<string, { subjectName: string; correct: number; total: number }>();
   for (const a of session.answers) {
     const subject = a.question.topic.subject;
-    const prev =
-      bySubject.get(subject.id) ??
-      { subjectId: subject.id, subjectName: subject.name, correct: 0, total: 0 };
+    const prev = bySubject.get(subject.id) ?? { subjectName: subject.name, correct: 0, total: 0 };
     bySubject.set(subject.id, {
       ...prev,
       correct: prev.correct + (a.isCorrect ? 1 : 0),
@@ -489,19 +528,88 @@ export async function loadSimulatorResult(
     ? computeElapsedSecs(session.startedAt, session.finishedAt)
     : session.timeLimitSecs;
   const servedCount = session.answers.length;
+  const score = session.score ?? 0;
+
+  const percentile = computePercentileRank(
+    score,
+    otherScores.map((s) => s.score as number)
+  );
 
   return {
     sessionId: session.id,
-    score: session.score ?? 0,
+    examId: session.examId,
+    score,
     servedCount,
     examTotalQuestions: exam?.totalQuestions ?? servedCount,
     elapsedSecs,
     timeLimitSecs: session.timeLimitSecs,
     status: session.status,
     avgSecsPerQuestion: servedCount > 0 ? Math.round(elapsedSecs / servedCount) : 0,
-    subjects: [...bySubject.values()].sort((a, b) => a.subjectName.localeCompare(b.subjectName)),
+    subjects: [...bySubject.entries()]
+      .map(([subjectId, s]) => ({ subjectId, colorHex: subjectColorFor(subjectId), ...s }))
+      .sort((a, b) => a.subjectName.localeCompare(b.subjectName)),
     integrity: readIntegrity(session),
-    suspicionEventCount: readSuspicionEvents(session.suspicionEvents).length,
+    suspicionEvents: readSuspicionEvents(session.suspicionEvents),
     strategy,
+    predictionDelta,
+    percentile,
   };
+}
+
+// ─────────────────────────────── Revisión de preguntas falladas ───────────────────────────────
+
+export interface RevealedOption {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+}
+
+export interface RevealedQuestion {
+  id: string;
+  stem: string;
+  imageUrl: string | null;
+  subjectName: string;
+  topicName: string;
+  options: RevealedOption[];
+  selectedOption: string | null;
+  /** Capa 1 de explicación (siempre gratis — F9) si el reactivo la tiene generada. */
+  explanation: { title: string; content: string } | null;
+}
+
+/**
+ * Preguntas FALLADAS de una sesión terminada, con la respuesta correcta ya
+ * revelada (F13 tareas 8 y 9 — legítimo solo porque `loadOwnedFinishedSession`
+ * ya confirmó que la sesión es del dueño Y ya terminó). Trae la Capa 1 de
+ * explicación (siempre gratis, F9 `canViewExplanationLayer`) si existe; capas
+ * 2+ son alcance de F14 (drill + capas de profundidad), no de esta pantalla.
+ */
+export async function loadSimulatorReview(
+  userProfileId: string,
+  sessionId: string
+): Promise<RevealedQuestion[] | null> {
+  const session = await loadOwnedFinishedSession(userProfileId, sessionId);
+  if (!session) return null;
+
+  const failed = session.answers.filter((a) => !a.isCorrect);
+  const questionIds = failed.map((a) => a.question.id);
+  const explanations = await prisma.explanationLayer.findMany({
+    where: { questionId: { in: questionIds }, layer: 1 },
+    select: { questionId: true, title: true, content: true },
+  });
+  const explanationByQuestion = new Map(explanations.map((e) => [e.questionId, e]));
+
+  return failed.map((a) => {
+    const options = parseQuestionOptions(a.question.options);
+    const explanation = explanationByQuestion.get(a.question.id);
+    return {
+      id: a.question.id,
+      stem: a.question.stem,
+      imageUrl: a.question.imageUrl,
+      subjectName: a.question.topic.subject.name,
+      topicName: a.question.topic.name,
+      options: options.map((o) => ({ id: o.id, text: o.text, isCorrect: o.isCorrect })),
+      selectedOption: a.selectedOption,
+      explanation: explanation ? { title: explanation.title, content: explanation.content } : null,
+    };
+  });
 }

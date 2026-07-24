@@ -23,6 +23,18 @@
   --danger: #ef4444;
   --info: #38bdf8;
   --warning: #fbbf24;
+
+  /* Paleta categórica para el desglose por materia (F13,
+     src/lib/simulator/subjectColors.ts) — DISTINTA de los tokens semánticos
+     de arriba a propósito: --success/--danger ya significan correcto/
+     incorrecto en toda la app, reusarlos aquí para identificar materias
+     confundiría ambos significados. */
+  --chart-1: #7c3aed;
+  --chart-2: #38bdf8;
+  --chart-3: #f59e0b;
+  --chart-4: #10b981;
+  --chart-5: #ec4899;
+  --chart-6: #64748b;
 }
 
 /* Dark mode (default alumno) — sección 3.3 del UI/UX Spec */

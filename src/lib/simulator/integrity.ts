@@ -74,3 +74,37 @@ export interface SuspicionInfoEvent {
   at: string;
   [key: string]: unknown;
 }
+
+export interface IntegritySummaryItem {
+  key: 'tabBlur' | 'fullscreenExit' | 'rightClick' | 'keyboard';
+  label: string;
+  count: number;
+}
+
+/**
+ * Resumen de integridad para la pantalla de resultados (F13 tarea 7). PURO:
+ * solo agrega y filtra, sin decidir tono — el componente decide la copy sobria
+ * ("en el examen real esto puede anular tu evaluación"), nunca acusatoria.
+ * Devuelve SOLO los tipos con conteo > 0 — un arreglo vacío significa "todo en
+ * orden", que el componente muestra con un mensaje positivo en vez de una
+ * lista de ceros sin sentido.
+ */
+export function summarizeIntegrityEvents(
+  counters: IntegrityCounters,
+  suspicionEvents: readonly SuspicionInfoEvent[]
+): IntegritySummaryItem[] {
+  const fullscreenExits = suspicionEvents.filter((e) => e.type === 'FULLSCREEN_EXIT').length;
+
+  const items: IntegritySummaryItem[] = [
+    { key: 'tabBlur', label: 'Cambios de pestaña', count: counters.tabBlurCount },
+    { key: 'fullscreenExit', label: 'Salidas de pantalla completa', count: fullscreenExits },
+    { key: 'rightClick', label: 'Intentos de clic derecho', count: counters.rightClickAttempts },
+    {
+      key: 'keyboard',
+      label: 'Atajos de teclado interceptados',
+      count: counters.keyboardShortcutAttempts,
+    },
+  ];
+
+  return items.filter((i) => i.count > 0);
+}

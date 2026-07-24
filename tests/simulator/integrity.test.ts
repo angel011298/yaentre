@@ -1,8 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
+  EMPTY_INTEGRITY,
   isSuspiciousKeyCombo,
   mergeIntegrityCounters,
+  summarizeIntegrityEvents,
+  type IntegrityCounters,
   type KeyEventLike,
+  type SuspicionInfoEvent,
 } from '@/lib/simulator/integrity';
 
 function key(partial: Partial<KeyEventLike>): KeyEventLike {
@@ -40,5 +44,45 @@ describe('isSuspiciousKeyCombo', () => {
     expect(isSuspiciousKeyCombo(key({ key: 'a' }))).toBe(false);
     expect(isSuspiciousKeyCombo(key({ key: 'Enter' }))).toBe(false);
     expect(isSuspiciousKeyCombo(key({ key: 'ArrowDown' }))).toBe(false);
+  });
+});
+
+describe('summarizeIntegrityEvents', () => {
+  it('arreglo vacío cuando todo está en orden (todos los contadores en 0)', () => {
+    expect(summarizeIntegrityEvents(EMPTY_INTEGRITY, [])).toEqual([]);
+  });
+
+  it('omite los tipos con conteo 0, incluye solo los que ocurrieron', () => {
+    const counters: IntegrityCounters = {
+      tabBlurCount: 2,
+      rightClickAttempts: 0,
+      keyboardShortcutAttempts: 1,
+    };
+    const result = summarizeIntegrityEvents(counters, []);
+    expect(result.map((r) => r.key)).toEqual(['tabBlur', 'keyboard']);
+    expect(result.find((r) => r.key === 'tabBlur')?.count).toBe(2);
+  });
+
+  it('cuenta las salidas de fullscreen desde suspicionEvents (no desde IntegrityCounters)', () => {
+    const events: SuspicionInfoEvent[] = [
+      { type: 'FULLSCREEN_EXIT', at: '2027-01-01T00:00:00Z' },
+      { type: 'FULLSCREEN_EXIT', at: '2027-01-01T00:05:00Z' },
+      { type: 'CAMERA_DENIED', at: '2027-01-01T00:00:00Z' }, // no es señal de integridad
+    ];
+    const result = summarizeIntegrityEvents(EMPTY_INTEGRITY, events);
+    expect(result).toEqual([{ key: 'fullscreenExit', label: 'Salidas de pantalla completa', count: 2 }]);
+  });
+
+  it('cada label es un texto no vacío (para copy sobria en la UI)', () => {
+    const counters: IntegrityCounters = {
+      tabBlurCount: 1,
+      rightClickAttempts: 1,
+      keyboardShortcutAttempts: 1,
+    };
+    const result = summarizeIntegrityEvents(counters, [{ type: 'FULLSCREEN_EXIT', at: 'x' }]);
+    expect(result).toHaveLength(4);
+    for (const item of result) {
+      expect(item.label.length).toBeGreaterThan(0);
+    }
   });
 });

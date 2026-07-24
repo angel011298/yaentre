@@ -12,9 +12,12 @@ interface Props {
   totalQuestions: number;
   target: AciertometroDisplay;
   gap: number | null;
-  /** Cambio vs. hace una semana (F11). `null`/omitido = sin línea base todavía
-   *  (alumno nuevo) — no se muestra ninguna flecha en vez de inventar un "+0". */
+  /** Cambio vs. una línea base anterior (F11: hace una semana; F13: antes de
+   *  esta sesión). `null`/omitido = sin línea base todavía (alumno nuevo) —
+   *  no se muestra ninguna flecha en vez de inventar un "+0". */
   weekDelta?: number | null;
+  /** Texto tras el número del delta. Default conserva el copy de F11. */
+  deltaLabel?: string;
 }
 
 /**
@@ -36,6 +39,7 @@ export function Aciertometro({
   target,
   gap,
   weekDelta,
+  deltaLabel = 'esta semana',
 }: Props) {
   const fraction = totalQuestions > 0 ? Math.min(1, predictedScore / totalQuestions) : 0;
   const offset = CIRCUMFERENCE * (1 - fraction);
@@ -73,7 +77,7 @@ export function Aciertometro({
           className={`text-sm font-semibold ${weekDelta > 0 ? 'text-success' : 'text-danger'}`}
         >
           {weekDelta > 0 ? '↑' : '↓'} {weekDelta > 0 ? '+' : ''}
-          {weekDelta} esta semana
+          {weekDelta} {deltaLabel}
         </p>
       )}
 

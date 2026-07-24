@@ -47,3 +47,17 @@ export const TIMER_URGENT_SECS = 15 * 60;
  * solo acota cuánta respuesta puede quedar sin persistir en el caso normal.
  */
 export const SYNC_FLUSH_INTERVAL_MS = 15 * 1000;
+
+/**
+ * Umbral de "ronda perfecta" (F13 tarea 2, UIUX §9 catálogo de animaciones:
+ * "Perfect round | Score ≥ 90%"). Se compara contra los reactivos SERVIDOS
+ * (no contra el total oficial del examen 120/140) — un alumno evaluado sobre
+ * menos preguntas por cobertura de contenido incompleta no debe ser penalizado
+ * por algo fuera de su control.
+ */
+export const PERFECT_ROUND_THRESHOLD = 0.9;
+
+export function isPerfectRound(score: number, servedCount: number): boolean {
+  if (servedCount <= 0) return false;
+  return score / servedCount >= PERFECT_ROUND_THRESHOLD;
+}

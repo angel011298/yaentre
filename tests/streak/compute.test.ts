@@ -35,6 +35,19 @@ describe('isQualifyingStreakSession — mínimo 10 minutos', () => {
   it('el umbral documentado es exactamente 10', () => {
     expect(MIN_STREAK_SESSION_MINUTES).toBe(10);
   });
+
+  it('es agnóstico al modo de sesión: un FULL_SIMULATION de ≥10 min cuenta igual que un drill (F13 tarea 11)', () => {
+    // La firma solo pide startedAt/finishedAt — ni siquiera recibe el modo,
+    // así que un simulacro terminado de 180 min (3h) del examen real
+    // automáticamente cuenta para la racha vía el mismo finishSession→
+    // onSessionFinished→recomputeStreak que ya usan diagnóstico y drill.
+    expect(
+      isQualifyingStreakSession({
+        startedAt: new Date('2027-05-15T09:00:00Z'),
+        finishedAt: new Date('2027-05-15T12:00:00Z'), // 180 min, un simulacro completo
+      })
+    ).toBe(true);
+  });
 });
 
 describe('computeCurrentStreak — huso de México, evaluado al cierre del día', () => {

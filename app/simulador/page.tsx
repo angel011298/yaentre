@@ -2,11 +2,13 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { SimulatorApp } from '@/components/simulator/SimulatorApp';
 import { SimulatorResult } from '@/components/simulator/SimulatorResult';
+import { SimulatorReview } from '@/components/simulator/SimulatorReview';
 import { Tino } from '@/components/mascot/Tino';
 import { AuthError } from '@/lib/auth/errors';
 import { requireOnboarding } from '@/lib/auth/guards';
 import * as sessionsDb from '@/lib/db/sessions';
 import * as simulatorDb from '@/lib/db/simulator';
+import { getStreak } from '@/lib/db/streak';
 
 export const metadata = { title: 'Simulacro · Acierta' };
 
@@ -38,7 +40,17 @@ export default async function SimuladorPage({
   // 1) Vista de resultados (destino tras terminar; también revisión posterior).
   if (view === 'result' && sessionParam) {
     const result = await simulatorDb.loadSimulatorResult(profileId, sessionParam);
-    if (result) return <SimulatorResult data={result} />;
+    if (result) {
+      const streak = await getStreak(profileId);
+      return <SimulatorResult data={result} currentStreak={streak?.currentStreak ?? 0} />;
+    }
+    // Sesión inexistente/ajena/no terminada: cae a la entrada normal.
+  }
+
+  // 1b) Revisión de preguntas falladas (F13 tarea 9) — mismo guard dueño+terminada.
+  if (view === 'review' && sessionParam) {
+    const questions = await simulatorDb.loadSimulatorReview(profileId, sessionParam);
+    if (questions) return <SimulatorReview questions={questions} sessionId={sessionParam} />;
     // Sesión inexistente/ajena/no terminada: cae a la entrada normal.
   }
 
