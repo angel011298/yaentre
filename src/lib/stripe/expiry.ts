@@ -14,6 +14,15 @@ import type { SubscriptionPlan } from '@prisma/client';
  * con fecha conocida (`examDate` null), se cae a un respaldo prudente: 150 días
  * desde la activación (≈ una temporada de examen). Así el acceso pagado nunca
  * queda sin vigencia por un dato faltante, sin inventar una fecha de examen.
+ *
+ * F19 (bug real corregido): el mismo respaldo aplica si la fecha del examen ya
+ * PASÓ en el momento de activar. Antes se devolvía esa fecha pasada tal cual,
+ * así que la suscripción nacía ya vencida (`getActiveSubscription` filtra por
+ * `expiresAt > now`) — el alumno pagaba y se quedaba SIN acceso, en silencio.
+ * Es alcanzable de verdad: en cuanto pasa la fecha del examen del ciclo (p. ej.
+ * UNAM 2027-05-15) cualquier compra posterior caía en esto, y también un
+ * aspirante rechazado que vuelve a comprar para el siguiente ciclo antes de que
+ * se cargue el examen nuevo. Un pago SIEMPRE debe otorgar vigencia real.
  */
 
 export const SEASON_PASS_FALLBACK_DAYS = 150;
@@ -25,7 +34,8 @@ export function computeExpiresAt(
 ): Date | null {
   if (plan === 'MONTHLY') return null;
 
-  if (examDate) return examDate;
+  // Solo sirve como vigencia una fecha de examen que todavía esté por venir.
+  if (examDate && examDate.getTime() > now.getTime()) return examDate;
 
   const fallback = new Date(now);
   fallback.setUTCDate(fallback.getUTCDate() + SEASON_PASS_FALLBACK_DAYS);

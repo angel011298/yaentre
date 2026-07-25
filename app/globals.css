@@ -1,4 +1,14 @@
-@import "tailwindcss";
+/* `source(none)` + `@source` explícitos (F19): sin esto, la detección
+   automática de Tailwind 4 escanea TODO el proyecto —incluido `/docs`— y toma
+   como clases reales los ejemplos de código citados en la prosa. Eso es el
+   origen real del warning de compilación «Unexpected token Delim('.')» sobre
+   un candidato `bg-[var(...)]` inexistente, documentado desde F11 como un bug
+   sin arreglo del engine Oxide: no era un bug de Tailwind, era Tailwind
+   leyendo nuestra propia documentación. Acotar las fuentes a `app/` y `src/`
+   (las mismas de `tailwind.config.ts`) lo elimina de raíz. */
+@import "tailwindcss" source(none);
+@source "../app";
+@source "../src";
 /* Tailwind 4 no autodetecta tailwind.config.ts (eso era v3) — sin este
    @config, TODOS los tokens custom (bg-brand, bg-surface, text-text-primary,
    rounded-lg de 16px, font-display, etc.) generan cero CSS en silencio y solo
@@ -163,10 +173,10 @@ body {
 }
 
 /* TopBar (F18): mismo motivo/técnica que `.acierta-safe-bottom` (F11) — la
-   sintaxis de valor arbitrario `pt-[env(...)]` de Tailwind dispara el mismo
-   bug de parseo del escáner de CSS 4 en modo dev. Relevante en standalone
-   PWA con `statusBarStyle: "black-translucent"` (F17): el contenido dibuja
-   bajo el notch/Dynamic Island y necesita este relleno para no quedar tapado. */
+   sintaxis de valor arbitrario de Tailwind con env() dispara un bug de parseo
+   del escáner de CSS 4. Relevante en standalone PWA con
+   `statusBarStyle: "black-translucent"` (F17): el contenido dibuja bajo el
+   notch/Dynamic Island y necesita este relleno para no quedar tapado. */
 .acierta-safe-top {
   padding-top: env(safe-area-inset-top);
 }

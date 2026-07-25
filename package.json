@@ -21,7 +21,8 @@
     "content:verify": "tsx scripts/verify-questions.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",
     "content:ingest": "tsx scripts/ingest-source.ts",
-    "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts"
+    "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",
+    "test:rls": "tsx scripts/verify-rls-isolation.ts"
   },
   "dependencies": {
     "@number-flow/react": "^0.6.1",

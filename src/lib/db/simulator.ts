@@ -384,14 +384,33 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
     });
     if (!question) continue;
 
-    const options = parseQuestionOptions(question.options);
-    // Opción inexistente ⇒ se ignora (defensa; la UI solo manda ids válidos).
-    if (answer.selectedOption !== null && !options.some((o) => o.id === answer.selectedOption)) {
+    // F19 (bug real corregido): `parseQuestionOptions`/`isAnswerCorrect` LANZAN
+    // ante un reactivo corrupto (options malformadas, o 0/≥2 opciones marcadas
+    // como correctas). Antes ese throw escapaba del bucle y tumbaba TODO el
+    // lote: un solo reactivo dañado hacía que el beacon devolviera 500 y el
+    // alumno perdiera las otras 119 respuestas de su simulacro. Ahora el fallo
+    // se aísla al reactivo culpable — se registra y se salta, el resto del
+    // lote se persiste igual. Nunca se marca "correcta" a la fuerza: si no se
+    // puede puntuar con certeza, esa respuesta simplemente no se guarda.
+    let options;
+    let correct: boolean;
+    try {
+      options = parseQuestionOptions(question.options);
+      // Opción inexistente ⇒ se ignora (defensa; la UI solo manda ids válidos).
+      if (answer.selectedOption !== null && !options.some((o) => o.id === answer.selectedOption)) {
+        continue;
+      }
+      // Correctitud SIEMPRE server-side (guardrail CLAUDE.md).
+      correct = isAnswerCorrect(options, answer.selectedOption);
+    } catch (err) {
+      console.error('[simulator/sync] Reactivo no puntuable, se omite del lote', {
+        sessionId: session.id,
+        questionId: answer.questionId,
+        err,
+      });
       continue;
     }
 
-    // Correctitud SIEMPRE server-side (guardrail CLAUDE.md).
-    const correct = isAnswerCorrect(options, answer.selectedOption);
     await prisma.sessionAnswer.upsert({
       where: { sessionId_questionId: { sessionId: session.id, questionId: answer.questionId } },
       create: {

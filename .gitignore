@@ -58,3 +58,9 @@ Thumbs.db
 
 # Guías oficiales (material con licencia, grandes — no versionar el binario)
 docs/guias/*.pdf
+
+# Playwright (artefactos de corrida, no versionar)
+/playwright-report/
+/test-results/
+/blob-report/
+/playwright/.cache/
