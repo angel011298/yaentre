@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
 
 /**
@@ -56,6 +57,15 @@ export function ParentSection() {
               únicamente al plan Premium.
             </p>
           </Card>
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/registro?role=tutor"
+            className="text-sm font-semibold text-brand hover:underline"
+          >
+            ¿Eres papá o mamá? Ve el progreso de tu hijo →
+          </Link>
         </div>
       </div>
     </section>

@@ -1,8 +1,10 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import type Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe/client';
-import { handleStripeEvent } from '@/lib/stripe/webhook';
+import { handleStripeEvent, type HandleResult } from '@/lib/stripe/webhook';
 import { billingStore } from '@/lib/db/billing';
+import { sendEmail } from '@/lib/email/client';
+import { paymentConfirmationEmail } from '@/lib/email/templates';
 
 /**
  * Webhook de Stripe (F8) — el ÚNICO punto donde se activa el acceso de pago.
@@ -47,6 +49,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   try {
     const result = await handleStripeEvent(event, billingStore);
+    // F16 tarea 8: correo de confirmación de pago. Va DESPUÉS de que el
+    // acceso ya se activó/registró — un fallo de correo nunca debe volver
+    // este 200 en 500 (Stripe reintentaría una activación que ya aplicó).
+    await sendPaymentConfirmationIfApplicable(event, result).catch((err) => {
+      console.error('[stripe/webhook] Falló el correo de confirmación (no bloqueante)', err);
+    });
     return NextResponse.json({ received: true, ...result }, { status: 200 });
   } catch (err) {
     // Fallo transitorio al procesar: 500 para que Stripe reintente. El marcador
@@ -54,4 +62,31 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     console.error('[stripe/webhook] Error procesando evento', event.id, event.type, err);
     return NextResponse.json({ error: 'Error procesando el evento.' }, { status: 500 });
   }
+}
+
+/**
+ * Correo de confirmación/pendiente de pago. Usa SOLO datos ya presentes en
+ * el evento de Stripe ya verificado (email del checkout, metadata de plan,
+ * monto) — evita una consulta extra a la DB solo para resolver el
+ * destinatario. Se omite en duplicados/ignorados (ya se envió la vez real).
+ */
+async function sendPaymentConfirmationIfApplicable(
+  event: Stripe.Event,
+  result: HandleResult
+): Promise<void> {
+  if (result.status !== 'handled') return;
+  if (result.action !== 'activated' && result.action !== 'pending') return;
+
+  const session = event.data.object as Stripe.Checkout.Session;
+  const to = session.customer_details?.email ?? session.customer_email;
+  const plan = session.metadata?.plan;
+  if (!to || !plan) return;
+
+  const { subject, html } = paymentConfirmationEmail({
+    plan,
+    amountMxn: session.amount_total ?? null,
+    status: result.action === 'activated' ? 'confirmed' : 'pending',
+  });
+
+  await sendEmail({ to, subject, html });
 }

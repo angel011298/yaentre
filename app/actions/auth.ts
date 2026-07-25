@@ -31,13 +31,20 @@ export async function signUpAction(
   }
 
   const { email, password } = parsed.data;
-  const next = (formData.get('next') as string) || '/app';
+  // Registro de tutor (F16): un query param en /registro?role=tutor marca un
+  // hidden field `role=PARENT` en el form — cualquier otro valor (o ausente)
+  // es el registro normal de alumno. El destino post-registro también
+  // cambia: un tutor nunca debe aterrizar en /onboarding ni /app.
+  const isParent = formData.get('role') === 'PARENT';
+  const role = isParent ? 'PARENT' : 'STUDENT';
+  const defaultNext = isParent ? '/tutor' : '/app';
+  const next = (formData.get('next') as string) || defaultNext;
   const supabase = await createSupabaseServerClient();
 
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
-    options: { emailRedirectTo: `${getSiteUrl()}/auth/confirm?next=/app` },
+    options: { emailRedirectTo: `${getSiteUrl()}/auth/confirm?next=${defaultNext}` },
   });
 
   if (error || !data.user) {
@@ -74,7 +81,7 @@ export async function signUpAction(
   try {
     await prisma.userProfile.upsert({
       where: { userId: data.user.id },
-      create: { userId: data.user.id, role: 'STUDENT', onboardingStep: 0 },
+      create: { userId: data.user.id, role, onboardingStep: 0 },
       update: {},
     });
   } catch {
@@ -105,16 +112,27 @@ export async function signInAction(
     return { status: 'error', fieldErrors: parsed.error.flatten().fieldErrors };
   }
 
-  const next = (formData.get('next') as string) || '/app';
+  // `next` explícito (p. ej. `/login?next=/tutor` cuando un guard redirige
+  // aquí) siempre gana. Sin uno, el destino depende del ROL (F16): un tutor
+  // jamás debe aterrizar en /app (ahí lo esperaría el onboarding de alumno).
+  const explicitNext = formData.get('next') as string | null;
   const supabase = await createSupabaseServerClient();
-  const { error } = await supabase.auth.signInWithPassword(parsed.data);
+  const { data, error } = await supabase.auth.signInWithPassword(parsed.data);
 
-  if (error) {
+  if (error || !data.user) {
     // Nunca revelar si fue el correo o la contraseña (Flujo_App §4.2).
     return { status: 'error', message: 'Correo o contraseña incorrectos.' };
   }
 
-  redirect(next);
+  if (explicitNext) {
+    redirect(explicitNext);
+  }
+
+  const profile = await prisma.userProfile.findUnique({
+    where: { userId: data.user.id },
+    select: { role: true },
+  });
+  redirect(profile?.role === 'PARENT' ? '/tutor' : '/app');
 }
 
 export async function signOutAction(): Promise<void> {

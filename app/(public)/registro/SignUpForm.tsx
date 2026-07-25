@@ -7,12 +7,13 @@ import { Button } from '@/components/ui/Button';
 import { TextField } from '@/components/ui/TextField';
 import { initialActionState } from '@/lib/auth/types';
 
-export function SignUpForm({ next }: { next?: string }) {
+export function SignUpForm({ next, isTutor = false }: { next?: string; isTutor?: boolean }) {
   const [state, formAction, isPending] = useActionState(signUpAction, initialActionState);
 
   return (
     <form action={formAction} className="space-y-4">
-      <input type="hidden" name="next" value={next ?? '/app'} />
+      <input type="hidden" name="next" value={next ?? (isTutor ? '/tutor' : '/app')} />
+      <input type="hidden" name="role" value={isTutor ? 'PARENT' : 'STUDENT'} />
       <TextField
         name="email"
         type="email"

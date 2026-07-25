@@ -11,7 +11,7 @@ export function LoginForm({ next }: { next?: string }) {
 
   return (
     <form action={formAction} className="space-y-4">
-      <input type="hidden" name="next" value={next ?? '/app'} />
+      {next && <input type="hidden" name="next" value={next} />}
       <TextField
         name="email"
         type="email"

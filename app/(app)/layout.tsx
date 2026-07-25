@@ -5,22 +5,33 @@ import { BottomNav } from '@/components/dashboard/BottomNav';
 import { Sidebar } from '@/components/dashboard/Sidebar';
 import { TopBar } from '@/components/dashboard/TopBar';
 import { AuthError } from '@/lib/auth/errors';
-import { requireOnboarding } from '@/lib/auth/guards';
+import { requireUser } from '@/lib/auth/guards';
 import { getStreak } from '@/lib/db/streak';
+import { isOnboardingComplete } from '@/lib/onboarding/steps';
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
   // El middleware ya bloquea /app/* sin sesión; este guard es defensa en
   // profundidad (páginas cacheadas, cambios futuros de matcher, etc.) y,
   // además, exige onboarding completo — redirige a /onboarding si falta
-  // (F5, ver src/lib/onboarding/steps.ts).
+  // (F5, ver src/lib/onboarding/steps.ts). El chequeo de ROL va primero
+  // (F16): un tutor tiene `onboardingStep=0` de por vida (nunca pasa por el
+  // asistente de alumno), así que si se comprobara onboarding antes que rol
+  // un tutor quedaría atrapado en /onboarding sin salida — /app es
+  // exclusivamente para STUDENT.
   let authUser;
   let profileId: string;
   let displayName: string | null;
   try {
-    const result = await requireOnboarding();
-    authUser = result.authUser;
-    profileId = result.profile.id;
-    displayName = result.profile.displayName;
+    const { authUser: user, profile } = await requireUser();
+    if (profile.role === 'PARENT') {
+      redirect('/tutor');
+    }
+    if (!isOnboardingComplete(profile.onboardingStep)) {
+      redirect('/onboarding');
+    }
+    authUser = user;
+    profileId = profile.id;
+    displayName = profile.displayName;
   } catch (err) {
     if (err instanceof AuthError) {
       redirect('/login?next=/app');

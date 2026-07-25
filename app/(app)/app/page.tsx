@@ -8,6 +8,7 @@ import { RecentSimulations } from '@/components/dashboard/RecentSimulations';
 import { StartSimulationButton } from '@/components/dashboard/StartSimulationButton';
 import { TinoRecommendation } from '@/components/dashboard/TinoRecommendation';
 import { WeakTopicCard } from '@/components/dashboard/WeakTopicCard';
+import { ParentLinkCard } from '@/components/dashboard/ParentLinkCard';
 import { AciertometroLoader } from '@/components/gamification/AciertometroLoader';
 import { AciertometroLocked } from '@/components/gamification/Aciertometro';
 import { HeatmapCalendar } from '@/components/gamification/HeatmapCalendar';
@@ -184,6 +185,8 @@ export default async function DashboardPage() {
       </section>
 
       {profile.targetExamId && <StartSimulationButton />}
+
+      <ParentLinkCard />
 
       <div className="flex flex-wrap items-center gap-4 border-t border-border-subtle pt-4">
         <Link
