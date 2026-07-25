@@ -201,7 +201,7 @@ export const EditQuestionModal = forwardRef<EditQuestionModalHandle, Props>(
                     src={opt.imageUrl}
                     alt={`Opción ${opt.id}`}
                     title="Imagen de la opción (no editable aquí)"
-                    className="h-10 w-10 shrink-0 rounded border border-border-subtle object-cover"
+                    className="h-10 w-10 shrink-0 rounded-sm border border-border-subtle object-cover"
                   />
                 )}
               </div>

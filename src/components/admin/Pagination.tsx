@@ -30,7 +30,7 @@ export function Pagination({ page, totalPages, searchParams, basePath }: Props) 
     <div className="flex items-center justify-center gap-4 text-sm">
       {hasPrev ? (
         <Link
-          className="rounded-md px-3 py-1.5 text-brand hover:underline"
+          className="flex min-h-touch items-center rounded-md px-3 text-brand hover:underline"
           href={hrefFor(basePath, searchParams, page - 1)}
         >
           ← Anterior
@@ -43,7 +43,7 @@ export function Pagination({ page, totalPages, searchParams, basePath }: Props) 
       </span>
       {hasNext ? (
         <Link
-          className="rounded-md px-3 py-1.5 text-brand hover:underline"
+          className="flex min-h-touch items-center rounded-md px-3 text-brand hover:underline"
           href={hrefFor(basePath, searchParams, page + 1)}
         >
           Siguiente →

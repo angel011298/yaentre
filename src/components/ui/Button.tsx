@@ -12,7 +12,7 @@ const BASE_BUTTON_CLASSNAME =
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
   primary: 'bg-brand text-white hover:bg-brand-hover shadow-md hover:shadow-lg',
   secondary: 'bg-surface border border-border-subtle text-text-primary hover:bg-elevated',
-  tertiary: 'text-brand hover:text-brand-hover hover:bg-brand-tint',
+  tertiary: 'text-brand-soft hover:text-brand-hover hover:bg-brand-tint',
   ghost: 'text-text-secondary hover:text-brand-soft bg-transparent',
   danger: 'bg-danger text-white hover:bg-red-600 shadow-md hover:shadow-lg',
 };

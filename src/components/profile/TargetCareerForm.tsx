@@ -55,7 +55,7 @@ export function TargetCareerForm({
           setCareerId(e.target.value);
           setSaved(false);
         }}
-        className="min-h-touch w-full rounded-[12px] border border-border-subtle bg-input px-3 text-text-primary outline-none focus:border-border-strong"
+        className="min-h-touch w-full rounded-md border border-border-subtle bg-input px-3 text-text-primary outline-none focus:border-transparent focus:ring-2 focus:ring-brand"
       >
         {options.map((c) => (
           <option key={c.id} value={c.id}>

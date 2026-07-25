@@ -12,7 +12,7 @@ export function PlanSection({ status }: { status: PlanStatus }) {
         <p className="text-sm font-semibold text-text-primary">Mi plan</p>
         <p className="mt-1 text-sm text-text-secondary">
           Tienes el plan gratuito.{' '}
-          <Link href="/precios" className="font-semibold text-brand hover:underline">
+          <Link href="/precios" className="font-semibold text-brand-soft hover:underline">
             Ver planes
           </Link>
         </p>

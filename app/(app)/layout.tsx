@@ -53,7 +53,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     // localStorage, sin persistencia real) — se cambia desde /app/perfil.
     <div
       data-theme={themePref}
-      className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)]"
+      className="min-h-screen bg-base text-text-primary"
     >
       <Sidebar />
       <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} avatarUrl={avatarUrl} />

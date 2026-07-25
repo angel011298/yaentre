@@ -19,7 +19,7 @@ export default async function OnboardingLayout({ children }: { children: ReactNo
   }
 
   return (
-    <div data-theme="dark" className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)]">
+    <div data-theme="dark" className="min-h-screen bg-base text-text-primary">
       <main className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center gap-6 px-4 py-10 sm:max-w-lg">
         {children}
       </main>

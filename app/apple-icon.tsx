@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { BRAND_GRADIENT } from '@/lib/brand/colors';
 
 export const runtime = 'edge';
 export const size = { width: 180, height: 180 };
@@ -20,7 +21,7 @@ export default function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%)',
+          background: BRAND_GRADIENT,
           fontSize: 110,
         }}
       >

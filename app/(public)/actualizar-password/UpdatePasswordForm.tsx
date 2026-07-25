@@ -21,7 +21,7 @@ export function UpdatePasswordForm() {
         errors={state.fieldErrors?.password}
       />
       {state.status === 'error' && state.message && (
-        <p role="alert" className="text-sm text-[var(--danger)]">
+        <p role="alert" className="text-sm text-danger">
           {state.message}
         </p>
       )}

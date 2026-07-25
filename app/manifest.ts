@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { BG_BASE_DARK_HEX, BRAND_PRIMARY_HEX } from '@/lib/brand/colors';
 
 /**
  * Manifest de la PWA (F17 tarea 1). Next.js expone esto automáticamente en
@@ -17,8 +18,8 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: '/',
     display: 'standalone',
     orientation: 'portrait',
-    background_color: '#0F0F14',
-    theme_color: '#7C3AED',
+    background_color: BG_BASE_DARK_HEX,
+    theme_color: BRAND_PRIMARY_HEX,
     lang: 'es-MX',
     icons: [
       { src: '/icon-192', sizes: '192x192', type: 'image/png', purpose: 'any' },

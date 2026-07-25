@@ -11,7 +11,7 @@ export function VerificationBanner() {
   );
 
   return (
-    <div className="border-b border-[var(--warning)]/30 bg-[var(--warning)]/10 px-4 py-3 text-sm text-[var(--text-primary)]">
+    <div className="border-b border-warning/30 bg-warning/10 px-4 py-3 text-sm text-text-primary">
       <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2">
         <span>
           Verifica tu correo para desbloquear la compra de planes.
@@ -22,7 +22,7 @@ export function VerificationBanner() {
           <button
             type="submit"
             disabled={isPending}
-            className="font-semibold text-[var(--brand-soft)] hover:underline disabled:opacity-50"
+            className="flex min-h-touch items-center font-semibold text-brand-soft hover:underline disabled:opacity-50"
           >
             {isPending ? 'Enviando…' : 'Reenviar'}
           </button>

@@ -111,7 +111,7 @@ function NoTargetMessage() {
         Primero elige tu examen
       </h1>
       <p className="text-sm text-text-secondary">{copy.message}</p>
-      <Link href="/onboarding" className="font-semibold text-brand hover:underline">
+      <Link href="/onboarding" className="font-semibold text-brand-soft hover:underline">
         Completar mi perfil
       </Link>
     </div>

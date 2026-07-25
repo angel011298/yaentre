@@ -13,7 +13,7 @@ export function DataRightsSection() {
         <a
           href="/api/account/export"
           download
-          className="mt-2 inline-block text-sm font-semibold text-brand hover:underline"
+          className="mt-2 inline-block text-sm font-semibold text-brand-soft hover:underline"
         >
           Exportar mis datos ↓
         </a>

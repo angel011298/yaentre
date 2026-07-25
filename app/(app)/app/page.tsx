@@ -156,7 +156,7 @@ export default async function DashboardPage() {
             title="Todavía no identificamos temas débiles"
             description={noWeakTopicsYet().message}
             action={
-              <Link href="#simulacro-cta" className="text-sm font-semibold text-brand hover:underline">
+              <Link href="#simulacro-cta" className="text-sm font-semibold text-brand-soft hover:underline">
                 Practicar ahora ↓
               </Link>
             }
@@ -175,7 +175,7 @@ export default async function DashboardPage() {
             title="Aún no haces ningún simulacro"
             description={emptySimulations().message}
             action={
-              <Link href="#simulacro-cta" className="text-sm font-semibold text-brand hover:underline">
+              <Link href="#simulacro-cta" className="text-sm font-semibold text-brand-soft hover:underline">
                 Hacer mi primer simulacro ↓
               </Link>
             }
@@ -188,7 +188,7 @@ export default async function DashboardPage() {
       <div className="flex flex-wrap items-center gap-4 border-t border-border-subtle pt-4">
         <Link
           href="/app/examen-oficial"
-          className="text-sm font-semibold text-text-muted hover:text-brand"
+          className="text-sm font-semibold text-text-muted hover:text-brand-soft"
         >
           📄 Examen muestra oficial
         </Link>

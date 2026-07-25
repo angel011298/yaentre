@@ -105,7 +105,7 @@ export function ExplanationAccordion({
                 </p>
                 <Link
                   href={`/paywall?trigger=${paywall.trigger ?? 'EXPLANATION_LAYER'}&return=%2Fpracticar`}
-                  className="font-semibold text-brand hover:underline"
+                  className="font-semibold text-brand-soft hover:underline"
                 >
                   Desbloquear explicación completa →
                 </Link>

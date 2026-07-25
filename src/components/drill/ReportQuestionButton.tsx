@@ -26,7 +26,7 @@ export function ReportQuestionButton({ questionId }: { questionId: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-xs text-text-muted underline hover:text-text-secondary"
+        className="flex min-h-touch items-center text-xs text-text-muted underline hover:text-text-secondary"
       >
         ⚠️ Reportar error en este reactivo
       </button>
@@ -52,14 +52,14 @@ export function ReportQuestionButton({ questionId }: { questionId: string }) {
           type="button"
           onClick={submit}
           disabled={status === 'sending'}
-          className="rounded-md bg-brand px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-hover disabled:opacity-50"
+          className="min-h-touch rounded-md bg-brand px-3 text-xs font-semibold text-white hover:bg-brand-hover disabled:opacity-50"
         >
           {status === 'sending' ? 'Enviando…' : 'Enviar reporte'}
         </button>
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="px-3 py-1.5 text-xs text-text-muted hover:text-text-secondary"
+          className="min-h-touch px-3 text-xs text-text-muted hover:text-text-secondary"
         >
           Cancelar
         </button>

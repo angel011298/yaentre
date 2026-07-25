@@ -33,7 +33,7 @@ export default async function OfficialSampleDetailPage({
 
   return (
     <div className="space-y-6">
-      <Link href="/app/examen-oficial" className="text-sm text-brand hover:underline">
+      <Link href="/app/examen-oficial" className="text-sm text-brand-soft hover:underline">
         ← Volver a exámenes muestra oficiales
       </Link>
 
@@ -67,7 +67,7 @@ export default async function OfficialSampleDetailPage({
           href={source.fileUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-brand hover:underline"
+          className="text-brand-soft hover:underline"
         >
           Abrir en una pestaña nueva ↗
         </a>

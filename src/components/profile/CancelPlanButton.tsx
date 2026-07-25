@@ -32,7 +32,7 @@ export function CancelPlanButton() {
       <button
         type="button"
         onClick={() => setConfirming(true)}
-        className="text-sm font-semibold text-danger hover:underline"
+        className="flex min-h-touch items-center text-sm font-semibold text-danger hover:underline"
       >
         Cancelar mi plan
       </button>

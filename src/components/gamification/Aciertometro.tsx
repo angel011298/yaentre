@@ -123,7 +123,7 @@ export function AciertometroLocked() {
         </p>
         <a
           href="#simulacro-cta"
-          className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
+          className="mt-3 inline-block text-sm font-semibold text-brand-soft hover:underline"
         >
           Ir a mi simulacro gratis ↓
         </a>

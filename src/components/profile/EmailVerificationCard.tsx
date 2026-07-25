@@ -23,7 +23,7 @@ export function EmailVerificationCard({ verified }: { verified: boolean }) {
             <button
               type="submit"
               disabled={isPending}
-              className="text-sm font-semibold text-brand hover:underline disabled:opacity-50"
+              className="flex min-h-touch items-center text-sm font-semibold text-brand-soft hover:underline disabled:opacity-50"
             >
               {isPending ? 'Enviando…' : 'Reenviar correo de verificación'}
             </button>

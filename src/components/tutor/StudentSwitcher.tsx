@@ -22,7 +22,7 @@ export function StudentSwitcher({
         <Link
           key={s.studentProfileId}
           href={`/tutor?student=${s.studentProfileId}`}
-          className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold transition-colors ${
+          className={`flex min-h-touch items-center whitespace-nowrap rounded-full px-3 text-sm font-semibold transition-colors ${
             s.studentProfileId === selectedId
               ? 'bg-brand text-white'
               : 'bg-elevated text-text-secondary hover:bg-brand-tint'

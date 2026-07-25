@@ -62,7 +62,7 @@ export function PracticeSelector({
             <p className="text-sm font-semibold text-text-primary">{drillLimitReached().message}</p>
             <Link
               href={`/paywall?trigger=${paywallTrigger ?? 'DRILL_DAILY_LIMIT'}&return=%2Fpracticar`}
-              className="mt-1 inline-block text-sm font-semibold text-brand hover:underline"
+              className="mt-1 inline-block text-sm font-semibold text-brand-soft hover:underline"
             >
               Ver planes →
             </Link>
@@ -96,7 +96,7 @@ export function PracticeSelector({
                   type="button"
                   disabled={starting || limitReached}
                   onClick={() => onStart({ kind: 'subject', subjectId: subject.subjectId })}
-                  className="text-left text-sm font-semibold text-text-primary hover:text-brand disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex min-h-touch flex-1 items-center text-left text-sm font-semibold text-text-primary hover:text-brand-soft disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {subject.subjectName}
                 </button>
@@ -108,7 +108,7 @@ export function PracticeSelector({
                         prev === subject.subjectId ? null : subject.subjectId
                       )
                     }
-                    className="text-xs text-text-muted hover:text-text-secondary"
+                    className="flex min-h-touch shrink-0 items-center text-xs text-text-muted hover:text-text-secondary"
                   >
                     {expandedSubject === subject.subjectId ? 'Ocultar temas ▲' : 'Ver temas ▾'}
                   </button>

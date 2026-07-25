@@ -50,7 +50,7 @@ export function Tino({ state = 'attentive', size = 120, ...props }: TinoProps) {
       <path d={expr.eyeBrows} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
 
       {/* Pico */}
-      <polygon points="50,40 47,45 53,45" fill="#FBBF24" />
+      <polygon points="50,40 47,45 53,45" fill="var(--warning)" />
 
       {/* Patas */}
       <line x1="42" y1="95" x2="40" y2="105" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -59,23 +59,23 @@ export function Tino({ state = 'attentive', size = 120, ...props }: TinoProps) {
       {/* Decoración por estado */}
       {state === 'celebrating' && (
         <>
-          <circle cx="20" cy="20" r="3" fill="#F97316" opacity="0.8" />
-          <circle cx="80" cy="25" r="3" fill="#22C55E" opacity="0.8" />
-          <circle cx="25" cy="60" r="2" fill="#38BDF8" opacity="0.7" />
+          <circle cx="20" cy="20" r="3" fill="var(--streak)" opacity="0.8" />
+          <circle cx="80" cy="25" r="3" fill="var(--success)" opacity="0.8" />
+          <circle cx="25" cy="60" r="2" fill="var(--info)" opacity="0.7" />
         </>
       )}
 
       {state === 'streak' && (
         <>
-          <line x1="10" y1="50" x2="20" y2="40" stroke="#F97316" strokeWidth="2" strokeLinecap="round" />
-          <line x1="90" y1="50" x2="80" y2="40" stroke="#F97316" strokeWidth="2" strokeLinecap="round" />
+          <line x1="10" y1="50" x2="20" y2="40" stroke="var(--streak)" strokeWidth="2" strokeLinecap="round" />
+          <line x1="90" y1="50" x2="80" y2="40" stroke="var(--streak)" strokeWidth="2" strokeLinecap="round" />
         </>
       )}
 
       {state === 'graduated' && (
         <g>
-          <rect x="40" y="8" width="20" height="4" fill="#7C3AED" />
-          <polygon points="50,12 44,16 56,16" fill="#7C3AED" />
+          <rect x="40" y="8" width="20" height="4" fill="var(--brand-primary)" />
+          <polygon points="50,12 44,16 56,16" fill="var(--brand-primary)" />
         </g>
       )}
     </svg>

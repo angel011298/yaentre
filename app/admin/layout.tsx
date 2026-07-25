@@ -27,10 +27,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
   }
 
   return (
-    <div
-      data-theme="light"
-      className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)]"
-    >
+    <div data-theme="light" className="min-h-screen bg-base text-text-primary">
       <header className="border-b border-border-subtle bg-surface">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-4">
           <div>

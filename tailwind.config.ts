@@ -12,14 +12,25 @@ export default {
         brand: {
           DEFAULT: '#7C3AED',
           hover: '#6D28D9',
-          soft: '#A78BFA',
+          // `soft` SÍ es theme-aware (a diferencia de DEFAULT/hover/tint):
+          // en dark es el lila claro de acento (pasa AA de sobra ahí); sobre
+          // fondos claros ese mismo lila no cumple AA como texto, así que
+          // `[data-theme='light']` lo redefine igual al morado principal.
+          soft: 'var(--brand-soft)',
           tint: '#EDE9FE',
         },
-        success: { DEFAULT: '#22C55E', glow: '#4ADE80' },
-        streak: { DEFAULT: '#F97316', glow: '#FB923C' },
-        danger: '#EF4444',
-        info: '#38BDF8',
-        warning: '#FBBF24',
+        // success/streak/danger/info/warning viven en var(--x) (a diferencia
+        // de brand, que es la misma marca en ambos temas): el verde/ámbar/
+        // rojo/azul vivos del diseño original NO cumplen AA como texto sobre
+        // fondos claros (UIUX Spec §12, "algunos verdes vivos fallan
+        // contraste... requieren texto oscuro") — `[data-theme='light']`
+        // en globals.css redefine estas variables a una sombra más oscura
+        // SOLO para light; dark conserva el valor vivo original sin cambios.
+        success: { DEFAULT: 'var(--success)', glow: '#4ADE80' },
+        streak: { DEFAULT: 'var(--streak)', glow: '#FB923C' },
+        danger: 'var(--danger)',
+        info: 'var(--info)',
+        warning: 'var(--warning)',
         base: 'var(--bg-base)',
         surface: 'var(--bg-surface)',
         elevated: 'var(--bg-elevated)',

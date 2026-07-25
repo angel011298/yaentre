@@ -92,7 +92,7 @@ export function ProfileIdentityCard({
             (displayName || '?').trim().charAt(0).toUpperCase()
           )}
         </div>
-        <label className="cursor-pointer text-sm font-semibold text-brand hover:underline">
+        <label className="cursor-pointer text-sm font-semibold text-brand-soft hover:underline">
           {uploadingAvatar ? 'Subiendo…' : 'Cambiar foto'}
           <input
             type="file"

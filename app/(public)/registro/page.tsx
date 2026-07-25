@@ -20,9 +20,9 @@ export default async function RegistroPage({
       }
     >
       <SignUpForm next={next} isTutor={isTutor} />
-      <p className="mt-6 text-center text-sm text-[var(--text-secondary)]">
+      <p className="mt-6 text-center text-sm text-text-secondary">
         ¿Ya tienes cuenta?{' '}
-        <Link href="/login" className="text-[var(--brand-soft)] hover:underline">
+        <Link href="/login" className="text-brand-soft hover:underline">
           Inicia sesión
         </Link>
       </p>

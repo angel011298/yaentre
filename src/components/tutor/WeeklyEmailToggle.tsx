@@ -21,14 +21,14 @@ export function WeeklyEmailToggle({ initialEnabled }: { initialEnabled: boolean 
   }
 
   return (
-    <label className="flex cursor-pointer items-center justify-between gap-3">
+    <label className="flex min-h-touch cursor-pointer items-center justify-between gap-3 py-1">
       <span className="text-sm text-text-primary">Resumen semanal por correo (lunes)</span>
       <input
         type="checkbox"
         checked={enabled}
         disabled={pending}
         onChange={(e) => handleChange(e.target.checked)}
-        className="h-5 w-5 accent-brand"
+        className="h-5 w-5 shrink-0 accent-brand"
       />
     </label>
   );

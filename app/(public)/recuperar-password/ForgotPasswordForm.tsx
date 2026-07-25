@@ -14,7 +14,7 @@ export function ForgotPasswordForm() {
 
   if (state.status === 'success') {
     return (
-      <p className="rounded-[12px] bg-[var(--success)]/10 px-3 py-2 text-sm text-[var(--success)]">
+      <p className="rounded-md bg-success/10 px-3 py-2 text-sm text-success">
         {state.message}
       </p>
     );
@@ -31,7 +31,7 @@ export function ForgotPasswordForm() {
         errors={state.fieldErrors?.email}
       />
       {state.status === 'error' && state.message && (
-        <p role="alert" className="text-sm text-[var(--danger)]">
+        <p role="alert" className="text-sm text-danger">
           {state.message}
         </p>
       )}

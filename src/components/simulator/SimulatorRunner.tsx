@@ -212,7 +212,7 @@ export function SimulatorRunner({
   return (
     <div className="flex min-h-screen flex-col bg-base text-text-primary">
       {/* Barra superior sobria: examen · progreso · temporizador */}
-      <header className="sticky top-0 z-20 border-b border-border-subtle bg-surface backdrop-blur">
+      <header className="acierta-safe-top sticky top-0 z-20 border-b border-border-subtle bg-surface backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-3">
           <div className="min-w-0">
             <p className="truncate text-xs font-semibold uppercase tracking-wide text-text-muted">
@@ -243,7 +243,7 @@ export function SimulatorRunner({
           <button
             type="button"
             onClick={reenterFullscreen}
-            className="font-semibold text-brand hover:underline"
+            className="font-semibold text-brand-soft hover:underline"
           >
             Volver
           </button>
@@ -295,7 +295,7 @@ export function SimulatorRunner({
             <button
               type="button"
               onClick={() => setResumeDismissed(true)}
-              className="text-xs text-text-muted hover:underline"
+              className="flex min-h-touch w-full items-center justify-center text-xs text-text-muted hover:underline"
             >
               Continuar sin pantalla completa
             </button>

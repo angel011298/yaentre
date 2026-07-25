@@ -32,7 +32,7 @@ export function SignUpForm({ next, isTutor = false }: { next?: string; isTutor?:
         errors={state.fieldErrors?.password}
       />
       {state.status === 'error' && state.message && (
-        <p role="alert" className="text-sm text-[var(--danger)]">
+        <p role="alert" className="text-sm text-danger">
           {state.message}
           {state.code === 'DUPLICATE_EMAIL' && (
             <>

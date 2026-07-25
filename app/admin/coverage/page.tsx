@@ -111,7 +111,7 @@ export default async function CoveragePage() {
         <p className="text-sm text-text-muted">
           {report.totalTopicsWithChunks}/{report.totalTopics} temas del temario tienen al menos un
           fragmento fuente ·{' '}
-          <code className="rounded bg-elevated px-1.5 py-0.5 font-mono text-xs">
+          <code className="rounded-sm bg-elevated px-1.5 py-0.5 font-mono text-xs">
             pnpm content:scan-sources
           </code>{' '}
           para ingerir material nuevo.
@@ -148,7 +148,7 @@ export default async function CoveragePage() {
       {report.areas.length === 0 ? (
         <Card className="p-8 text-center text-text-secondary">
           No hay áreas en la DB todavía. Siembra la taxonomía con{' '}
-          <code className="rounded bg-elevated px-1.5 py-0.5 font-mono text-xs">
+          <code className="rounded-sm bg-elevated px-1.5 py-0.5 font-mono text-xs">
             pnpm prisma:seed
           </code>
           .

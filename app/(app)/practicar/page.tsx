@@ -31,12 +31,23 @@ export default async function PracticarPage({
   const access = await drillDb.evaluateDrillAccess(profile.id);
 
   // Deep link desde "reforzar hoy" del dashboard (F11 WeakTopicCard): arranca
-  // directo esa práctica sin pasar por el selector.
+  // directo esa práctica sin pasar por el selector. `subjectId` es el mismo
+  // patrón para el CTA "Practicar" de la pantalla de progreso (F18).
   const sp = await searchParams;
   const topicId = typeof sp.topicId === 'string' ? sp.topicId : undefined;
   const validTopicId = topicId && options.subjects.some((s) => s.topics.some((t) => t.topicId === topicId))
     ? topicId
     : undefined;
+  const subjectId = typeof sp.subjectId === 'string' ? sp.subjectId : undefined;
+  const validSubjectId = subjectId && options.subjects.some((s) => s.subjectId === subjectId)
+    ? subjectId
+    : undefined;
+
+  const autoStartScope = validTopicId
+    ? { kind: 'topic' as const, topicId: validTopicId }
+    : validSubjectId
+      ? { kind: 'subject' as const, subjectId: validSubjectId }
+      : undefined;
 
   return (
     <DrillApp
@@ -44,7 +55,7 @@ export default async function PracticarPage({
         kind: 'selecting',
         options,
         remainingToday: access.remainingToday,
-        autoStartScope: validTopicId ? { kind: 'topic', topicId: validTopicId } : undefined,
+        autoStartScope,
       }}
     />
   );
@@ -59,7 +70,7 @@ function NoTargetMessage() {
         Primero elige tu examen
       </h1>
       <p className="text-sm text-text-secondary">{copy.message}</p>
-      <Link href="/onboarding" className="font-semibold text-brand hover:underline">
+      <Link href="/onboarding" className="font-semibold text-brand-soft hover:underline">
         Completar mi perfil
       </Link>
     </div>

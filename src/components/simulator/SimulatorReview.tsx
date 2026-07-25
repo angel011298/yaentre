@@ -80,7 +80,7 @@ export function SimulatorReview({
 
             {q.explanation && (
               <details className="rounded-md border border-border-subtle bg-elevated p-3">
-                <summary className="cursor-pointer text-sm font-semibold text-brand">
+                <summary className="cursor-pointer text-sm font-semibold text-brand-soft">
                   {q.explanation.title}
                 </summary>
                 <div className="mt-2 whitespace-pre-line text-sm leading-relaxed text-text-secondary">

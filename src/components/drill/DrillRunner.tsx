@@ -118,7 +118,7 @@ export function DrillRunner({
         <button
           type="button"
           onClick={onExitToSelector}
-          className="text-xs text-text-muted hover:text-text-secondary"
+          className="flex min-h-touch items-center text-xs text-text-muted hover:text-text-secondary"
         >
           ← Elegir otra práctica
         </button>

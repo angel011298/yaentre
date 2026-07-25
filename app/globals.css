@@ -77,6 +77,18 @@
   --text-secondary: #5a5a6a;
   --text-muted: #8a8a9a;
   --shadow-md: 0 4px 16px rgba(124, 58, 237, 0.1);
+
+  /* Mismo verde/ámbar/rojo/azul, calibrados más oscuros para cumplir AA
+     (4.5:1) como texto sobre estos fondos claros — sobre dark, esos mismos
+     tonos vivos ya cumplen de sobra (F18, ver tailwind.config.ts). */
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #dc2626;
+  --info: #0369a1;
+  --streak: #c2410c;
+  /* El lila claro de acento no cumple AA como texto sobre fondos claros —
+     colapsa al morado principal (que sí cumple, 5.5:1+) solo en light. */
+  --brand-soft: var(--brand-primary);
 }
 
 html {
@@ -87,6 +99,19 @@ body {
   background: var(--bg-base);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Accesibilidad (UIUX Spec §12, "foco visible"): respaldo universal para
+   CUALQUIER elemento enfocable que no defina su propio tratamiento de foco
+   (enlaces de navegación, íconos-botón, etc.) — `:focus-visible` (no
+   `:focus`) para que solo aparezca en navegación real por teclado, nunca en
+   un clic de mouse. Especificidad baja a propósito (un solo pseudo-selector):
+   donde un componente YA define su propio `focus:ring`/`focus:outline-none`
+   (Button, TextField, el <select> de TargetCareerForm), esa regla más
+   específica gana sola, sin que esto se le sume encima. */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
 }
 
 /* Accesibilidad: respetar prefers-reduced-motion */
@@ -135,4 +160,13 @@ body {
    env(...) rompe el escáner de CSS en modo dev (Turbopack y webpack). */
 .acierta-safe-bottom {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* TopBar (F18): mismo motivo/técnica que `.acierta-safe-bottom` (F11) — la
+   sintaxis de valor arbitrario `pt-[env(...)]` de Tailwind dispara el mismo
+   bug de parseo del escáner de CSS 4 en modo dev. Relevante en standalone
+   PWA con `statusBarStyle: "black-translucent"` (F17): el contenido dibuja
+   bajo el notch/Dynamic Island y necesita este relleno para no quedar tapado. */
+.acierta-safe-top {
+  padding-top: env(safe-area-inset-top);
 }

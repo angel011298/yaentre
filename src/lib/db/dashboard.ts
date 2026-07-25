@@ -172,7 +172,7 @@ export interface HeatmapDay {
   level: HeatmapLevel;
 }
 
-function toDateKey(mexicoMidnightUtc: Date): string {
+export function toDateKey(mexicoMidnightUtc: Date): string {
   // El instante ya ES medianoche México expresada en UTC; tomar los campos UTC
   // da la fecha calendario México correcta sin reconvertir con offset.
   const y = mexicoMidnightUtc.getUTCFullYear();

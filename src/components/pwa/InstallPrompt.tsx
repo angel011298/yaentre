@@ -91,7 +91,7 @@ export function InstallPrompt() {
           <button
             type="button"
             onClick={dismiss}
-            className="text-sm font-semibold text-text-muted hover:text-brand"
+            className="text-sm font-semibold text-text-muted hover:text-brand-soft"
           >
             Ahora no
           </button>

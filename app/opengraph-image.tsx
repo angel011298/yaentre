@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { BRAND_GRADIENT } from '@/lib/brand/colors';
 
 export const alt = 'Acierta — Tu entrenador de admisión con IA';
 export const size = { width: 1200, height: 630 };
@@ -20,7 +21,7 @@ export default function OpengraphImage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%)',
+          background: BRAND_GRADIENT,
           fontFamily: 'sans-serif',
         }}
       >

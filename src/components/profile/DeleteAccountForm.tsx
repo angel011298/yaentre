@@ -17,7 +17,7 @@ export function DeleteAccountForm() {
       <button
         type="button"
         onClick={() => setConfirming(true)}
-        className="mt-2 text-sm font-semibold text-danger hover:underline"
+        className="mt-2 flex min-h-touch items-center text-sm font-semibold text-danger hover:underline"
       >
         Eliminar mi cuenta
       </button>
