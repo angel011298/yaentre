@@ -13,5 +13,5 @@ export const NAV_ITEMS: NavItem[] = [
   { href: '/practicar', label: 'Practicar', icon: '✏️', builtRoute: true },
   { href: '/simulador', label: 'Simulador', icon: '🎯', builtRoute: true },
   { href: '/app', label: 'Progreso', icon: '📊', builtRoute: false },
-  { href: '/app', label: 'Perfil', icon: '👤', builtRoute: false },
+  { href: '/app/perfil', label: 'Perfil', icon: '👤', builtRoute: true },
 ];

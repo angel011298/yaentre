@@ -56,6 +56,12 @@ const PLAN_LABELS: Record<SubscriptionPlan, string> = {
   PREMIUM: 'Premium Garantía',
 };
 
+/** Nombre visible de un plan — única fuente (F17): antes duplicado como un
+ *  `PLAN_LABELS` local en `email/templates.ts`, F16). */
+export function planLabel(plan: SubscriptionPlan): string {
+  return PLAN_LABELS[plan];
+}
+
 const SEASON_LABELS: Record<PricingSeason, string> = {
   EARLY_BIRD: 'Early Bird',
   HIGH_SEASON: 'Temporada Alta',

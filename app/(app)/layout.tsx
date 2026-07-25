@@ -4,6 +4,8 @@ import { VerificationBanner } from '@/components/ui/VerificationBanner';
 import { BottomNav } from '@/components/dashboard/BottomNav';
 import { Sidebar } from '@/components/dashboard/Sidebar';
 import { TopBar } from '@/components/dashboard/TopBar';
+import { InstallPrompt } from '@/components/pwa/InstallPrompt';
+import { OfflineBanner } from '@/components/pwa/OfflineBanner';
 import { AuthError } from '@/lib/auth/errors';
 import { requireUser } from '@/lib/auth/guards';
 import { getStreak } from '@/lib/db/streak';
@@ -21,6 +23,8 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   let authUser;
   let profileId: string;
   let displayName: string | null;
+  let avatarUrl: string | null;
+  let themePref: string;
   try {
     const { authUser: user, profile } = await requireUser();
     if (profile.role === 'PARENT') {
@@ -32,6 +36,8 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     authUser = user;
     profileId = profile.id;
     displayName = profile.displayName;
+    avatarUrl = profile.avatarUrl;
+    themePref = profile.themePref;
   } catch (err) {
     if (err instanceof AuthError) {
       redirect('/login?next=/app');
@@ -43,14 +49,20 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   const initial = (displayName ?? authUser.email ?? '?').trim().charAt(0).toUpperCase();
 
   return (
+    // F17: el tema ya viene de `UserProfile.themePref` (antes vivía solo en
+    // localStorage, sin persistencia real) — se cambia desde /app/perfil.
     <div
-      data-theme="dark"
+      data-theme={themePref}
       className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)]"
     >
       <Sidebar />
-      <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} />
+      <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} avatarUrl={avatarUrl} />
       {!authUser.email_confirmed_at && <VerificationBanner />}
-      <main className="mx-auto max-w-5xl px-4 py-8 pb-24 lg:pl-60 lg:pb-8">{children}</main>
+      <OfflineBanner />
+      <main className="mx-auto max-w-5xl space-y-4 px-4 py-8 pb-24 lg:pl-60 lg:pb-8">
+        <InstallPrompt />
+        {children}
+      </main>
       <BottomNav />
     </div>
   );
