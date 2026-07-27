@@ -1,6 +1,56 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
+const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin
+  : "";
+const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
+
+/**
+ * F22: cabeceras de seguridad HTTP a nivel de toda la app. La CSP es
+ * deliberadamente "razonable" y no de nonce estricto: Next.js necesita
+ * `'unsafe-inline'` en script-src para su bootstrap de hidratación salvo que
+ * se implemente un esquema de nonce por request (no se intentó aquí — el
+ * riesgo de romper la hidratación en rutas no cubiertas por la verificación
+ * manual de esta fase pesa más que el beneficio incremental). Aun así,
+ * bloquea el vector más dañino: inyección de <script>/<iframe>/<object> de
+ * un origen ARBITRARIO de terceros.
+ *
+ * Sentry usa `tunnelRoute: "/monitoring"` (mismo origen) — por eso no
+ * necesita su dominio de ingesta en connect-src. PostHog y Supabase SÍ
+ * llaman a su host directo desde el navegador, así que se permiten
+ * explícitamente. Stripe Checkout es una navegación completa
+ * (`window.location`), no un iframe/fetch — no requiere entrada en la CSP.
+ */
+function buildCsp(): string {
+  const connectSrc = ["'self'", posthogHost, ...(supabaseHost ? [supabaseHost] : [])];
+  const imgSrc = ["'self'", "data:", "blob:", ...(supabaseHost ? [supabaseHost] : [])];
+  return [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline'",
+    `img-src ${imgSrc.join(" ")}`,
+    "font-src 'self' data:",
+    `connect-src ${connectSrc.join(" ")}`,
+    "frame-src 'none'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+  ].join("; ");
+}
+
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  // Cámara habilitada same-origin (el simulador la pide opcionalmente en el
+  // pre-flight, F12 — nunca bloqueante); micrófono/geolocalización sin uso.
+  { key: "Permissions-Policy", value: "camera=(self), microphone=(), geolocation=()" },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+  { key: "X-DNS-Prefetch-Control", value: "on" },
+  { key: "Content-Security-Policy", value: buildCsp() },
+];
+
 const nextConfig: NextConfig = {
   images: {
     // Avatares reales (F17, Supabase Storage) — permite que next/image los
@@ -14,6 +64,9 @@ const nextConfig: NextConfig = {
           },
         ]
       : [],
+  },
+  async headers() {
+    return [{ source: "/(.*)", headers: securityHeaders }];
   },
 };
 

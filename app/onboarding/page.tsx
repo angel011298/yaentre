@@ -31,7 +31,7 @@ export const fetchCache = 'force-no-store';
 export default async function OnboardingPage({
   searchParams,
 }: {
-  searchParams: Promise<{ area?: string }>;
+  searchParams: Promise<{ area?: string; unavailable?: string }>;
 }) {
   const { profile } = await requireUser();
 
@@ -39,14 +39,14 @@ export default async function OnboardingPage({
     redirect('/app');
   }
 
-  const { area: areaId } = await searchParams;
+  const { area: areaId, unavailable } = await searchParams;
 
   // Paso 1: elegir examen.
   if (profile.onboardingStep === OnboardingStep.EXAM || !profile.targetExamId) {
     const options = await onboardingDb.loadEnabledExamOptions();
     return (
       <Wizard current={1}>
-        <ExamStep options={options} />
+        <ExamStep options={options} showUnavailableNotice={unavailable === '1'} />
       </Wizard>
     );
   }

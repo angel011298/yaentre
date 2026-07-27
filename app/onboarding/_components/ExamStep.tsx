@@ -6,7 +6,13 @@ const LEVEL_LABEL: Record<ExamOption['levelType'], string> = {
   MEDIA_SUPERIOR: 'Bachillerato',
 };
 
-export function ExamStep({ options }: { options: ExamOption[] }) {
+export function ExamStep({
+  options,
+  showUnavailableNotice = false,
+}: {
+  options: ExamOption[];
+  showUnavailableNotice?: boolean;
+}) {
   return (
     <div className="space-y-5">
       <header className="space-y-1">
@@ -15,6 +21,13 @@ export function ExamStep({ options }: { options: ExamOption[] }) {
           Con esto preparamos el temario, el simulador y tus metas de aciertos.
         </p>
       </header>
+
+      {showUnavailableNotice && (
+        <p className="rounded-lg border border-warning/30 bg-warning/10 p-4 text-sm text-text-primary">
+          Ese examen todavía no está disponible — <strong>próximamente</strong>. Elige una de las
+          opciones de abajo mientras tanto.
+        </p>
+      )}
 
       {options.length === 0 ? (
         <p className="rounded-lg border border-border-subtle bg-surface p-4 text-sm text-text-secondary">

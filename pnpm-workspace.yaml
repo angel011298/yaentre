@@ -1,4 +1,14 @@
 verifyDepsBeforeRun: false
+# F22: fuerza versiones parcheadas de dependencias transitivas marcadas por
+# `pnpm audit`. `sharp` en particular procesa imágenes subidas por usuarios
+# reales (avatares vía next/image, F17/F20) — no es solo teórico, verificado
+# con `pnpm build` tras el override que el pipeline de optimización de
+# imágenes sigue compilando y funcionando.
+overrides:
+  fast-uri: '>=3.1.4'
+  dompurify: '>=3.4.12'
+  postcss: '>=8.5.18'
+  sharp: '>=0.35.0'
 allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true

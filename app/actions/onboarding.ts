@@ -25,9 +25,15 @@ export async function selectExamAction(formData: FormData): Promise<void> {
 
   if (valid) {
     await onboardingDb.saveExamSelection(profile.id, exam.id);
+    redirect('/onboarding');
   }
 
-  redirect('/onboarding');
+  // F22 (Flujo_App §4.2/§15.1 "deep link a institución desactivada"): un
+  // examId manipulado (flag apagado, examen inactivo, o id inexistente) no
+  // debe fallar en silencio — el alumno ve "Disponible próximamente" en vez
+  // de un redirect vacío sin explicación. La lista ya sale filtrada
+  // (`loadEnabledExamOptions`); esto solo cubre el intento manipulado.
+  redirect('/onboarding?unavailable=1');
 }
 
 /**

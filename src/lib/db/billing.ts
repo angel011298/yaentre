@@ -1,3 +1,4 @@
+import Stripe from 'stripe';
 import { Prisma, type PricingSeason, type SubscriptionPlan } from '@prisma/client';
 import { prisma } from './prisma';
 import { computeExpiresAt } from '@/lib/stripe/expiry';
@@ -12,6 +13,7 @@ import type {
   BillingStore,
   CheckoutActivation,
 } from '@/lib/stripe/webhook';
+import { reconcileCheckoutSession, type ReconcileOutcome } from '@/lib/stripe/reconciliation';
 import { trackServerEvent } from '@/lib/analytics/server';
 
 /**
@@ -281,6 +283,95 @@ export async function createPendingSubscription(input: {
 export type SubscriptionForResult = Prisma.SubscriptionGetPayload<{
   include: { payments: true };
 }>;
+
+/**
+ * Suscripciones PENDING más viejas que el corte (F22, job de reconciliación).
+ * Solo las que tienen `stripeCheckoutSessionId` — sin eso no hay nada que
+ * consultarle a Stripe. `createdAt < cutoff` en vez de "hace 24h fijas" para
+ * que el llamador decida la ventana (útil en tests y para ajustar sin tocar
+ * este módulo).
+ */
+export async function findStalePendingSubscriptions(
+  cutoff: Date
+): Promise<{ id: string; stripeCheckoutSessionId: string; userProfileId: string; createdAt: Date }[]> {
+  const rows = await prisma.subscription.findMany({
+    where: {
+      status: 'PENDING',
+      createdAt: { lt: cutoff },
+      stripeCheckoutSessionId: { not: null },
+    },
+    select: { id: true, stripeCheckoutSessionId: true, userProfileId: true, createdAt: true },
+  });
+  return rows.filter(
+    (r): r is { id: string; stripeCheckoutSessionId: string; userProfileId: string; createdAt: Date } =>
+      r.stripeCheckoutSessionId !== null
+  );
+}
+
+const STALE_PENDING_AFTER_MS = 24 * 60 * 60 * 1000;
+
+export interface ReconciliationSummary {
+  checked: number;
+  activated: string[];
+  expired: string[];
+  stillPending: string[];
+  errors: { checkoutSessionId: string; message: string }[];
+}
+
+/**
+ * Orquestador del job de reconciliación (F22). Usado tanto por
+ * `scripts/reconcile-pending-payments.ts` (corrida manual) como por
+ * `app/api/cron/reconcile-payments/route.ts` (Vercel Cron, 1x/día) — un
+ * único punto de verdad, sin duplicar la consulta a Stripe ni el criterio
+ * de "estancado" en dos lugares.
+ */
+export async function runPaymentReconciliation(now: Date = new Date()): Promise<ReconciliationSummary> {
+  const summary: ReconciliationSummary = {
+    checked: 0,
+    activated: [],
+    expired: [],
+    stillPending: [],
+    errors: [],
+  };
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey) {
+    console.warn('[reconcile] Falta STRIPE_SECRET_KEY — nada que reconciliar en este entorno.');
+    return summary;
+  }
+
+  const stripe = new Stripe(secretKey, { telemetry: false });
+  const cutoff = new Date(now.getTime() - STALE_PENDING_AFTER_MS);
+  const stale = await findStalePendingSubscriptions(cutoff);
+  summary.checked = stale.length;
+
+  for (const sub of stale) {
+    try {
+      const session = await stripe.checkout.sessions.retrieve(sub.stripeCheckoutSessionId);
+      const outcome: ReconcileOutcome = await reconcileCheckoutSession(session, billingStore);
+
+      if (outcome.action === 'activated') summary.activated.push(sub.stripeCheckoutSessionId);
+      else if (outcome.action === 'expired') summary.expired.push(sub.stripeCheckoutSessionId);
+      else summary.stillPending.push(sub.stripeCheckoutSessionId);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'error desconocido';
+      summary.errors.push({ checkoutSessionId: sub.stripeCheckoutSessionId, message });
+    }
+  }
+
+  // "Alerta a soporte" (Flujo_App §15.1): sin infraestructura de alertas
+  // dedicada en este entorno, un log claro en stderr es lo que Sentry/Vercel
+  // captura — mismo criterio de degradación que el resto del proyecto
+  // (RESEND_API_KEY/SENTRY_DSN ausentes → log, nunca crash).
+  if (summary.expired.length > 0 || summary.errors.length > 0) {
+    console.error(
+      '[reconcile] Pagos que requieren atención manual:',
+      JSON.stringify({ expired: summary.expired, errors: summary.errors })
+    );
+  }
+
+  return summary;
+}
 
 /** Lee la suscripción por su checkout session id, para las pantallas de resultado.
  *  Se valida además que pertenezca al usuario (defensa: nadie ve el pago de otro). */

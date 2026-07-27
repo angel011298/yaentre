@@ -146,20 +146,30 @@ export async function changePasswordAction(
 
 const avatarSchema = z.object({ avatarUrl: z.string().url() });
 
-/** Solo acepta URLs de NUESTRO bucket de Storage — nunca una imagen
- *  arbitraria inyectada saltándose el flujo real de subida (F17 tarea 2). */
-function isOwnAvatarUrl(url: string): boolean {
+/**
+ * Solo acepta URLs de NUESTRO bucket de Storage, y dentro de la carpeta del
+ * PROPIO usuario (F17 tarea 2; ownership reforzado en F22) — la carpeta raíz
+ * del path es siempre `auth.uid()` por convención del bucket (mismo criterio
+ * que las políticas RLS de `storage.objects`, migración 0008). Sin este
+ * segundo chequeo, un usuario podía apuntar su perfil a la foto de OTRO
+ * usuario (URL válida del bucket, pero de una carpeta ajena) — no expone
+ * datos sensibles (los avatares ya son públicos), pero rompe la garantía de
+ * "esta foto es la que tú subiste".
+ */
+function isOwnAvatarUrl(url: string, authUserId: string): boolean {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  return Boolean(supabaseUrl) && url.startsWith(`${supabaseUrl}/storage/v1/object/public/avatars/`);
+  if (!supabaseUrl) return false;
+  const prefix = `${supabaseUrl}/storage/v1/object/public/avatars/${authUserId}/`;
+  return url.startsWith(prefix);
 }
 
 export async function updateAvatarAction(
   input: z.input<typeof avatarSchema>
 ): Promise<ActionResult<{ avatarUrl: string }>> {
   try {
-    const { profile } = await requireUser();
+    const { authUser, profile } = await requireUser();
     const parsed = avatarSchema.safeParse(input);
-    if (!parsed.success || !isOwnAvatarUrl(parsed.data.avatarUrl)) {
+    if (!parsed.success || !isOwnAvatarUrl(parsed.data.avatarUrl, authUser.id)) {
       return { ok: false, code: 'VALIDATION', message: 'Imagen inválida.' };
     }
     await updateAvatarUrl(profile.id, parsed.data.avatarUrl);
