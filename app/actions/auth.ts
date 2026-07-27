@@ -11,6 +11,7 @@ import {
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
+import { trackServerEvent } from '@/lib/analytics/server';
 
 /**
  * Registro con verificación diferida: la cuenta y la sesión se crean de
@@ -78,8 +79,9 @@ export async function signUpAction(
     session = signInResult.data.session;
   }
 
+  let profile;
   try {
-    await prisma.userProfile.upsert({
+    profile = await prisma.userProfile.upsert({
       where: { userId: data.user.id },
       create: { userId: data.user.id, role, onboardingStep: 0 },
       update: {},
@@ -91,6 +93,8 @@ export async function signUpAction(
         'Tu cuenta se creó, pero no pudimos preparar tu perfil. Intenta iniciar sesión en un momento.',
     };
   }
+
+  await trackServerEvent(profile.id, 'signup_completed', { role });
 
   if (!session) {
     redirect('/login?registered=1');

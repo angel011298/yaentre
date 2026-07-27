@@ -1,4 +1,5 @@
 import type { ConfidenceLevel } from '@prisma/client';
+import { unstable_cache } from 'next/cache';
 import { prisma } from './prisma';
 import {
   aggregateTopicStats,
@@ -368,18 +369,29 @@ async function loadRecentlyAnsweredIds(userProfileId: string): Promise<Set<strin
   return new Set(rows.map((r) => r.questionId));
 }
 
-/** Pool de reactivos servibles del área (GUARDRAIL: usage SERVABLE + verificado). */
-async function loadAreaServablePool(areaId: string): Promise<SelectableQuestion[]> {
-  const rows = await prisma.question.findMany({
-    where: {
-      usage: 'SERVABLE',
-      isVerified: true,
-      topic: { subject: { areaId } },
-    },
-    select: { id: true, topicId: true },
-  });
-  return rows.map((r) => ({ id: r.id, topicId: r.topicId }));
-}
+/** F20 tarea 3: mismo criterio de caché que src/lib/db/question-read.ts. */
+const QUESTION_BANK_REVALIDATE_SECS = 300;
+
+/**
+ * Pool de reactivos servibles del área (GUARDRAIL: usage SERVABLE + verificado).
+ * F20 tarea 3: cacheado — no personalizado, mismo pool para cualquier alumno
+ * del área, y se pide en CADA inicio de práctica/sesión adaptativa.
+ */
+const loadAreaServablePool = unstable_cache(
+  async (areaId: string): Promise<SelectableQuestion[]> => {
+    const rows = await prisma.question.findMany({
+      where: {
+        usage: 'SERVABLE',
+        isVerified: true,
+        topic: { subject: { areaId } },
+      },
+      select: { id: true, topicId: true },
+    });
+    return rows.map((r) => ({ id: r.id, topicId: r.topicId }));
+  },
+  ['loadAreaServablePool'],
+  { revalidate: QUESTION_BANK_REVALIDATE_SECS }
+);
 
 /** Área por defecto del alumno (la de su carrera meta). null si aún no tiene. */
 export async function getDefaultAreaId(userProfileId: string): Promise<string | null> {
@@ -432,14 +444,18 @@ export async function selectNextAdaptiveQuestions(
   }
 }
 
-/** Pool de reactivos servibles de UNA materia (GUARDRAIL: usage SERVABLE + verificado). */
-async function loadSubjectServablePool(subjectId: string): Promise<SelectableQuestion[]> {
-  const rows = await prisma.question.findMany({
-    where: { usage: 'SERVABLE', isVerified: true, topic: { subjectId } },
-    select: { id: true, topicId: true },
-  });
-  return rows.map((r) => ({ id: r.id, topicId: r.topicId }));
-}
+/** Pool de reactivos servibles de UNA materia (GUARDRAIL: usage SERVABLE + verificado). Cacheado, ver loadAreaServablePool. */
+const loadSubjectServablePool = unstable_cache(
+  async (subjectId: string): Promise<SelectableQuestion[]> => {
+    const rows = await prisma.question.findMany({
+      where: { usage: 'SERVABLE', isVerified: true, topic: { subjectId } },
+      select: { id: true, topicId: true },
+    });
+    return rows.map((r) => ({ id: r.id, topicId: r.topicId }));
+  },
+  ['loadSubjectServablePool'],
+  { revalidate: QUESTION_BANK_REVALIDATE_SECS }
+);
 
 /**
  * Selección adaptativa acotada a UNA materia (F14 Task 1: "practicar por

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { updateAvatarAction, updateDisplayNameAction } from '@/app/actions/profile';
 import { createSupabaseBrowserClient } from '@/lib/auth/supabase-browser';
@@ -86,8 +87,7 @@ export function ProfileIdentityCard({
       <div className="flex items-center gap-4">
         <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-tint text-xl font-bold text-brand">
           {avatarUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element -- URL dinámica de Storage, no un asset del build
-            <img src={avatarUrl} alt="" className="h-full w-full object-cover" />
+            <Image src={avatarUrl} alt="" width={64} height={64} className="h-full w-full object-cover" />
           ) : (
             (displayName || '?').trim().charAt(0).toUpperCase()
           )}

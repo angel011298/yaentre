@@ -17,8 +17,10 @@
    de un documento con data-theme="dark" en <html>: el color de fondo de las
    tarjetas resultó ser transparente en vez de tomar --bg-surface. */
 @config "../tailwind.config.ts";
-/* KaTeX: fórmulas de reactivos STEM (renderizado server-side en /admin) */
-@import "katex/dist/katex.min.css";
+/* KaTeX (F20 tarea 3): el CSS se movió a un import a nivel de componente en
+   src/components/admin/LatexText.tsx — así solo las páginas que de verdad
+   renderizan fórmulas lo cargan, en vez de cada ruta del sitio (landing,
+   dashboard, precios...) donde nunca aparece una fórmula. */
 
 /* Tokens de marca (constantes en ambos modos) */
 :root {
@@ -150,6 +152,16 @@ body {
 /* Mapa de calor (F11, src/components/gamification/HeatmapCalendar.tsx):
    react-calendar-heatmap asigna estas clases vía `classForValue` — nivel 0
    sin actividad, 1 sesión corta (tenue), 2 sesión de 30+ min (lleno). */
+/* F20 tarea 4: `min-height` reserva el espacio del SVG (el componente es
+   'use client' — no existe en el HTML inicial hasta que React lo monta) —
+   sin esto el dashboard sufre un salto de layout notorio (CLS) justo debajo
+   del encabezado "Tu semana" apenas termina de hidratar. 222px medido contra
+   el dashboard real (Playwright, viewport 375px): la causa mayor del salto
+   resultó ser `loading.tsx` (alturas de esqueleto genéricas muy distintas al
+   contenido real, ver ese archivo) — esto es el remanente menor. */
+.acierta-heatmap {
+  min-height: 222px;
+}
 .acierta-heatmap .react-calendar-heatmap text {
   fill: var(--text-muted);
   font-size: 6px;

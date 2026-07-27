@@ -1,4 +1,5 @@
 import katex from 'katex';
+import 'katex/dist/katex.min.css';
 import { splitLatexSegments } from '@/lib/admin/latex-segments';
 
 /**

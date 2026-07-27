@@ -9,6 +9,7 @@ import { getStripe } from '@/lib/stripe/client';
 import { getPlanPricing, stripePriceEnvVar } from '@/lib/stripe/pricing';
 import { createPendingSubscription, resolveEffectiveSeason } from '@/lib/db/billing';
 import type { ActionResult } from '@/lib/sessions/schemas';
+import { trackServerEvent } from '@/lib/analytics/server';
 
 /**
  * Inicio de checkout (F8). Reglas críticas:
@@ -121,6 +122,8 @@ export async function startCheckoutAction(
     hasGuarantee: pricing.hasGuarantee,
     stripeCustomerId: typeof session.customer === 'string' ? session.customer : session.customer?.id,
   });
+
+  await trackServerEvent(profileId, 'checkout_started', { plan, season });
 
   return { ok: true, data: { url: session.url } };
 }

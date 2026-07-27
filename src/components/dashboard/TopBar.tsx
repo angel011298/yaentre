@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { StreakFlame } from '@/components/gamification/StreakFlame';
 
@@ -25,8 +26,7 @@ export function TopBar({
           aria-label="Perfil"
         >
           {avatarUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element -- avatar de usuario, URL dinámica de Storage
-            <img src={avatarUrl} alt="" className="h-full w-full object-cover" />
+            <Image src={avatarUrl} alt="" width={36} height={36} className="h-full w-full object-cover" />
           ) : (
             initial
           )}

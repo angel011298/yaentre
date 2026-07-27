@@ -4,6 +4,7 @@ import { onSessionFinished } from './adaptive';
 import { getStreak } from './streak';
 import { computeSessionCelebration } from './gamification';
 import type { Celebration } from '@/lib/gamification/celebrations';
+import { trackServerEvent } from '@/lib/analytics/server';
 import {
   appendSuspicionEvent,
   buildSubmitResponse,
@@ -180,6 +181,44 @@ export async function submitAnswer(params: {
   return buildSubmitResponse(session.mode, correct, getCorrectOptionId(options));
 }
 
+/** Despacha el evento de embudo correcto según el modo de la sesión terminada (F20 tarea 2). */
+async function trackSessionCompletion(
+  mode: SessionMode,
+  userProfileId: string,
+  data: {
+    score: number;
+    totalQuestions: number;
+    durationSecs: number;
+    status: ExamSession['status'];
+    timeExceeded: boolean;
+  }
+): Promise<void> {
+  const { score, totalQuestions, durationSecs, status, timeExceeded } = data;
+
+  if (mode === 'DIAGNOSTIC') {
+    await trackServerEvent(userProfileId, 'diagnostic_completed', {
+      score,
+      totalQuestions,
+      durationSecs,
+    });
+  } else if (mode === 'TOPIC_DRILL' || mode === 'AREA_PRACTICE') {
+    await trackServerEvent(userProfileId, 'practice_completed', {
+      mode,
+      score,
+      totalQuestions,
+      durationSecs,
+    });
+  } else if (mode === 'FULL_SIMULATION') {
+    await trackServerEvent(userProfileId, 'simulation_completed', {
+      score,
+      totalQuestions,
+      durationSecs,
+      status,
+      timeExceeded,
+    });
+  }
+}
+
 export async function finishSession(params: {
   userProfileId: string;
   sessionId: string;
@@ -260,6 +299,17 @@ export async function finishSession(params: {
   } catch (err) {
     console.error('[gamification] computeSessionCelebration falló', { userProfileId: session.userProfileId, err });
   }
+
+  // F20 tarea 2: el fin de un simulacro es "el indicador más importante del
+  // negocio" (instrucción explícita) — se despacha por modo con el mismo
+  // criterio "servidor es la autoridad" de scoring/pagos.
+  await trackSessionCompletion(session.mode, session.userProfileId, {
+    score,
+    totalQuestions: answers.length,
+    durationSecs: elapsedSecs,
+    status,
+    timeExceeded,
+  });
 
   // finishSession revela: aquí ya es seguro devolver la correctitud por reactivo.
   return {

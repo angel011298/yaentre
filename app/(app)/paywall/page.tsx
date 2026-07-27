@@ -5,6 +5,7 @@ import { earlyBirdLicensesRemaining, resolveEffectiveSeason } from '@/lib/db/bil
 import type { PaywallTrigger } from '@/lib/paywall/gates';
 import { sanitizeReturnPath } from '@/lib/paywall/return-path';
 import { getPlanPricing } from '@/lib/stripe/pricing';
+import { trackServerEvent } from '@/lib/analytics/server';
 
 const VALID_TRIGGERS: readonly PaywallTrigger[] = [
   'FULL_SIMULATION_LIMIT',
@@ -32,7 +33,7 @@ export default async function PaywallPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  await requireOnboarding();
+  const { profile } = await requireOnboarding();
   const sp = await searchParams;
 
   const trigger = parseTrigger(sp.trigger);
@@ -41,6 +42,8 @@ export default async function PaywallPage({
   const season = await resolveEffectiveSeason(new Date());
   const pricing = PLANS.map((plan) => getPlanPricing(plan, season));
   const earlyBirdRemaining = season === 'EARLY_BIRD' ? await earlyBirdLicensesRemaining() : null;
+
+  await trackServerEvent(profile.id, 'paywall_shown', { trigger });
 
   return (
     <PaywallScreen

@@ -6,6 +6,7 @@ import { Sidebar } from '@/components/dashboard/Sidebar';
 import { TopBar } from '@/components/dashboard/TopBar';
 import { InstallPrompt } from '@/components/pwa/InstallPrompt';
 import { OfflineBanner } from '@/components/pwa/OfflineBanner';
+import { IdentifyUser } from '@/components/analytics/IdentifyUser';
 import { AuthError } from '@/lib/auth/errors';
 import { requireUser } from '@/lib/auth/guards';
 import { getStreak } from '@/lib/db/streak';
@@ -55,6 +56,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       data-theme={themePref}
       className="min-h-screen bg-base text-text-primary"
     >
+      <IdentifyUser profileId={profileId} />
       <Sidebar />
       <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} avatarUrl={avatarUrl} />
       {!authUser.email_confirmed_at && <VerificationBanner />}

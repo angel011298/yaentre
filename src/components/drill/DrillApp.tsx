@@ -1,14 +1,20 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { startDrillAction } from '@/app/actions/drill';
 import { finishSession } from '@/app/actions/sessions';
 import type { FinishSessionResult } from '@/lib/db/sessions';
 import type { DrillPayload, PracticeOptions, PracticeScope } from '@/lib/db/drill';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
-import { DrillRunner } from './DrillRunner';
-import { DrillSummary } from './DrillSummary';
 import { PracticeSelector } from './PracticeSelector';
+
+// F20 tarea 3: DrillRunner/DrillSummary arrastran KaTeX y las animaciones de
+// celebración (framer-motion) — se cargan en un chunk aparte, solo cuando de
+// verdad hace falta una sesión activa o un resumen, no en el selector inicial
+// (el primer estado que ve casi todo mundo al entrar a /practicar).
+const DrillRunner = dynamic(() => import('./DrillRunner').then((m) => m.DrillRunner));
+const DrillSummary = dynamic(() => import('./DrillSummary').then((m) => m.DrillSummary));
 
 export type DrillInitial =
   | { kind: 'active'; payload: DrillPayload }

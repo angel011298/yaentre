@@ -3,6 +3,7 @@ import { isSubjectMastered, type TopicMasteryInput } from '@/lib/gamification/ma
 import { isStreakAtRisk, newlyReachedStreakMilestone } from '@/lib/gamification/streak-signals';
 import { selectCelebration, type Celebration } from '@/lib/gamification/celebrations';
 import { isPerfectRound } from '@/lib/simulator/config';
+import { trackServerEvent } from '@/lib/analytics/server';
 
 /**
  * Orquestación de gamificación (F15): conecta los motores puros
@@ -130,11 +131,23 @@ export async function computeSessionCelebration(params: {
   const { userProfileId, sessionId, score, servedCount, previousStreak, currentStreak } = params;
 
   const masteredSubjects = await grantNewlyMasteredSubjects(userProfileId, sessionId);
+  // F20 tarea 2: hito de retención — se registra por cada materia recién
+  // dominada, incluso si `selectCelebration` termina mostrando solo una (la
+  // insignia ya quedó otorgada de verdad para todas, así que el evento de
+  // negocio también debe reflejarlas todas).
+  for (const _subject of masteredSubjects) {
+    await trackServerEvent(userProfileId, 'badge_earned', { badgeType: 'MATERIA_DOMINADA' });
+  }
+
+  const streakMilestone = newlyReachedStreakMilestone(previousStreak, currentStreak);
+  if (streakMilestone) {
+    await trackServerEvent(userProfileId, 'streak_milestone', { days: streakMilestone });
+  }
 
   return selectCelebration({
     masteredSubjects,
     perfectRound: isPerfectRound(score, servedCount),
-    streakMilestone: newlyReachedStreakMilestone(previousStreak, currentStreak),
+    streakMilestone,
   });
 }
 

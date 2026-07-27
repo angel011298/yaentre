@@ -1,6 +1,7 @@
 import type { Area, Career, Exam, Institution, Level } from '@prisma/client';
 import { isExamOptionEnabled } from '@/lib/onboarding/feature-flags';
 import { OnboardingStep } from '@/lib/onboarding/steps';
+import { trackServerEvent } from '@/lib/analytics/server';
 import { prisma } from './prisma';
 
 /**
@@ -100,4 +101,5 @@ export async function completeOnboardingWizard(userProfileId: string): Promise<v
     where: { id: userProfileId },
     data: { onboardingStep: OnboardingStep.DONE },
   });
+  await trackServerEvent(userProfileId, 'onboarding_completed', {});
 }

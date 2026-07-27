@@ -12,6 +12,7 @@ import type {
   BillingStore,
   CheckoutActivation,
 } from '@/lib/stripe/webhook';
+import { trackServerEvent } from '@/lib/analytics/server';
 
 /**
  * Capa de datos de facturación (F8): implementación real (prisma-backed) del
@@ -71,10 +72,11 @@ function resolveAmountMxn(
   return activation.amountMxn ?? getPlanPricing(plan, season).amountMxn;
 }
 
+/** Devuelve `true` solo si la insignia se otorgó recién en esta llamada (idempotente). */
 async function grantEarlyBirdBadge(
   tx: Prisma.TransactionClient,
   userProfileId: string
-): Promise<void> {
+): Promise<boolean> {
   const profile = await tx.userProfile.findUnique({
     where: { id: userProfileId },
     select: { badges: true },
@@ -84,7 +86,9 @@ async function grantEarlyBirdBadge(
       where: { id: userProfileId },
       data: { badges: { push: 'EARLY_BIRD' } },
     });
+    return true;
   }
+  return false;
 }
 
 async function upsertPayment(
@@ -114,8 +118,29 @@ async function upsertPayment(
 }
 
 export const billingStore: BillingStore = {
-  activateFromCheckout(eventId, eventType, activation) {
-    return runIdempotent(eventId, eventType, async (tx) => {
+  async activateFromCheckout(eventId, eventType, activation) {
+    // F20 tarea 2: `purchase_completed`/`badge_earned` deben mandarse SOLO si
+    // la transacción de verdad aplicó (no en duplicados) — se capturan datos
+    // dentro del `work` y se despachan después de que `runIdempotent` confirma
+    // 'applied', nunca dentro de la transacción misma (evita mandar el evento
+    // si un rollback revierte el cambio).
+    // Envuelto en un objeto (en vez de un `let` reasignado dentro del closure):
+    // TypeScript no rastrea correctamente el narrowing de una variable local
+    // reasignada dentro de una función anidada — el acceso a una propiedad sí
+    // se lee fresco en cada punto.
+    const tracked: {
+      value: {
+        userProfileId: string;
+        plan: SubscriptionPlan;
+        season: PricingSeason;
+        amountMxn: number;
+        method: string;
+        isEarlyBird: boolean;
+        earlyBirdBadgeGranted: boolean;
+      } | null;
+    } = { value: null };
+
+    const result = await runIdempotent(eventId, eventType, async (tx) => {
       const sub = await tx.subscription.findUnique({
         where: { stripeCheckoutSessionId: activation.checkoutSessionId },
         include: {
@@ -147,10 +172,37 @@ export const billingStore: BillingStore = {
 
       await upsertPayment(tx, sub.id, activation, amountMxn, 'SUCCEEDED');
 
+      let earlyBirdBadgeGranted = false;
       if (sub.season === 'EARLY_BIRD') {
-        await grantEarlyBirdBadge(tx, sub.userProfileId);
+        earlyBirdBadgeGranted = await grantEarlyBirdBadge(tx, sub.userProfileId);
       }
+
+      tracked.value = {
+        userProfileId: sub.userProfileId,
+        plan: sub.plan,
+        season: sub.season,
+        amountMxn,
+        method: activation.method,
+        isEarlyBird: sub.season === 'EARLY_BIRD',
+        earlyBirdBadgeGranted,
+      };
     });
+
+    const t = tracked.value;
+    if (result === 'applied' && t) {
+      await trackServerEvent(t.userProfileId, 'purchase_completed', {
+        plan: t.plan,
+        season: t.season,
+        amountMxn: t.amountMxn,
+        method: t.method,
+        isEarlyBird: t.isEarlyBird,
+      });
+      if (t.earlyBirdBadgeGranted) {
+        await trackServerEvent(t.userProfileId, 'badge_earned', { badgeType: 'EARLY_BIRD' });
+      }
+    }
+
+    return result;
   },
 
   recordPendingAsyncPayment(eventId, eventType, activation) {

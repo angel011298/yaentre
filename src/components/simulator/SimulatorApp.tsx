@@ -1,12 +1,17 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import screenfull from 'screenfull';
 import { startSimulationAction } from '@/app/actions/simulator';
 import type { SimulatorPayload } from '@/lib/db/simulator';
 import { SimulatorPreflight } from './SimulatorPreflight';
-import { SimulatorRunner, type PreflightSignals } from './SimulatorRunner';
+import type { PreflightSignals } from './SimulatorRunner';
+
+// F20 tarea 3: SimulatorRunner (reactivos + KaTeX + store de Zustand) en un
+// chunk aparte — todo mundo ve primero el pre-flight, no la sesión activa.
+const SimulatorRunner = dynamic(() => import('./SimulatorRunner').then((m) => m.SimulatorRunner));
 
 export type SimulatorInitial =
   | { kind: 'active'; payload: SimulatorPayload }
