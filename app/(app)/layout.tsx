@@ -4,6 +4,7 @@ import { VerificationBanner } from '@/components/ui/VerificationBanner';
 import { BottomNav } from '@/components/dashboard/BottomNav';
 import { Sidebar } from '@/components/dashboard/Sidebar';
 import { TopBar } from '@/components/dashboard/TopBar';
+import { AppFooter } from '@/components/dashboard/AppFooter';
 import { InstallPrompt } from '@/components/pwa/InstallPrompt';
 import { OfflineBanner } from '@/components/pwa/OfflineBanner';
 import { IdentifyUser } from '@/components/analytics/IdentifyUser';
@@ -54,17 +55,18 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     // localStorage, sin persistencia real) — se cambia desde /app/perfil.
     <div
       data-theme={themePref}
-      className="min-h-screen bg-base text-text-primary"
+      className="flex min-h-screen flex-col bg-base text-text-primary"
     >
       <IdentifyUser profileId={profileId} />
       <Sidebar />
       <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} avatarUrl={avatarUrl} />
       {!authUser.email_confirmed_at && <VerificationBanner />}
       <OfflineBanner />
-      <main className="mx-auto max-w-5xl space-y-4 px-4 py-8 pb-24 lg:pl-60 lg:pb-8">
+      <main className="mx-auto w-full max-w-5xl space-y-4 px-4 py-8 pb-24 flex-1 lg:pl-60 lg:pb-8">
         <InstallPrompt />
         {children}
       </main>
+      <AppFooter />
       <BottomNav />
     </div>
   );

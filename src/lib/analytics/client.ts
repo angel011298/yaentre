@@ -12,6 +12,9 @@ import type { PostHog } from 'posthog-js';
  * Un solo módulo compartido entre `PostHogProvider` (inicializa) e
  * `IdentifyUser` (identifica) para que ambos usen la MISMA instancia, nunca
  * dos `.init()` en paralelo.
+ *
+ * F21: la carga respeta consentimiento de cookies — si el usuario rechaza
+ * cookies analíticas, PostHog nunca se inicializa.
  */
 let posthogPromise: Promise<PostHog> | null = null;
 let initialized = false;
@@ -20,9 +23,18 @@ function isPlaceholder(key: string): boolean {
   return key.startsWith('your-') || key.includes('placeholder');
 }
 
+function getCookiesConsent(): boolean {
+  if (typeof window === 'undefined') return false;
+  const stored = localStorage.getItem('acierta-cookies-consent');
+  return stored === 'true';
+}
+
 export function loadPostHog(): Promise<PostHog> | null {
   const apiKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
   if (!apiKey || isPlaceholder(apiKey)) return null;
+
+  // F21: respeta rechazo de cookies
+  if (!getCookiesConsent()) return null;
 
   if (!posthogPromise) {
     posthogPromise = import('posthog-js').then(({ default: posthog }) => {

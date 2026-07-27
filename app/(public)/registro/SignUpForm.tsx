@@ -31,6 +31,34 @@ export function SignUpForm({ next, isTutor = false }: { next?: string; isTutor?:
         hint="Mínimo 8 caracteres."
         errors={state.fieldErrors?.password}
       />
+
+      {/* F21: Aceptación de términos */}
+      <div className="flex gap-3 pt-2">
+        <input
+          type="checkbox"
+          id="accept-terms"
+          name="acceptTerms"
+          required
+          className="mt-1 h-4 w-4 flex-shrink-0 cursor-pointer"
+          aria-label="Acepto los términos y condiciones y el aviso de privacidad"
+        />
+        <label htmlFor="accept-terms" className="text-sm text-text-secondary leading-tight cursor-pointer">
+          Acepto los{' '}
+          <Link href="/legal/terminos" target="_blank" className="font-semibold text-brand hover:underline">
+            términos y condiciones
+          </Link>
+          {' '}y el{' '}
+          <Link href="/legal/privacidad" target="_blank" className="font-semibold text-brand hover:underline">
+            aviso de privacidad
+          </Link>
+        </label>
+      </div>
+      {state.fieldErrors?.acceptTerms && (
+        <p role="alert" className="text-sm text-danger -mt-2">
+          Debes aceptar los términos y condiciones para continuar
+        </p>
+      )}
+
       {state.status === 'error' && state.message && (
         <p role="alert" className="text-sm text-danger">
           {state.message}

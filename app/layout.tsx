@@ -3,6 +3,7 @@ import { Outfit, Inter, JetBrains_Mono } from "next/font/google";
 import { getSiteUrl } from "@/lib/auth/site-url";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 import { PostHogProvider } from "@/components/analytics/PostHogProvider";
+import { CookiesConsentBanner } from "@/components/legal/CookiesConsentBanner";
 import { BRAND_PRIMARY_HEX } from "@/lib/brand/colors";
 import "./globals.css";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-base text-text-primary">
         <ServiceWorkerRegister />
         <PostHogProvider>{children}</PostHogProvider>
+        <CookiesConsentBanner />
       </body>
     </html>
   );

@@ -25,6 +25,7 @@ export async function signUpAction(
   const parsed = signUpSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),
+    acceptTerms: formData.get('acceptTerms'),
   });
 
   if (!parsed.success) {
