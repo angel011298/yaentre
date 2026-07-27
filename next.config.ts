@@ -6,6 +6,18 @@ const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
   : "";
 const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
 
+function isConfigured(id: string | undefined): boolean {
+  return Boolean(id) && !id!.startsWith("your-") && !id!.includes("placeholder");
+}
+
+// F24: dominios de los píxeles de publicidad — SOLO se agregan a la CSP si
+// el ID correspondiente está configurado con un valor real (mismo criterio
+// `isConfigured` que decide si el snippet del píxel se inyecta en el
+// navegador, src/lib/marketing/pixels.ts). Sin esto, la CSP incluiría
+// dominios de terceros que el sitio nunca llega a cargar.
+const metaPixelEnabled = isConfigured(process.env.NEXT_PUBLIC_META_PIXEL_ID);
+const tiktokPixelEnabled = isConfigured(process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID);
+
 /**
  * F22: cabeceras de seguridad HTTP a nivel de toda la app. La CSP es
  * deliberadamente "razonable" y no de nonce estricto: Next.js necesita
@@ -23,11 +35,29 @@ const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.postho
  * (`window.location`), no un iframe/fetch — no requiere entrada en la CSP.
  */
 function buildCsp(): string {
-  const connectSrc = ["'self'", posthogHost, ...(supabaseHost ? [supabaseHost] : [])];
-  const imgSrc = ["'self'", "data:", "blob:", ...(supabaseHost ? [supabaseHost] : [])];
+  const scriptSrc = [
+    "'self'",
+    "'unsafe-inline'",
+    ...(metaPixelEnabled ? ["https://connect.facebook.net"] : []),
+    ...(tiktokPixelEnabled ? ["https://analytics.tiktok.com"] : []),
+  ];
+  const connectSrc = [
+    "'self'",
+    posthogHost,
+    ...(supabaseHost ? [supabaseHost] : []),
+    ...(metaPixelEnabled ? ["https://www.facebook.com"] : []),
+    ...(tiktokPixelEnabled ? ["https://analytics.tiktok.com"] : []),
+  ];
+  const imgSrc = [
+    "'self'",
+    "data:",
+    "blob:",
+    ...(supabaseHost ? [supabaseHost] : []),
+    ...(metaPixelEnabled ? ["https://www.facebook.com"] : []),
+  ];
   return [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline'",
+    `script-src ${scriptSrc.join(" ")}`,
     "style-src 'self' 'unsafe-inline'",
     `img-src ${imgSrc.join(" ")}`,
     "font-src 'self' data:",

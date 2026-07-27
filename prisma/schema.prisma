@@ -454,6 +454,14 @@ model UserProfile {
   themePref   String   @default("dark") // "dark" | "light"
   badges      String[] @default([])    // ["EARLY_BIRD", ...]
 
+  // Atribución de marketing (F24): parámetros de campaña de la PRIMERA visita
+  // (utm_source/medium/campaign/content/term, fbclid/ttclid/gclid, landingPath,
+  // capturedAt) — capturados en `proxy.ts` a una cookie de 90 días, persistidos
+  // aquí SOLO al crear el perfil (nunca se sobreescribe) para poder atribuir
+  // cualquier compra futura al canal que originó el registro. `null` si el
+  // usuario llegó sin ningún parámetro de campaña (tráfico directo/orgánico).
+  acquisitionSource Json?
+
   // Examen objetivo
   targetExamId   String?
   targetExam     Exam?   @relation("TargetExam", fields: [targetExamId], references: [id])

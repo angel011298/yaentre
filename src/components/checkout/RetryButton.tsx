@@ -4,6 +4,8 @@ import { useState } from 'react';
 import type { SubscriptionPlan } from '@prisma/client';
 import { startCheckoutAction } from '@/app/actions/checkout';
 import { Button } from '@/components/ui/Button';
+import { trackAdPixelEvent } from '@/lib/marketing/pixels';
+import { currentSeason, getPlanPricing } from '@/lib/stripe/pricing';
 
 /**
  * Botón de reintento de pago. Reusa `startCheckoutAction` con el mismo plan de
@@ -19,6 +21,8 @@ export function RetryButton({ plan }: { plan: SubscriptionPlan }) {
     setError(null);
     const res = await startCheckoutAction({ plan });
     if (res.ok) {
+      const pricing = getPlanPricing(plan, currentSeason(new Date()));
+      trackAdPixelEvent('InitiateCheckout', { value: pricing.amountMxn / 100, currency: 'MXN', plan });
       window.location.href = res.data.url;
     } else {
       setError(res.message);

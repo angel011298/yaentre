@@ -6,6 +6,7 @@ import { Differentiators } from '@/components/marketing/Differentiators';
 import { ParentSection } from '@/components/marketing/ParentSection';
 import { EarlyBirdBanner } from '@/components/marketing/EarlyBirdBanner';
 import { Faq } from '@/components/marketing/Faq';
+import { PixelPageView } from '@/components/marketing/PixelPageView';
 import { LinkButton } from '@/components/ui/LinkButton';
 
 // El conteo de licencias Early Bird (EarlyBirdBanner) debe reflejar compras
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return (
     <PublicPageShell>
+      <PixelPageView />
       <EarlyBirdBanner />
       <Hero />
       <Differentiators />

@@ -1,6 +1,8 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import type { Prisma } from '@prisma/client';
 import { getSiteUrl } from '@/lib/auth/site-url';
 import {
   forgotPasswordSchema,
@@ -12,6 +14,12 @@ import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
 import { trackServerEvent } from '@/lib/analytics/server';
+import { ATTRIBUTION_COOKIE_NAME, parseAttributionCookie } from '@/lib/marketing/attribution';
+
+/** Agrega un query param a una ruta relativa sin romper uno ya existente. */
+function withQueryParam(path: string, key: string, value: string): string {
+  return `${path}${path.includes('?') ? '&' : '?'}${key}=${value}`;
+}
 
 /**
  * Registro con verificación diferida: la cuenta y la sesión se crean de
@@ -80,11 +88,27 @@ export async function signUpAction(
     session = signInResult.data.session;
   }
 
+  // Atribución de marketing (F24): la cookie de `proxy.ts` trae los
+  // parámetros de campaña de la PRIMERA visita de este visitante (si llegó
+  // desde un anuncio). Se lee AQUÍ (server-side, vía `next/headers`) y se
+  // graba SOLO en el `create` del upsert — un usuario que ya tenía perfil
+  // (login repetido a través de este mismo Server Action, caso raro) nunca
+  // sobreescribe su atribución original.
+  const attributionCookie = (await cookies()).get(ATTRIBUTION_COOKIE_NAME)?.value;
+  const acquisitionSource = parseAttributionCookie(attributionCookie);
+
   let profile;
   try {
     profile = await prisma.userProfile.upsert({
       where: { userId: data.user.id },
-      create: { userId: data.user.id, role, onboardingStep: 0 },
+      create: {
+        userId: data.user.id,
+        role,
+        onboardingStep: 0,
+        ...(acquisitionSource
+          ? { acquisitionSource: acquisitionSource as unknown as Prisma.InputJsonValue }
+          : {}),
+      },
       update: {},
     });
   } catch {
@@ -97,11 +121,16 @@ export async function signUpAction(
 
   await trackServerEvent(profile.id, 'signup_completed', { role });
 
+  // Marca `signup=1` en el destino para que `SignupConversionTracker` (F24,
+  // en el layout raíz) dispare el evento de conversión "registro completado"
+  // hacia los píxeles de publicidad — un Server Action que redirige no puede
+  // devolverle datos al cliente en la rama de éxito, así que la señal viaja
+  // en la URL del propio redirect en vez de en el valor de retorno.
   if (!session) {
-    redirect('/login?registered=1');
+    redirect(withQueryParam('/login?registered=1', 'signup', '1'));
   }
 
-  redirect(next);
+  redirect(withQueryParam(next, 'signup', '1'));
 }
 
 export async function signInAction(

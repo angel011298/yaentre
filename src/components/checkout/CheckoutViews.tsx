@@ -6,6 +6,7 @@ import { Tino } from '@/components/mascot/Tino';
 import type { SubscriptionForResult } from '@/lib/db/billing';
 import { RetryButton } from './RetryButton';
 import { StatusPoller } from './StatusPoller';
+import { PurchasePixelFire } from './PurchasePixelFire';
 
 const PLAN_DISPLAY: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Plan Mensual',
@@ -30,21 +31,59 @@ function AmountLine({ subscription }: { subscription: SubscriptionForResult }) {
   return <p className="text-sm text-text-muted">Pagaste {formatMxn(amount)}.</p>;
 }
 
+/** Lo que cada plan desbloquea, en orden de lo más accionable primero (F24: página de agradecimiento optimizada). */
+const NEXT_STEPS: Record<SubscriptionPlan, string[]> = {
+  MONTHLY: [
+    'Haz un simulacro completo — ya no tienes límite de 1 gratis.',
+    'Revisa tu Aciertómetro: ahora ves tu predicción real de aciertos.',
+    'Practica sin límite de 10 reactivos al día en el modo Drill.',
+  ],
+  SEASON_PASS: [
+    'Haz un simulacro completo — ya no tienes límite de 1 gratis.',
+    'Vincula a tu tutor desde tu perfil para que vea tu progreso.',
+    'Tu pase dura hasta el día de tu examen — sin renovaciones que recordar.',
+  ],
+  PREMIUM: [
+    'Haz un simulacro completo — ya no tienes límite de 1 gratis.',
+    'Vincula a tu tutor desde tu perfil para que vea tu progreso.',
+    'Tu garantía de reembolso ya está activa — solo sigue estudiando.',
+  ],
+};
+
 /** Éxito: el webhook YA confirmó el pago y activó el acceso. */
 export function SuccessView({ subscription }: { subscription: SubscriptionForResult }) {
+  const payment = subscription.payments[0];
+
   return (
     <div className="flex flex-col items-center gap-5 py-8 text-center">
+      <PurchasePixelFire
+        value={payment ? payment.amountMxn / 100 : null}
+        currency="MXN"
+        plan={subscription.plan}
+      />
       <Tino state="celebrating" size={96} />
       <div className="space-y-1">
         <h1 className="font-display text-2xl font-bold text-text-primary">
-          ¡Ya eres parte de Acierta!
+          ¡Gracias! Ya eres parte de Acierta
         </h1>
         <p className="max-w-sm text-sm text-text-secondary">
-          Tu {PLAN_DISPLAY[subscription.plan]} está activo. Desbloqueaste los simulacros
-          ilimitados, la resolución por capas y tu Aciertómetro. Vamos por esa carrera.
+          Tu {PLAN_DISPLAY[subscription.plan]} está activo — tienes acceso completo desde ahora.
         </p>
         <AmountLine subscription={subscription} />
       </div>
+
+      <Card className="w-full max-w-sm space-y-2 p-5 text-left">
+        <p className="text-sm font-semibold text-text-primary">Qué sigue</p>
+        <ul className="space-y-1.5 text-sm text-text-secondary">
+          {NEXT_STEPS[subscription.plan].map((step) => (
+            <li key={step} className="flex gap-2">
+              <span className="text-success">✓</span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ul>
+      </Card>
+
       <Link href="/app">
         <Button variant="primary">Ir a mi tablero</Button>
       </Link>

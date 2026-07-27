@@ -1,6 +1,11 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { createSupabaseMiddlewareClient } from '@/lib/auth/supabase-middleware';
 import { checkRateLimit } from '@/lib/rate-limit/limiter';
+import {
+  ATTRIBUTION_COOKIE_MAX_AGE_SECS,
+  ATTRIBUTION_COOKIE_NAME,
+  extractAcquisitionSource,
+} from '@/lib/marketing/attribution';
 
 // Ver docs/Flujo_App_Acierta_v1.0.md §16.1 (mapa de rutas) y §16.2 (guards).
 const AUTH_REQUIRED_PREFIXES = ['/app', '/onboarding', '/diagnostico', '/checkout', '/tutor', '/admin'];
@@ -25,6 +30,34 @@ function resolveClientIp(request: NextRequest): string {
   const forwardedFor = request.headers.get('x-forwarded-for');
   if (forwardedFor) return forwardedFor.split(',')[0]?.trim() || 'unknown';
   return request.headers.get('x-real-ip') ?? 'unknown';
+}
+
+/**
+ * Atribución de marketing (F24): captura los parámetros de campaña de la
+ * PRIMERA visita (cualquier ruta, no solo landing/precios — un anuncio puede
+ * apuntar a cualquier página) en una cookie de 90 días, SOLO si todavía no
+ * existe una — nunca se sobreescribe, así el primer touchpoint real persiste
+ * hasta que el usuario se registre (`app/actions/auth.ts` la lee y la graba
+ * en `UserProfile.acquisitionSource`, también solo una vez).
+ *
+ * Se aplica al `response` que se vaya a devolver en CADA rama de `proxy()`
+ * (rate limit, redirect de auth, o el response normal) para no perder la
+ * captura según qué rama del middleware responda esa request.
+ */
+function withAttributionCookie(response: NextResponse, request: NextRequest): NextResponse {
+  if (request.cookies.has(ATTRIBUTION_COOKIE_NAME)) return response;
+
+  const source = extractAcquisitionSource(request.nextUrl);
+  if (!source) return response;
+
+  response.cookies.set(ATTRIBUTION_COOKIE_NAME, JSON.stringify(source), {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: ATTRIBUTION_COOKIE_MAX_AGE_SECS,
+    path: '/',
+  });
+  return response;
 }
 
 export async function proxy(request: NextRequest) {
@@ -64,16 +97,16 @@ export async function proxy(request: NextRequest) {
   if (matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES) && !user) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('next', `${pathname}${search}`);
-    return NextResponse.redirect(loginUrl);
+    return withAttributionCookie(NextResponse.redirect(loginUrl), request);
   }
 
   if (matchesPrefix(pathname, VERIFIED_EMAIL_REQUIRED_PREFIXES) && user && !user.email_confirmed_at) {
     const appUrl = new URL('/app', request.url);
     appUrl.searchParams.set('verify', '1');
-    return NextResponse.redirect(appUrl);
+    return withAttributionCookie(NextResponse.redirect(appUrl), request);
   }
 
-  return response;
+  return withAttributionCookie(response, request);
 }
 
 export const config = {

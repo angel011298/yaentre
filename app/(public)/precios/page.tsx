@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { SubscriptionPlan } from '@prisma/client';
 import { PublicPageShell } from '@/components/marketing/PublicPageShell';
+import { PixelPageView } from '@/components/marketing/PixelPageView';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { resolveEffectiveSeason } from '@/lib/db/billing';
 import { getPlanPricing, type PlanPricing } from '@/lib/stripe/pricing';
@@ -97,6 +98,7 @@ export default async function PreciosPage() {
 
   return (
     <PublicPageShell>
+      <PixelPageView />
       <section className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20">
         <h1 className="font-display text-4xl font-bold text-text-primary">
           Elige el plan que te lleve hasta el examen
