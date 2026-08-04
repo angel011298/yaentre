@@ -337,6 +337,105 @@ export async function loadPendingQuestions(topicId: string, limit = 50) {
   });
 }
 
+export interface QuestionWithBlindContext {
+  id: string;
+  stem: string;
+  options: unknown;
+  format: string;
+  passageContent: string | null;
+  topic: string;
+  subject: string;
+  institution: string;
+}
+
+function mapWithBlindContext(rows: {
+  id: string;
+  stem: string;
+  options: unknown;
+  format: string;
+  passage: { content: string } | null;
+  topic: { name: string; subject: { name: string; area: { exam: { level: { institution: { name: string } } } } } };
+}[]): QuestionWithBlindContext[] {
+  return rows.map((q) => ({
+    id: q.id,
+    stem: q.stem,
+    options: q.options,
+    format: q.format,
+    passageContent: q.passage?.content ?? null,
+    topic: q.topic.name,
+    subject: q.topic.subject.name,
+    institution: q.topic.subject.area.exam.level.institution.name,
+  }));
+}
+
+const BLIND_CONTEXT_INCLUDE = {
+  passage: { select: { content: true } },
+  topic: {
+    select: {
+      name: true,
+      subject: {
+        select: {
+          name: true,
+          area: {
+            select: {
+              exam: { select: { level: { select: { institution: { select: { name: true } } } } } },
+            },
+          },
+        },
+      },
+    },
+  },
+} as const;
+
+/**
+ * Reactivos GENERATED pendientes de verificación, con contexto taxonómico
+ * completo por reactivo (G2) — a diferencia de `loadPendingQuestions`, no
+ * asume un único tema por lote: sirve tanto a `--topic` como a `--ids`
+ * (reusable para el muestreo de auditoría 5%, que apunta a ids ya aprobados
+ * de temas distintos) y a `--all`.
+ */
+export async function loadPendingQuestionsWithContext(opts: {
+  topicId?: string;
+  limit?: number;
+}): Promise<QuestionWithBlindContext[]> {
+  const prisma = getPrisma();
+  const rows = await prisma.question.findMany({
+    where: {
+      ...(opts.topicId ? { topicId: opts.topicId } : {}),
+      source: 'GENERATED',
+      isVerified: false,
+      verification: { equals: Prisma.DbNull },
+    },
+    select: { id: true, stem: true, options: true, format: true, ...BLIND_CONTEXT_INCLUDE },
+    take: opts.limit ?? 50,
+    orderBy: { id: 'asc' },
+  });
+  return mapWithBlindContext(rows);
+}
+
+/** Reactivos por id explícito, con el mismo contexto — para lotes de
+ *  verificación dirigidos a un conjunto puntual (p. ej. muestreo de
+ *  auditoría 5% sobre ya-aprobados, `sampleForAudit` en resolution.ts). */
+export async function loadQuestionsByIds(ids: string[]): Promise<QuestionWithBlindContext[]> {
+  if (ids.length === 0) return [];
+  const prisma = getPrisma();
+  const rows = await prisma.question.findMany({
+    where: { id: { in: ids } },
+    select: { id: true, stem: true, options: true, format: true, ...BLIND_CONTEXT_INCLUDE },
+  });
+  return mapWithBlindContext(rows);
+}
+
+/** Un reactivo por id con sus opciones reales (incl. isCorrect) — usado por el
+ *  script de resolución para comparar contra la respuesta de la sesión
+ *  verificadora. `null` si no existe. */
+export async function loadQuestionForResolution(
+  id: string,
+): Promise<{ id: string; options: unknown } | null> {
+  const prisma = getPrisma();
+  return prisma.question.findUnique({ where: { id }, select: { id: true, options: true } });
+}
+
 /**
  * Borra reactivos por id SOLO si no tienen respuestas históricas (guardrail:
  * nunca borrar reactivos con SessionAnswer). Para limpieza de corridas mock.

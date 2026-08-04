@@ -50,7 +50,8 @@ Email:          Resend
 Observabilidad: Sentry + PostHog
 Deploy:         Vercel (us-east-1)
 Fórmulas:       KaTeX
-IA (offline):   Anthropic API — solo en /scripts, nunca en runtime
+Contenido:      100% vía sesiones de Claude Code, usando la suscripción
+                existente — NUNCA la API de pago de Anthropic
 ```
 
 ---
@@ -158,9 +159,9 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 
 - ❌ No enviar `isCorrect` ni la respuesta correcta al cliente antes de que responda.
 - ❌ No activar acceso de pago desde el redirect del cliente (solo webhook).
-- ❌ No exponer `SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY` ni `ANTHROPIC_API_KEY` al cliente (nada con `NEXT_PUBLIC_`).
+- ❌ No exponer `SERVICE_ROLE_KEY` ni `STRIPE_SECRET_KEY` al cliente (nada con `NEXT_PUBLIC_`).
 - ❌ No usar `localStorage`/`sessionStorage` para datos sensibles ni de sesión (Supabase maneja auth).
-- ❌ No llamar a la API de Anthropic en runtime (solo en `/scripts` offline).
+- ❌ No usar la API de pago de Anthropic (SDK, `ANTHROPIC_API_KEY`) en ningún lugar del proyecto, ni en runtime ni en scripts offline.
 - ❌ No poner `ContentItem.status = ACTIVE` en Fase 1 (queda `INACTIVE`).
 - ❌ No borrar reactivos con respuestas históricas.
 - ❌ No introducir un state manager global (Zustand solo en el simulador).
@@ -177,7 +178,9 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 │   ├── schema.prisma
 │   └── seed/                 ← seeds de taxonomía por institución
 ├── scripts/
-│   └── generate-questions.ts ← pipeline IA (offline)
+│   └── content-insert-drafts.ts, content-blind-batch.ts,
+│       content-resolve-verification.ts ← pipeline de contenido vía
+│       sesiones de Claude Code (nunca API de pago)
 ├── src/
 │   ├── app/                  ← rutas (App Router)
 │   │   ├── (public)/         ← landing, precios, registro, login
@@ -216,8 +219,6 @@ DIRECT_URL=                      # migraciones
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-# Anthropic (solo scripts offline)
-ANTHROPIC_API_KEY=
 # Email / Observabilidad
 RESEND_API_KEY=
 NEXT_PUBLIC_SENTRY_DSN=
@@ -260,7 +261,7 @@ Enfoque calibrado a 1 dev: testear donde un bug cuesta dinero o confianza.
 
 **El estado vivo está en `/docs/ESTADO.md` — consúltalo SIEMPRE antes de empezar cualquier fase.**
 
-Pipeline de contenido: verificación adversarial garantiza calidad sin freelancers. Dos modelos de IA independientes deben coincidir para publicar un reactivo; las discrepancias sin resolver no se publican.
+Pipeline de contenido: verificación adversarial garantiza calidad sin freelancers, ejecutada íntegramente dentro de sesiones de Claude Code/chat (nunca la API de pago). Dos sesiones independientes (una compone el reactivo, otra lo resuelve a ciegas sin ver la respuesta) deben coincidir para publicar un reactivo; las discrepancias sin resolver no se publican.
 
 ---
 

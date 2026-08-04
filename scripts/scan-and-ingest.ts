@@ -4,7 +4,7 @@
  * El mecanismo PERMANENTE que detecta material fuente nuevo y lo convierte en
  * fragmentos anclables. Cualquier sesión futura lo invoca antes de generar:
  *
- *   pnpm content:scan-sources [--dry-run] [--no-classify]
+ *   pnpm content:scan-sources [--dry-run]
  *
  * Flujo:
  *   1. Descubre archivos en docs/guias/ (canónica), la raíz del repo, y toda
@@ -15,12 +15,14 @@
  *      requieren visión → quedan reportados como pendientes).
  *   4. Fragmenta por sección/párrafos largos, descartando portadas/índices.
  *   5. Registra ContentSource + SourceChunks (classifiedAt=null).
- *   6. Clasifica cada fragmento contra el temario con el modelo (Sonnet).
- *      Sin saldo/API: los fragmentos quedan pendientes y se reporta el costo
- *      estimado; re-correr el escáner los clasifica después.
+ *   6. Reporta cuántos fragmentos quedan sin clasificar. La clasificación en
+ *      sí ocurre vía sesión de Claude Code (G2): correr después
+ *      `pnpm content:classify-export` → clasificar en una sesión →
+ *      `pnpm content:classify-apply` (ver scripts/lib/chunk-classifier.ts).
  *
  * GUARDRAIL: solo offline. Los SourceChunk NUNCA son servibles a usuarios
- * (RLS solo-ADMIN, migración 0007).
+ * (RLS solo-ADMIN, migración 0007). Cero llamadas a red o a la API de
+ * Anthropic — la clasificación ya no ocurre dentro de este script (G2).
  */
 import './lib/env';
 import { basename } from 'node:path';
@@ -33,37 +35,23 @@ import {
   type DiscoveredFile,
 } from './lib/source-scan';
 import {
-  classifyChunks,
-  estimateClassificationCostUsd,
-  CLASSIFIER_MODEL,
-} from './lib/chunk-classifier';
-import {
   findRegisteredSource,
   findSourceByBasename,
   registerScannedSource,
   insertSourceChunks,
   loadUnclassifiedChunks,
-  applyChunkClassifications,
-  loadTaxonomyTopics,
   topicChunkCoverage,
   disconnect,
 } from './lib/content-db';
 
 interface CliArgs {
   dryRun: boolean;
-  noClassify: boolean;
 }
 
 function parseArgs(argv: string[]): CliArgs {
   return {
     dryRun: argv.includes('--dry-run'),
-    noClassify: argv.includes('--no-classify'),
   };
-}
-
-function isPlaceholderKey(key: string | undefined): boolean {
-  if (!key) return true;
-  return /placeholder|your-api-key|FALTA/i.test(key) || key.length < 25;
 }
 
 function guessInstitution(name: string): string | null {
@@ -170,47 +158,8 @@ async function main() {
     }
   }
 
-  // ── 6. Clasificación contra el temario ──
-  let classified = 0;
-  let outOfSyllabus = 0;
-  let classifyCostUsd = 0;
-  let pendingClassification = 0;
-  let estimatedPendingCost = 0;
-
-  if (!args.dryRun) {
-    const pending = await loadUnclassifiedChunks();
-    const topics = await loadTaxonomyTopics();
-    if (pending.length > 0 && !args.noClassify) {
-      const apiKey = process.env.ANTHROPIC_API_KEY;
-      const estimate = estimateClassificationCostUsd(pending, topics.length);
-      if (isPlaceholderKey(apiKey)) {
-        pendingClassification = pending.length;
-        estimatedPendingCost = estimate;
-        console.log(`\n⚠️ Sin ANTHROPIC_API_KEY: ${pending.length} fragmentos quedan SIN clasificar.`);
-      } else {
-        console.log(`\n🧠 Clasificando ${pending.length} fragmento(s) con ${CLASSIFIER_MODEL} (~$${estimate.toFixed(2)} USD)...`);
-        try {
-          const run = await classifyChunks(pending, topics, apiKey as string);
-          await applyChunkClassifications(run.assignments);
-          classified = run.assignments.filter((a) => a.topicId !== null).length;
-          outOfSyllabus = run.assignments.filter((a) => a.topicId === null).length;
-          classifyCostUsd = run.costUsd;
-        } catch (err) {
-          const msg = (err as Error).message;
-          pendingClassification = pending.length;
-          estimatedPendingCost = estimate;
-          if (/credit balance/i.test(msg)) {
-            console.log('⛔ SALDO INSUFICIENTE en la cuenta de API — clasificación detenida.');
-          } else {
-            console.log(`⛔ Clasificación falló: ${msg.split('\n')[0]}`);
-          }
-        }
-      }
-    } else if (pending.length > 0) {
-      pendingClassification = pending.length;
-      estimatedPendingCost = estimateClassificationCostUsd(pending, topics.length);
-    }
-  }
+  // ── 6. Reporte de pendientes de clasificación (G2: vía sesión, no API) ──
+  const pendingClassification = args.dryRun ? 0 : (await loadUnclassifiedChunks()).length;
 
   // ── Reporte final ──
   const coverage = args.dryRun ? null : await topicChunkCoverage();
@@ -221,17 +170,16 @@ async function main() {
   for (const f of newFiles) console.log(`      • [${f.folder}] ${f.relPath}`);
   console.log(`   Fragmentos creados:          ${chunksCreated}${args.dryRun ? ' (dry-run, no escritos)' : ''}`);
   if (pendingVision.length > 0) {
-    console.log(`   Pendientes de visión (API):  ${pendingVision.length}`);
+    console.log(`   Pendientes de visión (sesión): ${pendingVision.length}`);
     for (const p of pendingVision) console.log(`      • ${p}`);
   }
   if (emptySources.length > 0) {
     console.log(`   Sin contenido útil:          ${emptySources.join(', ')}`);
   }
-  if (classified + outOfSyllabus > 0) {
-    console.log(`   Clasificados:                ${classified} a tema · ${outOfSyllabus} fuera de temario ($${classifyCostUsd.toFixed(3)} USD)`);
-  }
   if (pendingClassification > 0) {
-    console.log(`   ⏳ SIN clasificar:            ${pendingClassification} fragmentos (costo estimado: ~$${estimatedPendingCost.toFixed(2)} USD — re-correr el escáner con saldo/API)`);
+    console.log(`   ⏳ SIN clasificar:            ${pendingClassification} fragmentos`);
+    console.log('      → pnpm content:classify-export  (clasificar vía sesión de Claude Code)');
+    console.log('      → pnpm content:classify-apply --file <respuestas.json>');
   }
   if (coverage) {
     console.log(`   Temario: ${coverage.withChunks}/${coverage.totalTopics} temas CON fragmentos · ${coverage.withoutChunks} sin fragmentos`);

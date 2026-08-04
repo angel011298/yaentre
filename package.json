@@ -15,10 +15,12 @@
     "prisma:generate": "prisma generate",
     "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
-    "content:generate": "tsx scripts/generate-questions.ts",
-    "content:run": "tsx scripts/content-run.ts",
     "content:scan-sources": "tsx scripts/scan-and-ingest.ts",
-    "content:verify": "tsx scripts/verify-questions.ts",
+    "content:classify-export": "tsx scripts/classify-chunks-export.ts",
+    "content:classify-apply": "tsx scripts/classify-chunks-apply.ts",
+    "content:insert": "tsx scripts/content-insert-drafts.ts",
+    "content:blind-batch": "tsx scripts/content-blind-batch.ts",
+    "content:resolve": "tsx scripts/content-resolve-verification.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",
     "content:ingest": "tsx scripts/ingest-source.ts",
     "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",
@@ -48,7 +50,6 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
-    "@anthropic-ai/sdk": "^0.111.0",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
     "@types/katex": "^0.16.8",

@@ -1,4 +1,17 @@
-import type { VerifierVerdict } from './verifier';
+/** Forma mínima del veredicto que resolveVerdict necesita comparar — antes
+ *  importado de verifier.ts (retirado, llamaba al SDK de Anthropic); ahora
+ *  es una interfaz local, y scripts/lib/blind-verification.ts + el resolve
+ *  script construyen valores que la satisfacen sin depender de ella. */
+export interface VerifierVerdict {
+  chosenOption: 'A' | 'B' | 'C' | 'D';
+  confidence: number;
+  reasoning: string;
+  problems: { type: string; detail: string }[];
+  model: string;
+  usedCalculation: boolean;
+  usage: { inputTokens: number; outputTokens: number };
+  verifiedAt: string;
+}
 
 /**
  * Resolución automática del pipeline adversarial (F2) — lógica PURA.
@@ -87,7 +100,10 @@ export function sampleForAudit<T>(
  * auditoría: nunca se publica un reactivo sin este registro.
  */
 export interface VerificationRecord {
-  pipeline: 'adversarial-v1';
+  /** 'adversarial-v1' (histórico, vía API — F2/F4) | 'session-v1' (G2, vía
+   *  sesiones de Claude Code) — mismo campo abierto que ya usa el panel F3
+   *  (`verificationRecordSchema.pipeline` es `z.string()`, sin cerrar). */
+  pipeline: 'adversarial-v1' | 'session-v1';
   generatorModel: string;
   generatorOption: string;
   verdict: VerifierVerdict;

@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-08-03 · Última fase ejecutada: G1 (COMPLETADA)
+Última actualización: 2026-08-03 · Última fase ejecutada: G2 (COMPLETADA)
 
 ## Tabla de fases
 
@@ -31,6 +31,7 @@
 | F21 | Conformidad legal (T&C, privacidad, GDPR) | COMPLETADA | (F21) | **Páginas legales completas** (`/legal/privacidad` y `/legal/terminos`): privacidad conforme a LFPDPPP, listado completo de datos recopilados (cuenta, académicos, pagos, menores con tutor, técnicos, cookies/analítica), finalidades, terceros procesadores (Supabase/Stripe/Vercel/Resend/PostHog/Sentry con DPAs), derechos ARCO (acceso via export en `/app/perfil`, rectificación en perfil, cancelación/anonimización con confirmación fuerte, oposición via notificaciones), retención (indefinida activa, 30 días tras borrar, 7 años pagos), contacto claro. Términos: descripción de servicio, planes y vigencias exactos (Free, Pase, Mensual, Premium), **garantía Premium única: 50% reembolso si usas ≥15 sesiones 60 días previos y no ingresas** (excluyendo 4 casos: bajo uso, carrera cambió, irregularidades, comprtencia), propiedad intelectual (sin scraping ni resale), uso aceptable (sin acoso/contenido ilegal/bots/ataques), rol del tutor (responsable supervisión, acceso solo agregados, no respuestas crudas), **limitación central: Acierta NO garantiza ingreso, solo predicción estadística** (excepto garantía Premium), suspensión por incumplimiento, pagos/reembolsos, resolución por email. **Checkbox obligatorio en registro** (`SignUpForm.tsx`): debe aceptar términos+privacidad antes de crear cuenta (schema valida `acceptTerms: on`, fieldError si falta). **Aviso de cookies en banner** (`CookiesConsentBanner.tsx`): banner flotante bottom-fixed con opción Rechazar/Aceptar, almacena en localStorage, solo acepta cookies técnicas obligatorias y permite rechazar analíticas sin bloquear la app. **PostHog respeta consentimiento** (`src/lib/analytics/client.ts`): carga la librería SOLO si `localStorage['acierta-cookies-consent']='true'`, rechazar deja PostHog sin inicializar (sin captura de eventos). **Enlaces en pie de página**: publicFooter (landing) ya tenía links a /legal/* desde F10, ahora `AppFooter.tsx` (app layout) agrega los mismos links en contexto dark. Pendiente completar antes de producción: **empresa: razón social, domicilio legal, teléfono** (marcado inline con fondo amarillo en ambas páginas para fácil búsqueda) — es lo único que bloqueaba publicar el resto. `pnpm typecheck`, `pnpm lint`, `pnpm build` OK, 367 tests (sin tests nuevos — F21 es integración de páginas y consentimiento, sin lógica pura propia) |
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
+| G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
 
@@ -446,11 +447,140 @@ conteo real de reactivos servibles/verificados por institución/área/materia,
 groundingStatus, y temas sin contenido — reusar en cualquier verificación
 futura del banco de reactivos en vez de confiar en documentos.
 
+## G2 — Eliminación de la API de pago del pipeline de contenido (2026-08-03)
+
+**Instrucción explícita del dueño, sin excepción:** el proyecto nunca debe
+usar la API de pago de Anthropic (`ANTHROPIC_API_KEY`, `@anthropic-ai/sdk`,
+ninguna llamada facturada por token) — ni en runtime ni en scripts offline.
+Todo el contenido se produce DENTRO de sesiones de Claude Code o del chat de
+Claude, usando la suscripción ya existente.
+
+### Auditoría (antes de tocar nada)
+
+Búsqueda exhaustiva en todo el repositorio (`ANTHROPIC_API_KEY`,
+`@anthropic-ai/sdk`, `api.anthropic.com`, y "anthropic" case-insensitive).
+9 archivos con uso real de la SDK o la variable:
+
+- `scripts/lib/anthropic-client.ts` — wrapper del SDK (generación).
+- `scripts/lib/verifier.ts` — llamaba al SDK con loop de tool-use para la
+  verificación adversarial (incluía el sandbox `ejecutar_calculo`).
+- `scripts/lib/chunk-classifier.ts` — llamaba al SDK para clasificar
+  fragmentos fuente contra el temario (F2b).
+- `scripts/generate-questions.ts`, `scripts/verify-questions.ts`,
+  `scripts/content-run.ts` — orquestadores que invocaban los tres módulos
+  de arriba.
+- `scripts/scan-and-ingest.ts` — invocaba `chunk-classifier.ts`.
+- `scripts/ping-anthropic.ts` — prueba de humo pura del SDK.
+- `package.json` — dependencia `@anthropic-ai/sdk` en `devDependencies`.
+
+Ningún archivo de `src/` o `app/` (runtime) usaba el SDK — ya estaba
+correctamente aislado a `scripts/` desde F2 (guardrail original de
+CLAUDE.md), lo que hizo la migración más simple: solo había que rediseñar
+`scripts/`, no tocar la app.
+
+### El rediseño: aislamiento de SESIÓN reemplaza aislamiento de CÓDIGO
+
+La garantía central del pipeline ("el verificador nunca ve la respuesta
+correcta") antes se sostenía con TypeScript: `buildVerifierPayload()`
+construía el payload por selección explícita de campos, así que `isCorrect`
+y `explanations` no podían llegar a la llamada de API por construcción de
+tipos. Sin una API que llamar, esa garantía ahora se sostiene por **quién
+lee el archivo**: el archivo de "lote ciego" que produce
+`scripts/content-blind-batch.ts` tiene la MISMA garantía estructural
+(`buildBlindItem`, `scripts/lib/blind-verification.ts` — `isCorrect`/
+`explanations` no existen en el tipo `BlindBatchItem`, verificado con test),
+pero la separación real ahora es que una sesión de Claude Code/chat
+DISTINTA e INDEPENDIENTE de la que compuso el reactivo es quien lo resuelve.
+Nada impide técnicamente que sea la misma sesión — es una disciplina
+operativa, documentada aquí y en el docstring de cada script, igual que
+"nunca cancelación inmediata" o "nunca revisión humana" son disciplinas ya
+establecidas en otras partes del proyecto.
+
+**Nuevo mecanismo de mezclado**: en vez de que el "segundo modelo" fuera
+estructuralmente incapaz de ver la respuesta (por tipos), ahora las opciones
+del lote ciego se mezclan con una semilla DETERMINISTA (`questionId`,
+`shuffleOptionsForQuestion`) — la sesión verificadora nunca ve la A/B/C/D
+original ni siquiera por posición. `translateChosenOption` recompone el
+mismo mezclado al resolver, sin necesitar persistir un archivo de mapeo
+intermedio (que sería una forma indirecta de fuga).
+
+### Los 3 scripts nuevos (reemplazan generate/verify/content-run)
+
+1. **`scripts/content-insert-drafts.ts`** (`pnpm content:insert --topic <id>
+   --file <drafts.json>`): recibe un JSON con reactivos YA COMPUESTOS por una
+   sesión, los valida con el MISMO `QuestionDraftSchema` de siempre (Zod +
+   KaTeX, sin cambios), resuelve citas de fuente (F2b, `resolveCitations` sin
+   cambios) y deduplica contra los stems existentes — inserta con
+   `isVerified=false`. Reemplaza la Etapa 2 de `generate-questions.ts`; la
+   Etapa 1 (generación) ya no es un paso de script — ocurre directamente
+   dentro de la sesión que escribe el archivo.
+2. **`scripts/content-blind-batch.ts`** (`pnpm content:blind-batch --topic
+   <id>` | `--ids <a,b,c>` | `--all`): exporta el lote ciego (ver arriba).
+   Reusable para el muestreo de auditoría 5% (`sampleForAudit`,
+   `resolution.ts`, sin cambios) pasándole `--ids` con los ya-aprobados.
+3. **`scripts/content-resolve-verification.ts`** (`pnpm content:resolve
+   --file <respuestas.json>`): lee las respuestas de la sesión verificadora
+   (`questionId` + `chosenOption` + `confidence` + `problems`), traduce la
+   letra mezclada de vuelta al id original, y aplica la MISMA
+   `resolveVerdict` de siempre (`scripts/lib/resolution.ts`, **sin cambios,
+   cero llamadas a red**): coincide + confianza ≥0.85 + cero problemas →
+   `isVerified=true`; cualquier otra cosa → sin publicar con el veredicto
+   completo adjunto (mismo formato que ya leía el panel de discrepancias F3,
+   `pipeline: 'session-v1'` en vez de `'adversarial-v1'` para distinguir el
+   origen sin romper el schema — `verificationRecordSchema.pipeline` ya era
+   `z.string()` abierto, no un literal cerrado, así que el panel F3 sigue
+   funcionando sin tocarlo).
+
+Mismo patrón aplicado a la clasificación de fragmentos fuente (F2b), que
+también llamaba al SDK: **`scripts/classify-chunks-export.ts`** +
+**`scripts/classify-chunks-apply.ts`** reemplazan la clasificación inline
+que vivía dentro de `scan-and-ingest.ts` — el escaneo/fragmentación/registro
+de fuentes sigue igual (nunca usó el SDK), solo la clasificación contra el
+temario se movió a sesión.
+
+### Qué se conservó sin cambios (pura, sin SDK, ya lo era)
+
+`scripts/lib/resolution.ts` (`resolveVerdict`, `sampleForAudit`,
+`MIN_CONFIDENCE=0.85`, `AUDIT_RATE=0.05`), `scripts/lib/question-draft-schema.ts`
+(`QuestionDraftSchema`, validación KaTeX), `scripts/lib/grounding.ts`
+(`resolveCitations`, anclaje F2b), `scripts/lib/content-db.ts` (capa Prisma),
+`scripts/lib/mock-generator.ts` (generador mock para pruebas) — ninguno
+importaba el SDK, así que la lógica de negocio central del pipeline (qué
+hace publicable a un reactivo) es EXACTAMENTE la misma de F2/F2b/F4. Lo que
+cambió es de dónde viene el texto a validar/resolver, no las reglas.
+
+### Contenido existente: se conserva sin tocar
+
+Los **309 reactivos verificados/servibles** (F4) y los 380 generados en
+total NO se tocaron — siguen en la DB con su `Question.verification`
+original (`pipeline: 'adversarial-v1'`, generados bajo la arquitectura
+"capital cero" de F4 que ya documentaba honestamente su propia relajación
+de garantías, ver Notas F4 arriba). El guardrail de CLAUDE.md "nunca borrar
+reactivos con respuestas históricas" tampoco aplicaba aquí (cero respuestas
+de usuarios reales sobre ellos), pero de cualquier forma no había motivo
+para tocarlos: son contenido válido, ya auto-aprobado por dos pasadas
+independientes bajo las reglas vigentes en su momento. **De aquí en
+adelante, toda generación/verificación/clasificación NUEVA sigue el
+mecanismo de sesiones descrito arriba** — los 3 scripts nuevos son el único
+camino a `isVerified=true` desde esta fase.
+
+### Verificación final
+
+`pnpm typecheck` y `pnpm lint` en verde. Búsqueda de `ANTHROPIC_API_KEY`,
+`@anthropic-ai/sdk` y `api.anthropic.com` en todo el repositorio: **0
+resultados** fuera de `.next/` (caché de build regenerable, no código
+fuente) y este mismo párrafo de ESTADO.md. `@anthropic-ai/sdk` removido de
+`package.json`/`pnpm-lock.yaml` vía `pnpm remove`. `.env.example` ya no
+declara `ANTHROPIC_API_KEY`.
+
 ## Siguiente
 
-**G2 — Provisionar credenciales E2E y decidir la ruta de contenido.**
-`pnpm build`/`typecheck`/`lint` en verde y confirmados contra la DB real; la
-suite E2E necesita credenciales de prueba antes de poder confirmar nada. El
+**G3/G4 — Provisionar credenciales E2E y retomar producción de contenido vía
+sesiones.** `pnpm build`/`typecheck`/`lint` en verde; la suite E2E necesita
+credenciales de prueba antes de poder confirmar nada (ver G1). El
 bloqueador de negocio sigue siendo el mismo de `LAUNCH_CHECKLIST.md`: 1,191
-reactivos faltantes (tabla de brecha arriba), concentrados en IPN completo y
-UNAM Áreas 3-4.
+reactivos faltantes (tabla de brecha en G1), concentrados en IPN completo y
+UNAM Áreas 3-4 — ahora con el pipeline 100% libre de la API de pago (G2):
+producir el resto del banco es correr `content:insert` →
+`content:blind-batch` → (sesión verificadora) → `content:resolve` por tema,
+repetido a la escala que se necesite, sin ningún costo de API de por medio.
