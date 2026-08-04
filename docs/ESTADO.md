@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-07-27 · Última fase ejecutada: F24 (COMPLETADA)
+Última actualización: 2026-08-03 · Última fase ejecutada: G1 (COMPLETADA)
 
 ## Tabla de fases
 
@@ -31,6 +31,7 @@
 | F21 | Conformidad legal (T&C, privacidad, GDPR) | COMPLETADA | (F21) | **Páginas legales completas** (`/legal/privacidad` y `/legal/terminos`): privacidad conforme a LFPDPPP, listado completo de datos recopilados (cuenta, académicos, pagos, menores con tutor, técnicos, cookies/analítica), finalidades, terceros procesadores (Supabase/Stripe/Vercel/Resend/PostHog/Sentry con DPAs), derechos ARCO (acceso via export en `/app/perfil`, rectificación en perfil, cancelación/anonimización con confirmación fuerte, oposición via notificaciones), retención (indefinida activa, 30 días tras borrar, 7 años pagos), contacto claro. Términos: descripción de servicio, planes y vigencias exactos (Free, Pase, Mensual, Premium), **garantía Premium única: 50% reembolso si usas ≥15 sesiones 60 días previos y no ingresas** (excluyendo 4 casos: bajo uso, carrera cambió, irregularidades, comprtencia), propiedad intelectual (sin scraping ni resale), uso aceptable (sin acoso/contenido ilegal/bots/ataques), rol del tutor (responsable supervisión, acceso solo agregados, no respuestas crudas), **limitación central: Acierta NO garantiza ingreso, solo predicción estadística** (excepto garantía Premium), suspensión por incumplimiento, pagos/reembolsos, resolución por email. **Checkbox obligatorio en registro** (`SignUpForm.tsx`): debe aceptar términos+privacidad antes de crear cuenta (schema valida `acceptTerms: on`, fieldError si falta). **Aviso de cookies en banner** (`CookiesConsentBanner.tsx`): banner flotante bottom-fixed con opción Rechazar/Aceptar, almacena en localStorage, solo acepta cookies técnicas obligatorias y permite rechazar analíticas sin bloquear la app. **PostHog respeta consentimiento** (`src/lib/analytics/client.ts`): carga la librería SOLO si `localStorage['acierta-cookies-consent']='true'`, rechazar deja PostHog sin inicializar (sin captura de eventos). **Enlaces en pie de página**: publicFooter (landing) ya tenía links a /legal/* desde F10, ahora `AppFooter.tsx` (app layout) agrega los mismos links en contexto dark. Pendiente completar antes de producción: **empresa: razón social, domicilio legal, teléfono** (marcado inline con fondo amarillo en ambas páginas para fácil búsqueda) — es lo único que bloqueaba publicar el resto. `pnpm typecheck`, `pnpm lint`, `pnpm build` OK, 367 tests (sin tests nuevos — F21 es integración de páginas y consentimiento, sin lógica pura propia) |
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
+| G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
 
 ## Notas F4 — producción "capital cero" (2026-07-21)
@@ -277,6 +278,179 @@ Los siguientes placeholders están marcados en las páginas legales con fondo **
 
 - **Activar "Leaked Password Protection"** en Supabase Dashboard → Authentication → Policies (revisa contraseñas contra HaveIBeenPwned.org al registrarse; WARN de `get_advisors`, sin endpoint de gestión expuesto vía las herramientas MCP usadas en esta sesión).
 
+## G1 — Build resiliente y brecha real de contenido (2026-08-03)
+
+Fase técnica disparada por una auditoría externa que reportó `pnpm build`
+roto y sospechó una tabla contradictoria en F4. Ambos hallazgos se
+verificaron contra el sistema real; solo uno era real.
+
+### Causa raíz del build roto (real, confirmada y corregida)
+
+El error `FATAL: (ENOTFOUND) tenant/user acierta_ci.fumluvvzskhdxcyljbmx not
+found` **no era un problema de código ni de `DATABASE_URL` mal escrita**: el
+proyecto Supabase real (`fumluvvzskhdxcyljbmx`) estaba **`INACTIVE`**
+(pausado) — el plan gratuito pausa proyectos tras ~7 días sin actividad, y la
+última verificación en vivo había sido el 27 de julio, justo en el borde de
+esa ventana. Confirmado con `list_projects` del conector de Supabase
+(`status: "INACTIVE"` → tras `restore_project` → `"COMING_UP"` →
+`"ACTIVE_HEALTHY"`). El pooler de Supavisor no tiene tenant al que enrutar
+un proyecto pausado, de ahí el mensaje "tenant/user not found".
+
+**Fix de fondo (no solo reactivar el proyecto):** la landing (`/`) y precios
+(`/precios`) usan ISR (`revalidate=60`) y llaman a la DB en build-time para
+el contador de licencias Early Bird y la temporada de precios vigente — eso
+hace que `next build` dependa de que la DB esté viva, algo frágil incluso
+sin el problema de pausado (cualquier caída transitoria de Supabase
+tumbaría el build). Se agregaron `resolveEffectiveSeasonSafe` y
+`earlyBirdLicensesRemainingSafe` en `src/lib/db/billing.ts`: si la consulta
+falla, degradan con gracia (`HIGH_SEASON` sin descuento / banner oculto) en
+vez de propagar el error y tirar el build completo. **El checkout real
+(`app/actions/checkout.ts`) y el paywall (`app/(app)/paywall/page.tsx`)
+siguen usando las funciones estrictas sin este wrapper** — ambos están
+detrás de auth, nunca se prerenderizan en build, y lo que de verdad se COBRA
+no debe degradarse nunca. Verificado en vivo con `DATABASE_URL` apuntando a
+un host inexistente: `pnpm build` termina con exit code 0 y genera las 32
+rutas igual (antes: build completo abortado).
+
+### La tabla de F4 NO estaba contradicha — verificado, no corregido
+
+La auditoría reportó que "la tabla por materia no suma el total reportado".
+Se re-consultó la DB real con un script nuevo
+(`scripts/audit-content.ts`, `pnpm exec tsx scripts/audit-content.ts`) que
+NO reutiliza ningún número de documentos — cuenta `Question` con
+`isVerified=true AND usage=SERVABLE` directo de Prisma. **Resultado: 309
+total, 135 SOURCED / 174 TEMARIO_ONLY, exactamente igual a la tabla de F4**
+(fila por fila: Matemáticas 63, Física 58, Biología 61, Química 96 [31 Área
+1 + 65 Área 2], Español 31 — suma 309; SOURCED 135, TEMARIO_ONLY 174). La
+tabla de F4 sí incluye una fila "Español" y una fila "TOTAL" que la
+verificación anterior no llegó a leer (se cortó a media tabla) — de ahí la
+sospecha de contradicción. **No fue necesario corregir ningún número: los
+que ya estaban documentados eran correctos.**
+
+### Conteos reales verificados (fuente: `scripts/audit-content.ts`, en vivo)
+
+| | Total |
+|---|---|
+| Reactivos `isVerified=true` + `usage=SERVABLE` | **309** |
+| SOURCED | 135 |
+| TEMARIO_ONLY | 174 |
+| Temas del temario completo (UNAM+IPN) | 217 |
+| Temas SIN ningún reactivo | **161** |
+| Temas CON al menos 1 reactivo | 56 |
+
+Por institución/área (real, verificado):
+
+| Institución | Área/Rama | Reactivos reales |
+|---|---|---|
+| UNAM | Ciencias Físico-Matemáticas y las Ingenierías (Área 1) | 183 |
+| UNAM | Ciencias Biológicas, Químicas y de la Salud (Área 2) | 126 |
+| UNAM | Ciencias Sociales (Área 3) | 0 |
+| UNAM | Humanidades y Artes (Área 4) | 0 |
+| IPN | Ingeniería y Ciencias Físico-Matemáticas (FISMAT) | 0 |
+| IPN | Ciencias Médico-Biológicas (MEDBIO) | 0 |
+| IPN | Ciencias Sociales y Administrativas (SOCADM) | 0 |
+
+### Tabla de brecha: meta vs. real, por institución/área/materia
+
+**Metodología de la columna "Meta":** el PRD (`§14`) y el Plan de
+Implementación **no dan una cifra por materia** — solo totales por
+institución/área: UNAM Área 1 ≥300 (Early Bird), UNAM Áreas 1-3 ≥800
+acumulado (Beta), y UNAM 4 áreas + IPN 2 ramas (FISMAT+MEDBIO) ≥1,500
+mínimo (Public Launch; SOCADM no es parte de ese mínimo explícito según la
+prioridad de contenido del PRD §4.1). La meta por área se derivó restando
+cascada (A1=300, A2+A3=800-300=500 repartido por peso, resto=1500-800=700
+repartido entre A4+FISMAT+MEDBIO por peso) y la meta por materia se
+prorrateó dentro de cada área usando `Subject.questionWeight` real del seed
+(`prisma/seed/unam.ts` / `ipn.ts`) — el mismo peso que ya usa el motor
+adaptativo y el reparto del diagnóstico. **Es una estimación razonable, no
+una cifra literal de los documentos**; ordenada de mayor a menor urgencia
+(instituciones/áreas en cero primero).
+
+| Institución | Área/Rama | Materia | Meta (estimada) | Real | Faltan |
+|---|---|---|---:|---:|---:|
+| **IPN** | **FISMAT** — institución día 1 | Matemáticas | 135 | 0 | 135 |
+| IPN | FISMAT | Física | 112 | 0 | 112 |
+| IPN | FISMAT | Química | 56 | 0 | 56 |
+| IPN | FISMAT | Español/Lectura | 22 | 0 | 22 |
+| IPN | FISMAT | Inglés | 11 | 0 | 11 |
+| IPN | *(subtotal FISMAT)* | | **336** | **0** | **336** |
+| **IPN** | **MEDBIO** — institución día 1 | Biología | 123 | 0 | 123 |
+| IPN | MEDBIO | Química | 90 | 0 | 90 |
+| IPN | MEDBIO | Matemáticas | 45 | 0 | 45 |
+| IPN | MEDBIO | Español/Lectura | 33 | 0 | 33 |
+| IPN | MEDBIO | Inglés | 17 | 0 | 17 |
+| IPN | *(subtotal MEDBIO)* | | **308** | **0** | **308** |
+| **UNAM** | **Área 3 (Sociales)** — requerido Beta | Historia de México | 70 | 0 | 70 |
+| UNAM | Área 3 | Historia Universal | 50 | 0 | 50 |
+| UNAM | Área 3 | Geografía | 40 | 0 | 40 |
+| UNAM | Área 3 | Español | 30 | 0 | 30 |
+| UNAM | Área 3 | Inglés | 10 | 0 | 10 |
+| UNAM | *(subtotal Área 3)* | | **200** | **0** | **200** |
+| **UNAM** | **Área 4 (Humanidades)** | Literatura | 22 | 0 | 22 |
+| UNAM | Área 4 | Filosofía | 17 | 0 | 17 |
+| UNAM | Área 4 | Artes | 11 | 0 | 11 |
+| UNAM | Área 4 | Español | 6 | 0 | 6 |
+| UNAM | *(subtotal Área 4)* | | **56** | **0** | **56** |
+| **UNAM** | **Área 2 (Biológicas)** | Biología | 140 | 61 | 79 |
+| UNAM | Área 2 | Español | 50 | 0 | 50 |
+| UNAM | Área 2 | Inglés | 30 | 0 | 30 |
+| UNAM | Área 2 | Química | 80 | 65 | 15 |
+| UNAM | *(subtotal Área 2)* | | **300** | **126** | **174** |
+| **UNAM** | **Área 1 (Físico-Matemáticas)** | Matemáticas | 111 | 63 | 48 |
+| UNAM | Área 1 | Inglés | 26 | 0 | 26 |
+| UNAM | Área 1 | Química | 51 | 31 | 20 |
+| UNAM | Área 1 | Español | 43 | 31 | 12 |
+| UNAM | Área 1 | Física | 69 | 58 | 11 |
+| UNAM | *(subtotal Área 1)* | | **300** | **183** | **117** |
+| | **TOTAL (6 áreas/ramas mínimas)** | | **1,500** | **309** | **1,191** |
+
+**Lectura:** el 20.6% de avance (309/1,500) ya documentado en
+`LAUNCH_CHECKLIST.md` se confirma exacto. La brecha más urgente sigue siendo
+IPN completo (644 reactivos, 0 hoy, institución de lanzamiento día 1) y
+UNAM Áreas 3-4 (256 reactivos, 0 hoy). Dentro de Área 1/Área 2 (las únicas
+con contenido), Inglés y Español de Área 2 están en cero — ninguna materia
+tiene cobertura completa.
+
+### Suite E2E — resultado real (no el de fases anteriores)
+
+`pnpm exec playwright install` corrido (Firefox/WebKit no estaban
+descargados en este entorno — Chromium ya estaba). `pnpm test:e2e` completo:
+
+- **0 specs pasaron**, **15 saltados**, **3 fallidos** (18 total).
+- **Los 15 saltados** (Chromium y WebKit, las 6 specs × 2 navegadores + 3
+  Firefox del simulador): `E2E_EMAIL`/`E2E_PASSWORD`/`E2E_SIGNUP` **no
+  están configuradas en este entorno** (verificado sin exponer valores:
+  las 5 variables `E2E_*` están todas `NOT SET`) — comportamiento
+  documentado y esperado (`test.skip` explícito en los specs), no una
+  regresión. Sin esas credenciales no hay forma de correr el flujo real
+  contra Supabase.
+- **Los 3 fallidos** (Firefox, las 3 specs de `new-user-journey.spec.ts`):
+  `Error: browserType.launch: spawn UNKNOWN` al intentar lanzar
+  `firefox.exe` en este Windows — un problema de arranque del binario
+  Firefox en esta máquina (probablemente antivirus/sandbox bloqueando el
+  proceso headless), no un bug de la app; ocurre ANTES de que el test llegue
+  a su propio `test.skip`.
+- **Conclusión honesta:** en este entorno, con sus credenciales y
+  navegadores actuales, la suite E2E no puede confirmar ni refutar el
+  comportamiento de la app — solo confirma que el gating de credenciales
+  funciona como está documentado. Para una corrida real hace falta (a)
+  provisionar `E2E_EMAIL`/`E2E_PASSWORD` (cuentas de prueba `e2e.sim@`/
+  `e2e.free@` documentadas desde F19) en `.env.local`, y (b) diagnosticar el
+  arranque de Firefox en este Windows (o excluir el proyecto `firefox` de
+  `playwright.config.ts` si no es una plataforma objetivo real de examen).
+
+### Scripts nuevos (permanentes)
+
+`scripts/audit-content.ts` (`pnpm exec tsx scripts/audit-content.ts`):
+conteo real de reactivos servibles/verificados por institución/área/materia,
+groundingStatus, y temas sin contenido — reusar en cualquier verificación
+futura del banco de reactivos en vez de confiar en documentos.
+
 ## Siguiente
 
-**LAUNCH — sin más fases de código pendientes.** Revisar `docs/LAUNCH_CHECKLIST.md` para las acciones de negocio restantes (banco de reactivos, credenciales de Stripe/Sentry/PostHog/pixeles, datos legales de la empresa, plan de Supabase, reclutamiento de beta, campañas de ads).
+**G2 — Provisionar credenciales E2E y decidir la ruta de contenido.**
+`pnpm build`/`typecheck`/`lint` en verde y confirmados contra la DB real; la
+suite E2E necesita credenciales de prueba antes de poder confirmar nada. El
+bloqueador de negocio sigue siendo el mismo de `LAUNCH_CHECKLIST.md`: 1,191
+reactivos faltantes (tabla de brecha arriba), concentrados en IPN completo y
+UNAM Áreas 3-4.

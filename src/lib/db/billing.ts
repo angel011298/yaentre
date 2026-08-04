@@ -420,3 +420,37 @@ export async function resolveEffectiveSeason(now: Date): Promise<PricingSeason> 
   const remaining = await earlyBirdLicensesRemaining();
   return degradeIfEarlyBirdExhausted(season, remaining);
 }
+
+/**
+ * Variante resiliente de `resolveEffectiveSeason`, solo para renderizado
+ * público de solo-lectura (landing/precios): si la DB no responde —p. ej.
+ * durante `next build`, que ejecuta estas páginas ISR una vez para generar
+ * el shell estático, o una caída transitoria— degrada a `HIGH_SEASON` (el
+ * precio SIN descuento, nunca promete uno que no se pueda honrar) en vez de
+ * tirar toda la página/build. El checkout real (`startCheckoutAction`) sigue
+ * llamando a `resolveEffectiveSeason` directamente, sin este wrapper, así
+ * que lo que de verdad se COBRA nunca se ve afectado por esta degradación.
+ */
+export async function resolveEffectiveSeasonSafe(now: Date): Promise<PricingSeason> {
+  try {
+    return await resolveEffectiveSeason(now);
+  } catch (err) {
+    console.error('[billing] resolveEffectiveSeason falló, degradando a HIGH_SEASON:', err);
+    return 'HIGH_SEASON';
+  }
+}
+
+/**
+ * Variante resiliente de `earlyBirdLicensesRemaining` para el banner
+ * público: sin DB no hay forma honesta de saber cuántas licencias quedan, así
+ * que devuelve `null` (el llamador debe ocultar el banner) en vez de
+ * arriesgar un número inventado o desactualizado.
+ */
+export async function earlyBirdLicensesRemainingSafe(): Promise<number | null> {
+  try {
+    return await earlyBirdLicensesRemaining();
+  } catch (err) {
+    console.error('[billing] earlyBirdLicensesRemaining falló:', err);
+    return null;
+  }
+}

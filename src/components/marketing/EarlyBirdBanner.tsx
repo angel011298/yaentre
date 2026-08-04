@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { earlyBirdLicensesRemaining, resolveEffectiveSeason } from '@/lib/db/billing';
+import { earlyBirdLicensesRemainingSafe, resolveEffectiveSeasonSafe } from '@/lib/db/billing';
 import { EARLY_BIRD_LICENSE_LIMIT, getPlanPricing } from '@/lib/stripe/pricing';
 
 function formatMxn(cents: number): string {
@@ -12,16 +12,20 @@ function formatMxn(cents: number): string {
 
 /**
  * Banner Early Bird (F10 Task 1): conteo REAL de licencias restantes —
- * reusa `earlyBirdLicensesRemaining`/`resolveEffectiveSeason` de F9, no
- * duplica el cálculo. Si el cupo ya se agotó (o la fecha ya no es Early
- * Bird), `resolveEffectiveSeason` devuelve otra temporada y el banner se
- * oculta por completo — nunca promete un precio que ya no aplica.
+ * reusa `earlyBirdLicensesRemainingSafe`/`resolveEffectiveSeasonSafe` de F9,
+ * no duplica el cálculo. Si el cupo ya se agotó (o la fecha ya no es Early
+ * Bird), la temporada efectiva cae a otra y el banner se oculta por
+ * completo — nunca promete un precio que ya no aplica. Igual se oculta si la
+ * DB no responde (build o caída transitoria): sin dato real, no se muestra
+ * ningún número en vez de arriesgar uno inventado.
  */
 export async function EarlyBirdBanner() {
-  const season = await resolveEffectiveSeason(new Date());
+  const season = await resolveEffectiveSeasonSafe(new Date());
   if (season !== 'EARLY_BIRD') return null;
 
-  const remaining = await earlyBirdLicensesRemaining();
+  const remaining = await earlyBirdLicensesRemainingSafe();
+  if (remaining === null) return null;
+
   const eb = getPlanPricing('SEASON_PASS', 'EARLY_BIRD');
   const regular = getPlanPricing('SEASON_PASS', 'HIGH_SEASON');
 

@@ -3,7 +3,7 @@ import type { SubscriptionPlan } from '@prisma/client';
 import { PublicPageShell } from '@/components/marketing/PublicPageShell';
 import { PixelPageView } from '@/components/marketing/PixelPageView';
 import { LinkButton } from '@/components/ui/LinkButton';
-import { resolveEffectiveSeason } from '@/lib/db/billing';
+import { resolveEffectiveSeasonSafe } from '@/lib/db/billing';
 import { getPlanPricing, type PlanPricing } from '@/lib/stripe/pricing';
 
 // La temporada efectiva (Early Bird vs. regular) depende de compras reales —
@@ -83,7 +83,9 @@ function PriceTag({ pricing, regular }: { pricing: PlanPricing; regular: PlanPri
 }
 
 export default async function PreciosPage() {
-  const season = await resolveEffectiveSeason(new Date());
+  // Variante resiliente: si la DB no responde (build, caída transitoria),
+  // degrada a HIGH_SEASON en vez de romper la página — ver billing.ts.
+  const season = await resolveEffectiveSeasonSafe(new Date());
   const isEarlyBird = season === 'EARLY_BIRD';
 
   const pricing = Object.fromEntries(
