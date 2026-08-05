@@ -1,0 +1,1766 @@
+{
+  "batch": "G3a",
+  "generatedAt": "2026-08-05T02:17:14.625Z",
+  "institution": "IPN",
+  "area": "Ingeniería y Ciencias Físico-Matemáticas (FISMAT)",
+  "subject": "Matemáticas",
+  "subjectId": "cmrr1kvuv009dhi3nrfzki2c1",
+  "subjectQuestionWeight": 24,
+  "selectionRule": "Prioridad 1: materia con mayor questionWeight entre todas las de instituciones/áreas activas para lanzamiento (IPN Superior completo + UNAM Áreas 3-4) con 0 reactivos verificados. Matemáticas de IPN FISMAT (questionWeight=24) fue la más alta de ese conjunto (verificado contra la DB real).",
+  "totalQuestions": 35,
+  "sourcedCount": 12,
+  "temarioOnlyCount": 23,
+  "questions": [
+    {
+      "questionId": "cmsfgexrq0001zow8ljelc3q2",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "topic": "Números y operaciones",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Un comerciante compra una mercancía en $2,400 y la vende con una ganancia del 35% sobre el costo. Si además debe pagar un impuesto del 8% sobre el precio de venta, ¿cuánto dinero le queda como ganancia neta después de pagar el impuesto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$580.80",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$840.00",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$648.00",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$259.20",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $580.80",
+          "content": "El precio de venta es $2,400 \\times 1.35 = $3,240. El impuesto (8% sobre la VENTA, no sobre el costo) es $3,240 \\times 0.08 = $259.20. La ganancia bruta es $3,240 - $2,400 = $840, y al restar el impuesto queda $840 - $259.20 = $580.80."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Precio de venta = costo × (1 + %ganancia) = 2400 × 1.35 = 3240. 2) Impuesto = 8% del precio de VENTA = 3240 × 0.08 = 259.20. 3) Ganancia bruta = venta − costo = 3240 − 2400 = 840. 4) Ganancia neta = ganancia bruta − impuesto = 840 − 259.20 = 580.80."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "En problemas de porcentaje encadenado, cada porcentaje se aplica sobre la base que el enunciado indica explícitamente (aquí, el impuesto es sobre el precio de venta, NO sobre el costo original) — confundir la base es el error más común en este tipo de reactivo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgeypz0006zow8geqjn13h",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "topic": "Números y operaciones",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Una máquina produce 480 piezas en 6 horas trabajando a ritmo constante. ¿Cuántas piezas producirá en 10 horas al mismo ritmo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "800",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "720",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "600",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "900",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 800",
+          "content": "El ritmo de producción es 480 ÷ 6 = 80 piezas por hora. En 10 horas: 80 × 10 = 800 piezas."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Calcula el ritmo constante: 480 piezas ÷ 6 horas = 80 piezas/hora. 2) Multiplica el ritmo por el nuevo tiempo: 80 × 10 = 800."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Esta es una regla de tres simple (proporción directa): si el ritmo es constante, piezas y horas son directamente proporcionales — piezas = ritmo × horas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgezo6000bzow83ey5hvgm",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "topic": "Números y operaciones",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "El precio de un artículo aumenta 20% y luego, sobre el NUEVO precio, disminuye 20%. Si el precio original era $500, ¿cuál es el precio final?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$480",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$500",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$460",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$520",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $480",
+          "content": "Aumentar 20% da $500 \\times 1.2 = $600. Disminuir 20% sobre ESE nuevo precio da $600 \\times 0.8 = $480 — un aumento y una disminución del mismo porcentaje NO se cancelan entre sí."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Aplica el aumento: 500 × 1.20 = 600. 2) Aplica la disminución sobre el precio YA aumentado: 600 × 0.80 = 480. El resultado es menor al precio original."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Un error frecuente es pensar que +20% seguido de −20% regresa al valor original. Como el segundo porcentaje se calcula sobre una base distinta (mayor), el resultado neto siempre es una disminución respecto al original cuando los porcentajes son iguales."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgf0lx000gzow83ncoiy0n",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "topic": "Números y operaciones",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Ana tiene el 40% de $2,500, Luis tiene el 60% de $1,800 y Marta tiene el 25% de $3,200. ¿Cuánto dinero tienen entre los tres?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2,880",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$2,780",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3,080",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$2,600",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $2,880",
+          "content": "Ana: 0.40 × 2500 = 1000. Luis: 0.60 × 1800 = 1080. Marta: 0.25 × 3200 = 800. Suma: 1000 + 1080 + 800 = 2880."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "Calcula cada porcentaje por separado sobre SU propia base (no sumes las bases primero): Ana = 0.40×2500=1000; Luis = 0.60×1800=1080; Marta = 0.25×3200=800. Súmalos: 1000+1080+800=2880."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Cuando varios porcentajes se aplican sobre bases DISTINTAS, cada uno debe calcularse independientemente antes de sumar — no existe un porcentaje 'promedio' válido a menos que las bases sean iguales."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgejvv0001w0yzqcfgiqi5",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "¿Cuál es uno de los valores de $x$ en los que la parábola $y = x^2 - 2x - 15$ intersecta al eje $x$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$x=5$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$x=-5$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x=3$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$x=15$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $x=5$",
+          "content": "Factorizando $x^2-2x-15=(x-5)(x+3)$, las raíces son $x=5$ y $x=-3$. Solo $x=5$ aparece entre las opciones."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Busca dos números que multiplicados den $-15$ y sumados den $-2$: son $-5$ y $3$. 2) Factoriza: $(x-5)(x+3)=0$. 3) Iguala cada factor a cero: $x=5$ o $x=-3$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Los puntos donde una parábola cruza el eje $x$ son sus raíces (donde $y=0$). Factorizar es el método más directo cuando el trinomio se factoriza con números enteros."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgekwj0006w0yz7vse9qf2",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Resuelve para $x$: $3(x+4) - 5 = 2x + 9$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$x=2$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$x=7$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x=-2$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$x=9$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $x=2$",
+          "content": "Distribuyendo y agrupando términos semejantes: $3x+12-5=2x+9 \\Rightarrow 3x+7=2x+9 \\Rightarrow x=2$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Distribuye: $3(x+4)=3x+12$, así $3x+12-5=2x+9$. 2) Simplifica el lado izquierdo: $3x+7=2x+9$. 3) Resta $2x$ de ambos lados: $x+7=9$. 4) Resta 7: $x=2$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Resolver una ecuación lineal es aislar la variable aplicando la MISMA operación a ambos lados de la igualdad, manteniendo el equilibrio en cada paso."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgelyl000bw0yzma0v745d",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "¿Cuál es la suma de las raíces de la ecuación $x^2 - 7x + 10 = 0$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "7",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "10",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "-7",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "12",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 7",
+          "content": "Factorizando: $(x-5)(x-2)=0$, las raíces son 5 y 2, y su suma es $5+2=7$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Factoriza $x^2-7x+10$ buscando dos números que multiplicados den 10 y sumados den $-7$: son $-5$ y $-2$. 2) $(x-5)(x-2)=0 \\Rightarrow x=5$ o $x=2$. 3) Suma: $5+2=7$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Por las fórmulas de Vieta, en $ax^2+bx+c=0$ la suma de las raíces siempre es $-b/a$ — aquí $-(-7)/1=7$, sin necesidad de encontrar las raíces individuales."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgemwc000gw0yzrtlgp1el",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "En la ecuación cuadrática $ax^2+bx+c=0$ con $a\\neq0$, el discriminante $b^2-4ac$ permite determinar...",
+      "options": [
+        {
+          "id": "A",
+          "text": "El número y tipo de raíces (reales o complejas) de la ecuación",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El valor exacto de la raíz mayor",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Las coordenadas del vértice de la parábola",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La pendiente de la recta tangente en el vértice",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué A",
+          "content": "Si el discriminante es positivo hay dos raíces reales distintas, si es cero hay una raíz real repetida, y si es negativo las raíces son complejas — pero por sí solo NO da el valor de ninguna raíz."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "El discriminante se usa DENTRO de la fórmula general $x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$: su signo (antes de sacar la raíz cuadrada) es lo que clasifica el tipo de solución, sin necesidad de resolver la ecuación completa."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "El vértice de la parábola se calcula con $-b/2a$ (no con el discriminante), y la pendiente de la tangente en el vértice siempre es 0 por definición — ninguno de esos datos requiere el discriminante."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfgk40001zb15e6jem05q",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "topic": "Sucesiones y series",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Completa la secuencia: 5, 11, 17, 23, 29, ___, ___",
+      "options": [
+        {
+          "id": "A",
+          "text": "35, 41",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "34, 40",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "36, 42",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "33, 39",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "NUMERIC_SERIES",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 35, 41",
+          "content": "Cada término aumenta 6 respecto al anterior: $29+6=35$ y $35+6=41$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Encuentra la diferencia entre términos consecutivos: $11-5=6$, $17-11=6$, etc. — es constante. 2) Suma 6 al último término conocido: $29+6=35$. 3) Suma 6 de nuevo: $35+6=41$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Es una sucesión aritmética: cada término se obtiene sumando una diferencia constante ($d=6$) al anterior. Identificar $d$ es el primer paso siempre."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfhir0006zb15dar9smf9",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "topic": "Sucesiones y series",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Completa la secuencia: 3, 6, 12, 24, 48, ___",
+      "options": [
+        {
+          "id": "A",
+          "text": "96",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "72",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "84",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "60",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "NUMERIC_SERIES",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 96",
+          "content": "Cada término es el doble del anterior (razón $r=2$): $48 \\times 2 = 96$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Divide un término entre el anterior para hallar la razón: $6/3=2$, $12/6=2$ — es constante. 2) Multiplica el último término por 2: $48 \\times 2 = 96$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Es una sucesión GEOMÉTRICA (no aritmética): cada término se obtiene multiplicando el anterior por una razón constante $r$, a diferencia de sumar una diferencia constante."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfih2000bzb15dlj275fv",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "topic": "Sucesiones y series",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "¿Cuál es el siguiente término de la sucesión? 2, 5, 10, 17, 26, ___",
+      "options": [
+        {
+          "id": "A",
+          "text": "37",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "35",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "39",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "33",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "NUMERIC_SERIES",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 37",
+          "content": "Las diferencias entre términos son 3, 5, 7, 9 (números impares consecutivos); la siguiente diferencia es 11, así que $26+11=37$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Calcula las diferencias: $5-2=3$, $10-5=5$, $17-10=7$, $26-17=9$. 2) Observa el patrón: las diferencias aumentan de 2 en 2 (son impares consecutivos). 3) La siguiente diferencia es $9+2=11$. 4) Súmala al último término: $26+11=37$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Cuando la diferencia entre términos NO es constante, hay que analizar la diferencia de las diferencias (segunda diferencia) — aquí es constante e igual a 2, lo que indica una sucesión cuadrática."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfjel000gzb15uctn5ki4",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "topic": "Sucesiones y series",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Elige los números que completan la siguiente sucesión numérica: 100, 91, 82, 73, 64, ___, ___",
+      "options": [
+        {
+          "id": "A",
+          "text": "55, 46",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "54, 45",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "56, 47",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "53, 44",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "NUMERIC_SERIES",
+      "sourceChunks": [
+        1
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 55, 46",
+          "content": "La sucesión disminuye 9 en cada paso: $64-9=55$ y $55-9=46$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Halla la diferencia constante: $91-100=-9$, $82-91=-9$, etc. 2) Resta 9 al último término: $64-9=55$. 3) Resta 9 otra vez: $55-9=46$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Una sucesión aritmética también puede ser decreciente si la diferencia constante $d$ es negativa — el método para encontrar el siguiente término es idéntico, solo cambia el signo de $d$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfggj590001adj4n2nwfp2z",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "topic": "Álgebra elemental",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Simplifica la expresión: $\\frac{6x^2y}{3xy^2} \\cdot \\frac{2y}{4x}$ (con $x,y \\neq 0$)",
+      "options": [
+        {
+          "id": "A",
+          "text": "1",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{x}{y}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{4x}{y}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$xy$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 1",
+          "content": "Simplificando la primera fracción: $\\frac{6x^2y}{3xy^2}=\\frac{2x}{y}$. Multiplicando por $\\frac{2y}{4x}$: $\\frac{2x}{y}\\cdot\\frac{2y}{4x}=\\frac{4xy}{4xy}=1$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Simplifica cada fracción por separado si es posible, o multiplica numeradores y denominadores primero: numerador $=6x^2y \\cdot 2y=12x^2y^2$; denominador $=3xy^2\\cdot4x=12x^2y^2$. 2) El resultado es $\\frac{12x^2y^2}{12x^2y^2}=1$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Al multiplicar fracciones algebraicas, se multiplican numeradores entre sí y denominadores entre sí; si el resultado tiene el mismo numerador y denominador (para valores donde no se indefine), la expresión se simplifica a 1."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfggjxl0006adj4kfnoeova",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "topic": "Álgebra elemental",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Factoriza completamente: $x^2 - 9$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(x-3)(x+3)$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$(x-9)(x+1)$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(x-3)^2$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "No se puede factorizar con números reales",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $(x-3)(x+3)$",
+          "content": "$x^2-9$ es una diferencia de cuadrados ($x^2-3^2$), que se factoriza como $(x-3)(x+3)$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Reconoce la forma $a^2-b^2$ con $a=x$ y $b=3$ (porque $9=3^2$). 2) Aplica la identidad $a^2-b^2=(a-b)(a+b)$: $(x-3)(x+3)$. 3) Verifica expandiendo: $(x-3)(x+3)=x^2+3x-3x-9=x^2-9$. ✓"
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "La diferencia de cuadrados es uno de los patrones de factorización más comunes y siempre se factoriza en el producto de un binomio suma por un binomio resta de las mismas raíces."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfggkpg000badj4av6igpzw",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "topic": "Álgebra elemental",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál de las siguientes es la ley de los exponentes correcta para $a^m \\cdot a^n$ (con $a\\neq0$)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$a^{m+n}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$a^{m-n}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$a^{mn}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$a^{m/n}$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $a^{m+n}$",
+          "content": "Al multiplicar potencias de la MISMA base, los exponentes se SUMAN: $a^m\\cdot a^n=a^{m+n}$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "Verifica con números pequeños: $a^2\\cdot a^3 = (a\\cdot a)\\cdot(a\\cdot a\\cdot a)=a^5=a^{2+3}$. El exponente resultante es la suma de los exponentes originales."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Las otras opciones corresponden a otras leyes: $a^{m-n}$ es la división $a^m\\div a^n$; $a^{mn}$ es la potencia de una potencia $(a^m)^n$; $a^{m/n}$ no corresponde a ninguna ley básica de exponentes con esta operación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfufm0001pofkbtin2113",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "topic": "Funciones y gráficas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $f(x) = 2x^2 - 3x + 1$, ¿cuál es el valor de $f(3)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "10",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "16",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "8",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "12",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 10",
+          "content": "Sustituyendo $x=3$: $2(3)^2-3(3)+1=2(9)-9+1=18-9+1=10$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Sustituye $x=3$ en cada término: $2(3)^2=18$, $-3(3)=-9$, $+1$. 2) Suma: $18-9+1=10$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Evaluar una función en un punto significa sustituir el valor de $x$ en TODA la expresión y respetar el orden de operaciones (exponentes antes que multiplicación, multiplicación antes que suma/resta)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfvgc0006pofk5keg9rlb",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "topic": "Funciones y gráficas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el dominio de la función $f(x) = \\frac{1}{x-4}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Todos los reales excepto $x=4$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Todos los reales excepto $x=0$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x \\geq 4$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Todos los números reales",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué excepto $x=4$",
+          "content": "Una fracción no está definida cuando su denominador es cero. Aquí el denominador $x-4=0$ cuando $x=4$, así que ese valor se excluye del dominio."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Identifica el denominador: $x-4$. 2) Iguala a cero y resuelve: $x-4=0 \\Rightarrow x=4$. 3) El dominio es todos los reales EXCEPTO ese valor."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Para funciones racionales (fracciones con variable en el denominador), el dominio siempre excluye los valores que hacen cero al denominador — nunca al numerador."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfw8a000bpofk5e35jc1f",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "topic": "Funciones y gráficas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Qué representa geométricamente la pendiente $m$ en la ecuación de la recta $y=mx+b$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La razón de cambio (inclinación) de la recta",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El punto donde la recta cruza el eje $y$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El punto donde la recta cruza el eje $x$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La longitud total de la recta",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué A",
+          "content": "La pendiente $m$ mide cuánto cambia $y$ por cada unidad que cambia $x$ — es la inclinación de la recta."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "En $y=mx+b$, si $x$ aumenta en 1 unidad, $y$ cambia exactamente en $m$ unidades. Un valor de $m$ grande indica una recta muy inclinada; $m=0$ indica una recta horizontal."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "El punto donde la recta cruza el eje $y$ (opción B) es la ORDENADA AL ORIGEN, representada por $b$, NO por $m$ — son conceptos distintos dentro de la misma ecuación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfggcv80001cyp3obgmdgvs",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "topic": "Trigonometría",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "En un triángulo rectángulo, el cateto opuesto a un ángulo $\\theta$ mide 6 cm y la hipotenusa mide 10 cm. ¿Cuál es el valor de $\\sin(\\theta)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.6",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "0.8",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "1.67",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "0.4",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 0.6",
+          "content": "$\\sin(\\theta)=\\frac{\\text{cateto opuesto}}{\\text{hipotenusa}}=\\frac{6}{10}=0.6$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Identifica los datos: opuesto=6, hipotenusa=10. 2) Aplica la definición de seno: $\\sin(\\theta)=6/10$. 3) Simplifica: $0.6$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "0.8 sería el coseno (cateto adyacente/hipotenusa, ya que el triángulo 6-8-10 es un múltiplo del triángulo 3-4-5); confundir seno con coseno es el error más común en este tipo de reactivo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfggdn10006cyp34zlsiibo",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "topic": "Trigonometría",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el valor exacto de $\\cos(60°)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{1}{2}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{\\sqrt{3}}{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{\\sqrt{2}}{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "1",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $\\frac{1}{2}$",
+          "content": "$\\cos(60°)=\\frac{1}{2}$ es uno de los valores exactos de ángulos notables que se memorizan directamente."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "En un triángulo equilátero dividido a la mitad se forma un triángulo 30-60-90 con lados en proporción $1:\\sqrt{3}:2$; el coseno de 60° es cateto adyacente entre hipotenusa = $1/2$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "$\\frac{\\sqrt{3}}{2}$ es $\\sin(60°)$ (o $\\cos(30°)$) y $\\frac{\\sqrt{2}}{2}$ corresponde a 45° — memorizar la tabla de ángulos notables (30°, 45°, 60°) evita confundir estos valores."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfggehf000bcyp3kgnedo1b",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "topic": "Trigonometría",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $\\tan(\\theta) = \\frac{3}{4}$ y $\\theta$ es un ángulo agudo, ¿cuál es el valor de $\\sec(\\theta)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{5}{4}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{4}{5}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{5}{3}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{3}{5}$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $\\frac{5}{4}$",
+          "content": "Si $\\tan(\\theta)=3/4$, el triángulo tiene opuesto=3, adyacente=4, y por Pitágoras hipotenusa=$\\sqrt{9+16}=5$. $\\sec(\\theta)=\\text{hipotenusa}/\\text{adyacente}=5/4$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) De $\\tan(\\theta)=3/4$, toma opuesto=3 y adyacente=4. 2) Halla la hipotenusa: $\\sqrt{3^2+4^2}=\\sqrt{25}=5$. 3) $\\sec(\\theta)=1/\\cos(\\theta)=\\text{hipotenusa}/\\text{adyacente}=5/4$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "La secante es el RECÍPROCO del coseno ($\\sec\\theta=1/\\cos\\theta$), no del seno — construir el triángulo de referencia a partir de la tangente es la estrategia más confiable para hallar las demás razones."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgg6hd0001fb7g1bf9d5gf",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "topic": "Geometría analítica",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la distancia entre los puntos $(1, 2)$ y $(4, 6)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "7",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "25",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\sqrt{20}$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 5",
+          "content": "$d=\\sqrt{(4-1)^2+(6-2)^2}=\\sqrt{9+16}=\\sqrt{25}=5$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Resta coordenadas: $\\Delta x=4-1=3$, $\\Delta y=6-2=4$. 2) Aplica la fórmula de distancia: $\\sqrt{3^2+4^2}=\\sqrt{9+16}=\\sqrt{25}$. 3) Simplifica: $5$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "La fórmula de distancia entre dos puntos se deriva directamente del teorema de Pitágoras, tratando $\\Delta x$ y $\\Delta y$ como los catetos de un triángulo rectángulo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgg7cx0006fb7gvb89q9vg",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "topic": "Geometría analítica",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la pendiente de la recta que pasa por los puntos $(2, 3)$ y $(6, 11)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "2",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "0.5",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "8",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 2",
+          "content": "$m=\\frac{11-3}{6-2}=\\frac{8}{4}=2$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Aplica la fórmula de pendiente: $m=\\frac{y_2-y_1}{x_2-x_1}$. 2) Sustituye: $m=\\frac{11-3}{6-2}=\\frac{8}{4}$. 3) Simplifica: $m=2$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "El orden de resta debe ser consistente entre numerador y denominador (ambos $punto_2 - punto_1$) — invertir el orden en solo uno de los dos cambia el signo del resultado."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgg85l000bfb7gnausejl8",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "topic": "Geometría analítica",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la ecuación de la circunferencia con centro en $(0,0)$ y radio 5?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$x^2+y^2=25$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$x^2+y^2=5$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(x-5)^2+(y-5)^2=25$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$x^2+y^2=10$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $x^2+y^2=25$",
+          "content": "La ecuación de una circunferencia con centro $(h,k)$ y radio $r$ es $(x-h)^2+(y-k)^2=r^2$; con centro en el origen y $r=5$: $x^2+y^2=25$ (porque $5^2=25$)."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Parte de la forma general $(x-h)^2+(y-k)^2=r^2$. 2) Sustituye $h=0$, $k=0$: $x^2+y^2=r^2$. 3) Sustituye $r=5$: $x^2+y^2=5^2=25$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "El error más común es olvidar elevar el radio al cuadrado (opción B usa $r=5$ en vez de $r^2=25$) — el lado derecho de la ecuación SIEMPRE es el radio al cuadrado, no el radio."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfo8t000119ydsj7k1w37",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "topic": "Cálculo diferencial",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la derivada de $f(x) = 3x^4 - 2x^2 + 5$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$12x^3 - 4x$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$12x^3 - 2x$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3x^3-2x$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$12x^4-4x^2$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $12x^3-4x$",
+          "content": "Aplicando la regla de la potencia término por término: $\\frac{d}{dx}(3x^4)=12x^3$, $\\frac{d}{dx}(-2x^2)=-4x$, y la derivada de la constante 5 es 0."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Deriva cada término con la regla $\\frac{d}{dx}(x^n)=nx^{n-1}$: $3x^4\\to3\\cdot4x^3=12x^3$; $-2x^2\\to-2\\cdot2x=-4x$; $5\\to0$. 2) Suma los resultados: $12x^3-4x+0$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "La derivada de una constante SIEMPRE es cero (no cambia con $x$) — un error común es olvidar este término o multiplicar mal el exponente por el coeficiente."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfp0h000619yd63d5zk2z",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "topic": "Cálculo diferencial",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la pendiente de la recta tangente a $f(x)=x^2$ en el punto donde $x=3$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "6",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "9",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "12",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 6",
+          "content": "$f'(x)=2x$, y evaluando en $x=3$: $f'(3)=2(3)=6$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Deriva $f(x)=x^2$: $f'(x)=2x$. 2) Sustituye $x=3$ en la DERIVADA (no en $f$ original): $f'(3)=2\\times3=6$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "La pendiente de la tangente en un punto es el valor de la DERIVADA evaluada ahí, no el valor de la función original — confundir $f(3)=9$ con $f'(3)=6$ es el error más frecuente."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfps6000b19ydqmc88gpy",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "topic": "Cálculo diferencial",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Un objeto se mueve según $s(t) = t^3 - 6t^2 + 9t$ (metros). ¿En qué valor(es) de $t>0$ la velocidad instantánea es cero?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$t=1$ y $t=3$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$t=2$ solamente",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$t=0$ y $t=3$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$t=1$ solamente",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $t=1$ y $t=3$",
+          "content": "La velocidad es $v(t)=s'(t)=3t^2-12t+9=3(t-1)(t-3)$, que es cero cuando $t=1$ o $t=3$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Deriva $s(t)$: $v(t)=3t^2-12t+9$. 2) Factoriza sacando 3 común: $3(t^2-4t+3)$. 3) Factoriza el trinomio: $3(t-1)(t-3)$. 4) Iguala a cero: $t=1$ o $t=3$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "La velocidad instantánea es la DERIVADA de la posición respecto al tiempo. Encontrar dónde es cero requiere resolver $v(t)=0$, no $s(t)=0$ (que daría dónde el objeto está en el origen, no dónde se detiene)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgg0yn0001jdba3hzgyncc",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "topic": "Cálculo integral",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Calcula la integral indefinida: $\\int (4x^3 - 6x) \\, dx$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$x^4 - 3x^2 + C$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$4x^4-6x^2+C$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x^4-3x^2$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$12x^2-6+C$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $x^4-3x^2+C$",
+          "content": "Aplicando la regla de la potencia inversa término por término: $\\int4x^3dx=x^4$ y $\\int-6x\\,dx=-3x^2$, más la constante de integración $C$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Usa $\\int x^n dx=\\frac{x^{n+1}}{n+1}+C$: para $4x^3$, $\\frac{4x^4}{4}=x^4$. 2) Para $-6x$, $\\frac{-6x^2}{2}=-3x^2$. 3) Súmalos y agrega SIEMPRE la constante $+C$ en una integral indefinida."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Olvidar el $+C$ (opción C) es incorrecto porque una integral indefinida representa TODA una familia de funciones cuya derivada coincide con el integrando; la opción D es la derivada, no la integral, del integrando original."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgg1r40006jdba6o797pvc",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "topic": "Cálculo integral",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Calcula el valor de la integral definida: $\\int_0^2 3x^2 \\, dx$",
+      "options": [
+        {
+          "id": "A",
+          "text": "8",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "12",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "24",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 8",
+          "content": "La antiderivada de $3x^2$ es $x^3$. Evaluando de 0 a 2: $2^3-0^3=8-0=8$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Encuentra la antiderivada: $\\int3x^2dx=x^3$. 2) Evalúa en el límite superior: $2^3=8$. 3) Evalúa en el límite inferior: $0^3=0$. 4) Resta: $8-0=8$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "El Teorema Fundamental del Cálculo dice que $\\int_a^b f(x)dx=F(b)-F(a)$, donde $F$ es una antiderivada de $f$ — en una integral DEFINIDA no se agrega $+C$ porque se cancela al restar."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgert00001gzhwqb2p3r8m",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "topic": "Matrices y sistemas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $A$ es una matriz de tamaño $2\\times3$ y $B$ es una matriz de tamaño $3\\times4$, ¿cuál es el tamaño de la matriz resultante $A \\cdot B$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2\\times4$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$3\\times3$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$2\\times3$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$3\\times4$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $2\\times4$",
+          "content": "El resultado toma el número de filas de la PRIMERA matriz (2) y el número de columnas de la SEGUNDA (4): $2\\times4$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Para multiplicar matrices, las columnas de $A$ (3) deben coincidir con las filas de $B$ (3) — aquí sí coinciden, la multiplicación es posible. 2) El tamaño resultante es (filas de $A$) $\\times$ (columnas de $B$) = $2\\times4$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "La regla general es: una matriz $m\\times n$ multiplicada por una $n\\times p$ da como resultado una matriz $m\\times p$ — las 'n' internas deben coincidir y 'desaparecen' del resultado."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgesl90006gzhwz16kpkpv",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "topic": "Matrices y sistemas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Resuelve el sistema de ecuaciones: $x+y=10$, $x-y=2$. ¿Cuál es el valor de $x$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$x=6$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$x=4$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x=8$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$x=5$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $x=6$",
+          "content": "Sumando ambas ecuaciones: $(x+y)+(x-y)=10+2 \\Rightarrow 2x=12 \\Rightarrow x=6$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Suma las dos ecuaciones término a término: $2x+0y=12$. 2) Divide entre 2: $x=6$. 3) (Verificación: sustituyendo en la primera, $6+y=10\\Rightarrow y=4$, y en la segunda $6-4=2$ ✓)."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "El método de SUMA (o eliminación) es eficiente cuando una variable tiene coeficientes opuestos ($+y$ y $-y$) en las dos ecuaciones — al sumar, esa variable se elimina automáticamente."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfaye0001h8vrwpnfw20f",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "topic": "Combinatoria y probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿De cuántas maneras diferentes se pueden ordenar 4 libros distintos en un estante?",
+      "options": [
+        {
+          "id": "A",
+          "text": "24",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "16",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "12",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "4",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 24",
+          "content": "El número de formas de ordenar 4 objetos distintos es $4! = 4\\times3\\times2\\times1=24$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Para el primer lugar hay 4 opciones. 2) Para el segundo, quedan 3. 3) Para el tercero, quedan 2. 4) Para el cuarto, queda 1. 5) Multiplica: $4\\times3\\times2\\times1=24$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Ordenar TODOS los elementos de un conjunto de tamaño $n$ (sin repetir ni omitir ninguno) siempre da $n!$ (factorial de $n$) posibles arreglos — esto es una permutación simple."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgfbq60006h8vrdmjqq7un",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "topic": "Combinatoria y probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Se lanza un dado justo de 6 caras. ¿Cuál es la probabilidad de obtener un número mayor que 4?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{1}{3}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{1}{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{2}{3}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{1}{6}$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $\\frac{1}{3}$",
+          "content": "Los números mayores que 4 en un dado son 5 y 6 (2 casos favorables) de un total de 6 posibles: $2/6=1/3$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Lista los casos favorables (mayor que 4): $\\{5,6\\}$, son 2 casos. 2) El total de casos posibles es 6 (caras del dado). 3) Probabilidad = casos favorables / casos totales = $2/6=1/3$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "'Mayor que 4' EXCLUYE al 4 mismo (solo incluye 5 y 6) — un error común es incluir el 4 y contar 3 casos favorables en vez de 2, lo que daría el resultado incorrecto $1/2$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgf5ea0001k3lis0d0uzf9",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "topic": "Números complejos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $i$ es la unidad imaginaria ($i^2=-1$), ¿cuál es el resultado de $(3+2i)+(1-5i)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4-3i$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$4+7i$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$2-3i$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$4-3$",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué $4-3i$",
+          "content": "Se suman las partes reales por separado ($3+1=4$) y las partes imaginarias por separado ($2i-5i=-3i$): resultado $4-3i$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Agrupa partes reales: $3+1=4$. 2) Agrupa partes imaginarias: $2i+(-5i)=-3i$. 3) Combina: $4-3i$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "Sumar números complejos es como sumar binomios: las partes reales se suman entre sí y las imaginarias entre sí, SIN mezclarlas — la parte imaginaria nunca se convierte en real ni viceversa."
+        }
+      ]
+    },
+    {
+      "questionId": "cmsfgf67c0006k3li7kytuesi",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "topic": "Números complejos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el módulo (valor absoluto) del número complejo $z=3+4i$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "7",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "25",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "3.5",
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Por qué 5",
+          "content": "El módulo es $|z|=\\sqrt{a^2+b^2}=\\sqrt{3^2+4^2}=\\sqrt{9+16}=\\sqrt{25}=5$."
+        },
+        {
+          "layer": 2,
+          "title": "Paso a paso",
+          "content": "1) Identifica la parte real $a=3$ y la imaginaria $b=4$. 2) Aplica $|z|=\\sqrt{a^2+b^2}=\\sqrt{9+16}=\\sqrt{25}$. 3) Simplifica: $5$."
+        },
+        {
+          "layer": 3,
+          "title": "Concepto base",
+          "content": "El módulo de un número complejo se calcula exactamente igual que la distancia de un punto al origen en el plano cartesiano (teorema de Pitágoras), tratando la parte real e imaginaria como coordenadas $(a,b)$."
+        }
+      ]
+    }
+  ]
+}
