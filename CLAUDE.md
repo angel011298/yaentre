@@ -165,6 +165,7 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - ❌ No poner `ContentItem.status = ACTIVE` en Fase 1 (queda `INACTIVE`).
 - ❌ No borrar reactivos con respuestas históricas.
 - ❌ No introducir un state manager global (Zustand solo en el simulador).
+- ❌ Al componer un lote de reactivos, no dejar la respuesta correcta concentrada en una sola posición: distribuirla de forma pareja entre las cuatro opciones, y citar los distractores por su contenido, nunca por su letra — el simulador no baraja opciones para todas las instituciones (`shuffleOptions:false` en `src/lib/simulator/config.ts` para IPN/UAM/CENEVAL/CNBV). Todo lote debe pasar `scripts/lib/lot-validation.ts` (`content:validate-batch` / paso obligatorio de `content:insert`) antes de insertarse — ver G3b/G3c en `docs/ESTADO.md`.
 
 ---
 

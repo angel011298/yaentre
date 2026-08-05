@@ -19,6 +19,7 @@
     "content:classify-export": "tsx scripts/classify-chunks-export.ts",
     "content:classify-apply": "tsx scripts/classify-chunks-apply.ts",
     "content:insert": "tsx scripts/content-insert-drafts.ts",
+    "content:validate-batch": "tsx scripts/validate-batch.ts",
     "content:blind-batch": "tsx scripts/content-blind-batch.ts",
     "content:resolve": "tsx scripts/content-resolve-verification.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",

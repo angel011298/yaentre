@@ -34,18 +34,33 @@
  *
  * Uso:
  *   npx tsx scripts/content-insert-drafts.ts --topic <topicId> --file <path.json> [--dry-run]
+ *   npx tsx scripts/content-insert-drafts.ts --topic <topicId> --file <path.json> --lot-dir <carpeta> [--dry-run]
+ *
+ * VALIDACIÓN DE LOTE (G3c, obligatoria — ver scripts/lib/lot-validation.ts):
+ * antes de tocar la DB, este script SIEMPRE corre `analyzeLot` sobre los
+ * reactivos que va a insertar. Si el lote real abarca VARIOS archivos (un
+ * archivo por tema, como en G3a: 12 archivos = 1 materia = 1 lote), pásale
+ * `--lot-dir` apuntando a la carpeta que los contiene — el chequeo de sesgo
+ * de posición (15%-40% por letra) necesita ver el CONJUNTO completo para
+ * tener muestra suficiente, no solo el archivo de este tema. Sin `--lot-dir`
+ * igual se valida el archivo de este tema por su cuenta (las reglas de
+ * "cita por letra" y "opciones mal formadas" aplican sin importar el
+ * tamaño). Cualquier violación aborta la inserción completa, incluso en
+ * modo no-dry-run: no se escribe nada en la DB.
  *
  * GUARDRAIL: cero llamadas a red o a la API de Anthropic. Solo valida
- * (Zod + KaTeX) e inserta con isVerified=false — la verificación adversarial
- * (scripts/content-blind-batch.ts + content-resolve-verification.ts) decide
- * si se publica.
+ * (Zod + KaTeX + lote) e inserta con isVerified=false — la verificación
+ * adversarial (scripts/content-blind-batch.ts + content-resolve-verification.ts)
+ * decide si se publica.
  */
 import './lib/env';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { parseModelOutput } from './lib/parse-model-output';
 import { validateDraft, normalizeStem, type QuestionDraft } from './lib/question-draft-schema';
 import { resolveCitations, type GroundingChunk } from './lib/grounding';
+import { analyzeLot, formatLotReport, type LotItem } from './lib/lot-validation';
 import {
   loadTopicContext,
   loadExistingStems,
@@ -59,6 +74,7 @@ interface CliArgs {
   topicId: string;
   file: string;
   dryRun: boolean;
+  lotDir?: string;
 }
 
 function parseArgs(argv: string[]): CliArgs {
@@ -74,6 +90,9 @@ function parseArgs(argv: string[]): CliArgs {
       case '--dry-run':
         args.dryRun = true;
         break;
+      case '--lot-dir':
+        args.lotDir = argv[++i];
+        break;
       default:
         if (argv[i].startsWith('--')) console.warn(`⚠️  Flag desconocido: ${argv[i]}`);
     }
@@ -81,6 +100,27 @@ function parseArgs(argv: string[]): CliArgs {
   if (!args.topicId) throw new Error('Falta --topic <topicId>');
   if (!args.file) throw new Error('Falta --file <path.json>');
   return args as CliArgs;
+}
+
+/** Lee un archivo de drafts y devuelve solo los que pasan Zod/KaTeX (forma
+ *  QuestionDraftSchema), listos para `analyzeLot`. Usado tanto para el propio
+ *  archivo de este tema como para los archivos hermanos de `--lot-dir`. */
+function loadValidItemsForLotCheck(path: string): LotItem[] {
+  const raw = readFileSync(path, 'utf8');
+  const parsed = parseModelOutput(raw);
+  if (!parsed.ok) return [];
+  const items: LotItem[] = [];
+  for (const candidate of parsed.items) {
+    const result = validateDraft(candidate);
+    if (!result.ok) continue;
+    items.push({
+      options: result.draft.options,
+      format: result.draft.format,
+      difficulty: result.draft.difficulty,
+      explanations: result.draft.explanations,
+    });
+  }
+  return items;
 }
 
 function toInsertable(draft: QuestionDraft, sourceChunkIds: string[]): InsertableDraft {
@@ -155,6 +195,35 @@ async function main() {
 
   console.log('─'.repeat(60));
   console.log(`✅ Válidos: ${valid.length}   ❌ Rechazados: ${rejected.length}`);
+
+  // ── Validación de LOTE (G3c) — OBLIGATORIA, corre siempre, incluso en --dry-run ──
+  console.log('─'.repeat(60));
+  let lotItems: LotItem[] = valid.map(({ draft }) => ({
+    options: draft.options,
+    format: draft.format,
+    difficulty: draft.difficulty,
+    explanations: draft.explanations,
+  }));
+  if (args.lotDir) {
+    lotItems = [];
+    const siblingFiles = readdirSync(args.lotDir)
+      .filter((name) => name.endsWith('.json'))
+      .map((name) => join(args.lotDir!, name));
+    console.log(`🔎 Validación de lote sobre ${siblingFiles.length} archivo(s) en ${args.lotDir}`);
+    for (const f of siblingFiles) lotItems.push(...loadValidItemsForLotCheck(f));
+  } else {
+    console.log('🔎 Validación de lote sobre el archivo de este tema (sin --lot-dir: el chequeo de sesgo de posición no aplica si hay <20 reactivos aquí).');
+  }
+  const lotReport = analyzeLot(lotItems);
+  console.log(formatLotReport(lotReport));
+  console.log('─'.repeat(60));
+  if (!lotReport.ok) {
+    console.error('❌ LOTE RECHAZADO por validación de conjunto — NO se inserta nada en la DB.');
+    console.error('   Corrige las violaciones (ver arriba) y vuelve a correr content:insert.');
+    process.exitCode = 1;
+    return;
+  }
+  console.log('✅ Lote aprobado.');
 
   if (args.dryRun) {
     console.log(`🚫 --dry-run: no se escribe en la DB (se habrían insertado ${valid.length}).`);
