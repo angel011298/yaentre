@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-08-05 · Última fase ejecutada: G3a (COMPLETADA)
+Última actualización: 2026-08-04 · Última fase ejecutada: G3b (COMPLETADA)
 
 ## Tabla de fases
 
@@ -32,6 +32,7 @@
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
 | G3a | Lote de reactivos: IPN FISMAT Matemáticas | COMPLETADA | (G3a) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para la materia con mayor `questionWeight` (24) entre todas las de instituciones/áreas activas para lanzamiento con 0 reactivos verificados. 12 SOURCED (3 temas con `SourceChunk` real) + 23 TEMARIO_ONLY. Insertados con `isVerified=false`, a la espera de verificación ciega (G2). |
+| G3b | Verificación ciega del lote G3a | COMPLETADA | (G3b) | Ver sección dedicada abajo — los 35 reactivos resueltos a ciegas en sesión independiente, con el cálculo EJECUTADO en sympy (35/35 aciertos). **34 auto-aprobados (97.1%)**, 1 sin publicar por `WEAK_DISTRACTORS`. Acumulado real: **343 `isVerified=true`** de 415 (82.7%). **HALLAZGO DE LOTE, BLOQUEANTE PARA G3a-siguiente:** los 35 reactivos de G3a tienen la opción correcta en la posición `A` el **100%** de las veces, y el simulador NO baraja opciones para IPN (`shuffleOptions:false`) — patrón aprendible que invalida el lote como práctica. No corregido en esta fase (mutar el orden desincronizaría explicaciones que citan letras). |
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
@@ -666,18 +667,122 @@ El siguiente paso es exportar el lote ciego
 sesión de Claude Code/chat DISTINTA e independiente de esta — solo así se
 preserva la garantía de que el verificador nunca vio la respuesta correcta.
 
+## G3b — Verificación ciega del lote G3a (2026-08-04)
+
+Segunda mitad del ciclo adversarial de G2: la sesión verificadora (esta) es
+distinta e independiente de la que compuso los reactivos (G3a).
+
+### Aislamiento preservado
+
+La sesión NO leyó el commit de G3a, ni
+`docs/content-batches/g3a-ipn-fismat-matematicas.json`, ni consultó
+`Question.options` antes de responder. Único insumo: el lote ciego generado
+con `pnpm content:blind-batch --all --limit 100` (35 pendientes detectados,
+los 35 de G3a — el filtro `verification IS NULL` los aísla solo de los 71
+sin publicar de F4, que ya traen veredicto). Comprobación explícita del
+archivo antes de leerlo: claves por ítem = `questionId, institution,
+subject, topic, format, passage, requiresCalculation, stem, options`, y por
+opción = `label, text, imageUrl` — sin `isCorrect` ni `explanations`. La
+única coincidencia de un grep de `correct` fue la palabra española
+"correcta" dentro de un enunciado.
+
+### Resolución con cálculo ejecutado
+
+Los 35 ítems venían con `requiresCalculation: true` (materia = Matemáticas).
+Se resolvieron con un script de sympy 1.14 que **calcula cada respuesta
+desde cero y la compara numérica o simbólicamente contra el texto de cada
+opción**, con un `assert` por reactivo de que **exactamente una** opción
+coincide — ese assert es a la vez la comprobación de `MULTIPLE_VALID` y de
+`NONE_VALID`. Los 35 asserts pasaron. Casos donde el cálculo descartó una
+lectura alterna en vez de suponerla: la serie `5,11,17,23,29` (se enumeraron
+los primos para confirmar que NO son primos consecutivos, así que `+6` es la
+única regla coherente), `s(t)=t³-6t²+9t` (se evaluó `v(0)=9≠0` para
+descartar la opción que incluía `t=0`), y la ley de exponentes (16 pares
+`(m,n)` con `a=3`, más el contraejemplo `3²·3³≠3⁶` que descarta `a^{mn}`).
+
+### Resultado
+
+**35/35 coincidieron con el generador.** Confianzas 0.96–0.99.
+
+| | Reactivos |
+|---|---:|
+| Auto-aprobados (`isVerified=true`) | **34** |
+| Sin publicar (veredicto adjunto) | 1 |
+| Omitidos | 0 |
+| **Tasa de auto-aprobación del lote** | **97.1%** |
+
+El único no publicado es `cmsfgf5ea0001k3lis0d0uzf9` (Números complejos,
+`(3+2i)+(1-5i)`): la respuesta coincidió con confianza 0.96, pero se marcó
+`WEAK_DISTRACTORS` porque una de sus opciones está escrita `$4-3$` — parece
+un `$4-3i$` al que se le cayó la `i`. Leída literal vale 1 y no es un
+complejo (distractor no creíble); leída como errata es indistinguible de la
+opción correcta, o sea dos opciones aparentemente válidas. Necesita que se
+corrija el texto de esa opción antes de publicarse. Queda en la cola de
+discrepancias de F3 con el veredicto completo.
+
+### Acumulado real en la DB (verificado en vivo)
+
+| | Reactivos |
+|---|---:|
+| Totales en la DB | 415 |
+| `isVerified=true` (servibles) | **343** |
+| `isVerified=false` | 72 |
+
+343 = los 309 de F4 + los 34 de este lote. Los 72 pendientes = 71 de F4
+(rechazados correctamente por la verificación) + 1 de G3b.
+Tasa de auto-aprobación acumulada: 343/415 = **82.7%**.
+
+### HALLAZGO DE LOTE — bloqueante para el siguiente G3a
+
+La verificación ciega es **por reactivo**, así que no puede detectar
+defectos del lote como conjunto. Uno apareció al revisar la salida de
+`content:resolve`, donde `generatorOption` fue `A` en las 35 líneas.
+Confirmado con una consulta a la DB real:
+
+| Institución | Reactivos | Posición de la opción correcta |
+|---|---:|---|
+| UNAM (F4) | 380 | A 27.1% · B 26.6% · C 21.3% · D 25.0% — sana |
+| IPN (G3a) | 35 | **A 100%** |
+
+Esto importa porque `src/lib/simulator/config.ts` define
+`IPN: { shuffleOptions: false }` — a diferencia de UNAM, el simulador NO
+baraja las opciones para IPN, así que un alumno vería la respuesta correcta
+en la posición A en los 35 reactivos. Es un patrón aprendible que anula el
+valor de práctica del lote. Los 380 de F4 no tienen el problema (su
+distribución es sana), así que es un defecto introducido por el método de
+composición de G3a, no del pipeline.
+
+**No se corrigió en esta fase, deliberadamente.** Permutar el orden
+almacenado de las opciones desincronizaría las explicaciones que citan
+letras: se encontraron al menos 2 casos reales donde la Capa 3 se refiere a
+un distractor por su letra actual y quedaría apuntando a otra opción —
+`cmsfgg0yn0001jdba3hzgyncc` ("Olvidar el $+C$ (opción C)…", y la C
+almacenada es en efecto la primitiva sin constante) y
+`cmsfgfw8a000bpofk5e35jc1f` ("El punto donde la recta cruza el eje $y$
+(opción B)…", y la B almacenada es en efecto esa). Un reordenamiento
+mecánico rompería ambas. La corrección requiere revisión editorial por
+reactivo, fuera del alcance de G3b (que es verificar, no editar contenido).
+
+**Acción para el siguiente lote:** al componer, distribuir la opción
+correcta entre A/B/C/D (~25% cada una) desde el inicio, y escribir las
+explicaciones citando el CONTENIDO del distractor en vez de su letra, para
+que el orden deje de ser información estructural.
+
 ## Siguiente
 
-**G3b — Verificación ciega del lote de 35 reactivos (IPN FISMAT
-Matemáticas).** Correr `pnpm content:blind-batch --topic <id>` por cada uno
-de los 12 temas listados arriba (o construir el `--ids` con los
-`questionId` de `docs/content-batches/g3a-ipn-fismat-matematicas.json`),
-resolverlo en una sesión de Claude Code/chat DISTINTA e independiente de la
-que compuso estos reactivos, y aplicar `pnpm content:resolve --file
-<respuestas.json>`. Solo así los 35 reactivos pasan de `isVerified=false` a
-`isVerified=true` (o quedan documentados como sin publicar, con el
-veredicto adjunto). Después de G3b, repetir el mismo ciclo
-(`content:insert` → `content:blind-batch` → sesión verificadora →
-`content:resolve`) para la siguiente materia según la misma regla de
-prioridad es cómo se cierra la brecha de 1,191 reactivos (tabla en G1),
-sin ningún costo de API de por medio.
+**G3a (siguiente materia).** Repetir el ciclo completo
+(`content:insert` → `content:blind-batch` → sesión verificadora
+independiente → `content:resolve`) para la materia siguiente según la misma
+regla de prioridad de G3a: mayor `questionWeight` entre las materias de
+instituciones/áreas activas para lanzamiento con 0 reactivos verificados.
+Con Matemáticas de IPN FISMAT ya cubierta, la siguiente es **Biología de
+IPN MEDBIO (`questionWeight` 22)**, seguida de Física de IPN FISMAT (20) —
+confirmar contra la DB antes de empezar. Aplicar las dos correcciones de
+método del hallazgo de lote de arriba (distribuir la posición de la
+respuesta correcta; citar distractores por contenido, no por letra). Así se
+cierra la brecha de 1,191 reactivos (tabla en G1) sin costo de API.
+
+Pendiente menor arrastrado: los 35 reactivos de IPN Matemáticas necesitan
+una pasada editorial que redistribuya la posición de la respuesta correcta
+(ver hallazgo de lote), y `cmsfgf5ea0001k3lis0d0uzf9` necesita que se
+reescriba su opción `$4-3$` para poder publicarse.

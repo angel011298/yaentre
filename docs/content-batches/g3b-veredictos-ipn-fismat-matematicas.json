@@ -1,0 +1,252 @@
+[
+  {
+    "questionId": "cmsfgejvv0001w0yzqcfgiqi5",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "x^2-2x-15=(x-5)(x+3); raices=[-3, 5]; solo x=5 aparece entre las opciones.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgekwj0006w0yz7vse9qf2",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "3x+7=2x+9 -> x=2.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgelyl000bw0yzma0v745d",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "raices=[2, 5], suma=7 (=-b/a=7).",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgemwc000gw0yzrtlgp1el",
+    "chosenOption": "B",
+    "confidence": 0.98,
+    "reasoning": "d>0 dos reales, d=0 una doble, d<0 complejas (verificado: {9: ['2', '5'], 0: ['-1'], -4: ['-I', 'I']}); eso es \"numero y tipo de raices\". Vertice/pendiente/valor de la raiz no los da el discriminante solo.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgert00001gzhwqb2p3r8m",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "producto real de una 2x3 por una 3x4 -> 2x4.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgesl90006gzhwz16kpkpv",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "solucion {x: 6, y: 4}; x=6.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgexrq0001zow8ljelc3q2",
+    "chosenOption": "A",
+    "confidence": 0.97,
+    "reasoning": "venta=3240, impuesto=1296/5, bruta=840, neta=3240-2400-1296/5=2904/5.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgeypz0006zow8geqjn13h",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "ritmo=80/h; 10h -> 800.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgezo6000bzow83ey5hvgm",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "500*1.20=600; 600*0.80=480.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgf0lx000gzow83ncoiy0n",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "[1000, 1080, 800] -> total=2880.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgf5ea0001k3lis0d0uzf9",
+    "chosenOption": "D",
+    "confidence": 0.96,
+    "reasoning": "(3+2i)+(1-5i)=4 - 3*I. La opcion A esta escrita \"4-3\" (sin la i): leida literalmente vale 1, no es un complejo.",
+    "problems": [
+      {
+        "type": "WEAK_DISTRACTORS",
+        "detail": "La opcion A dice \"$4-3$\" y parece un \"$4-3i$\" al que se le cayo la i. Leida literal es 1 (distractor no creible); leida como errata es indistinguible de la opcion D, lo que da dos opciones aparentemente validas. Debe corregirse el texto de A (p. ej. \"$4+3i$\" o \"$2-7i$\") antes de publicar."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsfgf67c0006k3li7kytuesi",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "|3+4i|=sqrt(9+16)=5.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfaye0001h8vrwpnfw20f",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "permutaciones enumeradas de 4 libros = 24 (=4!).",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfbq60006h8vrdmjqq7un",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "favorables=[5, 6] -> P=1/3.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfgk40001zb15e6jem05q",
+    "chosenOption": "B",
+    "confidence": 0.98,
+    "reasoning": "diferencia constante {6} -> (35, 41). Descartada la lectura \"primos\": los primos consecutivos desde 5 son [5, 7, 11, 13, 17], no la sucesion dada, asi que +6 es la unica regla coherente.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfhir0006zb15dar9smf9",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "razon constante {2} -> 96.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfih2000bzb15dlj275fv",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "a_n=n^2+1 (verificado termino a termino); difs=[3, 5, 7, 9] (impares consecutivos) -> siguiente=37.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfjel000gzb15uctn5ki4",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "diferencia {-9} -> (55, 46).",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfo8t000119ydsj7k1w37",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "f'(x)=12*x**3 - 4*x.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfp0h000619yd63d5zk2z",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "f'(x)=2x, f'(3)=6. (9 es f(3), no la pendiente.)",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfps6000b19ydqmc88gpy",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "v(t)=3*t**2 - 12*t + 9=3*(t - 3)*(t - 1); raices=[1, 3]; con t>0 -> [1, 3]. v(0)=9!=0, asi que t=0 no sirve.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfufm0001pofkbtin2113",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "f(3)=2*9-9+1=10.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfvgc0006pofk5keg9rlb",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "el denominador se anula solo en x=4 -> dominio = R\\{4}.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgfw8a000bpofk5e35jc1f",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "con m=3,b=-2: (y2-y1)/(x2-x1)=3=m (razon de cambio); el cruce con el eje y es -2=b, no m.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgg0yn0001jdba3hzgyncc",
+    "chosenOption": "D",
+    "confidence": 0.97,
+    "reasoning": "∫(4x^3-6x)dx=x**4 - 3*x**2+C. C tiene la primitiva correcta pero OMITE la constante de integracion; D es la unica completa para una integral INDEFINIDA.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgg1r40006jdba6o797pvc",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "[x^3] de 0 a 2 = 8.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgg6hd0001fb7g1bf9d5gf",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "sqrt(3^2+4^2)=5.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgg7cx0006fb7gvb89q9vg",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "(11-3)/(6-2)=2.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfgg85l000bfb7gnausejl8",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "x^2+y^2=r^2=25; (3,4) y (0,5) —ambos a distancia 5 del origen— la satisfacen y no satisfacen =5 ni =10.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfggcv80001cyp3obgmdgvs",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "sin=opuesto/hipotenusa=6/10=3/5. (0.8=4/5 es el coseno.)",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfggdn10006cyp34zlsiibo",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "cos(60°)=1/2.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfggehf000bcyp3kgnedo1b",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "triangulo 3-4-5: cos=4/5 -> sec=1/cos=5/4.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfggj590001adj4n2nwfp2z",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "(2x/y)*(y/(2x)) simplificado = 1.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfggjxl0006adj4kfnoeova",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "x^2-9=(x - 3)*(x + 3) (diferencia de cuadrados); SI se factoriza en los reales.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsfggkpg000badj4av6igpzw",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "a^m*a^n=a^(m+n) verificado en 16 pares (m,n) con a=3; a^(mn) falla (3^2*3^3=243 != 3^6=729).",
+    "problems": []
+  }
+]
