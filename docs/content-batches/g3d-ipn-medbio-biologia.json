@@ -1,0 +1,1857 @@
+[
+  {
+    "id": "cmsg28z1o0001q7zheam37kq4",
+    "stem": "¿Cómo se llaman las sustancias químicas producidas por las glándulas endocrinas que viajan por el torrente sanguíneo para regular funciones en órganos distantes?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Enzimas",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Neurotransmisores",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Anticuerpos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Hormonas",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema endocrino"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué hormonas",
+        "content": "Las hormonas son mensajeros químicos secretados directamente al torrente sanguíneo por glándulas endocrinas, capaces de viajar largas distancias hasta alcanzar y regular órganos blanco específicos."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Una glándula endocrina libera la hormona a la sangre → la hormona viaja por todo el cuerpo, pero solo actúa sobre las células que tienen receptores específicos para ella → al unirse a su receptor, desencadena una respuesta en ese órgano blanco."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Las enzimas aceleran reacciones químicas, pero no son el tipo de sustancia que regula órganos a distancia a través de la sangre como función principal; los neurotransmisores actúan a corta distancia, en el espacio sináptico entre dos neuronas, no a través del torrente sanguíneo a órganos lejanos; los anticuerpos son parte del sistema inmune y reconocen antígenos específicos, no regulan funciones de órganos de esta manera."
+      }
+    ]
+  },
+  {
+    "id": "cmsg28zxc0006q7zhzr87f1il",
+    "stem": "¿Qué glándula endocrina se considera la 'glándula maestra' porque regula la actividad de la mayoría de las demás glándulas endocrinas del cuerpo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Hipófisis (pituitaria)",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Tiroides",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Páncreas",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Glándulas suprarrenales",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema endocrino"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué la hipófisis",
+        "content": "La hipófisis secreta hormonas que estimulan (o inhiben) la actividad de otras glándulas endocrinas —como la tiroides, las suprarrenales y las gónadas— coordinando así gran parte del sistema endocrino del cuerpo."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El hipotálamo envía señales a la hipófisis → la hipófisis libera hormonas específicas (como la TSH, que estimula a la tiroides, o la ACTH, que estimula a las suprarrenales) → esas glándulas responden liberando sus propias hormonas hacia sus órganos blanco."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "La tiroides es, precisamente, una de las glándulas que la hipófisis regula, no una que controle a otras; el páncreas regula principalmente los niveles de glucosa mediante insulina y glucagón, sin coordinar al resto del sistema endocrino; las glándulas suprarrenales también reciben regulación de la hipófisis, en vez de ejercerla sobre otras glándulas."
+      }
+    ]
+  },
+  {
+    "id": "cmsg290sq000bq7zhe15oeeav",
+    "stem": "¿Qué hormona pancreática disminuye el nivel de glucosa en sangre al facilitar su entrada a las células?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Glucagón",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Insulina",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Adrenalina",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Tiroxina",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema endocrino"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué insulina",
+        "content": "La insulina, secretada por las células beta del páncreas cuando sube la glucosa en sangre (por ejemplo, tras comer), facilita que las células del cuerpo absorban esa glucosa, reduciendo así su concentración en la sangre."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Después de comer, la glucosa en sangre sube → el páncreas detecta ese aumento y libera insulina → la insulina se une a receptores en las células musculares, adiposas y hepáticas → esas células abren canales para captar glucosa (o la almacenan como glucógeno), bajando el nivel en sangre."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El glucagón hace exactamente lo contrario: eleva la glucosa en sangre estimulando su liberación desde las reservas de glucógeno del hígado; la adrenalina también eleva la glucosa en sangre, entre otras respuestas de estrés, no la disminuye; la tiroxina regula el metabolismo general del cuerpo, pero no es la hormona específica que baja la glucosa de esta manera."
+      }
+    ]
+  },
+  {
+    "id": "cmsg296p60001ieujebbljk1t",
+    "stem": "En genética mendeliana, si se cruzan dos individuos heterocigotos (Aa x Aa) para un gen con dominancia completa, ¿qué proporción fenotípica se espera en la descendencia?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1 dominante : 1 recesivo",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "1 : 2 : 1",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "3 dominante : 1 recesivo",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "9 : 3 : 3 : 1",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Genética básica"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué 3:1",
+        "content": "El cuadro de Punnett de Aa x Aa da los genotipos AA, Aa, Aa, aa (proporción 1:2:1). Con dominancia completa, AA y Aa comparten el mismo fenotipo dominante, así que fenotípicamente queda 3 partes dominante por 1 parte recesivo."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "1) Cada progenitor Aa aporta A o a con igual probabilidad. 2) Las combinaciones posibles son AA, Aa, aA, aa. 3) Genotípicamente eso es 1 AA : 2 Aa : 1 aa. 4) Como A es dominante, AA y Aa (3 de las 4 combinaciones) muestran el fenotipo dominante, y solo aa (1 de 4) muestra el recesivo."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "1:1 correspondería a un cruce de prueba (Aa x aa), no a Aa x Aa. 1:2:1 es la proporción GENOTÍPICA de este mismo cruce, no la fenotípica que pide la pregunta. 9:3:3:1 es la proporción de un cruce dihíbrido (dos genes distintos), no de este cruce con un solo gen."
+      }
+    ]
+  },
+  {
+    "id": "cmsg297kl0006ieujmf7ovjb2",
+    "stem": "¿Qué término describe las diferentes formas alternativas que puede tener un mismo gen (por ejemplo, la versión de un gen que da flor roja y la versión que da flor blanca)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Genotipo",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Fenotipo",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Cromátidas",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Alelos",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Genética básica"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué alelos",
+        "content": "Un alelo es cada una de las versiones alternativas de un mismo gen que puede ocupar la misma posición (locus) en cromosomas homólogos."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Un organismo diploide hereda dos copias de cada gen, una de cada progenitor; si esas dos copias son versiones distintas del gen (por ejemplo, una para rojo y otra para blanco), decimos que el organismo tiene dos alelos diferentes para ese gen."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El genotipo es la combinación completa de alelos que posee un organismo (no una versión individual del gen); el fenotipo es la característica observable resultante, como el color real de la flor; las cromátidas son las dos copias idénticas de un cromosoma tras su replicación, un concepto distinto al de versiones alternativas de un gen."
+      }
+    ]
+  },
+  {
+    "id": "cmsg298fs000bieujw9k5ranp",
+    "stem": "¿Cuántos cromosomas contiene una célula somática humana normal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "46 (23 pares)",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "23",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "44",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "48",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Genética básica"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué 46",
+        "content": "Las células somáticas humanas son diploides: contienen 23 pares de cromosomas homólogos, uno de cada par heredado de cada progenitor, para un total de 46."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "De esos 23 pares, 22 son autosomas (iguales en ambos sexos) y 1 par son los cromosomas sexuales (XX o XY), sumando 46 en total en cualquier célula del cuerpo que no sea un gameto."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "23 es el número de cromosomas en un gameto humano (célula haploide, óvulo o espermatozoide), no en una célula somática; 44 y 48 no corresponden al número real de cromosomas humanos."
+      }
+    ]
+  },
+  {
+    "id": "cmsg299b5000gieujfja4j0is",
+    "stem": "En un cruce entre un individuo homocigoto dominante (AA) y uno homocigoto recesivo (aa), ¿qué genotipo tendrá el 100% de la descendencia F1?",
+    "options": [
+      {
+        "id": "A",
+        "text": "AA (homocigoto dominante)",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Aa (heterocigoto)",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "aa (homocigoto recesivo)",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Una mezcla 1:1 de AA y aa",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Genética básica"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué Aa",
+        "content": "El progenitor AA solo puede aportar el alelo A a cada descendiente, y el progenitor aa solo puede aportar el alelo a; toda la descendencia recibe forzosamente un alelo de cada tipo."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El cuadro de Punnett de AA x aa tiene una sola combinación posible en las cuatro casillas: A (del primer progenitor) con a (del segundo), es decir, Aa en el 100% de los casos."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Que toda la F1 sea AA o toda aa requeriría que uno de los progenitores aportara un alelo que no tiene; una mezcla 1:1 de AA y aa tampoco es posible aquí, porque ningún descendiente puede recibir dos alelos idénticos cuando cada progenitor solo tiene una versión distinta para aportar."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29f71000113lruiqxfy9n",
+    "stem": "¿Cuál organelo celular es responsable de la síntesis de ATP mediante la respiración celular?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Mitocondria",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Aparato de Golgi",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Retículo endoplásmico liso",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Lisosoma",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Célula y organelos"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué la mitocondria",
+        "content": "La mitocondria tiene doble membrana y es donde ocurre la fosforilación oxidativa, el proceso que produce la mayor parte del ATP celular."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "La glucólisis inicia en el citosol, pero el ciclo de Krebs y la cadena transportadora de electrones —que generan la mayor parte del ATP— ocurren dentro de la mitocondria, en su matriz y membrana interna."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El aparato de Golgi modifica y empaqueta proteínas, no genera energía; el retículo endoplásmico liso sintetiza lípidos y participa en la detoxificación; el lisosoma digiere macromoléculas. Ninguno produce ATP como función principal."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29g2f000613lrfmqcxs8a",
+    "stem": "¿Qué estructura celular controla el paso de sustancias entre el citoplasma y el medio extracelular?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Pared celular",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Membrana plasmática",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Núcleo",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Citoesqueleto",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Célula y organelos"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué la membrana plasmática",
+        "content": "Es una bicapa fosfolipídica con proteínas embebidas que le dan permeabilidad selectiva, regulando qué entra y qué sale de la célula."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Sustancias pequeñas y no polares cruzan la bicapa por difusión simple; iones y moléculas grandes requieren canales o transportadores proteicos específicos embebidos en esa misma membrana."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "La pared celular da soporte estructural rígido (y ni siquiera está presente en células animales); el núcleo controla la expresión génica, no el intercambio con el exterior; el citoesqueleto da forma y soporte mecánico interno, no regula el paso de sustancias."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29gzi000b13lr4ohs28od",
+    "stem": "En una célula eucariota, ¿en qué organelo se lleva a cabo la modificación, el empaquetamiento y la distribución final de proteínas recién sintetizadas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Retículo endoplásmico rugoso",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Ribosoma",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Aparato de Golgi",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Mitocondria",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Célula y organelos"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué el aparato de Golgi",
+        "content": "El Golgi recibe las proteínas que llegan en vesículas desde el retículo endoplásmico, las modifica (por ejemplo, añade azúcares) y las empaqueta en vesículas dirigidas a su destino final."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El proceso completo va: ribosoma (síntesis) → retículo endoplásmico rugoso (plegamiento inicial y primera modificación) → vesícula de transporte → Golgi (modificación final, empaquetado y etiquetado de destino) → vesícula secretora o membrana."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El retículo endoplásmico rugoso sí sintetiza y da el plegamiento inicial a las proteínas, pero el empaquetamiento y la distribución final es tarea del Golgi; el ribosoma solo traduce el ARNm en cadena de aminoácidos; la mitocondria no participa en esta vía."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29hv3000g13lrenjbxoze",
+    "stem": "¿Cuál es la función principal de los lisosomas en una célula animal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Almacenar agua y mantener la turgencia de la célula",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Sintetizar los lípidos que forman las membranas celulares",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Generar energía mediante la respiración celular",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Digerir macromoléculas y desechos celulares mediante enzimas hidrolíticas",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Célula y organelos"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué digerir macromoléculas y desechos",
+        "content": "Los lisosomas contienen enzimas hidrolíticas capaces de degradar proteínas, lípidos, carbohidratos y ácidos nucleicos, tanto de material que entra a la célula como de organelos dañados propios."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El material a digerir (por fagocitosis, o un organelo viejo) queda rodeado de una vesícula que se fusiona con el lisosoma; el ambiente ácido interno activa las enzimas hidrolíticas, que descomponen el contenido en moléculas simples reutilizables."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Almacenar agua y mantener la turgencia es función típica de la vacuola central (sobre todo en células vegetales); sintetizar lípidos de membrana es tarea del retículo endoplásmico liso; generar energía mediante respiración celular es función de la mitocondria."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29nti00015lqf3gaqonog",
+    "stem": "¿Qué mecanismo de retroalimentación es el más común para mantener la homeostasis del cuerpo, como en la regulación de la temperatura corporal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Retroalimentación positiva, donde la respuesta del cuerpo amplifica el cambio inicial alejándose del valor normal",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Retroalimentación negativa, donde la respuesta del cuerpo revierte el cambio inicial para regresar al valor normal",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Retroalimentación aleatoria, sin relación directa con el estímulo inicial",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Ausencia total de retroalimentación: el cuerpo actúa de forma independiente a los cambios detectados",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Homeostasis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué retroalimentación negativa",
+        "content": "La retroalimentación negativa es el mecanismo dominante en homeostasis: cuando una variable se aleja de su valor normal (por ejemplo, sube la temperatura corporal), el cuerpo activa respuestas que la regresan hacia ese valor normal (como sudar para enfriarse)."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Un sensor detecta el cambio (por ejemplo, receptores de temperatura en la piel e hipotálamo) → un centro de control compara ese valor contra el punto de referencia normal → se activa un efector (glándulas sudoríparas, vasos sanguíneos) cuya respuesta reduce la desviación original."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "La retroalimentación positiva, que amplifica el cambio en vez de revertirlo, sí existe en el cuerpo pero es la excepción, reservada para procesos puntuales como el parto; no existe un mecanismo homeostático \"aleatorio\" sin relación con el estímulo; y decir que no hay retroalimentación alguna contradice la definición misma de homeostasis, que depende de detectar y responder a los cambios."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29op500065lqfv2vni2de",
+    "stem": "El parto humano es uno de los pocos ejemplos fisiológicos de retroalimentación POSITIVA. ¿Por qué se considera positiva en este caso?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque el cuerpo regresa rápidamente a su estado de reposo después de cada contracción, revirtiendo el estímulo inicial",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Porque este proceso involucra únicamente señales hormonales y no señales nerviosas",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Porque las contracciones uterinas, provocadas por la oxitocina, estimulan la liberación de MÁS oxitocina, intensificando las contracciones hasta el nacimiento, en vez de revertir el estímulo",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Porque ocurre una sola vez en la vida y por eso se clasifica de forma distinta a los demás mecanismos",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Homeostasis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué se amplifica en vez de revertirse",
+        "content": "En la retroalimentación positiva, la respuesta del cuerpo AUMENTA el estímulo original en vez de reducirlo: aquí, cada contracción estimula más liberación de oxitocina, que a su vez provoca contracciones más fuertes, en un ciclo que se intensifica hasta terminar en el nacimiento."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "La cabeza del bebé presiona el cuello uterino → esa presión envía una señal al cerebro que libera oxitocina → la oxitocina intensifica las contracciones uterinas → las contracciones más fuertes generan aún más presión sobre el cuello uterino, reiniciando el ciclo con mayor intensidad hasta el parto."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Un proceso que regresa rápidamente al reposo tras cada contracción describiría retroalimentación NEGATIVA, justo lo opuesto de lo que ocurre en el parto; el tipo de señal involucrada (hormonal o nerviosa) no es el criterio que distingue positiva de negativa —de hecho, la retroalimentación negativa también puede ser hormonal—; y la frecuencia con la que ocurre un proceso en la vida de una persona tampoco es el criterio de clasificación, que depende exclusivamente de si la respuesta amplifica o revierte el estímulo."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29ul400014qhyac85cawy",
+    "stem": "¿En qué órgano del sistema reproductor femenino se lleva a cabo habitualmente la fecundación (unión del óvulo con el espermatozoide)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ovario",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Trompas de Falopio (oviductos)",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Útero",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Vagina",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Reproducción"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué las trompas de Falopio",
+        "content": "Tras la ovulación, el óvulo viaja por la trompa de Falopio; si hay espermatozoides presentes, es en esta trompa donde habitualmente ocurre la unión entre óvulo y espermatozoide."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El ovario libera el óvulo (ovulación) → el óvulo entra a la trompa de Falopio → si hubo relación sexual reciente, los espermatozoides ascienden desde la vagina, cruzan el útero y llegan a la trompa, donde uno puede fecundar al óvulo → el óvulo fecundado (cigoto) viaja después hacia el útero para implantarse."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El ovario produce y libera el óvulo, pero la fecundación no ocurre dentro de él; el útero es el órgano donde se IMPLANTA el embrión ya fecundado, un paso posterior a la fecundación misma; la vagina es solo el canal de entrada para los espermatozoides, la fecundación ocurre más arriba, en la trompa."
+      }
+    ]
+  },
+  {
+    "id": "cmsg29vgu00064qhy7gw1mnph",
+    "stem": "¿Qué estructura proporciona oxígeno y nutrientes al feto durante el embarazo, y a la vez elimina sus desechos, sin mezclar directamente la sangre materna con la fetal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cordón umbilical",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Amnios",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Placenta",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Útero",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Reproducción"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué la placenta",
+        "content": "La placenta es el órgano donde los vasos sanguíneos maternos y fetales quedan en estrecha proximidad, permitiendo el intercambio de oxígeno, nutrientes y desechos por difusión, sin que la sangre de la madre y la del feto se mezclen directamente."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "La sangre materna llega a espacios dentro de la placenta rica en oxígeno y nutrientes → estos atraviesan las delgadas membranas placentarias hacia los capilares fetales → los desechos del feto (como el dióxido de carbono) hacen el camino inverso hacia la sangre materna, que los elimina."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El cordón umbilical es el conducto que TRANSPORTA la sangre entre el feto y la placenta, pero el intercambio de sustancias ocurre en la placenta misma, no en el cordón; el amnios es la membrana que forma el saco lleno de líquido amniótico, con función de protección mecánica, no de intercambio de nutrientes; el útero es el órgano que aloja al embrión/feto en desarrollo, pero no es la estructura especializada en el intercambio materno-fetal."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2a1d30001hwsfreycaf74",
+    "stem": "¿Cuál es la función principal de los glóbulos rojos (eritrocitos) en la sangre?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Defender al cuerpo contra agentes patógenos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Participar en la coagulación sanguínea",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Transportar hormonas hacia sus órganos blanco",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Transportar oxígeno desde los pulmones hacia los tejidos del cuerpo mediante la hemoglobina",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistemas del cuerpo humano"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué transportar oxígeno",
+        "content": "Los eritrocitos están repletos de hemoglobina, una proteína que se une reversiblemente al oxígeno en los pulmones y lo libera en los tejidos donde se necesita para la respiración celular."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "En los capilares pulmonares, la hemoglobina capta oxígeno del aire inhalado; el eritrocito viaja por el torrente sanguíneo hasta los capilares de los tejidos, donde la hemoglobina libera ese oxígeno y capta parte del dióxido de carbono de vuelta."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Defender contra patógenos es función de los glóbulos blancos (leucocitos), no de los eritrocitos; la coagulación depende de las plaquetas; el transporte de hormonas ocurre disuelto en el plasma sanguíneo en general, no como función específica del eritrocito."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2a28v0006hwsfrohm62w2",
+    "stem": "¿En qué estructura del sistema digestivo ocurre principalmente la absorción de nutrientes hacia el torrente sanguíneo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Intestino delgado",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Estómago",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Intestino grueso",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Esófago",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistemas del cuerpo humano"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué el intestino delgado",
+        "content": "Su pared interna está cubierta de vellosidades y microvellosidades que multiplican enormemente el área de contacto, permitiendo que los nutrientes ya digeridos (glucosa, aminoácidos, ácidos grasos) pasen hacia los capilares sanguíneos y linfáticos."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El alimento se digiere mecánica y químicamente en el estómago (donde la absorción de nutrientes es mínima), pasa al intestino delgado donde ocurre la digestión final y la absorción masiva de nutrientes, y lo que no se absorbió sigue al intestino grueso, donde el cuerpo recupera principalmente agua."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El estómago se especializa en digestión (mecánica y con ácido/enzimas), no en absorción de nutrientes; el intestino grueso absorbe sobre todo agua y electrolitos, no los nutrientes principales; el esófago solo transporta el bolo alimenticio hacia el estómago, sin función digestiva ni absortiva."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2a341000bhwsf62xqyl1h",
+    "stem": "¿Cuál es la función principal de los alvéolos pulmonares?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Filtrar las partículas de polvo antes de que lleguen a los pulmones",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Permitir el intercambio de gases (oxígeno y dióxido de carbono) entre el aire inhalado y la sangre",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Producir el moco que humedece las vías respiratorias",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Generar los movimientos de contracción que impulsan el aire hacia fuera",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistemas del cuerpo humano"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué el intercambio de gases",
+        "content": "Los alvéolos son pequeños sacos rodeados de una densa red de capilares; sus paredes son tan delgadas que el oxígeno y el dióxido de carbono difunden fácilmente entre el aire que contienen y la sangre que los rodea."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El aire inhalado llega a los alvéolos con alta concentración de oxígeno; el oxígeno difunde hacia la sangre de los capilares (baja concentración ahí) y se une a la hemoglobina, mientras el dióxido de carbono hace el camino inverso, de la sangre hacia el alvéolo, para ser exhalado."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Filtrar partículas de polvo es función de los cilios y el moco de las vías respiratorias superiores (nariz, tráquea), no de los alvéolos; producir moco protector también corresponde a estructuras más arriba en el tracto respiratorio; generar los movimientos que impulsan el aire es función del diafragma y los músculos intercostales, no de los alvéolos mismos."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2a95s000153rlkslxds9n",
+    "stem": "¿Qué mecanismo evolutivo propuesto por Darwin explica que los individuos con características más favorables para su ambiente tienen mayor probabilidad de sobrevivir y reproducirse?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Deriva génica",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Mutación",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Selección natural",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Herencia de caracteres adquiridos",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Evolución y especiación"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué selección natural",
+        "content": "La selección natural es el proceso por el cual los individuos mejor adaptados a su ambiente dejan, en promedio, más descendencia, aumentando la frecuencia de sus características favorables en la población a lo largo de generaciones."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Requiere tres condiciones: variación heredable dentro de la población, que esa variación afecte la supervivencia o reproducción, y que se transmita a la descendencia — con el tiempo, las variantes favorables se vuelven más comunes."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "La deriva génica es un cambio ALEATORIO en las frecuencias alélicas (no relacionado con qué tan favorable sea una característica); la mutación es la fuente de nueva variación genética, pero no es el mecanismo que decide cuáles variantes sobreviven; la herencia de caracteres adquiridos es la idea lamarckiana —ya refutada— de que rasgos ganados durante la vida de un individuo se transmiten a su descendencia."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2aa0t000653rlsik9wsih",
+    "stem": "¿Cuál de las siguientes situaciones describe un ejemplo de especiación alopátrica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una población desarrolla una nueva especie sin ninguna separación geográfica, por preferencia de apareamiento dentro de la misma zona",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Dos especies distintas se cruzan y producen una tercera especie híbrida fértil en el mismo territorio",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Una mutación única en un solo individuo lo convierte instantáneamente en una nueva especie",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Dos poblaciones de la misma especie quedan separadas por una barrera geográfica (como un río o una cordillera) y, con el tiempo, acumulan diferencias genéticas hasta no poder reproducirse entre sí",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Evolución y especiación"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué la separación por barrera geográfica",
+        "content": "\"Alopátrica\" significa literalmente \"en otra patria/lugar\": el rasgo distintivo de este tipo de especiación es que una barrera física separa físicamente a las poblaciones, impidiendo el flujo génico entre ellas mientras divergen genéticamente."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Una población se divide por una barrera geográfica → cada grupo queda expuesto a presiones ambientales y mutaciones distintas → con generaciones suficientes, acumulan diferencias genéticas → eventualmente, aunque la barrera desaparezca, ya no pueden reproducirse entre sí con éxito (aislamiento reproductivo)."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "La especiación SIN separación geográfica, dentro de la misma zona, es especiación simpátrica, un mecanismo distinto. La formación de una especie híbrida fértil en el mismo territorio es un caso particular de especiación híbrida, también sin barrera geográfica. Y una especiación instantánea por una sola mutación en un solo individuo no refleja cómo ocurre normalmente este proceso, que es gradual y poblacional, no individual e inmediato."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2ag5u00011zfhjgndejjd",
+    "stem": "¿Cuál de los siguientes es un macronutriente que proporciona 9 kilocalorías por gramo, más del doble que los carbohidratos o las proteínas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Carbohidratos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Proteínas",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Lípidos (grasas)",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Vitaminas",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Nutrición y metabolismo"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué lípidos",
+        "content": "Los lípidos son la forma más concentrada de energía química entre los macronutrientes: aportan alrededor de 9 kcal por gramo, frente a las 4 kcal por gramo de carbohidratos y proteínas."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Esta diferencia se debe a la estructura química: las cadenas de ácidos grasos tienen muchos más enlaces carbono-hidrógeno ricos en energía que las moléculas de carbohidratos o proteínas, así que su oxidación completa libera más energía por gramo."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Carbohidratos y proteínas aportan por igual alrededor de 4 kcal por gramo cada uno, la mitad que los lípidos; las vitaminas no son fuente de energía calórica en absoluto — son micronutrientes que actúan como cofactores en reacciones metabólicas, no como combustible."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2ah3n00061zfhzd0vxpd9",
+    "stem": "¿Qué proceso metabólico general describe la ruptura de moléculas complejas en moléculas más simples, liberando energía?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Anabolismo",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Homeostasis",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Fotosíntesis",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Catabolismo",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Nutrición y metabolismo"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué catabolismo",
+        "content": "El catabolismo agrupa todas las reacciones que degradan moléculas complejas (como glucosa o grasas) en moléculas más simples, liberando la energía química almacenada en sus enlaces."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Ejemplos de catabolismo incluyen la glucólisis (glucosa se rompe en piruvato) y la respiración celular completa, donde las moléculas de combustible se degradan hasta CO2 y agua, liberando energía que la célula captura como ATP."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El anabolismo es exactamente lo opuesto: la síntesis de moléculas complejas a partir de otras más simples, un proceso que CONSUME energía en vez de liberarla; la homeostasis es el mantenimiento general del equilibrio interno del cuerpo, no un tipo específico de reacción metabólica; la fotosíntesis es un proceso anabólico (construye glucosa a partir de CO2 y agua), no uno que libere energía rompiendo moléculas."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2ai1b000b1zfh0px1ugml",
+    "stem": "¿Cuál es el producto final de la digestión de los carbohidratos que las células utilizan directamente para obtener energía mediante la respiración celular?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Glucosa",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Aminoácidos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Ácidos grasos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Glucógeno",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Nutrición y metabolismo"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué glucosa",
+        "content": "Las enzimas digestivas descomponen los carbohidratos complejos (almidón, disacáridos) hasta glucosa, el azúcar simple que entra directamente a la glucólisis dentro de la célula."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "El almidón de los alimentos se rompe primero en disacáridos y luego en monosacáridos como la glucosa gracias a enzimas como la amilasa; esa glucosa se absorbe en el intestino delgado, pasa a la sangre y entra a las células para ser usada en la respiración celular."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Los aminoácidos son el producto de la digestión de las proteínas, no de los carbohidratos; los ácidos grasos provienen de la digestión de los lípidos; el glucógeno es la forma en que el cuerpo ALMACENA glucosa sobrante (principalmente en hígado y músculo), no el producto que la digestión libera para uso inmediato."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2aopd00015r0rf0ci12nq",
+    "stem": "¿En qué fase de la mitosis los cromosomas duplicados se alinean en el plano ecuatorial de la célula?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Metafase",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Profase",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Anafase",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Telofase",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Mitosis y meiosis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué metafase",
+        "content": "Durante la metafase, las fibras del huso acromático alinean los cromosomas duplicados exactamente en el centro de la célula (placa metafásica) antes de separarlos."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "La secuencia es profase (condensación de cromosomas, desaparición de la envoltura nuclear) → metafase (alineación ecuatorial) → anafase (separación de cromátidas hermanas hacia los polos) → telofase (formación de dos núcleos hijos)."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "En la profase los cromosomas apenas se condensan y aún no hay alineación; en la anafase ya se están separando hacia los polos opuestos; en la telofase el núcleo se está reconstruyendo en cada polo — ninguna de esas tres describe el alineamiento ecuatorial."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2apn000065r0rm49r1bgq",
+    "stem": "¿Cuál es la diferencia fundamental entre mitosis y meiosis en cuanto al número de células hijas producidas y su contenido cromosómico?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La mitosis produce 4 células hijas haploides; la meiosis produce 2 células hijas diploides",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La mitosis produce 2 células hijas diploides genéticamente idénticas; la meiosis produce 4 células hijas haploides genéticamente distintas",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Ambas producen el mismo número de células con exactamente el mismo contenido cromosómico",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La mitosis ocurre solo en células sexuales; la meiosis ocurre solo en células somáticas",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Mitosis y meiosis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué 2 diploides idénticas vs. 4 haploides distintas",
+        "content": "La mitosis es una sola división que reparte el material genético ya duplicado en dos células idénticas a la original (mismo número de cromosomas). La meiosis son dos divisiones consecutivas que reducen a la mitad el número de cromosomas y generan variabilidad genética por recombinación."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Mitosis: 1 célula diploide → duplicación → 1 división → 2 células diploides idénticas. Meiosis: 1 célula diploide → duplicación → 2 divisiones (meiosis I y II, con entrecruzamiento en la I) → 4 células haploides, cada una genéticamente distinta."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Invertir los números (4 haploides para mitosis, 2 diploides para meiosis) contradice la reducción cromosómica que define a la meiosis; decir que ambas producen resultados idénticos ignora que la meiosis reduce el número de cromosomas a la mitad; y es la mitosis la que ocurre en células somáticas, mientras que la meiosis es exclusiva de células que originan gametos."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2avpv00016q7yyxq665a5",
+    "stem": "¿Cuál es la unidad funcional básica del sistema nervioso, especializada en recibir, procesar y transmitir información?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Célula glial",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Sinapsis",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Axón",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neurona",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema nervioso"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué la neurona",
+        "content": "La neurona es la célula especializada que recibe estímulos a través de sus dendritas, los procesa en el cuerpo celular y transmite una señal eléctrica (impulso nervioso) a través de su axón hacia otras células."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Millones de neuronas conectadas entre sí forman las redes que permiten desde un reflejo simple hasta el pensamiento complejo; cada una recibe señales de otras neuronas, las integra, y decide si generar o no un nuevo impulso para transmitir."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Las células gliales dan soporte estructural, nutrición y protección a las neuronas, pero no son las que generan y transmiten el impulso nervioso como función principal; la sinapsis es el punto de comunicación ENTRE neuronas, no una célula en sí misma; el axón es solo una parte de la neurona, no la célula completa."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2awl700066q7ygdx6za7c",
+    "stem": "¿Qué parte de la neurona es la encargada de recibir señales de otras neuronas y transmitirlas hacia el cuerpo celular?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Dendritas",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Axón",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Vaina de mielina",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Botón sináptico",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema nervioso"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué las dendritas",
+        "content": "Las dendritas son extensiones ramificadas que rodean al cuerpo celular; están cubiertas de receptores que captan los neurotransmisores liberados por otras neuronas y convierten esa señal en un impulso que viaja hacia el cuerpo celular."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Un neurotransmisor libera su señal en la sinapsis → los receptores de la dendrita la captan → se genera un cambio eléctrico local que viaja hacia el cuerpo celular → si la suma de señales es suficiente, se dispara un impulso nervioso a lo largo del axón."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "El axón transmite el impulso ALEJÁNDOSE del cuerpo celular hacia otras neuronas, el sentido opuesto al que describe la pregunta; la vaina de mielina solo acelera la conducción del impulso a lo largo del axón, no recibe señales; el botón sináptico está en el extremo del axón y LIBERA neurotransmisores hacia la siguiente neurona, no los recibe."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2axgg000b6q7yqkh1dcwi",
+    "stem": "¿Cuál es la función principal del sistema nervioso autónomo dentro del sistema nervioso periférico?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Controlar exclusivamente los movimientos voluntarios de los músculos esqueléticos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Regular funciones involuntarias del cuerpo, como la frecuencia cardiaca, la digestión y la respiración",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Procesar la información sensorial visual y auditiva antes de que llegue al cerebro",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Almacenar los recuerdos de largo plazo",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema nervioso"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué funciones involuntarias",
+        "content": "El sistema nervioso autónomo controla procesos que ocurren sin control consciente —frecuencia cardiaca, movimientos digestivos, diámetro de las pupilas, respiración basal— a través de sus dos ramas, simpática y parasimpática."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "La rama simpática prepara al cuerpo para actividad o estrés (acelera el corazón, dilata pupilas); la rama parasimpática favorece el reposo y la digestión (desacelera el corazón, estimula el tránsito intestinal) — ambas ajustan órganos internos sin que la persona lo decida conscientemente."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Controlar los movimientos voluntarios de músculos esqueléticos es función del sistema nervioso somático, la otra rama del sistema nervioso periférico, no del autónomo; procesar información visual y auditiva depende de estructuras específicas del sistema nervioso central (corteza visual, auditiva); almacenar recuerdos de largo plazo se asocia al hipocampo y la corteza cerebral, también dentro del sistema nervioso central."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2ayc1000g6q7yuq563lc6",
+    "stem": "Durante la transmisión de un impulso nervioso, ¿qué ocurre INMEDIATAMENTE después de que el potencial de acción despolariza la membrana de la neurona (entrada masiva de sodio)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La neurona libera neurotransmisores directamente hacia el líquido cefalorraquídeo, sin necesidad de una sinapsis",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El axón completo se destruye y debe regenerarse por completo antes de poder transmitir otro impulso",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Se abren canales de potasio y este ion sale de la célula, repolarizando la membrana de vuelta hacia su potencial de reposo",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El sodio permanece dentro de la célula de forma permanente, cambiando para siempre su composición química",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "EXPERT",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema nervioso"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué la salida de potasio (repolarización)",
+        "content": "Después de la entrada masiva de sodio que despolariza la membrana, se abren canales de potasio dependientes de voltaje; el potasio sale de la célula siguiendo su gradiente, devolviendo el interior de la neurona hacia un potencial negativo (repolarización)."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Reposo (interior negativo) → un estímulo abre canales de sodio → el sodio entra masivamente, el interior se vuelve positivo (despolarización) → los canales de sodio se cierran y se abren canales de potasio → el potasio sale, el interior vuelve a ser negativo (repolarización) → la bomba sodio-potasio restaura activamente las concentraciones originales de cada ion."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "La liberación de neurotransmisores ocurre en el botón sináptico, hacia la hendidura sináptica de otra neurona —no hacia el líquido cefalorraquídeo, y solo después de que el impulso ya viajó por todo el axón, no como paso inmediato tras la despolarización—; el axón no se destruye con cada impulso, es un proceso eléctrico reversible y repetible; y el sodio no se queda dentro de forma permanente, porque la bomba sodio-potasio lo saca activamente para restaurar el gradiente original y permitir un siguiente impulso."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2b4eq0001hy8lharbr6iz",
+    "stem": "¿Qué tipo de célula del sistema inmune se especializa en 'recordar' un patógeno específico tras una infección o vacunación, permitiendo una respuesta más rápida ante una segunda exposición?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Neutrófilos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Macrófagos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Células de memoria (linfocitos B y T de memoria)",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Plaquetas",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Inmunología"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué las células de memoria",
+        "content": "Tras una infección o vacuna, algunos linfocitos B y T sobreviven como células de memoria de larga vida, capaces de reconocer el mismo patógeno mucho más rápido en una exposición futura y desencadenar una respuesta inmune mucho más veloz y potente."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Primera exposición: la respuesta inmune adaptativa tarda días en generarse y algunos linfocitos activados se convierten en células de memoria; segunda exposición al mismo patógeno: las células de memoria ya existentes reconocen el antígeno de inmediato y producen una respuesta mucho más rápida e intensa, a menudo eliminando al patógeno antes de que cause síntomas."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Los neutrófilos son parte de la primera línea de defensa inespecífica (inmunidad innata) y no generan memoria inmunológica; los macrófagos fagocitan patógenos y presentan antígenos a otras células inmunes, pero tampoco son las células que persisten como memoria a largo plazo; las plaquetas participan en la coagulación sanguínea, sin relación con la respuesta inmune."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2b5cy0006hy8lvhypp5b6",
+    "stem": "¿Cuál es la diferencia principal entre la inmunidad innata y la inmunidad adaptativa?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La inmunidad innata genera memoria inmunológica de largo plazo; la adaptativa no genera memoria en absoluto",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Ambas son idénticas en velocidad y especificidad; solo cambia el órgano del cuerpo donde ocurren",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La inmunidad innata solo actúa contra virus; la inmunidad adaptativa solo actúa contra bacterias",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La inmunidad innata es una respuesta rápida e inespecífica presente desde el nacimiento; la adaptativa es más lenta pero específica hacia un patógeno particular y genera memoria",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Inmunología"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué rápida-inespecífica vs. lenta-específica-con memoria",
+        "content": "La inmunidad innata (piel, mucosas, células como neutrófilos y macrófagos) actúa de inmediato ante cualquier invasor, sin distinguir cuál es específicamente; la inmunidad adaptativa (linfocitos B y T) tarda más en activarse la primera vez, pero ataca a un patógeno particular y deja células de memoria para el futuro."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Ante una infección nueva, la inmunidad innata responde en minutos u horas de forma general; si el patógeno persiste, se activa la inmunidad adaptativa, que en varios días monta una respuesta dirigida específicamente a ese patógeno y, al terminar, deja células de memoria listas para una respuesta mucho más rápida en el futuro."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Es la inmunidad ADAPTATIVA la que genera memoria de largo plazo, no la innata —invertir esos roles es el error más común al confundir ambos sistemas—; tampoco son idénticas en velocidad y especificidad, que es justamente lo que las distingue; y ninguna de las dos está limitada a un solo tipo de patógeno (virus o bacterias): ambas actúan contra una amplia variedad de invasores."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2b6aj000bhy8l87e7um4e",
+    "stem": "¿Qué son los anticuerpos (inmunoglobulinas) y cuál es su función principal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Proteínas producidas por los linfocitos B que se unen específicamente a un antígeno para neutralizarlo o marcarlo para su destrucción",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Proteínas de membrana que permiten el paso selectivo de sustancias hacia el interior de la célula",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Moléculas producidas por el sistema nervioso para transmitir señales entre neuronas",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Enzimas digestivas que descomponen patógenos directamente en el estómago",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "EXPERT",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Inmunología"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué proteínas de linfocitos B que neutralizan antígenos",
+        "content": "Cuando un linfocito B reconoce un antígeno específico, se activa y madura hasta convertirse en célula plasmática, que secreta grandes cantidades de anticuerpos con esa misma especificidad, capaces de unirse al antígeno y neutralizarlo o marcarlo para que otras células inmunes lo destruyan."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Un linfocito B reconoce un antígeno mediante su receptor de superficie → se activa (a menudo con ayuda de linfocitos T) → prolifera y se diferencia en células plasmáticas → estas secretan anticuerpos con la misma forma que el receptor original, que circulan y se unen específicamente a ese antígeno dondequiera que lo encuentren."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Las proteínas de membrana que permiten el paso selectivo de sustancias hacia la célula describen canales o transportadores, un concepto de biología celular sin relación con los anticuerpos; las moléculas que transmiten señales entre neuronas son neurotransmisores, no anticuerpos; los anticuerpos no son enzimas digestivas ni actúan descomponiendo patógenos en el estómago, sino uniéndose específicamente a antígenos en cualquier parte del cuerpo."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2bcfq0001as75b0aj526w",
+    "stem": "En una cadena trófica, ¿qué papel ecológico cumplen las plantas verdes?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Productores, porque transforman energía solar en energía química mediante fotosíntesis",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Consumidores primarios, porque se alimentan de otros organismos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Descomponedores, porque degradan materia orgánica muerta",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Consumidores secundarios, porque depredan a los herbívoros",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Ecología y ecosistemas"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué productores",
+        "content": "Las plantas verdes son autótrofas: capturan energía luminosa y la convierten en energía química almacenada en glucosa mediante la fotosíntesis, formando la base de casi todas las cadenas tróficas."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "La energía solar entra al ecosistema únicamente a través de los productores; los consumidores primarios (herbívoros) obtienen esa energía comiendo plantas, y los consumidores secundarios la obtienen comiendo herbívoros — las plantas están en el punto de partida de esa cadena, no en un eslabón posterior."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Ser consumidor (primario o secundario) implica obtener energía alimentándose de otro organismo, lo cual no aplica a una planta que fabrica su propio alimento; ser descomponedor implica degradar materia orgánica ya muerta, una función típica de hongos y bacterias, no de una planta viva."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2bdb30006as75etx8vdr2",
+    "stem": "¿Qué ocurre con la cantidad de energía disponible al pasar de un nivel trófico al siguiente en un ecosistema?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Se mantiene exactamente igual en cada nivel trófico",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Disminuye considerablemente, ya que solo alrededor del 10% de la energía se transfiere al siguiente nivel (el resto se pierde principalmente como calor)",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Aumenta progresivamente conforme se sube en la cadena trófica",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Se transfiere completa, sin ninguna pérdida, de un nivel al siguiente",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Ecología y ecosistemas"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué disminuye (regla del 10%)",
+        "content": "En cada transferencia de un nivel trófico al siguiente, la mayor parte de la energía se pierde como calor por la respiración celular y actividades metabólicas del organismo; en promedio, solo cerca del 10% queda disponible para el siguiente nivel."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "Un productor capta energía solar; un herbívoro que se lo come solo aprovecha una fracción de esa energía (el resto se usa en su propio metabolismo o se pierde como calor); un carnívoro que se come al herbívoro aprovecha, a su vez, solo una fracción de LA fracción anterior — por eso las pirámides tróficas se angostan hacia arriba."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Si la energía se mantuviera igual o aumentara en cada nivel, las pirámides ecológicas de energía no tendrían la forma angosta característica que sí se observa en la naturaleza; y una transferencia sin ninguna pérdida violaría la segunda ley de la termodinámica, que establece que toda transformación de energía disipa parte de ella como calor."
+      }
+    ]
+  },
+  {
+    "id": "cmsg2be6e000bas75hz60rbc3",
+    "stem": "¿Cómo se le llama al conjunto de todos los organismos de una misma especie que habitan y se reproducen en una misma área geográfica al mismo tiempo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Comunidad",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Ecosistema",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Población",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Bioma",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Ecología y ecosistemas"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Por qué población",
+        "content": "Una población se define precisamente por esos dos criterios: individuos de la MISMA especie, en la MISMA área, en el MISMO periodo de tiempo, capaces de reproducirse entre sí."
+      },
+      {
+        "layer": 2,
+        "title": "Paso a paso",
+        "content": "La organización ecológica va de menor a mayor escala: individuo → población (misma especie) → comunidad (varias poblaciones de especies distintas interactuando) → ecosistema (comunidad + factores abióticos como agua, suelo, clima) → bioma (conjunto de ecosistemas similares a gran escala geográfica)."
+      },
+      {
+        "layer": 3,
+        "title": "Concepto base",
+        "content": "Una comunidad reúne poblaciones de VARIAS especies distintas, no de una sola; un ecosistema añade además los factores abióticos del entorno; un bioma es una escala mucho más amplia, definida por clima y vegetación dominante, no por una sola especie en un área puntual."
+      }
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-08-05 · Última fase ejecutada: G3c (COMPLETADA)
+Última actualización: 2026-08-05 · Última fase ejecutada: G3d (COMPLETADA)
 
 ## Tabla de fases
 
@@ -32,6 +32,7 @@
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
 | G3a | Lote de reactivos: IPN FISMAT Matemáticas | COMPLETADA | (G3a) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para la materia con mayor `questionWeight` (24) entre todas las de instituciones/áreas activas para lanzamiento con 0 reactivos verificados. 12 SOURCED (3 temas con `SourceChunk` real) + 23 TEMARIO_ONLY. Insertados con `isVerified=false`, a la espera de verificación ciega (G2). |
+| G3d | Lote de reactivos: IPN MEDBIO Biología | COMPLETADA | (G3d) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para Biología de IPN MEDBIO (`questionWeight` 22, la de mayor peso entre las materias de instituciones activas para lanzamiento con 0 reactivos verificados). 100% TEMARIO_ONLY (sin `SourceChunk` disponible para esta materia). Distribución de la respuesta correcta balanceada DESDE LA COMPOSICIÓN (9/9/9/8, ~25% por letra) y explicaciones que citan distractores por contenido, nunca por letra — ambas reglas de G3c aplicadas de origen, no como reparación posterior. Pasó `content:validate-batch` con 0 violaciones antes de insertar. Insertados con `isVerified=false`, a la espera de verificación ciega (G3e). |
 | G3c | Corrección de sesgo de posición + validación de lote | COMPLETADA | (G3c) | Ver sección dedicada abajo — los 35 de IPN reparados editorialmente (distribución 9/9/9/8, ~25% por letra); 5 explicaciones reescritas para citar distractores por contenido, no por letra; nuevo `scripts/lib/lot-validation.ts` (puro, 13 tests) + `pnpm content:validate-batch` + paso obligatorio dentro de `content:insert` (`--lot-dir`) que rechaza un lote sesgado ANTES de tocar la DB. Regla añadida a CLAUDE.md. Barrido de los 415 reactivos existentes: sesgo de posición sano en todos los grupos institución·materia; 2 citas-por-letra preexistentes de F4 (UNAM Español/Física, baja severidad porque UNAM sí baraja) quedaron reportadas, no corregidas (fuera de alcance de esta fase). |
 | G3b | Verificación ciega del lote G3a | COMPLETADA | (G3b) | Ver sección dedicada abajo — los 35 reactivos resueltos a ciegas en sesión independiente, con el cálculo EJECUTADO en sympy (35/35 aciertos). **34 auto-aprobados (97.1%)**, 1 sin publicar por `WEAK_DISTRACTORS`. Acumulado real: **343 `isVerified=true`** de 415 (82.7%). **HALLAZGO DE LOTE, BLOQUEANTE PARA G3a-siguiente:** los 35 reactivos de G3a tienen la opción correcta en la posición `A` el **100%** de las veces, y el simulador NO baraja opciones para IPN (`shuffleOptions:false`) — patrón aprendible que invalida el lote como práctica. No corregido en esta fase (mutar el orden desincronizaría explicaciones que citan letras). |
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
@@ -893,23 +894,131 @@ corrigieron en esta fase** (task 5 pidió reportar, no reparar todo el
 corpus) — quedan como pendiente menor, propuestas como tarea de
 seguimiento.
 
+## G3d — Lote de reactivos: IPN MEDBIO Biología (2026-08-05)
+
+Primera corrida del pipeline con las dos correcciones de método de G3c ya
+aplicadas DESDE LA COMPOSICIÓN (no como reparación posterior). Modo de
+trabajo: autónomo, sin preguntas de selección.
+
+### Elección de materia (regla de prioridad, contra la DB real)
+
+Consulta directa por `Subject.questionWeight` + conteo de
+`isVerified=true` sobre TODAS las materias de instituciones activas para
+lanzamiento (UNAM + IPN, todas las áreas/ramas sembradas):
+
+| questionWeight | Institución · Área · Materia | Verificados |
+|---:|---|---:|
+| **22** | **IPN · Ciencias Médico-Biológicas · Biología** | **0** |
+| 20 | IPN · Ingeniería y Ciencias Físico-Matemáticas · Física | 0 |
+| 16 | IPN · Ciencias Médico-Biológicas · Química | 0 |
+| 10 | IPN · Ingeniería y Ciencias Físico-Matemáticas · Química | 0 |
+| 8 | IPN · Ciencias Médico-Biológicas · Matemáticas | 0 |
+| 7 | UNAM · Ciencias Sociales · Historia de México | 0 |
+| … | (resto de materias en 0 verificados, peso ≤7) | 0 |
+
+Sin empate en el primer lugar (22 vs. 20) — no fue necesaria la Prioridad 2
+(brecha absoluta) ni el desempate por peso. **Biología de IPN MEDBIO**
+elegida, `questionWeight=22`, 0 reactivos verificados y 0 en cola.
+
+### Fragmentos fuente
+
+**0 `SourceChunk`** para esta materia — ni a nivel tema (los 12 temas
+verificados uno por uno) ni a nivel materia (`subjectId` directo). De los
+380 fragmentos reales de F2b, ninguno cae en Biología de IPN. Los 35
+reactivos son, por tanto, **100% TEMARIO_ONLY**, generados a partir de los
+12 nombres de tema ya sembrados (Célula y organelos, Mitosis y meiosis,
+Genética básica, Evolución y especiación, Ecología y ecosistemas, Sistemas
+del cuerpo humano, Nutrición y metabolismo, Homeostasis, Sistema nervioso,
+Sistema endocrino, Inmunología, Reproducción) — contenido de biología
+general de nivel bachillerato, dentro del conocimiento factual estándar,
+sin necesidad de fuente externa.
+
+### Los 35 reactivos
+
+Compuestos directamente en esta sesión (redacción original, cero llamadas
+a red), formato `MULTIPLE_CHOICE` en los 35 (estándar para reactivos
+conceptuales de biología, a diferencia del dominio PROBLEM_SOLVING de
+G3a/Matemáticas). Distribución por tema:
+
+| Tema | Reactivos | Dificultad |
+|---|---:|---|
+| Célula y organelos | 4 | BASIC ×2, INTERMEDIATE ×2 |
+| Genética básica | 4 | BASIC ×4 |
+| Sistema nervioso | 4 | BASIC ×1, INTERMEDIATE ×2, EXPERT ×1 |
+| Ecología y ecosistemas | 3 | BASIC ×2, INTERMEDIATE ×1 |
+| Sistemas del cuerpo humano | 3 | BASIC ×1, INTERMEDIATE ×2 |
+| Nutrición y metabolismo | 3 | BASIC ×2, INTERMEDIATE ×1 |
+| Sistema endocrino | 3 | BASIC ×1, INTERMEDIATE ×2 |
+| Inmunología | 3 | BASIC ×1, INTERMEDIATE ×1, EXPERT ×1 |
+| Mitosis y meiosis | 2 | BASIC ×1, INTERMEDIATE ×1 |
+| Evolución y especiación | 2 | INTERMEDIATE ×1, ADVANCED ×1 |
+| Homeostasis | 2 | INTERMEDIATE ×1, ADVANCED ×1 |
+| Reproducción | 2 | BASIC ×1, INTERMEDIATE ×1 |
+| **TOTAL** | **35** | BASIC 16 · INTERMEDIATE 15 · ADVANCED 2 · EXPERT 2 |
+
+**Balance de posición aplicado desde la composición** (regla de G3c): cada
+reactivo se escribió con la respuesta correcta ya asignada a una letra
+objetivo, ciclando A→B→C→D sobre los 35 en orden — sin necesitar una
+reparación posterior como en G3a. **Explicaciones sin citas por letra
+desde el origen**: cada capa 3 contrasta el distractor por su CONTENIDO
+("el aparato de Golgi modifica y empaqueta proteínas, no genera energía"),
+nunca por su posición ("la opción B").
+
+### Validación (Zod + lote G3c)
+
+`pnpm content:validate-batch --dir <carpeta-con-12-archivos>`: **35/35
+válidos, 0 rechazados por formato** (Zod/KaTeX — sin fórmulas LaTeX en
+este lote, biología no las requirió), **0 violaciones de lote**:
+
+```
+Distribución de posición de la respuesta correcta: {"A":9,"B":9,"C":9,"D":8}
+Distribución de formato: {"MULTIPLE_CHOICE":35}
+Distribución de dificultad: {"BASIC":16,"INTERMEDIATE":15,"ADVANCED":2,"EXPERT":2}
+✅ Sin violaciones.
+```
+
+### Inserción
+
+`pnpm content:insert --topic <id> --file <drafts.json> --lot-dir <carpeta>`
+corrido 12 veces (una por tema) — cada llamada re-validó el lote completo
+de 12 archivos antes de insertar, per diseño de G3c. **35/35 insertados, 0
+rechazados**, todos `isVerified=false`, `groundingStatus=TEMARIO_ONLY`.
+Verificado en vivo contra Supabase real tras la corrida: `SELECT count(*)`
+confirma exactamente 35 en la materia, `analyzeLot` corrido de nuevo
+DIRECTAMENTE sobre las filas reales de la DB (no sobre los archivos
+fuente) confirma la misma distribución 9/9/9/8 y 0 citas por letra — la
+garantía sobrevivió el viaje por Zod/Prisma sin corromperse. 35 enunciados
+únicos (sin duplicados).
+
+### Artefacto persistido
+
+`docs/content-batches/g3d-ipn-medbio-biologia.json` — los 35 reactivos
+completos (enunciado, opciones, explicaciones) con su `questionId` real de
+la DB, mismo patrón de trazabilidad que G3a.
+
 ## Siguiente
 
-**G3d.** Con el pipeline ahora blindado contra el sesgo de posición
-(validación de lote obligatoria en `content:insert`), continuar cerrando
-la brecha de 1,191 reactivos (tabla en G1) con la siguiente materia según
-la regla de prioridad de G3a: mayor `questionWeight` entre las materias de
-instituciones/áreas activas para lanzamiento con 0 reactivos verificados.
-Con Matemáticas de IPN FISMAT ya cubierta, la siguiente es **Biología de
-IPN MEDBIO (`questionWeight` 22)**, seguida de Física de IPN FISMAT (20) —
-confirmar contra la DB antes de empezar. Al componer, correr
-`pnpm content:validate-batch --dir <carpeta>` sobre TODOS los archivos del
-lote antes de llamar a `content:insert` (o pasarle `--lot-dir` a
-`content:insert` directamente) — ya no depende de que la sesión se acuerde
-de revisarlo a mano.
+**G3e — Verificación ciega del lote de 35 reactivos (IPN MEDBIO
+Biología).** Correr `pnpm content:blind-batch --topic <id>` por cada uno
+de los 12 temas listados arriba (o `--ids` con los 35 `questionId` de
+`docs/content-batches/g3d-ipn-medbio-biologia.json`), resolverlo en una
+sesión de Claude Code/chat DISTINTA e independiente de esta (que compuso
+los reactivos), y aplicar `pnpm content:resolve --file <respuestas.json>`.
+Contenido de biología general (no requiere cálculo ejecutado como
+Matemáticas en G3b, pero sí verificación factual cuidadosa: definiciones,
+mecanismos fisiológicos, terminología). Después de G3e, repetir el ciclo
+completo (`content:validate-batch` → `content:insert --lot-dir` →
+`content:blind-batch` → sesión verificadora → `content:resolve`) para la
+siguiente materia según la regla de prioridad — con Matemáticas de IPN
+FISMAT y Biología de IPN MEDBIO ya cubiertas, la siguiente candidata es
+**Física de IPN FISMAT (`questionWeight` 20)** — confirmar contra la DB
+antes de empezar, ya que este lote pudo haber cambiado los verificados de
+otras materias si G3e ya corrió.
 
-Pendientes menores arrastrados (no bloquean G3d): `cmsfgf5ea0001k3lis0d0uzf9`
-(Números complejos, IPN) sigue sin publicarse — su opción `$4-3$` necesita
-reescribirse (hallazgo de G3b, sin relación con el sesgo de posición). Las
-2 citas-por-letra de F4 (UNAM Español `cmrule6ir…`, Física `cmru8sy0a…`)
-necesitan una pasada editorial menor que las reescriba por contenido.
+Pendientes menores arrastrados (no bloquean G3e): `cmsfgf5ea0001k3lis0d0uzf9`
+(Números complejos, IPN Matemáticas) sigue sin publicarse — su opción
+`$4-3$` necesita reescribirse (hallazgo de G3b, sin relación con el sesgo
+de posición). Las 2 citas-por-letra de F4 (UNAM Español `cmrule6ir…`,
+Física `cmru8sy0a…`) siguen pendientes de una pasada editorial menor que
+las reescriba por contenido — verificado en esta sesión que ninguna de las
+dos ha cambiado desde G3c.
