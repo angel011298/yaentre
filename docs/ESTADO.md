@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-08-05 · Última fase ejecutada: G3d (COMPLETADA)
+Última actualización: 2026-08-05 · Última fase ejecutada: G3e (COMPLETADA en re-ejecución, tras el aborto documentado abajo)
 
 ## Tabla de fases
 
@@ -32,6 +32,7 @@
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
 | G3a | Lote de reactivos: IPN FISMAT Matemáticas | COMPLETADA | (G3a) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para la materia con mayor `questionWeight` (24) entre todas las de instituciones/áreas activas para lanzamiento con 0 reactivos verificados. 12 SOURCED (3 temas con `SourceChunk` real) + 23 TEMARIO_ONLY. Insertados con `isVerified=false`, a la espera de verificación ciega (G2). |
+| G3e | Verificación ciega del lote G3d | COMPLETADA (2º intento) | (G3e) | Ver sección dedicada abajo — primer intento ABORTADO por contaminación de contexto (misma conversación que compuso G3d; cambiar de modelo no reinicia la ventana), re-ejecutado en sesión genuinamente nueva. Los 35 reactivos resueltos a ciegas: **35/35 coincidencias** con el generador, confianza mínima 0.96. **27 auto-aprobados (77.1%)**, 8 sin publicar. Acumulado real: **370 `isVerified=true`** de 450 (82.2%). **HALLAZGO DE LOTE: "cue de glosa"** — en los 8 reactivos donde exactamente una opción trae paréntesis explicativos, esa opción es la correcta **8/8** (p=1.5e-5); son justo los 8 bloqueados. Patrón aprendible análogo al sesgo de posición de G3b, pero peor: viaja en el TEXTO de la opción, así que barajar no lo neutraliza. |
 | G3d | Lote de reactivos: IPN MEDBIO Biología | COMPLETADA | (G3d) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para Biología de IPN MEDBIO (`questionWeight` 22, la de mayor peso entre las materias de instituciones activas para lanzamiento con 0 reactivos verificados). 100% TEMARIO_ONLY (sin `SourceChunk` disponible para esta materia). Distribución de la respuesta correcta balanceada DESDE LA COMPOSICIÓN (9/9/9/8, ~25% por letra) y explicaciones que citan distractores por contenido, nunca por letra — ambas reglas de G3c aplicadas de origen, no como reparación posterior. Pasó `content:validate-batch` con 0 violaciones antes de insertar. Insertados con `isVerified=false`, a la espera de verificación ciega (G3e). |
 | G3c | Corrección de sesgo de posición + validación de lote | COMPLETADA | (G3c) | Ver sección dedicada abajo — los 35 de IPN reparados editorialmente (distribución 9/9/9/8, ~25% por letra); 5 explicaciones reescritas para citar distractores por contenido, no por letra; nuevo `scripts/lib/lot-validation.ts` (puro, 13 tests) + `pnpm content:validate-batch` + paso obligatorio dentro de `content:insert` (`--lot-dir`) que rechaza un lote sesgado ANTES de tocar la DB. Regla añadida a CLAUDE.md. Barrido de los 415 reactivos existentes: sesgo de posición sano en todos los grupos institución·materia; 2 citas-por-letra preexistentes de F4 (UNAM Español/Física, baja severidad porque UNAM sí baraja) quedaron reportadas, no corregidas (fuera de alcance de esta fase). |
 | G3b | Verificación ciega del lote G3a | COMPLETADA | (G3b) | Ver sección dedicada abajo — los 35 reactivos resueltos a ciegas en sesión independiente, con el cálculo EJECUTADO en sympy (35/35 aciertos). **34 auto-aprobados (97.1%)**, 1 sin publicar por `WEAK_DISTRACTORS`. Acumulado real: **343 `isVerified=true`** de 415 (82.7%). **HALLAZGO DE LOTE, BLOQUEANTE PARA G3a-siguiente:** los 35 reactivos de G3a tienen la opción correcta en la posición `A` el **100%** de las veces, y el simulador NO baraja opciones para IPN (`shuffleOptions:false`) — patrón aprendible que invalida el lote como práctica. No corregido en esta fase (mutar el orden desincronizaría explicaciones que citan letras). |
@@ -996,29 +997,197 @@ garantía sobrevivió el viaje por Zod/Prisma sin corromperse. 35 enunciados
 completos (enunciado, opciones, explicaciones) con su `questionId` real de
 la DB, mismo patrón de trazabilidad que G3a.
 
+## G3e (1er intento) — ABORTADA por contaminación de contexto (2026-08-05)
+
+> Re-ejecutada con éxito en una sesión nueva; ver "G3e (re-ejecución)" más
+> abajo. Esta sección se conserva porque el hallazgo de proceso es reutilizable.
+
+
+**No se resolvió ni se publicó ningún reactivo. Los 35 de G3d siguen
+`isVerified=false`.** Esta sección documenta por qué, porque es un hallazgo
+de proceso reutilizable, no solo un incidente puntual.
+
+### Qué pasó
+
+La sesión asignada a ejecutar G3e (resolver a ciegas el lote de G3d) era la
+**misma conversación** que había compuesto ese lote en G3d, minutos antes.
+Se cambió el modelo (`/model claude-opus-5`) entre una fase y la otra, pero
+un cambio de modelo **no reinicia la conversación**: la ventana de contexto
+se conserva íntegra.
+
+Esa ventana contenía el script de composición de G3d
+(`scripts/tmp-g3d-gen.ts`, borrado del disco al terminar esa fase pero
+todavía presente en el contexto de la conversación), cuyo comentario declara
+literalmente:
+
+> `// La opción en options[0] siempre es la CORRECTA en este borrador de trabajo`
+
+…seguido de los 35 reactivos con su respuesta correcta en primera posición.
+La contaminación era **total y mecánica**, no parcial: el mismo script
+contiene el algoritmo de asignación de letra (`LETTERS[i % 4]` sobre los
+ítems en orden), así que la letra almacenada de cualquier reactivo se podía
+derivar por aritmética, sin razonar una sola línea de biología.
+
+### Por qué se abortó en vez de continuar
+
+El contrato del pipeline es explícito y está escrito en el propio código:
+
+> `scripts/lib/blind-verification.ts:11` — "Esa sesión debe ser **DISTINTA
+> (proceso/conversación separada)** de la que compuso los reactivos — la
+> separación de sesión sustituye a la separación de llamada-a-API del diseño
+> anterior."
+
+Y CLAUDE.md exige "**Dos sesiones independientes** (una compone el reactivo,
+otra lo resuelve a ciegas sin ver la respuesta)". El aislamiento de sesión
+es la ÚNICA garantía de calidad que le queda al pipeline desde que G2 retiró
+la verificación vía API de pago: no hay revisión humana, no hay segundo
+proveedor, no hay freelancers. Si esa garantía es falsa, no queda ninguna.
+
+Continuar habría producido 35/35 coincidencias y una tasa de auto-aprobación
+del 100% — un número que se vería mejor que el 97.1% real de G3b, y que
+habría publicado 35 reactivos a alumnos reales con un sello de calidad
+inventado. **Una verificación que no puede fallar no es una verificación.**
+
+### Lección de proceso (aplicable a G6 y a todo lote futuro)
+
+El aislamiento de sesión es una propiedad de la **conversación**, no del
+**modelo**. Las fases de composición (G3a/G3d/…) y de verificación
+(G3b/G3e/…) deben correrse en invocaciones de `claude` separadas, con
+historial en blanco. Cambiar de tier de modelo dentro de una misma
+conversación —aunque el plan de sesiones asigne modelos distintos a cada
+fase— NO satisface el contrato y produce una verificación nula.
+
+Señal de alarma concreta para la sesión verificadora: si el lote ciego se
+"siente" familiar, o si aparece en el contexto cualquier artefacto de la
+fase de composición (script generador, JSON de drafts, tabla de temas con
+conteos), la verificación ya está comprometida — hay que abortar y reportar,
+no intentar "olvidar" la respuesta.
+
+### Estado real tras abortar
+
+| | |
+|---|---:|
+| Reactivos de G3d pendientes de verificación | **35** (`isVerified=false`) |
+| Resueltos en esta sesión | **0** |
+| Publicados en esta sesión | **0** |
+| Acumulado `isVerified=true` en la DB (sin cambios desde G3d) | **343** de 450 |
+
+El lote ciego SÍ se generó y quedó en disco, listo para que lo consuma una
+sesión nueva sin necesidad de regenerarlo:
+`scripts/content-exports/blind-batch-2026-08-05T23-35-18-047Z.json`
+(35 ítems, `requiresCalculation:false` en los 35 — biología conceptual, sin
+cálculo que ejecutar, a diferencia de G3b). Regenerarlo con
+`pnpm content:blind-batch --all --limit 100` es idempotente y también
+válido.
+
+## G3e (re-ejecución) — Verificación ciega del lote G3d (2026-08-05)
+
+Corrida en una sesión de `claude` **genuinamente nueva**, con historial en
+blanco, que no participó en G3d. El aislamiento exigido por
+`scripts/lib/blind-verification.ts:11` se cumplió esta vez: la sesión NO leyó
+el commit de G3d (`c41a597`), ni `docs/content-batches/g3d-ipn-medbio-biologia.json`,
+ni `Question.options` — su único insumo fue el lote ciego regenerado
+(`scripts/content-exports/blind-batch-2026-08-05T23-38-23-367Z.json`, 35
+ítems, sin `isCorrect` ni `explanations` por construcción). La clave de
+respuestas se hizo visible por primera vez al correr `content:resolve`, es
+decir DESPUÉS de que las 35 respuestas quedaran escritas en disco.
+
+### Resultado
+
+| | |
+|---|---:|
+| Reactivos resueltos | **35 / 35** |
+| Coincidencias con el generador | **35 / 35 (100%)** |
+| Confianza mínima registrada | **0.96** (umbral 0.85) |
+| **Auto-aprobados (tasa del lote)** | **27 / 35 = 77.1%** |
+| Sin publicar (`problems` ≠ ∅) | **8** |
+| **Acumulado real en la DB** | **370** `isVerified=true` de 450 (**82.2%**) |
+
+Veredictos completos en
+`docs/content-batches/g3e-veredictos-ipn-medbio-biologia.json` (mismo formato
+y misma convención de ruta que G3b).
+
+### Cálculo ejecutado
+
+El lote traía `requiresCalculation:false` en los 35 (biología conceptual, a
+diferencia del de G3b, que era 100% matemáticas). Aun así, 5 reactivos tienen
+una operación que se puede EJECUTAR en vez de afirmarse de memoria, y se
+ejecutó en un script desechable con un assert por reactivo de que
+**exactamente una** opción coincide con el resultado calculado (equivale a
+comprobar `MULTIPLE_VALID` y `NONE_VALID`):
+
+| Reactivo | Operación ejecutada | Resultado | Assert |
+|---|---|---|---|
+| `cmsg296p6…` | Cuadro de Punnett `Aa × Aa` | genotipos {AA:1, Aa:2, aa:1} → fenotípica **3 : 1** | 1 opción ✔ |
+| `cmsg299b5…` | Cuadro de Punnett `AA × aa` | F1 uniforme **Aa** (4/4) | 1 opción ✔ |
+| `cmsg298fs…` | Cariotipo `23 pares × 2` | **46** | 1 opción ✔ |
+| `cmsg2ag5u…` | Factores de Atwater, `9/4` | **2.25** → "más del doble" verdadero | 1 opción ✔ |
+| `cmsg2bdb3…` | Regla del 10%, `100·0.1^(n-1)` | 100 → 10 → 1 → 0.1, decrece siempre | 1 opción ✔ |
+
+Los 30 restantes se resolvieron por verificación factual (definiciones,
+mecanismos fisiológicos, terminología), citando siempre por qué cada
+distractor es falso y nunca por su letra.
+
+### HALLAZGO DE LOTE — "cue de glosa" (bloqueante para el siguiente G3d)
+
+Los 8 reactivos sin publicar NO son errores de contenido: los 35 son
+factualmente correctos y los 35 coincidieron. Los 8 se bloquearon por un
+patrón **estructural, mecánico y medido**, del mismo tipo que el sesgo de
+posición que G3b encontró en G3a:
+
+> En los **8** reactivos del lote donde **exactamente una** opción trae glosa
+> entre paréntesis, esa opción es la **correcta**: **8 de 8**.
+> P(≥8 de 8 por azar, p=0.25) = **1.5e-5**.
+
+Ejemplos: `Hipófisis (pituitaria)` contra "Tiroides"/"Páncreas";
+`Trompas de Falopio (oviductos)` (30 caracteres) contra "Útero"/"Vagina"/"Ovario"
+(6 de promedio); `Células de memoria (linfocitos B y T de memoria)`, que
+además repite la palabra del enunciado ("recordar"/"memoria"); `46 (23 pares)`
+contra las cifras desnudas 48/23/44; `Lípidos (grasas)`.
+
+**Por qué es peor que el sesgo de posición de G3b:** el sesgo de posición vive
+en el ORDEN de las opciones, así que al menos en teoría lo neutraliza barajar.
+El cue de glosa vive en el **texto** de la opción y viaja con ella a cualquier
+posición — `shuffleOptions` no lo toca. Y en IPN (`shuffleOptions:false`) ni
+siquiera existe ese amortiguador.
+
+Medición secundaria del mismo hábito de composición, registrada pero **no**
+usada para bloquear: la opción correcta es la **más larga** en **21/35 = 60%**
+de los reactivos (azar 25%, p=1.2e-5). No se marcó como problema en los 13
+casos que no traen glosa porque ahí la longitud es intrínseca al contenido —
+un mecanismo fisiológico necesita más palabras que un distractor de una línea,
+y en esos reactivos al menos un distractor tiene longitud comparable. Es un
+hallazgo para la fase de COMPOSICIÓN, no un defecto por reactivo.
+
+**Reparación:** los 8 son publicables con una edición de segundos (quitar el
+paréntesis, o glosar también los distractores). Quedan en la cola de
+"baja-confianza-o-problemas" de `/admin/reports` (F3) con el veredicto
+completo adjunto en `Question.verification`, que es exactamente el camino
+diseñado para "correcto pero necesita edición" — no se descartaron.
+
+**Para la siguiente fase de composición:** `scripts/lib/lot-validation.ts`
+(G3c) ya rechaza el sesgo de posición antes de tocar la DB, pero no detecta
+este patrón. La regla mecánica a añadir es directa: *si exactamente una opción
+de un reactivo contiene paréntesis, es un cue* — se puede validar sin conocer
+la respuesta correcta, igual que la distribución de posición.
+
 ## Siguiente
 
-**G3e — Verificación ciega del lote de 35 reactivos (IPN MEDBIO
-Biología).** Correr `pnpm content:blind-batch --topic <id>` por cada uno
-de los 12 temas listados arriba (o `--ids` con los 35 `questionId` de
-`docs/content-batches/g3d-ipn-medbio-biologia.json`), resolverlo en una
-sesión de Claude Code/chat DISTINTA e independiente de esta (que compuso
-los reactivos), y aplicar `pnpm content:resolve --file <respuestas.json>`.
-Contenido de biología general (no requiere cálculo ejecutado como
-Matemáticas en G3b, pero sí verificación factual cuidadosa: definiciones,
-mecanismos fisiológicos, terminología). Después de G3e, repetir el ciclo
-completo (`content:validate-batch` → `content:insert --lot-dir` →
-`content:blind-batch` → sesión verificadora → `content:resolve`) para la
-siguiente materia según la regla de prioridad — con Matemáticas de IPN
-FISMAT y Biología de IPN MEDBIO ya cubiertas, la siguiente candidata es
-**Física de IPN FISMAT (`questionWeight` 20)** — confirmar contra la DB
-antes de empezar, ya que este lote pudo haber cambiado los verificados de
-otras materias si G3e ya corrió.
+**G6 — siguiente materia por la regla de prioridad.** Candidata: **Física de
+IPN FISMAT, `questionWeight` 20** (confirmar contra la DB antes de empezar).
+Recordatorios de método, ya pagados con dos hallazgos:
 
-Pendientes menores arrastrados (no bloquean G3e): `cmsfgf5ea0001k3lis0d0uzf9`
-(Números complejos, IPN Matemáticas) sigue sin publicarse — su opción
-`$4-3$` necesita reescribirse (hallazgo de G3b, sin relación con el sesgo
-de posición). Las 2 citas-por-letra de F4 (UNAM Español `cmrule6ir…`,
-Física `cmru8sy0a…`) siguen pendientes de una pasada editorial menor que
-las reescriba por contenido — verificado en esta sesión que ninguna de las
-dos ha cambiado desde G3c.
+1. **Composición y verificación en invocaciones de `claude` SEPARADAS.**
+   Cambiar de tier de modelo dentro de una misma conversación no satisface el
+   contrato y produce una verificación nula (ver G3e, 1er intento).
+2. **Balancear la posición de la correcta desde la composición** (G3c) **y
+   ahora también la FORMA de las opciones** (G3e): sin glosas, ejemplos ni
+   longitudes que solo lleve la correcta.
+
+Pendientes menores arrastrados: `cmsfgf5ea0001k3lis0d0uzf9` (Números
+complejos, IPN Matemáticas) sigue sin publicarse — su opción `$4-3$`
+necesita reescribirse (hallazgo de G3b, sin relación con el sesgo de
+posición). Las 2 citas-por-letra de F4 (UNAM Español `cmrule6ir…`, Física
+`cmru8sy0a…`) siguen pendientes de una pasada editorial menor que las
+reescriba por contenido. Se suman los 8 reactivos de biología con cue de
+glosa descritos arriba.

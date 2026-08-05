@@ -1,0 +1,287 @@
+[
+  {
+    "questionId": "cmsg28z1o0001q7zheam37kq4",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "Mensajeros químicos secretados por glándulas endocrinas al torrente sanguíneo que actúan sobre órganos blanco distantes = hormonas. Los neurotransmisores actúan en la hendidura sináptica (no viajan por sangre a órganos distantes), los anticuerpos son proteínas de defensa producidas por linfocitos B, y las enzimas son catalizadores que no cumplen función de señalización a distancia.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg28zxc0006q7zhzr87f1il",
+    "chosenOption": "C",
+    "confidence": 0.97,
+    "reasoning": "La hipófisis (pituitaria) se denomina 'glándula maestra' porque sus tropinas (TSH, ACTH, FSH/LH) gobiernan tiroides, suprarrenales y gónadas. Tiroides, suprarrenales y páncreas son glándulas efectoras, no reguladoras del resto. (El hipotálamo controla a la hipófisis, pero no figura entre las opciones y no se le llama tradicionalmente 'glándula maestra'.)",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5): la opción correcta es la ÚNICA con glosa entre paréntesis — 'Hipófisis (pituitaria)' frente a 'Glándulas suprarrenales', 'Tiroides', 'Páncreas'. Permite acertar sin saber endocrinología. Contenido correcto; se resuelve quitando el paréntesis o glosando también los distractores."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg290sq000bq7zhe15oeeav",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "La insulina, producida por las células beta de los islotes pancreáticos, es hipoglucemiante: promueve la captación de glucosa vía GLUT4. El glucagón es la hormona pancreática opuesta (hiperglucemiante); adrenalina y tiroxina no son pancreáticas y también elevan la glucemia.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg296p60001ieujebbljk1t",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "Cuadro de Punnett Aa x Aa EJECUTADO en código: genotipos {AA:1, Aa:2, aa:1}; con dominancia completa AA y Aa comparten fenotipo, de modo que la proporción FENOTÍPICA calculada es 3 dominante : 1 recesivo. Exactamente una opción coincide (assert en verde). 1:2:1 es la proporción genotípica del mismo cruce y 9:3:3:1 corresponde a un dihíbrido.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg297kl0006ieujmf7ovjb2",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "Las versiones alternativas de un mismo gen en un locus dado son los alelos. Genotipo es la combinación de alelos del individuo, fenotipo su manifestación observable, y las cromátidas son las copias de un cromosoma duplicado.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg298fs000bieujw9k5ranp",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "Cálculo EJECUTADO: 23 pares homólogos x 2 = 46 cromosomas en célula somática (2n). Exactamente una opción coincide. 23 es el número haploide del gameto, 44 el de autosomas sin los sexuales, y 48 el de otros homínidos.",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5): la opción correcta es la ÚNICA con glosa entre paréntesis — '46 (23 pares)' frente a las cifras desnudas '48', '23', '44'. El paréntesis justifica la respuesta y permite acertar sin saber el cariotipo humano. Contenido correcto; se resuelve dejando la opción como '46' a secas."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg299b5000gieujfja4j0is",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "Cuadro de Punnett AA x aa EJECUTADO en código: los cuatro descendientes salen Aa, es decir F1 100% heterocigota (uniformidad de la primera generación filial). Exactamente una opción coincide. La mezcla 1:1 correspondería a un retrocruce Aa x aa.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg29f71000113lruiqxfy9n",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "La fosforilación oxidativa de la respiración celular ocurre en la membrana interna mitocondrial (crestas), donde la ATP sintasa produce la mayor parte del ATP. El lisosoma digiere, el REL sintetiza lípidos y el Golgi empaqueta.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg29g2f000613lrfmqcxs8a",
+    "chosenOption": "C",
+    "confidence": 0.98,
+    "reasoning": "La membrana plasmática es la barrera selectivamente permeable entre citoplasma y medio extracelular. El núcleo alberga el material genético, el citoesqueleto da forma y transporte interno, y la pared celular (ausente en células animales) es rígida y no selectiva.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg29gzi000b13lr4ohs28od",
+    "chosenOption": "B",
+    "confidence": 0.98,
+    "reasoning": "El aparato de Golgi modifica postraduccionalmente (glucosilación), empaqueta en vesículas y distribuye las proteínas hacia su destino final. El retículo rugoso las sintetiza y les da el primer plegamiento, pero el empaquetamiento y la distribución final son del Golgi; el ribosoma solo traduce.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg29hv3000g13lrenjbxoze",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "Los lisosomas contienen hidrolasas ácidas que degradan macromoléculas, organelos dañados y material fagocitado. Sintetizar lípidos es del retículo liso, generar energía de la mitocondria, y almacenar agua de la vacuola vegetal.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg29nti00015lqf3gaqonog",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "La homeostasis se sostiene predominantemente por retroalimentación negativa: el efector revierte la desviación y devuelve la variable a su punto de ajuste (termorregulación por sudoración o escalofrío). La positiva amplifica y es excepcional en fisiología.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg29op500065lqfv2vni2de",
+    "chosenOption": "B",
+    "confidence": 0.98,
+    "reasoning": "En el reflejo de Ferguson la distensión cervical estimula la liberación de oxitocina, que intensifica las contracciones, que a su vez aumentan la distensión: el estímulo se AMPLIFICA hasta el nacimiento, definición de retroalimentación positiva. Que el cuerpo regrese al reposo revirtiendo el estímulo describiría una negativa.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg29ul400014qhyac85cawy",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "La fecundación ocurre normalmente en el tercio distal (ampolla) de la trompa uterina. El ovario libera el ovocito, la vagina es la vía de entrada del semen y en el útero se implanta el blastocisto ya fecundado.",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5): la opción correcta es la ÚNICA con glosa entre paréntesis — 'Trompas de Falopio (oviductos)' (30 caracteres) frente a 'Útero', 'Vagina', 'Ovario' (6 en promedio). Permite acertar sin saber anatomía reproductiva. Contenido correcto; se resuelve quitando el paréntesis."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg29vgu00064qhy7gw1mnph",
+    "chosenOption": "D",
+    "confidence": 0.96,
+    "reasoning": "La placenta es el órgano de intercambio: la barrera placentaria permite el paso de gases, nutrientes y desechos sin que las circulaciones materna y fetal se mezclen. El cordón umbilical solo transporta esa sangre entre feto y placenta, el amnios contiene líquido protector y el útero aloja la gestación.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2a1d30001hwsfreycaf74",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "El eritrocito transporta O2 unido a la hemoglobina desde el pulmón a los tejidos (y participa en el retorno de CO2). Coagular es de las plaquetas, defender de los leucocitos, y las hormonas viajan en el plasma, no dentro del eritrocito.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2a28v0006hwsfrohm62w2",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "El intestino delgado concentra la absorción gracias a vellosidades y microvellosidades que multiplican la superficie. El esófago solo conduce, el estómago digiere proteínas y absorbe muy poco, y el intestino grueso reabsorbe principalmente agua y electrolitos.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2a341000bhwsf62xqyl1h",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "El alvéolo es la unidad de hematosis: su pared delgadísima junto al capilar permite la difusión de O2 hacia la sangre y de CO2 hacia el aire. Producir moco y filtrar polvo son funciones de las vías altas; la contracción que moviliza el aire es del diafragma e intercostales.",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5): la opción correcta es la ÚNICA con glosa entre paréntesis — 'intercambio de gases (oxígeno y dióxido de carbono)'; ninguno de los tres distractores lleva paréntesis. Contenido correcto; se resuelve quitando la enumeración entre paréntesis."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg2a95s000153rlkslxds9n",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "La selección natural es el mecanismo darwiniano: diferencia de éxito reproductivo según el ajuste al ambiente. La mutación aporta variación pero no la criba, la deriva génica actúa al azar (Wright, no Darwin) y la herencia de caracteres adquiridos es lamarckiana.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2aa0t000653rlsik9wsih",
+    "chosenOption": "B",
+    "confidence": 0.98,
+    "reasoning": "Alopátrica = 'otra patria': una barrera geográfica interrumpe el flujo génico y las poblaciones divergen hasta el aislamiento reproductivo. La opción sin separación geográfica por preferencia de apareamiento describe especiación simpátrica, y la del híbrido fértil en el mismo territorio, especiación híbrida.",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5): la opción correcta es la ÚNICA con glosa entre paréntesis — '(como un río o una cordillera)' — y además la más larga (196 caracteres vs. 108 de promedio). El ejemplo entre paréntesis ilustra justo el concepto que se pregunta. Contenido correcto; se resuelve quitando el ejemplo o dándole uno equivalente a los distractores."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg2ag5u00011zfhjgndejjd",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "Factores de Atwater EJECUTADOS en código: lípidos 9 kcal/g frente a 4 kcal/g de carbohidratos y proteínas; 9/4 = 2.25, o sea 'más del doble', y exactamente una opción cumple. Las vitaminas son micronutrientes y no aportan energía.",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5): la opción correcta es la ÚNICA con glosa entre paréntesis — 'Lípidos (grasas)' frente a 'Proteínas', 'Vitaminas', 'Carbohidratos'. Contenido correcto; se resuelve quitando el paréntesis."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg2ah3n00061zfhzd0vxpd9",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "Catabolismo = degradación de moléculas complejas a simples con liberación de energía. El anabolismo es la ruta biosintética que consume energía, la fotosíntesis es un caso particular de anabolismo autótrofo y la homeostasis no es una ruta metabólica.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2ai1b000b1zfh0px1ugml",
+    "chosenOption": "A",
+    "confidence": 0.97,
+    "reasoning": "Los carbohidratos se hidrolizan hasta monosacáridos; la glucosa es la que entra directamente a la glucólisis y a la respiración celular. El glucógeno es la forma de ALMACENAMIENTO (polímero, no producto de la digestión), y aminoácidos y ácidos grasos provienen de proteínas y lípidos.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2aopd00015r0rf0ci12nq",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "En metafase los cromosomas duplicados se alinean en la placa ecuatorial. En profase se condensan, en anafase las cromátidas migran a polos opuestos y en telofase se reconstituyen los núcleos.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2apn000065r0rm49r1bgq",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "Mitosis: una división, 2 hijas diploides idénticas a la madre. Meiosis: dos divisiones sucesivas, 4 hijas haploides genéticamente distintas por entrecruzamiento y segregación independiente. La opción que invierte los números y la que asigna mitosis a células sexuales son incorrectas.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2avpv00016q7yyxq665a5",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "La neurona es la unidad funcional (célula completa) del sistema nervioso. El axón y las dendritas son partes suyas, la sinapsis es la unión entre dos neuronas y la glía cumple funciones de soporte, no de procesamiento y transmisión del impulso.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2awl700066q7ygdx6za7c",
+    "chosenOption": "A",
+    "confidence": 0.98,
+    "reasoning": "Las dendritas son las prolongaciones receptoras: reciben la señal y la conducen hacia el soma. El axón la conduce en sentido contrario (del soma a la terminal), la mielina la acelera y el botón sináptico libera el neurotransmisor.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2axgg000b6q7yqkh1dcwi",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "El sistema nervioso autónomo (simpático y parasimpático) regula funciones viscerales involuntarias: frecuencia cardiaca, digestión, respiración. Los movimientos voluntarios del músculo esquelético son del sistema somático, y procesar visión o almacenar recuerdos es del SNC, no del periférico.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2ayc1000g6q7yuq563lc6",
+    "chosenOption": "C",
+    "confidence": 0.97,
+    "reasoning": "Tras la despolarización por entrada de Na+, los canales de sodio se inactivan y se abren los de potasio: la salida de K+ repolariza la membrana hacia el potencial de reposo (y la bomba Na+/K+ restablece el gradiente). Las otras tres describen situaciones fisiológicamente imposibles.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2b4eq0001hy8lharbr6iz",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "Los linfocitos B y T de memoria persisten tras la exposición y montan la respuesta secundaria, más rápida e intensa: es la base de la vacunación. Neutrófilos y macrófagos son inmunidad innata sin memoria específica, y las plaquetas participan en la coagulación.",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5) AGRAVADO POR ECO DEL ENUNCIADO: la opción correcta es la ÚNICA con glosa entre paréntesis — 'Células de memoria (linfocitos B y T de memoria)', 48 caracteres frente a 10 de promedio ('Plaquetas', 'Neutrófilos', 'Macrófagos') — y además repite literalmente la palabra 'recordar'/'memoria' que el enunciado ya usa. Se acierta por coincidencia léxica, sin inmunología. Contenido correcto; se resuelve dejando 'Linfocitos de memoria' sin paréntesis."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg2b5cy0006hy8lvhypp5b6",
+    "chosenOption": "B",
+    "confidence": 0.99,
+    "reasoning": "La inmunidad innata es inmediata, inespecífica y congénita; la adaptativa tarda días, es específica de antígeno y deja memoria. La opción que invierte cuál genera memoria y la que reparte virus/bacterias entre ambas son falsas.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2b6aj000bhy8l87e7um4e",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "Los anticuerpos son inmunoglobulinas secretadas por los linfocitos B (células plasmáticas) que reconocen un antígeno específico y lo neutralizan u opsonizan para su destrucción. Las otras opciones describen enzimas digestivas, proteínas de transporte de membrana y neurotransmisores.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2bcfq0001as75b0aj526w",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "Las plantas verdes son productores (autótrofos fotosintéticos): fijan energía solar en enlaces químicos y sostienen la cadena trófica. Consumidores primarios son los herbívoros, secundarios sus depredadores y descomponedores hongos y bacterias.",
+    "problems": []
+  },
+  {
+    "questionId": "cmsg2bdb30006as75etx8vdr2",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "Regla del 10% EJECUTADA en código: partiendo de 100 unidades, los niveles sucesivos quedan en 10, 1 y 0.1 — decrece en cada paso y solo ~10% se transfiere, el resto se disipa como calor (segunda ley). Exactamente una opción coincide; las otras tres afirman conservación o aumento de energía.",
+    "problems": [
+      {
+        "type": "OTHER",
+        "detail": "CUE DE GLOSA (patrón de lote, 8/8 reactivos afectados, p=1.5e-5): la opción correcta es la ÚNICA con glosa entre paréntesis — '(el resto se pierde principalmente como calor)' — y la más larga (152 caracteres vs. 60 de promedio). Contenido correcto; se resuelve quitando el paréntesis, que además es información que el reactivo no pregunta."
+      }
+    ]
+  },
+  {
+    "questionId": "cmsg2be6e000bas75hz60rbc3",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "Población = individuos de UNA misma especie en una misma área y tiempo. La comunidad reúne poblaciones de especies distintas, el ecosistema suma comunidad más medio abiótico, y el bioma es un conjunto de ecosistemas con clima y vegetación semejantes.",
+    "problems": []
+  }
+]
