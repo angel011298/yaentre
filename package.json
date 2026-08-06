@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -25,6 +25,7 @@
     "content:coverage": "tsx scripts/content-coverage.ts",
     "content:ingest": "tsx scripts/ingest-source.ts",
     "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",
+    "stripe:setup-webhook": "tsx scripts/setup-stripe-webhook.ts",
     "reconcile:payments": "tsx scripts/reconcile-pending-payments.ts",
     "test:rls": "tsx scripts/verify-rls-isolation.ts"
   },

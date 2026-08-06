@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-08-05 · Última fase ejecutada: G3e (COMPLETADA en re-ejecución, tras el aborto documentado abajo)
+Última actualización: 2026-08-05 · Última fase ejecutada: G6 (PARCIAL — ver abajo; bloqueada en credenciales reales de Stripe que ninguna sesión puede generar)
 
 ## Tabla de fases
 
@@ -32,6 +32,7 @@
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
 | G3a | Lote de reactivos: IPN FISMAT Matemáticas | COMPLETADA | (G3a) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para la materia con mayor `questionWeight` (24) entre todas las de instituciones/áreas activas para lanzamiento con 0 reactivos verificados. 12 SOURCED (3 temas con `SourceChunk` real) + 23 TEMARIO_ONLY. Insertados con `isVerified=false`, a la espera de verificación ciega (G2). |
+| G6 | Stripe en modo prueba sobre URL de Vercel | **PARCIAL — bloqueada en credenciales** | (G6) | Ver sección dedicada abajo. Decisión tomada y documentada: cuenta de Stripe SEPARADA para Acierta (`docs/STRIPE_LIVE_CHECKLIST.md` §0). **Logrado sin bloqueo:** primer deploy real de Acierta a Vercel — `https://acierta.vercel.app` (proyecto no existía; se creó y enlazó). Encontró y corrigió un bug real de infraestructura: `.npmrc` tiene `ignore-scripts=true` (control de seguridad deliberado contra scripts de post-install de terceros), que bloqueaba silenciosamente el `postinstall` de Prisma — funcionaba en local solo porque `node_modules/.prisma/client` ya estaba generado de sesiones previas; en el install limpio de Vercel, el cliente de Prisma quedaba sin generar y TODOS sus tipos caían a `any`, rompiendo el build (`app/(app)/diagnostico/page.tsx`, error real de TypeScript solo reproducible en Vercel). Corregido con `"build": "prisma generate && next build"` en `package.json` — sin tocar `ignore-scripts` (se preserva la protección contra ~1000+ dependencias transitivas). **Bloqueado, no ejecutable por ninguna sesión:** crear una cuenta de Stripe es una acción PROHIBIDA para cualquier sesión automatizada bajo cualquier instrucción (ver reglas de seguridad) — no existe una `STRIPE_SECRET_KEY` real (ni de prueba) en `.env.local`, confirmado por el propio guardrail de `scripts/setup-stripe-prices.ts` (rechaza llaves placeholder), y esta sesión tiene bloqueada la LECTURA de `.env`/`.env.local` por `.claude/settings.json` (deny explícito), así que tampoco puede leer/transferir credenciales de Supabase/DB a Vercel. Los 9 precios, el webhook y la prueba E2E (tareas 2-4) quedan listos para ejecutarse en cuanto existan credenciales reales — scripts nuevos `scripts/setup-stripe-webhook.ts` (`pnpm stripe:setup-webhook`, idempotente, escribe el signing secret directo a Vercel sin imprimirlo) y `docs/STRIPE_LIVE_CHECKLIST.md` §1 con los pasos exactos. `pnpm typecheck` y `pnpm lint` en verde. |
 | G3e | Verificación ciega del lote G3d | COMPLETADA (2º intento) | (G3e) | Ver sección dedicada abajo — primer intento ABORTADO por contaminación de contexto (misma conversación que compuso G3d; cambiar de modelo no reinicia la ventana), re-ejecutado en sesión genuinamente nueva. Los 35 reactivos resueltos a ciegas: **35/35 coincidencias** con el generador, confianza mínima 0.96. **27 auto-aprobados (77.1%)**, 8 sin publicar. Acumulado real: **370 `isVerified=true`** de 450 (82.2%). **HALLAZGO DE LOTE: "cue de glosa"** — en los 8 reactivos donde exactamente una opción trae paréntesis explicativos, esa opción es la correcta **8/8** (p=1.5e-5); son justo los 8 bloqueados. Patrón aprendible análogo al sesgo de posición de G3b, pero peor: viaja en el TEXTO de la opción, así que barajar no lo neutraliza. |
 | G3d | Lote de reactivos: IPN MEDBIO Biología | COMPLETADA | (G3d) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para Biología de IPN MEDBIO (`questionWeight` 22, la de mayor peso entre las materias de instituciones activas para lanzamiento con 0 reactivos verificados). 100% TEMARIO_ONLY (sin `SourceChunk` disponible para esta materia). Distribución de la respuesta correcta balanceada DESDE LA COMPOSICIÓN (9/9/9/8, ~25% por letra) y explicaciones que citan distractores por contenido, nunca por letra — ambas reglas de G3c aplicadas de origen, no como reparación posterior. Pasó `content:validate-batch` con 0 violaciones antes de insertar. Insertados con `isVerified=false`, a la espera de verificación ciega (G3e). |
 | G3c | Corrección de sesgo de posición + validación de lote | COMPLETADA | (G3c) | Ver sección dedicada abajo — los 35 de IPN reparados editorialmente (distribución 9/9/9/8, ~25% por letra); 5 explicaciones reescritas para citar distractores por contenido, no por letra; nuevo `scripts/lib/lot-validation.ts` (puro, 13 tests) + `pnpm content:validate-batch` + paso obligatorio dentro de `content:insert` (`--lot-dir`) que rechaza un lote sesgado ANTES de tocar la DB. Regla añadida a CLAUDE.md. Barrido de los 415 reactivos existentes: sesgo de posición sano en todos los grupos institución·materia; 2 citas-por-letra preexistentes de F4 (UNAM Español/Física, baja severidad porque UNAM sí baraja) quedaron reportadas, no corregidas (fuera de alcance de esta fase). |
@@ -1191,3 +1192,136 @@ posición). Las 2 citas-por-letra de F4 (UNAM Español `cmrule6ir…`, Física
 `cmru8sy0a…`) siguen pendientes de una pasada editorial menor que las
 reescriba por contenido. Se suman los 8 reactivos de biología con cue de
 glosa descritos arriba.
+
+> **Nota de numeración:** la etiqueta "G6" que esta sección anticipaba para
+> el SIGUIENTE lote de contenido (Física de IPN FISMAT) terminó
+> asignándose a una fase distinta (Stripe en modo prueba, ver abajo). El
+> lote de Física sigue pendiente tal cual se describe arriba, solo que sin
+> número de fase todavía — retómalo cuando la orquestación lo asigne.
+
+---
+
+## G6 — Stripe en modo prueba sobre URL de Vercel (2026-08-05)
+
+**Resultado: PARCIAL.** Dos bloqueos reales impidieron completar las tareas
+2-4 (crear los 9 precios, verificar el webhook, correr una compra de
+extremo a extremo) — ninguno es una elección de esta sesión, ambos son
+límites estructurales (seguridad y disponibilidad de credenciales) que
+ninguna sesión automatizada puede resolver por sí misma. Todo lo demás sí
+se completó.
+
+### 0. Decisión de cuenta (tarea 1)
+
+**Cuenta de Stripe separada y dedicada a Acierta.** Documentada con su
+razonamiento completo en `docs/STRIPE_LIVE_CHECKLIST.md` §0 (contabilidad y
+depósitos limpios por proyecto, radio de blast separado, facturación fiscal
+por país/moneda, costo de separar cuentas = cero). Esta sesión NO creó la
+cuenta — crear una cuenta (con email, verificación) es una acción prohibida
+para cualquier sesión automatizada bajo cualquier instrucción, incluso con
+permiso explícito del usuario; el dueño debe crearla personalmente (pasos
+exactos en la sección 1 del checklist).
+
+### 1. Deploy real a Vercel (tarea 3, parcial) — y un bug real encontrado
+
+El proyecto Acierta **nunca se había desplegado a Vercel** (la instrucción
+de la tarea asumía que ya existía una URL asignada; no era así — se
+verificó con `vercel project ls` antes de asumir nada). Se creó y enlazó el
+proyecto (`vercel link --yes --project acierta`) y se desplegó a
+producción por primera vez.
+
+**El primer intento de deploy falló** con un error real de TypeScript
+(`app/(app)/diagnostico/page.tsx:42`, "Parameter 'a' implicitly has an 'any'
+type") que **no reproducía en local** (`pnpm typecheck` y `pnpm build`
+locales pasaban limpio). Diagnóstico: `.npmrc` tiene `ignore-scripts=true`
+—un control de seguridad deliberado del proyecto contra scripts de
+`postinstall` arbitrarios de las ~1000+ dependencias transitivas—, que
+también bloquea silenciosamente el `postinstall` de Prisma. En local
+"funcionaba" solo porque `node_modules/.prisma/client` ya tenía el cliente
+generado de sesiones anteriores; en el install limpio de Vercel, el cliente
+de Prisma nunca se generaba y **todos** sus tipos caían a `any`
+—incluyendo `DiagnosticSessionWithAnswers['answers']`—, lo cual el
+compilador de TypeScript de `next build` sí detecta como error real
+(mientras que localmente los tipos ya generados lo enmascaraban por
+completo).
+
+**Corrección:** `"build": "prisma generate && next build"` en
+`package.json` (antes solo `"next build"`) — un paso EXPLÍCITO de
+`pnpm run build`, que `ignore-scripts` no bloquea (esa bandera solo
+desactiva los hooks AUTOMÁTICOS de ciclo de vida de `pnpm install`, no los
+scripts invocados a mano). Se preserva intacta la protección de
+`ignore-scripts` para el resto de las dependencias — no se tocó esa
+configuración. Verificado: `pnpm build` local limpio con el nuevo paso
+(tras liberar un `next start` de una sesión anterior que tenía el binario
+del motor de Prisma bloqueado en Windows — `taskkill` a los dos procesos
+`node.exe` huérfanos), y el segundo deploy a Vercel terminó `READY`.
+
+**URL de producción:** **`https://acierta.vercel.app`** — verificada en
+vivo con el navegador: la landing carga completa (hero, diferenciadores,
+sección de padres, FAQ), degradando con gracia donde no hay DB conectada
+(mismo mecanismo `resolveEffectiveSeasonSafe`/`earlyBirdLicensesRemainingSafe`
+de G1). Confirmado también que `.env`/`.env.local` NO se subieron al
+deploy (`git check-ignore` confirma que ambos coinciden con `.gitignore`, y
+no existe `.vercelignore` que anule ese comportamiento — la línea
+"Environments: .env" en el log de build de Vercel es un archivo que Next.js
+sintetiza internamente a partir de las variables de entorno YA
+configuradas en el proyecto de Vercel, vacío hoy porque no hay ninguna
+configurada, no una filtración del `.env` local).
+
+### 2. El bloqueo real: no hay credenciales (tareas 2 y 4)
+
+`pnpm stripe:setup-prices` (ya existente desde F9) se corrió como prueba y
+confirmó lo que ya documentaba F8/F9/G1: **no existe una `STRIPE_SECRET_KEY`
+real en `.env.local`** — el propio guardrail del script la rechaza por
+placeholder. Sin ella, no se puede crear ni un solo `Price` ni webhook en
+Stripe: no hay llamada a la API de Stripe posible sin autenticación real.
+
+Esta sesión **tiene bloqueada la lectura de `.env`/`.env.local`** por
+`.claude/settings.json` (`"deny": ["Read(./.env)", "Read(./.env.local)"]`,
+confirmado en vivo: un `grep` directo sobre `.env.local` fue denegado por el
+sistema de permisos). Esto significa que, aunque existieran credenciales
+reales de Supabase/DB ahí (que si existen, F1 las documenta como reales),
+esta sesión no puede leerlas ni transferirlas a Vercel — ni por lectura
+directa ni por ningún intento indirecto (tuberías, scripts intermedios),
+que violaría el propósito explícito de ese guardrail. **Se respetó ese
+límite en vez de rodearlo.**
+
+Conclusión: **crear cuentas está prohibido para cualquier sesión bajo
+cualquier instrucción, y leer `.env.local` está bloqueado por
+configuración explícita del proyecto** — ambos son límites estructurales,
+no decisiones de esta sesión. Las tareas 2 (9 precios), 3-webhook (crear y
+verificar el endpoint) y 4 (compra E2E real) quedan **listas para
+ejecutarse en cuanto existan credenciales reales**, no completadas hoy.
+
+### 3. Lo que se dejó preparado
+
+- **`scripts/setup-stripe-webhook.ts`** (`pnpm stripe:setup-webhook --url
+  <url>`) — nuevo, idempotente (reusa el webhook si ya existe con la misma
+  URL; `--force` para rotarlo), restringido a llaves `sk_test_*` a
+  propósito (nunca se ejecuta con una llave live por accidente). Escribe el
+  `STRIPE_WEBHOOK_SECRET` resultante DIRECTO a las variables de entorno de
+  producción de Vercel (`vercel env add` vía `stdin`, en el mismo proceso)
+  sin que el valor pase nunca por la salida de una terminal — mismo
+  criterio de manejo de secretos que el proyecto ya aplica a `.env.local`.
+- **`docs/STRIPE_LIVE_CHECKLIST.md`** — checklist completo en 3 partes: §0
+  decisión de cuenta (ya resuelta arriba), §1 los pasos EXACTOS para dejar
+  el modo de prueba funcionando (crear cuenta → llaves de prueba → correr
+  los 2 scripts → subir variables a Vercel → redeploy → probar con la
+  tarjeta de prueba `4242 4242 4242 4242`), §2 activación de modo REAL
+  (verificación de identidad y cuenta bancaria ante Stripe, llaves live,
+  precios y webhook live, variables de Vercel, una compra real de
+  verificación antes de anunciar el lanzamiento), §3 recordatorio de
+  actualizar la URL del webhook cuando el dominio propio se conecte (un
+  campo, tal como se anticipó).
+
+`pnpm typecheck` y `pnpm lint` en verde.
+
+### Siguiente (G6)
+
+1. **Desbloquear credenciales** — el dueño sigue `docs/STRIPE_LIVE_CHECKLIST.md`
+   §1 (cuenta de Stripe + llave de prueba en `.env.local`) y también sube a
+   Vercel las variables de Supabase/DB reales (mismo bloqueo de lectura
+   aplica a esas). Con eso resuelto, una sesión puede completar las tareas
+   2-4 de G6 en minutos (los scripts ya existen).
+2. Retomar el lote de contenido pendiente (Física de IPN FISMAT,
+   `questionWeight` 20 — ver nota de numeración arriba), sin depender de lo
+   anterior.

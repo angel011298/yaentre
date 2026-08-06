@@ -65,3 +65,5 @@ docs/guias/*.pdf
 /test-results/
 /blob-report/
 /playwright/.cache/
+
+.vercel
