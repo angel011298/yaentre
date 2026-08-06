@@ -1,0 +1,12 @@
+# G7: `vercel --prod` (deploy directo desde CLI, sin integración de git) NO
+# respeta `.gitignore` de forma confiable para decidir qué subir — se
+# confirmó en vivo: un `.env` local (con un STRIPE_SECRET_KEY placeholder de
+# desarrollo temprano) SÍ viajó al bundle de build y Next.js lo cargó en
+# runtime, pese a que `.gitignore` lo excluye y `git check-ignore` lo
+# confirma. Este archivo es la exclusión EXPLÍCITA que `vercel` sí garantiza
+# — nunca depender solo de `.gitignore` para esto.
+.env
+.env.local
+.env.*.local
+.vercel
+node_modules
