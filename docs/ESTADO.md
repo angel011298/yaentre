@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-08-06 · Última fase ejecutada: G8 (COMPLETADA — sesgo de posición confirmado corregido en todo el banco con datos reales; 2 citas por letra preexistentes de F4 cerradas)
+Última actualización: 2026-08-06 · Última fase ejecutada: G9 (BLOQUEADA — ninguna de las 5 cuentas de servicio tenía sesión activa en el navegador conectado; ver sección dedicada)
 
 ## URL de producción actual
 
@@ -36,6 +36,7 @@
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
 | G3a | Lote de reactivos: IPN FISMAT Matemáticas | COMPLETADA | (G3a) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para la materia con mayor `questionWeight` (24) entre todas las de instituciones/áreas activas para lanzamiento con 0 reactivos verificados. 12 SOURCED (3 temas con `SourceChunk` real) + 23 TEMARIO_ONLY. Insertados con `isVerified=false`, a la espera de verificación ciega (G2). |
+| G9 | Credenciales de servicios (Stripe/Resend/Sentry/PostHog/Service Role) | **BLOQUEADA — sin sesión activa en ninguno de los 5** | (G9) | Ver sección dedicada abajo. La tarea asumía cuentas "ya abiertas en el navegador"; se verificó cada una navegando directo a su página autenticada (Stripe, Resend, Sentry, PostHog, dashboard de Supabase incluso vía SSO de GitHub) — **las 5 redirigieron a login/signup**, ninguna con sesión activa en el Chrome conectado a esta sesión. Dos límites duros impidieron continuar: crear cuenta nueva está prohibido sin excepción, y escribir/enviar una contraseña (incluso ya autocompletada por el navegador) también. Nuevo `docs/SERVICE_CREDENTIALS_CHECKLIST.md` con pasos exactos para las 4 pendientes (Resend+SMTP de Supabase Auth, Sentry, PostHog, `SUPABASE_SERVICE_ROLE_KEY`); Stripe ya tenía su checklist desde G6, sin cambios porque nada cambió (mismo bloqueo). Re-verificado en vivo: el rate-limit de correo de Supabase sigue activo 3 días después de G7 (mismo error exacto), confirmando que el registro real sigue bloqueado hasta que exista SMTP propio. `pnpm typecheck`/`pnpm lint` en verde (sin cambios de código). |
 | G8 | Verificación y corrección real del sesgo de posición | **COMPLETADA** | (G8) | Ver sección dedicada abajo. Auditoría de solo-lectura previa (sesión aparte) había marcado la corrección de G3c como "no verificable" alegando que Postgres no puede consultar JSON — **eso era incorrecto**; se consultó `options` (jsonb) directamente con `jsonb_array_elements` + `CROSS JOIN LATERAL`, sin ninguna dependencia de Node/dotenv. **Confirmado con datos reales:** los 35 de IPN FISMAT Matemáticas quedan 9/9/9/8 (25.7/25.7/25.7/22.9%), exactamente como afirmaba G3c. Los 7 grupos del banco completo (450 reactivos) están dentro de 15-40%; los dos más cercanos al piso (UNAM Español C=15.8%, UNAM Matemáticas D=16.0%) siguen dentro de banda. Hallazgo adicional no reportado antes: sobre el subconjunto SERVABLE hoy (`isVerified=true`, 370/450), esos mismos dos grupos SÍ caen debajo de 15% (Español C=12.9%, Matemáticas D=12.7%) — no por un defecto de composición sino porque los reactivos pendientes de revisión F3 se concentran desproporcionadamente en esas letras; decisión razonada de NO reasignar posiciones ahí (ver sección dedicada, criterio explicado). Cerradas las 2 citas-por-letra preexistentes de F4 que G3c había dejado como pendiente menor (UNAM Español `cmrule6ir…`, UNAM Física `cmru8sy0a…`) — ambas reescritas por contenido; de paso corrigieron una referencia de letra ya OBSOLETA en ambas (citaban una letra que ya no correspondía a la opción descrita). Barrido exhaustivo de todo el corpus (450/450, no solo grupos sesgados): **0 citas por letra restantes.** `scripts/lib/lot-validation.ts` reverificado: 13/13 tests Vitest pasan, incluyendo el caso exacto pedido (lote de 35 con 100% en "A" → rechazado). `pnpm typecheck`/`pnpm lint` en verde (sin cambios de código, solo contenido en DB). |
 | G7 | Despliegue a producción sobre URL de Vercel | **COMPLETADA con hallazgos** | (G7) | Ver sección dedicada abajo. **`https://acierta.vercel.app` en vivo**, landing/registro/login/diagnóstico/simulador/paywall verificados contra la app real. Variables de entorno core (Supabase URL+anon vía Supabase MCP — públicas por diseño; DATABASE_URL/DIRECT_URL vía rol Postgres NUEVO `acierta_prod`, generado y verificado sin leer `.env.local`; CRON_SECRET generado; site URL; feature flags) configuradas y confirmadas en Vercel. **Hallazgo de seguridad real, corregido en la misma sesión:** `vercel --prod` NO respeta `.gitignore` para decidir qué sube — un `.env` local viejo (anterior al proyecto Supabase real) viajó al primer build y Next.js lo cargó en runtime, filtrando un valor placeholder de Stripe a los logs de error; cerrado con `.vercelignore` explícito y redeploy limpio, verificado que el error volvió a su forma genérica sin exponer nada. Bloqueados y señalados explícitamente (no ejecutables por esta sesión): `SUPABASE_SERVICE_ROLE_KEY` (solo afecta borrado de cuenta, F17 — no bloquea ningún smoke test), Stripe completo (mismo bloqueo de G6, sin cambios), Sentry/PostHog/Resend (cuentas de terceros no creadas — creación de cuentas prohibida para cualquier sesión). Registro: código confirmado correcto contra Supabase Auth real (reproducido el mismo error vía llamada directa), bloqueado por el rate-limit de correo del plan gratuito de Supabase — no es un defecto de esta fase. Crons registrados Y activos (probados con el `CRON_SECRET` real: 200 con auth, 401 sin ella). `pnpm typecheck`/`pnpm lint` en verde. |
 | G6 | Stripe en modo prueba sobre URL de Vercel | **PARCIAL — bloqueada en credenciales** | (G6) | Ver sección dedicada abajo. Decisión tomada y documentada: cuenta de Stripe SEPARADA para Acierta (`docs/STRIPE_LIVE_CHECKLIST.md` §0). **Logrado sin bloqueo:** primer deploy real de Acierta a Vercel — `https://acierta.vercel.app` (proyecto no existía; se creó y enlazó). Encontró y corrigió un bug real de infraestructura: `.npmrc` tiene `ignore-scripts=true` (control de seguridad deliberado contra scripts de post-install de terceros), que bloqueaba silenciosamente el `postinstall` de Prisma — funcionaba en local solo porque `node_modules/.prisma/client` ya estaba generado de sesiones previas; en el install limpio de Vercel, el cliente de Prisma quedaba sin generar y TODOS sus tipos caían a `any`, rompiendo el build (`app/(app)/diagnostico/page.tsx`, error real de TypeScript solo reproducible en Vercel). Corregido con `"build": "prisma generate && next build"` en `package.json` — sin tocar `ignore-scripts` (se preserva la protección contra ~1000+ dependencias transitivas). **Bloqueado, no ejecutable por ninguna sesión:** crear una cuenta de Stripe es una acción PROHIBIDA para cualquier sesión automatizada bajo cualquier instrucción (ver reglas de seguridad) — no existe una `STRIPE_SECRET_KEY` real (ni de prueba) en `.env.local`, confirmado por el propio guardrail de `scripts/setup-stripe-prices.ts` (rechaza llaves placeholder), y esta sesión tiene bloqueada la LECTURA de `.env`/`.env.local` por `.claude/settings.json` (deny explícito), así que tampoco puede leer/transferir credenciales de Supabase/DB a Vercel. Los 9 precios, el webhook y la prueba E2E (tareas 2-4) quedan listos para ejecutarse en cuanto existan credenciales reales — scripts nuevos `scripts/setup-stripe-webhook.ts` (`pnpm stripe:setup-webhook`, idempotente, escribe el signing secret directo a Vercel sin imprimirlo) y `docs/STRIPE_LIVE_CHECKLIST.md` §1 con los pasos exactos. `pnpm typecheck` y `pnpm lint` en verde. |
@@ -1596,3 +1597,103 @@ verificar, pero se corrieron para cumplir el criterio de aceptación.
    con esta fase.
 3. Retomar el lote de contenido pendiente (Física de IPN FISMAT,
    `questionWeight` 20).
+
+---
+
+## G9 — Credenciales de servicios: bloqueada por falta de sesión (2026-08-06)
+
+**Resultado: BLOQUEADA en las 5 tareas de credenciales.** Modo de trabajo:
+autónomo, sin preguntas de selección. La instrucción decía explícitamente
+"configura todo lo que puedas por tu cuenta usando las cuentas ya abiertas
+en el navegador" — se verificó esa premisa en vivo, con el navegador Chrome
+conectado a esta sesión, antes de asumir nada.
+
+### Verificación en vivo — ninguna de las 5 cuentas tenía sesión activa
+
+Se navegó directo a la página autenticada de cada servicio:
+
+| Servicio | URL probada | Resultado |
+|---|---|---|
+| Stripe | `dashboard.stripe.com/test/apikeys` | Redirigió a `dashboard.stripe.com/login` |
+| Resend | `resend.com/api-keys` | Redirigió a `resend.com/login` |
+| Sentry | `sentry.io` | Landing de marketing (sin sesión) |
+| PostHog | `app.posthog.com` | Redirigió a `us.posthog.com/login` — campo de contraseña con un valor AUTOCOMPLETADO por el navegador guardado de una sesión anterior, pero sin sesión activa |
+| Supabase (dashboard) | `supabase.com/dashboard/project/.../settings/api-keys` | Redirigió a `dashboard/sign-in` — se intentó también "Continuar con GitHub" (marcado "ÚLTIMO USADO" en la UI, sugiriendo un login previo) → GitHub también pidió usuario/contraseña sin sesión activa |
+
+**Dos límites duros de cualquier sesión de Claude Code, no negociables ni
+con instrucción explícita del usuario, impidieron continuar desde ahí:**
+
+1. Crear una cuenta nueva (Resend/Sentry/PostHog/Stripe) está prohibido
+   para cualquier sesión automatizada — sin excepción, ni con "autónomo
+   total, sin preguntas" ni con permiso explícito.
+2. Escribir o enviar una contraseña en un formulario de login está
+   prohibido — incluso cuando el NAVEGADOR ya la tenía autocompletada
+   (observado literalmente en las pantallas de PostHog y GitHub: el campo
+   mostraba puntos de un valor guardado, pero completar el login de todas
+   formas habría sido autenticar con una credencial en texto plano).
+
+**Conclusión más probable:** si estas cuentas existen, están abiertas en un
+navegador o perfil distinto al que esta sesión de Claude Code tiene
+conectado (`mcp__claude-in-chrome__*`) — no en ese mismo Chrome. La
+instrucción original asumía lo contrario sin haberlo verificado; esta
+sesión sí lo verificó antes de proceder, en vez de intentar un rodeo
+(seguir con OAuth de GitHub sin contraseña, por ejemplo, tampoco tenía
+sesión activa que aprovechar).
+
+### Lo que sí se completó
+
+- **Confirmado el estado real de Vercel** (`vercel env ls production`):
+  siguen las mismas 9 variables de G7, ninguna nueva — consistente con que
+  ninguna credencial nueva estuvo disponible para cargar.
+- **Re-verificado en vivo el rate-limit de correo de Supabase** (tarea 3,
+  el motivo por el que el registro sigue bloqueado): mismo error exacto
+  `over_email_send_rate_limit` reproducido 3 días después de la prueba de
+  G7 — confirma que el límite no se resuelve solo con el tiempo en el plan
+  gratuito, y que SMTP propio (Resend) es la única salida real, tal como
+  ya sospechaba G7.
+- **`docs/SERVICE_CREDENTIALS_CHECKLIST.md`** (nuevo) — pasos exactos,
+  probados contra la documentación real de cada servicio, para las 4
+  credenciales pendientes que no tienen ya su propio documento:
+  - **Resend + SMTP de Supabase Auth**: incluye el hallazgo de que
+    `RESEND_API_KEY` en Vercel por sí sola NO desbloquea el registro — el
+    proveedor de correo de Supabase Auth es una configuración SEPARADA
+    (dashboard → Authentication → Emails → SMTP Settings) que ninguna API
+    expone para automatizar; y que el remitente hardcodeado
+    `notificaciones@acierta.mx` (`src/lib/email/client.ts:16`) no podrá
+    verificarse en Resend hasta comprar el dominio — recomienda usar el
+    dominio de pruebas `onboarding@resend.dev` de Resend mientras tanto.
+  - **Sentry**: cuenta → proyecto Next.js → DSN + auth token → 4 variables.
+  - **PostHog**: cuenta (región US, coincide con el default de
+    `.env.example`) → project key → 2 variables.
+  - **`SUPABASE_SERVICE_ROLE_KEY`**: ya existe en el dashboard del proyecto
+    real (pestaña "Legacy anon, service_role API keys") — no requiere
+    cuenta nueva, solo que el dueño la copie y la pegue directo en
+    `vercel env add` (nunca en el chat).
+- `docs/STRIPE_LIVE_CHECKLIST.md` (de G6) sigue vigente sin cambios — nada
+  se resolvió ahí tampoco, mismo bloqueo.
+- `pnpm typecheck`/`pnpm lint` en verde (esta fase no tocó código, solo
+  documentación).
+
+### Lo que quedó sin hacer (las 5 tareas originales)
+
+Ninguna de las 5 tareas de G9 se completó: los 12 de Stripe, el webhook, el
+`SUPABASE_SERVICE_ROLE_KEY`, Resend+SMTP, Sentry y PostHog siguen sin
+credenciales reales en Vercel. El redeploy-y-smoke-test de la tarea 5 no se
+ejecutó porque no había nada nuevo que verificar — repetirlo ahora habría
+reproducido exactamente los mismos resultados que G7 ya documentó.
+
+### Siguiente (G9)
+
+1. **El dueño debe iniciar sesión (o crear cuenta) en Stripe, Resend,
+   Sentry y PostHog, y en el dashboard de Supabase — en el mismo navegador
+   Chrome que Claude Code tiene conectado** (`mcp__claude-in-chrome__*`).
+   Con eso resuelto, una sesión futura puede completar G9 en una sola
+   pasada usando `docs/SERVICE_CREDENTIALS_CHECKLIST.md` y
+   `docs/STRIPE_LIVE_CHECKLIST.md` §1 tal cual están escritos.
+2. Alternativa más simple si el dueño prefiere no exponer ningún login a
+   Claude Code: seguir ambos documentos él mismo y pegar los valores
+   directo en `vercel env add production` (nunca en el chat) — ninguno de
+   los pasos restantes requiere una sesión de Claude Code una vez que las
+   cuentas existen.
+3. Retomar el lote de contenido pendiente (Física de IPN FISMAT,
+   `questionWeight` 20) — sigue sin relación con lo de arriba.
