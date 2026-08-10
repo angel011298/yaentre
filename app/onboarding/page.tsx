@@ -35,6 +35,14 @@ export default async function OnboardingPage({
 }) {
   const { profile } = await requireUser();
 
+  // Un tutor tiene `onboardingStep=0` de por vida (nunca pasa por este
+  // asistente, que es de ALUMNO), así que sin esta comprobación entraría al
+  // Paso 1 y no tendría salida — mismo criterio de "rol antes que onboarding"
+  // de `(app)/layout.tsx` y `requireOnboarding` (G10).
+  if (profile.role === 'PARENT') {
+    redirect('/tutor');
+  }
+
   if (isOnboardingComplete(profile.onboardingStep)) {
     redirect('/app');
   }

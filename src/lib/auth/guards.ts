@@ -85,9 +85,22 @@ export async function requirePaidPlan(): Promise<
  * guard que protege todo /app/* (Flujo_App §16.2, `requireOnboarding`) —
  * a diferencia de los demás guards, redirige directamente en vez de lanzar,
  * porque el único destino válido ante un onboarding incompleto es /onboarding.
+ *
+ * El chequeo de ROL va PRIMERO, por la misma razón que en `(app)/layout.tsx`:
+ * un tutor tiene `onboardingStep=0` de por vida (nunca pasa por el asistente
+ * de alumno), así que comprobar onboarding antes que rol lo mandaría a
+ * /onboarding — el asistente de ALUMNO — sin salida. `(app)/*` ya lo cubre en
+ * su layout, pero /simulador vive FUERA de ese grupo a propósito (pantalla
+ * aislada, ver app/simulador/page.tsx) y solo tiene este guard: sin esta
+ * comprobación, un tutor que abre /simulador queda atrapado en el asistente
+ * de alumno (G10). Todos los llamadores de este guard son rutas de alumno.
  */
 export async function requireOnboarding(): Promise<RequireUserResult> {
   const result = await requireUser();
+
+  if (result.profile.role === 'PARENT') {
+    redirect('/tutor');
+  }
 
   if (!isOnboardingComplete(result.profile.onboardingStep)) {
     redirect('/onboarding');

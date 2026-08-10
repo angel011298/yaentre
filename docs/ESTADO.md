@@ -1,6 +1,6 @@
 # ESTADO — Acierta
 
-Última actualización: 2026-08-06 · Última fase ejecutada: G9 (BLOQUEADA — ninguna de las 5 cuentas de servicio tenía sesión activa en el navegador conectado; ver sección dedicada)
+Última actualización: 2026-08-10 · Última fase ejecutada: G10 (COMPLETADA con 1 defecto real hallado y corregido — recorrido completo del producto en producción)
 
 ## URL de producción actual
 
@@ -36,6 +36,7 @@
 | F22 | Hardening de seguridad | COMPLETADA | (F22) | **Auditoría de extremo a extremo con corrección inmediata — 3 hallazgos reales de severidad alta/crítica encontrados y corregidos, ninguno visible desde el código fuente de la app (solo auditando el estado REAL de Supabase).** (1) **Secretos**: cero leaks confirmados con prueba empírica (grep de los VALORES reales de `.env`/`.env.local` contra el bundle cliente compilado, no solo nombres de variable) — `.env`/`.env.local` nunca en el historial de git (solo `.env.example`, con placeholders). (2) **RLS — 3 hallazgos, no 1**: (a) *[get_advisors, ERROR]* 14 tablas con RLS deshabilitado expuestas por completo a `anon`/`authenticated` vía PostgREST (`institutions`,`content_sources`,`passages`,`levels`,`exams`,`areas`,`careers`,`subjects`,`topics`,`explanation_layers`,`question_reports`,`content_items`,`professors`,`processed_stripe_events`) — verificado que CERO código usa `supabase.from(...)` (100% Prisma/`acierta_ci` con BYPASSRLS confirmado por query a `pg_roles`), así que las 14 pasan a admin-only sin romper nada; la más grave, `explanation_layers`, permitía leer las capas 2-4 PAGADAS sin pasar por `evaluateExplanationLayerGate` — bypass total del muro de pago vía llamada REST directa con la anon key pública. (b) **CRÍTICO, NO estaba en get_advisors, encontrado por auditoría manual de GRANTs**: `anon`/`authenticated` tenían GRANT INSERT/UPDATE/DELETE (default de Supabase) en las 28 tablas, y las políticas `FOR ALL USING(...)` de la migración 0001 no tienen `WITH CHECK` — combinado, CUALQUIER usuario autenticado podía, con una llamada PostgREST directa (solo anon key pública + su propio JWT): `PATCH user_profiles SET role='ADMIN'` (escalación total de privilegios), `PATCH subscriptions SET status='ACTIVE'` (acceso premium sin pagar, bypass de Stripe), `PATCH session_answers SET isCorrect=true` (manipular calificación) — corregido con `REVOKE INSERT,UPDATE,DELETE,TRUNCATE ON ALL TABLES IN SCHEMA public FROM anon,authenticated` (SELECT se conserva, ya acotado por RLS y requerido por `test:rls`). (c) *[get_advisors, WARN]* bucket `avatars` con política de listado demasiado amplia (enumeraba todos los userIds con avatar) — restringido a dueño/admin, verificado que la URL pública de servido de imágenes NUNCA pasa por esa política (bypass propio de Supabase para buckets `public:true`) y que el código solo usa `getPublicUrl` (sin `.list()` en todo el proyecto). **23/23 verificaciones de `test:rls` siguen en verde tras los 3 cambios** (ejecutado en vivo contra Supabase real, no solo en teoría). (3) **Server Actions/Route Handlers — 11+7 archivos auditados uno por uno** (lista completa abajo): TODOS exigen sesión vía `requireUser`/`requireRole`/`guardApiUser` (que verifica el JWT contra el servidor de Supabase con `getUser()`, nunca decodifica localmente sin validar), TODOS validan input con Zod, TODOS confirman ownership del recurso (`loadOwnedSession`, `sub.userProfileId===profile.id`, área/carrera validadas contra el examen del propio perfil, etc.) — **2 hallazgos menores corregidos**: comparación no-constante-en-tiempo de `CRON_SECRET` (`===` → `timingSafeEqual`, mismo criterio que ya usaba `unsubscribe-token.ts`) y `updateAvatarAction` que solo validaba "es del bucket avatars" sin validar "es de MI carpeta" (permitía apuntar tu perfil a la foto de otro usuario — sin exposición de datos sensibles, los avatares ya son públicos, pero rompía la garantía de ownership). (4) **Resiliencia**: refresh silencioso de JWT ya confirmado correcto (middleware `proxy.ts` llama `supabase.auth.getUser()` en cada request, que refresca el token expirado vía cookies automáticamente — patrón oficial de `@supabase/ssr`; si el refresh token también expiró, cae a "sin sesión" y redirige a `/login?next=` preservando el destino). **Job de reconciliación de pagos construido desde cero** (pendiente documentado desde F8 — "Webhook nunca llega → job de reconciliación consulta Stripe", Flujo_App §15.1): `src/lib/stripe/reconciliation.ts` (PURO, reusa el mismo `BillingStore` del webhook real — cero lógica de activación duplicada) + `runPaymentReconciliation` en `billing.ts` (busca `Subscription` PENDING >24h con `stripeCheckoutSessionId`, consulta el estado REAL en Stripe, activa si ya se pagó / marca FAILED si la sesión expiró / no toca si sigue pendiente) — expuesto como `pnpm reconcile:payments` (CLI) y `GET /api/cron/reconcile-payments` (protegido por `CRON_SECRET`, agregado a `vercel.json` 1x/día); 4 tests nuevos con un `BillingStore` espía. **Deep link a institución con feature flag apagado**: `selectExamAction` ya revalidaba server-side pero fallaba en silencio (redirect sin explicación) — ahora redirige con `?unavailable=1` y `ExamStep` muestra "disponible próximamente" en vez de un no-op mudo. (5) **Cabeceras de seguridad HTTP** en `next.config.ts` (`headers()`, aplican a TODA la app): `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara same-origin habilitada — el simulador la pide opcionalmente, F12 — micrófono/geolocalización bloqueados), `Strict-Transport-Security`, `Content-Security-Policy` razonable (no nonce-estricto — Next.js necesita `unsafe-inline` en script-src para su hidratación salvo un esquema de nonce por request, fuera de alcance de esta fase; sí bloquea `frame-src`/`object-src` de terceros arbitrarios). Verificado en vivo contra `next start` (producción real, no dev): headers presentes con las URLs reales de Supabase/PostHog resueltas dinámicamente, cero errores de consola ni violaciones de CSP en landing/registro/precios/privacidad. (6) **Dependencias**: `pnpm audit` pasó de **16 vulnerabilidades (9 high) a 0** — hallazgo mayor: `next@16.2.10` tenía **CVE de bypass de Middleware/Proxy** (justo el mecanismo del que depende TODA la protección de sesión de la app, `proxy.ts`) más SSRF en Server Actions y DoS — actualizado a `16.2.12` (parcheado) junto con `eslint-config-next` a la misma versión; `fast-uri`/`dompurify`/`postcss`/`sharp` forzados a versiones parchadas vía `pnpm-workspace.yaml` overrides (sharp procesa avatares subidos por usuarios reales — no es solo teórico). Un override (`brace-expansion`→v5) se probó y se REVIRTIÓ: rompía `pnpm lint` de verdad (minimatch@3 interno de ESLint espera su API v1-3) — queda 1 vulnerabilidad aceptada y documentada, exclusiva de la cadena de build-tooling de ESLint (82 rutas, todas devDependencies, nunca código de producción ni alcanzable por un atacante). **Pendiente que requiere acción del dueño (no vía código/SQL)**: activar "Leaked Password Protection" en Supabase Dashboard → Auth → Policies (WARN de `get_advisors`, revisa contraseñas contra HaveIBeenPwned — no expone un endpoint de gestión vía la API del MCP usada en esta sesión). **Lista completa de Server Actions/Route Handlers auditados**: `app/actions/{account,admin-questions,auth,billing,checkout,drill,onboarding,parent,profile,sessions,simulator}.ts` + `app/api/{account/export,adaptive/next-questions,adaptive/predict,cron/notifications,cron/reconcile-payments,email/unsubscribe,simulator/sync,webhooks/stripe}/route.ts`. `pnpm typecheck`/`lint`/`build` OK, 432 tests unitarios (4 nuevos: `tests/stripe/reconciliation.test.ts`), 23/23 `test:rls` en vivo contra Supabase real |
 | F23 | Fixes beta y preparación para launch | OMITIDA-SIN-FEEDBACK | (F23) | Se buscó `docs/BETA_FEEDBACK.md` (y cualquier archivo similar en todo el repo, `find . -iname "*feedback*"`) — no existía. Se creó con plantilla de 6 secciones (errores bloqueantes, errores de datos/cálculos, fricciones UX, mejoras cosméticas, ideas de funciones nuevas, problemas de contenido→panel de discrepancias) para que la próxima corrida de esta fase (o una posterior dedicada a beta) tenga dónde pegar retroalimentación real de usuarios de prueba. Sin retroalimentación real disponible en este momento, no hay nada que clasificar ni corregir — fase omitida sin bloquear el avance a F24. **Reprocesar en cuanto exista feedback real**: llenar `docs/BETA_FEEDBACK.md` y volver a correr esta fase (o una fase de hardening/beta posterior) con el mismo criterio de clasificación por prioridad. |
 | G3a | Lote de reactivos: IPN FISMAT Matemáticas | COMPLETADA | (G3a) | Ver sección dedicada abajo — 35 reactivos originales compuestos en esta sesión (sin API de pago) para la materia con mayor `questionWeight` (24) entre todas las de instituciones/áreas activas para lanzamiento con 0 reactivos verificados. 12 SOURCED (3 temas con `SourceChunk` real) + 23 TEMARIO_ONLY. Insertados con `isVerified=false`, a la espera de verificación ciega (G2). |
+| G10 | Smoke test completo en producción | **COMPLETADA — 1 defecto real hallado y corregido** | (G10) | Ver sección dedicada abajo. La premisa de la tarea ("con G9 resuelto") era **falsa** — se verificó antes de empezar: el registro sigue bloqueado por el rate-limit de correo de Supabase y Vercel sigue sin credenciales de Stripe. Se recorrió igual todo lo demás provisionando las cuentas de prueba directo en `auth.users` (solo se rodea el envío de correo, lo único realmente bloqueado). **Verificado en producción real:** onboarding de 4 pasos, diagnóstico de 30 reactivos, resultados + Aciertómetro (47), dashboard, simulacro completo de 120 con reanudación y revisión, muro suave de drill Y de simulacro, y panel parental. **No-filtración PROBADA** contra payloads crudos de producción (52 KB del diagnóstico y 77 KB del simulacro: 0 ocurrencias de `isCorrect`/`correctOption`/`explanation`, cruzado contra la respuesta real en la DB). **Defecto real corregido:** un tutor quedaba atrapado en el asistente de ALUMNO al abrir `/simulador` o `/onboarding` (`requireOnboarding` no comprobaba rol; `/simulador` vive fuera de `(app)` y no tenía otra defensa). Corregido, desplegado, re-verificado en vivo y blindado con 4 tests de regresión (`tests/regressions/g10-bugs.test.ts`, probados en rojo antes de la corrección). 2 falsas alarmas investigadas y descartadas correctamente (shadow DOM de NumberFlow; Suspense sin revelar por pestaña oculta). Fixtures de prueba eliminados. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (464/464) en verde. |
 | G9 | Credenciales de servicios (Stripe/Resend/Sentry/PostHog/Service Role) | **BLOQUEADA — sin sesión activa en ninguno de los 5** | (G9) | Ver sección dedicada abajo. La tarea asumía cuentas "ya abiertas en el navegador"; se verificó cada una navegando directo a su página autenticada (Stripe, Resend, Sentry, PostHog, dashboard de Supabase incluso vía SSO de GitHub) — **las 5 redirigieron a login/signup**, ninguna con sesión activa en el Chrome conectado a esta sesión. Dos límites duros impidieron continuar: crear cuenta nueva está prohibido sin excepción, y escribir/enviar una contraseña (incluso ya autocompletada por el navegador) también. Nuevo `docs/SERVICE_CREDENTIALS_CHECKLIST.md` con pasos exactos para las 4 pendientes (Resend+SMTP de Supabase Auth, Sentry, PostHog, `SUPABASE_SERVICE_ROLE_KEY`); Stripe ya tenía su checklist desde G6, sin cambios porque nada cambió (mismo bloqueo). Re-verificado en vivo: el rate-limit de correo de Supabase sigue activo 3 días después de G7 (mismo error exacto), confirmando que el registro real sigue bloqueado hasta que exista SMTP propio. `pnpm typecheck`/`pnpm lint` en verde (sin cambios de código). |
 | G8 | Verificación y corrección real del sesgo de posición | **COMPLETADA** | (G8) | Ver sección dedicada abajo. Auditoría de solo-lectura previa (sesión aparte) había marcado la corrección de G3c como "no verificable" alegando que Postgres no puede consultar JSON — **eso era incorrecto**; se consultó `options` (jsonb) directamente con `jsonb_array_elements` + `CROSS JOIN LATERAL`, sin ninguna dependencia de Node/dotenv. **Confirmado con datos reales:** los 35 de IPN FISMAT Matemáticas quedan 9/9/9/8 (25.7/25.7/25.7/22.9%), exactamente como afirmaba G3c. Los 7 grupos del banco completo (450 reactivos) están dentro de 15-40%; los dos más cercanos al piso (UNAM Español C=15.8%, UNAM Matemáticas D=16.0%) siguen dentro de banda. Hallazgo adicional no reportado antes: sobre el subconjunto SERVABLE hoy (`isVerified=true`, 370/450), esos mismos dos grupos SÍ caen debajo de 15% (Español C=12.9%, Matemáticas D=12.7%) — no por un defecto de composición sino porque los reactivos pendientes de revisión F3 se concentran desproporcionadamente en esas letras; decisión razonada de NO reasignar posiciones ahí (ver sección dedicada, criterio explicado). Cerradas las 2 citas-por-letra preexistentes de F4 que G3c había dejado como pendiente menor (UNAM Español `cmrule6ir…`, UNAM Física `cmru8sy0a…`) — ambas reescritas por contenido; de paso corrigieron una referencia de letra ya OBSOLETA en ambas (citaban una letra que ya no correspondía a la opción descrita). Barrido exhaustivo de todo el corpus (450/450, no solo grupos sesgados): **0 citas por letra restantes.** `scripts/lib/lot-validation.ts` reverificado: 13/13 tests Vitest pasan, incluyendo el caso exacto pedido (lote de 35 con 100% en "A" → rechazado). `pnpm typecheck`/`pnpm lint` en verde (sin cambios de código, solo contenido en DB). |
 | G7 | Despliegue a producción sobre URL de Vercel | **COMPLETADA con hallazgos** | (G7) | Ver sección dedicada abajo. **`https://acierta.vercel.app` en vivo**, landing/registro/login/diagnóstico/simulador/paywall verificados contra la app real. Variables de entorno core (Supabase URL+anon vía Supabase MCP — públicas por diseño; DATABASE_URL/DIRECT_URL vía rol Postgres NUEVO `acierta_prod`, generado y verificado sin leer `.env.local`; CRON_SECRET generado; site URL; feature flags) configuradas y confirmadas en Vercel. **Hallazgo de seguridad real, corregido en la misma sesión:** `vercel --prod` NO respeta `.gitignore` para decidir qué sube — un `.env` local viejo (anterior al proyecto Supabase real) viajó al primer build y Next.js lo cargó en runtime, filtrando un valor placeholder de Stripe a los logs de error; cerrado con `.vercelignore` explícito y redeploy limpio, verificado que el error volvió a su forma genérica sin exponer nada. Bloqueados y señalados explícitamente (no ejecutables por esta sesión): `SUPABASE_SERVICE_ROLE_KEY` (solo afecta borrado de cuenta, F17 — no bloquea ningún smoke test), Stripe completo (mismo bloqueo de G6, sin cambios), Sentry/PostHog/Resend (cuentas de terceros no creadas — creación de cuentas prohibida para cualquier sesión). Registro: código confirmado correcto contra Supabase Auth real (reproducido el mismo error vía llamada directa), bloqueado por el rate-limit de correo del plan gratuito de Supabase — no es un defecto de esta fase. Crons registrados Y activos (probados con el `CRON_SECRET` real: 200 con auth, 401 sin ella). `pnpm typecheck`/`pnpm lint` en verde. |
@@ -1697,3 +1698,165 @@ reproducido exactamente los mismos resultados que G7 ya documentó.
    cuentas existen.
 3. Retomar el lote de contenido pendiente (Física de IPN FISMAT,
    `questionWeight` 20) — sigue sin relación con lo de arriba.
+
+---
+
+## G10 — Smoke test completo en producción (2026-08-10)
+
+**Resultado: COMPLETADA, con 1 defecto real hallado, corregido, desplegado
+y blindado con tests.** Modo de trabajo: autónomo, sin preguntas.
+
+### 0) La premisa de la tarea era falsa — verificada antes de empezar
+
+La tarea afirmaba "con G9 resuelto, por primera vez es posible recorrer el
+producto completo". **G9 no está resuelto.** Comprobado antes de tocar nada:
+último commit sigue siendo `f63d93a` (G9 bloqueada), Vercel sigue con las
+mismas 9 variables de G7 (0 de Stripe), y un `signUp` real contra Supabase
+Auth devuelve otra vez `over_email_send_rate_limit`.
+
+**Cómo se recorrió igual todo lo demás:** las cuentas de prueba se
+provisionaron directo en `auth.users`+`user_profiles` vía SQL (mismo patrón
+que G7), replicando exactamente lo que hace `signUpAction`. Eso rodea
+**solo** el envío de correo — lo único genuinamente bloqueado — y deja
+intacto todo el resto del recorrido, que sí se ejecutó contra producción
+real. Lo que NO se pudo probar por esta vía queda listado abajo sin
+maquillar.
+
+### 1) Recorrido de alumno nuevo — funciona de punta a punta
+
+| Etapa | Resultado |
+|---|---|
+| Onboarding paso 1 (examen) | ✅ Muestra SOLO IPN y UNAM Superior — los feature flags de UAM/EXANI/Media Superior se respetan en producción |
+| Paso 2 (área) | ✅ Las 4 áreas de UNAM |
+| Paso 3 (carrera) | ✅ Con `minAciertos` reales por carrera (Ing. en Computación ~101) |
+| Paso 4 (intro de Tino) | ✅ |
+| Diagnóstico | ✅ 30 reactivos reales repartidos por materia; 30/30 respuestas persistidas |
+| Resultados | ✅ 12/30, Aciertómetro **47**, meta ~101, "te faltan ~54", 3 temas prioritarios reales |
+| Dashboard | ✅ Saludo, countdown (278 días), recomendación de Tino, heatmap, Aciertómetro correctamente **bloqueado** para gratuito sin simulacro (diseño F11) |
+
+**Calificación 100% server-side confirmada:** los 12 aciertos del
+diagnóstico y los 31 del simulacro salieron idénticos en la DB y en la UI;
+el cliente nunca calculó correctitud.
+
+### 2) No-filtración de respuestas — PROBADA contra producción real
+
+Criterio de aceptación central, verificado con las herramientas de red y
+cruzado contra la DB (no solo "no lo vi en pantalla"):
+
+| Superficie | Evidencia |
+|---|---|
+| Diagnóstico | Respuesta cruda del servidor de 52,708 bytes (incluye payload RSC): **0** ocurrencias de `isCorrect`, `correctOption`, `is_correct`, `correctAnswer`, `explanation` |
+| Simulacro (payload de reanudación) | 77,779 bytes que **sí** contienen los enunciados: **0** ocurrencias de los mismos 5 campos |
+| API de sync del simulacro | Responde `{"ok":true,"recorded":1}` — sin ninguna señal de correctitud |
+| Cruce contra la DB | La DB dice que la correcta de "Un mol de cualquier sustancia contiene:" es la **D**; en el payload esa opción viaja como texto plano indistinguible de los 3 distractores |
+| Revisión post-examen | ✅ Ahí SÍ se revelan (comportamiento correcto: el guardrail es "antes de responder") |
+
+### 3) Muros suaves — ambos bloquean correctamente
+
+- **Drill:** se agotó el cupo real (10/10 de hoy). Producción responde
+  *"Llegaste a tu práctica gratis de hoy. Vuelve mañana o desbloquea
+  ilimitado — Ver planes →"*. El contador intermedio ("0 gratis hoy") también
+  es correcto.
+- **Simulacro:** consumido el único gratuito, `/simulador` pasa a servir el
+  paywall con los 3 planes y montos correctos del PRD.
+- Ambos gates se evalúan **server-side** (`drill.ts:152,158`, `:284`), no en
+  el cliente.
+
+### 4) Panel parental — privacidad respetada
+
+Flujo completo: código de 6 dígitos → canje → `ParentLink` → login del tutor.
+El tutor aterriza en `/tutor` (no en `/app`). **Auditoría del payload crudo
+(29,754 bytes):**
+
+- **0 filtraciones** de los enunciados que el alumno respondió (se buscaron
+  5 stems concretos del banco).
+- **0 ocurrencias** de `isCorrect`, `correctOption`, `selectedOption`,
+  `"stem"`, `explanation`, `options`.
+- Solo agregados: racha, predicción, actividad semanal, últimos simulacros,
+  countdown — y copy explícito: *"Este panel solo muestra métricas de
+  actividad y progreso — nunca reactivos ni respuestas."*
+
+### 5) DEFECTO REAL hallado y corregido: tutor atrapado en el asistente de alumno
+
+**Síntoma (reproducido en producción):** un tutor real (`role=PARENT`,
+`onboardingStep=0`) que abría `/simulador` terminaba en `/onboarding` — el
+asistente de ALUMNO, "¿Qué examen vas a presentar?" — sin ninguna salida de
+vuelta a `/tutor`. Lo mismo entrando directo a `/onboarding`.
+
+**Causa raíz:** `requireOnboarding()` comprobaba solo el onboarding, nunca el
+rol. `(app)/layout.tsx` ya cubría sus rutas comprobando **rol antes que
+onboarding** —y su comentario documenta exactamente este riesgo—, pero
+`/simulador` vive FUERA del grupo `(app)` a propósito (pantalla aislada, sin
+nav) y su única defensa era ese guard. `/onboarding` usa `requireUser()` y
+tampoco comprobaba rol.
+
+**Por qué se escapó hasta ahora:** solo aparece con un tutor REAL
+(`onboardingStep=0`, lo que `signUpAction` asigna a un PARENT). Un fixture
+con onboarding "completo" lo enmascara por completo — de hecho el primer
+fixture de esta sesión lo enmascaró, y solo apareció al corregirlo para que
+coincidiera con lo que crea el registro real.
+
+**Corrección** (`src/lib/auth/guards.ts`, `app/onboarding/page.tsx`): chequeo
+de rol ANTES del de onboarding, con el mismo orden y razonamiento que ya
+usaba el layout. Se verificó que los 7 llamadores de `requireOnboarding` son
+todos rutas de alumno, así que el guard ahora coincide con su propósito
+documentado.
+
+**Verificación:** desplegado a producción y re-probado en vivo — las 5 rutas
+de alumno (`/simulador`, `/onboarding`, `/app`, `/practicar`, `/diagnostico`)
+redirigen al tutor a `/tutor`, ninguna lo atrapa; y el alumno sigue entrando
+normal a todas (sin regresión). Blindado con **4 tests de regresión**
+(`tests/regressions/g10-bugs.test.ts`) que se probaron **en rojo** revirtiendo
+la corrección (fallaban con `REDIRECT:/onboarding` en vez de `/tutor`) antes
+de dejarlos en verde.
+
+### 6) Dos falsas alarmas — investigadas y descartadas (no eran defectos)
+
+Se documentan porque cualquier auditoría futura las va a encontrar igual:
+
+1. **"El Aciertómetro no muestra número."** `<number-flow-react>` da
+   `textContent: ""` porque `@number-flow/react` renderiza en **shadow DOM**,
+   que `innerText`/`textContent` no atraviesan. Inspeccionando el shadow root:
+   muestra **47** correctamente, y de forma accesible (solo los 2 dígitos
+   vigentes quedan sin `inert`, los otros 18 sí). Sin defecto.
+2. **"El dashboard renderiza vacío."** El `<main>` traía un límite de Suspense
+   pendiente (`<template id="B:0">` + el contenido real esperando en
+   `<div hidden id="S:0">`). Causa: la pestaña del panel del navegador está
+   **oculta** (`document.hidden === true`), así que `requestAnimationFrame`
+   nunca dispara y React no revela el boundary. El servidor sí entrega el
+   HTML completo (61 KB, en 666 ms). Artefacto del arnés de pruebas, no del
+   producto. La misma causa impide que hidraten los Server Actions en pestaña
+   oculta — por eso el drill se verificó por estado real en la DB + respuesta
+   del servidor en vez de por clics.
+
+### 7) Lo que NO se pudo probar (sin maquillar)
+
+- **Verificación de correo** (tarea 1): imposible, es justo lo que bloquea el
+  rate-limit de Supabase. Pendiente de SMTP propio — ver
+  `docs/SERVICE_CREDENTIALS_CHECKLIST.md` §1.
+- **Compra real con tarjeta de prueba + activación por webhook** (tarea 4):
+  **bloqueada**, siguen sin existir las 12 variables de Stripe en Vercel
+  (confirmado en esta sesión). El paywall y los 3 planes con montos del PRD
+  sí se sirven correctamente; lo que no se puede es ir a Stripe. La lógica de
+  activación por webhook sí está cubierta por pruebas de integración contra
+  el Route Handler REAL con firma HMAC real (`tests/stripe/webhook-route.test.ts`).
+  Para desbloquear: `docs/STRIPE_LIVE_CHECKLIST.md` §1.
+- Para poder probar el panel parental **desbloqueado** (requiere plan de pago
+  del alumno) se sembró una `Subscription` ACTIVE directo en la DB, ya que
+  Stripe está bloqueado. Queda explícito que esa parte no se validó vía
+  compra real.
+
+### Limpieza
+
+Todos los fixtures de G10 eliminados y verificado en 0 (perfiles, sesiones,
+respuestas, suscripción, vínculo parental, códigos, usuarios de Auth). Los
+370 reactivos verificados quedaron intactos. Los 5 usuarios
+`*@acierta-test.mx` que permanecen son los fixtures preexistentes de E2E/RLS
+de F19 (25 jul), ajenos a esta fase.
+
+### Siguiente (G10)
+
+1. **Desbloquear credenciales** sigue siendo el cuello de botella real de
+   todo: Stripe (vender) y Resend+SMTP (registrar usuarios). Ambos
+   documentados paso a paso; ninguno requiere una sesión de Claude Code.
+2. Retomar el lote de contenido pendiente (Física de IPN FISMAT).
