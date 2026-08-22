@@ -16,7 +16,7 @@ export function ParentLockedPreview({ studentName }: { studentName: string }) {
       <p className="mx-auto max-w-sm text-sm text-text-secondary">
         Para ver el progreso de <strong className="text-text-primary">{studentName}</strong>{' '}
         necesita el Pase de Temporada o Premium (el plan Mensual no incluye el panel parental).
-        Pídele que lo active desde su cuenta en yaentre.mx.
+        Pídele que lo active desde su cuenta en yaentre.com.
       </p>
     </Card>
   );

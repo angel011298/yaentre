@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/Card';
 
 const BADGE_LABELS: Record<string, string> = {
-  EARLY_BIRD: '🏅 Fundador Early Bird',
+  EARLY_BIRD: '🏅 Fundador YaEntre',
 };
 
 /**

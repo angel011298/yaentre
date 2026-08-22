@@ -7,7 +7,7 @@
 
 ## Qué es YaEntre
 
-**YaEntre** (yaentre.mx) es una plataforma SaaS web/PWA de preparación autogestionable para los exámenes de admisión **en línea** de la UNAM, IPN, UAM y CENEVAL (EXANI II), niveles Medio Superior y Superior. El diferenciador central es un **simulador fiel del entorno del examen en línea** + un **motor adaptativo determinista** (diagnóstico → ruta personalizada → Entrómetro que predice aciertos). Público: aspirantes de 15-22 años (usuario) y sus padres (pagador). **Launch: 6 de enero de 2027.**
+**YaEntre** (yaentre.com) es una plataforma SaaS web/PWA de preparación autogestionable para los exámenes de admisión **en línea** de la UNAM, IPN, UAM y CENEVAL (EXANI II), niveles Medio Superior y Superior. El diferenciador central es un **simulador fiel del entorno del examen en línea** + un **motor adaptativo determinista** (diagnóstico → ruta personalizada → Entrómetro que predice aciertos). Público: aspirantes de 15-22 años (usuario) y sus padres (pagador). **Launch: 6 de enero de 2027.**
 
 Fase 1 es 100% autogestionable (sin profesores ni clases en vivo). La arquitectura deja lista la Fase 2 (video, livestream, notas de profesor) **inactiva** (`ContentStatus.INACTIVE`).
 

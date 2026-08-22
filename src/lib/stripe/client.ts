@@ -24,7 +24,7 @@ export function getStripe(): Stripe {
     // La API de Stripe cambia por versión; fijamos telemetría off y dejamos que
     // el SDK use su apiVersion embebida (evita divergencias silenciosas).
     telemetry: false,
-    appInfo: { name: 'YaEntre', url: 'https://yaentre.mx' },
+    appInfo: { name: 'YaEntre', url: 'https://yaentre.com' },
   });
 
   return stripeSingleton;

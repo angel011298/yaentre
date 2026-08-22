@@ -3,7 +3,7 @@
 
 | Campo | Detalle |
 |---|---|
-| **Producto** | YaEntre (yaentre.mx) |
+| **Producto** | YaEntre (yaentre.com) |
 | **Documento** | UI/UX Specification |
 | **Versión** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |

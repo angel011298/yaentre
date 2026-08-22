@@ -23,7 +23,7 @@ export default function PrivacidadPage() {
               <strong className="text-text-primary">EDITAR ANTES DE PUBLICAR:</strong> Razón social exacta de la empresa, domicilio legal, correo y teléfono.
               {' '}
               <span className="inline-block bg-yellow-100 px-2 py-1 text-xs">
-                PLACEHOLDER: YaEntre SAS de CV, Av. Ejemplo 123, México, CDMX | contacto@yaentre.mx | +52 55 1234 5678
+                PLACEHOLDER: YaEntre SAS de CV, Av. Ejemplo 123, México, CDMX | contacto@yaentre.com | +52 55 1234 5678
               </span>
             </p>
             <p>
@@ -121,8 +121,8 @@ export default function PrivacidadPage() {
             </ul>
             <p>
               Si no encuentras la opción que buscas, escríbenos a{' '}
-              <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
-                hola@yaentre.mx
+              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+                hola@yaentre.com
               </a>{' '}
               con tu solicitud.
             </p>
@@ -177,8 +177,8 @@ export default function PrivacidadPage() {
             <ul>
               <li>
                 Correo:{' '}
-                <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
-                  hola@yaentre.mx
+                <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+                  hola@yaentre.com
                 </a>
               </li>
               <li>

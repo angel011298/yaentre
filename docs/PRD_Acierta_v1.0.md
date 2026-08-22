@@ -4,7 +4,7 @@
 | Campo | Detalle |
 |---|---|
 | **Producto** | YaEntre |
-| **URL objetivo** | yaentre.mx |
+| **URL objetivo** | yaentre.com |
 | **Tagline** | *Tu IA sabe exactamente qué te falta para entrar.* |
 | **Versión del documento** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |
@@ -610,7 +610,7 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 |---|---|---|---|
 | **Banco de 1,500 reactivos verificados** | Equipo de contenido + pipeline IA | 15 de diciembre 2026 | ❌ No se puede lanzar |
 | **Stripe price IDs configurados** (todos los planes) | Dev | 30 de septiembre 2026 (antes del EB) | ❌ No hay Early Bird |
-| **Resolución de dominio yaentre.mx** | Ángel (propietario) | Antes del 1 de octubre 2026 | 🟠 Retrasa Early Bird |
+| **Resolución de dominio yaentre.com** | Ángel (propietario) | Antes del 1 de octubre 2026 | 🟠 Retrasa Early Bird |
 | **Temario oficial UNAM 2027 publicado** | UNAM | Enero 2027 | 🟡 Ajuste de contenido post-launch |
 | **Convocatoria UNAM 2027** | UNAM | Enero-febrero 2027 | — La app depende de esto para el calendar de marketing |
 
@@ -633,7 +633,7 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 
 ### Go/No-Go para Early Bird (1 octubre 2026)
 
-- [ ] Landing page de YaEntre live en yaentre.mx con lista de espera funcional
+- [ ] Landing page de YaEntre live en yaentre.com con lista de espera funcional
 - [ ] Stripe configurado: Early Bird Price IDs activos con `max_redemptions: 500`
 - [ ] Diagnóstico inicial funcional con ≥ 300 reactivos UNAM Área 1
 - [ ] Pantalla de resultados del diagnóstico mostrando Entrómetro básico

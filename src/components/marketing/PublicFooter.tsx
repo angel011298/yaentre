@@ -38,8 +38,8 @@ export function PublicFooter() {
             </div>
             <div className="space-y-2">
               <p className="font-semibold text-text-primary">Contacto</p>
-              <a href="mailto:hola@yaentre.mx" className="block text-text-secondary hover:text-brand">
-                hola@yaentre.mx
+              <a href="mailto:hola@yaentre.com" className="block text-text-secondary hover:text-brand">
+                hola@yaentre.com
               </a>
             </div>
           </div>

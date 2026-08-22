@@ -21,7 +21,7 @@
  *   - Vercel CLI autenticado y el proyecto ya enlazado (`vercel link`)
  *
  * Uso:
- *   npx tsx scripts/setup-stripe-webhook.ts --url https://yaentre.mx [--force]
+ *   npx tsx scripts/setup-stripe-webhook.ts --url https://yaentre.com [--force]
  */
 import './lib/env';
 import { spawnSync } from 'node:child_process';

@@ -56,13 +56,13 @@ describe('QuestionDraft: imageUrl por opción (F2)', () => {
       format: 'SPATIAL_SERIES',
       options: baseDraft.options.map((o) => ({
         ...o,
-        imageUrl: `https://cdn.yaentre.mx/figuras/${o.id}.svg`,
+        imageUrl: `https://cdn.yaentre.com/figuras/${o.id}.svg`,
       })),
     };
     const r = validateDraft(withImages);
     expect(r.ok).toBe(true);
     if (r.ok) {
-      expect(r.draft.options[0].imageUrl).toBe('https://cdn.yaentre.mx/figuras/A.svg');
+      expect(r.draft.options[0].imageUrl).toBe('https://cdn.yaentre.com/figuras/A.svg');
     }
   });
 

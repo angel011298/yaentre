@@ -13,7 +13,7 @@ import { Resend } from 'resend';
  * correr el cron) puede depender de que el proveedor de correo esté arriba.
  */
 
-const FROM_ADDRESS = 'YaEntre <notificaciones@yaentre.mx>';
+const FROM_ADDRESS = 'YaEntre <notificaciones@yaentre.com>';
 
 let cachedClient: Resend | null = null;
 let warnedMissingKey = false;

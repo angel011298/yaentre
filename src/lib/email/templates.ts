@@ -27,7 +27,7 @@ function wrapEmail(bodyHtml: string, unsubscribeUrl?: string): string {
     ${bodyHtml}
   </div>
   <div style="padding: 20px 8px; text-align: center; font-size: 12px; color: #888;">
-    ${unsubscribeUrl ? `<a href="${unsubscribeUrl}" style="color: #888;">Dejar de recibir este correo</a>` : 'YaEntre · yaentre.mx'}
+    ${unsubscribeUrl ? `<a href="${unsubscribeUrl}" style="color: #888;">Dejar de recibir este correo</a>` : 'YaEntre · yaentre.com'}
   </div>
 </div>`.trim();
 }
@@ -68,7 +68,7 @@ export function paymentConfirmationEmail(input: {
       <h1 style="font-size: 18px; margin: 0 0 12px;">¡Listo! Ya tienes acceso</h1>
       <p style="font-size: 14px; line-height: 1.6;">
         Confirmamos tu pago de <strong>${planLabel}</strong>${amount ? ` (${amount})` : ''}. Tu
-        cuenta ya tiene acceso completo — entra a yaentre.mx para seguir con tu preparación.
+        cuenta ya tiene acceso completo — entra a yaentre.com para seguir con tu preparación.
       </p>
     `),
   };
@@ -108,7 +108,7 @@ export function parentWeeklySummaryEmail(input: {
         Últimos simulacros: ${simsText}
       </p>
       <p style="font-size: 13px; color: #555;">
-        Entra a yaentre.mx/tutor para ver el detalle completo.
+        Entra a yaentre.com/tutor para ver el detalle completo.
       </p>
     `,
       input.unsubscribeUrl

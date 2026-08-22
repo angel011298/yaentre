@@ -3,7 +3,7 @@
 
 | Campo | Detalle |
 |---|---|
-| **Producto** | YaEntre (yaentre.mx) |
+| **Producto** | YaEntre (yaentre.com) |
 | **Documento** | Application Flow Specification |
 | **Versión** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |
@@ -55,7 +55,7 @@
 
 ```
 PÚBLICO (sin sesión)
-├── ▢ Landing (yaentre.mx)                    [light mode]
+├── ▢ Landing (yaentre.com)                    [light mode]
 ├── ▢ Precios / Planes
 ├── ▢ Registro
 └── ▢ Login

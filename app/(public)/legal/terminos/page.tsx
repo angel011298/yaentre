@@ -88,8 +88,8 @@ export default function TerminosPage() {
             </ul>
             <p>
               Para reclamar: escribe a{' '}
-              <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
-                hola@yaentre.mx
+              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+                hola@yaentre.com
               </a>{' '}
               con tu constancia de resultado oficial.
             </p>
@@ -203,8 +203,8 @@ export default function TerminosPage() {
             <h2>11. Resolución de disputas</h2>
             <p>
               Si tienes una disputa sobre tu account, pago o uso de YaEntre, escribe primero a{' '}
-              <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
-                hola@yaentre.mx
+              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+                hola@yaentre.com
               </a>{' '}
               con una descripción clara del problema. Intentaremos resolverlo en 15 días.
             </p>
@@ -230,8 +230,8 @@ export default function TerminosPage() {
             <ul>
               <li>
                 Correo:{' '}
-                <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
-                  hola@yaentre.mx
+                <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+                  hola@yaentre.com
                 </a>
               </li>
               <li>

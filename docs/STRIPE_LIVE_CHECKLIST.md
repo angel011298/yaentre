@@ -179,7 +179,7 @@ ante Stripe. Pasos exactos:
 
 Hoy el webhook (prueba y, cuando lo actives, live) apunta a
 `https://acierta.vercel.app/api/webhooks/stripe` porque el dominio propio
-(`yaentre.mx` u otro, la decisión de nombre sigue abierta) todavía no está
+(`yaentre.com` u otro, la decisión de nombre sigue abierta) todavía no está
 comprado. **Cuando el dominio se conecte a Vercel:**
 
 1. Crea un webhook NUEVO apuntando a `https://<tu-dominio>/api/webhooks/stripe`

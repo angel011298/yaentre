@@ -55,17 +55,17 @@ propio, **el registro de usuarios nuevos sigue bloqueado en producción**.
    npx vercel env add RESEND_API_KEY production
    ```
 4. **Dominio de envío — bloqueo real sin dominio propio:** el código usa
-   `YaEntre <notificaciones@yaentre.mx>` como remitente
+   `YaEntre <notificaciones@yaentre.com>` como remitente
    (`src/lib/email/client.ts:16`), y Resend exige verificar el dominio del
    remitente (registros DNS) antes de poder enviar con él — no se puede
-   verificar `yaentre.mx` porque **el dominio aún no se compra** (mismo
+   verificar `yaentre.com` porque **el dominio aún no se compra** (mismo
    prerrequisito pendiente de siempre). Dos caminos mientras tanto:
    - **Recomendado, temporal:** cambia `FROM_ADDRESS` en
      `src/lib/email/client.ts:16` a `onboarding@resend.dev` (dominio de
      pruebas de Resend, verificado automáticamente, sin límite de
      destinatarios en el plan gratuito) hasta que se compre el dominio
-     propio — deshace este cambio cuando conectes `yaentre.mx`.
-   - Sin ese cambio, cualquier envío con `@yaentre.mx` fallará con "domain
+     propio — deshace este cambio cuando conectes `yaentre.com`.
+   - Sin ese cambio, cualquier envío con `@yaentre.com` fallará con "domain
      not verified" — `sendEmail()` ya degrada a solo-log en ese caso (F16),
      así que no rompe nada, pero tampoco entrega correos reales.
 5. **Configura Supabase Auth para usar este SMTP** (esto es lo que de
@@ -78,7 +78,7 @@ propio, **el registro de usuarios nuevos sigue bloqueado en producción**.
    Port:      465 (SSL) o 587 (TLS)
    Username:  resend
    Password:  <tu RESEND_API_KEY>
-   Sender email: onboarding@resend.dev (o notificaciones@yaentre.mx una vez verificado el dominio)
+   Sender email: onboarding@resend.dev (o notificaciones@yaentre.com una vez verificado el dominio)
    ```
    ([guía oficial de Resend para Supabase](https://resend.com/docs/send-with-supabase-smtp))
    Este paso es 100% dashboard — no hay API para automatizarlo desde un

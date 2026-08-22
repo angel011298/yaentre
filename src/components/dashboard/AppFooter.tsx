@@ -18,7 +18,7 @@ export function AppFooter() {
             <Link href="/legal/privacidad" className="hover:text-text-secondary">
               Privacidad
             </Link>
-            <a href="mailto:hola@yaentre.mx" className="hover:text-text-secondary">
+            <a href="mailto:hola@yaentre.com" className="hover:text-text-secondary">
               Contacto
             </a>
           </div>
