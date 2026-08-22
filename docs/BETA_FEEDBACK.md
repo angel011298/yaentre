@@ -1,4 +1,4 @@
-# BETA_FEEDBACK — Acierta
+# BETA_FEEDBACK — YaEntre
 
 > Retroalimentación real de usuarios de prueba (beta cerrada). Cada punto se
 > clasifica por prioridad y se procesa en `F23` (o la fase de retroalimentación
@@ -23,7 +23,7 @@ _(sin entradas todavía)_
 
 ## 2. Errores que afectan datos o cálculos
 
-<!-- Ej: "Mi Aciertómetro bajó después de contestar bien" -->
+<!-- Ej: "Mi Entrómetro bajó después de contestar bien" -->
 
 _(sin entradas todavía)_
 

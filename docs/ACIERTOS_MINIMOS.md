@@ -1,6 +1,6 @@
 # Aciertos mínimos por carrera — triangulación multi-fuente (CC-13)
 
-Arranque en frío del Aciertómetro: de dónde sale cada `Career.minAciertos`, con
+Arranque en frío del Entrómetro: de dónde sale cada `Career.minAciertos`, con
 qué nivel de confianza, y por qué. Complementa `docs/EXTRACCION_ECOEMS.md`,
 `docs/EXTRACCION_IPN.md` y `docs/FUENTES_ADICIONALES.md` (CC-09/CC-09b).
 
@@ -208,12 +208,12 @@ adaptativo, CC-11+):
 1. **Percentiles propios cuando haya volumen suficiente.** Una vez que
    `ExamSession` en modo `FULL_SIMULATION` acumule un número mínimo de
    sesiones completadas por carrera objetivo (`UserProfile.targetCareerId`),
-   el Aciertómetro puede calcular un percentil real de la base de usuarios
-   de Acierta, independiente de la fuente externa. Umbral sugerido: ≥30
+   el Entrómetro puede calcular un percentil real de la base de usuarios
+   de YaEntre, independiente de la fuente externa. Umbral sugerido: ≥30
    sesiones completas por carrera antes de considerar el percentil propio
    "estable" (evita ruido de muestras chicas).
 2. **Blend gradual, no reemplazo abrupto.** Mientras el volumen propio sea
-   bajo, el Aciertómetro sigue centrado en `Career.minAciertos` (la
+   bajo, el Entrómetro sigue centrado en `Career.minAciertos` (la
    triangulación externa). Conforme crece el volumen, la meta puede
    ponderarse entre la fuente externa y el percentil propio
    (`peso_propio = min(sesiones_carrera / 30, 1)`), sin necesitar un salto
@@ -232,10 +232,10 @@ adaptativo, CC-11+):
 
 ---
 
-## Regla de presentación (Aciertómetro)
+## Regla de presentación (Entrómetro)
 
 **La meta nunca se presenta como una cifra absoluta.** Implementado en
-`src/lib/adaptive/aciertometro.ts` (ver PROGRESO_SPRINT2.md § CC-13):
+`src/lib/adaptive/entrometro.ts` (ver PROGRESO_SPRINT2.md § CC-13):
 según la confianza, el copy cambia explícitamente —
 
 - `HIGH` → *"Tu meta: ~96 aciertos"* (con nota de fuente/año visible en un
@@ -245,7 +245,7 @@ según la confianza, el copy cambia explícitamente —
 - `LOW` → *"Tu meta estimada (dato preliminar): ~96 aciertos"* + aviso
   explícito de que la cifra es la más conservadora entre fuentes que no
   coinciden, sujeta a revisión.
-- Sin dato → el Aciertómetro no muestra una meta numérica; muestra el
+- Sin dato → el Entrómetro no muestra una meta numérica; muestra el
   progreso relativo (aciertos actuales, tendencia) sin un objetivo inventado.
 
 ---

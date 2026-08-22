@@ -1,9 +1,9 @@
-# Backend Schema — Acierta
+# Backend Schema — YaEntre
 ## Data Model & Database Specification · v1.0
 
 | Campo | Detalle |
 |---|---|
-| **Producto** | Acierta (acierta.mx) |
+| **Producto** | YaEntre (yaentre.mx) |
 | **Documento** | Backend Schema Specification |
 | **Versión** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |
@@ -118,9 +118,9 @@ Este documento reconcilia todas las decisiones de datos dispersas en los documen
 
 ```prisma
 // ═══════════════════════════════════════════════════════════════════
-// Acierta — schema.prisma (v1.0)
+// YaEntre — schema.prisma (v1.0)
 // Base: Supabase PostgreSQL · ORM: Prisma
-// Migración inicial: npx prisma migrate dev --name acierta_init
+// Migración inicial: npx prisma migrate dev --name yaentre_init
 // ═══════════════════════════════════════════════════════════════════
 
 generator client {
@@ -653,7 +653,7 @@ model NotificationPreference {
 
 Cada examen define sus reglas (`durationMins`, `totalQuestions`, `examDate`). Cambiar el formato de un examen (ej. si UNAM pasa de 120 a 130 reactivos en 2027) es **editar una fila, no desplegar código**. El `examDate` alimenta el countdown del dashboard y la `expiresAt` del Pase de Temporada.
 
-### `Subject.questionWeight` — el motor del Aciertómetro
+### `Subject.questionWeight` — el motor del Entrómetro
 
 Es el número esperado de reactivos de esa materia en el examen real (ej. Matemáticas = 26 en UNAM Área 1). El predictor pondera el `hitRate` del alumno por este peso. Es el vínculo directo entre la taxonomía y la predicción.
 
@@ -663,7 +663,7 @@ Ningún reactivo con `isVerified = false` es visible para usuarios (garantizado 
 
 ### `LearningProfile` — el activo de retención
 
-Sobrevive entre ciclos de examen. Cuando un alumno rechazado vuelve para la siguiente convocatoria, su perfil histórico (debilidades, predicción) sigue ahí. Es la razón tangible para regresar a Acierta en vez de empezar de cero.
+Sobrevive entre ciclos de examen. Cuando un alumno rechazado vuelve para la siguiente convocatoria, su perfil histórico (debilidades, predicción) sigue ahí. Es la razón tangible para regresar a YaEntre en vez de empezar de cero.
 
 ### `Subscription` + `Payment` + `ProcessedStripeEvent` — pagos a prueba de fallos
 
@@ -850,7 +850,7 @@ FASE A — Preservar
   2. Crear Institution { code: CNBV } y mapear el contenido PLD histórico ahí.
 
 FASE B — Extender
-  3. npx prisma migrate dev --name acierta_init
+  3. npx prisma migrate dev --name yaentre_init
      → crea todas las tablas nuevas (institutions, exams, areas, ...).
   4. Aplicar RLS a todas las tablas.
 
@@ -863,9 +863,9 @@ FASE D — Reutilizar lógica
      La estructura Question (MCQ, 4 opciones) es idéntica → reutilización directa.
 ```
 
-### Mapeo conceptual PLD → Acierta
+### Mapeo conceptual PLD → YaEntre
 
-| PLD (origen) | Acierta (destino) |
+| PLD (origen) | YaEntre (destino) |
 |---|---|
 | Certificación PLD/CNBV | `Institution { code: CNBV }` (conservado) |
 | Ley | `Area` |
@@ -925,7 +925,7 @@ FASE D — Reutilizar lógica
 
 ---
 
-*Fin del documento · Backend Schema Acierta v1.0 · Schema ejecutable, listo para `prisma migrate`*
+*Fin del documento · Backend Schema YaEntre v1.0 · Schema ejecutable, listo para `prisma migrate`*
 *Serie: Estudio → Blueprint → PRD → TRD → UI/UX → Flujo de App → **Backend Schema** → Plan de Implementación*
 
 ---

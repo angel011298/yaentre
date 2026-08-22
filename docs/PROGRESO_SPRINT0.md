@@ -1,4 +1,4 @@
-# PROGRESO CC-00 — Scaffold Inicial Acierta
+# PROGRESO CC-00 — Scaffold Inicial YaEntre
 
 ## Fecha
 10 de julio de 2026
@@ -58,7 +58,7 @@
    - CLAUDE.md en raíz
 
 6. **Git inicializado**
-   - Primer commit: "chore: scaffold inicial Acierta"
+   - Primer commit: "chore: scaffold inicial YaEntre"
    - Configuración: user.email, user.name
 
 7. **Tests placeholder**
@@ -148,7 +148,7 @@
 ### 🟡 TODOs (Bloqueados por DB no configurada)
 
 - [ ] **CC-01 continuación:** Configurar Supabase real en `.env.local` (requiere proyecto Supabase)
-- [ ] `pnpm prisma:migrate` — aplicar migración acierta_init a BD real
+- [ ] `pnpm prisma:migrate` — aplicar migración yaentre_init a BD real
 - [ ] Verificar que todas las 24 tablas se crean en Supabase
 - [ ] Ejecutar migraciones SQL de RLS manualmente en Supabase (si Prisma no las aplica)
 - [ ] `pnpm prisma:seed` — poblar Institution, Level, Exam, Area, Career, Subject, Topic
@@ -226,7 +226,7 @@ su §5 por si hay decisiones de autorización más específicas.
 
 10. **ESLint** — se agregó `argsIgnorePattern: '^_'` a `no-unused-vars` (las Server Actions usadas con `useActionState` deben aceptar `(prevState, formData)` aunque no siempre usen ambos)
 
-11. **`.claude/launch.json`** — se agregó la configuración `"acierta"` (puerto 3000) junto a la preexistente `"mundial-2026"` (otro proyecto del usuario), para poder levantar el dev server de este proyecto con el Browser pane
+11. **`.claude/launch.json`** — se agregó la configuración `"yaentre"` (puerto 3000) junto a la preexistente `"mundial-2026"` (otro proyecto del usuario), para poder levantar el dev server de este proyecto con el Browser pane
 
 ### ✅ Verificación manual (dev server + navegador)
 

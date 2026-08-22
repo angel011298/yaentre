@@ -1,10 +1,10 @@
-# PRD — Acierta
+# PRD — YaEntre
 ## Product Requirements Document · v1.0
 
 | Campo | Detalle |
 |---|---|
-| **Producto** | Acierta |
-| **URL objetivo** | acierta.mx |
+| **Producto** | YaEntre |
+| **URL objetivo** | yaentre.mx |
 | **Tagline** | *Tu IA sabe exactamente qué te falta para entrar.* |
 | **Versión del documento** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |
@@ -36,7 +36,7 @@
 
 ## 1. Resumen del producto
 
-**Acierta** es una plataforma SaaS web/PWA de preparación autogestionable para los exámenes de admisión en línea de la UNAM, el IPN, la UAM y el CENEVAL (EXANI II). Combina un banco de reactivos adaptativos generados con IA, un simulador fiel del entorno del examen en línea (fullscreen, temporizador, restricciones), y un motor de diagnóstico que construye la ruta de estudio personalizada de cada alumno.
+**YaEntre** es una plataforma SaaS web/PWA de preparación autogestionable para los exámenes de admisión en línea de la UNAM, el IPN, la UAM y el CENEVAL (EXANI II). Combina un banco de reactivos adaptativos generados con IA, un simulador fiel del entorno del examen en línea (fullscreen, temporizador, restricciones), y un motor de diagnóstico que construye la ruta de estudio personalizada de cada alumno.
 
 La plataforma pivota sobre la base tecnológica de Certifik PLD (banco de preguntas, sesiones de examen temporizadas, auth Supabase, Stripe), refactorizando la taxonomía de contenido y añadiendo el motor adaptativo, el simulador y la capa de gamificación. **No es un rebuild — es un pivot estratégico con ~55% de reutilización de código.**
 
@@ -136,11 +136,11 @@ Este KPI captura si los alumnos están usando el producto de la forma que genera
 - Autenticación y gestión de cuenta (Supabase Auth)
 - Onboarding con diagnóstico inicial (30 reactivos → perfil de debilidades)
 - Banco de reactivos con taxonomía UNAM / IPN / UAM / EXANI II
-- Motor adaptativo (Aciertómetro + ruta de estudio personalizada)
+- Motor adaptativo (Entrómetro + ruta de estudio personalizada)
 - Modo Simulador de Examen en Línea (fullscreen, timer, restricciones)
 - Modo Drill por tema (práctica abierta, sin tiempo)
 - Resolución explicada por capas (4 capas por reactivo)
-- Dashboard del alumno (progreso, racha, Aciertómetro, heatmap)
+- Dashboard del alumno (progreso, racha, Entrómetro, heatmap)
 - Dashboard parental (vista de solo lectura)
 - Gamificación: streak de días, badge "Materia Dominada", celebración de ronda perfecta
 - Planes de pago (Free / Mensual / Pase de Temporada / Premium) vía Stripe
@@ -207,7 +207,7 @@ Al completar el registro, el usuario selecciona su institución objetivo, carrer
 - [ ] El diagnóstico se activa automáticamente en el primer inicio de sesión y no puede omitirse (solo posponerse 1 vez).
 - [ ] Los 30 reactivos están distribuidos en al menos 6 materias distintas del área seleccionada.
 - [ ] Al finalizar, el sistema identifica los temas con `hitRate < 0.60` como "zonas débiles".
-- [ ] El alumno ve una pantalla de resultados con: score obtenido, Aciertómetro inicial, y 3 temas prioritarios a reforzar.
+- [ ] El alumno ve una pantalla de resultados con: score obtenido, Entrómetro inicial, y 3 temas prioritarios a reforzar.
 - [ ] El `LearningProfile` queda persistido en DB al finalizar el diagnóstico.
 - [ ] El flujo completo toma ≤ 45 minutos y está disponible en móvil y desktop.
 
@@ -270,7 +270,7 @@ Sesión de examen en modo `FULL_SIMULATION` que activa pantalla completa obligat
 - [ ] No existe botón "Anterior" en ninguna pregunta durante el simulador.
 - [ ] El temporizador no se detiene si el usuario cambia de pestaña; el evento queda registrado en `suspicionEvents`.
 - [ ] Al finalizar el tiempo, el sistema guarda automáticamente las respuestas marcadas hasta ese momento.
-- [ ] La pantalla de resultados post-simulacro muestra: aciertos totales, desglose por materia, tiempo promedio por pregunta, y Aciertómetro actualizado.
+- [ ] La pantalla de resultados post-simulacro muestra: aciertos totales, desglose por materia, tiempo promedio por pregunta, y Entrómetro actualizado.
 - [ ] El simulador funciona correctamente en Chrome ≥ 110, Firefox ≥ 110, Edge ≥ 110 en desktop.
 - [ ] En móvil: el simulador muestra un aviso *"El examen real requiere laptop. Puedes practicar, pero te recomendamos usar una computadora para los simulacros."*
 
@@ -311,7 +311,7 @@ Como alumno, quiero ver en un solo lugar cuánto he avanzado, cuántos días lle
 
 | Widget | Descripción | Fuente de datos |
 |---|---|---|
-| **Aciertómetro** | Predicción de aciertos en el examen real (número grande, con flecha vs. semana anterior) | `LearningProfile.predictedScore` |
+| **Entrómetro** | Predicción de aciertos en el examen real (número grande, con flecha vs. semana anterior) | `LearningProfile.predictedScore` |
 | **Carrera objetivo** | Nombre de la carrera meta + aciertos mínimos históricos + gap actual | `Career.minAciertos`, predicción |
 | **Racha de días** (🔥) | Días consecutivos con ≥ 1 sesión de estudio | `StreakRecord.currentStreak` |
 | **Mapa de calor** | Actividad de los últimos 90 días (estilo GitHub contribution graph) | `ExamSession.startedAt` |
@@ -320,7 +320,7 @@ Como alumno, quiero ver en un solo lugar cuánto he avanzado, cuántos días lle
 | **Temas a reforzar** | Top 3 temas más débiles con CTA directo a Drill | `WeakTopic` ordenados por `hitRate` asc |
 
 **Criterios de aceptación:**
-- [ ] El Aciertómetro se recalcula después de cada sesión completada (no en tiempo real, sino al finalizar).
+- [ ] El Entrómetro se recalcula después de cada sesión completada (no en tiempo real, sino al finalizar).
 - [ ] El mapa de calor diferencia entre sesiones de ≤ 15 min (punto tenue) y ≥ 30 min (punto lleno).
 - [ ] La racha se rompe si el usuario no completa ninguna sesión en un día calendario (UTC-6, hora de México).
 - [ ] El dashboard carga completo (first contentful paint) en ≤ 2s en 4G.
@@ -386,7 +386,7 @@ Como alumno, quiero que la app me recompense cuando estudio todos los días y cu
 | **Streak diario** | Sesión de ≥ 10 min en el día | `StreakFlame` — counter animado con partículas en milestone (7, 14, 30 días) |
 | **Ronda perfecta** | Score ≥ 90% en simulacro o Drill de ≥ 20 reactivos | `PerfectRound` — anillo animado + badge celebratorio |
 | **Materia Dominada** | `hitRate ≥ 0.85` en todos los temas de una materia | `MateriaDominada` — card-flip modal con badge por color de área |
-| **Predicción mejorada** | Aciertómetro sube ≥ 5 puntos en una semana | Toast con ↑ flecha verde: *"Tu predicción subió 5 puntos esta semana 🚀"* |
+| **Predicción mejorada** | Entrómetro sube ≥ 5 puntos en una semana | Toast con ↑ flecha verde: *"Tu predicción subió 5 puntos esta semana 🚀"* |
 
 **Criterios de aceptación:**
 - [ ] El streak no se rompe si el usuario estudia entre las 23:00 y las 23:59 del día en cuestión (huso horario UTC-6).
@@ -483,7 +483,7 @@ Los reactivos recién verificados entran a una pool de "staging":
 | Simulador fullscreen (120/140 reactivos) | ❌ | ✅ | ✅ | ✅ |
 | Resolución por capas | Capa 1 solo | ✅ todas | ✅ todas | ✅ todas |
 | Dashboard del alumno | Básico | ✅ completo | ✅ completo | ✅ completo |
-| Aciertómetro | ❌ | ✅ | ✅ | ✅ |
+| Entrómetro | ❌ | ✅ | ✅ | ✅ |
 | Dashboard parental | ❌ | ❌ | ✅ | ✅ |
 | Gamificación completa | Parcial | ✅ | ✅ | ✅ |
 | Vigencia | Siempre | Mensual renovable | Hasta el día del examen | Hasta el día del examen |
@@ -499,7 +499,7 @@ Los reactivos recién verificados entran a una pool de "staging":
 ### Early Bird — mecánica técnica
 
 - Stripe Price IDs con `max_redemptions: 500` para los tres planes Early Bird.
-- Badge visible en el perfil: *"Fundador Acierta 🏅"* (campo `UserProfile.badges: ["EARLY_BIRD"]`).
+- Badge visible en el perfil: *"Fundador YaEntre 🏅"* (campo `UserProfile.badges: ["EARLY_BIRD"]`).
 - El precio Early Bird se "congela" para el usuario: si renueva después de noviembre 2026, paga el precio regular. El plan de Pase cubre hasta el examen sin renovación.
 
 ---
@@ -559,7 +559,7 @@ Generación de contenido:
 
 Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos y Animaciones)**.
 
-### Principios de diseño para Acierta
+### Principios de diseño para YaEntre
 
 1. **Dark mode primero.** El modo oscuro es el default (fondo `#09090B`). Light mode disponible como toggle (preferencia del Perfil B / padres).
 2. **Mobile-first para el aprendizaje, desktop-first para el simulador.** El flujo de drill y dashboard debe ser cómodo con un pulgar. El simulador se diseña para laptop de 13"+.
@@ -593,7 +593,7 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 | **Disponibilidad** | Uptime SLA | ≥ 99.5% (excluye mantenimientos programados) |
 | **Disponibilidad** | Ventana de mantenimiento | Fuera de temporada de exámenes (jul, dic) |
 | **Seguridad** | Auth | Supabase RLS en todas las tablas; ninguna tabla expuesta sin política |
-| **Seguridad** | Datos de pago | Stripe maneja tarjetas; Acierta nunca almacena datos de tarjeta |
+| **Seguridad** | Datos de pago | Stripe maneja tarjetas; YaEntre nunca almacena datos de tarjeta |
 | **Seguridad** | HTTPS | Forzado en toda la plataforma |
 | **Privacidad** | Aviso de privacidad | Requerido por LFPDPPP (México); disponible antes del registro |
 | **Accesibilidad** | Contraste de color | WCAG 2.1 nivel AA mínimo |
@@ -610,7 +610,7 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 |---|---|---|---|
 | **Banco de 1,500 reactivos verificados** | Equipo de contenido + pipeline IA | 15 de diciembre 2026 | ❌ No se puede lanzar |
 | **Stripe price IDs configurados** (todos los planes) | Dev | 30 de septiembre 2026 (antes del EB) | ❌ No hay Early Bird |
-| **Resolución de dominio acierta.mx** | Ángel (propietario) | Antes del 1 de octubre 2026 | 🟠 Retrasa Early Bird |
+| **Resolución de dominio yaentre.mx** | Ángel (propietario) | Antes del 1 de octubre 2026 | 🟠 Retrasa Early Bird |
 | **Temario oficial UNAM 2027 publicado** | UNAM | Enero 2027 | 🟡 Ajuste de contenido post-launch |
 | **Convocatoria UNAM 2027** | UNAM | Enero-febrero 2027 | — La app depende de esto para el calendar de marketing |
 
@@ -623,7 +623,7 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 | Fullscreen API falla en Safari/iOS | Alta | 🟠 Medio | Degradación graciosa + aviso "usa laptop para el simulador"; iOS no es el entorno del examen real |
 | Baja conversión free → pago | Media | 🔴 Alto | A/B test de CTA: variante "Haz el simulador gratis ahora" vs. "Empieza a estudiar gratis" |
 | Latencia alta en Edge Functions (motor adaptativo) | Baja | 🟡 Medio | Deploy en `us-east-1`; cache de `WeakTopics` en cliente con Zustand |
-| Competidor (Unitips/Unibetas) lanza simulador similar antes de 2027 | Media | 🟠 Medio | El Aciertómetro + dashboard parental son los diferenciadores secundarios difíciles de copiar rápido |
+| Competidor (Unitips/Unibetas) lanza simulador similar antes de 2027 | Media | 🟠 Medio | El Entrómetro + dashboard parental son los diferenciadores secundarios difíciles de copiar rápido |
 | OXXO payments tienen latencia de confirmación alta | Media | 🟡 Bajo | Stripe maneja el webhook; mostrar pantalla de "Tu pago está pendiente" con estado en tiempo real |
 | El usuario usa VPN o extensiones que bloquean getUserMedia | Media | 🟡 Bajo | El permiso de cámara es orientativo, no bloquea el simulador si se rechaza |
 
@@ -633,10 +633,10 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 
 ### Go/No-Go para Early Bird (1 octubre 2026)
 
-- [ ] Landing page de Acierta live en acierta.mx con lista de espera funcional
+- [ ] Landing page de YaEntre live en yaentre.mx con lista de espera funcional
 - [ ] Stripe configurado: Early Bird Price IDs activos con `max_redemptions: 500`
 - [ ] Diagnóstico inicial funcional con ≥ 300 reactivos UNAM Área 1
-- [ ] Pantalla de resultados del diagnóstico mostrando Aciertómetro básico
+- [ ] Pantalla de resultados del diagnóstico mostrando Entrómetro básico
 - [ ] Auth: registro, login, perfil funcionales
 - [ ] Compra de Early Bird Pase ($499) funcional con tarjeta y OXXO
 
@@ -666,11 +666,11 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 
 ## 15. Glosario
 
-| Término | Definición en el contexto de Acierta |
+| Término | Definición en el contexto de YaEntre |
 |---|---|
 | **Reactivo** | Pregunta de opción múltiple (4 opciones, 1 correcta) del banco de preguntas |
 | **Acierto** | Respuesta correcta en un examen; la métrica central de evaluación en UNAM e IPN |
-| **Aciertómetro** | Predicción dinámica del número de aciertos que el alumno obtendría en el examen real, basada en su desempeño histórico en la plataforma |
+| **Entrómetro** | Predicción dinámica del número de aciertos que el alumno obtendría en el examen real, basada en su desempeño histórico en la plataforma |
 | **Simulacro** | Sesión de examen en modo `FULL_SIMULATION` con las condiciones del examen real |
 | **Drill** | Sesión de práctica abierta por tema, sin tiempo ni restricciones |
 | **Racha / Streak** | Número de días calendario consecutivos en que el usuario completó ≥ 1 sesión de ≥ 10 min |
@@ -683,9 +683,9 @@ Referencia completa: **Blueprint Técnico v1.0 — Sección 3 (Frontend, Estilos
 | **Phase 1** | Lanzamiento inicial 100% autogestionable, sin profesores ni clases en vivo |
 | **Phase 2** | Expansión post-validación con contenido de video, livestream y profesores |
 | **isVerified** | Campo booleano en `Question`; ningún reactivo con `isVerified = false` es visible para usuarios |
-| **LTV:CAC** | Relación Lifetime Value / Costo de Adquisición; meta ≥ 3× para Acierta |
+| **LTV:CAC** | Relación Lifetime Value / Costo de Adquisición; meta ≥ 3× para YaEntre |
 
 ---
 
-*Fin del documento · PRD Acierta v1.0 · Próxima revisión: 1 de octubre 2026 (post-Early Bird)*
+*Fin del documento · PRD YaEntre v1.0 · Próxima revisión: 1 de octubre 2026 (post-Early Bird)*
 *Documentos de la serie: Estudio de Mercado → Blueprint Técnico → **PRD** → Prompt Master para Claude Code*

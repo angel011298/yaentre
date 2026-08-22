@@ -1,10 +1,10 @@
-# PROGRESO SPRINT 2 — Acierta
+# PROGRESO SPRINT 2 — YaEntre
 
 Sprint 1 (pipeline de contenido: generación IA, panel admin, seeds de
 taxonomía UNAM/IPN, ingesta de guías oficiales, procedencia/uso del
 contenido) quedó cerrado — ver `PROGRESO_SPRINT1.md`. Sprint 2 arranca con el
 arranque en frío del motor adaptativo: poblar `Career.minAciertos` con datos
-reales antes de que exista el Aciertómetro completo (CC-11).
+reales antes de que exista el Entrómetro completo (CC-11).
 
 ---
 
@@ -21,7 +21,7 @@ CC-07/CC-08/CC-09b (carreras ya sembradas para UNAM e IPN).
 
 ### Objetivo
 
-Poblar `Career.minAciertos` (el "arranque en frío" del Aciertómetro — la meta
+Poblar `Career.minAciertos` (el "arranque en frío" del Entrómetro — la meta
 de aciertos que el producto le muestra a un aspirante antes de tener datos
 propios de usuarios) con datos reales, verificables y trazables, en vez de
 las estimaciones razonadas (pero no verificadas) que CC-07/CC-08 habían
@@ -46,7 +46,7 @@ dejado marcadas `TODO-VERIFICAR`.
 - **`docs/ACIERTOS_MINIMOS.md`:** tabla completa por carrera con valor, año,
   confianza y fuentes citables, con las LOW resaltadas y el detalle completo
   de metodología, correcciones de nombre y hallazgos.
-- **`src/lib/adaptive/aciertometro.ts`:** módulo puro que formatea la meta
+- **`src/lib/adaptive/entrometro.ts`:** módulo puro que formatea la meta
   SIEMPRE calificada por su confianza ("Meta estimada" / "Meta preliminar"),
   nunca como una cifra absoluta — con 6 tests Vitest que verifican
   específicamente que ninguna rama de confianza devuelve un número sin
@@ -86,14 +86,14 @@ nombres de carrera de CC-07/CC-08 eran aproximados o incorrectos:
 
 Detalle línea por línea en `docs/ACIERTOS_MINIMOS.md`.
 
-### Aciertómetro: exponer confianza, nunca verdad absoluta
+### Entrómetro: exponer confianza, nunca verdad absoluta
 
-CC-11 (el motor adaptativo / Aciertómetro completo) **no existe todavía en
+CC-11 (el motor adaptativo / Entrómetro completo) **no existe todavía en
 este repo** — `app/(app)/app/page.tsx` sigue siendo el placeholder de CC-10.
 En vez de forzar una UI completa fuera de alcance, se construyó el
 **contrato de presentación** que CC-11 debe usar:
-`src/lib/adaptive/aciertometro.ts` — función pura
-`formatAciertometroTarget()` que:
+`src/lib/adaptive/entrometro.ts` — función pura
+`formatEntrometroTarget()` que:
 
 - Nunca devuelve un número sin calificar ("Meta estimada" / "Meta
   preliminar", siempre con el prefijo `~`).
@@ -109,7 +109,7 @@ califican el número y que el caso sin dato no fabrica una meta.
 
 Documentado en `docs/ACIERTOS_MINIMOS.md` §Mecanismo de auto-mejora: una vez
 que `ExamSession` en modo `FULL_SIMULATION` acumule volumen suficiente por
-carrera objetivo (umbral sugerido ≥30 sesiones), el Aciertómetro puede
+carrera objetivo (umbral sugerido ≥30 sesiones), el Entrómetro puede
 mezclar gradualmente un percentil propio con la fuente externa
 (`peso_propio = min(sesiones/30, 1)`), y la fuente externa (UNAM/IPN) debe
 re-triangularse cada ciclo de admisión. Es diseño para una sesión futura del
@@ -119,7 +119,7 @@ de usuarios reales que blendear todavía).
 ### Verificación
 
 - ✅ `pnpm typecheck` y `pnpm lint` en verde.
-- ✅ 68 tests en verde (62 previos + 6 nuevos de `aciertometro.test.ts`).
+- ✅ 68 tests en verde (62 previos + 6 nuevos de `entrometro.test.ts`).
 - ✅ Las 26 URLs de DGAE se visitaron con una petición HTTP real en esta
   sesión (browser), no se asumió ninguna.
 - ✅ Cero valores inventados: donde no hubo fuente confiable, se conservó el
@@ -138,8 +138,8 @@ de usuarios reales que blendear todavía).
 
 ---
 
-*Sprint 2 arranca con el arranque en frío del Aciertómetro (CC-13). Pendiente:
+*Sprint 2 arranca con el arranque en frío del Entrómetro (CC-13). Pendiente:
 CC-10/CC-11 (dashboard y motor adaptativo completo, que consumirán
-`formatAciertometroTarget`), completar la verificación de nombres de carrera
+`formatEntrometroTarget`), completar la verificación de nombres de carrera
 de IPN Sociales-Administrativas (no cubiertas por `ipn.taxonomy.json`), y —
 igual que en Sprint 1 — una DB real para aplicar todos los seeds end-to-end.*

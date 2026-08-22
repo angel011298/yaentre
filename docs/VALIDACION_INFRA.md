@@ -1,4 +1,4 @@
-# Validación de Infraestructura — Acierta (F1)
+# Validación de Infraestructura — YaEntre (F1)
 
 Fecha: 2026-07-18 · Primera ejecución contra Supabase **real**.
 
@@ -6,7 +6,7 @@ Fecha: 2026-07-18 · Primera ejecución contra Supabase **real**.
 
 | Campo | Valor |
 |---|---|
-| Nombre | Acierta |
+| Nombre | YaEntre |
 | Ref | `fumluvvzskhdxcyljbmx` |
 | Región | us-east-1 (coincide con deploy de Vercel) |
 | Estado | ACTIVE_HEALTHY |

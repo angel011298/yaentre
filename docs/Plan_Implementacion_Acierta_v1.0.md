@@ -1,9 +1,9 @@
-# Plan de Implementación — Acierta
+# Plan de Implementación — YaEntre
 ## Execution Plan & Claude Code Session Map · v1.0
 
 | Campo | Detalle |
 |---|---|
-| **Producto** | Acierta (acierta.mx) |
+| **Producto** | YaEntre (yaentre.mx) |
 | **Documento** | Implementation Plan |
 | **Versión** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |
@@ -103,7 +103,7 @@ Cada tarea es una **sesión autónoma de Claude Code** con esta estructura (alin
 
 Tu convención (Sonnet lógica / Haiku DDL-polish), extendida con un tier de alto razonamiento para lo genuinamente difícil:
 
-| Tier | Modelo | Cuándo usarlo | Ejemplos en Acierta |
+| Tier | Modelo | Cuándo usarlo | Ejemplos en YaEntre |
 |---|---|---|---|
 | 🔴 **Alto razonamiento** | Opus | Lógica crítica donde un bug es caro o el razonamiento es denso | Motor adaptativo, integridad del simulador, webhook idempotente de Stripe, cálculo de scoring |
 | 🟡 **Estándar** | Sonnet | Features de negocio, CRUD, integración, UI con lógica | Dashboard, drill, onboarding, panel admin, Server Actions |
@@ -169,7 +169,7 @@ Sprints de 2 semanas (~24 hrs de tu tiempo cada uno). Cada celda "CC-XX" es una 
 | Sesión | Modelo | Objetivo | Tu tiempo |
 |---|---|---|---|
 | CC-10 | 🟡 Sonnet | Onboarding (selección examen/carrera) + flujo primera vez | 3h |
-| CC-11 | 🔴 Opus | Motor adaptativo: WeakTopics + selección + Aciertómetro (predictor) | 4h |
+| CC-11 | 🔴 Opus | Motor adaptativo: WeakTopics + selección + Entrómetro (predictor) | 4h |
 | CC-12 | 🟡 Sonnet | Diagnóstico (30 reactivos) + pantalla de resultados | 3h |
 | — | — | Tests unitarios del motor (Vitest) | 2h |
 
@@ -188,7 +188,7 @@ Sprints de 2 semanas (~24 hrs de tu tiempo cada uno). Cada celda "CC-XX" es una 
 |---|---|---|---|
 | CC-20 | 🔴 Opus | Simulador: fullscreen, timer, sin retroceso, event listeners, Zustand | 4h |
 | CC-21 | 🟡 Sonnet | Pre-flight check + resultados del simulacro + desglose | 3h |
-| CC-22 | 🟡 Sonnet | Dashboard del alumno (Aciertómetro, racha, heatmap, temas) | 3h |
+| CC-22 | 🟡 Sonnet | Dashboard del alumno (Entrómetro, racha, heatmap, temas) | 3h |
 
 > **🚀 EARLY BIRD — 1 octubre 2026.** Requiere: landing + Stripe EB + diagnóstico + ~300 reactivos UNAM. Todo listo tras S3-S4.
 
@@ -280,7 +280,7 @@ OBJETIVO: Crear el schema de Prisma y ejecutar la migración inicial.
 TAREAS:
 1. Copia el schema.prisma completo del documento a /prisma/schema.prisma
 2. Configura DATABASE_URL y DIRECT_URL desde .env
-3. Ejecuta: npx prisma migrate dev --name acierta_init
+3. Ejecuta: npx prisma migrate dev --name yaentre_init
 4. Ejecuta: npx prisma generate
 5. Crea los índices parciales SQL de la sección 6 del doc como migración manual
 
@@ -326,7 +326,7 @@ CRITERIOS DE ACEPTACIÓN:
 CONTEXTO: Lee /docs/TRD_Acierta_v1.0.md (§7 motor determinista) — contiene
 las funciones de referencia. Enfoque DETERMINISTA, sin ML ni IA en runtime.
 
-OBJETIVO: Implementar WeakTopics, selección adaptativa y el Aciertómetro.
+OBJETIVO: Implementar WeakTopics, selección adaptativa y el Entrómetro.
 
 TAREAS:
 1. computeTopicHitRate + isWeakTopic (umbral 0.60, mín 3 intentos)
@@ -463,6 +463,6 @@ setup  contenido diag │  sim   parental QA  polish   LAUNCH
 
 ---
 
-*Fin del documento · Plan de Implementación Acierta v1.0*
+*Fin del documento · Plan de Implementación YaEntre v1.0*
 *Serie completa: Estudio → Blueprint → PRD → TRD → UI/UX → Flujo de App → Backend Schema → **Plan de Implementación***
 *Próximo paso: `CLAUDE.md` en la raíz del repo + primera sesión CC-00.*

@@ -1,4 +1,4 @@
-# LAUNCH_CHECKLIST — Acierta
+# LAUNCH_CHECKLIST — YaEntre
 
 > Veredicto formal de lanzamiento (F24). Recorre **todos** los criterios de
 > `PRD_Acierta_v1.0.md §14 "Criterios de lanzamiento (Definition of Done)"`
@@ -48,10 +48,10 @@ documentos de fases pasadas.
 
 | # | Criterio (PRD §14) | Veredicto | Evidencia |
 |---|---|---|---|
-| 1.1 | Landing page de Acierta live en acierta.mx con lista de espera funcional | 🟡 **PARCIAL** | La landing (`app/(public)/page.tsx`) está construida, verificada en vivo (F10), con SEO/OG/sitemap. **No existe una "lista de espera"** — el producto pivotó a registro directo (`/registro`) con Early Bird como pricing, no como una waitlist previa; funcionalmente cubre el mismo objetivo de negocio (capturar interés temprano) mejor que una waitlist. **Falta la parte literal del criterio que sí bloquea**: la app corre en `localhost`/preview — no hay evidencia de que **acierta.mx** resuelva a un deploy real de Vercel. 🔧 Verificar: `dig acierta.mx` y confirmar que el dominio apunta al proyecto de Vercel. |
+| 1.1 | Landing page de YaEntre live en yaentre.mx con lista de espera funcional | 🟡 **PARCIAL** | La landing (`app/(public)/page.tsx`) está construida, verificada en vivo (F10), con SEO/OG/sitemap. **No existe una "lista de espera"** — el producto pivotó a registro directo (`/registro`) con Early Bird como pricing, no como una waitlist previa; funcionalmente cubre el mismo objetivo de negocio (capturar interés temprano) mejor que una waitlist. **Falta la parte literal del criterio que sí bloquea**: la app corre en `localhost`/preview — no hay evidencia de que **yaentre.mx** resuelva a un deploy real de Vercel. 🔧 Verificar: `dig yaentre.mx` y confirmar que el dominio apunta al proyecto de Vercel. |
 | 1.2 | Stripe: Early Bird Price IDs activos con `max_redemptions: 500` | 🟡 **PARCIAL** | El límite de 500 licencias SÍ está implementado y probado en vivo (F9: `EARLY_BIRD_LICENSE_LIMIT=500`, `resolveEffectiveSeason`/`degradeIfEarlyBirdExhausted`, verificado con fixture 500→499) — pero a nivel de **aplicación** (cuenta suscripciones ACTIVE en DB), no como un campo nativo `max_redemptions` de Stripe (que además no es un campo de `Price` en la API real de Stripe, sino de `Coupon`/`PromotionCode` — el PRD lo describe de forma imprecisa; la intención de negocio SÍ está cubierta). **Bloqueador real**: `STRIPE_SECRET_KEY`/`STRIPE_WEBHOOK_SECRET` son placeholders (`docs/VALIDACION_INFRA.md`, sin cambios desde F1) — los Price IDs reales de Stripe **nunca se han creado** (`pnpm stripe:setup-prices` está listo pero no se ha corrido con una key real). 🔴 Depende de: Ángel (dueño) — cuenta de Stripe real + llaves. |
 | 1.3 | Diagnóstico inicial funcional con ≥ 300 reactivos UNAM Área 1 | 🔴 **PENDIENTE** | Verificado en vivo contra Supabase real: UNAM Área 1 ("Ciencias Físico-Matemáticas y las Ingenierías") tiene **183 reactivos servibles verificados**, no 300. El diagnóstico en sí funciona correctamente (F7, probado en vivo) — el déficit es de **contenido**, no de código. 🔴 Depende de: pipeline de contenido (ver §5 de este documento). |
-| 1.4 | Pantalla de resultados del diagnóstico con Aciertómetro básico | ✅ **CUMPLIDO** | F7, verificado en vivo contra Supabase real (score, Aciertómetro, gap vs. meta, 3 temas prioritarios, mensaje de Tino). `pnpm test:unit` cubre `predictScore`/`computeCareerStrategy`. |
+| 1.4 | Pantalla de resultados del diagnóstico con Entrómetro básico | ✅ **CUMPLIDO** | F7, verificado en vivo contra Supabase real (score, Entrómetro, gap vs. meta, 3 temas prioritarios, mensaje de Tino). `pnpm test:unit` cubre `predictScore`/`computeCareerStrategy`. |
 | 1.5 | Auth: registro, login, perfil funcionales | ✅ **CUMPLIDO** | F5/F17, verificado en vivo con cuentas reales contra Supabase real: registro con verificación diferida, login, recuperación de contraseña, perfil completo (nombre, avatar, tema, contraseña, notificaciones, exportar datos, eliminar cuenta). |
 | 1.6 | Compra de Early Bird Pase ($499) funcional con tarjeta y OXXO | 🟡 **PARCIAL** | La lógica de pago está construida y probada exhaustivamente: webhook idempotente con los 4 casos exigidos (F8), 9 tests contra el Route Handler real firmando payloads con la utilidad oficial de Stripe (F19), reconciliación de pagos perdidos (F22). **Nunca se ha ejecutado un cobro real de $499 contra una cuenta de Stripe en modo test o live** — mismo bloqueador que 1.2 (llaves placeholder). El *código* de la compra está listo apenas haya llaves reales; el *flujo end-to-end contra Stripe real* no se puede marcar cumplido sin ellas. |
 
@@ -65,7 +65,7 @@ documentos de fases pasadas.
 |---|---|---|---|
 | 2.1 | Simulador completo funcional: 120 reactivos, 180 min, fullscreen, sin retroceso | ✅ **CUMPLIDO** | F12, verificado en vivo (UNAM Ingeniería en Computación): 120 `SessionAnswer` pre-creadas, límite 10800s, fullscreen con degradación graciosa, cero botón "Anterior" (garantía estructural — Zustand solo expone `advance()`). Cubierto además por Playwright E2E (F19): no-filtración de respuesta correcta interceptando tráfico de red real, imposibilidad de regresar verificada en 3 puntos. |
 | 2.2 | ≥ 800 reactivos verificados distribuidos en UNAM Áreas 1-3 | 🔴 **PENDIENTE** | Verificado en vivo: **309 reactivos** en Áreas 1-2 únicamente (183 + 126). **Área 3 (Ciencias Sociales) tiene 0 reactivos servibles.** 38.6% del volumen mínimo, en 2 de las 3 áreas requeridas. |
-| 2.3 | Dashboard del alumno completo con todos los widgets | ✅ **CUMPLIDO** | F11, verificado en vivo con fixture real: Aciertómetro, racha, mapa de calor 90 días, temas a reforzar, simulacros recientes, todos los widgets del PRD §7 F-05. |
+| 2.3 | Dashboard del alumno completo con todos los widgets | ✅ **CUMPLIDO** | F11, verificado en vivo con fixture real: Entrómetro, racha, mapa de calor 90 días, temas a reforzar, simulacros recientes, todos los widgets del PRD §7 F-05. |
 | 2.4 | Resolución por capas (Capas 1-2) en ≥ 80% del banco | ✅ **CUMPLIDO** (para el banco existente) | Verificado en vivo: **100% de los 380 reactivos generados** (309 servibles + 71 no publicados) tienen Capas 1-3 completas, no solo 1-2. **Advertencia honesta**: este 100% es sobre un banco que en sí mismo es 20.6% del tamaño requerido para lanzamiento — cumplir la *proporción* de capas no compensa el déficit de *volumen* (criterio 2.2 / 5.1). |
 | 2.5 | Reclutamiento de 100 beta testers activos | 🔴 **PENDIENTE** | `docs/BETA_FEEDBACK.md` (creado en F23) está vacío — no existe ningún registro de beta testers reclutados ni retroalimentación real recibida. Acción 100% de negocio/marketing, no de código. |
 
@@ -102,7 +102,7 @@ Instrumentación completa y verificada en vivo:
   - `CompleteRegistration` — al terminar el registro (`SignupConversionTracker.tsx`, vía marcador `?signup=1` en el redirect de `signUpAction`, porque un Server Action que redirige en su rama de éxito no puede devolverle datos al cliente).
   - `InitiateCheckout` — al iniciar el pago (`ChoosePlanButton`/`RetryButton`), con valor estimado y plan.
   - `Purchase` — al confirmarse la compra (`SuccessView`, pantalla de agradecimiento), con el **valor REAL** tomado del `Payment` que el webhook de Stripe ya confirmó (nunca un estimado) y el plan.
-- **Respetan el consentimiento de cookies** (F21): `loadAdPixels()`/`trackAdPixelEvent()` verifican `localStorage['acierta-cookies-consent'] === 'true'` antes de inyectar cualquier script o disparar cualquier evento — verificado que rechazar cookies deja ambos píxeles sin cargar.
+- **Respetan el consentimiento de cookies** (F21): `loadAdPixels()`/`trackAdPixelEvent()` verifican `localStorage['yaentre-cookies-consent'] === 'true'` antes de inyectar cualquier script o disparar cualquier evento — verificado que rechazar cookies deja ambos píxeles sin cargar.
 - **Atribución de campaña persistente**: `proxy.ts` captura `utm_source/medium/campaign/content/term` + `fbclid/ttclid/gclid` de la PRIMERA visita (cualquier ruta, cookie httpOnly de 90 días, nunca se sobreescribe — verificado en vivo con `curl`: primera visita con UTMs → `Set-Cookie`; segunda visita con UTMs distintos → sin `Set-Cookie`, se conserva la original) y `signUpAction` la persiste en `UserProfile.acquisitionSource` (JSON, solo al crear el perfil) para poder atribuir **cualquier compra futura** al canal de origen, no solo el registro.
 - **Página de agradecimiento optimizada** (`SuccessView`): copy reforzando el valor específico del plan comprado + lista concreta de "qué sigue" (personalizada por plan — simulacro gratis ilimitado, vinculación de tutor, garantía activa) + CTA única al tablero.
 - **CSP actualizada** (`next.config.ts`): dominios de Meta/TikTok se agregan a `script-src`/`connect-src`/`img-src` SOLO si el ID correspondiente está configurado — verificado que la CSP no incluye dominios de terceros que el sitio nunca carga.
@@ -141,7 +141,7 @@ Tabla de estado real (verificado en vivo contra Supabase, `fumluvvzskhdxcyljbmx`
 | Lighthouse mobile | ≥85 | 🟡 Solo landing (87); dashboard (81) y práctica (78) no alcanzan — ver 3.6 |
 | Uptime SLA | ≥99.5% | 🔧 No medible antes de tener tráfico real de producción |
 | RLS en todas las tablas | Ninguna tabla expuesta sin política | ✅ Verificado en vivo (F22): 28/28 tablas con RLS, 23/23 pruebas de aislamiento pasando, además `REVOKE` de escritura directa vía PostgREST para `anon`/`authenticated` (hallazgo crítico de F22, corregido) |
-| Datos de pago | Stripe nunca almacena tarjeta en Acierta | ✅ Verificado por diseño — Acierta nunca ve ni guarda datos de tarjeta, solo IDs de Stripe |
+| Datos de pago | Stripe nunca almacena tarjeta en YaEntre | ✅ Verificado por diseño — YaEntre nunca ve ni guarda datos de tarjeta, solo IDs de Stripe |
 | HTTPS forzado | Toda la plataforma | ✅ `Strict-Transport-Security` activo (F22); Vercel fuerza HTTPS por defecto |
 | Aviso de privacidad LFPDPPP | Antes del registro | 🟡 Publicado, pero con datos de relleno de la empresa sin completar — ver 3.10 |
 | Contraste WCAG AA | Nivel AA mínimo | ✅ Barrido completo en F18 (medido con fórmula WCAG real, corregidos los tokens de light mode que fallaban) |
@@ -154,7 +154,7 @@ Tabla de estado real (verificado en vivo contra Supabase, `fumluvvzskhdxcyljbmx`
 
 Todo lo siguiente está construido, probado en vivo contra Supabase real, y no tiene pendientes de código:
 
-- Motor adaptativo determinista (Aciertómetro, selector, estrategia de carrera) — F6, con caso de referencia exacto verificado bit a bit.
+- Motor adaptativo determinista (Entrómetro, selector, estrategia de carrera) — F6, con caso de referencia exacto verificado bit a bit.
 - Simulador fiel al examen oficial, con garantía estructural de no-filtración de respuestas verificada por interceptación de red real — F12/F19.
 - Motor de sesiones, scoring 100% server-side — F2/F6/F12.
 - Pagos con webhook idempotente, garantía de que el acceso SOLO se activa por webhook — F8/F19, más job de reconciliación para webhooks perdidos — F22.
@@ -182,7 +182,7 @@ Todo lo siguiente está construido, probado en vivo contra Supabase real, y no t
 ### 🟡 Importantes, no bloqueantes de código pero sí de negocio
 
 6. Configurar `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID` reales y lanzar/aprobar las campañas en Meta Ads Manager y TikTok Ads Manager (infraestructura de rastreo ya lista, F24).
-7. Confirmar que `acierta.mx` resuelve al deploy real de Vercel.
+7. Confirmar que `yaentre.mx` resuelve al deploy real de Vercel.
 8. Activar credenciales reales de Sentry/PostHog para tener observabilidad real desde el día 1 (hoy inertes por placeholders).
 9. Re-medir Lighthouse Performance (dashboard/práctica) contra el deploy de producción real, no contra este entorno de desarrollo — el TTFB debería mejorar al estar Vercel+Supabase co-ubicados.
 10. Activar "Leaked Password Protection" en Supabase Dashboard → Authentication → Policies (pendiente heredado de F22).

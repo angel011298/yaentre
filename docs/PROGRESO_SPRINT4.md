@@ -1,4 +1,4 @@
-# PROGRESO SPRINT 4 — Acierta
+# PROGRESO SPRINT 4 — YaEntre
 
 > **Nota de secuencia:** este archivo arranca directo en CC-25 porque la tarea
 > llegó fuera de orden — el plan (`08_Plan_Implementacion.md`) ubica esta
@@ -28,7 +28,7 @@ ver nota de secuencia arriba.
 ### Objetivo
 
 Dejar que un aspirante practique con el examen muestra **oficial** de su
-institución (el PDF real que UNAM/IPN/UAM publican) sin que Acierta
+institución (el PDF real que UNAM/IPN/UAM publican) sin que YaEntre
 reproduzca esas preguntas como contenido interactivo propio — puro
 enlace/embed con atribución, cero riesgo de propiedad intelectual.
 
@@ -38,11 +38,11 @@ enlace/embed con atribución, cero riesgo de propiedad intelectual.
   atribución: institución, nivel, año, "material oficial de uso público").
 - **`/app/examen-oficial/[externalRef]`** — detalle: copy de atribución
   exacto pedido por la tarea ("Este es el examen muestra oficial publicado
-  por [institución]. Acierta te lo acerca; el material es propiedad de
+  por [institución]. YaEntre te lo acerca; el material es propiedad de
   [institución]."), el PDF embebido en un `<iframe>` con fallback "Abrir en
   una pestaña nueva ↗", y CTA al simulador.
 - **CTA de valor propio** en ambas pantallas: "¿Quieres practicar ilimitado
-  con reactivos del mismo nivel? → Hacer un simulacro Acierta" enlazando a
+  con reactivos del mismo nivel? → Hacer un simulacro YaEntre" enlazando a
   `/simulador` (ruta que construirá la sesión del simulador; no se fabricó
   una página falsa).
 - **Un link visible** desde el dashboard placeholder actual (`app/(app)/app/page.tsx`,
@@ -126,7 +126,7 @@ de licencia dudosa.
 - ✅ Cero preguntas oficiales recapturadas como contenido de la app — solo
   enlace/embed del documento original.
 - ✅ Atribución visible e inequívoca en cada pantalla.
-- ✅ Conecta con el simulador Acierta como siguiente paso, en ambas pantallas.
+- ✅ Conecta con el simulador YaEntre como siguiente paso, en ambas pantallas.
 - ✅ TODO-LEGAL documentado en código y aquí para la variante nativa futura.
 - ✅ No se modificó `prisma/schema.prisma` de forma estructural (solo un
   comentario aclaratorio en un campo existente, sin migración).

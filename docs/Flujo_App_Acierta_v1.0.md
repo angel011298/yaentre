@@ -1,9 +1,9 @@
-# Flujo de la App — Acierta
+# Flujo de la App — YaEntre
 ## Application Flow & User Journeys · v1.0
 
 | Campo | Detalle |
 |---|---|
-| **Producto** | Acierta (acierta.mx) |
+| **Producto** | YaEntre (yaentre.mx) |
 | **Documento** | Application Flow Specification |
 | **Versión** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |
@@ -55,7 +55,7 @@
 
 ```
 PÚBLICO (sin sesión)
-├── ▢ Landing (acierta.mx)                    [light mode]
+├── ▢ Landing (yaentre.mx)                    [light mode]
 ├── ▢ Precios / Planes
 ├── ▢ Registro
 └── ▢ Login
@@ -149,7 +149,7 @@ Todo usuario existe en exactamente uno de estos estados. El estado determina qu�
 
 ## 5. Flujo de onboarding y diagnóstico
 
-Primera experiencia dentro de la cuenta. Objetivo: que el usuario salga con un `LearningProfile` y su primer Aciertómetro en ≤ 50 minutos.
+Primera experiencia dentro de la cuenta. Objetivo: que el usuario salga con un `LearningProfile` y su primer Entrómetro en ≤ 50 minutos.
 
 ```
 ▢ Onboarding — Paso 1: ¿Qué examen vas a presentar?
@@ -174,7 +174,7 @@ Primera experiencia dentro de la cuenta. Objetivo: que el usuario salga con un `
        [caso límite: puede posponerse 1 vez → va a dashboard con estado "diagnóstico pendiente"]
    → ⚙ al finalizar: computa WeakTopics + predictedScore inicial
    → ▢ Resultados del diagnóstico
-       ├── Aciertómetro inicial (animado)
+       ├── Entrómetro inicial (animado)
        ├── comparación vs meta de carrera
        ├── top 3 temas a reforzar
        └── [🦉 Tino recomienda por dónde empezar]
@@ -188,7 +188,7 @@ Primera experiencia dentro de la cuenta. Objetivo: que el usuario salga con un `
 |---|---|
 | Abandona a mitad del onboarding | Al volver, retoma en el `onboardingStep` guardado |
 | Pospone el diagnóstico | Dashboard muestra card destacada "Completa tu diagnóstico" hasta que lo haga |
-| Cambia de carrera después | Ajustes → cambiar meta → Aciertómetro se recalcula contra la nueva meta |
+| Cambia de carrera después | Ajustes → cambiar meta → Entrómetro se recalcula contra la nueva meta |
 | Examen no disponible (feature flag off) | No aparece en la lista; si llega por deep link, mensaje "Disponible próximamente" |
 | Cierra la app durante el diagnóstico | La sesión queda abierta; al volver ofrece "Continuar diagnóstico" |
 
@@ -203,7 +203,7 @@ El ciclo que buscamos que el alumno repita cada día durante su preparación.
         │                                           │
         ▼                                           │
    ▢ Dashboard                                      │
-     ├── ve Aciertómetro + racha + días al examen   │
+     ├── ve Entrómetro + racha + días al examen   │
      ├── [🦉 Tino sugiere el foco del día]          │
      │                                              │
      ├──▶ "Reforzar Química" (tema débil)           │
@@ -307,7 +307,7 @@ Este flujo integra la decisión clave: **el usuario FREE puede hacer 1 simulacro
       ├── PerfectRoundReveal si ≥ 90%
       ├── desglose por área/materia
       ├── tiempo promedio por pregunta
-      ├── Aciertómetro actualizado
+      ├── Entrómetro actualizado
       ├── percentil vs otros usuarios del mismo ciclo
       └── ▶ "Ver preguntas falladas" → resolución por capas
   → ⤴ Dashboard
@@ -339,7 +339,7 @@ Este flujo integra la decisión clave: **el usuario FREE puede hacer 1 simulacro
 | Drill (reactivos) | 10 reactivos/día | Metered: "Llegaste a tu práctica de hoy. Vuelve mañana o desbloquea ilimitado." |
 | Resolución por capas | Solo Capa 1 | Paywall: "Desbloquea el paso a paso y el concepto base." |
 | Dashboard parental | ❌ (requiere Pase+) | Paywall en el flujo de vinculación |
-| Aciertómetro | ❌ (solo tras 1er simulacro) | Se muestra bloqueado con "Desbloquéalo con tu plan" |
+| Entrómetro | ❌ (solo tras 1er simulacro) | Se muestra bloqueado con "Desbloquéalo con tu plan" |
 
 ### 9.2 Flujo del muro suave
 
@@ -463,7 +463,7 @@ CONTEXTO: julio 2027, salen resultados UNAM/IPN
        [🦉 "Ya sabes cómo es el examen. Ahora vamos por el lugar."]
 ```
 
-> **Ventaja de retención:** el `LearningProfile` histórico del usuario se conserva, así que su segunda preparación arranca sabiendo exactamente dónde falló. Es un motivo tangible para volver a Acierta en vez de empezar de cero en otro lado.
+> **Ventaja de retención:** el `LearningProfile` histórico del usuario se conserva, así que su segunda preparación arranca sabiendo exactamente dónde falló. Es un motivo tangible para volver a YaEntre en vez de empezar de cero en otro lado.
 
 ---
 
@@ -560,7 +560,7 @@ ANON → REGISTERED_UNVERIFIED → FREE → PAID → PAID_EXPIRED → (PAID otra
 | **Contenido** | Reactivo con error reportado | Botón "Reportar"; ≥3 reportes → revisión admin; se puede ocultar |
 | **Contenido** | Feature flag off (UAM/EXANI) | No aparece; deep link muestra "Próximamente" |
 | **Datos** | Diagnóstico sin completar | Dashboard degradado; card "Completa tu diagnóstico" |
-| **Datos** | Aciertómetro sin datos suficientes | Muestra "Haz tu diagnóstico para ver tu predicción" |
+| **Datos** | Entrómetro sin datos suficientes | Muestra "Haz tu diagnóstico para ver tu predicción" |
 | **Parental** | Código expirado | "Pide un código nuevo a tu hijo" |
 | **Límite** | FREE agota simulacro y drill diario | Paywall suave + "Vuelve mañana" (nunca bloqueo total del producto) |
 
@@ -629,7 +629,7 @@ Funnel de conversión:
 
 Retención / gamificación:
   streak_milestone (days) → materia_dominada (subject)
-  → aciertometro_increased (delta)
+  → entrometro_increased (delta)
 
 Parental:
   parent_code_generated → parent_registered → parent_linked
@@ -640,5 +640,5 @@ Cada evento alimenta el análisis de dónde cae el funnel y qué features correl
 
 ---
 
-*Fin del documento · Flujo de la App Acierta v1.0*
+*Fin del documento · Flujo de la App YaEntre v1.0*
 *Serie: Estudio → Blueprint → PRD → TRD → UI/UX → **Flujo de App** → Backend Schema → Plan de Implementación*

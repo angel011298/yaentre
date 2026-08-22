@@ -1,4 +1,4 @@
-# PROGRESO SPRINT 1 — Acierta
+# PROGRESO SPRINT 1 — YaEntre
 
 Sprint 0 (fundación) quedó cerrado con CC-00 → CC-04 (ver `PROGRESO_SPRINT0.md`).
 Sprint 1 arranca con el pipeline de contenido, la dependencia crítica no técnica

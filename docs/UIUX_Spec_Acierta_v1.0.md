@@ -1,9 +1,9 @@
-# UI/UX Specification — Acierta
+# UI/UX Specification — YaEntre
 ## Design System & Interaction Spec · v1.0
 
 | Campo | Detalle |
 |---|---|
-| **Producto** | Acierta (acierta.mx) |
+| **Producto** | YaEntre (yaentre.mx) |
 | **Documento** | UI/UX Specification |
 | **Versión** | 1.0 |
 | **Fecha** | 9 de julio de 2026 |
@@ -34,7 +34,7 @@
 
 ## 1. Principios de diseño
 
-La dirección de Acierta se aparta del "techy minimalista" (Linear/Vercel) hacia un territorio **cálido y gamificado (Duolingo/Brilliant)**. La razón es estratégica: el usuario primario tiene 15-22 años, estudia bajo estrés y necesita que la app se sienta como un aliado motivador, no como una herramienta corporativa fría.
+La dirección de YaEntre se aparta del "techy minimalista" (Linear/Vercel) hacia un territorio **cálido y gamificado (Duolingo/Brilliant)**. La razón es estratégica: el usuario primario tiene 15-22 años, estudia bajo estrés y necesita que la app se sienta como un aliado motivador, no como una herramienta corporativa fría.
 
 | # | Principio | Qué significa en la práctica |
 |---|---|---|
@@ -51,7 +51,7 @@ La dirección de Acierta se aparta del "techy minimalista" (Linear/Vercel) hacia
 
 ### 2.1 La mascota: "Tino" el tecolote
 
-> **Decisión de identidad:** Acierta tiene una mascota — un **tecolote** (búho mexicano) llamado **Tino**.
+> **Decisión de identidad:** YaEntre tiene una mascota — un **tecolote** (búho mexicano) llamado **Tino**.
 
 **Por qué un tecolote y no un búho genérico:** el tecolote es el búho mexicano, profundamente arraigado en la cultura ("el tecolote canta" en el arrullo tradicional). Nos ancla al mercado nacional y nos diferencia del búho verde de Duolingo con una identidad propia y local.
 
@@ -84,7 +84,7 @@ La dirección de Acierta se aparta del "techy minimalista" (Linear/Vercel) hacia
 ### 2.2 Logo y símbolo
 
 - **Símbolo primario:** un checkmark (✓) integrado en la contraforma, evocando "acierto". Puede combinarse sutilmente con la silueta de Tino.
-- **Wordmark:** "Acierta" en Outfit Bold, con el punto de la "i" como un pequeño checkmark o destello.
+- **Wordmark:** "YaEntre" en Outfit Bold, con el punto de la "i" como un pequeño checkmark o destello.
 - **Espacio de reserva (clear space):** mínimo = altura de la "A" alrededor del logo.
 
 ---
@@ -171,7 +171,7 @@ La paleta conserva el **violeta de marca** del blueprint pero se calibra hacia u
 
 | Clase | Fuente | Tamaño / Line-height | Peso | Uso |
 |---|---|---|---|---|
-| `display-xl` | Outfit | 48px / 1.1 | 800 | Score hero, número del Aciertómetro |
+| `display-xl` | Outfit | 48px / 1.1 | 800 | Score hero, número del Entrómetro |
 | `display` | Outfit | 36px / 1.15 | 700 | Títulos de pantalla |
 | `heading-1` | Outfit | 28px / 1.2 | 700 | Encabezados de sección |
 | `heading-2` | Outfit | 20px / 1.3 | 600 | Subtítulos, títulos de tarjeta |
@@ -207,7 +207,7 @@ space-3 = 12px   space-6 = 24px    space-12 = 48px
 | `radius-2xl` | 32px | Contenedores hero |
 | `radius-full` | 9999px | Avatares, badges circulares, pills |
 
-> **Los radios generosos son la firma del look amigable.** Un botón con `radius-md` (12px) se siente accesible y suave; un botón con 4px se siente corporativo. Acierta usa radios grandes consistentemente.
+> **Los radios generosos son la firma del look amigable.** Un botón con `radius-md` (12px) se siente accesible y suave; un botón con 4px se siente corporativo. YaEntre usa radios grandes consistentemente.
 
 ### Elevación (sombras suaves, no duras)
 
@@ -264,7 +264,7 @@ Componentes base del sistema. Cada uno se implementa como componente React reuti
 | Variante | Uso |
 |---|---|
 | `Card/Base` | Contenedor genérico, `radius-lg`, `bg-surface` |
-| `Card/Stat` | Métrica del dashboard (Aciertómetro, racha) |
+| `Card/Stat` | Métrica del dashboard (Entrómetro, racha) |
 | `Card/Area` | Selección de área con color e ícono |
 | `Card/Question` | Contenedor de reactivo en drill |
 | `Card/Result` | Resultado de simulacro |
@@ -296,7 +296,7 @@ Disabled:   opacidad reducida (durante feedback)
 | Componente | Descripción | Referencia |
 |---|---|---|
 | `StreakFlame` | Contador de racha con llama animada | Blueprint §3.3 Animación 1 |
-| `Aciertometro` | Anillo de progreso circular con predicción de aciertos | Componente estrella del dashboard |
+| `Entrometro` | Anillo de progreso circular con predicción de aciertos | Componente estrella del dashboard |
 | `MateriaDominadaModal` | Modal celebratorio con card-flip | Blueprint §3.3 Animación 3 |
 | `PerfectRoundReveal` | Anillo de score con celebración | Blueprint §3.3 Animación 2 |
 | `HeatmapCalendar` | Mapa de actividad estilo GitHub | Dashboard alumno y parental |
@@ -319,14 +319,14 @@ Disabled:   opacidad reducida (durante feedback)
 
 ```
 ┌─────────────────────────────────────────────┐
-│  Acierta          🔥 7        [avatar] ☀️/🌙  │  ← TopBar
+│  YaEntre          🔥 7        [avatar] ☀️/🌙  │  ← TopBar
 ├─────────────────────────────────────────────┤
 │                                               │
 │   ¡Hola, Diana! 👋                            │
 │   Faltan 43 días para tu examen               │
 │                                               │
 │   ┌───────────────────────────────────────┐  │
-│   │        ACIERTÓMETRO                     │  │
+│   │        ENTRÓMETRO                     │  │
 │   │     ╭───────────╮                       │  │
 │   │     │    87      │  ↑ +5 esta semana    │  │  ← Card/Stat (hero)
 │   │     │  aciertos  │                       │  │
@@ -416,7 +416,7 @@ Disabled:   opacidad reducida (durante feedback)
 
 ```
 ┌─────────────────────────────────────────────┐
-│  Acierta · Panel de Diana        [☀️ light]   │
+│  YaEntre · Panel de Diana        [☀️ light]   │
 ├─────────────────────────────────────────────┤
 │                                               │
 │   Diana lleva 🔥 7 días estudiando sin parar  │
@@ -487,7 +487,7 @@ Referencia técnica completa: Blueprint §3.3 (StreakFlame, PerfectRound, Materi
 | Streak flame | Extender racha | 700ms | `StreakFlame` |
 | Perfect round | Score ≥ 90% | 1200ms | `PerfectRoundReveal` |
 | Materia dominada | hitRate ≥ 0.85 en materia | 1400ms | `MateriaDominadaModal` (card-flip) |
-| Aciertómetro update | Recálculo de predicción | 1000ms | Anillo + número animado (`@number-flow`) |
+| Entrómetro update | Recálculo de predicción | 1000ms | Anillo + número animado (`@number-flow`) |
 | Tino reaction | Contextos de logro/vacío | 600ms | `TinoReaction` (bounce sutil) |
 | Page transition | Navegación entre pantallas | 250ms | Fade + slide sutil |
 
@@ -605,6 +605,6 @@ export default {
 
 ---
 
-*Fin del documento · UI/UX Specification Acierta v1.0*
+*Fin del documento · UI/UX Specification YaEntre v1.0*
 *Acompaña a este documento: mockup HTML navegable de las pantallas hero (Dashboard + Simulador)*
 *Serie: Estudio → Blueprint → PRD → TRD → **UI/UX** → Flujo de App → Backend Schema → Plan de Implementación*

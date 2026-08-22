@@ -10,7 +10,7 @@
 
 ## 0. Decisión de cuenta (G6)
 
-**Cuenta de Stripe separada y dedicada a Acierta**, no la cuenta existente
+**Cuenta de Stripe separada y dedicada a YaEntre**, no la cuenta existente
 del dueño (si la tiene, para otro proyecto). Razones:
 
 - **Contabilidad y depósitos limpios por proyecto**: los payouts de Stripe
@@ -19,7 +19,7 @@ del dueño (si la tiene, para otro proyecto). Razones:
   corresponde a qué producto.
 - **Radio de blast separado**: una suspensión, disputa o revisión de riesgo
   en un proyecto no afecta el procesamiento de pagos del otro.
-- **Facturación fiscal**: Acierta cobra en MXN a clientes en México (tarjeta,
+- **Facturación fiscal**: YaEntre cobra en MXN a clientes en México (tarjeta,
   OXXO, SPEI); si el otro proyecto tiene otra moneda/país, mezclar cuentas
   complica el registro fiscal.
 - **Costo de la separación es cero**: Stripe no cobra por tener múltiples
@@ -40,7 +40,7 @@ El pipeline de código ya está listo (`scripts/setup-stripe-prices.ts`,
 prueba**, que ninguna sesión automatizada puede generar (crear una cuenta o
 generar credenciales no es algo que se automatice aquí).
 
-1. **Crea la cuenta de Stripe** (si no existe una dedicada a Acierta):
+1. **Crea la cuenta de Stripe** (si no existe una dedicada a YaEntre):
    [dashboard.stripe.com/register](https://dashboard.stripe.com/register).
    No requiere verificación de identidad ni datos bancarios todavía — eso
    solo se pide al activar modo real (sección 2).
@@ -112,12 +112,12 @@ ante Stripe. Pasos exactos:
    - CLABE interbancaria de la cuenta donde quieres recibir los depósitos.
    - Identificación oficial vigente (INE/pasaporte) para verificación de
      identidad del representante.
-   - Descripción del negocio/producto (Acierta: plataforma educativa de
+   - Descripción del negocio/producto (YaEntre: plataforma educativa de
      preparación para examen de admisión).
 3. Confirma que **OXXO** y **SPEI** están habilitados como métodos de pago
    para MXN: Configuración → Métodos de pago. Por default para cuentas
    mexicanas suelen venir disponibles, pero verifícalo — el checkout de
-   Acierta (F8) los usa para pase/premium.
+   YaEntre (F8) los usa para pase/premium.
 4. Stripe revisa la solicitud (usualmente minutos a un par de días hábiles).
    Mientras está "en revisión", el modo de prueba sigue funcionando sin
    límite — no bloquea nada de lo de arriba.
@@ -179,7 +179,7 @@ ante Stripe. Pasos exactos:
 
 Hoy el webhook (prueba y, cuando lo actives, live) apunta a
 `https://acierta.vercel.app/api/webhooks/stripe` porque el dominio propio
-(`acierta.mx` u otro, la decisión de nombre sigue abierta) todavía no está
+(`yaentre.mx` u otro, la decisión de nombre sigue abierta) todavía no está
 comprado. **Cuando el dominio se conecte a Vercel:**
 
 1. Crea un webhook NUEVO apuntando a `https://<tu-dominio>/api/webhooks/stripe`

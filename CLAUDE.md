@@ -1,13 +1,13 @@
-# CLAUDE.md — Acierta
+# CLAUDE.md — YaEntre
 
 > Contexto permanente del proyecto para todas las sesiones de Claude Code.
 > Léelo completo antes de cualquier tarea. La documentación de detalle vive en `/docs`.
 
 ---
 
-## Qué es Acierta
+## Qué es YaEntre
 
-**Acierta** (acierta.mx) es una plataforma SaaS web/PWA de preparación autogestionable para los exámenes de admisión **en línea** de la UNAM, IPN, UAM y CENEVAL (EXANI II), niveles Medio Superior y Superior. El diferenciador central es un **simulador fiel del entorno del examen en línea** + un **motor adaptativo determinista** (diagnóstico → ruta personalizada → Aciertómetro que predice aciertos). Público: aspirantes de 15-22 años (usuario) y sus padres (pagador). **Launch: 6 de enero de 2027.**
+**YaEntre** (yaentre.mx) es una plataforma SaaS web/PWA de preparación autogestionable para los exámenes de admisión **en línea** de la UNAM, IPN, UAM y CENEVAL (EXANI II), niveles Medio Superior y Superior. El diferenciador central es un **simulador fiel del entorno del examen en línea** + un **motor adaptativo determinista** (diagnóstico → ruta personalizada → Entrómetro que predice aciertos). Público: aspirantes de 15-22 años (usuario) y sus padres (pagador). **Launch: 6 de enero de 2027.**
 
 Fase 1 es 100% autogestionable (sin profesores ni clases en vivo). La arquitectura deja lista la Fase 2 (video, livestream, notas de profesor) **inactiva** (`ContentStatus.INACTIVE`).
 
@@ -91,7 +91,7 @@ Estas decisiones vienen del TRD. **No las contradigas sin instrucción explícit
 
 - El schema completo está en `/docs/Backend_Schema_Acierta_v1.0.md`.
 - Taxonomía dinámica: Institución → Área → Materia → Tema es **data (seed)**, no código.
-- `Subject.questionWeight` = # de reactivos esperados de esa materia en el examen real. Es el input del Aciertómetro.
+- `Subject.questionWeight` = # de reactivos esperados de esa materia en el examen real. Es el input del Entrómetro.
 - `Question.isVerified`: ningún reactivo con `false` es visible para usuarios. El pipeline de IA inserta `false`; el admin lo pasa a `true`.
 - **Nunca borrar reactivos con respuestas históricas** (rompe el aprendizaje). Despublicar con `isVerified=false`.
 - El `LearningProfile` sobrevive entre ciclos (clave para re-engagement de rechazados).
@@ -193,7 +193,7 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 │   ├── components/
 │   │   ├── ui/               ← botones, tarjetas, inputs
 │   │   ├── exam/             ← QuestionCard, OptionButton, Timer, ...
-│   │   ├── gamification/     ← StreakFlame, Aciertometro, Tino, ...
+│   │   ├── gamification/     ← StreakFlame, Entrometro, Tino, ...
 │   │   └── mascot/           ← Tino SVG + estados
 │   ├── lib/
 │   │   ├── db/               ← capa de acceso a datos (Prisma)
