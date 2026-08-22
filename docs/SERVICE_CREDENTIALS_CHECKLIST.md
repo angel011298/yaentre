@@ -54,17 +54,18 @@ propio, **el registro de usuarios nuevos sigue bloqueado en producción**.
    ```bash
    npx vercel env add RESEND_API_KEY production
    ```
-4. **Dominio de envío — bloqueo real sin dominio propio:** el código usa
-   `YaEntre <notificaciones@yaentre.com>` como remitente
+4. **Dominio de envío — el dominio YA está comprado, falta conectar DNS:** el
+   código usa `YaEntre <notificaciones@yaentre.com>` como remitente
    (`src/lib/email/client.ts:16`), y Resend exige verificar el dominio del
-   remitente (registros DNS) antes de poder enviar con él — no se puede
-   verificar `yaentre.com` porque **el dominio aún no se compra** (mismo
-   prerrequisito pendiente de siempre). Dos caminos mientras tanto:
+   remitente (registros DNS) antes de poder enviar con él. **`yaentre.com` se
+   compró el 21 de agosto de 2026 en Akky** (orden `20260821697888`, 1 año) —
+   lo que falta ya no es la compra sino publicar los registros SPF/DKIM que
+   Resend pide, en el panel DNS de Akky (fase R6). Dos caminos mientras tanto:
    - **Recomendado, temporal:** cambia `FROM_ADDRESS` en
      `src/lib/email/client.ts:16` a `onboarding@resend.dev` (dominio de
      pruebas de Resend, verificado automáticamente, sin límite de
-     destinatarios en el plan gratuito) hasta que se compre el dominio
-     propio — deshace este cambio cuando conectes `yaentre.com`.
+     destinatarios en el plan gratuito) hasta que el DNS de `yaentre.com`
+     esté propagado y verificado — deshace este cambio en ese momento.
    - Sin ese cambio, cualquier envío con `@yaentre.com` fallará con "domain
      not verified" — `sendEmail()` ya degrada a solo-log en ese caso (F16),
      así que no rompe nada, pero tampoco entrega correos reales.

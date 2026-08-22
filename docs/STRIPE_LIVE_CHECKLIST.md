@@ -175,12 +175,14 @@ ante Stripe. Pasos exactos:
 
 ---
 
-## 3. Recordatorio — dominio propio pendiente
+## 3. Recordatorio — dominio comprado, falta conectarlo a Vercel
 
 Hoy el webhook (prueba y, cuando lo actives, live) apunta a
-`https://acierta.vercel.app/api/webhooks/stripe` porque el dominio propio
-(`yaentre.com` u otro, la decisión de nombre sigue abierta) todavía no está
-comprado. **Cuando el dominio se conecte a Vercel:**
+`https://acierta.vercel.app/api/webhooks/stripe`, que sigue siendo la URL real
+de producción. **El dominio ya no está pendiente de compra: `yaentre.com` se
+adquirió el 21 de agosto de 2026 en Akky** (orden `20260821697888`, 1 año); lo
+que falta es apuntarlo a Vercel por DNS (fase R6). **Cuando el dominio se
+conecte a Vercel:**
 
 1. Crea un webhook NUEVO apuntando a `https://<tu-dominio>/api/webhooks/stripe`
    (test y/o live, según cuál esté activo en ese momento) — no basta con
