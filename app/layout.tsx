@@ -29,9 +29,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: "Acierta — Tu entrenador de admisión con IA",
+  title: "YaEntre — Tu entrenador de admisión con IA",
   description:
-    "Prepárate para tu examen de admisión a UNAM, IPN, UAM o CENEVAL con un simulador fiel al examen real y un Aciertómetro que predice tus aciertos.",
+    "Prepárate para tu examen de admisión a UNAM, IPN, UAM o CENEVAL con un simulador fiel al examen real y un Entrómetro que predice tus aciertos.",
   // PWA instalable (F17 tarea 1): `manifest.ts` ya se enlaza solo por
   // convención de archivo; esto cubre lo que el manifest no puede en iOS
   // (Safari ignora `display: standalone` del manifest — solo respeta estas
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Acierta",
+    title: "YaEntre",
   },
 };
 
 // Accesibilidad (UIUX Spec §12): `maximumScale` generoso (5x), NUNCA
 // `userScalable: false` — bloquear el zoom del sistema está prohibido.
 // `viewportFit: "cover"` (F18): sin esto, `env(safe-area-inset-*)` en
-// globals.css (.acierta-safe-bottom/.acierta-safe-top) siempre resuelve a 0
+// globals.css (.yaentre-safe-bottom/.yaentre-safe-top) siempre resuelve a 0
 // en iOS — es el requisito real para que la zona segura tenga efecto, junto
 // con `statusBarStyle: "black-translucent"` de arriba (F17).
 export const viewport: Viewport = {

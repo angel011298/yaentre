@@ -7,7 +7,7 @@ import {
   extractAcquisitionSource,
 } from '@/lib/marketing/attribution';
 
-// Ver docs/Flujo_App_Acierta_v1.0.md §16.1 (mapa de rutas) y §16.2 (guards).
+// Ver docs/Flujo_App_YaEntre_v1.0.md §16.1 (mapa de rutas) y §16.2 (guards).
 const AUTH_REQUIRED_PREFIXES = ['/app', '/onboarding', '/diagnostico', '/checkout', '/tutor', '/admin'];
 const VERIFIED_EMAIL_REQUIRED_PREFIXES = ['/checkout'];
 

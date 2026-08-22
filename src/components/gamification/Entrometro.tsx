@@ -2,7 +2,7 @@
 
 import NumberFlow from '@number-flow/react';
 import type { CSSProperties } from 'react';
-import type { AciertometroDisplay } from '@/lib/adaptive/aciertometro';
+import type { EntrometroDisplay } from '@/lib/adaptive/entrometro';
 
 const RADIUS = 54;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -10,7 +10,7 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 interface Props {
   predictedScore: number;
   totalQuestions: number;
-  target: AciertometroDisplay;
+  target: EntrometroDisplay;
   gap: number | null;
   /** Cambio vs. una línea base anterior (F11: hace una semana; F13: antes de
    *  esta sesión). `null`/omitido = sin línea base todavía (alumno nuevo) —
@@ -24,7 +24,7 @@ interface Props {
  * Anillo de progreso circular con la predicción de aciertos (UIUX Spec §7.4,
  * §8.1). El número central es la predicción del motor adaptativo (F6), NUNCA
  * la meta de la carrera pelona — la meta siempre se presenta calificada
- * (`formatAciertometroTarget`) debajo del anillo.
+ * (`formatEntrometroTarget`) debajo del anillo.
  *
  * La animación es pura CSS (`@keyframes ring-fill` en globals.css): el
  * atributo `stroke-dashoffset` real SIEMPRE queda en el valor final correcto
@@ -33,7 +33,7 @@ interface Props {
  * hasta ese valor al aparecer en el DOM. `prefers-reduced-motion` ya lo cubre
  * la regla global `* { animation-duration: 0.01ms !important }`.
  */
-export function Aciertometro({
+export function Entrometro({
   predictedScore,
   totalQuestions,
   target,
@@ -100,14 +100,14 @@ export function Aciertometro({
 }
 
 /**
- * Estado bloqueado del Aciertómetro (F11 Task 11): un alumno FREE que aún no
+ * Estado bloqueado del Entrómetro (F11 Task 11): un alumno FREE que aún no
  * hizo su primer simulacro completo no tiene predicción real que mostrar —
  * en vez de un número inventado o "de $0", se explica cómo desbloquearlo.
  * El enlace apunta al CTA primario del propio dashboard (`#simulacro-cta`,
  * ya en la misma página) en vez de a un `/simulador` que todavía no existe
  * (F12) — evita un link muerto sin inventar una ruta que no existe.
  */
-export function AciertometroLocked() {
+export function EntrometroLocked() {
   return (
     <div className="flex flex-col items-center gap-3 py-2 text-center">
       <div className="flex h-40 w-40 items-center justify-center rounded-full border-8 border-dashed border-border-subtle">
@@ -116,7 +116,7 @@ export function AciertometroLocked() {
         </span>
       </div>
       <div className="max-w-xs">
-        <p className="font-display font-semibold text-text-primary">Tu Aciertómetro te espera</p>
+        <p className="font-display font-semibold text-text-primary">Tu Entrómetro te espera</p>
         <p className="mt-1 text-sm text-text-secondary">
           Termina tu primer simulacro completo (gratis) para desbloquear tu predicción real de
           aciertos.

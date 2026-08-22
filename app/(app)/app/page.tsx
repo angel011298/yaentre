@@ -8,15 +8,15 @@ import { RecentSimulations } from '@/components/dashboard/RecentSimulations';
 import { StartSimulationButton } from '@/components/dashboard/StartSimulationButton';
 import { TinoRecommendation } from '@/components/dashboard/TinoRecommendation';
 import { WeakTopicCard } from '@/components/dashboard/WeakTopicCard';
-import { AciertometroLoader } from '@/components/gamification/AciertometroLoader';
-import { AciertometroLocked } from '@/components/gamification/Aciertometro';
+import { EntrometroLoader } from '@/components/gamification/EntrometroLoader';
+import { EntrometroLocked } from '@/components/gamification/Entrometro';
 import { HeatmapCalendar } from '@/components/gamification/HeatmapCalendar';
 import { MasteredSubjectBadges } from '@/components/gamification/MasteredSubjectBadges';
 import { StreakRiskBanner } from '@/components/gamification/StreakRiskBanner';
 import { requireOnboarding } from '@/lib/auth/guards';
 import { computeCareerStrategy, computeWeekOverWeekDelta } from '@/lib/db/adaptive';
 import {
-  loadAciertometroAccess,
+  loadEntrometroAccess,
   loadExamCountdown,
   loadHeatmapData,
   loadRecentSimulations,
@@ -41,8 +41,8 @@ function countdownCopy(daysRemaining: number): string {
  * Dashboard del alumno (F11) — pantalla principal, punto de partida diario.
  * Server Component puro: TODA la data real se resuelve aquí en paralelo
  * (Promise.all) antes del primer render; los únicos Client Components son
- * las islas que de verdad lo necesitan (el anillo animado del Aciertómetro
- * vía `AciertometroLoader`, el heatmap SVG, y el botón de simulacro) — así
+ * las islas que de verdad lo necesitan (el anillo animado del Entrómetro
+ * vía `EntrometroLoader`, el heatmap SVG, y el botón de simulacro) — así
  * la carga inicial ya llega con datos reales, sin esperar hidratación
  * (Task 12).
  */
@@ -50,7 +50,7 @@ export default async function DashboardPage() {
   const { authUser, profile } = await requireOnboarding();
   const displayName = greetingName(profile.displayName, authUser.email);
 
-  // Sin diagnóstico, no hay Aciertómetro/temas/heatmap con sentido todavía —
+  // Sin diagnóstico, no hay Entrómetro/temas/heatmap con sentido todavía —
   // el dashboard entero se degrada a un único CTA claro (Task 10).
   if (!profile.diagnosticDone) {
     return (
@@ -60,7 +60,7 @@ export default async function DashboardPage() {
         </h1>
         <EmptyState
           title="Completa tu diagnóstico"
-          description="30 preguntas para armar tu ruta de estudio y calcular tu primer Aciertómetro. Tú decides cuándo."
+          description="30 preguntas para armar tu ruta de estudio y calcular tu primer Entrómetro. Tú decides cuándo."
           action={
             <form action={startDiagnosticAction}>
               <Button type="submit" variant="primary">
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
     weakTopics,
     recentSims,
     heatmap,
-    aciertometroAccess,
+    entrometroAccess,
     strategy,
     weekDelta,
     streakStatus,
@@ -89,7 +89,7 @@ export default async function DashboardPage() {
     loadWeakestTopics(profile.id, 3),
     loadRecentSimulations(profile.id, 3),
     loadHeatmapData(profile.id, now),
-    loadAciertometroAccess(profile.id),
+    loadEntrometroAccess(profile.id),
     computeCareerStrategy(profile.id),
     computeWeekOverWeekDelta(profile.id, now),
     loadStreakStatus(profile.id, now),
@@ -113,11 +113,11 @@ export default async function DashboardPage() {
 
       <Card className="p-6">
         <p className="mb-4 text-center text-xs font-semibold uppercase tracking-wide text-text-muted">
-          Aciertómetro
+          Entrómetro
         </p>
-        {aciertometroAccess.unlocked ? (
+        {entrometroAccess.unlocked ? (
           strategy && countdown ? (
-            <AciertometroLoader
+            <EntrometroLoader
               predictedScore={strategy.predictedScore}
               totalQuestions={countdown.totalQuestions}
               target={strategy.chosenTarget}
@@ -130,7 +130,7 @@ export default async function DashboardPage() {
             </p>
           )
         ) : (
-          <AciertometroLocked />
+          <EntrometroLocked />
         )}
       </Card>
 

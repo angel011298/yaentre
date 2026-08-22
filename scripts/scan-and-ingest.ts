@@ -69,7 +69,7 @@ async function main() {
   const repoRoot = process.cwd();
 
   console.log('═'.repeat(64));
-  console.log('🦉 Acierta — Escáner de ingesta continua de material fuente (F2b)');
+  console.log('🦉 YaEntre — Escáner de ingesta continua de material fuente (F2b)');
   console.log('═'.repeat(64));
 
   // ── 1-2. Descubrimiento + detección por hash ──

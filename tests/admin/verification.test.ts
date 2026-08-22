@@ -140,7 +140,7 @@ describe('withManualReview', () => {
 describe('parseAdminOptions / withCorrectOption', () => {
   const raw = [
     { id: 'A', text: 'Opción A', isCorrect: true },
-    { id: 'B', text: 'Opción B', isCorrect: false, imageUrl: 'https://cdn.acierta.mx/b.png' },
+    { id: 'B', text: 'Opción B', isCorrect: false, imageUrl: 'https://cdn.yaentre.mx/b.png' },
     { id: 'C', text: 'Opción C', isCorrect: false },
     { id: 'D', text: 'Opción D', isCorrect: false },
   ];
@@ -148,7 +148,7 @@ describe('parseAdminOptions / withCorrectOption', () => {
   it('parsea opciones tolerando imageUrl ausente o presente', () => {
     const options = parseAdminOptions(raw);
     expect(options).toHaveLength(4);
-    expect(options[1].imageUrl).toBe('https://cdn.acierta.mx/b.png');
+    expect(options[1].imageUrl).toBe('https://cdn.yaentre.mx/b.png');
     expect(options[0].imageUrl).toBeUndefined();
   });
 
@@ -158,7 +158,7 @@ describe('parseAdminOptions / withCorrectOption', () => {
     expect(resolved.find((o) => o.id === 'C')?.isCorrect).toBe(true);
     expect(resolved.filter((o) => o.isCorrect)).toHaveLength(1);
     // La imagen de B se preserva aunque ya no sea la correcta — no se pierde data
-    expect(resolved.find((o) => o.id === 'B')?.imageUrl).toBe('https://cdn.acierta.mx/b.png');
+    expect(resolved.find((o) => o.id === 'B')?.imageUrl).toBe('https://cdn.yaentre.mx/b.png');
   });
 
   it('withCorrectOption con un id inexistente deja CERO opciones correctas (guardrail: el caller valida existencia antes)', () => {

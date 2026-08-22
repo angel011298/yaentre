@@ -1,5 +1,5 @@
 /**
- * Motor adaptativo (F6) — Aciertómetro: predicción determinista de aciertos.
+ * Motor adaptativo (F6) — Entrómetro: predicción determinista de aciertos.
  * Lógica PURA, sin IA. Regla explícita (CLAUDE.md).
  *
  * Modelo: promedio ponderado de la tasa de acierto del alumno por materia,
@@ -12,7 +12,7 @@
  *
  * - Materias SIN datos suficientes usan un valor pesimista por defecto de 0.30
  *   (para no inflar la predicción; ver docs/ACIERTOS_MINIMOS.md, filosofía
- *   conservadora del Aciertómetro).
+ *   conservadora del Entrómetro).
  * - `confidence` = proporción de materias con datos suficientes.
  * - Se usa floor (no round): truncar es la elección conservadora, coherente con
  *   "no inflar". Es lo que hace que el caso de referencia dé EXACTAMENTE 74.

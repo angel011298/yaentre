@@ -1,5 +1,5 @@
 import type { ConfidenceLevel } from '@prisma/client';
-import { formatAciertometroTarget, type AciertometroDisplay } from './aciertometro';
+import { formatEntrometroTarget, type EntrometroDisplay } from './entrometro';
 
 /**
  * Motor adaptativo (F6) — recomendador de estrategia de carrera. Lógica PURA.
@@ -11,8 +11,8 @@ import { formatAciertometroTarget, type AciertometroDisplay } from './aciertomet
  *
  * Regla no negociable (docs/ACIERTOS_MINIMOS.md, CC-13): la meta de carrera
  * SIEMPRE se comunica calificada por su nivel de confianza, nunca como un
- * número absoluto. Por eso cada carrera se acompaña de su `AciertometroDisplay`
- * (vía formatAciertometroTarget), no de un entero pelón.
+ * número absoluto. Por eso cada carrera se acompaña de su `EntrometroDisplay`
+ * (vía formatEntrometroTarget), no de un entero pelón.
  */
 
 export const MAX_ALTERNATIVES = 3;
@@ -36,7 +36,7 @@ export interface CareerSuggestion {
   careerId: string;
   name: string;
   /** Meta presentada SIEMPRE como estimación calificada por confianza. */
-  target: AciertometroDisplay;
+  target: EntrometroDisplay;
   /** Aciertos mínimos crudos (para ordenar), null si la carrera no tiene dato. */
   minAciertos: number | null;
 }
@@ -49,7 +49,7 @@ export interface StrategyResult {
   /** meta - predicción (positivo = faltan aciertos). null si la carrera no tiene meta. */
   gap: number | null;
   /** Presentación de la meta de la carrera elegida (siempre calificada). */
-  chosenTarget: AciertometroDisplay;
+  chosenTarget: EntrometroDisplay;
   /** Alternativas alcanzables (solo cuando NO va encaminado), desc por exigencia. */
   alternatives: CareerSuggestion[];
 }
@@ -59,7 +59,7 @@ function toSuggestion(career: CareerTarget): CareerSuggestion {
     careerId: career.careerId,
     name: career.name,
     minAciertos: career.minAciertos,
-    target: formatAciertometroTarget({
+    target: formatEntrometroTarget({
       minAciertos: career.minAciertos,
       minAciertosYear: career.minAciertosYear,
       minAciertosConfidence: career.minAciertosConfidence,
@@ -78,7 +78,7 @@ export function isCareerReachable(predictedScore: number, career: CareerTarget):
 export function recommendCareerStrategy(input: StrategyInput): StrategyResult {
   const { predictedScore, chosenCareer, areaCareers } = input;
 
-  const chosenTarget = formatAciertometroTarget({
+  const chosenTarget = formatEntrometroTarget({
     minAciertos: chosenCareer.minAciertos,
     minAciertosYear: chosenCareer.minAciertosYear,
     minAciertosConfidence: chosenCareer.minAciertosConfidence,

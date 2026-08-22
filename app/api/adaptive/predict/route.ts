@@ -4,11 +4,11 @@ import { computeCareerStrategy, recomputeLearningProfile } from '@/lib/db/adapti
 
 /**
  * Endpoint protegido (F6, Task 5): recalcula la predicción de aciertos
- * (Aciertómetro) del alumno y devuelve su estrategia de carrera. Requiere
+ * (Entrómetro) del alumno y devuelve su estrategia de carrera. Requiere
  * sesión. No recibe cuerpo — opera sobre el estado del alumno autenticado.
  *
  * La meta de carrera SIEMPRE viaja calificada por su confianza (chosenTarget /
- * alternatives[].target son AciertometroDisplay, nunca un número pelón).
+ * alternatives[].target son EntrometroDisplay, nunca un número pelón).
  */
 export async function POST() {
   const guard = await guardApiUser();
@@ -17,7 +17,7 @@ export async function POST() {
   const prediction = await recomputeLearningProfile(guard.profile.id);
   if (!prediction) {
     return NextResponse.json(
-      { error: 'Aún no tienes una carrera meta. Completa tu onboarding para ver tu Aciertómetro.' },
+      { error: 'Aún no tienes una carrera meta. Completa tu onboarding para ver tu Entrómetro.' },
       { status: 409 }
     );
   }

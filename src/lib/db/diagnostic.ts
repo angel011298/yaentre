@@ -323,7 +323,7 @@ export interface DiagnosticResultsData {
 }
 
 /** Datos completos de la pantalla de resultados (Task 3): score crudo del
- * diagnóstico, Aciertómetro (predicción sobre el examen real), gap vs meta de
+ * diagnóstico, Entrómetro (predicción sobre el examen real), gap vs meta de
  * carrera y los 3 temas más débiles. Todo ya persistido por finishSession →
  * onSessionFinished (F6) antes de que esta función se llame. */
 export async function loadDiagnosticResultsData(

@@ -124,7 +124,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
 
   console.log('─'.repeat(60));
-  console.log('🦉 Acierta — Resolviendo lote de verificación (G2)');
+  console.log('🦉 YaEntre — Resolviendo lote de verificación (G2)');
   console.log(`   file=${args.file} dryRun=${args.dryRun}`);
   console.log('─'.repeat(60));
 

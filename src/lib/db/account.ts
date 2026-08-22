@@ -41,7 +41,7 @@ export async function buildUserDataExport(
       carrera: profile.targetCareer?.name ?? null,
       diagnosticoCompletado: profile.diagnosticDone,
     },
-    aciertometro: profile.learningProfile
+    entrometro: profile.learningProfile
       ? {
           prediccion: profile.learningProfile.predictedScore,
           confianza: profile.learningProfile.confidence,

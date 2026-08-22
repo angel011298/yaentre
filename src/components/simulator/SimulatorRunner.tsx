@@ -212,7 +212,7 @@ export function SimulatorRunner({
   return (
     <div className="flex min-h-screen flex-col bg-base text-text-primary">
       {/* Barra superior sobria: examen · progreso · temporizador */}
-      <header className="acierta-safe-top sticky top-0 z-20 border-b border-border-subtle bg-surface backdrop-blur">
+      <header className="yaentre-safe-top sticky top-0 z-20 border-b border-border-subtle bg-surface backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-3">
           <div className="min-w-0">
             <p className="truncate text-xs font-semibold uppercase tracking-wide text-text-muted">

@@ -2,7 +2,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { Tino } from '@/components/mascot/Tino';
 
 /**
- * Mensaje de posicionamiento (F10 Task 1): Acierta no es un curso de videos —
+ * Mensaje de posicionamiento (F10 Task 1): YaEntre no es un curso de videos —
  * es un entrenador que sabe exactamente qué le falta al alumno y lo pone a
  * practicar en el examen real antes del examen real.
  */
@@ -20,7 +20,7 @@ export function Hero() {
             Es un entrenador que sabe <span className="text-brand">exactamente</span> qué te falta.
           </h1>
           <p className="mx-auto max-w-xl text-lg leading-relaxed text-text-secondary lg:mx-0">
-            Acierta detecta tus temas débiles con inteligencia artificial y te pone a practicar en
+            YaEntre detecta tus temas débiles con inteligencia artificial y te pone a practicar en
             el simulador del examen en línea real — para que el día del examen no sea la primera
             vez que lo vives.
           </p>
@@ -42,7 +42,7 @@ export function Hero() {
             <div className="absolute inset-4 rounded-full border-4 border-dashed border-brand-soft/40" />
             <div className="flex flex-col items-center gap-2">
               <Tino state="graduated" size={140} />
-              <p className="font-display text-sm font-bold text-brand">Aciertómetro activo</p>
+              <p className="font-display text-sm font-bold text-brand">Entrómetro activo</p>
             </div>
           </div>
         </div>

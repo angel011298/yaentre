@@ -1,7 +1,7 @@
 import type { PricingSeason, SubscriptionPlan } from '@prisma/client';
 
 /**
- * Matriz de precios de Acierta (PRD §9). Módulo PURO y determinista: sin
+ * Matriz de precios de YaEntre (PRD §9). Módulo PURO y determinista: sin
  * Stripe, sin DB, sin fechas ambiguas — es la única fuente de verdad de
  * CUÁNTO se cobra por (plan × temporada), y por eso vive aparte y se testea.
  *
@@ -78,7 +78,7 @@ export function getPlanPricing(plan: SubscriptionPlan, season: PricingSeason): P
     mode: isRecurring ? 'subscription' : 'payment',
     isRecurring,
     hasGuarantee: plan === 'PREMIUM',
-    productName: `Acierta — ${PLAN_LABELS[plan]} (${SEASON_LABELS[season]})`,
+    productName: `YaEntre — ${PLAN_LABELS[plan]} (${SEASON_LABELS[season]})`,
   };
 }
 

@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════════════
-// Acierta — schema.prisma (v1.0)
+// YaEntre — schema.prisma (v1.0)
 // Base: Supabase PostgreSQL · ORM: Prisma
-// Migración inicial: npx prisma migrate dev --name acierta_init
+// Migración inicial: npx prisma migrate dev --name yaentre_init
 // ═══════════════════════════════════════════════════════════════════
 
 generator client {
@@ -280,7 +280,7 @@ model Career {
   areaId                String
   area                  Area             @relation(fields: [areaId], references: [id], onDelete: Cascade)
   name                  String
-  minAciertos           Int?             // aciertos mínimos históricos de ingreso (arranque en frío del Aciertómetro)
+  minAciertos           Int?             // aciertos mínimos históricos de ingreso (arranque en frío del Entrómetro)
   minAciertosYear       Int?
   minAciertosConfidence ConfidenceLevel? // HIGH/MED/LOW — ver CC-13: triangulación multi-fuente
   sources               Json?            // [{ url, label, retrievedAt }] — evidencia citable del dato

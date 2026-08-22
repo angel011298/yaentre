@@ -19,8 +19,8 @@ test.describe('Recorrido del usuario nuevo', () => {
       'Define E2E_SIGNUP=1 para ejercer el registro real (consume cupo de correos de Supabase).'
     );
 
-    const email = `e2e.journey.${Date.now()}@acierta-test.mx`;
-    const password = 'Acierta!2027';
+    const email = `e2e.journey.${Date.now()}@yaentre-test.mx`;
+    const password = 'YaEntre!2027';
 
     // ── 1. Registro ──
     await page.goto('/registro');
@@ -63,7 +63,7 @@ test.describe('Recorrido del usuario nuevo', () => {
     const confirm = page.getByRole('button', { name: /sí, terminar/i });
     if (await confirm.isVisible().catch(() => false)) await confirm.click();
 
-    // ── 4. Resultados con Aciertómetro y salida al tablero ──
+    // ── 4. Resultados con Entrómetro y salida al tablero ──
     await expect(page.getByText(/aciert/i).first()).toBeVisible({ timeout: 60_000 });
 
     await page.goto('/app');

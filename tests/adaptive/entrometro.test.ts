@@ -1,15 +1,15 @@
 import { describe, it, expect } from 'vitest';
-import { formatAciertometroTarget } from '@/lib/adaptive/aciertometro';
+import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
 
 /**
- * Regla no negociable (CC-13): la meta del Aciertómetro nunca se presenta
+ * Regla no negociable (CC-13): la meta del Entrómetro nunca se presenta
  * como una cifra absoluta. Estos tests verifican que TODAS las ramas de
  * confianza califican el número (nunca lo devuelven pelón) y que sin dato
  * no se inventa una meta.
  */
-describe('formatAciertometroTarget', () => {
+describe('formatEntrometroTarget', () => {
   it('sin minAciertos: no hay meta, no se inventa un número', () => {
-    const result = formatAciertometroTarget({
+    const result = formatEntrometroTarget({
       minAciertos: null,
       minAciertosYear: null,
       minAciertosConfidence: null,
@@ -19,7 +19,7 @@ describe('formatAciertometroTarget', () => {
   });
 
   it('confianza HIGH: califica como "estimada", incluye el año', () => {
-    const result = formatAciertometroTarget({
+    const result = formatEntrometroTarget({
       minAciertos: 96,
       minAciertosYear: 2025,
       minAciertosConfidence: 'HIGH',
@@ -32,7 +32,7 @@ describe('formatAciertometroTarget', () => {
   });
 
   it('confianza MED: menciona que no hay dato oficial confirmado', () => {
-    const result = formatAciertometroTarget({
+    const result = formatEntrometroTarget({
       minAciertos: 109,
       minAciertosYear: 2024,
       minAciertosConfidence: 'MED',
@@ -42,7 +42,7 @@ describe('formatAciertometroTarget', () => {
   });
 
   it('confianza LOW: se etiqueta "preliminar", no "estimada"', () => {
-    const result = formatAciertometroTarget({
+    const result = formatEntrometroTarget({
       minAciertos: 97,
       minAciertosYear: 2026,
       minAciertosConfidence: 'LOW',
@@ -52,7 +52,7 @@ describe('formatAciertometroTarget', () => {
   });
 
   it('confianza null con minAciertos presente: trata como preliminar, nunca HIGH por defecto', () => {
-    const result = formatAciertometroTarget({
+    const result = formatEntrometroTarget({
       minAciertos: 80,
       minAciertosYear: null,
       minAciertosConfidence: null,
@@ -64,7 +64,7 @@ describe('formatAciertometroTarget', () => {
   it('el label SIEMPRE lleva el prefijo "~" — nunca una cifra pelona', () => {
     const confidences: Array<'HIGH' | 'MED' | 'LOW'> = ['HIGH', 'MED', 'LOW'];
     for (const confidence of confidences) {
-      const result = formatAciertometroTarget({
+      const result = formatEntrometroTarget({
         minAciertos: 100,
         minAciertosYear: 2025,
         minAciertosConfidence: confidence,

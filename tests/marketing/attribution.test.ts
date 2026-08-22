@@ -9,7 +9,7 @@ describe('extractAcquisitionSource', () => {
 
   it('extrae los parámetros UTM y el landingPath/capturedAt', () => {
     const url = new URL(
-      'https://acierta.mx/precios?utm_source=meta&utm_medium=cpc&utm_campaign=early_bird'
+      'https://yaentre.mx/precios?utm_source=meta&utm_medium=cpc&utm_campaign=early_bird'
     );
     const result = extractAcquisitionSource(url, now);
     expect(result).toEqual({
@@ -22,24 +22,24 @@ describe('extractAcquisitionSource', () => {
   });
 
   it('extrae click IDs (fbclid/ttclid/gclid) junto con UTMs', () => {
-    const url = new URL('https://acierta.mx/?fbclid=abc123&utm_source=facebook');
+    const url = new URL('https://yaentre.mx/?fbclid=abc123&utm_source=facebook');
     const result = extractAcquisitionSource(url, now);
     expect(result?.fbclid).toBe('abc123');
     expect(result?.utm_source).toBe('facebook');
   });
 
   it('devuelve null si no hay ningún parámetro de campaña (tráfico directo/orgánico)', () => {
-    const url = new URL('https://acierta.mx/precios?ref=friend');
+    const url = new URL('https://yaentre.mx/precios?ref=friend');
     expect(extractAcquisitionSource(url, now)).toBeNull();
   });
 
   it('devuelve null en la landing sin ningún query param', () => {
-    const url = new URL('https://acierta.mx/');
+    const url = new URL('https://yaentre.mx/');
     expect(extractAcquisitionSource(url, now)).toBeNull();
   });
 
   it('captura solo click-id sin ningún utm_* (anuncio sin UTMs configurados)', () => {
-    const url = new URL('https://acierta.mx/?ttclid=xyz789');
+    const url = new URL('https://yaentre.mx/?ttclid=xyz789');
     const result = extractAcquisitionSource(url, now);
     expect(result).toEqual({
       ttclid: 'xyz789',

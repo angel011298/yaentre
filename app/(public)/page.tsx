@@ -15,12 +15,12 @@ import { LinkButton } from '@/components/ui/LinkButton';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Acierta — Tu entrenador de admisión con IA',
+  title: 'YaEntre — Tu entrenador de admisión con IA',
   description:
-    'Prepárate para tu examen de admisión a UNAM, IPN, UAM o CENEVAL con un simulador fiel al examen real, un Aciertómetro que predice tus aciertos y una ruta de estudio que se adapta a ti. Empieza gratis.',
+    'Prepárate para tu examen de admisión a UNAM, IPN, UAM o CENEVAL con un simulador fiel al examen real, un Entrómetro que predice tus aciertos y una ruta de estudio que se adapta a ti. Empieza gratis.',
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Acierta — Tu entrenador de admisión con IA',
+    title: 'YaEntre — Tu entrenador de admisión con IA',
     description:
       'No es otro curso con videos. Es un entrenador que sabe exactamente qué te falta para entrar.',
     type: 'website',

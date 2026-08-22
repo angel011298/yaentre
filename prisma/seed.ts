@@ -8,7 +8,7 @@ import { seedIpn } from './seed/ipn';
  * Idempotente: corre múltiples veces sin duplicar datos (vía upsert).
  */
 async function main() {
-  console.log('🌱 Sembrando taxonomía de Acierta...\n');
+  console.log('🌱 Sembrando taxonomía de YaEntre...\n');
 
   try {
     await seedUnam();

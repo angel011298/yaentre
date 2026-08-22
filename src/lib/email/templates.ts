@@ -21,13 +21,13 @@ function wrapEmail(bodyHtml: string, unsubscribeUrl?: string): string {
   return `
 <div style="font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a1a;">
   <div style="padding: 24px 0; text-align: center;">
-    <span style="font-size: 20px; font-weight: 700; color: ${BRAND_COLOR};">Acierta</span>
+    <span style="font-size: 20px; font-weight: 700; color: ${BRAND_COLOR};">YaEntre</span>
   </div>
   <div style="background: #ffffff; border: 1px solid #e5e5e5; border-radius: 16px; padding: 24px;">
     ${bodyHtml}
   </div>
   <div style="padding: 20px 8px; text-align: center; font-size: 12px; color: #888;">
-    ${unsubscribeUrl ? `<a href="${unsubscribeUrl}" style="color: #888;">Dejar de recibir este correo</a>` : 'Acierta · acierta.mx'}
+    ${unsubscribeUrl ? `<a href="${unsubscribeUrl}" style="color: #888;">Dejar de recibir este correo</a>` : 'YaEntre · yaentre.mx'}
   </div>
 </div>`.trim();
 }
@@ -50,7 +50,7 @@ export function paymentConfirmationEmail(input: {
 
   if (input.status === 'pending') {
     return {
-      subject: 'Tu pago está pendiente de confirmación — Acierta',
+      subject: 'Tu pago está pendiente de confirmación — YaEntre',
       html: wrapEmail(`
         <h1 style="font-size: 18px; margin: 0 0 12px;">Registramos tu voucher</h1>
         <p style="font-size: 14px; line-height: 1.6;">
@@ -63,12 +63,12 @@ export function paymentConfirmationEmail(input: {
   }
 
   return {
-    subject: '¡Tu pago se confirmó! — Acierta',
+    subject: '¡Tu pago se confirmó! — YaEntre',
     html: wrapEmail(`
       <h1 style="font-size: 18px; margin: 0 0 12px;">¡Listo! Ya tienes acceso</h1>
       <p style="font-size: 14px; line-height: 1.6;">
         Confirmamos tu pago de <strong>${planLabel}</strong>${amount ? ` (${amount})` : ''}. Tu
-        cuenta ya tiene acceso completo — entra a acierta.mx para seguir con tu preparación.
+        cuenta ya tiene acceso completo — entra a yaentre.mx para seguir con tu preparación.
       </p>
     `),
   };
@@ -94,7 +94,7 @@ export function parentWeeklySummaryEmail(input: {
       : 'Sin simulacros completados todavía.';
 
   return {
-    subject: `Resumen semanal de ${input.studentName} — Acierta`,
+    subject: `Resumen semanal de ${input.studentName} — YaEntre`,
     html: wrapEmail(
       `
       <h1 style="font-size: 18px; margin: 0 0 12px;">Progreso de ${input.studentName} esta semana</h1>
@@ -108,7 +108,7 @@ export function parentWeeklySummaryEmail(input: {
         Últimos simulacros: ${simsText}
       </p>
       <p style="font-size: 13px; color: #555;">
-        Entra a acierta.mx/tutor para ver el detalle completo.
+        Entra a yaentre.mx/tutor para ver el detalle completo.
       </p>
     `,
       input.unsubscribeUrl
@@ -143,7 +143,7 @@ export function examCountdownEmail(input: {
 }): EmailContent {
   const dayWord = input.daysRemaining === 1 ? 'día' : 'días';
   return {
-    subject: `Faltan ${input.daysRemaining} ${dayWord} para tu examen — Acierta`,
+    subject: `Faltan ${input.daysRemaining} ${dayWord} para tu examen — YaEntre`,
     html: wrapEmail(
       `
       <h1 style="font-size: 18px; margin: 0 0 12px;">Faltan ${input.daysRemaining} ${dayWord}</h1>

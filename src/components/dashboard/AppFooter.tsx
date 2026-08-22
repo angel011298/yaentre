@@ -8,7 +8,7 @@ export function AppFooter() {
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} Acierta. Acierta no está afiliado ni avalado por la UNAM, el IPN, la UAM ni
+            © {year} YaEntre. YaEntre no está afiliado ni avalado por la UNAM, el IPN, la UAM ni
             el CENEVAL.
           </p>
           <div className="flex gap-6">
@@ -18,7 +18,7 @@ export function AppFooter() {
             <Link href="/legal/privacidad" className="hover:text-text-secondary">
               Privacidad
             </Link>
-            <a href="mailto:hola@acierta.mx" className="hover:text-text-secondary">
+            <a href="mailto:hola@yaentre.mx" className="hover:text-text-secondary">
               Contacto
             </a>
           </div>

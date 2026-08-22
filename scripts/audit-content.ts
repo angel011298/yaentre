@@ -13,7 +13,7 @@ import './lib/env';
 import { prisma } from '../src/lib/db/prisma';
 
 async function main() {
-  console.log('🔍 AUDITORÍA REAL DE CONTENIDO — Acierta\n');
+  console.log('🔍 AUDITORÍA REAL DE CONTENIDO — YaEntre\n');
 
   const servableVerified = await prisma.question.findMany({
     where: { isVerified: true, usage: 'SERVABLE' },

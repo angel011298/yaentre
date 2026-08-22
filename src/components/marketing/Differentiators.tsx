@@ -16,7 +16,7 @@ const DIFFERENTIATORS: Differentiator[] = [
   },
   {
     tino: 'celebrating',
-    title: 'Aciertómetro',
+    title: 'Entrómetro',
     description:
       'Predice cuántos aciertos vas a sacar, actualizado después de cada sesión, comparado contra la meta real de tu carrera.',
   },

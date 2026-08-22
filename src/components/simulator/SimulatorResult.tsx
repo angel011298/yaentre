@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { AciertometroLoader as Aciertometro } from '@/components/gamification/AciertometroLoader';
+import { EntrometroLoader as Entrometro } from '@/components/gamification/EntrometroLoader';
 import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplay';
 import { StreakFlame } from '@/components/gamification/StreakFlame';
 import { Tino } from '@/components/mascot/Tino';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { formatAciertometroTarget } from '@/lib/adaptive/aciertometro';
+import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
 import type { Celebration } from '@/lib/gamification/celebrations';
 import type { SimulatorResultData } from '@/lib/db/simulator';
 import { isPerfectRound } from '@/lib/simulator/config';
@@ -17,7 +17,7 @@ import { predictionUp, simulatorResult as simulatorResultCopy } from '@/lib/tino
  * Resultados del simulacro (F13). Aquí regresa la calidez (UIUX §13): tras el
  * modo serio del simulador, Tino, el color y la celebración reaparecen.
  * Server Component — las únicas islas de cliente son el anillo animado
- * (`Aciertometro`) y `CelebrationDisplay` (que respeta `prefers-reduced-motion`
+ * (`Entrometro`) y `CelebrationDisplay` (que respeta `prefers-reduced-motion`
  * por sí solo).
  *
  * Guardrail de acceso (tarea 1): esta función NUNCA se llama sin que
@@ -48,7 +48,7 @@ export function SimulatorResult({
 
   const target = data.strategy
     ? data.strategy.chosenTarget
-    : formatAciertometroTarget({
+    : formatEntrometroTarget({
         minAciertos: null,
         minAciertosYear: null,
         minAciertosConfidence: null,
@@ -97,9 +97,9 @@ export function SimulatorResult({
       {data.strategy && (
         <Card className="flex flex-col items-center gap-4 p-6">
           <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
-            Tu Aciertómetro
+            Tu Entrómetro
           </p>
-          <Aciertometro
+          <Entrometro
             predictedScore={data.strategy.predictedScore}
             totalQuestions={data.examTotalQuestions}
             target={target}

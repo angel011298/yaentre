@@ -5,7 +5,7 @@
  * TikTok Pixel, configurables por variable de entorno
  * (`NEXT_PUBLIC_META_PIXEL_ID` / `NEXT_PUBLIC_TIKTOK_PIXEL_ID`) y activos
  * SOLO si el usuario dio su consentimiento de cookies (mismo flag de F21,
- * `acierta-cookies-consent`, que ya condiciona PostHog en
+ * `yaentre-cookies-consent`, que ya condiciona PostHog en
  * `src/lib/analytics/client.ts`) — nunca se cargan sin esa condición doble.
  *
  * 4 eventos de conversión (uno por cada plataforma configurada):
@@ -33,7 +33,7 @@ declare global {
   }
 }
 
-const COOKIE_CONSENT_KEY = 'acierta-cookies-consent';
+const COOKIE_CONSENT_KEY = 'yaentre-cookies-consent';
 
 function hasCookieConsent(): boolean {
   if (typeof window === 'undefined') return false;

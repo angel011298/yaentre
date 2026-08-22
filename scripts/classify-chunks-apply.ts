@@ -30,7 +30,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
 
   console.log('─'.repeat(60));
-  console.log('🦉 Acierta — Aplicando clasificación de fragmentos (G2)');
+  console.log('🦉 YaEntre — Aplicando clasificación de fragmentos (G2)');
   console.log(`   file=${args.file} dryRun=${args.dryRun}`);
   console.log('─'.repeat(60));
 

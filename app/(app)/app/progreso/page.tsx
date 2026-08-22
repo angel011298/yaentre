@@ -2,27 +2,27 @@ import { startDiagnosticAction } from '@/app/actions/onboarding';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { EmptyState } from '@/components/dashboard/EmptyState';
-import { AciertometroLocked } from '@/components/gamification/Aciertometro';
-import { AciertometroHistoryChart } from '@/components/progress/AciertometroHistoryChart';
+import { EntrometroLocked } from '@/components/gamification/Entrometro';
+import { EntrometroHistoryChart } from '@/components/progress/EntrometroHistoryChart';
 import { CumulativeStatsGrid } from '@/components/progress/CumulativeStatsGrid';
 import { SimulationHistoryList } from '@/components/progress/SimulationHistoryList';
 import { SubjectMasteryList } from '@/components/progress/SubjectMasteryList';
 import { ProfileBadges } from '@/components/profile/ProfileBadges';
 import { requireOnboarding } from '@/lib/auth/guards';
-import { loadAciertometroAccess } from '@/lib/db/dashboard';
+import { loadEntrometroAccess } from '@/lib/db/dashboard';
 import { loadMasteredSubjectBadges } from '@/lib/db/gamification';
 import { loadProfileOverview } from '@/lib/db/profile';
 import {
-  loadAciertometroHistory,
+  loadEntrometroHistory,
   loadCumulativeStats,
   loadSimulationHistory,
   loadSubjectMastery,
 } from '@/lib/db/progress';
 
-export const metadata = { title: 'Mi progreso · Acierta' };
+export const metadata = { title: 'Mi progreso · YaEntre' };
 
 /**
- * Pantalla de trayectoria a largo plazo (F18): evolución del Aciertómetro,
+ * Pantalla de trayectoria a largo plazo (F18): evolución del Entrómetro,
  * dominio por materia, historial completo de simulacros, estadísticas
  * acumuladas e insignias. Server Component: todos los loaders son de solo
  * lectura y corren en paralelo (mismo patrón que el dashboard, F11).
@@ -53,8 +53,8 @@ export default async function ProgresoPage() {
   }
 
   const [access, history, subjects, simulations, stats, masteredSubjects, overview] = await Promise.all([
-    loadAciertometroAccess(profile.id),
-    loadAciertometroHistory(profile.id),
+    loadEntrometroAccess(profile.id),
+    loadEntrometroHistory(profile.id),
     loadSubjectMastery(profile.id),
     loadSimulationHistory(profile.id),
     loadCumulativeStats(profile.id),
@@ -69,17 +69,17 @@ export default async function ProgresoPage() {
       <h1 className="font-display text-2xl font-bold text-text-primary">Tu progreso</h1>
 
       <Card className="p-5">
-        <p className="mb-3 text-sm font-semibold text-text-primary">Evolución del Aciertómetro</p>
+        <p className="mb-3 text-sm font-semibold text-text-primary">Evolución del Entrómetro</p>
         {access.unlocked ? (
           history.length > 0 ? (
-            <AciertometroHistoryChart data={history} />
+            <EntrometroHistoryChart data={history} />
           ) : (
             <p className="text-sm text-text-secondary">
               Termina una sesión para empezar a ver tu evolución aquí.
             </p>
           )
         ) : (
-          <AciertometroLocked />
+          <EntrometroLocked />
         )}
       </Card>
 

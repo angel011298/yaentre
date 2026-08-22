@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { PublicPageShell } from '@/components/marketing/PublicPageShell';
 
 export const metadata: Metadata = {
-  title: 'Aviso de privacidad — Acierta',
+  title: 'Aviso de privacidad — YaEntre',
   robots: { index: false, follow: true },
 };
 
@@ -23,7 +23,7 @@ export default function PrivacidadPage() {
               <strong className="text-text-primary">EDITAR ANTES DE PUBLICAR:</strong> Razón social exacta de la empresa, domicilio legal, correo y teléfono.
               {' '}
               <span className="inline-block bg-yellow-100 px-2 py-1 text-xs">
-                PLACEHOLDER: Acierta SAS de CV, Av. Ejemplo 123, México, CDMX | contacto@acierta.mx | +52 55 1234 5678
+                PLACEHOLDER: YaEntre SAS de CV, Av. Ejemplo 123, México, CDMX | contacto@yaentre.mx | +52 55 1234 5678
               </span>
             </p>
             <p>
@@ -63,7 +63,7 @@ export default function PrivacidadPage() {
             <ul>
               <li>Permitirte crear cuenta, acceder a la plataforma y usar el servicio</li>
               <li>Personalizar tu ruta de estudio (motor adaptativo: tema débiles, recomendaciones)</li>
-              <li>Calcular tu Aciertómetro (predicción de aciertos en el examen real)</li>
+              <li>Calcular tu Entrómetro (predicción de aciertos en el examen real)</li>
               <li>Procesar tus pagos y mantener tu suscripción activa (solo mediante Stripe)</li>
               <li>Verificar tu correo y garantizar la seguridad de tu cuenta</li>
               <li>Permitir que un tutor vea tu progreso (si has compartido tu código de vinculación)</li>
@@ -121,8 +121,8 @@ export default function PrivacidadPage() {
             </ul>
             <p>
               Si no encuentras la opción que buscas, escríbenos a{' '}
-              <a href="mailto:hola@acierta.mx" className="font-semibold text-brand hover:underline">
-                hola@acierta.mx
+              <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
+                hola@yaentre.mx
               </a>{' '}
               con tu solicitud.
             </p>
@@ -154,7 +154,7 @@ export default function PrivacidadPage() {
           <section>
             <h2>8. Tiempo que guardamos tus datos</h2>
             <ul>
-              <li>Mientras tu cuenta esté activa: todos tus datos se guardan indefinidamente (tu historial es importante para el Aciertómetro)</li>
+              <li>Mientras tu cuenta esté activa: todos tus datos se guardan indefinidamente (tu historial es importante para el Entrómetro)</li>
               <li>Después de eliminar tu cuenta: se borran en 30 días, excepto historial de pagos (retención legal de 7 años)</li>
               <li>Si tu tutor se desvincula: sus permisos se revocan inmediatamente, pero sus registros de acceso quedan 90 días para auditoría</li>
             </ul>
@@ -164,7 +164,7 @@ export default function PrivacidadPage() {
           <section>
             <h2>9. Cambios a este aviso</h2>
             <p>
-              Podemos actualizar este aviso en cualquier momento. Te notificaremos por correo si hay cambios significativos en cómo procesamos tus datos. Seguir usando Acierta después del cambio significa que aceptas la versión nueva.
+              Podemos actualizar este aviso en cualquier momento. Te notificaremos por correo si hay cambios significativos en cómo procesamos tus datos. Seguir usando YaEntre después del cambio significa que aceptas la versión nueva.
             </p>
           </section>
 
@@ -177,8 +177,8 @@ export default function PrivacidadPage() {
             <ul>
               <li>
                 Correo:{' '}
-                <a href="mailto:hola@acierta.mx" className="font-semibold text-brand hover:underline">
-                  hola@acierta.mx
+                <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
+                  hola@yaentre.mx
                 </a>
               </li>
               <li>

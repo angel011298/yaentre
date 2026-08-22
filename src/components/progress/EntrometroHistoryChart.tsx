@@ -1,4 +1,4 @@
-import type { AciertometroHistoryPoint } from '@/lib/db/progress';
+import type { EntrometroHistoryPoint } from '@/lib/db/progress';
 
 const WIDTH = 600;
 const HEIGHT = 160;
@@ -15,20 +15,20 @@ function formatDayKey(key: string): string {
 }
 
 /**
- * Gráfico de línea de la evolución del Aciertómetro (F18 tarea 1). Server
+ * Gráfico de línea de la evolución del Entrómetro (F18 tarea 1). Server
  * Component: es SVG estático, sin necesidad de JS en el cliente. El
  * `aria-label` da el resumen en texto para lectores de pantalla — un lector
  * no puede "ver" la línea, así que el dato (de X a Y) también viaja como
  * texto, no solo como trazo (UIUX Spec §12: color/forma nunca es el único
  * canal).
  */
-export function AciertometroHistoryChart({ data }: { data: AciertometroHistoryPoint[] }) {
+export function EntrometroHistoryChart({ data }: { data: EntrometroHistoryPoint[] }) {
   if (data.length === 0) return null;
 
   if (data.length === 1) {
     return (
       <p className="text-sm text-text-secondary">
-        Tu primer Aciertómetro real: <span className="font-semibold text-text-primary">{data[0].predictedScore}</span>{' '}
+        Tu primer Entrómetro real: <span className="font-semibold text-text-primary">{data[0].predictedScore}</span>{' '}
         el {formatDayKey(data[0].date)}. Sigue practicando para ver tu evolución aquí.
       </p>
     );
@@ -56,7 +56,7 @@ export function AciertometroHistoryChart({ data }: { data: AciertometroHistoryPo
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className="w-full"
         role="img"
-        aria-label={`Evolución del Aciertómetro: de ${first.predictedScore} aciertos el ${formatDayKey(first.date)} a ${last.predictedScore} aciertos el ${formatDayKey(last.date)}`}
+        aria-label={`Evolución del Entrómetro: de ${first.predictedScore} aciertos el ${formatDayKey(first.date)} a ${last.predictedScore} aciertos el ${formatDayKey(last.date)}`}
       >
         <line
           x1={PAD_X}

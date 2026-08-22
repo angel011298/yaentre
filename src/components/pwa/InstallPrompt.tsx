@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { shouldShowInstallPrompt } from '@/lib/pwa/install-prompt';
 
-const VISIT_KEY = 'acierta:pwaVisitCount';
-const DISMISS_KEY = 'acierta:pwaInstallDismissedAt';
+const VISIT_KEY = 'yaentre:pwaVisitCount';
+const DISMISS_KEY = 'yaentre:pwaInstallDismissedAt';
 
 /** Evento no estandarizado (Chrome/Android) — sin tipo oficial en TS/DOM. */
 interface BeforeInstallPromptEvent extends Event {
@@ -73,7 +73,7 @@ export function InstallPrompt() {
         📲
       </span>
       <div className="flex-1">
-        <p className="text-sm font-semibold text-text-primary">Instala Acierta en tu celular</p>
+        <p className="text-sm font-semibold text-text-primary">Instala YaEntre en tu celular</p>
         <p className="mt-1 text-sm text-text-secondary">
           Acceso directo desde tu pantalla de inicio, y tu tablero disponible aunque te quedes sin
           internet.

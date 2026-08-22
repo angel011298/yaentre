@@ -29,7 +29,7 @@ import type { TopicTier } from '@/lib/adaptive/topic-stats';
  * auditar el código, complementando los tests de comportamiento normal de F6.
  *
  * Por qué importan: el motor decide qué practica el alumno y qué número ve en
- * su Aciertómetro. Un error aquí no rompe la app de forma visible — produce
+ * su Entrómetro. Un error aquí no rompe la app de forma visible — produce
  * silenciosamente una predicción inflada o una ruta de estudio equivocada, que
  * es exactamente el tipo de fallo que cuesta confianza y no se detecta solo.
  */
@@ -93,7 +93,7 @@ describe('effectiveSubjectHitRate — la regla pesimista no se puede burlar', ()
 
   it('REGRESIÓN: acertar 4 de 4 NO infla la predicción (muestra insuficiente ⇒ 0.30)', () => {
     // Sin esta regla, un alumno que responde 4 reactivos fáciles vería un
-    // Aciertómetro optimista y falso — el fallo de confianza más caro posible.
+    // Entrómetro optimista y falso — el fallo de confianza más caro posible.
     const rate = effectiveSubjectHitRate({ subjectId: 'a', weight: 26, correct: 4, attempts: 4 });
     expect(rate).toBe(PESSIMISTIC_DEFAULT_HIT_RATE);
   });

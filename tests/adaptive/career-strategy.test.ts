@@ -97,7 +97,7 @@ describe('recommendCareerStrategy — la meta SIEMPRE se comunica con confianza'
       chosenCareer: chosen,
       areaCareers: [chosen, career('biologia', 68, 'LOW')],
     });
-    // chosenTarget viene de formatAciertometroTarget: label con "~", qualifier no vacío.
+    // chosenTarget viene de formatEntrometroTarget: label con "~", qualifier no vacío.
     expect(result.chosenTarget.hasTarget).toBe(true);
     expect(result.chosenTarget.label).toMatch(/^~\d+ aciertos$/);
     expect(result.chosenTarget.qualifier.length).toBeGreaterThan(0);

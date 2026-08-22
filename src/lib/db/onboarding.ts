@@ -64,7 +64,7 @@ export async function loadAreaWithExam(areaId: string): Promise<AreaWithExam | n
   return prisma.area.findUnique({ where: { id: areaId }, include: { exam: true } });
 }
 
-/** Paso 3: carreras del área elegida, con sus aciertos mínimos (ver formatAciertometroTarget). */
+/** Paso 3: carreras del área elegida, con sus aciertos mínimos (ver formatEntrometroTarget). */
 export async function loadCareersForArea(areaId: string): Promise<Career[]> {
   return prisma.career.findMany({ where: { areaId }, orderBy: { name: 'asc' } });
 }

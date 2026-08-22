@@ -21,7 +21,7 @@
  *   - Vercel CLI autenticado y el proyecto ya enlazado (`vercel link`)
  *
  * Uso:
- *   npx tsx scripts/setup-stripe-webhook.ts --url https://acierta.vercel.app [--force]
+ *   npx tsx scripts/setup-stripe-webhook.ts --url https://yaentre.mx [--force]
  */
 import './lib/env';
 import { spawnSync } from 'node:child_process';
@@ -87,7 +87,7 @@ async function main() {
   const targetUrl = `${args.url.replace(/\/$/, '')}/api/webhooks/stripe`;
 
   console.log('═'.repeat(64));
-  console.log('🦉 Acierta — Configuración de webhook de Stripe (modo PRUEBA, G6)');
+  console.log('🦉 YaEntre — Configuración de webhook de Stripe (modo PRUEBA, G6)');
   console.log(`   destino: ${targetUrl}`);
   console.log('═'.repeat(64));
 
@@ -109,7 +109,7 @@ async function main() {
   const endpoint = await stripe.webhookEndpoints.create({
     url: targetUrl,
     enabled_events: WEBHOOK_EVENTS,
-    description: 'Acierta — producción Vercel (modo prueba, G6)',
+    description: 'YaEntre — producción Vercel (modo prueba, G6)',
   });
 
   console.log(`✅ Webhook creado: ${endpoint.id}`);

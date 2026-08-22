@@ -110,7 +110,7 @@ async function main() {
   const stripe = new Stripe(secretKey, { telemetry: false });
 
   console.log('═'.repeat(64));
-  console.log('🦉 Acierta — Configuración de precios en Stripe (F9)');
+  console.log('🦉 YaEntre — Configuración de precios en Stripe (F9)');
   console.log('═'.repeat(64));
 
   const results: Array<{ envVar: string; priceId: string; created: boolean; label: string }> = [];

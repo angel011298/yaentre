@@ -24,7 +24,7 @@ function withQueryParam(path: string, key: string, value: string): string {
 /**
  * Registro con verificación diferida: la cuenta y la sesión se crean de
  * inmediato (estado REGISTERED_UNVERIFIED); el correo de verificación se
- * envía sin bloquear el flujo. Ver docs/Flujo_App_Acierta_v1.0.md §4.1.
+ * envía sin bloquear el flujo. Ver docs/Flujo_App_YaEntre_v1.0.md §4.1.
  */
 export async function signUpAction(
   _prevState: ActionState,

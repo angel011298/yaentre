@@ -9,7 +9,7 @@ import {
 } from '@/lib/adaptive/predictor';
 
 /**
- * Predictor de aciertos (Aciertómetro). El caso de referencia es un contrato
+ * Predictor de aciertos (Entrómetro). El caso de referencia es un contrato
  * fijo del negocio: DEBE dar exactamente 74 (Task 3).
  */
 

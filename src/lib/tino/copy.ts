@@ -127,15 +127,15 @@ const PAYWALL_TRIGGER_COPY: Record<PaywallTrigger, PaywallCopy> = {
 };
 
 const PAYWALL_DEFAULT_COPY: PaywallCopy = {
-  title: 'Desbloquea todo Acierta',
-  body: 'Simulacros ilimitados, resolución por capas y tu Aciertómetro completo.',
+  title: 'Desbloquea todo YaEntre',
+  body: 'Simulacros ilimitados, resolución por capas y tu Entrómetro completo.',
 };
 
 export function paywallTriggerCopy(trigger: PaywallTrigger | null): PaywallCopy {
   return trigger ? PAYWALL_TRIGGER_COPY[trigger] : PAYWALL_DEFAULT_COPY;
 }
 
-// ─────────────────────────────── Aciertómetro ───────────────────────────────
+// ─────────────────────────────── Entrómetro ───────────────────────────────
 
 export function predictionUp(delta: number): TinoLine {
   return { state: 'celebrating', message: `Tu predicción subió ${delta} aciertos esta semana 🚀` };

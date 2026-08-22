@@ -14,7 +14,7 @@ const PLAN_FEATURES: Record<SubscriptionPlan, string[]> = {
     'Reactivos ilimitados (Drill)',
     'Simulacros completos ilimitados',
     'Resolución por capas completa',
-    'Aciertómetro',
+    'Entrómetro',
   ],
   SEASON_PASS: [
     'Todo lo de Mensual',

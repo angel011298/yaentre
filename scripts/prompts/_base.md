@@ -29,7 +29,7 @@ Eres un redactor experto de reactivos para exámenes de admisión mexicanos (UNA
 
 Salvo instrucción distinta, distribuye el lote aproximadamente así: 20% `BASIC`, 50% `INTERMEDIATE`, 25% `ADVANCED`, 5% `EXPERT`.
 
-# Explicaciones por capas (sistema pedagógico de Acierta)
+# Explicaciones por capas (sistema pedagógico de YaEntre)
 
 Cada reactivo lleva **exactamente 3 capas** de explicación:
 

@@ -17,7 +17,7 @@ export function TinoRecommendation({ weakestTopic }: { weakestTopic: WeakTopicSu
       <p className="text-sm leading-relaxed text-text-primary">
         <strong className="font-display">Tino recomienda:</strong> hoy enfócate en{' '}
         <strong>{weakestTopic.topicName}</strong> ({weakestTopic.subjectName}) — llevas {pct}% de
-        dominio ahí, es donde más rápido vas a subir tu Aciertómetro.
+        dominio ahí, es donde más rápido vas a subir tu Entrómetro.
       </p>
     </div>
   );

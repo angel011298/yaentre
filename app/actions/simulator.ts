@@ -57,7 +57,7 @@ const finishSchema = z.object({
  * Cierra el simulacro: el servidor calcula el score y valida el tiempo real
  * (marca TIME_EXCEEDED si el reloj del cliente fue manipulado) vía el mismo
  * `finishSession` del motor de sesiones, que además dispara el recálculo
- * adaptativo (temas débiles, Aciertómetro, racha). Devuelve solo lo mínimo
+ * adaptativo (temas débiles, Entrómetro, racha). Devuelve solo lo mínimo
  * para navegar a resultados.
  */
 export async function finishSimulationAction(

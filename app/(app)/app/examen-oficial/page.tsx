@@ -17,7 +17,7 @@ export default async function OfficialSampleIndexPage() {
         <h1 className="font-display text-2xl font-bold">Examen muestra oficial</h1>
         <p className="text-text-secondary">
           Practica con el examen muestra tal como lo publica cada institución — el
-          material completo, con atribución clara. Acierta no modifica ni reproduce
+          material completo, con atribución clara. YaEntre no modifica ni reproduce
           estas preguntas como contenido propio.
         </p>
       </div>
@@ -52,7 +52,7 @@ export default async function OfficialSampleIndexPage() {
           ¿Quieres practicar ilimitado con reactivos del mismo nivel?
         </h2>
         <p className="text-sm text-text-secondary">
-          El examen muestra oficial es un solo intento fijo. Un simulacro Acierta te
+          El examen muestra oficial es un solo intento fijo. Un simulacro YaEntre te
           da reactivos nuevos cada vez, cronometrados igual que el examen real, con
           retroalimentación inmediata.
         </p>
@@ -60,7 +60,7 @@ export default async function OfficialSampleIndexPage() {
           href="/simulador"
           className="inline-flex min-h-touch w-fit items-center justify-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-hover hover:shadow-lg active:scale-[0.97]"
         >
-          Hacer un simulacro Acierta →
+          Hacer un simulacro YaEntre →
         </Link>
       </Card>
     </div>

@@ -17,16 +17,16 @@ const FINISHED_STATUSES = ['COMPLETED', 'COMPLETED_BY_TIMEOUT'] as const;
  *  alumnos muy activos; siempre conserva los más recientes. */
 const HISTORY_MAX_POINTS = 30;
 
-// ───────────────────────── Evolución del Aciertómetro ─────────────────────────
+// ───────────────────────── Evolución del Entrómetro ─────────────────────────
 
-export interface AciertometroHistoryPoint {
+export interface EntrometroHistoryPoint {
   /** YYYY-MM-DD en huso de México. */
   date: string;
   predictedScore: number;
 }
 
 /**
- * Reconstruye la evolución del Aciertómetro a lo largo del tiempo. NO existe
+ * Reconstruye la evolución del Entrómetro a lo largo del tiempo. NO existe
  * una tabla de snapshots (y no se agrega una — CLAUDE.md prohíbe tocar el
  * schema sin instrucción explícita): en vez de eso, se recorren las sesiones
  * terminadas en orden cronológico acumulando aciertos/intentos por materia y
@@ -36,9 +36,9 @@ export interface AciertometroHistoryPoint {
  * punto en vez de a un solo corte. Un día con varias sesiones se colapsa a un
  * único punto (el valor tras la última sesión de ese día).
  */
-export async function loadAciertometroHistory(
+export async function loadEntrometroHistory(
   userProfileId: string
-): Promise<AciertometroHistoryPoint[]> {
+): Promise<EntrometroHistoryPoint[]> {
   const profile = await prisma.userProfile.findUnique({
     where: { id: userProfileId },
     select: { targetCareerId: true },

@@ -143,7 +143,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
 
   console.log('─'.repeat(60));
-  console.log('🦉 Acierta — Inserción de reactivos compuestos en sesión (G2)');
+  console.log('🦉 YaEntre — Inserción de reactivos compuestos en sesión (G2)');
   console.log(`   topic=${args.topicId} file=${args.file} dryRun=${args.dryRun}`);
   console.log('─'.repeat(60));
 

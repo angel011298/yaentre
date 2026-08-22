@@ -9,7 +9,7 @@
  * (`app/actions/auth.ts`, solo al crear el perfil — nunca se sobreescribe).
  */
 
-export const ATTRIBUTION_COOKIE_NAME = 'acierta_attribution';
+export const ATTRIBUTION_COOKIE_NAME = 'yaentre_attribution';
 export const ATTRIBUTION_COOKIE_MAX_AGE_SECS = 90 * 24 * 60 * 60; // 90 días
 
 const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const;

@@ -7,7 +7,7 @@ import { ParentLockedPreview } from '@/components/tutor/ParentLockedPreview';
 import { ParentShell } from '@/components/tutor/ParentShell';
 import { StudentSwitcher } from '@/components/tutor/StudentSwitcher';
 
-export const metadata = { title: 'Panel del tutor · Acierta' };
+export const metadata = { title: 'Panel del tutor · YaEntre' };
 
 /**
  * Entrada del panel parental (F16). Server Component: resuelve TODO server-

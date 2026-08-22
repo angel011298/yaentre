@@ -1,6 +1,6 @@
 import type { Area, Career } from '@prisma/client';
 import { selectCareerAction } from '@/app/actions/onboarding';
-import { formatAciertometroTarget } from '@/lib/adaptive/aciertometro';
+import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
 
 export function CareerStep({ area, careers }: { area: Area; careers: Career[] }) {
   return (
@@ -9,7 +9,7 @@ export function CareerStep({ area, careers }: { area: Area; careers: Career[] })
         <p className="text-sm font-medium text-brand-soft">{area.name}</p>
         <h1 className="font-display text-2xl font-bold">¿Cuál es tu carrera meta?</h1>
         <p className="text-sm text-text-secondary">
-          Usamos esto para calcular tu Aciertómetro contra una meta de referencia.
+          Usamos esto para calcular tu Entrómetro contra una meta de referencia.
         </p>
       </header>
 
@@ -20,7 +20,7 @@ export function CareerStep({ area, careers }: { area: Area; careers: Career[] })
       ) : (
         <div className="space-y-3">
           {careers.map((career) => {
-            const target = formatAciertometroTarget({
+            const target = formatEntrometroTarget({
               minAciertos: career.minAciertos,
               minAciertosYear: career.minAciertosYear,
               minAciertosConfidence: career.minAciertosConfidence,

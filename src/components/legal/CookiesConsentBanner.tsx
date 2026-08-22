@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useLayoutEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 
-const CONSENT_STORAGE_KEY = 'acierta-cookies-consent';
+const CONSENT_STORAGE_KEY = 'yaentre-cookies-consent';
 
 export function CookiesConsentBanner() {
   const [consent, setConsent] = useState<boolean | null | undefined>(undefined);
@@ -23,7 +23,7 @@ export function CookiesConsentBanner() {
     localStorage.setItem(CONSENT_STORAGE_KEY, 'true');
     setConsent(true);
     // Trigger analytics load
-    window.dispatchEvent(new Event('acierta:cookies-accepted'));
+    window.dispatchEvent(new Event('yaentre:cookies-accepted'));
   };
 
   const handleReject = () => {

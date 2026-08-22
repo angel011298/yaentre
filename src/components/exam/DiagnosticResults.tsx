@@ -1,22 +1,22 @@
 import Link from 'next/link';
-import { AciertometroLoader as Aciertometro } from '@/components/gamification/AciertometroLoader';
+import { EntrometroLoader as Entrometro } from '@/components/gamification/EntrometroLoader';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Tino } from '@/components/mascot/Tino';
-import { formatAciertometroTarget } from '@/lib/adaptive/aciertometro';
+import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
 import type { DiagnosticResultsData } from '@/lib/db/diagnostic';
 import { diagnosticResult } from '@/lib/tino/copy';
 
 /**
  * Pantalla de resultados del diagnóstico (F7 Task 3): score obtenido,
- * Aciertómetro inicial animado, comparación vs. meta de carrera con el hueco
+ * Entrómetro inicial animado, comparación vs. meta de carrera con el hueco
  * visible, 3 temas prioritarios y mensaje de Tino. Server Component — la
- * única pieza interactiva (el anillo animado) es `Aciertometro`.
+ * única pieza interactiva (el anillo animado) es `Entrometro`.
  */
 export function DiagnosticResults({ data }: { data: DiagnosticResultsData }) {
   const target = data.strategy
     ? data.strategy.chosenTarget
-    : formatAciertometroTarget({ minAciertos: null, minAciertosYear: null, minAciertosConfidence: null });
+    : formatEntrometroTarget({ minAciertos: null, minAciertosYear: null, minAciertosConfidence: null });
 
   const tino = diagnosticResult({
     hasTarget: data.strategy?.hasTarget ?? false,
@@ -43,9 +43,9 @@ export function DiagnosticResults({ data }: { data: DiagnosticResultsData }) {
       {data.strategy && (
         <Card className="flex flex-col items-center gap-4 p-6">
           <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
-            Tu Aciertómetro
+            Tu Entrómetro
           </p>
-          <Aciertometro
+          <Entrometro
             predictedScore={data.strategy.predictedScore}
             totalQuestions={data.examTotalQuestions}
             target={target}

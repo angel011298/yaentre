@@ -91,7 +91,7 @@ export type UpdateTargetCareerResult = 'OK' | 'INVALID_CAREER';
 /**
  * Cambia la carrera meta (F17 tarea 2). Verificado contra la DB (nunca se
  * confía en el `careerId` del cliente): debe pertenecer a la MISMA área que
- * la carrera actual. El Aciertómetro no necesita recomputar `predictedScore`
+ * la carrera actual. El Entrómetro no necesita recomputar `predictedScore`
  * (depende de las materias del ÁREA, no de la carrera) — el "hueco" contra
  * la meta ya se recalcula solo en cada carga, porque `computeCareerStrategy`
  * (F6) siempre lee `targetCareerId` fresco desde la DB.

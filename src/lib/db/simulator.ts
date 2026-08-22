@@ -495,7 +495,7 @@ export interface SimulatorResultData {
   integrity: IntegrityCounters;
   suspicionEvents: SuspicionInfoEvent[];
   strategy: CareerStrategyResponse | null;
-  /** Cambio del Aciertómetro causado por ESTA sesión. `null` sin línea base (F13 tarea 5). */
+  /** Cambio del Entrómetro causado por ESTA sesión. `null` sin línea base (F13 tarea 5). */
   predictionDelta: number | null;
   /** Percentil vs. otros usuarios del mismo examen. `null` con muestra chica (F13 tarea 6). */
   percentile: number | null;

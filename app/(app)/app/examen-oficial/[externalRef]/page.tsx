@@ -5,7 +5,7 @@ import { getOfficialSampleSource } from '@/lib/db/content-sources';
 
 /**
  * Detalle de un examen muestra oficial (CC-25). Embebe/enlaza el PDF público
- * de la institución tal cual — Acierta NUNCA recaptura estas preguntas como
+ * de la institución tal cual — YaEntre NUNCA recaptura estas preguntas como
  * reactivos interactivos propios. `Question.usage = CALIBRATION_ONLY` (ver
  * src/lib/db/question-read.ts, CC-01c) ya garantiza esto a nivel de query:
  * ningún reactivo oficial usado para calibrar el generador llega a un
@@ -47,7 +47,7 @@ export default async function OfficialSampleDetailPage({
       <Card className="space-y-2 p-5">
         <p className="text-sm text-text-primary">
           Este es el examen muestra oficial publicado por <strong>{source.institution}</strong>.
-          Acierta te lo acerca; el material es propiedad de {source.institution}.
+          YaEntre te lo acerca; el material es propiedad de {source.institution}.
         </p>
         {source.license && (
           <p className="text-xs text-text-muted">{source.license}</p>
@@ -82,7 +82,7 @@ export default async function OfficialSampleDetailPage({
           ¿Quieres practicar ilimitado con reactivos del mismo nivel?
         </h2>
         <p className="text-sm text-text-secondary">
-          Este examen es un solo intento fijo. Un simulacro Acierta te da reactivos
+          Este examen es un solo intento fijo. Un simulacro YaEntre te da reactivos
           nuevos cada vez, cronometrado igual que el examen real, con
           retroalimentación inmediata.
         </p>
@@ -90,7 +90,7 @@ export default async function OfficialSampleDetailPage({
           href="/simulador"
           className="inline-flex min-h-touch w-fit items-center justify-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-hover hover:shadow-lg active:scale-[0.97]"
         >
-          Hacer un simulacro Acierta →
+          Hacer un simulacro YaEntre →
         </Link>
       </Card>
     </div>

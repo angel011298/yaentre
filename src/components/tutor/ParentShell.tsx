@@ -25,7 +25,7 @@ export function ParentShell({
       <header className="border-b border-border-subtle bg-surface">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 py-3">
           <Link href="/tutor" className="font-display text-lg font-bold text-brand">
-            Acierta · Panel del tutor
+            YaEntre · Panel del tutor
           </Link>
           <div className="flex items-center gap-4">
             {studentSwitcher}

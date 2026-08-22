@@ -25,7 +25,7 @@ function isPlaceholder(key: string): boolean {
 
 function getCookiesConsent(): boolean {
   if (typeof window === 'undefined') return false;
-  const stored = localStorage.getItem('acierta-cookies-consent');
+  const stored = localStorage.getItem('yaentre-cookies-consent');
   return stored === 'true';
 }
 

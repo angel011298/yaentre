@@ -90,7 +90,7 @@ export async function updateNotificationPrefAction(
 
 const careerSchema = z.object({ careerId: z.string().min(1) });
 
-/** F17: cambiar la carrera meta — el hueco del Aciertómetro se recalcula
+/** F17: cambiar la carrera meta — el hueco del Entrómetro se recalcula
  *  solo (ver `updateTargetCareer`, no hace falta tocar `LearningProfile`). */
 export async function updateTargetCareerAction(
   input: z.input<typeof careerSchema>

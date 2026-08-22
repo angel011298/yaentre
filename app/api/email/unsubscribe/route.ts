@@ -23,9 +23,9 @@ const VALID_TYPES: readonly NotificationType[] = [
 function page(message: string): NextResponse {
   const html = `<!doctype html>
 <html lang="es">
-<head><meta charset="utf-8" /><title>Acierta</title></head>
+<head><meta charset="utf-8" /><title>YaEntre</title></head>
 <body style="font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 480px; margin: 80px auto; text-align: center; color: #1a1a1a;">
-  <h1 style="color: #7C3AED;">Acierta</h1>
+  <h1 style="color: #7C3AED;">YaEntre</h1>
   <p>${message}</p>
 </body>
 </html>`;

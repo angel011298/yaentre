@@ -112,7 +112,7 @@ async function provisionAuthUser(email: string): Promise<string> {
       `No existe la cuenta de sondeo ${email} y no hay SUPABASE_SERVICE_ROLE_KEY válida para crearla.\n` +
         `  Opción A: configura SUPABASE_SERVICE_ROLE_KEY en .env.local (el script se vuelve 100% automático).\n` +
         `  Opción B: crea las 3 cuentas de sondeo una sola vez desde el panel de Supabase\n` +
-        `            (${PREFIX}.alumnoa@ / ${PREFIX}.alumnob@ / ${PREFIX}.tutor@acierta-test.mx,\n` +
+        `            (${PREFIX}.alumnoa@ / ${PREFIX}.alumnob@ / ${PREFIX}.tutor@yaentre-test.mx,\n` +
         `             contraseña ${PASSWORD}, correo confirmado) y vuelve a correrlo.`
     );
   }
@@ -130,7 +130,7 @@ async function provisionAuthUser(email: string): Promise<string> {
 }
 
 async function createUser(tag: string, role: 'STUDENT' | 'PARENT'): Promise<Fixture> {
-  const email = `${PREFIX}.${tag}@acierta-test.mx`;
+  const email = `${PREFIX}.${tag}@yaentre-test.mx`;
   const profileId = `${PREFIX}_${tag}`;
 
   const authId = await provisionAuthUser(email);
@@ -265,7 +265,7 @@ async function main() {
     await expectRows(clientA, 'user_profiles', 'id', alumnoA.profileId, 'el alumno A lee su propio perfil');
     await expectRows(clientA, 'exam_sessions', 'userProfileId', alumnoA.profileId, 'el alumno A lee sus propias sesiones');
     await expectRows(clientA, 'session_answers', 'sessionId', dataA.sessionId, 'el alumno A lee sus propias respuestas');
-    await expectRows(clientA, 'learning_profiles', 'userProfileId', alumnoA.profileId, 'el alumno A lee su propio Aciertómetro');
+    await expectRows(clientA, 'learning_profiles', 'userProfileId', alumnoA.profileId, 'el alumno A lee su propio Entrómetro');
     await expectRows(clientA, 'streak_records', 'userProfileId', alumnoA.profileId, 'el alumno A lee su propia racha');
     await expectRows(clientA, 'subscriptions', 'userProfileId', alumnoA.profileId, 'el alumno A lee su propia suscripción');
 
@@ -274,7 +274,7 @@ async function main() {
     await expectNoRows(clientA, 'user_profiles', 'id', alumnoB.profileId, 'A NO lee el perfil de B');
     await expectNoRows(clientA, 'exam_sessions', 'userProfileId', alumnoB.profileId, 'A NO lee las sesiones de B');
     await expectNoRows(clientA, 'session_answers', 'sessionId', `${PREFIX}_sess_alumnob`, 'A NO lee las respuestas de B');
-    await expectNoRows(clientA, 'learning_profiles', 'userProfileId', alumnoB.profileId, 'A NO lee el Aciertómetro de B');
+    await expectNoRows(clientA, 'learning_profiles', 'userProfileId', alumnoB.profileId, 'A NO lee el Entrómetro de B');
     await expectNoRows(clientA, 'streak_records', 'userProfileId', alumnoB.profileId, 'A NO lee la racha de B');
     await expectNoRows(clientA, 'subscriptions', 'userProfileId', alumnoB.profileId, 'A NO lee la suscripción de B');
 
@@ -296,7 +296,7 @@ async function main() {
     await expectNoRows(anon, 'user_profiles', 'id', alumnoA.profileId, 'anónimo NO lee perfiles');
     await expectNoRows(anon, 'exam_sessions', 'userProfileId', alumnoA.profileId, 'anónimo NO lee sesiones');
     await expectNoRows(anon, 'session_answers', 'sessionId', dataA.sessionId, 'anónimo NO lee respuestas');
-    await expectNoRows(anon, 'learning_profiles', 'userProfileId', alumnoA.profileId, 'anónimo NO lee el Aciertómetro');
+    await expectNoRows(anon, 'learning_profiles', 'userProfileId', alumnoA.profileId, 'anónimo NO lee el Entrómetro');
     await expectNoRows(anon, 'streak_records', 'userProfileId', alumnoA.profileId, 'anónimo NO lee rachas');
     await expectNoRows(anon, 'subscriptions', 'userProfileId', alumnoA.profileId, 'anónimo NO lee suscripciones');
     await expectNoRows(anon, 'payments', 'id', 'cualquiera', 'anónimo NO lee pagos');

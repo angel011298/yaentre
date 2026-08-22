@@ -35,7 +35,7 @@ function AmountLine({ subscription }: { subscription: SubscriptionForResult }) {
 const NEXT_STEPS: Record<SubscriptionPlan, string[]> = {
   MONTHLY: [
     'Haz un simulacro completo — ya no tienes límite de 1 gratis.',
-    'Revisa tu Aciertómetro: ahora ves tu predicción real de aciertos.',
+    'Revisa tu Entrómetro: ahora ves tu predicción real de aciertos.',
     'Practica sin límite de 10 reactivos al día en el modo Drill.',
   ],
   SEASON_PASS: [
@@ -64,7 +64,7 @@ export function SuccessView({ subscription }: { subscription: SubscriptionForRes
       <Tino state="celebrating" size={96} />
       <div className="space-y-1">
         <h1 className="font-display text-2xl font-bold text-text-primary">
-          ¡Gracias! Ya eres parte de Acierta
+          ¡Gracias! Ya eres parte de YaEntre
         </h1>
         <p className="max-w-sm text-sm text-text-secondary">
           Tu {PLAN_DISPLAY[subscription.plan]} está activo — tienes acceso completo desde ahora.

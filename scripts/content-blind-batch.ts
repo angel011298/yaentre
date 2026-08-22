@@ -93,7 +93,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
 
   console.log('─'.repeat(60));
-  console.log('🦉 Acierta — Exportando lote ciego para verificación (G2)');
+  console.log('🦉 YaEntre — Exportando lote ciego para verificación (G2)');
   console.log('─'.repeat(60));
 
   let questions: QuestionWithBlindContext[];

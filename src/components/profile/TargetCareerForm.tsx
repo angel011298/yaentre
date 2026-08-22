@@ -8,7 +8,7 @@ import type { CareerOption } from '@/lib/db/profile';
 
 /**
  * Cambiar la carrera meta (F17 tarea 2). Al guardar, `router.refresh()`
- * vuelve a pedir el dashboard/Aciertómetro al servidor — que ya lee
+ * vuelve a pedir el dashboard/Entrómetro al servidor — que ya lee
  * `targetCareerId` fresco (`computeCareerStrategy`, F6), así el hueco contra
  * la nueva meta aparece recalculado sin lógica adicional aquí.
  */
@@ -67,7 +67,7 @@ export function TargetCareerForm({
       <Button type="submit" variant="secondary" disabled={pending || careerId === currentCareerId}>
         {pending ? 'Guardando…' : 'Actualizar meta'}
       </Button>
-      {saved && <p className="text-sm text-success">Meta actualizada — tu Aciertómetro ya refleja el nuevo hueco.</p>}
+      {saved && <p className="text-sm text-success">Meta actualizada — tu Entrómetro ya refleja el nuevo hueco.</p>}
       {error && <p className="text-sm text-danger">{error}</p>}
     </form>
   );

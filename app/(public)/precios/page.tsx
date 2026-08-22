@@ -11,9 +11,9 @@ import { getPlanPricing, type PlanPricing } from '@/lib/stripe/pricing';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Precios — Acierta',
+  title: 'Precios — YaEntre',
   description:
-    'Free, Mensual, Pase de Temporada o Premium Garantía. Compara qué incluye cada plan de Acierta para prepararte a tu examen de admisión.',
+    'Free, Mensual, Pase de Temporada o Premium Garantía. Compara qué incluye cada plan de YaEntre para prepararte a tu examen de admisión.',
   alternates: { canonical: '/precios' },
 };
 
@@ -46,7 +46,7 @@ const FEATURE_ROWS: Array<{ feature: string; free: string; monthly: string; seas
   },
   { feature: 'Resolución por capas', free: 'Capa 1 solo', monthly: '✅ todas', seasonPass: '✅ todas', premium: '✅ todas' },
   { feature: 'Dashboard del alumno', free: 'Básico', monthly: '✅ completo', seasonPass: '✅ completo', premium: '✅ completo' },
-  { feature: 'Aciertómetro', free: '❌', monthly: '✅', seasonPass: '✅', premium: '✅' },
+  { feature: 'Entrómetro', free: '❌', monthly: '✅', seasonPass: '✅', premium: '✅' },
   { feature: 'Dashboard parental', free: '❌', monthly: '❌', seasonPass: '✅', premium: '✅' },
   { feature: 'Gamificación completa', free: 'Parcial', monthly: '✅', seasonPass: '✅', premium: '✅' },
   {

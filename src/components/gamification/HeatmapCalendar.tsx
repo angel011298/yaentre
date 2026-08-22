@@ -27,7 +27,7 @@ export function HeatmapCalendar({ data }: { data: HeatmapDay[] }) {
   const values: HeatmapValue[] = data.map((d) => ({ date: d.date, level: d.level }));
 
   return (
-    <div className="acierta-heatmap">
+    <div className="yaentre-heatmap">
       <ReactCalendarHeatmap
         startDate={data[0].date}
         endDate={data[data.length - 1].date}

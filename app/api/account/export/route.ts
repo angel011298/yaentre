@@ -30,7 +30,7 @@ export async function GET() {
   return new NextResponse(json, {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      'Content-Disposition': `attachment; filename="acierta-datos-${profileId}.json"`,
+      'Content-Disposition': `attachment; filename="yaentre-datos-${profileId}.json"`,
     },
   });
 }

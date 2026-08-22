@@ -112,7 +112,7 @@ export async function requireOnboarding(): Promise<RequireUserResult> {
 /**
  * El único punto del sistema donde la verificación de correo bloquea el
  * acceso: justo antes de comprar (protege contra fraude de pago y asegura
- * un canal de contacto válido). Ver docs/Flujo_App_Acierta_v1.0.md §3.
+ * un canal de contacto válido). Ver docs/Flujo_App_YaEntre_v1.0.md §3.
  */
 export async function requireVerifiedForPurchase(): Promise<RequireUserResult> {
   const result = await requireUser();

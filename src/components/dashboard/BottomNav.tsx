@@ -10,7 +10,7 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="acierta-safe-bottom fixed inset-x-0 bottom-0 z-40 flex border-t border-border-subtle bg-surface lg:hidden">
+    <nav className="yaentre-safe-bottom fixed inset-x-0 bottom-0 z-40 flex border-t border-border-subtle bg-surface lg:hidden">
       {NAV_ITEMS.map((item) => {
         const active = item.builtRoute && pathname === item.href;
         return (

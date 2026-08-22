@@ -112,7 +112,7 @@ export function ParentDashboard({
 
       <div className="text-center">
         <Link href="/" className="text-sm text-text-muted hover:text-brand">
-          Ir a acierta.mx
+          Ir a yaentre.mx
         </Link>
       </div>
     </div>

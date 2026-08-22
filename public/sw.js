@@ -14,13 +14,13 @@
  * Nada de precaching, nada de Workbox: "capacidad MÍNIMA" es literal.
  */
 
-const SHELL_CACHE = 'acierta-shell-v1';
+const SHELL_CACHE = 'yaentre-shell-v1';
 
 const OFFLINE_FALLBACK_HTML = `<!doctype html>
 <html lang="es">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Sin conexión · Acierta</title></head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Sin conexión · YaEntre</title></head>
 <body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:420px;margin:96px auto;text-align:center;background:#0F0F14;color:#fff;padding:0 24px;">
-  <h1 style="color:#7C3AED;">Acierta</h1>
+  <h1 style="color:#7C3AED;">YaEntre</h1>
   <p>Estás sin conexión y todavía no guardamos una versión de esta pantalla en tu celular.</p>
   <p>Conéctate una vez para que quede disponible sin internet la próxima vez.</p>
 </body>
@@ -28,9 +28,9 @@ const OFFLINE_FALLBACK_HTML = `<!doctype html>
 
 const SIMULATOR_OFFLINE_HTML = `<!doctype html>
 <html lang="es">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Sin conexión · Acierta</title></head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Sin conexión · YaEntre</title></head>
 <body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:420px;margin:96px auto;text-align:center;background:#0F0F14;color:#fff;padding:0 24px;">
-  <h1 style="color:#7C3AED;">Acierta</h1>
+  <h1 style="color:#7C3AED;">YaEntre</h1>
   <p><strong>El simulador necesita conexión a internet.</strong></p>
   <p>Es intencional: así como en el examen real, tus respuestas se guardan en el servidor al momento. Conéctate para empezar o continuar tu simulacro.</p>
 </body>

@@ -224,9 +224,9 @@ export async function loadHeatmapData(
   return result;
 }
 
-// ─────────────────────────────── Aciertómetro bloqueado ───────────────────────────────
+// ─────────────────────────────── Entrómetro bloqueado ───────────────────────────────
 
-export interface AciertometroAccess {
+export interface EntrometroAccess {
   unlocked: boolean;
   isPaid: boolean;
   completedFullSimulations: number;
@@ -234,10 +234,10 @@ export interface AciertometroAccess {
 
 /**
  * F11 Task 11: un alumno FREE que aún no hizo su primer simulacro completo ve
- * el Aciertómetro bloqueado. En cuanto lo hace (o paga), se desbloquea — para
+ * el Entrómetro bloqueado. En cuanto lo hace (o paga), se desbloquea — para
  * siempre, no solo para esa sesión (reusa el mismo conteo que F9's paywall).
  */
-export async function loadAciertometroAccess(userProfileId: string): Promise<AciertometroAccess> {
+export async function loadEntrometroAccess(userProfileId: string): Promise<EntrometroAccess> {
   const [isPaid, completedFullSimulations] = await Promise.all([
     isUserPaid(userProfileId),
     countCompletedFullSimulations(userProfileId),

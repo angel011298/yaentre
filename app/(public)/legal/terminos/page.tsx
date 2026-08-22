@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { PublicPageShell } from '@/components/marketing/PublicPageShell';
 
 export const metadata: Metadata = {
-  title: 'Términos y condiciones — Acierta',
+  title: 'Términos y condiciones — YaEntre',
   robots: { index: false, follow: true },
 };
 
@@ -20,7 +20,7 @@ export default function TerminosPage() {
           <section>
             <h2>1. Aceptación de estos términos</h2>
             <p>
-              Al crear tu cuenta y usar Acierta, aceptas estos términos y condiciones en su totalidad. Si no estás de acuerdo, no puedes usar la plataforma. Nos reservamos el derecho de cambiar estos términos en cualquier momento; los cambios entrarán en vigor cuando se publiquen aquí.
+              Al crear tu cuenta y usar YaEntre, aceptas estos términos y condiciones en su totalidad. Si no estás de acuerdo, no puedes usar la plataforma. Nos reservamos el derecho de cambiar estos términos en cualquier momento; los cambios entrarán en vigor cuando se publiquen aquí.
             </p>
           </section>
 
@@ -28,7 +28,7 @@ export default function TerminosPage() {
           <section>
             <h2>2. Descripción del servicio</h2>
             <p>
-              Acierta es una plataforma web y PWA (aplicación web progresiva) diseñada para <strong>preparación autogestionable</strong> para exámenes de admisión en línea de la UNAM, IPN, UAM y CENEVAL (EXANI II).
+              YaEntre es una plataforma web y PWA (aplicación web progresiva) diseñada para <strong>preparación autogestionable</strong> para exámenes de admisión en línea de la UNAM, IPN, UAM y CENEVAL (EXANI II).
             </p>
             <p>El servicio incluye:</p>
             <ul>
@@ -36,12 +36,12 @@ export default function TerminosPage() {
               <li>Motor adaptativo que personaliza tu ruta según tus fortalezas y debilidades</li>
               <li>Simulacros completos (120 o 140 reactivos según institución)</li>
               <li>Ejercicios de práctica diaria en temas específicos</li>
-              <li>Aciertómetro (predicción de aciertos en el examen real)</li>
+              <li>Entrómetro (predicción de aciertos en el examen real)</li>
               <li>Explicaciones de reactivos en hasta 4 capas de profundidad</li>
               <li>Panel parental (para tutores: ver progreso del alumno)</li>
             </ul>
             <p>
-              <strong>Nota: Acierta NO es un curso con profesor ni clases en vivo en esta versión.</strong> Es una herramienta de autoaprendizaje.
+              <strong>Nota: YaEntre NO es un curso con profesor ni clases en vivo en esta versión.</strong> Es una herramienta de autoaprendizaje.
             </p>
           </section>
 
@@ -72,7 +72,7 @@ export default function TerminosPage() {
           <section>
             <h2>4. Garantía Premium (aplica solo al plan Premium)</h2>
             <p>
-              Si contratas el plan <strong>Premium</strong> y usas Acierta consistentemente (al menos 15 sesiones en los 60 días previos al examen, mínimo 20 minutos cada sesión) pero <strong>no ingresas</strong> a la carrera de tu meta:
+              Si contratas el plan <strong>Premium</strong> y usas YaEntre consistentemente (al menos 15 sesiones en los 60 días previos al examen, mínimo 20 minutos cada sesión) pero <strong>no ingresas</strong> a la carrera de tu meta:
             </p>
             <ul>
               <li>Te devolveremos <strong>el 50% de lo pagado</strong> dentro de 30 días de que publiques tu resultado oficial.</li>
@@ -88,8 +88,8 @@ export default function TerminosPage() {
             </ul>
             <p>
               Para reclamar: escribe a{' '}
-              <a href="mailto:hola@acierta.mx" className="font-semibold text-brand hover:underline">
-                hola@acierta.mx
+              <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
+                hola@yaentre.mx
               </a>{' '}
               con tu constancia de resultado oficial.
             </p>
@@ -99,25 +99,25 @@ export default function TerminosPage() {
           <section>
             <h2>5. Propiedad intelectual</h2>
             <p>
-              <strong>Acierta te da el derecho de usar el contenido</strong> (reactivos, explicaciones, videos si los hay) únicamente dentro de la plataforma, para tu preparación personal. <strong>No puedes:</strong>
+              <strong>YaEntre te da el derecho de usar el contenido</strong> (reactivos, explicaciones, videos si los hay) únicamente dentro de la plataforma, para tu preparación personal. <strong>No puedes:</strong>
             </p>
             <ul>
               <li>Copiar, descargar ni distribuir los reactivos a terceros</li>
-              <li>Usar Acierta para crear o entrenar modelos de IA (incluye scraping de preguntas)</li>
+              <li>Usar YaEntre para crear o entrenar modelos de IA (incluye scraping de preguntas)</li>
               <li>Revender o comercializar el acceso a la plataforma</li>
               <li>Decodificar, hackear ni intentar acceder a datos de otros usuarios</li>
             </ul>
             <p>
-              El contenido de Acierta (diseño, reactivos, explicaciones) es propiedad intelectual de Acierta y está protegido por ley. Las violaciones resultan en cancelación de cuenta y acciones legales si es necesario.
+              El contenido de YaEntre (diseño, reactivos, explicaciones) es propiedad intelectual de YaEntre y está protegido por ley. Las violaciones resultan en cancelación de cuenta y acciones legales si es necesario.
             </p>
           </section>
 
           {/* Uso aceptable */}
           <section>
             <h2>6. Uso aceptable</h2>
-            <p>Aceptas que NO usarás Acierta para:</p>
+            <p>Aceptas que NO usarás YaEntre para:</p>
             <ul>
-              <li>Acosar, intimidar ni hostigar a otros usuarios o personal de Acierta</li>
+              <li>Acosar, intimidar ni hostigar a otros usuarios o personal de YaEntre</li>
               <li>Publicar contenido sexual, violento, ilegal o que incite al odio</li>
               <li>Intentar ganar dinero ofreciendo acceso ajeno a la plataforma</li>
               <li>Usar bots, scripts automatizados ni herramientas de scraping</li>
@@ -135,10 +135,10 @@ export default function TerminosPage() {
               Si eres tutor legal de un estudiante menor de edad, aceptas que:
             </p>
             <ul>
-              <li>Tienes la <strong>responsabilidad legal</strong> de supervisar el uso que hace del estudiante de Acierta</li>
-              <li>Solo puedes acceder al <strong>progreso resumido</strong> (Aciertómetro, temas débiles, racha) — NO a respuestas crudas de sesiones ni a datos de identificación de otros usuarios</li>
-              <li>No puedes obligar al estudiante a usar Acierta si se niega; el consentimiento es voluntario</li>
-              <li>Acierta <strong>NO proporciona consejería educativa ni asesoramiento profesional</strong> — solo datos de tu progreso académico</li>
+              <li>Tienes la <strong>responsabilidad legal</strong> de supervisar el uso que hace del estudiante de YaEntre</li>
+              <li>Solo puedes acceder al <strong>progreso resumido</strong> (Entrómetro, temas débiles, racha) — NO a respuestas crudas de sesiones ni a datos de identificación de otros usuarios</li>
+              <li>No puedes obligar al estudiante a usar YaEntre si se niega; el consentimiento es voluntario</li>
+              <li>YaEntre <strong>NO proporciona consejería educativa ni asesoramiento profesional</strong> — solo datos de tu progreso académico</li>
             </ul>
           </section>
 
@@ -146,10 +146,10 @@ export default function TerminosPage() {
           <section>
             <h2>8. Limitación de responsabilidad</h2>
             <p>
-              <strong>Acierta se proporciona &quot;tal cual&quot;, sin garantías implícitas.</strong>
+              <strong>YaEntre se proporciona &quot;tal cual&quot;, sin garantías implícitas.</strong>
             </p>
             <p>
-              Acierta <strong>NO garantiza que ingresarás a tu carrera meta</strong> solo por usar la plataforma. El Aciertómetro es una <strong>predicción estadística</strong> basada en tu desempeño histórico, no una garantía. <strong>La única garantía es la del plan Premium</strong> (sección 4 arriba), que opera bajo condiciones específicas.
+              YaEntre <strong>NO garantiza que ingresarás a tu carrera meta</strong> solo por usar la plataforma. El Entrómetro es una <strong>predicción estadística</strong> basada en tu desempeño histórico, no una garantía. <strong>La única garantía es la del plan Premium</strong> (sección 4 arriba), que opera bajo condiciones específicas.
             </p>
             <p>
               Otros factores que <strong>escapan a nuestro control</strong> incluyen:
@@ -202,9 +202,9 @@ export default function TerminosPage() {
           <section>
             <h2>11. Resolución de disputas</h2>
             <p>
-              Si tienes una disputa sobre tu account, pago o uso de Acierta, escribe primero a{' '}
-              <a href="mailto:hola@acierta.mx" className="font-semibold text-brand hover:underline">
-                hola@acierta.mx
+              Si tienes una disputa sobre tu account, pago o uso de YaEntre, escribe primero a{' '}
+              <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
+                hola@yaentre.mx
               </a>{' '}
               con una descripción clara del problema. Intentaremos resolverlo en 15 días.
             </p>
@@ -217,7 +217,7 @@ export default function TerminosPage() {
           <section>
             <h2>12. Cambios a estos términos</h2>
             <p>
-              Podemos cambiar estos términos en cualquier momento. Si el cambio es significativo (por ejemplo, afecta derechos de reembolso), te notificaremos por correo al menos 30 días antes de que entre en vigor. Seguir usando Acierta después del aviso equivale a aceptar los términos nuevos.
+              Podemos cambiar estos términos en cualquier momento. Si el cambio es significativo (por ejemplo, afecta derechos de reembolso), te notificaremos por correo al menos 30 días antes de que entre en vigor. Seguir usando YaEntre después del aviso equivale a aceptar los términos nuevos.
             </p>
           </section>
 
@@ -230,8 +230,8 @@ export default function TerminosPage() {
             <ul>
               <li>
                 Correo:{' '}
-                <a href="mailto:hola@acierta.mx" className="font-semibold text-brand hover:underline">
-                  hola@acierta.mx
+                <a href="mailto:hola@yaentre.mx" className="font-semibold text-brand hover:underline">
+                  hola@yaentre.mx
                 </a>
               </li>
               <li>

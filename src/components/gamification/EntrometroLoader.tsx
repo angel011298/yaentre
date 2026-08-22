@@ -8,16 +8,16 @@ import { Skeleton } from '@/components/ui/Skeleton';
  * Component (regla de Next.js App Router) — este wrapper existe únicamente
  * para eso, así `DiagnosticResults` (Server Component) puede seguir siendo
  * server-side y solo este widget se monta 100% en cliente. Ver comentario en
- * `Aciertometro.tsx` sobre por qué `@number-flow/react` lo necesita.
+ * `Entrometro.tsx` sobre por qué `@number-flow/react` lo necesita.
  *
  * `loading` (F20 tarea 4): sin esto, `ssr:false` deja este espacio en 0px
  * hasta que el chunk del cliente carga+monta — como el resto del dashboard
  * SÍ se sirve en el HTML inicial, todo lo que va DEBAJO (recomendación de
  * Tino, "Tu semana", ...) brinca hacia abajo en cuanto el anillo por fin
- * aparece. Este esqueleto reserva el mismo alto que `Aciertometro` real.
+ * aparece. Este esqueleto reserva el mismo alto que `Entrometro` real.
  */
-export const AciertometroLoader = dynamic(
-  () => import('./Aciertometro').then((m) => m.Aciertometro),
+export const EntrometroLoader = dynamic(
+  () => import('./Entrometro').then((m) => m.Entrometro),
   {
     ssr: false,
     loading: () => (

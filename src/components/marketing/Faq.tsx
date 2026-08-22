@@ -5,9 +5,9 @@ interface FaqItem {
 
 const FAQ_ITEMS: FaqItem[] = [
   {
-    question: '¿Cómo funciona Acierta?',
+    question: '¿Cómo funciona YaEntre?',
     answer:
-      'Empiezas con un diagnóstico de 30 preguntas. Con eso, nuestro motor calcula tu Aciertómetro y arma tu ruta de estudio priorizando los temas donde más te conviene practicar. A partir de ahí practicas por tema, haces simulacros completos y tu predicción se actualiza sola.',
+      'Empiezas con un diagnóstico de 30 preguntas. Con eso, nuestro motor calcula tu Entrómetro y arma tu ruta de estudio priorizando los temas donde más te conviene practicar. A partir de ahí practicas por tema, haces simulacros completos y tu predicción se actualiza sola.',
   },
   {
     question: '¿En qué dispositivos funciona?',
@@ -42,7 +42,7 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: '¿Cuánto tiempo debo estudiar al día?',
     answer:
-      'No hay un mínimo fijo — el motor se adapta a tu ritmo. La mayoría de los alumnos ven resultados practicando entre 20 y 40 minutos al día, priorizando los temas que Acierta marca como débiles.',
+      'No hay un mínimo fijo — el motor se adapta a tu ritmo. La mayoría de los alumnos ven resultados practicando entre 20 y 40 minutos al día, priorizando los temas que YaEntre marca como débiles.',
   },
 ];
 

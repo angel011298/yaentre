@@ -14,7 +14,7 @@ import { NotificationPrefsForm } from '@/components/profile/NotificationPrefsFor
 import { Card } from '@/components/ui/Card';
 import { ParentLinkCard } from '@/components/dashboard/ParentLinkCard';
 
-export const metadata = { title: 'Mi perfil · Acierta' };
+export const metadata = { title: 'Mi perfil · YaEntre' };
 
 /**
  * Pantalla de perfil y ajustes (F17 tarea 2). Server Component: TODA la data

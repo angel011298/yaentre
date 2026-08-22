@@ -82,7 +82,7 @@ async function main() {
   });
 
   console.log('═'.repeat(72));
-  console.log('🦉 Acierta — Cobertura de reactivos y salud del pipeline adversarial');
+  console.log('🦉 YaEntre — Cobertura de reactivos y salud del pipeline adversarial');
   console.log('═'.repeat(72));
 
   if (areas.length === 0) {

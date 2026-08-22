@@ -11,8 +11,8 @@ import { BG_BASE_DARK_HEX, BRAND_PRIMARY_HEX } from '@/lib/brand/colors';
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Acierta',
-    short_name: 'Acierta',
+    name: 'YaEntre',
+    short_name: 'YaEntre',
     description: 'Tu entrenador de admisión con IA — UNAM, IPN, UAM y CENEVAL.',
     start_url: '/app',
     scope: '/',

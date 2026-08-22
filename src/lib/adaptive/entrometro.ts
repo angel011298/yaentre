@@ -1,7 +1,7 @@
 import type { ConfidenceLevel } from '@prisma/client';
 
 /**
- * Presentación del Aciertómetro (CC-13). El motor adaptativo completo
+ * Presentación del Entrómetro (CC-13). El motor adaptativo completo
  * (CC-11) no existe todavía en este repo — este módulo es el CONTRATO que
  * ese motor debe usar para mostrar la meta de aciertos de una carrera:
  * `Career.minAciertos` es un arranque en frío por triangulación multi-fuente
@@ -10,13 +10,13 @@ import type { ConfidenceLevel } from '@prisma/client';
  * confianza ("estimada", "preliminar"), nunca como una cifra absoluta.
  */
 
-export interface AciertometroTarget {
+export interface EntrometroTarget {
   minAciertos: number | null;
   minAciertosYear: number | null;
   minAciertosConfidence: ConfidenceLevel | null;
 }
 
-export interface AciertometroDisplay {
+export interface EntrometroDisplay {
   hasTarget: boolean;
   /** Cifra principal a mostrar, ya con el prefijo "~" (nunca un número pelón). */
   label: string;
@@ -26,7 +26,7 @@ export interface AciertometroDisplay {
   disclaimer: string;
 }
 
-const NO_TARGET: AciertometroDisplay = {
+const NO_TARGET: EntrometroDisplay = {
   hasTarget: false,
   label: '',
   qualifier: '',
@@ -34,7 +34,7 @@ const NO_TARGET: AciertometroDisplay = {
     'Aún no tenemos una meta de referencia para esta carrera. Sigue practicando: tu progreso se mide igual.',
 };
 
-export function formatAciertometroTarget(target: AciertometroTarget): AciertometroDisplay {
+export function formatEntrometroTarget(target: EntrometroTarget): EntrometroDisplay {
   if (target.minAciertos == null) {
     return NO_TARGET;
   }

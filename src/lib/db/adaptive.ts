@@ -98,7 +98,7 @@ export interface LearningProfilePrediction {
 }
 
 /**
- * Recalcula la predicción de aciertos (Aciertómetro) y la persiste en
+ * Recalcula la predicción de aciertos (Entrómetro) y la persiste en
  * LearningProfile. El alcance de la predicción son las materias del ÁREA
  * elegida por el alumno (su carrera meta define el área); el total de reactivos
  * es el del examen real. Devuelve null si el alumno aún no tiene carrera meta
@@ -187,7 +187,7 @@ export async function recomputeLearningProfile(
 const WEEK_MS = 7 * 24 * 3600 * 1000;
 
 /**
- * Cambio del Aciertómetro respecto a hace una semana (F11 Task 2). NO existe
+ * Cambio del Entrómetro respecto a hace una semana (F11 Task 2). NO existe
  * una tabla de historial de predicciones (y no se agrega una — CLAUDE.md
  * prohíbe tocar el schema sin instrucción explícita); en vez de eso, se
  * RECALCULA qué habría predicho el motor hace una semana usando solo las
@@ -259,7 +259,7 @@ export async function computeWeekOverWeekDelta(
 }
 
 /**
- * Cambio del Aciertómetro causado ESPECÍFICAMENTE por una sesión (F13 tarea
+ * Cambio del Entrómetro causado ESPECÍFICAMENTE por una sesión (F13 tarea
  * 5) — a diferencia de `computeWeekOverWeekDelta` (corte por FECHA), aquí el
  * corte es por SESIÓN: la línea base "antes" se recalcula con TODO el
  * historial EXCLUYENDO las respuestas de `sessionId`, y se compara contra la

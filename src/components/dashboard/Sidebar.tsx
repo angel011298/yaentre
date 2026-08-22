@@ -12,7 +12,7 @@ export function Sidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-56 flex-col border-r border-border-subtle bg-surface p-4 lg:flex">
       <Link href="/" className="mb-8 px-2 font-display text-xl font-bold text-brand">
-        Acierta
+        YaEntre
       </Link>
       <nav className="flex flex-col gap-1">
         {NAV_ITEMS.map((item) => {

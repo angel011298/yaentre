@@ -40,7 +40,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
 
   console.log('─'.repeat(60));
-  console.log('🦉 Acierta — Exportando fragmentos sin clasificar (G2)');
+  console.log('🦉 YaEntre — Exportando fragmentos sin clasificar (G2)');
   console.log('─'.repeat(60));
 
   const pending = await loadUnclassifiedChunks(args.limit);

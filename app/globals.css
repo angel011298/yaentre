@@ -135,7 +135,7 @@ body {
   }
 }
 
-/* Aciertómetro (src/components/gamification/Aciertometro.tsx): el anillo
+/* Entrómetro (src/components/gamification/Entrometro.tsx): el anillo
    arranca en circunferencia completa (--ring-start) y se interpola hasta el
    stroke-dashoffset real ya presente en el elemento — sin "to" explícito,
    así el valor final siempre es el que React puso, nunca uno hardcodeado. */
@@ -159,36 +159,36 @@ body {
    el dashboard real (Playwright, viewport 375px): la causa mayor del salto
    resultó ser `loading.tsx` (alturas de esqueleto genéricas muy distintas al
    contenido real, ver ese archivo) — esto es el remanente menor. */
-.acierta-heatmap {
+.yaentre-heatmap {
   min-height: 222px;
 }
-.acierta-heatmap .react-calendar-heatmap text {
+.yaentre-heatmap .react-calendar-heatmap text {
   fill: var(--text-muted);
   font-size: 6px;
 }
-.acierta-heatmap .heatmap-level-0 {
+.yaentre-heatmap .heatmap-level-0 {
   fill: var(--border-subtle);
 }
-.acierta-heatmap .heatmap-level-1 {
+.yaentre-heatmap .heatmap-level-1 {
   fill: var(--brand-soft);
   opacity: 0.55;
 }
-.acierta-heatmap .heatmap-level-2 {
+.yaentre-heatmap .heatmap-level-2 {
   fill: var(--brand-primary);
 }
 
 /* BottomNav (F11): padding para el safe-area de iOS. Como clase manual en
    vez de la sintaxis de valor arbitrario de Tailwind — esa sintaxis con
    env(...) rompe el escáner de CSS en modo dev (Turbopack y webpack). */
-.acierta-safe-bottom {
+.yaentre-safe-bottom {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* TopBar (F18): mismo motivo/técnica que `.acierta-safe-bottom` (F11) — la
+/* TopBar (F18): mismo motivo/técnica que `.yaentre-safe-bottom` (F11) — la
    sintaxis de valor arbitrario de Tailwind con env() dispara un bug de parseo
    del escáner de CSS 4. Relevante en standalone PWA con
    `statusBarStyle: "black-translucent"` (F17): el contenido dibuja bajo el
    notch/Dynamic Island y necesita este relleno para no quedar tapado. */
-.acierta-safe-top {
+.yaentre-safe-top {
   padding-top: env(safe-area-inset-top);
 }

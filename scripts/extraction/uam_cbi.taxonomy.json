@@ -61,5 +61,5 @@
       "Reacciones químicas"
     ]
   },
-  "weightsNote": "TODO-VERIFICAR: questionWeight=1 en todas las materias es un PLACEHOLDER explícito, no una estimación de proporción. A diferencia de ECOEMS (donde el peso se derivó contando la clave real del examen muestra), esta guía UAM trae 'Claves de respuestas' de sus ejercicios de práctica en una página no extraída en esta sesión. Deriva los pesos reales leyendo esa sección antes de usar esta materia para el Aciertómetro."
+  "weightsNote": "TODO-VERIFICAR: questionWeight=1 en todas las materias es un PLACEHOLDER explícito, no una estimación de proporción. A diferencia de ECOEMS (donde el peso se derivó contando la clave real del examen muestra), esta guía UAM trae 'Claves de respuestas' de sus ejercicios de práctica en una página no extraída en esta sesión. Deriva los pesos reales leyendo esa sección antes de usar esta materia para el Entrómetro."
 }

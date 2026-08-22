@@ -14,9 +14,9 @@ export function TopBar({
   avatarUrl?: string | null;
 }) {
   return (
-    <header className="acierta-safe-top sticky top-0 z-20 flex items-center justify-between border-b border-border-subtle bg-surface/90 px-4 py-3 backdrop-blur lg:pl-60">
+    <header className="yaentre-safe-top sticky top-0 z-20 flex items-center justify-between border-b border-border-subtle bg-surface/90 px-4 py-3 backdrop-blur lg:pl-60">
       <Link href="/app" className="font-display text-lg font-bold text-brand lg:hidden">
-        Acierta
+        YaEntre
       </Link>
       <div className="ml-auto flex items-center gap-4">
         <StreakFlame days={streak} />

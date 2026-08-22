@@ -93,7 +93,7 @@ function main() {
   const args = parseArgs(process.argv.slice(2));
 
   console.log('─'.repeat(60));
-  console.log('🦉 Acierta — Validación de LOTE completo (G3c)');
+  console.log('🦉 YaEntre — Validación de LOTE completo (G3c)');
   console.log(`   ${args.files.length} archivo(s)`);
   console.log('─'.repeat(60));
 
