@@ -175,7 +175,21 @@ ante Stripe. Pasos exactos:
 
 ---
 
-## 3. Recordatorio — dominio comprado, falta conectarlo a Vercel
+## 3. Dominio — ya conectado, ver actualización (G12)
+
+> **Actualización (G12, 2026-08-25):** esta sección quedó resuelta por R6→R8
+> — se conserva el texto original abajo como registro histórico de lo que
+> estaba pendiente en G6, pero **ya no aplica tal cual**. `yaentre.com` está
+> en producción real desde R8 (25-ago-2026), con SSL válido (Let's Encrypt),
+> y `NEXT_PUBLIC_SITE_URL` ya apunta ahí. **Cuando actives Stripe (prueba o
+> real), configura el webhook directo contra
+> `https://yaentre.com/api/webhooks/stripe` desde el principio** — no hace
+> falta el paso de "crear en `.vercel.app`, migrar después" que describe el
+> resto de esta sección; `https://acierta.vercel.app` sigue funcionando como
+> respaldo si algún día hace falta, pero ya no es la URL primaria.
+
+Texto original de G6, para referencia histórica (el dominio SÍ ya está
+conectado, a diferencia de lo que decía aquí):
 
 Hoy el webhook (prueba y, cuando lo actives, live) apunta a
 `https://acierta.vercel.app/api/webhooks/stripe`, que sigue siendo la URL real

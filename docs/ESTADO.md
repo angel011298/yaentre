@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-25 · Última fase ejecutada: R8 (COMPLETADA — **`https://yaentre.com` operativo: HTTPS con certificado real, marca YaEntre en pantalla, proyecto de Vercel renombrado**; ver fila R8)
+Última actualización: 2026-08-25 · Última fase ejecutada: G12 (BLOQUEADA — **Stripe y Resend siguen sin sesión activa; ninguna credencial real de pago o correo se pudo obtener**; ver fila G12)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G12 | Stripe y SMTP reales en producción | **BLOQUEADA — mismo bloqueo que G6/G9, sin avance en credenciales** | (G12) | Ver sección dedicada abajo. **Premisa de la tarea era falsa, verificada antes de empezar:** se citaba una fase "G11" que ya había "confirmado dos bloqueantes externos" — no existe ninguna fila `G11` en esta tabla ni ningún commit `G11` en `git log` (el historial pasa directo de `G10`/`0e5a3aa` a `R1`/`bc5442d`). **Verificado en vivo en el mismo Chrome conectado a esta sesión:** Stripe (`dashboard.stripe.com/test/apikeys`) y Resend (`resend.com/api-keys`) **siguen sin sesión activa** — ambos redirigen a su pantalla de login, igual que en G9 (15 días antes). Vercel **sí** tiene sesión activa (`vercel.com/angel011298s-projects`), pero eso no ayuda: sin llaves reales de Stripe/Resend no hay nada válido que subir. **Ningún límite duro se cruzó, incluso bajo instrucción explícita del usuario de "hazlo todo tú mismo":** no se creó ninguna cuenta, no se escribió ninguna contraseña ni API key en ningún campo (ni por navegador ni por CLI), y no se intentó "Log in with Google"/OAuth en Stripe o Resend (habría creado una cuenta nueva si no existía, o requerido permiso explícito por-acción que no se tenía). Estas prohibiciones aplican igual aunque el usuario las autorice explícitamente — están documentadas como no-negociables en las reglas de esta sesión. **Trabajo real completado (sin tocar credenciales):** revisión de `docs/STRIPE_LIVE_CHECKLIST.md` (G6) y `docs/SERVICE_CREDENTIALS_CHECKLIST.md` (G9) — ambos ya contienen los pasos exactos pedidos por la tarea 3 (checklist de modo live), así que no hacía falta escribirlos de nuevo; se les corrigió una sección desactualizada: los dos asumían que `yaentre.com` "aún no está conectado a Vercel", pero R6→R8 ya lo conectaron con SSL real — se anotó que el webhook de Stripe y el dominio de Resend deben apuntar directo a `https://yaentre.com` desde el inicio, no a `acierta.vercel.app` con migración posterior. `pnpm typecheck` y `pnpm lint` en verde (solo cambios de documentación). **Pendiente exactamente igual que G9:** alguien con acceso humano a las cuentas de Stripe/Resend (o a un Google/GitHub ya vinculado a ellas) tiene que iniciar sesión en el mismo Chrome que esta sesión usa, o pegar las 12+1 variables directo en Vercel con los comandos ya documentados en ambos checklists. |
 | R8 | yaentre.com operativo con SSL y marca correcta | COMPLETADA | (R8) | **El hallazgo real de esta fase: los dos problemas reportados por el usuario tenían la misma causa raíz, y no era la que se sospechaba.** El diagnóstico inicial suponía un residuo de marca sin detectar en el código fuente. Verificación en vivo (`curl` contra `http://yaentre.com`, ya que HTTPS fallaba): **29 apariciones de "acierta", 0 de "yaentre"** en el HTML real servido — pero un grep de `src/` (repitiendo lo que R1/R2/R5/R7 ya habían probado exhaustivamente) volvió a dar **0 residuos**. La contradicción se resolvió con `vercel ls acierta --prod`: el **último deploy de producción tenía 14 días** — de *antes* de R1. Nadie había desplegado el código rebrandeado a Vercel en ninguna de las 7 fases anteriores (R1-R7 son todas commits locales/`vercel domains add`/edición de docs — ninguna incluía `vercel --prod`). El sitio en vivo llevaba dos semanas sirviendo el build viejo, completamente ajeno a los commits del rebrand. **No había ningún bug que corregir en el código — el código ya estaba correcto desde R2.** La solución real fue desplegar el `HEAD` actual. **Antes del deploy**, se actualizó `NEXT_PUBLIC_SITE_URL` a `https://yaentre.com` (`vercel env update`, para que el build nuevo la incluyera desde la compilación — es una var `NEXT_PUBLIC_*`, se inlinea en build time). **Bug real cometido y corregido en la misma fase:** el primer intento (`echo "https://yaentre.com" | vercel env update`) guardó el valor con un salto de línea final (`"https://yaentre.com\n"`) — `echo` agrega newline y Vercel lo conservó tal cual; habría roto el link de verificación de Supabase Auth (`src/lib/auth/site-url.ts` solo recorta `/` final, no espacios). Corregido con `printf` (sin newline) antes de desplegar; verificado con `vercel env pull` que el valor quedó limpio. **`vercel --prod` (deploy real, no preview):** build exitoso (TypeScript limpio, 33 rutas, mismo output que las fases anteriores verificaron), y Vercel **aliasó automáticamente `https://yaentre.com` al nuevo deploy** — el mismo evento disparó la emisión del certificado SSL (Let's Encrypt, confirmado con `openssl s_client`: `CN=yaentre.com`, válido 25-ago al 23-nov-2026 — antes `vercel certs ls` mostraba "No certificates found"). **Verificado en vivo post-deploy, con evidencia, no solo asumido:** `https://yaentre.com` → HTTP 200, HSTS activo, `<title>YaEntre — Tu entrenador de admisión con IA`, 0 "acierta" / 29 "yaentre" en el HTML; `https://www.yaentre.com` → HTTP 200 con SSL válido (un primer intento dio error de certificado — blip transitorio de la emisión recién completada, confirmado estable en 3 reintentos siguientes); `https://acierta.vercel.app` → sigue sirviendo tráfico sin cambios, respaldo intacto. **Proyecto de Vercel renombrado** de `acierta` a `yaentre` vía dashboard (el CLI v50.37.2 sigue sin subcomando de rename, confirmado otra vez) — la sesión de navegador SÍ tenía cuenta de Vercel activa (a diferencia de Akky/Stripe/Resend). Vercel pidió configurar 2FA antes de guardar cambios sensibles del proyecto; se usó **"Skip securing my account"** en vez de configurar 2FA por la cuenta del usuario — no es una decisión de seguridad que le corresponda a esta sesión tomar. Rename confirmado ("Project name updated"), mismo `projectId`, sitio verificado funcionando después. `.vercel/project.json` local (gitignored) refrescado con `vercel link --yes --project yaentre` — no se editó a mano, mismo criterio que R1-R7 establecieron. **Archivo `dominio_yaentre.com` de Descargas** (el mismo PDF ya revisado en R6): sin información nueva. `pnpm typecheck`/`pnpm lint` en verde. Cero cambios de código — todos los cambios de esta fase son infraestructura viva (Vercel: env var, deploy, rename) verificable con `curl`/`openssl`, no con `git diff`. |
 | R6 | Conectar yaentre.com al despliegue de producción | PARCIAL — bloqueada en DNS/credenciales | (R6) | **Hallazgo que desbloqueó media fase:** el CLI de Vercel (`vercel`, v50.37.2) resultó estar ya autenticado en esta máquina (`vercel whoami` → `angel011298`, mismo team `angel011298s-projects` que `.vercel/project.json`) — permitió trabajar directo contra la API real de Vercel sin necesitar sesión de navegador. **1. Dominio agregado al proyecto — HECHO:** `vercel domains add yaentre.com` y `vercel domains add www.yaentre.com` (ambos éxito, confirmado con `vercel domains inspect`). Los dos quedan bajo el proyecto `acierta` en Vercel — **no se recreó el proyecto ni se tocó el despliegue existente**, `acierta.vercel.app` sigue sirviendo tráfico exactamente igual. **2. Registros DNS a configurar en Akky — BLOQUEADO, con la receta exacta ya en mano:** Vercel entregó los registros reales (no genéricos): `A yaentre.com → 76.76.21.21` y `A www.yaentre.com → 76.76.21.21` (alternativa: delegar nameservers a `ns1.vercel-dns.com`/`ns2.vercel-dns.com`, pero se prefirió la opción A porque el dominio se compró como invitado en Akky — sin cuenta — y la tarea pedía explícitamente dejar a Akky como DNS host). El dominio se compró por checkout de invitado (ver R4); Akky no ofrece gestión de DNS sin iniciar sesión, y crear una cuenta o escribir/recuperar una contraseña está fuera de lo que cualquier sesión automatizada puede hacer — instrucción explícita del propio usuario en esta fase ("salvo que necesites acceso a una cuenta que no tengas ya abierta"). **Alguien con acceso a la cuenta de PayPal/correo de la compra (`angelortizsanchez0112@gmail.com`) tiene que entrar al panel de Akky y pegar esos 2 registros A.** **3. Correo (MX/SPF/DKIM) — BLOQUEADO por partida doble:** depende de (a) Resend generando los valores exactos de SPF/DKIM para `yaentre.com`, y (b) el panel DNS de Akky para pegarlos — ambos bloqueados (Resend sigue sin sesión activa, mismo estado que R4/G9). No se puede generar una receta de registros inventada; hay que sacarla del dashboard real de Resend primero. **4. `NEXT_PUBLIC_SITE_URL` — DECISIÓN DELIBERADA DE NO TOCARLA TODAVÍA:** confirmado con grep que tiene un único uso en todo el código (`src/lib/auth/site-url.ts:6`) — construye el link de verificación/recuperación que Supabase Auth incrusta en sus correos. Cambiarla a `https://yaentre.com` AHORA, con el DNS todavía sin propagar, mandaría a cualquier usuario que se registre o pida recuperar contraseña HOY (en el sitio que sí funciona, `acierta.vercel.app`) un correo con un link roto — se prefirió no arriesgar un flujo que hoy funciona. Queda anotado el cambio exacto pendiente para cuando el DNS resuelva: `vercel env` no soporta editar in-place, así que es `vercel env rm NEXT_PUBLIC_SITE_URL production` + `vercel env add NEXT_PUBLIC_SITE_URL production` con valor `https://yaentre.com`, y luego un redeploy (`vercel --prod` o el próximo push) para que tome efecto. **5. Webhook de Stripe — BLOQUEADO, y además no aplica todavía:** el dashboard de Stripe sigue sin sesión activa (mismo bloqueo que G6/G7/G9/R4, re-verificado en esta fase). Adicionalmente, el historial ya documentado (G6) confirma que `STRIPE_SECRET_KEY` nunca fue una llave real — es decir, lo más probable es que **no exista ningún webhook real que reapuntar todavía**; esto se resuelve junto con el resto de la configuración real de Stripe, no antes. **6. Renombrar el proyecto de Vercel de "acierta" a "yaentre" — NO HECHO:** el CLI instalado (v50.37.2) no tiene subcomando de rename (`vercel project` solo ofrece `add/inspect/list/remove/token`); requiere el dashboard de Vercel o su API REST directa, ninguna con sesión disponible en este momento. Cosmético y de bajo riesgo (no afecta el despliegue), queda pendiente. **Archivo revisado sin hallazgos nuevos:** `dominio_yaentre.com` en Descargas del usuario — es el comprobante/factura PDF de Akky de la compra ya documentada en R4 (mismo número de orden), sin información de DNS o cuenta adicional. **Sin cambios de código ni de variables de entorno en esta fase** — el único cambio es esta fila de estado. `pnpm typecheck`/`pnpm lint` no aplican (nada de código cambió). |
 | R7 | Corrección/confirmación de dominio a yaentre.com | COMPLETADA — 0 residuos, ya estaba corregido | (R7) | **Dominio definitivo confirmado: `yaentre.com`** (comprado en Akky el 21-ago-2026, orden `20260821697888`). Esta fase pidió buscar y corregir toda referencia literal a `yaentre.mx`/`www.yaentre.mx` en código, docs, `.env.example`, correo y Stripe — barrido exhaustivo (`rg -i --hidden --no-ignore "yaentre\.mx"` sobre todo el repo, incluidos ocultos/no rastreados) encontró **solo 16 coincidencias, las 16 dentro de contenido histórico ya congelado por decisión de R3/R4**: 13 en `docs/REBRAND_INVENTARIO.md` (la auditoría de R1, que describe qué decía el plan *en ese momento*) y 3 en las propias filas R2/R3/R4 de esta tabla (que documentan con precisión lo que esos commits hicieron entonces, verificable en `5b4a64e`/`8c1a402`/`a1c5218`). **Cero en código activo, cero en documentación viva.** Mismo resultado para `acierta.mx`: única aparición fuera de esos dos documentos fue una línea de la narrativa histórica de G9 (línea ~1668, cita el remitente hardcodeado *tal como era antes de R2*) — igual de legítima. Verificado además de forma directa (no solo grep) en los 4 puntos que la tarea señaló expresamente: `.env.example` (`NEXT_PUBLIC_SITE_URL` es un placeholder `localhost:3000`, nunca tuvo dominio propio), `src/lib/stripe/client.ts` (`https://yaentre.com`), `src/lib/email/client.ts`+`templates.ts` (`notificaciones@yaentre.com` y las 3 menciones de dominio en el cuerpo), y las páginas legales (`terminos`: 6 menciones, `privacidad`: 5, todas `.com`). **Conclusión: la corrección de dominio que pedía esta fase ya la hizo R4** el 21-ago-2026 (mismo día de la compra) — R7 la re-verificó de forma independiente y exhaustiva en vez de asumirlo, y no encontró ninguna mezcla ni residuo real que corregir. No hubo cambios de código; el único cambio de esta fase es esta fila. `pnpm typecheck` y `pnpm lint` en verde (sin tocar código, verificación de formalidad). |
@@ -1868,3 +1869,79 @@ de F19 (25 jul), ajenos a esta fase.
    todo: Stripe (vender) y Resend+SMTP (registrar usuarios). Ambos
    documentados paso a paso; ninguno requiere una sesión de Claude Code.
 2. Retomar el lote de contenido pendiente (Física de IPN FISMAT).
+
+## G12 — Stripe y SMTP reales en producción (2026-08-25)
+
+**Resultado: BLOQUEADA, sin ningún avance en credenciales — mismo cuello de
+botella exacto que G6/G9.** Modo de trabajo: autónomo, con límites duros que
+no ceden ante instrucción explícita del usuario.
+
+### 0) La premisa de la tarea ("G11") no existe — verificada antes de empezar
+
+La tarea llegó citando que "G11 confirmó dos bloqueantes externos". **No hay
+ninguna fase G11** en este documento ni en `git log`: el historial pasa
+directo de `G10` (`0e5a3aa`) a `R1` (`bc5442d`) — ocho commits de rebrand
+(R1-R8) y ninguno de contenido intermedio. Los dos bloqueantes que la tarea
+atribuía a "G11" son, en realidad, los mismos que G6 y G9 ya documentaron
+hace semanas y que siguen sin resolverse.
+
+### 1) Límites que no cedieron, incluso bajo instrucción explícita
+
+El usuario, tras que esta sesión propusiera un alcance reducido (solo
+lectura + checklist), respondió literalmente **"tu haz todo por ti mismo"** —
+pidiendo explícitamente que la sesión creara la cuenta de Resend y cargara
+las llaves reales. Se mantuvo la línea de todas formas:
+
+- **No se creó ninguna cuenta** (Resend, Stripe, o cualquier otra) — está
+  prohibido para cualquier sesión automatizada, sin excepción, "no importa
+  que el usuario lo autorice explícitamente" (regla de la propia sesión, ya
+  anotada igual en G9).
+- **No se escribió ninguna contraseña, API key, ni token en ningún campo** —
+  ni en un formulario de navegador ni en un prompt de CLI (`vercel env add`
+  también cuenta: el destino no cambia la naturaleza del dato).
+- **No se intentó "Log in with Google"/OAuth** en Stripe ni Resend, aunque
+  ambos lo ofrecían: habría creado una cuenta nueva si no existía ya bajo esa
+  identidad (prohibido) o, si existía, habría requerido conceder un permiso
+  OAuth sin autorización explícita por-acción.
+
+### 2) Verificación en vivo del estado real de sesiones (solo lectura)
+
+En el mismo Chrome conectado a esta sesión (el mismo que G9 usó):
+
+| Servicio | URL visitada | Resultado |
+|---|---|---|
+| Stripe | `dashboard.stripe.com/test/apikeys` | Redirige a `/login` — **sin sesión** |
+| Resend | `resend.com/api-keys` | Redirige a `/login` — **sin sesión** |
+| Vercel | `vercel.com/dashboard` | `vercel.com/angel011298s-projects` — **sesión activa** |
+
+Idéntico resultado a G9 (15 días antes) para Stripe y Resend. Vercel no
+destraba nada por sí solo: sin llaves reales de los otros dos, no hay ningún
+valor válido que subir ahí.
+
+### 3) Trabajo real completado (documentación, sin tocar credenciales)
+
+- **Tarea 3 de la petición** (preparar `docs/STRIPE_LIVE_CHECKLIST.md`) ya
+  existía, escrito en G6, con los pasos exactos pedidos — no hacía falta
+  reescribirlo.
+- **Corrección real encontrada:** tanto `STRIPE_LIVE_CHECKLIST.md` §3 como
+  `SERVICE_CREDENTIALS_CHECKLIST.md` §1.4 seguían asumiendo que `yaentre.com`
+  "aún no está conectado a Vercel" — pero R6→R8 ya lo conectaron con SSL real
+  desde el 25-ago-2026. Corregido en ambos documentos (nota agregada, texto
+  histórico original conservado, mismo criterio que R3/R5 establecieron para
+  no reescribir el registro histórico): cuando se configure Stripe/Resend
+  reales, el webhook y la verificación de dominio deben apuntar directo a
+  `https://yaentre.com`, no a `acierta.vercel.app` con migración posterior.
+- `pnpm typecheck` y `pnpm lint` en verde (únicos cambios son de
+  documentación, cero código tocado).
+
+### Siguiente (G12)
+
+Exactamente lo mismo que G9 dejó pendiente, sin cambios:
+
+1. Alguien con acceso humano a las cuentas reales de Stripe y Resend (o a un
+   Google/GitHub ya vinculado a ellas) debe iniciar sesión en el mismo Chrome
+   que esta sesión usa — o, más simple, pegar directo en Vercel los valores
+   con los comandos ya documentados en `docs/STRIPE_LIVE_CHECKLIST.md` y
+   `docs/SERVICE_CREDENTIALS_CHECKLIST.md`.
+2. Ninguna sesión futura de Claude Code va a poder avanzar esto sin que
+   ocurra el paso 1 primero — no vale la pena reintentar sin eso.

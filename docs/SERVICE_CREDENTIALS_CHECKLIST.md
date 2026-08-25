@@ -54,13 +54,17 @@ propio, **el registro de usuarios nuevos sigue bloqueado en producción**.
    ```bash
    npx vercel env add RESEND_API_KEY production
    ```
-4. **Dominio de envío — el dominio YA está comprado, falta conectar DNS:** el
-   código usa `YaEntre <notificaciones@yaentre.com>` como remitente
-   (`src/lib/email/client.ts:16`), y Resend exige verificar el dominio del
-   remitente (registros DNS) antes de poder enviar con él. **`yaentre.com` se
-   compró el 21 de agosto de 2026 en Akky** (orden `20260821697888`, 1 año) —
-   lo que falta ya no es la compra sino publicar los registros SPF/DKIM que
-   Resend pide, en el panel DNS de Akky (fase R6). Dos caminos mientras tanto:
+4. **Dominio de envío:** el código usa `YaEntre <notificaciones@yaentre.com>`
+   como remitente (`src/lib/email/client.ts:16`), y Resend exige verificar el
+   dominio del remitente (registros SPF/DKIM) antes de poder enviar con él.
+   **Actualización (G12, 2026-08-25):** `yaentre.com` ya está conectado a
+   Vercel y en producción real con SSL desde R8 — lo único que sigue
+   pendiente es específico de Resend: entrar a su dashboard, agregar
+   `yaentre.com` como dominio verificado, copiar los registros SPF/DKIM
+   exactos que Resend genere para ESE dominio, y publicarlos donde hoy vive
+   el DNS de `yaentre.com` (confirma primero si sigue en Akky o si R6 lo
+   delegó a los nameservers de Vercel — no se puede saber sin la sesión de
+   Resend activa). Dos caminos mientras tanto:
    - **Recomendado, temporal:** cambia `FROM_ADDRESS` en
      `src/lib/email/client.ts:16` a `onboarding@resend.dev` (dominio de
      pruebas de Resend, verificado automáticamente, sin límite de
