@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "cmt8mv27n0001eomqgwfe56og",
+    "stem": "¿Cuál es la principal diferencia funcional entre el retículo endoplásmico rugoso y el retículo endoplásmico liso?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El rugoso almacena agua y minerales; el liso almacena proteínas.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El rugoso, por tener ribosomas adheridos, sintetiza proteínas; el liso sintetiza lípidos y participa en la desintoxicación.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El rugoso produce ATP mediante respiración celular; el liso produce ATP mediante fermentación.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El rugoso digiere macromoléculas con enzimas; el liso empaqueta y etiqueta proteínas para su destino final.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Célula y organelos"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Ribosomas adheridos = síntesis de proteínas",
+        "content": "El retículo endoplásmico rugoso tiene ribosomas adheridos a su superficie, lo que le permite sintetizar proteínas destinadas a la membrana celular, la secreción o los lisosomas. El retículo endoplásmico liso, sin ribosomas, se especializa en sintetizar lípidos y desintoxicar sustancias.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Almacenar agua y minerales no es función de ninguno de los dos retículos. 2) La producción de ATP ocurre en la mitocondria, no en el retículo endoplásmico. 3) Digerir macromoléculas es función de los lisosomas, y empaquetar/etiquetar proteínas es función del aparato de Golgi, no del retículo endoplásmico liso. 4) Solo la opción que distingue correctamente 'rugoso = proteínas (por sus ribosomas), liso = lípidos y desintoxicación' describe la diferencia real entre ambos organelos.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Sistema de endomembranas",
+        "content": "El retículo endoplásmico es parte del sistema de endomembranas junto con el aparato de Golgi y los lisosomas. Repasa: función de cada organelo del sistema de endomembranas y el papel de los ribosomas libres vs. adheridos.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mv3080006eomqmxu5ob00",
+    "stem": "¿Cuál de las siguientes estructuras está presente en una célula vegetal pero AUSENTE en una célula animal típica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Mitocondria",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Ribosoma",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Pared celular de celulosa",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Membrana plasmática",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Célula y organelos"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Pared celular: exclusiva de la célula vegetal",
+        "content": "La pared celular de celulosa rodea a la membrana plasmática de las células vegetales, les da soporte estructural y rigidez. Las células animales carecen de ella; su límite externo es solo la membrana plasmática.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La mitocondria está presente en células vegetales Y animales (ambas necesitan producir ATP). 2) Los ribosomas están presentes en prácticamente todos los tipos celulares, vegetales y animales. 3) La membrana plasmática es común a toda célula, vegetal o animal. 4) Solo la pared celular de celulosa (junto con el cloroplasto y la vacuola central, aunque aquí no aparecen como opción) es exclusiva de la célula vegetal.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Diferencias célula vegetal vs. animal",
+        "content": "Las estructuras exclusivas de la célula vegetal son: pared celular, cloroplastos y una vacuola central grande. Repasa: cuadro comparativo célula vegetal vs. célula animal.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mv88o000113k7ej54bvvv",
+    "stem": "¿En qué etapa de la meiosis ocurre el entrecruzamiento (crossing-over) entre cromosomas homólogos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Profase I",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Metafase I",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Anafase II",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Telofase II",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Mitosis y meiosis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Profase I: el entrecruzamiento",
+        "content": "Durante la profase I de la meiosis, los cromosomas homólogos se aparean (sinapsis) y pueden intercambiar segmentos de ADN entre sus cromátidas no hermanas — este proceso es el entrecruzamiento o crossing-over, fuente clave de variabilidad genética.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) En metafase I los cromosomas homólogos ya apareados se alinean en el plano ecuatorial, pero el intercambio de segmentos ya ocurrió antes, en profase I. 2) En anafase II se separan las cromátidas hermanas, una división distinta a donde ocurre el entrecruzamiento. 3) En telofase II concluye la meiosis y se forman los núcleos de los gametos, sin intercambio de material genético. 4) El entrecruzamiento requiere que los homólogos estén apareados en sinapsis, algo que solo sucede en profase I.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Fases de la meiosis I",
+        "content": "La profase I es la fase más larga y compleja de la meiosis: incluye sinapsis, formación del complejo sinaptonémico y entrecruzamiento. Repasa: subetapas de la profase I (leptoteno, cigoteno, paquiteno, diploteno, diacinesis) a nivel general.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mv909000613k7zym2y88i",
+    "stem": "¿Cuántas células hijas produce la meiosis a partir de una célula madre diploide, y qué carga cromosómica tienen?",
+    "options": [
+      {
+        "id": "A",
+        "text": "2 células diploides",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "2 células haploides",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "4 células diploides",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "4 células haploides",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Mitosis y meiosis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Meiosis: 4 células haploides",
+        "content": "La meiosis consta de dos divisiones sucesivas (meiosis I y meiosis II) que producen 4 células hijas, cada una con la mitad del número de cromosomas de la célula original (haploides, n).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Producir 2 células diploides es lo que hace la mitosis, no la meiosis. 2) Producir 2 células haploides describe solo la mitad del resultado real: la meiosis produce el DOBLE de células. 3) Producir 4 células diploides contradice el propósito de la meiosis, que es precisamente reducir a la mitad el número cromosómico. 4) Solo 4 células haploides describe correctamente el resultado de las dos divisiones meióticas sucesivas.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Mitosis vs. meiosis",
+        "content": "La mitosis produce 2 células hijas diploides genéticamente idénticas a la célula madre (crecimiento y reparación); la meiosis produce 4 células hijas haploides genéticamente distintas (formación de gametos). Repasa: comparación mitosis vs. meiosis.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mv9rp000b13k7hivlwh0x",
+    "stem": "¿Cuál es la principal importancia biológica de la meiosis para las especies con reproducción sexual?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Permite que las células somáticas se reparen y reemplacen constantemente.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Genera variabilidad genética mediante el entrecruzamiento y la segregación independiente de los cromosomas.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Duplica el número de cromosomas para asegurar la supervivencia del embrión.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Evita que ocurran mutaciones en el material genético de los gametos.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Mitosis y meiosis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Variabilidad genética",
+        "content": "La meiosis combina dos mecanismos que generan combinaciones genéticas nuevas en cada gameto: el entrecruzamiento (intercambio de segmentos entre homólogos) y la segregación independiente (orientación al azar de cada par de homólogos en metafase I). Esto aumenta la variabilidad genética de la descendencia.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Reparar y reemplazar células somáticas es función de la mitosis, no de la meiosis (las células somáticas no se dividen por meiosis). 2) La meiosis reduce a la mitad el número de cromosomas, no lo duplica. 3) La meiosis no previene mutaciones; es un proceso independiente de los mecanismos de reparación del ADN. 4) Solo la generación de variabilidad genética por entrecruzamiento y segregación independiente explica por qué la reproducción sexual favorece la diversidad genética de una población.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Ventaja evolutiva de la reproducción sexual",
+        "content": "La variabilidad genética que produce la meiosis es materia prima para la selección natural: poblaciones más diversas genéticamente tienen mayor capacidad de adaptarse a cambios ambientales. Repasa: entrecruzamiento, segregación independiente y su relación con la variabilidad genética.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvajb000g13k7hhts1w5g",
+    "stem": "¿Qué se separa durante la anafase I de la meiosis, a diferencia de lo que se separa durante la anafase de la mitosis?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En anafase I se separan cromátidas hermanas; en la mitosis se separan cromosomas homólogos.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En anafase I se separan centrómeros; en la mitosis se separan telómeros.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En anafase I se separan cromosomas homólogos completos (cada uno con sus 2 cromátidas); en la mitosis se separan cromátidas hermanas.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "En anafase I se separan cromátidas no hermanas; en la mitosis se separan cromátidas hermanas de distintos cromosomas.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Mitosis y meiosis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Anafase I vs. anafase mitótica",
+        "content": "En la anafase I de la meiosis se separan los cromosomas HOMÓLOGOS completos (cada uno conservando sus 2 cromátidas hermanas unidas) hacia polos opuestos. En la mitosis (y en la anafase II de la meiosis), lo que se separa son las cromátidas hermanas de cada cromosoma.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Invertir 'cromátidas hermanas' con 'cromosomas homólogos' entre anafase I y mitosis es exactamente al revés de lo que ocurre en realidad. 2) Los telómeros y centrómeros no son las estructuras que se 'separan' en este contexto; el centrómero es el punto de unión que se libera hasta anafase II. 3) 'Cromátidas no hermanas' no es un par que se separe como unidad — el entrecruzamiento intercambia segmentos entre ellas, pero eso ocurre en profase I, no en anafase. 4) Solo la opción que describe la separación de cromosomas homólogos completos en anafase I (y de cromátidas hermanas en la mitosis) es correcta.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "El punto clave que distingue meiosis I de la mitosis",
+        "content": "Esta distinción explica por qué la meiosis I es una división 'reduccional' (separa homólogos, reduciendo el número de cromosomas a la mitad) mientras que la mitosis y la meiosis II son divisiones 'ecuacionales' (separan cromátidas hermanas, sin cambiar el número de cromosomas). Repasa: diagrama comparativo de anafase mitótica vs. anafase I vs. anafase II.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvfrg0001jr219ufipyyf",
+    "stem": "¿Cuál es la diferencia entre el genotipo y el fenotipo de un organismo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El genotipo es la constitución genética (los alelos que posee); el fenotipo es la característica observable que resulta de esa constitución.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El genotipo es la característica observable; el fenotipo es la constitución genética.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El genotipo se hereda de la madre; el fenotipo se hereda del padre.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El genotipo y el fenotipo son sinónimos que describen exactamente lo mismo.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Genética básica"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Genotipo (genes) vs. fenotipo (rasgo observable)",
+        "content": "El genotipo es la combinación de alelos que un organismo posee para un gen determinado (por ejemplo, Aa); el fenotipo es el rasgo físico u observable que resulta de esa combinación, influido también por el ambiente (por ejemplo, flor morada).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Invertir las definiciones (genotipo = observable, fenotipo = genético) es exactamente al revés. 2) Ni el genotipo ni el fenotipo se heredan exclusivamente de un solo progenitor; ambos progenitores aportan alelos. 3) No son sinónimos: dos organismos con genotipos distintos (AA y Aa) pueden compartir el mismo fenotipo si hay dominancia completa. 4) Solo la definición que distingue constitución genética (genotipo) de rasgo observable (fenotipo) es correcta.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Vocabulario básico de genética mendeliana",
+        "content": "Distinguir genotipo de fenotipo es la base para entender cualquier problema de cruces genéticos. Repasa: alelo, homocigoto, heterocigoto, dominante, recesivo.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvgiv0006jr217dtkfsj8",
+    "stem": "En un cruce dihíbrido entre dos individuos heterocigotos para dos genes con dominancia completa e independientes entre sí (AaBb × AaBb), ¿qué proporción fenotípica se espera en la descendencia?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1:2:1",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "3:1",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "1:1:1:1",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "9:3:3:1",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Genética básica"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Segunda ley de Mendel: segregación independiente",
+        "content": "Cuando dos genes se ubican en cromosomas distintos (o suficientemente separados), se heredan de forma independiente. Un cruce dihíbrido AaBb × AaBb produce, con dominancia completa en ambos genes, una proporción fenotípica de 9:3:3:1 (16 combinaciones posibles en total).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) 1:2:1 es una proporción GENOTÍPICA de un solo gen (Aa × Aa), no la fenotípica de un cruce con dos genes. 2) 3:1 es la proporción fenotípica de un cruce MONOhíbrido (un solo gen), no dihíbrido. 3) 1:1:1:1 correspondería a un cruce de prueba (testcross) dihíbrido, no a AaBb × AaBb. 4) Solo 9:3:3:1 es la proporción fenotípica correcta para un cruce dihíbrido completo con dominancia completa e independencia génica.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Ley de la segregación independiente",
+        "content": "La segunda ley de Mendel establece que los alelos de genes diferentes se segregan de manera independiente durante la formación de gametos, siempre que los genes no estén ligados. Repasa: cuadro de Punnett de 16 casillas para un cruce dihíbrido.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvlrx000143e2qnqpxtmy",
+    "stem": "Las alas de un ave y las alas de un murciélago comparten un origen embrionario común (extremidad anterior de un tetrápodo), aunque su función actual (volar) sea similar a la de las alas de un insecto. ¿Cómo se clasifican las alas del ave y del murciélago entre sí?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Estructuras análogas, porque tienen la misma función.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Estructuras homólogas, porque comparten un origen evolutivo común.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Estructuras vestigiales, porque ya no cumplen ninguna función.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Estructuras convergentes, porque evolucionaron de manera independiente.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Evolución y especiación"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Homología: mismo origen, aunque la función varíe",
+        "content": "Las estructuras homólogas comparten un origen evolutivo y embrionario común, aunque su función actual pueda ser distinta o similar. El ala de ave y el ala de murciélago derivan de la misma extremidad anterior tetrápoda ancestral: son homólogas.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) 'Análogas' describe estructuras con la MISMA función pero origen DISTINTO (como el ala de un insecto frente al ala de un ave) — es el concepto opuesto al que pide la pregunta. 2) 'Vestigiales' son estructuras reducidas sin función actual (como el apéndice humano), no aplica aquí porque ambas alas SÍ son funcionales. 3) 'Convergentes' es otro nombre para el fenómeno que produce estructuras análogas (evolución independiente hacia una solución similar), no el de estructuras con origen común. 4) Solo 'homólogas' describe correctamente estructuras con el mismo origen evolutivo, sin importar si la función es idéntica.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Evidencias de la evolución: anatomía comparada",
+        "content": "La homología (mismo origen) y la analogía (misma función, origen distinto) son evidencias clave de la evolución. Repasa: ejemplos clásicos — extremidades de tetrápodos (homología) vs. alas de aves e insectos (analogía).",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvmjj000643e2mpqs53l9",
+    "stem": "A diferencia de la selección natural, la deriva génica produce cambios en las frecuencias alélicas de una población principalmente por...",
+    "options": [
+      {
+        "id": "A",
+        "text": "Azar, con un efecto más pronunciado en poblaciones pequeñas.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La ventaja reproductiva de los individuos mejor adaptados al ambiente.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La mutación dirigida hacia el alelo más favorable.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El apareamiento exclusivamente entre individuos con fenotipos idénticos.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Evolución y especiación"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Deriva génica: cambio al azar",
+        "content": "La deriva génica es un cambio aleatorio en las frecuencias alélicas de una población de una generación a otra, sin relación con la ventaja adaptativa del alelo. Su efecto es mucho más notorio en poblaciones pequeñas, donde el azar pesa más sobre el conjunto genético.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La ventaja reproductiva de los mejor adaptados es la definición de SELECCIÓN NATURAL, no de deriva génica — es justo el contraste que pide la pregunta. 2) La mutación no está 'dirigida' hacia ningún alelo; ocurre al azar y es la fuente de nuevos alelos, no el mecanismo de deriva génica en sí. 3) El apareamiento entre fenotipos idénticos describe un patrón de apareamiento selectivo, no deriva génica. 4) Solo el cambio al azar, más marcado en poblaciones pequeñas, define correctamente a la deriva génica.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Mecanismos de cambio evolutivo",
+        "content": "Los principales mecanismos que cambian las frecuencias alélicas de una población son: selección natural, deriva génica, flujo génico y mutación. Repasa: en qué se diferencian y en qué tipo de población (grande o pequeña) predomina cada uno.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvnb6000b43e2qeolfjxf",
+    "stem": "Según el concepto biológico de especie, dos poblaciones pertenecen a la misma especie si...",
+    "options": [
+      {
+        "id": "A",
+        "text": "Habitan la misma región geográfica en el mismo momento.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Tienen exactamente la misma apariencia física externa.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Pueden cruzarse entre sí de forma natural y producir descendencia fértil.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Comparten el mismo número de cromosomas, sin importar si pueden reproducirse juntas.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Evolución y especiación"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Concepto biológico de especie: interfecundidad",
+        "content": "El concepto biológico de especie define a una especie como un grupo de poblaciones cuyos individuos pueden cruzarse entre sí en condiciones naturales y producir descendencia fértil (capaz, a su vez, de reproducirse).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Compartir la misma región geográfica no define a una especie — poblaciones de especies distintas pueden convivir en el mismo lugar, y poblaciones de la misma especie pueden estar geográficamente separadas. 2) La apariencia física externa puede ser engañosa: existen especies gemelas (morfológicamente casi idénticas) que no se cruzan entre sí. 3) Compartir el número de cromosomas es necesario pero NO suficiente: dos especies pueden tener el mismo número de cromosomas y aun así ser incapaces de producir descendencia fértil (como caballo y burro, que producen mulas estériles). 4) Solo la capacidad de cruzarse naturalmente y producir descendencia FÉRTIL captura la definición del concepto biológico de especie.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Concepto biológico de especie y sus límites",
+        "content": "El concepto biológico de especie es el más usado en bachillerato, aunque tiene limitaciones (no aplica a organismos de reproducción asexual ni a fósiles). El ejemplo clásico de sus límites es la mula: híbrido fértil-estéril entre caballo y burro. Repasa: concepto biológico de especie y el caso de las especies gemelas.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvsgt0001hzxayr7q0ahi",
+    "stem": "En el ciclo del carbono, ¿qué papel cumplen los organismos descomponedores (bacterias y hongos)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Capturan el CO2 atmosférico y lo convierten en materia orgánica mediante fotosíntesis.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Consumen directamente a los productores primarios del ecosistema.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Almacenan carbono de forma permanente, sin liberarlo nunca de vuelta a la atmósfera.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Descomponen la materia orgánica muerta y liberan el carbono de vuelta a la atmósfera como CO2.",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Ecología y ecosistemas"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Descomponedores: cierran el ciclo del carbono",
+        "content": "Los descomponedores (bacterias y hongos) se alimentan de materia orgánica muerta (restos de plantas y animales) y, en el proceso de descomponerla, liberan el carbono que contenía de vuelta a la atmósfera en forma de CO2, mediante su propia respiración celular.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Capturar CO2 mediante fotosíntesis es función de los productores (plantas, algas), no de los descomponedores. 2) Consumir directamente a los productores primarios describe a los consumidores primarios (herbívoros), no a los descomponedores, que se alimentan de materia MUERTA. 3) Los descomponedores no almacenan el carbono de forma permanente; al contrario, lo LIBERAN de vuelta al ciclo. 4) Solo la opción que describe la descomposición de materia orgánica muerta con liberación de CO2 corresponde al papel real de los descomponedores.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "El ciclo del carbono completo",
+        "content": "El ciclo del carbono conecta la atmósfera (CO2), los productores (fotosíntesis), los consumidores (respiración) y los descomponedores (liberación final del carbono almacenado en la materia muerta). Repasa: diagrama completo del ciclo del carbono.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvt8g0006hzxatthdhvea",
+    "stem": "En la relación entre las abejas y las flores que polinizan, ambas especies obtienen un beneficio: la abeja obtiene alimento (néctar) y la flor logra reproducirse (polinización). ¿Cómo se llama este tipo de relación interespecífica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Parasitismo",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Mutualismo",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Comensalismo",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Competencia",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Ecología y ecosistemas"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Mutualismo: beneficio para ambas especies",
+        "content": "El mutualismo es una relación interespecífica en la que AMBAS especies obtienen un beneficio. La relación abeja-flor es un ejemplo clásico: la abeja se alimenta de néctar y la flor logra que su polen se transporte a otras flores.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) En el parasitismo, una especie se beneficia a costa de dañar a la otra — aquí ninguna de las dos especies resulta dañada. 2) En el comensalismo, una especie se beneficia y la otra no se ve afectada ni beneficiada — aquí SÍ hay beneficio para ambas. 3) La competencia ocurre cuando dos especies se disputan el mismo recurso limitado, perjudicándose mutuamente — aquí no hay disputa, hay beneficio compartido. 4) Solo el mutualismo describe una relación donde ambas especies salen beneficiadas.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Tipos de relaciones interespecíficas",
+        "content": "Las relaciones interespecíficas se clasifican según el efecto (+, -, 0) sobre cada especie: mutualismo (+/+), comensalismo (+/0), parasitismo y depredación (+/-), y competencia (-/-). Repasa: ejemplos de cada tipo de relación.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvtzy000bhzxaeomdxk4c",
+    "stem": "¿Cuál es la diferencia entre el hábitat y el nicho ecológico de una especie?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El hábitat es el lugar físico donde vive la especie; el nicho ecológico es el papel funcional que desempeña ahí (qué come, cómo se reproduce, con qué interactúa).",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El hábitat es el papel funcional de la especie; el nicho ecológico es el lugar físico donde vive.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El hábitat y el nicho ecológico son sinónimos que describen exactamente lo mismo.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El hábitat se refiere solo a especies acuáticas; el nicho ecológico solo a especies terrestres.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Ecología y ecosistemas"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Hábitat (dónde) vs. nicho ecológico (qué hace ahí)",
+        "content": "El hábitat es la dirección física de una especie —el lugar o tipo de ambiente donde vive—, mientras que el nicho ecológico es su 'profesión': el conjunto de funciones, relaciones e interacciones que desempeña dentro de ese hábitat (qué come, quién la come, cómo se reproduce, con qué otras especies compite).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Invertir las definiciones (hábitat = función, nicho = lugar) es exactamente al revés de la distinción real. 2) No son sinónimos: dos especies pueden compartir el mismo hábitat pero tener nichos distintos (un halcón y un ratón viven en el mismo campo, pero cumplen roles ecológicos muy diferentes). 3) Ninguno de los dos términos está restringido a un solo tipo de ambiente (acuático o terrestre); ambos aplican a cualquier especie. 4) Solo la opción que distingue el lugar físico (hábitat) del papel funcional (nicho ecológico) es correcta.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Hábitat y nicho: un ejemplo clásico",
+        "content": "Una analogía útil: el hábitat es la 'dirección' de una especie, y el nicho ecológico es su 'profesión' dentro de esa dirección. Repasa: ejemplos de especies que comparten hábitat pero tienen nichos distintos, y el principio de exclusión competitiva.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvz7x0001atxwore5er7y",
+    "stem": "¿Cuál es la diferencia entre la circulación pulmonar y la circulación sistémica en el corazón humano?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La circulación pulmonar lleva sangre oxigenada a todo el cuerpo; la sistémica lleva sangre desoxigenada a los pulmones.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Ambas circulaciones transportan el mismo tipo de sangre, solo cambia el órgano de destino.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La circulación pulmonar lleva sangre desoxigenada del corazón a los pulmones para oxigenarse; la sistémica lleva sangre oxigenada del corazón al resto del cuerpo.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La circulación pulmonar ocurre solo durante el ejercicio físico; la sistémica ocurre en reposo.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistemas del cuerpo humano"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Dos circuitos, dos funciones",
+        "content": "El corazón bombea sangre en dos circuitos: el pulmonar (lado derecho del corazón), que envía sangre desoxigenada a los pulmones para intercambiar CO2 por O2, y el sistémico (lado izquierdo), que envía sangre ya oxigenada a todos los tejidos del cuerpo.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Invertir qué circuito lleva sangre oxigenada y cuál desoxigenada es exactamente al revés de la fisiología real. 2) Los dos circuitos SÍ transportan sangre con distinto contenido de oxígeno; no es solo un cambio de destino. 3) Ambos circuitos funcionan de manera continua, en reposo y en ejercicio; ninguno se 'activa' solo en una condición. 4) Solo la opción que asigna correctamente sangre desoxigenada al circuito pulmonar y sangre oxigenada al circuito sistémico describe la fisiología real.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Anatomía del sistema circulatorio",
+        "content": "El corazón funciona como una doble bomba: el lado derecho impulsa la circulación pulmonar (menor) y el lado izquierdo impulsa la circulación sistémica (mayor). Repasa: recorrido completo de la sangre a través de las 4 cavidades del corazón.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mvzzs0006atxwc5pfwur4",
+    "stem": "¿Cuál es la función principal de la nefrona, la unidad funcional del riñón?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Producir glóbulos rojos para reponer los que mueren en la circulación.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Sintetizar las hormonas que regulan el apetito.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Almacenar temporalmente el alimento antes de su digestión completa.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Filtrar la sangre para eliminar desechos y formar la orina, regulando también el balance de agua y sales.",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistemas del cuerpo humano"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La nefrona: filtro del riñón",
+        "content": "Cada riñón contiene alrededor de un millón de nefronas, encargadas de filtrar la sangre, reabsorber lo que el cuerpo necesita conservar (agua, glucosa, sales) y excretar los desechos en forma de orina.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Producir glóbulos rojos es función de la médula ósea (estimulada por la eritropoyetina, que sí produce el riñón, pero eso no es lo que hace la nefrona directamente). 2) Regular el apetito no es función renal; corresponde al hipotálamo y a hormonas como la leptina, producidas en otros órganos. 3) Almacenar alimento antes de digerirlo es función del estómago, no del riñón. 4) Solo filtrar la sangre y formar orina, regulando agua y sales, describe la función real de la nefrona.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "El sistema urinario",
+        "content": "La nefrona combina filtración, reabsorción y secreción para mantener el equilibrio interno del cuerpo. Repasa: estructura de la nefrona (glomérulo, cápsula de Bowman, túbulos) y su papel en la formación de orina.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mw0ri000batxw0myfyzq9",
+    "stem": "¿Cuál de las siguientes es una función principal del hígado en el cuerpo humano?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Metabolizar nutrientes y sustancias tóxicas, y producir bilis para la digestión de grasas.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Bombear la sangre hacia todo el cuerpo mediante contracciones rítmicas.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Intercambiar oxígeno y dióxido de carbono con el aire inhalado.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Transmitir impulsos eléctricos entre distintas partes del cuerpo.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistemas del cuerpo humano"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El hígado: metabolismo y desintoxicación",
+        "content": "El hígado cumple funciones metabólicas centrales: procesa los nutrientes absorbidos en el intestino, neutraliza sustancias tóxicas (incluido el alcohol y ciertos medicamentos) y produce bilis, necesaria para digerir y absorber las grasas.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Bombear sangre es función del corazón, no del hígado. 2) Intercambiar gases respiratorios es función de los pulmones (alvéolos), no del hígado. 3) Transmitir impulsos eléctricos es función del sistema nervioso, no del hígado. 4) Solo metabolizar nutrientes/toxinas y producir bilis corresponde a las funciones reales del hígado.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "El hígado como órgano metabólico central",
+        "content": "Además de lo anterior, el hígado almacena glucosa en forma de glucógeno y la libera cuando el cuerpo la necesita, participando también en la regulación de la glucosa en sangre. Repasa: funciones del hígado y su relación con el sistema digestivo.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mw5yj0001hsnzudeklypn",
+    "stem": "¿Cuál es la diferencia entre el anabolismo y el catabolismo, los dos procesos que integran el metabolismo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El anabolismo libera energía al romper moléculas; el catabolismo consume energía al construirlas.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El anabolismo construye moléculas complejas a partir de simples y consume energía; el catabolismo rompe moléculas complejas en simples y libera energía.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El anabolismo y el catabolismo son sinónimos del mismo proceso metabólico.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El anabolismo ocurre solo en plantas; el catabolismo ocurre solo en animales.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Nutrición y metabolismo"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Anabolismo (construir) vs. catabolismo (romper)",
+        "content": "El anabolismo es la fase constructiva del metabolismo: sintetiza moléculas complejas (proteínas, por ejemplo) a partir de otras más simples, y requiere energía. El catabolismo es la fase de degradación: rompe moléculas complejas en simples, liberando energía en el proceso.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Invertir qué proceso libera y cuál consume energía es exactamente al revés de sus definiciones reales. 2) No son sinónimos: son procesos opuestos y complementarios dentro del metabolismo. 3) Ambos procesos ocurren tanto en plantas como en animales (y en cualquier ser vivo); no están restringidos a un solo reino. 4) Solo la opción que asigna correctamente 'anabolismo = construir + consumir energía' y 'catabolismo = romper + liberar energía' es correcta.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Metabolismo: la suma de anabolismo y catabolismo",
+        "content": "El metabolismo es la suma de todas las reacciones anabólicas y catabólicas de un organismo. La respiración celular es el ejemplo clásico de catabolismo; la síntesis de proteínas es el ejemplo clásico de anabolismo. Repasa: ejemplos cotidianos de cada proceso.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mw6q40006hsnz259qgd1j",
+    "stem": "La pepsina es una enzima digestiva que actúa en un ambiente muy ácido dentro del estómago. ¿Sobre qué tipo de macronutriente actúa principalmente la pepsina?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Carbohidratos",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Lípidos (grasas)",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Proteínas",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Vitaminas",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Nutrición y metabolismo"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Pepsina: digestión de proteínas",
+        "content": "La pepsina es secretada por las células del estómago (en su forma inactiva, pepsinógeno) y, activada por el ácido clorhídrico gástrico, comienza a romper las proteínas de los alimentos en fragmentos más pequeños (péptidos).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La digestión de carbohidratos comienza en la boca con la amilasa salival, y continúa en el intestino delgado; no es función de la pepsina. 2) La digestión de lípidos depende principalmente de la bilis (emulsificación) y la lipasa pancreática en el intestino delgado, no de la pepsina. 3) Las vitaminas no se 'digieren' mediante enzimas como los macronutrientes; se absorben generalmente sin modificación química. 4) Solo las proteínas son el sustrato principal de la pepsina.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Enzimas digestivas por macronutriente",
+        "content": "Cada macronutriente tiene enzimas específicas: carbohidratos (amilasa), proteínas (pepsina, tripsina), lípidos (lipasa). Repasa: qué enzima actúa en qué órgano del tubo digestivo y sobre qué macronutriente.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mw7ht000bhsnz4lsphp6u",
+    "stem": "El páncreas produce dos hormonas con efectos opuestos sobre el nivel de glucosa en sangre. ¿Cuáles son y cómo actúan?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tiroxina, que sube la glucosa, y cortisol, que la baja.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Adrenalina, que sube la glucosa, y melatonina, que la baja.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Estrógeno, que sube la glucosa, y testosterona, que la baja.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Insulina, que baja la glucosa al facilitar su entrada a las células, y glucagón, que la sube al liberar glucosa almacenada en el hígado.",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Nutrición y metabolismo"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Insulina y glucagón: hormonas antagonistas",
+        "content": "El páncreas regula la glucosa en sangre mediante dos hormonas antagonistas: la insulina, que reduce la glucosa facilitando su entrada a las células y su almacenamiento como glucógeno, y el glucagón, que la eleva estimulando la liberación de glucosa almacenada en el hígado.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La tiroxina regula el metabolismo general, no específicamente la glucosa de esta manera, y el cortisol en realidad TIENDE A ELEVAR la glucosa, no a bajarla. 2) La adrenalina sí puede elevar la glucosa en situaciones de estrés, pero la melatonina regula el ciclo sueño-vigilia, no la glucosa. 3) Los estrógenos y la testosterona son hormonas sexuales, sin esta función antagonista sobre la glucosa. 4) Solo insulina (baja la glucosa) y glucagón (sube la glucosa), ambas del páncreas, son las hormonas antagonistas reales de este sistema.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Regulación hormonal de la glucosa",
+        "content": "Este es un ejemplo clásico de retroalimentación negativa hormonal: cuando la glucosa sube, se libera insulina; cuando baja, se libera glucagón, manteniendo la glucemia dentro de un rango estable. Repasa: páncreas endocrino (islotes de Langerhans) y diabetes como falla de este sistema.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwcnt000112skvqrbjqxo",
+    "stem": "¿Cuál es la diferencia principal entre el sistema nervioso central (SNC) y el sistema nervioso periférico (SNP)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El SNC está formado por el encéfalo y la médula espinal; el SNP incluye los nervios que conectan al SNC con el resto del cuerpo.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El SNC está formado por los nervios craneales; el SNP está formado exclusivamente por el cerebro.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El SNC controla solo las acciones voluntarias; el SNP controla solo las acciones involuntarias.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El SNC y el SNP son dos nombres distintos para la misma estructura anatómica.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema nervioso"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "SNC (encéfalo + médula) vs. SNP (nervios)",
+        "content": "El sistema nervioso central está formado por el encéfalo (cerebro, cerebelo, tallo cerebral) y la médula espinal, protegidos por hueso. El sistema nervioso periférico está formado por los nervios craneales y espinales que salen del SNC y se distribuyen por todo el cuerpo.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Afirmar que el SNC son 'los nervios craneales' y el SNP es 'exclusivamente el cerebro' invierte la relación real entre ambos sistemas. 2) La división voluntario/involuntario corresponde a la clasificación funcional en somático y autónomo (dentro del SNP), no a la división SNC/SNP. 3) No son la misma estructura: el SNC es el centro de procesamiento protegido, el SNP es la red de comunicación hacia el resto del cuerpo. 4) Solo la opción que ubica al encéfalo y la médula espinal en el SNC, y a los nervios en el SNP, es correcta.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Organización del sistema nervioso",
+        "content": "El sistema nervioso se divide primero en SNC/SNP (anatómico), y dentro del SNP se distingue el sistema somático (voluntario) del autónomo (involuntario, con sus ramas simpática y parasimpática). Repasa: mapa conceptual completo de la organización del sistema nervioso.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwdfs000612sk080lhw0x",
+    "stem": "En la comunicación entre dos neuronas, ¿qué ocurre exactamente en la sinapsis?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Las dos neuronas se fusionan físicamente en un solo citoplasma compartido.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La neurona presináptica libera neurotransmisores al espacio sináptico, que son captados por receptores de la neurona postsináptica.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El impulso eléctrico salta directamente de una neurona a otra sin ningún intermediario químico.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La sinapsis es el nombre de la envoltura de mielina que recubre el axón.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema nervioso"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Sinapsis: comunicación química entre neuronas",
+        "content": "En la mayoría de las sinapsis, la neurona presináptica libera moléculas llamadas neurotransmisores hacia el espacio sináptico (una pequeña separación entre las dos neuronas); estos neurotransmisores se unen a receptores específicos en la membrana de la neurona postsináptica, transmitiendo así la señal.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Las neuronas NO se fusionan físicamente; permanecen separadas por el espacio sináptico, esa separación es justamente lo que define a la sinapsis química. 2) El impulso eléctrico (potencial de acción) sí necesita convertirse en una señal química (neurotransmisores) para cruzar el espacio sináptico en la mayoría de las sinapsis del cuerpo humano. 3) La mielina es una cubierta aislante del axón que acelera la conducción del impulso; no tiene relación con la definición de sinapsis. 4) Solo la opción que describe la liberación de neurotransmisores y su captación por receptores corresponde a lo que ocurre en la sinapsis.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Transmisión sináptica",
+        "content": "Ejemplos de neurotransmisores incluyen la acetilcolina, la dopamina y la serotonina, cada uno con efectos distintos en el sistema nervioso. Repasa: partes de la neurona (dendritas, cuerpo celular, axón, botón sináptico) y el proceso completo de transmisión sináptica.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwiqe0001yawedzpceank",
+    "stem": "¿Cuál es la función principal de la hormona tiroxina, producida por la glándula tiroides?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reducir el nivel de glucosa en sangre después de una comida.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Preparar al cuerpo para respuestas de 'lucha o huida' ante el estrés agudo.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Regular la tasa general del metabolismo del cuerpo (consumo de energía y producción de calor).",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Estimular la maduración de los óvulos en el ovario.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema endocrino"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Tiroxina: regula el metabolismo",
+        "content": "La tiroxina, producida por la glándula tiroides, regula la velocidad del metabolismo celular en todo el cuerpo: cuánta energía se consume y cuánto calor se produce en reposo. Su exceso o deficiencia afecta directamente el peso, la energía y la temperatura corporal.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Reducir la glucosa en sangre es función de la insulina, producida por el páncreas, no de la tiroxina. 2) La respuesta de 'lucha o huida' está mediada por la adrenalina, producida por las glándulas suprarrenales, no por la tiroides. 3) Estimular la maduración de óvulos es función de la FSH, producida por la hipófisis, no de la tiroides. 4) Solo regular la tasa metabólica general corresponde a la función real de la tiroxina.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Glándula tiroides y trastornos comunes",
+        "content": "Un exceso de tiroxina causa hipertiroidismo (metabolismo acelerado); una deficiencia causa hipotiroidismo (metabolismo lento). Repasa: glándulas endocrinas principales y la hormona característica de cada una.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwjiv0006yawem2ddy7f3",
+    "stem": "Ante una situación de estrés o peligro repentino, las glándulas suprarrenales liberan una hormona que acelera el ritmo cardiaco, eleva la glucosa disponible y prepara al cuerpo para actuar. ¿Cómo se llama esta hormona y esta respuesta?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Insulina; respuesta de saciedad.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Melatonina; respuesta de sueño.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Tiroxina; respuesta metabólica basal.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Adrenalina (epinefrina); respuesta de 'lucha o huida'.",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema endocrino"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Adrenalina: respuesta de emergencia",
+        "content": "Ante una amenaza percibida, la médula de las glándulas suprarrenales libera adrenalina (epinefrina) al torrente sanguíneo, lo que acelera el ritmo cardiaco y respiratorio, eleva la glucosa disponible en sangre y redirige el flujo sanguíneo hacia los músculos — la respuesta conocida como 'lucha o huida'.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La insulina reduce la glucosa y se asocia con el estado posprandial (después de comer), no con una respuesta de emergencia. 2) La melatonina regula el ciclo de sueño-vigilia, un efecto contrario a la activación que describe la pregunta. 3) La tiroxina regula el metabolismo basal a largo plazo, no la respuesta inmediata ante una amenaza. 4) Solo la adrenalina, liberada por las glándulas suprarrenales, produce la respuesta aguda de 'lucha o huida' descrita en la pregunta.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Glándulas suprarrenales",
+        "content": "Las glándulas suprarrenales tienen dos regiones: la médula (produce adrenalina y noradrenalina, respuesta rápida) y la corteza (produce cortisol, respuesta de estrés más sostenida). Repasa: diferencia entre la respuesta rápida (adrenalina) y la respuesta sostenida (cortisol) al estrés.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwkaw000byaweaspodcy7",
+    "stem": "La hipófisis libera TSH (hormona estimulante de la tiroides), que a su vez estimula a la tiroides para producir tiroxina. Cuando el nivel de tiroxina en sangre es alto, ¿qué ocurre con la liberación de TSH, y cómo se llama este mecanismo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La tiroxina alta INHIBE la liberación de TSH — un mecanismo de retroalimentación NEGATIVA.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La tiroxina alta ESTIMULA aún más la liberación de TSH — un mecanismo de retroalimentación POSITIVA.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La tiroxina no tiene ningún efecto sobre la liberación de TSH; son procesos independientes.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La tiroxina alta destruye permanentemente a la hipófisis, deteniendo la producción de TSH de por vida.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "EXPERT",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Sistema endocrino"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Retroalimentación negativa del eje hipófisis-tiroides",
+        "content": "Cuando el nivel de tiroxina en sangre es suficientemente alto, esa misma tiroxina actúa sobre la hipófisis (y el hipotálamo) para INHIBIR la liberación de TSH. Al bajar la TSH, la tiroides recibe menos estímulo y reduce su producción de tiroxina — el sistema se autorregula. Este es un mecanismo de retroalimentación negativa.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Afirmar que la tiroxina alta estimula AÚN MÁS a la TSH describe una retroalimentación POSITIVA, que amplificaría el desequilibrio en vez de corregirlo — es el mecanismo contrario al real. 2) Decir que no hay ningún efecto ignora la relación reguladora completa del eje hipotálamo-hipófisis-tiroides. 3) La tiroxina no 'destruye' la hipófisis; la inhibición es temporal y reversible, ajustándose constantemente según el nivel hormonal. 4) Solo la retroalimentación NEGATIVA (tiroxina alta → menos TSH → menos tiroxina) describe correctamente cómo el cuerpo mantiene estable el nivel de esta hormona.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Ejes hormonales y retroalimentación negativa",
+        "content": "La mayoría de los ejes hormonales del cuerpo (hipófisis-tiroides, hipófisis-suprarrenal, hipófisis-gónadas) se autorregulan mediante retroalimentación negativa, el mismo principio general que mantiene la homeostasis. La excepción notable es el parto, un ejemplo de retroalimentación POSITIVA. Repasa: eje hipotálamo-hipófisis-tiroides completo.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwphw0001gr1m8oy4j16p",
+    "stem": "¿Cuál es la diferencia principal entre la función de los linfocitos T y los linfocitos B en el sistema inmune adaptativo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los linfocitos T producen anticuerpos; los linfocitos B atacan directamente a las células infectadas.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Los linfocitos B producen anticuerpos (inmunidad humoral); los linfocitos T atacan directamente a células infectadas o coordinan la respuesta inmune (inmunidad celular).",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Ambos tipos de linfocitos cumplen exactamente la misma función, solo cambia su lugar de origen.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los linfocitos T y B pertenecen al sistema inmune innato, no al adaptativo.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Inmunología"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Linfocitos B (anticuerpos) y T (ataque directo/coordinación)",
+        "content": "Los linfocitos B, al activarse, se convierten en células plasmáticas que producen anticuerpos específicos contra un antígeno (inmunidad humoral). Los linfocitos T incluyen células citotóxicas, que atacan directamente a las células infectadas o cancerosas, y células colaboradoras (helper), que coordinan la respuesta inmune completa (inmunidad celular).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Invertir qué tipo de linfocito produce anticuerpos y cuál ataca directamente es exactamente al revés de sus funciones reales. 2) No cumplen la misma función; su diferencia no es solo el lugar de origen (aunque los T maduran en el timo y los B en la médula ósea), sino su mecanismo de acción. 3) Los linfocitos T y B son la base del sistema inmune ADAPTATIVO (específico y con memoria), no del innato (inespecífico, como los macrófagos o la inflamación). 4) Solo la opción que asigna anticuerpos a los linfocitos B y ataque directo/coordinación a los linfocitos T describe correctamente la inmunidad adaptativa.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Inmunidad humoral vs. celular",
+        "content": "La inmunidad humoral (linfocitos B, anticuerpos circulantes) es más eficaz contra patógenos extracelulares; la inmunidad celular (linfocitos T) es clave contra patógenos intracelulares (virus) y células anormales. Repasa: tipos de linfocitos T (citotóxicos, colaboradores, de memoria) y su papel específico.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwq9n0006gr1mq41is96j",
+    "stem": "¿Cómo funciona básicamente una vacuna para proteger contra una enfermedad infecciosa?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Elimina por completo al patógeno del ambiente para que nunca pueda infectar a nadie.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Cura la enfermedad una vez que la persona ya está infectada y presenta síntomas.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Expone al sistema inmune a una versión inactivada, atenuada o a fragmentos del patógeno, para generar memoria inmunológica sin causar la enfermedad.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Fortalece únicamente la piel y las mucosas como barreras físicas contra cualquier patógeno.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Inmunología"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Vacunas: memoria inmunológica sin enfermedad",
+        "content": "Una vacuna introduce al cuerpo una versión inactivada, atenuada (debilitada) o solo fragmentos de un patógeno. El sistema inmune reacciona generando anticuerpos y, sobre todo, células de memoria, sin que la persona desarrolle la enfermedad real. Si luego el patógeno real invade, la respuesta inmune es mucho más rápida y eficaz.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Una vacuna no elimina al patógeno del ambiente; actúa dentro del organismo vacunado, preparando su sistema inmune. 2) Las vacunas son preventivas, no curativas: se aplican ANTES de la infección, no después de que aparecen los síntomas. 3) Las barreras físicas (piel, mucosas) son parte de la inmunidad innata y no dependen de la vacunación. 4) Solo la opción que describe la exposición controlada al patógeno (o sus fragmentos) para generar memoria inmunológica corresponde al mecanismo real de una vacuna.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Inmunidad activa artificial",
+        "content": "La vacunación es un tipo de inmunidad activa artificial: el propio cuerpo produce sus defensas (a diferencia de la inmunidad pasiva, donde se reciben anticuerpos ya hechos, como en la leche materna). Repasa: diferencia entre inmunidad activa y pasiva, natural y artificial.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwr1g000bgr1mtaakqgyv",
+    "stem": "La inflamación es una respuesta del sistema inmune innato ante una lesión o infección local, caracterizada por enrojecimiento, calor, hinchazón y dolor. ¿Qué proceso fisiológico explica principalmente estos cuatro signos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La disminución del flujo sanguíneo hacia la zona afectada, que reduce la temperatura local.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La producción de anticuerpos específicos contra el agente que causó la lesión.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La contracción de los vasos sanguíneos para aislar por completo la zona dañada.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La liberación de sustancias como la histamina, que dilatan los vasos sanguíneos y aumentan su permeabilidad, incrementando el flujo de sangre y líquido hacia la zona.",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Inmunología"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Histamina: la base de los signos de inflamación",
+        "content": "Ante una lesión o infección, células como los mastocitos liberan histamina y otras sustancias que dilatan los vasos sanguíneos (más flujo = enrojecimiento y calor) y aumentan su permeabilidad (salida de líquido y células inmunes hacia el tejido = hinchazón), lo que a su vez activa terminaciones nerviosas (dolor).",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La inflamación involucra un AUMENTO del flujo sanguíneo local (vasodilatación), no una disminución — eso explicaría lo contrario de enrojecimiento y calor. 2) La producción de anticuerpos específicos es parte de la respuesta ADAPTATIVA (más lenta, días), no del mecanismo inmediato de la inflamación, que es innato. 3) Los vasos sanguíneos se DILATAN (no se contraen) durante la inflamación, y el objetivo no es 'aislar' sino permitir que lleguen más células inmunes a la zona. 4) Solo la liberación de histamina, con vasodilatación y aumento de permeabilidad vascular, explica los cuatro signos cardinales de la inflamación.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Inflamación como mecanismo de defensa innato",
+        "content": "La inflamación no es un daño en sí misma, sino una respuesta protectora: atrae células inmunes (como los fagocitos) a la zona afectada para combatir al agente agresor y comenzar la reparación del tejido. Repasa: los cuatro signos cardinales de la inflamación y el papel de los mastocitos y macrófagos.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwwby0001xv8b2ng9mczr",
+    "stem": "En el ciclo menstrual, la ovulación (liberación del óvulo maduro desde el ovario) ocurre principalmente por un aumento súbito de...",
+    "options": [
+      {
+        "id": "A",
+        "text": "La hormona luteinizante (LH).",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La progesterona, al inicio del ciclo.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La oxitocina, durante la menstruación.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La testosterona, producida por el ovario.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Reproducción"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El pico de LH desencadena la ovulación",
+        "content": "A la mitad del ciclo menstrual (alrededor del día 14 en un ciclo de 28 días), un aumento súbito y pronunciado de la hormona luteinizante (LH), liberada por la hipófisis, desencadena la ruptura del folículo ovárico maduro y la liberación del óvulo: la ovulación.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La progesterona aumenta DESPUÉS de la ovulación (fase lútea), no al inicio del ciclo, y su función es preparar el endometrio, no desencadenar la ovulación. 2) La oxitocina está relacionada con el parto y la lactancia, no con la ovulación. 3) La testosterona es la hormona sexual predominante en hombres; en mujeres está presente en cantidades menores y no es la responsable de desencadenar la ovulación. 4) Solo el pico de LH es el disparador hormonal directo de la ovulación.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Fases del ciclo menstrual",
+        "content": "El ciclo menstrual se divide en fase folicular (FSH estimula el desarrollo del folículo), ovulación (pico de LH) y fase lútea (progesterona domina, preparando el endometrio). Repasa: gráfica de niveles hormonales a lo largo del ciclo menstrual completo.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwx3h0006xv8bpln6gm3h",
+    "stem": "¿Cuál es la principal ventaja biológica de la reproducción sexual sobre la reproducción asexual?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Es un proceso más rápido, ya que solo requiere un progenitor.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Genera descendencia con mayor variabilidad genética, al combinar material genético de dos progenitores.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Garantiza que toda la descendencia sea genéticamente idéntica al progenitor.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "No requiere de la formación de gametos ni de fecundación.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Reproducción"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Reproducción sexual: variabilidad genética",
+        "content": "La reproducción sexual combina el material genético de dos progenitores (a través de la meiosis y la fecundación), lo que produce descendencia genéticamente distinta entre sí y de sus progenitores — esta variabilidad es una ventaja frente a ambientes cambiantes.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La reproducción ASEXUAL (no la sexual) es la que suele ser más rápida y requiere un solo progenitor (por ejemplo, división binaria o gemación). 2) Producir descendencia genéticamente IDÉNTICA es característica de la reproducción asexual, justo lo opuesto de lo que aporta la reproducción sexual. 3) La reproducción sexual SÍ requiere la formación de gametos (por meiosis) y su posterior fecundación; es una característica definitoria del proceso, no algo que evite. 4) Solo la generación de variabilidad genética, al combinar material de dos progenitores, describe la ventaja real de la reproducción sexual.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Reproducción sexual vs. asexual",
+        "content": "La variabilidad genética que aporta la reproducción sexual es materia prima para la selección natural, aumentando la capacidad de una población de adaptarse a cambios ambientales, aunque a costa de mayor tiempo y energía invertidos. Repasa: ejemplos de reproducción asexual (fisión binaria, gemación, esporulación) frente a la sexual.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwxuy000bxv8bzopbivow",
+    "stem": "Un espermatocito primario y un ovocito primario, ambos diploides, entran cada uno a la meiosis. ¿Cuántas células funcionales (capaces de participar en la fecundación) produce finalmente cada proceso?",
+    "options": [
+      {
+        "id": "A",
+        "text": "4 espermatozoides funcionales y 4 óvulos funcionales.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "1 espermatozoide funcional y 1 óvulo funcional.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "4 espermatozoides funcionales, pero solo 1 óvulo funcional (los otros 3 productos degeneran como cuerpos polares).",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "2 espermatozoides funcionales y 2 óvulos funcionales.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "EXPERT",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Reproducción"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Espermatogénesis vs. ovogénesis: un resultado asimétrico",
+        "content": "Aunque ambos procesos son meiosis, sus resultados finales son distintos en cuanto a células funcionales: la espermatogénesis produce 4 espermatozoides funcionales de tamaño similar. La ovogénesis, en cambio, reparte el citoplasma de forma muy desigual en cada división, produciendo 1 solo óvulo funcional grande (con las reservas necesarias para un posible embrión) y hasta 3 cuerpos polares pequeños que degeneran sin función reproductiva.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Decir que la ovogénesis también produce 4 óvulos funcionales ignora la asimetría citoplasmática característica de este proceso. 2) Reducir ambos procesos a una sola célula funcional no corresponde ni a la espermatogénesis (que sí produce 4) ni describe correctamente el resultado neto de la ovogénesis. 3) Asignar 2 células funcionales a cada proceso no corresponde a ninguno de los dos: la espermatogénesis da 4, la ovogénesis da 1. 4) Solo la opción que reconoce la asimetría real —4 espermatozoides funcionales frente a 1 solo óvulo funcional— describe correctamente ambos procesos.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Por qué la ovogénesis es asimétrica",
+        "content": "La razón es que el óvulo necesita concentrar suficiente citoplasma y reservas nutritivas para sostener las primeras divisiones del embrión tras la fecundación; repartir el citoplasma en 4 partes iguales, como ocurre en la espermatogénesis, no permitiría esto. Repasa: diagramas comparativos de espermatogénesis vs. ovogénesis, incluyendo cuerpos polares.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mwymi000gxv8bf4ur1drl",
+    "stem": "La FSH (hormona folículo-estimulante) y la LH (hormona luteinizante), ambas liberadas por la hipófisis, regulan el sistema reproductor tanto en hombres como en mujeres. ¿Cuál de las siguientes describe correctamente una de sus funciones?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La FSH estimula exclusivamente la producción de leche materna después del parto.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La LH es la hormona responsable de mantener el embarazo durante los 9 meses completos.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La FSH y la LH solo se producen en el organismo femenino; los hombres no las requieren.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En el hombre, la FSH estimula la producción de espermatozoides y la LH estimula a las células de Leydig para producir testosterona.",
+        "imageUrl": null,
+        "isCorrect": true
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Reproducción"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "FSH y LH también actúan en el sistema reproductor masculino",
+        "content": "Aunque suelen asociarse solo con el ciclo menstrual femenino, la FSH y la LH también regulan el sistema reproductor masculino: la FSH estimula a las células de Sertoli para apoyar la espermatogénesis, y la LH estimula a las células de Leydig para producir testosterona.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) Estimular la producción de leche materna es función principal de la prolactina (y la eyección de leche depende de la oxitocina), no de la FSH. 2) Mantener el embarazo a largo plazo depende principalmente de la progesterona (inicialmente del cuerpo lúteo y después de la placenta), no directamente de la LH. 3) Tanto hombres como mujeres producen FSH y LH; en el hombre regulan la función testicular, no están ausentes. 4) Solo la opción que describe correctamente el papel de la FSH (espermatogénesis, vía células de Sertoli) y la LH (testosterona, vía células de Leydig) en el hombre es correcta.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "El eje hipófisis-gónadas en ambos sexos",
+        "content": "El mismo par de hormonas hipofisiarias (FSH y LH) regula tanto el ovario como el testículo, aunque con efectos específicos distintos en cada sexo. Repasa: eje hipotálamo-hipófisis-gónadas, y las funciones específicas de FSH/LH en hombres frente a mujeres.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mx3u30001xq02xigimwus",
+    "stem": "El cuerpo humano mantiene su temperatura interna alrededor de 37°C mediante mecanismos que detectan desviaciones y las corrigen automáticamente. ¿Cómo se llama este tipo de mecanismo regulador, el más común en la homeostasis?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Retroalimentación positiva",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Retroalimentación negativa",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Retroalimentación neutra",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Retroalimentación acumulativa",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "BASIC",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Homeostasis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Retroalimentación negativa: el mecanismo más común",
+        "content": "La retroalimentación negativa es el mecanismo homeostático más frecuente: cuando una variable (como la temperatura corporal) se desvía de su punto de ajuste, el cuerpo activa respuestas que la regresan hacia ese valor normal, revirtiendo el cambio inicial.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La retroalimentación POSITIVA amplifica el cambio inicial en vez de revertirlo (como en el parto); es la excepción, no la regla, en la homeostasis. 2) 'Retroalimentación neutra' no es un término fisiológico reconocido para describir mecanismos de regulación homeostática. 3) 'Retroalimentación acumulativa' tampoco corresponde a ningún mecanismo homeostático real. 4) Solo la retroalimentación negativa corresponde al mecanismo típico que detecta una desviación (como un cambio de temperatura) y la revierte hacia el punto de ajuste normal.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Homeostasis y punto de ajuste",
+        "content": "Todo mecanismo de retroalimentación negativa requiere un sensor (detecta el cambio), un centro de control (compara con el punto de ajuste) y un efector (ejecuta la corrección). Repasa: el termostato como analogía de la retroalimentación negativa.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mx4lr0006xq022itxpj1d",
+    "stem": "Cuando la temperatura ambiental es muy alta y el cuerpo comienza a sobrecalentarse, ¿qué par de respuestas fisiológicas ayuda a disipar el exceso de calor?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Vasoconstricción de los vasos sanguíneos de la piel y escalofríos musculares.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Aumento de la frecuencia respiratoria únicamente, sin cambios en la piel.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Vasodilatación de los vasos sanguíneos de la piel y sudoración.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Liberación de tiroxina para acelerar el metabolismo basal.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "INTERMEDIATE",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Homeostasis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "Vasodilatación y sudoración: enfriar el cuerpo",
+        "content": "Ante el calor, los vasos sanguíneos de la piel se dilatan (vasodilatación), permitiendo que más calor de la sangre se disipe hacia el ambiente, y las glándulas sudoríparas producen sudor, cuya evaporación enfría la superficie de la piel.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La vasoconstricción y los escalofríos son las respuestas para CONSERVAR calor cuando hace frío, el mecanismo opuesto al que pide la pregunta. 2) Aumentar solo la frecuencia respiratoria, sin cambios vasculares ni sudoración, no es la respuesta principal del cuerpo humano ante el calor. 3) Acelerar el metabolismo basal con tiroxina generaría MÁS calor interno, empeorando el sobrecalentamiento en vez de disiparlo. 4) Solo la combinación de vasodilatación cutánea y sudoración corresponde a la respuesta real del cuerpo para perder calor ante un ambiente caluroso.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Termorregulación como ejemplo de homeostasis",
+        "content": "El hipotálamo actúa como el 'termostato' del cuerpo, comparando la temperatura actual con el punto de ajuste (~37°C) y activando estas respuestas mediante retroalimentación negativa. Repasa: respuestas del cuerpo ante el frío (vasoconstricción, escalofríos, piloerección) frente a las respuestas ante el calor.",
+        "latexContent": null
+      }
+    ]
+  },
+  {
+    "id": "cmt8mx5dg000bxq02lw6ng1u2",
+    "stem": "Cuando el cuerpo está deshidratado, la hipófisis libera más hormona antidiurética (ADH). ¿Cuál es el efecto directo de la ADH sobre los riñones?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Aumenta la reabsorción de agua en los túbulos renales, produciendo una orina más concentrada y en menor cantidad.",
+        "imageUrl": null,
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Aumenta la filtración de glucosa, provocando su pérdida completa en la orina.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Bloquea por completo la formación de orina mientras dure la deshidratación.",
+        "imageUrl": null,
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Estimula a los riñones para liberar más eritropoyetina y producir más glóbulos rojos.",
+        "imageUrl": null,
+        "isCorrect": false
+      }
+    ],
+    "format": "MULTIPLE_CHOICE",
+    "difficulty": "ADVANCED",
+    "groundingStatus": "TEMARIO_ONLY",
+    "topic": {
+      "name": "Homeostasis"
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "ADH: conservar agua ante la deshidratación",
+        "content": "La hormona antidiurética (ADH, también llamada vasopresina) actúa sobre los túbulos renales aumentando su permeabilidad al agua, lo que permite reabsorber más agua de vuelta a la sangre en lugar de perderla en la orina. El resultado es una orina más concentrada y en menor volumen, conservando el agua corporal.",
+        "latexContent": null
+      },
+      {
+        "layer": 2,
+        "title": "Descartando cada opción",
+        "content": "1) La ADH no tiene relación directa con la filtración o pérdida de glucosa; eso ocurriría en condiciones como la diabetes mellitus, un proceso distinto. 2) La ADH no bloquea por completo la formación de orina; solo aumenta la reabsorción de agua, el cuerpo sigue produciendo (menos) orina, no la detiene del todo. 3) Estimular la producción de glóbulos rojos es función de la eritropoyetina, una hormona renal distinta, no un efecto de la ADH. 4) Solo el aumento de la reabsorción de agua, con orina más concentrada y en menor cantidad, describe el efecto real de la ADH.",
+        "latexContent": null
+      },
+      {
+        "layer": 3,
+        "title": "Regulación osmótica y homeostasis del agua",
+        "content": "Este mecanismo es otro ejemplo de retroalimentación negativa: la deshidratación (osmolaridad alta en sangre) estimula la liberación de ADH; al recuperar agua, la osmolaridad baja y la liberación de ADH disminuye. Repasa: eje hipotálamo-hipófisis-riñón y el papel de la ADH en el balance hídrico.",
+        "latexContent": null
+      }
+    ]
+  }
+]

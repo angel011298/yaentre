@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-25 · Última fase ejecutada: G14 (COMPLETADA — **verificación ciega del lote de G13: 35/35 auto-aprobados, banco verificado 370 → 405**; ver fila G14)
+Última actualización: 2026-08-25 · Última fase ejecutada: G15 (COMPLETADA — **35 reactivos originales de Biología IPN MEDBIO insertados, isVerified=false, pendientes de verificación ciega**; ver fila G15)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G15 | Lote de reactivos: Biología IPN MEDBIO (refuerzo) | **COMPLETADA — 35 insertados, isVerified=false** | (G15) | Ver sección dedicada abajo. **Materia elegida re-aplicando en vivo la misma regla de prioridad de G13** ("IPN con <50 verificados, mayor `questionWeight` primero"): G14 verificó los 35 de G13 y Matemáticas de FISMAT pasó de 34 a 69 verificados — **cruzó el umbral de 50 y salió del conjunto elegible**. Dentro de lo que queda (<50 verificados), la de mayor peso ya no es Física FISMAT (20, la sugerencia informal que había dejado la nota "Siguiente" de G14): es **Biología de IPN MEDBIO, peso 22**, confirmado con consulta directa a Prisma, no asumido de la nota anterior (esa nota hablaba de "mayor peso en CERO", un criterio más estrecho que la Prioridad 1 real, que no distingue entre materias en cero y materias que ya tienen contenido). Mismo patrón que estableció G13: reforzar la de mayor peso del conjunto elegible aunque ya tenga contenido previo (27 verificados de G3d), aplicando la regla tal como está escrita. **12 temas de la materia, 0/12 con `SourceChunk`** (a diferencia de Matemáticas FISMAT) — los 35 reactivos son 100% TEMARIO_ONLY, sin bloquear la generación (F2b). **Composición balanceada contra el acumulado de G3d**, no repartida pareja: los temas que G3d dejó con menos contenido (Homeostasis, Reproducción, Evolución y especiación, Mitosis y meiosis, 2 cada uno) reciben más refuerzo (3-4 nuevos); los que G3d dejó más completos (Genética básica, Célula y organelos, Sistema nervioso, 4 cada uno) reciben menos (2 nuevos) — acumulado final entre 5 y 6 reactivos por tema en los 12. **35/35 MULTIPLE_CHOICE** (mismo criterio que G3d y el fewshot de `biologia.md`, contenido conceptual sin fragmento fuente). Dificultad **BASIC 10 / INTERMEDIATE 16 / ADVANCED 7 / EXPERT 2**, más cercana a la distribución sugerida por `scripts/prompts/_base.md` (20/50/25/5%) que la de G3d. **Distribución de posición diseñada y verificada: A=9, B=9, C=9, D=8** (25.7%/25.7%/25.7%/22.9%, dentro de 15%-40%). **Validador de lote de G3c corrido y aprobado** (`content:validate-batch` + `content:insert --lot-dir`, ambos 0 violaciones: `MALFORMED_OPTIONS` 0, `POSITION_SKEW` 0, `LETTER_CITATION` 0) antes de tocar la DB — distractores citados siempre por contenido ("1)...2)...3)...4)..."), nunca por letra. Dry-run primero (0 duplicados contra los 27 verificados + 8 sin publicar de G3d, vía `normalizeStem`), luego inserción real: la materia pasó de 27✓/0⧗/8✋ (35 totales) a **27✓/35⧗/8✋ (70 totales)** — exactamente +35 pendientes, verificado con consulta directa a la DB, no solo el log de consola. Registro consolidado en `docs/content-batches/g15-ipn-medbio-biologia.json` (mismo patrón que G3a/G3d/G13). El total VERIFICADO del banco no cambió (sigue en 405) porque este lote entra a la cola de verificación ciega, tarea de una sesión POSTERIOR e independiente — G15 no verifica sus propios reactivos, por diseño del pipeline adversarial. Si los 35 se aprueban en la siguiente verificación, Biología MEDBIO pasaría de 27 a 62 verificados y cruzaría el umbral de 50, igual que le pasó a Matemáticas FISMAT en G13→G14 — el siguiente lote de contenido tendría que re-consultar la brecha otra vez en vivo (candidata probable: Física de IPN FISMAT, peso 20, sigue en 0 verificados). `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido + docs). Scripts desechables (`scripts/g15-gap-check.ts`, `scripts/g15-topics.ts`, `scripts/g15-export.ts`, `scripts/g15-lote/*.json`) usados para consultar la DB, componer y exportar el lote, eliminados al terminar. |
 | G14 | Verificación ciega del lote de G13 | **COMPLETADA — 35/35 auto-aprobados (100%), banco 370 → 405 verificados** | (G14) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G13: esta sesión **nunca vio la respuesta correcta** — su único insumo fue el lote ciego (`pnpm content:blind-batch --all`, 35 reactivos de Matemáticas IPN FISMAT con las opciones remezcladas por semilla determinista). Garantía comprobada, no asumida: `grep` sobre el archivo exportado da **0 ocurrencias de `isCorrect`/`explanation`/`correctOption`**, y no se leyó el commit de G13, ni `docs/content-batches/g13-ipn-fismat-matematicas.json`, ni `Question.options` de la DB. **Los 35 reactivos son de materia de cálculo (`requiresCalculation=true` en los 35), así que los 35 se resolvieron EJECUTANDO la operación en código** (sympy/Python: `solve`, `diff`, `integrate`, `factor`, `function_range`, `continuous_domain`, `Point.distance`, `math.comb`, aritmética exacta con `Fraction`), nunca solo razonando en texto. **Segundo paso ejecutado, más estricto que responder:** un script de emparejamiento transcribió las 4 opciones de cada reactivo a expresiones simbólicas y comprobó **unicidad** — cuántas opciones son equivalentes al resultado calculado. Resultado: **exactamente 1 opción válida en los 35** (cero `NONE_VALID`, cero `MULTIPLE_VALID`), por eso ningún reactivo lleva `problems`. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos — tasa de auto-aprobación 100%.** Confianza declarada 0.99 en 33 reactivos y 0.97 en 2 (dominio de raíz y rango de parábola, los únicos conceptuales en vez de puramente computacionales); todas ≥0.85, el umbral de `MIN_CONFIDENCE`. **Acumulado real consultado en vivo contra Supabase (antes y después), no estimado:** 485 reactivos totales · verificados **370 → 405** · pendientes **115 → 80**, y de esos 80 pendientes **0 quedan sin veredicto** (los 80 son discrepancias con veredicto adjunto de lotes anteriores, ajenas a este lote). Matemáticas IPN FISMAT pasó de 34 a **69 verificados** (`questionWeight=24`), 1 pendiente (el preexistente de antes de G13). **Confirmación independiente de la distribución de posición de G13:** al traducir las respuestas del orden mezclado al original, las correctas quedan en **A=9, B=9, C=9, D=8** — exactamente lo que G13 documentó, verificado ahora desde el lado ciego (las elecciones de esta sesión en el espacio MEZCLADO fueron A=10/B=10/C=10/D=5, o sea el shuffle sí reordenó de verdad). **Defecto real corregido en el pipeline:** `content-resolve-verification.ts` escribía `usedCalculation: false` **hardcodeado** en `Question.verification`, así que el registro de auditoría afirmaba lo contrario de lo que la sesión hacía. Se agregó `usedCalculation` como campo opcional (default `false`, retrocompatible) a `VerifierAnswerSchema` y se pasa al veredicto; el lote se re-resolvió para que los 35 registros digan la verdad. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (464/464) en verde. Scripts desechables de consulta a la DB (`scripts/g14-count.ts`, `scripts/g14-breakdown.ts`) eliminados al terminar; los archivos del lote viven en `scripts/content-exports/` (gitignored). |
 | G13 | Lote de reactivos: Matemáticas IPN FISMAT (refuerzo) | **COMPLETADA — 35 insertados, isVerified=false** | (G13) | Ver sección dedicada abajo. **Materia elegida por la regla de prioridad 1, con números reales:** entre las 3 áreas de IPN Superior, TODAS sus materias tienen menos de 50 reactivos verificados (consultado en vivo vía `pnpm content:coverage` + query directa a Prisma) — dentro de ese conjunto, Matemáticas de IPN FISMAT tiene el `questionWeight` más alto (24, por encima de Biología MEDBIO=22 y Física FISMAT=20) con 34 verificados. Es el mismo tema que G3a trabajó, pero la regla no dice "los que tienen cero primero" sino "mayor weight primero entre los <50" — se documentó explícitamente esta lectura literal antes de generar nada. **35 reactivos originales compuestos por esta sesión** (cero llamadas a la API de pago de Anthropic — pipeline G2, `pnpm content:insert`), repartidos en los 12 temas de la materia; 3 temas con `SourceChunk` real (Ecuaciones lineales y cuadráticas, Números y operaciones, Sucesiones y series) se citaron obligatoriamente como SOURCED (8 reactivos), los otros 9 temas TEMARIO_ONLY (27 reactivos). **Distribución de posición diseñada y verificada: A=9, B=9, C=9, D=8** (25.7%/25.7%/25.7%/22.9%, dentro del rango 15%-40% exigido). **Validador de lote de G3c corrido y aprobado** (`pnpm content:validate-batch --dir` + `content:insert --lot-dir`, ambos con 0 violaciones) antes de tocar la DB — cero sesgo de posición, cero citas de distractores por letra (todas las explicaciones describen la respuesta por su CONTENIDO, nunca "opción X"). Verificado con dry-run primero en los 12 temas, luego inserción real: consulta a la DB confirma **35/35 insertados** (antes 34 verified + 1 pendiente = 70 total en la materia hoy; 8 SOURCED + 28 TEMARIO_ONLY sin verificar, donde 1 de esos 28 es el pendiente preexistente, no de este lote). Registro consolidado del lote en `docs/content-batches/g13-ipn-fismat-matematicas.json` (mismo patrón que G3a/G3d). El total de reactivos VERIFICADOS del banco no cambió (sigue en 370) porque este lote entra a la cola de verificación ciega (G3b/G3e), que es tarea de una sesión POSTERIOR e independiente — G13 no verifica sus propios reactivos, por diseño del pipeline adversarial. `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido + docs). Scripts desechables (`scripts/g13-gap-check.ts`, `scripts/g13-lote/*.json`) usados para consultar la DB y componer el lote, eliminados al terminar. |
 | G12 | Stripe y SMTP reales en producción | **BLOQUEADA — mismo bloqueo que G6/G9, sin avance en credenciales** | (G12) | Ver sección dedicada abajo. **Premisa de la tarea era falsa, verificada antes de empezar:** se citaba una fase "G11" que ya había "confirmado dos bloqueantes externos" — no existe ninguna fila `G11` en esta tabla ni ningún commit `G11` en `git log` (el historial pasa directo de `G10`/`0e5a3aa` a `R1`/`bc5442d`). **Verificado en vivo en el mismo Chrome conectado a esta sesión:** Stripe (`dashboard.stripe.com/test/apikeys`) y Resend (`resend.com/api-keys`) **siguen sin sesión activa** — ambos redirigen a su pantalla de login, igual que en G9 (15 días antes). Vercel **sí** tiene sesión activa (`vercel.com/angel011298s-projects`), pero eso no ayuda: sin llaves reales de Stripe/Resend no hay nada válido que subir. **Ningún límite duro se cruzó, incluso bajo instrucción explícita del usuario de "hazlo todo tú mismo":** no se creó ninguna cuenta, no se escribió ninguna contraseña ni API key en ningún campo (ni por navegador ni por CLI), y no se intentó "Log in with Google"/OAuth en Stripe o Resend (habría creado una cuenta nueva si no existía, o requerido permiso explícito por-acción que no se tenía). Estas prohibiciones aplican igual aunque el usuario las autorice explícitamente — están documentadas como no-negociables en las reglas de esta sesión. **Trabajo real completado (sin tocar credenciales):** revisión de `docs/STRIPE_LIVE_CHECKLIST.md` (G6) y `docs/SERVICE_CREDENTIALS_CHECKLIST.md` (G9) — ambos ya contienen los pasos exactos pedidos por la tarea 3 (checklist de modo live), así que no hacía falta escribirlos de nuevo; se les corrigió una sección desactualizada: los dos asumían que `yaentre.com` "aún no está conectado a Vercel", pero R6→R8 ya lo conectaron con SSL real — se anotó que el webhook de Stripe y el dominio de Resend deben apuntar directo a `https://yaentre.com` desde el inicio, no a `acierta.vercel.app` con migración posterior. `pnpm typecheck` y `pnpm lint` en verde (solo cambios de documentación). **Pendiente exactamente igual que G9:** alguien con acceso humano a las cuentas de Stripe/Resend (o a un Google/GitHub ya vinculado a ellas) tiene que iniciar sesión en el mismo Chrome que esta sesión usa, o pegar las 12+1 variables directo en Vercel con los comandos ya documentados en ambos checklists. |
@@ -2062,6 +2063,150 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G15 — Lote de reactivos: Biología IPN MEDBIO, refuerzo (2026-08-25)
+
+**Resultado: COMPLETADA — 35 reactivos originales insertados con
+`isVerified=false`, pendientes de verificación ciega.** Modo de trabajo:
+autónomo total, sin preguntas, decisiones tomadas según la misma regla de
+prioridad de G13.
+
+### 1) Selección de materia — la brecha real cambió desde G14
+
+Consulta en vivo (`pnpm content:coverage` + query directa vía Prisma, misma
+cadena Institución→Nivel→Examen→Área→Materia→Tema de siempre) sobre las 17
+materias de IPN Superior:
+
+| Materia (IPN Superior) | Área | `questionWeight` | Verificados hoy |
+|---|---|---|---|
+| Matemáticas | FISMAT | 24 | **69** (cruzó el umbral de 50 gracias a G14) |
+| Biología | MEDBIO | **22** | 27 |
+| Física | FISMAT | 20 | 0 |
+| Química | MEDBIO | 16 | 0 |
+| Química | FISMAT | 10 | 0 |
+| (resto: Matemáticas MEDBIO, Español/Inglés de ambas ramas, todo SOCADM) | — | ≤8 | 0 |
+
+La regla de prioridad de G13 es literal: **"IPN con <50 verificados, mayor
+`questionWeight` primero."** G14 verificó los 35 reactivos de G13 y
+Matemáticas de FISMAT pasó de 34 a 69 verificados — **cruzó el umbral de 50
+y sale del conjunto elegible**. Dentro del conjunto que queda (<50
+verificados), la materia de mayor peso ya NO es Física FISMAT (20): es
+**Biología de IPN MEDBIO, con peso 22**. Esto se verificó con un script
+desechable de consulta directa a Prisma — no se asumió de la nota de
+"Siguiente" que dejó G14, que hablaba de "mayor peso en CERO", un criterio
+distinto y más estrecho que la Prioridad 1 real de la tarea (que no
+distingue entre materias en cero y materias que ya tienen contenido, solo
+entre <50 y ≥50 verificados).
+
+**Es el mismo patrón que ya estableció G13**: reforzar la materia de mayor
+peso del conjunto elegible, aunque ya tenga contenido previo (27 verificados
+de G3d), en vez de asumir que "las que están en cero van primero". Aplicar
+la regla tal como está escrita, no una lectura más cómoda de ella.
+
+### 2) Fuentes disponibles
+
+Los 12 temas de Biología de IPN MEDBIO tienen **0 `SourceChunk`** (`fuentes
+0/12`, confirmado en `content:coverage` y en la consulta directa) — a
+diferencia de Matemáticas FISMAT (3/12 con fragmento), esta materia no tiene
+NINGÚN fragmento fuente escaneado todavía. Los 35 reactivos son, por lo
+tanto, **100% TEMARIO_ONLY** — no bloquea la generación (regla de F2b), pero
+significa que ninguno pudo citar `sourceChunks`.
+
+### 3) Composición — 35 reactivos, cero API de pago
+
+Redactados directamente por esta sesión (Claude Code, suscripción existente
+— cero llamadas a la API de pago de Anthropic). Repartidos en los 12 temas
+de la materia, **balanceando el acumulado con lo que ya insertó G3d** (no
+solo repartiendo parejo el lote nuevo): los temas que G3d dejó más flacos
+(Homeostasis, Reproducción, Evolución y especiación, Mitosis y meiosis, con
+2 reactivos cada uno) reciben más refuerzo ahora; los que G3d ya dejó más
+completos (Genética básica, Célula y organelos, Sistema nervioso, con 4 cada
+uno) reciben menos:
+
+| Tema | G3d (previo) | G15 (nuevo) | Acumulado |
+|---|---:|---:|---:|
+| Sistema endocrino | 3 | 3 | 6 |
+| Genética básica | 4 | 2 | 6 |
+| Célula y organelos | 4 | 2 | 6 |
+| Homeostasis | 2 | 3 | 5 |
+| Reproducción | 2 | 4 | 6 |
+| Sistemas del cuerpo humano | 3 | 3 | 6 |
+| Evolución y especiación | 2 | 3 | 5 |
+| Nutrición y metabolismo | 3 | 3 | 6 |
+| Mitosis y meiosis | 2 | 4 | 6 |
+| Sistema nervioso | 4 | 2 | 6 |
+| Inmunología | 3 | 3 | 6 |
+| Ecología y ecosistemas | 3 | 3 | 6 |
+| **TOTAL** | **35** | **35** | **70** |
+
+Formato: **35/35 MULTIPLE_CHOICE** — mismo criterio que G3d (el fewshot de
+`scripts/prompts/biologia.md` tampoco varía formato) y consistente con que
+el contenido es puramente conceptual/definicional, sin fragmento fuente que
+sugiera otro formato. Dificultad: **BASIC 10, INTERMEDIATE 16, ADVANCED 7,
+EXPERT 2** — más cercana a la distribución sugerida por
+`scripts/prompts/_base.md` (20/50/25/5%) que la de G3d (que casi no tenía
+ADVANCED/EXPERT).
+
+**Distribución de posición diseñada desde la composición** (no ajustada
+después): **A=9, B=9, C=9, D=8** (25.7/25.7/25.7/22.9%), dentro del rango
+15%-40% exigido por G3c — confirmada por el validador automático, no solo
+por el diseño. **Distractores citados por su contenido en todas las
+explicaciones, nunca por su letra** (`LETTER_CITATION` = 0 en las 35),
+siguiendo el patrón numerado "1)...2)...3)...4)..." del fewshot de
+`biologia.md`, nunca "opción X".
+
+### 4) Validación — G3c corrido antes de tocar la DB
+
+`pnpm content:validate-batch --dir scripts/g15-lote` sobre los 12 archivos:
+**35/35 válidos, 0 rechazados por formato, 0 violaciones**
+(`MALFORMED_OPTIONS` 0, `POSITION_SKEW` 0, `LETTER_CITATION` 0). Repetido
+con `--dry-run` en los 12 temas vía `content:insert --lot-dir
+scripts/g15-lote`: mismo resultado, 0 duplicados contra los 35 reactivos ya
+existentes de la materia (`normalizeStem` no encontró coincidencias contra
+los 27 verificados + 8 sin publicar de G3d).
+
+### 5) Inserción real
+
+`pnpm content:insert --topic <id> --file <archivo> --lot-dir
+scripts/g15-lote` (sin `--dry-run`) para los 12 temas. **Verificado en la
+DB, no solo en el log de consola:** la materia pasó de 27✓/0⧗/8✋ (35
+totales) a **27✓/35⧗/8✋ (70 totales)** — exactamente +35 pendientes sin
+veredicto, los 35 `TEMARIO_ONLY`. El conteo global de reactivos VERIFICADOS
+del banco no cambió (sigue en 405) — correcto y esperado: este lote entra a
+la cola de verificación ciega, responsabilidad de una sesión POSTERIOR e
+independiente (mismo diseño adversarial que G3a→G3b y G13→G14); G15 no
+verifica sus propios reactivos.
+
+Registro consolidado del lote (mismo patrón que `g3a-ipn-fismat-matematicas.json`,
+`g3d-ipn-medbio-biologia.json` y `g13-ipn-fismat-matematicas.json`):
+**`docs/content-batches/g15-ipn-medbio-biologia.json`** — con los 35
+`questionId` reales de la DB, stems, opciones y grounding.
+
+### 6) Limpieza
+
+Los archivos de trabajo (`scripts/g15-gap-check.ts`, `scripts/g15-topics.ts`,
+`scripts/g15-export.ts`, 12 archivos JSON en `scripts/g15-lote/`) se
+eliminaron al terminar — el registro permanente es el archivo en
+`docs/content-batches/` y esta sección, igual que el criterio ya establecido
+por G3a/G3d/G13.
+
+`pnpm typecheck` y `pnpm lint` en verde (sin cambios de código en esta fase
+— solo contenido en la DB y documentación).
+
+### Siguiente (G15)
+
+1. **Verificación ciega** de estos 35 reactivos (patrón G3b/G3e/G14): una
+   sesión independiente que NO vea las respuestas correctas debe resolverlos
+   y comparar veredictos antes de que puedan pasar a `isVerified=true`. Si
+   los 35 se aprueban, Biología de IPN MEDBIO pasaría de 27 a 62
+   verificados — cruzaría el umbral de 50, igual que le pasó a Matemáticas
+   FISMAT en G13→G14, y el próximo lote de contenido tendría que
+   re-consultar la brecha en vivo otra vez (probable candidata siguiente:
+   Física de IPN FISMAT, peso 20, sigue en 0 verificados).
+2. Física de IPN FISMAT (`questionWeight=20`, 0 verificados, 1/14 temas con
+   fuente) sigue siendo la materia de mayor peso en CERO absoluto del banco
+   — la más urgente si el criterio fuera solo "empezar algo desde cero" en
+   vez de la Prioridad 1 real.
 
 ## G14 — Verificación ciega del lote de G13 (2026-08-25)
 
