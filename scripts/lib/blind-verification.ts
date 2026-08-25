@@ -195,6 +195,11 @@ export const VerifierAnswerSchema = z.object({
   chosenOption: z.enum(OPTION_LABELS),
   confidence: z.number().min(0).max(1),
   reasoning: z.string().optional().default(''),
+  /** true si la sesión verificadora EJECUTÓ el cálculo (código real), en vez
+   *  de solo razonarlo en texto — obligatorio en materias `isCalcSubject`.
+   *  Se persiste tal cual en `Question.verification` para que el registro de
+   *  auditoría no afirme algo distinto de lo que la sesión hizo. */
+  usedCalculation: z.boolean().optional().default(false),
   problems: z
     .array(z.object({ type: z.enum(PROBLEM_TYPES), detail: z.string() }))
     .optional()

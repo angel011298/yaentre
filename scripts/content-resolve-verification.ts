@@ -20,8 +20,11 @@
  * produce a partir del lote ciego):
  * [
  *   { "questionId": "...", "chosenOption": "A", "confidence": 0.95,
- *     "reasoning": "...", "problems": [] }
+ *     "reasoning": "...", "usedCalculation": true, "problems": [] }
  * ]
+ *
+ * `usedCalculation` es opcional (default false) y se persiste tal cual en el
+ * registro de auditoría: declara si la sesión EJECUTÓ el cálculo en código.
  *
  * Uso:
  *   npx tsx scripts/content-resolve-verification.ts --file <respuestas.json> [--dry-run]
@@ -91,7 +94,7 @@ async function resolveOne(answer: VerifierAnswer): Promise<'approved' | 'unpubli
     reasoning: answer.reasoning,
     problems: answer.problems,
     model: VERIFIER_MODEL_TIER,
-    usedCalculation: false,
+    usedCalculation: answer.usedCalculation,
     usage: { inputTokens: 0, outputTokens: 0 },
     verifiedAt: new Date().toISOString(),
   };

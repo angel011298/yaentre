@@ -17,7 +17,7 @@
  *      cuando `requiresCalculation` sea true) y que te devuelva un JSON con
  *      la forma que espera scripts/content-resolve-verification.ts:
  *      [{ "questionId": "...", "chosenOption": "A", "confidence": 0.95,
- *         "reasoning": "...", "problems": [] }, ...]
+ *         "reasoning": "...", "usedCalculation": true, "problems": [] }, ...]
  *   3. pnpm content:resolve --file <respuestas.json>
  *
  * Reusable para el muestreo de auditoría (5%, tercera pasada con un tier de
@@ -141,6 +141,7 @@ async function main() {
           chosenOption: 'A',
           confidence: 0.95,
           reasoning: '<breve>',
+          usedCalculation: true,
           problems: [],
         },
       ],

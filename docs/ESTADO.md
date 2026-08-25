@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-25 · Última fase ejecutada: G13 (COMPLETADA — **35 reactivos nuevos de Matemáticas IPN FISMAT insertados, isVerified=false, pendientes de verificación ciega**; ver fila G13)
+Última actualización: 2026-08-25 · Última fase ejecutada: G14 (COMPLETADA — **verificación ciega del lote de G13: 35/35 auto-aprobados, banco verificado 370 → 405**; ver fila G14)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G14 | Verificación ciega del lote de G13 | **COMPLETADA — 35/35 auto-aprobados (100%), banco 370 → 405 verificados** | (G14) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G13: esta sesión **nunca vio la respuesta correcta** — su único insumo fue el lote ciego (`pnpm content:blind-batch --all`, 35 reactivos de Matemáticas IPN FISMAT con las opciones remezcladas por semilla determinista). Garantía comprobada, no asumida: `grep` sobre el archivo exportado da **0 ocurrencias de `isCorrect`/`explanation`/`correctOption`**, y no se leyó el commit de G13, ni `docs/content-batches/g13-ipn-fismat-matematicas.json`, ni `Question.options` de la DB. **Los 35 reactivos son de materia de cálculo (`requiresCalculation=true` en los 35), así que los 35 se resolvieron EJECUTANDO la operación en código** (sympy/Python: `solve`, `diff`, `integrate`, `factor`, `function_range`, `continuous_domain`, `Point.distance`, `math.comb`, aritmética exacta con `Fraction`), nunca solo razonando en texto. **Segundo paso ejecutado, más estricto que responder:** un script de emparejamiento transcribió las 4 opciones de cada reactivo a expresiones simbólicas y comprobó **unicidad** — cuántas opciones son equivalentes al resultado calculado. Resultado: **exactamente 1 opción válida en los 35** (cero `NONE_VALID`, cero `MULTIPLE_VALID`), por eso ningún reactivo lleva `problems`. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos — tasa de auto-aprobación 100%.** Confianza declarada 0.99 en 33 reactivos y 0.97 en 2 (dominio de raíz y rango de parábola, los únicos conceptuales en vez de puramente computacionales); todas ≥0.85, el umbral de `MIN_CONFIDENCE`. **Acumulado real consultado en vivo contra Supabase (antes y después), no estimado:** 485 reactivos totales · verificados **370 → 405** · pendientes **115 → 80**, y de esos 80 pendientes **0 quedan sin veredicto** (los 80 son discrepancias con veredicto adjunto de lotes anteriores, ajenas a este lote). Matemáticas IPN FISMAT pasó de 34 a **69 verificados** (`questionWeight=24`), 1 pendiente (el preexistente de antes de G13). **Confirmación independiente de la distribución de posición de G13:** al traducir las respuestas del orden mezclado al original, las correctas quedan en **A=9, B=9, C=9, D=8** — exactamente lo que G13 documentó, verificado ahora desde el lado ciego (las elecciones de esta sesión en el espacio MEZCLADO fueron A=10/B=10/C=10/D=5, o sea el shuffle sí reordenó de verdad). **Defecto real corregido en el pipeline:** `content-resolve-verification.ts` escribía `usedCalculation: false` **hardcodeado** en `Question.verification`, así que el registro de auditoría afirmaba lo contrario de lo que la sesión hacía. Se agregó `usedCalculation` como campo opcional (default `false`, retrocompatible) a `VerifierAnswerSchema` y se pasa al veredicto; el lote se re-resolvió para que los 35 registros digan la verdad. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (464/464) en verde. Scripts desechables de consulta a la DB (`scripts/g14-count.ts`, `scripts/g14-breakdown.ts`) eliminados al terminar; los archivos del lote viven en `scripts/content-exports/` (gitignored). |
 | G13 | Lote de reactivos: Matemáticas IPN FISMAT (refuerzo) | **COMPLETADA — 35 insertados, isVerified=false** | (G13) | Ver sección dedicada abajo. **Materia elegida por la regla de prioridad 1, con números reales:** entre las 3 áreas de IPN Superior, TODAS sus materias tienen menos de 50 reactivos verificados (consultado en vivo vía `pnpm content:coverage` + query directa a Prisma) — dentro de ese conjunto, Matemáticas de IPN FISMAT tiene el `questionWeight` más alto (24, por encima de Biología MEDBIO=22 y Física FISMAT=20) con 34 verificados. Es el mismo tema que G3a trabajó, pero la regla no dice "los que tienen cero primero" sino "mayor weight primero entre los <50" — se documentó explícitamente esta lectura literal antes de generar nada. **35 reactivos originales compuestos por esta sesión** (cero llamadas a la API de pago de Anthropic — pipeline G2, `pnpm content:insert`), repartidos en los 12 temas de la materia; 3 temas con `SourceChunk` real (Ecuaciones lineales y cuadráticas, Números y operaciones, Sucesiones y series) se citaron obligatoriamente como SOURCED (8 reactivos), los otros 9 temas TEMARIO_ONLY (27 reactivos). **Distribución de posición diseñada y verificada: A=9, B=9, C=9, D=8** (25.7%/25.7%/25.7%/22.9%, dentro del rango 15%-40% exigido). **Validador de lote de G3c corrido y aprobado** (`pnpm content:validate-batch --dir` + `content:insert --lot-dir`, ambos con 0 violaciones) antes de tocar la DB — cero sesgo de posición, cero citas de distractores por letra (todas las explicaciones describen la respuesta por su CONTENIDO, nunca "opción X"). Verificado con dry-run primero en los 12 temas, luego inserción real: consulta a la DB confirma **35/35 insertados** (antes 34 verified + 1 pendiente = 70 total en la materia hoy; 8 SOURCED + 28 TEMARIO_ONLY sin verificar, donde 1 de esos 28 es el pendiente preexistente, no de este lote). Registro consolidado del lote en `docs/content-batches/g13-ipn-fismat-matematicas.json` (mismo patrón que G3a/G3d). El total de reactivos VERIFICADOS del banco no cambió (sigue en 370) porque este lote entra a la cola de verificación ciega (G3b/G3e), que es tarea de una sesión POSTERIOR e independiente — G13 no verifica sus propios reactivos, por diseño del pipeline adversarial. `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido + docs). Scripts desechables (`scripts/g13-gap-check.ts`, `scripts/g13-lote/*.json`) usados para consultar la DB y componer el lote, eliminados al terminar. |
 | G12 | Stripe y SMTP reales en producción | **BLOQUEADA — mismo bloqueo que G6/G9, sin avance en credenciales** | (G12) | Ver sección dedicada abajo. **Premisa de la tarea era falsa, verificada antes de empezar:** se citaba una fase "G11" que ya había "confirmado dos bloqueantes externos" — no existe ninguna fila `G11` en esta tabla ni ningún commit `G11` en `git log` (el historial pasa directo de `G10`/`0e5a3aa` a `R1`/`bc5442d`). **Verificado en vivo en el mismo Chrome conectado a esta sesión:** Stripe (`dashboard.stripe.com/test/apikeys`) y Resend (`resend.com/api-keys`) **siguen sin sesión activa** — ambos redirigen a su pantalla de login, igual que en G9 (15 días antes). Vercel **sí** tiene sesión activa (`vercel.com/angel011298s-projects`), pero eso no ayuda: sin llaves reales de Stripe/Resend no hay nada válido que subir. **Ningún límite duro se cruzó, incluso bajo instrucción explícita del usuario de "hazlo todo tú mismo":** no se creó ninguna cuenta, no se escribió ninguna contraseña ni API key en ningún campo (ni por navegador ni por CLI), y no se intentó "Log in with Google"/OAuth en Stripe o Resend (habría creado una cuenta nueva si no existía, o requerido permiso explícito por-acción que no se tenía). Estas prohibiciones aplican igual aunque el usuario las autorice explícitamente — están documentadas como no-negociables en las reglas de esta sesión. **Trabajo real completado (sin tocar credenciales):** revisión de `docs/STRIPE_LIVE_CHECKLIST.md` (G6) y `docs/SERVICE_CREDENTIALS_CHECKLIST.md` (G9) — ambos ya contienen los pasos exactos pedidos por la tarea 3 (checklist de modo live), así que no hacía falta escribirlos de nuevo; se les corrigió una sección desactualizada: los dos asumían que `yaentre.com` "aún no está conectado a Vercel", pero R6→R8 ya lo conectaron con SSL real — se anotó que el webhook de Stripe y el dominio de Resend deben apuntar directo a `https://yaentre.com` desde el inicio, no a `acierta.vercel.app` con migración posterior. `pnpm typecheck` y `pnpm lint` en verde (solo cambios de documentación). **Pendiente exactamente igual que G9:** alguien con acceso humano a las cuentas de Stripe/Resend (o a un Google/GitHub ya vinculado a ellas) tiene que iniciar sesión en el mismo Chrome que esta sesión usa, o pegar las 12+1 variables directo en Vercel con los comandos ya documentados en ambos checklists. |
 | R8 | yaentre.com operativo con SSL y marca correcta | COMPLETADA | (R8) | **El hallazgo real de esta fase: los dos problemas reportados por el usuario tenían la misma causa raíz, y no era la que se sospechaba.** El diagnóstico inicial suponía un residuo de marca sin detectar en el código fuente. Verificación en vivo (`curl` contra `http://yaentre.com`, ya que HTTPS fallaba): **29 apariciones de "acierta", 0 de "yaentre"** en el HTML real servido — pero un grep de `src/` (repitiendo lo que R1/R2/R5/R7 ya habían probado exhaustivamente) volvió a dar **0 residuos**. La contradicción se resolvió con `vercel ls acierta --prod`: el **último deploy de producción tenía 14 días** — de *antes* de R1. Nadie había desplegado el código rebrandeado a Vercel en ninguna de las 7 fases anteriores (R1-R7 son todas commits locales/`vercel domains add`/edición de docs — ninguna incluía `vercel --prod`). El sitio en vivo llevaba dos semanas sirviendo el build viejo, completamente ajeno a los commits del rebrand. **No había ningún bug que corregir en el código — el código ya estaba correcto desde R2.** La solución real fue desplegar el `HEAD` actual. **Antes del deploy**, se actualizó `NEXT_PUBLIC_SITE_URL` a `https://yaentre.com` (`vercel env update`, para que el build nuevo la incluyera desde la compilación — es una var `NEXT_PUBLIC_*`, se inlinea en build time). **Bug real cometido y corregido en la misma fase:** el primer intento (`echo "https://yaentre.com" | vercel env update`) guardó el valor con un salto de línea final (`"https://yaentre.com\n"`) — `echo` agrega newline y Vercel lo conservó tal cual; habría roto el link de verificación de Supabase Auth (`src/lib/auth/site-url.ts` solo recorta `/` final, no espacios). Corregido con `printf` (sin newline) antes de desplegar; verificado con `vercel env pull` que el valor quedó limpio. **`vercel --prod` (deploy real, no preview):** build exitoso (TypeScript limpio, 33 rutas, mismo output que las fases anteriores verificaron), y Vercel **aliasó automáticamente `https://yaentre.com` al nuevo deploy** — el mismo evento disparó la emisión del certificado SSL (Let's Encrypt, confirmado con `openssl s_client`: `CN=yaentre.com`, válido 25-ago al 23-nov-2026 — antes `vercel certs ls` mostraba "No certificates found"). **Verificado en vivo post-deploy, con evidencia, no solo asumido:** `https://yaentre.com` → HTTP 200, HSTS activo, `<title>YaEntre — Tu entrenador de admisión con IA`, 0 "acierta" / 29 "yaentre" en el HTML; `https://www.yaentre.com` → HTTP 200 con SSL válido (un primer intento dio error de certificado — blip transitorio de la emisión recién completada, confirmado estable en 3 reintentos siguientes); `https://acierta.vercel.app` → sigue sirviendo tráfico sin cambios, respaldo intacto. **Proyecto de Vercel renombrado** de `acierta` a `yaentre` vía dashboard (el CLI v50.37.2 sigue sin subcomando de rename, confirmado otra vez) — la sesión de navegador SÍ tenía cuenta de Vercel activa (a diferencia de Akky/Stripe/Resend). Vercel pidió configurar 2FA antes de guardar cambios sensibles del proyecto; se usó **"Skip securing my account"** en vez de configurar 2FA por la cuenta del usuario — no es una decisión de seguridad que le corresponda a esta sesión tomar. Rename confirmado ("Project name updated"), mismo `projectId`, sitio verificado funcionando después. `.vercel/project.json` local (gitignored) refrescado con `vercel link --yes --project yaentre` — no se editó a mano, mismo criterio que R1-R7 establecieron. **Archivo `dominio_yaentre.com` de Descargas** (el mismo PDF ya revisado en R6): sin información nueva. `pnpm typecheck`/`pnpm lint` en verde. Cero cambios de código — todos los cambios de esta fase son infraestructura viva (Vercel: env var, deploy, rename) verificable con `curl`/`openssl`, no con `git diff`. |
@@ -2061,3 +2062,159 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G14 — Verificación ciega del lote de G13 (2026-08-25)
+
+**Resultado: COMPLETADA — 35/35 reactivos auto-aprobados (tasa 100%). El
+banco pasó de 370 a 405 reactivos verificados.** Modo de trabajo: autónomo.
+
+Esta es la segunda mitad del ciclo adversarial de G2. G13 compuso el lote;
+esta sesión, **independiente y sin acceso a las respuestas**, lo resolvió.
+
+### 1) La ceguera se comprobó, no se asumió
+
+Insumo único: `pnpm content:blind-batch --all --limit 60`, que exportó los
+**35 reactivos pendientes sin veredicto** (todos de Matemáticas IPN FISMAT
+— exactamente el lote de G13) con las opciones **remezcladas** por semilla
+determinista = `questionId`.
+
+Lo que esta sesión **no** abrió, por regla explícita de la tarea: el commit
+`cc1d08b` de G13, `docs/content-batches/g13-ipn-fismat-matematicas.json`, y
+`Question.options` con su campo `isCorrect`.
+
+Comprobación mecánica sobre el archivo exportado:
+
+```
+grep -c "isCorrect\|explanation\|correctOption" g14-blind.json  →  0
+```
+
+Cero ocurrencias. La garantía estructural de `buildBlindItem()` (selección
+explícita de campos: `isCorrect` y `explanations` no existen en el tipo de
+retorno) se sostiene en la práctica, no solo en el tipo.
+
+### 2) Los 35 son de cálculo, y los 35 se calcularon en código
+
+`requiresCalculation` venía en `true` en los **35** (materia = Matemáticas,
+`isCalcSubject`). Ninguno se resolvió "de cabeza": cada uno se ejecutó en
+Python/sympy y el resultado quedó impreso antes de elegir opción —
+`solve` (sistemas y cuadráticas), `diff` (regla del producto, potencias
+negativas, recta tangente), `integrate` (definidas e indefinidas),
+`factor`/`cancel` (factorización, diferencia de cuadrados),
+`function_range` y `continuous_domain` (rango y dominio),
+`Point.distance`/`Segment.midpoint` (geometría analítica), `Abs` y
+`conjugate` (complejos), `math.comb` (combinatoria), enumeración explícita
+del espacio muestral (probabilidad) y `Fraction` para toda la aritmética de
+porcentajes y razones (cero flotantes, cero redondeo).
+
+### 3) Un segundo paso, más estricto que solo responder: unicidad
+
+Responder bien no prueba que el reactivo esté bien. Un segundo script
+transcribió las **4 opciones** de cada reactivo a expresiones simbólicas y
+preguntó cuántas son equivalentes al resultado calculado:
+
+- **1 opción válida en los 35 reactivos.**
+- **0** casos de `NONE_VALID` (ninguna opción correcta).
+- **0** casos de `MULTIPLE_VALID` (dos opciones equivalentes).
+
+Los distractores discriminan de verdad: los cercanos son errores típicos
+reales y ninguno colisiona con la respuesta — `9/12` y `12/15` frente a
+`3/5` en el coseno, `(3,∞)` abierto frente a `[3,∞)` cerrado en el dominio
+de la raíz, `-2/x²` frente a `-2/x³` en la derivada, `100` frente a `10` en
+el módulo del complejo, `336` (permutación) frente a `56` (combinación).
+Por eso ningún reactivo lleva `problems` adjuntos.
+
+### 4) Resolución y tasa de auto-aprobación
+
+```
+pnpm content:resolve --file scripts/content-exports/g14-answers.json
+→ ✅ Auto-aprobados: 35   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+**Tasa de auto-aprobación: 35/35 = 100%.**
+
+La regla de `resolveVerdict` se aplicó sin excepción ni atajo: coincidencia
+con el generador **+** confianza ≥ `MIN_CONFIDENCE` (0.85) **+** cero
+problemas. Confianza declarada: **0.99 en 33** reactivos y **0.97 en 2** —
+el dominio de `√(x-3)` y el rango de `x²+4`, los únicos dos conceptuales en
+vez de puramente computacionales.
+
+### 5) Acumulado REAL en la base de datos (consultado, no estimado)
+
+Consulta a Supabase **antes y después** de resolver:
+
+| Métrica | Antes de G14 | Después de G14 |
+|---|---|---|
+| Reactivos totales | 485 | 485 |
+| **Verificados (`isVerified=true`)** | **370** | **405** |
+| Pendientes | 115 | 80 |
+| — de ellos, sin veredicto | 35 | **0** |
+| — de ellos, con veredicto adjunto | 80 | 80 |
+
+Los 80 pendientes que quedan **no son de este lote**: son discrepancias de
+lotes anteriores que ya traían veredicto adjunto y no se publicaron. La
+cola de verificación de G13 quedó en **cero**.
+
+En la materia trabajada, **Matemáticas IPN FISMAT** (`questionWeight=24`):
+**34 → 69 verificados**, 1 pendiente (el preexistente de antes de G13).
+
+### 6) Confirmación independiente de la distribución de G13
+
+Al traducir las respuestas del orden mezclado de vuelta al original, las
+correctas caen en **A=9, B=9, C=9, D=8** — exactamente la distribución que
+G13 documentó, ahora confirmada desde el lado ciego, sin haberla leído.
+
+Que el shuffle funciona también quedó demostrado: las elecciones de esta
+sesión en el espacio **mezclado** fueron A=10, B=10, C=10, D=5 — un patrón
+distinto al original, o sea que las etiquetas sí se reordenaron y esta
+sesión nunca vio la posición original.
+
+### 7) Defecto real hallado y corregido en el pipeline
+
+`content-resolve-verification.ts` escribía **`usedCalculation: false`
+hardcodeado** en el veredicto que persiste en `Question.verification`. El
+archivo de respuestas no tenía forma de declarar lo contrario, así que el
+registro de auditoría afirmaba que el cálculo *no* se ejecutó — justo lo
+opuesto de lo que esta fase hizo en los 35 reactivos, y una afirmación
+falsa en el mismo campo que el panel de discrepancias (F3) lee.
+
+Corrección mínima y retrocompatible:
+
+- `VerifierAnswerSchema` gana `usedCalculation: z.boolean().optional().default(false)`
+  — los archivos de respuestas viejos siguen siendo válidos.
+- El resolve script pasa `answer.usedCalculation` al veredicto en vez de la
+  constante.
+- Documentación del formato actualizada en los dos scripts del pipeline.
+
+El lote se **re-resolvió** con el campo en `true`, así que los 35 registros
+en la DB ahora describen con exactitud cómo se verificaron.
+
+**Caveat honesto que NO se corrigió:** el veredicto persiste
+`model: VERIFIER_MODEL_TIER` (`'claude-fable-5'`), una constante de
+orquestación — no el modelo que realmente resolvió el lote (Opus 5 en esta
+sesión). Es cosmético para la decisión (`resolveVerdict` no lee `model`),
+pero el registro de auditoría no debería afirmar un modelo que no corrió.
+Arreglarlo requiere el mismo patrón que `usedCalculation`; se deja anotado
+en vez de ampliar el alcance de esta fase por cuenta propia.
+
+### 8) Limpieza
+
+Scripts desechables de consulta (`scripts/g14-count.ts`,
+`scripts/g14-breakdown.ts`) eliminados al terminar. El lote ciego y el
+archivo de respuestas viven en `scripts/content-exports/` (gitignored, como
+todo el material intermedio del pipeline).
+
+`pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**464/464**) en verde.
+
+### Siguiente (G14)
+
+1. **Física de IPN FISMAT** (`questionWeight=20`, 0 verificados) sigue
+   siendo la materia de IPN con mayor peso en CERO — el candidato natural
+   para el siguiente lote de material NUEVO.
+2. **Muestreo de auditoría del 5%** (`sampleForAudit`, `AUDIT_RATE`): con
+   405 verificados y una tasa de auto-aprobación del 100% en este lote, la
+   tercera pasada con un tier de modelo distinto es la única red que queda
+   para detectar un sesgo compartido entre generador y verificador. Un
+   100% limpio es buena señal, pero es exactamente el escenario donde un
+   error sistemático pasaría desapercibido.
+3. Arreglar `model` en el veredicto (ver punto 7), junto con el próximo
+   cambio que toque el pipeline de verificación.
