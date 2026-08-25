@@ -1,0 +1,1240 @@
+{
+  "batch": "G13",
+  "generatedAt": "2026-08-25T04:55:01.858Z",
+  "institution": "IPN",
+  "area": "Ingeniería y Ciencias Físico-Matemáticas (FISMAT)",
+  "subject": "Matemáticas",
+  "subjectId": "cmrr1kvuv009dhi3nrfzki2c1",
+  "subjectQuestionWeight": 24,
+  "selectionRule": "Prioridad 1: materias de IPN Superior con menos de 50 reactivos verificados, la de mayor questionWeight primero. Matemáticas (IPN FISMAT, questionWeight=24, el más alto de las 3 áreas de IPN) tenía 34 verificados (<50) — la más alta de ese conjunto, verificado contra la DB real. Mismo tema que G3a; este lote lo refuerza porque su weight sigue siendo el mayor del banco IPN incluso con contenido previo.",
+  "totalQuestions": 35,
+  "sourcedCount": 8,
+  "temarioOnlyCount": 27,
+  "questions": [
+    {
+      "questionId": "cmt86uvoj0001h05c7vr3mhha",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "topic": "Matrices y sistemas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Resuelve el sistema de ecuaciones: $2x + y = 11$, $x - y = 1$. ¿Cuál es el valor de $y$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$3$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$-3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$9$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86uwhh0006h05c3ssdf7f3",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "topic": "Matrices y sistemas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $A$ es una matriz de $3 \\times 2$ y $B$ es una matriz de $2 \\times 5$, ¿cuál es el tamaño de la matriz resultante $A \\cdot B$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2 \\times 2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$5 \\times 3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3 \\times 5$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$3 \\times 2$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86ux9m000bh05ci9jm88mt",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "topic": "Matrices y sistemas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "La matriz $A$ tiene fila 1 igual a $(2, 1)$ y la matriz $B$ tiene fila 1 igual a $(1, 4)$. Si $C = A + B$, ¿cuál es el segundo elemento de la fila 1 de $C$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$5$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86v2330001u6hxmaxlsxho",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "topic": "Funciones y gráficas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $g(x) = -2x + 7$, ¿cuál es el valor de $g(-3)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-13$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$-1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$13$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86v2v90006u6hxvyiwgipe",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "topic": "Funciones y gráficas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el rango de la función $f(x) = x^2 + 4$ (para $x$ en los números reales)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$[4, \\infty)$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$(-\\infty, 4]$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(-\\infty, \\infty)$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$[0, \\infty)$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86v3nc000bu6hxarfmfg8d",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "topic": "Funciones y gráficas",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el dominio de la función $f(x) = \\sqrt{x-3}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(-\\infty, 3]$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$[3, \\infty)$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$(3, \\infty)$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$[0, \\infty)$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86v8f6000186iod4oo03d7",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "topic": "Trigonometría",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el valor exacto de $\\sin(30°)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{\\sqrt{3}}{2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{1}{2}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{\\sqrt{2}}{2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86v973000686io5wzotvrw",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "topic": "Trigonometría",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "En un triángulo rectángulo, el cateto adyacente a un ángulo $\\theta$ mide 9 cm y la hipotenusa mide 15 cm. ¿Cuál es el valor de $\\cos(\\theta)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{5}{3}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{12}{15}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{3}{5}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{9}{12}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86ve6n0001i02cfonth2xt",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "topic": "Sucesiones y series",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Elige los números que completan la siguiente sucesión numérica: 7, 13, 19, 25, 31, ___, ___",
+      "options": [
+        {
+          "id": "A",
+          "text": "$36, 42$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$37, 44$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$38, 44$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$37, 43$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86vf5f0006i02clcjfrqgp",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "topic": "Sucesiones y series",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "¿Cuál es el siguiente término de la sucesión? 1, 4, 9, 16, 25, ___",
+      "options": [
+        {
+          "id": "A",
+          "text": "$36$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$30$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$35$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$49$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86vk8d00013skw8ml3w4mg",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "topic": "Números y operaciones",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Un grifo llena un tinaco de 900 litros en 4 horas a un ritmo constante. ¿Cuántos litros llenará en 7 horas al mismo ritmo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1{,}575$ litros",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$1{,}500$ litros",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1{,}225$ litros",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$900$ litros",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86vl6c00063skw12n7ybiw",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "topic": "Números y operaciones",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Sofía tiene el 20% de $1,200, Diego tiene el 65% de $400 y Elena tiene el 15% de $2,000. ¿Cuánto dinero tienen entre los tres?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$760$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$800$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$840$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$700$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86vm4e000b3skwajz2cq1i",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "topic": "Números y operaciones",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "El 40% de los estudiantes de una escuela practica algún deporte. De ellos, las $\\frac{3}{4}$ partes practican fútbol. ¿Qué porcentaje del total de estudiantes practica fútbol?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$34\\%$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$10\\%$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$30\\%$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$75\\%$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86vr220001iqrbd266i7zn",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "topic": "Álgebra elemental",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el resultado de simplificar $(a^3)^4$ (con $a\\neq 0$)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$a^{12}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$a^{7}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$a$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$a^{81}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86vru50006iqrb8qmr9ka6",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "topic": "Álgebra elemental",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Factoriza completamente: $x^2 + 5x + 6$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(x+1)(x+6)$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$(x+2)(x+3)$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$(x-2)(x-3)$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$(x+6)(x-1)$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86vsm7000biqrb8mkhxqq1",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "topic": "Álgebra elemental",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Simplifica la expresión: $\\frac{x^2-16}{x+4}$ (con $x\\neq -4$)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$x+4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$x^2-4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x-4$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$4-x$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86vxdb0001135zzzoie8s3",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "topic": "Cálculo diferencial",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $f(x) = (2x+3)(x^2-1)$, ¿cuál es $f'(x)$ usando la regla del producto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$6x^2-6x-2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2x+2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6x^2+6x+2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$6x^2+6x-2$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED"
+    },
+    {
+      "questionId": "cmt86vy5e0006135zryx3dkhv",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "topic": "Cálculo diferencial",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la derivada de $f(x) = \\frac{1}{x^2}$ (con $x \\neq 0$)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-\\frac{2}{x^3}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{2}{x^3}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$-\\frac{1}{2x}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$-\\frac{2}{x^2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86vyxj000b135zd6656xhe",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "topic": "Cálculo diferencial",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la ecuación de la recta tangente a $f(x) = x^2$ en el punto $(1, 1)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$y = 2x + 1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$y = 2x - 1$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$y = x - 1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$y = 2x - 2$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86w3o90001f4bzq3gboi8x",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "topic": "Cálculo integral",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Calcula la integral definida: $\\int_1^3 (2x+1)\\,dx$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$12$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-10$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$10$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$14$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86w4g30006f4bzl4wv54t5",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "topic": "Cálculo integral",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Calcula la integral indefinida: $\\int (6x^2 - 4x + 3)\\,dx$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$6x^3 - 4x^2 + 3x + C$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2x^3 - 4x^2 + 3x + C$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$2x^3 - 2x^2 + 3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$2x^3 - 2x^2 + 3x + C$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86w580000bf4bzvgvl9du9",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "topic": "Cálculo integral",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Calcula el valor de la integral definida: $\\int_0^1 (3x^2+2x)\\,dx$",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$0$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86wa670001t2g8fwp5z0sk",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "¿Cuál es uno de los valores de $x$ en los que la parábola $y = x^2 + 3x - 10$ intersecta al eje $x$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$x=2$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$x=5$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x=-2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$x=10$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86wb4m0006t2g83rsenh4d",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "Resuelve la ecuación cuadrática $x^2 - x - 12 = 0$. ¿Cuál es el valor MAYOR de las dos soluciones?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$-4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$3$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86wc33000bt2g8wnaup2sx",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "groundingStatus": "SOURCED",
+      "isVerified": false,
+      "stem": "La parábola $y = x^2 - 5x + 6$ intersecta al eje $x$ en dos puntos. ¿Cuál es la suma de esos dos valores de $x$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$6$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-5$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$5$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED"
+    },
+    {
+      "questionId": "cmt86wh030001j1y32s63esah",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "topic": "Combinatoria y probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Se lanzan dos monedas justas al mismo tiempo. ¿Cuál es la probabilidad de obtener exactamente una águila y un sol?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{1}{4}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{1}{2}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{3}{4}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86whs30006j1y3jonpx9d5",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "topic": "Combinatoria y probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿De cuántas maneras diferentes se pueden seleccionar 3 personas de un grupo de 8, sin importar el orden?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$336$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$512$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$56$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$21$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86wik4000bj1y3tosd3b5k",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "topic": "Combinatoria y probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Una urna contiene 5 canicas rojas y 3 canicas azules. Si se extrae una canica al azar, ¿cuál es la probabilidad de que sea azul?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{5}{8}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{3}{5}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{1}{3}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{3}{8}$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86wnb00001j2jc433lpo1b",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "topic": "Números complejos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $i$ es la unidad imaginaria, ¿cuál es el resultado de $(4-3i) - (2-7i)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2+4i$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$2-4i$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6-10i$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$-2+4i$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86wo2z0006j2jcwe7nnks6",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "topic": "Números complejos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el resultado de multiplicar $(2+i)(3-i)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$5+i$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$7+i$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$6-i^2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$7-i$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86wouz000bj2jcqa6z5wds",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "topic": "Números complejos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el módulo (valor absoluto) del número complejo $z = -6 + 8i$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$14$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$10$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$100$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86wptr000gj2jc4j5nli4r",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "topic": "Números complejos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "Si $z = 5 - 12i$, ¿cuál es su conjugado $\\bar{z}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-5+12i$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-5-12i$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$5-12i$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$5+12i$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86wv84000169hmr4o72ymp",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "topic": "Geometría analítica",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es el punto medio del segmento que une los puntos $(-2, 5)$ y $(8, -3)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(6, 2)$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$(10, -8)$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(3, 1)$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$(1, 3)$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC"
+    },
+    {
+      "questionId": "cmt86ww03000669hm58lu076u",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "topic": "Geometría analítica",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la distancia entre los puntos $(-3, -1)$ y $(1, 2)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$7$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\sqrt{7}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$25$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$5$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    },
+    {
+      "questionId": "cmt86wws1000b69hmrlgp1r9a",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "topic": "Geometría analítica",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "stem": "¿Cuál es la ecuación de la circunferencia con centro en $(3, -2)$ y radio $4$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(x-3)^2+(y+2)^2=16$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$(x+3)^2+(y-2)^2=16$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(x-3)^2+(y+2)^2=4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$(x-3)^2+(y-2)^2=16$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE"
+    }
+  ]
+}

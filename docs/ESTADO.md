@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-25 · Última fase ejecutada: G12 (BLOQUEADA — **Stripe y Resend siguen sin sesión activa; ninguna credencial real de pago o correo se pudo obtener**; ver fila G12)
+Última actualización: 2026-08-25 · Última fase ejecutada: G13 (COMPLETADA — **35 reactivos nuevos de Matemáticas IPN FISMAT insertados, isVerified=false, pendientes de verificación ciega**; ver fila G13)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G13 | Lote de reactivos: Matemáticas IPN FISMAT (refuerzo) | **COMPLETADA — 35 insertados, isVerified=false** | (G13) | Ver sección dedicada abajo. **Materia elegida por la regla de prioridad 1, con números reales:** entre las 3 áreas de IPN Superior, TODAS sus materias tienen menos de 50 reactivos verificados (consultado en vivo vía `pnpm content:coverage` + query directa a Prisma) — dentro de ese conjunto, Matemáticas de IPN FISMAT tiene el `questionWeight` más alto (24, por encima de Biología MEDBIO=22 y Física FISMAT=20) con 34 verificados. Es el mismo tema que G3a trabajó, pero la regla no dice "los que tienen cero primero" sino "mayor weight primero entre los <50" — se documentó explícitamente esta lectura literal antes de generar nada. **35 reactivos originales compuestos por esta sesión** (cero llamadas a la API de pago de Anthropic — pipeline G2, `pnpm content:insert`), repartidos en los 12 temas de la materia; 3 temas con `SourceChunk` real (Ecuaciones lineales y cuadráticas, Números y operaciones, Sucesiones y series) se citaron obligatoriamente como SOURCED (8 reactivos), los otros 9 temas TEMARIO_ONLY (27 reactivos). **Distribución de posición diseñada y verificada: A=9, B=9, C=9, D=8** (25.7%/25.7%/25.7%/22.9%, dentro del rango 15%-40% exigido). **Validador de lote de G3c corrido y aprobado** (`pnpm content:validate-batch --dir` + `content:insert --lot-dir`, ambos con 0 violaciones) antes de tocar la DB — cero sesgo de posición, cero citas de distractores por letra (todas las explicaciones describen la respuesta por su CONTENIDO, nunca "opción X"). Verificado con dry-run primero en los 12 temas, luego inserción real: consulta a la DB confirma **35/35 insertados** (antes 34 verified + 1 pendiente = 70 total en la materia hoy; 8 SOURCED + 28 TEMARIO_ONLY sin verificar, donde 1 de esos 28 es el pendiente preexistente, no de este lote). Registro consolidado del lote en `docs/content-batches/g13-ipn-fismat-matematicas.json` (mismo patrón que G3a/G3d). El total de reactivos VERIFICADOS del banco no cambió (sigue en 370) porque este lote entra a la cola de verificación ciega (G3b/G3e), que es tarea de una sesión POSTERIOR e independiente — G13 no verifica sus propios reactivos, por diseño del pipeline adversarial. `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido + docs). Scripts desechables (`scripts/g13-gap-check.ts`, `scripts/g13-lote/*.json`) usados para consultar la DB y componer el lote, eliminados al terminar. |
 | G12 | Stripe y SMTP reales en producción | **BLOQUEADA — mismo bloqueo que G6/G9, sin avance en credenciales** | (G12) | Ver sección dedicada abajo. **Premisa de la tarea era falsa, verificada antes de empezar:** se citaba una fase "G11" que ya había "confirmado dos bloqueantes externos" — no existe ninguna fila `G11` en esta tabla ni ningún commit `G11` en `git log` (el historial pasa directo de `G10`/`0e5a3aa` a `R1`/`bc5442d`). **Verificado en vivo en el mismo Chrome conectado a esta sesión:** Stripe (`dashboard.stripe.com/test/apikeys`) y Resend (`resend.com/api-keys`) **siguen sin sesión activa** — ambos redirigen a su pantalla de login, igual que en G9 (15 días antes). Vercel **sí** tiene sesión activa (`vercel.com/angel011298s-projects`), pero eso no ayuda: sin llaves reales de Stripe/Resend no hay nada válido que subir. **Ningún límite duro se cruzó, incluso bajo instrucción explícita del usuario de "hazlo todo tú mismo":** no se creó ninguna cuenta, no se escribió ninguna contraseña ni API key en ningún campo (ni por navegador ni por CLI), y no se intentó "Log in with Google"/OAuth en Stripe o Resend (habría creado una cuenta nueva si no existía, o requerido permiso explícito por-acción que no se tenía). Estas prohibiciones aplican igual aunque el usuario las autorice explícitamente — están documentadas como no-negociables en las reglas de esta sesión. **Trabajo real completado (sin tocar credenciales):** revisión de `docs/STRIPE_LIVE_CHECKLIST.md` (G6) y `docs/SERVICE_CREDENTIALS_CHECKLIST.md` (G9) — ambos ya contienen los pasos exactos pedidos por la tarea 3 (checklist de modo live), así que no hacía falta escribirlos de nuevo; se les corrigió una sección desactualizada: los dos asumían que `yaentre.com` "aún no está conectado a Vercel", pero R6→R8 ya lo conectaron con SSL real — se anotó que el webhook de Stripe y el dominio de Resend deben apuntar directo a `https://yaentre.com` desde el inicio, no a `acierta.vercel.app` con migración posterior. `pnpm typecheck` y `pnpm lint` en verde (solo cambios de documentación). **Pendiente exactamente igual que G9:** alguien con acceso humano a las cuentas de Stripe/Resend (o a un Google/GitHub ya vinculado a ellas) tiene que iniciar sesión en el mismo Chrome que esta sesión usa, o pegar las 12+1 variables directo en Vercel con los comandos ya documentados en ambos checklists. |
 | R8 | yaentre.com operativo con SSL y marca correcta | COMPLETADA | (R8) | **El hallazgo real de esta fase: los dos problemas reportados por el usuario tenían la misma causa raíz, y no era la que se sospechaba.** El diagnóstico inicial suponía un residuo de marca sin detectar en el código fuente. Verificación en vivo (`curl` contra `http://yaentre.com`, ya que HTTPS fallaba): **29 apariciones de "acierta", 0 de "yaentre"** en el HTML real servido — pero un grep de `src/` (repitiendo lo que R1/R2/R5/R7 ya habían probado exhaustivamente) volvió a dar **0 residuos**. La contradicción se resolvió con `vercel ls acierta --prod`: el **último deploy de producción tenía 14 días** — de *antes* de R1. Nadie había desplegado el código rebrandeado a Vercel en ninguna de las 7 fases anteriores (R1-R7 son todas commits locales/`vercel domains add`/edición de docs — ninguna incluía `vercel --prod`). El sitio en vivo llevaba dos semanas sirviendo el build viejo, completamente ajeno a los commits del rebrand. **No había ningún bug que corregir en el código — el código ya estaba correcto desde R2.** La solución real fue desplegar el `HEAD` actual. **Antes del deploy**, se actualizó `NEXT_PUBLIC_SITE_URL` a `https://yaentre.com` (`vercel env update`, para que el build nuevo la incluyera desde la compilación — es una var `NEXT_PUBLIC_*`, se inlinea en build time). **Bug real cometido y corregido en la misma fase:** el primer intento (`echo "https://yaentre.com" | vercel env update`) guardó el valor con un salto de línea final (`"https://yaentre.com\n"`) — `echo` agrega newline y Vercel lo conservó tal cual; habría roto el link de verificación de Supabase Auth (`src/lib/auth/site-url.ts` solo recorta `/` final, no espacios). Corregido con `printf` (sin newline) antes de desplegar; verificado con `vercel env pull` que el valor quedó limpio. **`vercel --prod` (deploy real, no preview):** build exitoso (TypeScript limpio, 33 rutas, mismo output que las fases anteriores verificaron), y Vercel **aliasó automáticamente `https://yaentre.com` al nuevo deploy** — el mismo evento disparó la emisión del certificado SSL (Let's Encrypt, confirmado con `openssl s_client`: `CN=yaentre.com`, válido 25-ago al 23-nov-2026 — antes `vercel certs ls` mostraba "No certificates found"). **Verificado en vivo post-deploy, con evidencia, no solo asumido:** `https://yaentre.com` → HTTP 200, HSTS activo, `<title>YaEntre — Tu entrenador de admisión con IA`, 0 "acierta" / 29 "yaentre" en el HTML; `https://www.yaentre.com` → HTTP 200 con SSL válido (un primer intento dio error de certificado — blip transitorio de la emisión recién completada, confirmado estable en 3 reintentos siguientes); `https://acierta.vercel.app` → sigue sirviendo tráfico sin cambios, respaldo intacto. **Proyecto de Vercel renombrado** de `acierta` a `yaentre` vía dashboard (el CLI v50.37.2 sigue sin subcomando de rename, confirmado otra vez) — la sesión de navegador SÍ tenía cuenta de Vercel activa (a diferencia de Akky/Stripe/Resend). Vercel pidió configurar 2FA antes de guardar cambios sensibles del proyecto; se usó **"Skip securing my account"** en vez de configurar 2FA por la cuenta del usuario — no es una decisión de seguridad que le corresponda a esta sesión tomar. Rename confirmado ("Project name updated"), mismo `projectId`, sitio verificado funcionando después. `.vercel/project.json` local (gitignored) refrescado con `vercel link --yes --project yaentre` — no se editó a mano, mismo criterio que R1-R7 establecieron. **Archivo `dominio_yaentre.com` de Descargas** (el mismo PDF ya revisado en R6): sin información nueva. `pnpm typecheck`/`pnpm lint` en verde. Cero cambios de código — todos los cambios de esta fase son infraestructura viva (Vercel: env var, deploy, rename) verificable con `curl`/`openssl`, no con `git diff`. |
 | R6 | Conectar yaentre.com al despliegue de producción | PARCIAL — bloqueada en DNS/credenciales | (R6) | **Hallazgo que desbloqueó media fase:** el CLI de Vercel (`vercel`, v50.37.2) resultó estar ya autenticado en esta máquina (`vercel whoami` → `angel011298`, mismo team `angel011298s-projects` que `.vercel/project.json`) — permitió trabajar directo contra la API real de Vercel sin necesitar sesión de navegador. **1. Dominio agregado al proyecto — HECHO:** `vercel domains add yaentre.com` y `vercel domains add www.yaentre.com` (ambos éxito, confirmado con `vercel domains inspect`). Los dos quedan bajo el proyecto `acierta` en Vercel — **no se recreó el proyecto ni se tocó el despliegue existente**, `acierta.vercel.app` sigue sirviendo tráfico exactamente igual. **2. Registros DNS a configurar en Akky — BLOQUEADO, con la receta exacta ya en mano:** Vercel entregó los registros reales (no genéricos): `A yaentre.com → 76.76.21.21` y `A www.yaentre.com → 76.76.21.21` (alternativa: delegar nameservers a `ns1.vercel-dns.com`/`ns2.vercel-dns.com`, pero se prefirió la opción A porque el dominio se compró como invitado en Akky — sin cuenta — y la tarea pedía explícitamente dejar a Akky como DNS host). El dominio se compró por checkout de invitado (ver R4); Akky no ofrece gestión de DNS sin iniciar sesión, y crear una cuenta o escribir/recuperar una contraseña está fuera de lo que cualquier sesión automatizada puede hacer — instrucción explícita del propio usuario en esta fase ("salvo que necesites acceso a una cuenta que no tengas ya abierta"). **Alguien con acceso a la cuenta de PayPal/correo de la compra (`angelortizsanchez0112@gmail.com`) tiene que entrar al panel de Akky y pegar esos 2 registros A.** **3. Correo (MX/SPF/DKIM) — BLOQUEADO por partida doble:** depende de (a) Resend generando los valores exactos de SPF/DKIM para `yaentre.com`, y (b) el panel DNS de Akky para pegarlos — ambos bloqueados (Resend sigue sin sesión activa, mismo estado que R4/G9). No se puede generar una receta de registros inventada; hay que sacarla del dashboard real de Resend primero. **4. `NEXT_PUBLIC_SITE_URL` — DECISIÓN DELIBERADA DE NO TOCARLA TODAVÍA:** confirmado con grep que tiene un único uso en todo el código (`src/lib/auth/site-url.ts:6`) — construye el link de verificación/recuperación que Supabase Auth incrusta en sus correos. Cambiarla a `https://yaentre.com` AHORA, con el DNS todavía sin propagar, mandaría a cualquier usuario que se registre o pida recuperar contraseña HOY (en el sitio que sí funciona, `acierta.vercel.app`) un correo con un link roto — se prefirió no arriesgar un flujo que hoy funciona. Queda anotado el cambio exacto pendiente para cuando el DNS resuelva: `vercel env` no soporta editar in-place, así que es `vercel env rm NEXT_PUBLIC_SITE_URL production` + `vercel env add NEXT_PUBLIC_SITE_URL production` con valor `https://yaentre.com`, y luego un redeploy (`vercel --prod` o el próximo push) para que tome efecto. **5. Webhook de Stripe — BLOQUEADO, y además no aplica todavía:** el dashboard de Stripe sigue sin sesión activa (mismo bloqueo que G6/G7/G9/R4, re-verificado en esta fase). Adicionalmente, el historial ya documentado (G6) confirma que `STRIPE_SECRET_KEY` nunca fue una llave real — es decir, lo más probable es que **no exista ningún webhook real que reapuntar todavía**; esto se resuelve junto con el resto de la configuración real de Stripe, no antes. **6. Renombrar el proyecto de Vercel de "acierta" a "yaentre" — NO HECHO:** el CLI instalado (v50.37.2) no tiene subcomando de rename (`vercel project` solo ofrece `add/inspect/list/remove/token`); requiere el dashboard de Vercel o su API REST directa, ninguna con sesión disponible en este momento. Cosmético y de bajo riesgo (no afecta el despliegue), queda pendiente. **Archivo revisado sin hallazgos nuevos:** `dominio_yaentre.com` en Descargas del usuario — es el comprobante/factura PDF de Akky de la compra ya documentada en R4 (mismo número de orden), sin información de DNS o cuenta adicional. **Sin cambios de código ni de variables de entorno en esta fase** — el único cambio es esta fila de estado. `pnpm typecheck`/`pnpm lint` no aplican (nada de código cambió). |
@@ -1945,3 +1946,118 @@ Exactamente lo mismo que G9 dejó pendiente, sin cambios:
    `docs/SERVICE_CREDENTIALS_CHECKLIST.md`.
 2. Ninguna sesión futura de Claude Code va a poder avanzar esto sin que
    ocurra el paso 1 primero — no vale la pena reintentar sin eso.
+
+## G13 — Lote de reactivos: Matemáticas IPN FISMAT, refuerzo (2026-08-25)
+
+**Resultado: COMPLETADA — 35 reactivos originales insertados con
+`isVerified=false`, pendientes de verificación ciega.** Modo de trabajo:
+autónomo, decisiones tomadas según la regla de prioridad dada por la tarea.
+
+### 1) Selección de materia — números reales
+
+Consulta en vivo (`pnpm content:coverage` + query directa vía Prisma,
+`institution → level → exam → area → subject → topic → question`, la única
+cadena real del schema — `Exam` no tiene relación directa a `Institution`,
+pasa por `Level`):
+
+| Materia (IPN Superior) | Área | `questionWeight` | Verificados |
+|---|---|---|---|
+| Matemáticas | FISMAT | **24** | 34 |
+| Biología | MEDBIO | 22 | 27 |
+| Física | FISMAT | 20 | 0 |
+| Química | MEDBIO | 16 | 0 |
+| Química | FISMAT | 10 | 0 |
+| (resto: Historia, Geografía, Civismo, Español/Lectura, Inglés, Matemáticas Aplicadas, Matemáticas MEDBIO) | — | ≤8 | 0 |
+
+**Las 17 materias de las 3 áreas de IPN Superior tienen menos de 50
+verificados** — la Prioridad 1 de la tarea ("IPN con <50 verificados, mayor
+`questionWeight` primero") no distingue por eso entre ellas; el criterio de
+desempate real es el peso. Matemáticas de FISMAT es la de mayor peso (24)
+del conjunto completo de IPN, por encima de Biología (22) y Física (20).
+**Es el mismo tema que ya trabajó G3a** — se documentó explícitamente esta
+lectura antes de generar nada: la regla pedida ordena por peso descendente
+entre TODAS las que están bajo el umbral, no prioriza a las que están en
+cero. Reforzar la materia de mayor peso del banco IPN (aun con contenido
+previo) es una lectura literal y defendible de la regla tal como se
+especificó, no una elección arbitraria.
+
+### 2) Fuentes disponibles
+
+De los 12 temas de la materia, **3 tienen `SourceChunk` real** (mismos que
+ya usó G3a): Ecuaciones lineales y cuadráticas (`ceneval_exanii_i.pdf`,
+ejemplo de parábola/factorización), Números y operaciones (`uam_csh.pdf`,
+problemas de porcentaje), Sucesiones y series (`uam_cad.pdf`, ejemplo de
+sucesión aritmética). Los 9 temas restantes no tienen fragmento fuente →
+TEMARIO_ONLY, sin bloquear la generación (regla de F2b).
+
+### 3) Composición — 35 reactivos, cero API de pago
+
+Redactados directamente por esta sesión (Claude Code, suscripción existente
+— **cero llamadas a la API de pago de Anthropic**, cumpliendo el guardrail
+crítico de CLAUDE.md). Repartidos:
+
+| Tema | Nuevos | Grounding |
+|---|---|---|
+| Números complejos | 4 | TEMARIO_ONLY |
+| Álgebra elemental, Cálculo diferencial, Cálculo integral, Combinatoria y probabilidad, Ecuaciones lineales y cuadráticas, Funciones y gráficas, Geometría analítica, Matrices y sistemas, Números y operaciones | 3 c/u (27 total) | Ecuaciones/Números y operaciones = SOURCED, resto TEMARIO_ONLY |
+| Sucesiones y series, Trigonometría | 2 c/u (4 total) | Sucesiones = SOURCED, Trigonometría TEMARIO_ONLY |
+
+Total: **35** (8 SOURCED, 27 TEMARIO_ONLY). Cada reactivo de los 3 temas
+SOURCED cita `sourceChunks:[1]` de forma obligatoria (`resolveCitations` de
+F2b rechaza sin cita cuando hay fragmentos disponibles) y se deriva
+genuinamente del contenido real del fragmento (mismo tipo de problema,
+números distintos — no copia literal).
+
+**Distribución de posición diseñada desde la composición** (no ajustada
+después): **A=9, B=9, C=9, D=8** (25.7/25.7/25.7/22.9%), dentro del rango
+15%-40% exigido por G3c. **Distractores citados por su contenido en todas
+las explicaciones, nunca por su letra** — verificado tanto por diseño como
+por el validador automático (`LETTER_CITATION` = 0 en las 35).
+
+### 4) Validación — G3c corrido antes de tocar la DB
+
+`pnpm content:validate-batch --dir scripts/g13-lote` sobre los 12 archivos:
+**35/35 válidos, 0 rechazados por formato, 0 violaciones** (`MALFORMED_OPTIONS`
+0, `POSITION_SKEW` 0, `LETTER_CITATION` 0). Repetido con `--dry-run` en los
+12 temas individuales vía `content:insert --lot-dir scripts/g13-lote`: mismo
+resultado, 0 duplicados contra los 35 reactivos ya existentes de la materia
+(`normalizeStem` no encontró coincidencias).
+
+### 5) Inserción real
+
+`pnpm content:insert --topic <id> --file <archivo> --lot-dir scripts/g13-lote`
+(sin `--dry-run`) para los 12 temas. **Verificado en la DB, no solo en el
+log de consola:** la materia pasó de 34 verificados/35 totales a **34
+verificados/70 totales** — exactamente +35. Desglose de los nuevos
+`isVerified=false`: 8 `SOURCED` + 28 `TEMARIO_ONLY` (27 de este lote + 1
+pendiente preexistente de antes de G13, sin relación con este lote). El
+conteo global de reactivos VERIFICADOS del banco **no cambió (sigue en
+370)** — correcto y esperado: este lote entra a la cola de verificación
+ciega (G3b/G3e), que es responsabilidad de una sesión POSTERIOR e
+independiente por diseño del pipeline adversarial; G13 no verifica sus
+propios reactivos.
+
+Registro consolidado del lote (mismo patrón que `g3a-ipn-fismat-matematicas.json`
+y `g3d-ipn-medbio-biologia.json`): **`docs/content-batches/g13-ipn-fismat-matematicas.json`**
+— con los 35 `questionId` reales de la DB, stems, opciones y grounding.
+
+### 6) Limpieza
+
+Los archivos de trabajo (`scripts/g13-gap-check.ts`, 12 archivos JSON en
+`scripts/g13-lote/`) se eliminaron al terminar — el registro permanente es
+el archivo en `docs/content-batches/` y las filas de esta tabla, igual que
+el criterio ya establecido por G3a/G3d.
+
+`pnpm typecheck` y `pnpm lint` en verde (sin cambios de código en esta
+fase — solo contenido en la DB y documentación).
+
+### Siguiente (G13)
+
+1. **Verificación ciega** de estos 35 reactivos (patrón G3b/G3e): una
+   sesión independiente que NO vea las respuestas correctas debe resolverlos
+   y comparar veredictos antes de que puedan pasar a `isVerified=true`.
+2. Física de IPN FISMAT (`questionWeight=20`, 0 verificados) sigue siendo la
+   materia de IPN con mayor peso en CERO — candidata natural para el
+   siguiente lote de material nuevo (a diferencia de G13, que reforzó una
+   materia ya cubierta por seguir la regla de prioridad tal como se
+   especificó).
