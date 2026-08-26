@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-26 · Última fase ejecutada: G16 (**ABORTADA por contaminación de contexto — 0 reactivos resueltos, 0 publicados**; los 35 de G15 siguen `isVerified=false`. Ver fila G16)
+Última actualización: 2026-08-26 · Última fase ejecutada: G16 (**COMPLETADA en el 2º intento, en sesión limpia — 35/35 auto-aprobados (100%), banco 405 → 440 verificados**. El 1er intento se abortó por contaminación de contexto; ambas filas abajo. **Hallazgo abierto: la letra correcta ROTA A→B→C→D dentro de los lotes de contenido — ver fila G16 y la sección "Hallazgo: rotación de la clave"**)
 
 ## URL de producción actual
 
@@ -10,7 +10,8 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
-| G16 | Verificación ciega del lote de G15 | **ABORTADA — contaminación de contexto, 0 resueltos, 0 publicados** | (G16) | Ver sección dedicada abajo. **Segunda ocurrencia del mismo fallo de proceso que ya documentó G3e (1er intento), y por la misma causa exacta:** la sesión asignada a verificar era la MISMA conversación que compuso el lote en G15, minutos antes. Se cambió el modelo (`/model claude-opus-5`) entre una fase y la otra, pero **un cambio de modelo no reinicia la conversación** — la ventana de contexto se conserva íntegra, y en ella estaban los 12 archivos JSON de G15 con los 35 reactivos y su `"isCorrect": true` explícito en cada uno. La contaminación es **total, no parcial ni inferencial**: no hacía falta razonar una sola línea de biología para "acertar" los 35. **Se abortó antes de resolver el primer reactivo**, siguiendo la regla que el propio proyecto ya dejó escrita tras G3e ("si aparece en el contexto cualquier artefacto de la fase de composición, la verificación ya está comprometida — hay que abortar y reportar, no intentar 'olvidar' la respuesta") y el contrato en `scripts/lib/blind-verification.ts:11` ("Esa sesión debe ser DISTINTA (proceso/conversación separada) de la que compuso los reactivos"). Continuar habría producido **35/35 y una tasa de auto-aprobación del 100%** — un número idéntico al de G14, indistinguible de un resultado legítimo, que habría publicado 35 reactivos a alumnos reales con un sello de calidad inventado. **El primer criterio de aceptación de la tarea ("Nunca viste la respuesta correcta antes de responder") ya estaba incumplido antes de empezar**, así que ejecutar las tareas 1-5 habría entregado un resultado que falla el propio estándar del encargo mientras aparenta éxito. **Trabajo real completado:** el lote ciego SÍ se generó y quedó en disco listo para una sesión limpia (`scripts/content-exports/blind-batch-2026-08-26T01-11-03-065Z.json`, 35 ítems, `requiresCalculation:false` en los 35 — biología conceptual, igual que en G3d/G3e); y se consultó el estado real de la DB (sin cambios, ver abajo). **Desviación deliberada del encargo, declarada:** el mensaje de commit pedido era `feat(G16): verificación ciega Biología IPN MEDBIO`, pero se usó uno honesto (`chore(G16): …abortada…`) — mismo criterio que G12, y coherente con el defecto que G14 corrigió (un registro de auditoría no debe afirmar algo que no ocurrió). `pnpm typecheck` y `pnpm lint` en verde (cero cambios de código). |
+| G16 | Verificación ciega del lote de G15 (2º intento, sesión limpia) | **COMPLETADA — 35/35 auto-aprobados (100%), banco 405 → 440 verificados** | (G16) | Ver sección dedicada abajo. Re-ejecución de G16 en una invocación de `claude` **nueva**, tal como pedía la nota "Siguiente" del intento abortado. **Aislamiento comprobado, no asumido:** no se leyó el commit de G15, ni `docs/content-batches/g15-ipn-medbio-biologia.json`, ni `Question.options`; el único insumo fue un lote ciego **regenerado en esta sesión** (`pnpm content:blind-batch --all --limit 50` → `blind-batch-2026-08-26T01-17-05-172Z.json`, 35 ítems), sobre el que `grep` da **0 ocurrencias de `isCorrect` y 0 de `explanation`**. **Los 35 son conceptuales (`requiresCalculation:false` en los 35, biología), pero los 3 con combinatoria real se resolvieron EJECUTANDO el cálculo en código,** no razonándolo en texto: cuadro de Punnett 4×4 completo para el dihíbrido AaBb×AaBb (16 casillas → A_B_=9, A_bb=3, aaB_=3, aabb=1 = 9:3:3:1), conteo de productos meióticos (2n → 2 células n → 4 células n) y balance de la gametogénesis (4 productos; 4 espermatozoides contra 4−3 cuerpos polares = 1 óvulo). Esos 3 llevan `usedCalculation:true` y los otros 32 `false` — el registro de auditoría dice exactamente lo que la sesión hizo (el campo que G14 arregló). **Los 35 se razonaron descartando cada distractor por su contenido**, no por eliminación superficial. **Candado anti-deriva propio de esta sesión:** el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del texto que se había razonado y **abortaba si la letra y el contenido no coincidían**; pasó en los 35, así que ningún acierto puede venir de un desfase de índice. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100%.** Confianza 0.99 en 33, 0.98 en 1 (importancia biológica de la meiosis) y 0.97 en 2 (homología ave-murciélago, y sinapsis química frente a la eléctrica como excepción); todas ≥0.85. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 520 totales · verificados **405 → 440** · sin veredicto **35 → 0** · sin publicar 80 (sin cambio, son discrepancias de lotes anteriores ajenas a este lote). Biología IPN MEDBIO pasó de **27✓/35⧗/8✋ a 62✓/0⧗/8✋** — cruzó el umbral de 50, como G15 anticipó, así que el siguiente lote debe re-consultar la brecha en vivo. **HALLAZGO REAL, ajeno al encargo, detectado al leer el log de resolución (ver sección dedicada):** la letra correcta **rota A→B→C→D** dentro de cada lote ordenado por id, en los **cuatro** lotes de contenido generados hasta hoy (G3a 34/34 = 100%, G3d 26/34, G13 27/34, G15 21/34, contra 25% esperado al azar; p entre 6.2e-6 y 3.4e-21). Los cuatro pasaron `POSITION_SKEW` con 9/9/9/8 porque **el validador sólo mira la distribución marginal, nunca el orden**. No invalida ningún reactivo (los 35 se resolvieron a ciegas y coincidieron uno por uno) y hoy no es explotable por un alumno, porque `src/lib/adaptive/selector.ts` baraja los reactivos antes de servirlos; pero es un artefacto de composición que debilita la señal de calidad y quedaría expuesto en cualquier ruta que sirva en orden estable. **No se corrigió: queda fuera del alcance de G16 y reposicionar los reactivos ya publicados de esos cuatro lotes es decisión del dueño del proyecto.** **Caveat honesto heredado, que sigue SIN corregir:** el veredicto persiste `model: VERIFIER_MODEL_TIER` (`'claude-fable-5'`), no el modelo que realmente resolvió (Opus 5) — mismo caveat que G14 anotó y decidió no ampliar de alcance; se mantiene esa decisión por consistencia, no por descuido. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**464/464**) en verde; cero cambios de código. Scripts desechables (`scripts/g16-count.ts`, `scripts/g16-seqcheck.ts`) eliminados al terminar. |
+| G16 | Verificación ciega del lote de G15 (1er intento) | **ABORTADA — contaminación de contexto, 0 resueltos, 0 publicados** | (G16) | Ver sección dedicada abajo. **Segunda ocurrencia del mismo fallo de proceso que ya documentó G3e (1er intento), y por la misma causa exacta:** la sesión asignada a verificar era la MISMA conversación que compuso el lote en G15, minutos antes. Se cambió el modelo (`/model claude-opus-5`) entre una fase y la otra, pero **un cambio de modelo no reinicia la conversación** — la ventana de contexto se conserva íntegra, y en ella estaban los 12 archivos JSON de G15 con los 35 reactivos y su `"isCorrect": true` explícito en cada uno. La contaminación es **total, no parcial ni inferencial**: no hacía falta razonar una sola línea de biología para "acertar" los 35. **Se abortó antes de resolver el primer reactivo**, siguiendo la regla que el propio proyecto ya dejó escrita tras G3e ("si aparece en el contexto cualquier artefacto de la fase de composición, la verificación ya está comprometida — hay que abortar y reportar, no intentar 'olvidar' la respuesta") y el contrato en `scripts/lib/blind-verification.ts:11` ("Esa sesión debe ser DISTINTA (proceso/conversación separada) de la que compuso los reactivos"). Continuar habría producido **35/35 y una tasa de auto-aprobación del 100%** — un número idéntico al de G14, indistinguible de un resultado legítimo, que habría publicado 35 reactivos a alumnos reales con un sello de calidad inventado. **El primer criterio de aceptación de la tarea ("Nunca viste la respuesta correcta antes de responder") ya estaba incumplido antes de empezar**, así que ejecutar las tareas 1-5 habría entregado un resultado que falla el propio estándar del encargo mientras aparenta éxito. **Trabajo real completado:** el lote ciego SÍ se generó y quedó en disco listo para una sesión limpia (`scripts/content-exports/blind-batch-2026-08-26T01-11-03-065Z.json`, 35 ítems, `requiresCalculation:false` en los 35 — biología conceptual, igual que en G3d/G3e); y se consultó el estado real de la DB (sin cambios, ver abajo). **Desviación deliberada del encargo, declarada:** el mensaje de commit pedido era `feat(G16): verificación ciega Biología IPN MEDBIO`, pero se usó uno honesto (`chore(G16): …abortada…`) — mismo criterio que G12, y coherente con el defecto que G14 corrigió (un registro de auditoría no debe afirmar algo que no ocurrió). `pnpm typecheck` y `pnpm lint` en verde (cero cambios de código). |
 | G15 | Lote de reactivos: Biología IPN MEDBIO (refuerzo) | **COMPLETADA — 35 insertados, isVerified=false** | (G15) | Ver sección dedicada abajo. **Materia elegida re-aplicando en vivo la misma regla de prioridad de G13** ("IPN con <50 verificados, mayor `questionWeight` primero"): G14 verificó los 35 de G13 y Matemáticas de FISMAT pasó de 34 a 69 verificados — **cruzó el umbral de 50 y salió del conjunto elegible**. Dentro de lo que queda (<50 verificados), la de mayor peso ya no es Física FISMAT (20, la sugerencia informal que había dejado la nota "Siguiente" de G14): es **Biología de IPN MEDBIO, peso 22**, confirmado con consulta directa a Prisma, no asumido de la nota anterior (esa nota hablaba de "mayor peso en CERO", un criterio más estrecho que la Prioridad 1 real, que no distingue entre materias en cero y materias que ya tienen contenido). Mismo patrón que estableció G13: reforzar la de mayor peso del conjunto elegible aunque ya tenga contenido previo (27 verificados de G3d), aplicando la regla tal como está escrita. **12 temas de la materia, 0/12 con `SourceChunk`** (a diferencia de Matemáticas FISMAT) — los 35 reactivos son 100% TEMARIO_ONLY, sin bloquear la generación (F2b). **Composición balanceada contra el acumulado de G3d**, no repartida pareja: los temas que G3d dejó con menos contenido (Homeostasis, Reproducción, Evolución y especiación, Mitosis y meiosis, 2 cada uno) reciben más refuerzo (3-4 nuevos); los que G3d dejó más completos (Genética básica, Célula y organelos, Sistema nervioso, 4 cada uno) reciben menos (2 nuevos) — acumulado final entre 5 y 6 reactivos por tema en los 12. **35/35 MULTIPLE_CHOICE** (mismo criterio que G3d y el fewshot de `biologia.md`, contenido conceptual sin fragmento fuente). Dificultad **BASIC 10 / INTERMEDIATE 16 / ADVANCED 7 / EXPERT 2**, más cercana a la distribución sugerida por `scripts/prompts/_base.md` (20/50/25/5%) que la de G3d. **Distribución de posición diseñada y verificada: A=9, B=9, C=9, D=8** (25.7%/25.7%/25.7%/22.9%, dentro de 15%-40%). **Validador de lote de G3c corrido y aprobado** (`content:validate-batch` + `content:insert --lot-dir`, ambos 0 violaciones: `MALFORMED_OPTIONS` 0, `POSITION_SKEW` 0, `LETTER_CITATION` 0) antes de tocar la DB — distractores citados siempre por contenido ("1)...2)...3)...4)..."), nunca por letra. Dry-run primero (0 duplicados contra los 27 verificados + 8 sin publicar de G3d, vía `normalizeStem`), luego inserción real: la materia pasó de 27✓/0⧗/8✋ (35 totales) a **27✓/35⧗/8✋ (70 totales)** — exactamente +35 pendientes, verificado con consulta directa a la DB, no solo el log de consola. Registro consolidado en `docs/content-batches/g15-ipn-medbio-biologia.json` (mismo patrón que G3a/G3d/G13). El total VERIFICADO del banco no cambió (sigue en 405) porque este lote entra a la cola de verificación ciega, tarea de una sesión POSTERIOR e independiente — G15 no verifica sus propios reactivos, por diseño del pipeline adversarial. Si los 35 se aprueban en la siguiente verificación, Biología MEDBIO pasaría de 27 a 62 verificados y cruzaría el umbral de 50, igual que le pasó a Matemáticas FISMAT en G13→G14 — el siguiente lote de contenido tendría que re-consultar la brecha otra vez en vivo (candidata probable: Física de IPN FISMAT, peso 20, sigue en 0 verificados). `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido + docs). Scripts desechables (`scripts/g15-gap-check.ts`, `scripts/g15-topics.ts`, `scripts/g15-export.ts`, `scripts/g15-lote/*.json`) usados para consultar la DB, componer y exportar el lote, eliminados al terminar. |
 | G14 | Verificación ciega del lote de G13 | **COMPLETADA — 35/35 auto-aprobados (100%), banco 370 → 405 verificados** | (G14) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G13: esta sesión **nunca vio la respuesta correcta** — su único insumo fue el lote ciego (`pnpm content:blind-batch --all`, 35 reactivos de Matemáticas IPN FISMAT con las opciones remezcladas por semilla determinista). Garantía comprobada, no asumida: `grep` sobre el archivo exportado da **0 ocurrencias de `isCorrect`/`explanation`/`correctOption`**, y no se leyó el commit de G13, ni `docs/content-batches/g13-ipn-fismat-matematicas.json`, ni `Question.options` de la DB. **Los 35 reactivos son de materia de cálculo (`requiresCalculation=true` en los 35), así que los 35 se resolvieron EJECUTANDO la operación en código** (sympy/Python: `solve`, `diff`, `integrate`, `factor`, `function_range`, `continuous_domain`, `Point.distance`, `math.comb`, aritmética exacta con `Fraction`), nunca solo razonando en texto. **Segundo paso ejecutado, más estricto que responder:** un script de emparejamiento transcribió las 4 opciones de cada reactivo a expresiones simbólicas y comprobó **unicidad** — cuántas opciones son equivalentes al resultado calculado. Resultado: **exactamente 1 opción válida en los 35** (cero `NONE_VALID`, cero `MULTIPLE_VALID`), por eso ningún reactivo lleva `problems`. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos — tasa de auto-aprobación 100%.** Confianza declarada 0.99 en 33 reactivos y 0.97 en 2 (dominio de raíz y rango de parábola, los únicos conceptuales en vez de puramente computacionales); todas ≥0.85, el umbral de `MIN_CONFIDENCE`. **Acumulado real consultado en vivo contra Supabase (antes y después), no estimado:** 485 reactivos totales · verificados **370 → 405** · pendientes **115 → 80**, y de esos 80 pendientes **0 quedan sin veredicto** (los 80 son discrepancias con veredicto adjunto de lotes anteriores, ajenas a este lote). Matemáticas IPN FISMAT pasó de 34 a **69 verificados** (`questionWeight=24`), 1 pendiente (el preexistente de antes de G13). **Confirmación independiente de la distribución de posición de G13:** al traducir las respuestas del orden mezclado al original, las correctas quedan en **A=9, B=9, C=9, D=8** — exactamente lo que G13 documentó, verificado ahora desde el lado ciego (las elecciones de esta sesión en el espacio MEZCLADO fueron A=10/B=10/C=10/D=5, o sea el shuffle sí reordenó de verdad). **Defecto real corregido en el pipeline:** `content-resolve-verification.ts` escribía `usedCalculation: false` **hardcodeado** en `Question.verification`, así que el registro de auditoría afirmaba lo contrario de lo que la sesión hacía. Se agregó `usedCalculation` como campo opcional (default `false`, retrocompatible) a `VerifierAnswerSchema` y se pasa al veredicto; el lote se re-resolvió para que los 35 registros digan la verdad. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (464/464) en verde. Scripts desechables de consulta a la DB (`scripts/g14-count.ts`, `scripts/g14-breakdown.ts`) eliminados al terminar; los archivos del lote viven en `scripts/content-exports/` (gitignored). |
 | G13 | Lote de reactivos: Matemáticas IPN FISMAT (refuerzo) | **COMPLETADA — 35 insertados, isVerified=false** | (G13) | Ver sección dedicada abajo. **Materia elegida por la regla de prioridad 1, con números reales:** entre las 3 áreas de IPN Superior, TODAS sus materias tienen menos de 50 reactivos verificados (consultado en vivo vía `pnpm content:coverage` + query directa a Prisma) — dentro de ese conjunto, Matemáticas de IPN FISMAT tiene el `questionWeight` más alto (24, por encima de Biología MEDBIO=22 y Física FISMAT=20) con 34 verificados. Es el mismo tema que G3a trabajó, pero la regla no dice "los que tienen cero primero" sino "mayor weight primero entre los <50" — se documentó explícitamente esta lectura literal antes de generar nada. **35 reactivos originales compuestos por esta sesión** (cero llamadas a la API de pago de Anthropic — pipeline G2, `pnpm content:insert`), repartidos en los 12 temas de la materia; 3 temas con `SourceChunk` real (Ecuaciones lineales y cuadráticas, Números y operaciones, Sucesiones y series) se citaron obligatoriamente como SOURCED (8 reactivos), los otros 9 temas TEMARIO_ONLY (27 reactivos). **Distribución de posición diseñada y verificada: A=9, B=9, C=9, D=8** (25.7%/25.7%/25.7%/22.9%, dentro del rango 15%-40% exigido). **Validador de lote de G3c corrido y aprobado** (`pnpm content:validate-batch --dir` + `content:insert --lot-dir`, ambos con 0 violaciones) antes de tocar la DB — cero sesgo de posición, cero citas de distractores por letra (todas las explicaciones describen la respuesta por su CONTENIDO, nunca "opción X"). Verificado con dry-run primero en los 12 temas, luego inserción real: consulta a la DB confirma **35/35 insertados** (antes 34 verified + 1 pendiente = 70 total en la materia hoy; 8 SOURCED + 28 TEMARIO_ONLY sin verificar, donde 1 de esos 28 es el pendiente preexistente, no de este lote). Registro consolidado del lote en `docs/content-batches/g13-ipn-fismat-matematicas.json` (mismo patrón que G3a/G3d). El total de reactivos VERIFICADOS del banco no cambió (sigue en 370) porque este lote entra a la cola de verificación ciega (G3b/G3e), que es tarea de una sesión POSTERIOR e independiente — G13 no verifica sus propios reactivos, por diseño del pipeline adversarial. `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido + docs). Scripts desechables (`scripts/g13-gap-check.ts`, `scripts/g13-lote/*.json`) usados para consultar la DB y componer el lote, eliminados al terminar. |
@@ -2065,7 +2066,177 @@ fase — solo contenido en la DB y documentación).
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
 
-## G16 — ABORTADA por contaminación de contexto (2026-08-26)
+## G16 — Verificación ciega Biología IPN MEDBIO, 2º intento (2026-08-26)
+
+**COMPLETADA. 35/35 auto-aprobados. Banco 405 → 440 verificados.**
+
+Segunda mitad del ciclo adversarial de G2 sobre el lote de G15, re-ejecutada
+en una invocación de `claude` **nueva**, que es justo lo que faltó en el 1er
+intento (sección siguiente).
+
+### 1) Aislamiento: comprobado, no asumido
+
+El único insumo fue un lote ciego **regenerado en esta sesión**, no el que
+dejó el intento abortado:
+
+```
+pnpm content:blind-batch --all --limit 50
+→ scripts/content-exports/blind-batch-2026-08-26T01-17-05-172Z.json  (35 ítems)
+grep -c isCorrect    → 0
+grep -c explanation  → 0
+```
+
+No se leyó el commit de G15 (`bb03d5d`), ni
+`docs/content-batches/g15-ipn-medbio-biologia.json`, ni `Question.options`
+por ninguna vía. El primer criterio de aceptación ("nunca viste la respuesta
+correcta antes de responder") se cumple, y es verificable: la única lectura
+de la DB antes de resolver fue un conteo agregado
+(`count` por `isVerified`), que no expone contenido.
+
+### 2) Resolución: 35 conceptuales, 3 con cálculo ejecutado
+
+`requiresCalculation` es `false` en los 35 — biología, igual que G3d/G3e.
+Aun así, los 3 reactivos con combinatoria real se resolvieron **ejecutando
+la operación en código**, no razonándola en texto:
+
+| Reactivo | Cálculo ejecutado | Resultado |
+|---|---|---|
+| Dihíbrido AaBb × AaBb | Cuadro de Punnett 4×4 completo, 16 casillas | A_B_=9, A_bb=3, aaB_=3, aabb=1 → **9:3:3:1** |
+| Productos de la meiosis | 1 célula 2n → meiosis I → 2 células n → meiosis II | **4 células haploides** |
+| Gametogénesis comparada | 4 productos meióticos; citocinesis simétrica vs. asimétrica | **4 espermatozoides** vs. **4−3 cuerpos polares = 1 óvulo** |
+
+Esos 3 llevan `usedCalculation:true`; los otros 32, `false`. El registro de
+auditoría describe exactamente lo que la sesión hizo — es el campo que G14
+agregó justamente para que no mintiera.
+
+Los 32 conceptuales se razonaron **descartando cada distractor por su
+contenido**: p. ej. en retículo endoplásmico se descarta la opción que
+describe lisosoma y Golgi, la que atribuye ATP al retículo (es mitocondrial)
+y la que describe la vacuola; en deriva génica se descarta la ventaja
+reproductiva del mejor adaptado por ser la definición de selección natural,
+que es el contraste exacto que pide el enunciado.
+
+### 3) Candado anti-deriva letra↔contenido
+
+El archivo de respuestas **no se escribió a mano**. Un script emparejó cada
+letra elegida con un fragmento del texto que se había razonado, y estaba
+programado para **abortar si la letra y el contenido no coincidían**:
+
+```
+OK 35/35 respuestas; candado letra-contenido pasa en las 35.
+letras elegidas sobre el lote MEZCLADO: {"A":5,"D":11,"C":8,"B":11}
+```
+
+Importa porque descarta la explicación alternativa más incómoda de un 100%:
+ningún acierto puede venir de un desfase de índice entre el razonamiento y
+la letra escrita.
+
+### 4) Resultado
+
+```
+pnpm content:resolve --file scripts/content-exports/g16-answers.json
+✅ Auto-aprobados: 35   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+**Tasa de auto-aprobación: 35/35 = 100%.** Confianza 0.99 en 33, 0.98 en 1
+(importancia biológica de la meiosis) y 0.97 en 2 (homología ave-murciélago;
+sinapsis química frente a la eléctrica como excepción rara). Todas ≥0.85,
+el umbral de `MIN_CONFIDENCE`. Cero `problems` declarados.
+
+### 5) Acumulado REAL, consultado en vivo antes y después
+
+| Métrica | Antes de G16 | Después de G16 |
+|---|---|---|
+| Reactivos totales | 520 | 520 |
+| **Verificados (`isVerified=true`)** | **405** | **440** |
+| Sin veredicto | 35 | **0** |
+| Sin publicar (con veredicto adjunto) | 80 | 80 |
+
+Los 80 sin publicar son discrepancias de lotes anteriores, ajenas a éste.
+
+En la materia trabajada, **Biología IPN MEDBIO** (peso 22): pasó de
+**27✓/35⧗/8✋** a **62✓/0⧗/8✋** sobre 70 totales. Cruzó el umbral de 50, tal
+como G15 anticipó — el siguiente lote de contenido debe **re-consultar la
+brecha en vivo** en vez de heredar la candidata de una nota previa (mismo
+error que G15 documentó y evitó).
+
+### 6) Hallazgo: rotación de la clave de respuestas
+
+**Ajeno al encargo, detectado al leer el log de resolución.** Las letras
+correctas del lote, en orden de id, no parecían aleatorias. Medido:
+
+| Lote | n | Marginal | Rotación +1 (A→B→C→D) | p (binomial, p₀=¼) |
+|---|---|---|---|---|
+| G3a — Mat FISMAT | 35 | 9/9/9/8 | **34/34 = 100%** | 3.4e-21 |
+| G13 — Mat FISMAT | 35 | 9/9/9/8 | 27/34 = 79.4% | 4.3e-11 |
+| G3d — Bio MEDBIO | 35 | 9/9/9/8 | 26/34 = 76.5% | 4.5e-10 |
+| G15 — Bio MEDBIO | 35 | 9/9/9/8 | 21/34 = 61.8% | 6.2e-6 |
+
+Los **cuatro** lotes generados hasta hoy pasaron `POSITION_SKEW` con
+distribución marginal impecable (9/9/9/8, ~25% por letra) **mientras la
+clave avanzaba en ciclo**. La causa es que
+`scripts/lib/lot-validation.ts` sólo evalúa `positionDistribution`
+(la marginal, con `MIN_LETTER_SHARE`/`MAX_LETTER_SHARE`) y **nunca mira la
+correlación serial**. Un lote perfectamente rotado es, para el validador,
+un lote perfectamente balanceado.
+
+**Alcance real, sin dramatizar:**
+
+- **No invalida ningún reactivo.** Los 35 de este lote se resolvieron a
+  ciegas y coincidieron uno por uno; la corrección de cada ítem es
+  independiente de dónde cayó su letra.
+- **Hoy no es explotable por un alumno**, porque
+  `src/lib/adaptive/selector.ts` baraja los reactivos (`shuffle`) antes de
+  servirlos: nadie los ve en orden de id.
+- **Pero es frágil.** Con `shuffleOptions:false` para IPN/UAM/CENEVAL/CNBV
+  (`src/lib/simulator/config.ts`), la letra almacenada **es** la letra
+  mostrada; cualquier ruta que sirva en orden estable (panel admin, un
+  export, una feature futura) expondría la regla. Y debilita la señal de
+  calidad: "distribución balanceada" hoy certifica menos de lo que aparenta.
+
+**No se corrigió en G16, deliberadamente:** queda fuera del alcance de una
+fase de verificación, y reposicionar los reactivos ya publicados de esos
+cuatro lotes (la mayoría de los 140 que componen; no todos llegaron a
+publicarse) es una
+decisión del dueño del proyecto, no de la sesión que encontró el patrón. Lo
+accionable y barato es el chequeo de correlación serial en el validador,
+para que el próximo lote no repita el patrón.
+
+### 7) Caveat honesto heredado, que sigue sin corregirse
+
+El veredicto persiste `model: VERIFIER_MODEL_TIER` (`'claude-fable-5'`), una
+constante de orquestación — no el modelo que realmente resolvió el lote
+(Opus 5 en esta sesión). Es el mismo caveat que G14 anotó y decidió no
+corregir para no ampliar su alcance por cuenta propia; **se mantiene esa
+decisión por consistencia, no por descuido**. `resolveVerdict` no lee
+`model`, así que no afecta ninguna decisión de publicación.
+
+### 8) Limpieza
+
+Scripts desechables (`scripts/g16-count.ts`, `scripts/g16-seqcheck.ts`)
+eliminados al terminar. El lote ciego y el archivo de respuestas viven en
+`scripts/content-exports/` (gitignored, como todo el material intermedio).
+
+`pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**464/464**) en verde.
+Cero cambios de código.
+
+### Siguiente (G16)
+
+1. **Agregar chequeo de correlación serial a
+   `scripts/lib/lot-validation.ts`** (nuevo código de violación, p. ej.
+   `POSITION_CYCLE`): contar transiciones que avanzan +1 en el ciclo
+   A→B→C→D y fallar el lote muy por encima del 25% esperado. Es el hallazgo
+   accionable de esta fase.
+2. **Siguiente lote de contenido: re-consultar la brecha EN VIVO.** Biología
+   MEDBIO ya cruzó 50 (62 verificados) y salió del conjunto elegible; la
+   candidata probable es **Física de IPN FISMAT** (peso 20, 0 verificados),
+   pero eso debe confirmarse con Prisma, no heredarse de esta nota.
+3. Los **80 sin publicar** siguen acumulándose sin panel de discrepancias
+   (F3). Vale la pena revisarlos antes de que crezcan más.
+
+---
+
+## G16 — ABORTADA por contaminación de contexto, 1er intento (2026-08-26)
 
 **No se resolvió ni se publicó ningún reactivo. Los 35 de G15 siguen
 `isVerified=false`.** Es la **segunda vez** que ocurre este fallo de proceso
