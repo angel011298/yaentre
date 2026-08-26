@@ -151,10 +151,22 @@ describe('blind-verification: schema de respuesta de la sesión verificadora', (
     ).toBe(false);
   });
 
-  it('reasoning y problems son opcionales con default', () => {
+  it('reasoning, problems, usedCalculation y model son opcionales con default', () => {
     const result = VerifierAnswerSchema.parse({ questionId: 'q1', chosenOption: 'A', confidence: 0.9 });
     expect(result.reasoning).toBe('');
     expect(result.problems).toEqual([]);
+    expect(result.usedCalculation).toBe(false);
+    expect(result.model).toBe(VERIFIER_MODEL_TIER);
+  });
+
+  it('preserva el modelo real declarado por la sesión verificadora en vez del default', () => {
+    const result = VerifierAnswerSchema.parse({
+      questionId: 'q1',
+      chosenOption: 'A',
+      confidence: 0.9,
+      model: 'claude-opus-5',
+    });
+    expect(result.model).toBe('claude-opus-5');
   });
 });
 

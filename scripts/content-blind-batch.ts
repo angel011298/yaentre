@@ -17,7 +17,10 @@
  *      cuando `requiresCalculation` sea true) y que te devuelva un JSON con
  *      la forma que espera scripts/content-resolve-verification.ts:
  *      [{ "questionId": "...", "chosenOption": "A", "confidence": 0.95,
- *         "reasoning": "...", "usedCalculation": true, "problems": [] }, ...]
+ *         "reasoning": "...", "usedCalculation": true,
+ *         "model": "claude-opus-5", "problems": [] }, ...]
+ *      `model` es opcional (default VERIFIER_MODEL_TIER) pero debe declarar
+ *      el modelo que REALMENTE resolvió el lote, no una constante genérica.
  *   3. pnpm content:resolve --file <respuestas.json>
  *
  * Reusable para el muestreo de auditoría (5%, tercera pasada con un tier de
@@ -142,6 +145,7 @@ async function main() {
           confidence: 0.95,
           reasoning: '<breve>',
           usedCalculation: true,
+          model: '<modelo real que resuelve, p. ej. claude-opus-5>',
           problems: [],
         },
       ],

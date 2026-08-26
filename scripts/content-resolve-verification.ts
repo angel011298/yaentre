@@ -20,11 +20,17 @@
  * produce a partir del lote ciego):
  * [
  *   { "questionId": "...", "chosenOption": "A", "confidence": 0.95,
- *     "reasoning": "...", "usedCalculation": true, "problems": [] }
+ *     "reasoning": "...", "usedCalculation": true, "model": "claude-opus-5",
+ *     "problems": [] }
  * ]
  *
  * `usedCalculation` es opcional (default false) y se persiste tal cual en el
  * registro de auditoría: declara si la sesión EJECUTÓ el cálculo en código.
+ *
+ * `model` es opcional (default VERIFIER_MODEL_TIER, retrocompatible) y
+ * declara el modelo real que resolvió el lote — antes se hardcodeaba la
+ * constante de orquestación sin importar qué modelo corriera de verdad
+ * (defecto anotado en G14, corregido en G17: ver docs/ESTADO.md).
  *
  * Uso:
  *   npx tsx scripts/content-resolve-verification.ts --file <respuestas.json> [--dry-run]
@@ -37,7 +43,6 @@ import { readFileSync } from 'node:fs';
 import {
   translateChosenOption,
   VerifierAnswersFileSchema,
-  VERIFIER_MODEL_TIER,
   type VerifierAnswer,
 } from './lib/blind-verification';
 import { resolveVerdict, type VerificationRecord } from './lib/resolution';
@@ -93,7 +98,7 @@ async function resolveOne(answer: VerifierAnswer): Promise<'approved' | 'unpubli
     confidence: answer.confidence,
     reasoning: answer.reasoning,
     problems: answer.problems,
-    model: VERIFIER_MODEL_TIER,
+    model: answer.model,
     usedCalculation: answer.usedCalculation,
     usage: { inputTokens: 0, outputTokens: 0 },
     verifiedAt: new Date().toISOString(),

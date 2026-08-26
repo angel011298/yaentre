@@ -200,6 +200,13 @@ export const VerifierAnswerSchema = z.object({
    *  Se persiste tal cual en `Question.verification` para que el registro de
    *  auditoría no afirme algo distinto de lo que la sesión hizo. */
   usedCalculation: z.boolean().optional().default(false),
+  /** Modelo real que resolvió el lote (p. ej. 'claude-opus-5'), declarado por
+   *  la propia sesión verificadora. Opcional con default `VERIFIER_MODEL_TIER`
+   *  (retrocompatible con archivos de respuestas viejos, de antes de este
+   *  campo) — sin el default, el registro de auditoría vuelve a afirmar un
+   *  modelo de orquestación en vez del que realmente corrió (mismo defecto
+   *  que G14 corrigió para `usedCalculation`; ver docs/ESTADO.md G17). */
+  model: z.string().min(1).optional().default(VERIFIER_MODEL_TIER),
   problems: z
     .array(z.object({ type: z.enum(PROBLEM_TYPES), detail: z.string() }))
     .optional()

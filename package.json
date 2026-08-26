@@ -22,6 +22,8 @@
     "content:validate-batch": "tsx scripts/validate-batch.ts",
     "content:blind-batch": "tsx scripts/content-blind-batch.ts",
     "content:resolve": "tsx scripts/content-resolve-verification.ts",
+    "content:audit-sample": "tsx scripts/content-audit-sample.ts",
+    "content:audit-resolve": "tsx scripts/content-audit-resolve.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",
     "content:ingest": "tsx scripts/ingest-source.ts",
     "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",

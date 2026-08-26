@@ -322,6 +322,47 @@ export async function applyVerification(
   });
 }
 
+// ── Muestreo de auditoría 5% (tercera pasada, G17) ──
+
+/**
+ * Reactivos ya auto-aprobados (isVerified=true) cuyo veredicto TODAVÍA no
+ * pasó por la tercera pasada de auditoría (`verification.audit` sigue en
+ * null, tal como lo deja `content-resolve-verification.ts` en cada
+ * aprobación) — el pool elegible para `sampleForAudit`
+ * (scripts/lib/resolution.ts). Una vez auditado, `audit` deja de ser null
+ * (queda `{ verdict, decision, reasons, degraded }`) y el reactivo sale del
+ * pool, se haya degradado o no — la auditoría es una pasada, no un chequeo
+ * recurrente sobre el mismo reactivo.
+ */
+export async function loadApprovedQuestionsForAudit(
+  limit = 2000,
+): Promise<{ id: string; createdAt: Date }[]> {
+  const prisma = getPrisma();
+  return prisma.question.findMany({
+    where: {
+      isVerified: true,
+      verification: { not: Prisma.DbNull, path: ['audit'], equals: Prisma.JsonNull },
+    },
+    select: { id: true, createdAt: true },
+    orderBy: { id: 'asc' },
+    take: limit,
+  });
+}
+
+/** Un reactivo con su registro de verificación COMPLETO (no solo las
+ *  opciones) — usado por el script de resolución de auditoría para
+ *  construir `verification.audit` sobre el registro existente sin perder
+ *  `pipeline`/`decision`/`reasons`/`generatorOption` ya presentes. */
+export async function loadQuestionForAudit(
+  id: string,
+): Promise<{ id: string; options: unknown; verification: unknown } | null> {
+  const prisma = getPrisma();
+  return prisma.question.findUnique({
+    where: { id },
+    select: { id: true, options: true, verification: true },
+  });
+}
+
 /** Reactivos GENERATED pendientes de verificación adversarial de un tema. */
 export async function loadPendingQuestions(topicId: string, limit = 50) {
   const prisma = getPrisma();
