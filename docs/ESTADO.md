@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-27 · Última fase ejecutada: G21 (**COMPLETADA — verificación ciega del lote de Química IPN MEDBIO de G20: 35/35 auto-aprobados, tasa de auto-aprobación 100 %. Banco 552 → 587 verificados; por primera vez el banco entero está verificado (587/587), con la cola de pendientes y la de discrepancias las dos en cero. 21 de los 35 se resolvieron ejecutando el cálculo en código (masas molares, moles, reactivo limitante, %m/m, Kc, pH/pOH contra Kw, titulación, Zeff por Slater, suma vectorial de dipolos, números de oxidación, conteo σ/π) con unicidad comprobada opción por opción; los 14 conceptuales se razonaron descartando cada distractor por su contenido. Química IPN MEDBIO: 0✓/35⧗ → 35✓/0⧗**)
+Última actualización: 2026-08-27 · Última fase ejecutada: G22 (**COMPLETADA — lote de 35 reactivos de Español/Habilidad Verbal para IPN FISMAT `Español/Lectura`, `isVerified=false`, pendientes de verificación ciega. Institución elegida con números reales: IPN Español/Lectura estaba en 0 reactivos en las 3 ramas (0 SourceChunk, sin guía IPN), contra 35 verificados de UNAM Español — brecha normalizada por peso ~45 (IPN) vs ~31 (UNAM), y la de IPN en ramas de lanzamiento día 1. Primer lote del proyecto que usa el modelo `Passage`: 4 pasajes ORIGINALES (divulgación científica, argumentativo, narrativo, ensayístico) sirviendo 5 preguntas cada uno (20 `READING_COMPREHENSION`), + 4 completar oración, 2 analogías, 9 opción múltiple de gramática/ortografía. El pipeline G2 se extendió para soportar pasajes compartidos (`passage` en `QuestionDraftSchema`, regla `PASSAGE_LINK` en el validador de lote G3c, `findOrCreatePassage` en la inserción). Banco 587 → 622; verificados sin cambio (587); cola ciega 0 → 35; `passages` 0 → 4. Validador G3c en 0 violaciones; `pnpm typecheck`/`lint`/`test:unit` (474) en verde**)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G22 | Lote de reactivos: Español y Habilidad Verbal — IPN FISMAT `Español/Lectura` (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G22) | Ver sección dedicada abajo. **Institución elegida con números reales (Prisma/SQL directo contra Supabase):** IPN Español/Lectura = **0 reactivos** en las 3 ramas (FISMAT w4, MEDBIO w6, SOCADM w3), 10 temas, 0 SourceChunk, sin guía IPN ingerida; UNAM Español = **35 verificados** (todos Área 1, w10). Brecha normalizada por peso del banco (~3.5 verificados/punto de peso): IPN ~45 vs UNAM ~31, y la de IPN en ramas de lanzamiento día 1 en cero absoluto → **IPN**. Subrama: **FISMAT**, única de IPN cuyo temario cubre los 4 temas que el encargo pide (Ortografía, Gramática, Comprensión lectora, Análisis de textos). **Primer uso del modelo `Passage`:** 4 pasajes ORIGINALES (divulgación científica «Del teocintle al maíz», argumentativo «Más árboles en las ciudades», narrativo «La azotea», ensayístico «En defensa del aburrimiento»), 5 preguntas cada uno = 20 `READING_COMPREHENSION`; + 4 `SENTENCE_COMPLETION`, 2 `ANALOGY`, 9 `MULTIPLE_CHOICE`. **Extensión del pipeline G2** (código): campo `passage` en `QuestionDraftSchema`, regla de lote `PASSAGE_LINK` en `scripts/lib/lot-validation.ts` (RC⇔passage, ≥2 preguntas/pasaje), `findOrCreatePassage` + `passageId` en `content-db.ts`/`content-insert-drafts.ts`. Verificado en DB: banco 587→**622**, verificados **587** (sin cambio), cola ciega 0→**35**, `passages` 0→**4** (cada uno con exactamente 5 preguntas). Posición correcta A9/B9/C9/D8; sin rotación cíclica (17.6 % transiciones +1). Cero API de pago. |
 | G21 | Verificación ciega: Química IPN MEDBIO (G20) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 552 → 587 verificados** | (G21) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G20. **Aislamiento comprobado, no asumido:** no se leyó el commit `aa763fb` de G20, ni el JSON del lote, ni `Question.options`, ni la sección G20 de este documento antes de publicar; el único insumo fue el lote ciego regenerado en esta sesión (`pnpm content:blind-batch --all --limit 60` → `blind-batch-2026-08-27T01-57-51-887Z.json`, 35 ítems), sobre el que `grep` da **0 ocurrencias de `isCorrect`, `explanation` y `correctOption`**. **El flag `requiresCalculation` viene en `true` en los 35, pero es por MATERIA y no por reactivo** (`isCalcSubject()` lo deriva del nombre "Química"), así que el registro honesto es el que esta sesión declaró ítem por ítem: **`usedCalculation:true` en 21, `false` en 14**. **Los 21 con operación real se resolvieron EJECUTANDO el cálculo en código** (Python + `sympy`), con unidades explícitas y comprobando en el mismo script que **exactamente una** opción coincide (`assert len(hits) == 1`): masa molar de H₂SO₄, moles en 36 g de agua, reactivo limitante de 2H₂+O₂ (el H₂ limita → 4 mol, no los 6 que daría el O₂), rendimiento porcentual, %N en NH₄NO₃, balanceo entero mínimo de C₃H₈+O₂ por búsqueda con conservación de átomos, Kc de H₂+I₂⇌2HI, pH de HCl 0.01 M, [OH⁻] a pH 11 **comprobado contra Kw** (1.0e−14), volumen de titulación, promedio ponderado de isótopos del boro, neutrones por A−Z, conteo de pares libres del H₂O; y, en los que la respuesta es texto pero el criterio sí es calculable, **Zeff por reglas de Slater** a lo largo del periodo 3 (2.20 en Na → 6.10 en Cl, monótona), **suma vectorial de los dipolos del CO₂** (0 a 180° contra 1.224 a 104.5°), **equivalencia simbólica** de las cuatro expresiones de Kc, **Δn de moles de gas** para Le Chatelier, **números de oxidación del carbono funcional** (alcohol −1 → aldehído +1 = oxidación; ácido +3 → alcohol −1 = reducción) y **conteo σ/π por hibridación**. **Cero `NONE_VALID` y cero `MULTIPLE_VALID`.** Los 14 conceptuales se razonaron descartando cada distractor por su contenido — hallazgo de método que lo justifica: **dos opciones del reactivo redox dicen "agente reductor"** y la que se descarta lo justifica diciendo que el sodio "se reduce al ganar electrones", contradiciendo el enunciado (0 → +1); y el distractor "el carbono central no tiene pares libres" del CO₂ es **verdadero pero no es la razón**, por eso se calculó la cancelación vectorial en vez de razonarla de palabra. **Candado anti-deriva propio de esta sesión:** el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del contenido razonado y **abortaba sin escribir nada si la letra y el contenido no coincidían o si el fragmento no identificaba de forma única a esa opción** (con igualdad exacta, no subcadena, donde las opciones son números desnudos y "2" es subcadena de "12"); pasó en los 35. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100 %.** Confianza 0.99 en 32, 0.98 en 2 y 0.97 en 1; todas ≥0.85. `model: "claude-opus-5"`, el modelo que de verdad resolvió. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 587 totales · verificados **552 → 587** · pendientes **35 → 0** · sin veredicto **35 → 0** · sin publicar con veredicto 0 (sin cambio). **Es la primera vez que el banco entero queda verificado: 587/587 con las dos colas en cero.** Química IPN MEDBIO (`questionWeight=16`) pasó de **0✓/35⧗ a 35✓/0⧗**. **Seguimiento del hallazgo de G16 (rotación A→B→C→D de la letra correcta), medido ahora desde el lado ciego: el artefacto NO está presente en este lote** — solo **7 de 34** pares consecutivos siguen la rotación, contra ≈8.5 esperados al azar, frente a los 34/34, 27/34, 26/34 y 21/34 de los cuatro lotes que G16 documentó. Distribución de posición en el espacio ORIGINAL: **A=9, B=9, C=9, D=8** (25.7 %/25.7 %/25.7 %/22.9 %, dentro del rango 15 %-40 % de G3c); las elecciones en el espacio MEZCLADO fueron A=10/B=11/C=8/D=6, o sea el shuffle sí reordenó de verdad. El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a, G3d, G13 y G15**, igual que G16 lo dejó. `pnpm typecheck` y `pnpm lint` en verde; **cero cambios de código**. Scripts desechables (`scripts/g21-count.ts`, `scripts/g21-seqcheck.ts`) eliminados al terminar. |
 | G20 | Lote de reactivos: Química IPN MEDBIO (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G20) | Ver sección dedicada abajo. **Rama elegida con números reales consultados en vivo (Prisma directo contra Supabase + `pnpm content:coverage`):** las dos materias "Química" de IPN estaban en **0 reactivos** — FISMAT Química (`questionWeight=10`) y MEDBIO Química (`questionWeight=16`). La brecha absoluta contra el peso es mayor en **MEDBIO (16) que en FISMAT (10)**, y la regla de prioridad de G13/G15 ("IPN con <50 verificados, mayor `questionWeight` primero") también favorece a MEDBIO; además MEDBIO Química tiene **1 `SourceChunk`** (tema Química orgánica, `uam_cbs.pdf` p.54) frente a 0 de FISMAT. **9 temas del temario sembrado, 1 con fragmento fuente:** los 3 reactivos de Química orgánica citan `sourceChunks:[1]` de forma obligatoria (SOURCED, derivados genuinamente del fragmento — oxidación = pérdida de electrones, hibridación sp², deshidratación de dos alcoholes → éter); los otros 8 temas TEMARIO_ONLY (32 reactivos) sin bloquear la generación (F2b). **Cobertura repartida entre los 9 temas** (Estructura atómica 4, Tabla periódica 4, Enlace químico 4, Reacciones químicas 4, Estequiometría 5, Equilibrio químico 4, Ácidos y bases 4, Química orgánica 3, Bioquímica básica 3 = 35), con más peso a Estequiometría por ser el tema de mayor rendimiento en el examen real. **13 reactivos son de cálculo** (estequiometría de masa molar / moles / reactivo limitante / rendimiento / composición porcentual, balanceo, masa atómica promedio, pares de Lewis, Kc, pH y pOH, titulación): **los 13 verificados ejecutando la aritmética en un script** — un script calculó la respuesta correcta de cada uno Y cada uno de sus 3 distractores, confirmando que cada distractor corresponde a un error real y nombrable (división invertida, masa equivalente en vez de molar, olvidar ×100, reactivo limitante equivocado, reportar pOH como pH, exponente mal contado) y que exactamente una opción coincide con el valor calculado; las opciones numéricas quedaron en orden ascendente (convención de `_base.md`). **Distribución de posición diseñada con dos pasadas** (numéricas: letra determinada por el orden ascendente; 22 conceptuales: letra asignada para balancear y romper ciclos): **A=9, B=9, C=9, D=8** (25.7/25.7/25.7/22.9 %), las 4 dentro de 15-40 %. **Verificación explícita de que la secuencia NO es cíclica** (defecto que G16 halló en cuatro lotes anteriores): transiciones +1 en el ciclo A→B→C→D **20.6 %**, transiciones −1 **26.5 %**, ambas indistinguibles del azar (~25 %). **Validador de lote de G3c corrido y aprobado** (`content:validate-batch --dir` + `content:insert --lot-dir` en dry-run sobre los 9 archivos: `MALFORMED_OPTIONS` 0, `POSITION_SKEW` 0, `LETTER_CITATION` 0 — distractores citados siempre por su contenido, nunca por su letra; el simulador no baraja opciones para IPN). Insertado con `pnpm content:insert --lot-dir` tema por tema, **verificado con consulta directa a la DB, no solo el log**: Química IPN MEDBIO pasó de **0 a 35 reactivos** (0 verificados, correcto — esta sesión no verifica sus propios reactivos, por diseño del pipeline adversarial); banco global **552 → 587** total, verificados sin cambio en **552**, sin-veredicto **0 → 35**. Registro consolidado en `docs/content-batches/g20-ipn-medbio-quimica.json`. `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido). Cero llamadas a la API de pago de Anthropic — los 35 reactivos se redactaron directamente en esta sesión. Scripts desechables de consulta a la DB, verificación aritmética y exportación eliminados al terminar, junto con `scripts/g20-lote/`. |
 | G19 | Verificación ciega: Física IPN FISMAT (G18) y reparadas de G17 | **COMPLETADA — 112/112 auto-aprobados (100 %), banco 440 → 552 verificados** | (G19) | Ver sección dedicada abajo. Dos poblaciones resueltas en la misma pasada ciega pero **medidas por separado**: el lote nuevo de Física de G18 (35, `createdAt` = `updatedAt`) → **35/35 (100 %)**; y las 77 que G17 devolvió a la cola (37 REPARABLE editadas + 40 GENERADOR TENÍA RAZÓN; las 3 IRREPARABLE ya estaban borradas) → **77/77 (100 %)**, es decir **rescate total** del trabajo editorial de G17. Cohortes separadas por timestamps en la DB (`updatedAt > createdAt + 60 s`), partición disjunta y exhaustiva validada con `assert` contra los ids del lote ciego. **65 de 112 con la operación ejecutada en código** (unidades explícitas, comprobando que exactamente una opción coincide); los 47 restantes son conceptuales y van declarados `usedCalculation:false`, sin marcar `true` por inercia. **Ceguera comprobada, no asumida**: `grep -c "isCorrect\|explanation"` sobre el lote ciego → 0, y las consultas de estado seleccionaron solo metadatos, nunca `options`. **El 100 % se auditó antes de reportarlo**: 88/112 etiquetas ciegas tradujeron a un id distinto y la traducción es biyectiva (448 imágenes sin colisión), así que el barajado permutó de verdad y la tasa no es artefacto del arnés. Física IPN sale de CERO a 35 publicables; primera vez que el pipeline queda **sin nada en cola**. Hallazgo anotado, no bloqueante: dos reactivos duplicados (`H₂SO₄ + 2NaOH`) en temas distintos, ambos correctos y ambos aprobados — el defecto es del banco, no del reactivo. Caveat vigente: aislamiento **de sesión, no de modelo**; el muestreo de auditoría del 5 % sigue sin correrse. |
@@ -2070,6 +2071,203 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G22 — Lote de reactivos: Español y Habilidad Verbal, IPN FISMAT (2026-08-27)
+
+**COMPLETADA. 35 reactivos originales insertados con `isVerified=false`,
+pendientes de verificación ciega.** Modo de trabajo: autónomo, sin
+preguntas. Primer lote del proyecto centrado en Español/Habilidad Verbal y
+primer uso real del modelo `Passage` (comprensión de lectura con texto
+compartido).
+
+### 1) Elección de institución — números reales consultados en vivo
+
+Consulta directa a Supabase (SQL vía el conector MCP) sobre todas las
+materias de Español/Lectura de UNAM e IPN:
+
+| Institución | Materia (por rama/área) | `weight` | Reactivos | Verificados | SourceChunks |
+|---|---|---:|---:|---:|---:|
+| UNAM | Español · Área 1 | 10 | 35 | 35 | 61 (en 5 de 7 temas) |
+| UNAM | Español · Área 2 | 5 | 0 | 0 | 0 |
+| UNAM | Español · Área 3 | 3 | 0 | 0 | 0 |
+| UNAM | Español · Área 4 | 1 | 0 | 0 | 0 |
+| IPN | Español/Lectura · FISMAT | 4 | **0** | **0** | **0** |
+| IPN | Español/Lectura · MEDBIO | 6 | **0** | **0** | **0** |
+| IPN | Español/Lectura · SOCADM | 3 | **0** | **0** | **0** |
+
+- **UNAM Español:** 35 verificados, todos en Área 1 (ratio 3.5 sobre su
+  peso 10 — en el promedio del banco). Áreas 2-4 en cero.
+- **IPN Español/Lectura:** **cero reactivos en las tres ramas**, cero
+  `SourceChunk` en cualquiera de sus 10 temas, y **no existe ninguna guía
+  de IPN** en `content_sources` (solo UAM, UNAM, CENEVAL, ECOEMS).
+- El banco corre a ~3.5 reactivos verificados por punto de
+  `questionWeight` (medido sobre las materias de ciencias ya cubiertas).
+  Brecha normalizada: **IPN Español/Lectura ≈ (4+6+3)×3.5 − 0 = ~45**;
+  **UNAM Español ≈ (10+5+3+1)×3.5 − 35 = ~31**. Además la de IPN está en
+  ramas de **lanzamiento día 1** (FISMAT y MEDBIO) y en **cero absoluto**,
+  nunca tocada por G3a/G13/G15/G18/G20 (todos lotes de ciencias).
+
+**Institución elegida: IPN.** Todos los caminos de medición (conteo
+absoluto 0 vs 35, brecha ponderada 45 vs 31, urgencia de lanzamiento)
+apuntan a IPN.
+
+### 2) Subrama — FISMAT
+
+Las tres ramas de IPN comparten el nombre de materia "Español/Lectura"
+pero con temarios distintos sembrados (`prisma/seed/ipn.ts`):
+
+- **FISMAT:** Ortografía, Gramática, Comprensión lectora, Análisis de textos (4 temas)
+- **MEDBIO:** Ortografía, Comprensión lectora, Análisis de textos (3 temas)
+- **SOCADM:** Comprensión lectora, Análisis de textos, Redacción (3 temas)
+
+El encargo pide repartir el lote entre comprensión de lectura, analogías,
+completar oraciones, **ortografía y gramática**. **FISMAT es la única rama
+cuyo temario nombra un tema "Gramática" dedicado** — mapea 1:1 con los
+formatos pedidos sin forzar contenido de sintaxis dentro de "Análisis de
+textos". MEDBIO tiene mayor peso (6 vs 4) pero su temario no llama a
+gramática ni analogías. Se eligió **FISMAT** por ajuste de temario; ambas
+ramas partían de cero.
+
+`subjectId` = `cmrr1lh1n00bhhi3nq64xyp01`. Temas:
+`cmrr1lh7300bjhi3nm5t9psa5` (Ortografía), `cmrr1lhmm00blhi3n8rxfz5cc`
+(Gramática), `cmrr1li5700bnhi3n8apst8gd` (Comprensión lectora),
+`cmrr1liur00bphi3n71jg2atn` (Análisis de textos).
+
+### 3) Fuentes — TEMARIO_ONLY
+
+Cero `SourceChunk` para el tema, la materia o la institución. Los 35 son
+**TEMARIO_ONLY**, redactados a partir del temario sembrado (F2b: no
+bloquea). Los cuatro pasajes de comprensión de lectura son **originales**,
+escritos en esta sesión — sin copiar textos con derechos de autor:
+
+| ref | Título | Género | Preguntas |
+|---|---|---|---:|
+| `g22-teocintle` | Del teocintle al maíz | Divulgación científica (domesticación del maíz en Mesoamérica) | 5 (Comprensión lectora) |
+| `g22-arboles` | Más árboles en las ciudades | Texto argumentativo (tesis + argumentos + concesión/refutación) | 5 (Comprensión lectora) |
+| `g22-azotea` | La azotea | Narrativo/literario (narrador 3ª persona con foco interno) | 5 (Análisis de textos) |
+| `g22-aburrimiento` | En defensa del aburrimiento | Ensayístico/argumentativo | 5 (Análisis de textos) |
+
+### 4) Extensión del pipeline G2 para pasajes compartidos (código)
+
+El modelo `Passage` ya existía en el schema (CC-01b/CC-09) y el lado de
+lectura (simulador, drill, diagnóstico, panel admin, lote ciego) ya lo
+consumía, pero la **inserción G2** (`content-insert-drafts.ts`) no sabía
+crear ni enlazar pasajes. Cambios mínimos:
+
+- **`scripts/lib/question-draft-schema.ts`:** campo opcional `passage`
+  `{ ref, title?, content, sourceRef? }` en `QuestionDraftSchema`. Valida
+  su forma; el acoplamiento `passage ⇔ format` se comprueba a nivel de
+  lote, no del reactivo (para no romper `draft-format.test.ts`, que itera
+  los 12 formatos sobre un draft sin pasaje).
+- **`scripts/lib/lot-validation.ts` (G3c):** nueva violación
+  `PASSAGE_LINK` — un `READING_COMPREHENSION` sin `passage.ref`, un
+  `passage.ref` en un reactivo que no es RC, o un pasaje referenciado por
+  `< MIN_QUESTIONS_PER_PASSAGE` (2) reactivos. Se comprueba **sin conocer
+  la respuesta correcta**, igual que la distribución de posición. El
+  reporte añade `passageGroups` (ref → nº de preguntas).
+- **`scripts/lib/content-db.ts`:** `findOrCreatePassage()` idempotente por
+  contenido exacto (reinsertar el lote no duplica el texto); `passageId`
+  en `InsertableDraft` y en `insertQuestion`.
+- **`content-insert-drafts.ts`:** agrupa los reactivos por `passage.ref`,
+  aborta si un mismo `ref` trae contenido distinto en dos reactivos, crea
+  cada `Passage` una vez y enlaza. `--lot-dir` y el validador standalone
+  (`validate-batch.ts`) también leen `passage.ref`.
+- **Prompts:** `scripts/prompts/_base.md` y `espanol.md` documentan el
+  campo `passage` y la regla "3-5 preguntas por pasaje; si es una sola,
+  va en el `stem`".
+- **Tests:** 7 casos nuevos (`lot-validation.test.ts` ×5,
+  `question-draft-schema.test.ts` ×2). `pnpm test:unit` = 474/474.
+
+### 5) Composición — 35 reactivos, repartidos por el temario
+
+| Tema | Reactivos | Formatos |
+|---|---:|---|
+| Comprensión lectora | 10 | `READING_COMPREHENSION` ×10 (pasajes `g22-teocintle` ×5, `g22-arboles` ×5) |
+| Análisis de textos | 10 | `READING_COMPREHENSION` ×10 (pasajes `g22-azotea` ×5, `g22-aburrimiento` ×5) |
+| Gramática | 9 | `SENTENCE_COMPLETION` ×4 (conectores, subjuntivo temporal, concordancia, régimen preposicional), `ANALOGY` ×2, `MULTIPLE_CHOICE` ×3 (clase de palabra, queísmo, errores frecuentes) |
+| Ortografía | 6 | `MULTIPLE_CHOICE` ×6 (acentuación ×2, grafías b/v y x/s/h ×2, puntuación ×1, mayúsculas ×1) |
+| **TOTAL** | **35** | RC 20 · SENTENCE_COMPLETION 4 · ANALOGY 2 · MULTIPLE_CHOICE 9 |
+
+Dificultad: BASIC 7 / INTERMEDIATE 17 / ADVANCED 9 / EXPERT 2 (20 % / 49 %
+/ 26 % / 6 %), cerca de la sugerida por `_base.md` (20/50/25/5 %).
+
+### 6) Distribución de posición y candados anti-artefacto
+
+- **Posición de la correcta: A=9, B=9, C=9, D=8** (25.7 / 25.7 / 25.7 /
+  22.9 %) — las cuatro dentro de 15-40 %, confirmado por `analyzeLot`.
+- **Rotación cíclica A→B→C→D (hallazgo de G16):** medida sobre la
+  secuencia de 35 letras en orden de composición/inserción:
+  `CADBADBACBBDACDACBDCACBADBCADBDACBC` → **6/34 transiciones +1
+  (17.6 %)** contra 25 % de azar. No presente.
+- **Cue de glosa (hallazgo de G3e):** **0 reactivos** tienen exactamente
+  una opción con paréntesis. Las opciones se redactaron homogéneas en
+  longitud y estructura; la correcta es la (co)más larga en 9/35 (26 %,
+  dentro del rango de azar), tras dos pasadas de ajuste de longitud sobre
+  los ítems de comprensión de lectura (donde la paráfrasis correcta
+  tiende a ser más larga que un distractor corto).
+- Las explicaciones citan cada distractor **por su contenido** ("la
+  opción sobre la selección repetida", "el par que acierta en los dos
+  huecos"), nunca por su letra — `analyzeLot` → 0 `LETTER_CITATION`.
+
+### 7) Validación e inserción real — verificada en la DB
+
+`pnpm content:validate-batch --dir scripts/content-exports/g22` sobre los
+4 archivos: **0 violaciones** a la primera. Luego `content:insert --topic
+<id> --file <archivo> --lot-dir scripts/content-exports/g22` (sin
+`--dry-run`) para los 4 temas. **Consulta directa a la DB, no solo el
+log:**
+
+| Métrica | Antes de G22 | Después de G22 |
+|---|---|---|
+| Español/Lectura IPN FISMAT — total | 0 | **35** |
+| Español/Lectura IPN FISMAT — verificados | 0 | **0** (correcto: pendiente de verificación ciega) |
+| Español/Lectura IPN FISMAT — grounding | — | **35 TEMARIO_ONLY** |
+| `passages` en la DB | 0 | **4** (cada uno con exactamente 5 preguntas enlazadas) |
+| Reactivos `READING_COMPREHENSION` con `passageId` | 0 | **20 / 20** |
+| Banco — total | 587 | **622** |
+| Banco — verificados | 587 | **587** (sin cambio, correcto) |
+| Banco — sin veredicto (cola ciega) | 0 | **35** |
+| Reactivos mal formados (≠4 opciones, ≠1 correcta, ≠3 capas) | — | **0** |
+
+Registro consolidado en
+`docs/content-batches/g22-ipn-fismat-espanol.json` (mismo patrón que
+`g20-*.json`): 35 `questionId` reales, 4 pasajes con su texto completo,
+stems, opciones, explicaciones, grounding y distribución de posición.
+
+### 8) Limpieza
+
+Scripts desechables (`scripts/g22-export.ts` y los del scratchpad:
+builder de lote, chequeo de longitud, volcado de opciones) eliminados al
+terminar. Los 4 archivos JSON del lote viven en
+`scripts/content-exports/g22/` (carpeta en `.gitignore` desde G1). El
+registro permanente es el archivo en `docs/content-batches/` y las filas
+de esta sección.
+
+`pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (474) en verde. Cero
+llamadas a la API de pago de Anthropic — los 35 reactivos y los 4 pasajes
+se redactaron directamente en esta sesión de Claude Code.
+
+### Siguiente (G22)
+
+1. **Verificación ciega de los 35 reactivos de este lote** (patrón
+   G14/G16/G19/G21): una sesión nueva e independiente que no vea las
+   respuestas correctas los resuelve con `content:blind-batch` →
+   `content:resolve`. **Ninguno es de cálculo** (`isCalcSubject` da falso
+   para "Español/Lectura"): la sesión verificadora razona cada uno
+   descartando distractores por contenido y, en los 20 de comprensión de
+   lectura, contra el texto del pasaje (que el lote ciego SÍ incluye —
+   `buildBlindItem` copia `passageContent`). Atención a los 2 `EXPERT`
+   (función del 3er párrafo en cada pasaje argumentativo).
+2. **Español de IPN sigue casi en cero:** MEDBIO (w6) y SOCADM (w3) de
+   `Español/Lectura` no se tocaron, y las Áreas 2-4 de UNAM Español
+   tampoco. Confirmar con `pnpm content:coverage` antes de elegir el
+   siguiente, no asumir de esta nota.
+3. **El muestreo de auditoría del 5 %** (`content:audit-sample` /
+   `content:audit-resolve`, creados en G17) sigue sin ejecutarse nunca
+   sobre el banco.
+4. Pendientes menores arrastrados desde F4/G3b: `cmsfgf5ea0001k3lis0d0uzf9`
+   (Números complejos, opción `$4-3$` mal escrita) y las 2 citas-por-letra
+   de UNAM Español y Física.
 
 ## G21 — Verificación ciega: Química IPN MEDBIO (2026-08-27)
 

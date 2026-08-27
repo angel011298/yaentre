@@ -84,6 +84,7 @@ function loadItemsFromFile(path: string): { items: LotItem[]; rejected: number }
       format: result.draft.format,
       difficulty: result.draft.difficulty,
       explanations: result.draft.explanations,
+      passageRef: result.draft.passage?.ref ?? null,
     });
   }
   return { items, rejected };

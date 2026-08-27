@@ -97,6 +97,22 @@ const explanationLayerSchema = z.object({
   latexContent: z.string().trim().min(1).nullable().optional().default(null),
 });
 
+/**
+ * Estímulo compartido de comprensión de lectura (modelo Passage, CC-01b / G22).
+ * Varias preguntas del MISMO lote referencian el mismo `ref` y quedan ligadas
+ * a un único registro `Passage` en la inserción (content-insert-drafts.ts).
+ * El texto debe ser ORIGINAL — nada con derechos de autor (CLAUDE.md).
+ * El acoplamiento `passage` ⇔ `format: READING_COMPREHENSION` y el mínimo de
+ * preguntas por pasaje se validan a nivel de LOTE (scripts/lib/lot-validation.ts),
+ * no aquí, para no acoplar la forma del reactivo individual.
+ */
+const passageSchema = z.object({
+  ref: nonEmpty('La clave del pasaje (passage.ref)'),
+  title: z.string().trim().min(1).nullable().optional().default(null),
+  content: nonEmpty('El contenido del pasaje'),
+  sourceRef: z.string().trim().min(1).nullable().optional().default(null),
+});
+
 const optionSchema = z.object({
   id: z.enum(OPTION_IDS),
   text: nonEmpty('El texto de la opción'),
@@ -126,6 +142,9 @@ export const QuestionDraftSchema = z
     // el reactivo usó como base. La validación de rango y la obligatoriedad
     // (cuando hay fragmentos disponibles) viven en lib/grounding.ts.
     sourceChunks: z.array(z.number().int().min(1)).optional().default([]),
+    // Estímulo compartido de comprensión de lectura (G22). null salvo en
+    // reactivos de formato READING_COMPREHENSION.
+    passage: passageSchema.nullable().optional().default(null),
   })
   .superRefine((draft, ctx) => {
     // ── Opciones: exactamente 4, ids A/B/C/D únicos ──

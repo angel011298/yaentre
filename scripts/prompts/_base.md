@@ -61,6 +61,7 @@ Cada reactivo lleva **exactamente 3 capas** de explicación:
   ],
   "difficulty": "BEGINNER | BASIC | INTERMEDIATE | ADVANCED | EXPERT",
   "format": "MULTIPLE_CHOICE | SENTENCE_COMPLETION | ANALOGY | ORDERING | NUMERIC_SERIES | PROBLEM_SOLVING | MATCHING | READING_COMPREHENSION | CHART_TABLE",
+  "passage": null,
   "explanations": [
     { "layer": 1, "title": "string", "content": "string", "latexContent": null },
     { "layer": 2, "title": "string", "content": "string", "latexContent": "string LaTeX o null" },
@@ -71,5 +72,6 @@ Cada reactivo lleva **exactamente 3 capas** de explicación:
 - `options`: exactamente 4, ids `"A"`, `"B"`, `"C"`, `"D"` en ese orden, **exactamente una** con `isCorrect: true`.
 - `explanations`: exactamente las capas 1, 2 y 3, en ese orden.
 - `format`: el formato REAL del reactivo según el examen oficial. Usa `PROBLEM_SOLVING` para problemas con cálculo, `NUMERIC_SERIES` para sucesiones, `SENTENCE_COMPLETION` para completar oración, `ANALOGY` para analogías, `ORDERING` para ordenamientos, `MATCHING` para relación de columnas. Si es pregunta directa estándar, `MULTIPLE_CHOICE`. Varía los formatos como lo hace el examen real de la institución.
+- `passage`: `null` en casi todos los reactivos. Solo en **comprensión de lectura** (`format: "READING_COMPREHENSION"`), un objeto `{ "ref": "<clave corta>", "title": "<título o null>", "content": "<texto ORIGINAL, sin derechos de autor>", "sourceRef": null }`. Varios reactivos del mismo lote comparten un texto repitiendo el MISMO objeto `passage` (mismo `ref` y mismo `content` exacto) — en la inserción quedan ligados a un único registro. Cada pasaje debe servir 3-5 preguntas; si es una sola, incluye el fragmento en el `stem` y deja `passage: null`.
 - Si el mensaje incluye una sección de **FRAGMENTOS FUENTE numerados**, cada reactivo DEBE derivarse de uno o más de esos fragmentos y declararlo con el campo adicional `"sourceChunks": [<números de fragmento>]`. Sin fragmentos en el mensaje, omite ese campo.
 - JSON estrictamente válido: comillas dobles, sin comas colgantes, diagonales invertidas escapadas.

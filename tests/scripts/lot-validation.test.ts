@@ -188,6 +188,49 @@ describe('analyzeLot — opciones mal formadas', () => {
   });
 });
 
+describe('analyzeLot — vínculo pasaje ↔ formato (G22)', () => {
+  it('un pasaje compartido por 5 reactivos READING_COMPREHENSION -> aprobado', () => {
+    const letters: Array<'A' | 'B' | 'C' | 'D'> = ['A', 'B', 'C', 'D', 'A'];
+    const items = letters.map((l) =>
+      makeItem(l, { format: 'READING_COMPREHENSION', passageRef: 'P1' }),
+    );
+    const report = analyzeLot(items);
+    expect(report.violations.filter((v) => v.code === 'PASSAGE_LINK')).toHaveLength(0);
+    expect(report.passageGroups).toEqual({ P1: 5 });
+  });
+
+  it('READING_COMPREHENSION sin passageRef -> PASSAGE_LINK', () => {
+    const items = [makeItem('A', { format: 'READING_COMPREHENSION' })];
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    expect(report.violations.some((v) => v.code === 'PASSAGE_LINK')).toBe(true);
+  });
+
+  it('passageRef en un reactivo que NO es READING_COMPREHENSION -> PASSAGE_LINK', () => {
+    const items = [makeItem('A', { format: 'MULTIPLE_CHOICE', passageRef: 'P1' })];
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    expect(report.violations.some((v) => v.code === 'PASSAGE_LINK')).toBe(true);
+  });
+
+  it('un pasaje referenciado por un solo reactivo -> PASSAGE_LINK (debería ir en el stem)', () => {
+    const items = [
+      makeItem('A', { format: 'READING_COMPREHENSION', passageRef: 'P1' }),
+      makeItem('B', { format: 'READING_COMPREHENSION', passageRef: 'P2' }),
+      makeItem('C', { format: 'READING_COMPREHENSION', passageRef: 'P1' }),
+    ];
+    const report = analyzeLot(items);
+    expect(report.violations.some((v) => v.code === 'PASSAGE_LINK')).toBe(true);
+    expect(report.passageGroups).toEqual({ P1: 2, P2: 1 });
+  });
+
+  it('sin pasajes en el lote -> passageGroups vacío, sin violación', () => {
+    const report = analyzeLot([makeItem('A'), makeItem('B')]);
+    expect(report.passageGroups).toEqual({});
+    expect(report.violations.filter((v) => v.code === 'PASSAGE_LINK')).toHaveLength(0);
+  });
+});
+
 describe('analyzeLot — distribuciones informativas', () => {
   it('reporta distribución de formato y dificultad sin bloquear por sí solas', () => {
     const items = [

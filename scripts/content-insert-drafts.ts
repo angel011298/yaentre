@@ -66,6 +66,7 @@ import {
   loadExistingStems,
   loadTopicChunks,
   insertQuestion,
+  findOrCreatePassage,
   disconnect,
   type InsertableDraft,
 } from './lib/content-db';
@@ -118,18 +119,24 @@ function loadValidItemsForLotCheck(path: string): LotItem[] {
       format: result.draft.format,
       difficulty: result.draft.difficulty,
       explanations: result.draft.explanations,
+      passageRef: result.draft.passage?.ref ?? null,
     });
   }
   return items;
 }
 
-function toInsertable(draft: QuestionDraft, sourceChunkIds: string[]): InsertableDraft {
+function toInsertable(
+  draft: QuestionDraft,
+  sourceChunkIds: string[],
+  passageId: string | null,
+): InsertableDraft {
   return {
     stem: draft.stem,
     options: draft.options,
     difficulty: draft.difficulty,
     format: draft.format,
     sourceChunkIds,
+    passageId,
     explanations: draft.explanations.map((e) => ({
       layer: e.layer,
       title: e.title,
@@ -137,6 +144,49 @@ function toInsertable(draft: QuestionDraft, sourceChunkIds: string[]): Insertabl
       latexContent: e.latexContent ?? null,
     })),
   };
+}
+
+interface PassageDraft {
+  ref: string;
+  title: string | null;
+  content: string;
+  sourceRef: string | null;
+}
+
+/**
+ * Agrupa los pasajes referenciados por los reactivos válidos y comprueba que
+ * cada `ref` traiga SIEMPRE el mismo texto/título/cita — un descuido de
+ * copia-pega deja dos textos bajo un mismo ref y rompería el vínculo. Aborta
+ * con mensaje claro si detecta inconsistencia.
+ */
+function collectPassages(drafts: QuestionDraft[]): Map<string, PassageDraft> {
+  const byRef = new Map<string, PassageDraft>();
+  for (const draft of drafts) {
+    const p = draft.passage;
+    if (!p) continue;
+    const incoming: PassageDraft = {
+      ref: p.ref,
+      title: p.title ?? null,
+      content: p.content,
+      sourceRef: p.sourceRef ?? null,
+    };
+    const seen = byRef.get(p.ref);
+    if (!seen) {
+      byRef.set(p.ref, incoming);
+      continue;
+    }
+    if (
+      seen.content !== incoming.content ||
+      seen.title !== incoming.title ||
+      seen.sourceRef !== incoming.sourceRef
+    ) {
+      throw new Error(
+        `El passage.ref "${p.ref}" aparece con contenido/título/cita distintos en dos reactivos — ` +
+          'cada ref debe traer exactamente el mismo texto en todo el lote.',
+      );
+    }
+  }
+  return byRef;
 }
 
 async function main() {
@@ -203,6 +253,7 @@ async function main() {
     format: draft.format,
     difficulty: draft.difficulty,
     explanations: draft.explanations,
+    passageRef: draft.passage?.ref ?? null,
   }));
   if (args.lotDir) {
     lotItems = [];
@@ -225,17 +276,43 @@ async function main() {
   }
   console.log('✅ Lote aprobado.');
 
+  // ── Pasajes compartidos (G22) — solo los referenciados por reactivos de ESTE
+  //    archivo (los hermanos de --lot-dir se crean en su propia corrida). ──
+  const passagesByRef = collectPassages(valid.map(({ draft }) => draft));
+  if (passagesByRef.size > 0) {
+    console.log('─'.repeat(60));
+    console.log(`📖 ${passagesByRef.size} pasaje(s) compartido(s) en este archivo:`);
+    for (const p of passagesByRef.values()) {
+      const count = valid.filter(({ draft }) => draft.passage?.ref === p.ref).length;
+      console.log(`   "${p.ref}"${p.title ? ` — ${p.title}` : ''} · ${count} pregunta(s) · ${p.content.length} caracteres`);
+    }
+  }
+
   if (args.dryRun) {
-    console.log(`🚫 --dry-run: no se escribe en la DB (se habrían insertado ${valid.length}).`);
+    console.log(`🚫 --dry-run: no se escribe en la DB (se habrían insertado ${valid.length} reactivo(s) y ${passagesByRef.size} pasaje(s)).`);
     return;
+  }
+
+  // Crea/reusa cada Passage UNA vez y mapea ref → id antes de insertar.
+  const passageIdByRef = new Map<string, string>();
+  for (const p of passagesByRef.values()) {
+    const { id, created } = await findOrCreatePassage({
+      title: p.title,
+      content: p.content,
+      sourceRef: p.sourceRef,
+    });
+    passageIdByRef.set(p.ref, id);
+    console.log(`   ${created ? '+' : '='} Passage ${id} ("${p.ref}", ${created ? 'creado' : 'reusado'})`);
   }
 
   let inserted = 0;
   for (const { draft, chunkIds } of valid) {
-    const id = await insertQuestion(args.topicId, toInsertable(draft, chunkIds));
+    const passageId = draft.passage ? passageIdByRef.get(draft.passage.ref) ?? null : null;
+    const id = await insertQuestion(args.topicId, toInsertable(draft, chunkIds, passageId));
     inserted++;
     const grounding = chunkIds.length > 0 ? `SOURCED (${chunkIds.length} fuente(s))` : 'TEMARIO_ONLY';
-    console.log(`   + ${id} (isVerified=false, ${grounding})`);
+    const linked = passageId ? `, passage=${passageId}` : '';
+    console.log(`   + ${id} (isVerified=false, ${grounding}${linked})`);
   }
   console.log(`💾 Insertados ${inserted} reactivo(s) en la cola de verificación.`);
   console.log('─'.repeat(60));

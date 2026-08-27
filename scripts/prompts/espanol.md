@@ -5,7 +5,8 @@ Guía específica:
 - Materia de humanidades: **nunca uses LaTeX** (`latexContent: null` en las tres capas).
 - Cubre comprensión lectora, gramática, ortografía, semántica y análisis literario del temario de bachillerato.
 - Los distractores salen de errores reales: confundir categorías gramaticales, reglas de acentuación mal aplicadas, sinónimos que no encajan en contexto, figuras retóricas confundidas.
-- Cuando el reactivo dependa de un texto, incluye el fragmento necesario dentro del `stem` (autocontenido).
+- **Comprensión de lectura:** redacta pasajes ORIGINALES (divulgación científica, texto argumentativo, narrativo o ensayístico — los géneros del examen real), nunca copies textos con derechos de autor. Usa `format: "READING_COMPREHENSION"` y el objeto `passage` compartido (ver `_base.md`): 3-5 preguntas por pasaje, cada una repitiendo el mismo `passage` con el mismo `ref` y `content` exacto.
+- Cuando una sola pregunta dependa de un fragmento corto, inclúyelo dentro del `stem` (autocontenido) y deja `passage: null`.
 
 ## Ejemplos del formato exacto (few-shot)
 

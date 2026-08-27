@@ -99,6 +99,37 @@ export interface InsertableDraft {
   format?: string;
   /** F2b: ids de SourceChunk citados. Vacío ⇒ TEMARIO_ONLY; con ids ⇒ SOURCED. */
   sourceChunkIds?: string[];
+  /** G22: id del Passage compartido (comprensión de lectura). null salvo RC. */
+  passageId?: string | null;
+}
+
+/**
+ * Encuentra (por contenido exacto) o crea un `Passage` para el pipeline G2.
+ * Idempotente: reinsertar el mismo lote no duplica el texto compartido — dos
+ * reactivos con el mismo `passage.ref` en el JSON de un lote terminan
+ * apuntando a la misma fila. `contentSourceId` queda null (contenido generado
+ * en sesión, no ingesta de guía).
+ */
+export async function findOrCreatePassage(input: {
+  title: string | null;
+  content: string;
+  sourceRef: string | null;
+}): Promise<{ id: string; created: boolean }> {
+  const prisma = getPrisma();
+  const existing = await prisma.passage.findFirst({
+    where: { content: input.content },
+    select: { id: true },
+  });
+  if (existing) return { id: existing.id, created: false };
+  const row = await prisma.passage.create({
+    data: {
+      title: input.title,
+      content: input.content,
+      sourceRef: input.sourceRef,
+    },
+    select: { id: true },
+  });
+  return { id: row.id, created: true };
 }
 
 /**
@@ -124,6 +155,8 @@ export async function insertQuestion(
       format: (draft.format ?? 'MULTIPLE_CHOICE') as any,
       // F2b: trazabilidad — SOURCED solo si cita fragmentos reales
       groundingStatus: chunkIds.length > 0 ? 'SOURCED' : 'TEMARIO_ONLY',
+      // G22: estímulo compartido de comprensión de lectura (null salvo RC)
+      passageId: draft.passageId ?? null,
       sourceChunks: {
         create: chunkIds.map((sourceChunkId) => ({ sourceChunkId })),
       },

@@ -50,6 +50,44 @@ describe('validateDraft — casos válidos', () => {
     draft.explanations[1].latexContent = null;
     expect(validateDraft(draft).ok).toBe(true);
   });
+
+  it('sin passage -> null (camino normal, no comprensión de lectura)', () => {
+    const result = validateDraft(validDraft());
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.draft.passage).toBeNull();
+  });
+
+  it('acepta un passage bien formado (G22) y lo conserva', () => {
+    const draft = {
+      ...validDraft(),
+      format: 'READING_COMPREHENSION',
+      passage: { ref: 'P1', title: 'Un título', content: 'Texto original del pasaje.' },
+    };
+    const result = validateDraft(draft);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.draft.passage?.ref).toBe('P1');
+      expect(result.draft.passage?.sourceRef).toBeNull();
+    }
+  });
+});
+
+describe('validateDraft — passage (G22)', () => {
+  it('rechaza un passage con content vacío', () => {
+    const draft = {
+      ...validDraft(),
+      passage: { ref: 'P1', content: '   ' },
+    };
+    expect(validateDraft(draft).ok).toBe(false);
+  });
+
+  it('rechaza un passage sin ref', () => {
+    const draft = {
+      ...validDraft(),
+      passage: { content: 'Texto del pasaje.' },
+    };
+    expect(validateDraft(draft).ok).toBe(false);
+  });
 });
 
 describe('validateDraft — opciones', () => {

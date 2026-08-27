@@ -1,0 +1,2061 @@
+{
+  "batch": "G22",
+  "generatedAt": "2026-08-27T12:53:20.811Z",
+  "institution": "IPN",
+  "area": "Ingeniería y Ciencias Físico-Matemáticas (FISMAT)",
+  "subject": "Español/Lectura",
+  "subjectId": "cmrr1lh1n00bhhi3nq64xyp01",
+  "subjectQuestionWeight": 4,
+  "selectionRule": "Encargo G22: materia de Español/Habilidad Verbal con mayor brecha entre UNAM e IPN. Consulta en vivo 2026-08-27: IPN Español/Lectura = 0 reactivos (0/0) en las 3 ramas (FISMAT w4, MEDBIO w6, SOCADM w3), 10 temas, 0 SourceChunks, sin guia IPN ingerida; UNAM Espanol = 35 verificados (todos en Area 1, w10). Brecha normalizada por peso (banco ~3.5 verificados por punto de peso): IPN ~45 vs UNAM ~31, y la de IPN esta en ramas de lanzamiento dia 1 en CERO absoluto. Institucion elegida: IPN. Subject: FISMAT Espanol/Lectura, la unica rama de IPN cuyo temario cubre Ortografia + Gramatica + Comprension lectora + Analisis de textos (todos los formatos del encargo).",
+  "grounding": "TEMARIO_ONLY (no hay SourceChunk para ninguna materia de Espanol de IPN; no existe guia IPN en content_sources)",
+  "totalQuestions": 35,
+  "positionDistribution": {
+    "C": 9,
+    "A": 9,
+    "D": 8,
+    "B": 9
+  },
+  "formatDistribution": {
+    "READING_COMPREHENSION": 20,
+    "SENTENCE_COMPLETION": 4,
+    "ANALOGY": 2,
+    "MULTIPLE_CHOICE": 9
+  },
+  "difficultyDistribution": {
+    "INTERMEDIATE": 17,
+    "ADVANCED": 9,
+    "BASIC": 7,
+    "EXPERT": 2
+  },
+  "passages": [
+    {
+      "passageId": "cmtbiu0fl00002xagklv559tx",
+      "title": "Del teocintle al maíz",
+      "sourceRef": null,
+      "original": true,
+      "content": "Hace unos nueve mil años, en el occidente de lo que hoy es México, varios grupos humanos empezaron a recolectar las semillas de una hierba silvestre llamada teocintle. Esa planta no se parecía al maíz actual: sus mazorcas medían apenas unos centímetros y cada grano estaba encerrado en una cubierta tan dura como una cáscara. Con todo, quienes la recolectaban se dieron cuenta de que algunas plantas daban granos más grandes, más numerosos o más fáciles de desprender, y año tras año guardaron justamente esas semillas para volver a sembrarlas.\n\nEse gesto, repetido durante siglos, transformó poco a poco al teocintle. Las mazorcas se alargaron, los granos perdieron su cubierta endurecida y la planta acabó por depender de las personas para reproducirse, pues sus semillas ya no se soltaban ni se dispersaban solas. El maíz que hoy conocemos es, visto así, una obra colectiva: nadie lo diseñó, pero millones de decisiones pequeñas, tomadas por agricultores anónimos a lo largo de generaciones, lo moldearon hasta volverlo el cultivo que alimenta a buena parte del planeta.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmtbiu16100012xagypkb98q1",
+      "title": "Más árboles en las ciudades",
+      "sourceRef": null,
+      "original": true,
+      "content": "Plantar árboles en las calles suele verse como un adorno, un lujo del que se puede prescindir cuando el presupuesto aprieta. Esa idea es un error. En una ciudad, el arbolado cumple funciones que ningún otro elemento urbano ofrece al mismo tiempo y al mismo costo.\n\nUn árbol adulto da sombra y, al evaporar agua por sus hojas, refresca el aire a su alrededor: en un día caluroso, una calle arbolada puede estar varios grados más fresca que una calle desnuda de asfalto. Sus hojas retienen parte del polvo y de los contaminantes que, de otro modo, respiraríamos. Y sus raíces ayudan a que el suelo absorba el agua de lluvia, lo que reduce las inundaciones repentinas.\n\nEs cierto que mantener árboles cuesta dinero: hay que podarlos, regarlos los primeros años y, a veces, reparar una banqueta levantada. Pero ese gasto es menor frente al de instalar y operar aire acondicionado en edificios enteros o al de reconstruir calles tras cada tormenta. Una ciudad que decide no plantar árboles no está ahorrando: solo está trasladando el costo a otro lado, casi siempre más caro.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmtbiufql0000axf5meo7yqir",
+      "title": "La azotea",
+      "sourceRef": null,
+      "original": true,
+      "content": "Tomás subió los últimos escalones de dos en dos y empujó la puerta de lámina, que se quejó con un chirrido largo. La azotea de su abuela lo recibió con su olor a tierra mojada y geranios. Contra el pretil, decenas de macetas —botes de pintura, una bañera partida, tazas sin asa— formaban un desorden verde que trepaba hacia el tanque de agua.\n\nLa abuela regaba sin prisa, con una jarra, hablándoles a las plantas como si pudieran contestarle. «Esta se está haciendo la difícil», dijo, señalando un rosal enclenque. La luz de las seis teñía de naranja las paredes y la ropa tendida ondeaba como banderas viejas.\n\nTomás se sentó en un cajón de refrescos. Desde ahí, la ciudad era un rumor lejano de cláxones y el cielo apenas empezaba a encenderse. Pensó que aquel pedazo de cemento, sembrado de botes viejos, era el único jardín que su abuela había tenido nunca, y que a ella parecía bastarle.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmtbiuggk0001axf5619nidwx",
+      "title": "En defensa del aburrimiento",
+      "sourceRef": null,
+      "original": true,
+      "content": "Hemos declarado la guerra al aburrimiento. En cuanto aparece un hueco en el día —una fila, un trayecto, una espera—, sacamos el teléfono y lo llenamos. Nos parece que ese vacío es tiempo perdido, y quizá deberíamos revisar esa idea.\n\nEl aburrimiento es incómodo, cierto, pero no es inútil. Cuando la mente no recibe estímulos de fuera, empieza a producirlos por su cuenta: divaga, recuerda, imagina, relaciona cosas que no parecían tener conexión. Muchas ideas no llegan mientras trabajamos concentrados, sino después, bajo la regadera o caminando sin rumbo. Ese estado de atención suelta, que hoy interrumpimos sin pensarlo, es el terreno donde suele brotar lo nuevo.\n\nNo se trata de renunciar a las pantallas ni de idealizar el tedio. Se trata de reconocer que una mente a la que nunca se deja en paz pierde algo. Tolerar de vez en cuando unos minutos de aburrimiento no es un retroceso: es darle a la imaginación el espacio que necesita para trabajar.",
+      "linkedQuestions": 5
+    }
+  ],
+  "questions": [
+    {
+      "questionId": "cmtbiu1j600032xag4ue0ljz4",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu0fl00002xagklv559tx",
+      "stem": "¿Cuál es la idea central del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El teocintle y el maíz son nombres distintos de una misma planta que nunca ha cambiado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un grupo concreto de agricultores mexicanos diseñó a propósito el maíz hace nueve mil años.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El maíz nació de volver a sembrar, siglo tras siglo, las mejores plantas de teocintle.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El teocintle se extinguió por completo en cuanto las personas empezaron a cultivar el maíz.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La transformación gradual del teocintle es el eje del texto",
+          "content": "Todo el texto sostiene una sola idea: el maíz actual es resultado de que, durante siglos, se guardaran y resembraran las plantas de teocintle con mejores granos. Los dos párrafos describen ese proceso y su resultado.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando cada opción",
+          "content": "1) El texto dice que el teocintle \"no se parecía al maíz actual\" y detalla cómo cambió, así que la idea de que \"nunca ha cambiado\" lo contradice. 2) El texto afirma explícitamente que \"nadie lo diseñó\": no hubo un grupo que lo inventara. 3) La opción sobre la selección repetida recoge la tesis. 4) El texto no dice que el teocintle desapareciera; de hecho sigue existiendo. El error típico es quedarse con un dato aislado (la antigüedad, la palabra \"diseñó\") en lugar de buscar la idea que recorre todo el texto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Idea central frente a detalle",
+          "content": "La idea central es la afirmación que da sentido a todas las demás partes del texto; un detalle solo aparece en una parte. Para hallarla, pregúntate: \"¿de qué trata el texto entero?\", no \"¿qué dato recuerdo?\". Repasa: tema, idea principal e ideas secundarias.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu27300082xagheix4stw",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu0fl00002xagklv559tx",
+      "stem": "¿Con qué intención principal está escrito el texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Explicar cómo un proceso lento y colectivo transformó una planta silvestre en cultivo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Persuadir al lector de que hoy conviene volver a sembrar teocintle en lugar de maíz común.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Narrar la vida de un agricultor mesoamericano concreto, su familia y su comunidad entera.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Advertir de que el maíz, tal como lo conocemos, podría desaparecer en las próximas décadas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto expone y explica un proceso",
+          "content": "El autor describe paso a paso cómo el teocintle se convirtió en maíz y por qué eso ocurrió. No pide nada al lector ni cuenta la vida de nadie en particular: su propósito es que entendamos un proceso.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué las demás no encajan",
+          "content": "1) La opción de explicar el proceso coincide con lo que hace el texto de principio a fin. 2) Nadie propone sembrar teocintle; esa recomendación no aparece. 3) El texto habla de \"agricultores anónimos\", no de una persona con nombre e historia propia. 4) No hay ninguna advertencia sobre el futuro del maíz. Si marcaste la de la advertencia, quizá confundiste \"el maíz depende del ser humano\" con un aviso de peligro, cuando es solo la explicación de un hecho.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La intención del autor",
+          "content": "La intención comunicativa puede ser informar/explicar, convencer, narrar, describir o dar instrucciones. Se reconoce por lo que el texto hace con el lenguaje: aquí, encadenar causas y efectos para explicar. Repasa: funciones del lenguaje e intención comunicativa.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu2uv000d2xagdwiijhz8",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu0fl00002xagklv559tx",
+      "stem": "A partir del texto se puede inferir que, sin el cuidado humano continuo, el maíz actual…",
+      "options": [
+        {
+          "id": "A",
+          "text": "daría mazorcas cada vez más grandes con el paso del tiempo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "recuperaría en pocos años la forma silvestre del teocintle.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "se dispersaría con más facilidad gracias al viento.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "tendría serias dificultades para reproducirse por sí mismo.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto dice que el maíz ya depende de las personas",
+          "content": "El segundo párrafo afirma que \"la planta acabó por depender de las personas para reproducirse, pues sus semillas ya no se soltaban ni se dispersaban solas\". Si se quita a las personas, lo lógico es que al maíz le cueste reproducirse: eso es lo que se infiere.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Comparando las opciones con el texto",
+          "content": "1) Nada sugiere que las mazorcas crezcan solas; ese cambio lo produjo la selección humana. 2) La forma silvestre no \"regresa\" sola en pocos años; el texto describe un cambio de siglos, no reversible a voluntad. 3) El maíz perdió la capacidad de dispersarse, así que decir que se dispersaría \"con más facilidad\" contradice el texto. 4) La dificultad para reproducirse se deduce directamente de que \"sus semillas ya no se dispersaban solas\". Inferir es completar lo que el texto implica, no inventar lo contrario de lo que dice.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La inferencia",
+          "content": "Una inferencia válida se apoya en información del texto más un razonamiento razonable; no aparece escrita con esas palabras, pero se desprende de lo dicho. Repasa: inferencias y conclusiones a partir de un texto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu3ig000i2xagxpygsbns",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu0fl00002xagklv559tx",
+      "stem": "En el texto, «desprender» (en «más fáciles de desprender») indica que los granos…",
+      "options": [
+        {
+          "id": "A",
+          "text": "germinaban más rápido al sembrarse en la tierra.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "se separaban de la mazorca con menos esfuerzo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "se cocían mejor al preparar los alimentos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "resistían más el ataque de los insectos.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "\"Desprender\" es separar algo de aquello a lo que está unido",
+          "content": "El texto compara plantas por sus granos: unos eran más grandes, otros más numerosos y otros \"más fáciles de desprender\", es decir, que se separaban de la mazorca con menos trabajo al cosecharlos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "El contexto fija el significado",
+          "content": "La frase habla de características del grano que un recolector valoraría al elegir semillas. De esas cuatro lecturas, solo \"separarse de la mazorca\" tiene que ver con desprender. Las otras (germinar, cocerse, resistir insectos) son ventajas imaginables, pero no es lo que significa la palabra ni lo que dice la frase. El error común es elegir una opción \"positiva\" cualquiera sin fijarse en el significado exacto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Palabra en contexto",
+          "content": "Muchas preguntas piden el sentido de una palabra según cómo se usa en el texto, no su definición general. La pista está en las palabras que la rodean. Repasa: significado de palabras por contexto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu46b000n2xagsk5hpbut",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu0fl00002xagklv559tx",
+      "stem": "¿Cómo está organizada la información del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Describe una planta silvestre y luego el proceso que la transformó en maíz.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Contrasta las ventajas y las desventajas de cultivar maíz y otros cereales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Enumera en orden cronológico los cultivos más importantes de Mesoamérica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Plantea un problema agrícola de hoy y ofrece varias soluciones posibles.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Primero el punto de partida, después el cambio",
+          "content": "El primer párrafo presenta el teocintle (cómo era y qué hacían con él); el segundo explica cómo ese manejo lo fue convirtiendo en maíz. Es una estructura de \"estado inicial → proceso → resultado\".",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no son las otras",
+          "content": "1) La descripción de la planta seguida del proceso es justo lo que hace el texto. 2) No se comparan cereales entre sí ni se habla de desventajas. 3) No hay una lista de varios cultivos ni fechas ordenadas: solo se sigue al maíz. 4) No se plantea un problema actual ni se proponen soluciones. Si marcaste \"problema y soluciones\", quizá tomaste \"cuesta reproducirse sin el ser humano\" como un problema por resolver, pero el texto lo presenta como el desenlace del proceso.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Estructura u organización del texto",
+          "content": "Los textos se organizan de maneras reconocibles: secuencia temporal, causa-efecto, problema-solución, comparación-contraste, descripción. Identificar el patrón ayuda a anticipar y ordenar la información. Repasa: estructuras textuales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu4u1000s2xagow6008sm",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu16100012xagypkb98q1",
+      "stem": "¿Cuál es la tesis que defiende el autor?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Los árboles urbanos son agradables a la vista, pero cuestan demasiado dinero público.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El aire acondicionado de los edificios es una alternativa más eficaz que el arbolado urbano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Las inundaciones repentinas de las ciudades se deben sobre todo a la falta de banquetas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El arbolado urbano no es un adorno prescindible, sino una infraestructura barata y muy útil.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La tesis aparece al inicio y se sostiene en todo el texto",
+          "content": "El autor abre diciendo que ver el arbolado como \"un adorno\" es \"un error\", y el resto del texto enumera las funciones útiles del árbol y muestra que sale más barato que sus alternativas. Esa es su postura.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Distinguiendo tesis de detalles y de opiniones ajenas",
+          "content": "1) Que los árboles \"cuestan demasiado\" es precisamente la idea que el autor combate, no la que defiende. 2) El autor menciona el aire acondicionado para decir que es MÁS caro, no más eficaz. 3) Lo de las banquetas es un detalle sobre el mantenimiento, no la tesis. 4) La afirmación de que el arbolado es infraestructura útil y rentable resume lo que el autor argumenta. El error frecuente es confundir la idea que el texto rebate con la que sostiene.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La tesis en un texto argumentativo",
+          "content": "La tesis es la afirmación que el autor quiere que aceptemos; los argumentos son las razones con que la apoya. Suele estar al principio o al final. Repasa: tesis, argumentos y conclusión.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu5ht000x2xag4ylj0daj",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "EXPERT",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu16100012xagypkb98q1",
+      "stem": "¿Qué función cumple el tercer párrafo («Es cierto que mantener árboles cuesta dinero…») dentro de la argumentación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Introduce el tema del texto y anuncia con detalle lo que se explicará más adelante.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Admite una objeción y después la responde, con lo que refuerza la postura del autor.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Aporta cifras exactas que demuestran con precisión cuánto dinero se ahorra en total.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cambia de asunto y se pone a hablar de un tema distinto al de los árboles de la ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Reconoce un punto en contra y lo desactiva",
+          "content": "El párrafo empieza concediendo que los árboles cuestan dinero (\"Es cierto que…\"), pero enseguida responde que ese gasto es menor que el de las alternativas. Es la estrategia de conceder para después refutar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Analizando el movimiento argumentativo",
+          "content": "El conector \"Es cierto que… Pero…\" señala una concesión seguida de una réplica. 1) No introduce el tema: el tema ya venía de los párrafos anteriores. 2) La opción de \"admitir una objeción y responderla\" describe exactamente ese \"es cierto… pero\". 3) No hay cifras exactas: el texto habla en términos generales (\"menor\", \"más caro\"). 4) No cambia de asunto: sigue hablando de árboles y su costo. Si elegiste \"cifras exactas\", revisa: el texto no da un solo número.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Concesión y refutación",
+          "content": "En la argumentación, admitir una objeción (\"es verdad que…\") y luego responderla hace más sólida la propia postura, porque muestra que se consideró el otro lado. Repasa: contraargumento, concesión y refutación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu65j00122xag2a1pqzyt",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu16100012xagypkb98q1",
+      "stem": "Cuando el autor afirma que «una calle arbolada puede estar varios grados más fresca que una calle desnuda de asfalto», usa ese dato para…",
+      "options": [
+        {
+          "id": "A",
+          "text": "mostrar que el árbol ofrece un beneficio que otros elementos urbanos no dan.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "reconocer que los árboles, además de sus ventajas, tienen desventajas de peso.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "proponer que se retire poco a poco el asfalto de todas las calles de la ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "explicar por qué la poda y el riego de los árboles resultan tan costosos cada año.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Es un ejemplo que apoya la tesis",
+          "content": "La frase sobre la temperatura ilustra una de las funciones del árbol (refrescar el aire), y esa función sostiene la idea general de que el arbolado aporta algo que otros elementos urbanos no dan. El dato está al servicio del argumento.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Para qué se usa la información",
+          "content": "1) El dato apoya la idea de la función única del árbol: por eso está ahí. 2) No reconoce ninguna desventaja; al contrario, muestra un beneficio. 3) No propone quitar el asfalto: solo compara. 4) No tiene relación con el costo de la poda, que se menciona en otro párrafo. Un mismo dato siempre cumple un papel dentro del texto; hay que ver a qué idea sirve.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La función de los datos y ejemplos",
+          "content": "En un texto argumentativo, los datos y ejemplos no están sueltos: refuerzan una afirmación. Preguntarse \"¿para qué lo dice aquí?\" evita confundir el ejemplo con la idea. Repasa: tipos de argumento (ejemplos, datos, autoridad).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu6t900172xagsix4u34p",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu16100012xagypkb98q1",
+      "stem": "Al decir que una ciudad sin árboles «solo está trasladando el costo a otro lado», el autor quiere decir que…",
+      "options": [
+        {
+          "id": "A",
+          "text": "el dinero que se ahorra hoy se usará para plantar árboles en otra ciudad distinta.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "los árboles deberían plantarse en las afueras de la ciudad y nunca en el centro.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "no plantar árboles no borra el gasto, solo lo vuelve otro más grande.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "la tarea de regar y cuidar los árboles pasa a manos de los propios vecinos.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El \"costo\" se paga igual, pero en otra forma",
+          "content": "El autor acaba de decir que reconstruir calles o climatizar edificios sale más caro que mantener árboles. \"Trasladar el costo\" significa que, al no gastar en árboles, la ciudad terminará gastando —más— en esas otras cosas. No se ahorra: se paga distinto.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Interpretando la frase en su contexto",
+          "content": "La frase remata la comparación de gastos del párrafo. 1) No habla de otra ciudad: el \"otro lado\" es otro rubro de gasto, no otro lugar. 2) No dice nada sobre centro y afueras. 3) La lectura de que el gasto reaparece más grande es la correcta. 4) No traslada la responsabilidad a los vecinos. El error común es tomar \"otro lado\" en sentido geográfico cuando aquí es figurado: otra parte del presupuesto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Lenguaje figurado en la argumentación",
+          "content": "Los autores usan expresiones figuradas (\"trasladar el costo\", \"pan para hoy\") para condensar una idea. Hay que traducirlas a lenguaje literal usando el contexto. Repasa: sentido literal y sentido figurado.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiu7h4001c2xagwnx41tvn",
+      "topicId": "cmrr1li5700bnhi3n8apst8gd",
+      "topic": "Comprensión lectora",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiu16100012xagypkb98q1",
+      "stem": "¿Con cuál de estas afirmaciones estaría de acuerdo el autor?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cuando falta presupuesto, lo primero que conviene recortar es el arbolado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Evaluar el costo de los árboles exige compararlo con el de sus alternativas.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El único beneficio real de los árboles urbanos es el estético.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Las ciudades deberían sustituir sus árboles por equipos de aire acondicionado.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El autor pide comparar antes de decidir",
+          "content": "Todo el tercer párrafo consiste en comparar el gasto de los árboles con el de no tenerlos. La afirmación de que hay que comparar costos es, en el fondo, lo que el autor defiende.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Qué se deduce de la postura del autor",
+          "content": "1) Recortar primero el arbolado es lo contrario de lo que sostiene; abre el texto rechazando esa idea. 2) Comparar el costo con el de las alternativas resume su razonamiento. 3) El autor enumera beneficios prácticos (sombra, filtrado de polvo, drenaje), no solo el estético. 4) Nunca propone sustituir árboles por aire acondicionado: dice que eso sale más caro. Para responder, hay que llevar la lógica del autor a una situación nueva, sin contradecir lo que ya afirmó.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Inferir la opinión del autor",
+          "content": "A veces el texto no dice explícitamente si estaría de acuerdo con algo; hay que deducirlo de su tesis y sus argumentos. Repasa: postura del autor e inferencia de opiniones.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiugtj0003axf5sbceqsdv",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiufql0000axf5meo7yqir",
+      "stem": "¿Qué tipo de narrador tiene el texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un narrador protagonista que cuenta en primera persona todo lo que le va ocurriendo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un narrador en tercera persona que, además, conoce los pensamientos de Tomás.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Un narrador testigo que solo refiere aquello que cualquiera podría ver y oír desde fuera.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Un narrador en segunda persona que se dirige al lector durante todo el relato.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Habla de \"Tomás\" y entra en su mente",
+          "content": "El narrador nunca dice \"yo\": se refiere a Tomás por su nombre y en tercera persona (\"Tomás subió\", \"se sentó\"). Pero en el último párrafo dice \"Pensó que…\" y nos cuenta lo que Tomás piensa. Es tercera persona con acceso al interior del personaje.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando los otros tipos",
+          "content": "1) No es narrador protagonista: ese narraría en primera persona (\"subí\", \"me senté\"). 2) La tercera persona que conoce los pensamientos de Tomás coincide con lo que hace el texto. 3) No es un simple testigo: un testigo no podría contar lo que Tomás \"pensó\" por dentro. 4) No hay segunda persona: nadie dice \"tú subes\" ni interpela al lector. Si marcaste \"testigo\", fíjate en el verbo \"Pensó\": revela lo que solo un narrador con acceso a la mente del personaje puede saber.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tipos de narrador",
+          "content": "Se clasifican por la persona (primera, segunda, tercera) y por lo que saben (omnisciente, con foco en un personaje, testigo externo). Las marcas están en los pronombres y en si se accede o no a pensamientos. Repasa: el narrador y el punto de vista.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuhh00008axf5wkbtzv6v",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiufql0000axf5meo7yqir",
+      "stem": "En «la ropa tendida ondeaba como banderas viejas» se emplea…",
+      "options": [
+        {
+          "id": "A",
+          "text": "una hipérbole, porque exagera de forma desmedida el tamaño real de la ropa tendida.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "una metáfora pura, porque reemplaza la palabra «ropa» directamente por «banderas».",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "una antítesis, porque enfrenta dos ideas por completo opuestas en la misma frase.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "un símil, porque compara la ropa con banderas por medio de la palabra «como».",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Hay una comparación explícita con \"como\"",
+          "content": "La frase pone lado a lado dos elementos —la ropa tendida y unas banderas— y los une con \"como\". Esa comparación expresa mediante un nexo es un símil (o comparación).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras figuras",
+          "content": "1) No es hipérbole: no se exagera ninguna cantidad ni tamaño. 2) No es metáfora pura: en la metáfora pura se diría \"las banderas del tendedero\" sin \"como\"; aquí el \"como\" mantiene separados los dos términos. 3) No es antítesis: no se oponen dos ideas contrarias. 4) La presencia de \"como\" uniendo dos imágenes es la marca del símil. El error habitual es confundir símil y metáfora: la clave es si aparece o no el nexo comparativo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Símil y metáfora",
+          "content": "El símil compara con un nexo (\"como\", \"cual\", \"parece\"); la metáfora identifica un término con otro sin nexo. Ambos crean imágenes, pero se distinguen por esa marca. Repasa: figuras retóricas de comparación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiui4f000daxf5z3iai73b",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiufql0000axf5meo7yqir",
+      "stem": "¿Cuál de los siguientes fragmentos es un ejemplo de personificación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "«la puerta de lámina, que se quejó con un chirrido largo»",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "«subió los últimos escalones de dos en dos»",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "«Tomás se sentó en un cajón de refrescos»",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "«la ciudad era un rumor lejano de cláxones»",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "A la puerta se le atribuye una acción humana",
+          "content": "\"Quejarse\" es algo que hacen las personas, no los objetos. Decir que la puerta \"se quejó\" le da un rasgo humano: eso es personificación (o prosopopeya).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Revisando los demás fragmentos",
+          "content": "1) La puerta que \"se queja\" atribuye a un objeto una conducta humana: es personificación. 2) \"Subió los escalones de dos en dos\" describe una acción real de Tomás, sin figura. 3) \"Tomás se sentó en un cajón de refrescos\" es una acción literal, sin ningún recurso. 4) \"La ciudad era un rumor\" es una metáfora (identifica la ciudad con un sonido), no una personificación. El error frecuente es marcar cualquier frase \"bonita\" como personificación; hay que comprobar que se atribuya algo propio de un ser humano a algo que no lo es.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La personificación",
+          "content": "Consiste en dar cualidades o acciones humanas (hablar, quejarse, dormir, mirar) a animales, objetos o ideas. Es distinta de la metáfora y del símil. Repasa: figuras retóricas y su identificación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuirw000iaxf5uhjxduz3",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiufql0000axf5meo7yqir",
+      "stem": "¿Qué se puede inferir sobre la abuela a partir del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Se siente insatisfecha y preferiría tener un jardín de verdad a ras de suelo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Cultiva las plantas únicamente para venderlas y obtener algún ingreso.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Disfruta el cuidado de sus plantas y se conforma con el espacio que tiene.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Empezó a cultivar la azotea hace muy poco y todavía no sabe bien cómo hacerlo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Riega con calma, les habla a las plantas y \"parece bastarle\"",
+          "content": "La abuela \"regaba sin prisa\", \"hablándoles a las plantas\", y el texto cierra diciendo que ese jardín improvisado \"a ella parecía bastarle\". Todo apunta a alguien que disfruta lo que hace y está a gusto con lo que tiene.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Contrastando con las opciones",
+          "content": "1) Nada indica insatisfacción: no se queja ni desea otra cosa; \"parecía bastarle\" dice lo contrario. 2) No hay ninguna mención a vender las plantas. 3) Que disfruta y se conforma se apoya en varias pistas del texto. 4) El desorden de macetas viejas y el trato familiar con las plantas sugieren muchos años de práctica, no un inicio reciente. Inferir el carácter de un personaje se hace juntando sus gestos y las palabras del narrador, no suponiendo lo que \"podría\" sentir.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Caracterización indirecta",
+          "content": "A los personajes se los conoce por lo que hacen, dicen y cómo los describe el narrador, más que por definiciones directas. Reunir esas señales permite inferir rasgos. Repasa: caracterización de personajes e inferencia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiujf9000naxf5443xdl15",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiufql0000axf5meo7yqir",
+      "stem": "¿Cuál de estos enunciados expresa mejor el tema del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Las dificultades de cultivar plantas en el clima de una gran ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El deseo de un niño de irse a vivir al campo con su abuela.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La rivalidad entre dos maneras distintas de entender la jardinería.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La belleza sencilla que alguien logra crear en un espacio humilde.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un jardín hermoso hecho con botes viejos en una azotea de cemento",
+          "content": "El texto muestra a la abuela convirtiendo \"un pedazo de cemento, sembrado de botes viejos\" en algo vivo y bello, y a Tomás reconociéndolo. El tema es esa belleza modesta lograda en un lugar pobre de recursos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué las otras no son el tema",
+          "content": "1) No se habla de dificultades del clima: las plantas están sanas y la escena es apacible. 2) Tomás no expresa deseo de mudarse al campo; solo observa. 3) No hay dos personajes discutiendo sobre jardinería: no hay rivalidad. 4) La belleza sencilla en un espacio humilde recoge lo que el texto transmite. El error común es tomar un elemento presente (la ciudad, la abuela, las macetas) y suponer que es el tema, sin ver qué idea une toda la escena.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tema de un texto literario",
+          "content": "El tema es la idea o el sentido de fondo que el texto sugiere a través de la historia y las imágenes; no es lo mismo que el resumen del argumento. Repasa: tema, asunto y argumento en textos narrativos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuk2k000saxf5j8wb2h1o",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiuggk0001axf5619nidwx",
+      "stem": "¿Cuál es la intención comunicativa predominante del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Defender una postura y convencer al lector de que debe revisar cierta costumbre.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Narrar una experiencia personal del autor contada en riguroso orden cronológico.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Describir con detalle y precisión el funcionamiento interno del cerebro humano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Dar instrucciones paso a paso para dejar de usar el teléfono en los ratos libres.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto defiende una idea y pide reconsiderar un hábito",
+          "content": "El autor sostiene que \"el aburrimiento no es inútil\" y quiere que el lector revise la costumbre de llenar cada hueco con el teléfono. Da razones para apoyar esa idea: eso es argumentar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando las otras intenciones",
+          "content": "1) Argumentar y convencer es lo que hace el texto de principio a fin. 2) No narra hechos del autor en orden temporal: no cuenta una historia. 3) Menciona la mente de pasada, pero no describe con detalle el cerebro; usa esa idea como argumento. 4) No da una lista de pasos ni instrucciones. Si marcaste \"instrucciones\", fíjate en que el texto dice justamente lo contrario: \"no se trata de renunciar a las pantallas\".",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Intención comunicativa",
+          "content": "Un mismo tema puede tratarse para informar, convencer, narrar, describir o instruir. La intención se reconoce por lo que el texto busca lograr en el lector. Repasa: intención comunicativa y tipos de texto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiukpz000xaxf5j44045jg",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "EXPERT",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiuggk0001axf5619nidwx",
+      "stem": "¿Qué papel cumple el tercer párrafo («No se trata de renunciar a las pantallas…»)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Presenta el problema principal que el resto del texto va a desarrollar.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Ofrece un ejemplo concreto que ilustra la idea del párrafo anterior.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Matiza la postura para que no se entienda de forma extrema.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Contradice lo dicho antes y defiende la posición opuesta.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Aclara los límites de lo que se está defendiendo",
+          "content": "Después de elogiar el aburrimiento, el autor precisa: \"No se trata de renunciar a las pantallas ni de idealizar el tedio\". Con eso evita que su idea se lea como un rechazo total a la tecnología. Está poniendo límites a su propia postura.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Analizando la función del párrafo",
+          "content": "1) No presenta el problema: ese ya se planteó en el primer párrafo. 2) No es un ejemplo concreto: no cuenta un caso, sino que precisa el alcance de la tesis. 3) Matizar la postura para que no suene extrema es exactamente lo que hace (\"no se trata de…, se trata de…\"). 4) No contradice lo anterior: sigue defendiendo el valor del aburrimiento, solo que con moderación. El error típico es leer \"no se trata de renunciar a las pantallas\" como un cambio de bando, cuando es una aclaración.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Matización en la argumentación",
+          "content": "Matizar es acotar una afirmación para hacerla más precisa y creíble (\"no digo X extremo, sino X moderado\"). No equivale a retractarse. Repasa: estructura del texto argumentativo y marcadores de matización.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuldd0012axf5qe8vhhk7",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiuggk0001axf5619nidwx",
+      "stem": "¿Qué secuencia textual predomina en el texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Narrativa, porque relata una serie de hechos ordenados en el tiempo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Argumentativa, porque sostiene una tesis con razones que la respaldan.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Descriptiva, porque se detiene en las cualidades de un objeto o lugar.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Dialogada, porque reproduce una conversación entre dos personas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Hay una tesis y varias razones que la apoyan",
+          "content": "El texto afirma algo discutible (\"el aburrimiento no es inútil\") y lo defiende con razones: la mente genera ideas cuando no recibe estímulos, muchas ideas llegan en momentos de atención suelta, etc. Esa estructura de tesis + razones es la secuencia argumentativa.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras secuencias",
+          "content": "1) No es narrativa: no hay acontecimientos que se sucedan en el tiempo. 2) La secuencia argumentativa, con su tesis y sus razones, es la que domina. 3) No es descriptiva: no se detalla cómo es un objeto o un lugar. 4) No es dialogada: no hay intercambio de intervenciones entre personajes. Recuerda que un texto puede combinar secuencias, pero aquí manda con claridad la que defiende una idea.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Secuencias textuales",
+          "content": "Los textos se componen de secuencias: narrativa, descriptiva, expositiva, argumentativa y dialogada. Reconocer la dominante ayuda a leer con la estrategia adecuada. Repasa: tipologías y secuencias textuales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbium0p0017axf5f81j4jd6",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiuggk0001axf5619nidwx",
+      "stem": "¿Qué quiere decir el autor con la frase «Hemos declarado la guerra al aburrimiento»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que existen campañas oficiales para reducir el tiempo libre de la gente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que el aburrimiento provoca conflictos y discusiones entre las personas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Que quienes se aburren se vuelven más agresivos de lo habitual.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Que rechazamos el aburrimiento y tratamos de eliminarlo apenas aparece.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "\"Declarar la guerra\" a algo es combatirlo sin tregua",
+          "content": "La frase es una imagen: no hay una guerra real. Significa que apenas surge un momento de aburrimiento lo atacamos —sacando el teléfono— para que no dure. El propio texto lo explica en la línea siguiente.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Traduciendo la expresión figurada",
+          "content": "1) No habla de campañas oficiales: el \"nosotros\" somos las personas comunes con su teléfono. 2) No dice que el aburrimiento cause peleas. 3) No dice que vuelva agresiva a la gente. 4) Que rechazamos el aburrimiento y lo eliminamos de inmediato es lo que la frase expresa, y coincide con \"en cuanto aparece un hueco… sacamos el teléfono y lo llenamos\". El error común es interpretar \"guerra\" en sentido literal (violencia, conflicto) en lugar de figurado (rechazo intenso).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Sentido figurado",
+          "content": "Muchas expresiones (\"declarar la guerra\", \"tirar la toalla\", \"poner el grito en el cielo\") no se entienden al pie de la letra. El contexto indica su significado real. Repasa: sentido literal y figurado; frases hechas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiumnz001caxf5of4gn0ma",
+      "topicId": "cmrr1liur00bphi3n71jg2atn",
+      "topic": "Análisis de textos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtbiuggk0001axf5619nidwx",
+      "stem": "¿Cuál enunciado sintetiza mejor la conclusión del autor?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Las pantallas son la causa principal de que ya no se nos ocurran ideas nuevas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El aburrimiento siempre es preferible a cualquier forma de entretenimiento.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Conviene tolerar algo de aburrimiento porque la imaginación lo aprovecha.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El tiempo que pasamos esperando es, efectivamente, tiempo desperdiciado.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El cierre del texto lo dice casi con esas palabras",
+          "content": "El último párrafo concluye que tolerar \"unos minutos de aburrimiento\" es \"darle a la imaginación el espacio que necesita para trabajar\". Esa es la síntesis de la postura del autor.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Comparando con las opciones",
+          "content": "1) El autor no culpa a las pantallas de todo ni dice que ya no tengamos ideas: dice que conviene dejar espacios. 2) No afirma que el aburrimiento sea \"siempre preferible\": eso sería el extremo que él mismo rechaza. 3) Tolerar algo de aburrimiento para que la imaginación lo aproveche recoge la conclusión con su matiz. 4) \"El tiempo de espera es tiempo desperdiciado\" es justo la idea que el texto pone en duda desde el principio. Sintetizar exige recoger la idea final con su matiz, sin exagerarla ni invertirla.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La conclusión de un texto argumentativo",
+          "content": "La conclusión retoma la tesis a la luz de los argumentos y suele aparecer al final. Sintetizarla bien implica conservar los matices (\"algo de\", \"de vez en cuando\"). Repasa: conclusión y síntesis.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiutmq0001csj3p1nilo0q",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "passageId": null,
+      "stem": "Selecciona la opción que completa correctamente la oración: «______ estudió toda la noche, reprobó el examen; ______, insistió en que el maestro lo había calificado con injusticia.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aunque / además",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Porque / por eso",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Como / sin embargo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Si bien / porque",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Primero una concesión; luego, una idea que se añade",
+          "content": "\"Aunque estudió toda la noche, reprobó el examen\" opone el esfuerzo al mal resultado: es una concesión. Y \"además, insistió en que…\" suma otra conducta del estudiante. Los dos conectores encajan a la vez.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Probando los otros pares",
+          "content": "1) \"Aunque / además\" da concesión y luego adición: coherente en los dos huecos. 2) \"Porque estudió toda la noche, reprobó\" afirma que estudiar fue la CAUSA de reprobar, lo cual no tiene sentido. 3) \"Como estudió toda la noche, reprobó\" tiene el mismo problema: \"como\" aquí también sería causal. 4) \"Si bien estudió toda la noche\" sí funciona (equivale a \"aunque\"), pero el segundo hueco queda mal: \"porque, insistió en que…\" no enlaza nada. El error frecuente es fijarse solo en el primer hueco y no comprobar que el segundo también funcione.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Conectores o nexos",
+          "content": "Los conectores señalan la relación entre ideas: causa (porque, como), consecuencia (por eso, por lo tanto), concesión (aunque, si bien), adición (además), oposición (sin embargo). Completar bien exige que TODOS los huecos sean coherentes a la vez. Repasa: conectores discursivos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuuad0006csj30lk3cf4f",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "passageId": null,
+      "stem": "Completa con la forma verbal correcta: «Cuando ______ la verdad, entenderás por qué actué así.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "sabes",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "sabrás",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "sepas",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "supiste",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Acción futura tras \"cuando\": presente de subjuntivo",
+          "content": "La oración principal está en futuro (\"entenderás\"). En español, cuando la acción de \"cuando…\" todavía no ha ocurrido, el verbo va en presente de subjuntivo: \"Cuando sepas la verdad, entenderás…\".",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué fallan las demás formas",
+          "content": "1) \"Cuando sabes\" (presente de indicativo) sirve para acciones habituales, no para un hecho futuro concreto. 2) \"Cuando sabrás\" es un error frecuente: después de \"cuando\" con valor de futuro no se usa el futuro de indicativo. 3) \"Cuando sepas\" es la forma correcta. 4) \"Cuando supiste\" sitúa la acción en el pasado y choca con \"entenderás\". Si dudaste, prueba a cambiar la principal: \"Cuando sepas la verdad, entenderás\" suena natural; las otras, no.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Subjuntivo en oraciones temporales",
+          "content": "Con nexos como \"cuando\", \"en cuanto\", \"hasta que\" o \"apenas\", si el hecho es futuro o hipotético se usa subjuntivo; si es habitual o pasado, indicativo. Repasa: modo subjuntivo y oraciones subordinadas temporales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuuxq000bcsj32foepyzb",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "passageId": null,
+      "stem": "Selecciona la opción con la concordancia correcta: «El conjunto de propuestas que enviaron los vecinos ______ revisado por el comité.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "fueron",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "fue",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "serán",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "habían sido",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El sujeto es \"el conjunto\", en singular",
+          "content": "El núcleo del sujeto es \"conjunto\" (singular, masculino). Aunque después vengan \"propuestas\" y \"vecinos\" en plural, el verbo concuerda con \"conjunto\": \"El conjunto… fue revisado\".",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Analizando el sujeto",
+          "content": "1) \"Fueron\" concuerda con \"propuestas\" o \"vecinos\", que son solo complementos, no el núcleo: es el error típico de dejarse llevar por la palabra plural más cercana. 2) \"Fue\" concuerda con \"conjunto\" y con el participio \"revisado\" (masculino singular): es la correcta. 3) \"Serán\" cambia el tiempo a futuro sin motivo y sigue en plural. 4) \"Habían sido\" también va en plural y añade un tiempo que no pide la oración. Para acertar, localiza el núcleo del sujeto y tápale los complementos: \"El conjunto… fue revisado\".",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Concordancia sujeto-verbo",
+          "content": "El verbo concuerda en número y persona con el NÚCLEO del sujeto, no con los complementos que lo acompañan. Cuidado con sujetos del tipo \"un grupo de…\", \"la mayoría de…\", \"el conjunto de…\". Repasa: concordancia nominal y verbal.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuvl4000gcsj3xliu9cbn",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "SENTENCE_COMPLETION",
+      "passageId": null,
+      "stem": "Elige las preposiciones correctas: «Insistió ______ que revisáramos el informe porque dudaba ______ los resultados.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "en / de",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "por / en",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "en / en",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "de / de",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "\"Insistir en\" y \"dudar de\"",
+          "content": "El verbo \"insistir\" rige la preposición \"en\" (\"insistir en algo\", \"insistir en que…\"). El verbo \"dudar\" rige \"de\" (\"dudar de algo\"). La combinación correcta es \"insistió en que… dudaba de los resultados\".",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Revisando cada par",
+          "content": "1) \"En / de\" respeta el régimen de los dos verbos: correcta. 2) \"Por que\" separado no corresponde aquí y \"dudar en\" no es el régimen habitual. 3) \"Insistió en que\" está bien, pero \"dudaba en los resultados\" cambia la preposición que pide \"dudar\". 4) \"Insistió de que\" es dequeísmo (se añade una \"de\" que sobra), aunque \"dudaba de los resultados\" sí esté bien. El par que acierta en los DOS huecos es \"en / de\".",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Régimen preposicional; queísmo y dequeísmo",
+          "content": "Cada verbo pide su preposición: \"confiar en\", \"depender de\", \"insistir en\", \"dudar de\". Añadir una \"de\" indebida (\"pienso de que\") es dequeísmo; quitarla (\"estoy seguro que\") es queísmo. Repasa: régimen verbal, queísmo y dequeísmo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuw8f000lcsj35htwg9wx",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "ANALOGY",
+      "passageId": null,
+      "stem": "PINTOR es a PINCEL como…",
+      "options": [
+        {
+          "id": "A",
+          "text": "músico es a orquesta",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "escritor es a novela",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "cocinero es a receta",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "herrero es a martillo",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Relación de oficio y herramienta",
+          "content": "El pincel es la herramienta con la que trabaja el pintor. La misma relación se da entre el herrero y el martillo: es la herramienta con la que ejecuta su oficio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Comparando cada par con el modelo",
+          "content": "1) \"Músico / orquesta\": la orquesta es el grupo del que el músico forma parte, no su herramienta. 2) \"Escritor / novela\": la novela es el producto que crea, no el instrumento. 3) \"Cocinero / receta\": la receta es una guía de instrucciones, no una herramienta física. 4) \"Herrero / martillo\": herramienta con la que trabaja, igual que el pincel para el pintor. El error frecuente es elegir cualquier par relacionado con un oficio sin comprobar que la relación sea la MISMA (oficio-herramienta).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Analogías",
+          "content": "Una analogía se resuelve identificando la relación exacta del primer par y buscando el par que la reproduzca: puede ser parte-todo, causa-efecto, oficio-herramienta, objeto-función, etc. Repasa: relaciones semánticas y analogías verbales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuwvt000qcsj3qx8u5chm",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "ANALOGY",
+      "passageId": null,
+      "stem": "SEQUÍA es a LLUVIA como…",
+      "options": [
+        {
+          "id": "A",
+          "text": "incendio es a chispa",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "hambruna es a alimento",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "tormenta es a granizo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "inundación es a cauce",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un daño causado por la FALTA de algo",
+          "content": "La sequía es la situación dañina que se produce cuando falta la lluvia. La hambruna es la situación dañina que se produce cuando falta el alimento. En ambos pares, el primer término es la carencia del segundo llevada al extremo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras",
+          "content": "1) \"Incendio / chispa\": la chispa es lo que enciende el incendio, es decir, su causa o disparador, no algo que falte. 2) \"Hambruna / alimento\": desastre por ausencia de alimento, igual que sequía por ausencia de lluvia: correcta. 3) \"Tormenta / granizo\": el granizo es un elemento que forma parte de la tormenta, no algo que escasee. 4) \"Inundación / cauce\": la inundación ocurre cuando el agua rebasa el cauce, es decir, por EXCESO, no por falta; es la relación inversa, y por eso es el distractor más tentador. La relación del modelo es \"desastre por escasez\", no \"desastre relacionado con el agua\".",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Analogías de relación inversa",
+          "content": "Algunos distractores invierten la relación (exceso en vez de falta, efecto en vez de causa). Hay que fijar con precisión la relación del par modelo antes de comparar. Repasa: analogías y relaciones de oposición o carencia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuxj4000vcsj3c1vjau8y",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "En la oración «Llegó tarde, pero nadie le dijo nada», ¿qué clase de palabra es «pero»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Adverbio de cantidad o de modo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Preposición que introduce un complemento.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Conjunción adversativa.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Pronombre relativo con antecedente.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "\"Pero\" une dos ideas que se oponen",
+          "content": "\"Pero\" enlaza \"Llegó tarde\" con \"nadie le dijo nada\", dos ideas entre las que hay contraste (lo esperable sería que le dijeran algo). Una palabra que une elementos expresando oposición es una conjunción adversativa.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando las otras clases",
+          "content": "1) No es adverbio: no indica modo, tiempo, lugar ni cantidad, y no modifica a un verbo. 2) No es preposición: no introduce un complemento (\"de\", \"con\", \"para\"). 3) Conjunción adversativa es la respuesta: une y marca contraste, como \"sin embargo\" o \"aunque\". 4) No es pronombre relativo: no sustituye a un nombre ni encabeza una subordinada de relativo (como \"que\" o \"quien\"). La prueba: \"pero\" se puede cambiar por \"sin embargo\" sin romper la frase.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Clases de palabras: la conjunción",
+          "content": "Las conjunciones enlazan palabras u oraciones. Las coordinantes pueden ser copulativas (y), disyuntivas (o) o adversativas (pero, sino, sin embargo). Repasa: categorías gramaticales y tipos de conjunción.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuy6g0010csj3flhp8x4q",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "¿En cuál de las siguientes oraciones hay un caso de queísmo (supresión indebida de una preposición)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Estoy seguro que llegará temprano.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Me contó que no podía acompañarnos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Pienso que la propuesta es razonable.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Sabía que el examen sería difícil.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "\"Seguro\" pide \"de\": \"seguro DE que\"",
+          "content": "La construcción correcta es \"estar seguro DE algo\" y, por tanto, \"estoy seguro DE que llegará\". Al decir \"seguro que\" se suprime la preposición \"de\" que el adjetivo exige: eso es queísmo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Revisando el régimen de cada verbo",
+          "content": "1) \"Estoy seguro que…\" omite la \"de\" obligatoria: es queísmo. 2) \"Contar que\" no lleva preposición (\"me contó que…\"): está bien. 3) \"Pensar que\" tampoco lleva preposición: correcta. 4) \"Saber que\" no lleva preposición: correcta. Solo el primer caso corresponde a una expresión que rige \"de\". Truco: convierte la subordinada en \"eso\" — \"estoy seguro DE eso\" pide la \"de\"; \"pienso eso\" no.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Queísmo",
+          "content": "El queísmo es quitar una preposición necesaria antes de \"que\" (\"me acuerdo que\" por \"me acuerdo DE que\"). Su opuesto es el dequeísmo. Repasa: régimen preposicional; queísmo y dequeísmo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiuytt0015csj3fsh9nrzs",
+      "topicId": "cmrr1lhmm00blhi3n8rxfz5cc",
+      "topic": "Gramática",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "Selecciona la oración escrita correctamente.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Habían muchas personas esperando en la entrada.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Se los dije a ustedes que llegaran temprano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El problema es de que nadie avisó a tiempo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "A los invitados los recibió en la puerta.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La oración correcta duplica el objeto de forma normal",
+          "content": "\"A los invitados los recibió en la puerta\" está bien: cuando el complemento directo se coloca al principio, se repite con el pronombre \"los\". Es una construcción habitual y correcta.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Los errores de las otras",
+          "content": "1) \"Habían muchas personas\" es incorrecto: \"haber\" en este uso es impersonal y va en singular, \"Había muchas personas\". 2) \"Se los dije a ustedes\" mezcla el número: lo dicho es una sola cosa, así que es \"Se LO dije a ustedes\". 3) \"Es de que\" es dequeísmo: sobra la \"de\", \"El problema es que nadie avisó\". 4) \"A los invitados los recibió\" es la correcta. Cada distractor recoge un error frecuente distinto: haber impersonal, pronombre mal pluralizado y dequeísmo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Errores gramaticales frecuentes",
+          "content": "Conviene reconocer de un vistazo: \"haber\" impersonal siempre en singular; el pronombre \"lo/la/los/las\" concuerda con lo sustituido; no añadir \"de\" antes de \"que\" cuando el verbo no la pide. Repasa: usos de \"haber\", pronombres átonos y dequeísmo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiv50c000113hx1g3dl6kw",
+      "topicId": "cmrr1lh7300bjhi3nm5t9psa5",
+      "topic": "Ortografía",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "¿En qué opción todas las palabras están correctamente acentuadas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "exámen, huésped, fácil",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "examen, huésped, fácil",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "examen, huesped, facil",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "exámen, huesped, fácil",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Las tres son graves; solo dos llevan tilde",
+          "content": "\"Examen\" es grave terminada en \"n\": no lleva tilde. \"Huésped\" es grave terminada en \"d\": sí lleva tilde. \"Fácil\" es grave terminada en \"l\": sí lleva tilde. La opción que escribe \"examen\" sin tilde y \"huésped\" y \"fácil\" con tilde es la correcta.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Palabra por palabra",
+          "content": "\"Examen\": grave (llana) que acaba en \"n\", así que NO se acentúa; escribir \"exámen\" es un error muy común, por contagio del plural \"exámenes\", que sí es esdrújula. \"Huésped\": grave acabada en \"d\" (consonante distinta de n/s), lleva tilde. \"Fácil\": grave acabada en \"l\", lleva tilde. Solo la segunda opción respeta las tres reglas a la vez.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Reglas generales de acentuación",
+          "content": "Agudas: tilde si terminan en vocal, \"n\" o \"s\". Graves: tilde si NO terminan en vocal, \"n\" ni \"s\". Esdrújulas: siempre. Un cambio de número puede cambiar la clasificación. Repasa: acentuación de palabras agudas, graves y esdrújulas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiv5ob000613hx03z1oo50",
+      "topicId": "cmrr1lh7300bjhi3nm5t9psa5",
+      "topic": "Ortografía",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "¿Qué oración está escrita sin errores de ortografía?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El abogado tubo que revisar el expediente otra vez.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La tuvería del edificio se rompió durante la madrugada.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Ivan a firmar el contrato, pero al final se arrepintieron.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Estuvieron a punto de perder el vuelo por el tráfico.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Solo una oración escribe bien todas las formas de \"tener\" e \"ir\"",
+          "content": "\"Estuvieron a punto de perder el vuelo por el tráfico\" no tiene errores: \"estuvieron\" (de estar) y \"vuelo\" van con \"v\" correctamente.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Los errores de las otras",
+          "content": "1) \"Tubo\" es un objeto (un tubo de metal); la forma del verbo \"tener\" es \"tuvo\": \"tuvo que revisar\". 2) \"Tuvería\" está mal: la conducción de agua es \"tubería\", con \"b\" (de \"tubo\"). 3) \"Ivan a firmar\" confunde el nombre propio \"Iván\" con la forma verbal \"iban\" (de \"ir\"), que va con \"b\". 4) La cuarta oración está bien. Estos errores nacen de palabras que suenan igual pero se escriben distinto (tuvo/tubo, iban/Iván).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Uso de \"b\" y \"v\"; homófonos",
+          "content": "Muchos errores de b/v vienen de homófonos: \"tuvo\" (tener) frente a \"tubo\" (objeto); \"iba/iban\" (ir) frente a \"IVA\" o \"Iván\". Hay que pensar en el significado y en el verbo del que proviene la palabra. Repasa: ortografía de \"b\" y \"v\" y palabras homófonas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiv6cc000b13hxeu8qawz0",
+      "topicId": "cmrr1lh7300bjhi3nm5t9psa5",
+      "topic": "Ortografía",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "¿Qué oración está correctamente puntuada?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cuando termines el informe, avísame para revisarlo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Cuando termines el informe avísame, para revisarlo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Cuando termines, el informe avísame para revisarlo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cuando termines el informe: avísame para revisarlo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La coma va después de la subordinada que abre la oración",
+          "content": "Cuando una oración empieza con una subordinada (\"Cuando termines el informe\"), esta se separa con una coma del resto: \"Cuando termines el informe, avísame para revisarlo\".",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué las otras puntúan mal",
+          "content": "1) La coma tras \"informe\" marca bien el final de la subordinada inicial: correcta. 2) La coma después de \"avísame\" separa el verbo de su finalidad (\"para revisarlo\"), que no debe aislarse ahí. 3) La coma después de \"termines\" parte la subordinada por la mitad y deja \"el informe avísame\" sin sentido. 4) Los dos puntos no corresponden aquí: no introducen una enumeración, una cita ni una explicación. La regla clave es la de la subordinada antepuesta seguida de coma.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Uso de la coma",
+          "content": "Se pone coma tras las subordinadas y los complementos que se anteponen (\"Aunque llovía, salimos\"; \"Por la tarde, descansamos\"). No se separa el verbo de sus complementos con una sola coma. Repasa: la coma y sus usos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiv70c000g13hxd7kla9xu",
+      "topicId": "cmrr1lh7300bjhi3nm5t9psa5",
+      "topic": "Ortografía",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "¿Qué oración respeta el uso de mayúsculas y minúsculas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nos vemos el Martes para revisar el proyecto juntos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Vive en la Calle Reforma y estudia Medicina en la ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El río Nilo atraviesa varios países del norte de África.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Viajaré a parís durante las vacaciones de verano.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Nombre propio con mayúscula; lo demás, minúscula",
+          "content": "\"El río Nilo atraviesa varios países del norte de África\": \"Nilo\" y \"África\" son nombres propios y van con mayúscula; \"río\", \"países\" y \"norte\" son nombres comunes y puntos cardinales, que van con minúscula. Está bien.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Los errores de las otras",
+          "content": "1) \"Martes\" no lleva mayúscula: los días de la semana se escriben con minúscula. 2) \"Calle\" (genérico) va en minúscula (\"calle Reforma\") y \"medicina\", como nombre de disciplina, también: \"estudia medicina\". 3) La del río Nilo está correcta. 4) \"parís\" es nombre propio de ciudad y debe escribirse \"París\", con mayúscula. Recuerda: se escriben con minúscula días, meses, estaciones, disciplinas y puntos cardinales (salvo que formen parte de un nombre propio).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Uso de mayúsculas",
+          "content": "Llevan mayúscula inicial los nombres propios (personas, lugares, instituciones). Van con minúscula días, meses, estaciones, cargos, disciplinas y puntos cardinales usados como orientación. Repasa: uso de mayúsculas y minúsculas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiv7oh000l13hxqk89o97k",
+      "topicId": "cmrr1lh7300bjhi3nm5t9psa5",
+      "topic": "Ortografía",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "¿En qué oración el uso de la tilde diacrítica es correcto en todas las palabras?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No se si él quiere mas café que tú.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Sé que él quiere más café que tú.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Sé que el quiere mas café que tu.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "No sé si el quiere más cafe que tu.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada monosílabo lleva o no tilde según su función",
+          "content": "\"Sé que él quiere más café que tú\": \"sé\" es el verbo saber (con tilde), \"él\" es pronombre (con tilde), \"más\" indica cantidad (con tilde) y \"tú\" es pronombre (con tilde). Todas correctas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Revisando los diacríticos",
+          "content": "1) \"Se\" sin tilde es pronombre, pero aquí es el verbo \"sé\"; y \"mas\" sin tilde significa \"pero\", aquí hace falta \"más\" de cantidad. 2) La segunda opción acentúa bien los cuatro casos. 3) \"El\" sin tilde es artículo, pero aquí funciona como pronombre (\"él\"); \"mas\" y \"tu\" también están sin la tilde que necesitan. 4) \"Cafe\" sin tilde es un error aparte (es aguda terminada en vocal: \"café\"), y \"tu\" debería ser \"tú\". La tilde diacrítica distingue palabras iguales con función distinta.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tilde diacrítica",
+          "content": "Distingue pares como: \"tú\" (pronombre) / \"tu\" (posesivo); \"él\" / \"el\"; \"más\" (cantidad) / \"mas\" (pero); \"sé\" (verbo) / \"se\" (pronombre); \"sí\" / \"si\"; \"té\" / \"te\". Repasa: acento diacrítico en monosílabos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtbiv8cj000q13hx3oo0tnef",
+      "topicId": "cmrr1lh7300bjhi3nm5t9psa5",
+      "topic": "Ortografía",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "stem": "¿Qué opción está escrita correctamente?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Condujo con precaución para no exederse del límite de velocidad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La esposición sobre insectos atrajo a muchos estudiantes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El cirujano exhibió las radiografías antes de la intervención.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Tuvimos que rehacer el trabajo porque estaba mal echo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Solo una oración escribe bien \"j\", \"x\" y \"h\"",
+          "content": "\"El cirujano exhibió las radiografías antes de la intervención\": \"cirujano\" va con \"j\"; \"exhibió\" lleva \"x\" y \"h\"; \"radiografías\" está completa. No tiene errores.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Los errores de las otras",
+          "content": "1) \"Exederse\" está mal: es \"excederse\", con \"xc\" (de \"exceso\"). 2) \"Esposición\" debe ser \"exposición\", con \"x\". 3) La del cirujano está correcta. 4) \"Echo\" sin \"h\" es la forma del verbo \"echar\"; el participio de \"hacer\" es \"hecho\", con \"h\": \"el trabajo estaba mal hecho\". Estos errores se corrigen relacionando la palabra con su familia: exceso, exponer, hacer.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Grafías que se confunden: \"x\", \"s\", \"h\"",
+          "content": "Ayuda pensar en palabras de la misma familia: \"excederse\" (de exceso), \"exposición\" (de exponer), \"hecho\" (de hacer, con \"h\" como \"hacer, haré, harás\"). Repasa: uso de \"x\"/\"s\" y de la \"h\".",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}

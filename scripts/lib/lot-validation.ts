@@ -31,9 +31,16 @@ export interface LotItem {
   format: string;
   difficulty: string;
   explanations: LotExplanation[];
+  /** Clave del estímulo compartido (Passage) que este reactivo referencia.
+   *  null/ausente salvo en comprensión de lectura (G22). */
+  passageRef?: string | null;
 }
 
-export type LotViolationCode = 'MALFORMED_OPTIONS' | 'POSITION_SKEW' | 'LETTER_CITATION';
+export type LotViolationCode =
+  | 'MALFORMED_OPTIONS'
+  | 'POSITION_SKEW'
+  | 'LETTER_CITATION'
+  | 'PASSAGE_LINK';
 
 export interface LotViolation {
   code: LotViolationCode;
@@ -53,10 +60,17 @@ export interface LotReport {
   positionDistribution: Record<string, number>;
   formatDistribution: Record<string, number>;
   difficultyDistribution: Record<string, number>;
+  /** ref del pasaje → nº de reactivos que lo comparten (comprensión de lectura). */
+  passageGroups: Record<string, number>;
   letterCitations: LetterCitationHit[];
   violations: LotViolation[];
   ok: boolean;
 }
+
+/** Mínimo de preguntas que un texto compartido debe servir para que valga la
+ *  pena el modelo Passage — por debajo, el reactivo debería ser autocontenido
+ *  en el `stem`. El examen real agrupa 3-5. */
+export const MIN_QUESTIONS_PER_PASSAGE = 2;
 
 const OPTION_LETTERS = ['A', 'B', 'C', 'D'] as const;
 
@@ -114,6 +128,7 @@ export function analyzeLot(items: LotItem[]): LotReport {
   const positionDistribution: Record<string, number> = {};
   const formatDistribution: Record<string, number> = {};
   const difficultyDistribution: Record<string, number> = {};
+  const passageGroups: Record<string, number> = {};
   const letterCitations: LetterCitationHit[] = [];
   const violations: LotViolation[] = [];
 
@@ -130,6 +145,25 @@ export function analyzeLot(items: LotItem[]): LotReport {
 
     formatDistribution[item.format] = (formatDistribution[item.format] ?? 0) + 1;
     difficultyDistribution[item.difficulty] = (difficultyDistribution[item.difficulty] ?? 0) + 1;
+
+    // ── Vínculo pasaje ⇔ formato (G22): un texto compartido debe ir con
+    //    READING_COMPREHENSION y viceversa; se comprueba sin conocer la
+    //    respuesta correcta, igual que la distribución de posición. ──
+    const ref = item.passageRef ?? null;
+    const isReadingComp = item.format === 'READING_COMPREHENSION';
+    if (isReadingComp && !ref) {
+      violations.push({
+        code: 'PASSAGE_LINK',
+        detail: `Ítem #${i + 1}: formato READING_COMPREHENSION sin passage.ref — no puede vincularse a un texto compartido.`,
+      });
+    }
+    if (!isReadingComp && ref) {
+      violations.push({
+        code: 'PASSAGE_LINK',
+        detail: `Ítem #${i + 1}: trae passage.ref "${ref}" pero su formato es ${item.format}, no READING_COMPREHENSION.`,
+      });
+    }
+    if (ref) passageGroups[ref] = (passageGroups[ref] ?? 0) + 1;
 
     for (const exp of item.explanations) {
       if (citesByLetter(exp.title) || isBareLetterTitle(exp.title)) {
@@ -160,11 +194,21 @@ export function analyzeLot(items: LotItem[]): LotReport {
     }
   }
 
+  for (const [ref, count] of Object.entries(passageGroups)) {
+    if (count < MIN_QUESTIONS_PER_PASSAGE) {
+      violations.push({
+        code: 'PASSAGE_LINK',
+        detail: `El pasaje "${ref}" lo referencia solo ${count} reactivo(s) — un texto compartido debe servir a ≥${MIN_QUESTIONS_PER_PASSAGE} preguntas (el examen real agrupa 3-5); si es una sola, hazla autocontenida en el stem.`,
+      });
+    }
+  }
+
   return {
     total: items.length,
     positionDistribution,
     formatDistribution,
     difficultyDistribution,
+    passageGroups,
     letterCitations,
     violations,
     ok: violations.length === 0,
@@ -178,6 +222,9 @@ export function formatLotReport(report: LotReport): string {
   lines.push(`Distribución de posición de la respuesta correcta: ${JSON.stringify(report.positionDistribution)}`);
   lines.push(`Distribución de formato: ${JSON.stringify(report.formatDistribution)}`);
   lines.push(`Distribución de dificultad: ${JSON.stringify(report.difficultyDistribution)}`);
+  if (Object.keys(report.passageGroups).length > 0) {
+    lines.push(`Pasajes compartidos (ref → nº de preguntas): ${JSON.stringify(report.passageGroups)}`);
+  }
   if (report.total < POSITION_SKEW_MIN_LOT_SIZE) {
     lines.push(
       `⚠️  Lote de ${report.total} < ${POSITION_SKEW_MIN_LOT_SIZE}: el chequeo de sesgo de posición (15%-40%) no aplica por muestra insuficiente.`,
