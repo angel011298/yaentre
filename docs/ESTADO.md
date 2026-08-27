@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-26 · Última fase ejecutada: G20 (**COMPLETADA — lote de 35 reactivos de Química IPN MEDBIO (la materia de IPN con la mayor brecha real contra su `questionWeight`: 16 vs 0, contra 10 vs 0 de FISMAT Química). Insertados con `isVerified=false`. Banco 552 → 587 total; verificados sin cambio en 552; cola de verificación ciega 0 → 35. Los 13 reactivos de cálculo verificados ejecutando la aritmética en código (correcta + los 3 distractores de cada uno). Validador de lote de G3c en 0 violaciones (posición A9/B9/C9/D8, cita por contenido). Cero API de pago de Anthropic. Ver fila G20**)
+Última actualización: 2026-08-27 · Última fase ejecutada: G21 (**COMPLETADA — verificación ciega del lote de Química IPN MEDBIO de G20: 35/35 auto-aprobados, tasa de auto-aprobación 100 %. Banco 552 → 587 verificados; por primera vez el banco entero está verificado (587/587), con la cola de pendientes y la de discrepancias las dos en cero. 21 de los 35 se resolvieron ejecutando el cálculo en código (masas molares, moles, reactivo limitante, %m/m, Kc, pH/pOH contra Kw, titulación, Zeff por Slater, suma vectorial de dipolos, números de oxidación, conteo σ/π) con unicidad comprobada opción por opción; los 14 conceptuales se razonaron descartando cada distractor por su contenido. Química IPN MEDBIO: 0✓/35⧗ → 35✓/0⧗**)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G21 | Verificación ciega: Química IPN MEDBIO (G20) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 552 → 587 verificados** | (G21) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G20. **Aislamiento comprobado, no asumido:** no se leyó el commit `aa763fb` de G20, ni el JSON del lote, ni `Question.options`, ni la sección G20 de este documento antes de publicar; el único insumo fue el lote ciego regenerado en esta sesión (`pnpm content:blind-batch --all --limit 60` → `blind-batch-2026-08-27T01-57-51-887Z.json`, 35 ítems), sobre el que `grep` da **0 ocurrencias de `isCorrect`, `explanation` y `correctOption`**. **El flag `requiresCalculation` viene en `true` en los 35, pero es por MATERIA y no por reactivo** (`isCalcSubject()` lo deriva del nombre "Química"), así que el registro honesto es el que esta sesión declaró ítem por ítem: **`usedCalculation:true` en 21, `false` en 14**. **Los 21 con operación real se resolvieron EJECUTANDO el cálculo en código** (Python + `sympy`), con unidades explícitas y comprobando en el mismo script que **exactamente una** opción coincide (`assert len(hits) == 1`): masa molar de H₂SO₄, moles en 36 g de agua, reactivo limitante de 2H₂+O₂ (el H₂ limita → 4 mol, no los 6 que daría el O₂), rendimiento porcentual, %N en NH₄NO₃, balanceo entero mínimo de C₃H₈+O₂ por búsqueda con conservación de átomos, Kc de H₂+I₂⇌2HI, pH de HCl 0.01 M, [OH⁻] a pH 11 **comprobado contra Kw** (1.0e−14), volumen de titulación, promedio ponderado de isótopos del boro, neutrones por A−Z, conteo de pares libres del H₂O; y, en los que la respuesta es texto pero el criterio sí es calculable, **Zeff por reglas de Slater** a lo largo del periodo 3 (2.20 en Na → 6.10 en Cl, monótona), **suma vectorial de los dipolos del CO₂** (0 a 180° contra 1.224 a 104.5°), **equivalencia simbólica** de las cuatro expresiones de Kc, **Δn de moles de gas** para Le Chatelier, **números de oxidación del carbono funcional** (alcohol −1 → aldehído +1 = oxidación; ácido +3 → alcohol −1 = reducción) y **conteo σ/π por hibridación**. **Cero `NONE_VALID` y cero `MULTIPLE_VALID`.** Los 14 conceptuales se razonaron descartando cada distractor por su contenido — hallazgo de método que lo justifica: **dos opciones del reactivo redox dicen "agente reductor"** y la que se descarta lo justifica diciendo que el sodio "se reduce al ganar electrones", contradiciendo el enunciado (0 → +1); y el distractor "el carbono central no tiene pares libres" del CO₂ es **verdadero pero no es la razón**, por eso se calculó la cancelación vectorial en vez de razonarla de palabra. **Candado anti-deriva propio de esta sesión:** el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del contenido razonado y **abortaba sin escribir nada si la letra y el contenido no coincidían o si el fragmento no identificaba de forma única a esa opción** (con igualdad exacta, no subcadena, donde las opciones son números desnudos y "2" es subcadena de "12"); pasó en los 35. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100 %.** Confianza 0.99 en 32, 0.98 en 2 y 0.97 en 1; todas ≥0.85. `model: "claude-opus-5"`, el modelo que de verdad resolvió. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 587 totales · verificados **552 → 587** · pendientes **35 → 0** · sin veredicto **35 → 0** · sin publicar con veredicto 0 (sin cambio). **Es la primera vez que el banco entero queda verificado: 587/587 con las dos colas en cero.** Química IPN MEDBIO (`questionWeight=16`) pasó de **0✓/35⧗ a 35✓/0⧗**. **Seguimiento del hallazgo de G16 (rotación A→B→C→D de la letra correcta), medido ahora desde el lado ciego: el artefacto NO está presente en este lote** — solo **7 de 34** pares consecutivos siguen la rotación, contra ≈8.5 esperados al azar, frente a los 34/34, 27/34, 26/34 y 21/34 de los cuatro lotes que G16 documentó. Distribución de posición en el espacio ORIGINAL: **A=9, B=9, C=9, D=8** (25.7 %/25.7 %/25.7 %/22.9 %, dentro del rango 15 %-40 % de G3c); las elecciones en el espacio MEZCLADO fueron A=10/B=11/C=8/D=6, o sea el shuffle sí reordenó de verdad. El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a, G3d, G13 y G15**, igual que G16 lo dejó. `pnpm typecheck` y `pnpm lint` en verde; **cero cambios de código**. Scripts desechables (`scripts/g21-count.ts`, `scripts/g21-seqcheck.ts`) eliminados al terminar. |
 | G20 | Lote de reactivos: Química IPN MEDBIO (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G20) | Ver sección dedicada abajo. **Rama elegida con números reales consultados en vivo (Prisma directo contra Supabase + `pnpm content:coverage`):** las dos materias "Química" de IPN estaban en **0 reactivos** — FISMAT Química (`questionWeight=10`) y MEDBIO Química (`questionWeight=16`). La brecha absoluta contra el peso es mayor en **MEDBIO (16) que en FISMAT (10)**, y la regla de prioridad de G13/G15 ("IPN con <50 verificados, mayor `questionWeight` primero") también favorece a MEDBIO; además MEDBIO Química tiene **1 `SourceChunk`** (tema Química orgánica, `uam_cbs.pdf` p.54) frente a 0 de FISMAT. **9 temas del temario sembrado, 1 con fragmento fuente:** los 3 reactivos de Química orgánica citan `sourceChunks:[1]` de forma obligatoria (SOURCED, derivados genuinamente del fragmento — oxidación = pérdida de electrones, hibridación sp², deshidratación de dos alcoholes → éter); los otros 8 temas TEMARIO_ONLY (32 reactivos) sin bloquear la generación (F2b). **Cobertura repartida entre los 9 temas** (Estructura atómica 4, Tabla periódica 4, Enlace químico 4, Reacciones químicas 4, Estequiometría 5, Equilibrio químico 4, Ácidos y bases 4, Química orgánica 3, Bioquímica básica 3 = 35), con más peso a Estequiometría por ser el tema de mayor rendimiento en el examen real. **13 reactivos son de cálculo** (estequiometría de masa molar / moles / reactivo limitante / rendimiento / composición porcentual, balanceo, masa atómica promedio, pares de Lewis, Kc, pH y pOH, titulación): **los 13 verificados ejecutando la aritmética en un script** — un script calculó la respuesta correcta de cada uno Y cada uno de sus 3 distractores, confirmando que cada distractor corresponde a un error real y nombrable (división invertida, masa equivalente en vez de molar, olvidar ×100, reactivo limitante equivocado, reportar pOH como pH, exponente mal contado) y que exactamente una opción coincide con el valor calculado; las opciones numéricas quedaron en orden ascendente (convención de `_base.md`). **Distribución de posición diseñada con dos pasadas** (numéricas: letra determinada por el orden ascendente; 22 conceptuales: letra asignada para balancear y romper ciclos): **A=9, B=9, C=9, D=8** (25.7/25.7/25.7/22.9 %), las 4 dentro de 15-40 %. **Verificación explícita de que la secuencia NO es cíclica** (defecto que G16 halló en cuatro lotes anteriores): transiciones +1 en el ciclo A→B→C→D **20.6 %**, transiciones −1 **26.5 %**, ambas indistinguibles del azar (~25 %). **Validador de lote de G3c corrido y aprobado** (`content:validate-batch --dir` + `content:insert --lot-dir` en dry-run sobre los 9 archivos: `MALFORMED_OPTIONS` 0, `POSITION_SKEW` 0, `LETTER_CITATION` 0 — distractores citados siempre por su contenido, nunca por su letra; el simulador no baraja opciones para IPN). Insertado con `pnpm content:insert --lot-dir` tema por tema, **verificado con consulta directa a la DB, no solo el log**: Química IPN MEDBIO pasó de **0 a 35 reactivos** (0 verificados, correcto — esta sesión no verifica sus propios reactivos, por diseño del pipeline adversarial); banco global **552 → 587** total, verificados sin cambio en **552**, sin-veredicto **0 → 35**. Registro consolidado en `docs/content-batches/g20-ipn-medbio-quimica.json`. `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido). Cero llamadas a la API de pago de Anthropic — los 35 reactivos se redactaron directamente en esta sesión. Scripts desechables de consulta a la DB, verificación aritmética y exportación eliminados al terminar, junto con `scripts/g20-lote/`. |
 | G19 | Verificación ciega: Física IPN FISMAT (G18) y reparadas de G17 | **COMPLETADA — 112/112 auto-aprobados (100 %), banco 440 → 552 verificados** | (G19) | Ver sección dedicada abajo. Dos poblaciones resueltas en la misma pasada ciega pero **medidas por separado**: el lote nuevo de Física de G18 (35, `createdAt` = `updatedAt`) → **35/35 (100 %)**; y las 77 que G17 devolvió a la cola (37 REPARABLE editadas + 40 GENERADOR TENÍA RAZÓN; las 3 IRREPARABLE ya estaban borradas) → **77/77 (100 %)**, es decir **rescate total** del trabajo editorial de G17. Cohortes separadas por timestamps en la DB (`updatedAt > createdAt + 60 s`), partición disjunta y exhaustiva validada con `assert` contra los ids del lote ciego. **65 de 112 con la operación ejecutada en código** (unidades explícitas, comprobando que exactamente una opción coincide); los 47 restantes son conceptuales y van declarados `usedCalculation:false`, sin marcar `true` por inercia. **Ceguera comprobada, no asumida**: `grep -c "isCorrect\|explanation"` sobre el lote ciego → 0, y las consultas de estado seleccionaron solo metadatos, nunca `options`. **El 100 % se auditó antes de reportarlo**: 88/112 etiquetas ciegas tradujeron a un id distinto y la traducción es biyectiva (448 imágenes sin colisión), así que el barajado permutó de verdad y la tasa no es artefacto del arnés. Física IPN sale de CERO a 35 publicables; primera vez que el pipeline queda **sin nada en cola**. Hallazgo anotado, no bloqueante: dos reactivos duplicados (`H₂SO₄ + 2NaOH`) en temas distintos, ambos correctos y ambos aprobados — el defecto es del banco, no del reactivo. Caveat vigente: aislamiento **de sesión, no de modelo**; el muestreo de auditoría del 5 % sigue sin correrse. |
 | G18 | Lote de reactivos: Física IPN FISMAT (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G18) | Ver sección dedicada abajo. **Materia asignada explícitamente por el encargo, sin aplicar la regla de prioridad general**: Física de IPN FISMAT (`questionWeight=20`) llevaba en 0 reactivos desde antes de G13, mencionada como pendiente en G13/G14/G15 sin que ninguna fase la tomara — G18 la trabaja directo. **14 temas del temario sembrado, 1 con `SourceChunk` real** (Cinemática, `ceneval_exanii_i.pdf` p.9 — ejemplo conceptual que distingue velocidad de aceleración): sus 3 reactivos citan `sourceChunks:[1]` obligatoriamente (SOURCED); los 13 temas restantes, sin fragmento fuente, TEMARIO_ONLY (32 reactivos) sin bloquear la generación (F2b). **Cobertura repartida por relevancia declarada en el encargo** ("cinemática, dinámica, trabajo y energía, electricidad y magnetismo, ondas"): los 7 temas que ese listado nombra o agrupa (Cinemática, Dinámica, Trabajo y energía, Electrostática, Corriente eléctrica, Magnetismo, Ondas y sonido) reciben 3 reactivos cada uno (21); los 7 restantes (Momentum e impulso, Gravitación, Fluidos, Termodinámica, Óptica, Inducción electromagnética, Física moderna) reciben 2 cada uno (14) — total 35. **Todos los cálculos verificados EJECUTÁNDOLOS en código antes de redactar el texto final** (27 de los 35 reactivos son de cálculo): un script calculó la respuesta correcta de cada uno (MRUA, leyes de Newton, energía, momento lineal, ley de Coulomb, ley de Ohm, efecto Doppler, notación científica en física moderna, etc.) y un segundo script verificó ADEMÁS cada distractor individual, confirmando que cada uno corresponde a un error real y nombrable (factor olvidado, operación invertida, error de exponente) y que los 4 valores de cada reactivo son numéricamente distintos entre sí — un defecto de par de distractores idénticos se detectó y corrigió en esta verificación antes de redactar ningún JSON. **Distribución de posición diseñada con dos pasadas, no elegida a mano**: para los 27 reactivos numéricos se respetó la convención de `_base.md` (opciones numéricas en orden ascendente), así que la letra de la respuesta correcta es la que el ORDENAMIENTO real de los 4 valores determina, nunca una elección libre; los 8 reactivos conceptuales (sin opciones numéricas) sí se asignaron libremente, usados para balancear lo que los 27 numéricos dejaron sesgado. Resultado: **A=8 (22.9%) B=8 (22.9%) C=10 (28.6%) D=9 (25.7%)**, las 4 dentro de 15%-40%. **Verificación explícita de que la secuencia NO es cíclica** (el defecto real que G16 encontró y documentó en cuatro lotes anteriores): se midió la tasa de transiciones que avanzan +1 en el ciclo A→B→C→D a lo largo de los 35 — **17.6%**, y en sentido inverso **35.3%**, ambas estadísticamente indistinguibles de una secuencia aleatoria (p=0.89 y p=0.12; el umbral que delató a los lotes anteriores fue p<10⁻⁵). **Validador de lote de G3c corrido y aprobado** (`content:validate-batch --dir` + `content:insert --lot-dir` en dry-run sobre los 14 archivos, ambos con 0 violaciones tras corregir 1 falso-positivo propio: una unidad "°C)" partida por un `\text{}` de LaTeX hacía que el regex de cita-por-letra confundiera "C)" con "opción C)" — se unificó el bloque de unidad y el validador quedó en verde). Insertado con `pnpm content:insert --lot-dir` (sin `--dry-run`) tema por tema, verificado con consulta directa a la DB, no solo el log: Física IPN FISMAT pasó de **0 a 35 reactivos** (0 verificados, correcto — esta sesión no verifica sus propios reactivos, por diseño del pipeline adversarial); banco global **517→552** totales, verificados sin cambio en 440, sin-veredicto **77→112** (los 35 nuevos se suman a los 77 que G17 devolvió a la cola ciega). `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido). Cero llamadas a la API de pago de Anthropic. Scripts desechables de cálculo, verificación y consulta a la DB eliminados al terminar. |
@@ -2069,6 +2070,205 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G21 — Verificación ciega: Química IPN MEDBIO (2026-08-27)
+
+**COMPLETADA. 35 reactivos resueltos a ciegas — 35/35 auto-aprobados
+(100 %). Banco 552 → 587 verificados. Por primera vez el banco entero está
+verificado: 587/587, con la cola de pendientes y la de discrepancias las dos
+en cero.**
+
+Segunda mitad del ciclo adversarial de G2 sobre el lote de G20. Modo de
+trabajo: autónomo, sin preguntas.
+
+### 1) Aislamiento: comprobado, no asumido
+
+Esta sesión nunca vio una respuesta correcta antes de contestar:
+
+- **No se leyó el commit de G20** (`aa763fb`), ni el JSON del lote, ni
+  `Question.options`. `git log --oneline -5` sí se corrió, pero solo devuelve
+  asuntos de commit, no diffs.
+- Su sección de este documento (`## G20 — …`, línea 2073) se dejó sin abrir
+  hasta después de publicar.
+- Las consultas de estado que sí se corrieron seleccionaron **solo
+  metadatos** — `count`, `isVerified`, `verification`, taxonomía — nunca
+  `options`.
+- **Comprobación estructural del archivo ciego antes de abrirlo:**
+  `grep -c` sobre `blind-batch-2026-08-27T01-57-51-887Z.json` da **0** para
+  `isCorrect`, **0** para `explanation` y **0** para `correctOption`. El
+  conjunto completo de claves del archivo es
+  `questionId, institution, subject, topic, format, passage,
+  requiresCalculation, stem, options{label,text,imageUrl}` — no hay
+  superficie por donde se filtre la clave.
+
+Insumo único:
+
+```
+pnpm content:blind-batch --all --limit 60
+→ scripts/content-exports/blind-batch-2026-08-27T01-57-51-887Z.json  (35 ítems)
+```
+
+### 2) Resolución: la operación ejecutada, no estimada a ojo
+
+El lote llega con `requiresCalculation:true` en los 35, pero **ese flag es
+por MATERIA, no por reactivo** (`isCalcSubject()` en
+`scripts/lib/blind-verification.ts:52` lo deriva del nombre "Química"), así
+que no significa que los 35 tengan una operación que hacer. El registro
+honesto es el que esta sesión declaró ítem por ítem: **`usedCalculation:true`
+en 21 y `false` en 14.**
+
+**21 de 35 se resolvieron ejecutando el cálculo en código** (Python +
+`sympy`), con las unidades explícitas y comprobando en el mismo script que
+**exactamente una** de las cuatro opciones coincide con el resultado
+(`assert len(hits) == 1`) — ni `NONE_VALID` ni `MULTIPLE_VALID` en ninguno.
+Los 13 numéricos se contrastaron contra el valor extraído del LaTeX de cada
+opción; los 8 restantes tienen un criterio calculable aunque la respuesta sea
+texto, y también se calculó:
+
+| Reactivo | Lo que se ejecutó | Resultado |
+|---|---|---|
+| Neutrones de $^{37}_{17}$Cl | `A − Z` | 20 |
+| Masa atómica del boro | promedio ponderado `0.20·10.0 u + 0.80·11.0 u` | 10.8 u |
+| Configuración `1s²2s²2p⁶3s²3p³` | conteo de e⁻ totales, `n` máximo y e⁻ de valencia | 15 e⁻, periodo 3, grupo VA |
+| Serie isoelectrónica de 10 e⁻ | razón `Z/e⁻` de los cuatro iones | Mg²⁺ = 1.2, el más contraído |
+| Pares libres del H₂O | e⁻ de valencia → pares → pares menos enlazantes | 2 |
+| Radio a lo largo del periodo 3 | **Zeff por reglas de Slater**, Na→Cl | 2.20 → 6.10, monótona ↑ |
+| CO₂ no polar | **suma vectorial** de los dos dipolos de enlace | 0 a 180°, 1.224 a 104.5° |
+| Balanceo de C₃H₈ + O₂ | búsqueda de coeficientes enteros mínimos por conservación | 1, 5, 3, 4 → suma 13 |
+| Masa molar de H₂SO₄ | `2(1) + 32 + 4(16)` | 98 g/mol |
+| Moles en 36 g de agua | `n = m/M` | 2 mol |
+| H₂ + O₂ → H₂O | **reactivo limitante**: rendimiento por cada vía | H₂ limita → 4 mol |
+| Rendimiento porcentual | `40/50 × 100` | 80 % |
+| %N en NH₄NO₃ | `2(14)/80 × 100` | 35 % |
+| Expresión de $K_c$ | **equivalencia simbólica** (`sympy`) contra las 4 opciones | solo una coincide |
+| Le Chatelier por presión | `Δn` de moles de gas | 2 − 4 = −2 → hacia productos |
+| $K_c$ de H₂ + I₂ ⇌ 2HI | `[HI]²/([H₂][I₂])` en 1 L | 16 |
+| pH de HCl 0.01 M | `−log₁₀(0.01)` | 2 |
+| [OH⁻] a pH 11 | `pOH = 14 − pH`, comprobado contra `Kw` | 1×10⁻³ M (Kw = 1.0e−14 ✓) |
+| Titulación HCl/NaOH | `n = V·c`, estequiometría 1:1 | 10 mL |
+| Oxidación en química del carbono | **números de oxidación** del C funcional en los 4 casos | alcohol −1 → aldehído +1 = oxidación |
+| Carbono sp² | conteo σ/π por hibridación, para sp, sp² y sp³ | 3 σ a 120° + 1 π |
+
+Los **14 conceptuales** (isótopos, modelo cuántico, electronegatividad de los
+halógenos, enlace iónico, enlace metálico, tipo de reacción, neutralización
+de Arrhenius, agente reductor, catalizador, base conjugada, deshidratación
+intermolecular, ácidos nucleicos, enlace peptídico, enzimas) se razonaron
+**descartando cada distractor por su contenido**, no por eliminación
+superficial, y ese descarte quedó escrito en el `reasoning` de cada uno. Dos
+ejemplos de por qué el descarte importa aquí:
+
+- **Agente reductor:** dos de las cuatro opciones dicen "agente reductor". La
+  que se descarta lo justifica diciendo que el sodio "se reduce al ganar
+  electrones", que contradice el propio enunciado (0 → +1). La etiqueta
+  correcta con el razonamiento equivocado no basta.
+- **CO₂ no polar:** el distractor "el carbono central no tiene pares libres"
+  es una afirmación **verdadera**, pero no es la razón; lo que anula el
+  dipolo es la cancelación vectorial que da la geometría lineal, y por eso se
+  calculó la suma de vectores en vez de razonarla de palabra.
+
+### 3) Candado anti-deriva propio de esta sesión
+
+El archivo de respuestas **no se escribió a mano**. Un script
+(`g21_build_answers.py`, desechable) emparejó cada letra elegida con un
+**fragmento del contenido** que esta sesión había razonado, y abortaba
+—sin escribir nada— si la letra y el contenido no coincidían o si el
+fragmento no identificaba **de forma única** a esa opción. Para las opciones
+que son números desnudos (donde "2" es subcadena de "12") el candado exige
+igualdad exacta, no subcadena. Pasó en los 35, así que ningún acierto puede
+venir de un desfase de índice.
+
+### 4) Resultado
+
+```
+pnpm content:resolve --file scripts/content-exports/g21-answers.json
+→ ✅ Auto-aprobados: 35   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+**Tasa de auto-aprobación del lote: 35/35 = 100 %.**
+
+- Confianza declarada: **0.99 en 32**, 0.98 en 2 (CO₂ no polar, por el
+  distractor verdadero-pero-no-es-la-razón; y la deshidratación del etanol,
+  porque a temperatura más alta la misma reacción da eteno y lo que fija la
+  respuesta es el "entre dos moléculas" del enunciado) y 0.97 en 1 (la
+  definición de orbital, que en rigor es una función de onda y no una
+  región). Todas ≥ 0.85, el umbral de `MIN_CONFIDENCE`.
+- **0 reactivos con `problems`.**
+- `model: "claude-opus-5"` — el modelo que de verdad resolvió el lote, no la
+  constante de orquestación (el defecto que G14 anotó y G17 corrigió).
+
+### 5) Acumulado real, consultado en vivo contra Supabase (antes y después)
+
+| Métrica | Antes | Después |
+|---|---|---|
+| Reactivos totales | 587 | 587 |
+| Verificados | 552 | **587** |
+| Pendientes | 35 | **0** |
+| Sin veredicto | 35 | 0 |
+| Sin publicar con veredicto (discrepancias) | 0 | 0 |
+
+Química de IPN MEDBIO (`questionWeight=16`) pasó de **0✓/35⧗ a 35✓/0⧗**: la
+materia deja de estar en cero. Cobertura verificada por materia al cerrar
+esta fase:
+
+| Institución | Área | Materia | `weight` | Verificados |
+|---|---|---|---|---|
+| UNAM | CFMI | Matemáticas | 26 | 81 |
+| UNAM | CFMI | Física | 16 | 72 |
+| UNAM | CFMI | Química | 12 | 52 |
+| UNAM | CFMI | Español | 10 | 35 |
+| UNAM | CBQS | Biología | 14 | 65 |
+| UNAM | CBQS | Química | 8 | 72 |
+| IPN | FISMAT | Matemáticas | 24 | 70 |
+| IPN | FISMAT | Física | 20 | 35 |
+| IPN | MEDBIO | Biología | 22 | 70 |
+| IPN | MEDBIO | Química | 16 | **35** |
+
+### 6) Seguimiento del hallazgo de G16 (rotación de la letra correcta)
+
+G16 documentó que en los cuatro lotes de contenido de entonces la letra
+correcta **rotaba A→B→C→D** al ordenar por `id`, y que el validador de G3c no
+lo detecta porque solo mira la distribución marginal. Se midió lo mismo en
+este lote, ahora desde el lado ciego:
+
+- Secuencia por `id`: `ACBDABDCAABDCADBDCBDBCACBBCABDCADAC`
+- Pares consecutivos que siguen la rotación: **7 de 34**, contra ≈8.5
+  esperados al azar — es decir, **el artefacto NO está presente** (los cuatro
+  lotes de G16 daban 34/34, 27/34, 26/34 y 21/34).
+- Distribución de posición en el espacio ORIGINAL: **A=9, B=9, C=9, D=8**
+  (25.7 % / 25.7 % / 25.7 % / 22.9 %), dentro del rango 15 %–40 % de G3c.
+- Las elecciones de esta sesión en el espacio **MEZCLADO** fueron A=10, B=11,
+  C=8, D=6, o sea el shuffle determinista sí reordenó de verdad.
+
+El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a,
+G3d, G13 y G15** — reposicionar reactivos vivos sigue siendo decisión del
+dueño del proyecto, igual que G16 lo dejó.
+
+### 7) Higiene
+
+`pnpm typecheck` y `pnpm lint` en verde. **Cero cambios de código**: esta
+fase solo movió contenido en la DB y documentación. Scripts desechables
+(`scripts/g21-count.ts`, `scripts/g21-seqcheck.ts`, y los de cálculo en el
+scratchpad) eliminados al terminar; los archivos del lote y de respuestas
+viven en `scripts/content-exports/` (gitignored).
+
+### Siguiente (G21)
+
+1. **La cola de verificación quedó vacía y todo el banco publicado
+   (587/587).** La siguiente fase de contenido no tiene nada que verificar:
+   toca **componer**, no verificar.
+2. **La tercera pasada de auditoría (5 %) sigue sin ejecutarse nunca.** G17
+   agregó `content:audit-sample` y `content:audit-resolve` y probó el
+   muestreo en vivo (424 elegibles → 22 muestreados), pero **ningún reactivo
+   del banco ha pasado por ella todavía**. Ahora que los 587 están
+   verificados, es el momento natural de correrla — en una sesión ciega
+   dedicada, con un tier de modelo distinto.
+3. **Brechas de cobertura contra `questionWeight`**, con los números de
+   arriba: IPN FISMAT Física (20) e IPN MEDBIO Química (16) están en 35, los
+   dos valores más bajos del banco junto con UNAM Español (10, en 35). Las
+   demás materias de IPN ya rebasan 70.
+4. Pendientes menores arrastrados desde F4/G3b, todavía sin tocar:
+   `cmsfgf5ea0001k3lis0d0uzf9` (Números complejos, opción `$4-3$` mal
+   escrita) y las 2 citas-por-letra de UNAM Español y Física.
 
 ## G20 — Lote de reactivos: Química IPN MEDBIO (2026-08-26)
 
