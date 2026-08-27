@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-26 · Última fase ejecutada: G18 (**COMPLETADA — 35 reactivos originales de Física IPN FISMAT insertados con `isVerified=false`, repartidos en los 14 temas del tema­rio (3 SOURCED, 32 TEMARIO_ONLY), materia que salió de CERO. Distribución de posición A=8/B=8/C=10/D=9, sin patrón cíclico (verificado). Ver fila G18**)
+Última actualización: 2026-08-26 · Última fase ejecutada: G19 (**COMPLETADA — verificación ciega de 112 reactivos: los 35 de Física IPN FISMAT de G18 y las 77 devueltas a la cola por G17. 112/112 auto-aprobados (100 % en ambas cohortes, medidas por separado). Banco 440 → 552 verificados; pendientes y cola de discrepancias ambas en CERO. El 100 % se auditó contra un mezclado degenerado antes de reportarse. Ver fila G19**)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G19 | Verificación ciega: Física IPN FISMAT (G18) y reparadas de G17 | **COMPLETADA — 112/112 auto-aprobados (100 %), banco 440 → 552 verificados** | (G19) | Ver sección dedicada abajo. Dos poblaciones resueltas en la misma pasada ciega pero **medidas por separado**: el lote nuevo de Física de G18 (35, `createdAt` = `updatedAt`) → **35/35 (100 %)**; y las 77 que G17 devolvió a la cola (37 REPARABLE editadas + 40 GENERADOR TENÍA RAZÓN; las 3 IRREPARABLE ya estaban borradas) → **77/77 (100 %)**, es decir **rescate total** del trabajo editorial de G17. Cohortes separadas por timestamps en la DB (`updatedAt > createdAt + 60 s`), partición disjunta y exhaustiva validada con `assert` contra los ids del lote ciego. **65 de 112 con la operación ejecutada en código** (unidades explícitas, comprobando que exactamente una opción coincide); los 47 restantes son conceptuales y van declarados `usedCalculation:false`, sin marcar `true` por inercia. **Ceguera comprobada, no asumida**: `grep -c "isCorrect\|explanation"` sobre el lote ciego → 0, y las consultas de estado seleccionaron solo metadatos, nunca `options`. **El 100 % se auditó antes de reportarlo**: 88/112 etiquetas ciegas tradujeron a un id distinto y la traducción es biyectiva (448 imágenes sin colisión), así que el barajado permutó de verdad y la tasa no es artefacto del arnés. Física IPN sale de CERO a 35 publicables; primera vez que el pipeline queda **sin nada en cola**. Hallazgo anotado, no bloqueante: dos reactivos duplicados (`H₂SO₄ + 2NaOH`) en temas distintos, ambos correctos y ambos aprobados — el defecto es del banco, no del reactivo. Caveat vigente: aislamiento **de sesión, no de modelo**; el muestreo de auditoría del 5 % sigue sin correrse. |
 | G18 | Lote de reactivos: Física IPN FISMAT (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G18) | Ver sección dedicada abajo. **Materia asignada explícitamente por el encargo, sin aplicar la regla de prioridad general**: Física de IPN FISMAT (`questionWeight=20`) llevaba en 0 reactivos desde antes de G13, mencionada como pendiente en G13/G14/G15 sin que ninguna fase la tomara — G18 la trabaja directo. **14 temas del temario sembrado, 1 con `SourceChunk` real** (Cinemática, `ceneval_exanii_i.pdf` p.9 — ejemplo conceptual que distingue velocidad de aceleración): sus 3 reactivos citan `sourceChunks:[1]` obligatoriamente (SOURCED); los 13 temas restantes, sin fragmento fuente, TEMARIO_ONLY (32 reactivos) sin bloquear la generación (F2b). **Cobertura repartida por relevancia declarada en el encargo** ("cinemática, dinámica, trabajo y energía, electricidad y magnetismo, ondas"): los 7 temas que ese listado nombra o agrupa (Cinemática, Dinámica, Trabajo y energía, Electrostática, Corriente eléctrica, Magnetismo, Ondas y sonido) reciben 3 reactivos cada uno (21); los 7 restantes (Momentum e impulso, Gravitación, Fluidos, Termodinámica, Óptica, Inducción electromagnética, Física moderna) reciben 2 cada uno (14) — total 35. **Todos los cálculos verificados EJECUTÁNDOLOS en código antes de redactar el texto final** (27 de los 35 reactivos son de cálculo): un script calculó la respuesta correcta de cada uno (MRUA, leyes de Newton, energía, momento lineal, ley de Coulomb, ley de Ohm, efecto Doppler, notación científica en física moderna, etc.) y un segundo script verificó ADEMÁS cada distractor individual, confirmando que cada uno corresponde a un error real y nombrable (factor olvidado, operación invertida, error de exponente) y que los 4 valores de cada reactivo son numéricamente distintos entre sí — un defecto de par de distractores idénticos se detectó y corrigió en esta verificación antes de redactar ningún JSON. **Distribución de posición diseñada con dos pasadas, no elegida a mano**: para los 27 reactivos numéricos se respetó la convención de `_base.md` (opciones numéricas en orden ascendente), así que la letra de la respuesta correcta es la que el ORDENAMIENTO real de los 4 valores determina, nunca una elección libre; los 8 reactivos conceptuales (sin opciones numéricas) sí se asignaron libremente, usados para balancear lo que los 27 numéricos dejaron sesgado. Resultado: **A=8 (22.9%) B=8 (22.9%) C=10 (28.6%) D=9 (25.7%)**, las 4 dentro de 15%-40%. **Verificación explícita de que la secuencia NO es cíclica** (el defecto real que G16 encontró y documentó en cuatro lotes anteriores): se midió la tasa de transiciones que avanzan +1 en el ciclo A→B→C→D a lo largo de los 35 — **17.6%**, y en sentido inverso **35.3%**, ambas estadísticamente indistinguibles de una secuencia aleatoria (p=0.89 y p=0.12; el umbral que delató a los lotes anteriores fue p<10⁻⁵). **Validador de lote de G3c corrido y aprobado** (`content:validate-batch --dir` + `content:insert --lot-dir` en dry-run sobre los 14 archivos, ambos con 0 violaciones tras corregir 1 falso-positivo propio: una unidad "°C)" partida por un `\text{}` de LaTeX hacía que el regex de cita-por-letra confundiera "C)" con "opción C)" — se unificó el bloque de unidad y el validador quedó en verde). Insertado con `pnpm content:insert --lot-dir` (sin `--dry-run`) tema por tema, verificado con consulta directa a la DB, no solo el log: Física IPN FISMAT pasó de **0 a 35 reactivos** (0 verificados, correcto — esta sesión no verifica sus propios reactivos, por diseño del pipeline adversarial); banco global **517→552** totales, verificados sin cambio en 440, sin-veredicto **77→112** (los 35 nuevos se suman a los 77 que G17 devolvió a la cola ciega). `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido). Cero llamadas a la API de pago de Anthropic. Scripts desechables de cálculo, verificación y consulta a la DB eliminados al terminar. |
 | G17 | Triaje de la cola de discrepancias heredada | **COMPLETADA — 80 clasificadas: 37 REPARABLE, 40 GENERADOR TENÍA RAZÓN, 0 VERIFICADOR TENÍA RAZÓN, 3 IRREPARABLE (borrados)** | (G17) | Ver sección dedicada abajo. **Pasada editorial, no ciega, por diseño del encargo**: a diferencia de G14/G16, esta sesión SÍ vio la respuesta del generador y el veredicto completo del verificador para cada una de las 80 — su trabajo era juzgar cuál tenía razón, no resolver desde cero. Clasificación con criterios explícitos y consistentes (documentados en la sección dedicada): defectos mecánicamente reparables (reasignar `topicId`, quitar una glosa reveladora, corregir un valor objetivamente cierto usando notación ya dada en el enunciado) se repararon; complaints subjetivos sin defecto real (distractores "fáciles" sin pista estructural) se resolvieron a favor del generador; 3 reactivos irrecuperables sin inventar contenido nuevo se descartaron. **Las 77 reparadas + generador-tenía-razón quedaron con `verification=null` e `isVerified=false`**, re-entrando a la cola de verificación ciega (`content:blind-batch`) — **ninguna se auto-aprobó desde esta fase**, preservando la garantía adversarial. **3 defectos matemáticos/físicos REALES capturados y corregidos** (no solo cosméticos): un ítem de física con NONE_VALID genuino (la clasificación correcta —equilibrio indiferente— no estaba entre las opciones; se corrigió el texto de la opción y se reescribieron sus 3 explicaciones), y dos ítems de trigonometría con MULTIPLE_VALID genuino (dos identidades simultáneamente falsas, o dos ecuaciones de la ley de senos simultáneamente válidas; se corrigió un valor en cada uno para dejar una sola respuesta correcta). **Patrón sistémico encontrado y reparado, herencia de un lote anterior (probable G3d):** los 8 reactivos de Biología IPN MEDBIO en la cola tenían "CUE DE GLOSA" — la opción correcta era, en el 8/8, la ÚNICA con un paréntesis aclaratorio, permitiendo acertar sin saber biología; se quitó el paréntesis en los 8. **Distribución de posición de las 37 reparadas verificada (regla de G3c): A=12 (32.4%) B=12 (32.4%) C=7 (18.9%) D=6 (16.2%)** — dentro de 15%-40% sin necesidad de reordenar letras, porque ninguna reparación cambió qué opción es la correcta (salvo los 3 defectos reales, donde se corrigió el TEXTO de una opción no-correcta, nunca la letra marcada `isCorrect`). **Acumulado real, antes → después:** banco 520→517 totales (−3 borrados) · verificados 440→440 (sin cambio, correcto) · sin veredicto 0→77 (vuelven a la cola ciega) · sin publicar-con-veredicto 80→0 (la cola de discrepancias quedó en cero). **Dos pendientes de G14 corregidos de paso:** (1) el campo `model` del veredicto ya no hardcodea `VERIFIER_MODEL_TIER` — `VerifierAnswerSchema` gana `model` opcional (default retrocompatible) y `content-resolve-verification.ts` lo persiste tal cual, mismo patrón que `usedCalculation`. (2) El muestreo de auditoría 5% (`sampleForAudit`, `Question.verification.audit`) existía completo y testeado desde el pipeline original pero **ningún script lo invocaba — cero reactivos habían pasado nunca por la tercera pasada**; se agregaron `content:audit-sample` (selecciona el 5% vía `sampleForAudit`, probado en vivo: 424 elegibles → 22 muestreados) y `content:audit-resolve` (aplica el veredicto de la 3ª pasada a `verification.audit`, despublicando si degrada). **Deliberadamente NO se ejecutó la resolución de esa muestra en esta sesión**: esta sesión no es ciega (leyó los 80 veredictos completos), así que no puede ser la tercera pasada independiente — mismo criterio de aislamiento que G16. Queda documentado como trabajo pendiente de una sesión ciega dedicada. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**465/465**, +1 test nuevo para el default de `model`) en verde. Scripts desechables de consulta/aplicación eliminados al terminar; los dos scripts nuevos del pipeline (`content-audit-sample.ts`, `content-audit-resolve.ts`) SÍ se conservan. |
 | G16 | Verificación ciega del lote de G15 (2º intento, sesión limpia) | **COMPLETADA — 35/35 auto-aprobados (100%), banco 405 → 440 verificados** | (G16) | Ver sección dedicada abajo. Re-ejecución de G16 en una invocación de `claude` **nueva**, tal como pedía la nota "Siguiente" del intento abortado. **Aislamiento comprobado, no asumido:** no se leyó el commit de G15, ni `docs/content-batches/g15-ipn-medbio-biologia.json`, ni `Question.options`; el único insumo fue un lote ciego **regenerado en esta sesión** (`pnpm content:blind-batch --all --limit 50` → `blind-batch-2026-08-26T01-17-05-172Z.json`, 35 ítems), sobre el que `grep` da **0 ocurrencias de `isCorrect` y 0 de `explanation`**. **Los 35 son conceptuales (`requiresCalculation:false` en los 35, biología), pero los 3 con combinatoria real se resolvieron EJECUTANDO el cálculo en código,** no razonándolo en texto: cuadro de Punnett 4×4 completo para el dihíbrido AaBb×AaBb (16 casillas → A_B_=9, A_bb=3, aaB_=3, aabb=1 = 9:3:3:1), conteo de productos meióticos (2n → 2 células n → 4 células n) y balance de la gametogénesis (4 productos; 4 espermatozoides contra 4−3 cuerpos polares = 1 óvulo). Esos 3 llevan `usedCalculation:true` y los otros 32 `false` — el registro de auditoría dice exactamente lo que la sesión hizo (el campo que G14 arregló). **Los 35 se razonaron descartando cada distractor por su contenido**, no por eliminación superficial. **Candado anti-deriva propio de esta sesión:** el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del texto que se había razonado y **abortaba si la letra y el contenido no coincidían**; pasó en los 35, así que ningún acierto puede venir de un desfase de índice. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100%.** Confianza 0.99 en 33, 0.98 en 1 (importancia biológica de la meiosis) y 0.97 en 2 (homología ave-murciélago, y sinapsis química frente a la eléctrica como excepción); todas ≥0.85. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 520 totales · verificados **405 → 440** · sin veredicto **35 → 0** · sin publicar 80 (sin cambio, son discrepancias de lotes anteriores ajenas a este lote). Biología IPN MEDBIO pasó de **27✓/35⧗/8✋ a 62✓/0⧗/8✋** — cruzó el umbral de 50, como G15 anticipó, así que el siguiente lote debe re-consultar la brecha en vivo. **HALLAZGO REAL, ajeno al encargo, detectado al leer el log de resolución (ver sección dedicada):** la letra correcta **rota A→B→C→D** dentro de cada lote ordenado por id, en los **cuatro** lotes de contenido generados hasta hoy (G3a 34/34 = 100%, G3d 26/34, G13 27/34, G15 21/34, contra 25% esperado al azar; p entre 6.2e-6 y 3.4e-21). Los cuatro pasaron `POSITION_SKEW` con 9/9/9/8 porque **el validador sólo mira la distribución marginal, nunca el orden**. No invalida ningún reactivo (los 35 se resolvieron a ciegas y coincidieron uno por uno) y hoy no es explotable por un alumno, porque `src/lib/adaptive/selector.ts` baraja los reactivos antes de servirlos; pero es un artefacto de composición que debilita la señal de calidad y quedaría expuesto en cualquier ruta que sirva en orden estable. **No se corrigió: queda fuera del alcance de G16 y reposicionar los reactivos ya publicados de esos cuatro lotes es decisión del dueño del proyecto.** **Caveat honesto heredado, que sigue SIN corregir:** el veredicto persiste `model: VERIFIER_MODEL_TIER` (`'claude-fable-5'`), no el modelo que realmente resolvió (Opus 5) — mismo caveat que G14 anotó y decidió no ampliar de alcance; se mantiene esa decisión por consistencia, no por descuido. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**464/464**) en verde; cero cambios de código. Scripts desechables (`scripts/g16-count.ts`, `scripts/g16-seqcheck.ts`) eliminados al terminar. |
@@ -2067,6 +2068,179 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G19 — Verificación ciega: Física IPN FISMAT y las reparadas de G17 (2026-08-26)
+
+**COMPLETADA. 112 reactivos resueltos a ciegas — 112/112 auto-aprobados
+(100%). Banco 440 → 552 verificados; cola de pendientes y cola de
+discrepancias, ambas en CERO por primera vez.**
+
+El encargo pedía cerrar dos frentes en una sola pasada ciega: el lote nuevo
+de Física de G18 (35) y todo lo que G17 dejó marcado para re-verificación
+(77). Se resolvieron juntos en la misma sesión, pero se reportan y se miden
+**por separado**, porque son poblaciones distintas y mezclarlas escondería
+la tasa real de rescate.
+
+### 1) Aislamiento: comprobado, no asumido
+
+Esta sesión nunca vio una respuesta correcta antes de contestar. Lo que se
+hizo para garantizarlo, en orden:
+
+- **No se leyeron los commits de G17 ni de G18**, ni ningún JSON de lote, ni
+  `Question.options` con `isCorrect`. El único insumo fue el archivo del
+  lote ciego.
+- Las consultas de estado que sí se corrieron (para separar cohortes y medir
+  el acumulado) seleccionaron **solo metadatos** — `id`, `isVerified`,
+  `verification`, `createdAt`, `updatedAt`, taxonomía — nunca `options`.
+- **Comprobación estructural del archivo ciego antes de abrirlo**:
+  `grep -c "isCorrect\|explanation"` sobre `blind-g19.json` → **0**. Las
+  claves de cada ítem son exactamente `questionId, institution, subject,
+  topic, format, passage, requiresCalculation, stem, options{label,text,
+  imageUrl}`. No hay superficie por donde se filtre la clave.
+- La sección de G17 de este documento se leyó **después** de resolver y
+  publicar, únicamente para desglosar el reporte. Ya no había ceguera que
+  proteger.
+
+### 2) Separación de cohortes por timestamps (no por corazonada)
+
+Los 112 pendientes se partieron con un criterio verificable en la DB, sin
+abrir ningún lote:
+
+| Cohorte | n | `createdAt` | `updatedAt` | Criterio |
+|---|---|---|---|---|
+| Física nuevo (G18) | 35 | 2026-08-26 05:07–05:09 | = `createdAt` | nunca editado tras crearse |
+| Reparadas (G17) | 77 | 2026-07-21 / 2026-08-05 | 2026-08-26 02:33–02:34 | `updatedAt > createdAt + 60 s` |
+
+La partición es exhaustiva y disjunta (35 + 77 = 112) y se validó con un
+`assert` contra el conjunto de ids del lote ciego antes de resolver.
+
+Las 77 corresponden exactamente a lo que G17 devolvió a la cola: **37
+REPARABLE** (editadas) + **40 GENERADOR TENÍA RAZÓN** (contenido intacto,
+veredicto previo anulado). Las 3 IRREPARABLE de G17 ya se habían borrado y
+no aparecen aquí: 80 − 3 = 77.
+
+### 3) Resolución: cálculo ejecutado, no estimado a ojo
+
+**65 de 112** se resolvieron ejecutando la operación en código (Python:
+aritmética, `fractions`, `math`, `sympy` para derivada simbólica y sistemas),
+con unidades explícitas y comprobando que **exactamente una** opción
+coincide. Los 47 restantes son conceptuales puros (nomenclatura, biología
+descriptiva, semántica) y se razonaron sin cálculo, declarados con
+`usedCalculation:false` — el campo dice la verdad, no se marcó `true` por
+inercia.
+
+Ejemplos de lo que sí se ejecutó, no se supuso:
+
+- Doppler con fuente acercándose: `500·340/(340−34) = 555.56 Hz` — descarta
+  el distractor `454.5 Hz`, que es la fórmula con el signo invertido.
+- Fórmula molecular a partir de `M=28` y `85.7 % C`: se calculó el `%C` de
+  **las cuatro** opciones (75.0 / 80.0 / 81.8 / **85.7**) en vez de aceptar
+  la primera plausible.
+- `(√(3x+h) − √(3x))/h`: se verificó simbólicamente que la diferencia contra
+  la opción elegida es **0**, no se comparó de vista.
+- La ecuación de los dos salarios se **resolvió** (`x=18`) y se comprobó que
+  reconstruye los $456 000 del enunciado.
+- Balance de `H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O` átomo por átomo en ambos lados.
+
+### 4) Resultado, por cohorte
+
+| Cohorte | Resueltos | Auto-aprobados | Sin publicar | Tasa |
+|---|---|---|---|---|
+| **Física IPN FISMAT (lote nuevo G18)** | 35 | **35** | 0 | **100 %** |
+| **Reparadas de G17** | 77 | **77** | 0 | **100 %** |
+| Total G19 | 112 | 112 | 0 | 100 % |
+
+Las 77 se rescataron **todas**: las 37 editadas quedaron bien editadas y las
+40 que el generador siempre tuvo bien quedaron confirmadas por una segunda
+sesión independiente. El trabajo editorial de G17 se sostiene end-to-end.
+
+### 5) El 100 % se auditó antes de reportarlo
+
+Dos tasas de 100 % seguidas son justo el resultado que hay que desconfiar,
+porque también es lo que produciría un mezclado degenerado (si
+`translateChosenOption` devolviera siempre la opción correcta, cualquier
+respuesta "acertaría"). Se comprobó explícitamente que no es el caso:
+
+- **88 de 112** etiquetas ciegas tradujeron a un id de opción **distinto**
+  del elegido — el barajado sí permutó de verdad.
+- La traducción es una **biyección por reactivo**: 112 × 4 = **448**
+  imágenes distintas, sin colisiones.
+- El mezclado (`shuffleOptionsForQuestion`) es Fisher-Yates con semilla
+  derivada **solo del `questionId`** — no toca `isCorrect`, así que no puede
+  sesgarse hacia la respuesta correcta.
+
+Con eso, el 100 % es una medición real, no un artefacto del arnés.
+
+### 6) Acumulado REAL, consultado en vivo antes y después
+
+| Momento | Verificados | Pendientes | Cola de discrepancias |
+|---|---|---|---|
+| Antes de G19 | 440 | 112 | 0 |
+| Después de G19 | **552** | **0** | **0** |
+
+Desglose real por materia (`isVerified=true`, consultado, no estimado):
+
+| Institución / Materia | Verificados |
+|---|---|
+| UNAM / Química | 124 |
+| UNAM / Matemáticas | 81 |
+| UNAM / Física | 72 |
+| IPN / Biología | 70 |
+| IPN / Matemáticas | 70 |
+| UNAM / Biología | 65 |
+| UNAM / Español | 35 |
+| **IPN / Física** | **35** |
+| **TOTAL** | **552** |
+
+Física de IPN FISMAT sale de CERO a **35 publicables** — la materia que
+G13, G14 y G15 arrastraron como pendiente queda cerrada. Por primera vez
+desde que existe el pipeline, **no hay nada en cola**: ni pendientes de
+verificar, ni discrepancias sin resolver.
+
+### 7) Hallazgo: dos reactivos duplicados en el banco
+
+`cmrul0y5k003s13p9jr7ham8x` (tema *Reacciones químicas*) y
+`cmrul1p9e006a13p9goneclnw` (tema *Ácidos, bases y sales*) plantean **la
+misma reacción** `H₂SO₄ + 2NaOH` con las mismas cuatro opciones; solo cambia
+la redacción del enunciado. Ambos son correctos, así que ambos se aprobaron
+— **no se marcó `problems`**, porque el defecto no está en el reactivo sino
+en el banco, y bloquear contenido correcto por una duplicación no es
+decisión que le toque tomar a la sesión verificadora.
+
+Queda anotado para que una fase editorial decida: despublicar uno con
+`isVerified=false` (nunca borrar, guardrail de CLAUDE.md) o reescribir uno
+de los dos. No es bloqueante para el launch.
+
+### 8) Caveat honesto que sigue vigente
+
+Igual que en G14 y G16: el aislamiento aquí es **de sesión**, no de modelo.
+Quien compuso (G18) y quien verifica (G19) son sesiones independientes sin
+contexto compartido, pero corren sobre el mismo modelo base. Un error
+sistemático compartido por el modelo —no un descuido de contexto— podría
+sobrevivir a las dos pasadas. El muestreo de auditoría del 5 % con un tier
+distinto (`content:audit-sample`) sigue siendo la red que cubre ese hueco, y
+**sigue sin correrse**. Ahora que la cola está en cero, es el candidato
+natural para la siguiente fase.
+
+### 9) Limpieza
+
+Los scripts temporales de consulta (`scripts/_tmp-g19-*.ts`) se borraron tras
+usarse; el árbol queda sin residuos (`git status` limpio salvo `docs/ESTADO.md`).
+Los archivos de lote y respuestas viven en el scratchpad de la sesión, fuera
+del repo. Cero llamadas a la API de pago de Anthropic: todo el razonamiento
+ocurrió dentro de la sesión y todo el cálculo en Python local.
+
+### Siguiente (G19)
+
+1. **Muestreo de auditoría del 5 %** (`content:audit-sample` +
+   `content:audit-resolve`) con un tier de modelo distinto — es la única
+   verificación pendiente del pipeline y ya no compite con ninguna cola.
+2. Resolver la duplicación `H₂SO₄ + 2NaOH` de la sección 7.
+3. Con 552 verificados y cero pendientes, la siguiente brecha es de
+   **cobertura**, no de verificación: IPN/Física (35) y UNAM/Español (35)
+   son las materias más delgadas del banco.
+
+---
 
 ## G18 — Lote de reactivos: Física IPN FISMAT (2026-08-26)
 
