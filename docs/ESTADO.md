@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-27 · Última fase ejecutada: G22 (**COMPLETADA — lote de 35 reactivos de Español/Habilidad Verbal para IPN FISMAT `Español/Lectura`, `isVerified=false`, pendientes de verificación ciega. Institución elegida con números reales: IPN Español/Lectura estaba en 0 reactivos en las 3 ramas (0 SourceChunk, sin guía IPN), contra 35 verificados de UNAM Español — brecha normalizada por peso ~45 (IPN) vs ~31 (UNAM), y la de IPN en ramas de lanzamiento día 1. Primer lote del proyecto que usa el modelo `Passage`: 4 pasajes ORIGINALES (divulgación científica, argumentativo, narrativo, ensayístico) sirviendo 5 preguntas cada uno (20 `READING_COMPREHENSION`), + 4 completar oración, 2 analogías, 9 opción múltiple de gramática/ortografía. El pipeline G2 se extendió para soportar pasajes compartidos (`passage` en `QuestionDraftSchema`, regla `PASSAGE_LINK` en el validador de lote G3c, `findOrCreatePassage` en la inserción). Banco 587 → 622; verificados sin cambio (587); cola ciega 0 → 35; `passages` 0 → 4. Validador G3c en 0 violaciones; `pnpm typecheck`/`lint`/`test:unit` (474) en verde**)
+Última actualización: 2026-08-27 · Última fase ejecutada: G23 (**COMPLETADA — verificación ciega del lote de Español/Habilidad Verbal de G22: 35/35 auto-aprobados (100 %), banco 587 → 622 verificados. Segunda vez que el banco entero queda verificado: 622/622 con las dos colas en cero. Primer lote verbal del proyecto resuelto a ciegas y primero que ejercita pasajes compartidos por el lado verificador: los 20 `READING_COMPREHENSION` llegaron CON su `passage` íntegro (4 pasajes distintos, 5 preguntas cada uno) y SIN respuesta marcada — garantía comprobada con `grep`: 0 ocurrencias de `isCorrect`, `explanation`, `explanations` y `correctOption`, y las únicas claves por ítem son `questionId/institution/subject/topic/format/passage/requiresCalculation/stem/options`, con `label/text/imageUrl` por opción. Cero cálculo ejecutado (`usedCalculation:false` en los 35, coherente esta vez con el `requiresCalculation:false` que el pipeline deriva por materia): en su lugar, los 35 se resolvieron razonando por qué cada distractor es incorrecto, uno por uno. Cero ambigüedades genuinas: en los 35 hubo exactamente una opción defendible, así que cero `problems`, cero `MULTIPLE_VALID` y cero `NONE_VALID`. La tasa (100 %) es idéntica a la de los cuatro lotes de ciencias (G14, G16, G19, G21), pero la distribución de confianza sí difiere de forma marcada y es ahí donde aparece la señal verbal — ver el comentario comparativo en la sección dedicada. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código**)
 
 ## URL de producción actual
 
@@ -10,6 +10,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G23 | Verificación ciega: Español y Habilidad Verbal IPN FISMAT (G22) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 587 → 622 verificados** | (G23) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G22. **Aislamiento comprobado, no asumido:** no se leyó el commit `fd6e302` de G22, ni el JSON del lote, ni `Question.options`, ni la sección `## G22` de este documento (línea 2075, dejada sin abrir a propósito, mismo criterio que G21 con G20); el único insumo fue el lote ciego **regenerado en esta sesión** (`pnpm content:blind-batch --all --limit 60` → `blind-batch-2026-08-27T23-54-54-423Z.json`, 35 ítems). **Primer lote verbal y primera verificación ciega con pasajes compartidos:** los 20 `READING_COMPREHENSION` llegaron con su `passage` completo — condición necesaria para poder responderlos — y sin ninguna marca de respuesta; `grep` da **0** para `isCorrect`, `explanation`, `explanations` y `correctOption`. Las 10 ocurrencias de `correct`/`soluci` que aparecen en el archivo se auditaron una por una y **son prosa española legítima** ("completa correctamente la oración", "ofrece varias soluciones posibles"), no marcas de respuesta. **Método, distinto por necesidad al de los lotes de ciencias:** aquí no hay operación que ejecutar, así que `usedCalculation:false` en los 35 (y por primera vez eso **coincide** con `requiresCalculation`, que el pipeline derivó en `false` para los 35 vía `isCalcSubject("Español/Lectura")` — en G21 el flag venía en `true` por materia y hubo que declarar el desglose real a mano). El criterio de resolución fue el que pedía el encargo: para cada reactivo se razonó **por qué cada uno de los tres distractores es insostenible** y por qué la opción elegida es la única defendible, y ese razonamiento quedó persistido íntegro en `Question.verification.reasoning`. **Cero ambigüedades genuinas encontradas, y el estándar se aplicó de verdad, no por omisión:** el encargo pedía marcar como problema (en vez de forzar una elección) cualquier reactivo con dos opciones *igualmente* defendibles. Se sometieron a segunda pasada adversarial los cuatro casos más cerrados y en los cuatro sobrevivió una sola opción, por razones concretas y no por descarte superficial — el detalle está en la sección dedicada. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100 %.** **Candado anti-deriva propio de esta sesión** (mismo patrón que G16/G21): el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del contenido razonado y **abortaba sin escribir nada si la letra y el contenido no coincidían o si el fragmento no identificaba de forma única a esa opción**, con igualdad exacta por delante de la subcadena (indispensable aquí: la opción correcta de un reactivo de concordancia es literalmente `fue`, subcadena de su propio distractor `fueron`); pasó en los 35. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 622 totales · verificados **587 → 622** · pendientes **35 → 0** · sin veredicto **35 → 0** · sin publicar con veredicto 0 (sin cambio). `Español/Lectura` de IPN FISMAT (`questionWeight=4`) pasó de **0✓/35⧗ a 35✓/0⧗** en sus 4 temas (Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6). **Comentario comparativo pedido por el encargo:** la tasa NO difiere de la de ciencias (100 % en G14, G16, G19, G21 y ahora G23) — pero eso, dicho con honestidad, es porque **la métrica está saturada y hoy no discrimina nada**: cinco rondas ciegas seguidas al 100 %. Donde sí aparece la diferencia verbal es en la **confianza**: 14 de 35 reactivos por debajo de 0.99 (40 %), contra 3/35 en G21, 3/35 en G16 y 2/35 en G14 (≈8 %), y el **mínimo de 0.93 es el más bajo de cualquier ronda ciega del proyecto**. Lectura: el margen entre la opción correcta y el mejor distractor es genuinamente más delgado en lo verbal, aunque nunca llegó a cero. **Tres notas de composición para futuros lotes verbales** (observaciones, no defectos que bloqueen publicación): ver sección dedicada. **Seguimiento del hallazgo de G16 (rotación A→B→C→D de la letra correcta), medido desde el lado ciego: el artefacto NO está presente** — solo **6 de 34** pares consecutivos siguen la rotación, por debajo de los ≈8.5 esperados al azar (secuencia `CADBADBACBBDACDACBDCACBADBCADBDACBC`), frente a los 34/34, 27/34, 26/34 y 21/34 de los cuatro lotes que G16 documentó; segundo lote consecutivo limpio tras G21. Distribución de posición en el espacio ORIGINAL: **A=9, B=9, C=9, D=8** (25.7 %/25.7 %/25.7 %/22.9 %, dentro del rango 15 %-40 % de G3c); las elecciones en el espacio MEZCLADO fueron A=6/B=11/C=7/D=11, o sea el shuffle sí reordenó de verdad. El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a, G3d, G13 y G15**, igual que G16 y G21 lo dejaron. `pnpm typecheck` y `pnpm lint` en verde; **cero cambios de código**. Scripts desechables (`scripts/g23-count.ts`, `scripts/g23-seqcheck.ts`, `scripts/g23-build-answers.ts`) eliminados al terminar. |
 | G22 | Lote de reactivos: Español y Habilidad Verbal — IPN FISMAT `Español/Lectura` (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G22) | Ver sección dedicada abajo. **Institución elegida con números reales (Prisma/SQL directo contra Supabase):** IPN Español/Lectura = **0 reactivos** en las 3 ramas (FISMAT w4, MEDBIO w6, SOCADM w3), 10 temas, 0 SourceChunk, sin guía IPN ingerida; UNAM Español = **35 verificados** (todos Área 1, w10). Brecha normalizada por peso del banco (~3.5 verificados/punto de peso): IPN ~45 vs UNAM ~31, y la de IPN en ramas de lanzamiento día 1 en cero absoluto → **IPN**. Subrama: **FISMAT**, única de IPN cuyo temario cubre los 4 temas que el encargo pide (Ortografía, Gramática, Comprensión lectora, Análisis de textos). **Primer uso del modelo `Passage`:** 4 pasajes ORIGINALES (divulgación científica «Del teocintle al maíz», argumentativo «Más árboles en las ciudades», narrativo «La azotea», ensayístico «En defensa del aburrimiento»), 5 preguntas cada uno = 20 `READING_COMPREHENSION`; + 4 `SENTENCE_COMPLETION`, 2 `ANALOGY`, 9 `MULTIPLE_CHOICE`. **Extensión del pipeline G2** (código): campo `passage` en `QuestionDraftSchema`, regla de lote `PASSAGE_LINK` en `scripts/lib/lot-validation.ts` (RC⇔passage, ≥2 preguntas/pasaje), `findOrCreatePassage` + `passageId` en `content-db.ts`/`content-insert-drafts.ts`. Verificado en DB: banco 587→**622**, verificados **587** (sin cambio), cola ciega 0→**35**, `passages` 0→**4** (cada uno con exactamente 5 preguntas). Posición correcta A9/B9/C9/D8; sin rotación cíclica (17.6 % transiciones +1). Cero API de pago. |
 | G21 | Verificación ciega: Química IPN MEDBIO (G20) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 552 → 587 verificados** | (G21) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G20. **Aislamiento comprobado, no asumido:** no se leyó el commit `aa763fb` de G20, ni el JSON del lote, ni `Question.options`, ni la sección G20 de este documento antes de publicar; el único insumo fue el lote ciego regenerado en esta sesión (`pnpm content:blind-batch --all --limit 60` → `blind-batch-2026-08-27T01-57-51-887Z.json`, 35 ítems), sobre el que `grep` da **0 ocurrencias de `isCorrect`, `explanation` y `correctOption`**. **El flag `requiresCalculation` viene en `true` en los 35, pero es por MATERIA y no por reactivo** (`isCalcSubject()` lo deriva del nombre "Química"), así que el registro honesto es el que esta sesión declaró ítem por ítem: **`usedCalculation:true` en 21, `false` en 14**. **Los 21 con operación real se resolvieron EJECUTANDO el cálculo en código** (Python + `sympy`), con unidades explícitas y comprobando en el mismo script que **exactamente una** opción coincide (`assert len(hits) == 1`): masa molar de H₂SO₄, moles en 36 g de agua, reactivo limitante de 2H₂+O₂ (el H₂ limita → 4 mol, no los 6 que daría el O₂), rendimiento porcentual, %N en NH₄NO₃, balanceo entero mínimo de C₃H₈+O₂ por búsqueda con conservación de átomos, Kc de H₂+I₂⇌2HI, pH de HCl 0.01 M, [OH⁻] a pH 11 **comprobado contra Kw** (1.0e−14), volumen de titulación, promedio ponderado de isótopos del boro, neutrones por A−Z, conteo de pares libres del H₂O; y, en los que la respuesta es texto pero el criterio sí es calculable, **Zeff por reglas de Slater** a lo largo del periodo 3 (2.20 en Na → 6.10 en Cl, monótona), **suma vectorial de los dipolos del CO₂** (0 a 180° contra 1.224 a 104.5°), **equivalencia simbólica** de las cuatro expresiones de Kc, **Δn de moles de gas** para Le Chatelier, **números de oxidación del carbono funcional** (alcohol −1 → aldehído +1 = oxidación; ácido +3 → alcohol −1 = reducción) y **conteo σ/π por hibridación**. **Cero `NONE_VALID` y cero `MULTIPLE_VALID`.** Los 14 conceptuales se razonaron descartando cada distractor por su contenido — hallazgo de método que lo justifica: **dos opciones del reactivo redox dicen "agente reductor"** y la que se descarta lo justifica diciendo que el sodio "se reduce al ganar electrones", contradiciendo el enunciado (0 → +1); y el distractor "el carbono central no tiene pares libres" del CO₂ es **verdadero pero no es la razón**, por eso se calculó la cancelación vectorial en vez de razonarla de palabra. **Candado anti-deriva propio de esta sesión:** el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del contenido razonado y **abortaba sin escribir nada si la letra y el contenido no coincidían o si el fragmento no identificaba de forma única a esa opción** (con igualdad exacta, no subcadena, donde las opciones son números desnudos y "2" es subcadena de "12"); pasó en los 35. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100 %.** Confianza 0.99 en 32, 0.98 en 2 y 0.97 en 1; todas ≥0.85. `model: "claude-opus-5"`, el modelo que de verdad resolvió. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 587 totales · verificados **552 → 587** · pendientes **35 → 0** · sin veredicto **35 → 0** · sin publicar con veredicto 0 (sin cambio). **Es la primera vez que el banco entero queda verificado: 587/587 con las dos colas en cero.** Química IPN MEDBIO (`questionWeight=16`) pasó de **0✓/35⧗ a 35✓/0⧗**. **Seguimiento del hallazgo de G16 (rotación A→B→C→D de la letra correcta), medido ahora desde el lado ciego: el artefacto NO está presente en este lote** — solo **7 de 34** pares consecutivos siguen la rotación, contra ≈8.5 esperados al azar, frente a los 34/34, 27/34, 26/34 y 21/34 de los cuatro lotes que G16 documentó. Distribución de posición en el espacio ORIGINAL: **A=9, B=9, C=9, D=8** (25.7 %/25.7 %/25.7 %/22.9 %, dentro del rango 15 %-40 % de G3c); las elecciones en el espacio MEZCLADO fueron A=10/B=11/C=8/D=6, o sea el shuffle sí reordenó de verdad. El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a, G3d, G13 y G15**, igual que G16 lo dejó. `pnpm typecheck` y `pnpm lint` en verde; **cero cambios de código**. Scripts desechables (`scripts/g21-count.ts`, `scripts/g21-seqcheck.ts`) eliminados al terminar. |
 | G20 | Lote de reactivos: Química IPN MEDBIO (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G20) | Ver sección dedicada abajo. **Rama elegida con números reales consultados en vivo (Prisma directo contra Supabase + `pnpm content:coverage`):** las dos materias "Química" de IPN estaban en **0 reactivos** — FISMAT Química (`questionWeight=10`) y MEDBIO Química (`questionWeight=16`). La brecha absoluta contra el peso es mayor en **MEDBIO (16) que en FISMAT (10)**, y la regla de prioridad de G13/G15 ("IPN con <50 verificados, mayor `questionWeight` primero") también favorece a MEDBIO; además MEDBIO Química tiene **1 `SourceChunk`** (tema Química orgánica, `uam_cbs.pdf` p.54) frente a 0 de FISMAT. **9 temas del temario sembrado, 1 con fragmento fuente:** los 3 reactivos de Química orgánica citan `sourceChunks:[1]` de forma obligatoria (SOURCED, derivados genuinamente del fragmento — oxidación = pérdida de electrones, hibridación sp², deshidratación de dos alcoholes → éter); los otros 8 temas TEMARIO_ONLY (32 reactivos) sin bloquear la generación (F2b). **Cobertura repartida entre los 9 temas** (Estructura atómica 4, Tabla periódica 4, Enlace químico 4, Reacciones químicas 4, Estequiometría 5, Equilibrio químico 4, Ácidos y bases 4, Química orgánica 3, Bioquímica básica 3 = 35), con más peso a Estequiometría por ser el tema de mayor rendimiento en el examen real. **13 reactivos son de cálculo** (estequiometría de masa molar / moles / reactivo limitante / rendimiento / composición porcentual, balanceo, masa atómica promedio, pares de Lewis, Kc, pH y pOH, titulación): **los 13 verificados ejecutando la aritmética en un script** — un script calculó la respuesta correcta de cada uno Y cada uno de sus 3 distractores, confirmando que cada distractor corresponde a un error real y nombrable (división invertida, masa equivalente en vez de molar, olvidar ×100, reactivo limitante equivocado, reportar pOH como pH, exponente mal contado) y que exactamente una opción coincide con el valor calculado; las opciones numéricas quedaron en orden ascendente (convención de `_base.md`). **Distribución de posición diseñada con dos pasadas** (numéricas: letra determinada por el orden ascendente; 22 conceptuales: letra asignada para balancear y romper ciclos): **A=9, B=9, C=9, D=8** (25.7/25.7/25.7/22.9 %), las 4 dentro de 15-40 %. **Verificación explícita de que la secuencia NO es cíclica** (defecto que G16 halló en cuatro lotes anteriores): transiciones +1 en el ciclo A→B→C→D **20.6 %**, transiciones −1 **26.5 %**, ambas indistinguibles del azar (~25 %). **Validador de lote de G3c corrido y aprobado** (`content:validate-batch --dir` + `content:insert --lot-dir` en dry-run sobre los 9 archivos: `MALFORMED_OPTIONS` 0, `POSITION_SKEW` 0, `LETTER_CITATION` 0 — distractores citados siempre por su contenido, nunca por su letra; el simulador no baraja opciones para IPN). Insertado con `pnpm content:insert --lot-dir` tema por tema, **verificado con consulta directa a la DB, no solo el log**: Química IPN MEDBIO pasó de **0 a 35 reactivos** (0 verificados, correcto — esta sesión no verifica sus propios reactivos, por diseño del pipeline adversarial); banco global **552 → 587** total, verificados sin cambio en **552**, sin-veredicto **0 → 35**. Registro consolidado en `docs/content-batches/g20-ipn-medbio-quimica.json`. `pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo contenido). Cero llamadas a la API de pago de Anthropic — los 35 reactivos se redactaron directamente en esta sesión. Scripts desechables de consulta a la DB, verificación aritmética y exportación eliminados al terminar, junto con `scripts/g20-lote/`. |
@@ -2071,6 +2072,313 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G23 — Verificación ciega: Español y Habilidad Verbal, IPN FISMAT (2026-08-27)
+
+**Estado: COMPLETADA — 35/35 auto-aprobados (100 %), banco 587 → 622 verificados.**
+
+Segunda mitad del ciclo adversarial de G2 sobre el lote de G22. Es el **primer
+lote verbal del proyecto** que pasa por verificación ciega y el primero que
+ejercita el modelo `Passage` desde el lado del verificador.
+
+### 1) Aislamiento: comprobado, no asumido
+
+Modo de trabajo idéntico al de G21, con la misma disciplina de contexto:
+
+- **No** se leyó el commit `fd6e302` de G22.
+- **No** se leyó ningún JSON del lote ni `docs/content-batches/`.
+- **No** se leyó `Question.options` en ninguna consulta a la DB (las consultas
+  de conteo seleccionan `id`, `format`, `passageId`, `verification` y la
+  taxonomía; nunca `options`).
+- **No** se abrió la sección `## G22 — …` de este documento (línea 2075),
+  dejada deliberadamente sin abrir, mismo criterio que G21 aplicó con G20.
+- Lo único de G22 que sí entró en contexto fue el **encabezado de la línea 3**
+  y su fila de la tabla, que describen la *composición* del lote (35 reactivos,
+  4 pasajes, 20 de comprensión lectora, 4 de completar oración, 2 analogías,
+  9 de gramática/ortografía) pero **no revelan ni una sola respuesta correcta**.
+  Se declara aquí por transparencia: es metadato de composición, no clave.
+
+El único insumo para resolver fue el lote ciego **regenerado en esta sesión**:
+
+```
+pnpm content:blind-batch --all --limit 60
+→ scripts/content-exports/blind-batch-2026-08-27T23-54-54-423Z.json  (35 ítems)
+```
+
+**Garantía verificada sobre el archivo exportado, no dada por hecha:**
+
+| Comprobación | Resultado |
+|---|---|
+| `grep -c isCorrect` | **0** |
+| `grep -c explanation` / `explanations` | **0** / **0** |
+| `grep -c correctOption` | **0** |
+| Claves por ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Claves por opción | `label, text, imageUrl` |
+
+Las **10 ocurrencias** de las subcadenas `correct`/`soluci` se auditaron una
+por una: las 10 son prosa española legítima del enunciado o de una opción
+(«Selecciona la opción que completa **correctamente** la oración», «ofrece
+varias **soluciones** posibles»), no marcas de respuesta. Es la comprobación
+que ningún lote anterior había necesitado, porque en materias de ciencias esas
+subcadenas no aparecen en el texto natural del reactivo.
+
+### 2) Los pasajes llegaron completos y sin respuesta (tarea 1 del encargo)
+
+Requisito explícito del encargo: los reactivos de comprensión lectora debían
+llegar **con** su pasaje (sin él son irresolubles) pero **sin** la respuesta
+marcada. Ambas cosas se confirmaron sobre el archivo:
+
+- **20 ítems con `passage` no nulo**, y son exactamente los 20
+  `READING_COMPREHENSION` (`format === 'READING_COMPREHENSION' && passage` → 20).
+- **4 pasajes distintos**, 5 preguntas cada uno: divulgación científica
+  (domesticación del maíz a partir del teocintle), argumentativo (arbolado
+  urbano), narrativo (la azotea de la abuela) y ensayístico (el aburrimiento).
+- Los 15 restantes (4 `SENTENCE_COMPLETION`, 2 `ANALOGY`, 9 `MULTIPLE_CHOICE`)
+  llegan con `passage: null`, como corresponde.
+
+La extensión de pipeline que G22 introdujo (`passageContent` → `passage` en
+`buildBlindItem`) **funciona end-to-end**: es la primera vez que se ejercita
+desde el lado verificador, y no hizo falta tocar código.
+
+### 3) Método: descarte explícito de distractores, sin cálculo
+
+`requiresCalculation` vino en **`false` en los 35**, derivado por materia vía
+`isCalcSubject('Español/Lectura')`. Por primera vez ese flag **coincide** con
+lo que la sesión realmente hizo: `usedCalculation:false` en los 35. (En G21 el
+flag venía en `true` para los 35 por ser materia "Química" y hubo que declarar
+a mano el desglose real 21/14; aquí no hay discrepancia que declarar.)
+
+En su lugar, el encargo pedía razonar **por qué cada distractor es incorrecto**
+y por qué la opción elegida es la única defendible. Ese razonamiento se escribió
+reactivo por reactivo y quedó **persistido íntegro** en
+`Question.verification.reasoning` — no es un resumen ni una etiqueta: cada
+registro nombra los distractores por su contenido y da la razón concreta de su
+descarte. Ejemplos del tipo de descarte que se aplicó:
+
+- **Contradicción textual directa:** la opción «un grupo concreto de
+  agricultores diseñó a propósito el maíz» choca con el literal «nadie lo
+  diseñó»; la opción «se dispersaría con más facilidad gracias al viento»
+  choca con «ya no se soltaban ni se dispersaban solas».
+- **Contenido inventado:** «el teocintle se extinguió por completo», «el dinero
+  se usará para plantar árboles en otra ciudad», «los vecinos se encargan del
+  riego» — nada de eso está en los pasajes.
+- **Distractor que es la tesis refutada:** en el texto del arbolado, la opción
+  «agradables a la vista, pero cuestan demasiado» es *exactamente* la idea que
+  el autor califica de error en la primera línea.
+- **Distractor verdadero pero que no responde lo preguntado:** en «¿qué función
+  cumple el tercer párrafo?», «aporta cifras exactas» es falso porque el
+  párrafo no da ni una cifra — «menor», «más caro» son comparaciones
+  cualitativas.
+- **Error de categoría retórica:** «metáfora pura, porque reemplaza *ropa* por
+  *banderas*» se descarta señalando que el término real sigue presente y que
+  hay nexo comparativo expreso, que es justo lo que la metáfora pura excluye.
+- **Régimen y normativa, no intuición:** dequeísmo (`insistió de que`) frente a
+  queísmo (`estoy seguro que`), `haber` impersonal pluralizado, pluralización
+  indebida del CD (`se los dije` por `se lo dije`), y la regla de acentuación
+  de graves aplicada término a término (`examen` termina en -n → sin tilde;
+  `huésped` en -d y `fácil` en -l → con tilde).
+
+### 4) Ambigüedad genuina: buscada de verdad, no encontrada (tarea 2)
+
+El encargo advertía que este tipo de reactivo es más propenso a ambigüedad
+genuina y pedía **marcarla como problema en vez de forzar una elección**. El
+estándar que se aplicó es el del propio encargo: se marca cuando dos opciones
+son **igualmente** defendibles, no cuando una segunda opción simplemente tiene
+*alguna* defensa. Los cuatro casos más cerrados se sometieron a segunda pasada
+adversarial y en los cuatro sobrevivió una sola opción:
+
+1. **Conectores dobles (confianza 0.93, la más baja del lote).** Dos opciones
+   abren con un concesivo legítimo (`Aunque` y `Si bien`), así que el primer
+   hueco no discrimina. La decisión recae entera en el segundo: `; porque,
+   insistió…` es agramatical (una conjunción causal no funciona como conector
+   parentético entre comas) y además invierte la causalidad. `Aunque / además`
+   es la única combinación en que **ambos** huecos funcionan. Se consideró
+   también la lectura causal de `Como` («desveló, por eso reprobó»): es
+   construible, pero exige importar una premisa que el enunciado no da,
+   mientras que la lectura concesiva funciona con lo escrito. No son
+   igualmente defendibles → **no se marca**.
+2. **Concordancia `El conjunto de propuestas … ___ revisado` (0.97).** La
+   concordancia *ad sensum* en plural sería discutible en abstracto, pero el
+   participio `revisado` viene fijo en masculino singular dentro del enunciado
+   y cierra la puerta: las tres opciones plurales quedan descartadas por
+   concordancia interna, no por criterio de estilo.
+3. **«Usa ese dato para…» (0.96).** La opción elegida dice «un beneficio que
+   otros elementos urbanos no dan», mientras el pasaje afirma «funciones que
+   ningún otro elemento urbano ofrece *al mismo tiempo y al mismo costo*» — la
+   opción es **ligeramente más fuerte** que el pasaje. Aun así es la única que
+   describe la función del dato; las otras tres son falsas de plano. Se resuelve,
+   pero se deja anotada abajo como nota de composición.
+4. **Tipo de narrador (0.99).** El distractor «narrador testigo» es el fuerte, y
+   lo que lo descarta no es una impresión sino una frase concreta: «Pensó que
+   aquel pedazo de cemento… era el único jardín…», que no es observable desde
+   fuera.
+
+**Resultado: cero `problems`, cero `MULTIPLE_VALID`, cero `NONE_VALID`** en los
+35. Se registra explícitamente que el cero es resultado de haber buscado, no de
+no haber mirado.
+
+### 5) Candado anti-deriva
+
+Mismo patrón que G16/G21: el archivo de respuestas **no se escribió a mano**.
+Un script declaró, por reactivo, la letra elegida **y** un fragmento del
+contenido razonado, y **abortaba sin escribir nada** si el fragmento no
+identificaba de forma **única** a una opción o si la opción identificada no era
+la de la letra declarada. La igualdad exacta tiene prioridad sobre la subcadena,
+y aquí eso no fue teórico: la opción correcta del reactivo de concordancia es
+literalmente **`fue`**, subcadena de su propio distractor **`fueron`** — con
+emparejamiento por subcadena el candado habría reportado 2 coincidencias y
+abortado. Pasó en los 35, así que ningún acierto puede venir de un desfase de
+índice entre el razonamiento y la letra enviada.
+
+### 6) Resultado y acumulado real (consultado en vivo, no estimado)
+
+```
+pnpm content:resolve --file scripts/content-exports/g23-answers.json
+→ ✅ Auto-aprobados: 35   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+| Métrica | Antes | Después |
+|---|---|---|
+| Reactivos totales | 622 | 622 |
+| **Verificados** (`isVerified=true`) | **587** | **622** |
+| Pendientes | 35 | **0** |
+| Pendientes **sin veredicto** | 35 | **0** |
+| Sin publicar **con veredicto** | 0 | 0 |
+| `passages` | 4 | 4 |
+
+**Tasa de auto-aprobación: 35/35 = 100 %.** Confianza: 0.99 en 21, 0.98 en 8,
+0.97 en 4, 0.96 en 1 y 0.93 en 1; todas ≥0.85 (`MIN_CONFIDENCE`).
+`model: "claude-opus-5"`, el modelo que de verdad resolvió el lote.
+
+`Español/Lectura` de IPN FISMAT (`questionWeight=4`) pasó de **0✓/35⧗ a
+35✓/0⧗**, por tema: Comprensión lectora 10, Análisis de textos 10, Gramática 9,
+Ortografía 6. **El banco entero vuelve a quedar verificado: 622/622 con las dos
+colas en cero** — segunda vez, tras G21.
+
+### 7) Comentario comparativo con los lotes de ciencias (tarea 4)
+
+El encargo pedía comentar si la tasa de este lote difiere notablemente de la de
+los lotes de ciencias, porque eso indicaría que los reactivos verbales
+necesitan otro tratamiento en la composición. La respuesta honesta tiene dos
+partes:
+
+**(a) La tasa no difiere — pero la tasa ya no significa nada.**
+
+| Lote | Materia | Tasa |
+|---|---|---|
+| G14 | Matemáticas IPN FISMAT | 35/35 = 100 % |
+| G16 | Biología IPN MEDBIO | 35/35 = 100 % |
+| G19 | Física IPN FISMAT + reparadas de G17 | 112/112 = 100 % |
+| G21 | Química IPN MEDBIO | 35/35 = 100 % |
+| **G23** | **Español/Habilidad Verbal IPN FISMAT** | **35/35 = 100 %** |
+
+Cinco rondas ciegas consecutivas al 100 %. Concluir «los reactivos verbales
+están tan bien como los de ciencias» sería sobreleer: **la métrica está
+saturada y hoy no discrimina**. Un indicador que da el mismo valor máximo en
+todos los casos no puede detectar una diferencia entre casos. Esto no es un
+hallazgo de G23 —viene arrastrándose desde G14— pero G23 es la primera ronda
+sobre una materia de naturaleza distinta, así que es el punto donde conviene
+dejarlo escrito.
+
+**(b) Donde sí aparece la señal verbal es en la confianza.**
+
+| Lote | Reactivos con confianza <0.99 | Mínimo |
+|---|---|---|
+| G14 | 2/35 (5.7 %) | 0.97 |
+| G16 | 3/35 (8.6 %) | 0.97 |
+| G21 | 3/35 (8.6 %) | 0.97 |
+| **G23** | **14/35 (40 %)** | **0.93** |
+
+La diferencia es de casi 5× en proporción, y **0.93 es la confianza más baja
+registrada en cualquier ronda ciega del proyecto**. Lectura: en los reactivos
+verbales el margen entre la opción correcta y el mejor distractor es
+genuinamente más delgado, aunque en este lote **nunca llegó a cero**. Es
+exactamente el comportamiento que el encargo anticipaba, capturado por el campo
+de confianza y no por la tasa.
+
+**Recomendación para la composición de futuros lotes verbales.** No hace falta
+cambiar el tratamiento por motivo de la tasa. Sí conviene: (1) tratar la
+**confianza declarada**, y no la tasa, como el indicador vivo de calidad
+verbal, y vigilar si en lotes futuros aparecen valores que se acerquen a 0.85;
+y (2) atender las tres notas de abajo, que son de composición, no de
+verificación.
+
+### 8) Tres notas de composición (observaciones, no defectos)
+
+Ninguna bloquea publicación —los 35 tienen una sola respuesta defendible— pero
+las tres se registran porque afectan la calidad del lote como instrumento:
+
+1. **Una opción ligeramente más fuerte que su pasaje.** En el reactivo del dato
+   térmico, la opción correcta generaliza («un beneficio que otros elementos
+   urbanos no dan») más allá de lo que el pasaje afirma («funciones que ningún
+   otro elemento urbano ofrece *al mismo tiempo y al mismo costo*»). En un
+   reactivo de comprensión lectora, la clave debería quedar contenida dentro
+   de lo que el texto sostiene, sin ampliarlo.
+2. **Redundancia de competencia dentro de un mismo pasaje.** En el pasaje del
+   aburrimiento, «¿cuál es la intención comunicativa predominante?» y «¿qué
+   secuencia textual predomina?» miden esencialmente lo mismo y ambas se
+   resuelven identificando el texto como argumentativo. Con 5 preguntas por
+   pasaje, gastar dos en la misma competencia reduce la cobertura real.
+3. **Reactivos de dos huecos donde solo uno discrimina.** En el ítem de
+   conectores, dos de las cuatro opciones abren con un concesivo válido, así
+   que el primer hueco no aporta discriminación y todo el peso cae en el
+   segundo. Es legítimo por diseño, pero conviene que sea una decisión
+   consciente y no un efecto colateral.
+
+### 9) Seguimiento del hallazgo de G16 (rotación de la letra correcta)
+
+Medido desde el lado ciego, traduciendo las respuestas del orden mezclado al
+original: **el artefacto NO está presente en este lote.** Solo **6 de 34** pares
+consecutivos (ordenados por id) siguen la rotación A→B→C→D, por **debajo** de
+los ≈8.5 esperados al azar, frente a los 34/34, 27/34, 26/34 y 21/34 de los
+cuatro lotes que G16 documentó. Secuencia observada:
+`CADBADBACBBDACDACBDCACBADBCADBDACBC`. Es el **segundo lote consecutivo limpio**
+tras G21, lo que sugiere que la práctica de composición ya corrigió el patrón.
+
+Distribución de posición en el espacio **ORIGINAL**: **A=9, B=9, C=9, D=8**
+(25.7 % / 25.7 % / 25.7 % / 22.9 %), dentro del rango 15 %-40 % que exige
+`POSITION_SKEW` de G3c. Las elecciones de esta sesión en el espacio **MEZCLADO**
+fueron A=6 / B=11 / C=7 / D=11, o sea el shuffle determinista sí reordenó de
+verdad y las letras que vio el verificador no son las de la DB.
+
+El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a, G3d,
+G13 y G15**, igual que G16 y G21 lo dejaron: reposicionar reactivos ya
+publicados es decisión del dueño del proyecto, fuera del alcance de una sesión
+de verificación.
+
+### 10) Límite honesto de lo que esta verificación prueba
+
+La verificación ciega prueba que **existe una única opción defendible** en cada
+reactivo y que una sesión independiente llega a ella razonando. Para los
+reactivos verbales de comprensión lectora **no prueba** que los pasajes sean
+representativos del tipo de texto, la extensión y el registro que el IPN usa de
+verdad en su examen: los 4 pasajes son originales, escritos en G22, y su
+adecuación al examen real es una cuestión de fidelidad de fuente que ningún
+paso del pipeline actual mide. Queda anotado como límite conocido, no como
+defecto de este lote.
+
+### 11) Verificación técnica
+
+- `pnpm typecheck` → **verde**.
+- `pnpm lint` → **verde**.
+- **Cero cambios de código**: el árbol de trabajo quedó limpio salvo este
+  documento.
+- Scripts desechables (`scripts/g23-count.ts`, `scripts/g23-seqcheck.ts`,
+  `scripts/g23-build-answers.ts`) **eliminados al terminar**. Los archivos del
+  lote y de respuestas viven en `scripts/content-exports/` (gitignored).
+
+### Siguiente
+
+El banco queda **622/622 verificado, con la cola ciega y la de discrepancias en
+cero**. No hay verificación pendiente. El siguiente lote de contenido debe
+volver a consultar en vivo qué materia tiene la mayor brecha por peso
+(`pnpm content:coverage`), sin asumir los números de fases anteriores.
+
+Sigue pendiente, sin cambios desde G17, la **tercera pasada de auditoría (5 %)**:
+`content:audit-sample` y `content:audit-resolve` existen y están probados, pero
+ninguna sesión ciega dedicada los ha ejecutado todavía. Esta sesión **no** puede
+serlo para el lote de G22 (acaba de resolverlo, ya no es independiente de él).
+
 
 ## G22 — Lote de reactivos: Español y Habilidad Verbal, IPN FISMAT (2026-08-27)
 
