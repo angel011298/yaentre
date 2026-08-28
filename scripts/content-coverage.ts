@@ -14,7 +14,14 @@
  */
 import './lib/env';
 import { getPrisma, disconnect } from './lib/content-db';
+import { resolveSharedSubjectGroups } from '../src/lib/content/shared-subjects';
 
+/**
+ * Meta original de reactivos verificados+servibles (base: `questionWeight`
+ * prorrateado sobre las 270 de peso de todas las materias SUPERIOR).
+ * G26 recalculó la meta EFECTIVA considerando la reutilización de contenido
+ * entre áreas — ver `sharedGoal` abajo y docs/ESTADO.md §G26.
+ */
 const GOAL_VERIFIED = 1500;
 
 /** Umbral de salud del pipeline: por debajo, el generador necesita mejora. */
@@ -49,6 +56,54 @@ function parseExamFilter(argv: string[]): string | undefined {
 
 interface VerificationShape {
   decision?: string;
+}
+
+interface SubjectForGoal {
+  id: string;
+  examId: string;
+  weight: number;
+  sharedContentKey: string | null;
+  verified: number;
+}
+
+/**
+ * Meta EFECTIVA de contenido considerando la reutilización entre áreas (G26).
+ * Un "pool" es un grupo de materias con `sharedContentKey` común (o una
+ * materia suelta). Su meta = la meta de su celda de mayor peso (una vez que hay
+ * suficiente para el área más profunda, las demás áreas se cubren con el mismo
+ * pool). Devuelve la meta nueva y la cobertura efectiva (sin doble conteo).
+ */
+function computeSharedGoal(subjects: SubjectForGoal[]): {
+  goalNew: number;
+  covered: number;
+  gap: number;
+} {
+  const totalWeight = subjects.reduce((a, s) => a + s.weight, 0);
+  if (totalWeight === 0) return { goalNew: 0, covered: 0, gap: 0 };
+  const density = GOAL_VERIFIED / totalWeight;
+  const byId = new Map(subjects.map((s) => [s.id, s]));
+
+  let goalNew = 0;
+  let covered = 0;
+  for (const examId of new Set(subjects.map((s) => s.examId))) {
+    const examSubjects = subjects.filter((s) => s.examId === examId);
+    const groups = resolveSharedSubjectGroups(
+      examSubjects.map((s) => ({ subjectId: s.id, sharedContentKey: s.sharedContentKey })),
+    );
+    const seen = new Set<string>();
+    for (const s of examSubjects) {
+      const memberIds = [...(groups.get(s.id) ?? new Set([s.id]))].sort();
+      const poolId = memberIds.join('+');
+      if (seen.has(poolId)) continue;
+      seen.add(poolId);
+      const members = memberIds.map((id) => byId.get(id)!);
+      const poolTarget = Math.max(...members.map((m) => Math.round(m.weight * density)));
+      const poolHave = members.reduce((a, m) => a + m.verified, 0);
+      goalNew += poolTarget;
+      covered += Math.min(poolHave, poolTarget);
+    }
+  }
+  return { goalNew, covered, gap: goalNew - covered };
 }
 
 async function main() {
@@ -99,6 +154,7 @@ async function main() {
   let totalTopicsWithChunks = 0;
   let totalTopics = 0;
   const report: AreaRow[] = [];
+  const subjectsForGoal: SubjectForGoal[] = [];
 
   for (const area of areas) {
     const subjectRows: SubjectRow[] = [];
@@ -131,6 +187,13 @@ async function main() {
         }
       }
       subjectRows.push(row);
+      subjectsForGoal.push({
+        id: subject.id,
+        examId: area.examId,
+        weight: subject.questionWeight,
+        sharedContentKey: subject.sharedContentKey,
+        verified: row.verified,
+      });
       totalVerified += row.verified;
       totalPending += row.pendingResolution;
       totalAutoApproved += row.autoApproved;
@@ -189,7 +252,17 @@ async function main() {
   console.log(
     `TEMARIO CON FRAGMENTOS FUENTE: ${totalTopicsWithChunks}/${totalTopics} temas · ${totalTopics - totalTopicsWithChunks} aún sin fuente (correr pnpm content:scan-sources tras agregar material)`,
   );
-  console.log(`META 1,500 servibles: ${bar(totalVerified, GOAL_VERIFIED, 30)} ${goalPct}%`);
+  console.log(`META 1,500 (por celda): ${bar(totalVerified, GOAL_VERIFIED, 30)} ${goalPct}%`);
+
+  // G26: meta EFECTIVA con reutilización de contenido entre áreas.
+  const shared = computeSharedGoal(subjectsForGoal);
+  if (shared.goalNew > 0 && shared.goalNew !== GOAL_VERIFIED) {
+    const pct = Math.round((shared.covered / shared.goalNew) * 100);
+    console.log(
+      `META ${shared.goalNew} (efectiva, G26): ${bar(shared.covered, shared.goalNew, 30)} ${pct}%  ` +
+        `· brecha ${shared.gap} (~${Math.ceil(shared.gap / 35)} lotes) · ahorro vs 1,500: ${GOAL_VERIFIED - shared.goalNew}`,
+    );
+  }
   console.log('═'.repeat(72));
 }
 

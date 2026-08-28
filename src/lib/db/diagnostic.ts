@@ -2,6 +2,7 @@ import { Prisma, type ExamSession, type SessionStatus } from '@prisma/client';
 import { prisma } from './prisma';
 import * as sessionsDb from './sessions';
 import { computeCareerStrategy, type CareerStrategyResponse } from './adaptive';
+import { loadAreaSharedContent } from './shared-content';
 import { allocateDiagnosticQuestions, type SubjectAvailability } from '@/lib/diagnostic/distribution';
 import { isSessionStale, parseQuestionOptions } from '@/lib/sessions/scoring';
 
@@ -34,29 +35,42 @@ interface SubjectPool {
   questionIds: string[];
 }
 
-/** Pool de reactivos servibles del área, agrupado por materia (GUARDRAIL: usage SERVABLE + verificado). */
+/**
+ * Pool de reactivos servibles del área, agrupado por materia (GUARDRAIL: usage
+ * SERVABLE + verificado). G26: el pool de cada materia incluye los reactivos de
+ * las materias con contenido equivalente en otras áreas del mismo examen
+ * (`Subject.sharedContentKey`) — el diagnóstico de un área "vacía" (Español de
+ * Área 3, p. ej.) se arma con el contenido compuesto para la misma materia de
+ * otra área. El PESO sigue siendo el de la materia del área del alumno.
+ */
 async function loadAreaSubjectPools(areaId: string): Promise<SubjectPool[]> {
-  const subjects = await prisma.subject.findMany({
-    where: { areaId },
-    select: {
-      id: true,
-      questionWeight: true,
-      topics: {
-        select: {
-          questions: {
-            where: { usage: 'SERVABLE', isVerified: true },
-            select: { id: true },
-          },
-        },
-      },
-    },
+  const { areaSubjects, equivalentsBySubjectId } = await loadAreaSharedContent(areaId);
+  if (areaSubjects.length === 0) return [];
+
+  const allSubjectIds = [
+    ...new Set(areaSubjects.flatMap((s) => equivalentsBySubjectId.get(s.subjectId) ?? [s.subjectId])),
+  ];
+
+  const questions = await prisma.question.findMany({
+    where: { usage: 'SERVABLE', isVerified: true, topic: { subjectId: { in: allSubjectIds } } },
+    select: { id: true, topic: { select: { subjectId: true } } },
   });
 
-  return subjects.map((s) => ({
-    subjectId: s.id,
-    weight: s.questionWeight,
-    questionIds: s.topics.flatMap((t) => t.questions.map((q) => q.id)),
-  }));
+  const idsBySubject = new Map<string, string[]>();
+  for (const q of questions) {
+    const arr = idsBySubject.get(q.topic.subjectId);
+    if (arr) arr.push(q.id);
+    else idsBySubject.set(q.topic.subjectId, [q.id]);
+  }
+
+  return areaSubjects.map((s) => {
+    const equivalents = equivalentsBySubjectId.get(s.subjectId) ?? [s.subjectId];
+    return {
+      subjectId: s.subjectId,
+      weight: s.weight,
+      questionIds: equivalents.flatMap((sid) => idsBySubject.get(sid) ?? []),
+    };
+  });
 }
 
 export interface DiagnosticQuestionSet {
@@ -84,15 +98,18 @@ export async function buildDiagnosticQuestionSet(
 
   const allocation = allocateDiagnosticQuestions(availability, total);
 
-  const selected: string[] = [];
+  // Set: si dos materias del área compartieran un pool (no ocurre en la
+  // taxonomía actual, pero `SessionAnswer` es único por (sesión, reactivo)),
+  // un id repetido rompería la creación de la sesión — se descarta aquí.
+  const selected = new Set<string>();
   for (const pool of pools) {
     const count = allocation.get(pool.subjectId) ?? 0;
     if (count <= 0) continue;
-    selected.push(...shuffle(pool.questionIds).slice(0, count));
+    for (const id of shuffle(pool.questionIds).slice(0, count)) selected.add(id);
   }
 
   const subjectsCovered = [...allocation.values()].filter((c) => c > 0).length;
-  return { questionIds: shuffle(selected), subjectsCovered };
+  return { questionIds: shuffle([...selected]), subjectsCovered };
 }
 
 export type DiagnosticStartError = 'NO_TARGET' | 'NO_CONTENT';

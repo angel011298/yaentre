@@ -11,6 +11,7 @@
  */
 import './lib/env';
 import { prisma } from '../src/lib/db/prisma';
+import { resolveSharedSubjectGroups } from '../src/lib/content/shared-subjects';
 
 async function main() {
   console.log('🔍 AUDITORÍA REAL DE CONTENIDO — YaEntre\n');
@@ -145,6 +146,55 @@ async function main() {
   for (const [key, count] of [...emptyByArea.entries()].sort((a, b) => b[1] - a[1])) {
     console.log(`     ${key}: ${count} temas sin contenido`);
   }
+
+  // 5) Reutilización de contenido entre áreas (G26): grupos de materias que
+  //    comparten pool (misma `sharedContentKey` dentro de un examen).
+  const sharedSubjects = await prisma.subject.findMany({
+    select: {
+      id: true,
+      name: true,
+      sharedContentKey: true,
+      area: {
+        select: {
+          code: true,
+          exam: { select: { id: true, level: { select: { institution: { select: { code: true } } } } } },
+        },
+      },
+      topics: {
+        select: { questions: { where: { isVerified: true, usage: 'SERVABLE' }, select: { id: true } } },
+      },
+    },
+  });
+  const verifiedById = new Map(
+    sharedSubjects.map((s) => [s.id, s.topics.reduce((a, t) => a + t.questions.length, 0)]),
+  );
+  const nameById = new Map(sharedSubjects.map((s) => [s.id, s]));
+
+  console.log('\n5) REUTILIZACIÓN DE CONTENIDO ENTRE ÁREAS (G26):');
+  const examIds = [...new Set(sharedSubjects.map((s) => s.area.exam.id))];
+  let sharedGroupCount = 0;
+  for (const examId of examIds) {
+    const examSubjects = sharedSubjects.filter((s) => s.area.exam.id === examId);
+    const groups = resolveSharedSubjectGroups(
+      examSubjects.map((s) => ({ subjectId: s.id, sharedContentKey: s.sharedContentKey })),
+    );
+    const seen = new Set<string>();
+    for (const s of examSubjects) {
+      const memberIds = [...(groups.get(s.id) ?? new Set([s.id]))].sort();
+      if (memberIds.length < 2) continue;
+      const poolId = memberIds.join('+');
+      if (seen.has(poolId)) continue;
+      seen.add(poolId);
+      sharedGroupCount++;
+      const members = memberIds.map((id) => nameById.get(id)!);
+      const pooled = memberIds.reduce((a, id) => a + (verifiedById.get(id) ?? 0), 0);
+      const inst = members[0].area.exam.level.institution.code;
+      console.log(
+        `   ${inst} ${members[0].name} [${members.map((m) => m.area.code).join(', ')}] → pool compartido: ${pooled} verificados`,
+      );
+    }
+  }
+  console.log(`   Total de grupos compartidos: ${sharedGroupCount}`);
 
   console.log('\n✅ Auditoría completada contra la base de datos real.\n');
 

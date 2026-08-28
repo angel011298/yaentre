@@ -20,6 +20,8 @@ import {
   type CareerTarget,
   type StrategyResult,
 } from '@/lib/adaptive/career-strategy';
+import { aggregateSharedSubjectPerformance } from '@/lib/content/shared-subjects';
+import { loadAreaSharedContent, loadEquivalentSubjectIds } from './shared-content';
 import { recomputeStreak } from './streak';
 
 /**
@@ -118,41 +120,31 @@ export async function recomputeLearningProfile(
     select: {
       area: {
         select: {
+          id: true,
           exam: { select: { totalQuestions: true } },
-          subjects: { select: { id: true, questionWeight: true } },
         },
       },
     },
   });
   if (!career) return null;
 
-  const { exam, subjects } = career.area;
+  const { area } = career;
 
+  // G26: las materias del área CON su clave de contenido compartido, y el mapa
+  // de claves de TODO el examen — así una respuesta a una materia hermana
+  // (mismo temario, otra área) cuenta para la materia del área del alumno.
+  const shared = await loadAreaSharedContent(area.id);
   const answers = await loadFinishedAnswers(userProfileId);
 
-  // Aciertos e intentos acumulados por materia.
-  const bySubject = new Map<string, { correct: number; attempts: number }>();
-  for (const a of answers) {
-    const prev = bySubject.get(a.subjectId) ?? { correct: 0, attempts: 0 };
-    bySubject.set(a.subjectId, {
-      correct: prev.correct + (a.isCorrect ? 1 : 0),
-      attempts: prev.attempts + 1,
-    });
-  }
+  // TODAS las materias del área (las que el alumno no tocó — ni directamente ni
+  // por contenido compartido — entran con 0 intentos → default pesimista 0.30).
+  const perf: SubjectPerformance[] = aggregateSharedSubjectPerformance(
+    answers.map((a) => ({ subjectId: a.subjectId, isCorrect: a.isCorrect })),
+    shared.areaSubjects,
+    shared.keyBySubjectId,
+  );
 
-  // TODAS las materias del área (las que el alumno no tocó entran con 0
-  // intentos → default pesimista 0.30, bajando la predicción y la confianza).
-  const perf: SubjectPerformance[] = subjects.map((s) => {
-    const agg = bySubject.get(s.id) ?? { correct: 0, attempts: 0 };
-    return {
-      subjectId: s.id,
-      weight: s.questionWeight,
-      correct: agg.correct,
-      attempts: agg.attempts,
-    };
-  });
-
-  const prediction = predictScore({ subjects: perf, totalQuestions: exam.totalQuestions });
+  const prediction = predictScore({ subjects: perf, totalQuestions: area.exam.totalQuestions });
 
   const totalAttempts = answers.length;
   const totalCorrect = answers.reduce((acc, a) => acc + (a.isCorrect ? 1 : 0), 0);
@@ -187,6 +179,35 @@ export async function recomputeLearningProfile(
 const WEEK_MS = 7 * 24 * 3600 * 1000;
 
 /**
+ * Predice aciertos a partir de un conjunto de respuestas, agregándolas por la
+ * materia EQUIVALENTE del área del alumno (G26: una respuesta a una materia
+ * hermana con el mismo temario cuenta para la materia del área). Base común de
+ * los dos deltas del Entrómetro de abajo — el mismo método que
+ * `recomputeLearningProfile`, aplicado a un corte del historial.
+ */
+async function predictFromAnswers(
+  areaId: string,
+  totalQuestions: number,
+  answers: { subjectId: string; isCorrect: boolean }[]
+): Promise<number> {
+  const shared = await loadAreaSharedContent(areaId);
+  const perf = aggregateSharedSubjectPerformance(answers, shared.areaSubjects, shared.keyBySubjectId);
+  return predictScore({ subjects: perf, totalQuestions }).predictedScore;
+}
+
+/** Carrera meta del alumno resuelta a `{ areaId, totalQuestions }`, o null. */
+async function targetAreaForPrediction(
+  targetCareerId: string
+): Promise<{ areaId: string; totalQuestions: number } | null> {
+  const career = await prisma.career.findUnique({
+    where: { id: targetCareerId },
+    select: { area: { select: { id: true, exam: { select: { totalQuestions: true } } } } },
+  });
+  if (!career) return null;
+  return { areaId: career.area.id, totalQuestions: career.area.exam.totalQuestions };
+}
+
+/**
  * Cambio del Entrómetro respecto a hace una semana (F11 Task 2). NO existe
  * una tabla de historial de predicciones (y no se agrega una — CLAUDE.md
  * prohíbe tocar el schema sin instrucción explícita); en vez de eso, se
@@ -209,19 +230,8 @@ export async function computeWeekOverWeekDelta(
   });
   if (!profile?.targetCareerId || profile.learningProfile?.predictedScore == null) return null;
 
-  const career = await prisma.career.findUnique({
-    where: { id: profile.targetCareerId },
-    select: {
-      area: {
-        select: {
-          exam: { select: { totalQuestions: true } },
-          subjects: { select: { id: true, questionWeight: true } },
-        },
-      },
-    },
-  });
-  if (!career) return null;
-  const { exam, subjects } = career.area;
+  const target = await targetAreaForPrediction(profile.targetCareerId);
+  if (!target) return null;
 
   const weekAgo = new Date(now.getTime() - WEEK_MS);
 
@@ -238,24 +248,13 @@ export async function computeWeekOverWeekDelta(
 
   if (historicalAnswers.length === 0) return null;
 
-  const bySubject = new Map<string, { correct: number; attempts: number }>();
-  for (const a of historicalAnswers) {
-    const subjectId = a.question.topic.subjectId;
-    const prev = bySubject.get(subjectId) ?? { correct: 0, attempts: 0 };
-    bySubject.set(subjectId, {
-      correct: prev.correct + (a.isCorrect ? 1 : 0),
-      attempts: prev.attempts + 1,
-    });
-  }
+  const historical = await predictFromAnswers(
+    target.areaId,
+    target.totalQuestions,
+    historicalAnswers.map((a) => ({ subjectId: a.question.topic.subjectId, isCorrect: a.isCorrect }))
+  );
 
-  const perf: SubjectPerformance[] = subjects.map((s) => {
-    const agg = bySubject.get(s.id) ?? { correct: 0, attempts: 0 };
-    return { subjectId: s.id, weight: s.questionWeight, correct: agg.correct, attempts: agg.attempts };
-  });
-
-  const historical = predictScore({ subjects: perf, totalQuestions: exam.totalQuestions });
-
-  return profile.learningProfile.predictedScore - historical.predictedScore;
+  return profile.learningProfile.predictedScore - historical;
 }
 
 /**
@@ -278,19 +277,8 @@ export async function computeSessionPredictionDelta(
   });
   if (!profile?.targetCareerId || profile.learningProfile?.predictedScore == null) return null;
 
-  const career = await prisma.career.findUnique({
-    where: { id: profile.targetCareerId },
-    select: {
-      area: {
-        select: {
-          exam: { select: { totalQuestions: true } },
-          subjects: { select: { id: true, questionWeight: true } },
-        },
-      },
-    },
-  });
-  if (!career) return null;
-  const { exam, subjects } = career.area;
+  const target = await targetAreaForPrediction(profile.targetCareerId);
+  if (!target) return null;
 
   const beforeAnswers = await prisma.sessionAnswer.findMany({
     where: {
@@ -301,24 +289,13 @@ export async function computeSessionPredictionDelta(
 
   if (beforeAnswers.length === 0) return null;
 
-  const bySubject = new Map<string, { correct: number; attempts: number }>();
-  for (const a of beforeAnswers) {
-    const subjectId = a.question.topic.subjectId;
-    const prev = bySubject.get(subjectId) ?? { correct: 0, attempts: 0 };
-    bySubject.set(subjectId, {
-      correct: prev.correct + (a.isCorrect ? 1 : 0),
-      attempts: prev.attempts + 1,
-    });
-  }
+  const before = await predictFromAnswers(
+    target.areaId,
+    target.totalQuestions,
+    beforeAnswers.map((a) => ({ subjectId: a.question.topic.subjectId, isCorrect: a.isCorrect }))
+  );
 
-  const perf: SubjectPerformance[] = subjects.map((s) => {
-    const agg = bySubject.get(s.id) ?? { correct: 0, attempts: 0 };
-    return { subjectId: s.id, weight: s.questionWeight, correct: agg.correct, attempts: agg.attempts };
-  });
-
-  const before = predictScore({ subjects: perf, totalQuestions: exam.totalQuestions });
-
-  return profile.learningProfile.predictedScore - before.predictedScore;
+  return profile.learningProfile.predictedScore - before;
 }
 
 /**
@@ -376,14 +353,21 @@ const QUESTION_BANK_REVALIDATE_SECS = 300;
  * Pool de reactivos servibles del área (GUARDRAIL: usage SERVABLE + verificado).
  * F20 tarea 3: cacheado — no personalizado, mismo pool para cualquier alumno
  * del área, y se pide en CADA inicio de práctica/sesión adaptativa.
+ *
+ * G26: el pool incluye los reactivos de las materias con contenido equivalente
+ * en otras áreas del MISMO examen (`Subject.sharedContentKey`) — p. ej. un
+ * alumno de UNAM Área 3 practica Español con los reactivos compuestos para
+ * Español de Área 1, porque el temario oficial es el mismo.
  */
 const loadAreaServablePool = unstable_cache(
   async (areaId: string): Promise<SelectableQuestion[]> => {
+    const { poolSubjectIds } = await loadAreaSharedContent(areaId);
+    if (poolSubjectIds.length === 0) return [];
     const rows = await prisma.question.findMany({
       where: {
         usage: 'SERVABLE',
         isVerified: true,
-        topic: { subject: { areaId } },
+        topic: { subjectId: { in: poolSubjectIds } },
       },
       select: { id: true, topicId: true },
     });
@@ -444,11 +428,16 @@ export async function selectNextAdaptiveQuestions(
   }
 }
 
-/** Pool de reactivos servibles de UNA materia (GUARDRAIL: usage SERVABLE + verificado). Cacheado, ver loadAreaServablePool. */
+/**
+ * Pool de reactivos servibles de UNA materia (GUARDRAIL: usage SERVABLE +
+ * verificado). Cacheado, ver loadAreaServablePool. G26: incluye las materias
+ * con contenido equivalente (`Subject.sharedContentKey`) del mismo examen.
+ */
 const loadSubjectServablePool = unstable_cache(
   async (subjectId: string): Promise<SelectableQuestion[]> => {
+    const subjectIds = await loadEquivalentSubjectIds(subjectId);
     const rows = await prisma.question.findMany({
-      where: { usage: 'SERVABLE', isVerified: true, topic: { subjectId } },
+      where: { usage: 'SERVABLE', isVerified: true, topic: { subjectId: { in: subjectIds } } },
       select: { id: true, topicId: true },
     });
     return rows.map((r) => ({ id: r.id, topicId: r.topicId }));

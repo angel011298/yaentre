@@ -1,10 +1,10 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-28 · Última fase ejecutada: G25 (**COMPLETADA, con desviación declarada — el encargo pedía re-verificar "los reactivos reparados en G24"; **no existen**: G24 reparó código (el bug de `classifyReviewQueue`), no reactivos, y jamás marcó nada para re-verificación. Comprobado sin leer el commit de G24 ni ningún JSON de lote: `content:blind-batch --all` devuelve `0 reactivo(s) pendiente(s)`, y la consulta en vivo da 0 reactivos con `isVerified=false` (cola ciega 0, cola de discrepancias 0). **Tasa de rescate: N/A — 0 candidatas, 0 rescatadas**, denominador cero. En su lugar se ejecutó la pasada ciega que G24 dejó encargada como pendiente #3 y que nunca había corrido: la **auditoría 5 % de `session-v1`** (pool 606 → muestra 31, `Math.random` real). Ceguera comprobada estructuralmente (`isCorrect` y `explanations` ausentes del export; opciones re-etiquetadas). 31 resueltos desde cero, **15 con cálculo ejecutado en código** y 16 conceptuales con descarte de distractores por contenido. Resultado: **31/31 confirmados, 0 degradados**. `session-v1` pasa de **0 a 18 auditados** (5.8 % de 313) y el total auditado de 16 a 47, los 47 confirmados. **Acumulado real sin cambio y era el esperado: 622/622 verificados y servibles**, colas en cero — esta fase no publicó ni despublicó nada, solo escribió `verification.audit`. Caveat honesto: 12 de los 31 habían sido verificados en 2ª pasada por `claude-opus-5`, el mismo modelo de esta 3ª pasada — aislamiento de sesión sí, diversidad de tier no para ese subconjunto; el campo `model` declara lo que de verdad corrió. Observación editorial anotada sin degradar nada: en varios conceptuales la opción correcta es la más larga y la única que explica. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (476/476) en verde**)
+Última actualización: 2026-08-28 · Última fase ejecutada: G26 (**COMPLETADA — reutilización de contenido entre áreas. Las materias que varias áreas evalúan con el MISMO temario oficial (UNAM Español ×4, Inglés ×3, Química ×2; IPN Español ×3, Inglés ×3, Química ×2, Matemáticas ×2 — 7 grupos, 19 filas `Subject`) estaban duplicadas como filas separadas y se regeneraba el mismo contenido. Confirmado con las guías oficiales que el área solo cambia el PESO, no lo que se evalúa (UNAM: mismas 10 materias en las 4 áreas; IPN: bloque de "conocimientos generales" común a las 3 ramas). Mecanismo de mínimo impacto: **una columna nullable `Subject.sharedContentKey`** (migración 0011, aplicada en la DB real) — filas del mismo examen con la misma clave comparten su pool de reactivos verificados y servibles; nunca cruza instituciones. Cableado en el **selector adaptativo** (`loadAreaServablePool`, `loadSubjectServablePool`), el **diagnóstico y el simulador completo** (`loadAreaSubjectPools`), el **Entrómetro** (agregación por clave canónica en `recomputeLearningProfile` + los 2 deltas) y **progreso**. Módulo puro `src/lib/content/shared-subjects.ts` (15 tests). Verificado en vivo: el pool servible de UNAM Área 3 pasa de 0 a 35, el de Área 2 de 137 a 224. **Meta recalculada: 1 500 → ~1 220** (ahorro ~280, 18.6 %); **brecha 878 → 659** = de 26 lotes/52 sesiones a **19 lotes/38 sesiones** (~7 lotes ≈ ~14 sesiones menos). No es "la mitad" — Matemáticas/Física/Biología (~55 % del peso) son de un área y no se comparten. UNAM Química (124≥67) e IPN Español (35≥33) ya quedan COMPLETOS por reutilización. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**491/491**, +15) en verde**)
 
-<details><summary>Historial: G24 (2026-08-27)</summary>
+<details><summary>Historial: G25 (2026-08-28)</summary>
 
-Última fase ejecutada: G24 (**COMPLETADA — balance del banco y triaje de cola, pasada editorial. Estado consolidado consultado en vivo contra Supabase: banco 622/622 verificados y servibles (`isVerified=true` + `usage=SERVABLE`), **las dos colas en cero** (ciega 0, discrepancias 0) — la "cola acumulada" que el encargo pedía limpiar no existe, se vació en G19 y sigue vacía. Nada auto-aprobado por esta fase. Distribución de posición dentro de banda 15–40 % en las dos instituciones y en las 11 materias con contenido — el sesgo de G8 NO reapareció; sí sigue presente y sin corregir el artefacto de ROTACIÓN de G16 (IPN Matemáticas 61/69 pares consecutivos A→B→C→D, IPN Biología 47/69), decisión del dueño. SOURCED 207 (33 %) / TEMARIO_ONLY 415 (67 %). Brecha a la meta de 1 500: **878 reactivos = 26 lotes de 35 = ~52 sesiones**; al ritmo con el que el pipeline ha existido (13,6 verificados/día, ya incluyendo la pausa de 19 días de agosto) alcanza para el 21-nov con ~3 semanas de margen; al ritmo calendario completo (9,9/día) lo pierde por ~3 días — **es borde, sin margen para otra pausa de varias semanas**. Top-5 materias por brecha: IPN FISMAT Química (56, EN CERO), IPN FISMAT Física (76), IPN FISMAT Matemáticas (63), IPN MEDBIO Química (54), UNAM A1 Matemáticas (63). Auditoría 5 %: mecanismo probado (pool 606 → muestra 31), **bug real hallado y corregido** — `classifyReviewQueue` descartaba un reactivo degradado por la 3ª pasada (queda `isVerified=false` pero `decision:'AUTO_APPROVED'`), volviéndolo invisible en el panel F3; el pipeline `adversarial-v1` de F4 sí auditó 16/309 en su día, `session-v1` (G2+) tiene 0/313 auditados. 2 duplicados reales anotados. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (476/476) en verde**)
+Última fase ejecutada: G25 (**COMPLETADA, con desviación declarada — el encargo pedía re-verificar "los reactivos reparados en G24"; **no existen**: G24 reparó código, no reactivos. Comprobado sin leer el commit de G24: `content:blind-batch --all` devuelve `0 pendiente(s)`, 0 reactivos con `isVerified=false`. En su lugar se ejecutó la pasada ciega que G24 dejó encargada: la **auditoría 5 % de `session-v1`** (pool 606 → muestra 31, `Math.random` real). Ceguera comprobada estructuralmente. 31 resueltos desde cero, 15 con cálculo ejecutado. **31/31 confirmados, 0 degradados**. `session-v1` pasa de 0 a 18 auditados; total auditado 16 → 47. Banco sin cambio: **622/622 verificados y servibles**, colas en cero. Caveat: 12 de los 31 fueron 2ª-verificados por `claude-opus-5`, el mismo modelo de esta 3ª pasada — aislamiento de sesión sí, diversidad de tier no. `pnpm test:unit` 476/476 en verde**)
 
 </details>
 
@@ -16,6 +16,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G26 | Reutilización de contenido entre áreas | **COMPLETADA — mecanismo `Subject.sharedContentKey` (migración 0011), 7 grupos / 19 filas; selector, diagnóstico, simulador y Entrómetro cableados; meta 1 500 → ~1 220, brecha 878 → 659** | (G26) | Ver sección dedicada abajo. Una columna nullable, sin tocar `Question` ni `Topic`. Confirmado con guías oficiales que el área solo cambia el peso. `test:unit` 491/491 (+15). |
 | G25 | Verificación ciega: auditoría 5 % de `session-v1` | **COMPLETADA con desviación declarada — no había "reparadas de G24" que verificar (cola en cero); se ejecutó la auditoría 5 %: 31/31 confirmados, 0 degradados, banco 622/622 sin cambio** | (G25) | Ver sección dedicada abajo. La premisa del encargo era falsa y se comprobó sin leer el commit de G24. `session-v1` pasa de 0 a 18 auditados. |
 | G24 | Balance del banco y triaje de cola | **COMPLETADA — banco 622/622, colas en cero, brecha 878 (26 lotes), 1 bug de auditoría corregido** | (G24) | Ver sección dedicada abajo. **Pasada editorial** (no ciega, por diseño del encargo: aquí sí se ven las respuestas del generador y del verificador, el trabajo es juzgar cuál tiene razón — igual que G17). Estado consolidado con números reales de la DB (`scripts/g24-consolidate.ts`, desechable, solo lectura). **Banco: 622 reactivos, 622 verificados, 622 servibles (`usage=SERVABLE`), todos `GENERATED`.** **Las dos colas en cero** — cola ciega 0, cola de discrepancias 0: la "cola acumulada" que el encargo pedía triar **no existe**, se vació por completo en G19 (77 reparadas de G17 re-verificadas) y G21/G23 la mantuvieron vacía. Cero reactivos con `isVerified=false`. **Ningún reactivo auto-aprobado por esta fase** (no había nada que aprobar). Desglose por institución/área/materia: IPN FISMAT Matemáticas 70, Física 35, Español/Lectura 35, Química **0**, Inglés 0; IPN MEDBIO Biología 70, Química 35, Matemáticas **0**, Español/Lectura 0, Inglés 0; UNAM A1 Matemáticas 81, Física 72, Química 52, Español 35, Inglés 0; UNAM A2 Biología 65, Química 72, Español 0, Inglés 0; UNAM A3/A4 e IPN SOCADM **enteras en cero**. **Distribución de posición de la respuesta correcta** (solo `isVerified=true`, letra = `option.id` con `isCorrect` en la DB): UNAM A 26.8 % / B 26.8 % / C 21.5 % / D 24.9 % (n=377); IPN A 25.3 % / B 25.3 % / C 26.1 % / D 23.3 % (n=245); **las 11 materias con contenido dentro del rango 15–40 % de `POSITION_SKEW`** — **el sesgo corregido en G8 NO ha reaparecido**. Barrido de citas por letra sobre las 1 866 capas de explicación: **0** (el fix de G8 se sostiene). **Pero el artefacto de ROTACIÓN de G16 (letra correcta que rota A→B→C→D al ordenar por `id`) sigue presente y sin corregir**, y medido a nivel materia es más marcado de lo que G16 documentó por lote: **IPN FISMAT Matemáticas 61/69 pares consecutivos** (azar ≈17), **IPN MEDBIO Biología 47/69** — los lotes viejos (G3a/G3d/G13/G15); los lotes nuevos G18/G20/G21/G22/G23 están limpios (6–8/34). Reposicionar reactivos ya publicados con `SessionAnswer` sigue siendo decisión del dueño, igual que G16/G21/G23 lo dejaron — se registra con números frescos, no se toca. **SOURCED vs TEMARIO_ONLY: 207 SOURCED (33.3 %) / 415 TEMARIO_ONLY (66.7 %)** — la proporción bajó desde el 44 % de F4 (135/309) porque los lotes G del refuerzo IPN son casi todos `TEMARIO_ONLY` (solo 46/217 temas tienen fragmento fuente). **Auditoría del 5 % (pendiente de G14): mecanismo verificado + 1 bug real corregido.** Los scripts de G17 (`content:audit-sample` / `content:audit-resolve`) funcionan — pool elegible **606**, muestra 5 % = **31** (comprobado en vivo, sin resolver: esta sesión no es ciega). **Hallazgo:** ESTADO decía "nunca se ha auditado nada" — impreciso: el pipeline `adversarial-v1` de F4 **sí** corrió su 3ª pasada integrada sobre **16 de los 309** reactivos originales el 2026-07-21 (16/309 ≈ 5.2 %, los 16 confirmados, 0 degradados). Lo que nunca se ha auditado es el contenido `session-v1` (G2 en adelante): **0 de 313**. **Bug corregido** (`src/lib/admin/verification.ts`): `classifyReviewQueue` comprobaba `decision !== 'UNPUBLISHED'` ANTES de `audit?.degraded` → un reactivo que la 3ª pasada degrade queda `isVerified=false` (bien despublicado por `content-audit-resolve.ts`) pero con `decision:'AUTO_APPROVED'` heredado del veredicto de 2ª pasada, así que el guard lo mandaba a `null` y **desaparecía del panel F3** (ni servido, ni en cola, invisible). Reordenado para mirar `manualReview` → `audit.degraded` → `decision`; 2 tests de regresión nuevos. **Duplicados reales anotados** (0 respuestas, no bloqueantes): `cmrul0y5k…` ≡ `cmrul1p9e…` (H₂SO₄+2NaOH, UNAM Química, ya lo marcó G19) y `cmru8zod5…` ≡ `cmt8mvgiv…` (cruce dihíbrido AaBb×AaBb → 9:3:3:1, pero uno es UNAM A2 y otro IPN MEDBIO — bancos distintos). **Brecha a la meta de 1 500: 878 reactivos = 26 lotes de 35 = ~52 sesiones (compón + verifica ciega).** Proyección honesta: al ritmo con el que el pipeline ha existido de verdad (**13.6 verificados/día** entre G3a 2026-08-04 y G23 2026-08-27, un número que **ya incluye** la pausa de 19 días de agosto por infra/rebrand) alcanza para el **21-nov con ~3 semanas de margen**; al ritmo calendario completo desde el cierre de F4 (**9.9/día**) **lo pierde por ~3 días**. Como el trabajo de infra/credenciales que causó la pausa de agosto **ya está hecho**, la proyección realista se acerca al 13.6 — **pero es borde y no hay margen para otra pausa de varias semanas**. **Top-5 materias por brecha absoluta** (meta = 1 500 prorrateada por `questionWeight` sobre las 270 de peso SUPERIOR, ordenadas por urgencia): (1) **IPN FISMAT Química — brecha 56, EN CERO**, institución día 1; (2) **IPN FISMAT Física — brecha 76** (35/111), día 1; (3) **IPN FISMAT Matemáticas — brecha 63** (70/133), día 1; (4) **IPN MEDBIO Química — brecha 54** (35/89), día 1; (5) **UNAM A1 Matemáticas — brecha 63** (81/144), UNAM ya es la más profunda. También en cero y urgentes aunque fuera del top-5 por tamaño: IPN MEDBIO Matemáticas (44) y Español/Lectura (33). **Pregunta de alcance que hay que resolver antes de mediados de septiembre:** si UNAM A3/A4, IPN SOCADM e Inglés entran en la meta del 21-nov, son ~13 materias más partiendo de cero y los 878 reactivos se reparten entre 24 materias en vez de 11 → más lotes y riesgo de materias con <20 reactivos. Los docs son ambiguos (PRD §14 "UNAM 4 áreas + IPN 2 ramas"; Plan L259 "UNAM completo + IPN Fís-Mat"; la producción real desde G3 solo ha tocado 4 áreas). `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**476/476**, +2 sobre G23) en verde. Scripts desechables (`scripts/g24-*.ts`) eliminados al terminar. |
 | G23 | Verificación ciega: Español y Habilidad Verbal IPN FISMAT (G22) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 587 → 622 verificados** | (G23) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G22. **Aislamiento comprobado, no asumido:** no se leyó el commit `fd6e302` de G22, ni el JSON del lote, ni `Question.options`, ni la sección `## G22` de este documento (línea 2075, dejada sin abrir a propósito, mismo criterio que G21 con G20); el único insumo fue el lote ciego **regenerado en esta sesión** (`pnpm content:blind-batch --all --limit 60` → `blind-batch-2026-08-27T23-54-54-423Z.json`, 35 ítems). **Primer lote verbal y primera verificación ciega con pasajes compartidos:** los 20 `READING_COMPREHENSION` llegaron con su `passage` completo — condición necesaria para poder responderlos — y sin ninguna marca de respuesta; `grep` da **0** para `isCorrect`, `explanation`, `explanations` y `correctOption`. Las 10 ocurrencias de `correct`/`soluci` que aparecen en el archivo se auditaron una por una y **son prosa española legítima** ("completa correctamente la oración", "ofrece varias soluciones posibles"), no marcas de respuesta. **Método, distinto por necesidad al de los lotes de ciencias:** aquí no hay operación que ejecutar, así que `usedCalculation:false` en los 35 (y por primera vez eso **coincide** con `requiresCalculation`, que el pipeline derivó en `false` para los 35 vía `isCalcSubject("Español/Lectura")` — en G21 el flag venía en `true` por materia y hubo que declarar el desglose real a mano). El criterio de resolución fue el que pedía el encargo: para cada reactivo se razonó **por qué cada uno de los tres distractores es insostenible** y por qué la opción elegida es la única defendible, y ese razonamiento quedó persistido íntegro en `Question.verification.reasoning`. **Cero ambigüedades genuinas encontradas, y el estándar se aplicó de verdad, no por omisión:** el encargo pedía marcar como problema (en vez de forzar una elección) cualquier reactivo con dos opciones *igualmente* defendibles. Se sometieron a segunda pasada adversarial los cuatro casos más cerrados y en los cuatro sobrevivió una sola opción, por razones concretas y no por descarte superficial — el detalle está en la sección dedicada. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100 %.** **Candado anti-deriva propio de esta sesión** (mismo patrón que G16/G21): el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del contenido razonado y **abortaba sin escribir nada si la letra y el contenido no coincidían o si el fragmento no identificaba de forma única a esa opción**, con igualdad exacta por delante de la subcadena (indispensable aquí: la opción correcta de un reactivo de concordancia es literalmente `fue`, subcadena de su propio distractor `fueron`); pasó en los 35. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 622 totales · verificados **587 → 622** · pendientes **35 → 0** · sin veredicto **35 → 0** · sin publicar con veredicto 0 (sin cambio). `Español/Lectura` de IPN FISMAT (`questionWeight=4`) pasó de **0✓/35⧗ a 35✓/0⧗** en sus 4 temas (Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6). **Comentario comparativo pedido por el encargo:** la tasa NO difiere de la de ciencias (100 % en G14, G16, G19, G21 y ahora G23) — pero eso, dicho con honestidad, es porque **la métrica está saturada y hoy no discrimina nada**: cinco rondas ciegas seguidas al 100 %. Donde sí aparece la diferencia verbal es en la **confianza**: 14 de 35 reactivos por debajo de 0.99 (40 %), contra 3/35 en G21, 3/35 en G16 y 2/35 en G14 (≈8 %), y el **mínimo de 0.93 es el más bajo de cualquier ronda ciega del proyecto**. Lectura: el margen entre la opción correcta y el mejor distractor es genuinamente más delgado en lo verbal, aunque nunca llegó a cero. **Tres notas de composición para futuros lotes verbales** (observaciones, no defectos que bloqueen publicación): ver sección dedicada. **Seguimiento del hallazgo de G16 (rotación A→B→C→D de la letra correcta), medido desde el lado ciego: el artefacto NO está presente** — solo **6 de 34** pares consecutivos siguen la rotación, por debajo de los ≈8.5 esperados al azar (secuencia `CADBADBACBBDACDACBDCACBADBCADBDACBC`), frente a los 34/34, 27/34, 26/34 y 21/34 de los cuatro lotes que G16 documentó; segundo lote consecutivo limpio tras G21. Distribución de posición en el espacio ORIGINAL: **A=9, B=9, C=9, D=8** (25.7 %/25.7 %/25.7 %/22.9 %, dentro del rango 15 %-40 % de G3c); las elecciones en el espacio MEZCLADO fueron A=6/B=11/C=7/D=11, o sea el shuffle sí reordenó de verdad. El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a, G3d, G13 y G15**, igual que G16 y G21 lo dejaron. `pnpm typecheck` y `pnpm lint` en verde; **cero cambios de código**. Scripts desechables (`scripts/g23-count.ts`, `scripts/g23-seqcheck.ts`, `scripts/g23-build-answers.ts`) eliminados al terminar. |
@@ -2080,6 +2081,200 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G26 — Reutilización de contenido entre áreas (2026-08-28)
+
+**Estado: COMPLETADA.** Meta de contenido recalculada: **1 500 → ~1 220**
+(ahorro ~280, ~19 %). Brecha al banco actual: **878 → 659** (~7 lotes ≈ ~14
+sesiones menos). El mecanismo (`Subject.sharedContentKey`, migración 0011)
+está aplicado en la DB real, cableado en el selector adaptativo, el
+diagnóstico, el simulador completo y la pantalla de progreso, y probado
+(`pnpm typecheck` / `pnpm lint` / `pnpm test:unit` 491/491, +15).
+
+### 1) La pregunta y la respuesta
+
+¿Materias como Español, Matemáticas o Química existen como registros
+SEPARADOS en cada área, o se comparten? **Están duplicadas** — el seed creó
+una fila `Subject` por (área × materia). Y **el contenido SÍ se puede
+reutilizar**: el temario oficial de cada materia es uno solo por institución;
+el área solo cambia CUÁNTOS reactivos de esa materia trae el examen
+(`questionWeight`), no QUÉ se evalúa. Confirmado con las guías oficiales:
+
+- **UNAM** (búsqueda web, guías 2025-2026): "todos los exámenes evalúan las
+  mismas materias básicas, el número de preguntas por materia cambia
+  drásticamente según el área". Las 10 materias (Español, Matemáticas,
+  Física, Química, Biología, Historia de México, Historia Universal,
+  Literatura, Geografía; + Filosofía solo Área 4) son comunes a las 4 áreas.
+- **IPN**: el examen tiene un bloque de **"Conocimientos generales"** —
+  50 reactivos de Matemáticas (álgebra → cálculo) + 40 de Comunicación
+  (Español) — **idéntico para las 3 ramas**; la rama solo añade peso
+  temático.
+
+### 2) Materias duplicadas — números reales (consulta en vivo a Supabase)
+
+| Institución | Materia | Áreas (peso) | Filas | Reactivos hoy |
+|---|---|---|---:|---:|
+| UNAM | **Español** | A1(10) A2(5) A3(3) A4(1) | 4 | 35 (todos en A1) |
+| UNAM | **Inglés** | A1(6) A2(3) A3(1) | 3 | 0 |
+| UNAM | **Química** | A1(12) A2(8) | 2 | 124 (52 A1 + 72 A2) |
+| IPN | **Español/Lectura** | FISMAT(4) MEDBIO(6) SOCADM(3) | 3 | 35 (todos en FISMAT) |
+| IPN | **Inglés** | FISMAT(2) MEDBIO(3) SOCADM(2) | 3 | 0 |
+| IPN | **Química** | FISMAT(10) MEDBIO(16) | 2 | 35 (todos en MEDBIO) |
+| IPN | **Matemáticas** | FISMAT(24) MEDBIO(8) | 2 | 70 (todos en FISMAT) |
+
+**7 grupos, 19 filas `Subject`.** El resto de materias (Matemáticas y Física
+de UNAM, Biología, Historia, Geografía, Literatura, Filosofía, Artes,
+Civismo, Matemáticas Aplicadas) son de una sola área/rama — sin reutilización.
+
+### 3) Comparación de temas entre áreas — ¿idénticos o difieren?
+
+Los `Topic` NO son cadenas idénticas entre áreas: el seed inventó desgloses
+distintos por área, con nombres y granularidad distintos. El dominio
+evaluado sí coincide. Por eso la reutilización se hace **a nivel de MATERIA,
+no de tema** (un match por nombre de tema sería frágil).
+
+- **IPN Química** FISMAT vs MEDBIO: **7 de 9 temas son coincidencia literal
+  exacta** (Estructura atómica, Tabla periódica, Enlace químico, Reacciones
+  químicas, Estequiometría, Equilibrio químico, Ácidos y bases). Difieren:
+  FISMAT tiene Electroquímica + "Química orgánica básica"; MEDBIO tiene
+  "Química orgánica" + "Bioquímica básica". ~78 % idéntico.
+- **UNAM Química** A1 vs A2: 4 coincidencias literales (Estructura atómica,
+  Tabla periódica, Enlace químico, Equilibrio químico); A1 añade profundidad
+  (Electroquímica, Estequiometría, Estados de la materia), A2 añade
+  "Reacciones orgánicas". Mismo temario oficial, distinto énfasis. ~55 %.
+- **Español** (UNAM e IPN): mismo dominio (ortografía, comprensión lectora,
+  redacción, literatura, gramática) con nombres divergentes por área
+  ("Ortografía" / "Ortografía y puntuación" / "Ortografía avanzada" /
+  "Comprensión lectora" / "Comprensión de textos"). Solapamiento conceptual
+  alto, literal bajo. IPN: "Comprensión lectora" y "Análisis de textos"
+  aparecen en las 3 ramas.
+- **Inglés**: núcleo idéntico (tiempos verbales, vocabulario, lectura); las
+  ramas solo cambian la ETIQUETA del vocabulario (técnico / médico-científico
+  / de negocios). FISMAT y MEDBIO comparten los tiempos verbales literalmente.
+- **IPN Matemáticas** FISMAT (12 temas, con cálculo) vs MEDBIO (6 temas
+  básicos, sin cálculo): **es el caso asimétrico**. MEDBIO ⊂ FISMAT
+  conceptualmente. Se agrupó igual porque el bloque de conocimientos
+  generales del IPN (con cálculo) es común a todas las ramas — el temario
+  corto de MEDBIO en el seed es una **imprecisión del seed**, no de la
+  equivalencia (un aspirante MEDBIO SÍ enfrenta ese bloque). Anotado como
+  follow-up: ampliar el temario de MEDBIO Matemáticas a futuro.
+
+### 4) El mecanismo — `Subject.sharedContentKey` (migración 0011)
+
+El diseño que **menos altera el schema**: **una columna nullable en
+`subjects`** (`sharedContentKey TEXT` + índice). Nada en `Question`, nada en
+`Topic`, ninguna FK nueva, ninguna tabla de unión. Filas `Subject` del mismo
+examen con la misma clave no nula son equivalentes en contenido: un reactivo
+`isVerified=true` + `usage=SERVABLE` bajo cualquiera de ellas es elegible
+para un alumno que apunta a cualquiera de esas áreas.
+
+- **La clave es data (seed), no código** — principio S2 del Backend Schema.
+  Formato `INSTITUCIÓN:MATERIA` (`UNAM:ESPANOL`, `IPN:QUIMICA`, …); el
+  código de institución garantiza que nunca cruce exámenes.
+- **Nunca cruza instituciones** (UNAM Química ≠ IPN Química: guías,
+  profundidad y formato distintos). La resolución siempre filtra por
+  `examId`.
+- Cada reactivo conserva su `topicId` de origen. El `questionWeight` sigue
+  siendo el de la materia del área del alumno (A1 Español pondera 10, A3
+  Español pondera 3, mismo pool).
+- Aplicada en la DB real vía `apply_migration`
+  (`add_subject_shared_content_key_g26`) y en `prisma/seed/{unam,ipn}.ts`
+  (idempotente). `prisma/schema.prisma` actualizado + `prisma generate`.
+
+**Módulo puro** `src/lib/content/shared-subjects.ts` (15 tests):
+`resolveSharedSubjectGroups`, `expandToSharedSubjectIds`,
+`canonicalSubjectKey`, `aggregateSharedSubjectPerformance`. **Capa DB**
+`src/lib/db/shared-content.ts`: `loadAreaSharedContent`,
+`loadEquivalentSubjectIds`.
+
+### 5) Selector adaptativo, diagnóstico y Entrómetro — cableado
+
+| Función | Cambio |
+|---|---|
+| `loadAreaServablePool` (drill "reforzar débiles") | pool = materias del área ∪ hermanas por clave |
+| `loadSubjectServablePool` (drill por materia) | ∪ materias equivalentes de la misma clave |
+| `loadAreaSubjectPools` (diagnóstico **y simulador completo**, vía `simulator.ts`) | pool de cada materia incluye sus hermanas; el peso sigue siendo el del área |
+| `recomputeLearningProfile` + los 2 deltas del Entrómetro (`computeWeekOverWeekDelta`, `computeSessionPredictionDelta`) | agregan respuestas por **clave canónica**: responder Español de A1 cuenta para el Español del alumno de A3 |
+| `progress.ts` (`loadEntrometroHistory`, `loadSubjectMastery`) | misma agregación por clave canónica |
+| `selectTopicQuestions` (drill de UN tema puntual) | SIN cambio, por diseño — un tema puntual es un tema puntual |
+
+Verificado en vivo contra Supabase: el pool servible de **UNAM Área 3 pasa
+de 0 a 35** (los 35 Español de A1); el de **UNAM Área 2 de 137 a 224**
+(+ 52 Química A1 + 35 Español A1). El diagnóstico de un área "vacía" ahora
+se puede armar.
+
+**Límite declarado:** la insignia "materia dominada" (`gamification.ts`,
+F15) sigue evaluando solo los temas de la materia PROPIA del área del
+alumno; una respuesta a una materia hermana no cuenta para esa insignia.
+Es una función motivacional menor y de umbral alto (todos los temas
+dominados); se dejó fuera de alcance a propósito para no ensanchar el cambio.
+
+### 6) Meta de contenido recalculada
+
+Base: `questionWeight` × densidad (1 500 ÷ 270 de peso total = 5.556
+reactivos/punto). **Meta de un grupo compartido = la meta de su celda de
+mayor peso** (una vez que hay suficiente para el área más profunda, las demás
+se cubren con el mismo pool).
+
+| Grupo | Meta vieja (Σ celdas) | Meta nueva (máx celda) | Ahorro | Tiene hoy |
+|---|---:|---:|---:|---:|
+| IPN Química | 145 | 89 | 56 | 35 |
+| UNAM Español | 107 | 56 | 51 | 35 |
+| UNAM Química | 111 | 67 | 44 | **124 ✓** |
+| IPN Matemáticas | 177 | 133 | 44 | 70 |
+| IPN Español/Lectura | 72 | 33 | 39 | **35 ✓** |
+| UNAM Inglés | 56 | 33 | 23 | 0 |
+| IPN Inglés | 39 | 17 | 22 | 0 |
+
+- **Meta original: 1 500 → meta efectiva: ~1 222** (ahorro **~280, 18.6 %**).
+  Con un colchón de profundidad del +25 % para los pools compartidos daría
+  **~1 330**; sin colchón (coherente con cómo se calcularon los 1 500),
+  **~1 220**.
+- **Brecha: 878 → 659 reactivos** → de **26 lotes / 52 sesiones** a
+  **19 lotes / 38 sesiones**. Ahorro: **~7 lotes ≈ ~14 sesiones**.
+- **No es "la mitad"** — las materias de mayor peso (Matemáticas, Física,
+  Biología ≈ 55 % del peso total) son genuinamente de un área/rama y no se
+  comparten. El ahorro se concentra en Español, Inglés y Química.
+- **Dos pools que la reutilización ya deja COMPLETOS** (antes contaban como
+  brecha en 3-4 celdas vacías): **UNAM Química** (124 ≥ 67) y **IPN
+  Español/Lectura** (35 ≥ 33). **UNAM Español** necesita solo 21 más (35→56)
+  para cubrir las 4 áreas; **IPN Química** 54 más (35→89) para las 2 ramas.
+- `pnpm content:coverage` ahora imprime ambas metas ("META 1 500 (por
+  celda)" y "META 1222 (efectiva, G26)"); `scripts/audit-content.ts` lista
+  los 7 grupos compartidos con su pool combinado.
+
+### 7) Verificación técnica
+
+- `pnpm typecheck` → **verde**.
+- `pnpm lint` → **verde**.
+- `pnpm test:unit` → **491/491** (+15: `tests/content/shared-subjects.test.ts`).
+- Migración 0011 aplicada en la DB real; 7 grupos / 19 filas confirmados por
+  query. `prisma generate` corrido. Cero llamadas a la API de pago.
+- Script de análisis desechable (`scripts/g26-content-reuse-analysis.ts`)
+  eliminado al terminar; su lógica quedó en `content-coverage.ts`.
+
+### 8) Siguiente (G26)
+
+1. **Componer**, no verificar — colas en cero. La reutilización **reordena
+   las prioridades** de G24 §7: **IPN Química** (grupo, 35/89, brecha 54,
+   sirve a FISMAT y MEDBIO de un tiro) y **UNAM Español** (grupo, 35/56,
+   brecha 21, deja las 4 áreas cubiertas) suben; los lotes de una sola celda
+   (IPN FISMAT Física 35/111) ya no rinden para varias áreas. Consultar
+   `content:coverage` en vivo (ahora muestra la meta efectiva).
+2. **Componer contra el tema de la MATERIA compartida**, no por área: al
+   insertar un lote de "Química", elegir el `topicId` de la materia con más
+   contenido del grupo (da igual de qué área) y dejar que la reutilización lo
+   sirva a las demás.
+3. **Ampliar el temario del seed** donde quedó corto: IPN MEDBIO Matemáticas
+   (6 temas, sin cálculo) debería reflejar el bloque de conocimientos
+   generales real. No bloquea nada (MEDBIO Matemáticas está en cero), pero
+   los lotes futuros lo necesitan.
+4. Sigue pendiente la **pregunta de alcance de G24 §7** (¿A3/A4/SOCADM/Inglés
+   en la meta del 21-nov?) — ahora con menos peso: Español e Inglés de esas
+   áreas ya no son materias "nuevas desde cero", comparten pool. UNAM A3/A4
+   e IPN SOCADM siguen necesitando Historia/Geografía/Literatura/etc. propias.
+5. Heredados sin tocar: rotación A→B→C→D de ~140 reactivos viejos, par
+   duplicado H₂SO₄, auditoría 5 % (47/622).
 
 ## G25 — Verificación ciega: auditoría 5 % de `session-v1` (2026-08-28)
 

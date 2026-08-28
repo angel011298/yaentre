@@ -127,13 +127,20 @@ export async function seedUnam() {
   const area3 = areas[2];
   const area4 = areas[3];
 
+  // sharedContentKey (G26): materias que varias áreas evalúan con el MISMO
+  // temario oficial — solo cambia el peso. Su contenido verificado se comparte
+  // entre áreas del mismo examen. Ver migración 0011 y docs/ESTADO.md §G26.
+  const ESPANOL = 'UNAM:ESPANOL';
+  const INGLES = 'UNAM:INGLES';
+  const QUIMICA = 'UNAM:QUIMICA';
+
   // Área 1: Físico-Matemáticas (total ~70 de 120)
   const subjectsArea1 = [
     { name: 'Matemáticas', weight: 26, icon: '➗' },
     { name: 'Física', weight: 16, icon: '⚛️' },
-    { name: 'Química', weight: 12, icon: '🧪' },
-    { name: 'Español', weight: 10, icon: '📖' },
-    { name: 'Inglés', weight: 6, icon: '🗣️' },
+    { name: 'Química', weight: 12, icon: '🧪', sharedKey: QUIMICA },
+    { name: 'Español', weight: 10, icon: '📖', sharedKey: ESPANOL },
+    { name: 'Inglés', weight: 6, icon: '🗣️', sharedKey: INGLES },
   ];
   await seedSubjectsAndTopics(
     prisma,
@@ -146,9 +153,9 @@ export async function seedUnam() {
   // Área 2: Biológicas (total ~30 de 120)
   const subjectsArea2 = [
     { name: 'Biología', weight: 14, icon: '🦠' },
-    { name: 'Química', weight: 8, icon: '🧪' },
-    { name: 'Español', weight: 5, icon: '📖' },
-    { name: 'Inglés', weight: 3, icon: '🗣️' },
+    { name: 'Química', weight: 8, icon: '🧪', sharedKey: QUIMICA },
+    { name: 'Español', weight: 5, icon: '📖', sharedKey: ESPANOL },
+    { name: 'Inglés', weight: 3, icon: '🗣️', sharedKey: INGLES },
   ];
   await seedSubjectsAndTopics(
     prisma,
@@ -163,8 +170,8 @@ export async function seedUnam() {
     { name: 'Historia de México', weight: 7, icon: '🏛️' },
     { name: 'Historia Universal', weight: 5, icon: '🌍' },
     { name: 'Geografía', weight: 4, icon: '🗺️' },
-    { name: 'Español', weight: 3, icon: '📖' },
-    { name: 'Inglés', weight: 1, icon: '🗣️' },
+    { name: 'Español', weight: 3, icon: '📖', sharedKey: ESPANOL },
+    { name: 'Inglés', weight: 1, icon: '🗣️', sharedKey: INGLES },
   ];
   await seedSubjectsAndTopics(
     prisma,
@@ -179,7 +186,7 @@ export async function seedUnam() {
     { name: 'Literatura', weight: 4, icon: '📚' },
     { name: 'Filosofía', weight: 3, icon: '🧠' },
     { name: 'Artes', weight: 2, icon: '🎭' },
-    { name: 'Español', weight: 1, icon: '📖' },
+    { name: 'Español', weight: 1, icon: '📖', sharedKey: ESPANOL },
   ];
   await seedSubjectsAndTopics(
     prisma,
@@ -205,13 +212,13 @@ export async function seedUnam() {
 async function seedSubjectsAndTopics(
   prisma: PrismaClient,
   areaId: string,
-  subjects: Array<{ name: string; weight: number; icon: string }>,
+  subjects: Array<{ name: string; weight: number; icon: string; sharedKey?: string }>,
   topicsGenerator: () => Record<string, string[]>,
 ) {
   const topicsMap = topicsGenerator();
 
   for (let i = 0; i < subjects.length; i++) {
-    const { name, weight, icon } = subjects[i];
+    const { name, weight, icon, sharedKey } = subjects[i];
     const subject = await prisma.subject.upsert({
       where: { areaId_name: { areaId, name } },
       create: {
@@ -220,8 +227,11 @@ async function seedSubjectsAndTopics(
         questionWeight: weight,
         iconEmoji: icon,
         position: i + 1,
+        sharedContentKey: sharedKey ?? null,
       },
-      update: { questionWeight: weight },
+      // sharedContentKey (G26): reutilización de contenido entre áreas — ver
+      // migración 0011 y docs/ESTADO.md §G26. Se reafirma en cada corrida.
+      update: { questionWeight: weight, sharedContentKey: sharedKey ?? null },
     });
 
     // Temas del temario oficial

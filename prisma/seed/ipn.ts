@@ -104,13 +104,24 @@ export async function seedIpn() {
 
   // 5. Materias con pesos reales (estructura oficial IPN 2025-2027)
   // TODO-VERIFICAR: distribución de pesos según publicación oficial IPN 2027.
+
+  // sharedContentKey (G26): el examen IPN tiene un bloque de "Conocimientos
+  // generales" (Matemáticas + Comunicación) común a las 3 ramas, más Química e
+  // Inglés con el mismo temario en las ramas que las evalúan. Su contenido
+  // verificado se comparte entre ramas del mismo examen. Ver migración 0011 y
+  // docs/ESTADO.md §G26.
+  const MATEMATICAS = 'IPN:MATEMATICAS';
+  const QUIMICA = 'IPN:QUIMICA';
+  const ESPANOL = 'IPN:ESPANOL';
+  const INGLES = 'IPN:INGLES';
+
   // Rama FISMAT: total ~60 reactivos (Matemáticas pesada, Física, Química)
   const subjectsFismat = [
-    { name: 'Matemáticas', weight: 24, icon: '➗' }, // Pesada en FISMAT
+    { name: 'Matemáticas', weight: 24, icon: '➗', sharedKey: MATEMATICAS }, // Pesada en FISMAT
     { name: 'Física', weight: 20, icon: '⚛️' },
-    { name: 'Química', weight: 10, icon: '🧪' },
-    { name: 'Español/Lectura', weight: 4, icon: '📖' },
-    { name: 'Inglés', weight: 2, icon: '🗣️' }, // Inglés débil en FISMAT
+    { name: 'Química', weight: 10, icon: '🧪', sharedKey: QUIMICA },
+    { name: 'Español/Lectura', weight: 4, icon: '📖', sharedKey: ESPANOL },
+    { name: 'Inglés', weight: 2, icon: '🗣️', sharedKey: INGLES }, // Inglés débil en FISMAT
   ];
   await seedSubjectsAndTopics(prisma, ramas.fismat.id, subjectsFismat, generateTopicsFismat);
   console.log('  ✓ Rama FISMAT: 5 materias con 40+ temas');
@@ -118,10 +129,10 @@ export async function seedIpn() {
   // Rama MEDBIO: total ~55 reactivos (Biología, Química, algo de Matemáticas)
   const subjectsMedbio = [
     { name: 'Biología', weight: 22, icon: '🦠' },
-    { name: 'Química', weight: 16, icon: '🧪' },
-    { name: 'Matemáticas', weight: 8, icon: '➗' }, // Menos que en FISMAT
-    { name: 'Español/Lectura', weight: 6, icon: '📖' },
-    { name: 'Inglés', weight: 3, icon: '🗣️' },
+    { name: 'Química', weight: 16, icon: '🧪', sharedKey: QUIMICA },
+    { name: 'Matemáticas', weight: 8, icon: '➗', sharedKey: MATEMATICAS }, // Menos peso que en FISMAT; mismo pool
+    { name: 'Español/Lectura', weight: 6, icon: '📖', sharedKey: ESPANOL },
+    { name: 'Inglés', weight: 3, icon: '🗣️', sharedKey: INGLES },
   ];
   await seedSubjectsAndTopics(prisma, ramas.medbio.id, subjectsMedbio, generateTopicsMedbio);
   console.log('  ✓ Rama MEDBIO: 5 materias con 35+ temas');
@@ -132,9 +143,11 @@ export async function seedIpn() {
     { name: 'Historia de México', weight: 6, icon: '🏛️' },
     { name: 'Historia Universal', weight: 4, icon: '🌍' },
     { name: 'Geografía', weight: 4, icon: '🗺️' },
+    // "Matemáticas Aplicadas" (estadística/probabilidad/datos) NO comparte
+    // pool con el bloque general de Matemáticas: temario y enfoque distintos.
     { name: 'Matemáticas Aplicadas', weight: 3, icon: '📊' },
-    { name: 'Español/Lectura', weight: 3, icon: '📖' },
-    { name: 'Inglés', weight: 2, icon: '🗣️' },
+    { name: 'Español/Lectura', weight: 3, icon: '📖', sharedKey: ESPANOL },
+    { name: 'Inglés', weight: 2, icon: '🗣️', sharedKey: INGLES },
     { name: 'Civismo/Derecho', weight: 3, icon: '⚖️' },
   ];
   await seedSubjectsAndTopics(prisma, ramas.socadm.id, subjectsSocadm, generateTopicsSocadm);
@@ -155,13 +168,13 @@ export async function seedIpn() {
 async function seedSubjectsAndTopics(
   prisma: PrismaClient,
   areaId: string,
-  subjects: Array<{ name: string; weight: number; icon: string }>,
+  subjects: Array<{ name: string; weight: number; icon: string; sharedKey?: string }>,
   topicsGenerator: () => Record<string, string[]>,
 ) {
   const topicsMap = topicsGenerator();
 
   for (let i = 0; i < subjects.length; i++) {
-    const { name, weight, icon } = subjects[i];
+    const { name, weight, icon, sharedKey } = subjects[i];
     const subject = await prisma.subject.upsert({
       where: { areaId_name: { areaId, name } },
       create: {
@@ -170,8 +183,11 @@ async function seedSubjectsAndTopics(
         questionWeight: weight,
         iconEmoji: icon,
         position: i + 1,
+        sharedContentKey: sharedKey ?? null,
       },
-      update: { questionWeight: weight },
+      // sharedContentKey (G26): reutilización de contenido entre ramas — ver
+      // migración 0011 y docs/ESTADO.md §G26. Se reafirma en cada corrida.
+      update: { questionWeight: weight, sharedContentKey: sharedKey ?? null },
     });
 
     // Temas del temario oficial

@@ -299,11 +299,25 @@ model Subject {
   iconEmoji      String?
   position       Int
   questionWeight Int           @default(1) // # reactivos esperados en el examen real
+
+  // ── Reutilización de contenido entre áreas (G26) ──
+  // Varias áreas del MISMO examen evalúan esta materia con el mismo temario
+  // oficial (UNAM: Español/Inglés/Química en varias áreas; IPN: Español,
+  // Inglés, Química y Matemáticas en varias ramas) — solo cambia
+  // questionWeight, no QUÉ se evalúa. Cuando ≥2 filas Subject del mismo examen
+  // comparten esta clave (no nula), sus reactivos verificados y servibles
+  // forman UN solo pool: un reactivo bajo cualquiera de ellas es elegible para
+  // un alumno que apunta a cualquiera de esas áreas. La equivalencia se
+  // declara en el seed (taxonomía = data, principio S2). NUNCA cruza
+  // instituciones (guías, profundidad y formato distintos).
+  sharedContentKey String?
+
   topics         Topic[]
   contentItems   ContentItem[]
   sourceChunks   SourceChunk[]
 
   @@unique([areaId, name])
+  @@index([sharedContentKey])
   @@map("subjects")
 }
 

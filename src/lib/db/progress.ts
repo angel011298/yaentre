@@ -1,7 +1,13 @@
 import { prisma } from './prisma';
 import { toDateKey } from './dashboard';
+import { loadAreaSharedContent } from './shared-content';
 import { startOfMexicoDay } from '@/lib/paywall/mexico-time';
-import { predictScore, subjectHasSufficientData, type SubjectPerformance } from '@/lib/adaptive/predictor';
+import { predictScore, subjectHasSufficientData } from '@/lib/adaptive/predictor';
+import {
+  aggregateSharedSubjectPerformance,
+  canonicalSubjectKey,
+  type SubjectAnswer,
+} from '@/lib/content/shared-subjects';
 
 /**
  * Orquestación de la pantalla de progreso (F18): mismo estilo que
@@ -41,23 +47,15 @@ export async function loadEntrometroHistory(
 ): Promise<EntrometroHistoryPoint[]> {
   const profile = await prisma.userProfile.findUnique({
     where: { id: userProfileId },
-    select: { targetCareerId: true },
+    select: { targetCareer: { select: { areaId: true, area: { select: { exam: { select: { totalQuestions: true } } } } } } },
   });
-  if (!profile?.targetCareerId) return [];
+  const areaId = profile?.targetCareer?.areaId;
+  const totalQuestions = profile?.targetCareer?.area.exam.totalQuestions;
+  if (!areaId || totalQuestions == null) return [];
 
-  const career = await prisma.career.findUnique({
-    where: { id: profile.targetCareerId },
-    select: {
-      area: {
-        select: {
-          exam: { select: { totalQuestions: true } },
-          subjects: { select: { id: true, questionWeight: true } },
-        },
-      },
-    },
-  });
-  if (!career) return [];
-  const { exam, subjects } = career.area;
+  // G26: agregación por materia equivalente del área (contenido compartido).
+  const shared = await loadAreaSharedContent(areaId);
+  if (shared.areaSubjects.length === 0) return [];
 
   const sessions = await prisma.examSession.findMany({
     where: { userProfileId, status: { in: [...FINISHED_STATUSES] }, finishedAt: { not: null } },
@@ -71,25 +69,21 @@ export async function loadEntrometroHistory(
   });
   if (sessions.length === 0) return [];
 
-  const bySubject = new Map<string, { correct: number; attempts: number }>();
+  const answersSoFar: SubjectAnswer[] = [];
   const byDay = new Map<string, number>();
   const dayOrder: string[] = [];
 
   for (const session of sessions) {
     for (const a of session.answers) {
-      const subjectId = a.question.topic.subjectId;
-      const prev = bySubject.get(subjectId) ?? { correct: 0, attempts: 0 };
-      bySubject.set(subjectId, {
-        correct: prev.correct + (a.isCorrect ? 1 : 0),
-        attempts: prev.attempts + 1,
-      });
+      answersSoFar.push({ subjectId: a.question.topic.subjectId, isCorrect: a.isCorrect });
     }
 
-    const perf: SubjectPerformance[] = subjects.map((s) => {
-      const agg = bySubject.get(s.id) ?? { correct: 0, attempts: 0 };
-      return { subjectId: s.id, weight: s.questionWeight, correct: agg.correct, attempts: agg.attempts };
-    });
-    const { predictedScore } = predictScore({ subjects: perf, totalQuestions: exam.totalQuestions });
+    const perf = aggregateSharedSubjectPerformance(
+      answersSoFar,
+      shared.areaSubjects,
+      shared.keyBySubjectId,
+    );
+    const { predictedScore } = predictScore({ subjects: perf, totalQuestions });
 
     const dateKey = toDateKey(startOfMexicoDay(session.finishedAt as Date));
     if (!byDay.has(dateKey)) dayOrder.push(dateKey);
@@ -122,36 +116,47 @@ export async function loadSubjectMastery(userProfileId: string): Promise<Subject
   const areaId = profile?.targetCareer?.areaId;
   if (!areaId) return [];
 
+  // G26: el pool de cada materia del área incluye sus materias equivalentes en
+  // otras áreas — así el dominio de "Química" refleja TODA la práctica de
+  // Química del alumno, aunque algunos reactivos vivan bajo otra área.
+  const shared = await loadAreaSharedContent(areaId);
+  if (shared.areaSubjects.length === 0) return [];
+
   const subjects = await prisma.subject.findMany({
-    where: { areaId },
+    where: { id: { in: shared.areaSubjects.map((s) => s.subjectId) } },
     select: { id: true, name: true },
   });
-  if (subjects.length === 0) return [];
+  const nameById = new Map(subjects.map((s) => [s.id, s.name]));
 
   const answers = await prisma.sessionAnswer.findMany({
     where: {
       session: { userProfileId, status: { in: [...FINISHED_STATUSES] } },
-      question: { topic: { subject: { areaId } } },
+      question: { topic: { subject: { id: { in: shared.poolSubjectIds } } } },
     },
     select: { isCorrect: true, question: { select: { topic: { select: { subjectId: true } } } } },
   });
 
-  const bySubject = new Map<string, { correct: number; attempts: number }>();
+  // Agregación por clave canónica: la respuesta a una materia hermana suma a la
+  // materia del área del alumno.
+  const canonicalOfAreaSubject = new Map(
+    shared.areaSubjects.map((s) => [s.subjectId, s.sharedContentKey ?? s.subjectId]),
+  );
+  const byCanonical = new Map<string, { correct: number; attempts: number }>();
   for (const a of answers) {
-    const subjectId = a.question.topic.subjectId;
-    const prev = bySubject.get(subjectId) ?? { correct: 0, attempts: 0 };
-    bySubject.set(subjectId, {
+    const key = canonicalSubjectKey(a.question.topic.subjectId, shared.keyBySubjectId);
+    const prev = byCanonical.get(key) ?? { correct: 0, attempts: 0 };
+    byCanonical.set(key, {
       correct: prev.correct + (a.isCorrect ? 1 : 0),
       attempts: prev.attempts + 1,
     });
   }
 
-  return subjects
+  return shared.areaSubjects
     .map((s) => {
-      const agg = bySubject.get(s.id) ?? { correct: 0, attempts: 0 };
+      const agg = byCanonical.get(canonicalOfAreaSubject.get(s.subjectId)!) ?? { correct: 0, attempts: 0 };
       return {
-        subjectId: s.id,
-        subjectName: s.name,
+        subjectId: s.subjectId,
+        subjectName: nameById.get(s.subjectId) ?? '',
         hitRate: agg.attempts > 0 ? agg.correct / agg.attempts : 0,
         attempts: agg.attempts,
         hasEnoughData: subjectHasSufficientData(agg.attempts),

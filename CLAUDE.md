@@ -95,6 +95,7 @@ Estas decisiones vienen del TRD. **No las contradigas sin instrucción explícit
 - `Question.isVerified`: ningún reactivo con `false` es visible para usuarios. El pipeline de IA inserta `false`; el admin lo pasa a `true`.
 - **Nunca borrar reactivos con respuestas históricas** (rompe el aprendizaje). Despublicar con `isVerified=false`.
 - El `LearningProfile` sobrevive entre ciclos (clave para re-engagement de rechazados).
+- `Subject.sharedContentKey` (G26): materias que varias áreas de un mismo examen evalúan con el mismo temario (UNAM Español/Inglés/Química; IPN Español/Inglés/Química/Matemáticas) comparten su pool de reactivos verificados. Al componer un lote de una materia compartida, insértalo contra el `topicId` de la materia con más contenido del grupo — la reutilización lo sirve a las demás áreas. Nunca cruza instituciones. Lógica en `src/lib/content/shared-subjects.ts` + `src/lib/db/shared-content.ts`; ver `docs/ESTADO.md` §G26.
 
 ---
 
