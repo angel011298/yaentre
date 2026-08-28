@@ -111,18 +111,24 @@ export const REVIEW_QUEUE_ORDER: ReviewQueueKind[] = [
  * pertenece a ninguna (auto-aprobado, o ya resuelto manualmente). Reglas, en
  * orden — mutuamente excluyentes por construcción del pipeline
  * (content-run.ts / verify-questions.ts):
- *   1. degraded_audit: la tercera pasada (muestreo 5%) degradó un reactivo
- *      que SÍ se había auto-aprobado inicialmente (solo los aprobados se
- *      auditan, así que un degradado nunca tiene reasons de discrepancia).
- *   2. discrepancy: el veredicto INICIAL (nunca auditado) no coincidió con
+ *   1. manualReview: un admin ya lo resolvió — sale de toda cola.
+ *   2. degraded_audit: la tercera pasada (muestreo de auditoría 5%) degradó
+ *      un reactivo que SÍ se había auto-aprobado inicialmente. Solo se
+ *      auditan reactivos AUTO_APPROVED, así que el veredicto de 2ª pasada
+ *      conserva `decision: 'AUTO_APPROVED'` a propósito (para medir la salud
+ *      del pipeline sin importar qué pase después) y el rechazo vive en
+ *      `audit.degraded`. Por eso se comprueba ANTES del guard de `decision`:
+ *      si no, un degradado (que content-audit-resolve.ts deja en
+ *      isVerified=false) quedaría fuera de toda cola e invisible en el panel.
+ *   3. discrepancy: el veredicto INICIAL (nunca auditado) no coincidió con
  *      la opción del generador.
- *   3. low_confidence: el veredicto inicial coincidió en la opción, pero
+ *   4. low_confidence: el veredicto inicial coincidió en la opción, pero
  *      falló por confianza baja o problemas detectados.
  */
 export function classifyReviewQueue(record: VerificationRecord): ReviewQueueKind | null {
-  if (record.decision !== 'UNPUBLISHED') return null;
   if (record.manualReview) return null; // ya resuelto por un admin
   if (record.audit?.degraded) return 'degraded_audit';
+  if (record.decision !== 'UNPUBLISHED') return null;
   if (record.reasons.some((r) => r.startsWith('DISCREPANCIA:'))) return 'discrepancy';
   if (
     record.reasons.some(

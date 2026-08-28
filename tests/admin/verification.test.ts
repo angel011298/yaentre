@@ -75,7 +75,12 @@ describe('classifyReviewQueue', () => {
   });
 
   it('muestreo degradado: audit.degraded=true manda, sin importar reasons', () => {
+    // Escenario REAL de content-audit-resolve.ts: solo se auditan reactivos ya
+    // AUTO_APPROVED, así que el veredicto de 2ª pasada conserva
+    // decision='AUTO_APPROVED' y reasons=[]; el rechazo de la 3ª pasada vive
+    // solo en `audit.degraded`.
     const r = record({
+      decision: 'AUTO_APPROVED',
       reasons: [], // auto-aprobado inicialmente: sin razones de rechazo propias
       audit: {
         verdict: baseVerdict,
@@ -87,15 +92,37 @@ describe('classifyReviewQueue', () => {
     expect(classifyReviewQueue(r)).toBe('degraded_audit');
   });
 
+  it('regresión (G24): un degradado con decision=AUTO_APPROVED NO desaparece del panel', () => {
+    // Antes de G24 el guard `decision !== 'UNPUBLISHED'` corría primero y
+    // devolvía null para este registro — el reactivo quedaba isVerified=false
+    // (bien despublicado) pero fuera de toda cola (invisible para el admin).
+    const degraded = record({
+      decision: 'AUTO_APPROVED',
+      reasons: [],
+      audit: { verdict: baseVerdict, decision: 'UNPUBLISHED', reasons: [], degraded: true },
+    });
+    expect(classifyReviewQueue(degraded)).toBe('degraded_audit');
+  });
+
   it('las 3 colas son mutuamente excluyentes por construcción del pipeline', () => {
     // Un degradado real (auditado) nunca tiene reasons de discrepancia propia,
     // porque solo los AUTO_APPROVED (reasons=[]) se auditan.
     const degraded = record({
+      decision: 'AUTO_APPROVED',
       reasons: [],
       audit: { verdict: baseVerdict, decision: 'UNPUBLISHED', reasons: [], degraded: true },
     });
     expect(classifyReviewQueue(degraded)).toBe('degraded_audit');
     expect(classifyReviewQueue(degraded)).not.toBe('discrepancy');
+  });
+
+  it('un audit NO degradado (3ª pasada confirmó) no entra a ninguna cola', () => {
+    const confirmed = record({
+      decision: 'AUTO_APPROVED',
+      reasons: [],
+      audit: { verdict: baseVerdict, decision: 'AUTO_APPROVED', reasons: [], degraded: false },
+    });
+    expect(classifyReviewQueue(confirmed)).toBeNull();
   });
 
   it('un reactivo ya resuelto a mano (manualReview) sale de toda cola', () => {
