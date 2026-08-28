@@ -1,10 +1,10 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-27 · Última fase ejecutada: G24 (**COMPLETADA — balance del banco y triaje de cola, pasada editorial. Estado consolidado consultado en vivo contra Supabase: banco 622/622 verificados y servibles (`isVerified=true` + `usage=SERVABLE`), **las dos colas en cero** (ciega 0, discrepancias 0) — la "cola acumulada" que el encargo pedía limpiar no existe, se vació en G19 y sigue vacía. Nada auto-aprobado por esta fase. Distribución de posición dentro de banda 15–40 % en las dos instituciones y en las 11 materias con contenido — el sesgo de G8 NO reapareció; sí sigue presente y sin corregir el artefacto de ROTACIÓN de G16 (IPN Matemáticas 61/69 pares consecutivos A→B→C→D, IPN Biología 47/69), decisión del dueño. SOURCED 207 (33 %) / TEMARIO_ONLY 415 (67 %). Brecha a la meta de 1 500: **878 reactivos = 26 lotes de 35 = ~52 sesiones**; al ritmo con el que el pipeline ha existido (13,6 verificados/día, ya incluyendo la pausa de 19 días de agosto) alcanza para el 21-nov con ~3 semanas de margen; al ritmo calendario completo (9,9/día) lo pierde por ~3 días — **es borde, sin margen para otra pausa de varias semanas**. Top-5 materias por brecha: IPN FISMAT Química (56, EN CERO), IPN FISMAT Física (76), IPN FISMAT Matemáticas (63), IPN MEDBIO Química (54), UNAM A1 Matemáticas (63). Auditoría 5 %: mecanismo probado (pool 606 → muestra 31), **bug real hallado y corregido** — `classifyReviewQueue` descartaba un reactivo degradado por la 3ª pasada (queda `isVerified=false` pero `decision:'AUTO_APPROVED'`), volviéndolo invisible en el panel F3; el pipeline `adversarial-v1` de F4 sí auditó 16/309 en su día, `session-v1` (G2+) tiene 0/313 auditados. 2 duplicados reales anotados. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (476/476) en verde**)
+Última actualización: 2026-08-28 · Última fase ejecutada: G25 (**COMPLETADA, con desviación declarada — el encargo pedía re-verificar "los reactivos reparados en G24"; **no existen**: G24 reparó código (el bug de `classifyReviewQueue`), no reactivos, y jamás marcó nada para re-verificación. Comprobado sin leer el commit de G24 ni ningún JSON de lote: `content:blind-batch --all` devuelve `0 reactivo(s) pendiente(s)`, y la consulta en vivo da 0 reactivos con `isVerified=false` (cola ciega 0, cola de discrepancias 0). **Tasa de rescate: N/A — 0 candidatas, 0 rescatadas**, denominador cero. En su lugar se ejecutó la pasada ciega que G24 dejó encargada como pendiente #3 y que nunca había corrido: la **auditoría 5 % de `session-v1`** (pool 606 → muestra 31, `Math.random` real). Ceguera comprobada estructuralmente (`isCorrect` y `explanations` ausentes del export; opciones re-etiquetadas). 31 resueltos desde cero, **15 con cálculo ejecutado en código** y 16 conceptuales con descarte de distractores por contenido. Resultado: **31/31 confirmados, 0 degradados**. `session-v1` pasa de **0 a 18 auditados** (5.8 % de 313) y el total auditado de 16 a 47, los 47 confirmados. **Acumulado real sin cambio y era el esperado: 622/622 verificados y servibles**, colas en cero — esta fase no publicó ni despublicó nada, solo escribió `verification.audit`. Caveat honesto: 12 de los 31 habían sido verificados en 2ª pasada por `claude-opus-5`, el mismo modelo de esta 3ª pasada — aislamiento de sesión sí, diversidad de tier no para ese subconjunto; el campo `model` declara lo que de verdad corrió. Observación editorial anotada sin degradar nada: en varios conceptuales la opción correcta es la más larga y la única que explica. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (476/476) en verde**)
 
-<details><summary>Historial: G23 (2026-08-27)</summary>
+<details><summary>Historial: G24 (2026-08-27)</summary>
 
-Última fase ejecutada: G23 (**COMPLETADA — verificación ciega del lote de Español/Habilidad Verbal de G22: 35/35 auto-aprobados (100 %), banco 587 → 622 verificados. Segunda vez que el banco entero queda verificado: 622/622 con las dos colas en cero. Primer lote verbal del proyecto resuelto a ciegas y primero que ejercita pasajes compartidos por el lado verificador: los 20 `READING_COMPREHENSION` llegaron CON su `passage` íntegro (4 pasajes distintos, 5 preguntas cada uno) y SIN respuesta marcada — garantía comprobada con `grep`: 0 ocurrencias de `isCorrect`, `explanation`, `explanations` y `correctOption`, y las únicas claves por ítem son `questionId/institution/subject/topic/format/passage/requiresCalculation/stem/options`, con `label/text/imageUrl` por opción. Cero cálculo ejecutado (`usedCalculation:false` en los 35, coherente esta vez con el `requiresCalculation:false` que el pipeline deriva por materia): en su lugar, los 35 se resolvieron razonando por qué cada distractor es incorrecto, uno por uno. Cero ambigüedades genuinas: en los 35 hubo exactamente una opción defendible, así que cero `problems`, cero `MULTIPLE_VALID` y cero `NONE_VALID`. La tasa (100 %) es idéntica a la de los cuatro lotes de ciencias (G14, G16, G19, G21), pero la distribución de confianza sí difiere de forma marcada y es ahí donde aparece la señal verbal — ver el comentario comparativo en la sección dedicada. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código**)
+Última fase ejecutada: G24 (**COMPLETADA — balance del banco y triaje de cola, pasada editorial. Estado consolidado consultado en vivo contra Supabase: banco 622/622 verificados y servibles (`isVerified=true` + `usage=SERVABLE`), **las dos colas en cero** (ciega 0, discrepancias 0) — la "cola acumulada" que el encargo pedía limpiar no existe, se vació en G19 y sigue vacía. Nada auto-aprobado por esta fase. Distribución de posición dentro de banda 15–40 % en las dos instituciones y en las 11 materias con contenido — el sesgo de G8 NO reapareció; sí sigue presente y sin corregir el artefacto de ROTACIÓN de G16 (IPN Matemáticas 61/69 pares consecutivos A→B→C→D, IPN Biología 47/69), decisión del dueño. SOURCED 207 (33 %) / TEMARIO_ONLY 415 (67 %). Brecha a la meta de 1 500: **878 reactivos = 26 lotes de 35 = ~52 sesiones**; al ritmo con el que el pipeline ha existido (13,6 verificados/día, ya incluyendo la pausa de 19 días de agosto) alcanza para el 21-nov con ~3 semanas de margen; al ritmo calendario completo (9,9/día) lo pierde por ~3 días — **es borde, sin margen para otra pausa de varias semanas**. Top-5 materias por brecha: IPN FISMAT Química (56, EN CERO), IPN FISMAT Física (76), IPN FISMAT Matemáticas (63), IPN MEDBIO Química (54), UNAM A1 Matemáticas (63). Auditoría 5 %: mecanismo probado (pool 606 → muestra 31), **bug real hallado y corregido** — `classifyReviewQueue` descartaba un reactivo degradado por la 3ª pasada (queda `isVerified=false` pero `decision:'AUTO_APPROVED'`), volviéndolo invisible en el panel F3; el pipeline `adversarial-v1` de F4 sí auditó 16/309 en su día, `session-v1` (G2+) tiene 0/313 auditados. 2 duplicados reales anotados. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (476/476) en verde**)
 
 </details>
 
@@ -16,6 +16,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G25 | Verificación ciega: auditoría 5 % de `session-v1` | **COMPLETADA con desviación declarada — no había "reparadas de G24" que verificar (cola en cero); se ejecutó la auditoría 5 %: 31/31 confirmados, 0 degradados, banco 622/622 sin cambio** | (G25) | Ver sección dedicada abajo. La premisa del encargo era falsa y se comprobó sin leer el commit de G24. `session-v1` pasa de 0 a 18 auditados. |
 | G24 | Balance del banco y triaje de cola | **COMPLETADA — banco 622/622, colas en cero, brecha 878 (26 lotes), 1 bug de auditoría corregido** | (G24) | Ver sección dedicada abajo. **Pasada editorial** (no ciega, por diseño del encargo: aquí sí se ven las respuestas del generador y del verificador, el trabajo es juzgar cuál tiene razón — igual que G17). Estado consolidado con números reales de la DB (`scripts/g24-consolidate.ts`, desechable, solo lectura). **Banco: 622 reactivos, 622 verificados, 622 servibles (`usage=SERVABLE`), todos `GENERATED`.** **Las dos colas en cero** — cola ciega 0, cola de discrepancias 0: la "cola acumulada" que el encargo pedía triar **no existe**, se vació por completo en G19 (77 reparadas de G17 re-verificadas) y G21/G23 la mantuvieron vacía. Cero reactivos con `isVerified=false`. **Ningún reactivo auto-aprobado por esta fase** (no había nada que aprobar). Desglose por institución/área/materia: IPN FISMAT Matemáticas 70, Física 35, Español/Lectura 35, Química **0**, Inglés 0; IPN MEDBIO Biología 70, Química 35, Matemáticas **0**, Español/Lectura 0, Inglés 0; UNAM A1 Matemáticas 81, Física 72, Química 52, Español 35, Inglés 0; UNAM A2 Biología 65, Química 72, Español 0, Inglés 0; UNAM A3/A4 e IPN SOCADM **enteras en cero**. **Distribución de posición de la respuesta correcta** (solo `isVerified=true`, letra = `option.id` con `isCorrect` en la DB): UNAM A 26.8 % / B 26.8 % / C 21.5 % / D 24.9 % (n=377); IPN A 25.3 % / B 25.3 % / C 26.1 % / D 23.3 % (n=245); **las 11 materias con contenido dentro del rango 15–40 % de `POSITION_SKEW`** — **el sesgo corregido en G8 NO ha reaparecido**. Barrido de citas por letra sobre las 1 866 capas de explicación: **0** (el fix de G8 se sostiene). **Pero el artefacto de ROTACIÓN de G16 (letra correcta que rota A→B→C→D al ordenar por `id`) sigue presente y sin corregir**, y medido a nivel materia es más marcado de lo que G16 documentó por lote: **IPN FISMAT Matemáticas 61/69 pares consecutivos** (azar ≈17), **IPN MEDBIO Biología 47/69** — los lotes viejos (G3a/G3d/G13/G15); los lotes nuevos G18/G20/G21/G22/G23 están limpios (6–8/34). Reposicionar reactivos ya publicados con `SessionAnswer` sigue siendo decisión del dueño, igual que G16/G21/G23 lo dejaron — se registra con números frescos, no se toca. **SOURCED vs TEMARIO_ONLY: 207 SOURCED (33.3 %) / 415 TEMARIO_ONLY (66.7 %)** — la proporción bajó desde el 44 % de F4 (135/309) porque los lotes G del refuerzo IPN son casi todos `TEMARIO_ONLY` (solo 46/217 temas tienen fragmento fuente). **Auditoría del 5 % (pendiente de G14): mecanismo verificado + 1 bug real corregido.** Los scripts de G17 (`content:audit-sample` / `content:audit-resolve`) funcionan — pool elegible **606**, muestra 5 % = **31** (comprobado en vivo, sin resolver: esta sesión no es ciega). **Hallazgo:** ESTADO decía "nunca se ha auditado nada" — impreciso: el pipeline `adversarial-v1` de F4 **sí** corrió su 3ª pasada integrada sobre **16 de los 309** reactivos originales el 2026-07-21 (16/309 ≈ 5.2 %, los 16 confirmados, 0 degradados). Lo que nunca se ha auditado es el contenido `session-v1` (G2 en adelante): **0 de 313**. **Bug corregido** (`src/lib/admin/verification.ts`): `classifyReviewQueue` comprobaba `decision !== 'UNPUBLISHED'` ANTES de `audit?.degraded` → un reactivo que la 3ª pasada degrade queda `isVerified=false` (bien despublicado por `content-audit-resolve.ts`) pero con `decision:'AUTO_APPROVED'` heredado del veredicto de 2ª pasada, así que el guard lo mandaba a `null` y **desaparecía del panel F3** (ni servido, ni en cola, invisible). Reordenado para mirar `manualReview` → `audit.degraded` → `decision`; 2 tests de regresión nuevos. **Duplicados reales anotados** (0 respuestas, no bloqueantes): `cmrul0y5k…` ≡ `cmrul1p9e…` (H₂SO₄+2NaOH, UNAM Química, ya lo marcó G19) y `cmru8zod5…` ≡ `cmt8mvgiv…` (cruce dihíbrido AaBb×AaBb → 9:3:3:1, pero uno es UNAM A2 y otro IPN MEDBIO — bancos distintos). **Brecha a la meta de 1 500: 878 reactivos = 26 lotes de 35 = ~52 sesiones (compón + verifica ciega).** Proyección honesta: al ritmo con el que el pipeline ha existido de verdad (**13.6 verificados/día** entre G3a 2026-08-04 y G23 2026-08-27, un número que **ya incluye** la pausa de 19 días de agosto por infra/rebrand) alcanza para el **21-nov con ~3 semanas de margen**; al ritmo calendario completo desde el cierre de F4 (**9.9/día**) **lo pierde por ~3 días**. Como el trabajo de infra/credenciales que causó la pausa de agosto **ya está hecho**, la proyección realista se acerca al 13.6 — **pero es borde y no hay margen para otra pausa de varias semanas**. **Top-5 materias por brecha absoluta** (meta = 1 500 prorrateada por `questionWeight` sobre las 270 de peso SUPERIOR, ordenadas por urgencia): (1) **IPN FISMAT Química — brecha 56, EN CERO**, institución día 1; (2) **IPN FISMAT Física — brecha 76** (35/111), día 1; (3) **IPN FISMAT Matemáticas — brecha 63** (70/133), día 1; (4) **IPN MEDBIO Química — brecha 54** (35/89), día 1; (5) **UNAM A1 Matemáticas — brecha 63** (81/144), UNAM ya es la más profunda. También en cero y urgentes aunque fuera del top-5 por tamaño: IPN MEDBIO Matemáticas (44) y Español/Lectura (33). **Pregunta de alcance que hay que resolver antes de mediados de septiembre:** si UNAM A3/A4, IPN SOCADM e Inglés entran en la meta del 21-nov, son ~13 materias más partiendo de cero y los 878 reactivos se reparten entre 24 materias en vez de 11 → más lotes y riesgo de materias con <20 reactivos. Los docs son ambiguos (PRD §14 "UNAM 4 áreas + IPN 2 ramas"; Plan L259 "UNAM completo + IPN Fís-Mat"; la producción real desde G3 solo ha tocado 4 áreas). `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**476/476**, +2 sobre G23) en verde. Scripts desechables (`scripts/g24-*.ts`) eliminados al terminar. |
 | G23 | Verificación ciega: Español y Habilidad Verbal IPN FISMAT (G22) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 587 → 622 verificados** | (G23) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G22. **Aislamiento comprobado, no asumido:** no se leyó el commit `fd6e302` de G22, ni el JSON del lote, ni `Question.options`, ni la sección `## G22` de este documento (línea 2075, dejada sin abrir a propósito, mismo criterio que G21 con G20); el único insumo fue el lote ciego **regenerado en esta sesión** (`pnpm content:blind-batch --all --limit 60` → `blind-batch-2026-08-27T23-54-54-423Z.json`, 35 ítems). **Primer lote verbal y primera verificación ciega con pasajes compartidos:** los 20 `READING_COMPREHENSION` llegaron con su `passage` completo — condición necesaria para poder responderlos — y sin ninguna marca de respuesta; `grep` da **0** para `isCorrect`, `explanation`, `explanations` y `correctOption`. Las 10 ocurrencias de `correct`/`soluci` que aparecen en el archivo se auditaron una por una y **son prosa española legítima** ("completa correctamente la oración", "ofrece varias soluciones posibles"), no marcas de respuesta. **Método, distinto por necesidad al de los lotes de ciencias:** aquí no hay operación que ejecutar, así que `usedCalculation:false` en los 35 (y por primera vez eso **coincide** con `requiresCalculation`, que el pipeline derivó en `false` para los 35 vía `isCalcSubject("Español/Lectura")` — en G21 el flag venía en `true` por materia y hubo que declarar el desglose real a mano). El criterio de resolución fue el que pedía el encargo: para cada reactivo se razonó **por qué cada uno de los tres distractores es insostenible** y por qué la opción elegida es la única defendible, y ese razonamiento quedó persistido íntegro en `Question.verification.reasoning`. **Cero ambigüedades genuinas encontradas, y el estándar se aplicó de verdad, no por omisión:** el encargo pedía marcar como problema (en vez de forzar una elección) cualquier reactivo con dos opciones *igualmente* defendibles. Se sometieron a segunda pasada adversarial los cuatro casos más cerrados y en los cuatro sobrevivió una sola opción, por razones concretas y no por descarte superficial — el detalle está en la sección dedicada. **Resultado de `pnpm content:resolve`: 35 auto-aprobados, 0 sin publicar, 0 omitidos → tasa de auto-aprobación 100 %.** **Candado anti-deriva propio de esta sesión** (mismo patrón que G16/G21): el archivo de respuestas no se escribió a mano — un script emparejó cada letra elegida con un fragmento del contenido razonado y **abortaba sin escribir nada si la letra y el contenido no coincidían o si el fragmento no identificaba de forma única a esa opción**, con igualdad exacta por delante de la subcadena (indispensable aquí: la opción correcta de un reactivo de concordancia es literalmente `fue`, subcadena de su propio distractor `fueron`); pasó en los 35. **Acumulado real consultado en vivo contra Supabase antes y después, no estimado:** banco 622 totales · verificados **587 → 622** · pendientes **35 → 0** · sin veredicto **35 → 0** · sin publicar con veredicto 0 (sin cambio). `Español/Lectura` de IPN FISMAT (`questionWeight=4`) pasó de **0✓/35⧗ a 35✓/0⧗** en sus 4 temas (Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6). **Comentario comparativo pedido por el encargo:** la tasa NO difiere de la de ciencias (100 % en G14, G16, G19, G21 y ahora G23) — pero eso, dicho con honestidad, es porque **la métrica está saturada y hoy no discrimina nada**: cinco rondas ciegas seguidas al 100 %. Donde sí aparece la diferencia verbal es en la **confianza**: 14 de 35 reactivos por debajo de 0.99 (40 %), contra 3/35 en G21, 3/35 en G16 y 2/35 en G14 (≈8 %), y el **mínimo de 0.93 es el más bajo de cualquier ronda ciega del proyecto**. Lectura: el margen entre la opción correcta y el mejor distractor es genuinamente más delgado en lo verbal, aunque nunca llegó a cero. **Tres notas de composición para futuros lotes verbales** (observaciones, no defectos que bloqueen publicación): ver sección dedicada. **Seguimiento del hallazgo de G16 (rotación A→B→C→D de la letra correcta), medido desde el lado ciego: el artefacto NO está presente** — solo **6 de 34** pares consecutivos siguen la rotación, por debajo de los ≈8.5 esperados al azar (secuencia `CADBADBACBBDACDACBDCACBADBCADBDACBC`), frente a los 34/34, 27/34, 26/34 y 21/34 de los cuatro lotes que G16 documentó; segundo lote consecutivo limpio tras G21. Distribución de posición en el espacio ORIGINAL: **A=9, B=9, C=9, D=8** (25.7 %/25.7 %/25.7 %/22.9 %, dentro del rango 15 %-40 % de G3c); las elecciones en el espacio MEZCLADO fueron A=6/B=11/C=7/D=11, o sea el shuffle sí reordenó de verdad. El hallazgo de G16 sigue **sin corregir en los lotes ya publicados de G3a, G3d, G13 y G15**, igual que G16 y G21 lo dejaron. `pnpm typecheck` y `pnpm lint` en verde; **cero cambios de código**. Scripts desechables (`scripts/g23-count.ts`, `scripts/g23-seqcheck.ts`, `scripts/g23-build-answers.ts`) eliminados al terminar. |
 | G22 | Lote de reactivos: Español y Habilidad Verbal — IPN FISMAT `Español/Lectura` (materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G22) | Ver sección dedicada abajo. **Institución elegida con números reales (Prisma/SQL directo contra Supabase):** IPN Español/Lectura = **0 reactivos** en las 3 ramas (FISMAT w4, MEDBIO w6, SOCADM w3), 10 temas, 0 SourceChunk, sin guía IPN ingerida; UNAM Español = **35 verificados** (todos Área 1, w10). Brecha normalizada por peso del banco (~3.5 verificados/punto de peso): IPN ~45 vs UNAM ~31, y la de IPN en ramas de lanzamiento día 1 en cero absoluto → **IPN**. Subrama: **FISMAT**, única de IPN cuyo temario cubre los 4 temas que el encargo pide (Ortografía, Gramática, Comprensión lectora, Análisis de textos). **Primer uso del modelo `Passage`:** 4 pasajes ORIGINALES (divulgación científica «Del teocintle al maíz», argumentativo «Más árboles en las ciudades», narrativo «La azotea», ensayístico «En defensa del aburrimiento»), 5 preguntas cada uno = 20 `READING_COMPREHENSION`; + 4 `SENTENCE_COMPLETION`, 2 `ANALOGY`, 9 `MULTIPLE_CHOICE`. **Extensión del pipeline G2** (código): campo `passage` en `QuestionDraftSchema`, regla de lote `PASSAGE_LINK` en `scripts/lib/lot-validation.ts` (RC⇔passage, ≥2 preguntas/pasaje), `findOrCreatePassage` + `passageId` en `content-db.ts`/`content-insert-drafts.ts`. Verificado en DB: banco 587→**622**, verificados **587** (sin cambio), cola ciega 0→**35**, `passages` 0→**4** (cada uno con exactamente 5 preguntas). Posición correcta A9/B9/C9/D8; sin rotación cíclica (17.6 % transiciones +1). Cero API de pago. |
@@ -2079,6 +2080,170 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G25 — Verificación ciega: auditoría 5 % de `session-v1` (2026-08-28)
+
+**COMPLETADA, pero no sobre lo que el encargo pedía.** El encargo pedía
+resolver a ciegas "los reactivos reparados en G24 que quedaron marcados para
+re-verificación". Esos reactivos no existen: G24 no reparó ninguno. En su
+lugar se ejecutó la pasada ciega que el propio G24 dejó encargada como
+pendiente #3 — la auditoría 5 % de `session-v1`, que nunca había corrido.
+
+### 1) La premisa del encargo es falsa, y se comprobó sin contaminar la sesión
+
+Todo lo de abajo se estableció **sin leer el commit de G24, sin abrir ningún
+JSON de lote y sin mirar `Question.options`**:
+
+| Evidencia | Resultado |
+|---|---|
+| `pnpm content:blind-batch --all --limit 500` (el script de lote ciego de G2, corrido tal cual lo pedía la tarea 1) | `🔍 0 reactivo(s) pendiente(s) (todos los temas)` → `Nada que exportar.` |
+| Consulta en vivo a Supabase | 0 reactivos con `isVerified=false`: cola ciega 0, cola de discrepancias 0 |
+| `git show --numstat --format="" 41eb912` (solo rutas y conteos, sin contenido) | G24 tocó `docs/ESTADO.md`, `src/lib/admin/verification.ts` y `tests/admin/verification.test.ts` |
+| Encabezados de la sección G24 (solo títulos, `awk '/^#{2,4} /'`) | "2) Triaje de la cola de discrepancias: **no hay cola que triar**" · "8) Duplicados reales anotados (**no se tocaron**)" |
+
+G24 reparó **código** — el bug de `classifyReviewQueue` que ocultaba del panel
+F3 un reactivo degradado por la 3ª pasada — no reactivos. Nunca marcó nada
+para re-verificación porque no había nada que marcar: la cola se vació en G19
+y sigue vacía.
+
+**Tasa de rescate de reparadas: N/A — 0 candidatas, 0 rescatadas.** No es 0 %
+por fallo del pipeline: el denominador es cero.
+
+### 2) Qué se hizo en su lugar (desviación declarada, no silenciosa)
+
+El encargo era una sesión de verificación ciega y no había nada que verificar
+en la cola. La pasada ciega que sí estaba pendiente y que usa exactamente el
+mismo protocolo y los mismos scripts es la **auditoría 5 %** — pendiente #3 de
+"Siguiente (G24)", textual: *"Ejecutar por fin la auditoría 5 % de
+`session-v1` en una sesión ciega dedicada: `content:audit-sample` →
+`content:blind-batch --ids` → resolver a ciegas con un tier distinto →
+`content:audit-resolve`. Pool 606, muestra 31."*
+
+Se ejecutó completa, con la muestra que el script eligió (`Math.random` real,
+no determinista, a propósito).
+
+### 3) La ceguera se comprobó estructuralmente, no se asumió
+
+Sobre el archivo exportado (`scripts/content-exports/g25-blind.json`, 31
+ítems), antes de responder nada:
+
+```
+contiene isCorrect?   false
+contiene explanation? false
+llaves: questionId, institution, subject, topic, format, passage,
+        requiresCalculation, stem, options
+```
+
+Las opciones vienen re-etiquetadas A/B/C/D en un orden distinto al almacenado
+(semilla determinista = id del reactivo, `buildBlindItem`), así que ni siquiera
+la posición filtra información. Esta sesión no había visto estos 31 reactivos
+en ninguna forma.
+
+### 4) Resolución: 31 desde cero, 15 con cálculo ejecutado en código
+
+Los 15 numéricos se resolvieron corriendo el cálculo en Node, no razonándolo
+en texto: mezcla de café (140x + 100(80−x) = 80·122.50), raíces de la
+cuadrática de la ventana comprobadas contra perímetro y área, `mcm` vía
+`gcd`, cadena de fracciones, diferencias de la sucesión, tabla de frecuencias
+para la moda, P = W/t, v = g·t, P = VI, evaluación de g(−3), suma de
+porcentajes, 1/Req = 1/4 + 1/6, d = ½at², v = λf, T = 1/f.
+
+Los 16 conceptuales se resolvieron razonando el **descarte de cada distractor
+por su contenido**, no por su letra — p. ej. en el de las placas paralelas: E
+apunta de la placa positiva (superior) a la negativa (inferior), o sea hacia
+abajo; la fuerza sobre el electrón es F = qE con q negativa, luego hacia
+arriba; "hacia abajo" es exactamente el error de ignorar el signo de la carga.
+Cada `reasoning` del archivo de respuestas nombra los distractores por su
+contenido y de dónde sale el error que los produce.
+
+Confianza mínima declarada: 0.95. Ningún reactivo se marcó con `problems`:
+ninguno tiene ambigüedad, doble respuesta válida ni respuesta ausente.
+
+### 5) Resultado: 31/31 confirmados, 0 degradados
+
+```
+✅ Confirmados: 31   ⚠️ Degradados (despublicados): 0   ⏭️ Omitidos: 0
+```
+
+La tercera pasada coincidió con el generador en los 31, incluidos los 12 que
+en su segunda pasada habían sido verificados por otro tier. Es la primera vez
+que `session-v1` pasa por la tercera pasada desde que existe.
+
+| Pipeline | Reactivos | Auditados antes de G25 | Auditados después |
+|---|---|---|---|
+| `adversarial-v1` (F4) | 309 | 16 | 29 |
+| `session-v1` (G2+) | 313 | **0** | **18** (5.8 %) |
+| **Total** | **622** | **16** | **47 — 47 confirmados, 0 degradados** |
+
+Composición de la muestra: 18 de `session-v1` + 13 de `adversarial-v1`; 9
+materias entre UNAM (16) e IPN (15).
+
+### 6) Acumulado REAL, consultado en vivo después de la pasada
+
+```
+BANCO: { total: 622, verified: 622, servable: 622,
+         colaCiega: 0, colaDiscrepancias: 0 }
+```
+
+**622 verificados y servibles — sin cambio respecto de G24**, y era el
+resultado correcto: esta fase no publicó nada nuevo (no había cola) y no
+despublicó nada (los 31 se confirmaron). Lo único que cambió en la DB es
+`verification.audit`, que pasó de 16 a 47 registros. Verificados por materia:
+
+```
+  35 IPN Español/Lectura · 35 IPN Química · 35 IPN Física · 35 UNAM Español
+  65 UNAM Biología · 70 IPN Biología · 70 IPN Matemáticas · 72 UNAM Física
+  81 UNAM Matemáticas · 124 UNAM Química
+```
+
+### 7) Caveat honesto: la diversidad de tier se cumplió solo a medias
+
+G24 pedía resolver la auditoría "con un tier distinto". De los 31 reactivos,
+**12 habían sido verificados en su segunda pasada por `claude-opus-5`, que es
+el mismo modelo que corrió esta tercera pasada** (los otros 19: 17 por
+`claude-fable-5`, 2 por `claude-opus-4-8`). El aislamiento de **sesión** sí se
+cumplió al 100 % — esta sesión jamás vio las respuestas — pero para esos 12 la
+tercera pasada no aporta diversidad de modelo, solo diversidad de contexto.
+No se falseó el campo `model`: dice `claude-opus-5` porque eso fue lo que
+corrió. Si el dueño quiere la red completa, esos 12 ids deberían re-auditarse
+desde una sesión con otro tier.
+
+### 8) Observación editorial (no marcada como problema, a propósito)
+
+En varios reactivos conceptuales la opción correcta es visiblemente **la más
+larga y la única que explica** (eritrocitos, alvéolos, niveles tróficos,
+relatividad, retículo endoplásmico). Es una pista de longitud que un
+sustentante entrenado puede explotar sin saber el tema. No se marcó como
+`WEAK_DISTRACTORS` porque el reactivo no es incorrecto y marcarlo lo habría
+despublicado; queda como criterio de composición para los próximos lotes:
+igualar el largo de las cuatro opciones.
+
+### 9) Verificación técnica
+
+- `pnpm typecheck` → limpio
+- `pnpm lint` → limpio
+- `pnpm test:unit` → **476/476** en 51 archivos
+- Cero llamadas a la API de pago de Anthropic: la resolución la hizo esta
+  sesión, los scripts solo leen y escriben en la DB.
+- Limpieza: scripts temporales de consulta borrados; los artefactos del lote
+  (`g25-blind.json`, `g25-answers.json`, `audit-sample-*.json`) quedan en
+  `scripts/content-exports/`, que está en `.gitignore`.
+
+### Siguiente (G25)
+
+1. **Componer, no verificar** — la cola sigue vacía. Orden de urgencia
+   heredado de G24 §7: **IPN FISMAT Química (en cero, brecha 56)**, IPN FISMAT
+   Física (76), IPN FISMAT Matemáticas (63), IPN MEDBIO Química (54), UNAM A1
+   Matemáticas (63). Consultar `content:coverage` en vivo antes de cada lote.
+2. En la composición de esos lotes, igualar el largo de las cuatro opciones
+   (§8) además de la distribución de posición que ya valida `content:validate-batch`.
+3. Siguen pendientes, sin tocar: la pregunta de alcance de G24 §7 (¿A3/A4/
+   SOCADM/Inglés en la meta del 21-nov? — decide si son 26 lotes o ~35), la
+   decisión sobre los ~140 reactivos con rotación A→B→C→D, y despublicar uno
+   del par duplicado H₂SO₄.
+4. La auditoría 5 % ya no está en cero, pero cubre 47/622. Repetirla cada
+   ~3 lotes mantiene la red viva; los 12 ids de §7 merecen una pasada con otro
+   tier.
 
 ## G24 — Balance del banco y triaje de cola (2026-08-27)
 
