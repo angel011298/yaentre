@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-29 · Última fase ejecutada: G31 (**COMPLETADA — lote de 35 reactivos de **Inglés, IPN** (materia COMPARTIDA `sharedContentKey=IPN:INGLES`, migración 0011/G26), **primera cobertura de Inglés en todo el banco**. A diferencia de la UNAM, el examen del IPN evalúa Inglés en las **3 ramas** (FISMAT w2, MEDBIO w3, SOCADM w2) y las 3 celdas estaban en **cero**. Regla de CLAUDE.md/G26 ("componer contra el `topicId` de la materia con más contenido del grupo") con empate a cero → se elige la celda de **mayor peso, MEDBIO** (`cmrr1m31200dvhi3nuat1aznh`, w3), que además define la meta efectiva de G26 para el grupo (**17**); la reutilización G26 lo sirve a FISMAT y SOCADM en runtime (`src/lib/db/shared-content.ts`). **35 TEMARIO_ONLY** — 0 SourceChunk para Inglés IPN y no existe guía del IPN en `content_sources`. Reparto por los 3 temas de MEDBIO Inglés: Presente simple 12, Pasado simple 12, Vocabulario médico-científico 11. **18 comprensión de lectura** (`READING_COMPREHENSION`) sobre **4 pasajes ORIGINALES en inglés** (g31-cut 5 · g31-market 5 · g31-storm 3 · g31-sleep 5), **10 `SENTENCE_COMPLETION`**, **7 `MULTIPLE_CHOICE`** (gramática: tiempos verbales presente/pasado simple y continuo, preposiciones in/on/at · on page · recover from, conectores as a result/therefore, concordancia, forma interrogativa y negativa; vocabulario: significado por contexto, antónimos con sufijo -less, colocación make an effort, derivación conclusive/inconclusive, polisemia de spread). **Instrucción en español; contenido evaluado en inglés** (pasaje, oración, opciones), como el examen real. Dificultad BASIC 7 / INTERMEDIATE 18 / ADVANCED 8 / EXPERT 2. **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en 15-40 %, confirmada por query directa a la DB; rotación A→B→C→D **6/34 = 17.6 %** (quinto lote limpio seguido); **correcta = opción más larga 8/35 = 22.9 %**, bajo el 25 % de azar — se reescribieron ~10 distractores de comprensión para bajar ese cue del 60 % del primer borrador (donde la respuesta correcta, al ser la paráfrasis completa y fiel, salía más larga). `content:validate-batch` **0 violaciones**. Insertado con `content:insert --lot-dir` tema por tema, **verificado en la DB**: banco **692 → 727** total, verificados sin cambio en **692** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega **0 → 35**, pasajes **8 → 12**. `IPN:INGLES` de 0 a 35 contra una meta efectiva de 17: sobra profundidad, igual que hizo G29 con `IPN:ESPANOL` (70 vs 33) — decisión del encargo, no de la regla. Registro en `docs/content-batches/g31-ipn-ingles.json`. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago**)
+Última actualización: 2026-08-29 · Última fase ejecutada: G32 (**COMPLETADA — verificación ciega del lote de G31 (35 reactivos de **Inglés, IPN**, pool compartido `IPN:INGLES`), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda ciega sobre contenido en inglés** y segunda puramente verbal tras G30: 0/35 admiten cálculo, así que no cabe el candado aritmético de G28 y el control es el **descarte explícito de los tres distractores por su contenido** más, en los 17 reactivos de gramática y vocabulario, **la regla citada por su nombre** (‑s de tercera persona, presente simple para verdades generales, `while` + pasado continuo, `did` + infinitivo pelado, posición media del adverbio de frecuencia, sufijos ‑ful/‑less, preposiciones dependientes, colocaciones). **Ceguera estructural verificada antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; y los **18 de comprensión llegaron CON su pasaje** (4 pasajes: 5/5/3/5), como exige el formato. **Aislamiento comprobado:** no se abrió el commit `eb7a48a` de G31, ni `docs/content-batches/g31-ipn-ingles.json`, ni `Question.options`, ni la sección `## G31`, ni el bloque `### Siguiente (G31)` antes de responder. **Pero la contaminación de esta ronda es la más grave registrada, y es de canal, no de encargo:** la **línea 3 de este documento** —el encabezado "Última fase ejecutada: G31"— se leyó al inicio de la sesión y **enumera los puntos evaluados por su forma correcta**: «preposiciones in/on/at · **on page** · **recover from**, conectores **as a result/therefore** … antónimos con sufijo **‑less**, colocación **make an effort**, derivación **conclusive/inconclusive**». Eso entrega la respuesta de **6 reactivos** de forma decisiva (on page, as a result, harmless, make an effort, therefore, recover from), **1** de forma ambigua (conclusive/inconclusive nombra las dos formas) y **2** solo por tema (in/on/at reduce el campo de 4 a 3; spread no da dirección). **Acuerdo limpio: 26/26**; los otros 9 se aprobaron con la contaminación anotada. **Es el mismo defecto que G30 §1 halló en el bloque `### Siguiente`, migrado al resumen de composición**: G31 sí cumplió la regla de G30 en su `### Siguiente`, y la fuga salió por el encabezado. **Regla nueva (G32 §2):** línea 3 y fila de tabla deben nombrar el punto evaluado **genéricamente** («preposición dependiente de *recover*», «colocación con *effort*»), nunca por su forma correcta. **Confianza declarada:** mínima **0.92**, máxima 0.99, promedio **0.965** — mismo piso que G30, coherente con que el razonamiento verbal admite matiz. **El barajado es real:** la etiqueta ciega coincide con la original en **10/35 (28.6 %)** — 25 respuestas cambiaron de letra. **Confirmación independiente de G31, recontada en vivo:** clave **A9/B9/C9/D8**, rotación A→B→C→D **6/34 = 17.6 %**, correcta = opción más larga **8/35 = 22.9 %**, 18 con pasaje — **los cuatro coinciden con lo que G31 registró** (a diferencia de G29, que G30 tuvo que corregir). **Acumulado real:** banco **727** totales · verificados **692 → 727** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN MEDBIO Inglés **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 727 servibles, auto-aprobación global 100 % (727/727), meta efectiva G26 (1 222) al **49 %**, brecha **625 ≈ 18 lotes**; meta nominal de 1 500: 46 % → **48 %**. **Nota honesta: octava ronda ciega consecutiva al 100 % — la métrica está saturada y no discrimina.** Lo que aporta esta fase no es el 100 %, es haber detectado una **fuga de información en el canal de entrada** de la ronda ciega, el primer defecto del pipeline hallado fuera del lote. Cuatro observaciones de composición registradas sin bloquear publicación. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código de producción —el diagnóstico corrió en un script desechable, creado y borrado— y cero llamadas a la API de pago**)
+
+<details><summary>Historial: G31 (2026-08-29)</summary>
+
+Última fase ejecutada: G31 (**COMPLETADA — lote de 35 reactivos de **Inglés, IPN** (materia COMPARTIDA `sharedContentKey=IPN:INGLES`, migración 0011/G26), **primera cobertura de Inglés en todo el banco**. A diferencia de la UNAM, el examen del IPN evalúa Inglés en las **3 ramas** (FISMAT w2, MEDBIO w3, SOCADM w2) y las 3 celdas estaban en **cero**. Regla de CLAUDE.md/G26 ("componer contra el `topicId` de la materia con más contenido del grupo") con empate a cero → se elige la celda de **mayor peso, MEDBIO** (`cmrr1m31200dvhi3nuat1aznh`, w3), que además define la meta efectiva de G26 para el grupo (**17**); la reutilización G26 lo sirve a FISMAT y SOCADM en runtime (`src/lib/db/shared-content.ts`). **35 TEMARIO_ONLY** — 0 SourceChunk para Inglés IPN y no existe guía del IPN en `content_sources`. Reparto por los 3 temas de MEDBIO Inglés: Presente simple 12, Pasado simple 12, Vocabulario médico-científico 11. **18 comprensión de lectura** (`READING_COMPREHENSION`) sobre **4 pasajes ORIGINALES en inglés** (g31-cut 5 · g31-market 5 · g31-storm 3 · g31-sleep 5), **10 `SENTENCE_COMPLETION`**, **7 `MULTIPLE_CHOICE`** (gramática: tiempos verbales, preposiciones de tiempo y de lugar, preposición dependiente de verbo, conectores de resultado, concordancia, forma interrogativa y negativa; vocabulario: significado por contexto, antonimia por sufijo, colocación verbo+sustantivo, derivación adjetival, polisemia — **enumeración redactada en G32 §2: la versión original nombraba cada punto por su forma correcta y filtró la respuesta de 6 reactivos a la ronda ciega**). **Instrucción en español; contenido evaluado en inglés** (pasaje, oración, opciones), como el examen real. Dificultad BASIC 7 / INTERMEDIATE 18 / ADVANCED 8 / EXPERT 2. **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en 15-40 %, confirmada por query directa a la DB; rotación A→B→C→D **6/34 = 17.6 %** (quinto lote limpio seguido); **correcta = opción más larga 8/35 = 22.9 %**, bajo el 25 % de azar — se reescribieron ~10 distractores de comprensión para bajar ese cue del 60 % del primer borrador (donde la respuesta correcta, al ser la paráfrasis completa y fiel, salía más larga). `content:validate-batch` **0 violaciones**. Insertado con `content:insert --lot-dir` tema por tema, **verificado en la DB**: banco **692 → 727** total, verificados sin cambio en **692** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega **0 → 35**, pasajes **8 → 12**. `IPN:INGLES` de 0 a 35 contra una meta efectiva de 17: sobra profundidad, igual que hizo G29 con `IPN:ESPANOL` (70 vs 33) — decisión del encargo, no de la regla. Registro en `docs/content-batches/g31-ipn-ingles.json`. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago**)
+
+</details>
 
 <details><summary>Historial: G30 (2026-08-29)</summary>
 
@@ -23,11 +29,6 @@ nunca actualizó la línea 3 de este documento.)*
 
 </details>
 
-<details><summary>Historial: G27 (2026-08-28)</summary>
-
-Última fase ejecutada: G27 (**COMPLETADA — lote de 35 reactivos de **Matemáticas Aplicadas, IPN SOCADM**, la primera materia de esa rama con contenido (SOCADM completa estaba en cero). Materia = "Matemáticas Aplicadas" (weight 3, temas: Estadística descriptiva, Probabilidad, Análisis de datos), NO el bloque general de "Matemáticas" de FISMAT/MEDBIO — enfoque distinto (razonamiento cuantitativo aplicado), por eso G26 la dejó fuera del grupo `IPN:MATEMATICAS`. Cero `SourceChunk` para la materia o cualquier guía de IPN → los 35 **TEMARIO_ONLY**. Reparto 12/11/12 por tema. Dificultad BASIC 6 / INTERMEDIATE 17 / ADVANCED 10 / EXPERT 2. Formato PROBLEM_SOLVING 26 / CHART_TABLE 8 / MULTIPLE_CHOICE 1. **Los 35 cálculos recomputados de forma independiente** (`verify-g27.mjs`, desechable): cada respuesta marcada coincide y cada distractor corresponde a un error nombrable (media↔mediana, base equivocada del %, sumar % en vez de multiplicar factores, conjunta↔condicional, con/sin reemplazo…). **Distribución de posición A=9 B=9 C=9 D=8** (25.7/25.7/25.7/22.9 %), las 4 en 15-40 %; secuencia de letras no cíclica (transiciones +1 en A→B→C→D: 20.6 % vs 25 % de azar). `content:validate-batch`: **0 violaciones**. Insertado con `content:insert --lot-dir` tema por tema, **verificado en la DB**: SOCADM Matemáticas Aplicadas 0 → 35; banco **622 → 657** total, verificados sin cambio en **622** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega 0 → 35. Registro en `docs/content-batches/g27-ipn-socadm-matematicas.json`. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago**)
-
-</details>
 
 ## URL de producción actual
 
@@ -37,6 +38,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G32 | Verificación ciega: Inglés IPN (lote de G31) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 692 → 727 verificados, cola ciega 35 → 0** | (G32) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G31. **Primera ronda ciega sobre contenido en inglés**; segunda puramente verbal tras G30 (0/35 admiten cálculo → sin candado aritmético de G28; el control es el descarte explícito de los tres distractores más la regla gramatical citada por su nombre). Ceguera estructural verificada (`grep` = 0; claves de opción solo `label, text, imageUrl`); **los 18 de comprensión llegaron CON su pasaje** (4 pasajes, 5/5/3/5). Aislamiento comprobado: no se abrió el commit de G31, ni el JSON del lote, ni `Question.options`, ni la sección `## G31`, ni el bloque `### Siguiente (G31)`. **Contaminación grave declarada, y de canal:** la **línea 3** de este documento enumeraba los puntos evaluados **por su forma correcta**, entregando 6 respuestas de forma decisiva, 1 ambigua y 2 por tema → **acuerdo limpio 26/26**, los otros 9 aprobados con la contaminación anotada. Es el defecto de G30 §1 migrado del bloque `### Siguiente` al encabezado; la enumeración quedó **redactada** y la regla nueva está en §2. Confianza mínima **0.92**, promedio 0.965, 0 problemas. Barajado real: la etiqueta ciega coincide con la original en 10/35 (28.6 %). **Confirmación independiente de G31:** clave A9/B9/C9/D8, rotación 6/34 = 17.6 %, correcta = más larga 8/35 = 22.9 %, 18 con pasaje — **los cuatro coinciden con lo registrado** (a diferencia de G29). Octava ronda seguida al 100 %: métrica saturada, y se dice así. Cero cambios de código de producción. |
 | G31 | Lote de reactivos: Inglés IPN (3 ramas, materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G31) | Ver sección dedicada abajo. **Primera cobertura de Inglés del banco.** A diferencia de la UNAM, el IPN evalúa Inglés en las 3 ramas; materia COMPARTIDA (`sharedContentKey=IPN:INGLES`, G26), las 3 celdas en cero. Regla de G26 con empate a cero → celda de mayor peso: **MEDBIO** (w3), que define la meta efectiva del grupo (17); reutilización G26 sirve a FISMAT y SOCADM. 35 TEMARIO_ONLY (0 SourceChunk IPN). Reparto por los 3 temas de MEDBIO: Presente simple 12, Pasado simple 12, Vocabulario médico-científico 11. Formato: 18 `READING_COMPREHENSION` sobre 4 pasajes ORIGINALES en inglés (5/5/3/5), 10 `SENTENCE_COMPLETION`, 7 `MULTIPLE_CHOICE`. Instrucción en español, contenido en inglés. Clave A9/B9/C9/D8, rotación A→B→C→D 6/34 = 17.6 %, correcta = opción más larga 8/35 = 22.9 % (tras reescribir ~10 distractores). `content:validate-batch` 0 violaciones. Banco 692 → 727, cola ciega 0 → 35, pasajes 8 → 12. Registro en `docs/content-batches/g31-ipn-ingles.json`. |
 | G30 | Verificación ciega: Español/Lectura IPN (lote de G29) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 657 → 692 verificados, cola ciega 35 → 0** | (G30) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G29. Primera ronda ciega **puramente verbal a escala**: 0/35 admiten cálculo, así que no cabe el candado aritmético de G28 y el único control es el **descarte explícito de los tres distractores**, citados por contenido y nunca por letra. Aislamiento comprobado (no se abrió el commit de G29, ni el JSON, ni `Question.options`, ni la sección `## G29`); ceguera verificada con `grep` = 0 y por las claves de opción; **los 20 de comprensión llegaron CON su pasaje** (4 pasajes × 5). **Contaminación declarada:** el encargo leído nombra el criterio decisivo de uno de los dos `EXPERT`, así que ese reactivo no cuenta como acuerdo independiente. Confianza mínima **0.92** (el piso más bajo de cualquier ronda ciega; G28 0.95, G23 0.93), promedio 0.963, 0 problemas y 0 ambigüedades forzadas. Sin señal de longitud (correcta = más larga 7/35 = 20 %). Barajado real: la etiqueta ciega coincide con la original en 12/35 (34.3 %). **Corrección a G29:** la clave recontada en vivo es A9/B8/C9/D9, no A9/B9/C9/D8 (transposición B↔D; ambas dentro de la banda de G3c). Séptima ronda seguida al 100 %: la métrica sigue saturada y se dice así. Cero cambios de código. |
 | G29 | Lote de reactivos: Español/Comunicación IPN (encargo SOCADM) | **COMPLETADA — 35 insertados, isVerified=false** | (G29) | Ver sección dedicada abajo. Encargo: 35 reactivos de Español para la rama SOCADM. Español/Lectura es materia COMPARTIDA (`sharedContentKey=IPN:ESPANOL`, G26): el lote se compuso contra los 4 temas de **FISMAT** (la celda con más contenido del grupo: 35 verificados de G22; MEDBIO y SOCADM en cero) y la reutilización G26 lo sirve a MEDBIO y SOCADM. FISMAT es además la única rama cuyo temario nombra Ortografía y Gramática como temas propios, que es donde caen los formatos del encargo. 35 TEMARIO_ONLY. Reparto: Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6 (RC 20 con 4 pasajes ORIGINALES ×5, SENTENCE_COMPLETION 4, ANALOGY 3, MULTIPLE_CHOICE 8). Posición A9/B9/C9/D8 confirmada en la DB; rotación A→B→C→D 6/34 = 17.6 %; correcta = opción más larga 20 %; 0 citas por letra. `content:validate-batch` 0 violaciones. Banco 657 → 692, cola ciega 0 → 35. Segundo lote sobre el pool `IPN:ESPANOL` tras G22 (35→70). |
@@ -2107,6 +2109,246 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G32 — Verificación ciega: Inglés, IPN (lote de G31) (2026-08-29)
+
+**COMPLETADA. 35/35 auto-aprobados — tasa de auto-aprobación 100 %.** Segunda
+mitad del ciclo adversarial de G2 sobre los 35 reactivos que G31 insertó con
+`isVerified=false` en el pool compartido `IPN:INGLES`.
+
+Dos cosas la distinguen. Es la **primera ronda ciega sobre contenido en inglés**
+—el enunciado va en español y todo lo evaluado (pasaje, oración, opciones) en
+inglés, como el examen real— y es la **segunda puramente verbal** tras G30:
+`requiresCalculation=false` en los 35, así que el candado de unicidad que G28
+estrenó no existe aquí. El control disponible es el descarte explícito de los
+tres distractores por su contenido y, en los 17 reactivos de gramática y
+vocabulario, **la regla citada por su nombre** — la ‑s de tercera persona, el
+presente simple para verdades generales, `while` + pasado continuo frente al
+pasado simple que interrumpe, `did` + infinitivo pelado en el negativo, la
+posición media del adverbio de frecuencia, la oposición de sufijos ‑ful/‑less,
+las preposiciones dependientes de verbo y las colocaciones fijas.
+
+### 1) Ceguera y aislamiento
+
+Ceguera **estructural**, verificada sobre el archivo del lote antes de leerlo:
+
+- `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution`
+  sobre el JSON ciego = **0**;
+- las claves de cada opción son solo `label, text, imageUrl`;
+- **18 de los 35 llegaron CON su pasaje** (4 pasajes distintos, reparto 5/5/3/5),
+  como exige el formato de comprensión;
+- 0/35 con `requiresCalculation=true`, coherente con `isCalcSubject("Inglés")`.
+
+Aislamiento. No se abrió:
+
+- el commit `eb7a48a` de G31,
+- `docs/content-batches/g31-ipn-ingles.json`,
+- `Question.options` (ni por Prisma Studio ni por consulta) antes de responder,
+- la sección `## G31` de este documento,
+- **ni el bloque `### Siguiente (G31)`** — a diferencia de G28 y G30, esta ronda
+  ni siquiera leyó su propio encargo antes de resolver; se leyó después, al
+  redactar esta sección.
+
+### 2) Contaminación declarada — y esta vez el canal es la línea 3
+
+G30 §1 dejó dicho que el bloque `### Siguiente` no debe nombrar el criterio de
+resolución de un reactivo concreto. **G31 cumplió esa regla al pie de la letra**
+—su `### Siguiente (G31)` es explícito en no nombrar ningún criterio—, y aun así
+la información se filtró: salió por el **encabezado de la línea 3** de este
+documento, que se leyó al inicio de la sesión al consultar el estado del
+proyecto (es lo primero que pide CLAUDE.md).
+
+Ese encabezado resumía la composición del lote **nombrando cada punto evaluado
+por su forma correcta**:
+
+> «preposiciones in/on/at · **on page** · **recover from**, conectores
+> **as a result/therefore** … antónimos con sufijo **‑less**, colocación
+> **make an effort**, derivación **conclusive/inconclusive**, polisemia de
+> spread»
+
+Contabilidad honesta de lo que eso entrega:
+
+| Alcance de la fuga | Reactivos | Detalle |
+|---|---|---|
+| **Decisiva** (la respuesta, literal) | **6** | `on page`, `as a result`, `harmless` (‑less), `make an effort`, `therefore`, `recover from` |
+| **Ambigua** (nombra las dos formas) | **1** | `conclusive/inconclusive` — dice qué derivación se evalúa, no cuál es correcta |
+| **Solo de tema** (acota, no dirige) | **2** | `in/on/at` reduce el campo de 4 a 3 al eliminar `since`; «polisemia de spread» no da dirección |
+| Sin contacto | **26** | los 18 de comprensión y 8 de gramática |
+
+**Acuerdo limpio: 26/26.** Los 9 restantes se aprobaron con la contaminación
+anotada y **no cuentan como acuerdo independiente**. Se registra así por la misma
+razón que en G30: no se puede probar desde dentro que el razonamiento fue
+autónomo, aunque las seis respuestas decisivas sean colocaciones estándar que
+cualquier sesión derivaría sola.
+
+**Regla nueva.** La de G30 §1 se extiende al resumen de composición:
+
+> El encabezado de la línea 3 y la fila de tabla deben nombrar el punto evaluado
+> **genéricamente** —«preposición dependiente de *recover*», «colocación con
+> *effort*», «antonimia por sufijo»— y **nunca por su forma correcta**. La ronda
+> ciega lee la línea 3 por diseño (CLAUDE.md manda consultar `ESTADO.md` antes de
+> cualquier tarea), así que ese encabezado es un **canal de entrada** de la
+> verificación, no solo un registro.
+
+La enumeración original quedó **redactada** en el bloque `Historial: G31` de este
+documento, sustituida por su forma genérica y con la nota de la redacción a la
+vista. La fila de tabla de G31 no filtraba: describe formatos y conteos, no
+puntos gramaticales.
+
+Vale la pena decir qué se rompió y qué no: es el **primer defecto del pipeline
+detectado fuera del lote**, en el canal por el que la ronda ciega recibe su
+contexto. Las siete rondas anteriores auditaron el material; esta auditó la
+tubería.
+
+### 3) Cómo se resolvió cada bloque
+
+**Comprensión (18 reactivos, 4 pasajes originales).** Los cuatro pasajes son
+prosa expositiva y narrativa de nivel intermedio: la cicatrización de una herida
+(`g31-cut`), un recuerdo del mercado con la abuela (`g31-market`), una tormenta
+en una obra (`g31-storm`) y el sueño en la adolescencia (`g31-sleep`). Las
+habilidades se reparten entre idea principal (4), detalle explícito (5),
+significado por contexto (4), referencia anafórica (1), inferencia (2),
+intención del autor (1) e interpretación de una figura final (2).
+
+Los distractores que más trabajo dieron son los **temporales** y los de
+**atribución cruzada**: en el pasaje de la tormenta, «seguían arreglando las
+tejas» es cierto del texto pero *anterior* a la orden del capataz; en el de la
+herida, «limpiar y destruir gérmenes» es cierto del texto pero atribuido a los
+glóbulos blancos, no a las plaquetas. Ninguno se resolvió por descarte a ciegas:
+los dos exigen localizar el referente exacto.
+
+El reactivo más apretado del bloque es el de la **anáfora** (`This net`,
+confianza 0.93): la red se construye *sobre* el tapón de plaquetas, así que el
+distractor «el tapón» es la lectura equivocada más natural del párrafo. Se
+resolvió por la oración inmediatamente anterior, que define la red como los
+hilos de fibrina.
+
+**Gramática (11 reactivos).** Todos se justificaron por regla nombrada, no por
+oído. Los tres distractores de cada uno caen en categorías limpias: forma
+inexistente (`goed`), forma que exige auxiliar (`gone`, `teaching`),
+combinación inválida (`is teach`, `was go`, `wasn't work`), doble marca de pasado
+(`didn't worked`), fallo de concordancia (`Do the museum`, `are boiling`) y
+tiempo verbal incompatible con el marcador temporal (`have store` con
+*last night*).
+
+**Vocabulario (6 reactivos).** Significado por contexto, antonimia por sufijo,
+derivación adjetival y colocación. Es el bloque donde cayó casi toda la
+contaminación de §2.
+
+### 4) Números de la ronda
+
+| Indicador | Valor |
+|---|---|
+| Auto-aprobados | **35/35 (100 %)** |
+| Acuerdo limpio (descontada la contaminación de §2) | **26/26** |
+| Confianza mínima | **0.92** |
+| Confianza máxima | 0.99 |
+| Confianza promedio | **0.965** |
+| Problemas declarados | 0 |
+| Etiqueta ciega = etiqueta original | 10/35 (**28.6 %**) |
+| Reactivos con pasaje entregado | 18/18 |
+| Reactivos con cálculo | 0/35 |
+
+La **confianza mínima de 0.92** empata el piso de G30 y vuelve a caer en un
+reactivo verbal, no aritmético: el de `while` + pasado continuo (§6). El
+promedio de 0.965 queda entre G28 (aritmético, más alto) y G30.
+
+El **barajado es real**: solo 10 de 35 etiquetas ciegas coinciden con la
+original, así que 25 respuestas cambiaron de letra al traducirse. El acuerdo no
+viene de la posición.
+
+### 5) Confirmación independiente de las cifras de G31
+
+Recontadas en vivo desde la DB, sin leer las respuestas por reactivo:
+
+| Métrica | G31 registró | G32 recuenta | ¿Coincide? |
+|---|---|---|---|
+| Clave por posición | A9 / B9 / C9 / D8 | **A9 / B9 / C9 / D8** | ✅ |
+| Rotación A→B→C→D | 6/34 = 17.6 % | **6/34 = 17.6 %** | ✅ |
+| Correcta = opción más larga | 8/35 = 22.9 % | **8/35 = 22.9 %** | ✅ |
+| Reactivos con pasaje | 18 (4 pasajes) | **18 (4 pasajes)** | ✅ |
+
+**Los cuatro coinciden.** Es la primera confirmación totalmente limpia desde que
+se instauró el recuento cruzado: G30 tuvo que corregir una transposición B↔D en
+el registro de G29. Las cuatro cifras caen donde deben — la clave dentro de la
+banda 15-40 % de G3c, la rotación por debajo del umbral (sexto lote limpio
+seguido) y el cue de longitud en 22.9 %, bajo el 25 % de azar, que es el
+resultado de la reescritura de distractores que G31 documenta.
+
+### 6) Observaciones de composición (registradas, sin bloquear publicación)
+
+1. **`while` + pasado continuo (confianza 0.92).** «While the technician
+   **checked** the machine, the power suddenly went off» no es agramatical en
+   registro coloquial; la clave depende de que el reactivo evalúe el contraste
+   canónico fondo/interrupción, que es lo que `suddenly went off` señala. Es la
+   respuesta que cualquier temario espera, pero el distractor de pasado simple es
+   más defendible que los otros tres del lote.
+2. **Distractor descartable por superficie.** En la interrogativa del museo, la
+   opción `Is open` se elimina por agramaticalidad visible al sustituirla
+   («Is open the museum open…»), sin necesidad de conocer la regla de `do/does`.
+   No mide lo que el reactivo dice medir.
+3. **Habilidad repetida en los conectores.** Dos reactivos evalúan la misma
+   relación causa→consecuencia con estructura casi idéntica. Uno de los dos
+   podría haber probado contraste o concesión, que el lote no cubre.
+4. **`concluding` en el reactivo de derivación.** Es adjetivo y podría forzarse
+   en otro contexto; aquí queda descartado porque significa «final, de cierre» y
+   no «decisivo». La distinción es correcta pero fina para el nivel del resto del
+   bloque.
+
+### 7) Acumulado real (consultado en vivo)
+
+| Métrica | Antes de G32 | Después |
+|---|---|---|
+| Banco total | 727 | 727 |
+| Verificados (`isVerified=true`) | 692 | **727** |
+| Cola ciega (`isVerified=false`) | 35 | **0** |
+| Sin publicar con veredicto | 0 | 0 |
+| IPN MEDBIO Inglés | 0✓ / 35⧗ | **35✓ / 0⧗** |
+
+`content:coverage` tras la corrida: **727 servibles · 0 pendientes de
+resolución**, tasa de auto-aprobación global **100 % (727/727)**, anclaje
+**207 SOURCED (28 %) / 520 TEMARIO_ONLY**, temario con fragmentos fuente 46/217.
+Meta nominal de 1 500: **48 %**. Meta efectiva de G26 (1 222): **49 %**, brecha
+**625 ≈ 18 lotes**, ahorro acumulado 278.
+
+`IPN:INGLES` queda en **35 verificados** contra una meta efectiva de 17. Los
+35 sirven a las tres ramas por la reutilización de G26 (`shared-content.ts`),
+aunque `content:coverage` siga pintando 0✓ en FISMAT y SOCADM: el pool vive bajo
+los temas de MEDBIO y la reutilización opera en runtime, no en el reporte
+(defecto ya anotado en G30 §10.3, sin tocar).
+
+### 8) Nota honesta sobre la métrica
+
+**Octava ronda ciega consecutiva al 100 %.** La tasa de auto-aprobación está
+saturada y hoy no discrimina: ocho lotes seguidos sin una sola discrepancia
+significan que el generador y el verificador coinciden, no que el contenido esté
+probado. Lo que aporta esta fase no es el 100 % —es la fuga de §2, encontrada
+porque la ronda ciega llevaba la cuenta de qué había leído antes de responder.
+El valor del pipeline hoy está en esa contabilidad, no en el marcador.
+
+### Siguiente (G32)
+
+1. **Cerrar el hueco de SOCADM.** Sigue abierto desde G30: Historia de México
+   (6 temas), Historia Universal (7), Geografía (5), Civismo/Derecho (4), todas
+   en **cero** y **ninguna compartida**, así que ningún lote las cubre de rebote.
+   Ni el Español de G29 ni el Inglés de G31 tocaron esa brecha. **Historia de
+   México es la candidata natural del siguiente lote** — lleva tres fases
+   nombrada sin ejecutarse.
+2. **Resolver el alcance pendiente antes de componer** (G24 §7 / G26 §8.4):
+   ¿SOCADM entra en la meta del 21-nov? Lleva sin respuesta desde G24 y ya
+   condicionó cuatro fases seguidas.
+3. **Aplicar la regla de §2 al componer.** El encabezado de línea 3 y la fila de
+   tabla del próximo lote deben describir los puntos evaluados en forma
+   genérica. Para un lote de Historia el riesgo es directo: nombrar un periodo
+   ya acota, y nombrar una fecha o un personaje concreto entrega la respuesta.
+4. **Fuentes.** Historia de México SOCADM tiene 0/6 temas con `SourceChunk`, así
+   que el lote saldría TEMARIO_ONLY como los cuatro anteriores. El anclaje
+   global lleva tres fases bajando en proporción (30 % → 28 %). Si va a subir,
+   hace falta material del IPN en `content_sources`, que hoy no existe.
+5. Heredados sin tocar: rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % (47/727 muestreados),
+   las 8 `CHART_TABLE` sin tabla ni imagen de G28, `content:coverage` que aún no
+   refleja la reutilización de G26 (G30 §10.3).
 
 ## G31 — Lote de reactivos: Inglés, IPN (2026-08-29)
 
