@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-29 · Última fase ejecutada: G30 (**COMPLETADA — verificación ciega del lote de G29 (35 reactivos de **Español/Lectura, pool compartido `IPN:ESPANOL`**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda ciega puramente verbal a escala:** 0 de los 35 admiten cálculo (`requiresCalculation=false` en todos), así que aquí no cabe el candado aritmético de G28 — el único control es el **descarte explícito de los tres distractores en cada reactivo**, citados por su contenido y nunca por su letra. **Aislamiento comprobado, no asumido:** no se abrió el commit `cc0b49e` de G29, ni el JSON del lote, ni `Question.options`, ni la sección `## G29` de este documento (línea 2094 antes de las inserciones de esta fase; hoy 2361); sí se leyeron el bloque `### Siguiente (G29)` (el encargo) y la fila de tabla de G29, que dan la distribución **agregada** de la clave — sin señal por reactivo, porque el lote ciego baraja las etiquetas con semilla por `id`. **Contaminación declarada, no escondida:** ese encargo nombra el criterio decisivo de uno de los dos `EXPERT` («símil vs. personificación… el nexo "como" es la marca decisiva»), así que **ese reactivo no cuenta como acuerdo independiente**; los otros 34 sí. **Ceguera verificada estructuralmente antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; y los **20/20 de comprensión llegaron CON su pasaje** (4 pasajes × 5 reactivos), como exige el encargo. **Confianza declarada — el indicador que sí discrimina, según G23:** mínima **0.92**, promedio **0.963**. Esa mínima es **el piso más bajo de cualquier ronda ciega** (G28: 0.95; G23: 0.93): el razonamiento verbal admite matiz donde la aritmética no, y se registra tal cual en vez de inflarse. **0 problemas declarados y 0 ambigüedades forzadas:** los dos reactivos más apretados («marca en la pared», 0.92, y símil vs. personificación, 0.93) se resolvieron por la glosa que el propio texto da de su imagen y por el nexo comparativo, no por descarte a ciegas. **Sin señal de longitud:** la correcta es la opción más larga en **7/35 = 20 %**, por debajo del 25 % de azar. **El barajado es real:** la etiqueta ciega coincide con la original en 12/35 (34.3 %) — 23 respuestas cambiaron de letra. **Corrección al registro de G29:** el reconteo en vivo de la clave da **A9 / B8 / C9 / D9** (25.7 / 22.9 / 25.7 / 25.7 %), no el A9/B9/C9/D8 anotado en G29 — transposición B↔D en la nota; ambas lecturas caen dentro de la banda 15-40 % de G3c, así que nada aguas abajo cambia. Rotación A→B→C→D **6/34 = 17.6 %**, que sí coincide con lo anotado en G29 (cuarto lote limpio seguido). **Acumulado real consultado en vivo antes y después:** banco **692** totales · verificados **657 → 692** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN FISMAT Español/Lectura **35✓/35⧗ → 70✓/0⧗**. `content:coverage`: 692 servibles, auto-aprobación global 100 % (692/692), meta efectiva G26 (1 222) al **47 %**, brecha **642 ≈ 19 lotes**; meta nominal de 1 500: 44 % → **46 %**. **Nota honesta: séptima ronda ciega consecutiva al 100 % — la métrica sigue saturada y no discrimina**; lo que aporta esta fase es haber sometido a la pasada ciega un lote donde no existe verificación mecánica posible. Tres observaciones de composición registradas sin bloquear publicación (nexo concesivo rodeado de tres causales casi sinónimos; el distractor de personificación cuya justificación es literalmente cierta de la imagen; `content:coverage` sigue mostrando 0✓ en Español/Lectura de SOCADM y MEDBIO porque el pool vive bajo los temas de FISMAT y la reutilización de G26 opera en runtime, no en el reporte). **Reparación de registro:** G29 nunca actualizó la línea 3 de este documento; G30 la repara y archiva G28 y G29 en Historial. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código —el diagnóstico corrió en un script desechable, creado y borrado— y cero llamadas a la API de pago**)
+Última actualización: 2026-08-29 · Última fase ejecutada: G31 (**COMPLETADA — lote de 35 reactivos de **Inglés, IPN** (materia COMPARTIDA `sharedContentKey=IPN:INGLES`, migración 0011/G26), **primera cobertura de Inglés en todo el banco**. A diferencia de la UNAM, el examen del IPN evalúa Inglés en las **3 ramas** (FISMAT w2, MEDBIO w3, SOCADM w2) y las 3 celdas estaban en **cero**. Regla de CLAUDE.md/G26 ("componer contra el `topicId` de la materia con más contenido del grupo") con empate a cero → se elige la celda de **mayor peso, MEDBIO** (`cmrr1m31200dvhi3nuat1aznh`, w3), que además define la meta efectiva de G26 para el grupo (**17**); la reutilización G26 lo sirve a FISMAT y SOCADM en runtime (`src/lib/db/shared-content.ts`). **35 TEMARIO_ONLY** — 0 SourceChunk para Inglés IPN y no existe guía del IPN en `content_sources`. Reparto por los 3 temas de MEDBIO Inglés: Presente simple 12, Pasado simple 12, Vocabulario médico-científico 11. **18 comprensión de lectura** (`READING_COMPREHENSION`) sobre **4 pasajes ORIGINALES en inglés** (g31-cut 5 · g31-market 5 · g31-storm 3 · g31-sleep 5), **10 `SENTENCE_COMPLETION`**, **7 `MULTIPLE_CHOICE`** (gramática: tiempos verbales presente/pasado simple y continuo, preposiciones in/on/at · on page · recover from, conectores as a result/therefore, concordancia, forma interrogativa y negativa; vocabulario: significado por contexto, antónimos con sufijo -less, colocación make an effort, derivación conclusive/inconclusive, polisemia de spread). **Instrucción en español; contenido evaluado en inglés** (pasaje, oración, opciones), como el examen real. Dificultad BASIC 7 / INTERMEDIATE 18 / ADVANCED 8 / EXPERT 2. **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en 15-40 %, confirmada por query directa a la DB; rotación A→B→C→D **6/34 = 17.6 %** (quinto lote limpio seguido); **correcta = opción más larga 8/35 = 22.9 %**, bajo el 25 % de azar — se reescribieron ~10 distractores de comprensión para bajar ese cue del 60 % del primer borrador (donde la respuesta correcta, al ser la paráfrasis completa y fiel, salía más larga). `content:validate-batch` **0 violaciones**. Insertado con `content:insert --lot-dir` tema por tema, **verificado en la DB**: banco **692 → 727** total, verificados sin cambio en **692** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega **0 → 35**, pasajes **8 → 12**. `IPN:INGLES` de 0 a 35 contra una meta efectiva de 17: sobra profundidad, igual que hizo G29 con `IPN:ESPANOL` (70 vs 33) — decisión del encargo, no de la regla. Registro en `docs/content-batches/g31-ipn-ingles.json`. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago**)
+
+<details><summary>Historial: G30 (2026-08-29)</summary>
+
+Última fase ejecutada: G30 (**COMPLETADA — verificación ciega del lote de G29 (35 reactivos de **Español/Lectura, pool compartido `IPN:ESPANOL`**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda ciega puramente verbal a escala:** 0 de los 35 admiten cálculo (`requiresCalculation=false` en todos), así que aquí no cabe el candado aritmético de G28 — el único control es el **descarte explícito de los tres distractores en cada reactivo**, citados por su contenido y nunca por su letra. **Aislamiento comprobado, no asumido:** no se abrió el commit `cc0b49e` de G29, ni el JSON del lote, ni `Question.options`, ni la sección `## G29` de este documento (línea 2094 antes de las inserciones de esta fase; hoy 2361); sí se leyeron el bloque `### Siguiente (G29)` (el encargo) y la fila de tabla de G29, que dan la distribución **agregada** de la clave — sin señal por reactivo, porque el lote ciego baraja las etiquetas con semilla por `id`. **Contaminación declarada, no escondida:** ese encargo nombra el criterio decisivo de uno de los dos `EXPERT` («símil vs. personificación… el nexo "como" es la marca decisiva»), así que **ese reactivo no cuenta como acuerdo independiente**; los otros 34 sí. **Ceguera verificada estructuralmente antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; y los **20/20 de comprensión llegaron CON su pasaje** (4 pasajes × 5 reactivos), como exige el encargo. **Confianza declarada — el indicador que sí discrimina, según G23:** mínima **0.92**, promedio **0.963**. Esa mínima es **el piso más bajo de cualquier ronda ciega** (G28: 0.95; G23: 0.93): el razonamiento verbal admite matiz donde la aritmética no, y se registra tal cual en vez de inflarse. **0 problemas declarados y 0 ambigüedades forzadas:** los dos reactivos más apretados («marca en la pared», 0.92, y símil vs. personificación, 0.93) se resolvieron por la glosa que el propio texto da de su imagen y por el nexo comparativo, no por descarte a ciegas. **Sin señal de longitud:** la correcta es la opción más larga en **7/35 = 20 %**, por debajo del 25 % de azar. **El barajado es real:** la etiqueta ciega coincide con la original en 12/35 (34.3 %) — 23 respuestas cambiaron de letra. **Corrección al registro de G29:** el reconteo en vivo de la clave da **A9 / B8 / C9 / D9** (25.7 / 22.9 / 25.7 / 25.7 %), no el A9/B9/C9/D8 anotado en G29 — transposición B↔D en la nota; ambas lecturas caen dentro de la banda 15-40 % de G3c, así que nada aguas abajo cambia. Rotación A→B→C→D **6/34 = 17.6 %**, que sí coincide con lo anotado en G29 (cuarto lote limpio seguido). **Acumulado real consultado en vivo antes y después:** banco **692** totales · verificados **657 → 692** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN FISMAT Español/Lectura **35✓/35⧗ → 70✓/0⧗**. `content:coverage`: 692 servibles, auto-aprobación global 100 % (692/692), meta efectiva G26 (1 222) al **47 %**, brecha **642 ≈ 19 lotes**; meta nominal de 1 500: 44 % → **46 %**. **Nota honesta: séptima ronda ciega consecutiva al 100 % — la métrica sigue saturada y no discrimina**; lo que aporta esta fase es haber sometido a la pasada ciega un lote donde no existe verificación mecánica posible. Tres observaciones de composición registradas sin bloquear publicación (nexo concesivo rodeado de tres causales casi sinónimos; el distractor de personificación cuya justificación es literalmente cierta de la imagen; `content:coverage` sigue mostrando 0✓ en Español/Lectura de SOCADM y MEDBIO porque el pool vive bajo los temas de FISMAT y la reutilización de G26 opera en runtime, no en el reporte). **Reparación de registro:** G29 nunca actualizó la línea 3 de este documento; G30 la repara y archiva G28 y G29 en Historial. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código —el diagnóstico corrió en un script desechable, creado y borrado— y cero llamadas a la API de pago**)
+
+</details>
 
 <details><summary>Historial: G29 (2026-08-28)</summary>
 
@@ -23,12 +29,6 @@ nunca actualizó la línea 3 de este documento.)*
 
 </details>
 
-<details><summary>Historial: G26 (2026-08-28)</summary>
-
-Última fase ejecutada: G26 (**COMPLETADA — reutilización de contenido entre áreas. Materias que varias áreas evalúan con el MISMO temario oficial (UNAM Español ×4, Inglés ×3, Química ×2; IPN Español ×3, Inglés ×3, Química ×2, Matemáticas ×2 — 7 grupos, 19 filas `Subject`) estaban duplicadas y se regeneraba el mismo contenido. Mecanismo de mínimo impacto: **columna nullable `Subject.sharedContentKey`** (migración 0011) — filas del mismo examen con la misma clave comparten su pool de reactivos verificados; nunca cruza instituciones. Cableado en el selector adaptativo (`loadAreaServablePool`, `loadSubjectServablePool`), el diagnóstico y el simulador completo (`loadAreaSubjectPools`), el Entrómetro (agregación por clave canónica en `recomputeLearningProfile` + los 2 deltas) y progreso. Módulo puro `src/lib/content/shared-subjects.ts` (15 tests). Verificado en vivo: pool servible de UNAM Área 3 de 0 a 35, Área 2 de 137 a 224. **Meta recalculada: 1 500 → ~1 220** (ahorro ~280, 18.6 %); **brecha 878 → 659** = de 26 lotes/52 sesiones a 19/38 (~7 lotes ≈ ~14 sesiones menos). UNAM Química (124≥67) e IPN Español (35≥33) ya COMPLETOS por reutilización. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**491/491**, +15) en verde**)
-
-</details>
-
 ## URL de producción actual
 
 **`https://yaentre.com`** — dominio propio, en producción real, con certificado SSL válido (Let's Encrypt, verificado en vivo el 25 de agosto de 2026). `www.yaentre.com` también resuelve. El proyecto en Vercel se renombró de `acierta` a **`yaentre`** (mismo `projectId`, org `angel011298s-projects`) — el nombre del proyecto y el dominio ya coinciden con la marca. `https://acierta.vercel.app` se conserva como URL de respaldo y sigue sirviendo tráfico (confirmado en vivo).
@@ -37,6 +37,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G31 | Lote de reactivos: Inglés IPN (3 ramas, materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G31) | Ver sección dedicada abajo. **Primera cobertura de Inglés del banco.** A diferencia de la UNAM, el IPN evalúa Inglés en las 3 ramas; materia COMPARTIDA (`sharedContentKey=IPN:INGLES`, G26), las 3 celdas en cero. Regla de G26 con empate a cero → celda de mayor peso: **MEDBIO** (w3), que define la meta efectiva del grupo (17); reutilización G26 sirve a FISMAT y SOCADM. 35 TEMARIO_ONLY (0 SourceChunk IPN). Reparto por los 3 temas de MEDBIO: Presente simple 12, Pasado simple 12, Vocabulario médico-científico 11. Formato: 18 `READING_COMPREHENSION` sobre 4 pasajes ORIGINALES en inglés (5/5/3/5), 10 `SENTENCE_COMPLETION`, 7 `MULTIPLE_CHOICE`. Instrucción en español, contenido en inglés. Clave A9/B9/C9/D8, rotación A→B→C→D 6/34 = 17.6 %, correcta = opción más larga 8/35 = 22.9 % (tras reescribir ~10 distractores). `content:validate-batch` 0 violaciones. Banco 692 → 727, cola ciega 0 → 35, pasajes 8 → 12. Registro en `docs/content-batches/g31-ipn-ingles.json`. |
 | G30 | Verificación ciega: Español/Lectura IPN (lote de G29) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 657 → 692 verificados, cola ciega 35 → 0** | (G30) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G29. Primera ronda ciega **puramente verbal a escala**: 0/35 admiten cálculo, así que no cabe el candado aritmético de G28 y el único control es el **descarte explícito de los tres distractores**, citados por contenido y nunca por letra. Aislamiento comprobado (no se abrió el commit de G29, ni el JSON, ni `Question.options`, ni la sección `## G29`); ceguera verificada con `grep` = 0 y por las claves de opción; **los 20 de comprensión llegaron CON su pasaje** (4 pasajes × 5). **Contaminación declarada:** el encargo leído nombra el criterio decisivo de uno de los dos `EXPERT`, así que ese reactivo no cuenta como acuerdo independiente. Confianza mínima **0.92** (el piso más bajo de cualquier ronda ciega; G28 0.95, G23 0.93), promedio 0.963, 0 problemas y 0 ambigüedades forzadas. Sin señal de longitud (correcta = más larga 7/35 = 20 %). Barajado real: la etiqueta ciega coincide con la original en 12/35 (34.3 %). **Corrección a G29:** la clave recontada en vivo es A9/B8/C9/D9, no A9/B9/C9/D8 (transposición B↔D; ambas dentro de la banda de G3c). Séptima ronda seguida al 100 %: la métrica sigue saturada y se dice así. Cero cambios de código. |
 | G29 | Lote de reactivos: Español/Comunicación IPN (encargo SOCADM) | **COMPLETADA — 35 insertados, isVerified=false** | (G29) | Ver sección dedicada abajo. Encargo: 35 reactivos de Español para la rama SOCADM. Español/Lectura es materia COMPARTIDA (`sharedContentKey=IPN:ESPANOL`, G26): el lote se compuso contra los 4 temas de **FISMAT** (la celda con más contenido del grupo: 35 verificados de G22; MEDBIO y SOCADM en cero) y la reutilización G26 lo sirve a MEDBIO y SOCADM. FISMAT es además la única rama cuyo temario nombra Ortografía y Gramática como temas propios, que es donde caen los formatos del encargo. 35 TEMARIO_ONLY. Reparto: Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6 (RC 20 con 4 pasajes ORIGINALES ×5, SENTENCE_COMPLETION 4, ANALOGY 3, MULTIPLE_CHOICE 8). Posición A9/B9/C9/D8 confirmada en la DB; rotación A→B→C→D 6/34 = 17.6 %; correcta = opción más larga 20 %; 0 citas por letra. `content:validate-batch` 0 violaciones. Banco 657 → 692, cola ciega 0 → 35. Segundo lote sobre el pool `IPN:ESPANOL` tras G22 (35→70). |
 | G28 | Verificación ciega: Matemáticas Aplicadas IPN SOCADM (G27) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 622 → 657 verificados, cola ciega 35 → 0** | (G28) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G27. Aislamiento comprobado, no asumido (no se abrió el commit de G27, ni el JSON del lote, ni `Question.options`, ni la sección `## G27`); ceguera del archivo verificada con `grep` = 0 y por las claves de opción (`label, text, imageUrl`). Los 35 resueltos con la operación **ejecutada en código**, un solucionador por reactivo escrito desde el enunciado. **Candado nuevo: unicidad** — exactamente una opción coincide con el valor calculado en **35/35** (prueba los distractores, no el acuerdo entre sesiones); 0 enunciados duplicados. Barajado real: la etiqueta ciega coincide con la original solo en 6/35 (17.1 %). Confianza mínima 0.95, 0 problemas. Confirmación independiente de G27: clave A9/B9/C9/D8 y rotación A→B→C→D ausente (7/34 = 20.6 %). Sexta ronda ciega seguida al 100 %: la métrica está saturada y se dice así. Cero cambios de código. |
@@ -2106,6 +2107,153 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G31 — Lote de reactivos: Inglés, IPN (2026-08-29)
+
+**COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la cola de
+verificación ciega. Primera materia de **Inglés** con contenido en todo el banco.
+
+### 1) El encargo y por qué Inglés
+
+A diferencia de la UNAM, el examen de admisión del IPN **evalúa Inglés en las tres
+ramas** (FISMAT, MEDBIO, SOCADM). El encargo pidió 35 reactivos de Inglés para el
+examen del IPN. Consulta en vivo a Supabase antes de componer:
+
+| Rama | `subjectId` | `questionWeight` | Temas | Reactivos hoy |
+|---|---|---:|---:|---:|
+| MEDBIO | `cmrr1m31200dvhi3nuat1aznh` | **3** | Presente simple · Pasado simple · Vocabulario médico-científico | **0** |
+| FISMAT | `cmrr1ljiv00brhi3nq1swfcy4` | 2 | Presente simple y continuo · Pasado simple y continuo · Vocabulario técnico | 0 |
+| SOCADM | `cmrr1pyu900fp11qdm2jadzj9` | 2 | Lectura de textos · Vocabulario de negocios | 0 |
+
+Las **3 celdas en cero**. Inglés IPN es materia COMPARTIDA
+(`sharedContentKey = 'IPN:INGLES'`, migración 0011 / G26): un reactivo verificado
+y servible bajo cualquiera de las 3 filas `Subject` es elegible para las 3 ramas.
+
+### 2) Contra qué celda se compuso — y por qué
+
+La regla de CLAUDE.md y de G26 §8.2 es "componer contra el `topicId` de la materia
+con **más contenido** del grupo". Con las 3 celdas en cero, el desempate:
+
+- **MEDBIO tiene el mayor `questionWeight` (3)** — mismo criterio con el que
+  G26 depositó `IPN:QUIMICA` en MEDBIO (w16 > w10) e `IPN:MATEMATICAS` en FISMAT
+  (w24 > w8).
+- La celda de mayor peso es además **la que define la meta efectiva de G26** para
+  el grupo: 3 × 5.556 ≈ **17** (G26 §6, "meta de un grupo compartido = la meta de
+  su celda de mayor peso").
+
+Se depositó contra los **3 temas de MEDBIO Inglés**; la reutilización de G26 lo
+sirve a FISMAT y SOCADM en runtime (`src/lib/db/shared-content.ts`), no en el
+reporte (§ observación de G30 §10.3).
+
+### 3) Anclaje: TEMARIO_ONLY
+
+Cero `SourceChunk` para cualquier tema o materia de Inglés del IPN, y **no existe
+guía del IPN en `content_sources`** (solo CENEVAL, ECOEMS, UAM, UNAM). Los 35 son
+`groundingStatus = TEMARIO_ONLY`, igual que G22, G27 y G29.
+
+### 4) Los 35 reactivos
+
+Reparto por tema (un archivo por tema, insertado con `content:insert --lot-dir`):
+
+| Tema (MEDBIO Inglés) | Reactivos | Comprensión de lectura | Discretos |
+|---|---:|---:|---:|
+| Presente simple | 12 | 5 (pasaje `g31-cut`) | 7 (gramática) |
+| Pasado simple | 12 | 8 (pasajes `g31-market` ×5, `g31-storm` ×3) | 4 (gramática) |
+| Vocabulario médico-científico | 11 | 5 (pasaje `g31-sleep`) | 6 (vocabulario) |
+
+- **Formato:** 18 `READING_COMPREHENSION` · 10 `SENTENCE_COMPLETION` · 7 `MULTIPLE_CHOICE`.
+- **Dificultad:** BASIC 7 · INTERMEDIATE 18 · ADVANCED 8 · EXPERT 2 (≈ 20/50/23/6,
+  la distribución objetivo de `_base.md`).
+- **4 pasajes ORIGINALES en inglés** (nada con derechos de autor — CLAUDE.md):
+  - `g31-cut` — "How your body heals a small cut" (divulgación, presente simple). 5 preguntas.
+  - `g31-market` — "The market" (narrativo en 1ª persona, pasado simple/continuo). 5 preguntas.
+  - `g31-storm` — "The storm" (narrativo breve, pasado). 3 preguntas.
+  - `g31-sleep` — "Why teenagers need sleep" (argumentativo de divulgación, presente). 5 preguntas.
+- **Instrucción en español, contenido evaluado en inglés** (el pasaje, la oración
+  por completar y las opciones van en inglés), como el examen real del IPN.
+- Gramática: tiempos verbales (presente/pasado simple y continuo), concordancia de
+  3ª persona, preposiciones (`in/on/at`, `on page`, `recover from`), conectores
+  (`as a result`, `therefore` y distractores de otras clases), posición del
+  adverbio de frecuencia, forma interrogativa y negativa.
+- Vocabulario: significado por contexto, antónimos con sufijo `-less`, colocación
+  (`make an effort`), derivación (`conclusive` / `inconclusive`), polisemia
+  (`spread`).
+
+### 5) Distribución de posición y forma de las opciones (G3c / G8 / G30)
+
+- **Clave A=9 · B=9 · C=9 · D=8** (25.7 / 25.7 / 25.7 / 22.9 %), las cuatro dentro
+  de la banda 15-40 %. **Confirmada por query directa a la DB** tras la inserción,
+  no solo por el log.
+- Rotación A→B→C→D: **6/34 = 17.6 %** (vs 25 % de azar) — **quinto lote limpio
+  seguido** sin el patrón cíclico que arrastran los ~140 reactivos de G3a/G3d/G13/G15.
+- Secuencia de inserción: `ACDBABDACBDC CADBACBDACBD BDACBACDBAC`.
+- **Correcta = opción más larga: 8/35 = 22.9 %** — bajo el 25 % de azar y bajo el
+  umbral que vigiló G30. El **primer borrador daba 60 %**: en los reactivos de
+  comprensión, la opción correcta (paráfrasis completa y fiel del texto) salía
+  sistemáticamente más larga que los distractores (afirmaciones falsas más cortas).
+  Se **reescribieron ~10 distractores** de comprensión para igualar o superar la
+  longitud de la correcta con contenido plausible tomado del pasaje, no con relleno.
+- `content:validate-batch --dir <lote>`: **0 violaciones** (corrido antes de tocar
+  la DB y de nuevo como paso obligatorio de `content:insert`).
+- 0 citas por letra en las explicaciones (barrido con los patrones de
+  `lot-validation.ts` más un patrón extra `opción/inciso/letra + palabra a-d`).
+
+### 6) Inserción real — verificada en la DB
+
+| Métrica | Antes de G31 | Después de G31 |
+|---|---:|---:|
+| Banco total | 692 | **727** |
+| Verificados (`isVerified=true`) | 692 | 692 |
+| Cola ciega (`isVerified=false`, sin veredicto) | 0 | **35** |
+| Pasajes (`passages`) | 8 | **12** |
+| MEDBIO Inglés · Presente simple | 0 | **12** |
+| MEDBIO Inglés · Pasado simple | 0 | **12** |
+| MEDBIO Inglés · Vocabulario médico-científico | 0 | **11** |
+
+Chequeos post-inserción (query directa): los 35 con exactamente 4 opciones y 1
+correcta, 105 `ExplanationLayer` (3 por reactivo), 18 con `passageId`, los 35
+`TEMARIO_ONLY`. Cohorte con `createdAt` entre `06:43:39` y `06:44:38` del
+2026-08-29 — separable por timestamp para la verificación ciega de G32.
+
+`IPN:INGLES` pasa de 0 a **35** contra una meta efectiva de G26 de **17**: sobra
+profundidad, la misma decisión que tomó G29 con `IPN:ESPANOL` (70 contra 33). Es
+lo que pidió el encargo (35), no lo que dicta la regla de meta.
+
+### 7) Limpieza
+
+El lote se compuso con un generador de Python desechable
+(`build_g31.py` + `emit_artifact.py`) fuera del repo, en el scratchpad de la
+sesión: garantiza JSON válido y permite auto-chequear distribución, longitud de
+opciones y citas por letra antes de validar. Los 3 archivos del lote y el
+generador **no se committean**; el registro permanente es
+`docs/content-batches/g31-ipn-ingles.json` (enriquecido con los `questionId` y
+`passageId` reales). `pnpm typecheck` y `pnpm lint` en verde (cero cambios de
+código en esta fase). Cero llamadas a la API de pago.
+
+### Siguiente (G31)
+
+1. **Verificación ciega de estos 35 reactivos** (patrón G3b/G28/G30): una sesión
+   independiente que NO vea las respuestas correctas los resuelve y compara
+   veredictos antes de que puedan pasar a `isVerified=true`. Es la mitad
+   adversarial del ciclo de G2. Cohorte separable por `createdAt` (2026-08-29,
+   ~06:43-06:45) o por `topicId` (los 3 temas de MEDBIO Inglés).
+   - **Lote puramente verbal** (0/35 admiten cálculo): no cabe el candado
+     aritmético de G28; el control es el **descarte explícito de los tres
+     distractores** por su contenido, más la confianza declarada (el indicador
+     que sí discrimina en lotes verbales, según G23/G30).
+   - **18 de los 35 llegan con su pasaje** (4 pasajes). Comprobar que la ronda
+     ciega los reciba CON el texto, como exige el formato.
+   - **No nombrar en este bloque el criterio de resolución de ningún reactivo
+     concreto** (lección de G30 §1 / §11): el generador ya lo evitó.
+2. **Hueco de SOCADM sigue abierto** (heredado de G30 §Siguiente): Historia de
+   México (6 temas), Historia Universal (7), Geografía (5), Civismo/Derecho (4),
+   ninguna compartida. Inglés no las cubre de rebote. Retomar tras G32.
+3. **Pregunta de alcance sin resolver** (G24 §7 / G26 §8.4): ¿SOCADM entra en la
+   meta del 21-nov? Lleva sin respuesta desde G24.
+4. Heredados sin tocar: rotación A→B→C→D de ~140 reactivos viejos, par duplicado
+   H₂SO₄, auditoría 5 % (47/692 muestreados), las 8 `CHART_TABLE` sin tabla ni
+   imagen de G28, `content:coverage` que aún no refleja la reutilización de G26
+   (G30 §10.3).
 
 ## G30 — Verificación ciega: Español/Lectura, IPN (lote de G29) (2026-08-29)
 

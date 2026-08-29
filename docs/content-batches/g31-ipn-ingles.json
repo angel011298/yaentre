@@ -1,0 +1,1832 @@
+{
+  "batch": "G31",
+  "generatedAt": "2026-08-29T06:45:00.000Z",
+  "institution": "IPN",
+  "exam": "Examen de Admisión IPN 2027",
+  "subject": "Inglés",
+  "sharedContentKey": "IPN:INGLES",
+  "insertedAgainstArea": "Ciencias Médico-Biológicas (MEDBIO)",
+  "insertedAgainstSubjectId": "cmrr1m31200dvhi3nuat1aznh",
+  "servesAreas": [
+    "MEDBIO (w3) — celda de mayor peso",
+    "FISMAT (w2)",
+    "SOCADM (w2)"
+  ],
+  "selectionRule": "Encargo G31: 35 reactivos de Inglés para el examen del IPN. A diferencia de la UNAM, el examen del IPN incluye Inglés en las 3 ramas (FISMAT, MEDBIO, SOCADM) y es materia COMPARTIDA (sharedContentKey=IPN:INGLES, migración 0011/G26): un reactivo verificado y servible bajo cualquiera de las 3 filas Subject es elegible para las 3 ramas. Consulta en vivo 2026-08-29: las 3 celdas de Inglés del IPN estaban en CERO reactivos. Regla de CLAUDE.md/G26 ('componer contra el topicId de la materia con MÁS contenido del grupo') en empate a cero: se elige la celda de MAYOR peso, MEDBIO (questionWeight 3), que además es la que define la meta efectiva de G26 para el grupo (17). Los 3 temas de MEDBIO Inglés (Presente simple, Pasado simple, Vocabulario médico-científico) reciben el lote; la reutilización G26 lo sirve a FISMAT y SOCADM en runtime (src/lib/db/shared-content.ts). Cero SourceChunk para cualquier tema/materia de IPN y no existe guía del IPN en content_sources -> los 35 TEMARIO_ONLY.",
+  "grounding": "TEMARIO_ONLY (0 SourceChunk para Inglés IPN; no hay guía IPN en content_sources)",
+  "totalQuestions": 35,
+  "positionDistribution": {
+    "A": 9,
+    "C": 9,
+    "D": 8,
+    "B": 9
+  },
+  "formatDistribution": {
+    "READING_COMPREHENSION": 18,
+    "SENTENCE_COMPLETION": 10,
+    "MULTIPLE_CHOICE": 7
+  },
+  "difficultyDistribution": {
+    "ADVANCED": 8,
+    "INTERMEDIATE": 18,
+    "BASIC": 7,
+    "EXPERT": 2
+  },
+  "letterSequenceInsertionOrder": "ACDBABDACBDCCADBACBDACBDBDACBACDBAC",
+  "skillBreakdown": {
+    "comprensionDeLectura": 18,
+    "gramatica": "tiempos verbales (presente/pasado simple y continuo), preposiciones (in/on/at, on page, recover from), conectores (as a result, therefore), concordancia, forma interrogativa/negativa",
+    "vocabularioEnContexto": "significado por contexto, antónimos con sufijos, colocaciones (make an effort), derivación (conclusive/inconclusive), polisemia (spread)"
+  },
+  "instructionLanguage": "español (enunciado de instrucción); contenido evaluado en inglés (pasajes, oraciones, opciones), como en el examen real del IPN",
+  "passages": [
+    {
+      "passageId": "cmte0lbgk0000tlidkxxto4mw",
+      "ref": "g31-cut",
+      "title": "How your body heals a small cut",
+      "original": true,
+      "sourceRef": null,
+      "content": "When you get a small cut, your body starts to repair the damage almost at once. First, the blood vessels around the wound become narrow, so that less blood flows out. Tiny pieces of cells in the blood, called platelets, gather at the cut and stick together. They form a soft plug that slows the bleeding.\n\nNext, thin threads of a substance called fibrin build a net over the plug. This net traps more blood cells and slowly hardens into a scab. The scab covers the wound and keeps out dirt and bacteria while the skin repairs itself underneath.\n\nUnder the scab, new skin cells grow from the edges of the cut towards the centre. White blood cells clean the area and destroy any germs that get in. After a few days, the new skin is ready and the scab falls off by itself. A small cut usually heals in one or two weeks, and often it leaves no mark at all.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmte0ltsy0000buc203zh5jbk",
+      "ref": "g31-market",
+      "title": "The market",
+      "original": true,
+      "sourceRef": null,
+      "content": "When I was a child, my grandmother took me to the market every Saturday morning. We left the house early, while the streets were still quiet and cool. She walked fast, and I held the edge of her bag so that I would not get lost among the crowds.\n\nThe market was a huge building with a metal roof. Inside, the air smelled of coriander, wet flowers and fried food. Sellers shouted their prices, and radios played music from every corner. My grandmother knew almost everyone. She stopped at each stall, asked the seller about his or her family, and only then began to choose her vegetables.\n\nBefore we went home, she always bought me a glass of fruit water from the same woman near the door. We sat on two plastic stools while I drank it slowly. Those mornings felt ordinary then, but now I remember every detail of them.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmte0luny0001buc25nfewira",
+      "ref": "g31-storm",
+      "title": "The storm",
+      "original": true,
+      "sourceRef": null,
+      "content": "The rain began just after lunch. At first it was light, and the workers on the roof went on fixing the tiles. Then the wind grew stronger, and dark clouds covered the whole valley. The foreman looked at the sky for a moment and told everyone to come down.\n\nTen minutes later, the storm reached the town. Water ran down the streets like a river, and a tree fell across the main road. The men waited inside a small shop, drinking coffee and watching the water rise. Nobody said much. When the rain finally stopped, the air smelled clean, and the sun came out behind the hills as if nothing had happened.",
+      "linkedQuestions": 3
+    },
+    {
+      "passageId": "cmte0mcz5000013dc9r2paywm",
+      "ref": "g31-sleep",
+      "title": "Why teenagers need sleep",
+      "original": true,
+      "sourceRef": null,
+      "content": "Sleep is not a waste of time. While a person sleeps, the body and the brain do important work that cannot happen during the day. The body repairs muscle, builds bone and releases hormones that control growth. The brain goes over what the person has learned and keeps the most useful information as long-term memory.\n\nTeenagers need more sleep than adults, usually between eight and ten hours a night. However, many students sleep much less because of homework, screens and early classes. When teenagers do not get enough rest, they find it harder to concentrate, remember facts and control their emotions. Some studies connect a lack of sleep with lower marks and more accidents.\n\nThe good news is that these effects are not permanent. After a few nights of proper rest, attention and mood usually recover. Small changes, such as leaving the phone outside the bedroom, make a real difference.",
+      "linkedQuestions": 5
+    }
+  ],
+  "questions": [
+    {
+      "questionId": "cmte0lbw90002tlidtkqsmvqu",
+      "topic": "Presente simple",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-cut",
+      "passageId": "cmte0lbgk0000tlidkxxto4mw",
+      "stem": "¿Cuál es la idea principal del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The body heals a small cut in several ordered steps.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Platelets are the only useful cells found in human blood.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "A cut always leaves a visible mark once the scab falls off.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Bacteria and dirt are the main cause of most small wounds.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto describe un proceso por etapas",
+          "content": "El texto explica, en orden, lo que hace el cuerpo tras un corte: primero los vasos se estrechan y las plaquetas forman un tapón, luego la fibrina crea una red que se endurece en costra, y por último crece piel nueva. La idea principal es que la curación ocurre en varios pasos sucesivos."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo separar la idea principal de los detalles",
+          "content": "1) Observa que cada párrafo empieza con un marcador de tiempo o de lugar ('First', 'Next', 'Under the scab', 'After a few days'): eso indica una secuencia. 2) La opción sobre las plaquetas como 'únicas células útiles' toma un detalle del primer párrafo y lo exagera; el texto también menciona los glóbulos blancos. 3) La opción de que el corte 'siempre deja marca' contradice la última oración ('often it leaves no mark at all'). 4) La opción sobre las bacterias confunde la causa del corte con algo de lo que la costra protege. Si elegiste la de las plaquetas, tomaste un dato de apoyo por la tesis del texto."
+        },
+        {
+          "layer": 3,
+          "title": "Idea principal en un texto de proceso",
+          "content": "En un texto que describe un proceso, la idea principal suele ser el proceso completo, no una de sus fases. Repasa: identificar la idea global frente a los detalles de apoyo y reconocer marcadores de secuencia."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lcoi0007tlid6isih02z",
+      "topic": "Presente simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-cut",
+      "passageId": "cmte0lbgk0000tlidkxxto4mw",
+      "stem": "Según el texto, ¿qué hacen las plaquetas (platelets) cuando hay una herida?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They make the blood vessels around the wound become much wider.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "They turn directly into new skin cells at the edges of the cut.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "They gather at the cut and stick together, slowing the bleeding.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "They clean the wounded area and destroy any germs that get inside.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto lo dice de forma directa",
+          "content": "El segundo grupo de oraciones del primer párrafo indica que las plaquetas 'gather at the cut and stick together' y 'form a soft plug that slows the bleeding'. Esa es su función según el texto."
+        },
+        {
+          "layer": 2,
+          "title": "Localizar la información en el párrafo",
+          "content": "1) Busca la palabra 'platelets' en el texto. 2) Lee la oración siguiente: forman un tapón blando que frena el sangrado. 3) Limpiar el área y destruir los gérmenes es lo que hacen los glóbulos blancos ('white blood cells'), según el tercer párrafo. 4) La piel nueva crece de las células de la piel, no de las plaquetas. Si elegiste la de limpiar y destruir gérmenes, atribuiste a las plaquetas lo que el texto dice de los glóbulos blancos."
+        },
+        {
+          "layer": 3,
+          "title": "Distinguir agentes dentro de un proceso",
+          "content": "Cuando un texto menciona varios elementos que actúan (plaquetas, fibrina, glóbulos blancos), conviene asociar cada acción con su agente. Repasa: lectura de detalle y correspondencia agente-acción."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0ldgl000ctlidzoamtyh2",
+      "topic": "Presente simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-cut",
+      "passageId": "cmte0lbgk0000tlidkxxto4mw",
+      "stem": "En el texto, la palabra «scab» se refiere a…",
+      "options": [
+        {
+          "id": "A",
+          "text": "a thin thread of fibrin that runs inside a blood vessel.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "a special kind of cell that the blood produces to fight off bacteria.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "a very narrow cut that has not yet started to bleed.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "a hard cover that forms over a wound as the skin heals.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El contexto define la palabra",
+          "content": "El texto dice que la red de fibrina 'slowly hardens into a scab' y que 'The scab covers the wound and keeps out dirt and bacteria'. Por tanto, la costra es una cubierta dura que se forma sobre la herida mientras la piel se repara debajo."
+        },
+        {
+          "layer": 2,
+          "title": "Usar las pistas del contexto",
+          "content": "1) La costra aparece como resultado de que la red se endurece: es algo que se forma encima. 2) Se dice que 'covers the wound' y 'keeps out dirt and bacteria': cumple una función de protección. 3) 'a thin thread of fibrin' describe el material previo a la costra, no la costra. 4) 'a special cell to fight bacteria' es el glóbulo blanco. Si elegiste 'a thin thread of fibrin', confundiste la costra con la red que la origina."
+        },
+        {
+          "layer": 3,
+          "title": "Vocabulario por contexto",
+          "content": "Cuando no conoces una palabra, busca en las oraciones cercanas qué hace o de qué está hecha. Repasa: inferencia de significado por contexto en textos de divulgación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0le8k000htlidmt46hy40",
+      "topic": "Presente simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-cut",
+      "passageId": "cmte0lbgk0000tlidkxxto4mw",
+      "stem": "En la oración «This net traps more blood cells and slowly hardens into a scab», la expresión «This net» se refiere a…",
+      "options": [
+        {
+          "id": "A",
+          "text": "the soft plug of platelets that forms first at the cut.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "the thin threads of fibrin that build up over the plug.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "the new skin cells that grow from the edges of the cut.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "the white blood cells that clean the wounded area.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El referente está en la oración anterior",
+          "content": "Justo antes se lee: 'thin threads of a substance called fibrin build a net over the plug'. 'This net' retoma esa red construida por los hilos de fibrina."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo rastrear a qué se refiere «this»",
+          "content": "1) Un demostrativo como 'this net' señala algo mencionado inmediatamente antes. 2) La oración previa habla de la red que forma la fibrina. 3) 'the soft plug of platelets' es lo que la red cubre, no la red misma. 4) Las células de la piel y los glóbulos blancos aparecen después, en otro párrafo. Si elegiste 'the soft plug of platelets', te quedaste con el sustantivo más cercano sin comprobar cuál encaja con 'net'."
+        },
+        {
+          "layer": 3,
+          "title": "Referencia y cohesión",
+          "content": "Los pronombres y demostrativos ('this', 'these', 'it', 'they') mantienen unido el texto al remitir a algo ya dicho. Repasa: identificación de referentes y cadenas de referencia."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lf0j000mtlid0vz06bz9",
+      "topic": "Presente simple",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-cut",
+      "passageId": "cmte0lbgk0000tlidkxxto4mw",
+      "stem": "Del texto se puede deducir que, si una persona se quita la costra antes de tiempo,…",
+      "options": [
+        {
+          "id": "A",
+          "text": "the wound loses its protection and dirt or bacteria may get in.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "the skin underneath has already finished growing back completely.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "the blood vessels near the cut quickly become narrow once again.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "the platelets in the blood stop working for the next several days.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Se infiere de la función de la costra",
+          "content": "El texto dice que la costra 'keeps out dirt and bacteria while the skin repairs itself underneath'. Si se quita antes de que la piel esté lista, la herida queda sin esa barrera y puede entrar suciedad y bacterias."
+        },
+        {
+          "layer": 2,
+          "title": "Inferir a partir de lo que el texto afirma",
+          "content": "1) El texto da la función de la costra: proteger mientras la piel se repara. 2) También dice que la piel nueva tarda 'a few days' y que la costra cae 'by itself' cuando la piel 'is ready'. 3) Entonces, quitarla antes significa que la piel aún no está lista. 4) La idea de que la piel 'ya terminó de crecer' contradice ese orden. Si elegiste esa, invertiste la secuencia que plantea el texto."
+        },
+        {
+          "layer": 3,
+          "title": "Inferencia válida frente a suposición",
+          "content": "Una inferencia correcta se apoya en datos del texto y no añade información externa. Repasa: distinguir lo que el texto implica de lo que solo suponemos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lfsl000rtlid3hxplp73",
+      "topic": "Presente simple",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Selecciona la opción que completa correctamente la oración: «My sister ______ English at a secondary school in Puebla.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "teach",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "teaches",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "is teach",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "teaching",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Tercera persona del singular en presente simple",
+          "content": "Con 'my sister' (tercera persona del singular) el verbo en presente simple añade -s o -es: 'teaches'. La oración describe una situación permanente, propia del presente simple."
+        },
+        {
+          "layer": 2,
+          "title": "Reglas para completar el hueco",
+          "content": "1) Identifica el sujeto: 'my sister' equivale a 'she'. 2) En presente simple, 'she/he/it' lleva verbo con -s/-es. 3) 'teach' está sin la terminación de tercera persona. 4) 'is teach' junta el verbo 'be' con un verbo sin -ing y no forma un tiempo válido. 5) 'teaching' necesitaría un auxiliar ('is teaching'). Si elegiste 'teach', olvidaste la -es de tercera persona."
+        },
+        {
+          "layer": 3,
+          "title": "Presente simple: forma afirmativa",
+          "content": "El presente simple usa el verbo base salvo con 'he/she/it', donde toma -s/-es. Repasa: conjugación del presente simple y concordancia sujeto-verbo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lgkj000wtlidw5mrc8hc",
+      "topic": "Presente simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa la oración con la forma correcta del verbo: «Water ______ at 100 degrees Celsius at sea level.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "is boiling",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "boil",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "are boiling",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "boils",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Verdades generales van en presente simple",
+          "content": "Un hecho científico que siempre se cumple se expresa en presente simple: 'Water boils at 100 degrees Celsius at sea level.' El sujeto 'water' es incontable y equivale a 'it', por eso 'boils'."
+        },
+        {
+          "layer": 2,
+          "title": "Elegir tiempo y concordancia",
+          "content": "1) La oración enuncia una ley general, no una acción en curso: corresponde presente simple, no presente continuo. 2) 'water' concuerda con 'it', así que el verbo lleva -s. 3) 'is boiling' describiría agua hirviendo en este momento. 4) 'boil' no concuerda y 'are boiling' además usa plural. Si elegiste 'is boiling', aplicaste el continuo a una verdad permanente."
+        },
+        {
+          "layer": 3,
+          "title": "Presente simple vs. presente continuo",
+          "content": "El presente simple sirve para rutinas, hechos y verdades generales; el continuo, para acciones que ocurren ahora o de forma temporal. Repasa: usos del presente simple frente al continuo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lhcg0011tlido5vq8z7x",
+      "topic": "Presente simple",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Selecciona la preposición correcta: «The science class starts ______ 8:00 in the morning.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "at",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "in",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "on",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "since",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«at» con horas exactas",
+          "content": "Con una hora del reloj se usa 'at': 'at 8:00'. La expresión 'in the morning' es aparte y no cambia esa regla."
+        },
+        {
+          "layer": 2,
+          "title": "Comparar las preposiciones de tiempo",
+          "content": "1) 'at' acompaña horas y momentos precisos ('at noon', 'at 8:00'). 2) 'in' va con partes del día, meses, años y estaciones ('in the morning', 'in July'). 3) 'on' va con días y fechas ('on Monday'). 4) 'since' marca el punto de inicio de algo que continúa ('since 2019'). Si elegiste 'in', lo confundiste con la regla de 'in the morning', que aplica a la parte del día, no a la hora."
+        },
+        {
+          "layer": 3,
+          "title": "Preposiciones in / on / at para el tiempo",
+          "content": "Regla general: 'at' para horas, 'on' para días y fechas, 'in' para periodos más largos. Repasa: preposiciones de tiempo y sus combinaciones fijas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0li4i0016tlidwcgq0y9p",
+      "topic": "Presente simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa con la preposición adecuada: «The results of the experiment are written ______ page 12 of the report.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "in",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "at",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "on",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "to",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«on page» es una combinación fija",
+          "content": "En inglés la información aparece 'on page 12', aunque el documento completo se describa con 'in the report'. 'on' es la preposición que acompaña a 'page'."
+        },
+        {
+          "layer": 2,
+          "title": "Distinguir «in the report» de «on page»",
+          "content": "1) Con documentos como conjunto se usa 'in': 'in the report', 'in the book'. 2) Con una página concreta se usa 'on': 'on page 12'. 3) 'at' se reserva para puntos o lugares específicos, no para páginas. 4) 'to' indica dirección, no ubicación. Si elegiste 'in', aplicaste la regla de 'in the report' a 'page', donde corresponde 'on'."
+        },
+        {
+          "layer": 3,
+          "title": "Preposiciones de lugar con textos",
+          "content": "Combinaciones frecuentes: 'on page', 'in the chapter', 'in the article', 'on the list'. Repasa: preposiciones de lugar y colocaciones con materiales escritos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0liwj001btlidjsuehh46",
+      "topic": "Presente simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Selecciona el conector que completa correctamente la oración: «The plant gets very little light; ______, it grows slowly.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "for example",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "as a result",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "in the same way",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "by contrast",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La segunda idea es consecuencia de la primera",
+          "content": "Recibir poca luz es la causa y crecer despacio es el efecto. 'As a result' introduce precisamente una consecuencia."
+        },
+        {
+          "layer": 2,
+          "title": "Clasificar cada conector",
+          "content": "1) 'as a result' señala consecuencia. 2) 'for example' introduce un ejemplo, y aquí no se ejemplifica nada. 3) 'in the same way' compara dos situaciones semejantes. 4) 'by contrast' opone dos ideas distintas. Solo la relación de causa-efecto encaja. Si elegiste 'by contrast', leíste una oposición donde en realidad hay una consecuencia."
+        },
+        {
+          "layer": 3,
+          "title": "Conectores y relaciones lógicas",
+          "content": "Los conectores marcan cómo se relacionan las ideas: consecuencia, ejemplo, comparación, contraste, adición. Repasa: conectores discursivos y su función en el texto."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0ljoj001gtlid9xeinh3a",
+      "topic": "Presente simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿Cuál oración coloca correctamente el adverbio de frecuencia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always my father drinks coffee before work.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "My father drinks always coffee before work.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "My father drinks coffee always before work.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "My father always drinks coffee before work.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El adverbio va antes del verbo principal",
+          "content": "Los adverbios de frecuencia ('always', 'usually', 'never') se colocan entre el sujeto y el verbo principal: 'My father always drinks coffee...'."
+        },
+        {
+          "layer": 2,
+          "title": "Revisar la posición en cada oración",
+          "content": "1) Empezar con 'Always' antes del sujeto no es la posición habitual en una afirmación neutra. 2) Poner 'always' después de 'drinks' separa el verbo de su objeto. 3) Colocarlo tras 'coffee' lo aleja del verbo al que modifica. 4) Solo 'My father always drinks coffee before work' respeta el orden sujeto + adverbio + verbo. Si elegiste la que empieza con 'Always', trasladaste una regla del español, donde el adverbio tiene más libertad de posición."
+        },
+        {
+          "layer": 3,
+          "title": "Adverbios de frecuencia: posición",
+          "content": "Regla: van antes del verbo principal, pero después del verbo 'be' ('She is always late'). Repasa: adverbios de frecuencia y orden de la oración."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lkjp001ltlidc2d50web",
+      "topic": "Presente simple",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa la pregunta: «______ the museum open on Sundays?»",
+      "options": [
+        {
+          "id": "A",
+          "text": "Do",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Is open",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Does",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Are",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Does» para preguntas en presente simple con «it»",
+          "content": "'The museum' equivale a 'it', tercera persona del singular. La pregunta en presente simple se forma con 'Does' + sujeto + verbo base: 'Does the museum open...?'."
+        },
+        {
+          "layer": 2,
+          "title": "Construir la pregunta paso a paso",
+          "content": "1) El verbo léxico es 'open', así que se necesita el auxiliar 'do/does'. 2) Con 'it' el auxiliar es 'does'. 3) 'Do' no concuerda con la tercera persona del singular. 4) 'Are' y 'Is open' usan el verbo 'be', que aquí no corresponde porque ya hay un verbo léxico ('open'). Si elegiste 'Is open', mezclaste dos verbos ('be' y 'open') en una sola pregunta."
+        },
+        {
+          "layer": 3,
+          "title": "Preguntas en presente simple",
+          "content": "Estructura: Do/Does + sujeto + verbo en forma base. Repasa: formación de preguntas y uso de auxiliares en presente simple."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lv3h0003buc2mgh013mh",
+      "topic": "Pasado simple",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-market",
+      "passageId": "cmte0ltsy0000buc203zh5jbk",
+      "stem": "¿Cuál es la idea central del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The writer explains how the markets of the city have changed over the years.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "The writer describes in detail the many different foods that the sellers offered.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "The writer recalls the Saturday visits to the market with the grandmother.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "The writer complains that the market was always much too crowded and too noisy.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto es un recuerdo personal",
+          "content": "Quien narra evoca las mañanas de sábado en que su abuela lo llevaba al mercado, con los detalles que recuerda ahora. Todo el texto gira en torno a ese recuerdo compartido."
+        },
+        {
+          "layer": 2,
+          "title": "Separar el tema del detalle",
+          "content": "1) El texto usa la primera persona y el pasado para contar una experiencia repetida ('every Saturday morning'). 2) Los olores, los puestos y el agua de fruta son detalles que dan color al recuerdo, no su tema. 3) No se afirma que los mercados 'cambiaran con los años'. 4) El cierre es nostálgico, no una queja. Si elegiste la de los alimentos, tomaste un detalle sensorial por la idea central."
+        },
+        {
+          "layer": 3,
+          "title": "Idea central en un texto narrativo",
+          "content": "En una narración personal, la idea central suele ser la experiencia o el recuerdo que organiza el relato. Repasa: tema global frente a detalles de ambientación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lvve0008buc2k8yx8sd5",
+      "topic": "Pasado simple",
+      "difficulty": "BASIC",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-market",
+      "passageId": "cmte0ltsy0000buc203zh5jbk",
+      "stem": "Según el texto, ¿por qué el niño sostenía el borde de la bolsa de la abuela?",
+      "options": [
+        {
+          "id": "A",
+          "text": "so that he would not get lost among the crowds",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "because the bag was too heavy for her to carry",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "to make her walk faster through the streets",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "because he wanted to carry the vegetables home",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto da la razón de forma explícita",
+          "content": "La primera parte dice: 'I held the edge of her bag so that I would not get lost among the crowds.' El motivo es no perderse entre la gente."
+        },
+        {
+          "layer": 2,
+          "title": "Localizar la causa en la oración",
+          "content": "1) Busca 'her bag' en el texto. 2) La misma oración incluye 'so that...', que introduce el propósito. 3) Ese propósito es no perderse entre la multitud. 4) No se menciona que la bolsa pesara ni que el niño quisiera cargar las verduras. Si elegiste 'because the bag was too heavy', añadiste una razón que el texto no da."
+        },
+        {
+          "layer": 3,
+          "title": "Relaciones de causa y propósito",
+          "content": "Expresiones como 'so that', 'because' y 'in order to' señalan por qué se hace algo. Repasa: identificar causa y finalidad en la lectura."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lwnc000dbuc27wrwbfmk",
+      "topic": "Pasado simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-market",
+      "passageId": "cmte0ltsy0000buc203zh5jbk",
+      "stem": "De acuerdo con el texto, ¿qué hacía la abuela ANTES de elegir las verduras?",
+      "options": [
+        {
+          "id": "A",
+          "text": "She bought a glass of fruit water for the boy.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "She turned the radios down at every stall.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "She counted all her money near the door.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "She asked the seller about his or her family.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto marca el orden con «only then»",
+          "content": "Se lee: 'She stopped at each stall, asked the seller about his or her family, and only then began to choose her vegetables.' Preguntar por la familia ocurría antes de elegir las verduras."
+        },
+        {
+          "layer": 2,
+          "title": "Seguir la secuencia de acciones",
+          "content": "1) La expresión 'only then began to choose' indica que algo la precede. 2) Lo anterior es detenerse en el puesto y preguntar por la familia del vendedor. 3) El agua de fruta se compraba 'before we went home', al final. 4) No se dice que bajara las radios ni que contara el dinero. Si elegiste la del agua de fruta, ubicaste al final una acción que iba antes."
+        },
+        {
+          "layer": 3,
+          "title": "Marcadores de secuencia",
+          "content": "Palabras como 'first', 'then', 'only then', 'before' y 'after' ordenan los hechos. Repasa: secuencia temporal en textos narrativos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lxfa000ibuc2h9f463ss",
+      "topic": "Pasado simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-market",
+      "passageId": "cmte0ltsy0000buc203zh5jbk",
+      "stem": "En el texto, la palabra «stall» se refiere a…",
+      "options": [
+        {
+          "id": "A",
+          "text": "a narrow street next to the market building",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "a small stand where one seller offers products",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "a plastic stool for customers to sit on",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "a printed list of the prices of the vegetables",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El contexto ubica la palabra",
+          "content": "El texto dice 'She stopped at each stall, asked the seller...': un 'stall' es el puesto de un vendedor dentro del mercado, donde este ofrece sus productos."
+        },
+        {
+          "layer": 2,
+          "title": "Usar las pistas alrededor de la palabra",
+          "content": "1) 'stall' aparece junto a 'seller' y a la acción de detenerse a comprar. 2) Eso apunta a un puesto de venta. 3) Los 'plastic stools' se mencionan al final, fuera del mercado, para sentarse. 4) No se habla de una calle ni de una lista de precios impresa. Si elegiste 'plastic stool', te dejaste llevar por el parecido sonoro entre 'stall' y 'stool'."
+        },
+        {
+          "layer": 3,
+          "title": "Falsos amigos y parónimos en inglés",
+          "content": "Palabras parecidas como 'stall' y 'stool' tienen significados distintos; hay que apoyarse en el contexto. Repasa: parónimos y vocabulario de lugares."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0ly7d000nbuc2lssgpe0z",
+      "topic": "Pasado simple",
+      "difficulty": "EXPERT",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-market",
+      "passageId": "cmte0ltsy0000buc203zh5jbk",
+      "stem": "En la última oración («Those mornings felt ordinary then, but now I remember every detail of them»), el autor sugiere que…",
+      "options": [
+        {
+          "id": "A",
+          "text": "he did not value those moments as much while he was living them",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "he has now forgotten almost everything that happened at the market",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "the mornings at the market always felt unusually exciting to him back then",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "he would rather not think about his childhood at all any more",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El contraste «then» / «now» es la clave",
+          "content": "La oración opone 'ordinary then' (entonces le parecían comunes) con 'I remember every detail' (ahora las recuerda con precisión). Ese contraste sugiere que en su momento no les dio el valor que hoy les da."
+        },
+        {
+          "layer": 2,
+          "title": "Leer lo que implica el contraste",
+          "content": "1) 'felt ordinary then' indica que entonces no le parecían especiales. 2) 'now I remember every detail' muestra que hoy sí las atesora. 3) decir que 'forgot almost everything' contradice 'every detail'. 4) 'unusually exciting' contradice 'ordinary'. 5) no querer 'think about his childhood' choca con todo el tono del recuerdo. Si elegiste 'unusually exciting', ignoraste la palabra 'ordinary'."
+        },
+        {
+          "layer": 3,
+          "title": "Inferir actitud y tono",
+          "content": "El tono se deduce de las palabras que elige el autor y de los contrastes que plantea. Repasa: inferencia de actitud del narrador y lectura del subtexto."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lyzg000sbuc2st01rxv4",
+      "topic": "Pasado simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-storm",
+      "passageId": "cmte0luny0001buc25nfewira",
+      "stem": "Según el texto, ¿qué hicieron los trabajadores cuando el capataz (foreman) les dio la orden?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They went on fixing the tiles up on the roof of the building.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "They rushed over to pull the fallen tree off the main road.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "They came down and later waited inside a small shop.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "They got into their trucks and drove home straight away.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto encadena las dos acciones",
+          "content": "El capataz 'told everyone to come down' y, después, 'The men waited inside a small shop, drinking coffee'. Los trabajadores bajaron y luego esperaron dentro de una tienda."
+        },
+        {
+          "layer": 2,
+          "title": "Ordenar los hechos del relato",
+          "content": "1) Antes de la orden, los trabajadores seguían con las tejas. 2) Tras la orden, bajan del techo. 3) Diez minutos después llega la tormenta y esperan en la tienda. 4) El árbol cae en el camino, pero nadie va a moverlo. Si elegiste 'went on fixing the tiles', describiste lo que hacían antes de la orden, no después."
+        },
+        {
+          "layer": 3,
+          "title": "Antes y después de un hecho",
+          "content": "Al leer una narración, conviene fijar qué ocurre antes y qué ocurre después del hecho por el que se pregunta. Repasa: secuencia de acciones y conectores temporales."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0lzri000xbuc21m0ml1au",
+      "topic": "Pasado simple",
+      "difficulty": "BASIC",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-storm",
+      "passageId": "cmte0luny0001buc25nfewira",
+      "stem": "En la oración «Then the wind grew stronger», la palabra «grew» significa…",
+      "options": [
+        {
+          "id": "A",
+          "text": "changed direction",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "became",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "made a loud noise",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "stopped completely",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«grow + adjetivo» equivale a «become»",
+          "content": "En 'the wind grew stronger', 'grew' no habla de plantas ni de tamaño: seguido de un adjetivo comparativo significa 'became' (se volvió, se hizo). El viento se volvió más fuerte."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar los otros sentidos",
+          "content": "1) 'grow' aquí va con 'stronger', un adjetivo: el patrón 'grow + adjetivo' expresa un cambio de estado. 2) 'changed direction' añade una idea (dirección) que la oración no menciona. 3) 'made a loud noise' y 'stopped completely' contradicen 'stronger'. Si elegiste 'changed direction', interpretaste el viento en lugar de traducir el verbo."
+        },
+        {
+          "layer": 3,
+          "title": "Verbos de cambio: grow, get, become, turn",
+          "content": "Varios verbos ingleses expresan 'volverse': 'grow/get/become + adjetivo'. Repasa: verbos de cambio de estado y sus estructuras."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0m0jg0012buc2osjktvlt",
+      "topic": "Pasado simple",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-storm",
+      "passageId": "cmte0luny0001buc25nfewira",
+      "stem": "La comparación final («the sun came out behind the hills as if nothing had happened») sugiere que…",
+      "options": [
+        {
+          "id": "A",
+          "text": "the storm kept going with full force for several more hours",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "the workers ended up feeling angry with the foreman",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "the whole town was completely destroyed by the rising water",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "the weather quickly became calm and normal again",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«as if nothing had happened» indica vuelta a la calma",
+          "content": "Decir que el sol salió 'como si nada hubiera pasado' subraya el contraste entre la violencia de la tormenta y la rapidez con que el tiempo volvió a la normalidad."
+        },
+        {
+          "layer": 2,
+          "title": "Interpretar la comparación",
+          "content": "1) 'as if nothing had happened' se dice de algo que, tras un episodio fuerte, vuelve a verse normal. 2) El texto ya indica que 'the rain finally stopped' y 'the air smelled clean'. 3) que 'the storm kept going' contradice 'the rain finally stopped'. 4) 'completely destroyed' exagera: solo se menciona un árbol caído y agua en las calles. Si elegiste 'completely destroyed', tomaste dos detalles como una destrucción total."
+        },
+        {
+          "layer": 3,
+          "title": "Lenguaje figurado e inferencia",
+          "content": "Las comparaciones ('like a river', 'as if...') transmiten una impresión que hay que traducir a una idea concreta. Repasa: interpretación de símiles y expresiones figuradas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0m1bi0017buc2486gkt2s",
+      "topic": "Pasado simple",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa con el pasado simple: «The researchers ______ the samples in a cold room last night.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "stored",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "store",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "storing",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "have store",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«last night» pide pasado simple",
+          "content": "La expresión 'last night' sitúa la acción en un momento terminado del pasado. El pasado simple de 'store' es regular: 'stored'."
+        },
+        {
+          "layer": 2,
+          "title": "Elegir la forma verbal",
+          "content": "1) 'last night' es un tiempo pasado y concreto: corresponde pasado simple. 2) El pasado regular se forma con -ed: 'stored'. 3) 'store' es presente. 4) 'storing' necesita un auxiliar. 5) 'have store' mezcla el auxiliar 'have' con un verbo sin participio y no forma un tiempo válido. Si elegiste 'have store', intentaste un presente perfecto, incompatible con 'last night'."
+        },
+        {
+          "layer": 3,
+          "title": "Pasado simple: verbos regulares",
+          "content": "Los verbos regulares forman el pasado con -ed; los marcadores como 'yesterday', 'last night' o 'in 2020' lo exigen. Repasa: pasado simple y marcadores temporales."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0m23g001cbuc22doc1qu1",
+      "topic": "Pasado simple",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Selecciona la forma correcta del pasado: «She ______ to the laboratory early and started the test.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "goed",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "was go",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "went",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "gone",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«go» es irregular: «went»",
+          "content": "El pasado simple de 'go' no sigue la regla de -ed: es 'went'. La oración narra una acción terminada, paralela a 'started'."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar las formas incorrectas",
+          "content": "1) 'goed' aplica la regla regular a un verbo irregular. 2) 'was go' junta 'be' con el verbo base y no es un tiempo. 3) 'gone' es el participio, que necesita 'has/had'. 4) Solo 'went' es el pasado simple de 'go'. Si elegiste 'goed', regularizaste un verbo que cambia de forma."
+        },
+        {
+          "layer": 3,
+          "title": "Verbos irregulares frecuentes",
+          "content": "Verbos como go-went, buy-bought, take-took o see-saw no usan -ed. Repasa: lista de verbos irregulares de uso común."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0m2yl001hbuc2akibpffn",
+      "topic": "Pasado simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa la oración: «While the technician ______ the machine, the power suddenly went off.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "checked",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "was checking",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "checks",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "has checked",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Acción en curso interrumpida por otra",
+          "content": "'While' introduce una acción larga que servía de fondo ('was checking') cuando ocurrió un hecho breve ('the power went off'). El pasado continuo expresa esa acción en desarrollo."
+        },
+        {
+          "layer": 2,
+          "title": "Combinar pasado continuo y pasado simple",
+          "content": "1) 'while' suele acompañar al pasado continuo. 2) La acción de revisar la máquina estaba en marcha. 3) 'the power went off' es el hecho puntual que la interrumpe, en pasado simple. 4) 'checks' es presente y 'has checked' es presente perfecto, ninguno encaja con 'suddenly went off'. Si elegiste 'checked', perdiste el matiz de acción en progreso que aporta 'while'."
+        },
+        {
+          "layer": 3,
+          "title": "Pasado simple vs. pasado continuo",
+          "content": "El pasado continuo describe el escenario en desarrollo; el pasado simple, el hecho que ocurre dentro de ese escenario. Repasa: 'while' y 'when' con los dos pasados."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0m3qk001mbuc2kqtz56uq",
+      "topic": "Pasado simple",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿Cuál oración está escrita correctamente en pasado simple negativo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The experiment not worked the first time.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "The experiment didn't worked the first time.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "The experiment wasn't work the first time.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "The experiment didn't work the first time.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La negación usa «did not» + verbo base",
+          "content": "El pasado simple negativo se forma con 'did not' (didn't) y el verbo en forma base: 'didn't work'. El auxiliar ya lleva la marca de pasado, así que el verbo principal no la repite."
+        },
+        {
+          "layer": 2,
+          "title": "Revisar cada oración",
+          "content": "1) 'not worked' no tiene auxiliar. 2) 'didn't worked' marca el pasado dos veces, en el auxiliar y en el verbo. 3) 'wasn't work' usa el auxiliar equivocado ('be' en lugar de 'do'). 4) 'didn't work' es la única correcta. Si elegiste 'didn't worked', repetiste la marca de pasado que ya aporta 'didn't'."
+        },
+        {
+          "layer": 3,
+          "title": "Negativo e interrogativo del pasado simple",
+          "content": "Estructura: did + not + verbo base para negar; Did + sujeto + verbo base para preguntar. Repasa: uso del auxiliar 'did'."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mdep000213dcoyvxpewk",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-sleep",
+      "passageId": "cmte0mcz5000013dc9r2paywm",
+      "stem": "¿Cuál es la idea principal del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Teenagers now sleep far less than adults because they are given much more homework.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Sleep lets the body and brain do vital work, and teenagers need enough of it.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Studies have proved that phones are the single main cause of poor marks at school.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "The effects of sleeping badly stay with a person for the rest of their whole life.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto defiende el valor del sueño",
+          "content": "El texto empieza con 'Sleep is not a waste of time', explica el trabajo que hacen el cuerpo y el cerebro durante el sueño y sostiene que los adolescentes necesitan dormir lo suficiente."
+        },
+        {
+          "layer": 2,
+          "title": "Distinguir la tesis de los datos de apoyo",
+          "content": "1) La primera oración anuncia la postura: dormir sirve. 2) Los efectos de dormir poco y las horas recomendadas son argumentos que la apoyan. 3) Que 'los teléfonos son la causa principal de las malas calificaciones' exagera un ejemplo del texto. 4) Que los efectos 'duran toda la vida' contradice 'these effects are not permanent'. Si elegiste la de los teléfonos, tomaste un factor mencionado de paso como si fuera la conclusión."
+        },
+        {
+          "layer": 3,
+          "title": "Idea principal en un texto argumentativo",
+          "content": "En un texto que defiende una postura, la idea principal es esa postura, no los ejemplos ni las cifras. Repasa: tesis y argumentos de apoyo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0me6q000713dciqxsvvua",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-sleep",
+      "passageId": "cmte0mcz5000013dc9r2paywm",
+      "stem": "Según el texto, ¿qué hace el cerebro mientras una persona duerme?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It releases the hormones that control the growth of the whole body.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "It repairs the muscles that were used during the physical effort of the day.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "It stops working almost completely until the next morning.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "It reviews what the person learned and keeps useful information.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto separa lo que hacen cuerpo y cerebro",
+          "content": "Se lee: 'The brain goes over what the person has learned and keeps the most useful information as long-term memory.' Eso es lo que hace el cerebro durante el sueño."
+        },
+        {
+          "layer": 2,
+          "title": "Atribuir cada acción a su órgano",
+          "content": "1) Liberar hormonas y reparar músculo se dice del cuerpo ('The body repairs muscle... and releases hormones'). 2) El cerebro repasa lo aprendido y guarda la información útil. 3) El texto nunca dice que el cerebro 'deje de funcionar'. Si elegiste 'releases hormones', asignaste al cerebro una función que el texto atribuye al cuerpo."
+        },
+        {
+          "layer": 3,
+          "title": "Lectura de detalle con dos agentes",
+          "content": "Cuando un texto contrasta dos elementos (cuerpo y cerebro), hay que emparejar cada acción con el correcto. Repasa: comprensión de detalle y correspondencia."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mez0000c13dctuxswpnw",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-sleep",
+      "passageId": "cmte0mcz5000013dc9r2paywm",
+      "stem": "En la expresión «a lack of sleep», la palabra «lack» significa…",
+      "options": [
+        {
+          "id": "A",
+          "text": "not having enough of something",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "a strong feeling of tiredness",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "a sudden change in behaviour",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "a habit that is difficult to break",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El contexto opone «lack» a «enough rest»",
+          "content": "El texto habla de adolescentes que 'do not get enough rest' y luego de 'a lack of sleep'. 'lack' nombra esa falta: no tener suficiente de algo."
+        },
+        {
+          "layer": 2,
+          "title": "Inferir el significado por contraste",
+          "content": "1) La oración anterior menciona no dormir lo suficiente. 2) 'a lack of sleep' resume esa carencia. 3) 'a strong feeling of tiredness' es una consecuencia posible, no el significado de la palabra. 4) 'a sudden change in behaviour' y 'a habit' no encajan con 'of sleep'. Si elegiste 'a strong feeling of tiredness', confundiste la falta de sueño con uno de sus efectos."
+        },
+        {
+          "layer": 3,
+          "title": "Sustantivos de cantidad y carencia",
+          "content": "Palabras como 'lack', 'shortage' o 'absence' expresan que algo falta o es insuficiente. Repasa: vocabulario de cantidad y su uso con 'of'."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mfr3000h13dch6kbxrjc",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-sleep",
+      "passageId": "cmte0mcz5000013dc9r2paywm",
+      "stem": "En la oración «attention and mood usually recover», la palabra «recover» significa…",
+      "options": [
+        {
+          "id": "A",
+          "text": "keep getting worse slowly, little by little",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "stay exactly the same as before",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "return to a normal, healthy state",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "fade away and disappear for a long time",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«recover» tras «the good news»",
+          "content": "La oración va después de 'The good news is that these effects are not permanent'. Si los efectos no son permanentes, la atención y el ánimo 'recover': vuelven a su estado normal y sano."
+        },
+        {
+          "layer": 2,
+          "title": "Apoyarse en el marcador positivo",
+          "content": "1) 'The good news' anuncia algo favorable. 2) Lo favorable es que, tras descansar, atención y ánimo mejoran. 3) 'keep getting worse' es lo contrario de una buena noticia. 4) 'stay exactly the same' niega el cambio que el texto celebra. Si elegiste 'keep getting worse', ignoraste que la oración presenta una mejora."
+        },
+        {
+          "layer": 3,
+          "title": "Prefijo «re-» y verbos de recuperación",
+          "content": "'recover' combina 're-' (de nuevo) con la idea de recuperar un estado previo. Repasa: familia de palabras 'recover', 'recovery' y prefijo 're-'."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mgj5000m13dc9yaao9e4",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "EXPERT",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g31-sleep",
+      "passageId": "cmte0mcz5000013dc9r2paywm",
+      "stem": "¿Con qué intención principal escribió el autor este texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "to describe, step by step, a scientific experiment about how sleep works",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "to convince young readers that getting enough sleep is worth the effort",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "to compare the sleep habits of teenagers in several different countries",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "to warn readers that the damage caused by poor sleep can never be undone",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto persuade, no solo informa",
+          "content": "El autor abre rechazando una idea ('Sleep is not a waste of time'), cierra con 'The good news' y propone cambios concretos ('leaving the phone outside the bedroom'). El propósito es convencer al lector joven de que vale la pena dormir lo suficiente."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar los otros propósitos",
+          "content": "1) No se relata ningún experimento con método y resultados. 2) No se comparan países. 3) decir que el daño 'can never be undone' contradice de plano 'these effects are not permanent'. 4) La estructura problema-beneficio-consejo es propia de un texto persuasivo dirigido a estudiantes. Si elegiste la de advertir sobre un daño irreversible, leíste lo contrario de lo que dice el último párrafo."
+        },
+        {
+          "layer": 3,
+          "title": "Propósito comunicativo del texto",
+          "content": "Un texto puede informar, describir, narrar, comparar o persuadir; las pistas están en su estructura y en las palabras que elige. Repasa: identificación del propósito del autor."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mhb7000r13dc4pa68c6y",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Selecciona la frase con el mismo significado que «spread» en la oración: «A virus can spread quickly in a crowded place.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "move from one person to many others",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "become weaker as time passes",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "stay inside a single organism",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "change into a completely different form",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«spread» en un contexto de contagio",
+          "content": "Aplicado a un virus entre personas, 'spread' significa pasar de una persona a muchas otras, es decir, propagarse o contagiarse."
+        },
+        {
+          "layer": 2,
+          "title": "Elegir el sentido que pide el contexto",
+          "content": "1) 'in a crowded place' señala transmisión entre personas. 2) 'become weaker as time passes' describe otra cosa (perder fuerza), no propagarse. 3) 'stay inside a single organism' es justo lo contrario de 'spread'. 4) 'change into a different form' se acerca a 'mutate', no a 'spread'. Si elegiste 'change into a different form', mezclaste 'spread' con la idea de mutación."
+        },
+        {
+          "layer": 3,
+          "title": "Polisemia de «spread»",
+          "content": "'spread' puede significar untar, extender, difundir o propagar según el contexto. Repasa: verbos polisémicos y su significado según con qué se usan."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mi3c000w13dcmfabuqay",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿Cuál palabra es lo contrario de «harmful»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "dangerous",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "painful",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "harmless",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "careful",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El sufijo «-less» invierte «-ful»",
+          "content": "'harmful' significa 'que hace daño'; con el sufijo '-less' (sin) se obtiene 'harmless', 'que no hace daño'. Son antónimos formados sobre la misma raíz 'harm'."
+        },
+        {
+          "layer": 2,
+          "title": "Comparar las cuatro palabras",
+          "content": "1) 'dangerous' es un sinónimo de 'harmful', no su contrario: es la trampa principal. 2) 'painful' significa 'doloroso': otro eje de significado. 3) 'harmless' es la negación directa de 'harmful'. 4) 'careful' significa 'cuidadoso'. Si elegiste 'dangerous', buscaste una palabra relacionada con daño sin fijarte en que se pedía el opuesto."
+        },
+        {
+          "layer": 3,
+          "title": "Sufijos «-ful» y «-less»",
+          "content": "Muchos adjetivos forman su opuesto cambiando '-ful' por '-less': 'useful/useless', 'careful/careless', 'hopeful/hopeless'. Repasa: formación de antónimos con sufijos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mive001113dc3c4yyx7h",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Selecciona la palabra que completa correctamente la oración: «The evidence was strong and ______, so nobody doubted the final report.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "conclusion",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "concluding",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "inconclusive",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "conclusive",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El contexto pide un adjetivo positivo: «conclusive»",
+          "content": "Si nadie dudó del informe, la evidencia fue clara y definitiva: 'conclusive' (concluyente). Tras 'was strong and' se necesita otro adjetivo coordinado con 'strong'."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar por forma y por sentido",
+          "content": "1) 'conclusion' es un sustantivo; no se coordina con el adjetivo 'strong'. 2) 'concluding' funciona como participio ('the concluding chapter'), no califica a 'evidence' en este sentido. 3) 'inconclusive' es un adjetivo, pero significa lo contrario: una evidencia no concluyente haría que alguien dudara del informe. 4) 'conclusive' encaja en forma y en sentido. Si elegiste 'inconclusive', te fijaste en la forma de adjetivo pero no en que el prefijo 'in-' invierte el significado que pide 'nobody doubted'."
+        },
+        {
+          "layer": 3,
+          "title": "Prefijos negativos y clase de palabra",
+          "content": "El prefijo 'in-' niega ('conclusive' -> 'inconclusive'); la terminación indica si la palabra es sustantivo ('-ion'), participio ('-ing') o adjetivo. Repasa: derivación y prefijos negativos ('in-', 'un-', 'im-')."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mjnj001613dcgrepxtz5",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa con el verbo correcto: «If you want to improve, you have to ______ an effort every day.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "do",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "make",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "take",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "put",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«make an effort» es una colocación fija",
+          "content": "En inglés el esfuerzo se 'hace' con el verbo 'make': 'make an effort'. Es una combinación fija que hay que memorizar."
+        },
+        {
+          "layer": 2,
+          "title": "Distinguir «make» de «do» y otros",
+          "content": "1) 'do' se usa con tareas y trabajo en general ('do homework', 'do the dishes'), no con 'effort'. 2) 'make' acompaña a 'effort', 'decision', 'mistake', 'progress'. 3) 'take' va con 'a break', 'a photo', 'a decision' en otro registro. 4) 'put' necesitaría 'into': 'put effort into something'. Si elegiste 'do', aplicaste la regla de 'do' para tareas a una colocación que pide 'make'."
+        },
+        {
+          "layer": 3,
+          "title": "Colocaciones con «make» y «do»",
+          "content": "Aprende en bloque: 'make an effort/a decision/progress' frente a 'do a job/homework/research'. Repasa: colocaciones frecuentes con 'make' y 'do'."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0mkfl001b13dcczrbunvl",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Selecciona el conector adecuado: «The sample was kept at the wrong temperature; ______, the results are not reliable.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "therefore",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "for instance",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "even so",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "meanwhile",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La segunda idea es la conclusión lógica de la primera",
+          "content": "Guardar la muestra a la temperatura equivocada tiene como consecuencia que los resultados no sean fiables. 'therefore' introduce esa conclusión."
+        },
+        {
+          "layer": 2,
+          "title": "Clasificar los conectores",
+          "content": "1) 'therefore' expresa consecuencia o conclusión. 2) 'for instance' introduce un ejemplo. 3) 'even so' señala concesión ('a pesar de eso'), lo que aquí invertiría el sentido. 4) 'meanwhile' indica simultaneidad en el tiempo. Solo la relación de causa-consecuencia encaja. Si elegiste 'even so', leíste una concesión donde el texto plantea una consecuencia directa."
+        },
+        {
+          "layer": 3,
+          "title": "Conectores de consecuencia en el discurso académico",
+          "content": "'therefore', 'thus', 'as a result' y 'consequently' encadenan una causa con su conclusión. Repasa: conectores lógicos en textos expositivos y científicos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmte0ml7s001g13dcr34mwrog",
+      "topic": "Vocabulario médico-científico",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa con la preposición correcta: «It usually takes a week to recover ______ a bad cold.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "of",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "for",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "from",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "with",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«recover from» es la combinación correcta",
+          "content": "El verbo 'recover' se construye con 'from' cuando hablamos de reponerse de una enfermedad o de un problema: 'recover from a cold', 'recover from an injury'."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar las otras preposiciones",
+          "content": "1) 'recover of' no es una combinación válida en inglés. 2) 'recover for' cambiaría el sentido y no es la forma usual. 3) 'recover with' sugeriría el medio, no aquello de lo que uno se repone. 4) 'from' marca el origen o punto de partida: la enfermedad de la que se sale. Si elegiste 'of', tradujiste literalmente 'recuperarse de', pero el inglés pide 'from'."
+        },
+        {
+          "layer": 3,
+          "title": "Verbos con preposición fija (dependent prepositions)",
+          "content": "Muchos verbos exigen una preposición concreta: 'depend on', 'suffer from', 'recover from', 'consist of'. Repasa: verbos seguidos de preposición y sus combinaciones."
+        }
+      ]
+    }
+  ]
+}
