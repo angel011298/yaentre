@@ -1,0 +1,1940 @@
+{
+  "batch": "G33",
+  "generatedAt": "2026-08-30T00:00:00.000Z",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 3 — Ciencias Sociales",
+  "subject": "Historia de México",
+  "subjectId": "cmrr1jxqi004ohi3n2xpby9zr",
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G33: 35 reactivos de Historia de México para UNAM Área 3, que estaba en cero absoluto de contenido propio (el pool servible de 35 del Área 3 es Español reutilizado por G26). Historia de México es la materia de mayor questionWeight del Área 3 (7) y NO es compartida (sharedContentKey null), a diferencia de Español/Inglés/Química de la UNAM: el lote se inserta contra sus 6 temas propios y no se reutiliza entre áreas — mismo caso que Matemáticas Aplicadas de SOCADM en G27. G30–G32 nombraban en sus bloques Siguiente a IPN SOCADM Historia de México; el encargo redirigió el hueco a la UNAM. Consulta en vivo 2026-08-30: los 6 temas en 0.",
+  "grounding": "MIXTO: 7 SOURCED / 28 TEMARIO_ONLY. El tema 'Revolución Mexicana' tiene 2 SourceChunk (uam_csh.pdf pp. 41-42, guía de Ciencias Sociales y Humanidades de la UAM, clasificada a ese tema del temario de la UNAM por el pipeline F2b el 2026-07-21). grounding.ts hace obligatoria la cita cuando hay fragmentos: los 7 reactivos de ese tema citan ambos (sourceChunks [1,2]). Los otros 5 temas no tienen SourceChunk -> TEMARIO_ONLY. No existe guía de la UNAM de Historia en content_sources.",
+  "totalQuestions": 35,
+  "bankBefore": {
+    "total": 727,
+    "verified": 727,
+    "blindQueue": 0
+  },
+  "bankAfter": {
+    "total": 762,
+    "verified": 727,
+    "blindQueue": 35
+  },
+  "positionDistribution": {
+    "A": 9,
+    "C": 9,
+    "B": 9,
+    "D": 8
+  },
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 35
+  },
+  "difficultyDistribution": {
+    "BASIC": 7,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "perTopic": {
+    "Época prehispánica": 5,
+    "Conquista y Colonia": 6,
+    "Independencia": 6,
+    "Reforma y Guerra de Intervención": 6,
+    "Revolución Mexicana": 7,
+    "México Moderno (siglo XX-XXI)": 5
+  },
+  "sourceChunkIds": [
+    "cmrsromj5007t13b3jzlu55mb",
+    "cmrsromj5007u13b3vgm7nl2c"
+  ],
+  "sourceChunkNote": "uam_csh.pdf pp. 41 y 42; ids en orden de createdAt asc segun loadTopicChunks.",
+  "qualityChecks": {
+    "validateBatch": "0 violaciones (G3c)",
+    "correctPositionBand": "A9/B9/C9/D8, las cuatro en 15-40% (confirmado por query directa a la DB)",
+    "cyclicRotationPlusOne": "3/34 (azar ~8.5); la letra la asigna el generador con busqueda anti-rotacion",
+    "correctIsLongestOption": "13/35; ratio medio de longitud correcta/distractores 1.02 (min 0.89, max 1.17)",
+    "letterCitations": "0 en 105 capas de explicacion",
+    "positionalCitations": "2 detectadas y corregidas (\"la segunda/ultima opcion\" -> por contenido); patron anadido al auto-chequeo del generador",
+    "typecheck": "verde",
+    "lint": "verde"
+  },
+  "questions": [
+    {
+      "questionId": "cmte93vkf0001tyv2xmuw1phe",
+      "topicId": "cmrr1jxvw004qhi3n7yppsze6",
+      "topic": "Época prehispánica",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué cambio hizo posible el surgimiento de las primeras aldeas permanentes en Mesoamérica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El dominio del cultivo del maíz, el frijol y la calabaza, que permitió producir y guardar excedentes",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La domesticación del caballo y del ganado mayor para el transporte de carga y el trabajo del campo",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La llegada de pueblos del norte que ya dominaban la metalurgia del hierro y el arado de tiro animal",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La invención de la rueda aplicada a carretas para mover mercancías por caminos empedrados entre regiones",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De la caza-recolección a la agricultura",
+          "content": "La domesticación del maíz, el frijol y la calabaza dio a los grupos un alimento predecible y almacenable. Con excedentes que cuidar, ya no necesitaron desplazarse tras los recursos y pudieron fijarse en aldeas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) En Mesoamérica no hubo metalurgia del hierro ni arado: se trabajó la obsidiana y, tardíamente, el cobre. 2) El caballo y el ganado mayor no existían en América antes del siglo XVI. 3) La rueda se usó en objetos pequeños, pero sin animales de tiro no sirvió para transportar carga. El error típico es imaginar el cambio como una técnica traída de fuera, cuando fue un proceso interno de domesticación de plantas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La revolución agrícola mesoamericana",
+          "content": "El paso de la vida nómada a la sedentaria, en el Preclásico, descansa en la agricultura del maíz; de ese excedente nacen la división del trabajo, la jerarquía social y las ciudades. Repasa: sedentarización y áreas culturales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte93wd90006tyv24ib99nkr",
+      "topicId": "cmrr1jxvw004qhi3n7yppsze6",
+      "topic": "Época prehispánica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cómo obtenía la Triple Alianza (México-Tenochtitlan, Texcoco y Tlacopan) la mayor parte de los recursos que sostenían su poderío?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mediante la explotación de las minas de plata del norte con trabajo forzado de comunidades enteras",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Mediante el comercio marítimo de larga distancia con los pueblos de las islas del mar Caribe",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Mediante el tributo en productos que imponía a los pueblos sometidos por la fuerza de las armas",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Mediante un impuesto único, cobrado en moneda, a todos los habitantes libres del Valle de México",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un Estado tributario",
+          "content": "Los pueblos vencidos entregaban de forma periódica maíz, frijol, mantas, cacao, plumas y objetos de lujo a los tres señoríos dominantes. Ese tributo, y no el comercio ni la minería, era la base de su economía política.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando las otras vías",
+          "content": "1) No hubo comercio marítimo con el Caribe; el intercambio de larga distancia era terrestre y lacustre, a cargo de los pochtecas. 2) Las minas de plata del norte se explotaron hasta la época colonial, en tierras que los mexicas no dominaban. 3) No existía moneda ni un impuesto general: se pagaba en especie y recaía en los sometidos, no en los aliados. Si pensaste en la plata, mezclaste la economía colonial con la prehispánica.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Economía y expansión mexica",
+          "content": "La guerra mexica tenía un fin económico: sumar provincias tributarias. Lo que debía cada pueblo se anotaba en documentos como la Matrícula de Tributos. Repasa: organización política y económica de la Triple Alianza.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte93x5b000btyv20ls1fqdg",
+      "topicId": "cmrr1jxvw004qhi3n7yppsze6",
+      "topic": "Época prehispánica",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cuál es la diferencia principal entre las culturas de Mesoamérica y las de Aridoamérica antes de la llegada de los españoles?",
+      "options": [
+        {
+          "id": "A",
+          "text": "En Aridoamérica floreció la agricultura de riego a gran escala y en Mesoamérica solo la caza de animales mayores",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En Mesoamérica predominó la vida agrícola, sedentaria y urbana; en Aridoamérica, grupos en su mayoría nómadas",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "En Aridoamérica se levantaron las ciudades con pirámides y centros ceremoniales, ausentes por completo en Mesoamérica",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En Mesoamérica se desconocían la escritura y el calendario, muy desarrollados en cambio en Aridoamérica",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos formas de vida",
+          "content": "Mesoamérica fue un área de agricultura, ciudades y Estados (Teotihuacan, los mayas, los mexicas). Aridoamérica, al norte, tenía un clima seco que dificultaba la agricultura, por lo que la habitaron sobre todo grupos nómadas de cazadores-recolectores.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Las opciones invertidas",
+          "content": "1) La agricultura de riego a gran escala (chinampas, terrazas) fue mesoamericana, no del norte árido. 2) La escritura, el calendario y las matemáticas son logros mesoamericanos. 3) Las ciudades con pirámides también lo son. Cada distractor asigna a una región lo que corresponde a la otra.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Las áreas culturales del México antiguo",
+          "content": "Suelen distinguirse tres grandes áreas: Mesoamérica, Aridoamérica y Oasisamérica, con fronteras que se movían según los ciclos de lluvia. Repasa: rasgos y límites de las áreas culturales prehispánicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte93xxc000gtyv2dsngnq5v",
+      "topicId": "cmrr1jxvw004qhi3n7yppsze6",
+      "topic": "Época prehispánica",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El llamado «colapso» de las ciudades mayas del periodo Clásico (siglos VIII y IX) se entiende mejor como…",
+      "options": [
+        {
+          "id": "A",
+          "text": "el abandono gradual de los grandes centros del sur por sequías, suelos agotados y guerras entre ciudades",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "una sola catástrofe natural, un terremoto o una erupción, que acabó con la población en unos pocos años",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el traslado de toda la población maya al altiplano central, donde con el tiempo fundaría México-Tenochtitlan",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la desaparición súbita y total de la civilización maya como efecto directo de la conquista española",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un proceso, no un suceso",
+          "content": "Entre los siglos VIII y IX, ciudades del sur de las tierras bajas como Tikal, Palenque y Copán dejaron de erigir monumentos y se despoblaron poco a poco. Se explica por causas encadenadas: sequías prolongadas, deforestación, suelos agotados y conflictos crecientes entre señoríos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué se descartan las demás",
+          "content": "1) Los mayas no migraron para fundar Tenochtitlan; esa fue la peregrinación mexica desde Aztlán. 2) No hay evidencia de una única catástrofe: el abandono fue desigual y duró más de un siglo. 3) La conquista española ocurrió setecientos años después; además, ciudades del norte como Chichén Itzá florecieron tras el colapso del sur, y los pueblos mayas existen hasta hoy. Si elegiste la catástrofe única, buscaste una causa simple para un proceso múltiple y lento.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Auge y transformación del mundo maya",
+          "content": "El «colapso» maya sirve para estudiar cómo interactúan medio ambiente, economía y política en la caída de una sociedad compleja. No fue un final, sino un desplazamiento del centro de gravedad hacia el norte. Repasa: periodos de la cultura maya y causas del colapso del Clásico.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte93yph000ltyv29gamsy6y",
+      "topicId": "cmrr1jxvw004qhi3n7yppsze6",
+      "topic": "Época prehispánica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cuál de los siguientes rasgos de origen mesoamericano sigue siendo parte central de la vida cotidiana en el México actual?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El uso de la escritura jeroglífica en los documentos oficiales y en la escuela",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El calendario ritual de 260 días usado como calendario civil de la vida diaria",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La base de la alimentación diaria, sustentada en el maíz, el frijol, el chile y el jitomate",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El sistema de numeración vigesimal para contar el dinero y llevar las cuentas",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una herencia viva",
+          "content": "La milpa y la cocina mexicana conservan el núcleo alimentario mesoamericano: maíz (tortilla, tamal, pozole), frijol, chile y jitomate. Es una continuidad de miles de años que sobrevivió a la Conquista y a la Colonia.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Continuidades que no lo son",
+          "content": "1) La escritura jeroglífica se dejó de usar tras la Conquista; hoy se estudia, pero no se emplea. 2) El calendario de 260 días persiste solo en algunos pueblos, con fines rituales. 3) La numeración vigesimal no rige el comercio moderno, que es decimal. El error es confundir lo que se conserva como patrimonio de estudio con lo que se usa a diario.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El legado prehispánico en el presente",
+          "content": "Hay continuidades también en la lengua (miles de nahuatlismos), la medicina tradicional, la organización comunitaria y la toponimia. Repasa: aportaciones de las culturas prehispánicas a la identidad mexicana.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte9467n0001edw281usir3b",
+      "topicId": "cmrr1jygg004shi3n2rx9f3az",
+      "topic": "Conquista y Colonia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Además de la ventaja en armamento, ¿qué factor fue decisivo para que Hernán Cortés lograra la caída de México-Tenochtitlan en 1521?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El desembarco de un ejército español muy numeroso que superó en hombres a los defensores de la ciudad",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Las alianzas con pueblos indígenas enemigos de los mexicas, sumadas a la epidemia de viruela de 1520",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El bloqueo naval español en el Golfo de México, que impidió la llegada de todo refuerzo a Tenochtitlan",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La conversión voluntaria y pacífica de Moctezuma y de la nobleza mexica, que entregaron la ciudad sin combatir",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una guerra sobre todo indígena",
+          "content": "El grueso de las fuerzas que sitiaron Tenochtitlan eran guerreros de pueblos enemigos de los mexicas: tlaxcaltecas, totonacas, texcocanos. A ello se sumó la viruela de 1520, enfermedad nueva que mató a miles, entre ellos al tlatoani Cuitláhuac.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué fallan las demás",
+          "content": "1) Los españoles nunca fueron numerosos: sumaban unos cientos, y el ejército que tomó la ciudad era mayoritariamente indígena. 2) Tenochtitlan era una isla en un lago interior: no cabía un bloqueo desde el mar, aunque los españoles sí armaron bergantines sobre el lago. 3) Moctezuma no se convirtió ni entregó la ciudad; murió durante el conflicto y la resistencia duró hasta agosto de 1521. Si elegiste el ejército numeroso, sobrevaloraste el peso de los peninsulares frente al de sus aliados.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La Conquista como proceso",
+          "content": "La caída de Tenochtitlan se explica por alianzas, epidemias, divisiones internas del mundo indígena y tecnología militar, no por un solo factor. Repasa: causas de la Conquista y el papel de los pueblos aliados.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte947020006edw2jgi08s0b",
+      "topicId": "cmrr1jygg004shi3n2rx9f3az",
+      "topic": "Conquista y Colonia",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Durante la mayor parte del periodo colonial, ¿quién representaba directamente al rey de España en el gobierno de Nueva España?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El virrey, máxima autoridad política, militar y judicial del territorio en nombre del monarca ausente",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El encomendero, señor que recibía trabajo y tributo indígena a cambio de proteger y evangelizar",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El cacique indígena, jefe local al que la Corona reconocía para gobernar a su propio pueblo entero",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El arzobispo de México, cabeza de la Iglesia novohispana y con frecuencia juez del Santo Oficio",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El virrey, «alter ego» del rey",
+          "content": "El virrey era el funcionario de mayor rango en Nueva España: gobernaba, mandaba el ejército, presidía la Real Audiencia y vigilaba la hacienda, todo en nombre del rey, que residía en España.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Distinguir cargos y funciones",
+          "content": "1) El encomendero tenía poder sobre indígenas concretos, pero no gobernaba el territorio. 2) El cacique administraba su comunidad dentro de la «república de indios», subordinado a los españoles. 3) El arzobispo encabezaba la Iglesia, no el gobierno civil. El error frecuente es confundir a quien manda en lo local o en lo religioso con quien representa al rey.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El gobierno de Nueva España",
+          "content": "Bajo el rey y el Consejo de Indias, la estructura era: virrey, Real Audiencia, gobernadores, alcaldes mayores y corregidores, más los cabildos de las ciudades. Repasa: organización política del virreinato.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte947s3000bedw20etcuvy2",
+      "topicId": "cmrr1jygg004shi3n2rx9f3az",
+      "topic": "Conquista y Colonia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "En la sociedad novohispana, ¿qué determinaba principalmente la posición social de una persona?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Solo el monto de su fortuna, de modo que cualquier persona rica llegaba a la cúspide de la sociedad",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El resultado de elecciones periódicas en las que los vecinos de cada ciudad elegían a sus notables",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El oficio que ejercía, de modo que los artesanos y comerciantes formaban por sí solos el grupo de más rango",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Su origen étnico y su lugar de nacimiento, que la ubicaban en un grupo o «casta» con derechos distintos",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La sociedad de castas",
+          "content": "El lugar de una persona dependía de si era peninsular, criollo, mestizo, indígena, africano o alguna de las muchas mezclas reconocidas. De ese origen se derivaban el acceso a cargos, gremios, educación e impuestos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Matices y errores comunes",
+          "content": "1) La riqueza daba influencia, pero no borraba el origen: un mestizo acaudalado no llegaba a los cargos reservados a peninsulares. 2) No había elecciones que definieran el rango social. 3) El oficio tampoco cambiaba el origen: los gremios de artesanos y comerciantes quedaban por debajo de la élite y solían excluir a las castas. La sociedad novohispana era jerárquica y hereditaria, no abierta al mérito ni al voto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Estratificación colonial",
+          "content": "El sistema de castas se fue difuminando por el mestizaje y por el ascenso económico de algunos grupos, pero dejó tensiones —sobre todo el resentimiento criollo— que pesarían en la Independencia. Repasa: grupos sociales de Nueva España.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte948kb000gedw2ab9k8unc",
+      "topicId": "cmrr1jygg004shi3n2rx9f3az",
+      "topic": "Conquista y Colonia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Por qué la minería de plata fue el eje de la economía de Nueva España?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque la Corona prohibió por ley cualquier otra actividad productiva dentro del territorio de la colonia",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque era el principal producto de exportación y en torno a ella se organizó toda la economía colonial",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Porque en Nueva España no existían tierras aptas para la agricultura ni pastos suficientes para la ganadería",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque el metal extraído se repartía en partes iguales entre todos los habitantes libres del virreinato",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una economía articulada por la plata",
+          "content": "Los reales de minas como Zacatecas o Guanajuato generaban la mayor riqueza y el metal que financiaba a la Corona. A su alrededor surgieron haciendas que los abastecían, obrajes textiles y caminos largos como el de Tierra Adentro.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué las demás son falsas",
+          "content": "1) No hubo prohibición de otras actividades: coexistieron agricultura, ganadería, textiles y comercio, subordinados a la minería. 2) La plata no se repartía: era de los dueños de minas, y la Corona cobraba el «quinto real». 3) Sí había amplias zonas agrícolas y ganaderas, que crecieron justamente para alimentar a las ciudades mineras. El error es imaginar la minería como algo aislado y no como el centro de una red económica.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El sistema económico colonial",
+          "content": "La economía novohispana era minero-exportadora: producía metales para el exterior e importaba manufacturas, dentro del monopolio comercial español. Repasa: minería, haciendas y comercio en Nueva España.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte949cb000ledw21wq8s9r4",
+      "topicId": "cmrr1jygg004shi3n2rx9f3az",
+      "topic": "Conquista y Colonia",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué consecuencia tuvieron las reformas borbónicas del siglo XVIII sobre los criollos de Nueva España?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Les concedieron autonomía administrativa plena, con derecho a elegir a sus propias autoridades locales",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Les reservaron en exclusiva el cargo de virrey y los puestos altos de la Real Audiencia",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Suprimieron todos los impuestos que pagaban a la Corona para estimular la economía de la colonia",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los desplazaron de los cargos de gobierno en favor de peninsulares y les elevaron la carga de impuestos",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Reformas que centralizan y excluyen",
+          "content": "Los Borbones quisieron gobernar más y sacar más recursos de las colonias: crearon las intendencias, subieron impuestos, montaron monopolios estatales y entregaron los cargos a funcionarios peninsulares de confianza, relegando a los criollos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando las opciones",
+          "content": "1) No hubo autonomía: la tendencia fue la contraria, más control desde Madrid. 2) Los impuestos no se suprimieron; se aumentaron y se cobraron con más eficacia. 3) Los altos cargos se reservaron a peninsulares, no a criollos. Cada distractor invierte el sentido real de las reformas, cuyo resentimiento es una de las causas internas de la Independencia.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Antecedentes de la Independencia",
+          "content": "Las reformas borbónicas, la expulsión de los jesuitas en 1767 y la crisis de la monarquía española en 1808 forman la cadena de causas del movimiento de 1810. Repasa: el reformismo borbónico y el malestar criollo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94a4i000qedw298tsmz8v",
+      "topicId": "cmrr1jygg004shi3n2rx9f3az",
+      "topic": "Conquista y Colonia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cuál fue una función central de las órdenes religiosas (franciscanos, dominicos y agustinos) durante los primeros siglos de la Colonia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La evangelización de la población indígena y el control de la educación, los hospitales y buena parte de la cultura",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La administración directa de las minas de plata del norte y el reclutamiento forzoso de trabajadores para ellas",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El cobro y el envío a España de todo el tributo indígena, del que dependía el sostenimiento de la hacienda real",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La organización del ejército virreinal y la defensa militar de las costas frente a los ataques de los piratas",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Los frailes y la vida novohispana",
+          "content": "Las órdenes mendicantes llegaron desde 1524 para convertir a la población indígena. En el proceso fundaron escuelas, hospitales y colegios, estudiaron las lenguas nativas y dieron forma a gran parte de la producción cultural del periodo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Lo que no hacían los frailes",
+          "content": "1) La defensa militar tocaba a la autoridad virreinal y a las milicias, no al clero. 2) El tributo lo administraban funcionarios reales y encomenderos. 3) Las minas eran empresas privadas supervisadas por la Corona. La confusión nace de suponer que la Iglesia lo controlaba todo, cuando su papel se concentraba en lo religioso, lo educativo y lo asistencial.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Iglesia y evangelización",
+          "content": "Con el tiempo, las órdenes cedieron las parroquias al clero secular, y la Iglesia acumuló tierras y capital que la volvieron un poder económico. Repasa: evangelización, órdenes mendicantes y poder de la Iglesia colonial.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94hjl00013kp2mgrs83ig",
+      "topicId": "cmrr1jz5g004uhi3nbuj7zv6b",
+      "topic": "Independencia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El movimiento insurgente encabezado por Miguel Hidalgo a partir de 1810 se caracterizó porque…",
+      "options": [
+        {
+          "id": "A",
+          "text": "fue un ejército profesional y disciplinado, entrenado por oficiales europeos y con buena artillería",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "estuvo integrado en exclusiva por criollos ricos y grandes propietarios de haciendas y minas",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "contó desde el primer día con el apoyo abierto del alto clero y de los comerciantes peninsulares",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "reunió a una multitud numerosa pero poco organizada, formada sobre todo por campesinos indígenas y mestizos",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un levantamiento popular",
+          "content": "Al llamado de Hidalgo se sumaron pronto decenas de miles de personas de los pueblos y el campo del Bajío. Era una fuerza inmensa, sin instrucción militar ni mando único, movida también por el hambre y el rechazo a los gachupines.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras",
+          "content": "1) No era un ejército profesional: su desorden explica derrotas como la de Puente de Calderón en 1811. 2) No lo formaban criollos ricos; muchos se asustaron por el carácter social del movimiento. 3) El alto clero lo excomulgó y los peninsulares eran su blanco. Si elegiste el ejército disciplinado, confundiste la etapa de Hidalgo con la organización que después le daría Morelos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Etapas de la Independencia",
+          "content": "La guerra suele dividirse en inicio (Hidalgo), organización (Morelos), resistencia (Guerrero, Mina) y consumación (Iturbide-Guerrero); cada etapa tiene un tipo de dirigente y de programa. Repasa: fases y actores de la guerra de Independencia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94ibo00063kp28q8923aq",
+      "topicId": "cmrr1jz5g004uhi3nbuj7zv6b",
+      "topic": "Independencia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué aportó José María Morelos al movimiento de Independencia respecto de la etapa inicial de Hidalgo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Trasladó la lucha solo al norte del territorio, lejos del centro y del sur donde estaban los realistas",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Renunció a la idea de independencia y negoció con el virrey el regreso al dominio de España",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Le dio organización política y militar y un programa propio, los «Sentimientos de la Nación» de 1813",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Restableció los privilegios de la nobleza criolla y confirmó el sistema de castas de la Colonia",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De la multitud al proyecto de nación",
+          "content": "Morelos formó ejércitos pequeños y disciplinados, convocó el Congreso de Chilpancingo en 1813 y presentó los «Sentimientos de la Nación»: independencia absoluta, soberanía popular, fin de la esclavitud y de las castas, y que «se modere la opulencia y la indigencia».",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Los distractores, uno por uno",
+          "content": "1) Morelos nunca renunció a la independencia; fue fusilado en 1815 por sostenerla. 2) Su campaña se dio en el sur y el centro (Cuautla, Oaxaca, Acapulco), no en el norte. 3) Su programa atacaba los privilegios y las castas, no los restauraba. Cada opción incorrecta le atribuye lo contrario de lo que hizo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El pensamiento insurgente",
+          "content": "Con Morelos, la Independencia adquiere contenido ideológico: república, división de poderes, igualdad jurídica, ideas que la Constitución de Apatzingán de 1814 recoge. Repasa: «Sentimientos de la Nación» y el Congreso de Chilpancingo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94j3n000b3kp2manhkgrp",
+      "topicId": "cmrr1jz5g004uhi3nbuj7zv6b",
+      "topic": "Independencia",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Por qué muchos criollos que antes combatían a los insurgentes terminaron apoyando la consumación de la Independencia en 1821?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Querían abolir la propiedad privada y repartir todos los bienes en una comunidad general de habitantes",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Se habían convencido del programa de reparto de tierras que defendían los jefes insurgentes del sur",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Recibieron una orden expresa del rey Fernando VII para proclamar de inmediato la independencia de la colonia",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Temían que los liberales que gobernaban España desde 1820, con la Constitución de Cádiz, tocaran sus privilegios",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una independencia para conservar",
+          "content": "En 1820 un pronunciamiento militar obligó a Fernando VII a jurar la Constitución liberal de 1812. Sus medidas contra fueros y bienes de la Iglesia alarmaron a los grupos privilegiados de Nueva España, que vieron en la independencia una forma de blindarse frente a esas reformas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando las demás causas",
+          "content": "1) El reparto agrario nunca fue bandera de los criollos conservadores; al contrario, les preocupaba. 2) El rey no ordenó ninguna independencia: la resistió. 3) Nadie propuso abolir la propiedad privada en 1821. El error habitual es creer que todos los que consumaron la Independencia compartían los ideales sociales de Hidalgo y Morelos, cuando el impulso decisivo de 1821 fue conservador.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El giro de 1820-1821",
+          "content": "El Plan de Iguala y el abrazo de Acatempan entre Iturbide y Guerrero unieron a antiguos enemigos bajo un acuerdo mínimo. La consumación fue posible por esa alianza entre insurgentes y realistas descontentos. Repasa: causas de la consumación de la Independencia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94jvr000g3kp2edh50npl",
+      "topicId": "cmrr1jz5g004uhi3nbuj7zv6b",
+      "topic": "Independencia",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Las «tres garantías» del Plan de Iguala (1821), con las que Agustín de Iturbide buscó unir a grupos antes enfrentados, fueron…",
+      "options": [
+        {
+          "id": "A",
+          "text": "libertad, igualdad y fraternidad, tomadas del ejemplo y de los lemas de la Revolución francesa de 1789",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "religión católica como única, independencia respecto de España y unión entre americanos y europeos",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "paz, orden y progreso bajo un gobierno fuerte que diera garantías a la inversión y a la propiedad de los hacendados",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "tierra, trabajo y pan para los campesinos y los obreros, como plantearían los planes revolucionarios del siglo XX",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Religión, Independencia, Unión",
+          "content": "El Plan de Iguala ofrecía algo a cada bando: a la Iglesia y a los conservadores, mantener el catolicismo como religión única; a los insurgentes, la independencia; y a los peninsulares residentes, la garantía de igualdad y respeto. De ahí el Ejército de las Tres Garantías o Trigarante.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Lemas de otras épocas",
+          "content": "1) «Libertad, igualdad, fraternidad» es de la Revolución francesa de 1789. 2) «Tierra y libertad» y las demandas de pan y trabajo son de la Revolución Mexicana del siglo XX. 3) «Orden y progreso» resume la ideología del porfiriato. Cada distractor toma un lema famoso de otro proceso histórico.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La consumación de 1821",
+          "content": "Con el Plan de Iguala y los Tratados de Córdoba, firmados con el último jefe político español, se consuma la Independencia; el Ejército Trigarante entra a la capital el 27 de septiembre de 1821. Repasa: Plan de Iguala y Tratados de Córdoba.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94knr000l3kp2a2u03r38",
+      "topicId": "cmrr1jz5g004uhi3nbuj7zv6b",
+      "topic": "Independencia",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cuál fue una consecuencia duradera de los once años de guerra para el país que surgió en 1821?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Una economía arruinada, con minas inundadas y campos abandonados, y un Estado endeudado y políticamente inestable",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La continuidad, sin cambios, de las instituciones y los funcionarios del gobierno virreinal a lo largo del siglo XIX",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La incorporación inmediata, pacífica y permanente de las provincias de Centroamérica al nuevo Estado mexicano",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una hacienda pública saneada y con superávit, que permitió pagar de inmediato la deuda heredada del periodo colonial",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El costo de la guerra",
+          "content": "La lucha destruyó la minería, la principal fuente de riqueza, y desarticuló los circuitos comerciales. El México independiente nació pobre, con un ejército enorme y caro, deudas y un territorio difícil de gobernar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué fallan las otras",
+          "content": "1) No hubo superávit: la bancarrota crónica obligó a pedir préstamos con condiciones onerosas. 2) Las instituciones sí cambiaron: se ensayaron imperio, república federal y república central en pocos años. 3) Centroamérica se unió brevemente al Primer Imperio y se separó en 1823, tras la caída de Iturbide. Si marcaste la anexión permanente de Centroamérica, olvidaste que esa unión se deshizo casi enseguida.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Las primeras décadas del México independiente",
+          "content": "La inestabilidad de 1821 a 1855, con múltiples gobiernos y la pérdida de más de la mitad del territorio ante Estados Unidos, se explica en parte por la herencia de la guerra. Repasa: consecuencias de la Independencia y primeros gobiernos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94lft000q3kp2a2kt06y0",
+      "topicId": "cmrr1jz5g004uhi3nbuj7zv6b",
+      "topic": "Independencia",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué diferencia de fondo existió entre el proyecto de nación de los primeros insurgentes (Hidalgo y Morelos) y el que hizo triunfar la Independencia en 1821?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Los primeros insurgentes querían seguir bajo el dominio de España y el grupo de 1821 buscaba la ruptura",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El grupo de 1821 exigía abolir de inmediato la monarquía; Hidalgo y Morelos querían coronar a un rey",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los primeros ligaban la independencia a reformas sociales profundas; la de 1821 no tocó el orden social",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "No hubo ninguna diferencia de fondo: ambos proponían una república federal con reparto de tierras",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Misma independencia, distinto contenido social",
+          "content": "Hidalgo abolió la esclavitud y el tributo; Morelos propuso acabar con las castas y moderar la desigualdad. En cambio, el Plan de Iguala garantizaba la independencia sin tocar la estructura social: la Iglesia, el ejército y los grandes propietarios conservaron su lugar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué se descartan las demás",
+          "content": "1) Los insurgentes buscaban la independencia, no seguir bajo España. 2) El grupo de Iturbide no quería abolir la monarquía: instauró un imperio y coronó a Iturbide, así que decir que Hidalgo y Morelos buscaban un rey invierte las posturas. 3) Los proyectos no eran iguales: había una diferencia clara. La clave es ver que «independencia» significó cosas distintas en 1813 y en 1821.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Interpretar la Independencia",
+          "content": "Buena parte de la historiografía distingue una independencia popular y social, derrotada militarmente, de una consumación conservadora que preservó privilegios; esa tensión reaparece en las luchas del siglo XIX. Repasa: proyectos políticos en pugna durante la Independencia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94ss50001hvz4cvzqosq6",
+      "topicId": "cmrr1jzpc004whi3n1wki9br1",
+      "topic": "Reforma y Guerra de Intervención",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cuál era el objetivo central de las Leyes de Reforma promulgadas por los liberales hacia 1859 y 1860?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Separar la Iglesia del Estado y reducir el poder económico y político de las corporaciones eclesiásticas",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Repartir de inmediato las grandes haciendas entre los campesinos y los peones que trabajaban sin tierra propia",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Establecer en México una monarquía constitucional encabezada por un príncipe de una casa reinante europea",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Restaurar los fueros del clero y del ejército que la Constitución liberal de 1857 había suprimido poco antes",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Iglesia y Estado, por caminos separados",
+          "content": "Las Leyes de Reforma nacionalizaron los bienes del clero, crearon el matrimonio y el registro civil, secularizaron los cementerios y suprimieron los conventos. Buscaban un Estado laico y quitar a la Iglesia su poder terrenal.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Distractores de otras corrientes",
+          "content": "1) Restaurar los fueros era lo que querían los conservadores, no los liberales, que precisamente los abolieron. 2) La monarquía con un príncipe europeo es el proyecto conservador que llevaría a Maximiliano. 3) El reparto de haciendas es una demanda del siglo XX; la Reforma defendía la propiedad privada individual. Cada opción incorrecta corresponde al bando contrario o a otra época.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La Reforma liberal",
+          "content": "El programa liberal se apoya en la Constitución de 1857 y las Leyes de Reforma, y enfrenta a los conservadores en la Guerra de Reforma, de 1858 a 1861. Repasa: contenido y alcance de las Leyes de Reforma.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94tk90006hvz4og3qr7ob",
+      "topicId": "cmrr1jzpc004whi3n1wki9br1",
+      "topic": "Reforma y Guerra de Intervención",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "La Ley Lerdo (1856) obligó a las corporaciones civiles y eclesiásticas a vender los bienes raíces que no usaran de forma directa. ¿Qué efecto tuvo sobre las comunidades indígenas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No las tocó en absoluto, porque la ley se aplicó solo a los bienes rurales de la Iglesia",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Les garantizó por ley la propiedad colectiva e inalienable de sus tierras frente a toda venta",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Afectó sus tierras comunales, que como propiedad de una corporación quedaron sujetas a la venta",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Les entregó tierras nuevas, tomadas de las haciendas vecinas, para compensar siglos de despojo",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un efecto no buscado, pero real",
+          "content": "La Ley Lerdo apuntaba sobre todo a los bienes de la Iglesia, pero su lógica —ninguna corporación debía poseer tierras— alcanzó también a los pueblos, cuyas tierras comunales se fraccionaron y se pusieron en venta. Comerciantes y hacendados aprovecharon para adquirirlas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué las demás son falsas",
+          "content": "1) No hubo entrega de tierras a los pueblos; el saldo fue de pérdida. 2) La ley no protegió la propiedad comunal: la debilitó al tratarla como corporativa. 3) Sí afectó a las comunidades, no solo a la Iglesia. El error es pensar que una ley liberal contra la Iglesia no podía dañar a los pueblos indígenas, cuando el liberalismo de la época desconfiaba de toda propiedad colectiva.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Liberalismo y tierra en el siglo XIX",
+          "content": "La desamortización preparó la concentración de la tierra que se acentuaría en el porfiriato y que sería una de las causas de la Revolución. Repasa: Ley Lerdo, desamortización y sus consecuencias sociales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94uce000bhvz4z0yh2yll",
+      "topicId": "cmrr1jzpc004whi3n1wki9br1",
+      "topic": "Reforma y Guerra de Intervención",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué pretexto usaron Francia, España e Inglaterra para enviar tropas a México en 1862, y qué potencia decidió quedarse para imponer un imperio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La defensa de la Constitución de 1857 frente a los conservadores; Inglaterra fue la potencia que decidió permanecer en el país",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una disputa por los límites del sur con Guatemala; Francia se retiró de inmediato tras un breve desembarco en la costa",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La exigencia de que México aboliera de una vez la esclavitud en todo su territorio; España fue la que decidió permanecer",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El cobro de la deuda externa, cuyos pagos Juárez había suspendido; Francia, bajo Napoleón III, se quedó e impuso a Maximiliano",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De la deuda a la intervención",
+          "content": "En 1861, ante la bancarrota, Juárez suspendió por dos años el pago de la deuda externa. Las tres potencias acreedoras firmaron la Convención de Londres y desembarcaron en Veracruz en 1862. Al ver que Francia quería fundar un imperio, España e Inglaterra se retiraron; Francia siguió adelante.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando los otros pretextos",
+          "content": "1) No hubo disputa de límites con Guatemala en ese momento, y Francia no se retiró: se quedó hasta 1867. 2) La esclavitud ya estaba abolida en México desde 1829; España no permaneció. 3) Ninguna potencia intervino para defender la Constitución de 1857; Inglaterra se retiró pronto. El pretexto real y compartido fue el financiero.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La Segunda Intervención Francesa",
+          "content": "La intervención se apoyó en los conservadores mexicanos, que ofrecieron el trono a Maximiliano de Habsburgo. Repasa: causas de la Intervención Francesa y la Convención de Londres.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94v4h000ghvz4j8u263zj",
+      "topicId": "cmrr1jzpc004whi3n1wki9br1",
+      "topic": "Reforma y Guerra de Intervención",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué acontecimiento se conmemora el 5 de mayo en México?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La consumación de la Independencia con la entrada del Ejército Trigarante a la Ciudad de México en 1821",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El inicio de la lucha armada de la Revolución Mexicana, convocada por Francisco I. Madero para el mes de noviembre",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La victoria del ejército mexicano sobre las tropas francesas en la batalla de Puebla del 5 de mayo de 1862",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La promulgación de la Constitución Política que hoy rige al país, aprobada por el Congreso reunido en Querétaro",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La batalla de Puebla",
+          "content": "El 5 de mayo de 1862, tropas mexicanas al mando de Ignacio Zaragoza derrotaron al ejército francés a las afueras de Puebla. Fue un triunfo simbólico —Francia regresaría con más fuerza al año siguiente—, pero mostró que la intervención no sería fácil.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Fechas que se confunden",
+          "content": "1) La consumación de la Independencia se celebra el 27 de septiembre de 1821. 2) La Constitución vigente se promulgó el 5 de febrero de 1917. 3) La Revolución inició el 20 de noviembre de 1910. El 5 de mayo suele confundirse con la Independencia, sobre todo fuera de México, pero pertenece a la Intervención Francesa.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Cronología del siglo XIX y XX",
+          "content": "Ubicar cada fecha cívica en su proceso —Independencia, Reforma e Intervención, Revolución— evita mezclarlas. Repasa: efemérides y su contexto histórico.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94vwn000lhvz4tq1f9fqo",
+      "topicId": "cmrr1jzpc004whi3n1wki9br1",
+      "topic": "Reforma y Guerra de Intervención",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué factores explican la caída del Segundo Imperio de Maximiliano en 1867?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Una invasión del ejército español que derrotó a las fuerzas imperiales y restauró la República",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El retiro del apoyo militar francés, presionado por Estados Unidos y por Prusia, y la resistencia de Juárez",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La renuncia voluntaria de Maximiliano, que devolvió el poder a Juárez y regresó en paz a Europa",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La ausencia total de partidarios mexicanos del proyecto monárquico desde su primer día de vida",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sin Francia, el Imperio no se sostiene",
+          "content": "Napoleón III retiró sus tropas entre 1866 y 1867: Estados Unidos, ya sin guerra civil, exigía su salida en nombre de la doctrina Monroe, y Prusia amenazaba a Francia en Europa. Sin ese ejército, el Imperio quedó a merced de los republicanos, que nunca dejaron de combatir.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras",
+          "content": "1) No hubo invasión española que restaurara la República. 2) Maximiliano no renunció: se quedó, fue sitiado en Querétaro, juzgado y fusilado en el Cerro de las Campanas. 3) El Imperio sí tuvo partidarios: los conservadores y parte del alto clero lo respaldaron al inicio. Si creíste que no tuvo ningún apoyo mexicano, exageraste: fracasó por perder el sostén francés, no por falta absoluta de partidarios internos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El triunfo de la República",
+          "content": "1867 marca el fin de la lucha armada entre liberales y conservadores y el inicio de la República Restaurada. Repasa: causas de la caída del Segundo Imperio.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte94woo000qhvz4llme2ukn",
+      "topicId": "cmrr1jzpc004whi3n1wki9br1",
+      "topic": "Reforma y Guerra de Intervención",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Tras la República Restaurada (1867-1876), Porfirio Díaz se levantó contra el gobierno con el Plan de Tuxtepec. ¿Qué principio invocó, y qué haría después con él?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Invocó la no reelección del presidente; una vez en el poder, se reeligió una y otra vez durante más de tres décadas",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Invocó la urgencia de anexar México a Estados Unidos, gestión que concretó durante su primer periodo de gobierno",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Invocó la necesidad de restaurar la monarquía y llamar de nuevo a un príncipe europeo, proyecto que llevó a cabo al gobernar",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Invocó la defensa de los fueros del clero y del ejército, que efectivamente restableció en cuanto asumió la presidencia",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La bandera que Díaz traicionó",
+          "content": "El Plan de Tuxtepec de 1876 se levantó contra la reelección de Sebastián Lerdo de Tejada con el lema de «sufragio efectivo, no reelección». Díaz llegó así al poder y, salvo un intervalo, lo conservó de 1876 a 1911 mediante reelecciones sucesivas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué se descartan las demás",
+          "content": "1) Díaz no restauró ninguna monarquía: gobernó como presidente dentro de las formas republicanas. 2) No devolvió los fueros: mantuvo en el papel la Constitución liberal de 1857. 3) Jamás gestionó la anexión a Estados Unidos, aunque abrió el país a la inversión extranjera. La ironía es que el mismo principio antirreeleccionista sería la bandera de Madero contra Díaz en 1910.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "De la Reforma al Porfiriato",
+          "content": "El porfiriato conservó la fachada liberal de 1857 y la vació de contenido: elecciones controladas, prensa reprimida y poder concentrado. Repasa: Plan de Tuxtepec y el ascenso de Porfirio Díaz.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte9546n00015cj82yr41er8",
+      "topicId": "cmrr1k09x004yhi3npyyywmco",
+      "topic": "Revolución Mexicana",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007t13b3jzlu55mb",
+        "cmrsromj5007u13b3vgm7nl2c"
+      ],
+      "stem": "La frase «orden y progreso» resume la doctrina que sirvió de justificación ideológica al régimen de Porfirio Díaz. ¿De qué corriente de pensamiento se trata?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El anarquismo que difundían los clubes obreros y los grupos ligados al Partido Liberal Mexicano en el exilio",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El liberalismo radical de los diputados que redactaron y defendieron la Constitución federal de 1857",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El positivismo, adoptado por el grupo de los «científicos» como guía para modernizar el país",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El conservadurismo monárquico que había sostenido antes al Segundo Imperio de Maximiliano de Habsburgo",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El positivismo del porfiriato",
+          "content": "El grupo de los «científicos» tomó del positivismo la idea de que el país necesitaba primero «orden» —un gobierno firme— para alcanzar el «progreso» material. Con ese argumento se justificaron la permanencia de Díaz en el poder y el recorte de las libertades políticas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando las otras corrientes",
+          "content": "1) El liberalismo de 1857 defendía elecciones y libertades, justo lo que el porfiriato restringió. 2) El anarquismo era la postura de la oposición magonista, no del gobierno. 3) El conservadurismo monárquico había sido derrotado en 1867. La doctrina oficial del régimen fue el positivismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Ideología y poder en el porfiriato",
+          "content": "El positivismo influyó en la educación y en la política económica: atraer inversión, tender ferrocarriles. Sus críticos lo acusaron de servir a una dictadura. Repasa: los «científicos» y el positivismo en México.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte9555300065cj8e5syffq7",
+      "topicId": "cmrr1k09x004yhi3npyyywmco",
+      "topic": "Revolución Mexicana",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007t13b3jzlu55mb",
+        "cmrsromj5007u13b3vgm7nl2c"
+      ],
+      "stem": "Antes del levantamiento armado de 1910, ¿qué papel tuvieron el Partido Liberal Mexicano y su periódico «Regeneración», organizados en torno a Ricardo Flores Magón?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Surgieron después de 1920 como el partido oficial que agrupó a las facciones militares triunfantes de la Revolución",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Fueron una de las principales voces de la oposición organizada al porfiriato en los años previos a 1910",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Defendieron la entrada masiva de capital extranjero como única vía para modernizar la economía del país",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Fueron el órgano de propaganda del gobierno de Díaz, encargado de promover su reelección entre los trabajadores",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La oposición que precede a las armas",
+          "content": "El Partido Liberal Mexicano y «Regeneración» denunciaron desde principios de siglo la falta de libertades y las condiciones de minas y haciendas. Su Programa de 1906 planteó jornada de ocho horas, salario mínimo y reparto de tierras, temas que la Revolución retomaría.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué fallan las demás",
+          "content": "1) No apoyaban a Díaz: por eso sus dirigentes fueron perseguidos y el periódico se publicó desde el exilio. 2) Criticaban la entrega de la economía al capital extranjero, no la promovían. 3) No nacieron después de 1920: son anteriores a 1910, y el partido oficial es de 1929. El error es situar a esta oposición dentro del régimen o después de la Revolución, cuando la antecede.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Los precursores de la Revolución",
+          "content": "El magonismo, las huelgas de Cananea en 1906 y de Río Blanco en 1907 y la entrevista Díaz-Creelman forman el ambiente previo al estallido. Repasa: movimientos precursores de la Revolución Mexicana.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte9563c000b5cj8ub7cn791",
+      "topicId": "cmrr1k09x004yhi3npyyywmco",
+      "topic": "Revolución Mexicana",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007t13b3jzlu55mb",
+        "cmrsromj5007u13b3vgm7nl2c"
+      ],
+      "stem": "¿Qué demanda central planteó Emiliano Zapata en el Plan de Ayala (1911)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El retiro de México de todo tratado de comercio con Estados Unidos y con las potencias europeas",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La nacionalización de la industria petrolera y de la red de ferrocarriles en manos extranjeras",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El establecimiento de una monarquía constitucional, con un emperador mexicano y un congreso electo",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La restitución y el reparto de tierras a los pueblos campesinos que habían sido despojados de ellas",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Tierra y Libertad»",
+          "content": "El Plan de Ayala exigía devolver a los pueblos las tierras, aguas y montes que las haciendas les habían arrebatado, y expropiar una parte de las grandes propiedades, con indemnización, para repartirla. La cuestión agraria es el corazón del zapatismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Demandas de otras etapas",
+          "content": "1) El rechazo a los tratados comerciales no forma parte del Plan de Ayala. 2) La nacionalización del petróleo llegó en 1938, con Cárdenas, muy después. 3) Zapata no propuso ninguna monarquía; luchaba por los pueblos, no por un trono. Cada distractor traslada al zapatismo una idea de otro momento histórico.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El programa agrario de la Revolución",
+          "content": "El Plan de Ayala presionó para que el reparto de tierras entrara en la Constitución de 1917, en el artículo 27. Repasa: el Plan de Ayala y el zapatismo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte9571l000g5cj8kmogbi8w",
+      "topicId": "cmrr1k09x004yhi3npyyywmco",
+      "topic": "Revolución Mexicana",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007t13b3jzlu55mb",
+        "cmrsromj5007u13b3vgm7nl2c"
+      ],
+      "stem": "¿Por qué Emiliano Zapata rompió con Francisco I. Madero y proclamó el Plan de Ayala poco después del triunfo maderista?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque Madero ya había expropiado y repartido todas las haciendas azucareras del estado de Morelos entre los peones",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque Zapata rechazaba el principio de «sufragio efectivo, no reelección» que Madero había levantado contra Díaz",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque Madero, ya presidente, sometió el reparto agrario a trámites legales lentos y pidió el desarme previo",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Porque Madero pretendía mantener a Porfirio Díaz en el poder mediante una nueva reelección previamente pactada",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La ruptura entre lo político y lo social",
+          "content": "Madero llegó al poder con un programa sobre todo político —elecciones libres, no reelección— y creyó que el problema de la tierra se resolvería después, por la vía legal. Zapata, que había apoyado el levantamiento esperando el reparto inmediato, lo acusó de traicionar la Revolución y proclamó el Plan de Ayala.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras",
+          "content": "1) Madero derrocó a Díaz; no buscaba reelegirlo. 2) Madero no repartió las haciendas de Morelos; precisamente su falta de reforma agraria provocó la ruptura. 3) Zapata no se oponía al antirreeleccionismo: su desacuerdo era agrario. Si creíste que Madero ya había repartido las haciendas de Morelos, invertiste la causa del conflicto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Fases y liderazgos de la Revolución",
+          "content": "La coalición que derrotó a Díaz en 1911 se fracturó pronto porque sus miembros querían cosas distintas: Madero, cambio político; Zapata y otros, cambio social. Repasa: del maderismo a la lucha de facciones.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte957zp000l5cj84qagz8oc",
+      "topicId": "cmrr1k09x004yhi3npyyywmco",
+      "topic": "Revolución Mexicana",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007t13b3jzlu55mb",
+        "cmrsromj5007u13b3vgm7nl2c"
+      ],
+      "stem": "Tras el asesinato de Madero y la llegada de Victoriano Huerta al poder (1913), Venustiano Carranza proclamó el Plan de Guadalupe. ¿Cuál era su propósito?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Proponer que México adoptara una monarquía y ofrecer el trono a un miembro de una casa real europea",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Desconocer a Huerta por haber tomado el poder con un golpe y formar un ejército «constitucionalista»",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Disolver el Congreso y entregar el poder, de forma indefinida, a una junta de jefes militares del norte del país",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Reconocer a Huerta como presidente legítimo a cambio de que aplicara de inmediato una amplia reforma agraria",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La respuesta constitucionalista al golpe",
+          "content": "Huerta llegó a la presidencia tras la Decena Trágica y el asesinato de Madero. Carranza, gobernador de Coahuila, lo desconoció con el Plan de Guadalupe y llamó a formar el Ejército Constitucionalista para derrocarlo y restablecer el gobierno emanado de la Constitución.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando los distractores",
+          "content": "1) El plan no reconocía a Huerta: lo combatía. 2) No proponía ninguna monarquía; su bandera era «constitucionalista». 3) No entregaba el poder de forma indefinida a una junta militar, aunque Carranza asumiera el mando provisional. El error frecuente es confundir a Huerta con Carranza o suponer un pacto entre ambos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La lucha contra Huerta",
+          "content": "Contra Huerta se unieron por un tiempo Carranza, Villa, Obregón y Zapata; tras su derrota, en 1914, esas fuerzas se enfrentaron en la Convención de Aguascalientes. Repasa: Plan de Guadalupe y el constitucionalismo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte958xw000q5cj8h6obvg58",
+      "topicId": "cmrr1k09x004yhi3npyyywmco",
+      "topic": "Revolución Mexicana",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007t13b3jzlu55mb",
+        "cmrsromj5007u13b3vgm7nl2c"
+      ],
+      "stem": "La Constitución de 1917 incorporó uno de los primeros capítulos amplios de derechos sociales del mundo. ¿Qué estableció su artículo 123?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Los derechos de los trabajadores: jornada de ocho horas, descanso semanal, salario mínimo y derecho de huelga",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La libertad absoluta de contratación, sin intervención alguna del Estado entre el patrón y el obrero",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La devolución de los fueros al ejército y el reconocimiento de tribunales militares para los civiles",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El derecho exclusivo de la Iglesia a impartir la educación y a administrar la beneficencia del país",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El trabajo como derecho constitucional",
+          "content": "El artículo 123 recogió demandas obreras de décadas: limitó la jornada, obligó a pagar un salario mínimo, protegió a mujeres y menores, y reconoció el derecho de huelga y de asociación. El trabajo dejó de ser un simple contrato privado para volverse materia de garantías.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Lo que el 123 no dice",
+          "content": "1) La educación la regula el artículo 3, que la definió como laica, sin dar monopolio a la Iglesia. 2) El 123 hace lo contrario de la libertad absoluta de contratación: el Estado interviene para proteger al trabajador. 3) Los fueros militares se restringieron desde la Reforma; el 123 no los restablece. Los distractores describen posturas que la Constitución de 1917 rechazó.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Los derechos sociales de 1917",
+          "content": "Junto con el artículo 27 (tierra y recursos de la nación) y el 3 (educación laica), el 123 hace de la de 1917 una constitución social, no solo liberal. Repasa: artículos 3, 27 y 123 y su origen en las demandas revolucionarias.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte959w5000v5cj8t8dcwl1i",
+      "topicId": "cmrr1k09x004yhi3npyyywmco",
+      "topic": "Revolución Mexicana",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007t13b3jzlu55mb",
+        "cmrsromj5007u13b3vgm7nl2c"
+      ],
+      "stem": "¿Qué problema político buscó resolver Plutarco Elías Calles al fundar el Partido Nacional Revolucionario (PNR) en 1929?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La necesidad de restaurar en el trono a los descendientes de Maximiliano para dar estabilidad y continuidad al país",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La escasa presencia de inversión extranjera, cuya atracción el partido definió como su principal objetivo de gobierno",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La falta de una religión oficial del Estado, que el nuevo partido se propuso establecer por ley en todo el país",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La sucesión presidencial violenta entre caudillos, que el partido llevó al terreno institucional del país",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De los caudillos a la institución",
+          "content": "Tras el asesinato del presidente electo Álvaro Obregón, en 1928, Calles impulsó un partido que agrupara a todos los jefes y grupos surgidos de la Revolución. La idea era que las disputas por el poder se dirimieran dentro del partido y no con las armas, como había ocurrido desde 1910.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras",
+          "content": "1) El PNR no se creó por motivos religiosos; esos son los años del conflicto con la Iglesia, la guerra cristera. 2) Atraer inversión no fue su razón de ser. 3) La restauración monárquica es un absurdo histórico para 1929. El propósito fue político: pacificar la sucesión del poder.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La institucionalización de la Revolución",
+          "content": "El PNR se transformó en PRM en 1938 y en PRI en 1946, el partido que gobernaría el país durante décadas. Repasa: el Maximato y el nacimiento del partido oficial.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte95hau00018bxg54402hst",
+      "topicId": "cmrr1k0te0050hi3ni9rxh68p",
+      "topic": "México Moderno (siglo XX-XXI)",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué dos medidas definieron el gobierno de Lázaro Cárdenas (1934-1940)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La privatización de los ferrocarriles y una alianza militar permanente con Estados Unidos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La entrada de México al Tratado de Libre Comercio de América del Norte y la apertura a la importación",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Un amplio reparto agrario mediante ejidos y la expropiación de las compañías petroleras extranjeras en 1938",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La disolución del partido oficial y el paso a un sistema con dos grandes partidos que se alternaran",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El sello del cardenismo",
+          "content": "Cárdenas repartió cerca de dieciocho millones de hectáreas, sobre todo como ejidos, y el 18 de marzo de 1938 expropió a las petroleras británicas y estadounidenses, con lo que nació Pemex. Ambas medidas ampliaron el papel del Estado en la economía.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué las demás son falsas o anacrónicas",
+          "content": "1) Cárdenas nacionalizó los ferrocarriles, no los privatizó, y no firmó ninguna alianza militar permanente. 2) No disolvió el partido oficial: lo reorganizó como PRM en 1938. 3) El Tratado de Libre Comercio entró en vigor en 1994, más de medio siglo después. Si marcaste el Tratado de Libre Comercio, ubicaste mal en el tiempo un hecho muy posterior.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El Estado posrevolucionario",
+          "content": "Con Cárdenas culmina la fase de reformas sociales de la Revolución y se consolida un Estado interventor y nacionalista. Repasa: reforma agraria y expropiación petrolera.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte95i2y00068bxgzke6132a",
+      "topicId": "cmrr1k0te0050hi3ni9rxh68p",
+      "topic": "México Moderno (siglo XX-XXI)",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El llamado «milagro mexicano» (aproximadamente de 1940 a 1970) se caracterizó por…",
+      "options": [
+        {
+          "id": "A",
+          "text": "el predominio absoluto de las exportaciones agrícolas y mineras sobre todo intento de industria",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "un crecimiento sostenido al industrializar el país para el mercado interno, con fuerte papel del Estado",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "la apertura inmediata a la competencia extranjera y la eliminación de los aranceles a la importación",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "un largo periodo de estancamiento productivo y de inflación muy alta que empobreció a la población",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Industrializar hacia adentro",
+          "content": "En esas décadas la economía creció a tasas altas y sostenidas. El Estado protegió a la industria nacional con aranceles, invirtió en infraestructura y, en la etapa del «desarrollo estabilizador», mantuvo baja la inflación y fijo el tipo de cambio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Descartando las demás",
+          "content": "1) No hubo apertura: el modelo era proteccionista, de sustitución de importaciones. 2) No fue estancamiento ni hiperinflación; eso describe mejor la crisis de los años ochenta. 3) La industria creció con fuerza y las ciudades se llenaron de fábricas; no siguió dominando el campo. El error es confundir este periodo de expansión con la crisis que vino después.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Modelos económicos de México en el siglo XX",
+          "content": "Al «milagro» y al desarrollo estabilizador siguieron el endeudamiento de los setenta, la crisis de 1982 y el giro hacia la apertura comercial. Repasa: sustitución de importaciones y desarrollo estabilizador.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte95iuz000b8bxg7t12jere",
+      "topicId": "cmrr1k0te0050hi3ni9rxh68p",
+      "topic": "México Moderno (siglo XX-XXI)",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El movimiento estudiantil de 1968 y su represión en la Plaza de las Tres Culturas de Tlatelolco pusieron de manifiesto…",
+      "options": [
+        {
+          "id": "A",
+          "text": "que México vivía ya en una democracia plena, con alternancia frecuente de partidos en el gobierno federal",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el fin del predominio del PRI, que perdió la Presidencia de la República ese mismo año de 1968",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la desaparición de las clases medias urbanas, que hasta entonces habían sostenido con su voto al gobierno",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "los límites del sistema político: un partido hegemónico con muy pocos cauces legales para la disidencia",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una crisis política a la vista de todos",
+          "content": "El movimiento de 1968, encabezado por estudiantes pero con apoyo amplio, pedía libertades y diálogo. La respuesta —ocupación militar de la universidad y la matanza del 2 de octubre— mostró que el sistema no toleraba una oposición organizada fuera de sus cauces.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué fallan las otras",
+          "content": "1) No había democracia plena: el PRI ganaba todas las elecciones importantes y controlaba prensa y sindicatos. 2) El PRI no perdió la Presidencia en 1968; la conservó hasta el año 2000. 3) Las clases medias urbanas no desaparecieron: habían crecido con el «milagro» y parte de ellas participó en el movimiento. Si elegiste que el PRI cayó en 1968, adelantaste treinta y dos años la alternancia.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El autoritarismo y su desgaste",
+          "content": "1968 suele señalarse como el inicio del largo desgaste del régimen de partido hegemónico, que llevaría a las reformas electorales y a la alternancia de 2000. Repasa: el movimiento del 68 y el sistema político posrevolucionario.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte95jn2000g8bxglnfp68jc",
+      "topicId": "cmrr1k0te0050hi3ni9rxh68p",
+      "topic": "México Moderno (siglo XX-XXI)",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Por qué la elección presidencial del año 2000 se considera un momento decisivo en la historia política de México?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fue la primera elección presidencial celebrada en toda la historia del país tras siglos de gobiernos designados",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Por primera vez en más de setenta años, un partido distinto del PRI y de sus antecesores ganó la Presidencia",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Fue la primera ocasión en que se permitió votar a las mujeres en una elección de alcance federal en el país",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Marcó el regreso del PRI a la Presidencia después de varios sexenios gobernados por partidos de oposición",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La alternancia en la Presidencia",
+          "content": "En 2000 ganó un candidato de la oposición y terminó la etapa en que el partido oficial —PNR, luego PRM y PRI— había ocupado la Presidencia sin interrupción desde 1929. Fue resultado de reformas que, con los años, hicieron más competidas y confiables las elecciones.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Fechas que no cuadran",
+          "content": "1) Ha habido elecciones presidenciales desde el siglo XIX; la de 2000 no fue la primera. 2) No fue un regreso del PRI: fue su primera derrota presidencial. 3) El voto de la mujer en elecciones federales se reconoció en 1953, casi medio siglo antes. Cada distractor desplaza el hecho a otra época.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La transición democrática",
+          "content": "El camino a 2000 incluye la reforma de 1977, la creación de un instituto electoral autónomo y la reforma de 1996. Repasa: reformas electorales y alternancia en México.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmte95kf2000l8bxgz723fedj",
+      "topicId": "cmrr1k0te0050hi3ni9rxh68p",
+      "topic": "México Moderno (siglo XX-XXI)",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué acuerdo comercial, en vigor desde 1994, reorientó la economía mexicana hacia la exportación y la integración con América del Norte?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El Tratado de Libre Comercio de América del Norte, suscrito por México, Estados Unidos y Canadá",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La Alianza para el Progreso, plan de cooperación para América Latina de los años sesenta",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El Pacto de Bogotá, firmado para resolver de forma pacífica las controversias del continente",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El Plan Marshall, programa de ayuda para reconstruir un continente tras una guerra mundial",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La apertura de los años noventa",
+          "content": "El Tratado de Libre Comercio de América del Norte, en vigor el 1 de enero de 1994 entre México, Estados Unidos y Canadá, eliminó de forma gradual los aranceles entre los tres países y consolidó el giro de la economía mexicana hacia la exportación de manufacturas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las otras",
+          "content": "1) La Alianza para el Progreso fue un programa de cooperación de los años sesenta para América Latina. 2) El Plan Marshall fue ayuda de Estados Unidos a Europa tras la Segunda Guerra Mundial. 3) El Pacto de Bogotá, de 1948, trata de solución de controversias, no de comercio. Ninguno es un tratado comercial de México de 1994.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "México en la economía global",
+          "content": "La entrada al GATT en 1986 y el Tratado de Libre Comercio en 1994 marcan el cambio de modelo económico. Repasa: del proteccionismo a la apertura comercial.",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}

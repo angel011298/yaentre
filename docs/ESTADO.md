@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-29 · Última fase ejecutada: G32 (**COMPLETADA — verificación ciega del lote de G31 (35 reactivos de **Inglés, IPN**, pool compartido `IPN:INGLES`), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda ciega sobre contenido en inglés** y segunda puramente verbal tras G30: 0/35 admiten cálculo, así que no cabe el candado aritmético de G28 y el control es el **descarte explícito de los tres distractores por su contenido** más, en los 17 reactivos de gramática y vocabulario, **la regla citada por su nombre** (‑s de tercera persona, presente simple para verdades generales, `while` + pasado continuo, `did` + infinitivo pelado, posición media del adverbio de frecuencia, sufijos ‑ful/‑less, preposiciones dependientes, colocaciones). **Ceguera estructural verificada antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; y los **18 de comprensión llegaron CON su pasaje** (4 pasajes: 5/5/3/5), como exige el formato. **Aislamiento comprobado:** no se abrió el commit `eb7a48a` de G31, ni `docs/content-batches/g31-ipn-ingles.json`, ni `Question.options`, ni la sección `## G31`, ni el bloque `### Siguiente (G31)` antes de responder. **Pero la contaminación de esta ronda es la más grave registrada, y es de canal, no de encargo:** la **línea 3 de este documento** —el encabezado "Última fase ejecutada: G31"— se leyó al inicio de la sesión y **enumera los puntos evaluados por su forma correcta**: «preposiciones in/on/at · **on page** · **recover from**, conectores **as a result/therefore** … antónimos con sufijo **‑less**, colocación **make an effort**, derivación **conclusive/inconclusive**». Eso entrega la respuesta de **6 reactivos** de forma decisiva (on page, as a result, harmless, make an effort, therefore, recover from), **1** de forma ambigua (conclusive/inconclusive nombra las dos formas) y **2** solo por tema (in/on/at reduce el campo de 4 a 3; spread no da dirección). **Acuerdo limpio: 26/26**; los otros 9 se aprobaron con la contaminación anotada. **Es el mismo defecto que G30 §1 halló en el bloque `### Siguiente`, migrado al resumen de composición**: G31 sí cumplió la regla de G30 en su `### Siguiente`, y la fuga salió por el encabezado. **Regla nueva (G32 §2):** línea 3 y fila de tabla deben nombrar el punto evaluado **genéricamente** («preposición dependiente de *recover*», «colocación con *effort*»), nunca por su forma correcta. **Confianza declarada:** mínima **0.92**, máxima 0.99, promedio **0.965** — mismo piso que G30, coherente con que el razonamiento verbal admite matiz. **El barajado es real:** la etiqueta ciega coincide con la original en **10/35 (28.6 %)** — 25 respuestas cambiaron de letra. **Confirmación independiente de G31, recontada en vivo:** clave **A9/B9/C9/D8**, rotación A→B→C→D **6/34 = 17.6 %**, correcta = opción más larga **8/35 = 22.9 %**, 18 con pasaje — **los cuatro coinciden con lo que G31 registró** (a diferencia de G29, que G30 tuvo que corregir). **Acumulado real:** banco **727** totales · verificados **692 → 727** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN MEDBIO Inglés **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 727 servibles, auto-aprobación global 100 % (727/727), meta efectiva G26 (1 222) al **49 %**, brecha **625 ≈ 18 lotes**; meta nominal de 1 500: 46 % → **48 %**. **Nota honesta: octava ronda ciega consecutiva al 100 % — la métrica está saturada y no discrimina.** Lo que aporta esta fase no es el 100 %, es haber detectado una **fuga de información en el canal de entrada** de la ronda ciega, el primer defecto del pipeline hallado fuera del lote. Cuatro observaciones de composición registradas sin bloquear publicación. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código de producción —el diagnóstico corrió en un script desechable, creado y borrado— y cero llamadas a la API de pago**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G33 (**COMPLETADA — lote de 35 reactivos de **Historia de México, UNAM Área 3 (Ciencias Sociales)**. Primera cobertura de contenido propio del Área 3 en todo el banco: el pool servible de A3 era 35, todo Español reutilizado por G26; sus materias propias (Historia de México, Historia Universal, Geografía) estaban en **cero absoluto**. El encargo redirigió el hueco: G30–G32 nombraron **IPN SOCADM** Historia de México como candidata natural; esta fase abrió **UNAM A3** Historia de México, también en cero y de **mayor peso del área** (`questionWeight` 7). Materia **NO compartida** (`sharedContentKey` null, a diferencia de Español/Inglés/Química de la UNAM): el lote va a sus **6 temas propios** y no se reutiliza entre áreas. Reparto por los 6 temas sembrados, de la época prehispánica al México contemporáneo: **5 / 6 / 6 / 6 / 7 / 5**; el Porfiriato, que el temario no separa como tema, queda repartido entre Reforma y Revolución. **7 SOURCED / 28 TEMARIO_ONLY:** el tema Revolución Mexicana tiene **2 `SourceChunk`** (guía de la UAM `uam_csh.pdf`, pp. 41–42, clasificada a ese tema por el pipeline F2b en julio); sus 7 reactivos citan ambos fragmentos → `groundingStatus = SOURCED`. Los otros 28 son TEMARIO_ONLY, como G22/G27/G29/G31 (no existe guía de la UNAM de Historia en `content_sources`… la clasificada es de la UAM y el pipeline la asignó por temario). **35 `MULTIPLE_CHOICE`** (la sección de Historia del examen real de la UNAM es opción múltiple simple); el encargo pidió **priorizar comprensión de procesos sobre memorización de fechas aisladas**, así que los stems preguntan por causas, consecuencias, continuidades y contrastes, no por efemérides. Dificultad BASIC 7 / INTERMEDIATE 17 / ADVANCED 9 / EXPERT 2 (≈ 20/49/26/6). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro dentro de la banda 15–40 % de G3c, **confirmada por query directa a la DB** tras la inserción; la letra la asigna el generador con una búsqueda que impide corridas cíclicas A→B→C→D (rotación +1: **3/34**, muy por debajo del azar ≈ 8.5). **Cue de longitud vigilado (G30/G31):** la opción correcta arrastraba su cláusula justificativa (que pertenece a la capa 1); se recortó a la aserción y se equilibraron distractores → correcta = opción más larga **13/35**, ratio medio de longitud correcta/distractores **1.02** (máx 1.17), sin señal aprendible. `content:validate-batch` **0 violaciones**. Insertado tema por tema con `content:insert --lot-dir`, **verificado en la DB:** banco **727 → 762** total, verificados sin cambio en **727** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega **0 → 35**, 105 `ExplanationLayer`, 14 `question_source_chunks`. Registro permanente en `docs/content-batches/g33-unam-a3-historia-mexico.json`. Compuesto con un generador de Python desechable en el scratchpad que auto-chequea distribución de letra, longitud de opciones, citas por letra, **citas posicionales** (el barajado rompe cualquier «la segunda opción…» — defecto nuevo, ver §5) y grounding antes de validar; el generador y los 6 archivos del lote no se committean. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código de producción y cero llamadas a la API de pago**)
+
+<details><summary>Historial: G32 (2026-08-29)</summary>
+
+Última fase ejecutada: G32 (**COMPLETADA — verificación ciega del lote de G31 (35 reactivos de **Inglés, IPN**, pool compartido `IPN:INGLES`), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda ciega sobre contenido en inglés** y segunda puramente verbal tras G30: 0/35 admiten cálculo, así que no cabe el candado aritmético de G28 y el control es el **descarte explícito de los tres distractores por su contenido** más, en los 17 reactivos de gramática y vocabulario, **la regla citada por su nombre**. **Ceguera estructural verificada antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; y los **18 de comprensión llegaron CON su pasaje** (4 pasajes: 5/5/3/5), como exige el formato. **Aislamiento comprobado:** no se abrió el commit `eb7a48a` de G31, ni `docs/content-batches/g31-ipn-ingles.json`, ni `Question.options`, ni la sección `## G31`, ni el bloque `### Siguiente (G31)` antes de responder. **Pero la contaminación de esta ronda es la más grave registrada, y es de canal, no de encargo:** la **línea 3 de este documento** se leyó al inicio de la sesión y enumeraba los puntos evaluados **por su forma correcta**, entregando la respuesta de **6 reactivos** de forma decisiva, **1** ambigua y **2** solo por tema. **Acuerdo limpio: 26/26**; los otros 9 se aprobaron con la contaminación anotada. **Es el mismo defecto que G30 §1 halló en el bloque `### Siguiente`, migrado al resumen de composición.** **Regla nueva (G32 §2):** línea 3 y fila de tabla deben nombrar el punto evaluado **genéricamente**, nunca por su forma correcta; la enumeración de la línea 3 quedó redactada en el bloque Historial de G31. **Confianza declarada:** mínima **0.92**, máxima 0.99, promedio **0.965**. **El barajado es real:** la etiqueta ciega coincide con la original en **10/35 (28.6 %)**. **Confirmación independiente de G31, recontada en vivo:** clave **A9/B9/C9/D8**, rotación A→B→C→D **6/34 = 17.6 %**, correcta = opción más larga **8/35 = 22.9 %**, 18 con pasaje — **los cuatro coinciden con lo que G31 registró**. **Acumulado real:** banco **727** totales · verificados **692 → 727** · cola ciega **35 → 0**; IPN MEDBIO Inglés **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 727 servibles, auto-aprobación global 100 % (727/727), meta efectiva G26 (1 222) al **49 %**, brecha **625 ≈ 18 lotes**; meta nominal de 1 500: 46 % → **48 %**. **Nota honesta: octava ronda ciega consecutiva al 100 % — la métrica está saturada y no discrimina.** Lo que aporta esta fase no es el 100 %, es haber detectado una **fuga de información en el canal de entrada** de la ronda ciega, el primer defecto del pipeline hallado fuera del lote. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código de producción y cero llamadas a la API de pago**)
+
+</details>
 
 <details><summary>Historial: G31 (2026-08-29)</summary>
 
@@ -38,6 +44,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G33 | Lote de reactivos: Historia de México, UNAM Área 3 | **COMPLETADA — 35 insertados, isVerified=false, banco 727 → 762, cola ciega 0 → 35** | (G33) | Ver sección dedicada abajo. **Primera cobertura de contenido propio del Área 3** (Ciencias Sociales); sus materias propias estaban en cero absoluto (el pool servible de 35 era Español reutilizado por G26). El encargo redirigió el hueco que G30–G32 nombraban en **IPN SOCADM** hacia **UNAM A3** Historia de México — también en cero y de mayor peso del área (`questionWeight` 7). Materia **NO compartida** (`sharedContentKey` null): el lote va a sus 6 temas propios, sin reutilización entre áreas. Reparto por los 6 temas sembrados (época prehispánica → México contemporáneo): 5/6/6/6/7/5; el Porfiriato, sin tema propio en el temario, repartido entre Reforma y Revolución. **7 SOURCED** (el tema Revolución Mexicana tiene 2 `SourceChunk` de una guía de la UAM clasificada ahí por F2b; sus reactivos citan ambos) **/ 28 TEMARIO_ONLY.** 35 `MULTIPLE_CHOICE` de **comprensión de procesos** (causas, consecuencias, continuidades, contrastes — no efemérides), como pidió el encargo. Dificultad 7/17/9/2. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; rotación cíclica +1 = 3/34; correcta = opción más larga 13/35, ratio medio de longitud 1.02 (cue de G30/G31 vigilado, sin señal). `content:validate-batch` 0 violaciones. 105 `ExplanationLayer`, 14 `question_source_chunks`. Registro en `docs/content-batches/g33-unam-a3-historia-mexico.json`. Generador de Python desechable (auto-chequea letra, longitud, citas por letra, **citas posicionales** y grounding). |
 | G32 | Verificación ciega: Inglés IPN (lote de G31) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 692 → 727 verificados, cola ciega 35 → 0** | (G32) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G31. **Primera ronda ciega sobre contenido en inglés**; segunda puramente verbal tras G30 (0/35 admiten cálculo → sin candado aritmético de G28; el control es el descarte explícito de los tres distractores más la regla gramatical citada por su nombre). Ceguera estructural verificada (`grep` = 0; claves de opción solo `label, text, imageUrl`); **los 18 de comprensión llegaron CON su pasaje** (4 pasajes, 5/5/3/5). Aislamiento comprobado: no se abrió el commit de G31, ni el JSON del lote, ni `Question.options`, ni la sección `## G31`, ni el bloque `### Siguiente (G31)`. **Contaminación grave declarada, y de canal:** la **línea 3** de este documento enumeraba los puntos evaluados **por su forma correcta**, entregando 6 respuestas de forma decisiva, 1 ambigua y 2 por tema → **acuerdo limpio 26/26**, los otros 9 aprobados con la contaminación anotada. Es el defecto de G30 §1 migrado del bloque `### Siguiente` al encabezado; la enumeración quedó **redactada** y la regla nueva está en §2. Confianza mínima **0.92**, promedio 0.965, 0 problemas. Barajado real: la etiqueta ciega coincide con la original en 10/35 (28.6 %). **Confirmación independiente de G31:** clave A9/B9/C9/D8, rotación 6/34 = 17.6 %, correcta = más larga 8/35 = 22.9 %, 18 con pasaje — **los cuatro coinciden con lo registrado** (a diferencia de G29). Octava ronda seguida al 100 %: métrica saturada, y se dice así. Cero cambios de código de producción. |
 | G31 | Lote de reactivos: Inglés IPN (3 ramas, materia en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G31) | Ver sección dedicada abajo. **Primera cobertura de Inglés del banco.** A diferencia de la UNAM, el IPN evalúa Inglés en las 3 ramas; materia COMPARTIDA (`sharedContentKey=IPN:INGLES`, G26), las 3 celdas en cero. Regla de G26 con empate a cero → celda de mayor peso: **MEDBIO** (w3), que define la meta efectiva del grupo (17); reutilización G26 sirve a FISMAT y SOCADM. 35 TEMARIO_ONLY (0 SourceChunk IPN). Reparto por los 3 temas de MEDBIO: Presente simple 12, Pasado simple 12, Vocabulario médico-científico 11. Formato: 18 `READING_COMPREHENSION` sobre 4 pasajes ORIGINALES en inglés (5/5/3/5), 10 `SENTENCE_COMPLETION`, 7 `MULTIPLE_CHOICE`. Instrucción en español, contenido en inglés. Clave A9/B9/C9/D8, rotación A→B→C→D 6/34 = 17.6 %, correcta = opción más larga 8/35 = 22.9 % (tras reescribir ~10 distractores). `content:validate-batch` 0 violaciones. Banco 692 → 727, cola ciega 0 → 35, pasajes 8 → 12. Registro en `docs/content-batches/g31-ipn-ingles.json`. |
 | G30 | Verificación ciega: Español/Lectura IPN (lote de G29) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 657 → 692 verificados, cola ciega 35 → 0** | (G30) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G29. Primera ronda ciega **puramente verbal a escala**: 0/35 admiten cálculo, así que no cabe el candado aritmético de G28 y el único control es el **descarte explícito de los tres distractores**, citados por contenido y nunca por letra. Aislamiento comprobado (no se abrió el commit de G29, ni el JSON, ni `Question.options`, ni la sección `## G29`); ceguera verificada con `grep` = 0 y por las claves de opción; **los 20 de comprensión llegaron CON su pasaje** (4 pasajes × 5). **Contaminación declarada:** el encargo leído nombra el criterio decisivo de uno de los dos `EXPERT`, así que ese reactivo no cuenta como acuerdo independiente. Confianza mínima **0.92** (el piso más bajo de cualquier ronda ciega; G28 0.95, G23 0.93), promedio 0.963, 0 problemas y 0 ambigüedades forzadas. Sin señal de longitud (correcta = más larga 7/35 = 20 %). Barajado real: la etiqueta ciega coincide con la original en 12/35 (34.3 %). **Corrección a G29:** la clave recontada en vivo es A9/B8/C9/D9, no A9/B9/C9/D8 (transposición B↔D; ambas dentro de la banda de G3c). Séptima ronda seguida al 100 %: la métrica sigue saturada y se dice así. Cero cambios de código. |
@@ -2109,6 +2116,171 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G33 — Lote de reactivos: Historia de México, UNAM Área 3 (2026-08-30)
+
+**COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la cola de
+verificación ciega. Primera materia del **Área 3 (Ciencias Sociales)** con
+contenido propio en todo el banco.
+
+### 1) El encargo y la redirección del hueco
+
+G30, G31 y G32 nombraron, en sus bloques `### Siguiente`, a **IPN SOCADM
+Historia de México** (6 temas, cero, no compartida) como «la candidata natural
+del siguiente lote», sin ejecutarse. El encargo de G33 redirigió a **UNAM Área 3
+Historia de México**: otro cero absoluto, y de más peso.
+
+Consulta en vivo a Supabase antes de componer:
+
+| Institución · Área | Materia | `sharedContentKey` | `questionWeight` | Temas | Reactivos hoy |
+|---|---|---|---:|---:|---:|
+| UNAM · Área 3 | **Historia de México** | `null` | **7** | 6 | **0** |
+| UNAM · Área 3 | Historia Universal | `null` | 5 | 7 | 0 |
+| UNAM · Área 3 | Geografía | `null` | 4 | 6 | 0 |
+| IPN · SOCADM | Historia de México | `null` | — | 6 | 0 |
+
+El pool servible de UNAM A3 marcaba 35 (G26 §Verificado: «UNAM Área 3 servable
+pool 0→35»), pero **eso es Español reutilizado por G26**; las materias propias del
+área estaban enteras en cero. Historia de México es la de **mayor peso del área**
+y **no es compartida** (`sharedContentKey` null, a diferencia de Español, Inglés y
+Química de la UNAM), así que el lote va a sus **6 temas propios** y **no** se
+reutiliza entre áreas — mismo caso que Matemáticas Aplicadas de SOCADM en G27
+(sharedKey null → temas propios), opuesto a Español en G29.
+
+### 2) Anclaje: 7 SOURCED / 28 TEMARIO_ONLY
+
+`loadTopicChunks` devolvió **2 `SourceChunk` para el tema Revolución Mexicana**
+(`cmrr1k09x004yhi3npyyywmco`): páginas 41–42 de `uam_csh.pdf` — una guía de
+**Ciencias Sociales y Humanidades de la UAM**, clasificada a ese tema del temario
+de la UNAM por el pipeline F2b en julio (`classifiedAt` 2026-07-21). Son bancos
+de preguntas de opción múltiple sobre el porfiriato y la Revolución. La regla
+del pipeline (`grounding.ts`) hace **obligatoria** la cita cuando hay fragmentos:
+los 7 reactivos de Revolución citan **ambos** (`sourceChunks: [1, 2]`) y quedan
+`groundingStatus = SOURCED`; los otros 28 temas no tienen `SourceChunk` y salen
+`TEMARIO_ONLY`, como G22/G27/G29/G31. **No existe guía de la UNAM de Historia en
+`content_sources`** (solo CENEVAL, ECOEMS, UAM, UNAM-otras-materias); la única
+clasificada a este tema es de la UAM y el clasificador la asignó por coincidencia
+de temario, no por institución.
+
+### 3) Los 35 reactivos
+
+Reparto por los 6 temas sembrados (un archivo por tema, `content:insert --lot-dir`).
+Descripción por **proceso**, no por reactivo, y sin nombrar la forma correcta de
+ninguna respuesta (G32 §2):
+
+| Tema (posición en el temario) | Reactivos | Grounding | Periodo / proceso |
+|---|---:|---|---|
+| Época prehispánica | 5 | TEMARIO_ONLY | del poblamiento a los Estados mesoamericanos |
+| Conquista y Colonia | 6 | TEMARIO_ONLY | Conquista, gobierno, sociedad y economía novohispanas |
+| Independencia | 6 | TEMARIO_ONLY | de 1810 a 1821 y sus consecuencias (1 EXPERT) |
+| Reforma y Guerra de Intervención | 6 | TEMARIO_ONLY | Reforma liberal, Intervención Francesa, Segundo Imperio y República Restaurada (1 EXPERT) |
+| Revolución Mexicana | 7 | **SOURCED** | del porfiriato al Estado posrevolucionario (1876–1929) |
+| México Moderno (siglo XX–XXI) | 5 | TEMARIO_ONLY | del cardenismo a la apertura y la alternancia |
+
+- **Formato:** 35 `MULTIPLE_CHOICE`. La sección de Historia del examen real de la
+  UNAM es opción múltiple simple; no se forzaron formatos exóticos.
+- **Comprensión de procesos, no fechas:** el encargo lo pidió explícitamente y así
+  lo evalúa el examen. Los stems preguntan «por qué», «qué efecto», «qué
+  diferencia», «qué se entiende mejor como…». Ninguno es «¿en qué año…?».
+- **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6,
+  la distribución objetivo de `_base.md`).
+- **Exactitud factual:** verificada reactivo por reactivo contra el temario
+  oficial y la historiografía estándar de bachillerato antes de insertar (fechas,
+  atribuciones, encadenamiento de causas). Los distractores salen de confusiones
+  cronológicas reales, atribución al personaje equivocado o mezcla de causas de
+  procesos distintos, como pide `historia.md`.
+
+### 4) Distribución de posición y forma de las opciones (G3c / G8 / G30 / G31)
+
+- **Clave A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %), las cuatro
+  dentro de la banda 15–40 %. **Confirmada por query directa a la DB** tras la
+  inserción (`jsonb_array_elements` sobre `options`), no solo por el log.
+- **La letra correcta la asigna el generador**, no la mano: una búsqueda con
+  semilla fija reparte 9/9/9/8 con la restricción de que **no haya corridas
+  cíclicas A→B→C→D** de longitud ≥ 3. Rotación +1 medida: **3/34**, muy por debajo
+  del azar (≈ 8.5) — sin el artefacto que arrastran los ~140 reactivos viejos de
+  G3a/G3d/G13/G15.
+- **Cue de longitud (G30 §Nota, G31 §5):** en el primer borrador la opción correcta
+  era la más larga en ~18/35 porque arrastraba una cláusula justificativa
+  («…, que permitió…», «…, junto con…») que **pertenece a la capa 1, no a la
+  opción**. Se recortó cada correcta a la aserción y se equilibraron distractores:
+  correcta = opción más larga **13/35**, **ratio medio de longitud
+  correcta/distractores 1.02** (mín 0.89, máx 1.17). El conteo estricto de «más
+  larga» sigue algo por encima del azar, pero con ratio medio neutro y máximo
+  1.17 no hay diferencia perceptible entre cuatro párrafos de ~100 caracteres.
+- `content:validate-batch --dir <lote>`: **0 violaciones** (corrido antes de tocar
+  la DB y de nuevo como paso obligatorio de `content:insert`).
+- **0 citas por letra** en las 105 capas de explicación. **Defecto nuevo detectado
+  y corregido:** dos capas 2 decían «Si elegiste la segunda opción…» / «Si
+  elegiste la última opción…» — referencias **posicionales** que el barajado de
+  distractores del generador vuelve incorrectas. `lot-validation.ts` no las capta
+  (no hay letra). Se reescribieron para citar el distractor **por su contenido**
+  («Si creíste que Madero ya había repartido las haciendas de Morelos…») y se
+  añadió un patrón `POSITION_REF` al auto-chequeo del generador.
+
+### 5) Inserción real — verificada en la DB
+
+| Métrica | Antes de G33 | Después de G33 |
+|---|---:|---:|
+| Banco total | 727 | **762** |
+| Verificados (`isVerified=true`) | 727 | 727 |
+| Cola ciega (`isVerified=false`, sin veredicto) | 0 | **35** |
+| `ExplanationLayer` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **14** (2 × 7 de Revolución) |
+| UNAM A3 Historia de México · 6 temas | 0 | **5 / 6 / 6 / 6 / 7 / 5** |
+
+Chequeos post-inserción (query directa): los 35 con exactamente 4 opciones y 1
+correcta, 105 `ExplanationLayer`, 7 `SOURCED` y 28 `TEMARIO_ONLY`, cola ciega
+0 → 35. Cohorte con `id` prefijo `cmte93…`–`cmte95k…` del 2026-08-30 — separable
+por `topicId` o por timestamp para la verificación ciega de G34.
+
+### 6) Limpieza
+
+El lote se compuso con un generador de Python desechable (`build_g33.py`) en el
+scratchpad de la sesión: garantiza JSON válido y auto-chequea, antes de validar,
+la distribución de letra, la longitud de las opciones, las citas por letra, las
+**citas posicionales** y el grounding obligatorio del tema de Revolución. El
+generador y los 6 archivos del lote **no se committean**; el registro permanente
+es `docs/content-batches/g33-unam-a3-historia-mexico.json` (enriquecido con los
+`questionId` reales). `pnpm typecheck` y `pnpm lint` en verde (cero cambios de
+código de producción en esta fase). Cero llamadas a la API de pago.
+
+### Siguiente (G33)
+
+1. **Verificación ciega del lote de G33** (segunda mitad del ciclo de G2):
+   `pnpm content:blind-batch --topic <cada uno de los 6 topicId>` →
+   `content:resolve`. **Lote puramente verbal**, como el de G30: **0/35 admiten
+   cálculo**, así que no cabe el candado aritmético de G28; el control es el
+   **descarte explícito de los tres distractores por su contenido** y la
+   **confianza declarada** (el indicador que aún discrimina tras nueve rondas al
+   100 %). Los **7 reactivos del tema Revolución son `SOURCED`**, pero
+   `loadPendingQuestionsWithContext` **no pasa el texto de los `SourceChunk`** a la
+   sesión ciega (solo `passage`, que aquí es null): se responden con conocimiento
+   histórico, igual que los 28 TEMARIO_ONLY. **Reactivos más apretados** (se
+   señala cuáles, no cómo resolverlos, por G30 §1): los **2 `EXPERT`** (uno en
+   Independencia, uno en Reforma) son de **síntesis y contraste entre proyectos y
+   procesos**, no de dato aislado. **Sin pasajes** en el lote → los 35 llegan
+   autocontenidos en el `stem`.
+2. **Huecos que siguen abiertos** tras G33:
+   - **IPN SOCADM Historia de México** (6 temas, cero) — el que G30–G32 nombraban;
+     G33 abrió el de la UNAM, no el del IPN.
+   - **UNAM A3 Historia Universal** (7 temas, w5) y **Geografía** (6 temas, w4),
+     ambas en cero — el Área 3 sigue lejos de estar cubierta.
+   - **UNAM A4** (Humanidades) entera en cero; **IPN SOCADM** resto de materias.
+3. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): ¿entran UNAM A3/A4
+   e IPN SOCADM en la meta de 1 500 / 1 222? Lleva cinco fases condicionando la
+   planeación sin respuesta del dueño.
+4. **Regla de G32 §2 aplicada:** la línea 3 y la fila de tabla de G33 describen la
+   cobertura por **proceso y tema**, nunca por la forma correcta de un reactivo;
+   no se nombra ninguna fecha, personaje ni causa específica como respuesta. La
+   tabla de §3 de esta sección sí lista los temas evaluados, pero la sesión ciega
+   no abre `## G33` (G32 confirmó que no abrió `## G31`).
+5. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % (47/762 muestreados), las
+   8 `CHART_TABLE` sin tabla ni imagen de G28, `content:coverage` que aún no
+   refleja la reutilización de G26 (G30 §10.3), y el hecho de que
+   `content:coverage` mostrará UNAM A3 con «Historia de México 0✓» hasta que G34
+   verifique el lote.
 
 ## G32 — Verificación ciega: Inglés, IPN (lote de G31) (2026-08-29)
 
