@@ -1,0 +1,1891 @@
+{
+  "batch": "G35",
+  "generatedAt": "2026-08-29T00:00:00.000Z",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago (el Plan de Implementación asigna el tier Sonnet a los lotes de contenido)",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 3 — Ciencias Sociales",
+  "subject": "Geografía",
+  "subjectId": "cmrr1k5sn005khi3nqgk3mi8x",
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G35: 35 reactivos de Geografía para UNAM Área 3, que estaba en cero absoluto de contenido propio (G33 abrió Historia de México; Historia Universal y Geografía seguían en 0). Geografía NO es materia compartida (sharedContentKey null, a diferencia de Español/Inglés/Química de la UNAM): el lote se inserta contra sus 6 temas propios y no se reutiliza entre áreas — mismo caso que Historia de México en G33 y Matemáticas Aplicadas de SOCADM en G27. Consulta en vivo a Supabase 2026-08-29: los 6 temas de Geografía UNAM A3 en 0 reactivos y 0 SourceChunk. questionWeight 4 (la 3.ª y última materia propia del área). El encargo redirigió el hueco a Geografía en vez de Historia Universal (w5) o IPN SOCADM Historia de México, igual que G33 redirigió de IPN a UNAM.",
+  "grounding": "35/35 TEMARIO_ONLY. Ninguno de los 6 temas de Geografía UNAM A3 tiene SourceChunk (consulta en vivo: 0 a nivel de subject y 0 a nivel de topic). No existe guía de Geografía de la UNAM en content_sources, ni el clasificador F2b asignó fragmento alguno de otras guías a estos temas. Composición desde el temario oficial del Área 3, como G22/G27/G29/G31.",
+  "totalQuestions": 35,
+  "bankBefore": {
+    "total": 762,
+    "verified": 762,
+    "blindQueue": 0
+  },
+  "bankAfter": {
+    "total": 797,
+    "verified": 762,
+    "blindQueue": 35
+  },
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "positionsSequence": "BDBAADBBDCADDACACCDDBCAABACCACCBBDB",
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 35
+  },
+  "difficultyDistribution": {
+    "BASIC": 7,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "perTopic": {
+    "Cartografía y sistemas de referencia": 5,
+    "Geomorfología": 6,
+    "Climas y vegetación": 6,
+    "Geografía política": 6,
+    "Geografía económica": 6,
+    "Geografía de México": 6
+  },
+  "coverageByBranch": {
+    "geografía física (cartografía, geomorfología, climas y vegetación)": 17,
+    "geografía política / humana": 6,
+    "geografía económica": 6,
+    "geografía de México": 6
+  },
+  "qualityChecks": {
+    "validateBatch": "0 violaciones (G3c); corrido antes de tocar la DB y de nuevo como paso obligatorio de content:insert (--lot-dir sobre los 6 archivos)",
+    "correctPositionBand": "A9/B9/C9/D8 = 25.7/25.7/25.7/22.9 %, las cuatro en 15-40 % (confirmado por query directa a la DB con jsonb_array_elements sobre options)",
+    "cyclicRotation": "corrida cíclica A->B->C->D de longitud >=3: False; rotación +1 = 4/34 (azar ~8.5); letra asignada por búsqueda con semilla fija anti-rotación (seed 3668)",
+    "lengthCueTieAware_G34s2": "puntaje esperado de 'elige la más larga', empates al azar = 6.5/35 (umbral G34 §2: < 14/35; aquí ~19 %, por debajo del azar del 25 %). Correcta como única más larga (estricto): 6/35. Ratio medio longitud correcta/distractores: 0.998 (mín 0.874, máx 1.075). Histograma de rango de longitud de la correcta (1 = más larga): {'1': 7, '2': 14, '3': 11, '4': 3} (esperado ~8.75 por celda; la correcta cae en rango 2 con más frecuencia de la esperada, pero las dos heurísticas explotables —'elige la más larga' y 'elige la más corta'— rinden por debajo del azar). Dispersión máx-mín por reactivo: media 6.2 caracteres, máx 17.",
+    "letterCitations": "0 en las 105 capas de explicación (regex de lot-validation.ts: 'opción [ABCD]', 'inciso [ABCD]', 'letra [ABCD]', '[ABCD])')",
+    "positionalCitations": "0 (auto-chequeo POSITION_REF del generador: 'la primera/segunda/tercera/última opción', 'opción anterior/siguiente'). Las capas 2 citan los distractores por su CONTENIDO ('Si elegiste la altitud y la distancia a la costa...', 'Si elegiste que 1:1 000 000 es la escala mayor...').",
+    "factualReview": "Exactitud verificada opción por opción antes de insertar: proyecciones y escala, tipos de límite de placas, meteorización química/mecánica, células de Hadley y corrientes frías, clasificación de Koppen, elementos del Estado, zonas marítimas (200 mn ZEE / 12 mn mar territorial), T-MEC vs UE, sectores económicos, IDH, provincias fisiográficas de México, subducción de Cocos, Trópico de Cáncer, hidrografía (Usumacinta el más caudaloso; Bravo al Golfo).",
+    "difficultyCaveat": "Honesto (patrón G34 §4): en ~3 reactivos (Q6 endógeno/exógeno BASIC, Q16 clima-vegetación INTERMEDIATE, Q18 elementos del Estado BASIC) alguno de los distractores se descarta por implausibilidad general más que por el dato exacto; las etiquetas de esos son BASIC/INTERMEDIATE, así que no hay sobreestimación. Los 2 EXPERT (Q11 Cinturón de Fuego, Q35 caudal Usumacinta vs Bravo) exigen síntesis real.",
+    "typecheck": "verde (cero cambios de código de producción)",
+    "lint": "verde",
+    "paidApiCalls": 0
+  },
+  "nextPhase": "G36 — verificación ciega del lote de G35 (segunda mitad del ciclo adversarial de G2)",
+  "questions": [
+    {
+      "questionId": "cmterjyrl0001zmc87a6e6gw1",
+      "topicId": "cmrr1k5vv005mhi3nec6xp0oz",
+      "topic": "Cartografía y sistemas de referencia",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué información se necesita para ubicar de manera única un punto sobre la superficie terrestre con el sistema de coordenadas geográficas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Su altitud sobre el nivel del mar y su distancia en kilómetros hasta la costa más próxima",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Su latitud respecto al ecuador y su longitud respecto al meridiano de Greenwich, en grados",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El huso horario donde se encuentra y la estación del año que corre en ese hemisferio",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La orientación de su pendiente y el tipo de suelo que predomina en los alrededores",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Latitud y longitud",
+          "content": "El sistema de coordenadas geográficas define cada punto con dos ángulos: la latitud, de 0° en el ecuador hasta 90° en los polos, y la longitud, de 0° en el meridiano de Greenwich hasta 180° hacia el este o el oeste. Con ese par de valores el punto queda determinado sin ambigüedad.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La altitud añade una tercera dimensión, pero por sí sola no sitúa el punto sobre el globo. 2) El huso horario se deriva de la longitud y no la sustituye: abarca franjas de 15°. 3) La pendiente y el suelo describen el terreno, no su posición. Si elegiste la altitud y la distancia a la costa, pensaste en el relieve del lugar y no en la red de paralelos y meridianos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La retícula geográfica",
+          "content": "Paralelos y meridianos forman una malla sobre la esfera terrestre. Los paralelos son círculos que disminuyen hacia los polos, y solo el ecuador es un círculo máximo; los meridianos son semicírculos de igual longitud que convergen en los polos. Repasa: latitud, longitud, ecuador y meridiano de origen.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterjzk20006zmc8y3ge4akz",
+      "topicId": "cmrr1k5vv005mhi3nec6xp0oz",
+      "topic": "Cartografía y sistemas de referencia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "La proyección de Mercator representa los paralelos y los meridianos como líneas rectas que se cortan en ángulo recto. ¿Cuál es su principal limitación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Invierte los puntos cardinales, de modo que el norte del mapa queda situado en la parte inferior",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Solo permite representar el hemisferio donde está quien la usa, nunca el planeta entero de una vez",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Deforma los ángulos entre direcciones y por eso resulta inservible para trazar rumbos de navegación",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Exagera cada vez más la superficie aparente de los territorios conforme se aproximan a los dos polos",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Conforme, pero no equivalente",
+          "content": "Mercator conserva las formas y los ángulos locales, es decir, es una proyección conforme, y por eso se usó en la navegación. El precio es que estira la escala hacia los polos: Groenlandia aparece del tamaño de África, aunque África es unas catorce veces mayor.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) El norte se mantiene arriba; ninguna proyección de uso común lo invierte. 2) Mercator cubre casi todo el planeta, aunque no incluye los polos exactos. 3) Es justo lo contrario: conserva los ángulos, y a eso debía su utilidad para los rumbos. Si elegiste la deformación de ángulos, confundiste la propiedad conforme, que Mercator sí respeta, con la equivalencia de áreas, que no.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Propiedades de las proyecciones",
+          "content": "Toda proyección sacrifica algo: puede ser conforme (formas), equivalente (áreas) o equidistante (ciertas distancias), pero no las tres a la vez. Elegir la proyección adecuada depende del uso del mapa. Repasa: tipos de proyecciones y sus distorsiones.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk0bx000bzmc83loxfe1e",
+      "topicId": "cmrr1k5vv005mhi3nec6xp0oz",
+      "topic": "Cartografía y sistemas de referencia",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "En un mapa topográfico, ¿qué indica que las curvas de nivel aparezcan muy juntas en un sector?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que la temperatura media de ese sector es más baja que la de las áreas vecinas de menor altitud",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que la pendiente del terreno es pronunciada, con un desnivel grande en poca distancia horizontal",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Que el relieve de ese sector es una llanura, ya que las curvas se juntan donde el terreno es plano",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Que en ese punto hay un cuerpo de agua permanente, como un lago natural o una presa de riego",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Curvas juntas, pendiente fuerte",
+          "content": "Cada curva de nivel une puntos de igual altitud y se traza a intervalos constantes, llamados equidistancia. Si las curvas están muy juntas, se sube o se baja esa misma diferencia de altura en un tramo corto: la pendiente es empinada. Si están separadas, el terreno es suave.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La temperatura se representa con isotermas, no con curvas de nivel. 2) Es al revés: en una llanura las curvas son escasas y muy espaciadas. 3) Los cuerpos de agua se marcan con trama o color, no por acumulación de curvas. Si elegiste la temperatura, mezclaste dos tipos de isolíneas distintas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El mapa topográfico",
+          "content": "El relieve se representa con curvas de nivel, cotas y, a veces, sombreado. Leer la separación de las curvas permite deducir pendientes, divisorias de aguas y perfiles del terreno sin recorrerlo. Repasa: equidistancia, cotas y representación del relieve.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk13p000gzmc8akx3udpd",
+      "topicId": "cmrr1k5vv005mhi3nec6xp0oz",
+      "topic": "Cartografía y sistemas de referencia",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Un mapa a escala 1:50 000 y otro a escala 1:1 000 000 cubren la misma región. ¿Qué afirmación es correcta?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El de 1:50 000 es de escala mayor y con más detalle, aunque en la hoja abarque menos territorio real",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El de 1:1 000 000 es de escala mayor, porque el número que sigue a la unidad es un valor más grande",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los dos muestran el mismo detalle, ya que la escala solo cambia el tamaño al que se imprime la hoja",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El de 1:50 000 abarca más territorio, porque una escala más fina permite comprimir más información",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Escala grande, denominador chico",
+          "content": "La escala es una fracción: 1/50 000 es mayor que 1/1 000 000. A mayor escala, menor superficie representada en la hoja, pero más detalle por kilómetro de terreno. El mapa 1:50 000 muestra calles y curvas de nivel finas; el 1:1 000 000, solo rasgos generales.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Comparar denominadores engaña: 1 000 000 es mayor que 50 000, pero la fracción que resulta es menor. 2) El detalle cambia con la escala, no es solo un asunto de impresión. 3) El mapa de escala menor, el 1:1 000 000, es el que abarca más territorio. Si elegiste que 1:1 000 000 es la escala 'mayor', te guiaste por el número y no por el valor de la fracción.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Escala numérica y gráfica",
+          "content": "La escala relaciona la distancia en el mapa con la distancia real. En 1:50 000, 1 cm equivale a 500 m; en 1:1 000 000, 1 cm equivale a 10 km. La escala gráfica, además, sigue siendo válida si el mapa se amplia o se reduce. Repasa: escala grande y pequeña, conversión de distancias.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk1vl000lzmc8tq0l84qs",
+      "topicId": "cmrr1k5vv005mhi3nec6xp0oz",
+      "topic": "Cartografía y sistemas de referencia",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Por qué la hora local de un lugar depende de su longitud geográfica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque la Tierra gira 15° de longitud cada hora, y ese desfase separa el mediodía de dos meridianos",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Porque la inclinación del eje terrestre hace que el Sol ilumine primero a las latitudes más altas",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque los países más largos de norte a sur se ven obligados a adelantar sus relojes cada temporada",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque la distancia hasta el ecuador fija la duración del día y, con ella, la hora oficial del lugar",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Quince grados por hora",
+          "content": "La Tierra completa un giro de 360° en unas 24 horas; al dividir, resultan 15° por hora. Dos lugares separados en longitud ven el mediodía solar en momentos distintos: el que está más al este lo ve antes. Por eso los husos horarios se organizan siguiendo meridianos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La inclinación del eje explica las estaciones y la desigual duración del día según la latitud, no la hora local. 2) La extensión norte-sur no cambia la hora; la que cuenta es la extensión este-oeste. 3) La cercanía al ecuador afecta cuántas horas dura el día, no en qué instante es mediodía. Si elegiste la latitud, confundiste la duración del día con la hora del día.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Meridianos y tiempo",
+          "content": "El meridiano de Greenwich sirve de referencia para el Tiempo Universal Coordinado; cerca del meridiano 180° corre la línea internacional de cambio de fecha. Los husos reales se ajustan a las fronteras políticas. Repasa: rotación terrestre, husos horarios y meridiano de origen.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk6h80001yy98kvr5k58o",
+      "topicId": "cmrr1k6kr005ohi3noy6agroj",
+      "topic": "Geomorfología",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El relieve terrestre resulta de la interacción de dos grupos de fuerzas. ¿En qué se distinguen los procesos endógenos de los exógenos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Los endógenos ocurren solo tierra adentro y los exógenos solo en el fondo y en los bordes del océano",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Los endógenos se completan en unos años y los exógenos requieren siempre eras geológicas enteras",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los endógenos alteran la composición química de la roca y los exógenos solo cambian su temperatura",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los endógenos vienen del interior del planeta y forman relieve; los exógenos lo desgastan desde fuera",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Construir y arrasar",
+          "content": "Los procesos endógenos —tectónica de placas, vulcanismo, sismicidad— toman energía del calor interno de la Tierra y levantan montañas, abren fosas y forman volcanes. Los exógenos —meteorización, erosión, transporte y sedimentación— usan energía solar y gravedad para rebajar esas formas y rellenar las cuencas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Ambos grupos actúan tanto en continentes como en océanos. 2) La velocidad no los separa: un sismo es endógeno y dura segundos; un pliegue tarda millones de años. 3) La meteorización química, que es exógena, sí altera la composición de las rocas. Si elegiste la escala de tiempo, tomaste un caso particular como si fuera la regla.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El modelado del relieve",
+          "content": "El relieve actual es el balance entre la energía interna que lo eleva y la externa que lo rebaja. Donde domina el levantamiento hay montañas jóvenes; donde domina el desgaste, penillanuras y llanuras de acumulación. Repasa: agentes internos y externos del modelado.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk79f0006yy98793phzph",
+      "topicId": "cmrr1k6kr005ohi3noy6agroj",
+      "topic": "Geomorfología",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Frente a la costa oeste de Sudamérica, la cordillera de los Andes se acompaña de una fosa oceánica profunda y de vulcanismo activo. ¿Qué tipo de límite de placas explica esa asociación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un límite divergente: las dos placas se apartan y el ascenso de magma eleva el borde del continente",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un límite convergente: la placa oceánica subduce bajo la continental y genera fosa, sismos y magma",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Un límite transformante: las dos placas se deslizan de lado y el roce funde la corteza en volcanes",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una zona interior de placa: el peso de los sedimentos hunde la corteza y abre poco a poco la fosa",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Subducción bajo un continente",
+          "content": "En un límite convergente entre océano y continente, la placa oceánica, más densa, se hunde bajo la continental. El descenso genera la fosa, provoca sismos cada vez más profundos hacia el continente y libera fluidos que funden el manto: ese magma alimenta la cordillera volcánica.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) En un límite divergente las placas se separan y se crea corteza nueva, como en las dorsales o el rift, no una cordillera con fosa. 2) En uno transformante las placas se deslizan sin crear ni destruir corteza y casi no hay vulcanismo, como en la falla de San Andrés. 3) Una zona interior de placa es, por definición, estable. Si elegiste el límite transformante, atribuiste al roce lateral un magmatismo que en realidad produce la subducción.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tipos de límites de placas",
+          "content": "Divergentes: se separan y forman dorsales. Convergentes: chocan, con subducción y arco volcánico, o con colisión y grandes cordilleras como el Himalaya. Transformantes: se deslizan, con sismos someros. Repasa: tectónica de placas y relieve asociado.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk81f000byy98xojsa5zc",
+      "topicId": "cmrr1k6kr005ohi3noy6agroj",
+      "topic": "Geomorfología",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El paisaje kárstico, con dolinas, cavernas y ríos subterráneos, se desarrolla sobre rocas calizas. ¿Qué proceso lo origina principalmente?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La meteorización mecánica: los contrastes de temperatura rompen la caliza sin alterar su composición",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La meteorización química: el agua de lluvia, algo ácida, disuelve el carbonato de calcio de la caliza",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La erosión eólica: el viento con partículas en suspensión pule la superficie y abre poco a poco las cuevas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El acarreo glaciar: la lengua de hielo arranca bloques de caliza y deja tras de sí las grandes depresiones",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Disolución de la caliza",
+          "content": "El agua de lluvia disuelve dióxido de carbono y se convierte en un ácido débil. Al infiltrarse por las fracturas de la caliza, disuelve el carbonato de calcio y agranda los conductos: así nacen dolinas, simas y cavernas. Es meteorización química por carbonatación.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La fragmentación por cambios de temperatura es meteorización mecánica y no forma redes de cuevas. 2) El viento actúa en superficie y en climas áridos, no genera drenaje subterráneo. 3) El modelado glaciar deja valles en forma de U y morrenas, no dolinas de disolución. Si elegiste la meteorización mecánica, pasaste por alto que el rasgo clave del karst es que la roca se disuelve, no solo se rompe.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Meteorización y clima",
+          "content": "La meteorización mecánica, como la gelifracción o la termoclastia, domina en climas fríos o secos; la química, como la disolución o la hidrólisis, domina en climas cálidos y húmedos. El karst exige roca soluble y agua abundante. Repasa: tipos de meteorización y factores que la controlan.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk8ti000gyy98npsecenr",
+      "topicId": "cmrr1k6kr005ohi3noy6agroj",
+      "topic": "Geomorfología",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Por qué un río deposita gran parte de su carga de sedimentos y forma un delta al llegar al mar?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El agua salada disuelve los sedimentos, que precipitan de golpe al cambiar la composición del agua",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La marea empuja el sedimento aguas arriba y lo comprime contra la desembocadura hasta endurecerlo",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El río excava su cauce en la línea de costa y ese material arrancado se apila en abanico ante la boca",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Al entrar en el mar el río se frena, pierde capacidad de arrastre y su carga se deposita en la boca",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Menos velocidad, más depósito",
+          "content": "Mientras fluye encajonado, el río mantiene velocidad y transporta arena y limo. Al desembocar, la corriente se abre y se frena: bajan su competencia y su capacidad de carga, y el sedimento cae. Si el aporte supera lo que las olas y las corrientes pueden redistribuir, se construye un delta.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La sal ayuda a agrupar las arcillas, pero el delta es sobre todo acumulación mecánica, no una precipitación química masiva. 2) La marea retrabaja el delta, no comprime el sedimento hasta volverlo roca. 3) El material del delta lo trae el río desde su cuenca, no proviene de excavar la costa. Si elegiste la disolución en agua salada, sobrevaloraste un efecto químico menor frente al proceso físico dominante.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Formas fluviales de acumulación",
+          "content": "En su curso bajo, el río construye llanuras de inundación, meandros, diques naturales y, en la desembocadura, deltas o estuarios según domine el río o el mar. Los meandros abandonados originan lagos en herradura. Repasa: perfil longitudinal del río y formas de erosión y depósito.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterk9lk000lyy98yz8agdp8",
+      "topicId": "cmrr1k6kr005ohi3noy6agroj",
+      "topic": "Geomorfología",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "En geomorfología, ¿qué distingue a la meteorización de la erosión?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La meteorización solo actúa sobre rocas volcánicas y la erosión solo sobre rocas sedimentarias",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La meteorización es siempre obra del ser humano y la erosión es un proceso enteramente natural",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La meteorización descompone la roca donde está; la erosión arranca ese material y lo transporta",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La meteorización ocurre bajo la superficie y la erosión solo en el terreno expuesto al aire libre",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Alterar en el sitio o transportar",
+          "content": "La meteorización es la descomposición química o la desintegración física de la roca donde se encuentra, sin desplazarla. La erosión es el paso siguiente: el agua, el viento, el hielo o la gravedad se llevan los fragmentos ya sueltos y los depositan en otro lugar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Ambos procesos afectan a cualquier tipo de roca. 2) La erosión acelerada por malas prácticas agrícolas existe, pero la erosión no es 'humana' por definición, ni la meteorización deja de ser natural. 3) La meteorización actúa también en superficie, por insolación o por lluvia. Si elegiste que 'la meteorización es humana', confundiste el proceso natural con la degradación del suelo por actividad humana.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La secuencia del desgaste",
+          "content": "Meteorización, erosión, transporte y sedimentación forman una cadena: primero la roca se debilita, luego se remueve, viaja y finalmente se acumula. Comprender el orden evita mezclar causas y efectos. Repasa: ciclo de las rocas y agentes erosivos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkadh000qyy98b5c4gq8e",
+      "topicId": "cmrr1k6kr005ohi3noy6agroj",
+      "topic": "Geomorfología",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Alrededor del océano Pacífico se concentra la mayor parte de los volcanes activos y de los sismos del planeta. ¿Cuál es la causa geológica de fondo de ese 'Cinturón de Fuego'?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El borde del Pacífico está rodeado de zonas de subducción, donde varias placas oceánicas se hunden",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El fondo del Pacífico es la corteza más antigua y fría del planeta, y por eso se vuelve quebradiza",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El Pacífico se asienta sobre el único punto caliente del manto, que irradia calor hacia su periferia",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La enorme masa de agua del Pacífico presiona el fondo y fractura sin descanso todos sus márgenes",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un anillo de subducción",
+          "content": "Las placas del Pacífico, de Nazca, de Cocos, de Juan de Fuca y Filipina se hunden bajo las placas continentales y de arcos insulares que las rodean. Cada zona de subducción produce una fosa, sismos a distintas profundidades y un arco de volcanes. Encadenadas, forman el anillo que bordea el océano.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La corteza del Pacífico occidental es antigua, pero la actividad no viene de su edad, sino de que está subduciendo. 2) Existen varios puntos calientes, como el de Hawái, y no explican un anillo continuo en los bordes. 3) El peso del agua no fractura los márgenes; la litósfera soporta esa carga. Si elegiste el punto caliente, aplicaste un mecanismo local, el vulcanismo interior de placa, a un fenómeno que es de límites de placa.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Distribución de volcanes y sismos",
+          "content": "Volcanes y terremotos no se reparten al azar: se alinean con los límites de placas, sobre todo los convergentes. El Cinturón de Fuego reúne cerca del 75 por ciento de los volcanes activos y la mayoría de los grandes sismos. Repasa: relación entre tectónica de placas y riesgo geológico.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkksf00018uat9q7khwd6",
+      "topicId": "cmrr1k71x005qhi3niomr2wdh",
+      "topic": "Climas y vegetación",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "A la misma latitud, ¿por qué una ciudad de montaña tiene temperaturas medias más bajas que una ciudad de la costa cercana?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque en la montaña el Sol incide con un ángulo más bajo a lo largo de todo el año",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque la montaña recibe menos horas de luz solar al quedar más lejos de la línea del ecuador",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque el aire de montaña contiene más oxígeno y esa mayor proporción enfría la superficie",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque el aire se enfría con la altitud, alrededor de 6 °C por cada 1 000 m de ascenso",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El gradiente térmico vertical",
+          "content": "En la tropósfera el aire se enfría con la altura, cerca de 6.5 °C por kilómetro en promedio. El aire de altura está menos comprimido y retiene peor el calor que la superficie irradia. Por eso, bajo el mismo sol, la montaña es más fría que la costa vecina.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) El ángulo con que incide el Sol depende de la latitud y de la estación, no de la altitud del sitio. 2) Las horas de luz también son cuestión de latitud; dos lugares a la misma latitud las tienen iguales. 3) La proporción de oxígeno no cambia con la altura y no enfría el aire. Si elegiste el ángulo solar, mezclaste el efecto de la latitud con el de la altitud.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Factores del clima",
+          "content": "El clima de un lugar depende de la latitud, la altitud, la distancia al mar, las corrientes marinas, el relieve y los vientos dominantes. Distinguir cuál pesa más en cada caso es la base del análisis climático. Repasa: factores y elementos del clima.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterklki00068uatsfpe1zoh",
+      "topicId": "cmrr1k71x005qhi3niomr2wdh",
+      "topic": "Climas y vegetación",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Una cordillera se extiende de norte a sur y recibe vientos húmedos del oeste. ¿Qué se observa en sus dos vertientes?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Las dos vertientes reciben igual lluvia, porque la nube cruza por encima de la cima sin frenarse",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El sotavento, al este, es el lado lluvioso, porque el aire recupera humedad al bajar y calentarse",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La lluvia se concentra toda en la cima y las dos vertientes quedan igual de áridas al pie de la sierra",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El barlovento oeste es lluvioso; el sotavento este queda seco porque el aire desciende ya sin humedad",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Barlovento húmedo, sotavento seco",
+          "content": "El aire húmedo que choca con la montaña se ve forzado a ascender: se enfría, se condensa y descarga lluvia en la ladera de barlovento. Ya sin humedad, cruza la cima y desciende por sotavento; al bajar se comprime y se calienta, la humedad relativa cae y se forma una 'sombra de lluvia' árida.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La nube no 'pasa de largo': el ascenso obligado es lo que provoca la precipitación. 2) El aire que baja se seca, no se humedece; esa opción invierte el proceso. 3) La lluvia se concentra en barlovento, no ausente en ambos lados. Si elegiste que el aire 'recupera humedad al bajar', confundiste el calentamiento por compresión con una supuesta ganancia de vapor de agua.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Lluvia orográfica",
+          "content": "Junto a la convectiva y la frontal, la precipitación orográfica es uno de los tres mecanismos que fuerzan el ascenso del aire. Explica desiertos como el de la Patagonia o el sotavento de varias sierras. Repasa: tipos de lluvia y sombra pluviométrica.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkmcm000b8uatl902hx7r",
+      "topicId": "cmrr1k71x005qhi3niomr2wdh",
+      "topic": "Climas y vegetación",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Los grandes desiertos cálidos —Sahara, Arábigo, de Kalahari, australiano— se alinean en torno a los 20° y 30° de latitud en ambos hemisferios. ¿Por qué?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque hacia los 30° desciende el aire de las células de Hadley, que forma altas presiones secas",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Porque son las latitudes que quedan más lejos del mar en todos los continentes del planeta",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque la inclinación del eje deja esa franja de latitud sin luz solar durante medio año seguido",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque corrientes marinas cálidas bordean esas costas y evaporan la humedad antes de que llueva",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La rama descendente de Hadley",
+          "content": "Cerca del ecuador el aire caliente asciende, llueve y viaja en altura hacia los trópicos. Alrededor de los 30° se hunde: al descender se comprime, se calienta y su humedad relativa baja. Ese aire subsidente crea los anticiclones subtropicales, de cielos claros y precipitación mínima: la faja de los desiertos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Muchos de esos desiertos tienen costa, como el Sahara en el Atlántico; la continentalidad agrava pero no origina el patrón latitudinal. 2) Ninguna latitud tropical queda medio año sin sol. 3) Junto a varios desiertos costeros circulan corrientes frías, no cálidas, y estabilizan el aire. Si elegiste las corrientes cálidas, invertiste su efecto: el agua fría reduce la lluvia costera y el agua cálida la favorece.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Circulación general de la atmósfera",
+          "content": "Las células de Hadley, de Ferrel y polar reparten calor y humedad y fijan los cinturones de presión: bajas ecuatoriales lluviosas, altas subtropicales secas, bajas de latitudes medias. Repasa: células de circulación, vientos alisios y zona de convergencia intertropical.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkn4s000g8uaty6xwp5h5",
+      "topicId": "cmrr1k71x005qhi3niomr2wdh",
+      "topic": "Climas y vegetación",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "En las costas de Perú y del norte de Chile, junto al desierto de Atacama, circula una corriente marina fría. ¿Cómo influye en el clima de esa costa?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Calienta el aire del litoral y multiplica las tormentas, así que esa costa debería ser muy lluviosa",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "No influye en el clima de tierra firme, porque las corrientes solo importan para la vida marina",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Enfría y estabiliza el aire sobre el mar, lo que frena los ascensos y reduce la lluvia en la costa",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Amplía el contraste térmico entre el día y la noche y provoca heladas seguidas en esa costa tropical",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Agua fría, aire estable",
+          "content": "Sobre una corriente fría, las capas bajas de la atmósfera se enfrían y se vuelven más densas que el aire de arriba: se forma una inversión térmica que frena los ascensos. Sin ascenso no hay nubes de desarrollo ni lluvia; a lo sumo, niebla costera. Es un factor clave de Atacama, Namib y la costa del Sahara.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Una corriente cálida sí favorecería la lluvia, pero esta corriente es fría y hace lo contrario. 2) Las corrientes marinas son un factor climático de primer orden, no solo un asunto biológico. 3) Una costa tropical con corriente fría es templada y estable, sin heladas. Si elegiste 'calienta y llueve más', describiste el efecto de una corriente cálida, no de una fría.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Corrientes y clima costero",
+          "content": "Las corrientes cálidas, como la del Golfo o la del Brasil, suavizan y humedecen las costas; las frías, como la de Humboldt, la de Benguela o la de California, las enfrían y las resecan. Su efecto se combina con la latitud y con los vientos. Repasa: corrientes marinas y su papel en el clima.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterknwt000l8uatl2qhhxkw",
+      "topicId": "cmrr1k71x005qhi3niomr2wdh",
+      "topic": "Climas y vegetación",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cuál de estas combinaciones de clima y vegetación es coherente?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clima cálido y lluvioso todo el año junto al ecuador, con selva tropical siempre verde y muy diversa",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Clima polar con inviernos de cuarenta grados bajo cero, cubierto por selva densa de árboles de hoja ancha",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Clima desértico con menos de 100 mm de lluvia al año, ocupado por un bosque cerrado y alto de coníferas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Clima mediterráneo de verano seco, tapizado por tundra de musgos y líquenes en la que no hay árboles",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada bioma responde a su clima",
+          "content": "La selva tropical lluviosa se desarrolla donde hay calor constante, con el mes más frío por encima de 18 °C, y lluvia abundante y repartida en el año. Esas condiciones permiten vegetación arbórea perenne, estratificada y muy diversa. El clima manda; la vegetación responde.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) En clima polar la vegetación es tundra o desierto helado, no selva de hoja ancha. 2) En un desierto no prospera un bosque cerrado de coníferas: falta agua. 3) La tundra es propia de latitudes altas o de alta montaña, no del clima mediterráneo, donde crecen bosque y matorral. Si elegiste el desierto con bosque de coníferas, uniste un clima con la vegetación que corresponde a otro.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Zonas bioclimáticas",
+          "content": "De la selva ecuatorial a la tundra, los biomas se ordenan por temperatura, que depende de la latitud y la altitud, y por disponibilidad de agua. Reconocer el par clima-vegetación permite ubicar cualquier región. Repasa: clasificación de Koppen y grandes biomas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkoow000q8uat13qfs160",
+      "topicId": "cmrr1k71x005qhi3niomr2wdh",
+      "topic": "Climas y vegetación",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Dos ciudades están a la misma latitud: una es un puerto y la otra se ubica en el interior de un gran continente. ¿Qué diferencia climática es esperable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El puerto sufre inviernos más fríos, porque el mar le va extrayendo calor a lo largo de todo el año",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "No se aprecia diferencia, porque a igual latitud las dos reciben el mismo sol y comparten el mismo clima",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La ciudad del interior tiene mayor amplitud térmica anual: veranos más calurosos, inviernos más fríos",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La ciudad del interior es más estable, porque el suelo continental conserva mejor una temperatura fija",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El mar modera, el continente extrema",
+          "content": "El agua tarda mucho en calentarse y en enfriarse, porque tiene un calor específico alto; la tierra, poco. Una costa recibe el efecto amortiguador del mar: veranos frescos, inviernos suaves y una amplitud térmica pequeña. El interior, sin esa influencia, tiene contrastes fuertes entre estaciones.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) El mar no 'extrae calor' en invierno: al contrario, cede el calor que almacenó y suaviza el frío del puerto. 2) La latitud fija la energía recibida, pero la distancia al mar modifica el resultado. 3) La tierra no conserva una temperatura fija: reacciona rápido y por eso extrema, no estabiliza. Si elegiste que 'la tierra conserva mejor el calor', invertiste la propiedad del agua y la del suelo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Continentalidad y oceanidad",
+          "content": "La distancia al mar es, después de la latitud y la altitud, uno de los grandes factores del clima. Explica por qué, a igual latitud, el clima oceánico es suave y el continental, extremo. Repasa: amplitud térmica y calor específico del agua.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterktzd000112x49a972pcl",
+      "topicId": "cmrr1k7on005shi3n3szj789q",
+      "topic": "Geografía política",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "En geografía política, ¿cuáles son los elementos que definen a un Estado?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Una lengua única, una religión oficial y una moneda propia con reconocimiento en el resto del mundo",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una superficie mínima, una salida al mar y un asiento permanente en los organismos internacionales",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Un territorio delimitado, una población permanente y un gobierno soberano sobre ese territorio",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Una historia compartida de varios siglos y unas fronteras que sigan los accidentes del relieve",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Territorio, población y soberanía",
+          "content": "El Estado, como entidad política y jurídica, requiere tres elementos: un territorio con límites definidos, una población asentada de forma estable y un gobierno que ejerce el poder soberano, es decir, sin someterse a otra autoridad, sobre ese territorio y esa población.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Muchos Estados son plurilingües o laicos: la lengua y la religión únicas no son requisitos. 2) Hay Estados diminutos y sin litoral, como Bolivia o Suiza, plenamente reconocidos. 3) La antigüedad y las fronteras naturales no constituyen al Estado. Si elegiste 'lengua y religión', describiste rasgos de una nación culturalmente homogénea, no las condiciones de un Estado.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Estado, nación y país",
+          "content": "El Estado es la estructura jurídica soberana; la nación, la comunidad con identidad compartida; el país, el territorio. Pueden coincidir, en el Estado-nación, o no, en los Estados plurinacionales y en las naciones sin Estado. Repasa: elementos del Estado y su diferencia con la nación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkve9000612x4quz5houx",
+      "topicId": "cmrr1k7on005shi3n3szj789q",
+      "topic": "Geografía política",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué caracteriza a un Estado de organización federal, como México, frente a uno de organización unitaria?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El gobierno central nombra a todas las autoridades locales, que solo ejecutan las órdenes que reciben",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Cada entidad firma tratados y declara la guerra por su cuenta, al margen del gobierno nacional",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "No existe una constitución nacional: cada región se rige solo por las leyes que ella misma aprueba",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Las entidades conservan poderes y constitución propios dentro del marco de la constitución general",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Poder repartido y garantizado",
+          "content": "En un Estado federal, la constitución general divide el poder entre la federación y las entidades. Estas tienen gobierno, congreso y constitución propios, y competencias que el centro no puede suprimir. En un Estado unitario, las regiones solo ejercen facultades que el gobierno central les delega y puede retirar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Que el centro nombre a todas las autoridades locales describe un Estado unitario centralizado, no uno federal. 2) La política exterior y la defensa son competencia exclusiva de la federación; ninguna entidad firma tratados ni declara la guerra. 3) Sí hay constitución nacional: es la norma que enmarca a las locales. Si elegiste que 'cada entidad firma tratados', confundiste la autonomía interna con la soberanía plena.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Formas de Estado",
+          "content": "Unitario, federal y confederal describen cómo se distribuye el poder en el territorio. México, Estados Unidos, Brasil y Alemania son federaciones; Francia, Chile y Japón son Estados unitarios. Repasa: formas de Estado y formas de gobierno.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkwdx000b12x4socj1zpr",
+      "topicId": "cmrr1k7on005shi3n3szj789q",
+      "topic": "Geografía política",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Según el derecho internacional del mar, ¿hasta qué distancia de la costa un Estado tiene derechos exclusivos sobre los recursos naturales de su zona económica exclusiva?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hasta 12 millas náuticas, la misma franja donde ejerce plena soberanía sobre el mar territorial",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Hasta 1 000 millas náuticas, o la mitad de la distancia con el vecino cuando esa cifra sea la menor",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Solo sobre las aguas que su armada consiga vigilar de forma efectiva y continua durante todo el año",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Hasta 200 millas náuticas, medidas desde la línea de base a partir de la cual se traza el mar territorial",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Doscientas millas de derechos económicos",
+          "content": "La Convención de las Naciones Unidas sobre el Derecho del Mar fija el mar territorial en 12 millas náuticas, con soberanía plena, y la zona económica exclusiva en 200 millas, dentro de la cual el Estado tiene derechos exclusivos para explorar y explotar los recursos, aunque la navegación siga siendo libre.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Las 12 millas corresponden al mar territorial, no a la zona económica exclusiva. 2) No existe un límite de 1 000 millas; cuando dos zonas se traslapan, se delimita por acuerdo o por línea media. 3) El derecho no depende de la capacidad militar de vigilancia. Si elegiste 12 millas, te quedaste en el mar territorial y no llegaste a la zona de derechos económicos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Espacios marítimos del Estado",
+          "content": "Desde la costa hacia mar adentro: aguas interiores, mar territorial de 12 millas, zona contigua de 24, zona económica exclusiva de 200 y plataforma continental. México incorporó su zona económica exclusiva a la Constitución en 1976. Repasa: Convención del Mar y jurisdicción marítima.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkx5y000g12x4o9nn83hm",
+      "topicId": "cmrr1k7on005shi3n3szj789q",
+      "topic": "Geografía política",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El T-MEC, entre México, Estados Unidos y Canadá, y la Unión Europea son formas distintas de integración regional. ¿En qué se diferencian?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El T-MEC obliga a los tres países a adoptar la misma moneda y a poner en marcha un banco central común",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El T-MEC es una zona de libre comercio; la Unión Europea llegó a un mercado común con moneda única",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La Unión Europea es solo un pacto para bajar aranceles, sin instituciones ni normas compartidas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los dos son uniones políticas que borraron las fronteras y disolvieron los gobiernos nacionales",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Distintos grados de integración",
+          "content": "El T-MEC reduce aranceles y fija reglas de comercio e inversión entre sus tres socios, pero cada país mantiene su política comercial frente al resto del mundo, su moneda y su control de entrada de personas. La Unión Europea fue más lejos: unión aduanera, mercado único con libre circulación de bienes, servicios, capitales y personas, e incluso una moneda común en la eurozona.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) El T-MEC no crea una moneda ni un banco central comunes. 2) La Unión Europea tiene Parlamento, Comisión, tribunal y un enorme cuerpo de normas: es mucho más que un acuerdo arancelario. 3) Ninguno de los dos disolvió los gobiernos nacionales. Si elegiste que 'ambos son uniones políticas', igualaste dos etapas de integración muy diferentes.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Etapas de la integración regional",
+          "content": "De menor a mayor: zona de libre comercio, unión aduanera, mercado común, unión económica y monetaria, y unión política. Situar cada bloque en esa escala evita confundirlos. Repasa: organismos supranacionales y bloques económicos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkxxx000l12x4zq1lzxpw",
+      "topicId": "cmrr1k7on005shi3n3szj789q",
+      "topic": "Geografía política",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El límite entre México y Estados Unidos sigue el río Bravo desde Ciudad Juárez hasta el Golfo, y de ahí hacia el oeste avanza en tramos rectos hasta el Pacífico. ¿Cómo se clasifican esos dos segmentos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Los dos segmentos son fronteras naturales, porque todo límite internacional se apoya al final en el relieve",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Los dos son fronteras artificiales, porque cualquier límite lo fija un tratado y no lo dibuja el paisaje",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El tramo del río Bravo es una frontera natural, y los tramos rectos del oeste son fronteras artificiales",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El tramo del río es artificial porque el cauce se modificó, y los rectos son naturales por seguir el relieve",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El accidente físico y la línea trazada",
+          "content": "Una frontera natural coincide con un rasgo del paisaje: un río, una cresta montañosa, un lago. El tramo del río Bravo lo es. Una frontera artificial o geométrica sigue meridianos, paralelos o líneas rectas sin relación con el terreno; así corre el límite entre Sonora y Arizona, o entre Baja California y California.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) No todo límite sigue el relieve: muchos son líneas rectas trazadas sobre el mapa. 2) Que un tratado fije la frontera no la vuelve 'artificial' en el sentido geográfico; lo que cuenta es si se apoya o no en un accidente físico. 3) Los tramos rectos del oeste no siguen ninguna divisoria de aguas. Si elegiste que 'ambas son artificiales porque las fija un tratado', mezclaste el origen jurídico con el criterio geográfico de clasificación.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tipos de frontera",
+          "content": "Por su trazado, las fronteras son naturales, que siguen ríos o montañas, o artificiales, geométricas o culturales. Por su historia, pueden ser previas al poblamiento, posteriores o impuestas. Las fronteras rectas de gran parte de África son geométricas. Repasa: clasificación de fronteras y conflictos limítrofes.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterkypx000q12x4rhw91oa3",
+      "topicId": "cmrr1k7on005shi3n3szj789q",
+      "topic": "Geografía política",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Por qué se afirma que 'Estado' y 'nación' no siempre coinciden?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque un Estado puede contener varias naciones, y hay naciones sin Estado o partidas entre países",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Porque 'nación' es el término antiguo y 'Estado' el término moderno para nombrar exactamente la misma cosa",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque toda nación se transforma en Estado de forma automática al superar cierto número de habitantes",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque el Estado es una organización de carácter privado y la nación siempre es una institución pública",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La comunidad y la estructura política",
+          "content": "La nación es una comunidad unida por una identidad compartida: lengua, historia, cultura, sentido de pertenencia. El Estado es la estructura jurídica soberana con territorio, población y gobierno. Un Estado plurinacional reúne varias naciones; una nación sin Estado carece de soberanía propia; una nación dividida queda repartida entre fronteras.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) No son sinónimos de épocas distintas: nombran realidades diferentes que pueden superponerse o no. 2) El tamaño de la población no transforma una nación en Estado; hace falta soberanía reconocida. 3) El Estado es una institución pública, no una empresa privada. Si elegiste que 'son la misma realidad con distinto nombre', pasaste por alto los Estados plurinacionales y las naciones sin Estado.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Estado-nación y sus excepciones",
+          "content": "El ideal del Estado-nación —una nación, un Estado— rara vez se cumple con exactitud. La mayoría de los Estados son plurinacionales o pluriétnicos. Reconocerlo ayuda a entender tensiones territoriales y movimientos autonomistas. Repasa: nación, Estado, nacionalismo y autodeterminación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterl3ay0001urkjcjj1njsa",
+      "topicId": "cmrr1k845005uhi3ngl3y9ev4",
+      "topic": "Geografía económica",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "La extracción de minerales, la pesca, la agricultura y la explotación forestal pertenecen al mismo sector económico. ¿Cuál es y por qué?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El sector primario, porque toman recursos de la naturaleza sin transformarlos de forma industrial",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El sector secundario, porque todas ellas necesitan hoy en día maquinaria pesada para poder operar",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El sector terciario, porque su producto termina vendiéndose en mercados, tiendas y centros de abasto",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Un sector diferente cada una, según el recurso venga del suelo, del agua o de la masa forestal",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Obtener de la naturaleza",
+          "content": "El sector primario agrupa las actividades que toman recursos del medio natural en su estado original: cultivos, ganadería, pesca, silvicultura y minería. No los transforman; a lo sumo los cosechan o los extraen. La transformación corresponde al secundario, y su distribución y venta, al terciario.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Usar maquinaria no cambia el sector: un tractor no vuelve 'industrial' a la agricultura. 2) Que el producto acabe en una tienda tampoco: ahí interviene el comercio, que es otro eslabón. 3) Las cuatro comparten el mismo rasgo, extraer de la naturaleza, y por eso están en el mismo sector. Si elegiste el sector secundario por la maquinaria, confundiste el medio de producción con la naturaleza de la actividad.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Los sectores de la economía",
+          "content": "Primario: obtención de recursos naturales. Secundario: industria y construcción, que transforman esos recursos. Terciario: servicios. A veces se añade un cuaternario de conocimiento e información. Repasa: clasificación de las actividades económicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterl4310006urkjolb98kpu",
+      "topicId": "cmrr1k845005uhi3ngl3y9ev4",
+      "topic": "Geografía económica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "En un país, el 55 por ciento de la población ocupada trabaja en la agricultura y en actividades extractivas. ¿Qué sugiere ese dato sobre su nivel de desarrollo económico?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un desarrollo alto, porque de ese modo se asegura la comida propia y no depende de las importaciones",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un desarrollo bajo: al avanzar, el empleo pasa del sector primario a la industria y los servicios",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Un desarrollo medio y estable, ya que el sector primario ocupa siempre a cerca de la mitad de la gente",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Nada sobre el desarrollo, que se mide solo por el tamaño total de la economía del país en un año",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El peso del primario baja con el desarrollo",
+          "content": "Conforme una economía se desarrolla, la productividad agrícola aumenta y se necesita menos gente en el campo; la mano de obra pasa primero a la industria y luego a los servicios. Una ocupación primaria del 55 por ciento es propia de países de ingreso bajo; en los de ingreso alto ronda el 2 a 5 por ciento.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Producir alimentos no equivale a desarrollo: muchos países pobres son mayoritariamente agrícolas y aún así importan alimentos. 2) La proporción no es fija; justamente cambia con el desarrollo. 3) El dato sí informa: la estructura del empleo es un indicador clásico, más allá del tamaño del producto interno. Si elegiste 'desarrollo alto por autosuficiencia', confundiste el volumen de producción agrícola con el nivel de vida.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Estructura del empleo y desarrollo",
+          "content": "El modelo de Clark y Fisher describe el paso de una economía primaria a una industrial y luego a una de servicios. La distribución del empleo por sectores es una de las señales más usadas del grado de desarrollo. Repasa: indicadores de desarrollo y terciarización.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterl4uy000burkjjam2dp4p",
+      "topicId": "cmrr1k845005uhi3ngl3y9ev4",
+      "topic": "Geografía económica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Históricamente, la gran industria siderúrgica se instaló junto a las cuencas carboníferas y los yacimientos de hierro. ¿Qué principio de localización industrial explica esa decisión?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bajar el costo de transportar materias primas voluminosas que pierden gran parte de su peso al procesarse",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Explotar la mano de obra rural más barata, aunque el yacimiento quede a miles de kilómetros de la planta",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Colocarse siempre en la costa para exportar el acero, sin ver de dónde llegan el carbón y el hierro",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Instalarse donde el suelo cuesta menos, sin importar la distancia a los insumos ni a los compradores",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Acercarse a la materia prima pesada",
+          "content": "Fabricar acero exige mover enormes cantidades de carbón y de mineral de hierro, materiales que pierden buena parte de su masa al transformarse. Transportar la materia prima cuesta más que llevar el producto terminado, así que conviene instalar la planta junto al yacimiento. Es una industria orientada a la materia prima.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La mano de obra barata orienta a otras industrias, como la textil o la de ensamble, pero no compensa mover millones de toneladas de mineral. 2) Exportar por mar importa para el producto, no explica acercarse al carbón y al hierro. 3) El precio del suelo influye, pero no por encima de los costos de transporte de materias primas pesadas. Si elegiste la mano de obra barata, aplicaste la lógica de una industria ligera a una industria pesada orientada al recurso.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Factores de localización industrial",
+          "content": "Materias primas, energía, mano de obra, mercado, transporte, capital y políticas públicas guían dónde se instala una fábrica. Según cuál pese más, la industria se orienta al recurso o al mercado. Repasa: teoría de la localización y tipos de industria.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterl5mz000gurkjx7foha4l",
+      "topicId": "cmrr1k845005uhi3ngl3y9ev4",
+      "topic": "Geografía económica",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Un banco de pesca, un bosque y un acuífero se consideran recursos renovables. ¿Por qué pueden, aun así, llegar a agotarse?",
+      "options": [
+        {
+          "id": "A",
+          "text": "En realidad son recursos no renovables mal clasificados, porque en la naturaleza nada llega a regenerarse",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El cambio de estación frena por completo su regeneración durante varios meses seguidos en cada ciclo anual",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Se renuevan a un ritmo natural finito: si la extracción supera ese ritmo durante años, el recurso colapsa",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Solo se agotan si un evento natural extraordinario, como un sismo, los destruye de golpe y por completo",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Renovable no es inagotable",
+          "content": "Un recurso renovable se repone mediante procesos naturales —la reproducción de los peces, el crecimiento del bosque, la recarga del acuífero— pero a una velocidad finita. Si cada año se extrae más de lo que se regenera, el capital natural se reduce: la pesca colapsa, el bosque se vuelve matorral, el acuífero se abate.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) Sí se regeneran; el problema es el ritmo, no la clasificación. 2) La estacionalidad frena la regeneración, pero no la anula, y el balance anual sigue siendo positivo si no hay sobreexplotación. 3) No hace falta una catástrofe: el agotamiento suele ser gradual, por presión sostenida. Si elegiste 'son no renovables mal clasificados', ignoraste que la reversibilidad depende del manejo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Manejo de recursos naturales",
+          "content": "La sostenibilidad consiste en no extraer más de lo que el sistema repone y en cuidar su capacidad de regeneración. La sobrepesca, la deforestación y el abatimiento de acuíferos son ejemplos de límites rebasados. Repasa: recursos renovables y no renovables, rendimiento sostenible.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterl6ew000lurkjfyx7l4o3",
+      "topicId": "cmrr1k845005uhi3ngl3y9ev4",
+      "topic": "Geografía económica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Qué mide el Índice de Desarrollo Humano que el producto interno bruto por habitante, por sí solo, no capta?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El tamaño total de la economía del país y el volumen de las exportaciones que realiza cada año",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La cantidad de minerales y de recursos energéticos que el país mantiene todavía como reserva sin explotar",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Junto al ingreso incorpora la esperanza de vida y los años de escolaridad: es decir, salud y educación",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El número de empresas registradas en el país y los kilómetros de carretera que tiene pavimentados",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un indicador de tres dimensiones",
+          "content": "El Índice de Desarrollo Humano combina tres componentes: una vida larga y saludable, medida por la esperanza de vida; el acceso a la educación, medido por los años de escolaridad; y un nivel de vida digno, medido por el ingreso por habitante. Dos países con el mismo ingreso pueden tener índices muy distintos si difieren en salud o en educación.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) El tamaño de la economía y las exportaciones son datos macroeconómicos, no de bienestar de las personas. 2) Las reservas de minerales son riqueza potencial, no desarrollo humano ya alcanzado. 3) Empresas y carreteras son infraestructura, no las capacidades de la población. Si elegiste 'el tamaño de la economía', seguiste midiendo producción, que es justo lo que el índice busca complementar.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Medir el desarrollo",
+          "content": "El desarrollo no es solo crecimiento. Junto al Índice de Desarrollo Humano existen índices de pobreza multidimensional, de desigualdad y de género. Todos buscan mirar más allá del promedio de ingreso. Repasa: indicadores socioeconómicos y desarrollo humano.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterl76v000qurkj6jqphum2",
+      "topicId": "cmrr1k845005uhi3ngl3y9ev4",
+      "topic": "Geografía económica",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Un país obtiene el 80 por ciento de sus divisas de exportar un solo producto primario, como cobre o café. ¿Cuál es el principal riesgo económico de esa estructura?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Su ingreso depende de un precio internacional que no controla y que, si cae, arrastra a la economía",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Quedará obligado a industrializarse de un año para otro, y ese cambio siempre desata una crisis social",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "No podrá comerciar con ningún bloque regional mientras siga dependiendo de sus exportaciones al exterior",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El producto se le agotará en unos pocos meses debido a la fuerte demanda de los países que se lo compran",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un solo pilar y un precio ajeno",
+          "content": "Cuando las divisas dependen de una sola materia prima, el país queda expuesto a la volatilidad de su precio en los mercados mundiales. Una caída del precio reduce de golpe los ingresos de exportación, el gasto público y el empleo. La falta de diversificación convierte un choque externo en una crisis interna.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La industrialización es una salida deseable, no una consecuencia automática ni necesariamente traumática. 2) Depender de exportaciones no impide integrarse a bloques regionales; muchos exportadores primarios lo hacen. 3) El recurso no se agota 'en meses': el problema es el precio, no el volumen físico inmediato. Si elegiste el agotamiento rápido, confundiste el riesgo de precio con el riesgo de reservas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "División internacional del trabajo",
+          "content": "El esquema centro-periferia describe economías que exportan materias primas baratas e importan manufacturas caras, con términos de intercambio desfavorables. Diversificar y agregar valor es la vía para reducir esa vulnerabilidad. Repasa: economías primario-exportadoras y desarrollo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterlbqv0001r008u6c7adpe",
+      "topicId": "cmrr1k8sh005whi3nh7zscdqi",
+      "topic": "Geografía de México",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El Trópico de Cáncer cruza México aproximadamente por su parte media. ¿Qué contraste climático marca, en términos generales?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Al norte dominan los climas templados y lluviosos; al sur, los fríos propios de la alta montaña",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Al norte dominan los climas cálidos y muy lluviosos; al sur y el sureste, los desérticos sin vegetación",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Al norte dominan los climas secos y semisecos; al sur y el sureste, los cálidos húmedos y subhúmedos",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El trazo no marca contraste alguno: el clima seco domina de manera uniforme en todo el territorio",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una línea, dos Méxicos climáticos",
+          "content": "Al norte del Trópico de Cáncer, el aire descendente de las altas presiones subtropicales impone aridez: ahí están los desiertos de Sonora, de Chihuahua y de la península de Baja California. Al sur y el sureste dominan las lluvias tropicales, con selvas y climas cálidos húmedos en Chiapas, Tabasco, Veracruz y la península de Yucatán.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) El norte no es templado lluvioso: es seco, con lluvias escasas. 2) El patrón está invertido: el norte es seco y el sureste húmedo, no al revés. 3) Sí hay contraste: el sur y el sureste son húmedos, no secos. Si elegiste 'seco en todo el país', generalizaste el norte árido y dejaste fuera las selvas del sureste.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Climas de México",
+          "content": "La diversidad climática de México resulta de su latitud, ya que el trópico lo divide, de su relieve montañoso y de sus dos litorales. Predominan en superficie los climas secos del norte y los cálidos de las costas y el sureste. Repasa: regiones climáticas de México y sus factores.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterlcip0006r008dn3r66eg",
+      "topicId": "cmrr1k8sh005whi3nh7zscdqi",
+      "topic": "Geografía de México",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "¿Cómo se distribuye la población de México sobre el territorio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "De forma pareja, con una densidad de población casi idéntica en todas y cada una de las entidades",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Concentrada en la frontera sur y en Baja California, con la región central prácticamente despoblada",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Muy desigual: se agolpa en el centro del país y escasea en el norte árido y en parte del sureste",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Repartida solo a lo largo de las dos costas, con casi todo el interior del país sin habitantes",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un país con el centro lleno",
+          "content": "La población mexicana se concentra en el altiplano central y el Eje Neovolcánico: la Zona Metropolitana del Valle de México supera los 20 millones de habitantes, y cerca están Puebla, Toluca y otras grandes ciudades. El norte, extenso y seco, tiene densidades bajas, y entidades del sureste como Chiapas, Oaxaca y Guerrero siguen siendo muy rurales.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La densidad varía enormemente entre la Ciudad de México y estados como Durango o Baja California Sur. 2) La mayor concentración está en el centro, no en la frontera sur ni en Baja California. 3) El interior central es justamente el más poblado, no un vacío. Si elegiste 'solo en las costas', pensaste en el patrón de otro país y no en el de México, cuyo corazón demográfico es el altiplano.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Poblamiento de México",
+          "content": "La herencia mesoamericana y colonial fijó el poblamiento en el altiplano; el norte se pobló tarde y de forma dispersa. Hoy más del 75 por ciento de la población es urbana y sigue creciendo la primacía de la región central. Repasa: densidad, concentración urbana y desequilibrios regionales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterldaf000br0082nnr5kz0",
+      "topicId": "cmrr1k8sh005whi3nh7zscdqi",
+      "topic": "Geografía de México",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Los sismos más fuertes de México se originan sobre todo frente a las costas de Michoacán, Guerrero y Oaxaca. ¿Cuál es su causa tectónica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El choque de la placa del Caribe contra la costa de la península de Yucatán, del lado del Golfo de México",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La subducción de la placa de Cocos bajo la placa Norteamericana en la costa del Pacífico",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El desplazamiento lateral de la placa del Pacífico frente a las costas de Tamaulipas y de Veracruz",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La actividad de un punto caliente situado bajo el centro del país, ajeno a los límites entre placas",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una placa oceánica que se hunde",
+          "content": "Frente al Pacífico sur mexicano, la placa oceánica de Cocos se hunde bajo la placa Norteamericana a lo largo de la Fosa Mesoamericana. La fricción entre ambas acumula energía que se libera en grandes terremotos; los epicentros se alinean con esa costa, de Jalisco a Chiapas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La península de Yucatán está lejos de un límite de placas activo: es una plataforma estable, sin grandes sismos. 2) El desplazamiento lateral y el Golfo no describen el margen activo, que está en el Pacífico, no en la costa oriental. 3) El vulcanismo del Eje Neovolcánico se asocia a la propia subducción, no a un punto caliente aislado. Si elegiste la costa del Golfo, ubicaste el límite de placas en el litoral equivocado.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Riesgo sísmico de México",
+          "content": "México se sitúa sobre la interacción de las placas Norteamericana, de Cocos, del Pacífico, de Rivera y del Caribe. La subducción de Cocos y de Rivera domina el peligro sísmico del Pacífico. Repasa: placas que afectan a México y regiones de mayor riesgo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterle29000gr0080u0mahum",
+      "topicId": "cmrr1k8sh005whi3nh7zscdqi",
+      "topic": "Geografía de México",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "Entre la Sierra Madre Occidental y la Sierra Madre Oriental se extiende una gran región elevada y de clima seco. ¿Cómo se le denomina y qué la caracteriza?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La Llanura Costera del Golfo: una franja baja y húmeda que baja en suave pendiente hasta el mar",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El Altiplano Mexicano: una meseta interior entre las dos sierras, de clima seco y cuencas cerradas",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El Eje Neovolcánico: la cadena de grandes volcanes que cruza el país de oeste a este por el centro",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La península de Yucatán: una plataforma de roca caliza, llana y sin corrientes de agua en superficie",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una meseta entre dos sierras",
+          "content": "El Altiplano Mexicano ocupa el interior norte y centro-norte del país, limitado al oeste por la Sierra Madre Occidental, volcánica y cortada por barrancas, y al este por la Sierra Madre Oriental, plegada y calcárea. Es una altiplanicie con bolsones y lagunas cerradas, suelos áridos y lluvias escasas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La Llanura Costera del Golfo es baja y húmeda, y está al este de la Sierra Madre Oriental, no entre las dos sierras. 2) El Eje Neovolcánico corre al sur del Altiplano y lo limita, pero es una cadena volcánica, no una meseta seca. 3) Yucatán es una plataforma caliza costera, sin relación con esa región interior. Si elegiste el Eje Neovolcánico, confundiste el borde sur del Altiplano con el Altiplano mismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Provincias fisiográficas de México",
+          "content": "México se divide en grandes provincias: las dos Sierras Madre, el Altiplano, el Eje Neovolcánico, la Sierra Madre del Sur, las llanuras costeras, las penínsulas de Baja California y de Yucatán, y las sierras de Chiapas. Reconocer sus límites organiza el estudio del relieve. Repasa: regiones naturales de México.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterleu2000lr0088gmkwb8r",
+      "topicId": "cmrr1k8sh005whi3nh7zscdqi",
+      "topic": "Geografía de México",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "La franja fronteriza del norte de México concentra plantas que ensamblan componentes importados para reexportar el producto terminado. ¿Qué explica esa localización?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La abundancia de agua dulce y de selva tropical en los estados del norte, ideal para instalar fábricas",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una prohibición legal de instalar industria de transformación en el centro y el sur del territorio",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los grandes yacimientos de carbón y de hierro que se encuentran justo sobre la línea de la frontera",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La cercanía al enorme mercado de Estados Unidos y las facilidades de comercio entre los dos países",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Pegados al mercado que compra",
+          "content": "La industria maquiladora de exportación se instaló en ciudades como Tijuana, Ciudad Juárez, Reynosa y Matamoros porque están a minutos del mercado estadounidense. Importa piezas, las ensambla con mano de obra local y las reexporta; la proximidad reduce costos y tiempos de transporte, y los acuerdos comerciales facilitan el cruce.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) El norte fronterizo es en buena parte árido: la ventaja no es el agua ni la selva. 2) No hay prohibición de industria en el centro y el sur; de hecho el Bajío y el Valle de México están muy industrializados. 3) No son yacimientos de carbón y hierro lo que atrae a la maquila, sino la logística hacia Estados Unidos. Si elegiste los yacimientos, aplicaste el modelo de la siderurgia clásica a una industria de ensamble ligero.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Contrastes regionales de México",
+          "content": "El norte y el Bajío se han integrado a las cadenas de exportación, como la automotriz y la electrónica; el sureste, con menos industria, depende más de actividades primarias y del turismo, y registra el menor producto por habitante. Repasa: regionalización económica y desigualdad territorial en México.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmterlflx000qr008cx966og2",
+      "topicId": "cmrr1k8sh005whi3nh7zscdqi",
+      "topic": "Geografía de México",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "stem": "El río Bravo es uno de los más largos de México, pero el río Usumacinta lleva mucha más agua. ¿Qué explica esa diferencia de caudal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El Bravo nace a mayor altitud, y los ríos que nacen en la montaña siempre llevan menos agua que los de llanura",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El Usumacinta drena el sureste lluvioso, y el Bravo cruza cuencas áridas donde el agua se evapora",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El Usumacinta es más corto, y a menor longitud todo río aumenta su caudal de manera automática",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El Bravo desemboca en el océano Pacífico, donde el nivel del mar, más bajo, le resta caudal en la boca",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El caudal depende del clima de la cuenca",
+          "content": "El caudal de un río refleja cuánta lluvia cae en su cuenca y cuánta se pierde. El Usumacinta recoge las intensas lluvias de Chiapas y de la vertiente húmeda vecina: es el río más caudaloso de México. El Bravo, en cambio, atraviesa el desierto chihuahuense; recibe poca lluvia, se evapora mucho y su agua se reparte para riego y ciudades en ambos países.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no las demás",
+          "content": "1) La altitud de nacimiento no determina el caudal; muchos ríos caudalosos nacen en montañas húmedas. 2) La longitud corta no 'aumenta de forma automática' el caudal; no existe tal regla. 3) El Bravo desemboca en el Golfo de México, no en el Pacífico, y el nivel del mar no explica su bajo caudal. Si elegiste la longitud, buscaste la respuesta en una cifra del río y no en el clima de su cuenca.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Hidrografía mexicana",
+          "content": "La vertiente del Golfo y el Caribe concentra la mayor parte del escurrimiento del país; la del Pacífico y las cuencas interiores del norte, mucho menos. Por eso el sureste tiene abundancia de agua y el norte, escasez crónica. Repasa: vertientes hidrográficas de México y disponibilidad de agua.",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}

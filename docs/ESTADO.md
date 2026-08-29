@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G34 (**COMPLETADA — verificación ciega del lote de G33 (35 reactivos de **Historia de México, UNAM Área 3**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda con el canal de entrada limpio desde que existe la regla de G32 §2:** la línea 3 de este documento se lee al inicio de toda sesión por diseño, y esta vez **no nombró ningún punto evaluado por su forma correcta** — de ahí que el **acuerdo sea 35/35 plenamente independiente, 0 reactivos contaminados** (G32: 26/26 limpios de 35; G30: 34/35). La regla funcionó y es el resultado que esta fase aporta. **Ceguera estructural verificada antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; **35/35 `MULTIPLE_CHOICE`**, **0 con `requiresCalculation`** y **0 con pasaje** (los 35 llegan autocontenidos en el `stem`). **Aislamiento comprobado:** no se abrió el commit `ff5be4b` de G33, ni `docs/content-batches/g33-unam-a3-historia-mexico.json`, ni `Question.options`, ni la sección `## G33`, ni el bloque `### Siguiente (G33)` antes de responder (ese bloque se leyó **después** de resolver, para redactar esta sección). **Tercera ronda puramente verbal** tras G30 y G32: sin cálculo no cabe el candado aritmético de G28, así que el control fue el **descarte explícito de los tres distractores por su contenido** (autochequeo POSITION_REF sobre los 35 razonamientos: **0 referencias posicionales**) más, como pidió el encargo, la **verificación factual opción por opción** de los 35 `stem` y las 140 opciones. **0 problemas declarados.** Una sola imprecisión registrada **sin bloquear publicación**: un `stem` fecha en 1862 el envío de tropas de la intervención tripartita, cuando la vanguardia española desembarcó en Veracruz en diciembre de 1861 (Francia e Inglaterra sí en enero de 1862) — es la datación didáctica estándar del temario y no altera lo que el reactivo evalúa, así que va como observación, no como `problems`. **Confianza declarada:** mínima **0.96**, máxima 0.99, promedio **0.984** — el **piso más alto de cualquier ronda ciega** (G30 y G32: 0.92; G28: 0.95; G23: 0.93). Lectura honesta: no es que el lote sea mejor, es que la historia curricular de opción múltiple admite menos matiz que el razonamiento verbal; **la contrapartida es que en ~11 de los 35 los tres distractores caen por imposibilidad material o cronológica sin necesitar el dato que el reactivo dice evaluar**, así que la dificultad declarada puede estar sobreestimada (observación de composición para G35). **El barajado es real:** la etiqueta ciega coincide con la original en **7/35 = 20 %**, por debajo del 25 % de azar. **Confirmación independiente de G33, recontada en vivo:** clave **A9/B9/C9/D8**, rotación +1 **3/34 = 8.8 %** y ratio medio de longitud **1.017** (máx 1.172) — los tres coinciden con lo que G33 registró. **Pero el cue de longitud estaba mal leído (§2):** el «13/35 sin señal aprendible» de G33 es el conteo **estricto** (correcta como **única** más larga), p = 0.076 a una cola; contando los **2 empates** en el máximo son **15/35, p = 0.016**, y el puntaje esperado de la heurística «elige la más larga, empates al azar» es **14.00/35 = 40 %** frente al 25 % de azar, **justo en la cota del 95 %** (k = 14 para 35 ensayos). El ratio medio ≈ 1.0 es neutro y **enmascara** el estadístico de rango (rangos de la correcta {1: 15, 2: 5, 3: 9, 4: 6} contra 8.75 esperados por celda). **Regla nueva (§2):** vigilar el **puntaje esperado tie-aware** y mantenerlo **< 14/35**, no solo el ratio ni el conteo estricto. **Acumulado real, consultado en vivo antes y después:** banco **762** totales · verificados **727 → 762** · cola ciega **35 → 0** · sin publicar con veredicto 0; UNAM A3 Historia de México **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 762 servibles, auto-aprobación global 100 % (762/762), meta efectiva G26 (1 222) al **52 %**, brecha **590 ≈ 17 lotes**; meta nominal de 1 500: 48 % → **51 %**. **Nota honesta: novena ronda ciega consecutiva al 100 % — la métrica sigue saturada y no discrimina**; lo que esta fase aporta es la primera ronda de canal limpio y una corrección metodológica al indicador de longitud. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código de producción —los diagnósticos corrieron en scripts desechables, creados y borrados— y cero llamadas a la API de pago**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G35 (**COMPLETADA — lote de 35 reactivos de **Geografía, UNAM Área 3 (Ciencias Sociales)**. Segunda de las tres materias propias del Área 3 con contenido, tras Historia de México (G33); Historia Universal sigue en cero. Materia **NO compartida** (`sharedContentKey` null, a diferencia de Español/Inglés/Química de la UNAM): el lote va a sus **6 temas propios** y no se reutiliza entre áreas — mismo caso que Historia de México en G33 y Matemáticas Aplicadas de SOCADM en G27. Consulta en vivo a Supabase: los 6 temas en **0 reactivos y 0 `SourceChunk`** → **35/35 TEMARIO_ONLY** (no existe guía de Geografía de la UNAM en `content_sources` ni fragmento clasificado a estos temas). Reparto por los 6 temas sembrados: **5 / 6 / 6 / 6 / 6 / 6** (cartografía y sistemas de referencia · geomorfología · climas y vegetación · geografía política · geografía económica · geografía de México), que cubre las ramas física (17), humana/política (6), económica (6) y de México (6). **35 `MULTIPLE_CHOICE`** (la sección de Geografía de la UNAM es opción múltiple simple; no se forzó `CHART_TABLE` sin tabla, el defecto abierto de G28). Dificultad BASIC 7 / INTERMEDIATE 17 / ADVANCED 9 / EXPERT 2 (≈ 20/49/26/6, la distribución objetivo de `_base.md`). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro dentro de la banda 15–40 % de G3c, **confirmada por query directa a la DB** (`jsonb_array_elements` sobre `options`); la letra la asigna el generador con una búsqueda de semilla fija que impide corridas cíclicas A→B→C→D de longitud ≥ 3 (rotación +1: **4/34**, por debajo del azar ≈ 8.5). **Regla de G34 §2 aplicada:** el auto-chequeo del generador emite el **puntaje esperado tie-aware de la heurística «elige la más larga»** y lo mantiene **por debajo de 14/35** — aquí **6.5/35 ≈ 19 %**, por debajo del azar del 25 %; ratio medio de longitud correcta/distractores **0.998** (mín 0.87, máx 1.08), dispersión máx-mín media de 6 caracteres por reactivo, y las dos heurísticas de longitud («la más larga» y «la más corta») rinden por debajo del azar. `content:validate-batch` **0 violaciones** (corrido antes de tocar la DB y de nuevo como paso obligatorio de `content:insert --lot-dir` sobre los 6 archivos). **0 citas por letra** y **0 citas posicionales** en las 105 capas de explicación (auto-chequeo del generador con las regex de `lot-validation.ts` más el patrón `POSITION_REF` de G33; las capas 2 descartan los distractores **por su contenido**). **Exactitud factual verificada opción por opción antes de insertar.** Caveat honesto (patrón G34 §4): en ~3 reactivos BASIC/INTERMEDIATE algún distractor cae por implausibilidad general más que por el dato exacto; los 2 EXPERT exigen síntesis real. **Acumulado real, consultado en vivo antes y después:** banco **762 → 797** total · verificados **762** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · Geografía UNAM A3 **0✓/0⧗ → 0✓/35⧗** · 105 `ExplanationLayer`. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador y los 6 archivos del lote corren en el scratchpad y no se committean); cero llamadas a la API de pago. **Siguiente: G36 = verificación ciega de este lote** — puramente verbal (0/35 admiten cálculo → no cabe el candado de G28); el control será el descarte explícito de los tres distractores por contenido y la confianza declarada**)
+
+<details><summary>Historial: G34 (2026-08-30)</summary>
+
+Última fase ejecutada: G34 (**COMPLETADA — verificación ciega del lote de G33 (35 reactivos de **Historia de México, UNAM Área 3**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda con el canal de entrada limpio desde que existe la regla de G32 §2:** la línea 3 de este documento se lee al inicio de toda sesión por diseño, y esta vez **no nombró ningún punto evaluado por su forma correcta** — de ahí que el **acuerdo sea 35/35 plenamente independiente, 0 reactivos contaminados** (G32: 26/26 limpios de 35; G30: 34/35). La regla funcionó y es el resultado que esta fase aporta. **Ceguera estructural verificada antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; **35/35 `MULTIPLE_CHOICE`**, **0 con `requiresCalculation`** y **0 con pasaje** (los 35 llegan autocontenidos en el `stem`). **Aislamiento comprobado:** no se abrió el commit `ff5be4b` de G33, ni `docs/content-batches/g33-unam-a3-historia-mexico.json`, ni `Question.options`, ni la sección `## G33`, ni el bloque `### Siguiente (G33)` antes de responder (ese bloque se leyó **después** de resolver, para redactar esta sección). **Tercera ronda puramente verbal** tras G30 y G32: sin cálculo no cabe el candado aritmético de G28, así que el control fue el **descarte explícito de los tres distractores por su contenido** (autochequeo POSITION_REF sobre los 35 razonamientos: **0 referencias posicionales**) más, como pidió el encargo, la **verificación factual opción por opción** de los 35 `stem` y las 140 opciones. **0 problemas declarados.** Una sola imprecisión registrada **sin bloquear publicación**: un `stem` fecha en 1862 el envío de tropas de la intervención tripartita, cuando la vanguardia española desembarcó en Veracruz en diciembre de 1861 (Francia e Inglaterra sí en enero de 1862) — es la datación didáctica estándar del temario y no altera lo que el reactivo evalúa, así que va como observación, no como `problems`. **Confianza declarada:** mínima **0.96**, máxima 0.99, promedio **0.984** — el **piso más alto de cualquier ronda ciega** (G30 y G32: 0.92; G28: 0.95; G23: 0.93). Lectura honesta: no es que el lote sea mejor, es que la historia curricular de opción múltiple admite menos matiz que el razonamiento verbal; **la contrapartida es que en ~11 de los 35 los tres distractores caen por imposibilidad material o cronológica sin necesitar el dato que el reactivo dice evaluar**, así que la dificultad declarada puede estar sobreestimada (observación de composición para G35). **El barajado es real:** la etiqueta ciega coincide con la original en **7/35 = 20 %**, por debajo del 25 % de azar. **Confirmación independiente de G33, recontada en vivo:** clave **A9/B9/C9/D8**, rotación +1 **3/34 = 8.8 %** y ratio medio de longitud **1.017** (máx 1.172) — los tres coinciden con lo que G33 registró. **Pero el cue de longitud estaba mal leído (§2):** el «13/35 sin señal aprendible» de G33 es el conteo **estricto** (correcta como **única** más larga), p = 0.076 a una cola; contando los **2 empates** en el máximo son **15/35, p = 0.016**, y el puntaje esperado de la heurística «elige la más larga, empates al azar» es **14.00/35 = 40 %** frente al 25 % de azar, **justo en la cota del 95 %** (k = 14 para 35 ensayos). El ratio medio ≈ 1.0 es neutro y **enmascara** el estadístico de rango (rangos de la correcta {1: 15, 2: 5, 3: 9, 4: 6} contra 8.75 esperados por celda). **Regla nueva (§2):** vigilar el **puntaje esperado tie-aware** y mantenerlo **< 14/35**, no solo el ratio ni el conteo estricto. **Acumulado real, consultado en vivo antes y después:** banco **762** totales · verificados **727 → 762** · cola ciega **35 → 0** · sin publicar con veredicto 0; UNAM A3 Historia de México **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 762 servibles, auto-aprobación global 100 % (762/762), meta efectiva G26 (1 222) al **52 %**, brecha **590 ≈ 17 lotes**; meta nominal de 1 500: 48 % → **51 %**. **Nota honesta: novena ronda ciega consecutiva al 100 % — la métrica sigue saturada y no discrimina**; lo que esta fase aporta es la primera ronda de canal limpio y una corrección metodológica al indicador de longitud. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código de producción —los diagnósticos corrieron en scripts desechables, creados y borrados— y cero llamadas a la API de pago**)
+
+</details>
 
 <details><summary>Historial: G33 (2026-08-30)</summary>
 
@@ -50,6 +56,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G35 | Lote de reactivos: Geografía, UNAM Área 3 | **COMPLETADA — 35 insertados, isVerified=false, banco 762 → 797, cola ciega 0 → 35** | (G35) | Ver sección dedicada abajo. **Segunda de las 3 materias propias del Área 3 con contenido**, tras Historia de México (G33); Historia Universal sigue en cero. Materia **NO compartida** (`sharedContentKey` null): el lote va a sus **6 temas propios**, sin reutilización entre áreas — como G33 y G27. Consulta en vivo: los 6 temas en 0 reactivos y 0 `SourceChunk` → **35/35 TEMARIO_ONLY** (no hay guía de Geografía de la UNAM en `content_sources`). Reparto por los 6 temas sembrados: **5/6/6/6/6/6** (cartografía · geomorfología · climas y vegetación · geografía política · geografía económica · geografía de México), que cubre las ramas física, humana, económica y de México. 35 `MULTIPLE_CHOICE`; dificultad 7/17/9/2. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; rotación cíclica +1 = 4/34. **Regla de G34 §2 aplicada:** puntaje esperado tie-aware de «elige la más larga» = **6.5/35 ≈ 19 %** (umbral < 14/35), ratio medio de longitud **0.998**. `content:validate-batch` 0 violaciones. 0 citas por letra / posicionales en 105 `ExplanationLayer`. Exactitud factual verificada opción por opción. Registro en `docs/content-batches/g35-unam-a3-geografia.json`. Generador de Python desechable (no committeado). |
 | G34 | Verificación ciega: Historia de México, UNAM Área 3 (lote de G33) | **COMPLETADA — 35/35 auto-aprobados = 100 %, banco 762, verificados 727 → 762, cola ciega 35 → 0** | (G34) | Ver sección dedicada abajo. **Primera ronda de canal de entrada limpio** desde la regla de G32 §2: la línea 3 no filtró ningún punto por su forma correcta → **acuerdo 35/35 independiente, 0 contaminados** (G32: 26/26; G30: 34/35). Ceguera estructural verificada (`grep` de campos de respuesta = 0; opciones solo `label/text/imageUrl`; 0 `requiresCalculation`; 0 pasajes). Ronda **puramente verbal**: el control fue el descarte de los tres distractores **por contenido** (0 referencias posicionales) más **verificación factual opción por opción** de 35 `stem` y 140 opciones — **0 problemas**, una imprecisión de datación registrada sin bloquear. Confianza mín **0.96** / prom **0.984**, el piso más alto registrado. Barajado real: etiqueta ciega = original en **7/35 = 20 %**. Reconteo en vivo confirma clave, rotación y ratio de G33; **corrige su lectura del cue de longitud** (§2): tie-aware **14.00/35 = 40 %** contra 25 % de azar. |
 | G33 | Lote de reactivos: Historia de México, UNAM Área 3 | **COMPLETADA — 35 insertados, isVerified=false, banco 727 → 762, cola ciega 0 → 35** | (G33) | Ver sección dedicada abajo. **Primera cobertura de contenido propio del Área 3** (Ciencias Sociales); sus materias propias estaban en cero absoluto (el pool servible de 35 era Español reutilizado por G26). El encargo redirigió el hueco que G30–G32 nombraban en **IPN SOCADM** hacia **UNAM A3** Historia de México — también en cero y de mayor peso del área (`questionWeight` 7). Materia **NO compartida** (`sharedContentKey` null): el lote va a sus 6 temas propios, sin reutilización entre áreas. Reparto por los 6 temas sembrados (época prehispánica → México contemporáneo): 5/6/6/6/7/5; el Porfiriato, sin tema propio en el temario, repartido entre Reforma y Revolución. **7 SOURCED** (el tema Revolución Mexicana tiene 2 `SourceChunk` de una guía de la UAM clasificada ahí por F2b; sus reactivos citan ambos) **/ 28 TEMARIO_ONLY.** 35 `MULTIPLE_CHOICE` de **comprensión de procesos** (causas, consecuencias, continuidades, contrastes — no efemérides), como pidió el encargo. Dificultad 7/17/9/2. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; rotación cíclica +1 = 3/34; correcta = opción más larga 13/35, ratio medio de longitud 1.02 (cue de G30/G31 vigilado, sin señal). `content:validate-batch` 0 violaciones. 105 `ExplanationLayer`, 14 `question_source_chunks`. Registro en `docs/content-batches/g33-unam-a3-historia-mexico.json`. Generador de Python desechable (auto-chequea letra, longitud, citas por letra, **citas posicionales** y grounding). |
 | G32 | Verificación ciega: Inglés IPN (lote de G31) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 692 → 727 verificados, cola ciega 35 → 0** | (G32) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G31. **Primera ronda ciega sobre contenido en inglés**; segunda puramente verbal tras G30 (0/35 admiten cálculo → sin candado aritmético de G28; el control es el descarte explícito de los tres distractores más la regla gramatical citada por su nombre). Ceguera estructural verificada (`grep` = 0; claves de opción solo `label, text, imageUrl`); **los 18 de comprensión llegaron CON su pasaje** (4 pasajes, 5/5/3/5). Aislamiento comprobado: no se abrió el commit de G31, ni el JSON del lote, ni `Question.options`, ni la sección `## G31`, ni el bloque `### Siguiente (G31)`. **Contaminación grave declarada, y de canal:** la **línea 3** de este documento enumeraba los puntos evaluados **por su forma correcta**, entregando 6 respuestas de forma decisiva, 1 ambigua y 2 por tema → **acuerdo limpio 26/26**, los otros 9 aprobados con la contaminación anotada. Es el defecto de G30 §1 migrado del bloque `### Siguiente` al encabezado; la enumeración quedó **redactada** y la regla nueva está en §2. Confianza mínima **0.92**, promedio 0.965, 0 problemas. Barajado real: la etiqueta ciega coincide con la original en 10/35 (28.6 %). **Confirmación independiente de G31:** clave A9/B9/C9/D8, rotación 6/34 = 17.6 %, correcta = más larga 8/35 = 22.9 %, 18 con pasaje — **los cuatro coinciden con lo registrado** (a diferencia de G29). Octava ronda seguida al 100 %: métrica saturada, y se dice así. Cero cambios de código de producción. |
@@ -2123,6 +2130,167 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G35 — Lote de reactivos: Geografía, UNAM Área 3 (2026-08-30)
+
+**Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
+contenido). **COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la
+cola de verificación ciega. Segunda de las tres materias propias del **Área 3
+(Ciencias Sociales)** con contenido, tras Historia de México (G33).
+
+### 1) El encargo y la elección de materia
+
+G33 abrió Historia de México (la de mayor `questionWeight` del Área 3). El encargo
+de G35 pidió **Geografía**. Consulta en vivo a Supabase antes de componer:
+
+| Institución · Área | Materia | `sharedContentKey` | `questionWeight` | Temas | Reactivos hoy | `SourceChunk` |
+|---|---|---|---:|---:|---:|---:|
+| UNAM · Área 3 | Historia de México | `null` | 7 | 6 | 35 (G33) | 2 |
+| UNAM · Área 3 | Historia Universal | `null` | 5 | 8 | **0** | 1 |
+| UNAM · Área 3 | **Geografía** | `null` | **4** | **6** | **0** | **0** |
+
+Geografía **no es materia compartida** (`sharedContentKey` null, a diferencia de
+Español, Inglés y Química de la UNAM), así que el lote va a sus **6 temas propios**
+y **no** se reutiliza entre áreas — mismo caso que Historia de México en G33
+(sharedKey null → temas propios) y Matemáticas Aplicadas de SOCADM en G27, opuesto
+a Español en G29. Historia Universal (w5) queda pendiente.
+
+### 2) Anclaje: 35/35 TEMARIO_ONLY
+
+`loadTopicChunks` devolvió **0 `SourceChunk`** para los 6 temas de Geografía, y la
+consulta a nivel de `subjectId` también dio 0. **No existe guía de Geografía de la
+UNAM en `content_sources`** y el clasificador F2b no asignó fragmento alguno de las
+otras guías (CENEVAL, ECOEMS, UAM) a estos temas. Composición desde el **temario
+oficial del Área 3**, como G22/G27/G29/G31. Los 35 salen `groundingStatus =
+TEMARIO_ONLY`; ningún reactivo cita fuente.
+
+### 3) Los 35 reactivos
+
+Reparto por los 6 temas sembrados (un archivo por tema, `content:insert --lot-dir`).
+Descripción por **proceso y subtema**, sin nombrar la forma correcta de ninguna
+respuesta (G32 §2 / G34 §3):
+
+| Tema (posición en el temario) | Reactivos | Rama | Subtemas evaluados |
+|---|---:|---|---|
+| Cartografía y sistemas de referencia | 5 | física | coordenadas geográficas, proyecciones cartográficas, curvas de nivel, escala, husos horarios |
+| Geomorfología | 6 | física | procesos endógenos y exógenos, límites de placas, meteorización, formas fluviales, sismicidad y vulcanismo (1 EXPERT) |
+| Climas y vegetación | 6 | física | factores del clima, efecto orográfico, circulación general de la atmósfera, corrientes marinas, biomas, continentalidad |
+| Geografía política | 6 | humana | elementos del Estado, formas de Estado, zonas marítimas, bloques de integración regional, tipos de frontera, nación y Estado |
+| Geografía económica | 6 | económica | sectores económicos, transición sectorial y desarrollo, localización industrial, recursos renovables, indicadores de desarrollo, economías primario-exportadoras |
+| Geografía de México | 6 | de México | climas del país, distribución de la población, riesgo sísmico, provincias fisiográficas, regionalización económica, hidrografía (1 EXPERT) |
+
+- **Formato:** 35 `MULTIPLE_CHOICE`. La sección de Geografía del examen de la UNAM
+  es opción múltiple simple; **no** se usó `CHART_TABLE` para reactivos de datos en
+  prosa sin tabla ni imagen (el defecto de composición abierto de G28).
+- **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6,
+  la distribución objetivo de `_base.md`; misma que G33).
+- **Distractores:** cada uno nace de un error conceptual nombrable (confundir dos
+  propiedades de un mismo objeto, invertir una relación causa-efecto, aplicar una
+  regla de un caso a otro, mezclar dos procesos), citado en la capa 2 **por su
+  contenido**, nunca por su posición. Sin nombrar aquí la forma correcta (G34 §3).
+- **Exactitud factual:** verificada opción por opción contra el temario oficial y
+  la bibliografía estándar de bachillerato antes de insertar (fechas, cifras,
+  atribuciones, encadenamiento de causas, ubicaciones); las cifras que aparecen en
+  algún stem se dieron como aproximaciones de libro de texto.
+- **Caveat de dificultad (patrón G34 §4):** en ~3 reactivos BASIC/INTERMEDIATE
+  (uno de geomorfología, uno de climas, uno de geografía política) alguno de los
+  distractores se descarta por implausibilidad general más que por el dato exacto;
+  las etiquetas de esos son BASIC/INTERMEDIATE, sin sobreestimación. Los 2 EXPERT
+  (uno de geomorfología, uno de geografía de México) exigen síntesis real.
+
+### 4) Distribución de posición y cue de longitud (G3c / G8 / G34 §2)
+
+- **Clave A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %), las cuatro
+  dentro de la banda 15–40 %. **Confirmada por query directa a la DB**
+  (`jsonb_array_elements` sobre `options`), no solo por el log.
+- **La letra la asigna el generador**, no la mano: búsqueda con semilla fija que
+  descarta cualquier secuencia con corridas cíclicas A→B→C→D de longitud ≥ 3 (en
+  ambos sentidos), triples repeticiones y rotación +1 alta. Rotación +1 medida:
+  **4/34 = 11.8 %**, por debajo del azar ≈ 8.5… ligeramente por encima pero sin
+  el patrón cíclico de los ~140 reactivos viejos de G3a/G3d/G13/G15.
+- **Cue de longitud — regla nueva de G34 §2 aplicada por primera vez en la
+  composición:** el auto-chequeo del generador reporta el **puntaje esperado
+  tie-aware de la heurística «elige la más larga», empates al azar**, y el lote se
+  reescribió hasta bajarlo a **6.5/35 ≈ 19 %** — por debajo del 25 % de azar y muy
+  por debajo de la cota de 14/35. El primer borrador daba 30.5/35 (la correcta
+  arrastraba la cláusula justificativa de la capa 1); el segundo, tras recortar
+  las correctas a la aserción, se pasó al otro extremo (4.5/35, la correcta casi
+  siempre la más corta); el tercero equilibró las cuatro opciones a longitud
+  homogénea. Ratio medio de longitud correcta/distractores **0.998** (mín 0.87,
+  máx 1.08); dispersión máx-mín **media 6 caracteres** por reactivo (máx 17).
+  Histograma de rango de longitud de la correcta {1: 7, 2: 14, 3: 11, 4: 3}: la
+  correcta cae en el rango 2 más de lo esperado, pero **ninguna de las dos
+  heurísticas explotables** («la más larga» o «la más corta») supera el azar.
+- `content:validate-batch --dir <lote>`: **0 violaciones** (corrido antes de tocar
+  la DB y de nuevo como paso obligatorio de `content:insert --lot-dir`).
+- **0 citas por letra** y **0 citas posicionales** en las 105 capas de explicación
+  (auto-chequeo del generador con las regex de `lot-validation.ts` más el patrón
+  `POSITION_REF` de G33).
+
+### 5) Inserción real — verificada en la DB
+
+| Métrica | Antes de G35 | Después de G35 |
+|---|---:|---:|
+| Banco total | 762 | **797** |
+| Verificados (`isVerified=true`) | 762 | 762 |
+| Cola ciega (`isVerified=false`, sin veredicto) | 0 | **35** |
+| `ExplanationLayer` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **0** (TEMARIO_ONLY) |
+| UNAM A3 Geografía · 6 temas | 0 / 0 / 0 / 0 / 0 / 0 | **5 / 6 / 6 / 6 / 6 / 6** |
+
+Chequeos post-inserción (query directa): los 35 con exactamente 4 opciones y 1
+correcta, 105 `ExplanationLayer`, 35 `TEMARIO_ONLY`, cola ciega 0 → 35, clave
+A9/B9/C9/D8. Cohorte con `id` prefijo `cmterj…`–`cmterlf…` del 2026-08-29 —
+separable por `topicId` o por timestamp para la verificación ciega de G36.
+
+### 6) Limpieza
+
+El lote se compuso con un generador de Python desechable (`build_g35.py`) en el
+scratchpad de la sesión: los 35 reactivos están redactados a mano en el archivo;
+el generador solo asigna la letra correcta (búsqueda anti-rotación con semilla) y
+auto-chequea, antes de validar, la distribución de letra, el **puntaje tie-aware
+de longitud (G34 §2)**, las citas por letra y posicionales y el grounding. El
+generador y los 6 archivos del lote **no se committean**; el registro permanente
+es `docs/content-batches/g35-unam-a3-geografia.json` (enriquecido con los
+`questionId` reales). `pnpm typecheck` y `pnpm lint` en verde (cero cambios de
+código de producción). Cero llamadas a la API de pago.
+
+### Siguiente (G35)
+
+1. **Verificación ciega del lote de G35** (segunda mitad del ciclo de G2):
+   `pnpm content:blind-batch --topic <cada uno de los 6 topicId>` →
+   `content:resolve`. **Lote puramente verbal**, como los de G30 y G34: **0/35
+   admiten cálculo**, así que no cabe el candado aritmético de G28; el control es
+   el **descarte explícito de los tres distractores por su contenido** y la
+   **confianza declarada** (el indicador que aún discrimina). **Sin pasajes** en
+   el lote → los 35 llegan autocontenidos en el `stem`; **sin `SourceChunk`** →
+   los 35 se responden con conocimiento geográfico de bachillerato. **Reactivos
+   más apretados** (se señala cuáles, no cómo resolverlos, por G30 §1): los **2
+   `EXPERT`** (uno en Geomorfología, uno en Geografía de México) son de síntesis;
+   el reactivo de coherencia clima-vegetación y el de procesos endógeno/exógeno
+   tienen distractores algo eliminables por implausibilidad (G34 §4).
+2. **Huecos que siguen abiertos** tras G35:
+   - **UNAM A3 Historia Universal** (8 temas, w5) — la única materia propia del
+     Área 3 aún en cero; tiene 1 `SourceChunk` en el tema Guerras Mundiales.
+   - **IPN SOCADM Historia de México** (6 temas, cero) — el que G30–G32 nombraban;
+     ni G33 ni G35 lo abrieron.
+   - **UNAM A4** (Humanidades y Artes) entera en cero; **IPN SOCADM** resto de
+     materias.
+3. **Regla de G32 §2 / G34 §3 aplicada:** la línea 3, la fila de tabla y las
+   tablas de §3–§5 de esta sección describen la cobertura por **tema y subtema**,
+   nunca por la forma correcta de un reactivo; no se nombra ningún dato geográfico
+   como respuesta. La sesión ciega de G36 no abre `## G35` (G32/G34 confirmaron
+   que no abrieron `## G31` / `## G33`).
+4. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): ¿entran UNAM A3/A4
+   e IPN SOCADM en la meta de 1 500 / 1 222? Lleva siete fases condicionando la
+   planeación sin respuesta del dueño.
+5. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % (el lote de G35 entra al
+   universo muestreable una vez que G36 lo verifique), las 8 `CHART_TABLE` sin
+   tabla ni imagen de G28, y `content:coverage` que aún no refleja la reutilización
+   de G26 (G30 §10.3).
+
+---
 
 ## G34 — Verificación ciega: Historia de México, UNAM Área 3 (lote de G33) (2026-08-30)
 
