@@ -1,0 +1,1827 @@
+{
+  "batch": "G29",
+  "generatedAt": "2026-08-29T05:44:31.147Z",
+  "institution": "IPN",
+  "exam": "Examen de Admisión IPN 2027",
+  "subject": "Español/Lectura",
+  "sharedContentKey": "IPN:ESPANOL",
+  "insertedAgainstArea": "Ingeniería y Ciencias Físico-Matemáticas (FISMAT)",
+  "insertedAgainstSubjectId": "cmrr1lh1n00bhhi3nq64xyp01",
+  "servesAreas": [
+    "FISMAT (w4)",
+    "MEDBIO (w6)",
+    "SOCADM (w3) — encargo original"
+  ],
+  "selectionRule": "Encargo G29: 35 reactivos de Español/Comunicación para la rama SOCADM del IPN. Español/Lectura es materia COMPARTIDA (sharedContentKey=IPN:ESPANOL, migración 0011/G26): el pool verificado se reutiliza entre las 3 ramas del examen IPN. Regla de CLAUDE.md/G26: componer contra el topicId de la materia con MÁS contenido del grupo. Consulta en vivo 2026-08-28: FISMAT Español/Lectura = 35 verificados (Ortografía 6, Gramática 9, Comprensión lectora 10, Análisis de textos 10); MEDBIO = 0; SOCADM = 0. Además, FISMAT es la única de las 3 ramas cuyo temario nombra temas dedicados de Ortografía y Gramática, que es donde caen los formatos del encargo (analogías, completar oraciones, ortografía, gramática). El lote se inserta contra los 4 temas de FISMAT y la reutilización G26 lo sirve a MEDBIO y SOCADM. Matemáticas Aplicadas de SOCADM (G27) SÍ fue a temas de SOCADM porque su sharedContentKey es null; Español/Lectura no.",
+  "grounding": "TEMARIO_ONLY (cero SourceChunk para cualquier tema/materia de Español de IPN; no existe guía IPN en content_sources)",
+  "totalQuestions": 35,
+  "positionDistribution": {
+    "B": 8,
+    "D": 9,
+    "A": 9,
+    "C": 9
+  },
+  "formatDistribution": {
+    "READING_COMPREHENSION": 20,
+    "SENTENCE_COMPLETION": 4,
+    "ANALOGY": 3,
+    "MULTIPLE_CHOICE": 8
+  },
+  "difficultyDistribution": {
+    "INTERMEDIATE": 17,
+    "BASIC": 7,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "letterSequenceInsertionOrder": "BDACBDCADBACDBDACBADCADBCABDCACBDAC",
+  "passages": [
+    {
+      "passageId": "cmtdydjb800006f72jw3t02fg",
+      "ref": "g29-ajolote",
+      "title": "El ajolote, entre el agua y la tierra",
+      "original": true,
+      "sourceRef": null,
+      "content": "El ajolote es una salamandra que habita los canales de Xochimilco, al sur de la Ciudad de México, y que intriga a los biólogos por una peculiaridad de su desarrollo. Casi todos los anfibios pasan por una metamorfosis: nacen en el agua, con branquias y una cola aplanada para nadar, y al crecer desarrollan pulmones y patas robustas para salir a tierra firme. El ajolote se detiene a la mitad de ese camino: llega a la edad adulta y puede reproducirse sin perder las branquias externas, la aleta que le recorre el lomo ni la vida acuática de su etapa juvenil. Los especialistas llaman a este fenómeno neotenia: la permanencia de rasgos infantiles en un organismo ya adulto.\n\nEsa biología poco común viene acompañada de otra capacidad notable. Si el ajolote pierde una pata, un trozo de la cola o incluso una porción del corazón, puede volver a formar el tejido dañado en pocas semanas, sin que quede cicatriz. Por eso decenas de laboratorios en distintos países lo crían y lo estudian. La paradoja es amarga: mientras la especie se multiplica en peceras de investigación de todo el mundo, en su único hogar natural apenas sobreviven unos cuantos individuos, amenazados por la contaminación del agua y por peces introducidos que se comen a sus crías.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmtdydk6j00016f72a9q8nkfz",
+      "ref": "g29-escritura",
+      "title": "Escribir a mano en tiempos del teclado",
+      "original": true,
+      "sourceRef": null,
+      "content": "Se ha vuelto común oír que enseñar caligrafía es una pérdida de tiempo. Si casi todo lo que escribimos de adultos pasa por un teclado, ¿para qué insistir en que un niño trace letras ligadas durante horas? El argumento suena razonable, pero deja de lado lo que ocurre mientras alguien escribe a mano.\n\nVarios estudios han observado que tomar apuntes con lápiz y papel obliga a resumir, ordenar y expresar con palabras propias lo que se escucha, porque la mano no alcanza a copiarlo todo tal cual. Quien teclea, en cambio, puede transcribir casi de forma literal sin detenerse a procesar el contenido, y luego lo recuerda peor. A esto se suma que trazar cada letra a mano exige una coordinación fina entre la vista y el movimiento, y esa coordinación parece ayudar a fijar la forma de las palabras, y con ella la ortografía.\n\nNada de lo anterior significa que haya que renunciar al teclado, que es más rápido y siempre resulta legible. Significa que la escritura a mano no es un adorno del pasado, sino una herramienta de aprendizaje con efectos propios. Abandonarla del todo en los primeros años de la escuela tiene un costo que la comodidad de teclear no alcanza a compensar.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmtdye0930000glvkmh9453oa",
+      "ref": "g29-espera",
+      "title": "La espera",
+      "original": true,
+      "sourceRef": null,
+      "content": "El camión debía haber pasado a las seis y media. Rosa llevaba media hora en la caseta de lámina, viendo cómo la carretera se perdía entre los cerros. El sol se había ido hacía rato y el frío empezaba a colarse por las mangas del suéter.\n\nVeinte años antes había esperado en esa misma banca, con una maleta de cartón y unos zapatos nuevos que le apretaban. Aquella vez el camión llegó puntual y se la llevó a la ciudad sin que ella volteara ni una sola vez a mirar atrás. Ahora volvía con las manos vacías y una dirección apuntada en un papel, a buscar una casa que quizá ya no existía.\n\nUn perro flaco cruzó la carretera con la calma de quien se sabe los horarios de memoria. A lo lejos, dos luces amarillas aparecieron en la curva y fueron creciendo despacio, como dos ojos que se abrieran en la oscuridad. Rosa se levantó, se ajustó el suéter y sintió, sin quererlo, que el corazón le daba un golpe, como si volviera a tener dieciocho años y la maleta de cartón a los pies.",
+      "linkedQuestions": 5
+    },
+    {
+      "passageId": "cmtdye14q0001glvkcizd0mae",
+      "ref": "g29-releer",
+      "title": "Releer",
+      "original": true,
+      "sourceRef": null,
+      "content": "Volver a un libro que ya leímos tiene mala fama. Se lo ve como una forma de pereza, como si el lector se negara a explorar los millones de páginas que aún no conoce. Pero releer no es repetir: es medir la distancia entre dos lecturas.\n\nEl libro no ha cambiado ni una coma. Quien cambió es el que lee. A los quince años, una novela sobre una herencia disputada puede parecer solo una intriga; a los cuarenta, con un padre enfermo y unos hermanos con los que hay que ponerse de acuerdo, el mismo capítulo se vuelve casi insoportable de tan cierto. El texto funciona entonces como una marca en la pared: uno se para junto a él y comprueba cuánto ha crecido, o cuánto ha perdido.\n\nPor eso conviene releer al menos unos cuantos libros a lo largo de la vida. No para descubrir en ellos algo que el autor escondió, sino para descubrir en uno mismo algo que antes no estaba. Un lector que nunca vuelve sobre sus pasos avanza mucho, pero nunca sabe desde dónde salió.",
+      "linkedQuestions": 5
+    }
+  ],
+  "questions": [
+    {
+      "questionId": "cmtdydkm600036f723r2y1j5w",
+      "topic": "Comprensión lectora",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-ajolote",
+      "passageId": "cmtdydjb800006f72jw3t02fg",
+      "stem": "¿Qué enunciado expresa mejor la idea central del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La contaminación de los canales de Xochimilco es la principal causa de la pérdida de anfibios en México.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El ajolote llega a adulto sin perder rasgos de su etapa juvenil y, además, regenera partes de su cuerpo.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Todos los anfibios pasan por una metamorfosis que los prepara para dejar el agua y vivir en tierra firme.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los laboratorios que crían ajolotes tendrían que devolverlos pronto a su hábitat natural en Xochimilco.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos rasgos, una sola idea",
+          "content": "El texto se organiza alrededor de dos características del ajolote: que llega a adulto sin completar la metamorfosis (neotenia) y que regenera tejidos. El enunciado que menciona ambas resume la idea central; los demás recogen un detalle del cierre o una postura que el texto no defiende."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo localizar la idea central",
+          "content": "1) El primer bloque explica que el ajolote 'se detiene a la mitad' de la metamorfosis y conserva branquias y vida acuática. 2) El segundo bloque añade que 'puede volver a formar el tejido dañado... sin que quede cicatriz'. 3) La idea central debe cubrir el texto completo. El enunciado sobre la contaminación toma solo el final; el que habla de la metamorfosis de todos los anfibios es el contraste con el que se explica lo raro del ajolote, no la tesis; el que propone devolver los ajolotes al hábitat expresa una opinión ausente en el texto. Si elegiste el de la metamorfosis general, confundiste el dato de apoyo con la idea principal."
+        },
+        {
+          "layer": 3,
+          "title": "Idea central frente a detalle de apoyo",
+          "content": "La idea central sostiene todo el texto; los detalles de apoyo ilustran o contrastan y podrían quitarse sin que el texto pierda su sentido global. Repasa: jerarquía de ideas (principal, secundarias y de detalle) y cómo distinguir la tesis de un ejemplo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydlem00086f72ve2jysho",
+      "topic": "Comprensión lectora",
+      "difficulty": "BASIC",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-ajolote",
+      "passageId": "cmtdydjb800006f72jw3t02fg",
+      "stem": "De acuerdo con el texto, la palabra «neotenia» se refiere a…",
+      "options": [
+        {
+          "id": "A",
+          "text": "la capacidad de volver a formar una pata, la cola o parte del corazón.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el paso completo de la vida en el agua a la vida en tierra firme.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la costumbre de pasar una parte del tiempo en el agua y otra en tierra.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la permanencia de rasgos juveniles en un organismo que ya es adulto.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El texto define el término",
+          "content": "Justo después de nombrar el fenómeno, el texto aclara: 'la permanencia de rasgos infantiles en un organismo ya adulto'. Esa es la definición que hay que tomar, sin agregarle nada."
+        },
+        {
+          "layer": 2,
+          "title": "Localizar una definición dada en el texto",
+          "content": "1) Busca la palabra 'neotenia' en el texto. 2) Fíjate en lo que viene inmediatamente después de los dos puntos: 'la permanencia de rasgos infantiles en un organismo ya adulto'. 3) Compara con las opciones: la de volver a formar tejido describe la otra característica del ajolote, que aparece en el párrafo siguiente; la del paso a la vida terrestre es lo contrario (el ajolote no lo completa); la de repartir el tiempo entre agua y tierra define a los anfibios en general. Si elegiste la de regeneración, uniste dos rasgos que el texto presenta por separado."
+        },
+        {
+          "layer": 3,
+          "title": "Términos definidos en el propio texto",
+          "content": "En los textos de divulgación, un término técnico suele ir seguido de su definición, muchas veces tras dos puntos, una coma explicativa o un 'es decir'. Reconocer esa marca evita responder de memoria. Repasa: aposiciones explicativas y marcas de definición."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydm6w000d6f72p6qhthuz",
+      "topic": "Comprensión lectora",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-ajolote",
+      "passageId": "cmtdydjb800006f72jw3t02fg",
+      "stem": "¿Qué se puede inferir a partir del último párrafo del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La especie puede seguir existiendo aunque su población en libertad casi desaparezca.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El ajolote ya se extinguió por completo en los canales de Xochimilco.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los laboratorios del mundo trabajan de forma coordinada para reintroducir ajolotes en Xochimilco.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La contaminación del agua en Xochimilco ya quedó resuelta.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El contraste del cierre permite la inferencia",
+          "content": "El texto opone dos situaciones simultáneas: la especie 'se multiplica en peceras de investigación de todo el mundo', mientras que en su hábitat 'apenas sobreviven unos cuantos individuos'. De ahí se sigue que la existencia de la especie no depende hoy solo de los ajolotes silvestres."
+        },
+        {
+          "layer": 2,
+          "title": "Distinguir la inferencia válida de la exageración",
+          "content": "1) Identifica el contraste final: éxito en cautiverio y casi desaparición en la naturaleza. 2) Una inferencia válida se apoya en el texto sin llevarlo más lejos. 3) 'Se extinguió por completo' contradice 'apenas sobreviven unos cuantos'; que los laboratorios 'reintroducen de forma coordinada' agrega información que no aparece; que 'la contaminación ya se resolvió' choca con que se nombra como amenaza vigente. Si elegiste la de la extinción total, convertiste 'casi desaparece' en 'desapareció'."
+        },
+        {
+          "layer": 3,
+          "title": "Inferir sin sobreinterpretar",
+          "content": "Inferir es extraer una conclusión que el texto no dice con todas sus letras pero que se desprende de lo que sí dice. La diferencia con adivinar está en el apoyo textual y en no exceder lo afirmado. Repasa: inferencia válida frente a sobreinterpretación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydmz0000i6f72i8gh59a6",
+      "topic": "Comprensión lectora",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-ajolote",
+      "passageId": "cmtdydjb800006f72jw3t02fg",
+      "stem": "¿Con qué propósito el autor cierra el texto llamando «amarga» a la paradoja?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Para proponer que se prohíba la cría de ajolotes en los laboratorios de todo el mundo.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Para explicar con detalle de qué manera y en qué época del año se reproduce el ajolote.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Para resaltar el contraste entre su éxito en cautiverio y su fragilidad en libertad.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Para quitar toda importancia al problema de la contaminación del agua en los canales.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El adjetivo carga de valoración el contraste",
+          "content": "Llamar 'amarga' a la paradoja subraya la contradicción del final: el ajolote se multiplica en peceras de todo el mundo justo cuando está a punto de desaparecer de su único hogar. El adjetivo sirve para que el lector sienta ese contraste, no para proponer una medida."
+        },
+        {
+          "layer": 2,
+          "title": "Qué hace una conclusión con léxico valorativo",
+          "content": "1) Una 'paradoja' reúne dos hechos que parecen incompatibles: aquí, prosperar y casi extinguirse a la vez. 2) 'Amarga' es un juicio del autor sobre esa situación. 3) El propósito de un cierre así es dejar una impresión subrayando la contradicción. Prohibir la cría o describir la reproducción son temas que el párrafo no toca; quitar importancia a la contaminación va en contra del tono, que la vuelve más grave. Si elegiste la de prohibir laboratorios, tomaste una crítica implícita por una propuesta explícita."
+        },
+        {
+          "layer": 3,
+          "title": "Tono y función de la conclusión",
+          "content": "Los adjetivos con carga emotiva ('amarga', 'notable') revelan la actitud del autor frente a lo que cuenta. La conclusión de un texto expositivo suele fijar esa actitud y dejar una idea final. Repasa: connotación, tono y función de la conclusión."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydnr6000n6f72d9eupl3e",
+      "topic": "Comprensión lectora",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-ajolote",
+      "passageId": "cmtdydjb800006f72jw3t02fg",
+      "stem": "¿Qué patrón de organización sigue la información en el texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Compara punto por punto al ajolote con varias especies de salamandra de México.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Da a conocer un rasgo llamativo, lo nombra, suma otro y termina en una contradicción.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Narra en orden cronológico el ciclo de vida del ajolote, del huevo a la etapa adulta.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Enumera una por una todas las causas de la desaparición del ajolote y sus efectos.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Tres tramos encadenados",
+          "content": "El texto avanza así: primero describe que el ajolote no completa la metamorfosis y le pone nombre a eso ('neotenia'); después suma la regeneración de tejidos; y cierra con la contradicción entre su abundancia en laboratorios y su casi desaparición en Xochimilco."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar los otros patrones",
+          "content": "1) Marca el tema de cada párrafo: párrafo uno, metamorfosis incompleta y término; párrafo dos, regeneración y un cierre en contraste. 2) Revisa si hay comparación sistemática con otras especies (no la hay), una línea de tiempo del ciclo de vida (no la hay) o una lista de causas y efectos (solo se nombran dos amenazas al final). 3) Queda la organización 'rasgo, nombre, segundo rasgo, contradicción'. Si elegiste la cronológica, tomaste la mención de la 'etapa juvenil' como si el texto siguiera una secuencia temporal."
+        },
+        {
+          "layer": 3,
+          "title": "Patrones de organización textual",
+          "content": "Un texto expositivo puede organizarse por enumeración, comparación-contraste, causa-efecto, problema-solución o secuencia temporal. Identificar el patrón ayuda a anticipar qué información viene después. Repasa: estructuras de los textos expositivos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydojd000s6f7228110exj",
+      "topic": "Comprensión lectora",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-escritura",
+      "passageId": "cmtdydk6j00016f72a9q8nkfz",
+      "stem": "¿Cuál es la tesis que sostiene el autor a lo largo del texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Enseñar caligrafía en la escuela es una pérdida de tiempo que conviene eliminar del todo.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El teclado debería prohibirse en las aulas durante los primeros años de la escuela.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Tomar apuntes a mano es el único método de estudio que de verdad da resultados.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La escritura a mano influye en el aprendizaje y no conviene abandonarla en la escuela.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La objeción se cita para rebatirla",
+          "content": "El texto abre con la idea de que 'enseñar caligrafía es una pérdida de tiempo' solo para discutirla. Lo que el autor sostiene es que escribir a mano influye en el aprendizaje de un modo que el teclado no reproduce, y que por eso no debe dejarse de lado, sobre todo en la escuela."
+        },
+        {
+          "layer": 2,
+          "title": "Separar la tesis de las ideas citadas",
+          "content": "1) El primer párrafo plantea la postura que el autor va a discutir, no la suya. 2) El resto da razones a favor de la escritura manual: resumir al tomar apuntes, coordinación vista-mano, ortografía. 3) El cierre confirma la tesis: 'no es un adorno del pasado, sino una herramienta de aprendizaje con efectos propios'. Prohibir el teclado es más fuerte que lo que el autor dice ('nada... significa que haya que renunciar al teclado'). Si elegiste 'enseñar caligrafía es una pérdida de tiempo', tomaste por tesis la frase que el autor cita para rebatir."
+        },
+        {
+          "layer": 3,
+          "title": "Tesis frente a opiniones mencionadas",
+          "content": "La tesis es la postura que el autor defiende y sostiene hasta el final; las demás opiniones aparecen para apoyarla o para ser rebatidas. Repasa: estructura del texto argumentativo (tesis, argumentos y contraargumentos)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydpbr000x6f72uh2taqju",
+      "topic": "Comprensión lectora",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-escritura",
+      "passageId": "cmtdydk6j00016f72a9q8nkfz",
+      "stem": "¿Qué función cumple el segundo párrafo, que comienza con «Varios estudios han observado…»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Presenta la opinión contraria, que el autor va a rechazar.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Relata una experiencia personal del autor con la escritura.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Aporta razones y evidencia que respaldan la postura del autor.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Define términos técnicos necesarios para entender el resto del texto.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El párrafo aporta apoyo, no objeción",
+          "content": "El primer párrafo ya presentó la objeción. El segundo cambia de función: reúne hallazgos de estudios sobre la toma de apuntes y sobre la coordinación entre vista y mano. Son datos que sirven de apoyo a lo que el autor quiere demostrar."
+        },
+        {
+          "layer": 2,
+          "title": "Preguntar qué hace el párrafo, no solo qué dice",
+          "content": "1) El párrafo menciona 'varios estudios han observado' y expone resultados concretos: quien escribe a mano resume; quien teclea recuerda peor. 2) Eso funciona como evidencia a favor de la postura del autor. 3) No es la opinión contraria (esa está en el párrafo anterior), no es una anécdota personal y no define términos. Si elegiste 'presenta la opinión contraria', confundiste el segundo párrafo con el primero."
+        },
+        {
+          "layer": 3,
+          "title": "Funciones de los párrafos",
+          "content": "En un texto argumentativo, los párrafos pueden introducir el tema, plantear la tesis, aportar argumentos o evidencia, presentar y refutar objeciones o concluir. Un mismo texto combina varias funciones. Repasa: párrafo y progresión temática."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydq4000126f72lt1qmy1r",
+      "topic": "Comprensión lectora",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-escritura",
+      "passageId": "cmtdydk6j00016f72a9q8nkfz",
+      "stem": "En el texto, el autor concede (admite) que…",
+      "options": [
+        {
+          "id": "A",
+          "text": "el teclado es más rápido y siempre resulta legible.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "escribir a mano ayuda a fijar la ortografía.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "los estudios sobre la toma de apuntes no son confiables.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la escritura a mano ya no sirve para nada en la vida adulta.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Admitir un punto del lado contrario",
+          "content": "Conceder es reconocer un punto de la postura rival antes de reafirmar la propia. El autor lo hace al escribir que no hay que renunciar al teclado, 'que es más rápido y siempre resulta legible': reconoce esas ventajas y, aun así, defiende la escritura a mano."
+        },
+        {
+          "layer": 2,
+          "title": "Localizar la concesión por sus marcas",
+          "content": "1) Busca expresiones como 'nada de lo anterior significa que...', 'es cierto que...', 'si bien...'. 2) Aquí aparece 'Nada de lo anterior significa que haya que renunciar al teclado, que es más rápido y siempre resulta legible'. 3) Eso es lo que el autor admite. Que la escritura a mano ayuda a la ortografía es un argumento suyo, no una concesión; que los estudios no son confiables no lo dice; que la escritura a mano 'ya no sirve para nada' es la postura que combate. Si marcaste esta última, tomaste la tesis rival por una concesión."
+        },
+        {
+          "layer": 3,
+          "title": "Concesión y refutación",
+          "content": "El autor cede en un punto menor para mostrar equilibrio y luego reafirma su tesis, casi siempre con un 'pero', 'sin embargo' o 'aun así'. Repasa: conectores concesivos y estructura concesión-refutación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydqw200176f728izzqvde",
+      "topic": "Comprensión lectora",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-escritura",
+      "passageId": "cmtdydk6j00016f72a9q8nkfz",
+      "stem": "Del texto se puede inferir que quien copia sus apuntes casi palabra por palabra…",
+      "options": [
+        {
+          "id": "A",
+          "text": "no aprende absolutamente nada de lo que escucha en clase.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "recuerda el contenido mejor que quien lo resume con sus propias palabras.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "escribe más lento que quien toma apuntes a mano.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "procesa menos lo que escucha y, por eso, lo retiene peor.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La relación causa-efecto del texto",
+          "content": "El texto dice que quien teclea 'puede transcribir casi de forma literal sin detenerse a procesar el contenido, y luego lo recuerda peor'. De ahí se infiere que copiar sin reformular ayuda menos a la memoria que resumir con palabras propias."
+        },
+        {
+          "layer": 2,
+          "title": "Comprobar cada opción contra el texto",
+          "content": "1) Localiza la afirmación sobre el que teclea: transcribe literal, no procesa, recuerda peor. 2) 'No aprende absolutamente nada' es más de lo que el texto dice. 3) 'Recuerda mejor que quien resume' contradice el texto. 4) 'Escribe más lento' también lo contradice, porque teclear es más rápido. 5) Queda que procesa menos y retiene peor. Si elegiste 'no aprende nada', convertiste 'recuerda peor' en 'no recuerda nada'."
+        },
+        {
+          "layer": 3,
+          "title": "Inferir a partir de una causa y su efecto",
+          "content": "Si el texto plantea que no procesar lleva a recordar peor, se puede concluir que lo contrario (reformular) favorece la memoria, siempre sin ir más allá de lo dicho. Repasa: inferencias válidas y grados de certeza."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdydro1001c6f722uxv0ira",
+      "topic": "Comprensión lectora",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-escritura",
+      "passageId": "cmtdydk6j00016f72a9q8nkfz",
+      "stem": "¿Qué se propone principalmente el autor con este texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Informar de manera neutral sobre las distintas técnicas que existen para estudiar mejor.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Convencer al lector, con razones, de conservar una práctica que se ha puesto en duda.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Narrar cómo aprendió a leer y a escribir el autor cuando era niño en la escuela.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Dar instrucciones paso a paso para tomar buenos apuntes durante una clase.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El autor toma partido",
+          "content": "El texto no se limita a informar: presenta una práctica cuestionada (escribir a mano), rebate la objeción y ofrece razones para conservarla. Esa es una intención argumentativa: persuadir."
+        },
+        {
+          "layer": 2,
+          "title": "Reconocer la intención dominante",
+          "content": "1) Observa si el autor se mantiene neutral o defiende una postura: aquí valora ('no es un adorno del pasado', 'tiene un costo'). 2) No narra hechos en orden temporal ni da instrucciones numeradas. 3) La intención que predomina es convencer al lector de una idea discutida. Si elegiste 'informar de manera neutral', pasaste por alto las expresiones de opinión que recorren el texto."
+        },
+        {
+          "layer": 3,
+          "title": "Intención comunicativa",
+          "content": "Informar, narrar, describir, instruir, persuadir o expresar sentimientos. En un mismo texto puede haber varias, pero suele predominar una; las marcas de valoración y los conectores argumentativos señalan la intención de persuadir. Repasa: funciones del lenguaje e intención del emisor."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye1kb0003glvkpudyj8vc",
+      "topic": "Análisis de textos",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-espera",
+      "passageId": "cmtdye0930000glvkmh9453oa",
+      "stem": "¿Cómo se puede caracterizar al narrador de este texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Es un narrador en tercera persona que conoce lo que piensa y siente el personaje.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Es un narrador protagonista que cuenta en primera persona su propia historia y sus emociones.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Es un narrador testigo que relata únicamente lo que se puede ver y oír desde afuera de la escena.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Es un narrador en segunda persona que se dirige al lector y lo trata de «tú».",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El narrador entra en la mente de Rosa",
+          "content": "El texto habla de 'Rosa' y 'ella' (tercera persona), pero también dice lo que ella siente y piensa: 'sintió, sin quererlo, que el corazón le daba un golpe' y 'una casa que quizá ya no existía'. Es, por tanto, un narrador en tercera persona que conoce el interior del personaje."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar los otros tipos de narrador",
+          "content": "1) No es primera persona: nunca aparece 'yo esperaba'. 2) No es un narrador testigo, porque un testigo solo cuenta lo observable desde fuera y aquí se relatan sentimientos y recuerdos internos de Rosa. 3) No es segunda persona, porque no se dirige a un 'tú'. 4) Queda la tercera persona con acceso a la interioridad. Si elegiste 'narrador testigo', te fijaste en la tercera persona pero pasaste por alto que el texto revela lo que Rosa siente."
+        },
+        {
+          "layer": 3,
+          "title": "Tipos de narrador",
+          "content": "Según la persona: primera (protagonista o testigo) o tercera. Según lo que sabe: omnisciente (conoce pensamientos y sentimientos) o de conocimiento limitado (solo lo externo). Repasa: voz narrativa, persona y focalización."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye2df0008glvkf2s6ss0r",
+      "topic": "Análisis de textos",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-espera",
+      "passageId": "cmtdye0930000glvkmh9453oa",
+      "stem": "¿Qué aporta el segundo párrafo al relato?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Presenta a un personaje nuevo que tendrá un papel decisivo en el resto de la historia.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Describe con mucho detalle el paisaje de cerros y carretera que rodea la parada.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Recupera un recuerdo que explica por qué este regreso es importante para Rosa.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Aclara el motivo concreto por el que el camión viene con retraso justo esta vez.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un salto al pasado con una función",
+          "content": "El segundo párrafo retrocede 'veinte años antes' para contar que Rosa salió de ese mismo lugar hacia la ciudad. Ese recuerdo carga de sentido la escena presente: ahora vuelve 'con las manos vacías' al punto de partida."
+        },
+        {
+          "layer": 2,
+          "title": "Distinguir el recuerdo de otras funciones",
+          "content": "1) El párrafo no presenta a nadie nuevo: sigue centrado en Rosa. 2) No se dedica a describir el paisaje (eso está más en el primer y tercer párrafo). 3) No explica el retraso del camión, que el texto nunca aclara. 4) Lo que hace es traer una experiencia anterior que da peso al regreso. Si elegiste la descripción del paisaje, confundiste el recuerdo de la partida con el entorno físico."
+        },
+        {
+          "layer": 3,
+          "title": "La analepsis o salto al pasado",
+          "content": "Una analepsis (o 'flashback') interrumpe el orden temporal para contar algo anterior. Sirve para explicar la situación presente, revelar la historia de un personaje o crear contraste entre dos momentos. Repasa: orden del relato, analepsis y prolepsis."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye35x000dglvk08zwde81",
+      "topic": "Análisis de textos",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-espera",
+      "passageId": "cmtdye0930000glvkmh9453oa",
+      "stem": "¿Qué se puede inferir sobre el viaje que Rosa está haciendo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Va de paseo por unos días a ese pueblo y muy pronto regresará de nuevo a la ciudad.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Nunca en su vida había estado antes en ese lugar ni conocía la carretera.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Viaja para recoger en ese mismo camión a un familiar que llega de la ciudad.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Regresa al lugar del que salió hace años, sin saber con certeza qué encontrará.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Pistas del texto sobre el regreso",
+          "content": "El texto dice que Rosa salió de ahí 'veinte años antes', que ahora 'volvía con las manos vacías y una dirección apuntada en un papel' y que busca 'una casa que quizá ya no existía'. De todo eso se infiere un regreso incierto al lugar de origen."
+        },
+        {
+          "layer": 2,
+          "title": "Comparar cada opción con las pistas",
+          "content": "1) 'Va de paseo unos días' choca con 'manos vacías' y con andar buscando una casa por una dirección escrita. 2) 'Nunca había estado' contradice que se fue de ahí hace veinte años. 3) 'Recoger a un familiar del camión' no se apoya en nada del texto. 4) 'Regresa al lugar del que se fue, sin certeza de lo que hallará' reúne todas las pistas. Si elegiste el paseo, no relacionaste 'manos vacías' con 'la casa que quizá ya no existe'."
+        },
+        {
+          "layer": 3,
+          "title": "Inferencia en el texto literario",
+          "content": "El relato pocas veces explica todo: el lector reconstruye la situación juntando datos dispersos (objetos, gestos, tiempos verbales). La inferencia debe apoyarse en esas señales, no en suposiciones libres. Repasa: inferencia y lectura entre líneas en textos narrativos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye3y8000iglvkcm4mkjnv",
+      "topic": "Análisis de textos",
+      "difficulty": "BASIC",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-espera",
+      "passageId": "cmtdye0930000glvkmh9453oa",
+      "stem": "¿Cuál es el tono o la atmósfera que predomina en el texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Alegre y festivo, como el de una celebración.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Melancólico, con una sensación de incertidumbre.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Humorístico e irónico, con burla hacia el personaje.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "De miedo y suspenso, propio de un relato de terror.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Las imágenes marcan el tono",
+          "content": "La luz que se va, el frío que entra, la espera larga, las 'manos vacías' y una casa que 'quizá ya no existía' crean un ambiente triste y de duda sobre lo que vendrá. Ese tono es melancólico y de incertidumbre."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar los tonos que no encajan",
+          "content": "1) No hay nada festivo: no se celebra nada. 2) No hay burla ni ironía hacia Rosa; el narrador la trata con seriedad. 3) No hay amenaza ni terror: la escena es cotidiana. 4) Predomina la nostalgia mezclada con la duda. Si elegiste 'de miedo y suspenso', tomaste 'como dos ojos que se abrieran en la oscuridad' de forma literal, pero es solo una comparación de las luces del camión."
+        },
+        {
+          "layer": 3,
+          "title": "Tono y atmósfera",
+          "content": "El tono es la actitud emocional que transmite el texto (nostálgico, irónico, solemne, festivo). Se reconoce en la selección de palabras, las imágenes y el ritmo. Repasa: tono, atmósfera y su relación con el léxico."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye4qe000nglvk002oa1r6",
+      "topic": "Análisis de textos",
+      "difficulty": "EXPERT",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-espera",
+      "passageId": "cmtdye0930000glvkmh9453oa",
+      "stem": "La expresión «dos luces amarillas… fueron creciendo despacio, como dos ojos que se abrieran en la oscuridad» es un ejemplo de…",
+      "options": [
+        {
+          "id": "A",
+          "text": "hipérbole, ya que exagera de forma llamativa el tamaño y el brillo reales de las luces.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "metáfora pura, ya que sustituye la palabra «luces» por «ojos» sin llegar a nombrarla.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "personificación, ya que atribuye a unas luces la capacidad humana de abrir los ojos y mirar.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "símil o comparación, ya que enlaza las luces con unos ojos mediante el nexo «como».",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El nexo «como» define el recurso",
+          "content": "La marca decisiva es el nexo 'como', que enlaza un elemento real (las luces del camión) con una imagen (unos ojos que se abren). Cuando la comparación es explícita mediante 'como', 'cual' o 'se parece a', el recurso es un símil."
+        },
+        {
+          "layer": 2,
+          "title": "Por qué no son las otras figuras",
+          "content": "1) Localiza el nexo comparativo: 'como dos ojos que se abrieran'. 2) En la metáfora pura no hay nexo y el término real se sustituye ('sus faros eran dos ojos'); aquí la palabra 'luces' sigue presente. 3) La personificación da rasgos humanos sin comparar ('las luces lo miraban'); aquí sí se compara con 'como'. 4) No hay exageración con fines expresivos, así que tampoco es hipérbole. Si elegiste personificación, te guió la imagen de los 'ojos', pero el nexo 'como' convierte la expresión en un símil."
+        },
+        {
+          "layer": 3,
+          "title": "Símil, metáfora y personificación",
+          "content": "El símil compara de forma explícita con un nexo; la metáfora identifica o sustituye sin nexo; la personificación atribuye cualidades humanas a seres u objetos que no las tienen. Repasa: figuras retóricas de comparación e identificación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye5il000sglvklbgoy7hc",
+      "topic": "Análisis de textos",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-releer",
+      "passageId": "cmtdye14q0001glvkcizd0mae",
+      "stem": "¿Qué idea central desarrolla el texto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Releer un libro sirve, sobre todo, para notar cómo ha cambiado quien lo lee.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Releer es una forma de pereza frente a la cantidad de libros nuevos por descubrir.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los libros cambian de significado cada vez que se publica una nueva edición.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Conviene leer únicamente novelas que traten sobre herencias familiares.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El eje del texto",
+          "content": "El autor repite la misma idea de varias formas: 'releer... es medir la distancia entre dos lecturas', 'Quien cambió es el que lee', 'descubrir en uno mismo algo que antes no estaba'. Todo apunta a que releer revela el cambio del lector."
+        },
+        {
+          "layer": 2,
+          "title": "Separar la tesis de lo que se rebate",
+          "content": "1) 'Releer es pereza' es la idea que el autor menciona para rechazarla ('Pero releer no es repetir'). 2) 'Los libros cambian de significado con cada edición' contradice 'El libro no ha cambiado ni una coma'. 3) 'Leer solo novelas de herencias' toma al pie de la letra un ejemplo. 4) Queda que releer sirve para notar el propio cambio. Si elegiste la de la pereza, tomaste por tesis lo que el autor combate."
+        },
+        {
+          "layer": 3,
+          "title": "Idea central en el ensayo",
+          "content": "En un ensayo, la idea central es la postura que el autor sostiene y repite con distintas palabras e imágenes. Los ejemplos y las comparaciones están a su servicio. Repasa: tesis, argumentos y ejemplos en el texto argumentativo."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye6ay000xglvk92cgqawh",
+      "topic": "Análisis de textos",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-releer",
+      "passageId": "cmtdye14q0001glvkcizd0mae",
+      "stem": "Cuando el autor dice que el texto «funciona como una marca en la pared», quiere decir que…",
+      "options": [
+        {
+          "id": "A",
+          "text": "releer un mismo libro muchas veces termina por dañarlo y dejarlo lleno de marcas.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el libro deja en quien lo lee una huella profunda que ya nunca se podrá borrar.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el libro es un punto fijo que permite medir cuánto ha cambiado el lector.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "cada nueva lectura de un libro borra poco a poco el recuerdo de la anterior.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Qué mide una marca en la pared",
+          "content": "Una marca en la pared sirve para medir cuánto ha crecido alguien: uno se para junto a ella y compara. El autor lo dice explícitamente después de la comparación: 'uno se para junto a él y comprueba cuánto ha crecido, o cuánto ha perdido'. El libro, que no cambia, es ese punto fijo."
+        },
+        {
+          "layer": 2,
+          "title": "Traducir la comparación a su sentido",
+          "content": "1) El elemento que se compara es el libro releído; la imagen es la marca de estatura en la pared. 2) La marca no importa por ser permanente, sino por ser una referencia contra la cual medir un cambio. 3) 'Dañar el libro' y 'borrar recuerdos' toman 'marca' en sentido literal o le dan un sentido contrario. 'Dejar una huella imposible de borrar' suena razonable pero se fija en la permanencia, no en la medición. Si elegiste esa, te quedaste con una parte de la imagen y no con su función."
+        },
+        {
+          "layer": 3,
+          "title": "Interpretar el lenguaje figurado",
+          "content": "Las comparaciones e imágenes de un ensayo condensan una idea. Para interpretarlas hay que preguntarse qué aspecto de la imagen destaca el autor y comprobar que encaje con el resto del texto. Repasa: lenguaje figurado y sentido global."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye7340012glvkp00i38au",
+      "topic": "Análisis de textos",
+      "difficulty": "INTERMEDIATE",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-releer",
+      "passageId": "cmtdye14q0001glvkcizd0mae",
+      "stem": "Según el texto, ¿por qué a los cuarenta años el mismo capítulo puede volverse «casi insoportable de tan cierto»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque a los cuarenta años, en general, se lee con bastante menos paciencia que a los quince.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque para entonces el lector ya ha pasado por una situación parecida a la del capítulo.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Porque el autor corrige y reescribe ese capítulo en cada una de las ediciones nuevas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque casi todas las novelas que tratan sobre herencias familiares están mal escritas.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La experiencia vivida cambia la lectura",
+          "content": "El texto asocia la edad de cuarenta años con 'un padre enfermo y unos hermanos con los que hay que ponerse de acuerdo', que es justo el conflicto de la novela sobre una herencia. Por haber vivido algo semejante, el capítulo ya no parece 'solo una intriga', sino algo cierto y difícil de leer."
+        },
+        {
+          "layer": 2,
+          "title": "Apoyar la respuesta en el texto",
+          "content": "1) El autor contrasta dos edades: a los quince, 'solo una intriga'; a los cuarenta, 'insoportable de tan cierto'. 2) Lo que cambia entre una y otra es la situación personal del lector, descrita entre comas. 3) 'Menos paciencia' no se menciona; 'reescribir el capítulo' contradice 'no ha cambiado ni una coma'; 'novelas mal escritas' no viene al caso. Si elegiste la de la paciencia, buscaste una causa fuera del texto."
+        },
+        {
+          "layer": 3,
+          "title": "El lector y el sentido del texto",
+          "content": "El significado que alguien encuentra en un texto depende también de lo que ese lector ha vivido y sabe. Por eso una misma obra puede leerse de forma distinta en distintos momentos. Repasa: papel del lector en la interpretación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye7vj0017glvkkd4dsd1k",
+      "topic": "Análisis de textos",
+      "difficulty": "EXPERT",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-releer",
+      "passageId": "cmtdye14q0001glvkcizd0mae",
+      "stem": "La frase final —«avanza mucho, pero nunca sabe desde dónde salió»— sugiere que leer siempre libros nuevos…",
+      "options": [
+        {
+          "id": "A",
+          "text": "da muchas lecturas, pero no ofrece una referencia para medir el propio cambio.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "obliga a quien lo hace a dejar de leer libros por completo, tarde o temprano.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "hace que se entienda peor cada libro nuevo por culpa de la prisa al leer.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "solo resulta de verdad útil si la persona además viaja a lugares nuevos.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El punto de partida como referencia",
+          "content": "'Desde dónde salió' es una imagen: el punto de partida contra el cual alguien nota cuánto ha avanzado. Un lector que nunca relee acumula muchos títulos ('avanza mucho'), pero le falta esa referencia fija para comparar y darse cuenta de en qué ha cambiado."
+        },
+        {
+          "layer": 2,
+          "title": "Relacionar la frase con la tesis",
+          "content": "1) La idea del texto es que releer sirve para 'medir la distancia entre dos lecturas'. 2) Sin relectura no hay con qué comparar, aunque se lea mucho. 3) 'Dejar de leer', 'entender peor por la prisa' y 'viajar' introducen ideas que el texto no plantea; la última toma 'salió' en sentido literal de desplazamiento. Si elegiste la de la prisa, cambiaste el tema (leer sin referencia) por otro (velocidad de lectura)."
+        },
+        {
+          "layer": 3,
+          "title": "Cierre y sentido figurado",
+          "content": "El cierre de un ensayo suele condensar la tesis en una imagen. Hay que traducir esa imagen a su idea y comprobar que resume lo dicho antes, sin añadir temas nuevos. Repasa: función de la conclusión y lenguaje figurado."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdye8nx001cglvk972uz4og",
+      "topic": "Análisis de textos",
+      "difficulty": "ADVANCED",
+      "format": "READING_COMPREHENSION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": "g29-releer",
+      "passageId": "cmtdye14q0001glvkcizd0mae",
+      "stem": "Por su forma de organizar el contenido, el texto es predominantemente…",
+      "options": [
+        {
+          "id": "A",
+          "text": "narrativo, ya que relata una serie de sucesos encadenados en un orden temporal.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "descriptivo, ya que enumera con detalle las distintas partes que componen un libro.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "dialogado, ya que reproduce una conversación entre dos lectores sobre un mismo libro.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "argumentativo, ya que defiende una postura y la apoya con razones y un ejemplo.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Postura, razones y ejemplo",
+          "content": "El texto defiende una idea ('releer no es repetir; conviene hacerlo') y la apoya con razones (el lector cambia, el libro no) y con un ejemplo (la novela de la herencia leída a los quince y a los cuarenta). Esa combinación es propia de la secuencia argumentativa."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar las otras secuencias",
+          "content": "1) No es narrativo: no hay una historia con hechos encadenados en el tiempo; el caso de la novela es un ejemplo, no una trama. 2) No es descriptivo: no se detallan las partes de un objeto. 3) No es dialogado: nadie conversa. 4) Domina la defensa de una tesis con argumentos. Si elegiste 'narrativo', confundiste el ejemplo de la novela con el hilo del texto."
+        },
+        {
+          "layer": 3,
+          "title": "Secuencias textuales",
+          "content": "Narrativa (hechos en el tiempo), descriptiva (rasgos de algo), expositiva (información organizada), argumentativa (tesis y pruebas) y dialogada (intercambio de voces). Un texto suele combinar varias, con una dominante. Repasa: tipos de secuencia textual."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyegyt000172ouxejfd91w",
+      "topic": "Gramática",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Elige la opción que completa la oración con coherencia: «No entregó el trabajo en la fecha límite; ______, se le restará un punto de la calificación.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "sin embargo",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "en cambio",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "por lo tanto",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "aunque",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La segunda parte expresa una consecuencia",
+          "content": "Restar un punto es el resultado de no haber entregado a tiempo. El conector que introduce una consecuencia es 'por lo tanto'."
+        },
+        {
+          "layer": 2,
+          "title": "Comparar las relaciones lógicas",
+          "content": "1) La relación entre las dos ideas es de causa y efecto: 'no entregó a tiempo' produce 'se le resta un punto'. 2) 'Sin embargo' y 'en cambio' señalan contraste u oposición, que aquí no existe. 3) 'Aunque' introduce una concesión y exigiría otra continuación ('aunque se le restará un punto, ...'). 4) Queda 'por lo tanto', que marca consecuencia. Si elegiste 'sin embargo', buscaste una oposición donde en realidad hay un resultado."
+        },
+        {
+          "layer": 3,
+          "title": "Conectores y relaciones lógicas",
+          "content": "Consecutivos (por lo tanto, así que, en consecuencia) marcan resultado; adversativos (sin embargo, pero, en cambio) marcan contraste; concesivos (aunque, a pesar de que) admiten un obstáculo. Repasa: clasificación de los conectores discursivos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyehqz000672ousyuzsg77",
+      "topic": "Gramática",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Completa con la forma verbal adecuada: «Cuando ______ a la reunión, comenzaremos con el primer punto del orden del día.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "llegues",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "llegas",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "llegarás",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "llegabas",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Cuando» + futuro pide subjuntivo",
+          "content": "La oración se refiere a algo que todavía no ocurre ('comenzaremos'). En español, una acción futura tras 'cuando' se expresa con presente de subjuntivo: 'cuando llegues', no 'cuando llegarás'."
+        },
+        {
+          "layer": 2,
+          "title": "Revisar cada forma",
+          "content": "1) El verbo principal está en futuro ('comenzaremos'), así que la subordinada temporal apunta al futuro. 2) Con 'cuando' orientado al futuro va subjuntivo: 'cuando llegues'. 3) 'Llegas' (presente de indicativo) valdría para un hábito ('cuando llegas, siempre saludas'). 4) 'Llegarás' repite el futuro, que 'cuando' no admite en esta construcción. 5) 'Llegabas' sitúa la acción en el pasado. Si elegiste 'llegarás', aplicaste la lógica del futuro sin la regla del subjuntivo."
+        },
+        {
+          "layer": 3,
+          "title": "Subjuntivo en oraciones temporales",
+          "content": "Las subordinadas temporales orientadas al futuro se construyen con subjuntivo: 'cuando termine', 'en cuanto pueda', 'apenas llegue'. Repasa: usos del subjuntivo en subordinadas temporales."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyeij5000b72ouap28b4p6",
+      "topic": "Gramática",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Elige la opción correcta: «Apenas entró al auto, se dio cuenta ______ había dejado las llaves de la casa sobre la mesa.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "que",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "en que",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "con que",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "de que",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Darse cuenta DE algo»",
+          "content": "La construcción correcta es 'darse cuenta de algo'; por eso la subordinada va con 'de que': 'se dio cuenta de que había dejado las llaves'. Quitar la preposición ('darse cuenta que') es queísmo."
+        },
+        {
+          "layer": 2,
+          "title": "Probar el régimen del verbo",
+          "content": "1) Cámbialo por un sustantivo: 'se dio cuenta DE su olvido', no 'se dio cuenta su olvido'. La preposición 'de' es obligatoria. 2) Al sustituir el sustantivo por una subordinada, la preposición se conserva: 'se dio cuenta de que...'. 3) 'En que' y 'con que' cambian el régimen y no corresponden. 4) 'Que' a secas suprime la preposición necesaria y produce queísmo. Si elegiste 'que', caíste en el error opuesto al dequeísmo."
+        },
+        {
+          "layer": 3,
+          "title": "Queísmo y dequeísmo",
+          "content": "El queísmo suprime una preposición exigida por el verbo ('me acuerdo que' por 'me acuerdo de que'); el dequeísmo añade una que sobra ('pienso de que' por 'pienso que'). La prueba es sustituir la subordinada por 'eso'. Repasa: régimen preposicional de los verbos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyejb8000g72oullsj2edo",
+      "topic": "Gramática",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Elige el nexo que completa la oración con sentido: «______ hizo muy mal tiempo durante el fin de semana, la excursión se realizó sin contratiempos.»",
+      "options": [
+        {
+          "id": "A",
+          "text": "Debido a que",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "A pesar de que",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Ya que",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Puesto que",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El mal tiempo es un obstáculo, no una causa",
+          "content": "Que la excursión saliera bien 'a pesar de' el mal tiempo indica que el mal tiempo era un obstáculo que no impidió el resultado. Esa relación la expresa el nexo concesivo 'a pesar de que'."
+        },
+        {
+          "layer": 2,
+          "title": "Ver la dirección de las dos ideas",
+          "content": "1) Primera idea: mal tiempo (esperaríamos problemas). 2) Segunda idea: excursión sin contratiempos (lo contrario de lo esperado). 3) 'Debido a que', 'ya que' y 'puesto que' son causales: dirían que el mal tiempo CAUSÓ el buen resultado, lo cual no tiene sentido. 4) 'A pesar de que' es concesivo y encaja. Si elegiste una causal, no notaste que las dos ideas van en direcciones contrarias."
+        },
+        {
+          "layer": 3,
+          "title": "Nexos concesivos frente a causales",
+          "content": "Los concesivos (aunque, a pesar de que, si bien) presentan un obstáculo que no impide el hecho; los causales (porque, ya que, puesto que, dado que) presentan el motivo. Repasa: subordinadas causales y concesivas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyek3a000l72ou90t4d6o7",
+      "topic": "Gramática",
+      "difficulty": "BASIC",
+      "format": "ANALOGY",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "MÉDICO es a HOSPITAL como…",
+      "options": [
+        {
+          "id": "A",
+          "text": "PROFESOR es a ALUMNO",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "LIBRO es a BIBLIOTECA",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "JUEZ es a JUZGADO",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "PINTURA es a MUSEO",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Profesional y lugar donde ejerce",
+          "content": "La relación es 'profesional : lugar donde trabaja'. Un médico trabaja en un hospital; un juez trabaja en un juzgado. El vínculo se mantiene en su tipo y en su orden."
+        },
+        {
+          "layer": 2,
+          "title": "Formular la relación y probarla",
+          "content": "1) Enuncia la relación de la pareja base: 'X ejerce su profesión en Y'. 2) 'Profesor : alumno' relaciona dos personas, no una persona con su lugar de trabajo. 3) 'Libro : biblioteca' y 'pintura : museo' relacionan un objeto con el sitio donde se guarda, no una profesión con su lugar. 4) 'Juez : juzgado' repite exactamente la relación base. Si elegiste 'pintura : museo', te fijaste solo en la idea de 'lugar' y no en que el primer término debía ser una persona que trabaja."
+        },
+        {
+          "layer": 3,
+          "title": "Analogías de profesión y lugar de trabajo",
+          "content": "Para resolver una analogía, formula la relación con una frase y comprueba que la pareja candidata admita la misma frase, con los términos en el mismo orden. Repasa: tipos de relación analógica."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyekvd000q72ouoeuo8nqf",
+      "topic": "Gramática",
+      "difficulty": "BASIC",
+      "format": "ANALOGY",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "VALIENTE es a COBARDE como…",
+      "options": [
+        {
+          "id": "A",
+          "text": "GENEROSO es a TACAÑO",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "ALEGRE es a CONTENTO",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "PERRO es a MAMÍFERO",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "INVIERNO es a FRÍO",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cualidades opuestas",
+          "content": "'Valiente' y 'cobarde' son antónimos: significan lo contrario. 'Generoso' y 'tacaño' también lo son. La relación de oposición se conserva."
+        },
+        {
+          "layer": 2,
+          "title": "Identificar la relación en cada par",
+          "content": "1) La pareja base son dos cualidades opuestas. 2) 'Alegre' y 'contento' significan casi lo mismo (sinónimos), no lo contrario. 3) 'Perro' y 'mamífero' es una relación de clase: un perro es un tipo de mamífero. 4) 'Invierno' y 'frío' se asocian, pero no son opuestos. 5) 'Generoso : tacaño' es la única pareja de antónimos. Si elegiste 'alegre : contento', confundiste la sinonimia con la antonimia."
+        },
+        {
+          "layer": 3,
+          "title": "Relaciones de significado en las analogías",
+          "content": "Sinonimia (igual significado), antonimia (significado opuesto), hiperonimia e hiponimia (clase y subclase), meronimia (parte y todo). Repasa: relaciones léxicas entre palabras."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyelnl000v72ouzky5fzs6",
+      "topic": "Gramática",
+      "difficulty": "ADVANCED",
+      "format": "ANALOGY",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "TERMÓMETRO es a TEMPERATURA como…",
+      "options": [
+        {
+          "id": "A",
+          "text": "RELOJ es a PARED",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "BÁSCULA es a PESO",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "LENTES es a VISTA",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "BRÚJULA es a NORTE",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Instrumento y magnitud que mide",
+          "content": "Un termómetro es un instrumento que mide una magnitud: la temperatura. Una báscula mide otra magnitud: el peso. La relación 'instrumento : magnitud que mide' se conserva."
+        },
+        {
+          "layer": 2,
+          "title": "Precisar el verbo de la relación",
+          "content": "1) La relación base es 'el termómetro sirve para medir la temperatura'. 2) 'Reloj : pared' relaciona un objeto con un lugar, no con lo que mide. 3) 'Lentes : vista' es un instrumento que ayuda a una facultad, no que la mide en unidades. 4) 'Brújula : norte' es tentadora, pero la brújula indica una dirección; no mide el norte como una cantidad. 5) 'Báscula : peso' repite 'instrumento : magnitud medida'. Si elegiste 'brújula : norte', te quedaste en 'instrumento y aquello con lo que se relaciona' sin exigir que hubiera medición."
+        },
+        {
+          "layer": 3,
+          "title": "Analogías de instrumento y función",
+          "content": "Conviene precisar el verbo de la relación (medir, cortar, unir, indicar), porque un matiz distinto descarta a un distractor cercano. Repasa: análisis fino de la relación en las analogías."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyemfm001072ouqjfrlic1",
+      "topic": "Gramática",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "En la oración «El caminar pausado del anciano llamó la atención de todos», ¿qué clase de palabra es «caminar» y por qué?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Verbo, porque expresa una acción y funciona como núcleo del predicado de la oración.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Adjetivo, porque acompaña al sustantivo «anciano» y expresa una cualidad suya.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Adverbio, porque señala el modo en que el anciano realiza la acción de moverse.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Sustantivo, porque el artículo «el» delante del infinitivo lo convierte en nombre.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un infinitivo con artículo funciona como sustantivo",
+          "content": "Aunque 'caminar' es en su origen un verbo en infinitivo, aquí va precedido del artículo 'el' y funciona como sustantivo: es el sujeto de 'llamó la atención'. El infinitivo sustantivado nombra la acción como si fuera una cosa."
+        },
+        {
+          "layer": 2,
+          "title": "Distinguir forma y función",
+          "content": "1) El núcleo del predicado es 'llamó', no 'caminar'. 2) Pregunta quién 'llamó la atención': 'el caminar pausado del anciano'. Ese grupo es el sujeto y su núcleo es 'caminar'. 3) Solo un sustantivo (o una palabra sustantivada) puede ser núcleo del sujeto; el artículo 'el' delante del infinitivo es la señal de la sustantivación. 4) No modifica a 'anciano' (eso lo hace 'pausado') ni indica modo. Si respondiste 'verbo', te guiaste por la forma de la palabra y no por su función."
+        },
+        {
+          "layer": 3,
+          "title": "Sustantivación del infinitivo",
+          "content": "Cualquier infinitivo puede funcionar como sustantivo, sobre todo con un determinante delante ('el deber', 'un mirar triste', 'su ir y venir'). La clase de una palabra depende de su función en la oración, no solo de su forma. Repasa: el infinitivo como sustantivo verbal."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyen7m001572ouitjrj74c",
+      "topic": "Gramática",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿En cuál de las siguientes oraciones hay dequeísmo (uso de «de que» donde no corresponde)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Estoy convencido de que tomamos la decisión correcta.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Me acordé de que tenía una cita al mediodía.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Creo de que la propuesta necesita más discusión.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Se enteró de que habían cambiado la sede del evento.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Creer» no lleva preposición",
+          "content": "El verbo 'creer' rige un complemento directo sin preposición: se cree ALGO, no 'de algo'. Por eso 'Creo de que...' añade una preposición que sobra: es dequeísmo. Lo correcto es 'Creo que la propuesta necesita más discusión'."
+        },
+        {
+          "layer": 2,
+          "title": "La prueba de «eso»",
+          "content": "1) Sustituye la subordinada por 'eso' en cada oración. 2) 'Estoy convencido de eso', 'me acordé de eso', 'se enteró de eso': con esos verbos y locuciones la preposición 'de' es correcta. 3) 'Creo eso', no 'creo de eso': 'creer' no lleva preposición, así que 'creo de que' está mal. Si no marcaste la oración de 'creer', prueba siempre con 'eso': si no dirías 'de eso', tampoco va 'de que'."
+        },
+        {
+          "layer": 3,
+          "title": "Dequeísmo en verbos de pensamiento y lengua",
+          "content": "Verbos como 'creer', 'pensar', 'opinar', 'suponer' o 'temer' se construyen sin preposición ('creo que', 'pienso que'). Añadir 'de' es dequeísmo. Repasa: dequeísmo y régimen de los verbos de pensamiento y lengua."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyeruz0001v180s8grnwjs",
+      "topic": "Ortografía",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿En qué oración se emplean correctamente «más» (con tilde) y «mas» (sin tilde)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Quería quedarse, mas no le alcanzó el tiempo; por eso pidió más días.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Quería quedarse, más no le alcanzó el tiempo; por eso pidió mas días.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Quería quedarse, mas no le alcanzó el tiempo; por eso pidió mas días.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Quería quedarse, más no le alcanzó el tiempo; por eso pidió más días.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Mas» es «pero»; «más» es cantidad",
+          "content": "'Mas' sin tilde equivale a 'pero'. 'Más' con tilde expresa cantidad o comparación. En la oración, 'mas no le alcanzó el tiempo' equivale a 'pero no le alcanzó', y 'más días' expresa cantidad. Solo una opción respeta las dos."
+        },
+        {
+          "layer": 2,
+          "title": "Probar hueco por hueco",
+          "content": "1) Primer hueco: ¿se puede cambiar por 'pero'? Sí, así que va 'mas' sin tilde. 2) Segundo hueco: ¿expresa una cantidad mayor de días? Sí, así que va 'más' con tilde. 3) La opción que escribe 'más no le alcanzó' usa el adverbio de cantidad donde va la conjunción; la que pone 'mas días' hace lo contrario. Si te equivocaste, prueba siempre a sustituir por 'pero': si funciona, es 'mas' sin tilde."
+        },
+        {
+          "layer": 3,
+          "title": "Tilde diacrítica",
+          "content": "La tilde diacrítica distingue palabras iguales en forma pero distintas en función: tú/tu, él/el, sí/si, sé/se, té/te, más/mas, aún/aun. Repasa: acento diacrítico en monosílabos y en 'más' y 'aún'."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyesn70006v180hf0yzvyj",
+      "topic": "Ortografía",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿Cuál de estas oraciones no contiene errores ortográficos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El árbol tubo que ser retirado porque sus raíces levantaban la banqueta.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Ívamos rumbo al puerto cuando el cielo se nubló de repente.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Tuvo que revisar el borrador dos veces antes de enviarlo.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La comisión aprovó el proyecto por unanimidad.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Solo una oración está limpia",
+          "content": "'Tuvo' (del verbo tener) se escribe con v; 'borrador' y 'enviarlo' están bien escritos. Las demás oraciones confunden 'tubo/tuvo', escriben 'Ívamos' por 'Íbamos' o 'aprovó' por 'aprobó'."
+        },
+        {
+          "layer": 2,
+          "title": "Revisar palabra por palabra",
+          "content": "1) 'Tubo' es un objeto cilíndrico; el pretérito de 'tener' es 'tuvo' con v: la oración del árbol tiene error. 2) 'Íbamos' es del verbo 'ir' y se escribe con b (iba, ibas, íbamos): 'Ívamos' está mal. 3) 'Aprobar' se escribe con b, igual que 'probar': 'aprovó' está mal. 4) La única oración sin errores es la del borrador. Si marcaste la del árbol, faltó distinguir el sustantivo 'tubo' del verbo 'tuvo'."
+        },
+        {
+          "layer": 3,
+          "title": "Uso de b y v",
+          "content": "El pretérito de 'tener', 'andar' y 'estar' se escribe con v (tuvo, anduvo, estuvo); el copretérito de 'ir' se escribe con b (iba, íbamos). Repasa: reglas de b/v y homófonos como tubo/tuvo y bello/vello."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyetfb000bv180qt1d122v",
+      "topic": "Ortografía",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿En cuál oración están bien empleadas las comas de la enumeración?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Compró, manzanas, peras y uvas para la ensalada.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Compró manzanas, peras y uvas para la ensalada.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Compró manzanas, peras y, uvas para la ensalada.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Compró manzanas peras, y uvas para la ensalada.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Comas entre elementos, no antes de «y»",
+          "content": "En una enumeración simple, los elementos se separan con comas, pero antes de la conjunción 'y' que cierra la serie NO se pone coma: 'manzanas, peras y uvas'. Tampoco se separa el verbo de su complemento con una coma."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar cada error",
+          "content": "1) La serie es 'manzanas / peras / uvas'. 2) Entre 'compró' y el primer elemento no va coma: descarta la que escribe 'Compró, manzanas'. 3) Antes de 'y uvas' no va coma en una serie normal: descarta 'peras y, uvas'. 4) Falta una coma entre 'manzanas' y 'peras' en la última opción. 5) Queda la que separa 'manzanas, peras' y une 'y uvas' sin coma. Si elegiste la que pone coma antes de 'y', aplicaste una costumbre del inglés que en español no rige aquí."
+        },
+        {
+          "layer": 3,
+          "title": "La coma en las enumeraciones",
+          "content": "La coma separa elementos equivalentes; no se usa delante de 'y', 'e', 'o' ni 'u' cuando cierran una serie simple, ni entre el sujeto y el verbo o entre el verbo y su objeto. Repasa: usos y abusos de la coma."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyeu7e000gv1801n1aee43",
+      "topic": "Ortografía",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿En qué oración se aplican bien las reglas de uso de las mayúsculas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El Lunes viajaremos al Sur del país.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En Diciembre visitaremos la Universidad donde estudia mi hermano.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Mi Hermano se mudó el año pasado a la ciudad de méxico.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El martes se inaugura el Museo Nacional de Antropología.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Minúscula en días y meses; mayúscula en nombres propios",
+          "content": "Los días de la semana y los meses se escriben con minúscula ('martes'). En cambio, el nombre propio de una institución o de una ciudad lleva mayúscula ('Museo Nacional de Antropología', 'México'). Solo la última oración respeta todas las reglas a la vez."
+        },
+        {
+          "layer": 2,
+          "title": "Revisar cada oración",
+          "content": "1) 'Lunes', 'martes' y 'diciembre' van siempre con minúscula: descarta 'El Lunes' y 'En Diciembre'. 2) Los puntos cardinales van con minúscula salvo que formen parte de un nombre propio: 'al Sur del país' está mal. 3) Los nombres comunes como 'hermano' van con minúscula, y los nombres propios de lugar como 'México' con mayúscula: la oración que escribe 'Mi Hermano' y 'ciudad de méxico' invierte las dos reglas. 4) 'Museo Nacional de Antropología' es el nombre propio de una institución: mayúscula correcta. Si elegiste la del hermano, no notaste que 'méxico' debía ir con mayúscula."
+        },
+        {
+          "layer": 3,
+          "title": "Usos de la mayúscula",
+          "content": "Se usa mayúscula en los nombres propios (de persona, lugar o institución) y en la primera palabra de un enunciado, no para destacar palabras que se consideran importantes. Días, meses, estaciones y puntos cardinales van con minúscula. Repasa: usos de la mayúscula inicial."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyeuzi000lv180sf7bv6c7",
+      "topic": "Ortografía",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "¿Cuál de las siguientes oraciones es correcta?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Va a haber más asientos disponibles en la segunda función.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Va a ver más asientos disponibles en la segunda función.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Va haber más asientos disponibles en la segunda función.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Van a haber más asientos disponibles en la segunda función.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Va a haber», en singular y con «a»",
+          "content": "La expresión correcta es 'va a haber', del verbo 'haber' usado para indicar existencia. En ese uso 'haber' es impersonal: se mantiene en singular ('va a haber', no 'van a haber') y no debe confundirse con 'ver' (percibir con la vista)."
+        },
+        {
+          "layer": 2,
+          "title": "Descartar los tres errores",
+          "content": "1) El sentido es 'existirán más asientos', así que el verbo es 'haber', no 'ver': descarta 'va a ver'. 2) La perífrasis necesita la preposición 'a': descarta 'va haber'. 3) 'Haber' de existencia es impersonal y no concuerda con el plural 'asientos': se dice 'va a haber', no 'van a haber'. 4) Queda la primera. Si elegiste 'van a haber', pluralizaste un verbo que en este uso siempre va en singular."
+        },
+        {
+          "layer": 3,
+          "title": "«Haber» impersonal",
+          "content": "'Haber' que indica existencia (hay, había, va a haber) se mantiene siempre en singular, sin importar el número del sustantivo. No debe confundirse con 'a ver' (preposición 'a' + verbo 'ver'). Repasa: verbo 'haber' impersonal y homófonos a ver/haber."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdyevrv000qv180hpdceau5",
+      "topic": "Ortografía",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "passageRef": null,
+      "passageId": null,
+      "stem": "Señala la opción en la que las tres palabras llevan la tilde correctamente.",
+      "options": [
+        {
+          "id": "A",
+          "text": "raiz, baúl, ataúd",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "raíz, baul, ataúd",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "raíz, baúl, ataúd",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "raíz, baúl, atáud",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Hiato con vocal cerrada tónica",
+          "content": "'Raíz', 'baúl' y 'ataúd' tienen un hiato formado por una vocal cerrada tónica (í, ú) junto a una vocal abierta. Ese hiato siempre lleva tilde sobre la vocal cerrada, aunque las reglas generales de acentuación no la pidieran. Solo una opción acentúa las tres."
+        },
+        {
+          "layer": 2,
+          "title": "Separar en sílabas y aplicar la regla",
+          "content": "1) Divide: ra-íz, ba-úl, a-ta-úd. En cada caso, una 'i' o 'u' tónica queda junto a una vocal abierta. 2) Regla del hiato: vocal abierta + vocal cerrada tónica (o al revés) obliga a poner tilde en la cerrada, sin importar la regla de agudas o graves. 3) Por eso las tres llevan tilde: 'raíz', 'baúl', 'ataúd'. 4) La opción que escribe 'atáud' coloca la tilde en la vocal equivocada. Si dejaste 'raiz' o 'baul' sin tilde, aplicaste solo las reglas generales y no la del hiato."
+        },
+        {
+          "layer": 3,
+          "title": "Acentuación de los hiatos",
+          "content": "La combinación de vocal abierta (a, e, o) con vocal cerrada tónica (í, ú) forma hiato, y la vocal cerrada se tilda siempre: día, país, baúl, reír, ataúd. Repasa: diptongo, triptongo e hiato, y la tilde en el hiato."
+        }
+      ]
+    }
+  ]
+}

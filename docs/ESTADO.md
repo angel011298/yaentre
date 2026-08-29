@@ -22,6 +22,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G29 | Lote de reactivos: Español/Comunicación IPN (encargo SOCADM) | **COMPLETADA — 35 insertados, isVerified=false** | (G29) | Ver sección dedicada abajo. Encargo: 35 reactivos de Español para la rama SOCADM. Español/Lectura es materia COMPARTIDA (`sharedContentKey=IPN:ESPANOL`, G26): el lote se compuso contra los 4 temas de **FISMAT** (la celda con más contenido del grupo: 35 verificados de G22; MEDBIO y SOCADM en cero) y la reutilización G26 lo sirve a MEDBIO y SOCADM. FISMAT es además la única rama cuyo temario nombra Ortografía y Gramática como temas propios, que es donde caen los formatos del encargo. 35 TEMARIO_ONLY. Reparto: Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6 (RC 20 con 4 pasajes ORIGINALES ×5, SENTENCE_COMPLETION 4, ANALOGY 3, MULTIPLE_CHOICE 8). Posición A9/B9/C9/D8 confirmada en la DB; rotación A→B→C→D 6/34 = 17.6 %; correcta = opción más larga 20 %; 0 citas por letra. `content:validate-batch` 0 violaciones. Banco 657 → 692, cola ciega 0 → 35. Segundo lote sobre el pool `IPN:ESPANOL` tras G22 (35→70). |
 | G28 | Verificación ciega: Matemáticas Aplicadas IPN SOCADM (G27) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 622 → 657 verificados, cola ciega 35 → 0** | (G28) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G27. Aislamiento comprobado, no asumido (no se abrió el commit de G27, ni el JSON del lote, ni `Question.options`, ni la sección `## G27`); ceguera del archivo verificada con `grep` = 0 y por las claves de opción (`label, text, imageUrl`). Los 35 resueltos con la operación **ejecutada en código**, un solucionador por reactivo escrito desde el enunciado. **Candado nuevo: unicidad** — exactamente una opción coincide con el valor calculado en **35/35** (prueba los distractores, no el acuerdo entre sesiones); 0 enunciados duplicados. Barajado real: la etiqueta ciega coincide con la original solo en 6/35 (17.1 %). Confianza mínima 0.95, 0 problemas. Confirmación independiente de G27: clave A9/B9/C9/D8 y rotación A→B→C→D ausente (7/34 = 20.6 %). Sexta ronda ciega seguida al 100 %: la métrica está saturada y se dice así. Cero cambios de código. |
 | G27 | Lote de reactivos: Matemáticas Aplicadas IPN SOCADM (rama en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G27) | Ver sección dedicada abajo. Primera materia con contenido de la rama SOCADM (7 materias, estaba en cero). Materia "Matemáticas Aplicadas" (weight 3), no el bloque general de Matemáticas — enfoque de razonamiento cuantitativo aplicado. 35 TEMARIO_ONLY, reparto 12/11/12 (Estadística descriptiva / Probabilidad / Análisis de datos). Cálculos recomputados uno por uno. Posición A9/B9/C9/D8, `content:validate-batch` 0 violaciones. Banco 622 → 657, cola ciega 0 → 35. |
 | G26 | Reutilización de contenido entre áreas | **COMPLETADA — mecanismo `Subject.sharedContentKey` (migración 0011), 7 grupos / 19 filas; selector, diagnóstico, simulador y Entrómetro cableados; meta 1 500 → ~1 220, brecha 878 → 659** | (G26) | Ver sección dedicada abajo. Una columna nullable, sin tocar `Question` ni `Topic`. Confirmado con guías oficiales que el área solo cambia el peso. `test:unit` 491/491 (+15). |
@@ -2089,6 +2090,184 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G29 — Lote de reactivos: Español/Comunicación, IPN (encargo SOCADM) (2026-08-28)
+
+**COMPLETADA. 35 reactivos originales insertados con `isVerified=false`,
+pendientes de verificación ciega.** Modo de trabajo: autónomo, sin
+preguntas. Segundo lote del proyecto sobre Español/Habilidad Verbal (tras
+G22) y segundo que usa el modelo `Passage`.
+
+### 1) La materia es COMPARTIDA — el lote no va a los temas de SOCADM
+
+El encargo pide "35 reactivos de Español/Comunicación para la rama SOCADM".
+Pero **Español/Lectura del IPN es materia compartida**
+(`sharedContentKey = 'IPN:ESPANOL'`, migración 0011 / G26): las tres ramas
+(FISMAT w4, MEDBIO w6, SOCADM w3) comparten un único pool de reactivos
+verificados. La regla de CLAUDE.md y de G26 §8.2 es explícita: **al componer
+un lote de una materia compartida, insértalo contra el `topicId` de la
+materia con más contenido del grupo — la reutilización lo sirve a las demás
+áreas.**
+
+Consulta en vivo a Supabase (2026-08-28):
+
+| Rama | `subjectId` | Temas | Reactivos | Verificados |
+|---|---|---|---:|---:|
+| **FISMAT** | `cmrr1lh1n00bhhi3nq64xyp01` | Ortografía, Gramática, Comprensión lectora, Análisis de textos | **35** | **35** (de G22) |
+| MEDBIO | `cmrr1m1ee00dnhi3n8buwdxi4` | Ortografía, Comprensión lectora, Análisis de textos | 0 | 0 |
+| SOCADM | `cmrr1pxgz00fh11qdsh8e55h0` | Comprensión lectora, Análisis de textos, Redacción | 0 | 0 |
+
+**FISMAT tiene todo el contenido del grupo (35, de G22); MEDBIO y SOCADM
+están en cero.** Además, FISMAT es la **única** de las tres ramas cuyo
+temario nombra **Ortografía** y **Gramática** como temas dedicados — que es
+justo donde caen los formatos del encargo (analogías, completar oraciones,
+ortografía, gramática). SOCADM solo tiene Comprensión lectora, Análisis de
+textos y Redacción. Forzar ortografía/gramática dentro de "Redacción" de
+SOCADM sería peor ajuste de temario y fragmentaría el pool compartido.
+
+**Decisión: el lote se compone e inserta contra los 4 temas de FISMAT**, y
+la reutilización G26 lo sirve a MEDBIO y a SOCADM (verificado en código:
+`loadEquivalentSubjectIds` y `loadAreaServablePool` en
+`src/lib/db/{shared-content,adaptive}.ts` filtran por
+`topic.subjectId ∈ grupo`). Un alumno de SOCADM con su Español de peso 3
+pasa de un pool de 0 a un pool compartido de **70** (35 de G22 + 35 de G29,
+una vez verificados).
+
+Contraste con G27 (Matemáticas Aplicadas SOCADM): esa materia tiene
+`sharedContentKey = null` y **sí** fue a los temas propios de SOCADM. Las
+dos decisiones son la misma regla aplicada: compartida → celda de más
+contenido; no compartida → celda propia.
+
+### 2) Fuentes — TEMARIO_ONLY
+
+Cero `SourceChunk` para cualquier tema o materia de Español del IPN; no
+existe ninguna guía de IPN en `content_sources` (solo UAM, UNAM, CENEVAL,
+ECOEMS). Los 35 son **TEMARIO_ONLY**. Los **4 pasajes de comprensión de
+lectura son ORIGINALES**, escritos en esta sesión — sin copiar textos con
+derechos de autor:
+
+| ref | Título | Género | Tema (FISMAT) | Preguntas |
+|---|---|---|---|---:|
+| `g29-ajolote` | El ajolote, entre el agua y la tierra | Divulgación científica (neotenia y regeneración) | Comprensión lectora | 5 |
+| `g29-escritura` | Escribir a mano en tiempos del teclado | Argumentativo (tesis + evidencia + concesión/refutación) | Comprensión lectora | 5 |
+| `g29-espera` | La espera | Narrativo/literario (narrador 3ª persona con foco interno, analepsis, símil) | Análisis de textos | 5 |
+| `g29-releer` | Releer | Ensayístico/argumentativo (tesis sostenida con imágenes) | Análisis de textos | 5 |
+
+Ninguno se solapa en tema con los 4 pasajes de G22 (teocintle, arbolado
+urbano, la azotea, el aburrimiento).
+
+### 3) Composición — 35 reactivos
+
+| Tema (FISMAT) | Reactivos | Formatos |
+|---|---:|---|
+| Comprensión lectora | 10 | `READING_COMPREHENSION` ×10 (pasajes `g29-ajolote` ×5, `g29-escritura` ×5) |
+| Análisis de textos | 10 | `READING_COMPREHENSION` ×10 (pasajes `g29-espera` ×5, `g29-releer` ×5) |
+| Gramática | 9 | `SENTENCE_COMPLETION` ×4 (conectores, subjuntivo temporal, queísmo, concesivo/causal), `ANALOGY` ×3 (profesión-lugar, antónimos, instrumento-magnitud), `MULTIPLE_CHOICE` ×2 (infinitivo sustantivado, dequeísmo) |
+| Ortografía | 6 | `MULTIPLE_CHOICE` ×6 (más/mas, b/v, coma en enumeración, mayúsculas, haber/a ver, tilde en hiato) |
+| **TOTAL** | **35** | RC 20 · SENTENCE_COMPLETION 4 · ANALOGY 3 · MULTIPLE_CHOICE 8 |
+
+- **Dificultad:** BASIC 7 / INTERMEDIATE 17 / ADVANCED 9 / EXPERT 2
+  (20 % / 49 % / 26 % / 6 %), casi idéntica a la sugerida por `_base.md`.
+- Cada pasaje sirve **5 preguntas de competencias distintas** (idea central,
+  término/definición, inferencia, propósito del autor, estructura; o tipo de
+  narrador, función de párrafo, inferencia, tono, figura retórica) — se
+  evitó la redundancia de competencia que G23 §8.2 anotó sobre G22.
+
+### 4) Re-resolución independiente antes de insertar
+
+Los 35 se resolvieron **desde cero**, como lo hará la sesión ciega de G30:
+para cada reactivo se comprobó (a) que la opción marcada es la única
+defendible contra el texto del pasaje o la norma, y (b) que cada distractor
+corresponde a un error nombrable — contradicción textual directa, contenido
+inventado, distractor verdadero que no responde lo preguntado, tesis
+refutada tomada por concesión, sinonimia por antonimia, queísmo/dequeísmo,
+regla de agudas aplicada donde manda el hiato, etc. **Dos ajustes** salieron
+de esa pasada: se quitó "temblaron" (personificación involuntaria) del
+pasaje `g29-espera` para dejar el ítem de figura retórica inequívoco, y se
+reescribió el distractor C del ítem de mayúsculas (asignaturas en mayúscula
+es zona gris de la RAE) por un error inequívoco (`Mi Hermano` / `méxico`).
+
+### 5) Distribución de posición y candados anti-artefacto
+
+- **Posición de la correcta: A=9, B=8, C=9, D=9** (25.7 / 22.9 / 25.7 /
+  25.7 %) — las cuatro dentro de 15-40 %, confirmado por `analyzeLot` y por
+  **consulta directa a la DB tras insertar**.
+- **Rotación cíclica A→B→C→D (hallazgo de G16):** secuencia real de las 35
+  letras en orden de inserción (verificada contra la DB por `createdAt`):
+  `BDACBDCADBACDBDACBADCADBCABDCACBDAC` → **6/34 transiciones +1 (17.6 %)**
+  contra 25 % de azar, sin ninguna racha de 3+. No presente.
+- **Cue de longitud (hallazgo de G23 §7b/§8):** la opción correcta es la
+  (co)más larga en **7/35 (20 %)**, por debajo del azar — tras una pasada de
+  reequilibrio que alargó los distractores de 15 ítems de comprensión de
+  lectura (donde la paráfrasis correcta tiende a ser más larga). G22 había
+  quedado en 26 %.
+- **Cue de glosa (hallazgo de G3e):** **0 reactivos** con exactamente una
+  opción entre paréntesis.
+- Las explicaciones citan cada distractor **por su contenido** ("la opción
+  sobre la contaminación", "la que pone 'mas días'", "si respondiste
+  'verbo'"), nunca por su letra — `analyzeLot` → 0 `LETTER_CITATION`.
+
+### 6) Validación e inserción real — verificada en la DB
+
+`pnpm content:validate-batch --dir scripts/content-exports/g29` sobre los
+4 archivos: **0 violaciones** a la primera. Luego `content:insert --topic
+<id> --file <archivo> --lot-dir scripts/content-exports/g29` (dry-run
+primero: 0 rechazados, 0 duplicados vía `normalizeStem` contra los 35 de
+G22 en los mismos temas; luego sin `--dry-run`) para los 4 temas, en orden
+Comprensión lectora → Análisis de textos → Gramática → Ortografía.
+**Consulta directa a la DB, no solo el log:**
+
+| Métrica | Antes de G29 | Después de G29 |
+|---|---|---|
+| IPN Español/Lectura (grupo `IPN:ESPANOL`) — total | 35 | **70** |
+| IPN Español/Lectura — verificados | 35 | **35** (sin cambio, correcto: pendiente de verificación ciega) |
+| IPN Español/Lectura — grounding del lote nuevo | — | **35 TEMARIO_ONLY** |
+| `passages` nuevos en la DB | — | **4** (cada uno con exactamente 5 preguntas enlazadas) |
+| Reactivos `READING_COMPREHENSION` con `passageId` (lote) | — | **20 / 20** |
+| Reactivos no-RC con `passageId` (lote) | — | **0** (correcto) |
+| Reactivos mal formados (≠4 opciones, ≠1 correcta, ≠3 capas) | — | **0** |
+| Banco — total | 657 | **692** |
+| Banco — verificados | 657 | **657** (sin cambio, correcto) |
+| Banco — sin veredicto (cola ciega) | 0 | **35** |
+
+Registro consolidado en `docs/content-batches/g29-ipn-espanol.json`: 35
+`questionId` reales, 4 pasajes con su texto completo, stems, opciones,
+explicaciones, grounding, distribución de posición y secuencia de letras.
+
+### 7) Limpieza
+
+Scripts desechables del scratchpad (`check-g29.mjs`, `build-g29-record.mjs`)
+usados para los chequeos de lote y armar el registro. Los 4 archivos JSON
+del lote viven en `scripts/content-exports/g29/` (carpeta en `.gitignore`
+desde G1); el registro permanente es el archivo en `docs/content-batches/`.
+
+`pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo
+contenido + docs). Cero llamadas a la API de pago de Anthropic — los 35
+reactivos y los 4 pasajes se redactaron directamente en esta sesión de
+Claude Code.
+
+### Siguiente (G29)
+
+1. **Verificación ciega de los 35 reactivos de este lote** (patrón
+   G23/G28): una sesión nueva e independiente que no vea las respuestas
+   correctas los resuelve con `content:blind-batch --all` →
+   `content:resolve`. **Ninguno es de cálculo** (`isCalcSubject` da falso
+   para "Español/Lectura"): se razona cada uno descartando distractores por
+   contenido y, en los 20 de comprensión de lectura, contra el texto del
+   pasaje (que el lote ciego SÍ incluye — `buildBlindItem` copia
+   `passageContent`). Atención a los 2 `EXPERT`: símil vs. personificación
+   en `g29-espera` (el nexo "como" es la marca decisiva) e interpretación de
+   la frase final de `g29-releer`. Como en G23, tratar la **confianza
+   declarada**, no la tasa (saturada), como el indicador de calidad verbal.
+2. **`IPN:ESPANOL` queda en 70** (meta efectiva G26: 33). El grupo ya
+   estaba "completo" por conteo antes de G29; este lote es profundidad
+   extra para una institución de lanzamiento día 1, no cierre de brecha.
+   Las **otras materias de SOCADM siguen en cero**: Historia de México,
+   Historia Universal, Geografía, Civismo/Derecho (Inglés también es
+   compartido y está en cero en las 3 ramas). Sigue pendiente la pregunta
+   de alcance de G24 §7 / G26 §8.4 (¿SOCADM en la meta del 21-nov?).
+3. Heredados sin tocar: rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % (47/657).
 
 ## G28 — Verificación ciega: Matemáticas Aplicadas, IPN SOCADM (2026-08-28)
 
