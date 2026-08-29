@@ -1,0 +1,1895 @@
+{
+  "batch": "G27",
+  "generatedAt": "2026-08-29T00:04:09.157Z",
+  "institution": "IPN",
+  "area": "Ciencias Sociales y Administrativas (SOCADM)",
+  "subject": "Matemáticas Aplicadas",
+  "subjectId": "cmrr1pw4200f911qdbhnkz5x8",
+  "subjectQuestionWeight": 3,
+  "selectionRule": "Encargo explícito: rama SOCADM del IPN, completa en cero (7 materias, 0 reactivos). La materia de matemáticas de esa rama en el seed es \"Matemáticas Aplicadas\" (weight 3), NO el bloque general de \"Matemáticas\" de FISMAT/MEDBIO — temario y enfoque distintos (estadística/probabilidad/datos), por eso G26 la dejó fuera del grupo compartido IPN:MATEMATICAS. El nivel pedido (aritmética aplicada, porcentajes, estadística básica, razonamiento cuantitativo, no cálculo avanzado) corresponde exactamente a esta materia.",
+  "totalQuestions": 35,
+  "sourcedCount": 0,
+  "temarioOnlyCount": 35,
+  "note": "Cero SourceChunk para la materia, sus 3 temas o cualquier guía de IPN en content_sources: los 35 son TEMARIO_ONLY (F2b, no bloquea).",
+  "topicDistribution": {
+    "Estadística descriptiva": 12,
+    "Probabilidad": 11,
+    "Análisis de datos": 12
+  },
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "difficultyDistribution": {
+    "BASIC": 6,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 10,
+    "EXPERT": 2
+  },
+  "formatDistribution": {
+    "PROBLEM_SOLVING": 26,
+    "CHART_TABLE": 8,
+    "MULTIPLE_CHOICE": 1
+  },
+  "correctLetterSequence": "BCBACBDACCADACBABDCADBDACBDCABADCDB",
+  "verification": "Los 35 cálculos recomputados de forma independiente en scripts/scratchpad (verify-g27.mjs): cada respuesta marcada coincide con el recálculo y cada distractor corresponde a un error nombrable (media vs mediana, base equivocada del porcentaje, sumar porcentajes en vez de multiplicar factores, condicional vs conjunta, con/sin reemplazo, etc.). content:validate-batch: 0 violaciones (MALFORMED_OPTIONS 0, POSITION_SKEW 0, LETTER_CITATION 0). Secuencia de letras no cíclica (transiciones +1 en el ciclo A→B→C→D: 7/34 = 20.6%, vs 25% de azar).",
+  "questions": [
+    {
+      "questionId": "cmtdm7wy40001mg20kj898n6a",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "Durante una semana, una farmacia registró estas ventas diarias, en miles de pesos: 10, 12, 9, 25, 16, 20 y 13. ¿Cuál fue la venta diaria promedio de esa semana?",
+      "options": [
+        {
+          "id": "A",
+          "text": "13 mil pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "15 mil pesos",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "17 mil pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "17.5 mil pesos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Suma total entre número de días",
+          "content": "La media aritmética es la suma de todos los valores dividida entre cuántos son. La suma de las siete ventas es 105 y hay 7 días, así que el promedio es 105 ÷ 7 = 15 mil pesos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Suma los siete valores: 10 + 12 + 9 + 25 + 16 + 20 + 13 = 105. 2) Cuenta los datos: 7. 3) Divide: 105 ÷ 7 = 15. Si obtuviste 13, tomaste la mediana (el valor central al ordenar los datos) en lugar de la media. Si obtuviste 17, promediaste solo el dato menor y el mayor: (9 + 25) ÷ 2. Si obtuviste 17.5, dividiste entre 6 en lugar de entre 7.",
+          "latexContent": "\\bar{x} = \\frac{10+12+9+25+16+20+13}{7} = \\frac{105}{7} = 15"
+        },
+        {
+          "layer": 3,
+          "title": "Media aritmética",
+          "content": "La media reparte el total por igual entre todos los datos: es el valor que tendría cada dato si todos fueran iguales y sumaran lo mismo. Es sensible a los valores extremos; aquí el 25 la empuja hacia arriba. Repasa: media, mediana y moda, y cuándo conviene cada una.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm7xrr0006mg20fk4vfmwa",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "C",
+      "stem": "Las edades de seis empleados de una oficina son: 45, 28, 33, 51, 39 y 47 años. ¿Cuál es la mediana de las edades?",
+      "options": [
+        {
+          "id": "A",
+          "text": "39 años",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "40.5 años",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "42 años",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "45 años",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Promedio de los dos valores centrales",
+          "content": "Al ordenar las edades de menor a mayor se obtiene 28, 33, 39, 45, 47, 51. Como hay un número par de datos, la mediana es el promedio de los dos centrales: (39 + 45) ÷ 2 = 42 años.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Ordena los datos: 28, 33, 39, 45, 47, 51. 2) Con 6 datos, los centrales son el tercero y el cuarto: 39 y 45. 3) Promédialos: (39 + 45) ÷ 2 = 42. Si obtuviste 39 o 45, tomaste solo uno de los dos valores centrales sin promediarlos. Si obtuviste 40.5, calculaste la media de las seis edades en lugar de la mediana.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Mediana con número par de datos",
+          "content": "La mediana es el valor que deja la mitad de los datos por debajo y la mitad por encima. Siempre se calcula sobre los datos ORDENADOS. Con un número impar de datos es el valor de en medio; con número par es el promedio de los dos centrales. A diferencia de la media, no le afectan los valores extremos. Repasa: posición de la mediana y su cálculo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm7yju000bmg20hmc8znf9",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "Un curso se califica así: tareas 20%, examen parcial 30% y examen final 50%. Un estudiante obtuvo 90 en tareas, 70 en el parcial y 80 en el final. ¿Cuál es su calificación final del curso?",
+      "options": [
+        {
+          "id": "A",
+          "text": "77",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "79",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "80",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "82",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada nota por su peso, luego se suma",
+          "content": "En una media ponderada cada calificación se multiplica por su peso y los productos se suman: 0.20 × 90 + 0.30 × 70 + 0.50 × 80 = 18 + 21 + 40 = 79.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Convierte los porcentajes a decimales: 0.20, 0.30, 0.50. 2) Multiplica cada nota por su peso: 18, 21 y 40. 3) Suma: 79. Si obtuviste 80, promediaste las tres notas sin pesos: (90 + 70 + 80) ÷ 3. Si obtuviste 82, intercambiaste el peso de tareas (20%) con el del final (50%). Si obtuviste 77, cambiaste el peso del parcial por el del final.",
+          "latexContent": "C = 0.20(90) + 0.30(70) + 0.50(80) = 18 + 21 + 40 = 79"
+        },
+        {
+          "layer": 3,
+          "title": "Media ponderada",
+          "content": "La media ponderada se usa cuando los datos no valen lo mismo: cada uno aporta según su peso. La suma de los pesos debe ser 1 (o 100%). Si todos los pesos fueran iguales, coincide con la media aritmética simple. Repasa: media ponderada y su diferencia con el promedio simple.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm7zbz000gmg20o1lw887x",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "A",
+      "stem": "Una persona compró 3 kg de manzanas a 40 pesos el kilogramo y 2 kg de peras a 55 pesos el kilogramo. ¿Cuál fue el precio promedio por kilogramo de la fruta que compró?",
+      "options": [
+        {
+          "id": "A",
+          "text": "46 pesos",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "47.5 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "49 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "57.5 pesos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Gasto total entre kilogramos totales",
+          "content": "El precio promedio por kilo es el gasto total dividido entre los kilos totales. Gasto: 3 × 40 + 2 × 55 = 120 + 110 = 230 pesos. Kilos: 3 + 2 = 5. Promedio: 230 ÷ 5 = 46 pesos por kilogramo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Calcula el gasto de cada fruta: manzanas 120, peras 110. 2) Suma el gasto total: 230. 3) Suma los kilos: 5. 4) Divide: 230 ÷ 5 = 46. Si obtuviste 47.5, promediaste solo los dos precios, (40 + 55) ÷ 2, sin considerar que se compraron más manzanas que peras. Si obtuviste 49, intercambiaste las cantidades: (2 × 40 + 3 × 55) ÷ 5. Si obtuviste 57.5, dividiste entre 4 en lugar de entre 5.",
+          "latexContent": "\\text{precio promedio} = \\frac{3(40) + 2(55)}{3 + 2} = \\frac{230}{5} = 46"
+        },
+        {
+          "layer": 3,
+          "title": "Promedio ponderado por cantidad",
+          "content": "Cuando se promedian precios de artículos comprados en cantidades distintas, cada precio pesa según cuántas unidades se compraron a ese precio. El promedio se acerca más al precio de lo que se compró en mayor cantidad. Repasa: media ponderada aplicada a precios y mezclas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm804s000lmg20xa8zj9im",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "C",
+      "stem": "El promedio de cuatro números es 25. Si tres de ellos son 20, 28 y 30, ¿cuál es el cuarto número?",
+      "options": [
+        {
+          "id": "A",
+          "text": "12",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "20",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "22",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "26",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De la media se recupera la suma",
+          "content": "Si el promedio de cuatro números es 25, su suma es 4 × 25 = 100. Los tres conocidos suman 20 + 28 + 30 = 78, así que el cuarto es 100 − 78 = 22.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Multiplica el promedio por la cantidad de datos: 4 × 25 = 100 (esta es la suma de los cuatro). 2) Suma los tres conocidos: 78. 3) Resta: 100 − 78 = 22. Si obtuviste 26, promediaste solo los tres números dados: 78 ÷ 3. Si obtuviste 20, repetiste el primer valor de la lista. Si obtuviste 12, sumaste mal los tres conocidos (como 88) antes de restar.",
+          "latexContent": "x_4 = 4(25) - (20 + 28 + 30) = 100 - 78 = 22"
+        },
+        {
+          "layer": 3,
+          "title": "La media como reparto de una suma",
+          "content": "La media es suma ÷ cantidad, de modo que suma = media × cantidad. Este despeje sirve para hallar un dato faltante, la calificación que falta para llegar a un promedio, o cuánto sube o baja la media al cambiar un dato. Repasa: despeje de la media y problemas de dato faltante.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm80wu000qmg2085bx4vd3",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "El promedio de edad de un equipo de 5 jugadores es 24 años. Se integra un jugador nuevo de 30 años. ¿Cuál es el nuevo promedio de edad del equipo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "24 años",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "25 años",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "27 años",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "30 años",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Nueva suma entre nuevo número de jugadores",
+          "content": "La suma de las cinco edades es 5 × 24 = 120. Al integrar al jugador de 30, la suma pasa a 150 y ahora son 6 jugadores: 150 ÷ 6 = 25 años.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Recupera la suma original: 5 × 24 = 120. 2) Súmale la edad del nuevo: 120 + 30 = 150. 3) Divide entre el nuevo total de jugadores: 150 ÷ 6 = 25. Si obtuviste 27, promediaste el promedio anterior con la edad del nuevo: (24 + 30) ÷ 2. Si obtuviste 24, supusiste que el promedio no cambia. Si obtuviste 30, dividiste entre 5 y no entre 6.",
+          "latexContent": "\\bar{x}_{nuevo} = \\frac{5(24) + 30}{6} = \\frac{150}{6} = 25"
+        },
+        {
+          "layer": 3,
+          "title": "Cómo cambia la media al agregar un dato",
+          "content": "Al añadir un dato, la media se mueve hacia ese dato, pero solo una fracción: el cambio se reparte entre todos los datos nuevos. Agregar un valor mayor que la media la sube; uno menor la baja; uno igual a la media la deja intacta. Repasa: efecto de agregar o quitar un dato sobre la media.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm81ou000vmg207wum302o",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "D",
+      "stem": "En un grupo de 30 alumnos el promedio del examen fue 8. En otro grupo de 20 alumnos el promedio fue 7. ¿Cuál es el promedio de los 50 alumnos juntos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "7",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "7.4",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "7.5",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "7.6",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada promedio pesa según su número de alumnos",
+          "content": "No se pueden promediar los dos promedios directamente porque los grupos tienen tamaños distintos. Suma total de puntos: 30 × 8 + 20 × 7 = 240 + 140 = 380. Entre 50 alumnos: 380 ÷ 50 = 7.6.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Recupera la suma de cada grupo: 30 × 8 = 240 y 20 × 7 = 140. 2) Súmalas: 380. 3) Divide entre el total de alumnos: 380 ÷ 50 = 7.6. Si obtuviste 7.5, promediaste los dos promedios sin pesos: (8 + 7) ÷ 2. Si obtuviste 7.4, intercambiaste los tamaños de los grupos. Si obtuviste 7, tomaste solo el promedio de uno de los grupos.",
+          "latexContent": "\\bar{x} = \\frac{30(8) + 20(7)}{30 + 20} = \\frac{380}{50} = 7.6"
+        },
+        {
+          "layer": 3,
+          "title": "Promedio de varios grupos",
+          "content": "El promedio de una unión de grupos es la media ponderada de los promedios, usando como pesos el tamaño de cada grupo. Queda más cerca del promedio del grupo más numeroso. Solo coincide con el promedio simple cuando los grupos tienen el mismo tamaño. Repasa: media ponderada y combinación de promedios.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm82gt0010mg20xz925rx7",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "CHART_TABLE",
+      "correctOption": "A",
+      "stem": "Una encuesta a 40 familias registró el número de hijos por familia: 0 hijos en 6 familias, 1 hijo en 14 familias, 2 hijos en 12 familias, 3 hijos en 5 familias y 4 hijos en 3 familias. ¿Cuál es la moda de la distribución?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 hijo",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "1.5 hijos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "1.625 hijos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "14 hijos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El valor más frecuente, no su frecuencia",
+          "content": "La moda es el valor que más se repite. La frecuencia más alta es 14, y corresponde a las familias con 1 hijo. Por lo tanto la moda es 1 hijo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Identifica la frecuencia mayor: 14. 2) Mira a qué valor de la variable pertenece: a las familias de 1 hijo. 3) La moda es ese valor: 1 hijo. Si respondiste 14, diste la frecuencia (cuántas familias) en lugar del valor. Si respondiste 1.625, calculaste la media: (0×6 + 1×14 + 2×12 + 3×5 + 4×3) ÷ 40 = 65 ÷ 40. Si respondiste 1.5, calculaste la mediana (el dato 20 y el 21 al ordenar las 40 observaciones caen entre 1 y 2 hijos).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Moda en una tabla de frecuencias",
+          "content": "En datos agrupados en una tabla, la moda es el valor de la variable (no la frecuencia) que tiene la mayor frecuencia. Una distribución puede no tener moda, tener una (unimodal) o varias (bimodal, multimodal). La moda es la única medida de tendencia central que sirve también para datos cualitativos. Repasa: media, mediana y moda a partir de una tabla de frecuencias.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm838x0015mg20p4xgfgdl",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "CHART_TABLE",
+      "correctOption": "C",
+      "stem": "Los tiempos de espera en una fila, en minutos, de 20 clientes se agrupan así: intervalo de 0 a 4 minutos (marca de clase 2) con 5 clientes; de 4 a 8 minutos (marca de clase 6) con 6 clientes; de 8 a 12 minutos (marca de clase 10) con 9 clientes. ¿Cuál es el tiempo de espera promedio aproximado?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4.8 minutos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "6 minutos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "6.8 minutos",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "8.8 minutos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Marca de clase por frecuencia, entre el total",
+          "content": "Con datos agrupados se usa la marca de clase (el punto medio del intervalo) como valor representativo: (2 × 5 + 6 × 6 + 10 × 9) ÷ 20 = (10 + 36 + 90) ÷ 20 = 136 ÷ 20 = 6.8 minutos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Multiplica cada marca de clase por su frecuencia: 10, 36 y 90. 2) Suma esos productos: 136. 3) Divide entre el total de clientes: 136 ÷ 20 = 6.8. Si obtuviste 6, promediaste las tres marcas de clase (2, 6, 10) sin ponderar por cuántos clientes hay en cada intervalo. Si obtuviste 4.8, usaste el límite inferior de cada intervalo (0, 4, 8) en lugar de la marca de clase. Si obtuviste 8.8, usaste el límite superior (4, 8, 12).",
+          "latexContent": "\\bar{x} \\approx \\frac{2(5) + 6(6) + 10(9)}{20} = \\frac{136}{20} = 6.8"
+        },
+        {
+          "layer": 3,
+          "title": "Media de datos agrupados",
+          "content": "Cuando los datos vienen agrupados en intervalos ya no se conocen los valores exactos, así que se aproxima cada dato por la marca de clase (punto medio del intervalo) y se calcula una media ponderada por las frecuencias. El resultado es una estimación, no el valor exacto. Repasa: marca de clase, tabla de frecuencias con intervalos y media aproximada.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm840w001amg202f7pzeee",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "C",
+      "stem": "En la sucursal Norte la temperatura ambiente durante un día tuvo un mínimo de 15 °C y un máximo de 33 °C. En la sucursal Sur el mínimo fue 22 °C y el máximo 30 °C. ¿Cuál es la diferencia entre el rango de temperatura de las dos sucursales?",
+      "options": [
+        {
+          "id": "A",
+          "text": "3 °C",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "7 °C",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "10 °C",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "26 °C",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Rango de cada una y luego se restan",
+          "content": "El rango es máximo menos mínimo. Norte: 33 − 15 = 18 °C. Sur: 30 − 22 = 8 °C. La diferencia entre los rangos es 18 − 8 = 10 °C.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Calcula el rango de Norte: 33 − 15 = 18. 2) Calcula el rango de Sur: 30 − 22 = 8. 3) Resta los rangos: 18 − 8 = 10. Si obtuviste 3, restaste los dos máximos (33 − 30). Si obtuviste 7, restaste los dos mínimos (22 − 15). Si obtuviste 26, sumaste los dos rangos en lugar de restarlos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Rango como medida de dispersión",
+          "content": "El rango mide qué tan separados están el dato más grande y el más pequeño; es la medida de dispersión más simple, pero solo usa dos datos y le afectan mucho los valores extremos. Un rango mayor indica temperaturas más variables a lo largo del día. Repasa: rango, y su diferencia con la desviación estándar.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm84sw001fmg20868csixp",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "A",
+      "stem": "Cinco recibos bimestrales de luz de un hogar, en cientos de pesos, fueron: 3, 5, 6, 7 y 9. ¿Cuál es la desviación estándar poblacional de estos gastos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "2",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "2.24",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "4",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "4.47",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Raíz del promedio de las desviaciones al cuadrado",
+          "content": "La media es (3 + 5 + 6 + 7 + 9) ÷ 5 = 6. Las desviaciones respecto a la media son −3, −1, 0, 1, 3; sus cuadrados 9, 1, 0, 1, 9 suman 20. La varianza poblacional es 20 ÷ 5 = 4 y la desviación estándar es la raíz: √4 = 2.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Calcula la media: 6. 2) Resta la media a cada dato y eleva al cuadrado: 9, 1, 0, 1, 9. 3) Suma: 20. 4) Divide entre 5 (población): varianza = 4. 5) Saca raíz cuadrada: 2. Si obtuviste 4, te quedaste en la varianza y no sacaste la raíz. Si obtuviste 2.24, dividiste entre n − 1 = 4 (desviación muestral): √(20 ÷ 4) = √5. Si obtuviste 4.47, sacaste la raíz de 20 sin dividir entre el número de datos.",
+          "latexContent": "\\sigma = \\sqrt{\\frac{\\sum (x_i - \\bar{x})^2}{n}} = \\sqrt{\\frac{20}{5}} = \\sqrt{4} = 2"
+        },
+        {
+          "layer": 3,
+          "title": "Varianza y desviación estándar",
+          "content": "La varianza es el promedio de los cuadrados de las distancias a la media; la desviación estándar es su raíz cuadrada, y tiene la ventaja de estar en las mismas unidades que los datos. La versión poblacional divide entre n; la muestral divide entre n − 1. Repasa: cálculo de varianza y desviación estándar, y la diferencia entre población y muestra.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm85ku001kmg20m8ve5hbn",
+      "topicId": "cmrr1pw7600fb11qdhnkynyo3",
+      "topic": "Estadística descriptiva",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "D",
+      "stem": "El promedio de calificaciones de un grupo de 8 estudiantes es 7.5. Se sabe que 7 de ellos promedian exactamente 7.2. ¿Qué calificación obtuvo el octavo estudiante?",
+      "options": [
+        {
+          "id": "A",
+          "text": "2.1",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "7.5",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "7.8",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "9.6",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Suma de los 8 menos suma de los 7",
+          "content": "La suma de las 8 calificaciones es 8 × 7.5 = 60. La suma de las 7 conocidas es 7 × 7.2 = 50.4. La calificación del octavo es 60 − 50.4 = 9.6.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Suma total del grupo: 8 × 7.5 = 60. 2) Suma de los siete: 7 × 7.2 = 50.4. 3) Resta: 60 − 50.4 = 9.6. Si obtuviste 7.8, sumaste al promedio del grupo la diferencia 7.5 − 7.2. Si obtuviste 7.5, supusiste que la octava calificación es igual al promedio del grupo. Si obtuviste 2.1, multiplicaste el promedio por 7 en lugar de por 8 al calcular la suma total: 52.5 − 50.4.",
+          "latexContent": "x_8 = 8(7.5) - 7(7.2) = 60 - 50.4 = 9.6"
+        },
+        {
+          "layer": 3,
+          "title": "Trabajar con sumas, no con promedios",
+          "content": "Los promedios no se suman ni se restan entre sí, pero las sumas totales sí. La técnica general es: convierte cada promedio en su suma (promedio × cantidad), opera con las sumas, y al final vuelve a promedio si hace falta. Cuando un subgrupo está por debajo del promedio general, el dato que falta debe estar por encima para compensar. Repasa: relación entre suma y media, y problemas de compensación de promedios.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8dfn00011u6wzbvlq1ra",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "A",
+      "stem": "En una urna hay 5 canicas rojas, 3 azules y 2 verdes. Si se saca una canica al azar, ¿cuál es la probabilidad de que sea azul?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{3}{10}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{1}{3}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{3}{7}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{7}{10}$",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Casos favorables entre casos totales",
+          "content": "La probabilidad es el número de resultados favorables dividido entre el total de resultados posibles. Hay 3 canicas azules y 5 + 3 + 2 = 10 canicas en total, así que la probabilidad es 3 de 10.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Cuenta los casos favorables: 3 canicas azules. 2) Cuenta el total de canicas: 10. 3) Escribe la razón: 3 entre 10. Si respondiste un tercio, dividiste entre el número de colores (3) en lugar del número de canicas. Si respondiste 3 entre 7, usaste 7 en el denominador olvidando contar las verdes. Si respondiste 7 entre 10, calculaste la probabilidad de NO sacar azul.",
+          "latexContent": "P(\\text{azul}) = \\frac{\\text{canicas azules}}{\\text{canicas totales}} = \\frac{3}{10}"
+        },
+        {
+          "layer": 3,
+          "title": "Probabilidad clásica (Laplace)",
+          "content": "Cuando todos los resultados son igualmente probables, la probabilidad de un evento es (casos favorables) ÷ (casos totales). Siempre está entre 0 y 1. La probabilidad del evento y la de su complemento suman 1. Repasa: definición clásica de probabilidad y regla del complemento.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8e7d00061u6wdui2yiox",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "C",
+      "stem": "En una línea de producción, la probabilidad de que un artículo salga defectuoso es 0.08. Si se toma un artículo al azar, ¿cuál es la probabilidad de que NO sea defectuoso?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.08",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "0.80",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "0.92",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "0.98",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Uno menos la probabilidad del evento",
+          "content": "Que un artículo sea defectuoso y que no lo sea son eventos complementarios: sus probabilidades suman 1. Por lo tanto, P(no defectuoso) = 1 − 0.08 = 0.92.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Identifica el evento contrario: 'no defectuoso' es lo contrario de 'defectuoso'. 2) Resta de 1 la probabilidad dada: 1 − 0.08 = 0.92. Si respondiste 0.08, repetiste la probabilidad del defecto sin calcular su complemento. Si respondiste 0.80, restaste 0.20 en lugar de 0.08. Si respondiste 0.98, restaste 0.02, un error de posición decimal.",
+          "latexContent": "P(\\text{no defectuoso}) = 1 - P(\\text{defectuoso}) = 1 - 0.08 = 0.92"
+        },
+        {
+          "layer": 3,
+          "title": "Regla del complemento",
+          "content": "El complemento de un evento E es 'que E no ocurra', y se cumple P(E) + P(no E) = 1. Conviene usarla cuando calcular 'lo contrario' es más fácil que el evento directo, como en los problemas de 'al menos uno'. Repasa: eventos complementarios y la regla del complemento.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8ez3000b1u6wf8g6crkf",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "De una baraja de 52 cartas se extrae una carta al azar. ¿Cuál es la probabilidad de que sea un as o un rey?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{1}{13}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{2}{13}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{3}{13}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{4}{13}$",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Suma de probabilidades de eventos sin cartas en común",
+          "content": "Hay 4 ases y 4 reyes, y ninguna carta es as y rey a la vez, así que los eventos son mutuamente excluyentes. La probabilidad es (4 + 4) ÷ 52 = 8 ÷ 52 = 2 entre 13.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Cuenta las cartas favorables: 4 ases + 4 reyes = 8. 2) Como no se traslapan, súmalas directamente. 3) Divide entre 52 y simplifica: 8 ÷ 52 = 2 ÷ 13. Si respondiste 1 entre 13, contaste solo una de las dos figuras pedidas. Si respondiste 4 entre 13, contaste las 16 cartas de figura (ases, reyes, reinas y sotas). Si respondiste 3 entre 13, incluiste también a las reinas.",
+          "latexContent": "P(\\text{as} \\cup \\text{rey}) = \\frac{4}{52} + \\frac{4}{52} = \\frac{8}{52} = \\frac{2}{13}"
+        },
+        {
+          "layer": 3,
+          "title": "Regla de la suma para eventos mutuamente excluyentes",
+          "content": "Si dos eventos E y F no pueden ocurrir a la vez, la probabilidad de que ocurra uno u otro es la suma de sus probabilidades: P(E o F) = P(E) + P(F). Si sí pudieran traslaparse, habría que restar la probabilidad de que ocurran ambos para no contar dos veces. Repasa: regla de la suma, eventos mutuamente excluyentes y no excluyentes.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8fqw000g1u6wy6ycjplh",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "A",
+      "stem": "La probabilidad de que llueva el sábado es 0.3 y la de que llueva el domingo es 0.4, de forma independiente. ¿Cuál es la probabilidad de que llueva ambos días?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.12",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "0.35",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "0.58",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "0.70",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Producto de las probabilidades",
+          "content": "Cuando dos eventos son independientes, la probabilidad de que ocurran ambos es el producto de sus probabilidades: 0.3 × 0.4 = 0.12.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Verifica que los eventos son independientes (que llueva un día no cambia la probabilidad del otro): el enunciado lo dice. 2) Multiplica: 0.3 × 0.4 = 0.12. Si respondiste 0.70, sumaste las probabilidades. Si respondiste 0.58, calculaste la probabilidad de que llueva al menos un día: 0.3 + 0.4 − 0.12. Si respondiste 0.35, promediaste las dos probabilidades.",
+          "latexContent": "P(\\text{sábado} \\cap \\text{domingo}) = P(\\text{sábado}) \\cdot P(\\text{domingo}) = 0.3 \\times 0.4 = 0.12"
+        },
+        {
+          "layer": 3,
+          "title": "Regla del producto para eventos independientes",
+          "content": "Dos eventos E y F son independientes si la ocurrencia de uno no afecta la probabilidad del otro. En ese caso P(E y F) = P(E) × P(F). Como cada probabilidad es menor que 1, el producto siempre es menor que cada una: que ocurran ambos es menos probable que cada uno por separado. Repasa: independencia de eventos y regla del producto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8git000l1u6w0owryigb",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "Un examen tiene 3 preguntas de opción múltiple, cada una con 4 opciones y una sola correcta. Si un estudiante responde las tres al azar, ¿cuál es la probabilidad de que acierte al menos una?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{27}{64}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{37}{64}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{3}{4}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{63}{64}$",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Uno menos la probabilidad de fallar todas",
+          "content": "Es más fácil calcular el complemento. La probabilidad de fallar una pregunta es 3 ÷ 4, y de fallar las tres es (3 ÷ 4)³ = 27 ÷ 64. Entonces P(al menos una correcta) = 1 − 27 ÷ 64 = 37 ÷ 64.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Probabilidad de fallar una: 3 ÷ 4. 2) Fallar las tres (independientes): (3/4) × (3/4) × (3/4) = 27 ÷ 64. 3) Complemento: 1 − 27/64 = 37 ÷ 64. Si respondiste 27 ÷ 64, calculaste la probabilidad de fallar todas y no la restaste de 1. Si respondiste 3 ÷ 4, sumaste 1/4 por cada pregunta. Si respondiste 63 ÷ 64, restaste de 1 la probabilidad de acertar las tres, (1/4)³.",
+          "latexContent": "P(\\text{al menos una}) = 1 - \\left(\\frac{3}{4}\\right)^3 = 1 - \\frac{27}{64} = \\frac{37}{64}"
+        },
+        {
+          "layer": 3,
+          "title": "La técnica del complemento en 'al menos uno'",
+          "content": "Calcular directamente 'al menos uno' obliga a sumar los casos de exactamente uno, exactamente dos y exactamente tres. Es mucho más corto calcular la probabilidad de 'ninguno' (un solo producto) y restarla de 1. Repasa: 'al menos uno' = 1 − P(ninguno), y potencias de probabilidades independientes.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8ham000q1u6wint23gag",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "CHART_TABLE",
+      "correctOption": "D",
+      "stem": "Una encuesta a 200 personas cruzó el lugar de residencia con el uso de transporte público. De las que viven en la ciudad, 90 usan transporte público y 30 no lo usan (120 en total). De las que viven en las afueras, 50 lo usan y 30 no (80 en total). Si se elige al azar una persona que vive en la ciudad, ¿cuál es la probabilidad de que use transporte público?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.45",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "0.60",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "0.64",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "0.75",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El grupo se reduce a quienes viven en la ciudad",
+          "content": "El dato 'vive en la ciudad' ya está confirmado, así que el total posible deja de ser 200 y pasa a ser 120. De esas 120, usan transporte público 90, así que la probabilidad es 90 ÷ 120 = 0.75.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Identifica la condición: se elige entre quienes viven en la ciudad, es decir, 120 personas. 2) Cuenta cuántas de esas 120 usan transporte público: 90. 3) Divide: 90 ÷ 120 = 0.75. Si respondiste 0.45, dividiste entre las 200 personas de toda la encuesta en lugar de entre las 120 que viven en la ciudad. Si respondiste 0.64, dividiste entre las 140 que usan transporte público. Si respondiste 0.60, calculaste la probabilidad de vivir en la ciudad.",
+          "latexContent": "P(\\text{usa} \\mid \\text{ciudad}) = \\frac{\\text{ciudad y usa}}{\\text{total ciudad}} = \\frac{90}{120} = 0.75"
+        },
+        {
+          "layer": 3,
+          "title": "Probabilidad condicional",
+          "content": "La probabilidad condicional P(E dado F) es la probabilidad de E cuando ya se sabe que F ocurrió: el 'universo' se reduce a los casos de F. En una tabla de doble entrada, el denominador deja de ser el gran total y pasa a ser el total de la fila o columna que impone la condición. Repasa: probabilidad condicional y su lectura en tablas de contingencia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8i2c000v1u6wziu2jbu5",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "C",
+      "stem": "Un menú ofrece 3 entradas, 4 platos fuertes y 2 postres. ¿Cuántas comidas distintas de tres tiempos (una entrada, un plato fuerte y un postre) se pueden formar?",
+      "options": [
+        {
+          "id": "A",
+          "text": "9",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "12",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "24",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "48",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Se multiplican las opciones de cada tiempo",
+          "content": "Por cada entrada hay 4 platos fuertes posibles, y por cada una de esas combinaciones hay 2 postres. El total es 3 × 4 × 2 = 24 comidas distintas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Elige entrada: 3 formas. 2) Por cada una, elige plato fuerte: 4 formas, van 3 × 4 = 12. 3) Por cada una de esas 12, elige postre: 2 formas, 12 × 2 = 24. Si respondiste 9, sumaste las opciones (3 + 4 + 2) en lugar de multiplicarlas. Si respondiste 12, multiplicaste entradas y platos fuertes pero olvidaste los postres. Si respondiste 48, multiplicaste una vez de más por 2.",
+          "latexContent": "\\text{comidas} = 3 \\times 4 \\times 2 = 24"
+        },
+        {
+          "layer": 3,
+          "title": "Principio multiplicativo del conteo",
+          "content": "Si una tarea se hace en etapas y la etapa 1 tiene m formas, la etapa 2 tiene n formas, y así sucesivamente, el número total de resultados es el producto m × n × … Se suma, en cambio, cuando las opciones son alternativas excluyentes (o una cosa o la otra), no etapas sucesivas. Repasa: principio de la multiplicación y principio de la suma en conteo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8iu700101u6w5as34tdn",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "A",
+      "stem": "En un juego se pagan 20 pesos por participar. Se lanza un dado normal: si sale 6, el jugador recibe 90 pesos; con cualquier otro resultado no recibe nada. ¿Cuál es la ganancia esperada del jugador por partida?",
+      "options": [
+        {
+          "id": "A",
+          "text": "−5 pesos",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "−1.67 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "15 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "70 pesos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Premio esperado menos el costo de participar",
+          "content": "La probabilidad de que salga 6 es 1 ÷ 6, así que el premio esperado es (1/6) × 90 = 15 pesos. Como participar cuesta 20 pesos siempre, la ganancia esperada es 15 − 20 = −5 pesos: en promedio el jugador pierde 5 pesos por partida.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Ganancia si sale 6: 90 − 20 = 70, con probabilidad 1/6. 2) Ganancia si no sale 6: 0 − 20 = −20, con probabilidad 5/6. 3) Valor esperado: (1/6)(70) + (5/6)(−20) = 70/6 − 100/6 = −30/6 = −5. Si respondiste 15, calculaste solo el premio esperado sin restar el costo. Si respondiste 70, supusiste que siempre sale 6. Si respondiste −1.67, no restaste el costo de participar en el caso de ganar.",
+          "latexContent": "E[G] = \\frac{1}{6}(90 - 20) + \\frac{5}{6}(0 - 20) = \\frac{70}{6} - \\frac{100}{6} = -5"
+        },
+        {
+          "layer": 3,
+          "title": "Valor esperado",
+          "content": "El valor esperado es el promedio de los resultados posibles, pesado por su probabilidad; representa lo que se obtendría en promedio por jugada si se repitiera el juego muchas veces. Un juego es 'justo' si su valor esperado es 0; si es negativo, conviene no jugar a largo plazo. Repasa: esperanza matemática de una variable aleatoria discreta.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8jm100151u6wwdt32zsu",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "D",
+      "stem": "En una caja hay 4 pilas cargadas y 2 agotadas. Se sacan 2 pilas al azar, una tras otra y sin reponer la primera. ¿Cuál es la probabilidad de que ambas estén cargadas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\frac{1}{5}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\frac{4}{15}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\frac{1}{3}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\frac{2}{5}$",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La segunda probabilidad cambia porque ya no se repone",
+          "content": "La primera pila cargada tiene probabilidad 4 ÷ 6. Como no se repone, para la segunda quedan 3 cargadas de 5 pilas: 3 ÷ 5. Se multiplican: (4/6) × (3/5) = 12 ÷ 30 = 2 ÷ 5.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) P(primera cargada) = 4 ÷ 6. 2) Ya sacada una cargada, quedan 3 cargadas de 5 pilas: P(segunda cargada | primera cargada) = 3 ÷ 5. 3) Multiplica: (4/6)(3/5) = 2 ÷ 5. Si respondiste 1 ÷ 3, no ajustaste el denominador de la segunda extracción: usaste (4/6)(3/6). Si respondiste 4 ÷ 15, calculaste una cargada y una agotada: (4/6)(2/5). Si respondiste 1 ÷ 5, redujiste también el numerador de la segunda: (3/6)(2/5).",
+          "latexContent": "P = \\frac{4}{6} \\times \\frac{3}{5} = \\frac{12}{30} = \\frac{2}{5}"
+        },
+        {
+          "layer": 3,
+          "title": "Probabilidad sin reemplazo",
+          "content": "Cuando no se repone lo extraído, los eventos son dependientes: la probabilidad de la segunda extracción se calcula con lo que queda después de la primera. Se usa la regla del producto con probabilidades condicionales: P(E y F) = P(E) × P(F dado E). Repasa: extracciones con y sin reemplazo y regla del producto general.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8kdr001a1u6wsmj2ommb",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "CHART_TABLE",
+      "correctOption": "B",
+      "stem": "Una entidad financiera clasificó 500 solicitudes de crédito por nivel de ingreso y resultado. Ingreso alto: 180 aprobadas y 20 rechazadas. Ingreso medio: 120 aprobadas y 80 rechazadas. Ingreso bajo: 30 aprobadas y 70 rechazadas. Si se elige una solicitud al azar, ¿cuál es la probabilidad de que sea de ingreso bajo Y haya sido rechazada?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.068",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "0.14",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "0.41",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "0.70",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La casilla que cumple las dos condiciones, entre el total",
+          "content": "Se pide la probabilidad conjunta: solicitudes que son de ingreso bajo Y rechazadas. Esa casilla tiene 70 solicitudes, y el total es 500: 70 ÷ 500 = 0.14.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Ubica la casilla que cumple ambas condiciones a la vez: ingreso bajo y rechazada, con 70 solicitudes. 2) Divide entre el gran total, 500: 70 ÷ 500 = 0.14. Si respondiste 0.70, dividiste entre las 100 solicitudes de ingreso bajo (eso es la probabilidad condicional de rechazo dado ingreso bajo). Si respondiste 0.41, dividiste entre las 170 rechazadas. Si respondiste 0.068, multiplicaste P(ingreso bajo) por P(rechazada) como si fueran independientes: (100/500)(170/500).",
+          "latexContent": "P(\\text{bajo} \\cap \\text{rechazada}) = \\frac{70}{500} = 0.14"
+        },
+        {
+          "layer": 3,
+          "title": "Probabilidad conjunta frente a condicional",
+          "content": "La probabilidad conjunta 'E y F' usa como denominador el total general; la condicional 'E dado F' usa como denominador solo los casos de F. Multiplicar P(E) por P(F) solo da la probabilidad conjunta si los eventos son independientes, lo cual hay que verificar, no suponer. Repasa: probabilidad conjunta, marginal y condicional en tablas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8l5l001f1u6wboeqmyex",
+      "topicId": "cmrr1pwmh00fd11qdnzqgafy8",
+      "topic": "Probabilidad",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "D",
+      "stem": "En una fábrica, históricamente 3 de cada 200 focos salen defectuosos. Si en un día se producen 5,000 focos, ¿cuántos focos defectuosos se esperan?",
+      "options": [
+        {
+          "id": "A",
+          "text": "15",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "25",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "30",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "75",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La proporción por el total de la producción",
+          "content": "La proporción de defectuosos es 3 ÷ 200. Aplicada a 5,000 focos: (3 ÷ 200) × 5,000 = 15,000 ÷ 200 = 75 focos defectuosos esperados.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Cuántos grupos de 200 hay en 5,000: 5,000 ÷ 200 = 25. 2) Por cada grupo se esperan 3 defectuosos: 25 × 3 = 75. Si respondiste 25, dividiste 5,000 entre 200 pero olvidaste multiplicar por 3. Si respondiste 30, usaste '3 de cada 500'. Si respondiste 15, usaste '3 de cada 1,000'.",
+          "latexContent": "\\text{esperados} = \\frac{3}{200} \\times 5000 = 75"
+        },
+        {
+          "layer": 3,
+          "title": "Frecuencia esperada",
+          "content": "Cuando una probabilidad o proporción se aplica a un número grande de casos, el número esperado de éxitos es probabilidad × número de casos. Es un valor esperado, no una garantía: el conteo real varía alrededor de esa cifra. Repasa: proporción, regla de tres y frecuencia esperada.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8q0x00014dknlxodryaj",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "A",
+      "stem": "En un grupo de 40 personas, el 35% prefiere usar transporte público. ¿Cuántas personas del grupo prefieren el transporte público?",
+      "options": [
+        {
+          "id": "A",
+          "text": "14 personas",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "16 personas",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "26 personas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "35 personas",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El porcentaje se aplica sobre el total",
+          "content": "El 35% de 40 se obtiene multiplicando: 0.35 × 40 = 14 personas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Convierte el porcentaje a decimal: 35% = 0.35. 2) Multiplica por el total: 0.35 × 40 = 14. Otra vía: el 10% de 40 es 4, así que el 35% es 3.5 × 4 = 14. Si respondiste 35, usaste el porcentaje como si fuera la cantidad de personas. Si respondiste 26, calculaste el porcentaje que NO lo prefiere (el 65%). Si respondiste 16, redondeaste el 35% al 40%.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Porcentaje de una cantidad",
+          "content": "Un porcentaje es una fracción con denominador 100: el p% de N es (p ÷ 100) × N. Para estimaciones rápidas conviene apoyarse en el 10% (dividir entre 10) y el 1% (dividir entre 100). Repasa: cálculo del porcentaje de una cantidad y su relación con fracciones y decimales.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8qsr00064dkntco7bvji",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "C",
+      "stem": "El precio de un boleto de autobús subió de 8 pesos a 10 pesos. ¿Cuál fue el aumento porcentual del precio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "2%",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "20%",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "25%",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "125%",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El cambio se divide entre el valor original",
+          "content": "El aumento absoluto es 10 − 8 = 2 pesos. Como porcentaje, se divide entre el precio original: 2 ÷ 8 = 0.25, es decir 25%.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Diferencia: 10 − 8 = 2. 2) Divide entre el valor de partida, no entre el nuevo: 2 ÷ 8 = 0.25. 3) Multiplica por 100: 25%. Si respondiste 20%, dividiste entre el precio nuevo (2 ÷ 10). Si respondiste 2%, tomaste la diferencia absoluta como si ya fuera el porcentaje. Si respondiste 125%, calculaste qué porcentaje es el precio nuevo respecto del viejo (10 ÷ 8) sin restar el 100% de base.",
+          "latexContent": "\\frac{10 - 8}{8} \\times 100 = \\frac{2}{8} \\times 100 = 25"
+        },
+        {
+          "layer": 3,
+          "title": "Variación porcentual",
+          "content": "La variación porcentual es (valor final − valor inicial) ÷ valor inicial × 100. El denominador siempre es el valor de referencia (el 'antes'). Un mismo cambio absoluto representa un porcentaje mayor cuando la base es pequeña. Repasa: variación porcentual, aumento y descuento.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8rqe000b4dknj6sxwhvl",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "Una población de 5,000 habitantes disminuyó 12% en un año a causa de la migración. ¿Cuántos habitantes tiene la población ahora?",
+      "options": [
+        {
+          "id": "A",
+          "text": "600 habitantes",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "4,400 habitantes",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "4,988 habitantes",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "5,600 habitantes",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Queda el 88% de la población",
+          "content": "Si disminuye 12%, permanece el 100% − 12% = 88%. Entonces la población actual es 0.88 × 5,000 = 4,400 habitantes.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Calcula lo que disminuyó: 12% de 5,000 = 0.12 × 5,000 = 600. 2) Réstalo del total: 5,000 − 600 = 4,400. Atajo: multiplica directamente por 0.88. Si respondiste 600, diste solo la cantidad que se fue, no la que queda. Si respondiste 5,600, sumaste el 12% en lugar de restarlo. Si respondiste 4,988, restaste 12 habitantes en vez del 12%.",
+          "latexContent": "5000 \\times (1 - 0.12) = 5000 \\times 0.88 = 4400"
+        },
+        {
+          "layer": 3,
+          "title": "Descuento porcentual con factor",
+          "content": "Aumentar un x% equivale a multiplicar por (1 + x/100); disminuir un x%, a multiplicar por (1 − x/100). Usar el factor evita el paso intermedio de calcular y luego sumar o restar, y es indispensable cuando hay varios cambios seguidos. Repasa: factores de aumento y descuento.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8snp000g4dknpk6ynzxy",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "D",
+      "stem": "El salario de un trabajador aumentó 10% en enero y después 20% en julio, cada aumento calculado sobre el salario vigente en ese momento. Si al inicio del año ganaba 10,000 pesos, ¿cuánto gana después del aumento de julio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "11,000 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "12,000 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "13,000 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "13,200 pesos",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Los aumentos se aplican uno sobre el resultado del otro",
+          "content": "Enero: 10,000 × 1.10 = 11,000. Julio, sobre ese nuevo salario: 11,000 × 1.20 = 13,200 pesos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Aplica el primer factor: 10,000 × 1.10 = 11,000. 2) Aplica el segundo factor sobre el salario ya aumentado: 11,000 × 1.20 = 13,200. Si respondiste 13,000, sumaste los porcentajes (10% + 20% = 30%) y aplicaste 10,000 × 1.30; eso ignora que el segundo aumento se calcula sobre una base mayor. Si respondiste 11,000, aplicaste solo el primer aumento. Si respondiste 12,000, aplicaste solo el segundo.",
+          "latexContent": "10000 \\times 1.10 \\times 1.20 = 11000 \\times 1.20 = 13200"
+        },
+        {
+          "layer": 3,
+          "title": "Cambios porcentuales sucesivos",
+          "content": "Dos cambios porcentuales seguidos no se suman: se multiplican sus factores. Un +10% seguido de un +20% equivale a multiplicar por 1.10 × 1.20 = 1.32, es decir un aumento total del 32%, no del 30%. El orden de los factores no altera el resultado. Repasa: composición de porcentajes y factores sucesivos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8tfi000l4dkncc760jcd",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "CHART_TABLE",
+      "correctOption": "C",
+      "stem": "Una empresa reportó estas ventas trimestrales, en millones de pesos: primer trimestre 8, segundo 12, tercero 10 y cuarto 14. ¿Qué porcentaje de las ventas anuales se realizó en el segundo trimestre?",
+      "options": [
+        {
+          "id": "A",
+          "text": "12%",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "25%",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "27.3%",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "37.5%",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ventas del trimestre entre las ventas del año",
+          "content": "Las ventas anuales son 8 + 12 + 10 + 14 = 44 millones. El segundo trimestre aportó 12. El porcentaje es 12 ÷ 44 × 100 ≈ 27.3%.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Suma las cuatro cifras para el total anual: 44. 2) Divide la parte entre el total: 12 ÷ 44 ≈ 0.273. 3) Multiplica por 100: 27.3%. Si respondiste 12%, usaste el valor de ventas directamente como si fuera el porcentaje. Si respondiste 25%, supusiste que cada trimestre aporta la cuarta parte. Si respondiste 37.5%, no incluiste el segundo trimestre en el total anual (12 ÷ 32).",
+          "latexContent": "\\frac{12}{8 + 12 + 10 + 14} \\times 100 = \\frac{12}{44} \\times 100 \\approx 27.3"
+        },
+        {
+          "layer": 3,
+          "title": "Parte, todo y porcentaje",
+          "content": "Para saber qué fracción del total representa una parte, se divide la parte entre el total y se multiplica por 100. El total debe incluir a la propia parte. La suma de los porcentajes de todas las partes debe dar 100%. Repasa: relación parte-todo, porcentajes de composición y lectura de gráficas de barras.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8u7d000q4dkn6puz67a1",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctOption": "A",
+      "stem": "En la ciudad A se registraron 240 accidentes viales entre 60,000 vehículos. En la ciudad B hubo 300 accidentes entre 100,000 vehículos. ¿Cuál ciudad tuvo la mayor tasa de accidentes por cada 1,000 vehículos y de cuánto fue?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La ciudad A, con 4 accidentes por cada 1,000 vehículos",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La ciudad A, con 40 accidentes por cada 1,000 vehículos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La ciudad B, con 3 accidentes por cada 1,000 vehículos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La ciudad B, con 5 accidentes por cada 1,000 vehículos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Comparar tasas, no totales",
+          "content": "Tasa de A: 240 ÷ 60,000 × 1,000 = 4 accidentes por cada 1,000 vehículos. Tasa de B: 300 ÷ 100,000 × 1,000 = 3 por cada 1,000. Aunque B tuvo más accidentes en total, A tiene la tasa más alta: 4 por cada 1,000.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Para cada ciudad divide accidentes entre vehículos y multiplica por 1,000. 2) A: (240 ÷ 60,000) × 1,000 = 4. 3) B: (300 ÷ 100,000) × 1,000 = 3. 4) Compara: 4 > 3, gana A. La opción que atribuye la mayor tasa a la ciudad B calcula bien el 3 de B pero concluye al revés. La opción de '40 por cada 1,000' divide 240 entre 6,000 en lugar de 60,000. La opción de '5 por cada 1,000' aplica a los accidentes de B el número de vehículos de A.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tasas para comparar poblaciones de distinto tamaño",
+          "content": "Los conteos absolutos no se pueden comparar cuando las poblaciones difieren en tamaño: hay que normalizar dividiendo entre la población y expresando el resultado 'por cada 1,000', 'por cada 100,000', etc. Este es el principio de las tasas de natalidad, mortalidad, criminalidad y accidentes. Repasa: tasas, razones y comparación de proporciones.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8uz8000v4dkn4dwk2d97",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "Un mapa está dibujado a escala 1:50,000. Dos localidades aparecen separadas por 8 cm en el mapa. ¿Cuál es la distancia real entre ellas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.4 km",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "4 km",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "40 km",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "400 km",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada centímetro del mapa son 50,000 cm reales",
+          "content": "La escala 1:50,000 significa que 1 cm en el mapa equivale a 50,000 cm reales. Entonces 8 cm equivalen a 8 × 50,000 = 400,000 cm, que son 4,000 m, es decir 4 km.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Multiplica la distancia del mapa por la escala: 8 × 50,000 = 400,000 cm. 2) Convierte a metros dividiendo entre 100: 4,000 m. 3) Convierte a kilómetros dividiendo entre 1,000: 4 km. Si respondiste 400 km, tomaste los 400,000 cm como si fueran metros. Si respondiste 40 km, convertiste 400,000 cm a km dividiendo entre 10,000 en vez de entre 100,000. Si respondiste 0.4 km, leíste la escala como 1:5,000.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Escalas y conversión de unidades",
+          "content": "Una escala 1:n indica que la realidad es n veces la medida del mapa. Distancia real = distancia en el mapa × n, cuidando que ambas queden en la misma unidad antes de convertir. Recuerda: 1 m = 100 cm y 1 km = 1,000 m = 100,000 cm. Repasa: escalas, razones y conversión del sistema métrico.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8vr100104dknc1oq5p5v",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "CHART_TABLE",
+      "correctOption": "A",
+      "stem": "En una empresa, el departamento de ventas tiene 30 empleados y tuvo 90% de asistencia en el mes; el de producción tiene 70 empleados y tuvo 80% de asistencia. ¿Cuál fue el porcentaje de asistencia de toda la empresa en el mes?",
+      "options": [
+        {
+          "id": "A",
+          "text": "83%",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "85%",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "87%",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "170%",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada porcentaje pesa según el tamaño de su departamento",
+          "content": "Asistencias de ventas: 90% de 30 = 27. De producción: 80% de 70 = 56. Total de asistencias: 83, sobre 100 empleados: 83%.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Convierte cada porcentaje en número de personas: 0.90 × 30 = 27 y 0.80 × 70 = 56. 2) Suma las asistencias: 83. 3) Divide entre el total de empleados: 83 ÷ 100 = 83%. Si respondiste 85%, promediaste los dos porcentajes sin tomar en cuenta que producción tiene más empleados. Si respondiste 87%, asignaste el 90% a producción y el 80% a ventas. Si respondiste 170%, sumaste los dos porcentajes.",
+          "latexContent": "\\frac{0.90(30) + 0.80(70)}{30 + 70} \\times 100 = \\frac{83}{100} \\times 100 = 83"
+        },
+        {
+          "layer": 3,
+          "title": "Promedio de porcentajes con bases distintas",
+          "content": "Los porcentajes solo se pueden promediar directamente si se refieren a bases del mismo tamaño. Si las bases difieren, hay que ponderar: llevar cada porcentaje a cantidades absolutas, sumarlas y volver a dividir entre el total. El resultado se acerca al porcentaje del grupo más numeroso. Repasa: media ponderada aplicada a tasas y porcentajes.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8wiu00154dknl243wdwy",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "CHART_TABLE",
+      "correctOption": "D",
+      "stem": "En una gráfica circular sobre el gasto mensual de una familia, el sector 'Alimentación' abarca un ángulo de 126°. Si el gasto total del mes es de 15,000 pesos, ¿cuánto se destina a alimentación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "3,750 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "4,725 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "5,000 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "5,250 pesos",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El ángulo del sector es una fracción de los 360° del círculo",
+          "content": "El sector representa 126 ÷ 360 = 0.35 del total, es decir el 35%. Sobre 15,000 pesos: 0.35 × 15,000 = 5,250 pesos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Divide el ángulo del sector entre 360°: 126 ÷ 360 = 0.35. 2) Multiplica esa fracción por el gasto total: 0.35 × 15,000 = 5,250. Si respondiste 3,750, usaste 90° suponiendo que alimentación es la cuarta parte del círculo. Si respondiste 4,725, dividiste entre 400° en lugar de entre 360°. Si respondiste 5,000, redondeaste 126° a 120° (un tercio del círculo).",
+          "latexContent": "\\frac{126}{360} \\times 15000 = 0.35 \\times 15000 = 5250"
+        },
+        {
+          "layer": 3,
+          "title": "Gráfica circular: ángulos, fracciones y porcentajes",
+          "content": "En una gráfica de pastel, la circunferencia completa (360°) representa el 100% del total. Cada categoría ocupa un ángulo proporcional a su parte: ángulo = (parte ÷ total) × 360°, y a la inversa, parte = (ángulo ÷ 360°) × total. Repasa: gráfica circular, proporcionalidad y conversión ángulo-porcentaje.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8xap001a4dknjkcjuruk",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "C",
+      "stem": "El índice de precios de la canasta básica pasó de 100 en 2020 a 135 en 2024. Un producto que en 2020 costaba 60 pesos, ¿cuánto costaría en 2024 si su precio hubiera subido igual que el índice?",
+      "options": [
+        {
+          "id": "A",
+          "text": "21 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "44 pesos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "81 pesos",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "135 pesos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El índice pasó de 100 a 135: un aumento del 35%",
+          "content": "Que el índice suba de 100 a 135 significa un aumento del 35%. Aplicado al producto: 60 × 1.35 = 81 pesos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) El factor de cambio es 135 ÷ 100 = 1.35. 2) Multiplica el precio original por ese factor: 60 × 1.35 = 81. Si respondiste 21, calculaste solo el aumento (60 × 0.35) y no el precio final. Si respondiste 135, usaste el valor del índice como si fuera el precio. Si respondiste 44, aplicaste el índice al revés: 60 ÷ 1.35.",
+          "latexContent": "60 \\times \\frac{135}{100} = 60 \\times 1.35 = 81"
+        },
+        {
+          "layer": 3,
+          "title": "Números índice",
+          "content": "Un número índice mide el cambio de una magnitud respecto a un año base, al que se le asigna el valor 100. Un índice de 135 indica que la magnitud es 1.35 veces la del año base (35% más). Para actualizar un valor se multiplica por (índice actual ÷ índice base). Repasa: números índice, año base e inflación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8y2m001f4dknzp2th34j",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "ADVANCED",
+      "format": "CHART_TABLE",
+      "correctOption": "D",
+      "stem": "Una empresa reportó utilidades de 2 millones de pesos en 2021, 3 millones en 2022, 2.5 millones en 2023 y 4.5 millones en 2024. ¿Cuál fue el aumento porcentual de la utilidad de 2021 a 2024?",
+      "options": [
+        {
+          "id": "A",
+          "text": "50%",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "55.6%",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "80%",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "125%",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cambio dividido entre la utilidad de 2021",
+          "content": "El aumento es 4.5 − 2 = 2.5 millones. Como porcentaje del año inicial: 2.5 ÷ 2 = 1.25, es decir 125%.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Toma solo los años pedidos: 2021 (2) y 2024 (4.5); los años intermedios no intervienen. 2) Diferencia: 4.5 − 2 = 2.5. 3) Divide entre la utilidad de 2021: 2.5 ÷ 2 = 1.25, o sea 125%. Si respondiste 55.6%, dividiste entre la utilidad de 2024 en lugar de la de 2021. Si respondiste 80%, tomaste 2023 (2.5) como año base. Si respondiste 50%, calculaste el cambio de 2021 a 2022, no a 2024.",
+          "latexContent": "\\frac{4.5 - 2}{2} \\times 100 = \\frac{2.5}{2} \\times 100 = 125"
+        },
+        {
+          "layer": 3,
+          "title": "Variación porcentual en una serie de tiempo",
+          "content": "Para el cambio porcentual entre dos años de una serie solo importan esos dos valores, y el denominador es siempre el año de partida. Un aumento mayor al 100% significa que el valor final es más del doble del inicial. Repasa: variación porcentual, series de tiempo y elección del año base.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtdm8yuk001k4dknkpkm6i4y",
+      "topicId": "cmrr1px1r00ff11qdkmgajyls",
+      "topic": "Análisis de datos",
+      "groundingStatus": "TEMARIO_ONLY",
+      "isVerified": false,
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "correctOption": "B",
+      "stem": "El mes pasado una tienda vendió 200 unidades de un producto a 50 pesos cada una. Este mes bajó el precio 10% y, gracias a ello, vendió 25% más unidades. ¿Cómo cambió el ingreso total por ese producto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Disminuyó 10%",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Aumentó 12.5%",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Aumentó 15%",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Aumentó 25%",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Comparar el ingreso nuevo con el anterior",
+          "content": "Ingreso anterior: 200 × 50 = 10,000 pesos. Este mes el precio es 45 pesos y las unidades 250, así que el ingreso es 45 × 250 = 11,250 pesos. El cambio es (11,250 − 10,000) ÷ 10,000 = 0.125, un aumento del 12.5%.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Ingreso = precio × unidades. Antes: 50 × 200 = 10,000. 2) Nuevo precio: 50 × 0.90 = 45. Nuevas unidades: 200 × 1.25 = 250. 3) Nuevo ingreso: 45 × 250 = 11,250. 4) Variación: (11,250 − 10,000) ÷ 10,000 = 12.5%. Con factores: 0.90 × 1.25 = 1.125, es decir un 12.5% más. Si respondiste 'aumentó 15%', sumaste los porcentajes de cambio (−10% + 25%). Si respondiste 'aumentó 25%', consideraste solo el aumento de unidades. Si respondiste 'disminuyó 10%', consideraste solo la baja de precio.",
+          "latexContent": "\\frac{\\text{ingreso nuevo}}{\\text{ingreso anterior}} = 0.90 \\times 1.25 = 1.125"
+        },
+        {
+          "layer": 3,
+          "title": "Efecto combinado de precio y cantidad sobre el ingreso",
+          "content": "El ingreso es precio por cantidad, así que un cambio porcentual en el precio y otro en la cantidad se combinan multiplicando sus factores, no sumándolos. Aquí 0.90 × 1.25 = 1.125, un aumento neto del 12.5%. Este es el razonamiento detrás de las decisiones de descuento: bajar el precio conviene solo si el aumento de volumen compensa. Repasa: ingreso, elasticidad intuitiva y composición de factores porcentuales.",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}

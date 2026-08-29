@@ -1,10 +1,10 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-28 · Última fase ejecutada: G26 (**COMPLETADA — reutilización de contenido entre áreas. Las materias que varias áreas evalúan con el MISMO temario oficial (UNAM Español ×4, Inglés ×3, Química ×2; IPN Español ×3, Inglés ×3, Química ×2, Matemáticas ×2 — 7 grupos, 19 filas `Subject`) estaban duplicadas como filas separadas y se regeneraba el mismo contenido. Confirmado con las guías oficiales que el área solo cambia el PESO, no lo que se evalúa (UNAM: mismas 10 materias en las 4 áreas; IPN: bloque de "conocimientos generales" común a las 3 ramas). Mecanismo de mínimo impacto: **una columna nullable `Subject.sharedContentKey`** (migración 0011, aplicada en la DB real) — filas del mismo examen con la misma clave comparten su pool de reactivos verificados y servibles; nunca cruza instituciones. Cableado en el **selector adaptativo** (`loadAreaServablePool`, `loadSubjectServablePool`), el **diagnóstico y el simulador completo** (`loadAreaSubjectPools`), el **Entrómetro** (agregación por clave canónica en `recomputeLearningProfile` + los 2 deltas) y **progreso**. Módulo puro `src/lib/content/shared-subjects.ts` (15 tests). Verificado en vivo: el pool servible de UNAM Área 3 pasa de 0 a 35, el de Área 2 de 137 a 224. **Meta recalculada: 1 500 → ~1 220** (ahorro ~280, 18.6 %); **brecha 878 → 659** = de 26 lotes/52 sesiones a **19 lotes/38 sesiones** (~7 lotes ≈ ~14 sesiones menos). No es "la mitad" — Matemáticas/Física/Biología (~55 % del peso) son de un área y no se comparten. UNAM Química (124≥67) e IPN Español (35≥33) ya quedan COMPLETOS por reutilización. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**491/491**, +15) en verde**)
+Última actualización: 2026-08-28 · Última fase ejecutada: G27 (**COMPLETADA — lote de 35 reactivos de **Matemáticas Aplicadas, IPN SOCADM**, la primera materia de esa rama con contenido (SOCADM completa estaba en cero). Materia = "Matemáticas Aplicadas" (weight 3, temas: Estadística descriptiva, Probabilidad, Análisis de datos), NO el bloque general de "Matemáticas" de FISMAT/MEDBIO — enfoque distinto (razonamiento cuantitativo aplicado), por eso G26 la dejó fuera del grupo `IPN:MATEMATICAS`. Cero `SourceChunk` para la materia o cualquier guía de IPN → los 35 **TEMARIO_ONLY**. Reparto 12/11/12 por tema. Dificultad BASIC 6 / INTERMEDIATE 17 / ADVANCED 10 / EXPERT 2. Formato PROBLEM_SOLVING 26 / CHART_TABLE 8 / MULTIPLE_CHOICE 1. **Los 35 cálculos recomputados de forma independiente** (`verify-g27.mjs`, desechable): cada respuesta marcada coincide y cada distractor corresponde a un error nombrable (media↔mediana, base equivocada del %, sumar % en vez de multiplicar factores, conjunta↔condicional, con/sin reemplazo…). **Distribución de posición A=9 B=9 C=9 D=8** (25.7/25.7/25.7/22.9 %), las 4 en 15-40 %; secuencia de letras no cíclica (transiciones +1 en A→B→C→D: 20.6 % vs 25 % de azar). `content:validate-batch`: **0 violaciones**. Insertado con `content:insert --lot-dir` tema por tema, **verificado en la DB**: SOCADM Matemáticas Aplicadas 0 → 35; banco **622 → 657** total, verificados sin cambio en **622** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega 0 → 35. Registro en `docs/content-batches/g27-ipn-socadm-matematicas.json`. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago**)
 
-<details><summary>Historial: G25 (2026-08-28)</summary>
+<details><summary>Historial: G26 (2026-08-28)</summary>
 
-Última fase ejecutada: G25 (**COMPLETADA, con desviación declarada — el encargo pedía re-verificar "los reactivos reparados en G24"; **no existen**: G24 reparó código, no reactivos. Comprobado sin leer el commit de G24: `content:blind-batch --all` devuelve `0 pendiente(s)`, 0 reactivos con `isVerified=false`. En su lugar se ejecutó la pasada ciega que G24 dejó encargada: la **auditoría 5 % de `session-v1`** (pool 606 → muestra 31, `Math.random` real). Ceguera comprobada estructuralmente. 31 resueltos desde cero, 15 con cálculo ejecutado. **31/31 confirmados, 0 degradados**. `session-v1` pasa de 0 a 18 auditados; total auditado 16 → 47. Banco sin cambio: **622/622 verificados y servibles**, colas en cero. Caveat: 12 de los 31 fueron 2ª-verificados por `claude-opus-5`, el mismo modelo de esta 3ª pasada — aislamiento de sesión sí, diversidad de tier no. `pnpm test:unit` 476/476 en verde**)
+Última fase ejecutada: G26 (**COMPLETADA — reutilización de contenido entre áreas. Materias que varias áreas evalúan con el MISMO temario oficial (UNAM Español ×4, Inglés ×3, Química ×2; IPN Español ×3, Inglés ×3, Química ×2, Matemáticas ×2 — 7 grupos, 19 filas `Subject`) estaban duplicadas y se regeneraba el mismo contenido. Mecanismo de mínimo impacto: **columna nullable `Subject.sharedContentKey`** (migración 0011) — filas del mismo examen con la misma clave comparten su pool de reactivos verificados; nunca cruza instituciones. Cableado en el selector adaptativo (`loadAreaServablePool`, `loadSubjectServablePool`), el diagnóstico y el simulador completo (`loadAreaSubjectPools`), el Entrómetro (agregación por clave canónica en `recomputeLearningProfile` + los 2 deltas) y progreso. Módulo puro `src/lib/content/shared-subjects.ts` (15 tests). Verificado en vivo: pool servible de UNAM Área 3 de 0 a 35, Área 2 de 137 a 224. **Meta recalculada: 1 500 → ~1 220** (ahorro ~280, 18.6 %); **brecha 878 → 659** = de 26 lotes/52 sesiones a 19/38 (~7 lotes ≈ ~14 sesiones menos). UNAM Química (124≥67) e IPN Español (35≥33) ya COMPLETOS por reutilización. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**491/491**, +15) en verde**)
 
 </details>
 
@@ -16,6 +16,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G27 | Lote de reactivos: Matemáticas Aplicadas IPN SOCADM (rama en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G27) | Ver sección dedicada abajo. Primera materia con contenido de la rama SOCADM (7 materias, estaba en cero). Materia "Matemáticas Aplicadas" (weight 3), no el bloque general de Matemáticas — enfoque de razonamiento cuantitativo aplicado. 35 TEMARIO_ONLY, reparto 12/11/12 (Estadística descriptiva / Probabilidad / Análisis de datos). Cálculos recomputados uno por uno. Posición A9/B9/C9/D8, `content:validate-batch` 0 violaciones. Banco 622 → 657, cola ciega 0 → 35. |
 | G26 | Reutilización de contenido entre áreas | **COMPLETADA — mecanismo `Subject.sharedContentKey` (migración 0011), 7 grupos / 19 filas; selector, diagnóstico, simulador y Entrómetro cableados; meta 1 500 → ~1 220, brecha 878 → 659** | (G26) | Ver sección dedicada abajo. Una columna nullable, sin tocar `Question` ni `Topic`. Confirmado con guías oficiales que el área solo cambia el peso. `test:unit` 491/491 (+15). |
 | G25 | Verificación ciega: auditoría 5 % de `session-v1` | **COMPLETADA con desviación declarada — no había "reparadas de G24" que verificar (cola en cero); se ejecutó la auditoría 5 %: 31/31 confirmados, 0 degradados, banco 622/622 sin cambio** | (G25) | Ver sección dedicada abajo. La premisa del encargo era falsa y se comprobó sin leer el commit de G24. `session-v1` pasa de 0 a 18 auditados. |
 | G24 | Balance del banco y triaje de cola | **COMPLETADA — banco 622/622, colas en cero, brecha 878 (26 lotes), 1 bug de auditoría corregido** | (G24) | Ver sección dedicada abajo. **Pasada editorial** (no ciega, por diseño del encargo: aquí sí se ven las respuestas del generador y del verificador, el trabajo es juzgar cuál tiene razón — igual que G17). Estado consolidado con números reales de la DB (`scripts/g24-consolidate.ts`, desechable, solo lectura). **Banco: 622 reactivos, 622 verificados, 622 servibles (`usage=SERVABLE`), todos `GENERATED`.** **Las dos colas en cero** — cola ciega 0, cola de discrepancias 0: la "cola acumulada" que el encargo pedía triar **no existe**, se vació por completo en G19 (77 reparadas de G17 re-verificadas) y G21/G23 la mantuvieron vacía. Cero reactivos con `isVerified=false`. **Ningún reactivo auto-aprobado por esta fase** (no había nada que aprobar). Desglose por institución/área/materia: IPN FISMAT Matemáticas 70, Física 35, Español/Lectura 35, Química **0**, Inglés 0; IPN MEDBIO Biología 70, Química 35, Matemáticas **0**, Español/Lectura 0, Inglés 0; UNAM A1 Matemáticas 81, Física 72, Química 52, Español 35, Inglés 0; UNAM A2 Biología 65, Química 72, Español 0, Inglés 0; UNAM A3/A4 e IPN SOCADM **enteras en cero**. **Distribución de posición de la respuesta correcta** (solo `isVerified=true`, letra = `option.id` con `isCorrect` en la DB): UNAM A 26.8 % / B 26.8 % / C 21.5 % / D 24.9 % (n=377); IPN A 25.3 % / B 25.3 % / C 26.1 % / D 23.3 % (n=245); **las 11 materias con contenido dentro del rango 15–40 % de `POSITION_SKEW`** — **el sesgo corregido en G8 NO ha reaparecido**. Barrido de citas por letra sobre las 1 866 capas de explicación: **0** (el fix de G8 se sostiene). **Pero el artefacto de ROTACIÓN de G16 (letra correcta que rota A→B→C→D al ordenar por `id`) sigue presente y sin corregir**, y medido a nivel materia es más marcado de lo que G16 documentó por lote: **IPN FISMAT Matemáticas 61/69 pares consecutivos** (azar ≈17), **IPN MEDBIO Biología 47/69** — los lotes viejos (G3a/G3d/G13/G15); los lotes nuevos G18/G20/G21/G22/G23 están limpios (6–8/34). Reposicionar reactivos ya publicados con `SessionAnswer` sigue siendo decisión del dueño, igual que G16/G21/G23 lo dejaron — se registra con números frescos, no se toca. **SOURCED vs TEMARIO_ONLY: 207 SOURCED (33.3 %) / 415 TEMARIO_ONLY (66.7 %)** — la proporción bajó desde el 44 % de F4 (135/309) porque los lotes G del refuerzo IPN son casi todos `TEMARIO_ONLY` (solo 46/217 temas tienen fragmento fuente). **Auditoría del 5 % (pendiente de G14): mecanismo verificado + 1 bug real corregido.** Los scripts de G17 (`content:audit-sample` / `content:audit-resolve`) funcionan — pool elegible **606**, muestra 5 % = **31** (comprobado en vivo, sin resolver: esta sesión no es ciega). **Hallazgo:** ESTADO decía "nunca se ha auditado nada" — impreciso: el pipeline `adversarial-v1` de F4 **sí** corrió su 3ª pasada integrada sobre **16 de los 309** reactivos originales el 2026-07-21 (16/309 ≈ 5.2 %, los 16 confirmados, 0 degradados). Lo que nunca se ha auditado es el contenido `session-v1` (G2 en adelante): **0 de 313**. **Bug corregido** (`src/lib/admin/verification.ts`): `classifyReviewQueue` comprobaba `decision !== 'UNPUBLISHED'` ANTES de `audit?.degraded` → un reactivo que la 3ª pasada degrade queda `isVerified=false` (bien despublicado por `content-audit-resolve.ts`) pero con `decision:'AUTO_APPROVED'` heredado del veredicto de 2ª pasada, así que el guard lo mandaba a `null` y **desaparecía del panel F3** (ni servido, ni en cola, invisible). Reordenado para mirar `manualReview` → `audit.degraded` → `decision`; 2 tests de regresión nuevos. **Duplicados reales anotados** (0 respuestas, no bloqueantes): `cmrul0y5k…` ≡ `cmrul1p9e…` (H₂SO₄+2NaOH, UNAM Química, ya lo marcó G19) y `cmru8zod5…` ≡ `cmt8mvgiv…` (cruce dihíbrido AaBb×AaBb → 9:3:3:1, pero uno es UNAM A2 y otro IPN MEDBIO — bancos distintos). **Brecha a la meta de 1 500: 878 reactivos = 26 lotes de 35 = ~52 sesiones (compón + verifica ciega).** Proyección honesta: al ritmo con el que el pipeline ha existido de verdad (**13.6 verificados/día** entre G3a 2026-08-04 y G23 2026-08-27, un número que **ya incluye** la pausa de 19 días de agosto por infra/rebrand) alcanza para el **21-nov con ~3 semanas de margen**; al ritmo calendario completo desde el cierre de F4 (**9.9/día**) **lo pierde por ~3 días**. Como el trabajo de infra/credenciales que causó la pausa de agosto **ya está hecho**, la proyección realista se acerca al 13.6 — **pero es borde y no hay margen para otra pausa de varias semanas**. **Top-5 materias por brecha absoluta** (meta = 1 500 prorrateada por `questionWeight` sobre las 270 de peso SUPERIOR, ordenadas por urgencia): (1) **IPN FISMAT Química — brecha 56, EN CERO**, institución día 1; (2) **IPN FISMAT Física — brecha 76** (35/111), día 1; (3) **IPN FISMAT Matemáticas — brecha 63** (70/133), día 1; (4) **IPN MEDBIO Química — brecha 54** (35/89), día 1; (5) **UNAM A1 Matemáticas — brecha 63** (81/144), UNAM ya es la más profunda. También en cero y urgentes aunque fuera del top-5 por tamaño: IPN MEDBIO Matemáticas (44) y Español/Lectura (33). **Pregunta de alcance que hay que resolver antes de mediados de septiembre:** si UNAM A3/A4, IPN SOCADM e Inglés entran en la meta del 21-nov, son ~13 materias más partiendo de cero y los 878 reactivos se reparten entre 24 materias en vez de 11 → más lotes y riesgo de materias con <20 reactivos. Los docs son ambiguos (PRD §14 "UNAM 4 áreas + IPN 2 ramas"; Plan L259 "UNAM completo + IPN Fís-Mat"; la producción real desde G3 solo ha tocado 4 áreas). `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (**476/476**, +2 sobre G23) en verde. Scripts desechables (`scripts/g24-*.ts`) eliminados al terminar. |
@@ -2081,6 +2082,131 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G27 — Lote de reactivos: Matemáticas Aplicadas, IPN SOCADM (2026-08-28)
+
+**COMPLETADA. 35 reactivos originales insertados con `isVerified=false`,
+pendientes de verificación ciega.** Modo de trabajo: autónomo, sin
+preguntas. Primer lote de la rama de **Ciencias Sociales y Administrativas
+del IPN** — antes de esta fase sus 7 materias estaban en cero absoluto.
+
+### 1) Materia — "Matemáticas Aplicadas", no el bloque general de Matemáticas
+
+El encargo dice "Matemáticas para la rama SOCADM del IPN". La materia de
+matemáticas sembrada para esa rama (`prisma/seed/ipn.ts`) es
+**"Matemáticas Aplicadas"** (`subjectId` `cmrr1pw4200f911qdbhnkz5x8`,
+`questionWeight` 3), con 3 temas: **Estadística descriptiva**,
+**Probabilidad**, **Análisis de datos**. NO es el bloque general de
+"Matemáticas" que comparten FISMAT y MEDBIO — G26 lo declaró explícitamente
+fuera del grupo `IPN:MATEMATICAS` porque su temario y enfoque son distintos
+(razonamiento cuantitativo aplicado vs álgebra→cálculo). El nivel que el
+encargo pide — "más aritmética aplicada, porcentajes, estadística básica y
+razonamiento cuantitativo que cálculo avanzado" — describe exactamente esta
+materia. `sharedContentKey` = null: el lote sirve solo a SOCADM.
+
+### 2) Fuentes — TEMARIO_ONLY
+
+Cero `SourceChunk` para la materia, sus 3 temas o cualquier guía de IPN
+(`content_sources` solo tiene UAM, UNAM, CENEVAL, ECOEMS). Los 35 son
+**TEMARIO_ONLY**, redactados a partir del temario sembrado (F2b: no bloquea).
+
+### 3) Composición — 35 reactivos
+
+| Tema | Reactivos | Enfoque |
+|---|---:|---|
+| Estadística descriptiva | 12 | media simple y ponderada, mediana, moda, rango, desviación estándar poblacional, dato faltante, media de datos agrupados |
+| Probabilidad | 11 | probabilidad clásica, complemento, regla de la suma y del producto, condicional (tabla), sin reemplazo, conteo, valor esperado, "al menos uno", frecuencia esperada |
+| Análisis de datos | 12 | porcentaje de una cantidad, variación porcentual, factores de aumento/descuento, cambios sucesivos, gráfica de barras y circular, tasas por cada 1 000, escalas, números índice, media ponderada de porcentajes, efecto precio×cantidad |
+| **TOTAL** | **35** | |
+
+- **Dificultad:** BASIC 6 / INTERMEDIATE 17 / ADVANCED 10 / EXPERT 2
+  (17 % / 49 % / 29 % / 6 %), cerca de la sugerida por `_base.md` (20/50/25/5).
+- **Formato:** `PROBLEM_SOLVING` 26, `CHART_TABLE` 8 (tabla o gráfica
+  descrita en el `stem`), `MULTIPLE_CHOICE` 1 (comparación conceptual de
+  tasas). Sin `Passage` (no hay comprensión de lectura en esta materia).
+
+### 4) Verificación aritmética — ejecutada, no razonada a ojo
+
+Script desechable `verify-g27.mjs` (scratchpad): para los 35 reactivos
+recalcula la respuesta **de forma independiente** del texto compuesto y la
+compara con la opción marcada `isCorrect`; además comprueba que **cada uno
+de los 3 distractores** de cada reactivo coincide con un error nombrable
+(media confundida con mediana, dividir el cambio porcentual entre la base
+equivocada, sumar 10 % + 20 % en vez de multiplicar 1.10 × 1.20,
+probabilidad conjunta tratada como condicional, no ajustar el denominador
+sin reemplazo, usar el límite de clase en vez de la marca de clase, etc.).
+También valida estructura: 4 opciones A-D, exactamente 1 correcta,
+exactamente las capas 1/2/3. **Resultado: 0 discrepancias en los 35.**
+
+### 5) Distribución de posición y candado anti-rotación
+
+- **Posición de la correcta: A=9, B=9, C=9, D=8** (25.7 / 25.7 / 25.7 /
+  22.9 %) — las cuatro dentro de 15-40 %, confirmado por `analyzeLot` y por
+  consulta directa a la DB tras insertar. Para los reactivos con opciones
+  numéricas se respetó el orden ascendente de `_base.md`, así que la letra
+  la fija la magnitud de los distractores, no una elección libre.
+- **Rotación cíclica A→B→C→D (hallazgo de G16):** secuencia real de las 35
+  letras en orden de inserción
+  `BCBACBDACCADACBABDCADBDACBDCABADCDB` → **7/34 transiciones +1 en el
+  ciclo (20.6 %)** contra 25 % de azar. No presente (los lotes viejos que
+  G24 marcó tenían 60-90 %).
+- Las explicaciones citan cada distractor **por su contenido** ("si
+  obtuviste 80, promediaste las tres notas sin pesos"), nunca por su letra
+  — `analyzeLot` → 0 `LETTER_CITATION`. Un falso positivo propio corregido
+  antes de validar: las capas 3 de probabilidad usaban notación estándar
+  `P(A)`, `P(A o B)`, `P(A | B)` y el regex de cita-por-letra confundía el
+  `A)` / `B)` de cierre con "opción A)". Se renombraron los eventos
+  genéricos a `E` y `F` (`P(E o F) = P(E) + P(F)`), fuera del rango A-D.
+
+### 6) Validación e inserción real — verificada en la DB
+
+`pnpm content:validate-batch --dir scripts/content-exports/g27` sobre los
+3 archivos: **0 violaciones**. Luego `content:insert --topic <id> --file
+<archivo> --lot-dir scripts/content-exports/g27` (dry-run primero: 0
+duplicados vía `normalizeStem`, luego sin `--dry-run`) para los 3 temas.
+**Consulta directa a la DB, no solo el log:**
+
+| Métrica | Antes de G27 | Después de G27 |
+|---|---|---|
+| IPN SOCADM Matemáticas Aplicadas — total | 0 | **35** |
+| IPN SOCADM Matemáticas Aplicadas — verificados | 0 | **0** (correcto: pendiente de verificación ciega) |
+| IPN SOCADM Matemáticas Aplicadas — grounding | — | **35 TEMARIO_ONLY** |
+| Reactivos mal formados (≠4 opciones, ≠1 correcta, ≠3 capas) | — | **0** |
+| Banco — total | 622 | **657** |
+| Banco — verificados | 622 | **622** (sin cambio, correcto) |
+| Banco — sin veredicto (cola ciega) | 0 | **35** |
+
+Registro consolidado en
+`docs/content-batches/g27-ipn-socadm-matematicas.json`: 35 `questionId`
+reales, stems, opciones, explicaciones, grounding, distribución de posición
+y secuencia de letras.
+
+### 7) Limpieza
+
+Scripts desechables del scratchpad (`verify-g27.mjs`, `build-g27-record.mjs`)
+usados para recalcular los 35 y armar el registro. Los 3 archivos JSON del
+lote viven en `scripts/content-exports/g27/` (carpeta en `.gitignore` desde
+G1); el registro permanente es el archivo en `docs/content-batches/`.
+
+`pnpm typecheck` y `pnpm lint` en verde (sin cambios de código, solo
+contenido + docs). Cero llamadas a la API de pago de Anthropic — los 35
+reactivos se redactaron directamente en esta sesión de Claude Code.
+
+### Siguiente (G27)
+
+1. **Verificación ciega de los 35 reactivos de este lote** (patrón
+   G14/G16/G19/G21/G23): una sesión nueva e independiente que no vea las
+   respuestas correctas los resuelve con `content:blind-batch --topic <id>`
+   → `content:resolve`. **La mayoría son de cálculo** (`PROBLEM_SOLVING` 26,
+   `CHART_TABLE` 8) — la sesión verificadora debe EJECUTAR la aritmética,
+   no estimarla, igual que G14/G20 lo hicieron con sus lotes numéricos.
+2. Tras verificar, re-consultar `content:coverage` (ahora muestra la meta
+   efectiva G26): si SOCADM entra en la meta del 21-nov, sus otras 6
+   materias (Historia de México, Historia Universal, Geografía, Español y
+   Inglés compartidos, Civismo/Derecho) siguen en cero. Sigue pendiente la
+   pregunta de alcance de G24 §7 / G26 §8.4.
+3. Heredados sin tocar: rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % (47/622).
 
 ## G26 — Reutilización de contenido entre áreas (2026-08-28)
 
