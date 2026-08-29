@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-28 · Última fase ejecutada: G27 (**COMPLETADA — lote de 35 reactivos de **Matemáticas Aplicadas, IPN SOCADM**, la primera materia de esa rama con contenido (SOCADM completa estaba en cero). Materia = "Matemáticas Aplicadas" (weight 3, temas: Estadística descriptiva, Probabilidad, Análisis de datos), NO el bloque general de "Matemáticas" de FISMAT/MEDBIO — enfoque distinto (razonamiento cuantitativo aplicado), por eso G26 la dejó fuera del grupo `IPN:MATEMATICAS`. Cero `SourceChunk` para la materia o cualquier guía de IPN → los 35 **TEMARIO_ONLY**. Reparto 12/11/12 por tema. Dificultad BASIC 6 / INTERMEDIATE 17 / ADVANCED 10 / EXPERT 2. Formato PROBLEM_SOLVING 26 / CHART_TABLE 8 / MULTIPLE_CHOICE 1. **Los 35 cálculos recomputados de forma independiente** (`verify-g27.mjs`, desechable): cada respuesta marcada coincide y cada distractor corresponde a un error nombrable (media↔mediana, base equivocada del %, sumar % en vez de multiplicar factores, conjunta↔condicional, con/sin reemplazo…). **Distribución de posición A=9 B=9 C=9 D=8** (25.7/25.7/25.7/22.9 %), las 4 en 15-40 %; secuencia de letras no cíclica (transiciones +1 en A→B→C→D: 20.6 % vs 25 % de azar). `content:validate-batch`: **0 violaciones**. Insertado con `content:insert --lot-dir` tema por tema, **verificado en la DB**: SOCADM Matemáticas Aplicadas 0 → 35; banco **622 → 657** total, verificados sin cambio en **622** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega 0 → 35. Registro en `docs/content-batches/g27-ipn-socadm-matematicas.json`. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago**)
+Última actualización: 2026-08-28 · Última fase ejecutada: G28 (**COMPLETADA — verificación ciega del lote de G27 (35 reactivos de **Matemáticas Aplicadas, IPN SOCADM**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Aislamiento comprobado, no asumido:** no se abrió el commit `53bf887` de G27, ni `docs/content-batches/g27-ipn-socadm-matematicas.json`, ni `Question.options`, ni la sección `## G27` de este documento (línea 2086); sí se leyó el bloque `### Siguiente (G27)` (el encargo) y la línea 3/fila de tabla de G27, que mencionan la distribución **agregada** de la clave — se declara aunque no dé señal por reactivo, porque el lote ciego baraja las etiquetas con semilla por `id`. **Ceguera verificada estructuralmente antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"` = **0**; las claves de cada opción son solo `label, text, imageUrl`. **Los 35 resueltos con la operación EJECUTADA en código** (`verify-g28.mjs`, desechable: un solucionador por reactivo escrito desde el enunciado, nunca desde las opciones), `usedCalculation:true` en los 35. **Candado nuevo de esta ronda — unicidad, no solo coincidencia:** para cada reactivo se contó cuántas de las 4 opciones empatan con el valor calculado (tolerancia relativa 0.6 %, normalizando `\frac{}{}`de KaTeX, millares y el menos Unicode) y el script aborta si el conteo no es exactamente 1 → **35/35 con exactamente una opción coincidente**, 0 enunciados duplicados. Eso sí discrimina: prueba los distractores, no el acuerdo entre sesiones. **El barajado es real:** la etiqueta ciega coincide con la original solo en **6/35 (17.1 %)** — 29 respuestas cambiaron de letra al traducirse, así que el acuerdo no viene de la posición. Confianza mínima **0.95** (la más alta de cualquier ronda ciega; G23 bajó a 0.93), 0 problemas declarados. `Question.verification` persistido en los 35 con `verdict.model="claude-opus-5"` y `usedCalculation=true`. **Acumulado real consultado en vivo antes y después:** banco **657** totales · verificados **622 → 657** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN SOCADM Matemáticas Aplicadas **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 657 servibles, auto-aprobación global 100 % (657/657), meta efectiva G26 (1 222) al **47 %**, brecha **642 ≈ 19 lotes**. **Confirmación independiente de G27** (recontada desde la DB): clave A=9 B=9 C=9 D=8 (25.7/25.7/25.7/22.9 %, dentro del 15-40 % de G3c) y **rotación A→B→C→D ausente** (7/34 = 20.6 %, tercer lote limpio seguido). **Nota honesta: sexta ronda ciega consecutiva al 100 % — la métrica está saturada y hoy no discrimina**; lo que aporta esta fase es el candado de unicidad. Tres observaciones de composición registradas sin bloquear publicación (8 `CHART_TABLE` sin tabla ni imagen; "ganancia esperada" que admite lectura bruta con 15 entre las opciones; dos pares de habilidad repetida). `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código y cero llamadas a la API de pago**)
+
+<details><summary>Historial: G27 (2026-08-28)</summary>
+
+Última fase ejecutada: G27 (**COMPLETADA — lote de 35 reactivos de **Matemáticas Aplicadas, IPN SOCADM**, la primera materia de esa rama con contenido (SOCADM completa estaba en cero). Materia = "Matemáticas Aplicadas" (weight 3, temas: Estadística descriptiva, Probabilidad, Análisis de datos), NO el bloque general de "Matemáticas" de FISMAT/MEDBIO — enfoque distinto (razonamiento cuantitativo aplicado), por eso G26 la dejó fuera del grupo `IPN:MATEMATICAS`. Cero `SourceChunk` para la materia o cualquier guía de IPN → los 35 **TEMARIO_ONLY**. Reparto 12/11/12 por tema. Dificultad BASIC 6 / INTERMEDIATE 17 / ADVANCED 10 / EXPERT 2. Formato PROBLEM_SOLVING 26 / CHART_TABLE 8 / MULTIPLE_CHOICE 1. **Los 35 cálculos recomputados de forma independiente** (`verify-g27.mjs`, desechable): cada respuesta marcada coincide y cada distractor corresponde a un error nombrable (media↔mediana, base equivocada del %, sumar % en vez de multiplicar factores, conjunta↔condicional, con/sin reemplazo…). **Distribución de posición A=9 B=9 C=9 D=8** (25.7/25.7/25.7/22.9 %), las 4 en 15-40 %; secuencia de letras no cíclica (transiciones +1 en A→B→C→D: 20.6 % vs 25 % de azar). `content:validate-batch`: **0 violaciones**. Insertado con `content:insert --lot-dir` tema por tema, **verificado en la DB**: SOCADM Matemáticas Aplicadas 0 → 35; banco **622 → 657** total, verificados sin cambio en **622** (esta sesión no verifica sus propios reactivos, por diseño), cola ciega 0 → 35. Registro en `docs/content-batches/g27-ipn-socadm-matematicas.json`. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago**)
+
+</details>
 
 <details><summary>Historial: G26 (2026-08-28)</summary>
 
@@ -16,6 +22,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G28 | Verificación ciega: Matemáticas Aplicadas IPN SOCADM (G27) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 622 → 657 verificados, cola ciega 35 → 0** | (G28) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G27. Aislamiento comprobado, no asumido (no se abrió el commit de G27, ni el JSON del lote, ni `Question.options`, ni la sección `## G27`); ceguera del archivo verificada con `grep` = 0 y por las claves de opción (`label, text, imageUrl`). Los 35 resueltos con la operación **ejecutada en código**, un solucionador por reactivo escrito desde el enunciado. **Candado nuevo: unicidad** — exactamente una opción coincide con el valor calculado en **35/35** (prueba los distractores, no el acuerdo entre sesiones); 0 enunciados duplicados. Barajado real: la etiqueta ciega coincide con la original solo en 6/35 (17.1 %). Confianza mínima 0.95, 0 problemas. Confirmación independiente de G27: clave A9/B9/C9/D8 y rotación A→B→C→D ausente (7/34 = 20.6 %). Sexta ronda ciega seguida al 100 %: la métrica está saturada y se dice así. Cero cambios de código. |
 | G27 | Lote de reactivos: Matemáticas Aplicadas IPN SOCADM (rama en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G27) | Ver sección dedicada abajo. Primera materia con contenido de la rama SOCADM (7 materias, estaba en cero). Materia "Matemáticas Aplicadas" (weight 3), no el bloque general de Matemáticas — enfoque de razonamiento cuantitativo aplicado. 35 TEMARIO_ONLY, reparto 12/11/12 (Estadística descriptiva / Probabilidad / Análisis de datos). Cálculos recomputados uno por uno. Posición A9/B9/C9/D8, `content:validate-batch` 0 violaciones. Banco 622 → 657, cola ciega 0 → 35. |
 | G26 | Reutilización de contenido entre áreas | **COMPLETADA — mecanismo `Subject.sharedContentKey` (migración 0011), 7 grupos / 19 filas; selector, diagnóstico, simulador y Entrómetro cableados; meta 1 500 → ~1 220, brecha 878 → 659** | (G26) | Ver sección dedicada abajo. Una columna nullable, sin tocar `Question` ni `Topic`. Confirmado con guías oficiales que el área solo cambia el peso. `test:unit` 491/491 (+15). |
 | G25 | Verificación ciega: auditoría 5 % de `session-v1` | **COMPLETADA con desviación declarada — no había "reparadas de G24" que verificar (cola en cero); se ejecutó la auditoría 5 %: 31/31 confirmados, 0 degradados, banco 622/622 sin cambio** | (G25) | Ver sección dedicada abajo. La premisa del encargo era falsa y se comprobó sin leer el commit de G24. `session-v1` pasa de 0 a 18 auditados. |
@@ -2082,6 +2089,196 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G28 — Verificación ciega: Matemáticas Aplicadas, IPN SOCADM (2026-08-28)
+
+**Estado: COMPLETADA.** Segunda mitad del ciclo adversarial de G2 sobre el
+lote de G27. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.**
+Banco: **657 totales · verificados 622 → 657 · cola ciega 35 → 0.** Cero
+cambios de código; cero llamadas a la API de pago.
+
+### 1) Aislamiento: comprobado, no asumido
+
+Lo que **no** se abrió, a propósito: el commit `53bf887` de G27, el registro
+del lote `docs/content-batches/g27-ipn-socadm-matematicas.json`,
+`Question.options` en la DB, y la sección `## G27` de este documento
+(línea 2086) — mismo criterio que G21 con G20 y G23 con G22.
+
+Lo que **sí** se leyó de este documento, declarado sin adornos: el bloque
+`### Siguiente (G27)` (línea 2195), que es el encargo de esta fase y no
+contiene respuestas; la línea 3 y la fila de G27 de la tabla de fases, que
+sí mencionan la **distribución agregada** de la clave (A=9 B=9 C=9 D=8).
+Ese agregado no da señal por reactivo, y el lote ciego baraja las etiquetas
+con semilla por `id`, así que no permite deducir ninguna respuesta
+individual — pero se declara porque el criterio del encargo es "nunca viste
+la respuesta correcta", no "nunca viste un histograma".
+
+El único insumo de resolución fue el lote ciego **regenerado en esta
+sesión**:
+
+```
+pnpm content:blind-batch --all --limit 50 --out scripts/content-exports/g28-blind.json
+→ 35 reactivos · 35 requieren cálculo ejecutado
+```
+
+**Ceguera verificada estructuralmente antes de leer nada del lote:**
+`grep -c` de `isCorrect|explanation|correctOption|"answer"` sobre el archivo
+da **0**. Las claves de cada ítem son `questionId, institution, subject,
+topic, format, passage, requiresCalculation, stem, options`; las de cada
+opción, **solo `label, text, imageUrl`** — no existe campo de correctitud
+que ignorar.
+
+La cola ciega consultada en vivo antes de empezar contenía exactamente los
+3 temas de la materia (12 Estadística descriptiva / 11 Probabilidad / 12
+Análisis de datos = 35), o sea el lote de G27 y nada más.
+
+### 2) Resolución: los 35 con la operación ejecutada, no estimada
+
+`verify-g28.mjs` (desechable) contiene **un solucionador por reactivo**,
+escrito a partir de los datos del enunciado y **nunca de las opciones**:
+cada uno reconstruye la operación desde cero (`mean`, `median`, `popSd`,
+`range`, `pctChange`, conteo de frecuencias, producto de probabilidades,
+complemento, condicional vs. conjunta, principio multiplicativo, valor
+esperado, factores sucesivos, escala, sector circular, índice). Los 35
+salieron con `usedCalculation:true` y eso **coincide** con el
+`requiresCalculation:true` que el pipeline derivó por materia.
+
+Dos reactivos no tienen respuesta numérica sino **compuesta**, y se
+resolvieron con predicado en vez de comparación de números: el de tasas por
+cada 1 000 vehículos (hay que acertar **ciudad y tasa a la vez** — un
+distractor trae la tasa correcta de la ciudad equivocada) y el del efecto
+neto sobre el ingreso (**dirección y magnitud**).
+
+### 3) El candado de esta ronda: unicidad, no solo coincidencia
+
+Coincidir con el generador es una prueba débil cuando la métrica lleva
+cinco rondas saturada. Esta sesión añadió una comprobación mecánica más
+dura: para cada reactivo se contó **cuántas de las cuatro opciones empatan
+con el valor calculado** (tolerancia relativa 0.6 %, con normalización de
+`\frac{a}{b}` de KaTeX, separador de millares y el signo menos Unicode
+`−`), y el script **falla si el conteo no es exactamente 1**.
+
+**Resultado: 35/35 con exactamente una opción coincidente** — ni un
+reactivo con dos opciones defendibles, ni uno cuya respuesta no esté entre
+las opciones. Esto sí discrimina: es una prueba de los distractores, no del
+acuerdo entre dos sesiones. **Enunciados duplicados dentro del lote: 0.**
+
+### 4) El barajado del lote ciego es real (candado anti-deriva letra↔contenido)
+
+Si el lote ciego no barajara, la letra elegida coincidiría con la original
+en 35/35 y "acertar" no probaría nada. Medido tras resolver: la etiqueta
+ciega coincide con la original en **6/35 (17.1 %)** — **29 de 35 respuestas
+cambiaron de letra al traducirse** de vuelta. El acuerdo, por tanto, no
+puede venir de la posición.
+
+### 5) Resultado
+
+```
+pnpm content:resolve --file scripts/content-exports/g28-answers.json
+✅ Auto-aprobados: 35   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+**Tasa de auto-aprobación del lote: 100 % (35/35).**
+
+Confianza: 32 reactivos a 0.98; tres por debajo — 0.95 el del valor
+esperado (ver §8) y 0.97 los dos de respuesta compuesta. **Mínimo 0.95: el
+más alto de cualquier ronda ciega del proyecto** (G23 bajó a 0.93).
+Problemas declarados: **0**.
+
+`Question.verification` quedó persistido en los 35, con
+`verdict.model = "claude-opus-5"` (el modelo que de verdad resolvió, no la
+constante de orquestación — defecto de G14 corregido en G17),
+`verdict.usedCalculation = true`, `decision = "AUTO_APPROVED"`,
+`pipeline = "session-v1"`.
+
+### 6) Acumulado real, consultado en vivo antes y después
+
+| Métrica | Antes de G28 | Después de G28 |
+|---|---|---|
+| Banco total | 657 | 657 |
+| Verificados (`isVerified=true`) | 622 | **657** |
+| Cola ciega (`isVerified=false`) | 35 | **0** |
+| Sin publicar con veredicto | 0 | 0 |
+| IPN SOCADM · Matemáticas Aplicadas | 0✓ / 35⧗ | **35✓ / 0⧗** |
+
+`content:coverage` tras la corrida: **657 servibles · 0 pendientes**, tasa
+de auto-aprobación global **100 % (657/657)**, anclaje **207 SOURCED
+(32 %) / 450 TEMARIO_ONLY**. Meta efectiva de G26 (**1 222**): **47 %**,
+brecha **642 ≈ 19 lotes**. Meta nominal de 1 500: 44 %.
+
+Las dos colas quedan otra vez en cero.
+
+### 7) Confirmación independiente de las cifras de G27
+
+Recontadas desde la DB después de resolver, sin mirar el registro del lote:
+
+- **Distribución de la clave: A=9 B=9 C=9 D=8** (25.7 / 25.7 / 25.7 /
+  22.9 %) — las cuatro dentro del rango 15–40 % de `POSITION_SKEW` (G3c).
+- **Rotación A→B→C→D (artefacto de G16): ausente.** Secuencia
+  `BCBACBDACCADACBABDCADBDACBDCABADCDB`, **7/34 transiciones +1 = 20.6 %**,
+  por debajo del ~25 % de azar y lejísimos del ~100 % de los lotes viejos.
+  Tercer lote consecutivo limpio tras G21 y G23.
+- Grounding **35 TEMARIO_ONLY**; dificultad BASIC 6 / INTERMEDIATE 17 /
+  ADVANCED 10 / EXPERT 2; formato PROBLEM_SOLVING 26 / CHART_TABLE 8 /
+  MULTIPLE_CHOICE 1.
+
+Todo coincide con lo que G27 declaró.
+
+### 8) Observaciones de composición (no bloquean publicación)
+
+No se marcaron como `problems` porque ninguna afecta la corrección del
+reactivo; se registran para futuros lotes:
+
+1. **`CHART_TABLE` sin tabla ni imagen.** Los 8 reactivos con ese formato
+   llevan los datos **en prosa dentro del `stem`** y ningún `imageUrl`. Se
+   responden perfectamente, pero el formato promete una representación
+   tabular/gráfica que el reactivo no tiene. Conviene decidir de una vez:
+   o esos casos son `PROBLEM_SOLVING`, o el lote debe traer la tabla.
+2. **"Ganancia esperada" admite lectura bruta.** En el reactivo del dado
+   (se pagan 20 por participar, se reciben 90 si sale 6), la lectura neta
+   da −5 y la bruta da 15 — **y 15 está entre las opciones**. La neta es la
+   convención estándar para "ganancia" cuando el costo de participar está
+   en el enunciado, y es la única consistente con las otras tres opciones,
+   así que se eligió −5 con confianza 0.95. Para lotes futuros: escribir
+   "ganancia **neta** esperada" y el problema desaparece.
+3. **Habilidades repetidas.** Dos reactivos de "valor faltante dado el
+   promedio" y dos de aumento porcentual simple. Difieren en datos y
+   contexto y son aceptables en 35, pero conviene vigilarlo si SOCADM
+   crece.
+
+### 9) Nota honesta sobre la métrica
+
+**Sexta ronda ciega consecutiva al 100 %** (G14, G16, G19, G21, G23, G28).
+La tasa de auto-aprobación, dicha con franqueza, **hoy no discrimina
+nada**: lleva cinco fases saturada y G24 ya lo anotó. Lo que esta ronda
+aporta de nuevo no es el 100 %, sino el **candado de unicidad de §3** —
+esa sí es una prueba de los distractores, y el hecho de que 35/35 la pasen
+dice más sobre la salud del lote que el acuerdo entre dos sesiones.
+
+### 10) Limpieza
+
+Scripts desechables eliminados al terminar (`verify-g28.mjs`,
+`post-g28.mjs`, `shuffle-check.mjs`, `rot-check.mjs`, `bank-state.mjs`).
+`pnpm typecheck` y `pnpm lint` en verde. Cero cambios en `src/`, en
+`prisma/schema.prisma` y en el pipeline.
+
+### Siguiente (G28)
+
+1. **Componer el siguiente lote.** La brecha ya no está en SOCADM
+   Matemáticas Aplicadas (completa) sino en las **materias día 1 en cero o
+   muy por debajo**: IPN FISMAT Química (brecha ~56, **en cero**), IPN
+   FISMAT Física (~76), IPN MEDBIO Matemáticas (~44, en cero) y
+   Español/Lectura de MEDBIO (~33, en cero). El top-5 de G24 sigue vigente
+   salvo por lo que G26 abarató.
+2. **Resolver la pregunta de alcance de G24 §7 / G26 §8.4**, que ya lleva
+   cuatro fases abierta: si UNAM A3/A4 e IPN SOCADM entran en la meta del
+   21-nov, las otras **6 materias de SOCADM siguen en cero** (Historia de
+   México, Historia Universal, Geografía, Civismo/Derecho, y Español e
+   Inglés compartidos). Con la meta efectiva en 1 222 y la brecha en 642,
+   la decisión ya no es cosmética: cambia cuántos lotes faltan.
+3. **Heredados sin tocar**: rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % de `session-v1`
+   (47/657 — el denominador creció, la muestra no).
 
 ## G27 — Lote de reactivos: Matemáticas Aplicadas, IPN SOCADM (2026-08-28)
 
