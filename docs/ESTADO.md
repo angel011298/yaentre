@@ -1,6 +1,21 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-28 · Última fase ejecutada: G28 (**COMPLETADA — verificación ciega del lote de G27 (35 reactivos de **Matemáticas Aplicadas, IPN SOCADM**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Aislamiento comprobado, no asumido:** no se abrió el commit `53bf887` de G27, ni `docs/content-batches/g27-ipn-socadm-matematicas.json`, ni `Question.options`, ni la sección `## G27` de este documento (línea 2086); sí se leyó el bloque `### Siguiente (G27)` (el encargo) y la línea 3/fila de tabla de G27, que mencionan la distribución **agregada** de la clave — se declara aunque no dé señal por reactivo, porque el lote ciego baraja las etiquetas con semilla por `id`. **Ceguera verificada estructuralmente antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"` = **0**; las claves de cada opción son solo `label, text, imageUrl`. **Los 35 resueltos con la operación EJECUTADA en código** (`verify-g28.mjs`, desechable: un solucionador por reactivo escrito desde el enunciado, nunca desde las opciones), `usedCalculation:true` en los 35. **Candado nuevo de esta ronda — unicidad, no solo coincidencia:** para cada reactivo se contó cuántas de las 4 opciones empatan con el valor calculado (tolerancia relativa 0.6 %, normalizando `\frac{}{}`de KaTeX, millares y el menos Unicode) y el script aborta si el conteo no es exactamente 1 → **35/35 con exactamente una opción coincidente**, 0 enunciados duplicados. Eso sí discrimina: prueba los distractores, no el acuerdo entre sesiones. **El barajado es real:** la etiqueta ciega coincide con la original solo en **6/35 (17.1 %)** — 29 respuestas cambiaron de letra al traducirse, así que el acuerdo no viene de la posición. Confianza mínima **0.95** (la más alta de cualquier ronda ciega; G23 bajó a 0.93), 0 problemas declarados. `Question.verification` persistido en los 35 con `verdict.model="claude-opus-5"` y `usedCalculation=true`. **Acumulado real consultado en vivo antes y después:** banco **657** totales · verificados **622 → 657** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN SOCADM Matemáticas Aplicadas **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 657 servibles, auto-aprobación global 100 % (657/657), meta efectiva G26 (1 222) al **47 %**, brecha **642 ≈ 19 lotes**. **Confirmación independiente de G27** (recontada desde la DB): clave A=9 B=9 C=9 D=8 (25.7/25.7/25.7/22.9 %, dentro del 15-40 % de G3c) y **rotación A→B→C→D ausente** (7/34 = 20.6 %, tercer lote limpio seguido). **Nota honesta: sexta ronda ciega consecutiva al 100 % — la métrica está saturada y hoy no discrimina**; lo que aporta esta fase es el candado de unicidad. Tres observaciones de composición registradas sin bloquear publicación (8 `CHART_TABLE` sin tabla ni imagen; "ganancia esperada" que admite lectura bruta con 15 entre las opciones; dos pares de habilidad repetida). `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código y cero llamadas a la API de pago**)
+Última actualización: 2026-08-29 · Última fase ejecutada: G30 (**COMPLETADA — verificación ciega del lote de G29 (35 reactivos de **Español/Lectura, pool compartido `IPN:ESPANOL`**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Primera ronda ciega puramente verbal a escala:** 0 de los 35 admiten cálculo (`requiresCalculation=false` en todos), así que aquí no cabe el candado aritmético de G28 — el único control es el **descarte explícito de los tres distractores en cada reactivo**, citados por su contenido y nunca por su letra. **Aislamiento comprobado, no asumido:** no se abrió el commit `cc0b49e` de G29, ni el JSON del lote, ni `Question.options`, ni la sección `## G29` de este documento (línea 2094 antes de las inserciones de esta fase; hoy 2361); sí se leyeron el bloque `### Siguiente (G29)` (el encargo) y la fila de tabla de G29, que dan la distribución **agregada** de la clave — sin señal por reactivo, porque el lote ciego baraja las etiquetas con semilla por `id`. **Contaminación declarada, no escondida:** ese encargo nombra el criterio decisivo de uno de los dos `EXPERT` («símil vs. personificación… el nexo "como" es la marca decisiva»), así que **ese reactivo no cuenta como acuerdo independiente**; los otros 34 sí. **Ceguera verificada estructuralmente antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; las claves de cada opción son solo `label, text, imageUrl`; y los **20/20 de comprensión llegaron CON su pasaje** (4 pasajes × 5 reactivos), como exige el encargo. **Confianza declarada — el indicador que sí discrimina, según G23:** mínima **0.92**, promedio **0.963**. Esa mínima es **el piso más bajo de cualquier ronda ciega** (G28: 0.95; G23: 0.93): el razonamiento verbal admite matiz donde la aritmética no, y se registra tal cual en vez de inflarse. **0 problemas declarados y 0 ambigüedades forzadas:** los dos reactivos más apretados («marca en la pared», 0.92, y símil vs. personificación, 0.93) se resolvieron por la glosa que el propio texto da de su imagen y por el nexo comparativo, no por descarte a ciegas. **Sin señal de longitud:** la correcta es la opción más larga en **7/35 = 20 %**, por debajo del 25 % de azar. **El barajado es real:** la etiqueta ciega coincide con la original en 12/35 (34.3 %) — 23 respuestas cambiaron de letra. **Corrección al registro de G29:** el reconteo en vivo de la clave da **A9 / B8 / C9 / D9** (25.7 / 22.9 / 25.7 / 25.7 %), no el A9/B9/C9/D8 anotado en G29 — transposición B↔D en la nota; ambas lecturas caen dentro de la banda 15-40 % de G3c, así que nada aguas abajo cambia. Rotación A→B→C→D **6/34 = 17.6 %**, que sí coincide con lo anotado en G29 (cuarto lote limpio seguido). **Acumulado real consultado en vivo antes y después:** banco **692** totales · verificados **657 → 692** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN FISMAT Español/Lectura **35✓/35⧗ → 70✓/0⧗**. `content:coverage`: 692 servibles, auto-aprobación global 100 % (692/692), meta efectiva G26 (1 222) al **47 %**, brecha **642 ≈ 19 lotes**; meta nominal de 1 500: 44 % → **46 %**. **Nota honesta: séptima ronda ciega consecutiva al 100 % — la métrica sigue saturada y no discrimina**; lo que aporta esta fase es haber sometido a la pasada ciega un lote donde no existe verificación mecánica posible. Tres observaciones de composición registradas sin bloquear publicación (nexo concesivo rodeado de tres causales casi sinónimos; el distractor de personificación cuya justificación es literalmente cierta de la imagen; `content:coverage` sigue mostrando 0✓ en Español/Lectura de SOCADM y MEDBIO porque el pool vive bajo los temas de FISMAT y la reutilización de G26 opera en runtime, no en el reporte). **Reparación de registro:** G29 nunca actualizó la línea 3 de este documento; G30 la repara y archiva G28 y G29 en Historial. `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código —el diagnóstico corrió en un script desechable, creado y borrado— y cero llamadas a la API de pago**)
+
+<details><summary>Historial: G29 (2026-08-28)</summary>
+
+Última fase ejecutada: G29 (**COMPLETADA — Encargo: 35 reactivos de Español para la rama SOCADM. Español/Lectura es materia COMPARTIDA (`sharedContentKey=IPN:ESPANOL`, G26): el lote se compuso contra los 4 temas de **FISMAT** (la celda con más contenido del grupo: 35 verificados de G22; MEDBIO y SOCADM en cero) y la reutilización G26 lo sirve a MEDBIO y SOCADM. FISMAT es además la única rama cuyo temario nombra Ortografía y Gramática como temas propios, que es donde caen los formatos del encargo. 35 TEMARIO_ONLY. Reparto: Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6 (RC 20 con 4 pasajes ORIGINALES ×5, SENTENCE_COMPLETION 4, ANALOGY 3, MULTIPLE_CHOICE 8). Posición A9/B9/C9/D8 confirmada en la DB; rotación A→B→C→D 6/34 = 17.6 %; correcta = opción más larga 20 %; 0 citas por letra. `content:validate-batch` 0 violaciones. Banco 657 → 692, cola ciega 0 → 35. Segundo lote sobre el pool `IPN:ESPANOL` tras G22 (35→70).**)
+
+*(Entrada reconstruida en G30 desde la fila de tabla de G29: esa fase
+nunca actualizó la línea 3 de este documento.)*
+
+</details>
+
+<details><summary>Historial: G28 (2026-08-28)</summary>
+
+Última fase ejecutada: G28 (**COMPLETADA — verificación ciega del lote de G27 (35 reactivos de **Matemáticas Aplicadas, IPN SOCADM**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %.** **Aislamiento comprobado, no asumido:** no se abrió el commit `53bf887` de G27, ni `docs/content-batches/g27-ipn-socadm-matematicas.json`, ni `Question.options`, ni la sección `## G27` de este documento (línea 2086); sí se leyó el bloque `### Siguiente (G27)` (el encargo) y la línea 3/fila de tabla de G27, que mencionan la distribución **agregada** de la clave — se declara aunque no dé señal por reactivo, porque el lote ciego baraja las etiquetas con semilla por `id`. **Ceguera verificada estructuralmente antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"` = **0**; las claves de cada opción son solo `label, text, imageUrl`. **Los 35 resueltos con la operación EJECUTADA en código** (`verify-g28.mjs`, desechable: un solucionador por reactivo escrito desde el enunciado, nunca desde las opciones), `usedCalculation:true` en los 35. **Candado nuevo de esta ronda — unicidad, no solo coincidencia:** para cada reactivo se contó cuántas de las 4 opciones empatan con el valor calculado (tolerancia relativa 0.6 %, normalizando `\frac{}{}`de KaTeX, millares y el menos Unicode) y el script aborta si el conteo no es exactamente 1 → **35/35 con exactamente una opción coincidente**, 0 enunciados duplicados. Eso sí discrimina: prueba los distractores, no el acuerdo entre sesiones. **El barajado es real:** la etiqueta ciega coincide con la original solo en **6/35 (17.1 %)** — 29 respuestas cambiaron de letra al traducirse, así que el acuerdo no viene de la posición. Confianza mínima **0.95** (la más alta de cualquier ronda ciega; G23 bajó a 0.93), 0 problemas declarados. `Question.verification` persistido en los 35 con `verdict.model="claude-opus-5"` y `usedCalculation=true`. **Acumulado real consultado en vivo antes y después:** banco **657** totales · verificados **622 → 657** · cola ciega **35 → 0** · sin publicar con veredicto 0; IPN SOCADM Matemáticas Aplicadas **0✓/35⧗ → 35✓/0⧗**. `content:coverage`: 657 servibles, auto-aprobación global 100 % (657/657), meta efectiva G26 (1 222) al **47 %**, brecha **642 ≈ 19 lotes**. **Confirmación independiente de G27** (recontada desde la DB): clave A=9 B=9 C=9 D=8 (25.7/25.7/25.7/22.9 %, dentro del 15-40 % de G3c) y **rotación A→B→C→D ausente** (7/34 = 20.6 %, tercer lote limpio seguido). **Nota honesta: sexta ronda ciega consecutiva al 100 % — la métrica está saturada y hoy no discrimina**; lo que aporta esta fase es el candado de unicidad. Tres observaciones de composición registradas sin bloquear publicación (8 `CHART_TABLE` sin tabla ni imagen; "ganancia esperada" que admite lectura bruta con 15 entre las opciones; dos pares de habilidad repetida). `pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código y cero llamadas a la API de pago**)
+
+</details>
 
 <details><summary>Historial: G27 (2026-08-28)</summary>
 
@@ -22,6 +37,7 @@
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G30 | Verificación ciega: Español/Lectura IPN (lote de G29) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 657 → 692 verificados, cola ciega 35 → 0** | (G30) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G29. Primera ronda ciega **puramente verbal a escala**: 0/35 admiten cálculo, así que no cabe el candado aritmético de G28 y el único control es el **descarte explícito de los tres distractores**, citados por contenido y nunca por letra. Aislamiento comprobado (no se abrió el commit de G29, ni el JSON, ni `Question.options`, ni la sección `## G29`); ceguera verificada con `grep` = 0 y por las claves de opción; **los 20 de comprensión llegaron CON su pasaje** (4 pasajes × 5). **Contaminación declarada:** el encargo leído nombra el criterio decisivo de uno de los dos `EXPERT`, así que ese reactivo no cuenta como acuerdo independiente. Confianza mínima **0.92** (el piso más bajo de cualquier ronda ciega; G28 0.95, G23 0.93), promedio 0.963, 0 problemas y 0 ambigüedades forzadas. Sin señal de longitud (correcta = más larga 7/35 = 20 %). Barajado real: la etiqueta ciega coincide con la original en 12/35 (34.3 %). **Corrección a G29:** la clave recontada en vivo es A9/B8/C9/D9, no A9/B9/C9/D8 (transposición B↔D; ambas dentro de la banda de G3c). Séptima ronda seguida al 100 %: la métrica sigue saturada y se dice así. Cero cambios de código. |
 | G29 | Lote de reactivos: Español/Comunicación IPN (encargo SOCADM) | **COMPLETADA — 35 insertados, isVerified=false** | (G29) | Ver sección dedicada abajo. Encargo: 35 reactivos de Español para la rama SOCADM. Español/Lectura es materia COMPARTIDA (`sharedContentKey=IPN:ESPANOL`, G26): el lote se compuso contra los 4 temas de **FISMAT** (la celda con más contenido del grupo: 35 verificados de G22; MEDBIO y SOCADM en cero) y la reutilización G26 lo sirve a MEDBIO y SOCADM. FISMAT es además la única rama cuyo temario nombra Ortografía y Gramática como temas propios, que es donde caen los formatos del encargo. 35 TEMARIO_ONLY. Reparto: Comprensión lectora 10, Análisis de textos 10, Gramática 9, Ortografía 6 (RC 20 con 4 pasajes ORIGINALES ×5, SENTENCE_COMPLETION 4, ANALOGY 3, MULTIPLE_CHOICE 8). Posición A9/B9/C9/D8 confirmada en la DB; rotación A→B→C→D 6/34 = 17.6 %; correcta = opción más larga 20 %; 0 citas por letra. `content:validate-batch` 0 violaciones. Banco 657 → 692, cola ciega 0 → 35. Segundo lote sobre el pool `IPN:ESPANOL` tras G22 (35→70). |
 | G28 | Verificación ciega: Matemáticas Aplicadas IPN SOCADM (G27) | **COMPLETADA — 35/35 auto-aprobados (100 %), banco 622 → 657 verificados, cola ciega 35 → 0** | (G28) | Ver sección dedicada abajo. Segunda mitad del ciclo adversarial de G2 sobre el lote de G27. Aislamiento comprobado, no asumido (no se abrió el commit de G27, ni el JSON del lote, ni `Question.options`, ni la sección `## G27`); ceguera del archivo verificada con `grep` = 0 y por las claves de opción (`label, text, imageUrl`). Los 35 resueltos con la operación **ejecutada en código**, un solucionador por reactivo escrito desde el enunciado. **Candado nuevo: unicidad** — exactamente una opción coincide con el valor calculado en **35/35** (prueba los distractores, no el acuerdo entre sesiones); 0 enunciados duplicados. Barajado real: la etiqueta ciega coincide con la original solo en 6/35 (17.1 %). Confianza mínima 0.95, 0 problemas. Confirmación independiente de G27: clave A9/B9/C9/D8 y rotación A→B→C→D ausente (7/34 = 20.6 %). Sexta ronda ciega seguida al 100 %: la métrica está saturada y se dice así. Cero cambios de código. |
 | G27 | Lote de reactivos: Matemáticas Aplicadas IPN SOCADM (rama en cero) | **COMPLETADA — 35 insertados, isVerified=false** | (G27) | Ver sección dedicada abajo. Primera materia con contenido de la rama SOCADM (7 materias, estaba en cero). Materia "Matemáticas Aplicadas" (weight 3), no el bloque general de Matemáticas — enfoque de razonamiento cuantitativo aplicado. 35 TEMARIO_ONLY, reparto 12/11/12 (Estadística descriptiva / Probabilidad / Análisis de datos). Cálculos recomputados uno por uno. Posición A9/B9/C9/D8, `content:validate-batch` 0 violaciones. Banco 622 → 657, cola ciega 0 → 35. |
@@ -2090,6 +2106,258 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G30 — Verificación ciega: Español/Lectura, IPN (lote de G29) (2026-08-29)
+
+**COMPLETADA. 35/35 auto-aprobados — tasa de auto-aprobación 100 %.** Segunda
+mitad del ciclo adversarial de G2 sobre los 35 reactivos que G29 insertó con
+`isVerified=false` en el pool compartido `IPN:ESPANOL`.
+
+Lo que separa a esta ronda de las seis anteriores: **ninguno de los 35 admite
+cálculo**. El lote ciego reporta `requiresCalculation=false` en los 35, y el
+encargo lo anticipaba (`isCalcSubject` da falso para "Español/Lectura"). El
+candado de unicidad que G28 estrenó —contar cuántas opciones empatan con el
+valor calculado y abortar si no es exactamente una— **aquí no existe y no puede
+fabricarse**. El único control disponible es el que pedía el encargo: descartar
+los tres distractores de cada reactivo de forma explícita, por su contenido.
+
+### 1) Aislamiento: comprobado, no asumido
+
+No se abrió:
+
+- el commit `cc0b49e` de G29,
+- el JSON del lote,
+- `Question.options` (ni por Prisma Studio ni por consulta) antes de responder,
+- la sección `## G29` de este documento (línea 2094 en el momento de la
+  lectura; las inserciones de esta fase la corrieron a la 2361).
+
+Sí se leyeron, y se declaran:
+
+- el bloque `### Siguiente (G29)` — el encargo de esta fase;
+- la fila de tabla de G29 y la línea 3, que dan la distribución **agregada** de
+  la clave. No dan señal por reactivo: el lote ciego rebaraja las etiquetas con
+  semilla determinista por `id`, así que saber "A9/B9/C9/D8" no dice nada sobre
+  qué letra marcar en el ítem que se tiene enfrente.
+
+**Contaminación declarada.** El encargo va más lejos que en rondas previas: al
+señalar los dos reactivos `EXPERT`, nombra el criterio decisivo de uno de ellos
+—«símil vs. personificación… el nexo "como" es la marca decisiva»—. Eso es,
+en la práctica, la respuesta conceptual de ese reactivo entregada antes de
+resolverlo. El razonamiento que se registró para él es derivable por cuenta
+propia (es la distinción estándar entre las dos figuras), pero **eso no se puede
+probar desde dentro**, así que se asienta la regla honesta: **ese reactivo no
+cuenta como acuerdo independiente**. Los otros 34 sí. El acuerdo limpio de esta
+ronda es **34/34**, y el reactivo 35 se aprobó con la contaminación anotada.
+
+Corolario para el pipeline: **el bloque `### Siguiente` no debe contener el
+criterio de resolución de un reactivo concreto.** Señalar "atención a los dos
+EXPERT" es útil; explicar cuál es la marca decisiva contamina la pasada ciega
+que ese mismo bloque encarga.
+
+### 2) Ceguera del archivo, verificada antes de leerlo
+
+| Comprobación | Resultado |
+|---|---|
+| `grep -c 'isCorrect\|explanation\|correctOption\|"answer"\|correctAnswer\|solution'` | **0** |
+| Claves de cada opción | `label, text, imageUrl` (nada más) |
+| Opciones por reactivo | 4 en los 35 |
+| `requiresCalculation=true` | 0 |
+| Reactivos de comprensión con su pasaje | **20/20** — 4 pasajes × 5 reactivos |
+
+El punto del encargo se cumple: `buildBlindItem` copia `passageContent` (lo
+expone como `passage`), así que los 20 de comprensión lectora llegaron **con el
+texto completo y sin la respuesta marcada**. Los 15 restantes
+(SENTENCE_COMPLETION 4, ANALOGY 3, MULTIPLE_CHOICE 8) no llevan pasaje, como
+corresponde.
+
+### 3) Resolución: descarte explícito, no elección por eliminación vaga
+
+Los 35 se resolvieron desde cero. En cada uno se dejó asentado por qué **cada
+uno de los tres distractores** es incorrecto, citándolo por su contenido y nunca
+por su letra (guardrail de CLAUDE.md). Los patrones de descarte que se
+repitieron:
+
+- **contradice el texto** (p. ej. "recuerda mejor" contra el explícito "lo
+  recuerda peor"; "el libro cambia de edición" contra "no ha cambiado ni una
+  coma");
+- **absoluto no autorizado** ("no aprende absolutamente nada", "el único método
+  que de verdad da resultados");
+- **la tesis ajena que el texto refuta**, ofrecida como si fuera la propia;
+- **detalle verdadero pero subordinado**, colocado donde se pide la idea central;
+- **literalización de una metáfora** ("releer deja el libro lleno de marcas";
+  "solo sirve si además viaja a lugares nuevos").
+
+### 4) Ambigüedades: marcadas, no forzadas
+
+El encargo pedía marcar como problema cualquier par de opciones igualmente
+defendibles en vez de forzar la elección. **No se declaró ningún problema**, y
+esa decisión se sostiene reactivo por reactivo. Los dos más apretados, y por qué
+no son empates:
+
+- **«el texto funciona como una marca en la pared»** (confianza 0.92, la más
+  baja del lote). El distractor rival —"el libro deja una huella profunda en
+  quien lo lee"— es una afirmación cierta sobre los libros, y por eso muerde.
+  Lo que lo descarta no es intuición sino que **invierte la dirección de la
+  imagen**: el propio texto glosa la comparación con "uno se para junto a él y
+  comprueba cuánto ha crecido". La marca en la pared es la referencia fija, no
+  la huella dejada en el lector.
+- **símil vs. personificación** (0.93). La justificación del distractor
+  ("atribuye a unas luces la capacidad humana de abrir los ojos") es
+  **literalmente cierta de la imagen**; lo que decide es que la construcción
+  enlaza los dos términos con el nexo comparativo, y una personificación
+  atribuye el rasgo de forma directa, sin nexo. Es un símil **de contenido
+  personificador**: reactivo legítimamente difícil, no ambiguo. (Ver §1: el
+  criterio venía nombrado en el encargo.)
+
+### 5) Confianza declarada — el indicador que sí discrimina
+
+G23 dejó dicho que en lotes verbales hay que mirar la confianza, no la tasa.
+Aquí:
+
+| Métrica | Valor | Comparación |
+|---|---|---|
+| Confianza mínima | **0.92** | G28: 0.95 · G23: 0.93 → **piso más bajo de cualquier ronda ciega** |
+| Confianza promedio | 0.963 | — |
+| Reactivos < 0.95 | **5 de 35** | **los 5 son de comprensión lectora** |
+| Problemas declarados | 0 | — |
+
+Y el desglose por formato explica de dónde sale el piso:
+
+| Formato | n | Mínima | Promedio |
+|---|---|---|---|
+| READING_COMPREHENSION | 20 | **0.92** | 0.955 |
+| ANALOGY | 3 | 0.95 | 0.967 |
+| SENTENCE_COMPLETION | 4 | 0.97 | 0.972 |
+| MULTIPLE_CHOICE (gramática/ortografía) | 8 | 0.96 | 0.975 |
+
+**Ningún reactivo fuera de comprensión lectora bajó de 0.95.** Ortografía,
+gramática y analogías tienen respuesta normativa —la tilde va o no va, "creer"
+rige o no rige preposición—, y la confianza lo refleja; la interpretación de un
+pasaje es lo único que admite matiz.
+
+Que la mínima baje no es un defecto del lote: es lo que se espera cuando el
+objeto de la pregunta es la interpretación de un texto y no un valor numérico.
+Se registra el 0.92 real en vez de redondearlo hacia arriba, precisamente
+porque es la única señal que aquí no está saturada.
+
+### 6) Candados que sí aplican en un lote verbal
+
+Sin aritmética que ejecutar, quedan dos comprobaciones mecánicas:
+
+- **Señal de longitud.** La correcta es la opción más larga en **7/35 = 20 %**,
+  por debajo del 25 % de azar. Un sustentante que respondiera "la más larga"
+  sacaría 7. (Medido también sobre las respuestas elegidas antes de resolver:
+  el mismo 20 %, es decir, la heurística de longitud no guió las elecciones.)
+- **El barajado es real.** La etiqueta ciega coincide con la original en
+  **12/35 = 34.3 %**: 23 de 35 respuestas cambiaron de letra al traducirse de
+  vuelta. Más alto que el 17.1 % de G28 y cercano al 25 % de azar, que es
+  justo lo que debe pasar con una semilla por `id`. El acuerdo no viene de la
+  posición.
+
+### 7) Resultado
+
+35 auto-aprobados, 0 sin publicar, 0 omitidos. `Question.verification`
+persistido en los 35 con `verdict.model="claude-opus-5"` y
+`usedCalculation=false` (declarado tal cual: no hubo nada que ejecutar).
+
+### 8) Acumulado real, consultado en vivo antes y después
+
+| Métrica | Antes de G30 | Después de G30 |
+|---|---|---|
+| Banco total | 692 | 692 |
+| Verificados (`isVerified=true`) | 657 | **692** |
+| Cola ciega (`isVerified=false`) | 35 | **0** |
+| Sin publicar con veredicto | 0 | 0 |
+| IPN FISMAT · Español/Lectura | 35✓ / 35⧗ | **70✓ / 0⧗** |
+
+`content:coverage` tras la corrida: **692 servibles · 0 pendientes**, tasa de
+auto-aprobación global **100 % (692/692)**, anclaje **207 SOURCED (30 %) / 485
+TEMARIO_ONLY**. Meta efectiva de G26 (**1 222**): **47 %**, brecha **642 ≈ 19
+lotes**. Meta nominal de 1 500: 44 % → **46 %**.
+
+Las dos colas quedan otra vez en cero.
+
+### 9) Confirmación independiente de las cifras de G29 — y una corrección
+
+Recontadas desde la DB después de resolver:
+
+| Cifra | G29 anotó | Reconteo en vivo |
+|---|---|---|
+| Distribución de la clave | A9 / B9 / C9 / D8 | **A9 / B8 / C9 / D9** |
+| En porcentaje | — | 25.7 / 22.9 / 25.7 / 25.7 % |
+| Rotación A→B→C→D | 6/34 = 17.6 % | **6/34 = 17.6 %** ✓ |
+| Correcta = opción más larga | 20 % | **20 %** ✓ |
+
+La distribución anotada en G29 tiene **B y D transpuestos**. Es un error de
+registro, no de composición: ambas lecturas caen dentro de la banda 15-40 % que
+fijó G3c, ninguna posición queda concentrada y nada aguas abajo cambia. Se
+corrige aquí para que el histórico sea consultable sin arrastrar el desliz.
+
+La rotación (17.6 %) es el **cuarto lote limpio seguido** — sin el patrón
+A→B→C→D que arrastran los ~140 reactivos viejos de G3a/G3d/G13/G15.
+
+### 10) Observaciones de composición (no bloquean publicación)
+
+1. **Nexo concesivo rodeado de tres causales.** En el reactivo de
+   «______ hizo muy mal tiempo…, la excursión se realizó sin contratiempos», los
+   tres distractores ("debido a que", "ya que", "puesto que") son causales casi
+   sinónimos entre sí. La respuesta se puede acertar por descarte de tipo —"tres
+   se parecen, la cuarta no"— sin leer la oración. Discrimina menos de lo que
+   parece; conviene que al menos un distractor sea de otra clase (temporal o
+   adversativo).
+2. **Distractor de personificación con justificación verdadera.** Ver §4: su
+   texto describe correctamente la imagen y solo la marca gramatical lo
+   descarta. Es lo que hace `EXPERT` al reactivo, y está bien, pero conviene
+   que no se repita como molde: dos o tres así en un mismo lote empujarían la
+   confianza declarada por debajo del umbral de 0.85.
+3. **`content:coverage` no refleja la reutilización de G26.** El reporte sigue
+   mostrando Español/Lectura de **SOCADM y MEDBIO en 0✓** aunque el pool
+   compartido `IPN:ESPANOL` ya tiene 70 verificados, porque viven bajo los temas
+   de FISMAT y la reutilización opera en runtime
+   (`src/lib/db/shared-content.ts`), no en el reporte. No es un defecto del
+   lote; es una lectura engañosa del tablero que conviene corregir antes de que
+   alguien planee un lote contra una celda que en realidad ya está servida.
+
+### 11) Nota honesta sobre la métrica
+
+**Séptima ronda ciega consecutiva al 100 %** (G14, G16, G19, G21, G23, G28,
+G30). La tasa de auto-aprobación lleva siete rondas sin discriminar nada: es una
+métrica saturada y seguir presentándola como evidencia de calidad sería
+engañarse. Lo que esta fase sí aporta:
+
+- se sometió a la pasada ciega el **primer lote a escala donde no existe
+  verificación mecánica posible** —sin aritmética que ejecutar, sin candado de
+  unicidad—, y el acuerdo se sostuvo;
+- la **confianza mínima bajó a 0.92**, el piso más bajo registrado, que es
+  exactamente la señal que se pedía vigilar en lotes verbales;
+- se **declaró una contaminación** del encargo en vez de contarla como acuerdo
+  limpio, y se dejó la regla para que no vuelva a ocurrir (§1).
+
+### 12) Limpieza
+
+El diagnóstico post-resolución (distribución de la clave, rotación, coincidencia
+de etiqueta, señal de longitud) corrió en `scripts/g30-diag.ts`, **desechable:
+creado, ejecutado y borrado en la misma sesión**. El árbol queda sin cambios de
+código. `pnpm typecheck` y `pnpm lint` en verde. Cero llamadas a la API de pago.
+
+### Siguiente (G30)
+
+1. **Cerrar el hueco de SOCADM, no profundizar más `IPN:ESPANOL`.** El pool
+   compartido queda en **70** contra una meta efectiva de 33: sobra profundidad.
+   Las materias propias de SOCADM siguen en **cero** — Historia de México
+   (6 temas), Historia Universal (7), Geografía (5), Civismo/Derecho (4) — y
+   ninguna es compartida, así que ningún otro lote las va a cubrir de rebote.
+   Historia de México es la candidata natural del siguiente lote.
+2. **Antes de componer, resolver el alcance pendiente** (G24 §7 / G26 §8.4):
+   ¿SOCADM entra en la meta del 21-nov o no? Se arrastra sin respuesta desde
+   G24 y ya condiciona dos fases seguidas.
+3. **Dos arreglos de pipeline que salieron de esta ronda:** (a) el bloque
+   `### Siguiente` no debe nombrar el criterio de resolución de un reactivo
+   concreto (§1); (b) `content:coverage` debería reflejar la reutilización de
+   G26 al pintar las celdas compartidas (§10.3).
+4. Heredados sin tocar: rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % (47/692), las
+   8 `CHART_TABLE` sin tabla ni imagen que anotó G28.
 
 ## G29 — Lote de reactivos: Español/Comunicación, IPN (encargo SOCADM) (2026-08-28)
 
