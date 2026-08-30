@@ -1,0 +1,1972 @@
+{
+  "batch": "G37",
+  "generatedAt": "2026-08-30T00:00:00.000Z",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago (el Plan de Implementación asigna el tier Sonnet a los lotes de contenido)",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 4 — Humanidades y Artes",
+  "subject": "Literatura",
+  "subjectId": "cmrr1kcqs006chi3nwc1vhnf5",
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G37: 35 reactivos de Literatura para UNAM Áreas 3 y 4. Consulta en vivo a Supabase (2026-08-30): Literatura existe como UNA sola fila Subject, en el Área 4 (Humanidades y Artes), questionWeight 4, sharedContentKey NULL. NO hay materia 'Literatura' en el Área 3 (que tiene Historia de México, Historia Universal, Geografía, Español e Inglés), y G26 no dio a Literatura una clave de contenido compartido (solo Español/Inglés/Química de la UNAM la tienen). Por tanto 'Áreas 3 y 4' se resuelve a la única materia Literatura del Área 4: el lote se inserta contra sus 7 temas propios y no se reutiliza entre áreas — mismo patrón que Historia de México (G33) y Geografía (G35), ambas sharedKey NULL. Abre el Área 4, que estaba entera en cero (nota de G34/G36). Redirección de hueco análoga a G33 (de IPN a UNAM) y G35 (de Historia Universal a Geografía).",
+  "grounding": "31/35 TEMARIO_ONLY · 4/35 SOURCED. El tema 'Literatura contemporánea mexicana' (cmrr1kfzb006ohi3n87sucf1o) tiene 1 SourceChunk (cmrsromj5007r13b3cq77jham, p. 39 de uam_csh.pdf — guía de Ciencias Sociales y Humanidades de la UAM, clasificada a este tema por el pipeline F2b). Es un banco de preguntas de opción múltiple con 3 reactivos literarios: novela picaresca (Quevedo), Generación del 98, y Octavio Paz (autor de 'Árbol adentro' y del ensayo sobre Sor Juana). grounding.ts hace OBLIGATORIA la cita cuando hay fragmentos: los 4 reactivos de ese tema citan sourceChunks:[1] y quedan SOURCED; los otros 6 temas no tienen SourceChunk y salen TEMARIO_ONLY, compuestos desde el temario oficial del Área 4 (como G22/G27/G33/G35). IMPRECISIÓN DE CLASIFICACIÓN HEREDADA (F2b, documentada, no bloqueante): 2 de los 4 reactivos SOURCED (picaresca/Quevedo, Generación del 98) tratan letras españolas, no mexicanas contemporáneas; derivan DIRECTAMENTE de los ítems del fragmento y son factualmente correctos (la verificación ciega los revalida uno por uno), pero el clasificador ubicó el fragmento entero en este tema. Mismo criterio que G33 (componer al tema que el pipeline asignó al chunk). Los stems lo hacen explícito ('en la tradición literaria hispánica que también se estudia en México', 'en las letras españolas') para no inducir a error sobre lo que se pregunta.",
+  "totalQuestions": 35,
+  "bankBefore": {
+    "total": 797,
+    "verified": 797,
+    "blindQueue": 0
+  },
+  "bankAfter": {
+    "total": 832,
+    "verified": 797,
+    "blindQueue": 35
+  },
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "positionsSequence": "BDDBDCCADADBACACCBCABDBDBACCADBBAAC",
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 35
+  },
+  "difficultyDistribution": {
+    "BASIC": 7,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "perTopic": {
+    "Literatura prehispánica": 5,
+    "Literatura colonial": 6,
+    "Literatura neoclásica y romántica": 5,
+    "Realismo y Naturalismo": 5,
+    "Modernismo": 5,
+    "Literatura contemporánea mexicana": 4,
+    "Literatura universal clásica": 5
+  },
+  "coverageByAxis": {
+    "temario oficial (7 temas por periodo)": "prehispánica 5 · colonial 6 · neoclásica y romántica 5 · realismo y naturalismo 5 · modernismo 5 · contemporánea mexicana 4 · universal clásica 5",
+    "géneros literarios": "difrasismo y lírica náhuatl (Q1-Q2), crónica / auto / égloga / picaresca (Q10, Q29), poesía vs ensayo (Q28), los 3 géneros clásicos y sus subgéneros (Q31), epopeya (Q32), tragedia y catarsis (Q33), novela moderna (Q35)",
+    "corrientes y movimientos": "barroco: culteranismo/conceptismo (Q9), neoclasicismo vs romanticismo vs realismo vs modernismo contrastados por rasgos (Q13, Q17), realismo vs naturalismo (Q18), modernismo (Q22-Q26), Generación del 98 (Q30), Edad Media / Renacimiento (Q34)",
+    "figuras retóricas": "difrasismo (Q2), antítesis y paradoja (Q8), personificación (Q16), ironía narrativa (Q21), sinestesia (Q26) — las 3 últimas sobre textos ORIGINALES compuestos para el lote",
+    "literatura mexicana e hispanoamericana": "poesía náhuatl y Nezahualcóyotl, Popol Vuh, Sor Juana, Bernal Díaz, Sigüenza, Lizardi, Altamirano, Acuña, Gutiérrez Nájera, Darío, Gamboa, Octavio Paz"
+  },
+  "copyright": "Cero reproducción de fragmentos extensos de obras con derechos vigentes. De autores con derechos (Octavio Paz, Rulfo, Fuentes, García Márquez, Federico Gamboa) solo se citan título, autor y datos; sin transcripción de texto. De obras de dominio público solo se usa el íncipit-título 'Hombres necios que acusáis' (4 palabras, Sor Juana, s. XVII) como identificación. Los 3 reactivos que piden analizar un texto (Q16 personificación, Q21 ironía, Q26 sinestesia) usan textos ORIGINALES escritos para el lote 'a la manera de' cada movimiento — pastiche de estilo, no cita. No se citan traducciones (las de poesía náhuatl de León-Portilla/Garibay tienen derechos): la lírica prehispánica se describe, no se transcribe.",
+  "qualityChecks": {
+    "validateBatch": "0 violaciones (G3c); corrido antes de tocar la DB y de nuevo como paso obligatorio de content:insert --lot-dir sobre los 7 archivos",
+    "correctPositionBand": "A9/B9/C9/D8 = 25.7/25.7/25.7/22.9 %, las cuatro en 15-40 % (confirmado por query directa a la DB con jsonb_array_elements sobre options tras insertar)",
+    "cyclicRotation": "corrida cíclica A->B->C->D de longitud >=3: False; triple repetición: False; rotación +1 = 3/34 = 8.8 % (azar ~8.5); letra asignada por búsqueda con semilla fija anti-rotación (seed 3737)",
+    "lengthCueTieAware_G34s2": "puntaje esperado tie-aware de 'elige la más larga' = 5.0/35 (umbral G34 §2: < 14/35; aquí por debajo del azar del 25 %). 'elige la más corta' tie-aware = 9.0/35 (en el azar). Correcta como única más larga (estricto): 4/35. Ratio medio longitud correcta/distractores: 0.99 (mín 0.724, máx 1.408). Histograma de rango de longitud de la correcta (1 = más larga): {'1': 6, '2': 14, '3': 8, '4': 7}. Primer borrador daba 17.5/35 (la correcta arrastraba la cláusula justificativa, patrón G33/G35); se recortaron las correctas a la aserción y se homogeneizaron distractores en dos pasadas hasta dejar ambas heurísticas <= azar.",
+    "letterCitations": "0 en las 105 capas de explicación (regex de lot-validation.ts: 'opción [ABCD]', 'inciso [ABCD]', 'letra [ABCD]', '[ABCD])')",
+    "positionalCitations": "0 (auto-chequeo POSITION_REF del generador: 'la primera/segunda/tercera/última opción', 'opción anterior/siguiente'). Las capas 2 se titulan 'Cómo se descarta cada opción' y citan los distractores por su CONTENIDO.",
+    "distractorQuality_G36s5": "Atendida la observación de G36 §5 (dos lotes con ~11/35 distractores que caían por implausibilidad general): en las dificultades BASIC/INTERMEDIATE los distractores son alternativas REALES que exigen conocimiento específico para rechazarse — otros movimientos con su set de rasgos (Q13, Q17), otras escritoras del Barroco (Q6), otra revista modernista (Q25), otros narradores mexicanos (Q27), otros poetas del Siglo de Oro (Q29), otras vanguardias (Q30). Caveat honesto (patrón G34 §4): en ~4 reactivos (Q5 Nezahualcóyotl, Q11 Sigüenza, Q18 Naturalismo, Q23 Azul) algún distractor se descarta también por anacronismo o imposibilidad material; sus etiquetas son INTERMEDIATE/ADVANCED, sin sobreestimación.",
+    "factualReview": "Exactitud verificada opción por opción antes de insertar: difrasismo y 'flor y canto'; Popol Vuh maya-quiché; cronología de Nezahualcóyotl (m. 1472); Sor Juana (Respuesta a Sor Filotea 1691, redondillas, culteranismo/conceptismo); Bernal Díaz y la crónica de Indias; Sigüenza ('Infortunios de Alonso Ramírez' 1690); Lizardi ('El Periquillo Sarniento' 1816, primera novela hispanoamericana); Altamirano ('Clemencia', 'El Zarco'); Acuña ('Nocturno a Rosario'); realismo/naturalismo y Zola; Gamboa ('Santa' 1903); Flaubert ('Madame Bovary'); Darío ('Azul...' 1888, nicaragüense); símbolos modernistas; Gutiérrez Nájera y la 'Revista Azul' (1894); Octavio Paz ('Árbol adentro' 1987, ensayo sobre Sor Juana 1982, Nobel 1990); Quevedo y 'El Buscón'; Generación del 98; los tres géneros clásicos; convenciones de la epopeya; catarsis en la 'Poética'; Dante y la lengua vulgar; 'Don Quijote' como primera novela moderna.",
+    "typecheck": "verde (cero cambios de código de producción)",
+    "lint": "verde",
+    "paidApiCalls": 0
+  },
+  "nextPhase": "G38 — verificación ciega del lote de G37 (segunda mitad del ciclo adversarial de G2)",
+  "questions": [
+    {
+      "questionId": "cmtf6d29i00012c77in0fp98s",
+      "n": 1,
+      "topicId": "cmrr1kcu4006ehi3nyxxi20ky",
+      "topic": "Literatura prehispánica",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En la tradición poética náhuatl, la expresión «in xóchitl in cuícatl» («la flor, el canto») nombraba de manera metafórica:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la «guerra florida», campaña ritual para tomar cautivos de sacrificio",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la poesía y, en general, la creación artística y la palabra verdadera",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "la ofrenda de flores y alimentos colocada ante las imágenes divinas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la faena agrícola de la siembra y la cosecha del maíz en las chinampas",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«Flor y canto» significa poesía",
+          "content": "«In xóchitl in cuícatl» es un difrasismo: dos palabras concretas —flor y canto— que juntas designan un tercer concepto abstracto, la poesía y el arte de la palabra. Es la fórmula con que los propios poetas nombraban su oficio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El emparejamiento de dos términos para crear un significado nuevo es un rasgo del náhuatl, no una simple suma literal. 2) La «guerra florida» (xochiyáoyotl) usa la palabra «flor», pero designa un combate ritual, no la poesía. 3) La ofrenda de flores y comida ante los dioses es una práctica de culto, no una metáfora del canto. 4) La faena de la siembra pertenece a la vida material. El error frecuente es leer «flor» y «canto» en sentido literal en vez de reconocer la metáfora fija.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El difrasismo",
+          "content": "El difrasismo es el recurso central de la lírica náhuatl: «in atl in tepetl» (agua, cerro) = pueblo; «in ixtli in yollotl» (rostro, corazón) = persona. Repasa: rasgos de la poesía prehispánica y sus principales difrasismos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6d32f00062c77sammo1s8",
+      "n": 2,
+      "topicId": "cmrr1kcu4006ehi3nyxxi20ky",
+      "topic": "Literatura prehispánica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "«Agua, cerro» (in atl in tepetl) significaba «pueblo»; «rostro, corazón» (in ixtli in yollotl) significaba «persona». ¿Qué recurso estilístico propio de la literatura náhuatl ejemplifican estas expresiones?",
+      "options": [
+        {
+          "id": "A",
+          "text": "el hipérbaton, que altera el orden sintáctico habitual de la frase para destacar una palabra",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el epíteto, que añade un adjetivo para resaltar una cualidad que ya se da por sabida del sustantivo",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la écfrasis, que consiste en describir con detalle verbal una obra de arte visual o un objeto",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el difrasismo, que yuxtapone dos términos para expresar de forma metafórica un tercer concepto",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos palabras, un concepto",
+          "content": "El difrasismo empareja dos elementos concretos —agua y cerro, rostro y corazón— cuya unión nombra una idea que ninguno expresa por separado. Es una figura lexicalizada, característica del náhuatl y de otras lenguas mesoamericanas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El hipérbaton cambia el orden de las palabras (por ejemplo «del monte en la ladera»), no fusiona dos términos para producir un significado. 2) El epíteto es un adjetivo ornamental («la verde hierba»), no una pareja de sustantivos. 3) La écfrasis describe una obra visual. Si elegiste el hipérbaton, fíjate en que en «agua, cerro» no hay inversión sintáctica: hay suma semántica.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Figuras de la lírica náhuatl",
+          "content": "Además del difrasismo, la poesía náhuatl usa el paralelismo (repetir una estructura variando las palabras) y el estribillo. Repasa: recursos formales de los cantares nahuas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6d3un000b2c77686a32ea",
+      "n": 3,
+      "topicId": "cmrr1kcu4006ehi3nyxxi20ky",
+      "topic": "Literatura prehispánica",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El Popol Vuh, texto fundamental de la cultura maya-quiché, se ocupa principalmente de:",
+      "options": [
+        {
+          "id": "A",
+          "text": "el registro de los tributos que los pueblos entregaban al señorío de Tenochtitlan",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "las profecías y el cómputo del calendario ritual de doscientos sesenta días",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "las ordenanzas de gobierno dictadas por los primeros virreyes de la Nueva España",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la creación del mundo y de los seres humanos y las hazañas de los héroes gemelos",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cosmogonía y héroes gemelos",
+          "content": "El Popol Vuh narra el origen del cosmos, los intentos fallidos de crear al ser humano (de lodo, de madera) y su formación definitiva a partir del maíz, además de las aventuras de los gemelos Hunahpú e Ixbalanqué frente a los señores de Xibalbá y el origen de los linajes quichés.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El registro de tributos a Tenochtitlan corresponde a documentos mexicas como la Matrícula de Tributos, no a un texto maya. 2) Las profecías y el calendario ritual son el asunto de los libros del Chilam Balam, otra obra maya distinta. 3) Las ordenanzas virreinales son textos administrativos coloniales. El error común es confundir el Popol Vuh con cualquier «libro indígena» sin distinguir cultura ni contenido.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Textos mayas coloniales",
+          "content": "El Popol Vuh se transcribió con alfabeto latino en el siglo XVI y llegó a nosotros por la copia del fraile Francisco Ximénez. Repasa: Popol Vuh, Chilam Balam y Rabinal Achí.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6d4mr000g2c77z5jb3bpa",
+      "n": 4,
+      "topicId": "cmrr1kcu4006ehi3nyxxi20ky",
+      "topic": "Literatura prehispánica",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué rasgo distingue a la lírica náhuatl prehispánica de la poesía europea culta de la misma época?",
+      "options": [
+        {
+          "id": "A",
+          "text": "empleaba de forma sistemática la rima consonante y un número fijo de sílabas en cada verso",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "se transmitía de forma oral y colectiva, ligada a la música y a los ritos, sin autoría fija",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "se difundía sobre todo mediante la imprenta y las copias manuscritas para la lectura en silencio",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "evitaba por completo los asuntos religiosos y se concentraba en la sátira política y el amor cortés",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Oralidad, música y comunidad",
+          "content": "El canto náhuatl se ejecutaba con música y danza en contextos rituales y palaciegos, se memorizaba y se enseñaba en las escuelas; las atribuciones a figuras como Nezahualcóyotl son tradicionales y se fijaron al recogerse los textos tras la Conquista.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La rima consonante y el metro silábico fijo son rasgos de la poesía castellana; el náhuatl organiza el verso por paralelismo y difrasismo, no por rima. 2) La imprenta no existía en Mesoamérica antes del contacto europeo. 3) La lírica náhuatl trata con frecuencia lo divino y la fugacidad de la vida. Si elegiste la opción de la rima y el metro, atribuiste al náhuatl un sistema formal que es propio de otra tradición.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Contexto de la poesía prehispánica",
+          "content": "La ausencia de escritura alfabética y la función ceremonial explican su carácter colectivo. Repasa: transmisión, soportes y funciones de la literatura náhuatl.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6d5f0000l2c77hykfdxt9",
+      "n": 5,
+      "topicId": "cmrr1kcu4006ehi3nyxxi20ky",
+      "topic": "Literatura prehispánica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "A Nezahualcóyotl, señor de Texcoco, la tradición atribuye poemas —recogidos después de la Conquista— cuyo tema recurrente es:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la superioridad militar de los mexicas sobre los demás pueblos del altiplano central",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la descripción satírica de las costumbres de los primeros frailes evangelizadores",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la exaltación del comercio a larga distancia como camino de ascenso y prestigio social",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la fugacidad de la vida y la permanencia incierta de lo humano frente a lo divino",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "¿Se vive de verdad en la tierra?",
+          "content": "Los poemas atribuidos a Nezahualcóyotl meditan sobre la brevedad de la existencia, lo pasajero de la fama y las flores, la certeza de la muerte y la búsqueda del «dador de la vida». Es una lírica reflexiva y de tono melancólico.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La sátira de los frailes es imposible: Nezahualcóyotl murió en 1472, medio siglo antes de la llegada de los evangelizadores. 2) La exaltación militar mexica no encaja con un señor de Texcoco ni con el tono de estos cantos. 3) El elogio del comercio pertenece al mundo de los pochtecas, no a esta poesía. Si elegiste la sátira de los frailes, revisa la cronología: el autor es prehispánico.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Poesía y pensamiento náhuatl",
+          "content": "El tema de la fugacidad enlaza con la pregunta por lo único perdurable, que en estos textos se asocia a lo divino. Repasa: los tlamatinime y la reflexión sobre la vida y la muerte.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6da3t0001319q4bsgw8sr",
+      "n": 6,
+      "topicId": "cmrr1kdg3006ghi3nhul6n0hz",
+      "topic": "Literatura colonial",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué autora novohispana, monja jerónima, es la figura mayor de la lírica barroca en América y defendió el derecho de las mujeres al estudio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Santa Teresa de Jesús",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "María de Zayas y Sotomayor",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Sor Juana Inés de la Cruz",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Sor Marcela de San Félix",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sor Juana, la «Décima Musa»",
+          "content": "Sor Juana Inés de la Cruz (1648-1695), monja del convento de San Jerónimo en la Ciudad de México, es la cumbre de la poesía barroca hispanoamericana; su obra abarca lírica, teatro, villancicos y prosa, y defiende la vida intelectual de las mujeres.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Santa Teresa de Jesús fue una mística carmelita española del siglo XVI, autora de «Las moradas»; no es novohispana. 2) María de Zayas fue narradora española del Barroco. 3) Sor Marcela de San Félix, hija de Lope de Vega, fue monja y dramaturga en España. Todas son escritoras, pero solo Sor Juana pertenece a la Nueva España.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El Barroco novohispano",
+          "content": "El virreinato produjo una literatura culta ligada a la de la metrópoli pero con voz propia. Repasa: Sor Juana, Sigüenza y Góngora y el contexto del Barroco en América.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6daw70006319q9dv96gxb",
+      "n": 7,
+      "topicId": "cmrr1kdg3006ghi3nhul6n0hz",
+      "topic": "Literatura colonial",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En la «Respuesta a Sor Filotea de la Cruz» (1691), Sor Juana Inés de la Cruz defiende sobre todo:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la conveniencia de abandonar la vida del convento para servir en la corte virreinal",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la obligación de escribir siempre en latín y nunca en la lengua vulgar de cada país",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el derecho de las mujeres al estudio, a la lectura y a una vida intelectual plena",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "la superioridad del poema épico y heroico sobre la poesía lírica de asunto amoroso",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una carta en defensa del saber",
+          "content": "La «Respuesta» contesta al obispo de Puebla, que con el seudónimo de «Sor Filotea» le había reprochado sus estudios profanos. Sor Juana relata su vocación desde niña y argumenta, con ejemplos de mujeres sabias de la historia y de las Escrituras, que el acceso al conocimiento también corresponde a las mujeres.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Sor Juana no propone dejar el convento por la corte; al contrario, defiende su derecho a estudiar dentro de la vida religiosa. 2) No exige el latín: gran parte de su obra está en castellano. 3) La comparación entre épica y lírica no es el tema del texto. Si elegiste la opción del latín, confundes su erudición clásica con un rechazo de la lengua vulgar, que ella cultivó.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Prosa argumentativa del Barroco",
+          "content": "La «Respuesta» es un texto autobiográfico y de defensa, antecedente del ensayo en español y del pensamiento sobre la educación femenina. Repasa: la «Carta Atenagórica» y la polémica que rodea a la «Respuesta».",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dboe000b319q9y0p5ftq",
+      "n": 8,
+      "topicId": "cmrr1kdg3006ghi3nhul6n0hz",
+      "topic": "Literatura colonial",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Las redondillas de Sor Juana que empiezan «Hombres necios que acusáis...» construyen su argumento principalmente mediante:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la antítesis y la paradoja, que revelan la contradicción de quien acusa a la mujer y la incita",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "el verso libre y la ausencia de rima, para acercar el poema al ritmo del habla corriente",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la écfrasis, para describir en detalle una pintura alegórica de la Justicia y sus atributos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la epístola en prosa, dirigida a un destinatario preciso de la corte del virreinato novohispano",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Acusar y provocar a la vez",
+          "content": "El poema denuncia una doble moral: los hombres incitan a la mujer y luego la culpan por ceder. El razonamiento avanza por contrastes («queréis que obren bien / e incitáis al mal») y por paradojas que dejan al acusador en evidencia.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hay verso libre: la redondilla es una estrofa de cuatro octosílabos con rima consonante abba, muy regular. 2) No hay écfrasis: el poema no describe ninguna obra visual. 3) No es una epístola en prosa: es un poema. Si elegiste el verso libre, revisa la métrica: el texto es rigurosamente medido y rimado.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La redondilla y la antítesis",
+          "content": "La antítesis contrapone ideas; la paradoja enuncia algo aparentemente contradictorio que encierra una verdad. Repasa: estrofas del Siglo de Oro y figuras de oposición.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dcgh000g319qsxj2a4al",
+      "n": 9,
+      "topicId": "cmrr1kdg3006ghi3nhul6n0hz",
+      "topic": "Literatura colonial",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En la poesía barroca en lengua española, ¿qué distingue al culteranismo (o gongorismo) del conceptismo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "el culteranismo se escribe siempre en prosa y el conceptismo siempre en verso medido y rimado",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el culteranismo trata solo asuntos religiosos y el conceptismo solo el amor y la mitología clásica",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el culteranismo se da únicamente en el teatro y el conceptismo solo en la épica culta en octavas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el culteranismo complica la forma (cultismos, hipérbaton); el conceptismo complica la idea",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dificultad de forma frente a dificultad de idea",
+          "content": "Ambas son tendencias del Barroco hacia la complejidad. El culteranismo, asociado a Góngora, recarga la lengua: cultismos, sintaxis latinizante, alusiones mitológicas, metáforas ornamentales. El conceptismo, asociado a Quevedo y a Gracián, concentra el sentido en la agudeza, el ingenio y la paradoja.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Es falso que uno sea prosa y el otro verso: hay culteranismo en verso (las «Soledades») y conceptismo en prosa y en verso. 2) Ambas corrientes tratan toda clase de temas. 3) Ninguna se limita a un género. Si elegiste la división prosa/verso, confundes un estilo con un molde formal fijo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El Barroco literario",
+          "content": "En la Nueva España, el «Primero sueño» de Sor Juana es marcadamente gongorino. Repasa: rasgos del Barroco y las dos corrientes de estilo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dd8s000l319q1auipqno",
+      "n": 10,
+      "topicId": "cmrr1kdg3006ghi3nhul6n0hz",
+      "topic": "Literatura colonial",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La «Historia verdadera de la conquista de la Nueva España», de Bernal Díaz del Castillo, pertenece al género de:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la crónica, relato de hechos históricos que hace un testigo desde su experiencia directa",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "la novela de caballerías, con héroes idealizados y aventuras llenas de encantamiento y magia",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el auto sacramental, pieza teatral breve de asunto eucarístico y de personajes alegóricos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la égloga, composición en verso en la que unos pastores expresan sus sentimientos amorosos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un soldado que escribe la historia",
+          "content": "Bernal Díaz, soldado de a pie en la expedición de Cortés, redactó décadas después su relato en primera persona para corregir lo que consideraba una versión cortesana e inexacta de López de Gómara. Rasgos de crónica: hechos históricos, orden temporal y mirada de testigo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Aunque Bernal evoca los libros de Amadís para transmitir su asombro ante Tenochtitlan, su obra no es una novela de caballerías: cuenta hechos reales. 2) El auto sacramental es teatro religioso alegórico. 3) La égloga es poesía pastoril. Si elegiste la novela de caballerías, tomaste una comparación del propio texto por su género.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La crónica de Indias",
+          "content": "Otras crónicas: las «Cartas de relación» de Cortés, la obra de Sahagún y la de Las Casas. Repasa: características y autores de la crónica de la Conquista.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6de11000q319qkek93lbh",
+      "n": 11,
+      "topicId": "cmrr1kdg3006ghi3nhul6n0hz",
+      "topic": "Literatura colonial",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "«Infortunios de Alonso Ramírez» (1690), de Carlos de Sigüenza y Góngora, se cita como antecedente de la novela hispanoamericana porque:",
+      "options": [
+        {
+          "id": "A",
+          "text": "está escrita por entero en verso endecasílabo y sigue las reglas de la epopeya culta renacentista",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "dramatiza en tres actos, con coro y con unidad de acción, el choque entre el destino y la libertad",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "reúne emblemas y sentencias morales pensados para la educación del príncipe cristiano ideal",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "narra en primera persona, como relato de viajes y desdichas, las andanzas de un cautivo de piratas",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un relato de aventuras en prosa",
+          "content": "Sigüenza narra —probablemente reelaborando un testimonio real— las desventuras de un puertorriqueño que, apresado por piratas ingleses, recorre el mundo y naufraga en las costas de Yucatán. Su estructura de viaje, la voz en primera persona y la prosa lo acercan a la novela.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No está en verso épico: es prosa narrativa. 2) No es teatro en tres actos: no hay coro ni división dramática. 3) No es un libro de emblemas para príncipes. Si elegiste la epopeya en endecasílabos, atribuiste a la obra la forma de la épica culta que sí cultivaban otros autores del Barroco.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Prosa narrativa del virreinato",
+          "content": "El relato de Sigüenza combina crónica, autobiografía y aventura. Repasa: los géneros en prosa de la Nueva España y el paso de la crónica a la novela.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dinp0001g0drwqgo4hcm",
+      "n": 12,
+      "topicId": "cmrr1ke3a006ihi3nn8k4g3b3",
+      "topic": "Literatura neoclásica y romántica",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "«El Periquillo Sarniento» (1816), de José Joaquín Fernández de Lizardi, es reconocida como:",
+      "options": [
+        {
+          "id": "A",
+          "text": "el primer poemario del Romanticismo mexicano",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la primera novela escrita en Hispanoamérica",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "la primera crónica indígena de la Conquista",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la primera gramática de la lengua náhuatl",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La primera novela de América Latina",
+          "content": "Lizardi, periodista conocido como «El Pensador Mexicano», publicó «El Periquillo Sarniento» por entregas en 1816, cuando la censura le impedía sacar su periódico. Un narrador de tipo picaresco cuenta su vida con una intención moral y didáctica muy propia de la Ilustración.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No es un poemario: es narrativa en prosa. 2) No es una crónica de la Conquista: transcurre en el México virreinal tardío y de comienzos de la Independencia. 3) No es una gramática. Si elegiste el poemario romántico, revisa el género: se trata de la primera novela, no de poesía.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Del neoclasicismo al Romanticismo",
+          "content": "La obra comparte con el neoclasicismo la finalidad didáctica y la crítica de costumbres. Repasa: rasgos de la Ilustración y la transición al Romanticismo en México.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6djfs0006g0drszmk3d4u",
+      "n": 13,
+      "topicId": "cmrr1ke3a006ihi3nn8k4g3b3",
+      "topic": "Literatura neoclásica y romántica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué conjunto de rasgos corresponde al Romanticismo literario del siglo XIX?",
+      "options": [
+        {
+          "id": "A",
+          "text": "predominio del sentimiento sobre la razón, culto al yo y gusto por la naturaleza y lo nacional",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "imitación de los modelos grecolatinos, búsqueda del equilibrio y una clara finalidad didáctica",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "observación objetiva de la sociedad y afán de retratar la vida cotidiana con la mayor exactitud",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "culto a la forma, musicalidad del verso y evasión hacia ambientes exóticos y aristocráticos",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El yo, la emoción y lo nacional",
+          "content": "El Romanticismo pone el sentimiento y la subjetividad por encima de la razón; valora la libertad creadora, la naturaleza como reflejo del ánimo, el pasado y las tradiciones propias, y la figura del artista rebelde e incomprendido.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La imitación de los modelos grecolatinos y el fin didáctico definen al neoclasicismo, la corriente contra la que el Romanticismo reaccionó. 2) La observación objetiva de la sociedad es propia del Realismo. 3) El culto a la forma y la evasión exótica describen al Modernismo. Cada distractor es otro movimiento real: hay que distinguirlos por sus rasgos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Movimientos del siglo XIX",
+          "content": "Neoclasicismo, Romanticismo, Realismo y Naturalismo se suceden en el siglo XIX. Repasa: cronología y rasgos de cada corriente.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dk82000bg0drp43kwz2t",
+      "n": 14,
+      "topicId": "cmrr1ke3a006ihi3nn8k4g3b3",
+      "topic": "Literatura neoclásica y romántica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Ignacio Manuel Altamirano, autor de «Clemencia» y «El Zarco», ocupa un lugar central en las letras mexicanas del siglo XIX porque:",
+      "options": [
+        {
+          "id": "A",
+          "text": "introdujo el verso libre y el poema en prosa a partir de los modelos del simbolismo francés",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "tradujo al español y en verso las tragedias completas de Sófocles, Esquilo y Eurípides",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "impulsó una literatura nacional basada en el paisaje, la historia y las costumbres de México",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "fundó la Academia Mexicana de la Lengua y dirigió la edición de su primer diccionario",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un programa de literatura nacional",
+          "content": "Altamirano, de origen nahua y político liberal, fundó revistas y las «Veladas Literarias» para reunir a escritores de todas las tendencias. Defendió una literatura propia, no imitada de Europa, que se alimentara del territorio, la historia y las costumbres mexicanas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El verso libre y el poema en prosa de raíz simbolista llegan con el Modernismo, posterior a Altamirano. 2) No fue traductor de la tragedia griega. 3) No fundó la Academia Mexicana de la Lengua. Si elegiste el simbolismo, adelantaste medio siglo el reloj literario.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El nacionalismo literario del XIX",
+          "content": "La novela de Altamirano combina trama romántica y cuadro de costumbres. Repasa: la generación del Ateneo, las Veladas Literarias y la idea de literatura nacional.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dl01000gg0dr02tk98ja",
+      "n": 15,
+      "topicId": "cmrr1ke3a006ihi3nn8k4g3b3",
+      "topic": "Literatura neoclásica y romántica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El «Nocturno» que Manuel Acuña dedica «a Rosario» es un texto característicamente romántico porque:",
+      "options": [
+        {
+          "id": "A",
+          "text": "expresa de forma exaltada el amor no correspondido y el sufrimiento de un yo idealista",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "analiza con distancia y frialdad las causas económicas y sociales del desamor moderno",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "describe con precisión de inventario los muebles y los objetos de una habitación burguesa",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "recurre a la parodia y al humor para ridiculizar la poesía sentimental de su tiempo",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El yo que sufre",
+          "content": "El poema despliega la voz de un enamorado que imagina una vida en común imposible y se debate entre la esperanza y la desesperación. La intensidad del sentimiento, la idealización de la amada y el tono confesional son marcas del Romanticismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El análisis frío de causas económicas es ajeno a un poema amoroso romántico; se acerca más al método realista. 2) La descripción minuciosa de un interior burgués corresponde a la novela realista, no a esta lírica. 3) No hay parodia: el poema es enteramente serio. Si elegiste el análisis económico, aplicaste a la lírica un procedimiento narrativo de otra corriente.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Romanticismo y biografía",
+          "content": "La crítica advierte contra leer el «Nocturno» solo como confesión autobiográfica: organiza el sentimiento en tópicos románticos ya establecidos. Repasa: temas y tópicos del Romanticismo hispanoamericano.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dls1000lg0dr1d8a53kn",
+      "n": 16,
+      "topicId": "cmrr1ke3a006ihi3nn8k4g3b3",
+      "topic": "Literatura neoclásica y romántica",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Lee estos versos, compuestos a la manera romántica: «La noche, compasiva, me tendió sus dos brazos / y meció mi tristeza como una madre vela». ¿Qué figura retórica predomina en ellos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "la sinécdoque, porque nombra una sola parte para referirse al todo al que pertenece",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el hipérbaton, porque invierte el orden habitual del sujeto y del verbo en la oración",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la personificación, porque da a la noche sentimientos y actos propios de una persona",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "la antítesis, porque enfrenta de forma directa dos ideas de significado contrario",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La noche que abraza y mece",
+          "content": "A la noche se le atribuyen la compasión, el gesto de tender los brazos y el acto de mecer y velar como una madre. Dar cualidades y conductas humanas a algo que no lo es se llama personificación o prosopopeya, muy frecuente en la poesía romántica.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hay sinécdoque: no se sustituye el todo por una parte. 2) Aunque hay un ligero desplazamiento («me tendió sus dos brazos»), el rasgo dominante no es el orden de las palabras. 3) No hay antítesis: no se contraponen dos ideas opuestas. Si elegiste el hipérbaton, fíjate en que el efecto central es humanizar la noche, no reordenar la frase.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Figuras de la poesía romántica",
+          "content": "La personificación de la naturaleza (la noche, el mar, el viento) sirve para proyectar en el paisaje el estado de ánimo del yo. Repasa: personificación, símil y metáfora.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dqe30001xyohjzxyquuo",
+      "n": 17,
+      "topicId": "cmrr1keq2006khi3n0dvzd1vl",
+      "topic": "Realismo y Naturalismo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué propósito define a la novela realista del siglo XIX?",
+      "options": [
+        {
+          "id": "A",
+          "text": "recrear un pasado medieval idealizado, con héroes y con hazañas de carácter sobrenatural",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "expresar los estados de ánimo del poeta mediante símbolos y correspondencias secretas",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "representar con verosimilitud y detalle la sociedad contemporánea y sus clases medias",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "enseñar una moral religiosa mediante personajes alegóricos y sucesos de tipo milagroso",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un espejo de la sociedad",
+          "content": "La novela realista observa el presente y lo reproduce con verosimilitud: personajes comunes, ambientes reconocibles, conflictos ligados al dinero, la familia y la posición social, y un narrador que aspira a la objetividad.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El pasado medieval idealizado con hazañas sobrenaturales pertenece a la novela histórica romántica. 2) Los símbolos y las correspondencias son propios del simbolismo y del Modernismo. 3) Los personajes alegóricos y los milagros corresponden a la literatura religiosa. Si elegiste el pasado medieval, confundiste el Realismo con el Romanticismo histórico.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El Realismo europeo",
+          "content": "Balzac, Flaubert, Pérez Galdós y Tolstói son referencias del Realismo. Repasa: verosimilitud, narrador objetivo y retrato social.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dr5z0006xyoh2qfo6kbc",
+      "n": 18,
+      "topicId": "cmrr1keq2006khi3n0dvzd1vl",
+      "topic": "Realismo y Naturalismo",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿En qué se diferencia principalmente el Naturalismo del Realismo del que procede?",
+      "options": [
+        {
+          "id": "A",
+          "text": "abandona por completo la prosa y se expresa solo en verso de arte mayor y de tono elevado",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "añade una tesis determinista: la herencia biológica y el medio social condicionan la conducta",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "sitúa siempre sus historias en épocas muy remotas y en países enteramente imaginarios",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "renuncia a describir los ambientes y se limita a los diálogos, sin la voz de un narrador",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Herencia y medio",
+          "content": "El Naturalismo, teorizado por Émile Zola, lleva el Realismo a un extremo cientificista: aplica a los personajes un modelo de causas —la herencia, el ambiente y el momento histórico determinan la conducta— y prefiere ambientes marginales tratados como casos de estudio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El Naturalismo es narrativa en prosa, no poesía. 2) No huye a épocas remotas ni a países imaginarios: se ancla en el presente y en lugares concretos, a menudo míseros. 3) No renuncia a la descripción: la extrema, con detalle casi documental. Si elegiste el verso, atribuiste al Naturalismo una forma que nunca tuvo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Zola y la «novela experimental»",
+          "content": "Zola comparó al novelista con un científico que observa cómo reaccionan sus personajes en condiciones dadas. Repasa: del Realismo al Naturalismo y la figura de Zola.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6drxt000bxyohel0mw37o",
+      "n": 19,
+      "topicId": "cmrr1keq2006khi3n0dvzd1vl",
+      "topic": "Realismo y Naturalismo",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En la literatura mexicana, la novela «Santa» (1903), de Federico Gamboa, se cita como el ejemplo más representativo de:",
+      "options": [
+        {
+          "id": "A",
+          "text": "el Modernismo",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la literatura de la Revolución",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el Naturalismo",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "el Romanticismo",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La novela naturalista mexicana",
+          "content": "«Santa» narra la caída de una joven de pueblo que termina en un burdel de la capital. El marco determinista —el peso del medio, la fatalidad del cuerpo, la enfermedad— y la observación minuciosa la convierten en la obra naturalista mexicana por excelencia.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El Modernismo, contemporáneo de Gamboa, es un movimiento sobre todo poético (Darío, Gutiérrez Nájera); «Santa» es narrativa y su método es naturalista. 2) La literatura de la Revolución surge después de 1910, con obras como «Los de abajo». 3) El Romanticismo pertenece a la primera mitad del siglo XIX. Si elegiste el Modernismo, separaste mal la poesía modernista de la narrativa naturalista de esos mismos años.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Naturalismo en México",
+          "content": "Otros cultivadores: Rafael Delgado y José López Portillo y Rojas. Repasa: recepción del Naturalismo europeo en México.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dspt000gxyoh588778vk",
+      "n": 20,
+      "topicId": "cmrr1keq2006khi3n0dvzd1vl",
+      "topic": "Realismo y Naturalismo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Cuál de las siguientes obras es una novela cumbre del Realismo europeo del siglo XIX?",
+      "options": [
+        {
+          "id": "A",
+          "text": "«Madame Bovary», de Gustave Flaubert",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "«Cien años de soledad», de Gabriel García Márquez",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "«La Divina Comedia», de Dante Alighieri",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "«Don Juan Tenorio», de José Zorrilla",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Flaubert y la observación exacta",
+          "content": "«Madame Bovary» (1857) retrata con precisión y distancia irónica la vida provinciana y el desengaño de su protagonista. Su cuidado del estilo y su verosimilitud la hacen un modelo del Realismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) «Cien años de soledad» (1967) pertenece al «boom» hispanoamericano y al realismo mágico, no al Realismo del siglo XIX. 2) «La Divina Comedia» es del siglo XIV. 3) «Don Juan Tenorio» (1844) es teatro romántico. Si elegiste «Don Juan Tenorio», confundiste el drama romántico con la novela realista.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Panorama del Realismo",
+          "content": "Junto a Flaubert: Balzac («La comedia humana»), Stendhal, Pérez Galdós, Tolstói. Repasa: autores y obras clave del Realismo europeo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dths000lxyoht7ixk4zu",
+      "n": 21,
+      "topicId": "cmrr1keq2006khi3n0dvzd1vl",
+      "topic": "Realismo y Naturalismo",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Lee este fragmento, escrito a la manera realista: «Contó las monedas dos veces. No alcanzaban, nunca alcanzaban; pero sonrió al dependiente y le dijo que volvería más tarde, como si tuviera adónde volver». El giro «como si tuviera adónde volver» revela la situación del personaje mediante:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la hipérbole, porque exagera de forma desmesurada un rasgo para producir un efecto cómico",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la ironía, porque el narrador deja ver una verdad que el personaje intenta ocultar",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "el epíteto, porque emplea un adjetivo del todo innecesario que subraya una cualidad evidente",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la aliteración, porque repite sonidos semejantes para dar musicalidad y ritmo a la frase",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Decir una cosa y dar a entender otra",
+          "content": "El personaje finge normalidad —sonríe, promete volver— y el narrador, con «como si tuviera adónde volver», descubre que no tiene casa. Ese contraste entre apariencia y realidad, señalado por la voz narradora, es ironía.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hay hipérbole: no se exagera nada, se insinúa una carencia. 2) No hay epíteto: no aparece un adjetivo ornamental. 3) No hay aliteración: no se repiten sonidos con intención musical. Si elegiste la hipérbole, confundiste la insinuación de una falta con la exageración de un rasgo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La ironía narrativa en el Realismo",
+          "content": "El Realismo usa con frecuencia la ironía del narrador y el estilo indirecto libre para juzgar sin sermonear. Repasa: ironía, sarcasmo y estilo indirecto libre.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dy2b0001y3b67lgjl7d5",
+      "n": 22,
+      "topicId": "cmrr1kfcj006mhi3nkv8uls6c",
+      "topic": "Modernismo",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué poeta nicaragüense es el máximo representante y principal difusor del Modernismo hispanoamericano?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pablo Neruda",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "César Vallejo",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Antonio Machado",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Rubén Darío",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Darío, cabeza del Modernismo",
+          "content": "Rubén Darío (1867-1916) encabezó y difundió el Modernismo por América y España con libros como «Azul...» (1888) y «Prosas profanas» (1896); renovó el ritmo, el léxico y la imaginería de la poesía en español.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Pablo Neruda y 2) César Vallejo son poetas posteriores, ligados a las vanguardias del siglo XX. 3) Antonio Machado pertenece a la Generación española del 98. Si elegiste a Machado, situaste en el Modernismo hispanoamericano a un autor de la literatura española de otra generación.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El Modernismo",
+          "content": "Primer movimiento literario nacido en Hispanoamérica con proyección propia. Repasa: etapas y autores del Modernismo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dyu80006y3b6c8yridtg",
+      "n": 23,
+      "topicId": "cmrr1kfcj006mhi3nkv8uls6c",
+      "topic": "Modernismo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La aparición de «Azul...» (1888), de Rubén Darío, suele fijarse como punto de partida del Modernismo porque el libro:",
+      "options": [
+        {
+          "id": "A",
+          "text": "fue el primer libro escrito por completo en una lengua indígena del continente americano",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "renovó el lenguaje poético con musicalidad, imágenes preciosistas y libertad formal",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "abandonó el verso para escribir solo teatro en prosa de asunto social y político",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "impuso el reportaje periodístico como el único género literario digno de cultivarse",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un nuevo oído para el verso",
+          "content": "«Azul...» combina cuento y poema y trae una prosa y un verso trabajados como orfebrería: ritmos nuevos, color, referencias cosmopolitas y una búsqueda de belleza que rompía con la poesía española de su momento.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) «Azul...» está escrito en español, no en lengua indígena. 2) No abandona el verso: alterna cuento y poesía. 3) No propone el reportaje como género único. Si elegiste el teatro en prosa social, atribuiste al libro un rasgo del Realismo, opuesto al esteticismo modernista.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Inicios del Modernismo",
+          "content": "La crítica discute la fecha, pero «Azul...» es el hito más citado. Repasa: Darío, «Prosas profanas» y «Cantos de vida y esperanza».",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6dzm3000by3b6sfwyhdbh",
+      "n": 24,
+      "topicId": "cmrr1kfcj006mhi3nkv8uls6c",
+      "topic": "Modernismo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El cisne, la princesa, el jardín versallesco y las piedras preciosas son motivos frecuentes en la poesía modernista porque el movimiento buscaba:",
+      "options": [
+        {
+          "id": "A",
+          "text": "denunciar las condiciones de trabajo en las fábricas de la Revolución Industrial",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "recuperar el habla rural y las tradiciones campesinas de cada región",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "divulgar entre el gran público los avances de la ciencia positivista",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la belleza, el refinamiento estético y la evasión de la realidad inmediata",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La «torre de marfil»",
+          "content": "El Modernismo persigue la belleza como valor supremo y se refugia en un mundo de lujo, exotismo y arte: de ahí el cisne, símbolo de elegancia y misterio, las princesas, los jardines aristocráticos y la pedrería.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La denuncia de las fábricas es propia de la literatura social y del Naturalismo, no del Modernismo. 2) El rescate del habla rural corresponde al costumbrismo y a la literatura regionalista. 3) La divulgación científica no es un fin poético modernista. Si elegiste la denuncia obrera, opusiste al esteticismo modernista un propósito social que no es el suyo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Símbolos del Modernismo",
+          "content": "Más tarde, Darío mira con distancia ese mundo y Enrique González Martínez pide «torcerle el cuello» al cisne. Repasa: símbolos modernistas y su evolución.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6e0dy000gy3b6be8vsrrq",
+      "n": 25,
+      "topicId": "cmrr1kfcj006mhi3nkv8uls6c",
+      "topic": "Modernismo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En México, ¿quién es considerado precursor del Modernismo y fundó, con Carlos Díaz Dufoo, la «Revista Azul» (1894)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amado Nervo",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Manuel Gutiérrez Nájera",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Xavier Villaurrutia",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "José Emilio Pacheco",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "«El Duque Job»",
+          "content": "Manuel Gutiérrez Nájera (1859-1895), cronista y poeta, fundó la «Revista Azul» con Carlos Díaz Dufoo. Su obra, elegante y melancólica, anticipa el Modernismo antes del influjo pleno de Darío.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Amado Nervo, también modernista mexicano, se vinculó a la «Revista Moderna», no a la «Revista Azul». 2) Xavier Villaurrutia pertenece al grupo de los Contemporáneos, ya en el siglo XX. 3) José Emilio Pacheco es un autor de la segunda mitad del siglo XX. Si elegiste a Nervo, cambiaste una revista por otra.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Modernistas mexicanos",
+          "content": "Junto a Gutiérrez Nájera: Salvador Díaz Mirón, Amado Nervo y José Juan Tablada. Repasa: revistas y autores del Modernismo en México.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6e15o000ly3b6hqs5bie0",
+      "n": 26,
+      "topicId": "cmrr1kfcj006mhi3nkv8uls6c",
+      "topic": "Modernismo",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Lee este verso, compuesto a la manera modernista: «Suena azul la campana en la tarde de seda». ¿Qué figura retórica se reconoce en «suena azul» y «tarde de seda»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "la sinestesia, que asocia en una misma imagen sensaciones de sentidos distintos",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "la anáfora, que repite una misma palabra al comienzo de varios versos seguidos",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el retruécano, que repite un grupo de palabras invirtiendo el orden para cambiar el sentido",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el asíndeton, que suprime las conjunciones entre los elementos de una enumeración",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Oír colores, tocar el tiempo",
+          "content": "«Suena azul» une un sonido (oído) con un color (vista); «tarde de seda» da a un momento del día una textura táctil. Cruzar datos de sentidos distintos en una imagen es sinestesia, un recurso muy apreciado por los modernistas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hay anáfora: no se repite una palabra al inicio de versos. 2) No hay retruécano: no se invierte ningún grupo de palabras. 3) No hay asíndeton: no hay una enumeración sin nexos. Si elegiste la anáfora, buscaste una repetición que el verso no tiene; lo que hay es mezcla de sensaciones.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Sinestesia y símbolo",
+          "content": "La sinestesia modernista viene de las «correspondencias» del simbolismo francés. Repasa: sinestesia, símbolo y musicalidad del verso.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6e5wr0001i72eq4ershjh",
+      "n": 27,
+      "topicId": "cmrr1kfzb006ohi3n87sucf1o",
+      "topic": "Literatura contemporánea mexicana",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "¿Qué escritor mexicano es autor del poemario «Árbol adentro» y del ensayo «Sor Juana Inés de la Cruz o las trampas de la fe»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Carlos Fuentes",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Juan Rulfo",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Octavio Paz",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "José Emilio Pacheco",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Octavio Paz, poeta y ensayista",
+          "content": "Octavio Paz (1914-1998) escribió el poemario «Árbol adentro» (1987) y el extenso estudio «Sor Juana Inés de la Cruz o las trampas de la fe» (1982). Recibió el Premio Nobel de Literatura en 1990, el único mexicano hasta ahora.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Carlos Fuentes fue sobre todo novelista: «La región más transparente», «La muerte de Artemio Cruz». 2) Juan Rulfo escribió «El llano en llamas» y «Pedro Páramo». 3) José Emilio Pacheco es autor de «Las batallas en el desierto». Ninguno escribió el estudio sobre Sor Juana. Si elegiste a Fuentes, asociaste al narrador más visible de su generación con una obra que es de Paz.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El ensayo mexicano del siglo XX",
+          "content": "Paz continúa una línea de ensayistas como Alfonso Reyes y dirige revistas como «Vuelta». Repasa: la obra de Octavio Paz y el ensayo de interpretación de lo mexicano.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6e6v50006i72eielfngps",
+      "n": 28,
+      "topicId": "cmrr1kfzb006ohi3n87sucf1o",
+      "topic": "Literatura contemporánea mexicana",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Las obras de Octavio Paz «Árbol adentro» y «Sor Juana Inés de la Cruz o las trampas de la fe» pertenecen, respectivamente, a los géneros de:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la novela y el teatro",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el cuento y la crónica",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la poesía y el ensayo",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "la biografía novelada y la epístola",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Verso y prosa de ideas",
+          "content": "«Árbol adentro» es un libro de poemas; el estudio sobre Sor Juana es un ensayo extenso, a la vez biográfico y crítico. Paz cultivó con igual importancia la poesía y el ensayo durante toda su vida.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Paz no fue novelista ni dramaturgo de oficio; su prosa central es ensayística («El laberinto de la soledad», «El arco y la lira»). 2) No son cuento ni crónica. 3) El libro sobre Sor Juana no es una biografía novelada ni una carta. Si elegiste novela y teatro, atribuiste a Paz los géneros de otros autores de su generación.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Distinguir los géneros de prosa",
+          "content": "El ensayo expone y argumenta una idea de forma personal; se diferencia del tratado (sistemático) y del artículo (breve, de actualidad). Repasa: géneros literarios y sus rasgos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6e7te000bi72ewmuvzs9b",
+      "n": 29,
+      "topicId": "cmrr1kfzb006ohi3n87sucf1o",
+      "topic": "Literatura contemporánea mexicana",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En la tradición literaria hispánica que también se estudia en México, ¿qué autor del Siglo de Oro español es representante de la novela picaresca, con obras como «El Buscón»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Francisco de Quevedo",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Garcilaso de la Vega",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Félix Lope de Vega",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Jorge Manrique",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Quevedo y la picaresca",
+          "content": "La novela picaresca —relato autobiográfico de un pícaro de origen humilde que sirve a varios amos y mira la sociedad con sátira— tiene entre sus clásicos «El Buscón» (1626), de Francisco de Quevedo, después del anónimo «Lazarillo de Tormes» y del «Guzmán de Alfarache» de Mateo Alemán.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Garcilaso de la Vega es poeta renacentista de églogas y sonetos. 2) Lope de Vega es sobre todo dramaturgo («Fuenteovejuna»). 3) Jorge Manrique, del siglo XV, escribió las «Coplas a la muerte de su padre». Si elegiste a Lope, cambiaste el teatro por la narrativa picaresca.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La picaresca y su descendencia",
+          "content": "El molde picaresco influye en «El Periquillo Sarniento» de Lizardi, la primera novela hispanoamericana. Repasa: subgéneros narrativos y la novela picaresca.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6e8rj000gi72e1u8e4jqv",
+      "n": 30,
+      "topicId": "cmrr1kfzb006ohi3n87sucf1o",
+      "topic": "Literatura contemporánea mexicana",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "La llamada «Generación del 98», en las letras españolas, buscó a través de la literatura, sobre todo:",
+      "options": [
+        {
+          "id": "A",
+          "text": "difundir los ideales del futurismo, con su culto a la máquina y a la velocidad modernas",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "restaurar las reglas del teatro neoclásico y la unidad de tiempo, de lugar y de acción",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "promover una poesía pura, despojada de toda anécdota y de cualquier emoción personal",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "reflexionar sobre la identidad de España y sobre las causas de su crisis histórica",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El «problema de España»",
+          "content": "Los autores del 98 (Unamuno, Azorín, Baroja, Machado) parten del «desastre» de 1898 —la pérdida de Cuba, Puerto Rico y Filipinas— y vuelven la mirada a la historia, el paisaje de Castilla y el carácter de España, con un estilo sobrio y reflexivo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El futurismo es una vanguardia italiana de Marinetti, no un programa del 98. 2) El teatro neoclásico y sus unidades pertenecen al siglo XVIII. 3) La «poesía pura» se asocia a Juan Ramón Jiménez y a la Generación del 27. Si elegiste el futurismo, mezclaste dos movimientos de países y propósitos distintos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Generaciones españolas",
+          "content": "Del 98, del 14 (novecentismo) y del 27 se suceden en el primer tercio del siglo XX. Repasa: contexto del «desastre del 98» y sus autores.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6edkc0001121vkyjjb1xi",
+      "n": 31,
+      "topicId": "cmrr1kgjo006qhi3nh44uzymo",
+      "topic": "Literatura universal clásica",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En la Grecia antigua se distinguían tres grandes géneros literarios. ¿Cuáles son?",
+      "options": [
+        {
+          "id": "A",
+          "text": "comedia, tragedia y sátira",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "épica, lírica y dramática",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "novela, ensayo y crónica",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "mito, leyenda y fábula",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La división clásica",
+          "content": "La tradición grecolatina distingue la épica (narración en verso de hazañas heroicas, como los poemas homéricos), la lírica (expresión de la subjetividad, cantada con la lira) y la dramática (obras para representar: tragedia y comedia).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Comedia y tragedia no forman una categoría paralela a las otras: ambas son especies del género dramático, y la sátira es una forma menor. 2) La novela, el ensayo y la crónica son géneros modernos. 3) El mito, la leyenda y la fábula son formas o subgéneros narrativos, no los tres grandes géneros. Si elegiste comedia/tragedia/sátira, tomaste subtipos del drama por géneros mayores.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Géneros y subgéneros",
+          "content": "Cada género mayor tiene subgéneros: la épica incluye la epopeya y el cantar de gesta; la lírica, la oda y la elegía. Repasa: la «Poética» de Aristóteles y la clasificación de los géneros.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6eecq0006121veis2kpo1",
+      "n": 32,
+      "topicId": "cmrr1kgjo006qhi3nh44uzymo",
+      "topic": "Literatura universal clásica",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Cuál de los siguientes rasgos es una convención propia de la epopeya clásica, como los poemas homéricos o la «Eneida»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "la división en tres actos, el coro que comenta la acción y el uso de máscaras por los actores",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el arranque «in medias res», la invocación a la musa y los epítetos épicos que se repiten",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "la forma dialogada breve, sin narrador, pensada para leerse en voz alta entre dos personas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el verso de arte menor con rima consonante y un estribillo que se repite tras cada estrofa",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Fórmulas de la epopeya",
+          "content": "La epopeya culta abre con una invocación a la musa, entra en la acción ya empezada («in medias res»), usa epítetos fijos que se repiten («el de los pies ligeros»), comparaciones extensas y catálogos, y suele incluir la intervención de los dioses.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La división en actos, el coro y las máscaras pertenecen al teatro griego, no a la epopeya. 2) El diálogo breve sin narrador describe una escena teatral o un coloquio. 3) El arte menor con estribillo es propio de la lírica tradicional. Si elegiste el coro y las máscaras, confundiste la épica con la tragedia.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Épica antigua y culta",
+          "content": "De Homero y Virgilio la convención pasa a la épica renacentista. Repasa: rasgos de la epopeya y diferencias con la tragedia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6ef52000b121vet7leud8",
+      "n": 33,
+      "topicId": "cmrr1kgjo006qhi3nh44uzymo",
+      "topic": "Literatura universal clásica",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Según la «Poética» de Aristóteles, la tragedia produce en el espectador una «catarsis», que consiste en:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la purificación o descarga de las emociones de compasión y temor suscitadas por la acción",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "la enseñanza de una norma moral que el coro formula de manera explícita al final de la obra",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la sorpresa cómica que provoca el reconocimiento de un enredo entre criados y señores",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el distanciamiento deliberado que impide al público identificarse con los personajes",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Compasión y temor",
+          "content": "Para Aristóteles, la tragedia imita una acción seria y completa y, mediante la compasión (éleos) y el temor (phóbos) que despierta, logra la catarsis de esas emociones. Elementos clave: la hamartía (error del héroe), la peripecia (giro) y la anagnórisis (reconocimiento).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La catarsis no es una moraleja dicha por el coro: es un efecto emocional. 2) El enredo cómico entre criados y señores pertenece a la comedia, no a la tragedia. 3) El distanciamiento que evita la identificación es un concepto del teatro del siglo XX (Brecht), opuesto a la catarsis. Si elegiste la moraleja del coro, redujiste un efecto emocional a una lección explícita.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La tragedia griega",
+          "content": "Esquilo, Sófocles y Eurípides son sus grandes autores; «Edipo rey» es el modelo que Aristóteles analiza. Repasa: partes y conceptos de la «Poética».",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6efxb000g121vbq781ggk",
+      "n": 34,
+      "topicId": "cmrr1kgjo006qhi3nh44uzymo",
+      "topic": "Literatura universal clásica",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Suele decirse que la «Divina Comedia» de Dante «cierra la Edad Media y anuncia el Renacimiento». ¿Qué rasgo de la obra justifica sobre todo la segunda parte de esa afirmación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "la centralidad del individuo —Dante como conciencia que juzga— y el uso del italiano vulgar",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "el empleo exclusivo del latín y la renuncia deliberada a citar a cualquier autor pagano",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el rechazo de la teología cristiana como armazón del más allá que recorre el viajero",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la forma teatral, en tres actos que corresponden a los tres reinos de la ultratumba",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El yo y la lengua vulgar",
+          "content": "La «Comedia» es medieval en su cosmología y su armazón teológico, pero apunta al Renacimiento en dos cosas: el yo como protagonista y conciencia moral que valora a los demás, y la elección del toscano —la lengua vulgar— para una materia sagrada y enciclopédica, lo que dignifica el idioma.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Es falso que renuncie a los autores paganos: Virgilio es su guía y aparecen Homero y Ovidio; y no está en latín, sino en toscano, precisamente lo que la acerca al Renacimiento. 2) No rechaza la teología cristiana: la estructura del Infierno, el Purgatorio y el Paraíso es teológica. 3) No es teatro: es un poema narrativo. Si elegiste el uso del latín, invertiste el dato que sostiene la afirmación.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Periodización literaria",
+          "content": "El paso de la Edad Media al Renacimiento se reconoce por el humanismo, el interés por el individuo y la revalorización de las lenguas vulgares. Repasa: rasgos de cada periodo y el «dolce stil novo».",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtf6egpk000l121v6h74h0gl",
+      "n": 35,
+      "topicId": "cmrr1kgjo006qhi3nh44uzymo",
+      "topic": "Literatura universal clásica",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "«Don Quijote de la Mancha» se considera la primera novela moderna. ¿Qué rasgo sostiene sobre todo esa valoración?",
+      "options": [
+        {
+          "id": "A",
+          "text": "la ausencia total de diálogo y la narración en verso de sucesos maravillosos y sobrenaturales",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el respeto estricto de las tres unidades dramáticas de tiempo, de lugar y de acción",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "personajes que evolucionan e influyen entre sí y una ironía sobre los límites de la ficción",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "su propósito de servir como manual de reglas para redactar nuevos libros de caballerías",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Personajes que cambian y una ficción que se mira a sí misma",
+          "content": "Cervantes parte de la parodia de los libros de caballerías, pero va más lejos: don Quijote y Sancho se transforman a lo largo del viaje y por el trato mutuo; en la segunda parte los personajes saben que existe un libro sobre ellos. Hay perspectivismo, varios narradores (Cide Hamete Benengeli) e ironía constante.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El Quijote está lleno de diálogo y escrito en prosa, no en verso. 2) No respeta las tres unidades: son un principio del teatro clásico, no de la novela. 3) No es un manual de caballerías, sino una crítica burlesca de ese género. Si elegiste las tres unidades, aplicaste a la novela una regla del drama.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La novela moderna",
+          "content": "Personajes «redondos», múltiples puntos de vista y juego metaliterario son marcas de la novela moderna que arrancan con Cervantes. Repasa: la parodia y la metaficción en el «Quijote».",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}
