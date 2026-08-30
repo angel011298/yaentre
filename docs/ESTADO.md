@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G44 (**COMPLETADA — verificación ciega del lote de G43 (35 reactivos de **Historia Universal, UNAM Área 3 (Ciencias Sociales)**). **35/35 auto-aprobados = tasa de auto-aprobación 100 %**, **decimocuarta ronda ciega consecutiva al 100 %**. Modelo `claude-opus-5` — G43 anticipaba `fable-5`; la sesión corrió en tier Opus y el `model` declarado dice la verdad (corrección de G17). **Cierra el Área 3 completa**: sus 3 materias propias quedan en 35✓/0⧗ — Historia de México (G33→G34), Geografía (G35→G36), Historia Universal (G43→G44). **Acumulado real, DB en vivo antes y después:** banco **902** sin cambio · servibles **866 → 901** · cola ciega **35 → 0** · 1 retirado a propósito · auto-aprobación global **100 % (902/902)** · UNAM A3 Historia Universal **0✓/35⧗ → 35✓/0⧗** (⚓5/30) · `SOURCED` 230 (25 %); meta efectiva G26 (1 222) **57 % → 59 %**, brecha **529 → 501 ≈ 15 lotes**; meta nominal de 1 500: **58 % → 60 %**. **Ceguera verificada estructuralmente**, no asumida: 0 ocurrencias de `isCorrect`/`explanation`/`correct` en el lote ciego, opciones solo con `label`/`text`/`imageUrl`, 35/35 `MULTIPLE_CHOICE`, 0 con cálculo (`usedCalculation:false` verdadero por construcción), 0 con pasaje; no se abrió el commit `7e7d781`, ni el JSON del lote, ni `Question.options`, ni la sección `## G43`. **Fuga potencial declarada:** el `grep` inicial trajo la línea 3 de este documento, que reporta agregados del lote (clave A9/B9/C9/D8, diagnósticos de longitud) pero **ninguna clave por reactivo**, y el rebarajado por `questionId` la vuelve inservible para las etiquetas ciegas — no se usó; la próxima ronda debe localizar la fase con `grep "^## G4x"`. **Control de transcripción de G42 §2 aplicado:** 35/35 fragmentos con match único y 35/35 letras derivadas del contenido == las escritas (aquí como validación posterior; la forma preventiva de G42 es la buena). **Clave real leída después de responder: A9/B9/C9/D8**, reproduce al reactivo lo que G43 midió por query directa a la DB; rotación cíclica **0.0 %**, racha máxima 2. **Señuelo de longitud recalculado sobre las respuestas ciegas (G36 §2 / G38 §3): 14.3 % «más larga» y 14.3 % «más corta», ratio medio 1.045 — idéntico al de G43 por vía independiente**; histograma 5/23/2/5 (el pico en rango 2 es el residuo del ajuste, no explotable). **Lo que aporta por encima del 100 %: dos señuelos de forma medidos, no intuidos.** **(§6) El distractor se delata por el lenguaje absolutista:** 43 marcadores en 105 distractores (0.41/opción) contra **1 en 35 claves** (0.03/opción), ~14×; en **11/35** la clave no tiene marcador y ≥2 distractores sí, en 3/35 lo tienen los tres. **(§7) La clave es la única opción compuesta:** 8/35 `stem` anuncian multicausalidad y en **10/35** la clave es la única que enumera ≥2 factores heterogéneos frente a tres distractores monocausales — «elige la opción compuesta» acierta sin saber historia; #6 y #31 muestran la corrección (un distractor también compuesto, pero equivocado). **Ninguno se marcó como `problem`**: los 35 son correctos y despublicarlos habría sido el error; van como regla al compositor y como propuesta a `lot-validation.ts`, junto al señuelo de longitud de G34 §2 y al cruce intra-lote de G42 §8. **Exactitud factual verificada opción por opción:** 0 atribuciones erróneas, 0 fechas incorrectas, 0 claves discutibles; detectadas las dos trampas anacrónicas (la Revolución francesa como «muy anterior» a 1517; las independencias hispanoamericanas atribuidas a 1929), el mito de la Tierra plana y las dos tesis monocausales sobre la caída de Roma. **De los 4 reactivos que G43 marcó como apretados, el único que lo fue es #19** (la «cuestión social» de 1848, confianza 0.94, mínima del lote); los 2 `EXPERT` salieron a 0.96-0.97 porque son justo donde opera el señuelo de §7, y el `SOURCED` #31 —el más alejado de su ítem-semilla— a 0.98, lo que confirma que la transformación de G43 funcionó. Auditoría 5 % **vencida, 4 ciclos**: exige tier ≠ opus-5 y esta sesión fue opus-5. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción; cero llamadas a la API de pago. **Siguiente: G45.**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G45 (**COMPLETADA — lote de 35 reactivos de **Matemáticas, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet para lotes de contenido). **Pool STEM de mayor peso de la UNAM** (`questionWeight` 26), materia **NO compartida** (`sharedContentKey` NULL, a diferencia de Español/Inglés/Química de la UNAM en G26): el lote va a sus 12 temas propios. Consulta en vivo a Supabase (2026-08-30): 81 verificados repartidos 10/10/7/5/8/7/7/6/5/6/4/6. **El lote prioriza los 10 temas de menor cobertura y deja intactos los dos de 10** (Números reales, Álgebra ecuaciones). Reparto: Trigonometría 5 (5→10), Progresiones y combinatoria 4 (4→8), Series y sucesiones 3 (5→8), Integrales 5 (6→11), Matrices y sistemas 3 (6→9), Estadística descriptiva 2 (6→8), Límites y continuidad 4 (7→11), Derivadas 4 (7→11), Polinomios y funciones 2 (7→9), Geometría analítica 3 (8→11) — cubre álgebra, geometría analítica, trigonometría y cálculo diferencial e integral. **21 SOURCED / 14 TEMARIO_ONLY:** 6 temas tienen `SourceChunk` clasificado por F2b (Trigonometría, Progresiones/combinatoria, Series, Derivadas, Polinomios, Geometría analítica — guías de la UAM y CENEVAL, otra institución que la del examen destino; `grounding.ts` hace obligatoria la cita; se anota, patrón G33/G37/G40/G41/G43) y sus 21 reactivos **transforman la tarea del ítem-semilla** (los de las guías son ejercicios resueltos con la respuesta a la vista; los compuestos usan la misma técnica con datos y opciones nuevas). Los 4 temas sin chunk (Integrales, Matrices, Estadística, Límites) salen TEMARIO_ONLY. **35 con cálculo verificable — recalculados uno por uno con `sympy` antes de insertar: 35/35 coinciden** (criterio del encargo); los distractores numéricos derivan de un error de procedimiento nombrado (signo, olvidar `/2`, confundir vértice con raíces, reportar `x` en vez de `x+y`…). **Formato:** 23 `PROBLEM_SOLVING` · 10 `MULTIPLE_CHOICE` · 2 `NUMERIC_SERIES`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6, distribución objetivo de `_base.md`, misma que G43). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15-40 %, **confirmada por `jsonb_array_elements` tras insertar**; equilibrio también por tema: ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra. La letra se asignó a mano (sin barajado del generador). `content:validate-batch --dir` **0 violaciones** (antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos). **0 citas por letra y 0 referencias posicionales** en las 105 capas (regex de `lot-validation.ts` + `POSITION_REF` de G33); las 35 capas 2 descartan los distractores **por su contenido** (el valor o la fórmula), numerados 1/2/3. **Señuelo de longitud tie-aware (G34 §2): «más larga» 24.1 % y «más corta» 22.6 %**, ambos por debajo del azar (25 %) y de 14/35 — en un lote de matemáticas las opciones son valores/expresiones cortas y homogéneas; se homogeneizaron a mano las 4 conceptuales que traían un outlier. Lenguaje absolutista **0.0/opción** en claves y distractores; opción compuesta como única clave **0/35** (los señuelos de forma de G44 §6-§7 son de humanidades). **Fuga entre reactivos** revisada en las dos direcciones y en la diagonal clave↔distractor (G42 §8): 0 coincidencias no triviales de 4-gramas. **Acumulado real, DB en vivo antes y después:** banco **902 → 937** · servibles **901** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · 1 retirado a propósito · auto-aprobación global **100 % (902/902)** · UNAM A1 Matemáticas **81✓/0⧗ → 81✓/35⧗** (⚓ del pool **57/24 → 78/38**, fuentes 8/12 temas) · `SOURCED` banco **230 → 251 (27 %)** · `TEMARIO_ONLY` **672 → 686** · 105 `ExplanationLayer` · 36 `question_source_chunks`. `content:coverage`: **901 servibles · 35 pendientes · 1 retirado · 937 en banco**; meta efectiva G26 (1 222) **59 %**, brecha **501 ≈ 15 lotes** — no se mueve hasta que G46 verifique, **pero a diferencia de los lotes de humanidades de G33–G43 este SÍ moverá la brecha efectiva**: el pool está en 81 vs meta ~144 (G26), así que los 35 caen enteros dentro (recomendación de G39 §7 / G43 §2). Meta nominal de 1 500: **60 %**. Auditoría 5 % **vencida, ahora 5 ciclos** (exige tier ≠ opus-5). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 10 archivos del lote corren en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g45-unam-a1-matematicas.json`); cero llamadas a la API de pago. **Siguiente: G46 = verificación ciega de este lote, modelo Fable 5.**)
+
+<details><summary>Historial: G44 (2026-08-30)</summary>
+
+Última fase ejecutada: G44 (**COMPLETADA — verificación ciega del lote de G43 (35 reactivos de **Historia Universal, UNAM Área 3 (Ciencias Sociales)**). **35/35 auto-aprobados = tasa de auto-aprobación 100 %**, **decimocuarta ronda ciega consecutiva al 100 %**. Modelo `claude-opus-5` — G43 anticipaba `fable-5`; la sesión corrió en tier Opus y el `model` declarado dice la verdad (corrección de G17). **Cierra el Área 3 completa**: sus 3 materias propias quedan en 35✓/0⧗ — Historia de México (G33→G34), Geografía (G35→G36), Historia Universal (G43→G44). **Acumulado real, DB en vivo antes y después:** banco **902** sin cambio · servibles **866 → 901** · cola ciega **35 → 0** · 1 retirado a propósito · auto-aprobación global **100 % (902/902)** · UNAM A3 Historia Universal **0✓/35⧗ → 35✓/0⧗** (⚓5/30) · `SOURCED` 230 (25 %); meta efectiva G26 (1 222) **57 % → 59 %**, brecha **529 → 501 ≈ 15 lotes**; meta nominal de 1 500: **58 % → 60 %**. **Ceguera verificada estructuralmente**, no asumida: 0 ocurrencias de `isCorrect`/`explanation`/`correct` en el lote ciego, opciones solo con `label`/`text`/`imageUrl`, 35/35 `MULTIPLE_CHOICE`, 0 con cálculo (`usedCalculation:false` verdadero por construcción), 0 con pasaje; no se abrió el commit `7e7d781`, ni el JSON del lote, ni `Question.options`, ni la sección `## G43`. **Fuga potencial declarada:** el `grep` inicial trajo la línea 3 de este documento, que reporta agregados del lote (clave A9/B9/C9/D8, diagnósticos de longitud) pero **ninguna clave por reactivo**, y el rebarajado por `questionId` la vuelve inservible para las etiquetas ciegas — no se usó; la próxima ronda debe localizar la fase con `grep "^## G4x"`. **Control de transcripción de G42 §2 aplicado:** 35/35 fragmentos con match único y 35/35 letras derivadas del contenido == las escritas (aquí como validación posterior; la forma preventiva de G42 es la buena). **Clave real leída después de responder: A9/B9/C9/D8**, reproduce al reactivo lo que G43 midió por query directa a la DB; rotación cíclica **0.0 %**, racha máxima 2. **Señuelo de longitud recalculado sobre las respuestas ciegas (G36 §2 / G38 §3): 14.3 % «más larga» y 14.3 % «más corta», ratio medio 1.045 — idéntico al de G43 por vía independiente**; histograma 5/23/2/5 (el pico en rango 2 es el residuo del ajuste, no explotable). **Lo que aporta por encima del 100 %: dos señuelos de forma medidos, no intuidos.** **(§6) El distractor se delata por el lenguaje absolutista:** 43 marcadores en 105 distractores (0.41/opción) contra **1 en 35 claves** (0.03/opción), ~14×; en **11/35** la clave no tiene marcador y ≥2 distractores sí, en 3/35 lo tienen los tres. **(§7) La clave es la única opción compuesta:** 8/35 `stem` anuncian multicausalidad y en **10/35** la clave es la única que enumera ≥2 factores heterogéneos frente a tres distractores monocausales — «elige la opción compuesta» acierta sin saber historia; #6 y #31 muestran la corrección (un distractor también compuesto, pero equivocado). **Ninguno se marcó como `problem`**: los 35 son correctos y despublicarlos habría sido el error; van como regla al compositor y como propuesta a `lot-validation.ts`, junto al señuelo de longitud de G34 §2 y al cruce intra-lote de G42 §8. **Exactitud factual verificada opción por opción:** 0 atribuciones erróneas, 0 fechas incorrectas, 0 claves discutibles; detectadas las dos trampas anacrónicas (la Revolución francesa como «muy anterior» a 1517; las independencias hispanoamericanas atribuidas a 1929), el mito de la Tierra plana y las dos tesis monocausales sobre la caída de Roma. **De los 4 reactivos que G43 marcó como apretados, el único que lo fue es #19** (la «cuestión social» de 1848, confianza 0.94, mínima del lote); los 2 `EXPERT` salieron a 0.96-0.97 porque son justo donde opera el señuelo de §7, y el `SOURCED` #31 —el más alejado de su ítem-semilla— a 0.98, lo que confirma que la transformación de G43 funcionó. Auditoría 5 % **vencida, 4 ciclos**: exige tier ≠ opus-5 y esta sesión fue opus-5. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción; cero llamadas a la API de pago. **Siguiente: G45.**)
+
+</details>
 
 <details><summary>Historial: G43 (2026-08-30)</summary>
 
@@ -2183,6 +2189,230 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G45 — Lote de reactivos: Matemáticas, UNAM Área 1 (2026-08-30)
+
+**Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
+contenido). **COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la cola
+de verificación ciega. Materia de **mayor peso del examen de la UNAM**
+(`questionWeight` 26) y **pool STEM más profundo de todo el banco** — la
+recomendación de cierre de brecha efectiva de G39 §7 y G43 §2.
+
+### 1) El encargo y el estado de la materia
+
+El encargo pidió **35 reactivos adicionales de Matemáticas para UNAM Área 1,
+priorizando los temas con menor cobertura**. Consulta en vivo a Supabase
+(2026-08-30) antes de componer:
+
+| Materia | `subjectId` | `sharedContentKey` | `questionWeight` | Temas | Verificados |
+|---|---|---|---:|---:|---:|
+| Matemáticas · UNAM Área 1 | `cmrr1iuzi000ehi3ncoz4k6ka` | `null` | **26** | **12** | **81** |
+
+**Materia NO compartida** (`sharedContentKey` NULL, a diferencia de
+Español/Inglés/Química de la UNAM, las únicas con clave G26): el lote va a sus **12
+temas propios** y no se reutiliza entre áreas. Reparto verificado por tema antes del
+lote: Números reales y complejos **10**, Álgebra: ecuaciones lineales y cuadráticas
+**10**, Polinomios y funciones **7**, Trigonometría **5**, Geometría analítica **8**,
+Límites y continuidad **7**, Derivadas **7**, Integrales **6**, Series y sucesiones
+**5**, Matrices y sistemas **6**, Progresiones y combinatoria **4**, Estadística
+descriptiva **6**.
+
+### 2) Reparto por los 10 temas de menor cobertura
+
+El lote **deja intactos los dos temas de 10** (Números reales, Álgebra ecuaciones) y
+reparte los 35 entre los 10 restantes, con más peso en los más flacos:
+
+| Tema (posición) | `topicId` | Antes → después | Reactivos | Grounding |
+|---|---|---:|---:|---|
+| Progresiones y combinatoria (11) | `cmrr1j11q0010hi3ng2qnxizl` | 4 → 8 | 4 | SOURCED |
+| Trigonometría (4) | `cmrr1iwwp000mhi3nfsv5qei6` | 5 → 10 | 5 | SOURCED |
+| Series y sucesiones (9) | `cmrr1izx1000whi3n33e0c8t6` | 5 → 8 | 3 | SOURCED |
+| Integrales (8) | `cmrr1izbg000uhi3nldwds9yq` | 6 → 11 | 5 | TEMARIO_ONLY |
+| Matrices y sistemas (10) | `cmrr1j0gp000yhi3n7lrhfvm2` | 6 → 9 | 3 | TEMARIO_ONLY |
+| Estadística descriptiva (12) | `cmrr1j1jk0012hi3nxhydykhq` | 6 → 8 | 2 | TEMARIO_ONLY |
+| Polinomios y funciones (3) | `cmrr1iwgb000khi3nzn34qded` | 7 → 9 | 2 | SOURCED |
+| Límites y continuidad (6) | `cmrr1iy5e000qhi3nwcv9ol74` | 7 → 11 | 4 | TEMARIO_ONLY |
+| Derivadas (7) | `cmrr1iyn9000shi3nxbnz5h9d` | 7 → 11 | 4 | SOURCED |
+| Geometría analítica (5) | `cmrr1ixk3000ohi3n57zpc8lv` | 8 → 11 | 3 | SOURCED |
+
+Cubre los dominios del temario del examen real que nombró el encargo: **álgebra**
+(Polinomios, Matrices, Progresiones/combinatoria), **geometría analítica**,
+**trigonometría**, **cálculo diferencial** (Límites, Derivadas) y **cálculo
+integral** (Integrales).
+
+### 3) Anclaje: 21 SOURCED / 14 TEMARIO_ONLY
+
+`loadTopicChunks` devolvió `SourceChunk` clasificado por el pipeline F2b en **6 de
+los 10 temas**, y `grounding.ts` hace **obligatoria** la cita cuando hay fragmento:
+
+- **Trigonometría** — 4 chunks (`uam_cbi.pdf` pp. 44/46/95/99: semejanza de
+  triángulos y sombras, identidad `cos(a±b)`, ley de senos, racionalización de
+  conjugados).
+- **Progresiones y combinatoria** — 4 chunks (`uam_csh.pdf` p. 52 permutaciones «8
+  personas en 8 sillas»; `uam_cbi.pdf` pp. 19/71/76 sucesiones y arreglos).
+- **Series y sucesiones** — 4 chunks (`uam_cbs.pdf` p. 19 y `uam_csh.pdf` pp.
+  18/33/35: completar sucesión, sustituir `n` en el término general).
+- **Derivadas** — 2 chunks (`uam_cbs.pdf` p. 49 `d/dx ln x = 1/x`; `uam_cbi.pdf` p.
+  105 regla de la cadena y pendiente de recta).
+- **Polinomios y funciones** — 6 chunks (`ceneval_exanii.pdf` p. 22 operaciones con
+  polinomios `B+2C−A`; `uam_cbi.pdf` pp. 82/85/87/88/89 factorización, diferencia y
+  suma de cubos, fracciones algebraicas).
+- **Geometría analítica** — 6 chunks (`uam_cbi.pdf` pp. 97/98/101/102/103/104:
+  circunferencia por diámetro, rectas paralelas y perpendiculares, ordenada al
+  origen, hipérbola).
+
+**Procedencia (patrón G33/G37/G40/G41/G43), documentada, no bloqueante:** la mayoría
+de los chunks vienen de guías de la **UAM** y del **CENEVAL**, instituciones
+distintas de la del examen destino (UNAM). No lo prohíbe ningún guardrail —G26
+restringe la reutilización de *reactivos* entre áreas, no el uso de una guía como
+material de estudio—, pero se anota. **Originalidad (patrón G40 §6 / G41 §3):** los
+ítems de las guías son ejercicios **resueltos con la respuesta a la vista** («H La
+respuesta es D»); los 21 SOURCED usan la **misma técnica** (semejanza, ley de senos,
+regla de la cadena, factorización, forma canónica de la circunferencia) con
+**datos, contextos y juegos de opciones nuevos**, redactados de cero — no se
+copiaron los enunciados ni los números de las guías. Los 4 temas sin chunk
+(Integrales, Matrices y sistemas, Estadística descriptiva, Límites y continuidad)
+salen **TEMARIO_ONLY**, compuestos desde el temario oficial del Área 1.
+
+### 4) Verificación de cálculo (criterio del encargo)
+
+**Los 35 valores correctos se recalcularon uno por uno con `sympy`** antes de tocar
+la DB (`scratchpad/g45/verify.py`, un check por reactivo: `factorial`, `binomial`,
+`integrate`, `limit`, `diff`, `solve`, `Matrix.det`, evaluación trigonométrica):
+**35/35 coinciden** con la opción marcada como correcta. Los distractores numéricos
+**derivan cada uno de un error de procedimiento nombrable** (error de signo, olvidar
+el `/2` de la suma de Gauss, confundir la razón `sin`/`cos`/`tan`, reportar `x` en
+vez de `x+y`, invertir la proporción de la ley de senos, no bajar el exponente en la
+regla de la cadena, cancelar términos que no son factores, usar el diámetro donde va
+el radio…) — y la capa 2 de cada reactivo lo explicita.
+
+### 5) Formato, dificultad y distribución de posición
+
+- **Formato:** 23 `PROBLEM_SOLVING` · 10 `MULTIPLE_CHOICE` · 2 `NUMERIC_SERIES` (se
+  varió como el examen real; no se forzó `CHART_TABLE` sin tabla, el defecto abierto
+  de G28).
+- **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6, la
+  distribución objetivo de `_base.md`, la misma que G43). Los 2 `EXPERT`: integral
+  definida por sustitución con cambio de límites, y abscisa `x>2` de la tangente
+  horizontal de una cúbica (factorizar la derivada y elegir raíz).
+- **Clave A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %), las cuatro
+  en la banda 15-40 %. **Confirmada por `jsonb_array_elements` sobre `options`** de
+  las 35 filas tras insertar. **La letra se asignó a mano** (no hay barajado del
+  generador): objetivo global A9/B9/C9/D8 con **≥ 3 letras distintas en cada tema de
+  ≥ 3 reactivos** y **tope 2 por letra por tema**. Para los reactivos numéricos la
+  letra la fija el rango del valor correcto entre las 4 opciones ordenadas de forma
+  ascendente (`_base.md`); para los conceptuales se elige la posición.
+- **La secuencia literal de la clave NO se publica aquí** (regla de G38 §4): vive en
+  la DB y en `docs/content-batches/g45-unam-a1-matematicas.json`, que la sesión ciega
+  de G46 no abre.
+
+### 6) Chequeos de forma (G3c / G34 §2 / G44 §6-§7)
+
+- `content:validate-batch --dir <lote>`: **0 violaciones**
+  (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y de
+  nuevo como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos.
+- **0 citas por letra** y **0 referencias posicionales** en las 105 capas
+  (auto-chequeo con las regex de `lot-validation.ts` más `POSITION_REF` de G33). Las
+  **35 capas 2** se titulan «Cómo se descarta cada opción» / «Resolución paso a
+  paso» y descartan los tres distractores **por su contenido** (el valor numérico o
+  la expresión), numerados 1/2/3 en el orden de redacción — no por su letra ni su
+  posición.
+- **Señuelo de longitud tie-aware (G34 §2 / G36 §2):** el puntaje esperado de «elige
+  la más larga» quedó en **8.42 / 35 = 24.1 %** y el de «elige la más corta» en
+  **7.92 / 35 = 22.6 %**, ambos por debajo del azar (25 %) y de la cota de 14/35.
+  En un lote de matemáticas las opciones son valores o expresiones cortas y
+  homogéneas por construcción, así que el señuelo casi no aplica; aun así se
+  homogeneizaron a mano las 4 opciones conceptuales (T2, T5, L3, I1) que en el primer
+  borrador traían un *outlier* de longitud.
+- **Lenguaje absolutista (G44 §6):** 0.0 marcadores por opción tanto en las 35 claves
+  como en los 105 distractores. **Opción compuesta como única clave (G44 §7):** 0/35.
+  Ambos señuelos son de humanidades y no aplican a opciones que son números o
+  fórmulas.
+- **Fuga entre reactivos (G38 §6 / G40 §3 / G42 §8):** revisada en las dos
+  direcciones y en la diagonal clave↔distractor. Ningún `stem` nombra el valor o la
+  expresión que otro reactivo del lote pide, y ninguna clave reproduce el juego de
+  opciones de otro. Un heurístico de 4-gramas sobre `(stem + clave)` de los 35
+  devolvió **0 coincidencias no triviales**. Todos los reactivos usan números y
+  contextos distintos (`_base.md` regla 5).
+
+### 7) Inserción real — verificada en la DB
+
+| Métrica | Antes de G45 | Después de G45 |
+|---|---:|---:|
+| Banco total | 902 | **937** |
+| Servibles (`isVerified=true`) | 901 | 901 |
+| Retirados a propósito | 1 | 1 |
+| Cola ciega (`isVerified=false`, sin veredicto) | 0 | **35** |
+| Cola canónica de discrepancias (`manualReview=null`) | 0 | **0** |
+| `ExplanationLayer` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **36** (21 SOURCED, algunos citan 2-3) |
+| `SOURCED` en el banco | 230 | **251** (27 %) |
+| `TEMARIO_ONLY` en el banco | 672 | **686** |
+| UNAM A1 Matemáticas · pool (⚓ SOURCED/TEMARIO) | 81✓ · 57/24 | **81✓ / 35⧗ · 78/38** |
+
+Chequeos post-inserción (query directa): los 35 con exactamente 4 opciones y 1
+correcta, 105 `ExplanationLayer`, **21 `SOURCED` / 14 `TEMARIO_ONLY`**, clave
+A9/B9/C9/D8 por `jsonb_array_elements`, dificultad 7/17/9/2, 0 con formato inválido.
+Cohorte con `id` prefijo `cmtgam…`–`cmtgao…` del 2026-08-30 — separable por `topicId`
+o por timestamp para la verificación ciega de G46.
+
+**La brecha efectiva SÍ se moverá** cuando G46 apruebe, a diferencia de los lotes de
+humanidades de G33–G43: el pool UNAM A1 Matemáticas está en **81 verificados frente a
+la meta efectiva ~144** (peso 26 × densidad G26), así que los 35 caen **enteros
+dentro** de la brecha — es el escenario que G39 §7 y G43 §2 recomendaban. `content:
+coverage` en vivo: **901 servibles · 35 pendientes · 1 retirado · 937 en banco · 59 %
+de la meta efectiva** (1 222); meta nominal de 1 500: **60 %**.
+
+### 8) Limpieza
+
+El lote se compuso con un generador de Python desechable en el scratchpad
+(`g45/items_part1.py` + `items_part2.py` redactados a mano con los 35 reactivos y sus
+3 capas; `g45/verify.py` recalcula cada valor con `sympy`; `g45/build.py` fija la
+letra objetivo por reactivo, auto-chequea distribución de letra / señuelo de longitud
+/ citas por letra / anclaje / fuga de 4-gramas, y emite los 10 archivos del lote). Un
+segundo script (`_tmp_g45_record.ts`, borrado al terminar) construyó el registro
+permanente con los `questionId` reales cruzando la DB con `records.json`. El
+generador, los scripts de verificación y los 10 archivos del lote **no se
+committean**; el registro permanente es
+`docs/content-batches/g45-unam-a1-matematicas.json`. `pnpm typecheck` y `pnpm lint`
+en verde (cero cambios de código de producción). Cero llamadas a la API de pago.
+
+### Siguiente (G45)
+
+1. **Verificación ciega del lote de G45** (segunda mitad del ciclo de G2), **modelo
+   Fable 5**: `pnpm content:blind-batch --topic <cada uno de los 10 topicId>` →
+   `content:resolve`. **LOTE DE CÁLCULO:** `isCalcSubject("Matemáticas")` es `true`,
+   así que la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada
+   cálculo con código real** (Bash o su propio intérprete), no solo razonarlo — es el
+   candado aritmético de G28, y aquí aplica a los 35. **0/35 con pasaje**; los 21
+   `SOURCED` se resuelven igual con conocimiento de bachillerato porque
+   `loadPendingQuestionsWithContext` **no pasa el texto del `SourceChunk`** (mismo
+   caso que los `SOURCED` de G33/G37/G41/G43). **Aplicar G36 §2 / G38 §3:** recalcular
+   el señuelo de longitud tie-aware sobre las respuestas ciegas y compararlo con §6
+   (que la sesión ciega abre solo *después* de resolver). **Reactivos más apretados**
+   (se señala cuáles, no cómo resolverlos, por G30 §1): los **2 `EXPERT`** (integral
+   por sustitución con cambio de límites; abscisa `x>2` de la tangente horizontal de
+   una cúbica) y los **2 `ADVANCED` con opciones-expresión** (fracción algebraica
+   `(x²−25)/(x²−3x−10)`; circunferencia a partir de un diámetro).
+2. **Huecos que siguen abiertos** tras G45:
+   - **UNAM A1 Matemáticas** aún por debajo de meta (81/144 antes de G46; con G46,
+     116/144) — un lote más cerraría el pool STEM de mayor peso.
+   - **UNAM A4 Artes** (5 temas, w2, cero; tiene `SourceChunk` en 3 temas) — la última
+     materia propia de UNAM A3/A4 en cero.
+   - **IPN SOCADM** completo (Historia de México / Universal / Geografía), nombrado
+     por G30–G43 sin abrir.
+   - Los otros 4 pools STEM de alto peso de G39 §7 (IPN Física, IPN Química, IPN
+     Matemáticas celda MEDBIO, IPN MEDBIO Biología).
+3. **Auditoría 5 %: vencida, ahora 5 ciclos.** La muestra de 40 ids está generada y
+   exige sesión ciega con tier **≠ opus-5**. Los lotes de G43 y **G45** entran al
+   universo muestreable cuando G44 y G46 los verifiquen.
+4. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): lleva trece fases
+   condicionando la planeación sin respuesta del dueño.
+5. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, la regla de G42 §8
+   como código en `lot-validation.ts`, el rebanado de `SourceChunk` por página en vez
+   de por encabezado (`uam_csh.pdf`, que G33/G37/G41/G43/**G45** ya usaron), y los 3
+   reactivos de G37 que son paráfrasis cercanas de su guía fuente.
 
 ## G44 — Verificación ciega: Historia Universal, UNAM Área 3 (lote de G43) (2026-08-30)
 

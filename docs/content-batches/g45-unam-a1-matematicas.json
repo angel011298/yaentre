@@ -1,0 +1,2918 @@
+{
+  "batch": "G45",
+  "phase": "G45 — Lote de reactivos: Matemáticas, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)",
+  "generatedAt": "2026-08-30",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago (el Plan de Implementación asigna el tier Sonnet a los lotes de contenido; ver corrección de G17: este campo declara el modelo real de la sesión)",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 1 — Ciencias Físico-Matemáticas y las Ingenierías",
+  "subject": "Matemáticas",
+  "subjectId": "cmrr1iuzi000ehi3ncoz4k6ka",
+  "questionWeight": 26,
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G45: 35 reactivos adicionales de Matemáticas para UNAM Área 1, priorizando los temas con menor cobertura. Consulta en vivo a Supabase (2026-08-30) antes de componer: Matemáticas de UNAM Área 1 (subjectId cmrr1iuzi000ehi3ncoz4k6ka, questionWeight 26, sharedContentKey NULL — materia NO compartida, a diferencia de Español/Inglés/Química de la UNAM en G26) tenía 81 verificados repartidos en sus 12 temas propios: Números reales y complejos 10, Álgebra: ecuaciones lineales y cuadráticas 10, Polinomios y funciones 7, Trigonometría 5, Geometría analítica 8, Límites y continuidad 7, Derivadas 7, Integrales 6, Series y sucesiones 5, Matrices y sistemas 6, Progresiones y combinatoria 4, Estadística descriptiva 6. El lote va a los 10 temas de MENOR cobertura y deja intactos los dos de 10 (Números reales, Álgebra ecuaciones). Reparto: Trigonometría 5 (5→10), Progresiones y combinatoria 4 (4→8), Series y sucesiones 3 (5→8), Integrales 5 (6→11), Matrices y sistemas 3 (6→9), Estadística descriptiva 2 (6→8), Límites y continuidad 4 (7→11), Derivadas 4 (7→11), Polinomios y funciones 2 (7→9), Geometría analítica 3 (8→11). Cubre los dominios que pide el temario del examen real: álgebra (Polinomios, Matrices, Progresiones/combinatoria), geometría analítica, trigonometría, cálculo diferencial (Límites, Derivadas) y cálculo integral (Integrales). Materia día 1 del alcance del 21-nov (launch = UNAM 4 áreas + IPN 3 ramas) y el pool STEM de mayor peso de la UNAM: 81 vs meta efectiva ~144 (G26), los 35 mueven la brecha efectiva.",
+  "grounding": "21/35 SOURCED · 14/35 TEMARIO_ONLY. Los 6 temas con SourceChunk clasificado por el pipeline F2b se anclaron (grounding.ts hace obligatoria la cita cuando hay fragmento): Trigonometría (4 chunks, uam_cbi.pdf pp. 44/46/95/99: semejanza de triángulos, identidad cos(a±b), ley de senos, racionalización), Progresiones y combinatoria (4 chunks, uam_csh.pdf p. 52 permutaciones + uam_cbi.pdf pp. 19/71/76 sucesiones), Series y sucesiones (4 chunks, uam_cbs.pdf p. 19 y uam_csh.pdf pp. 18/33/35 completar sucesión y sustituir en el término general), Derivadas (2 chunks, uam_cbs.pdf p. 49 d/dx ln x = 1/x + uam_cbi.pdf p. 105 cadena y pendiente), Polinomios y funciones (6 chunks, ceneval_exanii.pdf p. 22 operaciones con polinomios + uam_cbi.pdf pp. 82/85/87/88/89 factorización y fracciones algebraicas), Geometría analítica (6 chunks, uam_cbi.pdf pp. 97/98/101/102/103/104 circunferencia por diámetro, rectas paralelas/perpendiculares, y-intercepto). PROCEDENCIA (patrón G33/G37/G40/G41/G43): la mayoría de los chunks vienen de guías de la UAM y de CENEVAL, otras instituciones que la del examen destino (UNAM). No lo prohíbe ningún guardrail (G26 restringe la reutilización de reactivos entre áreas, no el uso de guías como material de estudio), pero se anota. ORIGINALIDAD: los 21 SOURCED transforman la tarea cognitiva del ítem-semilla — los ítems de las guías son ejercicios resueltos con la respuesta a la vista (\"H La respuesta es D\"); los reactivos compuestos usan la MISMA técnica con datos, contextos y juegos de opciones nuevos, redactados de cero. Los 4 temas sin chunk (Integrales, Matrices y sistemas, Estadística descriptiva, Límites y continuidad) salen TEMARIO_ONLY, compuestos desde el temario oficial del Área 1.",
+  "totalQuestions": 35,
+  "bankBefore": 902,
+  "bankAfter": 937,
+  "seed": "n/a — la letra de cada reactivo se asignó a mano con distribución objetivo A9/B9/C9/D8 y ≥3 letras distintas por tema; verificada por jsonb_array_elements tras insertar",
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "difficultyDistribution": {
+    "ADVANCED": 9,
+    "BASIC": 7,
+    "INTERMEDIATE": 17,
+    "EXPERT": 2
+  },
+  "formatDistribution": {
+    "PROBLEM_SOLVING": 23,
+    "MULTIPLE_CHOICE": 10,
+    "NUMERIC_SERIES": 2
+  },
+  "perTopic": {
+    "Polinomios y funciones": 2,
+    "Trigonometría": 5,
+    "Geometría analítica": 3,
+    "Límites y continuidad": 4,
+    "Derivadas": 4,
+    "Integrales": 5,
+    "Series y sucesiones": 3,
+    "Matrices y sistemas de ecuaciones": 3,
+    "Progresiones y combinatoria": 4,
+    "Estadística descriptiva": 2
+  },
+  "perTopicId": {
+    "Polinomios y funciones": "cmrr1iwgb000khi3nzn34qded",
+    "Trigonometría": "cmrr1iwwp000mhi3nfsv5qei6",
+    "Geometría analítica": "cmrr1ixk3000ohi3n57zpc8lv",
+    "Límites y continuidad": "cmrr1iy5e000qhi3nwcv9ol74",
+    "Derivadas": "cmrr1iyn9000shi3nxbnz5h9d",
+    "Integrales": "cmrr1izbg000uhi3nldwds9yq",
+    "Series y sucesiones": "cmrr1izx1000whi3n33e0c8t6",
+    "Matrices y sistemas de ecuaciones": "cmrr1j0gp000yhi3n7lrhfvm2",
+    "Progresiones y combinatoria": "cmrr1j11q0010hi3ng2qnxizl",
+    "Estadística descriptiva": "cmrr1j1jk0012hi3nxhydykhq"
+  },
+  "qualityChecks": {
+    "calc": "los 35 valores correctos recalculados con sympy (scratchpad/g45/verify.py) antes de insertar: 35/35 coinciden; los distractores numéricos derivan de un error de procedimiento nombrado (signo, olvidar /2, confundir vértice con raíces, reportar x en vez de x+y, etc.)",
+    "lotValidation": "content:validate-batch --dir <lote>: 0 violaciones (POSITION_SKEW/LETTER_CITATION/MALFORMED/PASSAGE_LINK). De nuevo como paso obligatorio de content:insert --lot-dir sobre los 10 archivos.",
+    "positionSkew": "clave A9/B9/C9/D8 (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15-40 %. Equilibrio también por tema: ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema.",
+    "letterCitation": "0 citas por letra y 0 referencias posicionales en las 105 capas (regex de lot-validation.ts + patrón POSITION_REF de G33). Las 35 capas 2 descartan los distractores por su CONTENIDO (la fórmula o el valor), numerados 1/2/3.",
+    "lengthCue": "señuelo de longitud tie-aware (G34 §2 / G36 §2): «más larga» 8.42/35 = 24.1 %, «más corta» 7.92/35 = 22.6 %, ambos por debajo del azar (25 %) y de la cota 14/35. En un lote de matemáticas las opciones son valores/expresiones cortas y homogéneas, así que el señuelo casi no aplica; se homogeneizaron a mano las opciones conceptuales (T2, T5, L3, I1) que traían un outlier de longitud.",
+    "formCues": "lenguaje absolutista 0.0 marcadores/opción tanto en claves como en distractores; opción compuesta como única clave 0/35. Los dos señuelos de forma de G44 §6-§7 son de humanidades y no aplican a expresiones matemáticas."
+  },
+  "crossItemLeakCheck": "revisado en las dos direcciones y en la diagonal clave↔distractor (G38 §6 / G40 §3 / G42 §8): ningún stem nombra el valor o la expresión que otro reactivo del lote pide, y ninguna clave reproduce el juego de opciones de otro. Heurístico de 4-gramas sobre (stem + clave) de los 35: 0 coincidencias no triviales. Todos los reactivos usan números y contextos distintos.",
+  "copyright": "cero reproducción de texto extenso de las guías fuente. Los reactivos SOURCED usan la técnica del ítem-semilla con datos nuevos; los ejemplos numéricos de las guías (edades, sombras, montos) no se copiaron.",
+  "nextPhase": "G46 = verificación ciega de este lote (segunda mitad del ciclo adversarial de G2), modelo Fable 5. pnpm content:blind-batch --topic <cada uno de los 10 topicId> → content:resolve. LOTE DE CÁLCULO: isCalcSubject(\"Matemáticas\") = true, así que la sesión ciega recibe requiresCalculation:true y DEBE EJECUTAR cada cálculo con código real (Bash/su propio intérprete), no solo razonarlo — es el candado aritmético de G28. 0/35 con pasaje; los 21 SOURCED se resuelven igual con conocimiento de bachillerato porque loadPendingQuestionsWithContext no pasa el texto del SourceChunk (mismo caso que los SOURCED de G33/G37/G41/G43). Aplicar G36 §2 / G38 §3: recalcular el señuelo de longitud tie-aware sobre las respuestas ciegas y compararlo con los veredictos de qualityChecks.lengthCue. La secuencia de clave exacta NO se publica en ESTADO.md (G38 §4): vive aquí y en la DB, que la sesión ciega no abre. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los 2 EXPERT (I4 sustitución en integral definida, D4 raíz de la derivada con condición x>2) y los 2 ADVANCED de geometría/álgebra con opciones-expresión (F2 fracción algebraica, G3 circunferencia por diámetro).",
+  "questions": [
+    {
+      "questionId": "cmtgao6mn0001bnuk8wbnlyf8",
+      "tag": "F1",
+      "topic": "Polinomios y funciones",
+      "topicId": "cmrr1iwgb000khi3nzn34qded",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "conceptual",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        4
+      ],
+      "sourceChunkRefs": [
+        "ceneval_exanii.pdf p. 22",
+        "uam_cbi.pdf p. 82"
+      ],
+      "stem": "Si $P = 2x^2 - 3x + 1$ y $Q = x^2 + 4x - 5$, ¿cuál es el resultado de $2P - Q$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$3x^2 - 10x + 7$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$3x^2 - 2x - 3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3x^2 - 10x - 3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$5x^2 - 2x - 4$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$3x^2 - 2x - 3$",
+          "note": "no distribuyó el signo negativo a todo $Q$: solo cambió el primer término"
+        },
+        {
+          "pos": "C",
+          "text": "$3x^2 - 10x - 3$",
+          "note": "cambió el signo a los términos con $x$ pero no al término independiente: usó $2 + (-5)$"
+        },
+        {
+          "pos": "D",
+          "text": "$5x^2 - 2x - 4$",
+          "note": "sumó $2P + Q$ en vez de restar"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Multiplicar por el escalar y restar término a término",
+          "content": "Primero $2P = 4x^2 - 6x + 2$. Luego se resta $Q$ cambiando el signo de todos sus términos: $-(x^2 + 4x - 5) = -x^2 - 4x + 5$. Sumando semejantes: $3x^2 - 10x + 7$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $3x^2-2x-3$ solo le cambió el signo al primer término de $Q$. 2) $3x^2-10x-3$ distribuyó el signo a los términos con $x$ pero no al independiente ($2+(-5)$ en vez de $2-(-5)$). 3) $5x^2-2x-4$ sumó $2P+Q$ en vez de restar.",
+          "latexContent": "2P = 4x^2 - 6x + 2 \\\\ -Q = -x^2 - 4x + 5 \\\\ 2P - Q = 3x^2 - 10x + 7"
+        },
+        {
+          "layer": 3,
+          "title": "Operaciones con polinomios",
+          "content": "Para sumar o restar polinomios se combinan términos semejantes (misma parte literal y mismo exponente). Al restar, el signo negativo afecta a cada término del polinomio que se resta. Repasa: términos semejantes, propiedad distributiva y suma de polinomios.",
+          "latexContent": null
+        }
+      ],
+      "n": 1
+    },
+    {
+      "questionId": "cmtgao7qa0006bnukclbi24t8",
+      "tag": "F2",
+      "topic": "Polinomios y funciones",
+      "topicId": "cmrr1iwgb000khi3nzn34qded",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2,
+        3,
+        5
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 85",
+        "uam_cbi.pdf p. 87",
+        "uam_cbi.pdf p. 89"
+      ],
+      "stem": "¿Cuál es la forma simplificada de $\\dfrac{x^2 - 25}{x^2 - 3x - 10}$ (con $x \\ne 5$ y $x \\ne -2$)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{x - 5}{x - 2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{x + 5}{x + 2}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{x + 5}{x - 2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{5}{x + 2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$\\dfrac{x - 5}{x - 2}$",
+          "note": "factorizó ambos trinomios cambiando un signo"
+        },
+        {
+          "pos": "C",
+          "text": "$\\dfrac{x + 5}{x - 2}$",
+          "note": "factorizó bien el numerador pero el denominador como $(x-5)(x-2)$"
+        },
+        {
+          "pos": "D",
+          "text": "$\\dfrac{5}{x + 2}$",
+          "note": "canceló los términos $x^2$ del numerador y del denominador, que no son factores"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Factorizar numerador y denominador, luego cancelar el factor común",
+          "content": "Numerador: $x^2-25=(x-5)(x+5)$ (diferencia de cuadrados). Denominador: $x^2-3x-10=(x-5)(x+2)$. Se cancela $(x-5)$ y queda $\\dfrac{x+5}{x+2}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $\\dfrac{x-5}{x-2}$ y 2) $\\dfrac{x+5}{x-2}$ factorizan el denominador como $(x-5)(x-2)$: pero los números que multiplican $-10$ y suman $-3$ son $-5$ y $+2$, así que es $(x-5)(x+2)$. 3) $\\dfrac{5}{x+2}$ canceló términos $x^2$ que no son factores; solo se cancelan factores completos.",
+          "latexContent": "\\dfrac{x^2-25}{x^2-3x-10} = \\dfrac{(x-5)(x+5)}{(x-5)(x+2)} = \\dfrac{x+5}{x+2}"
+        },
+        {
+          "layer": 3,
+          "title": "Simplificación de fracciones algebraicas",
+          "content": "Una fracción algebraica se simplifica factorizando por completo numerador y denominador y cancelando solo factores idénticos. Nunca se cancelan términos sueltos de una suma. Repasa: diferencia de cuadrados, factorización de trinomios $x^2+bx+c$ y dominio de una expresión racional.",
+          "latexContent": null
+        }
+      ],
+      "n": 2
+    },
+    {
+      "questionId": "cmtgameay00011017hyfr1r93",
+      "tag": "T1",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1iwwp000mhi3nfsv5qei6",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        3
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 44",
+        "uam_cbi.pdf p. 95"
+      ],
+      "stem": "En un triángulo rectángulo, el cateto opuesto a un ángulo agudo $\\theta$ mide $9$ y el cateto adyacente mide $12$. ¿Cuánto vale $\\sin\\theta$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{3}{5}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{3}{4}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{4}{5}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{5}{3}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$\\dfrac{3}{4}$",
+          "note": "usó cateto opuesto sobre cateto adyacente, que define la tangente"
+        },
+        {
+          "pos": "C",
+          "text": "$\\dfrac{4}{5}$",
+          "note": "usó cateto adyacente sobre hipotenusa, que define el coseno"
+        },
+        {
+          "pos": "D",
+          "text": "$\\dfrac{5}{3}$",
+          "note": "invirtió la razón (hipotenusa sobre cateto opuesto); el seno de un ángulo agudo nunca pasa de 1"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Seno = cateto opuesto entre hipotenusa",
+          "content": "Primero se obtiene la hipotenusa con el teorema de Pitágoras: $\\sqrt{9^2+12^2}=\\sqrt{225}=15$. El seno del ángulo es el cociente del cateto opuesto entre la hipotenusa: $\\sin\\theta=\\dfrac{9}{15}=\\dfrac{3}{5}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Calcula la hipotenusa: $h^2=9^2+12^2=225$, así que $h=15$. 2) Aplica la definición $\\sin\\theta=\\dfrac{\\text{opuesto}}{\\text{hipotenusa}}=\\dfrac{9}{15}$. 3) Simplifica entre $3$: $\\dfrac{3}{5}$. El valor $\\dfrac{3}{4}$ es opuesto entre adyacente, que es la tangente; $\\dfrac{4}{5}$ es adyacente entre hipotenusa, que es el coseno; un valor mayor que $1$ como $\\dfrac{5}{3}$ es imposible para el seno de un ángulo agudo (se invirtió la razón).",
+          "latexContent": "h=\\sqrt{9^2+12^2}=\\sqrt{81+144}=\\sqrt{225}=15 \\\\ \\sin\\theta=\\dfrac{\\text{op}}{\\text{hip}}=\\dfrac{9}{15}=\\dfrac{3}{5}"
+        },
+        {
+          "layer": 3,
+          "title": "Razones trigonométricas en el triángulo rectángulo",
+          "content": "Con la regla SOH-CAH-TOA: seno $=$ opuesto/hipotenusa, coseno $=$ adyacente/hipotenusa, tangente $=$ opuesto/adyacente. Cuando falta un lado, se completa con el teorema de Pitágoras. Repasa: definición de las seis razones y triángulos notables (3-4-5, 5-12-13).",
+          "latexContent": null
+        }
+      ],
+      "n": 3
+    },
+    {
+      "questionId": "cmtgamf9a00061017c398htw4",
+      "tag": "T2",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1iwwp000mhi3nfsv5qei6",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2,
+        4
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 46",
+        "uam_cbi.pdf p. 99"
+      ],
+      "stem": "¿Cuál es el desarrollo correcto de $\\cos(\\alpha - \\beta)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\sin\\alpha\\sin\\beta - \\cos\\alpha\\cos\\beta$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\cos\\alpha\\cos\\beta + \\sin\\alpha\\sin\\beta$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta$",
+          "note": "es el desarrollo de $\\cos(\\alpha+\\beta)$; para la resta el signo intermedio es $+$"
+        },
+        {
+          "pos": "B",
+          "text": "$\\sin\\alpha\\cos\\beta - \\cos\\alpha\\sin\\beta$",
+          "note": "es el desarrollo de $\\sin(\\alpha-\\beta)$: cruza seno con coseno"
+        },
+        {
+          "pos": "C",
+          "text": "$\\sin\\alpha\\sin\\beta - \\cos\\alpha\\cos\\beta$",
+          "note": "tiene el signo global invertido: es $-\\cos(\\alpha+\\beta)$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El coseno de una resta lleva signo más",
+          "content": "La identidad es $\\cos(\\alpha-\\beta)=\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta$. El término de cosenos y el de senos se suman; el signo intermedio es opuesto al del ángulo: $+$ para la resta y $-$ para la suma.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta$ es exactamente $\\cos(\\alpha+\\beta)$: sirve para la suma, no para la resta. 2) $\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta$ mezcla seno con coseno en cada producto: es la fórmula de $\\sin(\\alpha-\\beta)$. 3) $\\sin\\alpha\\sin\\beta-\\cos\\alpha\\cos\\beta$ es el desarrollo correcto pero con todos los signos cambiados, es decir $-\\cos(\\alpha+\\beta)$.",
+          "latexContent": "\\cos(\\alpha-\\beta)=\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta \\\\ \\cos(\\alpha+\\beta)=\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta"
+        },
+        {
+          "layer": 3,
+          "title": "Identidades para suma y resta de ángulos",
+          "content": "El par a memorizar: $\\cos(\\alpha\\pm\\beta)=\\cos\\alpha\\cos\\beta\\mp\\sin\\alpha\\sin\\beta$ y $\\sin(\\alpha\\pm\\beta)=\\sin\\alpha\\cos\\beta\\pm\\cos\\alpha\\sin\\beta$. El coseno no cruza funciones y cambia de signo; el seno cruza y conserva el signo. Repasa: identidades de ángulos compuestos y de ángulo doble.",
+          "latexContent": null
+        }
+      ],
+      "n": 4
+    },
+    {
+      "questionId": "cmtgamg7g000b1017glqloucd",
+      "tag": "T3",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1iwwp000mhi3nfsv5qei6",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2,
+        4
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 46",
+        "uam_cbi.pdf p. 99"
+      ],
+      "stem": "En un triángulo $ABC$, el lado $a=10$ se opone al ángulo $A=30^\\circ$ y el ángulo $B=45^\\circ$. ¿Cuánto mide el lado $b$? (Redondea a centésimos; usa $\\sqrt{2}\\approx1.414$.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$7.07$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$8.16$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$14.14$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$19.32$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$7.07$",
+          "note": "invirtió la proporción de la ley de senos: calculó $\\dfrac{a\\,\\sin A}{\\sin B}$"
+        },
+        {
+          "pos": "B",
+          "text": "$8.16$",
+          "note": "usó cosenos en lugar de senos: $\\dfrac{10\\cos 45^\\circ}{\\cos 30^\\circ}$"
+        },
+        {
+          "pos": "D",
+          "text": "$19.32$",
+          "note": "despejó el lado $c$ (opuesto a $C=105^\\circ$) en vez de $b$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ley de los senos",
+          "content": "La ley de los senos dice $\\dfrac{a}{\\sin A}=\\dfrac{b}{\\sin B}$. Despejando $b=\\dfrac{a\\,\\sin B}{\\sin A}=\\dfrac{10\\,\\sin 45^\\circ}{\\sin 30^\\circ}=\\dfrac{10(0.7071)}{0.5}\\approx 14.14$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Escribe la proporción $\\dfrac{a}{\\sin A}=\\dfrac{b}{\\sin B}$. 2) Despeja: $b=\\dfrac{a\\,\\sin B}{\\sin A}$. 3) Sustituye $\\sin 45^\\circ\\approx0.7071$ y $\\sin 30^\\circ=0.5$: $b=\\dfrac{7.071}{0.5}\\approx 14.14$. El valor $7.07$ sale de invertir la proporción; $8.16$ sale de usar cosenos en lugar de senos; alrededor de $19.3$ se obtiene al resolver para el lado opuesto al ángulo de $105^\\circ$.",
+          "latexContent": "b=\\dfrac{a\\,\\sin B}{\\sin A}=\\dfrac{10\\,\\sin 45^\\circ}{\\sin 30^\\circ}=\\dfrac{10(0.7071)}{0.5}\\approx 14.14"
+        },
+        {
+          "layer": 3,
+          "title": "Cuándo usar la ley de senos",
+          "content": "Se aplica cuando conoces un lado con su ángulo opuesto y un dato más (ángulo-lado-ángulo o lado-lado-ángulo). Para lado-ángulo-lado con el ángulo entre los lados se usa la ley de cosenos. Repasa: ley de senos, ley de cosenos y que los ángulos internos suman $180^\\circ$.",
+          "latexContent": null
+        }
+      ],
+      "n": 5
+    },
+    {
+      "questionId": "cmtgamh5r000g1017dgf1dgg6",
+      "tag": "T4",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1iwwp000mhi3nfsv5qei6",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        3
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 44",
+        "uam_cbi.pdf p. 95"
+      ],
+      "stem": "Desde un punto en el suelo, el ángulo de elevación a la punta de una antena es de $30^\\circ$. El punto está a $40$ m del pie de la antena. ¿Qué altura tiene la antena? (Usa $\\tan 30^\\circ\\approx0.577$ y $\\cos 30^\\circ\\approx0.866$.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$20\\ \\text{m}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$23.09\\ \\text{m}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$46.19\\ \\text{m}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$69.28\\ \\text{m}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$20\\ \\text{m}$",
+          "note": "tomó los $40$ m como hipotenusa y usó $40\\,\\sin 30^\\circ$"
+        },
+        {
+          "pos": "C",
+          "text": "$46.19\\ \\text{m}$",
+          "note": "tomó los $40$ m como cateto adyacente pero despejó la hipotenusa: $40/\\cos 30^\\circ$"
+        },
+        {
+          "pos": "D",
+          "text": "$69.28\\ \\text{m}$",
+          "note": "usó el ángulo complementario $60^\\circ$: $40\\,\\tan 60^\\circ$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La tangente relaciona los dos catetos",
+          "content": "El ángulo de elevación, la distancia horizontal (cateto adyacente) y la altura (cateto opuesto) forman un triángulo rectángulo. Entonces $\\tan 30^\\circ=\\dfrac{h}{40}$, de donde $h=40\\,\\tan 30^\\circ\\approx 40(0.577)\\approx 23.09$ m.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Dibuja el triángulo: base $40$ m, ángulo $30^\\circ$ en el suelo, altura $h$. 2) La razón que une opuesto y adyacente es la tangente: $\\tan 30^\\circ=\\dfrac{h}{40}$. 3) Despeja: $h=40\\,\\tan 30^\\circ\\approx 23.09$ m. El valor $20$ sale de tratar los $40$ m como hipotenusa; $46.19$ sale de tomarlos como adyacente y despejar la hipotenusa con el coseno; $69.28$ sale de usar $\\tan 60^\\circ$.",
+          "latexContent": "\\tan 30^\\circ=\\dfrac{h}{40} \\implies h=40\\,\\tan 30^\\circ \\approx 40(0.577)\\approx 23.09\\ \\text{m}"
+        },
+        {
+          "layer": 3,
+          "title": "Ángulos de elevación y de depresión",
+          "content": "Identifica primero qué lado es el adyacente (casi siempre la distancia horizontal) y cuál el opuesto (la altura), y elige la razón que contenga esos dos lados. Repasa: resolución de triángulos rectángulos y aplicaciones de ángulos de elevación.",
+          "latexContent": null
+        }
+      ],
+      "n": 6
+    },
+    {
+      "questionId": "cmtgami3x000l10171nsee93h",
+      "tag": "T5",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1iwwp000mhi3nfsv5qei6",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2,
+        3
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 46",
+        "uam_cbi.pdf p. 95"
+      ],
+      "stem": "Para un ángulo agudo $\\theta$, ¿cuál de estas igualdades entre una razón trigonométrica y su recíproca es INCORRECTA?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\sec\\theta = \\dfrac{1}{\\sin\\theta}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\csc\\theta = \\dfrac{1}{\\sin\\theta}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\sec\\theta = \\dfrac{1}{\\cos\\theta}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\cot\\theta = \\dfrac{1}{\\tan\\theta}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$\\csc\\theta = \\dfrac{1}{\\sin\\theta}$",
+          "note": "es verdadera: la cosecante es el recíproco del seno"
+        },
+        {
+          "pos": "C",
+          "text": "$\\sec\\theta = \\dfrac{1}{\\cos\\theta}$",
+          "note": "es verdadera: la secante es el recíproco del coseno"
+        },
+        {
+          "pos": "D",
+          "text": "$\\cot\\theta = \\dfrac{1}{\\tan\\theta}$",
+          "note": "es verdadera: la cotangente es el recíproco de la tangente"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La secante es el recíproco del coseno, no del seno",
+          "content": "Por definición $\\sec\\theta=\\dfrac{1}{\\cos\\theta}$. La igualdad $\\sec\\theta=\\dfrac{1}{\\sin\\theta}$ empareja la secante con el seno, lo cual corresponde a la cosecante; por eso es la incorrecta.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se verifica cada opción",
+          "content": "1) $\\csc\\theta=\\dfrac{1}{\\sin\\theta}$ es correcta: la cosecante se empareja con el seno. 2) $\\sec\\theta=\\dfrac{1}{\\cos\\theta}$ es la definición correcta de la secante. 3) $\\cot\\theta=\\dfrac{1}{\\tan\\theta}$ es correcta. La igualdad que asocia la secante con el seno es la única falsa: la secante va con el coseno.",
+          "latexContent": "\\sec\\theta=\\dfrac{1}{\\cos\\theta}, \\quad \\csc\\theta=\\dfrac{1}{\\sin\\theta}, \\quad \\cot\\theta=\\dfrac{1}{\\tan\\theta}"
+        },
+        {
+          "layer": 3,
+          "title": "Identidades recíprocas",
+          "content": "Cada razón se empareja con su co-razón: seno con cosecante, coseno con secante, tangente con cotangente. El error típico es cruzar secante y cosecante. De cociente: $\\tan=\\sin/\\cos$ y $\\cot=\\cos/\\sin$. Repasa: las ocho identidades fundamentales.",
+          "latexContent": null
+        }
+      ],
+      "n": 7
+    },
+    {
+      "questionId": "cmtgaocyn000113fre1y2soif",
+      "tag": "G1",
+      "topic": "Geometría analítica",
+      "topicId": "cmrr1ixk3000ohi3n57zpc8lv",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "conceptual",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2,
+        3
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 97",
+        "uam_cbi.pdf p. 98"
+      ],
+      "stem": "¿Cuál es la ecuación de la circunferencia con centro en $(-1, 3)$ y radio $4$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(x + 1)^2 + (y - 3)^2 = 16$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$(x - 1)^2 + (y + 3)^2 = 16$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(x + 1)^2 + (y - 3)^2 = 4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$(x + 1)^2 + (y - 3)^2 = 8$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$(x - 1)^2 + (y + 3)^2 = 16$",
+          "note": "no cambió el signo a las coordenadas del centro en la fórmula"
+        },
+        {
+          "pos": "C",
+          "text": "$(x + 1)^2 + (y - 3)^2 = 4$",
+          "note": "usó el radio $r$ en lugar de $r^2$ en el lado derecho"
+        },
+        {
+          "pos": "D",
+          "text": "$(x + 1)^2 + (y - 3)^2 = 8$",
+          "note": "calculó el lado derecho como $2r$ en vez de $r^2$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Forma canónica de la circunferencia",
+          "content": "Es $(x-h)^2 + (y-k)^2 = r^2$ con centro $(h,k)$ y radio $r$. Con $(h,k)=(-1,3)$ y $r=4$: $(x-(-1))^2 + (y-3)^2 = 4^2$, es decir $(x+1)^2 + (y-3)^2 = 16$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $(x-1)^2+(y+3)^2=16$ no cambió el signo del centro: $h=-1$ da $(x+1)$ y $k=3$ da $(y-3)$. 2) El lado derecho $=4$ usa $r$ y no $r^2$. 3) El lado derecho $=8$ usa $2r$. El valor correcto es $r^2=16$.",
+          "latexContent": "(x-h)^2+(y-k)^2=r^2 \\\\ (x+1)^2+(y-3)^2=4^2=16"
+        },
+        {
+          "layer": 3,
+          "title": "Ecuación de la circunferencia",
+          "content": "La forma canónica sale de la definición: distancia constante $r$ al centro. Al desarrollarla se obtiene la forma general $x^2+y^2+Dx+Ey+F=0$; para volver a la canónica se completa el cuadrado. Repasa: distancia entre dos puntos y completar el cuadrado.",
+          "latexContent": null
+        }
+      ],
+      "n": 8
+    },
+    {
+      "questionId": "cmtgaodwq000613fr81p6qaeo",
+      "tag": "G2",
+      "topic": "Geometría analítica",
+      "topicId": "cmrr1ixk3000ohi3n57zpc8lv",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        4,
+        5,
+        6
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 101",
+        "uam_cbi.pdf p. 102",
+        "uam_cbi.pdf p. 104"
+      ],
+      "stem": "¿Cuál es la pendiente de cualquier recta perpendicular a la recta $2x + 3y = 6$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-\\dfrac{3}{2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-\\dfrac{2}{3}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{2}{3}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{3}{2}$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$-\\dfrac{3}{2}$",
+          "note": "invirtió la pendiente pero no le cambió el signo"
+        },
+        {
+          "pos": "B",
+          "text": "$-\\dfrac{2}{3}$",
+          "note": "dio la pendiente de la recta dada, no la de la perpendicular"
+        },
+        {
+          "pos": "C",
+          "text": "$\\dfrac{2}{3}$",
+          "note": "le quitó el signo a la pendiente sin invertir la fracción"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Pendientes perpendiculares: recíproco negativo",
+          "content": "Se despeja: $3y = -2x + 6$, $y = -\\dfrac{2}{3}x + 2$, así que la pendiente de la recta dada es $-\\dfrac{2}{3}$. La perpendicular tiene pendiente $-\\dfrac{1}{(-2/3)} = \\dfrac{3}{2}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Escribe la recta como $y = mx + b$: $y = -\\dfrac{2}{3}x + 2$. 2) Pendiente $m_1 = -\\dfrac{2}{3}$. 3) La perpendicular cumple $m_1 \\cdot m_2 = -1$, entonces $m_2 = -\\dfrac{1}{m_1} = \\dfrac{3}{2}$. El valor $-\\dfrac{2}{3}$ es la pendiente de la recta original; $-\\dfrac{3}{2}$ invierte sin corregir el signo; $\\dfrac{2}{3}$ solo cambia el signo sin invertir.",
+          "latexContent": "2x + 3y = 6 \\implies y = -\\dfrac{2}{3}x + 2 \\\\ m_1 = -\\dfrac{2}{3}, \\quad m_2 = -\\dfrac{1}{m_1} = \\dfrac{3}{2}"
+        },
+        {
+          "layer": 3,
+          "title": "Rectas paralelas y perpendiculares",
+          "content": "Dos rectas son paralelas si tienen la misma pendiente y perpendiculares si el producto de sus pendientes es $-1$ (una es el recíproco negativo de la otra). Repasa: forma pendiente-ordenada y condición de perpendicularidad.",
+          "latexContent": null
+        }
+      ],
+      "n": 9
+    },
+    {
+      "questionId": "cmtgaoeuq000b13fr8dqv2071",
+      "tag": "G3",
+      "topic": "Geometría analítica",
+      "topicId": "cmrr1ixk3000ohi3n57zpc8lv",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "conceptual",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 98",
+        "uam_cbi.pdf p. 103"
+      ],
+      "stem": "Los puntos $A(-2, 1)$ y $B(4, 9)$ son los extremos de un diámetro de una circunferencia. ¿Cuál es su ecuación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(x - 1)^2 + (y - 5)^2 = 100$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$(x - 1)^2 + (y - 5)^2 = 25$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$(x - 3)^2 + (y - 4)^2 = 25$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$(x + 1)^2 + (y + 5)^2 = 25$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$(x - 1)^2 + (y - 5)^2 = 100$",
+          "note": "usó el diámetro al cuadrado ($10^2$) en lugar del radio al cuadrado"
+        },
+        {
+          "pos": "C",
+          "text": "$(x - 3)^2 + (y - 4)^2 = 25$",
+          "note": "tomó el vector $B - A = (6, 8)$ dividido entre $2$ como centro, en vez del punto medio"
+        },
+        {
+          "pos": "D",
+          "text": "$(x + 1)^2 + (y + 5)^2 = 25$",
+          "note": "cambió el signo de las coordenadas del centro"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Centro en el punto medio, radio la mitad del diámetro",
+          "content": "El centro es el punto medio de $AB$: $\\left(\\dfrac{-2+4}{2}, \\dfrac{1+9}{2}\\right) = (1, 5)$. El diámetro mide $\\sqrt{(4-(-2))^2 + (9-1)^2} = \\sqrt{100} = 10$, así que $r = 5$ y $r^2 = 25$. La ecuación es $(x-1)^2 + (y-5)^2 = 25$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El lado derecho $=100$ usó el diámetro al cuadrado en vez del radio al cuadrado ($5^2=25$). 2) El centro $(3,4)$ viene del vector $B-A=(6,8)$ dividido entre $2$, no del punto medio $\\left(\\tfrac{-2+4}{2},\\tfrac{1+9}{2}\\right)=(1,5)$. 3) $(x+1)^2+(y+5)^2$ cambió el signo del centro.",
+          "latexContent": "C = \\left(\\dfrac{-2+4}{2}, \\dfrac{1+9}{2}\\right) = (1, 5) \\\\ d(A,B) = \\sqrt{6^2 + 8^2} = 10, \\quad r = 5 \\\\ (x-1)^2 + (y-5)^2 = 25"
+        },
+        {
+          "layer": 3,
+          "title": "Circunferencia a partir de un diámetro",
+          "content": "Dado un diámetro, el centro es el punto medio de sus extremos y el radio es la mitad de su longitud. Fórmulas clave: punto medio $\\left(\\dfrac{x_1+x_2}{2}, \\dfrac{y_1+y_2}{2}\\right)$ y distancia $\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$. Repasa: punto medio, distancia entre puntos y forma canónica.",
+          "latexContent": null
+        }
+      ],
+      "n": 10
+    },
+    {
+      "questionId": "cmtganrov00011p1t99oe9z9v",
+      "tag": "L1",
+      "topic": "Límites y continuidad",
+      "topicId": "cmrr1iy5e000qhi3nwcv9ol74",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el valor de $\\displaystyle\\lim_{x \\to 2} (x^2 + 3x - 1)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$7$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$8$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$9$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$-1$",
+          "note": "evaluó en $x\\to0$ en lugar de $x\\to2$"
+        },
+        {
+          "pos": "B",
+          "text": "$7$",
+          "note": "derivó la expresión ($2x+3$) y evaluó en $2$, creyendo que el límite lo exige"
+        },
+        {
+          "pos": "C",
+          "text": "$8$",
+          "note": "interpretó $3x$ como $3+x$: $4 + 5 - 1$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Límite de un polinomio: sustitución directa",
+          "content": "Los polinomios son continuos en todo $\\mathbb{R}$, así que el límite se obtiene sustituyendo: $\\lim_{x\\to2}(x^2+3x-1)=2^2+3(2)-1=4+6-1=9$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) La función es un polinomio (continua). 2) Sustituye $x=2$: $(2)^2+3(2)-1=4+6-1=9$. El valor $7$ sale de derivar ($2x+3$) y evaluar, algo que solo se usa en indeterminaciones; $-1$ evalúa en $x\\to0$; $8$ interpreta $3x$ como $3+x$.",
+          "latexContent": "\\lim_{x\\to 2}(x^2+3x-1) = 2^2+3(2)-1 = 4+6-1 = 9"
+        },
+        {
+          "layer": 3,
+          "title": "Límites por sustitución directa",
+          "content": "Si $f$ es continua en $a$ (polinomios, y racionales donde el denominador no se anula), entonces $\\lim_{x\\to a} f(x)=f(a)$. Solo cuando la sustitución da una indeterminación hay que factorizar, racionalizar o usar otra técnica. Repasa: continuidad y propiedades de los límites.",
+          "latexContent": null
+        }
+      ],
+      "n": 11
+    },
+    {
+      "questionId": "cmtgansgo00061p1tmewu3js0",
+      "tag": "L2",
+      "topic": "Límites y continuidad",
+      "topicId": "cmrr1iy5e000qhi3nwcv9ol74",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el valor de $\\displaystyle\\lim_{x \\to 3} \\dfrac{x^2 - 9}{x - 3}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$6$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$0$",
+          "note": "sustituyó directo, obtuvo $\\dfrac{0}{0}$ y lo interpretó como $0$"
+        },
+        {
+          "pos": "B",
+          "text": "$1$",
+          "note": "creyó que $\\dfrac{x^2-9}{x-3}$ se simplifica a $1$"
+        },
+        {
+          "pos": "C",
+          "text": "$3$",
+          "note": "simplificó a $x+3$ pero evaluó en $x\\to0$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Indeterminación 0/0: factorizar y cancelar",
+          "content": "Sustituir da $\\dfrac{0}{0}$. El numerador es una diferencia de cuadrados: $x^2-9=(x-3)(x+3)$. Se cancela $(x-3)$ y queda $x+3$, cuyo límite en $3$ es $6$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Sustituye: $\\dfrac{0}{0}$, indeterminado. 2) Factoriza: $x^2-9=(x-3)(x+3)$. 3) Cancela $(x-3)$ (válido porque $x\\to3$ pero $x\\ne3$): queda $x+3$. 4) Sustituye: $3+3=6$. El valor $0$ se queda en la indeterminación; $1$ supone que la fracción se simplifica a $1$; $3$ evalúa $x+3$ en $x\\to0$.",
+          "latexContent": "\\lim_{x\\to 3}\\dfrac{x^2-9}{x-3} = \\lim_{x\\to 3}\\dfrac{(x-3)(x+3)}{x-3} = \\lim_{x\\to 3}(x+3) = 6"
+        },
+        {
+          "layer": 3,
+          "title": "Formas indeterminadas",
+          "content": "$\\tfrac{0}{0}$ no significa que el límite no exista: significa que hay que transformar la expresión (factorizar, racionalizar, dividir entre la mayor potencia) antes de sustituir. Repasa: diferencia de cuadrados, factorización de trinomios y límites indeterminados.",
+          "latexContent": null
+        }
+      ],
+      "n": 12
+    },
+    {
+      "questionId": "cmtgant8e000b1p1t5ku1ygk6",
+      "tag": "L3",
+      "topic": "Límites y continuidad",
+      "topicId": "cmrr1iy5e000qhi3nwcv9ol74",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el valor de $\\displaystyle\\lim_{x \\to \\infty} \\dfrac{4x^2 - x + 5}{2x^2 + 3}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{1}{2}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$+\\infty$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$0$",
+          "note": "supuso que toda función racional tiende a $0$ en el infinito"
+        },
+        {
+          "pos": "C",
+          "text": "$\\dfrac{1}{2}$",
+          "note": "invirtió el cociente de coeficientes principales ($2/4$)"
+        },
+        {
+          "pos": "D",
+          "text": "$+\\infty$",
+          "note": "supuso que el numerador domina, sin ver que los grados son iguales"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Grados iguales: cociente de coeficientes principales",
+          "content": "El numerador y el denominador son de grado $2$. Al dividir todo entre $x^2$, los términos $\\tfrac{x}{x^2}$, $\\tfrac{5}{x^2}$ y $\\tfrac{3}{x^2}$ tienden a $0$, y queda $\\dfrac{4}{2}=2$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $0$ solo ocurre si el grado del numerador es menor que el del denominador. 2) $\\tfrac{1}{2}$ es el cociente invertido ($2/4$). 3) $+\\infty$ correspondería a que el numerador fuera de grado mayor. Aquí los grados son iguales, así que el límite es $\\tfrac{4}{2}=2$.",
+          "latexContent": "\\lim_{x\\to\\infty}\\dfrac{4x^2-x+5}{2x^2+3} = \\lim_{x\\to\\infty}\\dfrac{4-\\frac{1}{x}+\\frac{5}{x^2}}{2+\\frac{3}{x^2}} = \\dfrac{4}{2} = 2"
+        },
+        {
+          "layer": 3,
+          "title": "Límites al infinito de funciones racionales",
+          "content": "Compara los grados: si el del numerador es menor, el límite es $0$; si son iguales, es el cociente de coeficientes principales; si el del numerador es mayor, el límite es $\\pm\\infty$. Repasa: comportamiento asintótico y asíntotas horizontales.",
+          "latexContent": null
+        }
+      ],
+      "n": 13
+    },
+    {
+      "questionId": "cmtganu03000g1p1t0rvf494r",
+      "tag": "L4",
+      "topic": "Límites y continuidad",
+      "topicId": "cmrr1iy5e000qhi3nwcv9ol74",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Para qué valor de $k$ la función $f(x) = \\begin{cases} x^2 + 1, & x \\le 2 \\\\ kx - 3, & x > 2 \\end{cases}$ es continua en $x = 2$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2.5$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$8$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$1$",
+          "note": "al despejar sumó $-3$ a ambos lados: $2k = 5 - 3$"
+        },
+        {
+          "pos": "B",
+          "text": "$2.5$",
+          "note": "omitió el término $-3$ y resolvió $2k = 5$"
+        },
+        {
+          "pos": "D",
+          "text": "$8$",
+          "note": "omitió el coeficiente de $x$: resolvió $k - 3 = 5$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Continuidad: las dos ramas coinciden en el punto",
+          "content": "Para que $f$ sea continua en $x=2$, el valor de la rama izquierda debe igualar al de la derecha: $2^2+1 = k(2)-3$. Es decir $5 = 2k-3$, de donde $k=4$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Rama izquierda en $x=2$: $2^2+1=5$. 2) Rama derecha en $x=2$: $2k-3$. 3) Iguala: $5=2k-3$. 4) Despeja: $2k=8\\Rightarrow k=4$. El valor $1$ resta $3$ en lugar de sumarlo al pasar el término; $2.5$ ignora el $-3$; $8$ omite el coeficiente de $x$ ($k-3=5$).",
+          "latexContent": "2^2+1 = k(2)-3 \\\\ 5 = 2k-3 \\\\ 2k = 8 \\implies k = 4"
+        },
+        {
+          "layer": 3,
+          "title": "Continuidad de funciones definidas por partes",
+          "content": "Una función por partes es continua en la frontera si los límites laterales existen y coinciden con el valor de la función. Igualar las expresiones de ambas ramas en el punto de corte da la condición sobre los parámetros. Repasa: límites laterales y definición de continuidad en un punto.",
+          "latexContent": null
+        }
+      ],
+      "n": 14
+    },
+    {
+      "questionId": "cmtganytz0001g0xv2i82g70t",
+      "tag": "D1",
+      "topic": "Derivadas",
+      "topicId": "cmrr1iyn9000shi3nxbnz5h9d",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cbs.pdf p. 49"
+      ],
+      "stem": "¿Cuál es la derivada de $f(x) = \\ln x + x^3$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{1}{x} + 3x^2$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{1}{x} + x^2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$x + 3x^2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\ln x + 3x^2$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$\\dfrac{1}{x} + x^2$",
+          "note": "derivó $x^3$ como $x^2$, sin bajar el exponente como coeficiente"
+        },
+        {
+          "pos": "C",
+          "text": "$x + 3x^2$",
+          "note": "usó $\\dfrac{d}{dx}\\ln x = x$ en lugar de $\\dfrac{1}{x}$"
+        },
+        {
+          "pos": "D",
+          "text": "$\\ln x + 3x^2$",
+          "note": "solo derivó el segundo término y dejó $\\ln x$ intacto"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Derivada término a término",
+          "content": "La derivada de $\\ln x$ es $\\dfrac{1}{x}$ y la de $x^3$ es $3x^2$ (regla de la potencia). Entonces $f'(x)=\\dfrac{1}{x}+3x^2$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $\\dfrac{1}{x}+x^2$ derivó mal la potencia: $x^3\\to3x^{2}$, el exponente baja como factor. 2) $x+3x^2$ supone $\\dfrac{d}{dx}\\ln x = x$, que es falso. 3) $\\ln x+3x^2$ olvidó derivar el primer término. La derivada de $\\ln x$ es exactamente $\\dfrac{1}{x}$.",
+          "latexContent": "\\dfrac{d}{dx}\\ln x = \\dfrac{1}{x}, \\quad \\dfrac{d}{dx}x^3 = 3x^2 \\\\ f'(x) = \\dfrac{1}{x} + 3x^2"
+        },
+        {
+          "layer": 3,
+          "title": "Reglas de derivación básicas",
+          "content": "Memoriza: $\\dfrac{d}{dx}x^n=nx^{n-1}$, $\\dfrac{d}{dx}\\ln x=\\dfrac{1}{x}$, $\\dfrac{d}{dx}e^x=e^x$. La derivada de una suma es la suma de las derivadas. Repasa: tabla de derivadas elementales y regla de la potencia.",
+          "latexContent": null
+        }
+      ],
+      "n": 15
+    },
+    {
+      "questionId": "cmtganzrl0006g0xvtv7vbfxf",
+      "tag": "D2",
+      "topic": "Derivadas",
+      "topicId": "cmrr1iyn9000shi3nxbnz5h9d",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "conceptual",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 105"
+      ],
+      "stem": "¿Cuál es la derivada de $y = (2x + 5)^3$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$3(2x + 5)^2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$6(2x + 5)^3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6(2x + 5)^2$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$6(2x + 5)$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$3(2x + 5)^2$",
+          "note": "olvidó multiplicar por la derivada del interior ($2$)"
+        },
+        {
+          "pos": "B",
+          "text": "$6(2x + 5)^3$",
+          "note": "no bajó el exponente: dejó la potencia en $3$"
+        },
+        {
+          "pos": "D",
+          "text": "$6(2x + 5)$",
+          "note": "redujo el exponente hasta $1$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Regla de la cadena",
+          "content": "Con $u = 2x+5$, se tiene $y = u^3$. Entonces $y' = 3u^2\\cdot u' = 3(2x+5)^2\\cdot 2 = 6(2x+5)^2$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $3(2x+5)^2$ derivó la potencia pero olvidó multiplicar por la derivada del interior, que es $2$. 2) $6(2x+5)^3$ multiplicó por $2$ pero no bajó el exponente. 3) $6(2x+5)$ redujo el exponente de más, hasta $1$. La cadena da exponente $2$ y factor $3\\cdot2=6$.",
+          "latexContent": "y = (2x+5)^3 \\\\ y' = 3(2x+5)^{2}\\cdot\\dfrac{d}{dx}(2x+5) = 3(2x+5)^2\\cdot 2 = 6(2x+5)^2"
+        },
+        {
+          "layer": 3,
+          "title": "La regla de la cadena",
+          "content": "Para derivar una composición $f(g(x))$: deriva la función de afuera dejando el interior igual, y multiplica por la derivada del interior. El error más común es omitir ese último factor. Repasa: regla de la cadena y derivada de potencias de funciones.",
+          "latexContent": null
+        }
+      ],
+      "n": 16
+    },
+    {
+      "questionId": "cmtgao0pd000bg0xvpedqlje5",
+      "tag": "D3",
+      "topic": "Derivadas",
+      "topicId": "cmrr1iyn9000shi3nxbnz5h9d",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 105"
+      ],
+      "stem": "¿Cuál es la pendiente de la recta tangente a la curva $y = x^2 - 4x + 1$ en el punto donde $x = 3$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$6$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$10$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$-2$",
+          "note": "evaluó la función $y(3)=9-12+1$ en vez de la derivada: dio la ordenada, no la pendiente"
+        },
+        {
+          "pos": "C",
+          "text": "$6$",
+          "note": "olvidó derivar el término $-4x$: usó $y' = 2x$"
+        },
+        {
+          "pos": "D",
+          "text": "$10$",
+          "note": "error de signo: usó $y' = 2x + 4$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La pendiente de la tangente es la derivada evaluada en el punto",
+          "content": "Se deriva: $y'=2x-4$. Se evalúa en $x=3$: $y'(3)=2(3)-4=2$. Esa es la pendiente de la recta tangente.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Deriva: $y'=2x-4$. 2) Sustituye $x=3$: $2(3)-4=2$. El valor $-2$ es $y(3)$, la coordenada $y$ del punto, no la pendiente; $6$ olvida derivar $-4x$ (usa $y'=2x$); $10$ cambia el signo ($y'=2x+4$).",
+          "latexContent": "y' = 2x - 4 \\\\ y'(3) = 2(3) - 4 = 2"
+        },
+        {
+          "layer": 3,
+          "title": "Interpretación geométrica de la derivada",
+          "content": "La derivada $f'(a)$ es la pendiente de la recta tangente a la gráfica de $f$ en $x=a$, y también la razón de cambio instantánea. Para la ecuación de la tangente se usa $y - f(a) = f'(a)(x - a)$. Repasa: derivada como pendiente y recta tangente.",
+          "latexContent": null
+        }
+      ],
+      "n": 17
+    },
+    {
+      "questionId": "cmtgao1mu000gg0xvwtv1tjng",
+      "tag": "D4",
+      "topic": "Derivadas",
+      "topicId": "cmrr1iyn9000shi3nxbnz5h9d",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 105"
+      ],
+      "stem": "La curva $y = x^3 - 6x^2 + 9x + 2$ tiene dos puntos con tangente horizontal. ¿Cuál es la abscisa ($x$) del que cumple $x > 2$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$1$",
+          "note": "encontró los dos puntos críticos ($x=1$ y $x=3$) pero eligió el que no cumple $x > 2$"
+        },
+        {
+          "pos": "B",
+          "text": "$2$",
+          "note": "resolvió $y'' = 6x - 12 = 0$: halló el punto de inflexión, no una tangente horizontal"
+        },
+        {
+          "pos": "D",
+          "text": "$4$",
+          "note": "resolvió $x^2 - 4x = 0$ omitiendo el $+3$: obtuvo $x = 0$ o $x = 4$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Tangente horizontal: donde la derivada se anula",
+          "content": "Se deriva: $y'=3x^2-12x+9$. Se iguala a cero y se factoriza: $3(x-1)(x-3)=0$, así que $x=1$ o $x=3$. El que cumple $x>2$ es $x=3$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $y'=3x^2-12x+9$. 2) Factor común $3$: $3(x^2-4x+3)$. 3) Factoriza: $(x-1)(x-3)$. 4) Raíces $x=1$ y $x=3$; con $x>2$ queda $x=3$. El valor $1$ es la otra raíz; $2$ resuelve $y''=0$ (inflexión); $4$ pierde el $+3$ al factorizar ($x^2-4x=0$).",
+          "latexContent": "y' = 3x^2 - 12x + 9 = 3(x-1)(x-3) = 0 \\implies x = 1 \\text{ o } x = 3"
+        },
+        {
+          "layer": 3,
+          "title": "Puntos críticos y análisis de la gráfica",
+          "content": "Los puntos con tangente horizontal (máximos, mínimos o de inflexión horizontal) están donde $f'(x)=0$. La segunda derivada distingue máximos ($f''<0$) de mínimos ($f''>0$). Repasa: criterios de la primera y segunda derivada.",
+          "latexContent": null
+        }
+      ],
+      "n": 18
+    },
+    {
+      "questionId": "cmtgan1tt00012w4vz6s8evv1",
+      "tag": "I1",
+      "topic": "Integrales",
+      "topicId": "cmrr1izbg000uhi3nldwds9yq",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el resultado de $\\displaystyle\\int (6x^2 - 4x + 3)\\,dx$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$6x^3 - 4x^2 + 3x + C$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2x^3 - 2x^2 + 3x + C$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$2x^3 - 4x^2 + 3x + C$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$2x^3 - 2x^2 + 3x$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$6x^3 - 4x^2 + 3x + C$",
+          "note": "subió el exponente pero no dividió cada término entre el nuevo exponente"
+        },
+        {
+          "pos": "C",
+          "text": "$2x^3 - 4x^2 + 3x + C$",
+          "note": "integró bien el término cuadrático pero no dividió el lineal $-4x$ entre su nuevo exponente"
+        },
+        {
+          "pos": "D",
+          "text": "$2x^3 - 2x^2 + 3x$",
+          "note": "olvidó la constante de integración $+C$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Regla de la potencia para integrar",
+          "content": "Se aplica $\\int x^n\\,dx=\\dfrac{x^{n+1}}{n+1}+C$ término a término: $\\dfrac{6x^3}{3}-\\dfrac{4x^2}{2}+3x+C=2x^3-2x^2+3x+C$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $6x^3-4x^2+3x+C$ subió los exponentes pero no dividió entre ellos. 2) $2x^3-4x^2+3x+C$ integró el término cuadrático pero dejó $-4x$ sin dividir entre $2$. 3) $2x^3-2x^2+3x$ no lleva la constante $+C$, e ignora que hay infinitas antiderivadas que difieren en una constante. Para comprobar, deriva $2x^3-2x^2+3x+C$ y regresas al integrando $6x^2-4x+3$.",
+          "latexContent": "\\int (6x^2-4x+3)\\,dx = \\dfrac{6x^3}{3}-\\dfrac{4x^2}{2}+3x+C = 2x^3-2x^2+3x+C"
+        },
+        {
+          "layer": 3,
+          "title": "Integral indefinida y antiderivada",
+          "content": "Integrar es la operación inversa de derivar. Para monomios, sube el exponente en uno y divide entre el nuevo exponente; nunca olvides $+C$. Verifica derivando el resultado. Repasa: reglas básicas de integración y linealidad de la integral.",
+          "latexContent": null
+        }
+      ],
+      "n": 19
+    },
+    {
+      "questionId": "cmtgan2lh00062w4vk982pxlj",
+      "tag": "I2",
+      "topic": "Integrales",
+      "topicId": "cmrr1izbg000uhi3nldwds9yq",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el valor de $\\displaystyle\\int_{1}^{3} (2x + 1)\\,dx$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$6$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$10$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$12$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$4$",
+          "note": "evaluó el integrando en los límites sin integrar: $(2\\cdot3+1)-(2\\cdot1+1)$"
+        },
+        {
+          "pos": "B",
+          "text": "$6$",
+          "note": "usó una antiderivada incorrecta ($3x$) tras sumar $2+1$"
+        },
+        {
+          "pos": "D",
+          "text": "$12$",
+          "note": "evaluó solo en el límite superior, sin restar el inferior"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Teorema fundamental del cálculo",
+          "content": "Se integra: $\\int(2x+1)\\,dx=x^2+x$. Luego se evalúa entre los límites: $[x^2+x]_1^3=(9+3)-(1+1)=12-2=10$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Antiderivada: $\\int(2x+1)\\,dx=x^2+x$ (sin $+C$ porque es definida). 2) En $x=3$: $9+3=12$. 3) En $x=1$: $1+1=2$. 4) Resta superior menos inferior: $12-2=10$. El valor $12$ omite restar el límite inferior; $4$ evalúa el integrando sin integrar; $6$ usa la antiderivada equivocada $3x$.",
+          "latexContent": "\\int_{1}^{3}(2x+1)\\,dx = \\big[x^2+x\\big]_{1}^{3} = (9+3)-(1+1) = 10"
+        },
+        {
+          "layer": 3,
+          "title": "Integral definida",
+          "content": "La integral definida es un número: $\\int_a^b f = F(b)-F(a)$, con $F$ cualquier antiderivada. Representa el área con signo entre la curva y el eje $x$. Repasa: teorema fundamental del cálculo y evaluación en los límites.",
+          "latexContent": null
+        }
+      ],
+      "n": 20
+    },
+    {
+      "questionId": "cmtgan3d7000b2w4v2z5j90qw",
+      "tag": "I3",
+      "topic": "Integrales",
+      "topicId": "cmrr1izbg000uhi3nldwds9yq",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el área de la región limitada por la curva $y = x^2$, el eje $x$ y las rectas $x = 0$ y $x = 3$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$4.5$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$9$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$13.5$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$3$",
+          "note": "usó $\\int x^2\\,dx = x$, bajando el exponente en vez de subirlo"
+        },
+        {
+          "pos": "B",
+          "text": "$4.5$",
+          "note": "usó $\\dfrac{x^2}{2}$ como antiderivada y evaluó en $x=3$: $\\dfrac{9}{2}$"
+        },
+        {
+          "pos": "D",
+          "text": "$13.5$",
+          "note": "aproximó la región como un triángulo de base $3$ y altura $y(3)=9$: $\\dfrac{3\\times9}{2}$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El área bajo una curva es una integral definida",
+          "content": "El área es $\\displaystyle\\int_0^3 x^2\\,dx$. La antiderivada es $\\dfrac{x^3}{3}$. Evaluando: $\\dfrac{3^3}{3}-\\dfrac{0^3}{3}=\\dfrac{27}{3}-0=9$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Plantea $\\int_0^3 x^2\\,dx$. 2) Integra con la regla de la potencia: $\\dfrac{x^3}{3}$. 3) Evalúa: $\\dfrac{27}{3}-0=9$. El valor $13.5$ usa el área de un triángulo, que no aplica porque la frontera superior es curva; $3$ baja el exponente ($\\int x^2=x$); $4.5$ usa $\\tfrac{x^2}{2}$ como antiderivada.",
+          "latexContent": "\\text{Área}=\\int_{0}^{3} x^2\\,dx=\\left[\\dfrac{x^3}{3}\\right]_{0}^{3}=\\dfrac{27}{3}-0=9"
+        },
+        {
+          "layer": 3,
+          "title": "Área entre una curva y el eje",
+          "content": "Si $f(x)\\ge0$ en $[a,b]$, el área es $\\int_a^b f(x)\\,dx$. Aproximar con figuras rectas (triángulos, trapecios) solo da estimaciones; la integral da el valor exacto. Repasa: interpretación geométrica de la integral y regla de la potencia.",
+          "latexContent": null
+        }
+      ],
+      "n": 21
+    },
+    {
+      "questionId": "cmtgan44v000g2w4v9rhnbeej",
+      "tag": "I4",
+      "topic": "Integrales",
+      "topicId": "cmrr1izbg000uhi3nldwds9yq",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el valor de $\\displaystyle\\int_{1}^{2} 2x\\,(x^2 - 1)^3\\,dx$? (Sugerencia: $u = x^2 - 1$.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$20.25$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$27$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$40.5$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$108$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$27$",
+          "note": "integró $u^3$ como $\\dfrac{u^4}{3}$, dividiendo entre el exponente viejo: $\\dfrac{81}{3}$"
+        },
+        {
+          "pos": "C",
+          "text": "$40.5$",
+          "note": "integró $u^3$ como $\\dfrac{u^4}{2}$: $\\dfrac{81}{2}$"
+        },
+        {
+          "pos": "D",
+          "text": "$108$",
+          "note": "no integró: evaluó $2x(x^2-1)^3$ en $x=2$: $4\\times27$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Integración por sustitución",
+          "content": "Con $u=x^2-1$ se tiene $du=2x\\,dx$, que es justo el factor presente. Los límites cambian: $x=1\\Rightarrow u=0$ y $x=2\\Rightarrow u=3$. La integral queda $\\int_0^3 u^3\\,du=\\left[\\dfrac{u^4}{4}\\right]_0^3=\\dfrac{81}{4}=20.25$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $u=x^2-1$, $du=2x\\,dx$. 2) Reescribe: $\\int 2x(x^2-1)^3\\,dx=\\int u^3\\,du$. 3) Cambia los límites a $u$: de $0$ a $3$. 4) Integra: $\\dfrac{u^4}{4}$. 5) Evalúa: $\\dfrac{81}{4}=20.25$. Los valores $27$ y $40.5$ dividen $u^4$ entre $3$ o entre $2$ (el exponente viejo); $108$ no integra: evalúa el integrando en $x=2$.",
+          "latexContent": "u=x^2-1,\\ du=2x\\,dx \\\\ \\int_{1}^{2} 2x(x^2-1)^3\\,dx = \\int_{0}^{3} u^3\\,du = \\left[\\dfrac{u^4}{4}\\right]_{0}^{3} = \\dfrac{81}{4} = 20.25"
+        },
+        {
+          "layer": 3,
+          "title": "Método de sustitución",
+          "content": "La sustitución funciona cuando el integrando contiene una función y un múltiplo de su derivada. En integrales definidas conviene cambiar los límites a la nueva variable. Repasa: regla de la cadena inversa y cambio de variable.",
+          "latexContent": null
+        }
+      ],
+      "n": 22
+    },
+    {
+      "questionId": "cmtgan4wj000l2w4vif1brm6r",
+      "tag": "I5",
+      "topic": "Integrales",
+      "topicId": "cmrr1izbg000uhi3nldwds9yq",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "Si $F(x)$ es una antiderivada de $f(x) = \\dfrac{1}{x^2}$, ¿cuál es $F(x)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{1}{x} + C$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-\\dfrac{1}{3x^3} + C$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$-\\dfrac{2}{x^3} + C$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$-\\dfrac{1}{x} + C$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$\\dfrac{1}{x} + C$",
+          "note": "olvidó el signo negativo que aparece al integrar $x^{-2}$"
+        },
+        {
+          "pos": "B",
+          "text": "$-\\dfrac{1}{3x^3} + C$",
+          "note": "trató $\\dfrac{1}{x^2}$ como $x^2$ y subió el exponente"
+        },
+        {
+          "pos": "C",
+          "text": "$-\\dfrac{2}{x^3} + C$",
+          "note": "derivó $\\dfrac{1}{x^2}$ en lugar de integrarla"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Escribir con exponente negativo antes de integrar",
+          "content": "Como $\\dfrac{1}{x^2}=x^{-2}$, la regla de la potencia da $\\dfrac{x^{-2+1}}{-2+1}=\\dfrac{x^{-1}}{-1}=-\\dfrac{1}{x}$. Entonces $F(x)=-\\dfrac{1}{x}+C$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $\\dfrac{1}{x}+C$ pierde el signo: al dividir entre $-1$ el resultado es negativo. 2) $-\\dfrac{1}{3x^3}+C$ sube el exponente, como si el integrando fuera $x^2$. 3) $-\\dfrac{2}{x^3}+C$ es la derivada de $\\dfrac{1}{x^2}$, no su integral. Comprueba: $\\dfrac{d}{dx}\\left(-\\dfrac{1}{x}\\right)=\\dfrac{1}{x^2}$.",
+          "latexContent": "\\int x^{-2}\\,dx = \\dfrac{x^{-1}}{-1}+C = -\\dfrac{1}{x}+C"
+        },
+        {
+          "layer": 3,
+          "title": "Integrales de potencias negativas",
+          "content": "La regla $\\int x^n\\,dx=\\dfrac{x^{n+1}}{n+1}+C$ vale para todo $n\\ne-1$. El caso $n=-1$ es la excepción: $\\int x^{-1}\\,dx=\\ln|x|+C$. Reescribe las fracciones como potencias antes de integrar. Repasa: leyes de exponentes y regla de la potencia.",
+          "latexContent": null
+        }
+      ],
+      "n": 23
+    },
+    {
+      "questionId": "cmtgamuyh0001cyn5dkme31e9",
+      "tag": "S1",
+      "topic": "Series y sucesiones",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "difficulty": "BASIC",
+      "format": "NUMERIC_SERIES",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_csh.pdf p. 33"
+      ],
+      "stem": "En la sucesión $4,\\ 7,\\ 14,\\ 17,\\ 24,\\ 27,\\ \\dots$, ¿cuál es el siguiente término?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$30$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$32$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$34$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$37$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$30$",
+          "note": "aplicó $+3$ cuando en el patrón alternante tocaba $+7$"
+        },
+        {
+          "pos": "B",
+          "text": "$32$",
+          "note": "supuso diferencia constante igual al promedio de $3$ y $7$: $+5$"
+        },
+        {
+          "pos": "D",
+          "text": "$37$",
+          "note": "sumó ambos incrementos del patrón: $3+7$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Patrón de diferencias alternadas",
+          "content": "Las diferencias entre términos consecutivos son $3, 7, 3, 7, 3, \\dots$ Tras el $27$ (obtenido con $+3$) toca sumar $7$: $27+7=34$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Resta términos consecutivos: $7-4=3$, $14-7=7$, $17-14=3$, $24-17=7$, $27-24=3$. 2) El patrón es $+3, +7$ repetido. 3) El último salto fue $+3$, así que el siguiente es $+7$: $27+7=34$. El valor $30$ repite el $+3$; $32$ promedia las dos diferencias; $37$ suma las dos ($3+7$).",
+          "latexContent": "4 \\xrightarrow{+3} 7 \\xrightarrow{+7} 14 \\xrightarrow{+3} 17 \\xrightarrow{+7} 24 \\xrightarrow{+3} 27 \\xrightarrow{+7} 34"
+        },
+        {
+          "layer": 3,
+          "title": "Cómo atacar una sucesión numérica",
+          "content": "Calcula siempre la sucesión de diferencias. Si es constante, es aritmética; si las diferencias forman su propio patrón (alternado, aritmético, geométrico), aplícalo. Comprueba tu regla con todos los términos dados antes de extrapolar. Repasa: sucesiones aritméticas, geométricas y de diferencias.",
+          "latexContent": null
+        }
+      ],
+      "n": 24
+    },
+    {
+      "questionId": "cmtgamvwf0006cyn5bqzxuol7",
+      "tag": "S2",
+      "topic": "Series y sucesiones",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "numeric",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        3
+      ],
+      "sourceChunkRefs": [
+        "uam_csh.pdf p. 35"
+      ],
+      "stem": "El término general de una sucesión es $a_n = 3n^2 - n$. ¿Cuál es el cuarto término?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$20$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$44$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$47$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$140$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$20$",
+          "note": "interpretó $n^2$ como $2n$: $3(8)-4$"
+        },
+        {
+          "pos": "C",
+          "text": "$47$",
+          "note": "restó $1$ en vez de $n$: $48-1$"
+        },
+        {
+          "pos": "D",
+          "text": "$140$",
+          "note": "elevó al cuadrado el producto $3n$: $(3\\times4)^2-4=144-4$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sustituir $n=4$ respetando la jerarquía de operaciones",
+          "content": "Se sustituye $n=4$: $a_4=3(4)^2-4$. Primero el exponente ($4^2=16$), luego el producto ($3\\times16=48$), al final la resta: $48-4=44$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $a_4=3(4)^2-4$. 2) Potencia primero: $4^2=16$. 3) Multiplica: $3\\times16=48$. 4) Resta: $48-4=44$. El valor $140$ sale de elevar al cuadrado $3\\times4$ juntos; el exponente solo afecta a $n$. El valor $20$ trata $n^2$ como $2n$; el valor $47$ resta $1$ en vez de restar $n=4$.",
+          "latexContent": "a_4 = 3(4)^2 - 4 = 3(16) - 4 = 48 - 4 = 44"
+        },
+        {
+          "layer": 3,
+          "title": "Término general y jerarquía de operaciones",
+          "content": "El término general permite calcular cualquier término sin listar los anteriores. Al evaluar, sigue el orden: paréntesis, potencias, multiplicaciones y divisiones, sumas y restas. El exponente afecta solo a la base inmediata. Repasa: evaluación de expresiones algebraicas y término general.",
+          "latexContent": null
+        }
+      ],
+      "n": 25
+    },
+    {
+      "questionId": "cmtgamwue000bcyn5tjt22n1g",
+      "tag": "S3",
+      "topic": "Series y sucesiones",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        4
+      ],
+      "sourceChunkRefs": [
+        "uam_cbs.pdf p. 19",
+        "uam_csh.pdf p. 18"
+      ],
+      "stem": "¿Cuál es la suma $2 + 4 + 6 + \\dots + 40$ de los primeros $20$ números pares positivos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$210$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$212$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$400$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$420$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$210$",
+          "note": "sumó $1+2+\\dots+20=210$ y olvidó multiplicar por $2$"
+        },
+        {
+          "pos": "B",
+          "text": "$212$",
+          "note": "sumó $1+\\dots+20=210$ y solo duplicó el primer sumando"
+        },
+        {
+          "pos": "C",
+          "text": "$400$",
+          "note": "promedió $\\dfrac{0+40}{2}$ en vez de $\\dfrac{2+40}{2}$, dejando fuera el primer término"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Suma de una progresión aritmética",
+          "content": "Los pares $2,4,\\dots,40$ forman una progresión aritmética de $20$ términos, con primero $2$ y último $40$. La suma es $S_n=\\dfrac{n(a_1+a_n)}{2}=\\dfrac{20(2+40)}{2}=20\\times21=420$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Del $2$ al $40$ de dos en dos hay $20$ términos. 2) Aplica $S_n=\\dfrac{n(a_1+a_n)}{2}=\\dfrac{20(2+40)}{2}=\\dfrac{840}{2}=420$. El valor $210$ es $1+2+\\dots+20$ sin el factor $2$; $212$ solo duplica el primer sumando; $400$ promedia $\\tfrac{0+40}{2}$ y deja fuera el primer término.",
+          "latexContent": "S_{20}=\\dfrac{20(2+40)}{2}=\\dfrac{20\\times 42}{2}=\\dfrac{840}{2}=420"
+        },
+        {
+          "layer": 3,
+          "title": "Fórmula de Gauss para sumas",
+          "content": "La suma de una progresión aritmética es el número de términos por el promedio del primero y el último. Para los pares $2+4+\\dots+2n$ también sirve $n(n+1)$. Verifica siempre cuántos términos hay. Repasa: suma de progresiones aritméticas y geométricas.",
+          "latexContent": null
+        }
+      ],
+      "n": 26
+    },
+    {
+      "questionId": "cmtgan9k40001omono7spictq",
+      "tag": "M1",
+      "topic": "Matrices y sistemas de ecuaciones",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "En el sistema $\\begin{cases} 2x + y = 13 \\\\ x - y = 2 \\end{cases}$, ¿cuál es el valor de $x + y$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$5$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$8$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$15$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$2$",
+          "note": "de $x-y=2$ despejó $x=2-y$ en vez de $x=y+2$"
+        },
+        {
+          "pos": "B",
+          "text": "$5$",
+          "note": "resolvió bien pero reportó solo $x$"
+        },
+        {
+          "pos": "D",
+          "text": "$15$",
+          "note": "calculó el producto $x\\cdot y = 5\\times3$ en lugar de la suma"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Método de suma y resta (eliminación)",
+          "content": "Sumando las dos ecuaciones se elimina $y$: $(2x+y)+(x-y)=13+2$, es decir $3x=15$, así que $x=5$. De $x-y=2$ se obtiene $y=3$. Por lo tanto $x+y=8$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Suma las ecuaciones: $3x=15\\Rightarrow x=5$. 2) Sustituye en $x-y=2$: $y=3$. 3) Calcula lo pedido: $x+y=8$. El valor $5$ se queda con $x$; $15$ es el producto $x\\cdot y$; $2$ sale de despejar $x=2-y$ (con el signo cambiado) de la segunda ecuación.",
+          "latexContent": "(2x+y)+(x-y)=13+2 \\\\ 3x=15 \\implies x=5 \\\\ 5-y=2 \\implies y=3 \\\\ x+y=8"
+        },
+        {
+          "layer": 3,
+          "title": "Sistemas lineales 2x2",
+          "content": "Un sistema de dos ecuaciones con dos incógnitas se resuelve por eliminación, sustitución o igualación. Tras hallar $x$ y $y$, lee con cuidado qué combinación pide el problema (suma, producto, diferencia). Repasa: los tres métodos de solución y la comprobación.",
+          "latexContent": null
+        }
+      ],
+      "n": 27
+    },
+    {
+      "questionId": "cmtganabq0006omon1xvcndci",
+      "tag": "M2",
+      "topic": "Matrices y sistemas de ecuaciones",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Cuál es el valor de $y$ en el sistema $\\begin{cases} 2x + 3y = 12 \\\\ 2x - y = 4 \\end{cases}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$3$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$4$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$8$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$3$",
+          "note": "resolvió el sistema y reportó $x$ en vez de $y$"
+        },
+        {
+          "pos": "C",
+          "text": "$4$",
+          "note": "al restar las ecuaciones calculó $3y - y = 2y$: $2y = 8$"
+        },
+        {
+          "pos": "D",
+          "text": "$8$",
+          "note": "olvidó dividir: de $4y = 8$ tomó $y = 8$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Eliminar $x$ restando las ecuaciones",
+          "content": "Las dos ecuaciones tienen $2x$. Restándolas: $(2x+3y)-(2x-y)=12-4$, o sea $4y=8$, de donde $y=2$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) El coeficiente de $x$ es $2$ en ambas. 2) Resta la segunda de la primera: $3y-(-y)=4y$ y $12-4=8$. 3) $4y=8\\Rightarrow y=2$. El valor $4$ sale de hacer $3y-y$ en vez de $3y-(-y)$; $8$ omite dividir entre $4$; $3$ es el valor de $x$.",
+          "latexContent": "(2x+3y)-(2x-y)=12-4 \\\\ 4y=8 \\implies y=2"
+        },
+        {
+          "layer": 3,
+          "title": "Elegir qué variable eliminar",
+          "content": "Cuando una variable tiene el mismo coeficiente en ambas ecuaciones, réstalas para eliminarla; si tiene coeficientes opuestos, súmalas. Si no, multiplica una ecuación por una constante para igualar coeficientes. Cuidado con los signos al restar. Repasa: método de eliminación.",
+          "latexContent": null
+        }
+      ],
+      "n": 28
+    },
+    {
+      "questionId": "cmtganb38000bomonj2w7k1bn",
+      "tag": "M3",
+      "topic": "Matrices y sistemas de ecuaciones",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "numeric",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "¿Para qué valor de $k$ el sistema $\\begin{cases} 2x + 4y = 6 \\\\ 3x + ky = 5 \\end{cases}$ NO tiene solución única?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-6$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{8}{3}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$6$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$-6$",
+          "note": "de $2k - 12 = 0$ despejó $2k = -12$"
+        },
+        {
+          "pos": "B",
+          "text": "$2$",
+          "note": "igualó $k$ al coeficiente de $x$ de la primera ecuación"
+        },
+        {
+          "pos": "C",
+          "text": "$\\dfrac{8}{3}$",
+          "note": "planteó la proporción invertida $\\dfrac{4}{k}=\\dfrac{3}{2}$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sin solución única: determinante de coeficientes cero",
+          "content": "El sistema no tiene solución única cuando $\\begin{vmatrix} 2 & 4 \\\\ 3 & k \\end{vmatrix}=2k-12=0$, de donde $k=6$. Con $k=6$ las rectas son paralelas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) El determinante de la matriz de coeficientes es $2k-4\\cdot3=2k-12$. 2) Para que no haya solución única, ese determinante debe ser $0$. 3) $2k-12=0\\Rightarrow k=6$. El valor $-6$ pasa el $12$ con el signo equivocado; $2$ copia el coeficiente de $x$; $\\tfrac{8}{3}$ plantea la proporción al revés.",
+          "latexContent": "\\begin{vmatrix} 2 & 4 \\\\ 3 & k \\end{vmatrix} = 2k - 12 = 0 \\implies k = 6"
+        },
+        {
+          "layer": 3,
+          "title": "Existencia y unicidad de soluciones",
+          "content": "Un sistema $2\\times2$ tiene solución única si el determinante de coeficientes es distinto de cero. Si es cero, las rectas son paralelas (sin solución) o coincidentes (infinitas soluciones). Repasa: determinantes $2\\times2$, regla de Cramer e interpretación geométrica.",
+          "latexContent": null
+        }
+      ],
+      "n": 29
+    },
+    {
+      "questionId": "cmtgamn3x000113o82d3np3hc",
+      "tag": "P1",
+      "topic": "Progresiones y combinatoria",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_csh.pdf p. 52"
+      ],
+      "stem": "¿De cuántas maneras distintas pueden formarse en una fila $6$ personas para tomarse una fotografía?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$120$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$720$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$1440$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$5040$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$120$",
+          "note": "dejó una persona fija y solo permutó a las otras cinco: $5!$"
+        },
+        {
+          "pos": "C",
+          "text": "$1440$",
+          "note": "multiplicó $6!$ por $2$ al contar aparte el orden de izquierda a derecha"
+        },
+        {
+          "pos": "D",
+          "text": "$5040$",
+          "note": "contó $7$ posiciones: $7!$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Permutaciones de $n$ objetos",
+          "content": "Ordenar $n$ objetos distintos en fila se hace de $n!$ maneras. Para $6$ personas: $6!=6\\times5\\times4\\times3\\times2\\times1=720$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) La primera posición la puede ocupar cualquiera de las $6$ personas; la segunda, cualquiera de las $5$ restantes; y así hasta la última. 2) Por el principio multiplicativo: $6\\times5\\times4\\times3\\times2\\times1=720$. El valor $120$ es $5!$: se fijó a una persona; $1440$ duplica el conteo sin razón; $5040$ es $7!$, cuenta una persona de más.",
+          "latexContent": "6! = 6\\times5\\times4\\times3\\times2\\times1 = 720"
+        },
+        {
+          "layer": 3,
+          "title": "Principio multiplicativo y factorial",
+          "content": "Cuando cada elección reduce en uno las opciones siguientes y el orden importa, el total es un factorial. Si se eligen solo $k$ de $n$ con orden, es una permutación $\\dfrac{n!}{(n-k)!}$; si el orden no importa, una combinación. Repasa: principio multiplicativo, permutaciones y combinaciones.",
+          "latexContent": null
+        }
+      ],
+      "n": 30
+    },
+    {
+      "questionId": "cmtgamo1t000613o8apswzo1g",
+      "tag": "P2",
+      "topic": "Progresiones y combinatoria",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "difficulty": "INTERMEDIATE",
+      "format": "NUMERIC_SERIES",
+      "kind": "numeric",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2,
+        3
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 19",
+        "uam_cbi.pdf p. 71"
+      ],
+      "stem": "En la sucesión aritmética $7,\\ 11,\\ 15,\\ 19,\\ \\dots$, ¿cuál es el término que ocupa la posición $10$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$39$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$40$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$43$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$47$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$39$",
+          "note": "usó $n-2$ en la fórmula: $7+8(4)$"
+        },
+        {
+          "pos": "B",
+          "text": "$40$",
+          "note": "usó solo $10d=10(4)$, sin sumar el término inicial"
+        },
+        {
+          "pos": "D",
+          "text": "$47$",
+          "note": "usó $n$ en vez de $n-1$: $7+10(4)$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Término general de una progresión aritmética",
+          "content": "La fórmula es $a_n=a_1+(n-1)d$. Aquí $a_1=7$ y la diferencia común es $d=11-7=4$. Entonces $a_{10}=7+(10-1)(4)=7+36=43$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Primer término $a_1=7$. 2) Diferencia $d=4$ (resta dos términos consecutivos). 3) Sustituye en $a_n=a_1+(n-1)d$ con $n=10$: $a_{10}=7+9(4)=43$. El valor $47$ sale de multiplicar por $10$ y no por $9$ (olvidar el $n-1$); $39$ sale de usar $n-2$; $40$ es solo $10d$, sin el término inicial.",
+          "latexContent": "a_n=a_1+(n-1)d \\\\ a_{10}=7+(10-1)(4)=7+36=43"
+        },
+        {
+          "layer": 3,
+          "title": "Progresiones aritméticas",
+          "content": "Una progresión aritmética suma una cantidad fija $d$ en cada paso. El término $n$ está $n-1$ pasos después del primero, de ahí el factor $(n-1)$. La suma de los primeros $n$ términos es $S_n=\\dfrac{n(a_1+a_n)}{2}$. Repasa: término general y suma parcial.",
+          "latexContent": null
+        }
+      ],
+      "n": 31
+    },
+    {
+      "questionId": "cmtgamozo000b13o8kk2xu06d",
+      "tag": "P3",
+      "topic": "Progresiones y combinatoria",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "numeric",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_csh.pdf p. 52"
+      ],
+      "stem": "De un grupo de $7$ estudiantes se debe elegir un comité de $3$ personas, sin asignarles cargos. ¿Cuántos comités distintos pueden formarse?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$35$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$70$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$105$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$210$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$70$",
+          "note": "dividió $7\\times6\\times5$ entre $3$ en vez de entre $3!=6$"
+        },
+        {
+          "pos": "C",
+          "text": "$105$",
+          "note": "dividió $7\\times6\\times5$ entre $2$"
+        },
+        {
+          "pos": "D",
+          "text": "$210$",
+          "note": "contó como si el orden importara: $7\\times6\\times5$ (permutaciones)"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Combinaciones: el orden no importa",
+          "content": "Elegir un comité sin cargos es una combinación: $\\binom{7}{3}=\\dfrac{7!}{3!\\,4!}=\\dfrac{7\\times6\\times5}{3\\times2\\times1}=\\dfrac{210}{6}=35$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Hay $7\\times6\\times5=210$ formas de elegir $3$ personas si importara el orden. 2) Cada comité se cuenta $3!=6$ veces en esas $210$ (una por cada orden). 3) Divide: $210\\div6=35$. El valor $210$ no divide nada; $70$ divide entre $3$ y no entre $3!$; $105$ divide entre $2$.",
+          "latexContent": "\\binom{7}{3}=\\dfrac{7\\times6\\times5}{3!}=\\dfrac{210}{6}=35"
+        },
+        {
+          "layer": 3,
+          "title": "Permutaciones frente a combinaciones",
+          "content": "Si el orden distingue los resultados (podios, contraseñas), usa permutaciones $\\dfrac{n!}{(n-k)!}$. Si no lo distingue (comités, manos de cartas), usa combinaciones $\\dfrac{n!}{k!(n-k)!}$. La diferencia es el factor $k!$. Repasa: fórmula de combinaciones y triángulo de Pascal.",
+          "latexContent": null
+        }
+      ],
+      "n": 32
+    },
+    {
+      "questionId": "cmtgampxm000g13o8jrx33kpi",
+      "tag": "P4",
+      "topic": "Progresiones y combinatoria",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        3,
+        4
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 71",
+        "uam_cbi.pdf p. 76"
+      ],
+      "stem": "Una sucesión se construye así: al término anterior se le suma $2$ y al resultado se le multiplica por $3$; luego se repite el patrón (sumar $2$, multiplicar por $3$). Si el primer término es $1$, ¿cuál es el quinto término?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$9$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$11$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$17$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$33$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$9$",
+          "note": "sumó $2$ en cada paso: $1,3,5,7,9$"
+        },
+        {
+          "pos": "B",
+          "text": "$11$",
+          "note": "se detuvo en el cuarto término"
+        },
+        {
+          "pos": "C",
+          "text": "$17$",
+          "note": "invirtió el orden de las operaciones (multiplicar y luego sumar): $1,3,5,15,17$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Aplicar la regla paso a paso",
+          "content": "Partiendo de $1$: se suma $2$ ($\\to3$), se multiplica por $3$ ($\\to9$), se suma $2$ ($\\to11$) y se multiplica por $3$ ($\\to33$). El quinto término es $33$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $a_1=1$. 2) $a_2=1+2=3$. 3) $a_3=3\\times3=9$. 4) $a_4=9+2=11$. 5) $a_5=11\\times3=33$. El valor $11$ se queda en el cuarto término; $17$ resulta de multiplicar primero y sumar después; $9$ resulta de sumar $2$ en todos los pasos.",
+          "latexContent": "1 \\xrightarrow{+2} 3 \\xrightarrow{\\times 3} 9 \\xrightarrow{+2} 11 \\xrightarrow{\\times 3} 33"
+        },
+        {
+          "layer": 3,
+          "title": "Sucesiones definidas por recurrencia",
+          "content": "Una sucesión recurrente define cada término a partir del anterior mediante una regla. Cuando la regla combina varias operaciones, respeta el orden en que se enuncian y lleva la cuenta del número de término. Repasa: sucesiones recurrentes y su diferencia con las progresiones.",
+          "latexContent": null
+        }
+      ],
+      "n": 33
+    },
+    {
+      "questionId": "cmtganm8j000112z2v1zkkghm",
+      "tag": "E1",
+      "topic": "Estadística descriptiva",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "Los datos $2,\\ 9,\\ 6,\\ 13,\\ 5$ son las visitas diarias a un sitio web durante cinco días. ¿Cuál es la media aritmética?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$6$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$7$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$7.5$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$11$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$6$",
+          "note": "dio la mediana (dato central de la lista ordenada) en lugar de la media"
+        },
+        {
+          "pos": "C",
+          "text": "$7.5$",
+          "note": "promedió solo el menor y el mayor: $\\dfrac{2+13}{2}$"
+        },
+        {
+          "pos": "D",
+          "text": "$11$",
+          "note": "calculó el rango: $13-2$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Media = suma de datos entre número de datos",
+          "content": "Se suman los cinco valores: $2+9+6+13+5=35$. Se divide entre la cantidad de datos: $\\dfrac{35}{5}=7$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Suma todos los datos: $35$. 2) Cuenta cuántos son: $5$. 3) Divide: $35\\div5=7$. El valor $6$ es la mediana (el dato de en medio al ordenar); $7.5$ promedia solo el mínimo y el máximo; $11$ es el rango $13-2$.",
+          "latexContent": "\\bar{x}=\\dfrac{2+9+6+13+5}{5}=\\dfrac{35}{5}=7"
+        },
+        {
+          "layer": 3,
+          "title": "Medidas de tendencia central",
+          "content": "La media usa todos los datos y es sensible a valores extremos. La mediana es el valor central de los datos ordenados y resiste los extremos. La moda es el dato más frecuente. Repasa: media, mediana, moda y cuándo usar cada una.",
+          "latexContent": null
+        }
+      ],
+      "n": 34
+    },
+    {
+      "questionId": "cmtgann0e000612z2a0r83zhg",
+      "tag": "E2",
+      "topic": "Estadística descriptiva",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "stem": "En un curso, los exámenes valen $60\\%$ de la calificación y las tareas el $40\\%$. Un estudiante obtuvo $7$ en exámenes y $9$ en tareas. ¿Cuál es su calificación final?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$7.8$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$8$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$8.2$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$9$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$8$",
+          "note": "sacó el promedio simple $\\dfrac{7+9}{2}$, ignorando los pesos"
+        },
+        {
+          "pos": "C",
+          "text": "$8.2$",
+          "note": "intercambió los pesos: $0.4(7)+0.6(9)$"
+        },
+        {
+          "pos": "D",
+          "text": "$9$",
+          "note": "consideró solo la calificación de tareas"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Media ponderada",
+          "content": "Cada calificación se multiplica por su peso y se suman: $0.60(7)+0.40(9)=4.2+3.6=7.8$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Porcentajes a decimales: $60\\%=0.6$, $40\\%=0.4$. 2) Multiplica cada nota por su peso: $0.6\\times7=4.2$ y $0.4\\times9=3.6$. 3) Suma: $7.8$. El valor $8$ es el promedio simple sin ponderar; $8.2$ intercambia los pesos; $9$ usa solo la calificación de tareas.",
+          "latexContent": "\\text{Final} = 0.60(7) + 0.40(9) = 4.2 + 3.6 = 7.8"
+        },
+        {
+          "layer": 3,
+          "title": "Promedio ponderado",
+          "content": "Cuando los datos no pesan igual, se multiplica cada uno por su peso (los pesos suman $1$ o $100\\%$) y se suman los productos. Aparece en calificaciones, índices de precios y centros de masa. Repasa: media aritmética frente a media ponderada.",
+          "latexContent": null
+        }
+      ],
+      "n": 35
+    }
+  ]
+}
