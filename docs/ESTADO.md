@@ -79,6 +79,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G41 | Lote de reactivos: Filosofía, UNAM Área 4 | **COMPLETADA — 35 insertados, isVerified=false, banco 832 → 867, cola ciega 0 → 35** | (G41) | Ver sección dedicada abajo. **Segunda materia del Área 4 con contenido** (tras Literatura en G37): Filosofía estaba en cero absoluto. Consulta en vivo a Supabase: **Filosofía es una sola fila `Subject` en el Área 4**, `questionWeight` 3, **`sharedContentKey` NULL** (no entra en G26 — en la UNAM solo Español/Inglés/Química la tienen). Lote a sus **5 temas propios**: Epistemología 9 (incluye lógica) · Metafísica 6 · Ética 8 · Estética 5 · Historia de la filosofía occidental 7. **28/35 TEMARIO_ONLY · 7/35 SOURCED** (el tema «Historia de la filosofía occidental» tiene 3 `SourceChunk` — `uam_csh.pdf` pp. 45-47, banco de preguntas de la guía CSH de la UAM; cada reactivo SOURCED cita el fragmento cuya página contiene su ítem-semilla; el chunk está rebanado por página y arrastra ítems de historia/serie numérica, patrón G40 §7). **Originalidad (G40 §6):** 5 de los 7 SOURCED cambian la tarea de atribución («¿de quién es X?») a comprensión («¿qué sostiene X?»); los 2 más cercanos (#30 Gorgias, #35 Wittgenstein prop. 7) reproducen un enunciado canónico inevitable, reformulado, con la tarea desplazada — se declaran para G42. Prioriza comprensión de argumentos sobre memorización: solo 3 reactivos son de clasificación por definición. 35 `MULTIPLE_CHOICE`; dificultad **7/17/9/2**. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; sin corridas cíclicas ≥3, rotación +1 = 11.8 %; **equilibrio también por tema** (ninguna letra concentra la correcta en un tema). **Cue de longitud (G34 §2, reportado como veredicto — G36 §3):** tie-aware «elige la más larga» = **6.5/35 = 18.6 %**, «elige la más corta» = **5.3/35 = 15.2 %**, ambas por debajo del azar (25 %) y de la cota 14/35; ratio medio **0.99** (el primer borrador tenía la correcta como la más larga en 31/35 — patrón G33/G35/G37 —, corregido en dos pasadas). `content:validate-batch` **0 violaciones**. 0 citas por letra / posicionales en 105 `ExplanationLayer` (capas 2 «Cómo se descarta cada opción», distractores por contenido). Distractores = **posturas filosóficas reales** correctamente descritas (G36 §5). **Fuga entre reactivos revisada en las dos direcciones (G38 §6 / G40 §3):** #30 (Gorgias) se desacopló de #10 (Parménides/Heráclito) y de #22 (Sócrates) cambiando sus distractores. Las 35 atribuciones de postura verificadas una por una. Registro en `docs/content-batches/g41-unam-a4-filosofia.json`. Generador Python desechable (no committeado). `typecheck`/`lint` verde, 0 cambios de código, 0 API de pago. |
 | G40 | Micro-fase editorial + verificación ciega de las reparadas | **COMPLETADA — 3 reparadas, 3/3 rescatadas = 100 % de rescate; banco 832, servibles 832 → 831 (1 retirado a propósito), cola canónica en cero** | (G40) | Ver sección dedicada abajo. **La cola ciega estaba vacía: esta fase la creó reparando, no componiendo** — ejecuta el work order que G39 §9 dejó abierto y lo cierra completo. §9.1 fuga relacional reparada; **hallazgo propio: la fuga era BIDIRECCIONAL** (el reactivo protegido filtraba en su `stem` el punto que evaluaba el otro), así que se repararon los dos, no el señalado. §9.2 los dos reactivos de letras peninsulares salen del `Topic` mexicano a sus temas correctos (uno de ellos además pierde la coletilla que solo justificaba el archivado equivocado ⇒ tercera reparada). §9.3 **desbloqueado**: `manualReview.action` acepta `'duplicate'` (+2 tests) — el bloqueo que G24 y G39 declararon sin resolver; el duplicado de neutralización queda despublicado con veredicto del pipeline intacto y fuera de toda cola. §9.2/d **resuelto con veredicto**: el `SourceChunk` no está mal clasificado por juicio sino **rebanado por página** (arrastra la cola de un reactivo de otra materia), así que ningún `topicId` único puede servirlo — el arreglo vive en el chunker. **Hallazgo nuevo para el work order:** 3 de los 4 reactivos anclados a ese chunk son paráfrasis cercanas de los ítems de la guía fuente, uno casi literal en el `stem` — riesgo de originalidad, no de corrección, y **exige sesión ciega distinta** porque ésta ya quedó contaminada sobre ellos. Arnés auditado antes de reportar el 100 %: **2/3** etiquetas ciegas tradujeron a un id distinto, traducción **biyectiva** (12/12 imágenes, 0 colisiones). **Caveat declarado:** reparación y pasada ciega en la MISMA sesión — la garantía sobre la clave se sostiene (`grep` de campos de respuesta = 0 antes de abrir el lote), la de independencia editorial no. `content:coverage` corregido para que «en banco» cuadre con `COUNT(*)` cuando hay retirados. 493/493 tests. |
 | G39 | Balance intermedio del banco | **COMPLETADA — banco 832/832/832, colas en cero (3ª vez consecutiva), brecha efectiva 546 (16 lotes), proyección al 21-nov con ~6 sem de margen** | (G39) | Ver sección dedicada abajo. Pasada editorial (no ciega). Estado consolidado desde la DB real por institución/área/materia; cola formal de discrepancias vacía verificada por 4 vías; 7 defectos editoriales heredados triados con las 4 categorías (0 auto-aprobados); **1 cambio de datos**: 8 `format` `CHART_TABLE → PROBLEM_SOLVING` (G28 §8.1, metadato, sin re-verificación). Auditoría 5 %: mecanismo sano, ejecución vencida 2 ciclos (47/832 = 5.6 %, `session-v1` diluido a 3.4 %), muestra de 40 ids regenerada. Los últimos 6 lotes rindieron ~46 % bajo su potencial contra la meta (97/210 en pools ya cubiertos). Top-5 pools de brecha: IPN Física 76 · UNAM A1 Mat 63 · IPN Mat 63 · IPN Química 54 · IPN MEDBIO Bio 52. |
 | G38 | Verificación ciega: Literatura, UNAM Área 4 (lote de G37) | **COMPLETADA — 35/35 auto-aprobados = 100 %, banco 832, verificados 797 → 832, cola ciega 35 → 0** | (G38) | Ver sección dedicada abajo. Contaminación del canal de entrada medida (2/35) y regla nueva para lotes `SOURCED`; el candado de G36 §2 resultó inejecutable y se corrige dónde vive el valor exacto; **la secuencia de clave se recuperó exacta desde las respuestas ciegas** y por eso se redactó de `## G37`; defecto relacional entre dos reactivos del lote (no bloqueante); distractores que caen por implausibilidad general bajan de ~11/35 a 4/35. |
@@ -2158,6 +2159,289 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G41 — Lote de reactivos: Filosofía, UNAM Área 4 (2026-08-30)
+
+**Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
+contenido). **COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la
+cola de verificación ciega. **Segunda materia del Área 4 (Humanidades y Artes) con
+contenido**, tras Literatura (G37); Filosofía estaba en cero absoluto.
+
+### 1) El encargo y la elección de materia
+
+El encargo pidió **35 reactivos de Filosofía para UNAM Área 4**, área en cero.
+Consulta en vivo a Supabase (2026-08-30) antes de componer:
+
+| Institución · Área | Materia | `sharedContentKey` | `questionWeight` | Temas | Reactivos hoy | `SourceChunk` |
+|---|---|---|---:|---:|---:|---:|
+| UNAM · Área 4 | **Filosofía** | `null` | **3** | **5** | **0** | **3** (tema 5) |
+
+**Filosofía existe como una sola fila `Subject`, en el Área 4.** `sharedContentKey`
+NULL → **no entra en la reutilización de G26** (§G26.2: en la UNAM solo Español,
+Inglés y Química la tienen). El lote va a sus **5 temas propios**, sin reutilización
+entre áreas — mismo patrón que Historia de México (G33), Geografía (G35) y
+Literatura (G37). El Área 4 pasa de **1 a 2 de 3** materias propias con contenido
+(falta Artes: 5 temas, w2, cero, con `SourceChunk` en 3 temas).
+
+### 2) Reparto por los 5 temas y anclaje: 28 TEMARIO_ONLY / 7 SOURCED
+
+| Tema (posición en el temario) | Reactivos | Grounding | Ejes cubiertos |
+|---|---:|---|---|
+| Epistemología | 9 | TEMARIO_ONLY | JTB y acierto casual, doxa/episteme, racionalismo vs empirismo, escepticismo pirrónico (epojé/ataraxía), teorías de la verdad; **lógica**: validez vs verdad vs solidez, deducción vs inducción, falacia ad hominem, principio de no contradicción |
+| Metafísica | 6 | TEMARIO_ONLY | ser vs devenir (Parménides/Heráclito), hilemorfismo y alma como forma, idealismo de Berkeley, dualismo y problema mente-cuerpo, determinismo y responsabilidad, monismo/dualismo/pluralismo |
+| Ética | 8 | TEMARIO_ONLY | moral vs ética, autonomía vs heteronomía (Kant), imperativo categórico y universalización, término medio y phrónesis (Aristóteles), utilitarismo (Bentham/Mill), ley de Hume, intelectualismo socrático, relativismo cultural |
+| Estética | 5 | TEMARIO_ONLY | objetivismo vs subjetivismo de la belleza, mímesis (Platón vs Aristóteles), juicio de gusto desinteresado (Kant), lo bello vs lo sublime, fin del arte (Hegel) |
+| Historia de la filosofía occidental | 7 | **SOURCED** | Platón (teoría de las Ideas), sofística (Gorgias), Descartes (duda metódica), Bacon (ídolos/inducción), Kant (criticismo), Hegel (dialéctica), Wittgenstein (límites del lenguaje) |
+
+**Anclaje del tema 5.** `loadTopicChunks` devolvió **3 `SourceChunk`** para
+«Historia de la filosofía occidental» (`cmrr1kjn50072hi3nj3gda5rt`): **pp. 45-47 de
+`uam_csh.pdf`** —la guía de Ciencias Sociales y Humanidades de la UAM, la misma que
+aportó los chunks de G33 y G37— un **banco de reactivos de opción múltiple** con
+ítems de filosofía, clasificado a este tema por el pipeline F2b. `grounding.ts` hace
+**obligatoria** la cita cuando hay fragmento: los **7 reactivos** de ese tema citan
+`sourceChunks` (cada uno el fragmento cuya página contiene su ítem-semilla — la
+verificación en la DB confirma el mapeo: p. 45 → Descartes/Bacon/Kant, p. 46 →
+Platón/Hegel, p. 47 → Gorgias/Wittgenstein) y quedan `groundingStatus = SOURCED`;
+los otros **4 temas** no tienen `SourceChunk` y salen `TEMARIO_ONLY` (**28**),
+compuestos desde el temario oficial del Área 4, como G22/G27/G33/G35/G37.
+
+**Procedencia y rebanado del chunk (patrón G40 §7), documentado, no bloqueante.**
+El fragmento proviene de la guía de **otra institución** (UAM) que la del examen al
+que sirven los reactivos (UNAM). No lo prohíbe ningún guardrail —G26 restringe la
+reutilización de *reactivos* entre áreas, nunca el uso de una guía como material de
+estudio—, pero significa que el `SOURCED` de esos 7 está anclado fuera de la
+institución destino. Además el chunk está **rebanado por página, no por sección**:
+la p. 45 arrastra dos ítems de historia (Gran Depresión, Revolución Francesa) antes
+de los de filosofía, y la p. 47 termina con una serie numérica; los 7 reactivos
+derivan **solo de sus ítems de filosofía**. El arreglo de fondo vive en el chunker
+(rebanar por encabezado de sección), ya anotado en el work order de G40 §4.
+
+### 3) Originalidad de los reactivos SOURCED (patrón G40 §6)
+
+El work order de G40 §6/G39 §9 pide extender el criterio de originalidad de G37 a
+los reactivos derivados de bancos de preguntas de guías, no solo a los textos de
+análisis. Aplicado desde la composición:
+
+- **5 de los 7 SOURCED transforman la tarea cognitiva:** el ítem de la guía es de
+  atribución («¿de quién es *X*?», respuesta = un nombre); el reactivo compuesto
+  nombra al autor en el `stem` y pregunta **por el contenido de su tesis o el papel
+  de un concepto** («¿qué función cumple *X*?», «¿qué propone frente a *Y*?»),
+  respuesta = una postura razonada. El `stem` es propio.
+- **Los 2 más cercanos** —#30 (Gorgias, las tres tesis de *Sobre el no-ser*) y #35
+  (Wittgenstein, la proposición 7 del *Tractatus*)— reproducen un **enunciado
+  canónico e inevitable** de la historia de la filosofía (el argumento de Gorgias y
+  el aforismo «de lo que no se puede hablar, hay que callar»), **reformulado con
+  palabras propias**, pero desplazan la tarea de recordar el nombre a **interpretar
+  la postura** (qué posición ilustra el encadenamiento; a qué se refiere «lo que no
+  se puede hablar»). Se **declaran** aquí para que la ronda ciega de G42 los
+  revalide uno por uno.
+- No es un defecto de corrección: los 7 son factualmente correctos y sus juegos de
+  opciones se compusieron de cero (no se copiaron los de la guía).
+
+### 4) Formato, dificultad y cobertura
+
+- **Formato:** 35 `MULTIPLE_CHOICE`. La sección de Filosofía del examen de la UNAM
+  es opción múltiple simple; los reactivos que presentan un argumento o un texto
+  breve para analizarlo lo llevan **dentro del `stem`** (autocontenido), sin
+  `Passage` compartido.
+- **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6,
+  la distribución objetivo de `_base.md`; misma que G33/G35/G37). Los 2 `EXPERT`
+  son de síntesis: la **ley de Hume** (por qué de premisas descriptivas no se sigue
+  una norma) y el **fin del arte en Hegel** (por qué el arte cede su primer puesto
+  al pensamiento).
+- **Prioridad del encargo — comprensión de argumentos sobre memorización de
+  nombres:** la gran mayoría de los 35 pide **entender qué afirma una postura o
+  cómo funciona un argumento**. Los reactivos que nombran a un autor lo hacen en el
+  `stem` y preguntan por el contenido de su tesis. **Solo 3** son de clasificación
+  por definición (#5 nombrar dos teorías de la verdad, #15 monismo/dualismo/
+  pluralismo, #24 nombrar las dos respuestas estéticas), y aun esos exigen
+  distinguir las opciones por su contenido conceptual.
+- **Distractores (observación de G36 §5 atendida):** cada distractor es una
+  **postura filosófica real** correctamente descrita, que exige conocimiento
+  específico para rechazarse: otras corrientes epistemológicas, otras teorías de la
+  verdad, otras falacias bien definidas, otras escuelas presocráticas (eleatismo,
+  Heráclito, atomismo, milesios), posiciones enfrentadas del propio autor evaluado
+  (racionalismo vs empirismo, akrasía vs intelectualismo, deontología vs
+  consecuencialismo). **Caveat honesto (patrón G34 §4):** en ~5 reactivos algún
+  distractor cae también por anacronismo o por invertir la posición del autor
+  (p. ej. #13 Descartes/animales, #33 Kant/Hume); sus etiquetas son
+  INTERMEDIATE/ADVANCED.
+
+### 5) Distribución de posición y cue de longitud (G3c / G8 / G34 §2 / G36 §3 / G38 §3-§4)
+
+- **Clave A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %), las cuatro
+  dentro de la banda 15-40 %. **Confirmada por query directa a la DB tras insertar**
+  (`jsonb_array_elements` sobre `options` de las 35 filas), no solo por el log.
+- **Equilibrio también por tema** (aporte de esta fase al patrón de G3c): la
+  búsqueda de secuencia añade una restricción para que **ninguna letra concentre la
+  correcta dentro de un tema** — Epistemología A2/B3/C3/D1, Metafísica A2/B2/C1/D1,
+  Ética A2/B2/C2/D2, Estética A2/B1/C1/D1, Historia A1/B1/C2/D3. Sin esto, un lote
+  con la clave agregada sana puede seguir teniendo un tema entero sesgado.
+- **La letra la asigna el generador**, no la mano: búsqueda con semilla fija que
+  descarta corridas cíclicas A→B→C→D de longitud ≥ 3 (ambos sentidos), triples
+  repeticiones y rotación +1 alta. Propiedades: **sin corridas cíclicas ≥ 3**, sin
+  triples, **rotación +1 = 11.8 %** (azar ≈ 8.5). **La secuencia literal NO se
+  publica aquí** (regla de G38 §4): vive en la DB y en el registro permanente
+  `docs/content-batches/g41-unam-a4-filosofia.json`, que la sesión ciega de G42 no
+  abre.
+- **Cue de longitud — G34 §2, valor exacto en esta sección (G38 §3), no solo en el
+  registro:** el puntaje esperado **tie-aware de «elige la más larga», empates al
+  azar**, quedó en **6.5 / 35 = 18.6 %** — por debajo del azar del 25 % y de la cota
+  de 14/35. La heurística inversa **«elige la más corta»** quedó en **5.3 / 35 =
+  15.2 %**, también por debajo del azar. **Ratio medio** de longitud correcta /
+  distractores = **0.99** (mín 0.92, máx 1.13). Histograma de rango de longitud de
+  la correcta (1 = más larga): **{1: 7, 2: 5, 3: 17, 4: 6}**. El **primer borrador**
+  tenía la correcta como la única más larga en **31/35** —arrastraba la cláusula
+  justificativa «…, porque…», «…, que…», que **pertenece a la capa 1, no a la
+  opción**, el mismo defecto que corrigieron G33/G35/G37—; se recortaron las
+  correctas a la **aserción** y se homogeneizaron los distractores en **dos
+  pasadas** hasta dejar **ambas** heurísticas de longitud por debajo del azar.
+- `content:validate-batch --dir <lote>`: **0 violaciones** (corrido antes de tocar
+  la DB y de nuevo como paso obligatorio de `content:insert --lot-dir` sobre los
+  5 archivos).
+- **0 citas por letra** y **0 citas posicionales** en las 105 capas de explicación
+  (auto-chequeo del generador con las regex de `lot-validation.ts` más el patrón
+  `POSITION_REF` de G33). Las **capas 2** se titulan **«Cómo se descarta cada
+  opción»** y descartan los tres distractores **por su contenido** (numerados
+  1/2/3 en el orden de redacción, cada uno introducido por su contenido: «La
+  apelación a la autoridad invoca el prestigio de alguien…», «Demócrito es un
+  realista tajante…», «Elegir los valores según la cultura y los gustos es
+  relativismo…»), nunca por su posición.
+
+### 6) Fuga entre reactivos — revisada en las dos direcciones (G38 §6 / G40 §3)
+
+Ningún `stem` nombra el dato que otro reactivo del lote pide identificar. Un par
+necesitó desacople explícito:
+
+- **#30 (Gorgias / sofística)** en su primera versión usaba como distractores el
+  **monismo eleático** y el **movilismo de Heráclito** enunciados casi textualmente
+  — lo que insinuaba el eje de **#10** (que pregunta justamente sobre qué se oponen
+  Parménides y Heráclito). Y un tercer distractor sobre el **intelectualismo moral
+  de Sócrates** rozaba la respuesta de **#22**. Se cambiaron los tres por
+  **escepticismo académico, atomismo de Demócrito y naturalismo milesio** —
+  posturas igual de reales, sin solapamiento con ningún otro reactivo.
+- Los pares **«disputa → resolución»** se conservan a propósito (#3 racionalismo/
+  empirismo y #33 criticismo kantiano; #25 mímesis y #29 Ideas de Platón): se
+  refuerzan sin que una respuesta trivialice la otra.
+
+`lot-validation.ts` sigue sin poder ver este tipo de fuga: es una relación entre
+dos ítems, no una propiedad de uno (defecto ya anotado en G38 §6).
+
+### 7) Exactitud factual
+
+**Las 35 atribuciones de postura verificadas una por una antes de insertar** (criterio
+del encargo). Se comprobaron autor, obra, escuela y época de: doxa/episteme y teoría
+de las Ideas (Platón); pirronismo y sus términos (Sexto Empírico); no contradicción
+como principio primero (Aristóteles, *Metafísica* IV); Parménides/Heráclito;
+hilemorfismo y alma como forma (Aristóteles, *De Anima*); `esse est percipi`
+(Berkeley); dualismo y objeción de Isabel de Bohemia (Descartes); monismo/Spinoza,
+pluralismo-mónadas/Leibniz; autonomía e imperativo categórico (Kant, *Fundamentación*);
+término medio «relativo a nosotros» y phrónesis (Aristóteles, *Ética a Nicómaco* II);
+utilitarismo (Bentham, Mill); ley de Hume y falacia naturalista (Moore);
+intelectualismo moral y negación de la akrasía (Sócrates); objeción del progreso moral
+al relativismo cultural; objetivismo/subjetivismo de la belleza (Hume); mímesis y
+tercer escalón desde la verdad (Platón, *República* X) frente a mímesis y catarsis
+(Aristóteles, *Poética*); juicio de gusto desinteresado (Kant, *Crítica del Juicio*);
+lo bello frente a lo sublime (Burke, Kant); fin del arte (Hegel, *Lecciones de
+Estética*); duda metódica y cogito (Descartes); cuatro ídolos y método inductivo
+(Bacon, *Novum Organum*); giro copernicano y «intuiciones sin conceptos son ciegas»
+(Kant, *KrV*); dialéctica y `Aufhebung` (Hegel); decir/mostrar y proposición 7
+(Wittgenstein, *Tractatus*); las tres tesis de *Sobre el no-ser* (Gorgias). **Ninguna
+atribución resultó falsa.**
+
+### 8) Inserción real — verificada en la DB
+
+| Métrica | Antes de G41 | Después de G41 |
+|---|---:|---:|
+| Banco total | 832 | **867** |
+| Servibles (`isVerified=true`) | 831 | 831 |
+| Retirados a propósito | 1 | 1 |
+| Cola ciega (`isVerified=false`, sin veredicto) | 0 | **35** |
+| Cola canónica de discrepancias (`manualReview=null`) | 0 | **0** |
+| `ExplanationLayer` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **7** (1 × 7 de «Historia de la filosofía occidental») |
+| `SOURCED` en el banco | 218 | **225** |
+| `TEMARIO_ONLY` en el banco | 614 | **642** |
+| UNAM A4 Filosofía · 5 temas | 0 / 0 / 0 / 0 / 0 | **9 / 6 / 8 / 5 / 7** |
+
+Chequeos post-inserción (query directa): los 35 con exactamente 4 opciones y 1
+correcta, 105 `ExplanationLayer`, **7 `SOURCED` / 28 `TEMARIO_ONLY`**, los 7
+`SOURCED` citan el chunk cuya página contiene su ítem-semilla (mapeo verificado),
+cola ciega 0 → 35, clave A9/B9/C9/D8, dificultad 7/17/9/2, 0 con formato ≠
+`MULTIPLE_CHOICE`. Cohorte con `id` prefijo `cmtfh0…`–`cmtfh2c…` del 2026-08-30 —
+separable por `topicId` o por timestamp para la verificación ciega de G42.
+
+**La brecha efectiva no se mueve** (546, ~16 lotes): la meta efectiva de Filosofía
+(w3 → ~17 por G39 §7) la cubrirán y superarán los 35 cuando G42 los apruebe —
+mismo patrón que Literatura en G37 (cobertura de producto real: un aspirante del
+Área 4 no tenía nada de Filosofía; contra la meta del 21-nov, ~17 cierran y ~18
+caen en un pool que quedará sobre-cubierto). `content:coverage` en vivo: **831
+servibles · 35 pendientes · 1 retirado · 867 en banco · 55 % de la meta efectiva**.
+
+### 9) Limpieza
+
+El lote se compuso con un generador de Python desechable (`build_g41.py` +
+`items_g41.py`) en el scratchpad de la sesión: los 35 reactivos están **redactados a
+mano** en `items_g41.py`; el generador solo asigna la letra correcta (búsqueda
+anti-rotación con semilla, más la restricción de equilibrio por tema), auto-chequea
+—antes de validar— la distribución de letra, el **puntaje tie-aware de longitud
+(G34 §2)**, las citas por letra y posicionales y el grounding obligatorio del tema
+5, y emite los 5 archivos del lote. Un segundo script (`enrich_g41.py`) añadió los
+`questionId` reales al registro permanente. El generador, el enriquecedor, la probe
+de orden de chunks y los 5 archivos del lote **no se committean**; el registro
+permanente es `docs/content-batches/g41-unam-a4-filosofia.json`. `pnpm typecheck` y
+`pnpm lint` en verde (cero cambios de código de producción). Cero llamadas a la API
+de pago.
+
+### Siguiente (G41)
+
+1. **Verificación ciega del lote de G41** (segunda mitad del ciclo de G2):
+   `pnpm content:blind-batch --topic <cada uno de los 5 topicId>` →
+   `content:resolve`. **Lote 100 % verbal**, como los de G30/G33/G35/G37: **0/35
+   admiten cálculo**, así que no cabe el candado aritmético de G28; el control es el
+   **descarte explícito de los tres distractores por su contenido** y la
+   **confianza declarada**. Los **7 reactivos de «Historia de la filosofía
+   occidental» son `SOURCED`**, pero `loadPendingQuestionsWithContext` **no pasa el
+   texto del `SourceChunk`** a la sesión ciega (mismo caso que los `SOURCED` de
+   G33/G37): se resuelven con conocimiento de filosofía de bachillerato, igual que
+   el resto. **Sin pasajes** → los 35 llegan autocontenidos en el `stem`.
+   **Aplicar la regla de G36 §2 y G38 §3:** recalcular los diagnósticos de longitud
+   (tie-aware «más larga»/«más corta», ratio medio) sobre las **respuestas ciegas**
+   y compararlos con los **veredictos** de §5 de esta sección (que la sesión ciega
+   sí puede abrir *después* de resolver, no antes) — coincidencia = corroboración
+   mecánica del acuerdo. **La comparación de la secuencia de clave exacta (G38 §4)
+   la hace el dueño o una fase editorial con acceso al registro permanente**, no la
+   sesión ciega. **Reactivos más apretados** (se señala cuáles, no cómo resolverlos,
+   por G30 §1): los **2 `EXPERT`** (#21 ley de Hume, #28 fin del arte en Hegel) y
+   **#9** (no contradicción como principio indemostrable); los 2 `SOURCED` más
+   pegados a su fuente (#30 Gorgias, #35 Wittgenstein) piden **interpretar** un
+   enunciado canónico, no atribuirlo.
+2. **Huecos que siguen abiertos** tras G41:
+   - **UNAM A4 Artes** (5 temas, w2, cero; tiene `SourceChunk` en 3 temas) — la
+     última materia propia del Área 4 sin contenido.
+   - **UNAM A3 Historia Universal** (8 temas, w5, cero; 1 `SourceChunk`) — la única
+     materia propia del Área 3 aún en cero.
+   - **IPN SOCADM Historia de México** (6 temas, cero) — el que G30–G38 nombran;
+     ninguna fase lo ha abierto.
+   - Los 5 pools STEM de alto peso de G39 §7 (IPN Física, IPN Química, IPN
+     Matemáticas celda MEDBIO, UNAM A1 Matemáticas, IPN MEDBIO Biología) siguen
+     siendo la recomendación para cerrar brecha efectiva.
+3. **Al work order (heredado de G40 §3-§4):** reescribir los `stem` demasiado
+   pegados a la guía de los 4 reactivos de G37 anclados a `cmrsromj5007r…`, y
+   rebanar los `SourceChunk` por encabezado de sección en la ingesta (afecta a
+   `uam_csh.pdf`, que G33/G37/G41 ya usaron con este rebanado por página).
+4. **Auditoría 5 %:** sigue vencida (2 ciclos). La muestra de 40 ids ya está
+   generada; exige una sesión ciega con tier **≠ opus-5**. El lote de G37 ya entra
+   al universo muestreable tras G38; el de G41 entrará cuando G42 lo verifique.
+5. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): ¿entran UNAM A3/A4
+   e IPN SOCADM en la meta de 1 500 / 1 222? Lleva diez fases condicionando la
+   planeación sin respuesta del dueño.
+6. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄ ya despublicado en G40, auditoría 5 %,
+   las 8 `CHART_TABLE` reclasificadas en G39, y `content:coverage` que aún no
+   refleja la reutilización de G26 (G30 §10.3).
+
+---
 
 ## G40 — Micro-fase editorial + verificación ciega de las reparadas (2026-08-30)
 

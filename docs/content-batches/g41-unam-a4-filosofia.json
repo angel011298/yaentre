@@ -1,0 +1,2038 @@
+{
+  "batch": "G41",
+  "phase": "G41 — Lote de reactivos: Filosofía, UNAM Área 4 (Humanidades y Artes)",
+  "generatedAt": "2026-08-30",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago (el Plan de Implementación asigna el tier Sonnet a los lotes de contenido)",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 4 — Humanidades y Artes",
+  "subject": "Filosofía",
+  "subjectId": "cmrr1kh1i006shi3n4u936hn8",
+  "questionWeight": 3,
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G41: 35 reactivos de Filosofía para UNAM Área 4, área en cero absoluto. Consulta en vivo a Supabase (2026-08-30): Filosofía = una sola fila Subject en el Área 4, questionWeight 3, sharedContentKey NULL (no entra en la reutilización de G26 — en la UNAM solo la tienen Español/Inglés/Química). 5 temas sembrados, los 5 en cero: Epistemología, Metafísica, Ética, Estética, Historia de la filosofía occidental. Lote a los 5 temas propios, patrón de G33/G35/G37 (materia sharedKey NULL -> temas propios). Segunda materia del Área 4 con contenido (tras Literatura en G37); el Área 4 pasa de 1 a 2 de 3 materias propias cubiertas.",
+  "grounding": "28/35 TEMARIO_ONLY - 7/35 SOURCED. El tema 'Historia de la filosofía occidental' (cmrr1kjn50072hi3nj3gda5rt) tiene 3 SourceChunk: uam_csh.pdf pp. 45-47 (guía de Ciencias Sociales y Humanidades de la UAM), un banco de reactivos de opción múltiple con ítems de filosofía, clasificado a este tema por el pipeline F2b. grounding.ts hace OBLIGATORIA la cita cuando hay fragmentos: los 7 reactivos de ese tema citan sourceChunks (cada uno el fragmento cuya página contiene su ítem-semilla: 1=p.45 Bacon/Kant/Descartes, 2=p.46 Platón/Hegel, 3=p.47 Gorgias/Wittgenstein) y quedan SOURCED; los otros 4 temas no tienen SourceChunk y salen TEMARIO_ONLY (28), compuestos desde el temario oficial del Área 4. PROCEDENCIA (patrón G40 §7): el chunk viene de la guía de OTRA institución (UAM) que la del examen destino (UNAM). No lo prohíbe ningún guardrail (G26 restringe la reutilización de reactivos entre áreas, no el uso de guías como material de estudio), pero se anota. El chunk además está rebanado por página, no por sección (arrastra ítems de historia y una serie numérica), como el cmrsromj5007r de G40; los 7 reactivos derivan solo de sus ítems de filosofía. ORIGINALIDAD (patrón G40 §6): 5 de los 7 SOURCED transforman el ítem-semilla de una pregunta de atribución ('¿de quién es X?') a una de comprensión ('¿qué sostiene/qué función cumple X?'), con stem propio. Los 2 más cercanos a su ítem —#30 (Gorgias, las tres tesis de 'Sobre el no-ser') y #35 (Wittgenstein, la proposición 7 del Tractatus)— reproducen un enunciado canónico e inevitable (el argumento de Gorgias y el aforismo de Wittgenstein), reformulado con palabras propias, pero desplazan la tarea cognitiva de recordar el nombre a interpretar la postura. Se declaran para que la ronda ciega de G42 lo confirme.",
+  "totalQuestions": 35,
+  "bankBefore": {
+    "total": 832,
+    "servibles": 831,
+    "retired": 1,
+    "blindQueue": 0,
+    "sourced": 218,
+    "temarioOnly": 614
+  },
+  "bankAfter": {
+    "total": 867,
+    "servibles": 831,
+    "retired": 1,
+    "blindQueue": 35,
+    "sourced": 225,
+    "temarioOnly": 642
+  },
+  "positionsSequence": "CBBDBACACBCAADBACBDDBACABDACACBDDCD",
+  "seed": 33918,
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "difficultyDistribution": {
+    "BASIC": 7,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 35
+  },
+  "perTopic": {
+    "Epistemología (temas: teoría del conocimiento + lógica)": 9,
+    "Metafísica": 6,
+    "Ética": 8,
+    "Estética": 5,
+    "Historia de la filosofía occidental (SOURCED)": 7
+  },
+  "perTopicId": {
+    "cmrr1kh5y006uhi3nvb8x73pv": 9,
+    "cmrr1khsq006whi3nmnu6ich1": 6,
+    "cmrr1kim4006yhi3nal93tvza": 8,
+    "cmrr1kj530070hi3ncfvp5obv": 5,
+    "cmrr1kjn50072hi3nj3gda5rt": 7
+  },
+  "coverageByAxis": {
+    "temario oficial": "antigua (Sócrates, Platón x2, Aristóteles x3, Gorgias/sofística, presocráticos), medieval (implícita en el eje historia y en criticismo/racionalismo), moderna (Descartes x2, Bacon, Berkeley, Spinoza/Leibniz, Hume x2, Kant x4), contemporánea (Hegel x2, Wittgenstein, utilitarismo, relativismo, debate libre albedrío)",
+    "epistemología": "definición tripartita (JTB) y acierto casual, doxa/episteme, racionalismo vs empirismo, escepticismo pirrónico (epojé/ataraxía), teorías de la verdad (correspondencia/coherencia)",
+    "lógica": "validez vs verdad vs solidez (silogismo con premisa falsa), deducción vs inducción (problema de Hume), falacias no formales (ad hominem), principio de no contradicción como principio primero",
+    "ética": "moral vs ética (1.er/2.º orden), autonomía vs heteronomía (Kant), imperativo categórico y universalización, término medio y phrónesis (Aristóteles), utilitarismo (Bentham/Mill), ley de Hume / falacia naturalista, intelectualismo socrático y akrasía, relativismo cultural",
+    "metafísica": "ser vs devenir (Parménides/Heráclito), hilemorfismo y alma como forma (Aristóteles), idealismo (Berkeley), dualismo y problema mente-cuerpo (Descartes), determinismo y responsabilidad, monismo/dualismo/pluralismo",
+    "estética": "objetivismo vs subjetivismo de la belleza, mímesis (Platón vs Aristóteles), juicio de gusto desinteresado (Kant), lo bello vs lo sublime, fin del arte (Hegel)",
+    "comprensión de argumentos sobre memorización de nombres": "de los 35, la gran mayoría pide entender qué afirma una postura o cómo funciona un argumento; los reactivos que nombran a un autor lo hacen en el stem y preguntan por el contenido de su tesis, no por su identidad. Solo 3 reactivos son de clasificación por definición (#5 nombrar dos teorías de la verdad, #15 monismo/dualismo/pluralismo, #24 nombrar las dos respuestas estéticas), y aun esos exigen distinguir las opciones por su contenido conceptual."
+  },
+  "copyright": "Materia sin obras literarias que citar; el riesgo es reproducir enunciados de la guía fuente. Cero transcripción de fragmentos extensos de obras con derechos. Se citan solo fórmulas canónicas de dominio público o de uso doxográfico universal: el argumento de Gorgias 'Sobre el no-ser' (s. V a.C., reformulado con palabras propias en el stem de #30), la proposición 7 del Tractatus de Wittgenstein ('de lo que no se puede hablar, hay que callar' — aforismo de dominio público por su difusión, s. 1921, citado como objeto de análisis en #35), y la frase de Kant 'los pensamientos sin contenido son vacíos; las intuiciones sin conceptos son ciegas' (KrV, 1781, citada como objeto de análisis en #33). Ninguna otra cita textual. Los reactivos SOURCED derivan de los ítems de un banco de preguntas de la guía UAM, reformulados: 5 de 7 cambian la tarea (de atribución a comprensión); los 2 restantes reproducen un enunciado inevitable de la historia de la filosofía, reformulado, con la tarea desplazada (ver 'grounding').",
+  "qualityChecks": {
+    "validateBatch": "0 violaciones (G3c); corrido antes de tocar la DB y de nuevo como paso obligatorio de content:insert --lot-dir sobre los 5 archivos",
+    "correctPositionBand": "A9/B9/C9/D8 = 25.7/25.7/25.7/22.9 %, las cuatro en 15-40 % (confirmado por query directa a la DB con jsonb_array_elements sobre options tras insertar). Por tema, ninguna letra concentra la correcta: Epistemología A2/B3/C3/D1, Metafísica A2/B2/C1/D1, Ética A2/B2/C2/D2, Estética A2/B1/C1/D1, Historia A1/B1/C2/D3.",
+    "cyclicRotation": "corrida cíclica A->B->C->D de longitud >=3 (ambos sentidos): False; triple repetición: False; rotación +1 = 11.8 % (azar ~8.5). Letra asignada por búsqueda con semilla fija (seed 33918) anti-rotación, con restricción adicional de equilibrio por tema.",
+    "lengthCue_G34s2": "puntaje esperado tie-aware de 'elige la más larga', empates al azar = 6.5/35 = 18.6 % (umbral G34 §2: < 14/35 y por debajo del azar del 25 %). 'elige la más corta' tie-aware = 5.33/35 = 15.2 % (también por debajo del azar). Correcta como única más larga (estricto): 6/35; como única más corta: 4/35. Ratio medio de longitud correcta/distractores: 0.994 (mín 0.92, máx 1.125). Histograma de rango de longitud de la correcta (1 = más larga): {'1': 7, '2': 5, '3': 17, '4': 6}. El primer borrador daba la correcta como la más larga en 31/35 (arrastraba la cláusula justificativa, patrón G33/G35/G37); se recortaron las correctas a la aserción y se homogeneizaron los distractores en dos pasadas.",
+    "letterCitations": "0 en las 105 capas de explicación (regex de lot-validation.ts: 'opción [ABCD]', 'inciso [ABCD]', 'letra [ABCD]', '[ABCD])').",
+    "positionalCitations": "0 (auto-chequeo POSITION_REF del generador). Las capas 2 se titulan 'Cómo se descarta cada opción' y descartan los tres distractores por su CONTENIDO (numerados 1/2/3 en el orden de redacción, cada uno introducido por su contenido, nunca por su posición).",
+    "distractorQuality_G36s5": "En BASIC/INTERMEDIATE cada distractor es una POSTURA FILOSÓFICA REAL correctamente descrita, que exige conocimiento específico para rechazarse: otras corrientes epistemológicas (realismo/idealismo, pragmatismo), otras teorías de la verdad, otras falacias bien definidas, otras posiciones sobre el número de sustancias, otros movimientos estéticos, otras escuelas presocráticas (eleatismo, Heráclito, atomismo, milesios), posiciones enfrentadas del propio autor evaluado (racionalismo vs empirismo, akrasía vs intelectualismo, deontología vs consecuencialismo). Caveat honesto (patrón G34 §4): en ~5 reactivos algún distractor cae también por anacronismo o por invertir la posición del autor (p. ej. #33 Kant, #13 Descartes/animales); sus etiquetas son INTERMEDIATE/ADVANCED.",
+    "factualReview": "Las 35 atribuciones de postura verificadas una por una antes de insertar: doxa/episteme y teoría de las Ideas (Platón); pirronismo (epojé, ataraxía, equipolencia, Sexto Empírico); principio de no contradicción como principio primero (Aristóteles, Metafísica IV); Parménides/Heráclito (ser/devenir); hilemorfismo y alma como forma (Aristóteles, De Anima); esse est percipi e inmaterialismo (Berkeley); dualismo y problema de interacción, objeción de Isabel de Bohemia (Descartes); monismo/Spinoza, dualismo/Descartes, pluralismo-mónadas/Leibniz; autonomía/heteronomía e imperativo categórico, ejemplo de la promesa falsa (Kant, Fundamentación); término medio 'relativo a nosotros' y phrónesis (Aristóteles, Ética a Nicómaco II); utilitarismo y principio de la mayor felicidad (Bentham, Mill); ley de Hume (is-ought) y falacia naturalista (Moore); intelectualismo moral y negación de la akrasía (Sócrates); objeción del progreso moral al relativismo cultural; objetivismo/subjetivismo de la belleza (Hume); mímesis y tercer escalón desde la verdad (Platón, República X) frente a mímesis, catarsis y valor cognoscitivo (Aristóteles, Poética); juicio de gusto desinteresado y universalidad subjetiva (Kant, Crítica del Juicio); lo bello frente a lo sublime (Burke, Kant); fin del arte y lo bello como manifestación sensible de la Idea (Hegel, Lecciones de Estética); duda metódica, genio maligno y cogito (Descartes); cuatro ídolos y método inductivo, Novum Organum (Bacon); criticismo, giro copernicano, 'intuiciones sin conceptos son ciegas' (Kant, KrV); dialéctica, contradicción como motor y Aufhebung (Hegel); decir/mostrar y lo inefable, proposición 7 (Wittgenstein, Tractatus); argumento de las tres tesis de 'Sobre el no-ser' (Gorgias, sofística).",
+    "typecheck": "verde (cero cambios de código de producción)",
+    "lint": "verde",
+    "unitTests": "sin cambios (esta fase no toca código)",
+    "paidApiCalls": 0
+  },
+  "crossItemLeakCheck": "Revisado en las dos direcciones (G38 §6 / G40 §3): ningún stem nombra el dato que otro reactivo pide identificar. #10 (Parménides/Heráclito) y #30 (Gorgias) se desacoplaron a propósito: la primera versión de #30 usaba a los eleáticos y a Heráclito como distractores, lo que insinuaba el eje de #10; se cambiaron por escepticismo académico, atomismo de Demócrito y naturalismo milesio. La primera versión también rozaba a #22 (Sócrates) con un distractor sobre el intelectualismo moral; eliminado. Los pares 'disputa -> resolución' (#3 racionalismo/empirismo y #33 criticismo kantiano; #25 mímesis y #29 Ideas de Platón) se conservan: se refuerzan sin que una respuesta trivialice la otra.",
+  "nextPhase": "G42 — verificación ciega del lote de G41 (segunda mitad del ciclo adversarial de G2). Lote 100 % verbal, 0/35 admiten cálculo -> sin candado aritmético; el control es el descarte explícito de los tres distractores por su contenido y la confianza declarada. Los 7 SOURCED de 'Historia de la filosofía occidental' NO reciben el texto del SourceChunk en la sesión ciega (loadPendingQuestionsWithContext no lo pasa): se resuelven con conocimiento de filosofía de bachillerato, igual que el resto. Aplicar G36 §2 (recalcular diagnósticos de longitud sobre las respuestas ciegas y comparar con el veredicto de la sección ## G41) y G38 §3-§4 (la secuencia de clave vive en este registro y en la DB, no en ## G41). Reactivos más apretados (se señalan, no cómo resolverlos): los 2 EXPERT (#21 ley de Hume, #28 fin del arte en Hegel) y #9 (no contradicción como principio indemostrable).",
+  "questions": [
+    {
+      "questionId": "cmtfh0w2x00013tzczjqaohsb",
+      "n": 1,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La concepción clásica define el conocimiento proposicional como «creencia verdadera justificada». Según esa definición, ¿por qué no basta con acertar por casualidad para afirmar que alguien «sabe» algo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La creencia lograda por pura casualidad es siempre falsa, y el conocimiento pide que la creencia sea verdadera.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El conocimiento no exige que la creencia sea verdadera, sino solo que el sujeto sepa defenderla con argumentos.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El acierto casual no se apoya en razones: hay creencia y verdad, pero falta por completo la justificación.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Saber algo consiste únicamente en estar convencido de ello con firmeza subjetiva suficiente.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Falta la tercera condición",
+          "content": "La definición tripartita pide tres cosas a la vez: que el sujeto lo crea, que sea verdad y que tenga una razón que lo respalde. Quien acierta al azar cumple las dos primeras, pero no la tercera: no puede explicar por qué su creencia es correcta.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Que el acierto sea casual no lo vuelve falso: precisamente puede ser verdadero, y aun así no es conocimiento; por eso verdad más creencia no bastan. 2) Suprimir la exigencia de verdad haría que una creencia bien argumentada pero falsa contara como saber, lo que contradice el uso del término. 3) Reducir el conocimiento a la mera convicción confunde saber con estar seguro: se puede estar segurísimo de algo falso.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Doxa y episteme",
+          "content": "La distinción entre opinión (doxa) y conocimiento (episteme) atraviesa toda la epistemología: lo que separa a una de otro es el fundamento. Repasa: las tres condiciones del conocimiento y el problema de Gettier, que muestra que a veces ni siquiera las tres bastan.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh0wvi00063tzc105acv26",
+      "n": 2,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Un artesano fabrica correctamente una mesa siguiendo la costumbre del taller, pero no sabe decir qué es una mesa ni por qué su método funciona. En los términos de Platón, ese estado cognitivo es:",
+      "options": [
+        {
+          "id": "A",
+          "text": "episteme, porque el resultado es correcto y la eficacia comprobada de un método basta para hablar de saber.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "opinión (doxa): una creencia que puede resultar acertada, pero que el sujeto no logra fundamentar.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "ignorancia total, ya que quien no sabe definir un objeto carece por completo de acceso cognitivo a él.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "sensación pura, dado que cualquier actividad manual queda por principio fuera del conocimiento.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Acierto sin fundamento",
+          "content": "Para Platón se puede tener una opinión verdadera —el artesano acierta— sin tener conocimiento, porque no puede dar cuenta (logos) de lo que hace. La opinión verdadera es útil, pero, como dice en el «Menón», «se escapa» hasta que se la ata con un razonamiento sobre la causa.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Identificar el saber con la eficacia es el error que Platón combate: la técnica acertada sin explicación sigue siendo opinión. 2) No es ignorancia absoluta: el artesano acierta una y otra vez, así que algo capta; le falta el fundamento, no el contacto. 3) No se reduce a sensación: hay un juicio verdadero involucrado, solo que sin justificación.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Opinión verdadera y conocimiento",
+          "content": "El grado intermedio entre ignorancia y ciencia es la opinión verdadera. Repasa: la escala de la Línea dividida y el paso de la doxa a la episteme mediante el logos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh0xnk000b3tzcv7fnwicp",
+      "n": 3,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El racionalismo y el empirismo modernos mantienen una disputa de fondo. ¿Cuál es el núcleo de ese desacuerdo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Si el mundo exterior existe realmente o si es tan solo una construcción que cada mente individual proyecta.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Si hay ideas y verdades independientes de la experiencia o si todo el contenido mental procede de ella.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Si el saber debe orientarse a fines prácticos y útiles o buscarse solo por sí mismo, sin utilidad alguna.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Si las matemáticas y la lógica forman parte de la filosofía o más bien de las ciencias naturales exactas.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El origen de las ideas",
+          "content": "Racionalistas como Descartes o Leibniz admiten ideas y principios que la razón posee con independencia de la experiencia; empiristas como Locke o Hume sostienen que la mente parte de cero y que todo material del pensamiento entra por los sentidos. Ese es el eje de la disputa.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La existencia del mundo exterior es el problema del realismo frente al idealismo, no el que separa a racionalismo y empirismo. 2) El fin práctico o teórico del saber es una cuestión distinta, que discute sobre todo el pragmatismo. 3) El lugar institucional de las matemáticas no está en juego aquí; ambos bandos las estudian y valoran.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Racionalismo, empirismo y criticismo",
+          "content": "La síntesis kantiana surge justamente para superar esta oposición. Repasa: ideas innatas, tabula rasa y el principio «nada hay en el intelecto que no haya pasado antes por los sentidos».",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh0yfm000g3tzc6sfnyxic",
+      "n": 4,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Ante dos argumentos que parecen igual de sólidos y llevan a conclusiones opuestas, el escéptico pirrónico recomienda suspender el juicio (epojé). ¿Qué finalidad práctica persigue con esa suspensión?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Demostrar de una vez por todas que la verdad no existe y que toda afirmación resulta exactamente igual de falsa.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Forzar al interlocutor a aceptar la tesis contraria a la que venía defendiendo al comienzo de la discusión.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Fundar un método seguro para deducir verdades nuevas a partir de premisas evidentes por sí mismas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Alcanzar la serenidad del ánimo (ataraxía), sin angustiarse ya por cuál de las tesis es la verdadera.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Suspender para dejar de sufrir",
+          "content": "El pirronismo constata que a cada argumento se le puede oponer otro de fuerza semejante (equipolencia). Ante ese empate, suspende el juicio, y de esa suspensión —según relata Sexto Empírico— sigue como una sombra la ataraxía, la serenidad de quien deja de atormentarse buscando lo inalcanzable.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Afirmar «la verdad no existe» sería un dogma, y el escéptico consecuente no sostiene dogmas: solo suspende. 2) No busca ganar la discusión imponiendo la tesis opuesta, sino desactivar por igual las dos. 3) No pretende fundar un método deductivo; su actitud es la contraria a la del dogmático que cree haber hallado principios firmes.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Escepticismo antiguo",
+          "content": "Conviene no confundir el escepticismo académico con el pirrónico ni con la duda metódica de Descartes, que es provisional. Repasa: equipolencia, epojé y ataraxía, y la diferencia entre suspender el juicio y negar la verdad.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh0z7q000l3tzc4x2b2jq5",
+      "n": 5,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "«Un enunciado es verdadero si concuerda con los hechos» y «un enunciado es verdadero si encaja sin contradicción en un sistema de creencias ya aceptado» formulan, respectivamente:",
+      "options": [
+        {
+          "id": "A",
+          "text": "la teoría pragmática de la verdad y la teoría de la verdad como revelación o intuición inmediata.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la teoría de la verdad como correspondencia y la teoría de la verdad como coherencia interna del sistema.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "la teoría consensual de la verdad y la teoría de la verdad como correspondencia con los hechos.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "dos versiones equivalentes de una misma teoría, la de la verdad como evidencia sensible.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Concordar con los hechos o encajar en el sistema",
+          "content": "La primera fórmula define la verdad como relación entre el enunciado y la realidad (correspondencia o adecuación). La segunda la define como relación del enunciado con otros enunciados: es verdadero lo que se integra sin contradicción en el conjunto ya admitido.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La teoría pragmática mide la verdad por sus consecuencias útiles, y «revelación» no es una teoría filosófica estándar de la verdad. 2) El consenso de la comunidad define la teoría consensual, distinta de la de coherencia; además el orden queda invertido. 3) No son equivalentes: la correspondencia mira a los hechos y la coherencia mira al sistema; puede haber coherencia sin correspondencia.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Teorías de la verdad",
+          "content": "Las principales son correspondencia, coherencia, pragmática y consensual. Repasa: qué relación postula cada una y qué objeción recibe (por ejemplo, un sistema coherente pero falso).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh0zzx000q3tzcgf9tt5fh",
+      "n": 6,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Considera el razonamiento: «Todos los planetas son cubos. La Tierra es un planeta. Luego, la Tierra es un cubo». Desde la lógica formal, se debe evaluar como:",
+      "options": [
+        {
+          "id": "A",
+          "text": "válido: la conclusión se sigue por necesidad de las premisas, aunque una premisa y ella sean falsas.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "inválido, porque parte de una premisa falsa, y con premisas falsas ningún razonamiento puede ser correcto.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "válido y además sólido, porque respeta la figura del silogismo categórico universal afirmativo.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "inválido, porque la conclusión es de hecho falsa y la lógica exige conclusiones verdaderas.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Validez es cuestión de forma",
+          "content": "Un razonamiento es válido cuando es imposible que las premisas sean verdaderas y la conclusión falsa; eso depende solo de la forma. Aquí la forma es correcta («todo A es B; x es A; luego x es B»), de modo que el razonamiento es válido, aunque parta de un disparate.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La falsedad de una premisa no afecta la validez: afecta la solidez. Un argumento válido puede tener premisas falsas. 2) No es sólido: la solidez exige validez más premisas verdaderas, y la primera premisa es falsa. 3) La lógica formal no pide conclusiones verdaderas, sino que la conclusión se siga de las premisas; la verdad de hecho es otro asunto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Validez, verdad y solidez",
+          "content": "Distingue con cuidado: la validez se refiere a la conexión entre premisas y conclusión; la verdad, a la relación de cada enunciado con la realidad; la solidez, a la suma de validez y premisas verdaderas. Repasa: argumentos válidos con premisas falsas y argumentos inválidos con premisas verdaderas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh10rx000v3tzcroskcdsg",
+      "n": 7,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "«He observado mil cisnes y todos eran blancos; por lo tanto, todos los cisnes son blancos». Esta inferencia es:",
+      "options": [
+        {
+          "id": "A",
+          "text": "deductiva: si las premisas son verdaderas, entonces la conclusión resulta necesariamente verdadera también.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "una falacia sin valor alguno, porque toda generalización a partir de casos particulares es ilegítima.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "inductiva: las premisas dan apoyo probable a la conclusión, pero no garantizan que sea verdadera.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "una definición, porque fija el significado del término «cisne» a partir de su uso corriente en la lengua.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De los casos a la ley general",
+          "content": "La inducción por enumeración parte de una serie de casos observados y salta a un enunciado general. Ese salto amplía la información, pero por eso mismo no es concluyente: basta un cisne negro para refutar la generalización, por muchos casos blancos que se hayan visto.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No es deductiva: en una deducción válida la conclusión no dice más que las premisas, y aquí sí dice más (habla de todos los cisnes, no solo de los mil vistos). 2) No carece de valor: la inducción es la base del conocimiento empírico; su conclusión es probable, no segura, pero no por ello inútil. 3) No es una definición: no se está fijando el sentido de la palabra, sino afirmando algo acerca de los cisnes.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Deducción e inducción",
+          "content": "La deducción conserva la verdad y no la amplía; la inducción la amplía sin garantizarla. Repasa: el problema de la inducción de Hume y el ejemplo del cisne negro.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh11k000103tzcwnbe19gv",
+      "n": 8,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "«No hay que tomar en serio su argumento a favor de subir los impuestos: es millonario y solo defiende su bolsillo». Al razonar así se comete la falacia de:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ataque a la persona: se rechaza el argumento por un rasgo de quien lo formula, no por sus razones.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "apelación a la autoridad: se acepta una tesis solo porque la sostiene un experto de prestigio ampliamente reconocido.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "petición de principio: se emplea como premisa la misma conclusión que se pretendía demostrar al inicio.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "falso dilema: se presentan solo dos salidas cuando en realidad existen otras alternativas viables.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Se ataca a quien habla, no a lo que dice",
+          "content": "El argumento sobre los impuestos puede ser bueno o malo por sus propias razones. Descalificarlo señalando la posición económica de quien lo propone no toca esas razones: cambia el tema, de la tesis a la persona. Eso es un ataque a la persona (ad hominem).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La apelación a la autoridad invoca el prestigio de alguien para aceptar una tesis; aquí ocurre lo contrario, se usa un rasgo de alguien para rechazarla. 2) La petición de principio da por supuesto lo que se quiere probar, y en el ejemplo no se repite la conclusión como premisa. 3) El falso dilema reduce las opciones a dos; en el ejemplo no se plantea ninguna disyuntiva.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Falacias no formales",
+          "content": "Estas falacias fallan por el contenido y el contexto del argumento, no por su forma. Repasa: ad hominem, ad verecundiam, petición de principio, falso dilema y hombre de paja, con un ejemplo de cada una.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh12c500153tzcbyks5rrx",
+      "n": 9,
+      "topic": "epistemologia",
+      "topicId": "cmrr1kh5y006uhi3nvb8x73pv",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Aristóteles afirma que «es imposible que algo sea y no sea lo mismo, al mismo tiempo y en el mismo sentido», y sostiene que este principio no puede demostrarse a partir de otro más básico. ¿Por qué no?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Es una convención del lenguaje que cada comunidad de hablantes puede libremente adoptar o bien rechazar.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Es una hipótesis empírica que se confirma al observar que en la naturaleza nunca llegan a darse contradicciones.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Es un principio primero: toda demostración ya lo supone, así que probarlo exigiría usarlo para probarse.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Aristóteles lo tenía por menos seguro que el principio de causalidad, del cual, en rigor, se lo deduce.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Lo que toda prueba supone no se prueba",
+          "content": "Demostrar algo es derivarlo de premisas ya admitidas. Pero cualquier demostración usa ya el principio de no contradicción: sin él, las premisas podrían ser y no ser verdaderas a la vez. Pedir que se lo demuestre es pedir que se lo use para probarse a sí mismo, y eso no termina nunca.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No es una convención revisable: si una comunidad lo «rechazara», sus afirmaciones dejarían de decir algo determinado. 2) No es empírico: no se apoya en observar la naturaleza, sino que es condición de cualquier discurso con sentido. 3) Aristóteles lo tiene por el principio más firme de todos, no por debajo del de causalidad.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Principios primeros",
+          "content": "Un principio primero es indemostrable no por debilidad, sino por su lugar: es aquello desde lo que se demuestra. Repasa: el libro IV (Gamma) de la «Metafísica» y la refutación «elénctica» de quien pretende negar el principio.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1blv0001vdkima8o7156",
+      "n": 10,
+      "topic": "metafisica",
+      "topicId": "cmrr1khsq006whi3nmnu6ich1",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Para Parménides «el ser es y el no-ser no es», así que el cambio es imposible; para Heráclito «todo fluye» y nada permanece idéntico. La oposición entre ambos versa sobre:",
+      "options": [
+        {
+          "id": "A",
+          "text": "si el conocimiento verdadero procede de los sentidos o únicamente de la razón y del intelecto humano.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "si la realidad última es permanente e inmutable o si el cambio y el devenir constituyen lo real.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "si existe un solo principio material del cosmos o varios elementos que se mezclan y se separan sin cesar.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "si el universo fue creado por una divinidad en el tiempo o es eterno, sin principio ni final.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Permanencia frente a devenir",
+          "content": "Parménides sostiene que lo real es uno, eterno e inmóvil, y que el cambio que percibimos es apariencia. Heráclito sostiene que lo real es proceso: todo se transforma según una ley (logos). Discuten, pues, sobre la naturaleza última de lo que hay: si es estable o si es puro fluir.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El origen del conocimiento en los sentidos o la razón es un problema epistemológico, no el de este contraste ontológico. 2) La disputa sobre uno o varios principios materiales enfrenta a los milesios con los pluralistas, no a Parménides con Heráclito. 3) La creación del mundo es un tema posterior, ligado al pensamiento judeocristiano.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Los presocráticos y el problema del ser",
+          "content": "El contraste ser/devenir es una de las primeras grandes preguntas de la metafísica. Repasa: la vía de la verdad en Parménides y el fluir y la unidad de los opuestos en Heráclito.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1ce50006vdki6i9made9",
+      "n": 11,
+      "topic": "metafisica",
+      "topicId": "cmrr1khsq006whi3nmnu6ich1",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Aristóteles explica que una estatua de bronce se compone de materia (el bronce) y forma (la figura). Trasladado a un ser vivo, ¿qué papel cumple la forma según el hilemorfismo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Es el aspecto exterior y accidental de la cosa, que puede cambiar sin que por ello el ser deje de ser lo que es.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Es una realidad separada y subsistente que existe por sí misma en un ámbito distinto y aparte del mundo sensible.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Organiza la materia y hace que ese ser sea lo que es; en el viviente, esa forma es el alma o principio vital.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Es la mera suma de las partes materiales, sin añadir nada a la simple acumulación de sus componentes.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La forma como acto que estructura",
+          "content": "En el hilemorfismo, la materia es aquello de lo que algo está hecho (pura posibilidad) y la forma es lo que la determina y actualiza. En un ser vivo, esa forma es el alma: no una cosa aparte, sino el principio que hace del cuerpo un organismo con funciones vitales.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Lo exterior y mudable que no afecta la identidad es el accidente, no la forma sustancial. 2) Una realidad separada del mundo sensible es la Idea platónica, y Aristóteles rechaza precisamente esa separación. 3) Reducir el ser vivo a la suma de sus partes materiales es la tesis materialista, que el hilemorfismo niega: la forma aporta la organización.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Materia y forma",
+          "content": "El hilemorfismo permite pensar el cambio (una materia adopta una forma nueva) sin caer ni en Parménides ni en Heráclito. Repasa: acto y potencia, forma sustancial y accidental, y el alma como forma del cuerpo en «Acerca del alma».",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1d6h000bvdkilt9gz1oj",
+      "n": 12,
+      "topic": "metafisica",
+      "topicId": "cmrr1khsq006whi3nmnu6ich1",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Berkeley sostiene que «ser es ser percibido»: los objetos sensibles no existen fuera de una mente que los perciba. De esta tesis se sigue que:",
+      "options": [
+        {
+          "id": "A",
+          "text": "no hay materia como sustancia independiente de la percepción; las cosas son conjuntos de ideas sensibles.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "los objetos siguen existiendo por sí mismos, al margen por completo de toda mente, cuando nadie los está percibiendo.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "solo existe la materia, y las ideas y percepciones son un producto secundario de los procesos del cerebro.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "es imposible conocer nada del mundo exterior, de modo que hay que suspender todo juicio acerca de él.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sin percepción no hay cosa sensible",
+          "content": "Si el existir de lo sensible consiste en ser percibido, entonces suponer una materia que subsista al margen de toda mente es suponer algo contradictorio. Para Berkeley, una manzana es el haz de sus cualidades percibidas (color, sabor, forma), no un soporte material oculto tras ellas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Que las cosas existan por sí mismas al margen de toda mente es justo lo que Berkeley niega; su permanencia la garantiza, en su sistema, la percepción divina, no una sustancia material. 2) Afirmar que solo existe la materia es el materialismo, la posición opuesta a la suya. 3) Berkeley no es escéptico: cree estar refutando el escepticismo al eliminar la materia incognoscible y dejar solo ideas, que sí conocemos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Idealismo empirista",
+          "content": "Berkeley lleva el empirismo hasta negar la sustancia material. Repasa: «esse est percipi», la crítica a las ideas abstractas y el papel de Dios como garante de la permanencia de lo sensible.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1dyq000gvdkip0r89xim",
+      "n": 13,
+      "topic": "metafisica",
+      "topicId": "cmrr1khsq006whi3nmnu6ich1",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Descartes distingue dos sustancias: la cosa pensante (res cogitans), inextensa, y la cosa extensa (res extensa), no pensante. ¿Qué problema deja abierto esta distinción?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cómo pueden influir causalmente entre sí una sustancia inmaterial y una material si nada tienen en común.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Cómo consigue el cuerpo, por sí solo y sin ninguna mente separada, llevar a cabo las operaciones de pensar y razonar.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Por qué los animales, que carecerían de extensión, poseen sin embargo pensamiento, lenguaje y libre albedrío.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cómo demostrar que la materia existe, si únicamente tenemos acceso a las verdades de las matemáticas.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El problema de la interacción",
+          "content": "Si la mente no tiene extensión ni ubicación y el cuerpo es pura extensión, no se ve cómo una decisión mental mueve un brazo ni cómo un pinchazo produce dolor. Ese punto de contacto entre dos sustancias sin nada en común es la dificultad que la princesa Isabel de Bohemia le planteó a Descartes.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Descartes no sostiene que el cuerpo piense por sí solo; el pensamiento pertenece a la res cogitans. 2) Para él los animales son puro mecanismo corpóreo (son extensión, no carecen de ella) y no tienen pensamiento; el enunciado invierte su posición. 3) La existencia de la materia sí la afirma, apoyándose en la veracidad divina; ese no es el hueco que deja el dualismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El problema mente-cuerpo",
+          "content": "El dualismo de sustancias explica bien la diferencia entre lo mental y lo físico, pero paga el precio de su relación. Repasa: la objeción de Isabel de Bohemia, la glándula pineal y las respuestas posteriores (ocasionalismo, paralelismo, materialismo).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1eqw000lvdkiis5udlj1",
+      "n": 14,
+      "topic": "metafisica",
+      "topicId": "cmrr1khsq006whi3nmnu6ich1",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El determinismo afirma que todo acontecimiento, incluidas las decisiones humanas, está causado de manera necesaria por hechos anteriores. ¿Qué problema plantea esta tesis para la ética?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sería imposible predecir la conducta humana, incluso conociendo por completo todas y cada una de sus causas previas.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La naturaleza dejaría de regirse por leyes y todo pasaría a ocurrir por azar, sin causa alguna que lo explique.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El estudio científico del mundo físico se volvería una tarea del todo innecesaria y carente de sentido.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Si las acciones humanas ya estaban fijadas de antemano, se vuelve discutible que seamos responsables de ellas.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Responsabilidad y alternativas posibles",
+          "content": "Solemos considerar a alguien responsable de un acto cuando pudo haber obrado de otro modo. Si el determinismo es cierto y, dadas las causas previas, solo era posible el acto que ocurrió, ese supuesto se tambalea, y con él la práctica de elogiar, culpar y castigar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El determinismo no implica imprevisibilidad; al contrario, en principio haría la conducta predecible si se conocieran las causas. 2) No introduce azar: afirma justamente que no lo hay, que todo está causado. 3) No vuelve inútil a la ciencia; la ciencia natural suele presuponer alguna forma de determinación causal.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Libertad y determinismo",
+          "content": "Frente al problema hay tres respuestas típicas: el determinismo duro (no somos libres), el libertarismo (hay decisiones no determinadas) y el compatibilismo (libertad y determinismo pueden coexistir). Repasa: en qué consiste cada una y cómo entiende cada cual la responsabilidad.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1fj3000qvdkiwpsztcmb",
+      "n": 15,
+      "topic": "metafisica",
+      "topicId": "cmrr1khsq006whi3nmnu6ich1",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Spinoza afirma que existe una sola sustancia infinita; Descartes admite dos sustancias creadas (pensamiento y extensión); Leibniz, infinitas (las mónadas). Estas tres posturas se denominan, respectivamente:",
+      "options": [
+        {
+          "id": "A",
+          "text": "idealismo, realismo y materialismo.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "monismo, dualismo y pluralismo.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "panteísmo, deísmo y ateísmo.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "racionalismo, empirismo y criticismo.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "¿Cuántas sustancias hay?",
+          "content": "La pregunta por el número de sustancias últimas divide las respuestas en tres: una sola (monismo, Spinoza), dos (dualismo, Descartes) o muchas (pluralismo, Leibniz). Es una clasificación por cantidad, independiente de qué sea esa sustancia.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Idealismo, realismo y materialismo clasifican según la naturaleza de lo real (mental, independiente de la mente, material), no según su número. 2) Panteísmo, deísmo y ateísmo son posiciones sobre Dios; Spinoza sí es panteísta, pero Descartes no es deísta ni Leibniz ateo. 3) Racionalismo, empirismo y criticismo clasifican teorías del conocimiento, no ontologías.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Monismo, dualismo, pluralismo",
+          "content": "Repasa: la sustancia única de Spinoza («Dios o Naturaleza»), el dualismo cartesiano y las mónadas de Leibniz, y cómo cada uno resuelve la relación entre lo mental y lo físico.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1k3j0001culzy2auq9ur",
+      "n": 16,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En filosofía suele distinguirse entre «moral» y «ética». ¿Cuál es la distinción más habitual?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La moral es el conjunto de normas de hecho vigentes en un grupo social; la ética es la reflexión que las examina.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La moral se ocupa de la vida privada y de la conciencia, y la ética, en exclusiva, de la vida política y de las leyes.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Son términos por completo sinónimos, y la única diferencia entre ambos es la lengua de la que proviene cada palabra.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La moral es siempre de origen religioso, y la ética es siempre laica y se opone a toda forma de religión.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Norma vivida y reflexión sobre la norma",
+          "content": "«Moral» nombra las reglas y costumbres que una comunidad practica y transmite. «Ética» nombra la disciplina de segundo orden que se pregunta por qué esas reglas obligan, si son correctas y cómo justificarlas. Una es el objeto; la otra, el estudio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La ética no se limita a lo político ni la moral a lo privado; ambas abarcan la conducta en todos sus ámbitos. 2) Aunque las dos palabras vienen de raíces que significan «costumbre» (una latina, otra griega), el uso filosófico les asigna niveles distintos: práctica y teoría. 3) Ni la moral es forzosamente religiosa ni la ética forzosamente antirreligiosa; hay morales laicas y éticas de inspiración religiosa.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Ética como filosofía moral",
+          "content": "La ética es la parte de la filosofía que reflexiona sobre la moral. Repasa: la distinción entre enunciados morales (de primer orden) y metaética (de segundo orden), y las grandes preguntas de la ética normativa.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1kvo0006culzt5w8f2z8",
+      "n": 17,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Kant afirma que una acción tiene valor moral solo si la voluntad que la realiza es autónoma. ¿Qué significa aquí «autónoma»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que cada persona elige con libertad los valores que mejor se ajustan a su situación, a su cultura y a sus gustos.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que la conducta se orienta siempre por el cálculo de las consecuencias placenteras o dolorosas que va a producir.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Que la voluntad se da a sí misma la ley moral mediante la razón, sin ceder ante inclinaciones ni ante autoridades.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Que se obedecen las normas de la propia comunidad porque proceden de una tradición larga y digna de respeto.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Darse la ley a uno mismo",
+          "content": "«Autonomía» viene de «darse la propia ley». Para Kant, la voluntad es autónoma cuando actúa por respeto a una ley que la razón misma establece y que vale universalmente. Si en cambio actúa movida por el deseo, el miedo o la orden de otro, es heterónoma.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Elegir los valores «según la cultura y los gustos» es relativismo o subjetivismo: la ley kantiana no la elige cada quien a su medida, es la misma para todo ser racional. 2) Guiarse por el placer y el dolor es exactamente lo que Kant llama determinación heterónoma por la inclinación. 3) Obedecer a la tradición porque es respetable también es heteronomía: la fuente de la norma está fuera de la razón del agente.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Autonomía y heteronomía",
+          "content": "El valor moral, para Kant, no está en lo que se logra, sino en obrar por deber desde una voluntad que se autolegisla. Repasa: buena voluntad, deber e inclinación, y la diferencia entre autonomía y hacer «lo que a uno le apetece».",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1lnx000bculzmtp39n24",
+      "n": 18,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Una formulación del imperativo categórico kantiano exige obrar solo según máximas que se puedan querer como ley universal. Según ese criterio, ¿por qué es incorrecto hacer una promesa que no se piensa cumplir para salir de un apuro?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La experiencia enseña que las promesas incumplidas casi siempre terminan por descubrirse y acarrean un castigo.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Universalizada, la máxima se destruye a sí misma: si todos prometieran en falso, nadie creería ya en las promesas.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Mentir genera, en el cómputo global de las consecuencias, más sufrimiento que felicidad para el conjunto afectado.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Las promesas están reguladas por el derecho, y romperlas expone a demandas y a otras sanciones legales.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una máxima que se anula al generalizarse",
+          "content": "La prueba kantiana consiste en imaginar la máxima («prometeré en falso cuando me convenga») convertida en ley que todos siguen. En ese mundo, las promesas no serían creídas y no servirían para nada: la propia acción de prometer se volvería imposible. La máxima se contradice al universalizarse, y por eso es inmoral.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El miedo a ser descubierto es un cálculo de prudencia, no un argumento moral: si nadie fuera a enterarse, la promesa falsa seguiría estando mal. 2) Pesar sufrimientos y felicidades es el método utilitarista, no el kantiano: Kant juzga la máxima, no el balance de consecuencias. 3) La sanción legal es una razón jurídica externa; el deber moral obliga aunque no hubiera ley ni castigo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El criterio de universalización",
+          "content": "El imperativo categórico manda actuar de modo que la máxima pueda convertirse en ley universal sin contradicción. Repasa: la diferencia entre imperativos hipotéticos y categóricos y el contraste entre este criterio y el consecuencialismo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1mg2000gculzw3h9yxxl",
+      "n": 19,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Para Aristóteles la virtud moral es un «término medio» entre dos vicios, uno por exceso y otro por defecto. ¿Cómo hay que entender ese «medio»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La mitad exacta entre el exceso y el defecto, un mismo valor numérico idéntico para absolutamente todos los casos.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La indiferencia ante los extremos, que consiste en no comprometerse nunca con ninguna acción decidida.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La sumisión a la costumbre establecida, que es la que ya tiene fijado de antemano lo que resulta correcto.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El punto adecuado a cada situación y persona, fijado por la razón prudente, no un promedio aritmético fijo.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un medio «relativo a nosotros»",
+          "content": "Aristóteles aclara que no busca el medio «de la cosa» (que sería siempre el mismo), sino el medio «relativo a nosotros»: la cantidad de miedo, de gasto o de ira que corresponde a esta persona, en estas circunstancias, tal como la fijaría quien tiene prudencia (phrónesis). Por eso la valentía no es un punto fijo entre cobardía y temeridad.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El promedio aritmético idéntico para todos es precisamente el medio «de la cosa» que Aristóteles descarta. 2) La virtud no es tibieza ni abstención: el valiente actúa, y con decisión; el medio está en el modo y la medida, no en no hacer nada. 3) No es mera obediencia a la costumbre: la costumbre puede errar, y hace falta la razón prudente para juzgar el caso concreto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La virtud como término medio",
+          "content": "La virtud ética es una disposición a elegir el medio, guiada por la razón práctica. Repasa: el ejemplo de la valentía, el papel de la prudencia y por qué algunos actos (como el asesinato) no admiten término medio.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1n87000lculzi3pyo47n",
+      "n": 20,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El utilitarismo clásico de Bentham y Mill juzga la moralidad de un acto por sus consecuencias. ¿Cuál es su criterio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Es correcto el acto que más beneficia a quien lo realiza, aunque con ello llegue a perjudicar a todos los demás.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Es correcto el acto que cumple con el deber, con total independencia de los resultados que llegue a producir.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Es correcto el acto que respeta los derechos de cada individuo, aun cuando reduzca el bienestar del conjunto.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Es correcto el acto que produce más felicidad, o bien menos sufrimiento, para el mayor número posible de afectados.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El principio de la mayor felicidad",
+          "content": "Para el utilitarismo, la única cosa buena en sí misma es el bienestar (placer, felicidad, satisfacción de preferencias). Un acto es correcto en la medida en que aumenta ese bienestar total, sumando a todos los afectados y sin privilegiar a nadie, ni siquiera a quien decide.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Buscar solo el propio beneficio es el egoísmo ético, no el utilitarismo, que cuenta a todos por igual. 2) Cumplir el deber sin mirar los resultados es la ética deontológica de Kant, opuesta al consecuencialismo. 3) Anteponer los derechos individuales al bienestar general es una objeción habitual contra el utilitarismo, no su tesis.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Consecuencialismo",
+          "content": "El utilitarismo es la forma más conocida de consecuencialismo: lo que importa son los efectos. Repasa: la diferencia entre utilitarismo de acto y de regla y las críticas por sacrificar al individuo en nombre de la mayoría.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1o08000qculzn660rwjp",
+      "n": 21,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Hume observó que muchos razonamientos morales pasan de afirmaciones sobre lo que «es» a conclusiones sobre lo que «debe ser», sin justificar ese paso. ¿Qué se sigue de esta observación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Todos los juicios morales son falsos, ya que no se apoyan en ningún hecho que pueda comprobarse en el mundo natural.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "De premisas que son solo descriptivas no se deduce con validez una conclusión normativa sin añadir un principio de valor.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La ética debe reducirse a la biología, porque son los hechos naturales los que determinan qué cosa es valiosa.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una norma moral es verdadera cuando coincide con lo que la mayoría de la gente acostumbra hacer en la práctica.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Del ser no se sigue el deber",
+          "content": "La observación de Hume es lógica: en un argumento válido, la conclusión no puede contener términos ausentes de las premisas. Si las premisas solo describen hechos y la conclusión dice qué se debe hacer, falta un eslabón: alguna premisa que ya sea normativa. Sin ella, el paso es ilegítimo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Que el salto sea inválido no vuelve falsos los juicios morales; solo muestra que necesitan premisas de valor, no que carezcan de sentido. 2) Derivar los valores de los hechos naturales es justo el tipo de paso que la observación pone en cuestión (a veces llamado falacia naturalista). 3) Identificar lo correcto con lo acostumbrado es otra forma de derivar el deber del ser, y añade el problema de que las costumbres cambian y se contradicen.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La ley de Hume",
+          "content": "La distinción entre enunciados descriptivos y normativos es central en metaética. Repasa: el pasaje del «Tratado de la naturaleza humana», la falacia naturalista de Moore y el debate sobre si el abismo entre hechos y valores es infranqueable.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1osd000vculz4s41hofy",
+      "n": 22,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Sócrates sostiene que «nadie hace el mal voluntariamente» y que la virtud es una forma de conocimiento. ¿Qué implica esta tesis sobre la causa de las malas acciones?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Quien obra mal lo hace por ignorar cuál es el verdadero bien; si de veras lo conociera, actuaría conforme a él.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Las malas acciones nacen de una voluntad débil, que sí conoce cuál es el bien pero se deja arrastrar lejos de él.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El mal proviene de una inclinación innata al daño que la educación no consigue corregir en nadie por completo.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La maldad es una elección libre e informada de quien, sabiendo bien lo que hace, prefiere perjudicar a otros.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Obrar mal es errar sobre el bien",
+          "content": "Para Sócrates, todos deseamos el bien; si alguien elige lo que lo daña, es porque se ha equivocado al juzgar qué era bueno. Nadie persigue el mal en cuanto mal. De ahí que la virtud sea saber y que pueda enseñarse, y que el vicio sea, en el fondo, ignorancia.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La idea de una voluntad que conoce el bien pero no lo sigue es la debilidad de la voluntad (akrasía), que Sócrates niega y que Aristóteles, en cambio, admitirá. 2) Una inclinación innata e incorregible al mal contradice que la virtud sea conocimiento enseñable. 3) Elegir el mal con pleno conocimiento es justo lo que el intelectualismo socrático declara imposible.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Intelectualismo moral",
+          "content": "La tesis «virtud es conocimiento» une la ética con la teoría del conocimiento en Sócrates. Repasa: las paradojas socráticas, el problema de la akrasía y la respuesta de Aristóteles.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1pkh0010culz5900b7je",
+      "n": 23,
+      "topic": "etica",
+      "topicId": "cmrr1kim4006yhi3nal93tvza",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Un relativista cultural afirma: «Ninguna práctica puede juzgarse mejor ni peor que otra, porque cada cultura tiene sus propios valores». ¿Qué objeción clásica enfrenta esta posición?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Niega que existan diferencias morales entre unas sociedades y otras, cosa que resulta empíricamente falsa y evidente.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Se apoya en datos antropológicos erróneos, pues en realidad todas las culturas comparten exactamente las mismas normas.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Impide criticar cualquier práctica de la propia cultura y vuelve incoherente la idea misma de un progreso moral.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Obliga a imponer por la fuerza los valores de una sola cultura sobre todas las demás sociedades del mundo.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sin patrón externo no hay crítica ni progreso",
+          "content": "Si lo correcto es, por definición, lo que aprueba cada cultura, entonces quien dentro de una sociedad denuncia la esclavitud o la discriminación está sencillamente equivocado, y ninguna cultura puede mejorar moralmente: solo puede cambiar. Muchos consideran esta consecuencia inaceptable.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El relativista no niega que las culturas difieran; parte de esa diferencia. 2) Tampoco afirma que las normas sean idénticas en todas partes: eso sería lo contrario de su tesis. 3) El relativismo suele predicar tolerancia y no injerencia, así que «imponer por la fuerza» no se sigue de él; el problema es el opuesto, la imposibilidad de criticar.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Relativismo y universalismo moral",
+          "content": "El debate enfrenta a quienes creen que los valores dependen de cada cultura con quienes defienden principios morales válidos para todos. Repasa: el argumento de las diferencias culturales, sus límites y la distinción entre tolerancia y relativismo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1u54000112ptxknkpl9y",
+      "n": 24,
+      "topic": "estetica",
+      "topicId": "cmrr1kj530070hi3ncfvp5obv",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Ante la pregunta «¿la belleza está en el objeto o en quien lo contempla?», la tradición estética ofrece dos grandes respuestas. ¿Cuáles son?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El objetivismo, que la sitúa en rasgos reales del objeto, y el subjetivismo, que la hace depender del sujeto.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El realismo, que solo llama bello a lo que copia con fidelidad la naturaleza, y el idealismo, que niega que el arte exista.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El clasicismo, que reserva la belleza a las obras de la Antigüedad, y el romanticismo, a las obras modernas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El racionalismo, que la juzga aplicando conceptos, y el empirismo, que la mide con instrumentos de precisión.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "En la cosa o en el sujeto",
+          "content": "El objetivismo estético afirma que hay rasgos que hacen bello a un objeto (la simetría, la proporción, cierta relación de las partes) y que el juicio de belleza acierta o yerra según los capte. El subjetivismo replica que la belleza no es una cualidad de las cosas, sino un sentimiento que estas despiertan en quien las percibe.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La fidelidad a la naturaleza es un criterio sobre la representación (la mímesis), no la disyuntiva objeto/sujeto; y ninguna postura estética seria «niega que el arte exista». 2) Clasicismo y romanticismo son estilos y épocas, no respuestas a dónde reside la belleza. 3) Medir la belleza «con instrumentos» no es lo que sostiene el empirismo estético, que apela al gusto y al sentimiento.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El lugar de la belleza",
+          "content": "La disputa objetivismo/subjetivismo recorre la estética desde Pitágoras hasta Hume y Kant. Repasa: la belleza como proporción en la Antigüedad y el «la belleza no es una cualidad de las cosas mismas» de Hume.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1uxb000612pt4rcuqfma",
+      "n": 25,
+      "topic": "estetica",
+      "topicId": "cmrr1kj530070hi3ncfvp5obv",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Tanto Platón como Aristóteles definen el arte como «mímesis» (imitación), pero lo valoran de modo opuesto. ¿En qué consiste esa diferencia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Platón sostiene que el arte imita las Ideas y por eso lo pone por encima de la filosofía; Aristóteles lo juzga inútil.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Platón lo rebaja porque imita lo sensible, que ya es copia de las Ideas; Aristóteles ve en imitar un modo de conocer.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Ambos coinciden en que hay que expulsar a los poetas de la ciudad ideal, aunque con razones políticas distintas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Platón pide un arte abstracto y sin referencia a lo real; Aristóteles exige un arte realista y documental.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Copia que aleja frente a imitación que enseña",
+          "content": "En la «República», Platón coloca al pintor y al poeta en el tercer escalón desde la verdad: imitan objetos que ya son sombras de las Ideas. Aristóteles, en la «Poética», parte de que imitar es natural en el hombre y que por la imitación aprendemos y gozamos; la tragedia, además, muestra lo universal y produce la catarsis.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Platón no dice que el arte imite las Ideas: imita lo sensible, y por eso lo rebaja; y Aristóteles no lo tiene por inútil, sino por valioso. 2) Solo Platón propone alejar a los poetas; Aristóteles no lo hace. 3) Ninguno de los dos habla de arte «abstracto» ni «documental»: esas categorías son muy posteriores.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Arte y verdad",
+          "content": "La pregunta por lo que el arte nos da a conocer arranca con esta polémica. Repasa: el libro X de la «República», la expulsión de los poetas y la defensa aristotélica de la poesía como más filosófica que la historia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1vph000b12pt511earhe",
+      "n": 26,
+      "topic": "estetica",
+      "topicId": "cmrr1kj530070hi3ncfvp5obv",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Kant sostiene que el juicio «esto es bello» se apoya en una satisfacción «desinteresada». ¿Qué quiere decir con «desinteresada»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El juicio se emite sin prestar verdadera atención al objeto, de un modo distraído, superficial y apresurado.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Quien lo emite carece de toda formación artística previa y de cualquier interés personal por el arte y su historia.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El juicio es indiferente y no aspira en absoluto a que los demás compartan esa misma valoración del objeto.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La complacencia no depende de que el objeto exista ni de que satisfaga un deseo o una necesidad: basta contemplarlo.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Placer sin interés en la existencia del objeto",
+          "content": "Para Kant, «interés» es la vinculación del agrado con la existencia real de la cosa: lo agradable me interesa porque quiero tenerlo, lo bueno porque debe existir. El placer estético es distinto: contemplo la forma de una flor sin que me importe adquirirla ni para qué sirve. Esa ausencia de interés es lo que lo hace propiamente estético.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) «Desinteresado» no es «desatento»: al contrario, el juicio de gusto pide una contemplación demorada de la forma. 2) No exige incultura ni falta de afición; cualquiera puede emitirlo. 3) Kant sostiene lo contrario de la indiferencia: el juicio de gusto reclama el acuerdo de los demás, como si la belleza fuera una propiedad, aunque se funde en un sentimiento (es una «universalidad subjetiva»).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El juicio de gusto",
+          "content": "Kant caracteriza lo bello por cuatro rasgos: gusta sin interés, place universalmente sin concepto, muestra una finalidad sin fin y se juzga como necesario. Repasa: la diferencia entre lo agradable, lo bello y lo bueno, y el «sentido común» estético.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1whl000g12pttout6566",
+      "n": 27,
+      "topic": "estetica",
+      "topicId": "cmrr1kj530070hi3ncfvp5obv",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La estética distingue lo «bello» de lo «sublime». Contemplar una tormenta en alta mar desde un lugar seguro produce, según esa distinción:",
+      "options": [
+        {
+          "id": "A",
+          "text": "un sentimiento de lo sublime: la magnitud desborda la aprehensión y une el sobrecogimiento con el placer.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "un sentimiento de lo bello, porque toda experiencia estética que sea intensa se identifica sin más con la belleza.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "una emoción puramente práctica de miedo, sin ningún componente estético que merezca la pena de analizarse.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "un juicio lógico y frío acerca de las causas físicas que explican el oleaje y la fuerza del viento.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Lo que excede la medida",
+          "content": "Lo bello se asocia a la forma, el límite y la armonía; agrada de manera serena. Lo sublime aparece ante lo que no tiene medida —la inmensidad del cielo, la fuerza de la tormenta— y mezcla el desagrado de sentirse pequeño con el placer de que la razón, pese a todo, pueda pensar esa totalidad. De ahí su carácter contradictorio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No toda experiencia estética fuerte es «belleza»: la tradición reserva un nombre distinto, «sublime», justo para estos casos. 2) No es miedo práctico: quien está a salvo no teme por su vida; contempla, y esa contemplación tiene valor estético. 3) No es un análisis causal: la vivencia estética no consiste en explicar el fenómeno, sino en el sentimiento que provoca.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Lo bello y lo sublime",
+          "content": "La pareja bello/sublime se desarrolla en Burke y en Kant. Repasa: sublime matemático (la magnitud) y dinámico (el poder), y por qué el espectador debe hallarse a salvo para que haya experiencia y no terror.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh1x9o000l12ptdfyijnsv",
+      "n": 28,
+      "topic": "estetica",
+      "topicId": "cmrr1kj530070hi3ncfvp5obv",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Hegel define lo bello artístico como «la manifestación sensible de la Idea» y de ahí concluye que, en el mundo moderno, el arte ha dejado de ser la forma más alta en que el espíritu se comprende a sí mismo. ¿Por qué llega a esa conclusión?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Los artistas modernos han perdido las destrezas técnicas y el oficio que dominaban los grandes maestros de la Antigüedad.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El arte moderno se ha vuelto puramente decorativo y ha renunciado, de manera deliberada, a todo contenido serio.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El espíritu moderno se ha vuelto demasiado abstracto y reflexivo para expresarse entero en una forma sensible.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La Idea, al ser eterna, no admite ninguna expresión histórica concreta, así que todo arte fracasa por igual.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cuando el contenido rebasa a la forma sensible",
+          "content": "Si lo bello artístico es la Idea hecha visible o audible, el arte alcanza su plenitud cuando contenido y forma sensible se corresponden (Hegel lo ve así en el arte clásico griego). Pero el espíritu moderno se ha vuelto tan interior y conceptual que ya no cabe del todo en una imagen: para expresarse necesita el pensamiento. El arte sigue existiendo, pero cede el primer puesto.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La tesis no habla de pérdida de oficio: muchos modernos son técnicamente virtuosos; el problema es la relación entre contenido y forma. 2) Tampoco dice que el arte moderno carezca de contenido; dice que su contenido excede lo que la forma sensible puede mostrar. 3) Hegel no sostiene que todo arte fracase: el arte clásico logró esa correspondencia; lo que cambia es la época.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El «fin del arte» en Hegel",
+          "content": "La expresión no significa que el arte vaya a desaparecer, sino que pierde su función suprema como vehículo de la verdad. Repasa: las tres formas del arte (simbólica, clásica, romántica) y la tríada arte-religión-filosofía como modos del espíritu absoluto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtfh26r80001izrk93o0eayt",
+      "n": 29,
+      "topic": "historia",
+      "topicId": "cmrr1kjn50072hi3nj3gda5rt",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "stem": "La teoría de las Ideas de Platón sostiene que, además del mundo sensible, hay un mundo inteligible de formas eternas. ¿Qué función cumple esa segunda realidad dentro de su filosofía?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sirve de modelo y fundamento de lo sensible y hace posible un conocimiento universal y estable de las cosas.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Es una hipótesis sobre la composición física de la materia, formada por pequeñas partículas geométricas indivisibles.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Designa el conjunto de opiniones que una ciudad comparte acerca de lo justo, lo bello y lo que le conviene.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Es una metáfora del modo en que el cerebro humano clasifica y ordena las impresiones que recibe de los sentidos.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El fundamento de lo sensible y del saber",
+          "content": "Las Ideas son para Platón lo verdaderamente real: modelos perfectos de los que las cosas sensibles son copias imperfectas y cambiantes. Gracias a ellas es posible el conocimiento en sentido estricto, porque hay algo estable y universal que conocer (lo que es la justicia, lo que es el círculo), y no solo apariencias en flujo. La Idea del Bien ocupa la cúspide.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La materia hecha de partículas geométricas aparece en el «Timeo» como física, no como la teoría de las Ideas. 2) El conjunto de opiniones de la ciudad es doxa, justamente lo que las Ideas permiten superar. 3) Una lectura psicológica en términos de cerebro es anacrónica: las Ideas no están en la mente, subsisten por sí mismas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Los dos mundos",
+          "content": "El dualismo ontológico platónico separa el mundo sensible (devenir, opinión) del inteligible (ser, ciencia). Repasa: la participación de las cosas en las Ideas, la reminiscencia y los símiles de la línea y de la caverna.",
+          "latexContent": null
+        }
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007y13b34u9bpz0c"
+      ],
+      "sourceChunkPages": [
+        "p. 46"
+      ]
+    },
+    {
+      "questionId": "cmtfh27qk0006izrkz0up0u1e",
+      "n": 30,
+      "topic": "historia",
+      "topicId": "cmrr1kjn50072hi3nj3gda5rt",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        3
+      ],
+      "stem": "El sofista Gorgias sostuvo, en su tratado Sobre el no-ser, tres tesis sucesivas: que no existe nada; que, si algo existiera, el ser humano no podría aprehenderlo; y que, si lo aprehendiera, no lograría transmitírselo con palabras a otro. ¿Qué posición filosófica ilustra ese razonamiento?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El escepticismo de la Academia, que duda de que se pueda alcanzar certeza plena, pero acepta guiarse por lo probable.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El atomismo de Demócrito, para el cual existen los átomos y el vacío, y hasta el alma está compuesta de átomos sutiles.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Un escepticismo radical, típico de la sofística, que pone en duda la realidad, el conocerla y el comunicarla.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El naturalismo de los primeros milesios, para quienes el mundo existe sin duda y su principio es un elemento físico.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Poner en duda el ser, el conocerlo y el decirlo",
+          "content": "El argumento de Gorgias avanza demoliendo, uno tras otro, los tres supuestos de todo saber: que hay algo, que ese algo puede aprehenderse y que lo aprehendido puede transmitirse con palabras. Sea o no un ejercicio retórico, expresa la desconfianza sofística hacia una verdad objetiva y comunicable.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El escepticismo académico admite que hay algo real y que cabe orientarse por lo más probable; niega la certeza plena, no la existencia ni la comunicación. 2) Demócrito es un realista tajante: afirma que existen átomos y vacío; Gorgias no concede ni siquiera eso. 3) Los milesios dan por sentado que hay una naturaleza y que puede conocerse; se preguntan cuál es su principio, no si existe.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La sofística",
+          "content": "Los sofistas desplazan el interés de la naturaleza al ser humano, el lenguaje y la persuasión, y varios de ellos adoptan posiciones relativistas o escépticas. Repasa: Protágoras («el hombre es la medida de todas las cosas») y Gorgias, y la crítica que les dirigen Sócrates y Platón.",
+          "latexContent": null
+        }
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007z13b3hkfa6xfq"
+      ],
+      "sourceChunkPages": [
+        "p. 47"
+      ]
+    },
+    {
+      "questionId": "cmtfh28os000bizrkvnfajy89",
+      "n": 31,
+      "topic": "historia",
+      "topicId": "cmrr1kjn50072hi3nj3gda5rt",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Descartes propone dudar de todo lo que sea mínimamente dudoso, incluidos los sentidos y las verdades matemáticas. ¿Cuál es el propósito de llevar la duda hasta ese extremo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Demostrar que el conocimiento cierto es imposible y que solo cabe suspender el juicio ante cualquier afirmación.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Hallar, si la hay, una verdad del todo indudable que sirva de primer principio firme para el saber.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Rechazar la razón como una fuente de errores y confiar, a partir de entonces, únicamente en los sentidos.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Poner en cuestión la existencia de Dios como un paso previo y necesario para poder negarla con argumentos.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dudar para hallar un punto firme",
+          "content": "La duda cartesiana es un método, no un fin: se exagera a propósito (llega a suponer un genio engañador) para ver si algo resiste. Lo que resiste es que, mientras pienso, existo. Sobre esa certeza —y luego sobre la existencia de Dios— Descartes se propone reedificar todo el saber.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El escéptico duda para quedarse en la suspensión; Descartes duda para salir de ella con una certeza. 2) No abandona la razón: al contrario, desconfía de los sentidos y se apoya en el pensamiento; es racionalista. 3) No busca negar a Dios: precisamente demuestra su existencia para garantizar la verdad de lo que percibe con claridad.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La duda metódica",
+          "content": "Conviene distinguir la duda metódica (provisional, instrumental) del escepticismo (que no espera salir de la duda). Repasa: las razones para dudar (los sentidos, el sueño, el genio maligno), el «cogito» y el papel de Dios como garante.",
+          "latexContent": null
+        }
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007x13b37qfa5x1j"
+      ],
+      "sourceChunkPages": [
+        "p. 45"
+      ]
+    },
+    {
+      "questionId": "cmtfh29n2000gizrkeegrqib8",
+      "n": 32,
+      "topic": "historia",
+      "topicId": "cmrr1kjn50072hi3nj3gda5rt",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Francis Bacon sostiene que, antes de investigar la naturaleza, la mente está habitada por «ídolos»: prejuicios y hábitos que la distorsionan. ¿Qué propone frente a ellos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Partir de unas cuantas ideas innatas evidentes y deducir de ellas, al modo de la geometría, la totalidad del saber.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Aceptar la autoridad de Aristóteles y de los antiguos como el criterio último de lo que es verdadero o falso.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Renunciar por completo al estudio de la naturaleza y limitar la filosofía al análisis del lenguaje ordinario.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Depurar la mente de sus prejuicios y subir por observación y experimento de los hechos a las leyes generales.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Limpiar la mente y subir desde los hechos",
+          "content": "Bacon quiere un método nuevo («novum organum») que reemplace la lógica silogística heredada. Primero hay que reconocer y neutralizar los ídolos (de la tribu, de la caverna, del foro y del teatro); después, recoger de forma ordenada observaciones y experimentos y elevarse gradualmente hacia axiomas cada vez más generales. Es el método inductivo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Partir de ideas innatas y deducir «al modo de la geometría» es el proceder de los racionalistas, opuesto al de Bacon. 2) Someterse a la autoridad de los antiguos es uno de los ídolos («del teatro») que Bacon denuncia. 3) Reducir la filosofía al análisis del lenguaje es un programa del siglo XX, ajeno por completo a Bacon, que quiere «dominar la naturaleza obedeciéndola».",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Los ídolos y el método inductivo",
+          "content": "Bacon es considerado un iniciador del empirismo y del método experimental moderno. Repasa: los cuatro ídolos, la crítica al silogismo y la inducción por tablas de presencia, ausencia y grados.",
+          "latexContent": null
+        }
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007x13b37qfa5x1j"
+      ],
+      "sourceChunkPages": [
+        "p. 45"
+      ]
+    },
+    {
+      "questionId": "cmtfh2alb000lizrk263sc5ln",
+      "n": 33,
+      "topic": "historia",
+      "topicId": "cmrr1kjn50072hi3nj3gda5rt",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Kant afirma que «los pensamientos sin contenido son vacíos; las intuiciones sin conceptos son ciegas», y con ello pretende superar la oposición entre racionalismo y empirismo. ¿Cómo lo hace?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Concede a la razón toda la iniciativa y reduce la experiencia sensible a una ilusión que hay que aprender a superar.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Afirma que la mente es una hoja en blanco y que toda categoría, incluida la de causa, procede solo de la costumbre.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Se niega a tomar partido en la disputa y la declara un pseudoproblema carente por completo de sentido.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El conocimiento nace de dos fuentes: la sensibilidad aporta los datos y el entendimiento los ordena con categorías.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos fuentes que se necesitan",
+          "content": "El criticismo kantiano reconoce lo que cada bando veía a medias: sin datos de los sentidos, los conceptos no se aplican a nada (son vacíos); sin conceptos del entendimiento, los datos no se organizan en experiencia (son ciegos). Conocer es que el sujeto estructure activamente el material sensible con formas a priori. Es el «giro copernicano».",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Dar a la razón toda la iniciativa y despreciar la experiencia es el racionalismo extremo, que Kant no comparte: para él, sin intuición sensible no hay conocimiento de objetos. 2) La mente como hoja en blanco y la causa reducida a costumbre es la posición de Hume, que Kant quiere corregir con las categorías a priori. 3) Kant no disuelve el problema: lo resuelve mostrando cómo son posibles los juicios sintéticos a priori.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El criticismo",
+          "content": "Kant somete a crítica la propia facultad de conocer para fijar sus límites. Repasa: sensibilidad y entendimiento, juicios analíticos y sintéticos, lo a priori y lo a posteriori, y el giro copernicano.",
+          "latexContent": null
+        }
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007x13b37qfa5x1j"
+      ],
+      "sourceChunkPages": [
+        "p. 45"
+      ]
+    },
+    {
+      "questionId": "cmtfh2bjn000qizrkiuxgmi5z",
+      "n": 34,
+      "topic": "historia",
+      "topicId": "cmrr1kjn50072hi3nj3gda5rt",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "stem": "En la dialéctica de Hegel, el pensamiento avanza cuando una determinación entra en contradicción consigo misma. ¿Qué papel cumple ahí la contradicción?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Es un simple error lógico que hay que detectar y luego eliminar para que el razonamiento resulte válido.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Es una ilusión de los sentidos que la razón disuelve en cuanto analiza con cuidado los conceptos implicados.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Es el motor interno del proceso: empuja hacia una figura superior que conserva y a la vez supera a la anterior.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Es una oposición irreductible entre dos sustancias distintas que nunca llegan a reconciliarse entre sí.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La contradicción que impulsa",
+          "content": "Para Hegel, los conceptos, llevados hasta el final, revelan que contienen su opuesto: el ser puro, sin ninguna determinación, resulta equivalente a la nada, y de ese choque surge el devenir. La contradicción no se evita: se asume y se «supera» (Aufhebung), pasando a una figura superior que guarda lo verdadero de las anteriores.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Tratar la contradicción como un error que hay que suprimir es la actitud de la lógica formal, no de la dialéctica hegeliana, que la considera productiva. 2) No es una ilusión sensible: para Hegel está en los conceptos mismos y en la realidad, que es racional. 3) No es un dualismo de sustancias eternamente enfrentadas: la oposición se resuelve en un momento posterior del proceso.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La dialéctica hegeliana",
+          "content": "El movimiento dialéctico recorre la lógica, la naturaleza y el espíritu. Repasa: los momentos del concepto, la «superación» (Aufhebung) que niega y conserva a la vez, y la diferencia con el esquema escolar «tesis-antítesis-síntesis», que Hegel apenas usó.",
+          "latexContent": null
+        }
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007y13b34u9bpz0c"
+      ],
+      "sourceChunkPages": [
+        "p. 46"
+      ]
+    },
+    {
+      "questionId": "cmtfh2cic000vizrkozcqq01e",
+      "n": 35,
+      "topic": "historia",
+      "topicId": "cmrr1kjn50072hi3nj3gda5rt",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        3
+      ],
+      "stem": "El primer Wittgenstein cierra su Tractatus con la sentencia «de lo que no se puede hablar, hay que callar». En ese contexto, ¿a qué se refiere con aquello «de lo que no se puede hablar»?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A los secretos de Estado y a la información que, por razones de prudencia política, conviene mantener oculta.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "A las proposiciones de la ciencia natural, que para el Tractatus son las únicas que carecen de todo sentido.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "A las proposiciones lógicamente contradictorias, que son las únicas que no es posible formular en ninguna lengua.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "A lo que no cabe decir en proposiciones con sentido —el valor, lo ético, lo místico—, y que solo se muestra.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El límite de lo decible",
+          "content": "En el Tractatus, solo las proposiciones que figuran hechos del mundo tienen sentido; son las de la ciencia natural. Lo más importante para la vida —el valor, el sentido, lo ético, lo estético, lo místico— queda fuera de ese ámbito: no puede formularse en proposiciones, aunque se manifieste. De ahí la sentencia final: ante eso, callar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No habla de secretos ni de discreción política, sino de un límite lógico del lenguaje. 2) Invierte su posición: las proposiciones de la ciencia natural son precisamente las que sí tienen sentido; lo que carece de sentido son los intentos de decir lo indecible. 3) Las contradicciones sí pueden escribirse (son «sin sentido», pero no es de ellas de lo que trata la sentencia); lo inefable es otra cosa.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Decir y mostrar",
+          "content": "La distinción entre lo que puede decirse y lo que solo puede mostrarse es central en el primer Wittgenstein. Repasa: la teoría figurativa de la proposición, los límites del lenguaje como límites del mundo y el giro posterior hacia los «juegos de lenguaje».",
+          "latexContent": null
+        }
+      ],
+      "sourceChunkIds": [
+        "cmrsromj5007z13b3hkfa6xfq"
+      ],
+      "sourceChunkPages": [
+        "p. 47"
+      ]
+    }
+  ]
+}
