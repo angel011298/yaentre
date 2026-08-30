@@ -1,6 +1,18 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G40 (**COMPLETADA — micro-fase editorial + verificación ciega de las reparadas**, ejecutando el work order que G39 §9 dejó abierto. La cola ciega estaba en **cero**: esta fase la creó reparando, no componiendo. **3 reactivos reparados → 3/3 rescatados = 100 % de tasa de rescate**, resueltos a ciegas con el arnés de G2 (los 3 conceptuales, `usedCalculation:false` declarado con verdad; descarte razonado de los tres distractores por contenido, cero referencias posicionales). **Acumulado real (DB en vivo, cruzado con `content:coverage`): 832 en banco / 831 servibles / 1 retirado a propósito**; auto-aprobación global **100 % (832/832)**; `ExplanationLayer` 2 496 = 832×3; `SOURCED` 218 = `QuestionSourceChunk` 218. **Cola canónica en cero** con la definición que usa la app (`isVerified=false ∧ verification≠null ∧ manualReview=null`) — 4ª fase consecutiva. **Work order de G39 §9 cerrado:** §9.1 fuga relacional reparada, §9.2 los dos reactivos peninsulares reubicados a sus `Topic` correctos, §9.3 duplicado retirado (**desbloqueado**: `manualReview.action` acepta `'duplicate'`, el bloqueo que G24 y G39 declararon sin resolver). **Hallazgo propio (§3): la fuga de G39 §9.1 era BIDIRECCIONAL** — el reactivo *protegido* filtraba en su `stem` el punto que evaluaba el otro; reparar solo el señalado habría dejado la mitad abierta. **Hallazgo propio (§6): 3 de los 4 reactivos anclados al chunk de la guía UAM son paráfrasis cercanas de los ítems de esa guía**, uno casi literal en el `stem` — riesgo de originalidad, no de corrección; va al work order con re-verificación ciega obligatoria porque esta sesión ya quedó contaminada sobre ellos. **§9.2/d resuelto con veredicto:** el `SourceChunk` no está mal clasificado por juicio sino **rebanado por página**, así que ningún `topicId` único puede servirlo — el arreglo vive en el chunker, no en el chunk. **Caveat declarado (§2): reparación y pasada ciega ocurrieron en la MISMA sesión** — la garantía sobre la clave se sostiene (nunca se leyó `options`/`isCorrect` antes de responder, verificado por `grep` = 0), la de independencia editorial no. `content:coverage` corregido: «en banco» ya cuadra con `COUNT(*)`. `pnpm typecheck` / `pnpm lint` verdes, **493/493** tests (+2). Cero llamadas a la API de pago.)
+Última actualización: 2026-08-30 · Última fase ejecutada: G42 (**COMPLETADA — verificación ciega del lote de G41 (35 reactivos de **Filosofía, UNAM Área 4**, segunda materia propia del Área 4 con contenido). **35/35 auto-aprobados = tasa de auto-aprobación 100 %**, **decimotercera ronda ciega consecutiva al 100 %** — métrica saturada, se dice cada vez. **Acumulado real (DB en vivo, cruzado con `content:coverage`): 867 en banco / 866 servibles / 1 retirado a propósito**; auto-aprobación global **100 % (867/867)**; `SOURCED` 225 (26 %); **cola ciega y cola canónica de discrepancias, ambas en cero** (`isVerified=false ∧ verification≠null ∧ manualReview=null`). UNAM A4 · Filosofía pasa de 0✓/35⧗ a **35✓/0⧗**; meta efectiva G26 (1 222) al **57 %**, brecha **529 ≈ 16 lotes**; meta nominal de 1 500: **58 %**. **Lo que aporta esta fase por encima del 100 %:** **(§2) el arnés dejó de depender de una letra copiada a mano** — el archivo de respuestas se genera desde un fragmento del texto de la opción elegida, con assert de match único, y el control disparó de verdad atrapando un error de transcripción antes de tocar la DB; **(§5) auditoría de atribución que pidió el encargo: 23 de 35 reactivos nombran autor, 17 autores distintos, 0 atribuciones erróneas**, con distractores que son posiciones rivales reales (akrasía, atomismo, escepticismo académico, Hume literal) o errores documentados de estudiante; **(§6) tres interpretaciones discutibles examinadas y ninguna marcada** (compatibilismo, «muerte del arte» en Hegel, Gorgias sincero vs. retórico) porque los tres `stem` están redactados de modo que la clave no depende del punto en disputa — criterio explícito: se marca cuando otra escuela viva respondería otra letra, no cuando hay debate; **(§8) hallazgo propio: tres solapamientos entre reactivos del MISMO lote**, uno fuerte (el distractor utilitarista del reactivo del imperativo categórico enuncia el principio de utilidad casi con las palabras de la clave del reactivo de Bentham y Mill), uno medio (mímesis → teoría de las Ideas) y una redundancia conceptual en los dos primeros de Epistemología — **ninguno afecta la corrección**, los 35 son correctos; **regla que se desprende: el cruce intra-lote debe comparar claves contra distractores, no solo enunciado contra enunciado**. **(§7) El señuelo de longitud tie-aware (6.50/35 = 18.6 % larga; 5.33/35 = 15.2 % corta; ratio 0.99) reproduce al decimal el de G41 por vía independiente** —G41 lo midió contra `isCorrect`, esta sesión contra la clave elegida a ciegas. Anotado: `manualReview` **no es columna**, es clave dentro del JSON de `Question.verification`. Auditoría 5 % **vencida, ahora 3 ciclos**. `pnpm typecheck` / `pnpm lint` verdes. Cero llamadas a la API de pago.)
+
+<details><summary>Historial: G41 (2026-08-30)</summary>
+
+Última fase ejecutada: G41 (**COMPLETADA — lote de 35 reactivos de **Filosofía, UNAM Área 4 (Humanidades y Artes)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet para lotes de contenido). **Segunda materia del Área 4 con contenido**, tras Literatura (G37); Filosofía estaba en cero absoluto. `content:coverage` tras el lote: **831 servibles · 35 pendientes · 1 retirado · 867 en banco · 55 % de la meta efectiva**. Señuelo de longitud tie-aware **6.5/35 = 18.6 %** («más larga») y **5.3/35 = 15.2 %** («más corta»), ambos bajo el azar; sub-regla nueva: equilibrio de letra **también por tema**. Verificado a ciegas en G42: **35/35**. *Nota de mantenimiento: esta línea la añadió G42 — G41 no rotó el encabezado de este documento.*)
+
+</details>
+
+<details><summary>Historial: G40 (2026-08-30)</summary>
+
+Última fase ejecutada: G40 (**COMPLETADA — micro-fase editorial + verificación ciega de las reparadas**, ejecutando el work order que G39 §9 dejó abierto. La cola ciega estaba en **cero**: esta fase la creó reparando, no componiendo. **3 reactivos reparados → 3/3 rescatados = 100 % de tasa de rescate**, resueltos a ciegas con el arnés de G2 (los 3 conceptuales, `usedCalculation:false` declarado con verdad; descarte razonado de los tres distractores por contenido, cero referencias posicionales). **Acumulado real (DB en vivo, cruzado con `content:coverage`): 832 en banco / 831 servibles / 1 retirado a propósito**; auto-aprobación global **100 % (832/832)**; `ExplanationLayer` 2 496 = 832×3; `SOURCED` 218 = `QuestionSourceChunk` 218. **Cola canónica en cero** con la definición que usa la app (`isVerified=false ∧ verification≠null ∧ manualReview=null`) — 4ª fase consecutiva. **Work order de G39 §9 cerrado:** §9.1 fuga relacional reparada, §9.2 los dos reactivos peninsulares reubicados a sus `Topic` correctos, §9.3 duplicado retirado (**desbloqueado**: `manualReview.action` acepta `'duplicate'`, el bloqueo que G24 y G39 declararon sin resolver). **Hallazgo propio (§3): la fuga de G39 §9.1 era BIDIRECCIONAL** — el reactivo *protegido* filtraba en su `stem` el punto que evaluaba el otro; reparar solo el señalado habría dejado la mitad abierta. **Hallazgo propio (§6): 3 de los 4 reactivos anclados al chunk de la guía UAM son paráfrasis cercanas de los ítems de esa guía**, uno casi literal en el `stem` — riesgo de originalidad, no de corrección; va al work order con re-verificación ciega obligatoria porque esta sesión ya quedó contaminada sobre ellos. **§9.2/d resuelto con veredicto:** el `SourceChunk` no está mal clasificado por juicio sino **rebanado por página**, así que ningún `topicId` único puede servirlo — el arreglo vive en el chunker, no en el chunk. **Caveat declarado (§2): reparación y pasada ciega ocurrieron en la MISMA sesión** — la garantía sobre la clave se sostiene (nunca se leyó `options`/`isCorrect` antes de responder, verificado por `grep` = 0), la de independencia editorial no. `content:coverage` corregido: «en banco» ya cuadra con `COUNT(*)`. `pnpm typecheck` / `pnpm lint` verdes, **493/493** tests (+2). Cero llamadas a la API de pago.)
+
+</details>
 
 <details><summary>Historial: G39 (2026-08-30)</summary>
 
@@ -2159,6 +2171,305 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G42 — Verificación ciega: Filosofía, UNAM Área 4 (lote de G41) (2026-08-30)
+
+**Modelo:** `claude-opus-5` (tier Opus del Plan de Implementación: razonamiento
+denso y verificación de implementaciones críticas). **COMPLETADA. 35/35
+auto-aprobados = tasa de auto-aprobación 100 %.** Segunda mitad del ciclo
+adversarial de G2 sobre el lote que G41 insertó con `isVerified=false`.
+**Decimotercera ronda ciega consecutiva al 100 %.** El encargo pidió, además de
+resolver, dos cosas que no son rutina: **auditar la atribución autor↔postura de
+cada reactivo** y **marcar como problema todo lo que dependiera de una
+interpretación discutible entre escuelas**. Ese trabajo está en §5 y §6, y es lo
+que esta fase aporta por encima del 100 %, junto con el control de transcripción
+de §2 y los tres solapamientos intra-lote de §8.
+
+### 1. Ceguera y aislamiento
+
+**Verificados estructuralmente antes de leer un solo reactivo**, no asumidos:
+
+| Control | Resultado |
+|---|---|
+| `grep -c` de `isCorrect\|explanation\|correctOption\|"answer"\|correctAnswer\|solution` sobre el lote ciego | **0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Claves de nivel ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Formato | **35/35 `MULTIPLE_CHOICE`** |
+| `requiresCalculation` | **0/35** → `usedCalculation:false` declarado con verdad en los 35 |
+| Reactivos con pasaje | **0/35** (los 35 llegan autocontenidos en el `stem`) |
+| Opciones por reactivo · ids únicos | 4/4 en los 35 · 35 ids únicos |
+| Longitud de opción | mín 28 · máx 123 · media 105.9 caracteres |
+| Longitud de `stem` | mín 93 · máx 288 caracteres |
+
+**Aislamiento:** no se abrió el commit `b6dee39` de G41, ni el JSON del lote, ni
+`Question.options`, ni la sección `## G41` de este documento, ni su bloque
+`### Siguiente`, antes de responder. `## G41` se leyó **después** de correr
+`content:resolve`, y solo para redactar esta sección y heredar su work order. El
+único insumo del razonamiento fue `scripts/content-exports/g42-blind.json`.
+
+**Reparto por tema del lote** (visible en el lote ciego, no es clave):
+Epistemología 9 · Ética 8 · Historia de la filosofía occidental 7 · Metafísica 6
+· Estética 5.
+
+### 2. Control nuevo: la letra elegida no se transcribió a mano
+
+Hasta aquí, todas las rondas ciegas escribieron el `chosenOption` copiando la
+letra a mano desde el razonamiento hasta el JSON de respuestas. Es el único
+punto del arnés donde un error silencioso cambia el veredicto sin dejar rastro:
+una letra mal copiada se resuelve como discrepancia (y despublica un reactivo
+correcto) o, peor, como coincidencia falsa.
+
+Esta fase lo cerró: el archivo de respuestas se generó con un script desechable
+que recibe, por reactivo, **un fragmento distintivo del texto de la opción
+elegida** y resuelve la etiqueta contra `g42-blind.json`, con dos asserts duros
+— `picks.length === blind.length` y **exactamente un match** por fragmento
+(`hits.length !== 1` lanza). Con eso, la letra la deriva el código de un
+contenido que el razonamiento ya fijó, no la memoria de la sesión.
+
+El control disparó de verdad: el primer intento falló con «snippet sin match (0)»
+en un reactivo cuyo fragmento se había citado con mayúscula inicial y en el lote
+va en minúscula. Un error de transcripción real, detenido antes de tocar la DB.
+**Recomendado como paso fijo del arnés para las rondas siguientes.**
+
+### 3. Resolución
+
+`pnpm content:resolve --file scripts/content-exports/g42-answers.json`, con
+`--dry-run` previo para validar el formato contra `VerifierAnswersFileSchema`
+(35/35 parseadas) antes de escribir.
+
+| Resultado | n |
+|---|---:|
+| ✔ Auto-aprobados (coincide + `confidence ≥ 0.85` + `problems` vacío) | **35** |
+| ✋ Sin publicar con veredicto | **0** |
+| ⚠️ Omitidos | **0** |
+
+Confianzas declaradas: 0.93 mínima (el reactivo de Hegel de §6), 0.94–0.96 en
+seis, 0.97–0.98 en los 28 restantes. `model` declarado `claude-opus-5` — el
+modelo que realmente resolvió, como exige la corrección de G17.
+
+### 4. Balance de la clave real (leído después de responder)
+
+El log de `content:resolve` traduce la etiqueta barajada de vuelta a la original,
+así que la distribución de la clave se conoce **solo después** de haber
+respondido. Sale limpia:
+
+| | A | B | C | D |
+|---|---:|---:|---:|---:|
+| Lote completo (n=35) | 9 | 9 | 9 | 8 |
+| Epistemología (9) | 2 | 3 | 3 | 1 |
+| Metafísica (6) | 2 | 2 | 1 | 1 |
+| Ética (8) | 2 | 2 | 2 | 2 |
+| Estética (5) | 2 | 1 | 1 | 1 |
+| Hist. de la filosofía (7) | 1 | 1 | 2 | 3 |
+
+Ninguna letra pasa de 3 en ningún tema: la sub-regla que G41 se impuso —
+equilibrio de letra **también por tema**, no solo por lote — se cumplió. El
+barajado del lote ciego es real y ajeno a ese equilibrio: sobre las etiquetas
+mezcladas mi hoja de respuestas quedó B 16 / D 7 / A 6 / C 6, muy lejos del
+9/9/9/8 subyacente.
+
+### 5. Auditoría de atribución (lo que pidió el encargo)
+
+Cada reactivo con autor nombrado se revisó preguntando si **esa** postura es de
+**ese** autor, y por qué cada distractor no le corresponde. **23 de 35 reactivos
+nombran autor; 17 autores distintos; 0 atribuciones erróneas.**
+
+| Autor | Reactivos | Postura atribuida | Veredicto |
+|---|---:|---|---|
+| Sócrates | 1 | nadie yerra voluntariamente; virtud = saber | correcta |
+| Platón | 3 | doxa sin *logos*; Ideas como modelo de lo sensible; mímesis degradada (*Rep.* X) | correctas |
+| Aristóteles | 4 | PNC indemostrable (*Met.* IV); hilemorfismo y alma como forma (*De an.* II); medio relativo a nosotros (*EN* II); mímesis como modo de aprender (*Poét.* 4) | correctas |
+| Parménides / Heráclito | 1 | ser inmóvil vs. devenir | correcta |
+| Gorgias | 1 | las tres tesis de *Sobre el no-ser* | correcta |
+| Pirronismo (Sexto) | 1 | epojé → ataraxía | correcta |
+| Descartes | 3 | duda metódica; dos sustancias; problema de interacción | correctas |
+| Bacon | 1 | ídolos + ascenso inductivo | correcta |
+| Berkeley | 1 | *esse est percipi*, inmaterialismo | correcta |
+| Spinoza / Leibniz | 1 | una sustancia / infinitas mónadas | correctas |
+| Hume | 1 | no hay paso válido de «es» a «debe» | correcta |
+| Bentham / Mill | 1 | mayor felicidad para el mayor número | correcta |
+| Kant | 4 | autonomía; universalización; satisfacción desinteresada; las dos fuentes del conocer | correctas |
+| Hegel | 2 | carácter pasado del arte; contradicción como motor | correctas |
+| Wittgenstein | 1 | lo que se muestra y no se dice (*Tractatus*) | correcta |
+
+**Las citas textuales son las fórmulas canónicas e inevitables** de cada tesis
+(«el ser es y el no-ser no es», «ser es ser percibido», «de lo que no se puede
+hablar, hay que callar», «los pensamientos sin contenido son vacíos…»), breves y
+correctamente atribuidas: se declaran aquí por la regla de G40 §6, no como
+hallazgo.
+
+**Calidad de los distractores, medida contra la regla de G40:** los distractores
+no son absurdos sino **posiciones rivales reales o errores documentados de
+estudiante**. Ejemplos comprobados: en el reactivo de Sócrates, el distractor es
+la *akrasía* aristotélica (la tesis que Sócrates niega); en el de Gorgias, los
+tres son atomismo democríteo, escepticismo académico y naturalismo milesio; en
+el de Kant sobre las dos fuentes, uno es Hume literal («hoja en blanco» +
+causalidad por costumbre); en el de validez formal, los dos falsos son la
+confusión validez/solidez y la confusión validez/verdad de la conclusión, que es
+el error clásico del principiante. Y todos se citaron **por contenido**, nunca
+por letra.
+
+### 6. Interpretaciones discutibles: tres candidatas, cero marcadas
+
+El encargo pedía marcar como problema todo reactivo cuya clave dependiera de
+tomar partido entre escuelas. Se examinaron tres candidatas reales y **ninguna
+se marcó**, porque en las tres el `stem` está redactado de modo que la clave
+**no** depende del punto en disputa. El criterio aplicado: se marca cuando otra
+escuela viva respondería otra letra, no cuando existe debate sobre el tema.
+
+1. **Determinismo y responsabilidad moral.** El compatibilismo niega que el
+   determinismo destruya la imputabilidad. Pero la opción dice que la
+   responsabilidad **«se vuelve discutible»**, que es justo lo que el
+   compatibilista concede al ponerse a responder. Las otras tres invierten el
+   determinismo (lo vuelven azar o imprevisibilidad). Sin marca. Confianza 0.94.
+2. **Hegel y el «fin del arte».** La tesis fuerte («el arte ha muerto») está
+   discutida desde hace un siglo. El `stem` **no** la usa: dice que el arte
+   *deja de ser la forma más alta en que el espíritu se comprende*, que es la
+   formulación que sostienen ambos bandos de esa discusión. Sin marca.
+   Confianza 0.93 — la más baja del lote, y por esto.
+3. **Gorgias: argumento sincero o ejercicio retórico.** Discusión abierta entre
+   helenistas. El `stem` pregunta **qué posición ilustra ese razonamiento**, no
+   qué creía Gorgias, así que la clave es indiferente a la disputa. Sin marca.
+   Confianza 0.95.
+
+Los tres redactados así son, de hecho, un acierto de composición de G41: en cada
+caso el hedge está en el `stem` o en la opción, no en la cabeza del que resuelve.
+
+### 7. Señuelo de longitud (tie-aware) — reproduce el número de G41
+
+Medido sobre el lote ciego contra la clave que esta sesión eligió, con el
+puntaje esperado tie-aware (empates al azar) que fijaron G34 §2 y G38 §3:
+
+| Heurística | Aciertos estrictos | Empates | Puntaje esperado | Cota |
+|---|---:|---:|---:|---:|
+| «elige la más larga» | 6 | 1 | **6.50/35 = 18.6 %** | < 14/35 |
+| «elige la más corta» | 4 | 3 | **5.33/35 = 15.2 %** | < 14/35 |
+
+Ratio de longitud clave/distractores: **medio 0.99** (mín 0.92, máx 1.13).
+
+**Los tres valores coinciden al decimal con los que G41 §7 reportó** (6.5/35 =
+18.6 %, 5.3/35 = 15.2 %, ratio 0.99 / 0.92 / 1.13). No es una copia: G41 los
+calculó contra `isCorrect` en la DB y esta sesión contra la clave que eligió a
+ciegas. Que salgan idénticos es una **segunda vía independiente** de confirmar
+que las 35 respuestas coinciden con la clave almacenada, además del log de
+`content:resolve`. Ambas heurísticas quedan por debajo del azar (25 %) en las
+dos direcciones.
+
+### 8. Hallazgo propio: tres solapamientos entre reactivos del mismo lote
+
+Aplicando la regla de G40 §3 (fugas revisadas en **ambas** direcciones,
+incluidas las menciones de paso), se revisaron los 35 `stem` y las 140 opciones
+cruzándolos entre sí. **Ninguno afecta la corrección de ningún reactivo** — los
+35 son correctos y así quedaron aprobados —, pero tres pares se pisan y van al
+work order. Se encontraron **después** de resolver, al redactar §5.
+
+1. **Fuerte, unidireccional (Ética):** el distractor utilitarista del reactivo
+   del imperativo categórico enuncia el principio de utilidad casi con las
+   mismas palabras que la **clave** del reactivo de Bentham y Mill —
+   «…más sufrimiento que felicidad para el conjunto afectado» frente a «…más
+   felicidad, o bien menos sufrimiento, para el mayor número posible de
+   afectados». Quien lea el primero se lleva servido el segundo. Atenuante: el
+   `stem` del segundo ya anuncia que el criterio es consecuencialista, así que
+   la fuga añade poco; aun así es la que hay que reescribir.
+2. **Media, unidireccional (Estética → Historia de la filosofía):** la clave del
+   reactivo de la mímesis afirma que lo sensible «ya es copia de las Ideas», que
+   es exactamente la relación que el reactivo sobre la teoría de las Ideas pide
+   identificar («modelo y fundamento de lo sensible»). En sentido inverso no hay
+   fuga.
+3. **Redundancia conceptual (Epistemología, reactivos contiguos):** las claves
+   de los dos primeros reactivos giran sobre la misma doctrina — creencia
+   verdadera **sin** fundamento. Uno la analiza («hay creencia y verdad, pero
+   falta la justificación»), el otro le pone la etiqueta platónica («opinión
+   (doxa): una creencia que puede resultar acertada, pero que el sujeto no logra
+   fundamentar»). El segundo exige además saber el término, que el primero no da,
+   así que la fuga es parcial; la redundancia, en cambio, es total, y en un
+   simulacro los dos caen seguidos.
+
+**Regla que se desprende, para la próxima composición:** el paso de validación
+cruzada del lote no basta con revisar `stem` contra `stem`; hay que cruzar
+**claves contra distractores** de todo el lote, porque las dos fugas reales de
+aquí viven en esa diagonal, no entre enunciados.
+
+### 9. Acumulado real (consultado en vivo antes y después)
+
+| Métrica | Antes | Después |
+|---|---:|---:|
+| Banco total | 867 | **867** |
+| Servibles (`isVerified=true`) | 832 | **866** |
+| Cola ciega (`isVerified=false ∧ verification=null`) | 35 | **0** |
+| Cola canónica de discrepancias (`isVerified=false ∧ verification≠null ∧ manualReview=null`) | 0 | **0** |
+| Retirados a propósito (`manualReview`) | 1 | **1** |
+| UNAM A4 · Filosofía | 0✓ / 35⧗ | **35✓ / 0⧗** |
+| `Question.verification` persistido | 0/35 | **35/35** |
+
+`content:coverage` después: **866 servibles**, 0 pendientes, 1 retirado, 867 en
+banco; auto-aprobación global **100 % (867/867)**; anclaje en fuentes **225
+`SOURCED` (26 %)** · 642 `TEMARIO_ONLY`; el lote de Filosofía queda ⚓7/28.
+Meta nominal de 1 500: **58 %**. **Meta efectiva G26 (1 222): 57 %, brecha 529
+≈ 16 lotes** (era 546 tras G40; el lote de G41 la bajó 17 porque Filosofía no es
+materia compartida y tope de celda). Área 4 va **2 de 3** materias propias con
+contenido: falta Artes.
+
+**Nota honesta: decimotercera ronda ciega consecutiva al 100 %.** La métrica está
+saturada y hace tiempo que no discrimina; repetirlo cada vez es parte del
+registro. Lo que esta fase aporta es §2 (el arnés dejó de depender de una letra
+copiada a mano), §5–§6 (la auditoría de atribución que el encargo pidió, con su
+criterio explícito para no marcar) y §8 (los tres solapamientos y la regla de
+cruce clave↔distractor que se desprende).
+
+### 10. Guardrails
+
+- **Cero cambios de código de producción.** Todo corrió en dos scripts
+  desechables — uno en el scratchpad (constructor del archivo de respuestas de
+  §2), uno temporal en `scripts/` (balance de §9, borrado en la sesión). Los dos
+  artefactos del lote (`g42-blind.json`, `g42-answers.json`) viven en
+  `scripts/content-exports/`, que `.gitignore` excluye: no se committean, igual
+  que los de G14/G16/G21/G38.
+- **Cero llamadas a la API de pago de Anthropic.** La resolución la produjo esta
+  sesión de Claude Code, como exige CLAUDE.md.
+- **`manualReview` no es columna**, es clave dentro del JSON de
+  `Question.verification`: el primer intento de contar la cola canónica con
+  `prisma.question.count({ where: { manualReview: … } })` falló con «Unknown
+  argument». La cola canónica se cuenta en JS sobre el JSON, como hace
+  `content-coverage.ts`. Anotado para no repetirlo.
+- `pnpm typecheck` y `pnpm lint` **en verde**.
+
+### Siguiente (G42)
+
+1. **Al work order, nuevo (§8):** reescribir el distractor utilitarista del
+   reactivo del imperativo categórico para que no enuncie el principio de
+   utilidad completo, y desacoplar la clave de la mímesis de la del reactivo de
+   la teoría de las Ideas. Ambos son ediciones de una línea y exigen
+   re-verificación ciega en sesión distinta de esta, que ya quedó contaminada
+   sobre ellos.
+2. **Al arnés (§2):** adoptar el fragmento-de-texto en vez de la letra como
+   entrada del archivo de respuestas en toda ronda ciega futura.
+3. **A la validación de lote (§8):** el cruce intra-lote debe comparar claves
+   contra distractores, no solo enunciado contra enunciado. Candidato a regla en
+   `scripts/lib/lot-validation.ts`.
+4. **Siguiente lote de material nuevo**, huecos por peso (heredado de G41 §2):
+   - **UNAM A4 Artes** (5 temas, w2, cero; `SourceChunk` en 3 temas) — cierra
+     el Área 4.
+   - **UNAM A3 Historia Universal** (8 temas, w5, cero; 1 `SourceChunk`).
+   - **IPN SOCADM Historia de México** (6 temas, cero) — lo nombran G30–G41 y
+     ninguna fase lo ha abierto.
+   - Los 5 pools STEM de alto peso de G39 §7 siguen siendo la recomendación para
+     cerrar brecha **efectiva**.
+5. **Auditoría 5 %: vencida, ahora 3 ciclos.** La muestra de 40 ids está
+   generada y exige sesión ciega con tier **≠ opus-5**. El lote de G41 ya entra
+   al universo muestreable tras esta fase.
+6. **Heredado de G40 §3–§4, sin tocar:** reescribir los `stem` demasiado pegados
+   a la guía en los 4 reactivos de G37 anclados a `cmrsromj5007r…`, y rebanar los
+   `SourceChunk` por encabezado de sección en la ingesta (afecta a `uam_csh.pdf`,
+   que G33/G37/G41 usaron con rebanado por página).
+7. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): ¿entran UNAM
+   A3/A4 e IPN SOCADM en la meta de 1 500 / 1 222? Lleva once fases
+   condicionando la planeación sin respuesta del dueño.
+8. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, y
+   `content:coverage`, que aún no refleja la reutilización de G26 (G30 §10.3).
+
+---
 
 ## G41 — Lote de reactivos: Filosofía, UNAM Área 4 (2026-08-30)
 
