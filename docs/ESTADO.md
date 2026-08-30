@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G39 (**COMPLETADA — balance intermedio del banco. Pasada editorial (no ciega). **Estado consolidado desde la DB real** (`fumluvvzskhdxcyljbmx`, en vivo, cruzado con `content:coverage`): **832 totales / 832 verificados / 832 servibles**, 0 `CALIBRATION_ONLY`, 832 `GENERATED`, auto-aprobación global **100 % (832/832)**, `ExplanationLayer` 2 496 = 832×3 exactas, integridad `SOURCED`↔`QuestionSourceChunk` 218=218. **Por institución:** UNAM 482 (peso 130, 9/18 materias con contenido) · IPN 350 (peso 140, 8/17). **Por área:** UNAM A1 240 · A2 137 · A3 70 · A4 35; IPN FISMAT 175 · MEDBIO 140 · SOCADM 35. 16 de 35 filas `Subject` con contenido, 19 en cero (varias son celdas de un pool G26 ya servido desde otra área); **todo el banco está en alcance del 21-nov** (launch = UNAM 4 áreas + IPN 3 ramas, CLAUDE.md). **Triaje de la cola:** la cola formal de discrepancias está en **cero** — verificado por 4 vías (SQL `verification!=null & !isVerified`=0; SQL `!isVerified`=0; `content:coverage` "0 pendientes"; 0 veredictos `UNPUBLISHED` en el banco entero, 0 `manualReview`, 0 `audit.degraded`). `session-v1` lleva **523/523** coincidencias generador↔verificador desde G2. **3ª fase de balance consecutiva (G24, G25, G39) que la encuentra vacía.** **Cero reactivos auto-aprobados por esta fase.** Lo que sí existe: **7 defectos editoriales heredados de las rondas ciegas G28–G38**, todos "no bloqueante" y **sin impacto de cara al usuario** (los componentes no ramifican por `format`), triados con las 4 categorías de G17: 1 aplicado (§8), 5 diferidos a micro-fase editorial con work order (§9), 1 sin acción; **VERIFICADOR TENÍA RAZÓN: 0 casos; IRREPARABLE: 0.** **Único cambio de datos:** 8 `format` `CHART_TABLE → PROBLEM_SOLVING` (reactivos de G27 con datos en prosa y sin tabla; G28 §8.1, diferido 4 fases). Solo el enum — 0 bytes de `stem`/`options`/`isCorrect`, render idéntico, scoring intacto, **sin re-verificación**, `isVerified` sigue `true`, 0 `SessionAnswer` en los 8. **Distribución de posición:** UNAM 482 → A 26.6 / B 26.6 / C 22.4 / D 24.5 %; IPN 350 → 25.4 / 25.1 / 26.0 / 23.4 % — **el sesgo de G8 no reapareció**; celdas tight sin empeorar (UNAM A1 Mat D=16.0 %, UNAM A1 Español C=17.1 %, ambas de G8/G24, sin lote nuevo encima). **Artefacto de rotación de G16 estable:** confinado a IPN FISMAT Matemáticas (88.4 %) e IPN MEDBIO Biología (68.1 %); todo lote desde G20 ≤ 27.5 %. **Anclaje:** 218 SOURCED (**26.2 %**) / 614 TEMARIO_ONLY — el ratio baja fase a fase (F4 44 % → G24 33 % → G39 26 %) porque G27–G37 son casi todos TEMARIO_ONLY. **Auditoría 5 %:** el mecanismo está **sano** (revisión de código; reordenamiento de G24 intacto en `verification.ts:130`; `content:audit-sample` corrido en vivo → pool 785, muestra 40 ids regenerada), pero la **ejecución está vencida 2 ciclos**: 47/832 (5.6 %) sin cambio desde G25, `session-v1` diluido de 5.8 % a **3.4 %** (18/523) por los +210 de G27–G37 sin auditar. **Brecha y proyección:** meta efectiva G26 **1 222**, brecha **546 = 16 lotes = ~32 sesiones** (confirmada por `content:coverage` + SQL a nivel de pool). La reutilización de G26 está activa (7 pools, 19 filas); UNAM Química (124/67) e IPN Español (70/33) sobre-cubiertos. **Los últimos 6 lotes rindieron ~46 % bajo su potencial:** de 210 reactivos, ~113 cerraron brecha, **~97 cayeron en pools ya en/sobre meta** (G29 Español no movió la meta en absoluto; G33/G35/G37 abrieron Áreas 3/4 para cobertura de producto pero aportaron poco a la meta). **83 días al 21-nov** (~11.9 sem); cadencia requerida **1.35 lotes/sem (6.6/día)**. Ritmos: burst ~95/día (no sostenible), calendario con la pausa de 19 días de agosto **13.4/día**, calendario desde G3a **19/día**. A 13.4/día: cierre **~2026-10-10, ~6 semanas de margen**. **Veredicto: alcanza con holgura** — harían falta 2 pausas del tamaño de la de agosto para perder la fecha (G24 tenía margen de exactamente 1). El riesgo no es el ritmo: es **la puntería de los lotes**. **Top-5 pools por brecha:** IPN Física 76 · UNAM A1 Matemáticas 63 · IPN Matemáticas (pool) 63 · IPN Química (pool) 54 · IPN MEDBIO Biología 52 — todos día 1, STEM de alto peso. **`pnpm typecheck` / `pnpm lint` / `pnpm test:unit` 491/491 en verde; 1 `UPDATE` de datos (8 filas), 0 cambios de código, 0 llamadas a la API de pago**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G40 (**COMPLETADA — micro-fase editorial + verificación ciega de las reparadas**, ejecutando el work order que G39 §9 dejó abierto. La cola ciega estaba en **cero**: esta fase la creó reparando, no componiendo. **3 reactivos reparados → 3/3 rescatados = 100 % de tasa de rescate**, resueltos a ciegas con el arnés de G2 (los 3 conceptuales, `usedCalculation:false` declarado con verdad; descarte razonado de los tres distractores por contenido, cero referencias posicionales). **Acumulado real (DB en vivo, cruzado con `content:coverage`): 832 en banco / 831 servibles / 1 retirado a propósito**; auto-aprobación global **100 % (832/832)**; `ExplanationLayer` 2 496 = 832×3; `SOURCED` 218 = `QuestionSourceChunk` 218. **Cola canónica en cero** con la definición que usa la app (`isVerified=false ∧ verification≠null ∧ manualReview=null`) — 4ª fase consecutiva. **Work order de G39 §9 cerrado:** §9.1 fuga relacional reparada, §9.2 los dos reactivos peninsulares reubicados a sus `Topic` correctos, §9.3 duplicado retirado (**desbloqueado**: `manualReview.action` acepta `'duplicate'`, el bloqueo que G24 y G39 declararon sin resolver). **Hallazgo propio (§3): la fuga de G39 §9.1 era BIDIRECCIONAL** — el reactivo *protegido* filtraba en su `stem` el punto que evaluaba el otro; reparar solo el señalado habría dejado la mitad abierta. **Hallazgo propio (§6): 3 de los 4 reactivos anclados al chunk de la guía UAM son paráfrasis cercanas de los ítems de esa guía**, uno casi literal en el `stem` — riesgo de originalidad, no de corrección; va al work order con re-verificación ciega obligatoria porque esta sesión ya quedó contaminada sobre ellos. **§9.2/d resuelto con veredicto:** el `SourceChunk` no está mal clasificado por juicio sino **rebanado por página**, así que ningún `topicId` único puede servirlo — el arreglo vive en el chunker, no en el chunk. **Caveat declarado (§2): reparación y pasada ciega ocurrieron en la MISMA sesión** — la garantía sobre la clave se sostiene (nunca se leyó `options`/`isCorrect` antes de responder, verificado por `grep` = 0), la de independencia editorial no. `content:coverage` corregido: «en banco» ya cuadra con `COUNT(*)`. `pnpm typecheck` / `pnpm lint` verdes, **493/493** tests (+2). Cero llamadas a la API de pago.)
+
+<details><summary>Historial: G39 (2026-08-30)</summary>
+
+Última fase ejecutada: G39 (**COMPLETADA — balance intermedio del banco. Pasada editorial (no ciega). **Estado consolidado desde la DB real** (`fumluvvzskhdxcyljbmx`, en vivo, cruzado con `content:coverage`): **832 totales / 832 verificados / 832 servibles**, 0 `CALIBRATION_ONLY`, 832 `GENERATED`, auto-aprobación global **100 % (832/832)**, `ExplanationLayer` 2 496 = 832×3 exactas, integridad `SOURCED`↔`QuestionSourceChunk` 218=218. **Por institución:** UNAM 482 (peso 130, 9/18 materias con contenido) · IPN 350 (peso 140, 8/17). **Por área:** UNAM A1 240 · A2 137 · A3 70 · A4 35; IPN FISMAT 175 · MEDBIO 140 · SOCADM 35. 16 de 35 filas `Subject` con contenido, 19 en cero (varias son celdas de un pool G26 ya servido desde otra área); **todo el banco está en alcance del 21-nov** (launch = UNAM 4 áreas + IPN 3 ramas, CLAUDE.md). **Triaje de la cola:** la cola formal de discrepancias está en **cero** — verificado por 4 vías (SQL `verification!=null & !isVerified`=0; SQL `!isVerified`=0; `content:coverage` "0 pendientes"; 0 veredictos `UNPUBLISHED` en el banco entero, 0 `manualReview`, 0 `audit.degraded`). `session-v1` lleva **523/523** coincidencias generador↔verificador desde G2. **3ª fase de balance consecutiva (G24, G25, G39) que la encuentra vacía.** **Cero reactivos auto-aprobados por esta fase.** Lo que sí existe: **7 defectos editoriales heredados de las rondas ciegas G28–G38**, todos "no bloqueante" y **sin impacto de cara al usuario** (los componentes no ramifican por `format`), triados con las 4 categorías de G17: 1 aplicado (§8), 5 diferidos a micro-fase editorial con work order (§9), 1 sin acción; **VERIFICADOR TENÍA RAZÓN: 0 casos; IRREPARABLE: 0.** **Único cambio de datos:** 8 `format` `CHART_TABLE → PROBLEM_SOLVING` (reactivos de G27 con datos en prosa y sin tabla; G28 §8.1, diferido 4 fases). Solo el enum — 0 bytes de `stem`/`options`/`isCorrect`, render idéntico, scoring intacto, **sin re-verificación**, `isVerified` sigue `true`, 0 `SessionAnswer` en los 8. **Distribución de posición:** UNAM 482 → A 26.6 / B 26.6 / C 22.4 / D 24.5 %; IPN 350 → 25.4 / 25.1 / 26.0 / 23.4 % — **el sesgo de G8 no reapareció**; celdas tight sin empeorar (UNAM A1 Mat D=16.0 %, UNAM A1 Español C=17.1 %, ambas de G8/G24, sin lote nuevo encima). **Artefacto de rotación de G16 estable:** confinado a IPN FISMAT Matemáticas (88.4 %) e IPN MEDBIO Biología (68.1 %); todo lote desde G20 ≤ 27.5 %. **Anclaje:** 218 SOURCED (**26.2 %**) / 614 TEMARIO_ONLY — el ratio baja fase a fase (F4 44 % → G24 33 % → G39 26 %) porque G27–G37 son casi todos TEMARIO_ONLY. **Auditoría 5 %:** el mecanismo está **sano** (revisión de código; reordenamiento de G24 intacto en `verification.ts:130`; `content:audit-sample` corrido en vivo → pool 785, muestra 40 ids regenerada), pero la **ejecución está vencida 2 ciclos**: 47/832 (5.6 %) sin cambio desde G25, `session-v1` diluido de 5.8 % a **3.4 %** (18/523) por los +210 de G27–G37 sin auditar. **Brecha y proyección:** meta efectiva G26 **1 222**, brecha **546 = 16 lotes = ~32 sesiones** (confirmada por `content:coverage` + SQL a nivel de pool). La reutilización de G26 está activa (7 pools, 19 filas); UNAM Química (124/67) e IPN Español (70/33) sobre-cubiertos. **Los últimos 6 lotes rindieron ~46 % bajo su potencial:** de 210 reactivos, ~113 cerraron brecha, **~97 cayeron en pools ya en/sobre meta** (G29 Español no movió la meta en absoluto; G33/G35/G37 abrieron Áreas 3/4 para cobertura de producto pero aportaron poco a la meta). **83 días al 21-nov** (~11.9 sem); cadencia requerida **1.35 lotes/sem (6.6/día)**. Ritmos: burst ~95/día (no sostenible), calendario con la pausa de 19 días de agosto **13.4/día**, calendario desde G3a **19/día**. A 13.4/día: cierre **~2026-10-10, ~6 semanas de margen**. **Veredicto: alcanza con holgura** — harían falta 2 pausas del tamaño de la de agosto para perder la fecha (G24 tenía margen de exactamente 1). El riesgo no es el ritmo: es **la puntería de los lotes**. **Top-5 pools por brecha:** IPN Física 76 · UNAM A1 Matemáticas 63 · IPN Matemáticas (pool) 63 · IPN Química (pool) 54 · IPN MEDBIO Biología 52 — todos día 1, STEM de alto peso. **`pnpm typecheck` / `pnpm lint` / `pnpm test:unit` 491/491 en verde; 1 `UPDATE` de datos (8 filas), 0 cambios de código, 0 llamadas a la API de pago**)
+
+</details>
 
 <details><summary>Historial: G38 (2026-08-29)</summary>
 
@@ -73,6 +79,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G40 | Micro-fase editorial + verificación ciega de las reparadas | **COMPLETADA — 3 reparadas, 3/3 rescatadas = 100 % de rescate; banco 832, servibles 832 → 831 (1 retirado a propósito), cola canónica en cero** | (G40) | Ver sección dedicada abajo. **La cola ciega estaba vacía: esta fase la creó reparando, no componiendo** — ejecuta el work order que G39 §9 dejó abierto y lo cierra completo. §9.1 fuga relacional reparada; **hallazgo propio: la fuga era BIDIRECCIONAL** (el reactivo protegido filtraba en su `stem` el punto que evaluaba el otro), así que se repararon los dos, no el señalado. §9.2 los dos reactivos de letras peninsulares salen del `Topic` mexicano a sus temas correctos (uno de ellos además pierde la coletilla que solo justificaba el archivado equivocado ⇒ tercera reparada). §9.3 **desbloqueado**: `manualReview.action` acepta `'duplicate'` (+2 tests) — el bloqueo que G24 y G39 declararon sin resolver; el duplicado de neutralización queda despublicado con veredicto del pipeline intacto y fuera de toda cola. §9.2/d **resuelto con veredicto**: el `SourceChunk` no está mal clasificado por juicio sino **rebanado por página** (arrastra la cola de un reactivo de otra materia), así que ningún `topicId` único puede servirlo — el arreglo vive en el chunker. **Hallazgo nuevo para el work order:** 3 de los 4 reactivos anclados a ese chunk son paráfrasis cercanas de los ítems de la guía fuente, uno casi literal en el `stem` — riesgo de originalidad, no de corrección, y **exige sesión ciega distinta** porque ésta ya quedó contaminada sobre ellos. Arnés auditado antes de reportar el 100 %: **2/3** etiquetas ciegas tradujeron a un id distinto, traducción **biyectiva** (12/12 imágenes, 0 colisiones). **Caveat declarado:** reparación y pasada ciega en la MISMA sesión — la garantía sobre la clave se sostiene (`grep` de campos de respuesta = 0 antes de abrir el lote), la de independencia editorial no. `content:coverage` corregido para que «en banco» cuadre con `COUNT(*)` cuando hay retirados. 493/493 tests. |
 | G39 | Balance intermedio del banco | **COMPLETADA — banco 832/832/832, colas en cero (3ª vez consecutiva), brecha efectiva 546 (16 lotes), proyección al 21-nov con ~6 sem de margen** | (G39) | Ver sección dedicada abajo. Pasada editorial (no ciega). Estado consolidado desde la DB real por institución/área/materia; cola formal de discrepancias vacía verificada por 4 vías; 7 defectos editoriales heredados triados con las 4 categorías (0 auto-aprobados); **1 cambio de datos**: 8 `format` `CHART_TABLE → PROBLEM_SOLVING` (G28 §8.1, metadato, sin re-verificación). Auditoría 5 %: mecanismo sano, ejecución vencida 2 ciclos (47/832 = 5.6 %, `session-v1` diluido a 3.4 %), muestra de 40 ids regenerada. Los últimos 6 lotes rindieron ~46 % bajo su potencial contra la meta (97/210 en pools ya cubiertos). Top-5 pools de brecha: IPN Física 76 · UNAM A1 Mat 63 · IPN Mat 63 · IPN Química 54 · IPN MEDBIO Bio 52. |
 | G38 | Verificación ciega: Literatura, UNAM Área 4 (lote de G37) | **COMPLETADA — 35/35 auto-aprobados = 100 %, banco 832, verificados 797 → 832, cola ciega 35 → 0** | (G38) | Ver sección dedicada abajo. Contaminación del canal de entrada medida (2/35) y regla nueva para lotes `SOURCED`; el candado de G36 §2 resultó inejecutable y se corrige dónde vive el valor exacto; **la secuencia de clave se recuperó exacta desde las respuestas ciegas** y por eso se redactó de `## G37`; defecto relacional entre dos reactivos del lote (no bloqueante); distractores que caen por implausibilidad general bajan de ~11/35 a 4/35. |
 | G37 | Lote de reactivos: Literatura, UNAM Área 4 | **COMPLETADA — 35 insertados, isVerified=false, banco 797 → 832, cola ciega 0 → 35** | (G37) | Ver sección dedicada abajo. **Abre el Área 4** (Humanidades y Artes), que estaba entera en cero. Consulta en vivo a Supabase: **Literatura es una sola fila `Subject`, en el Área 4**, `questionWeight` 4, **`sharedContentKey` NULL** — no hay «Literatura» en el Área 3 y G26 no le dio clave compartida, así que «Áreas 3 y 4» del encargo se resuelve a la única Literatura del Área 4; el lote va a sus **7 temas propios**, sin reutilización entre áreas (como G33 y G35). Reparto por los 7 temas: **5/6/5/5/5/4/5** (prehispánica · colonial · neoclásica y romántica · realismo y naturalismo · modernismo · contemporánea mexicana · universal clásica); cubre géneros, corrientes y movimientos, figuras retóricas y literatura mexicana e hispanoamericana. **31/35 TEMARIO_ONLY · 4/35 SOURCED** (el tema «Literatura contemporánea mexicana» tiene 1 `SourceChunk` — banco de preguntas de la guía CSH de la UAM: picaresca/Quevedo, Generación del 98, Octavio Paz; `grounding.ts` obliga a citar → sus 4 reactivos llevan `sourceChunks:[1]`). **Imprecisión de clasificación F2b documentada y no bloqueante:** 2 de esos 4 tratan letras españolas, derivan directo del fragmento y son factualmente correctos; los `stem` lo explicitan. 35 `MULTIPLE_CHOICE`; dificultad **7/17/9/2**. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; rotación cíclica +1 = 3/34. **Regla de G34 §2, reportada como veredicto (G36 §3):** tie-aware de «elige la más larga» **por debajo del azar y de la cota 14/35**; «elige la más corta» en el azar; ratio medio ≈ 1.0 (el primer borrador tenía la correcta como la más larga en la mitad del lote — patrón G33/G35 —, corregido en dos pasadas). `content:validate-batch` **0 violaciones**. 0 citas por letra / posicionales en 105 `ExplanationLayer` (capas 2 tituladas «Cómo se descarta cada opción», citan distractores por contenido). **Atendida la observación de G36 §5:** en BASIC/INTERMEDIATE los distractores son alternativas reales que exigen conocimiento para rechazarse. **Derechos de autor:** cero fragmentos extensos de obras vigentes; los 3 reactivos de análisis de texto usan textos **originales**; sin citas de traducciones. Exactitud factual verificada opción por opción. Registro en `docs/content-batches/g37-unam-a4-literatura.json`. Generador de Python desechable (no committeado). |
@@ -2151,6 +2158,349 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G40 — Micro-fase editorial + verificación ciega de las reparadas (2026-08-30)
+
+**COMPLETADA. 3 reactivos reparados, 3 resueltos a ciegas, 3 rescatados —
+tasa de rescate 100 %. Banco 832; servibles 832 → 831 (1 retirado a
+propósito); cola canónica en cero. El work order de G39 §9 queda cerrado.**
+
+El encargo pedía correr el lote ciego de G2 sobre "las reparadas" y reportar
+cuántas se rescataron. **No había reparadas.** La cola estaba en cero por
+cuarta fase consecutiva (G24, G25, G39, y confirmado aquí antes de tocar
+nada). Lo que sí había era el work order que G39 §9 dejó explícitamente para
+"una sesión editorial dedicada, idealmente con capacidad de re-verificación
+ciega". Esta fase es esa sesión: **primero reparó, y eso creó la cohorte que
+después resolvió a ciegas.**
+
+### 1) Punto de partida, consultado antes de tocar nada
+
+| Métrica | Antes |
+|---|---|
+| Reactivos en banco | 832 |
+| `isVerified=true` | 832 |
+| `isVerified=false` | 0 |
+| Con registro de `verification` | 832 |
+
+Las cuatro vías de G39 §2 volvieron a dar cero. La cohorte de esta fase no
+existía: hubo que producirla.
+
+### 2) Ceguera: qué se protegió y qué NO — caveat declarado por adelantado
+
+Esta es la primera fase en que **la reparación editorial y la pasada ciega
+ocurren en la misma sesión**. G17 → G19 las separó a propósito. Aquí no se
+pudo: reparar un `stem` exige leerlo, y el encargo pedía resolver en esta
+misma sesión. Se declara con precisión qué garantía sobrevive y cuál no.
+
+**Sobrevive — la garantía sobre la clave.** Nunca se leyó `options`,
+`isCorrect` ni una explicación antes de responder:
+
+- Todas las consultas de la fase de reparación seleccionaron campos
+  explícitos: `id`, `stem`, `format`, `source`, `isVerified`, timestamps,
+  taxonomía. **`options` jamás apareció en un `select`.**
+- Comprobación estructural del archivo ciego **antes de abrirlo**: un `grep`
+  de los campos de respuesta sobre `g40-blind.json` → **0 coincidencias**.
+  Las claves de cada ítem son exactamente `questionId, institution, subject,
+  topic, format, passage, requiresCalculation, stem, options{label, text,
+  imageUrl}`. No hay superficie por donde se filtre la clave.
+- La auditoría del arnés (§5) y la inspección del `SourceChunk` (§6, §7) se
+  corrieron **después** de resolver y publicar. Ya no había ceguera que
+  proteger.
+
+**No sobrevive — la independencia editorial.** Esta sesión escribió los tres
+`stem` que después resolvió. Peor: el defecto que reparó era, precisamente,
+que dos reactivos del lote se filtraban el punto evaluado entre sí (§3), así
+que **leer uno para repararlo entregó el punto que evaluaba el otro**. Los
+tres puntos evaluados son, además, conocimiento general no ambiguo: la
+resolución habría sido la misma sin haber leído nada. Pero el 100 % de esta
+fase **no es una medición independiente al nivel de G38**, y no debe contarse
+como si lo fuera. Lo que sí prueba es lo que importaba: la clave marcada en
+la DB coincide con la respuesta correcta, y la reparación no la movió.
+
+### 3) Hallazgo: la fuga de G39 §9.1 era BIDIRECCIONAL
+
+G39 §9.1 describió el defecto en una sola dirección: el `stem` de
+`cmtf6e6v50006i72eielfngps` nombraba a la figura que
+`cmtf6e5wr0001i72eq4ershjh` pide identificar, y proponía despersonalizar el
+primero.
+
+Al abrir los dos `stem` para repararlos aparece la otra mitad: **el reactivo
+"protegido" etiquetaba en su propio `stem` el punto que el otro evalúa.**
+Los dos comparten el mismo estímulo (el mismo par de obras citadas) y cada
+uno pregunta por un atributo distinto de ese estímulo — pero cada `stem`
+declaraba de paso el atributo que el otro pedía. Reparar solo el señalado
+por G39 habría dejado **la mitad de la fuga abierta**, y habría cerrado la
+fase con la sensación de que el defecto estaba resuelto.
+
+Reparación aplicada, en los dos sentidos:
+
+| id | Qué se quitó del `stem` | Efecto sobre su propia respuesta |
+|---|---|---|
+| `cmtf6e6v5…` | la mención nominal de la figura que el otro pide identificar (§9.1) | ninguno — sigue preguntando por el mismo atributo |
+| `cmtf6e5wr…` | las etiquetas que declaraban el atributo que el otro evalúa (**hallazgo de esta fase**) | ninguno — sigue pidiendo identificar a la misma figura |
+
+Tras la reparación, ninguno de los dos `stem` contiene la respuesta del otro.
+Comparten estímulo y evalúan puntos distintos, que es lo que un par de
+reactivos del mismo tema debe hacer.
+
+**Regla para composición, generalizada del caso:** cuando dos reactivos de un
+lote comparten estímulo, no basta revisar que el `stem` de A no nombre la
+respuesta de B; hay que revisarlo **en las dos direcciones**, incluidas las
+etiquetas de paso (aposiciones, glosas, categorías dichas al vuelo) con que
+un `stem` presenta el estímulo. `lot-validation.ts` sigue sin poder verlo: es
+una relación entre dos ítems, no una propiedad de uno (defecto ya anotado en
+G38 §6).
+
+### 4) La tercera reparada: la coletilla que solo justificaba el archivado
+
+G39 §9.2 dejó dos reactivos de letras peninsulares archivados en un `Topic`
+mexicano, pidiendo juicio taxonómico. Resuelto **sin crear un `Topic` nuevo**
+—que nacería con un solo reactivo y ensuciaría la cobertura por tema— usando
+los que ya existen en la materia:
+
+| id | De | A | Criterio |
+|---|---|---|---|
+| `cmtf6e7te…` | Literatura contemporánea mexicana | **Literatura universal clásica** (`cmrr1kgjo…`) | periodo áureo peninsular: encaja donde G39 §9.2 ya lo ubicaba |
+| `cmtf6e8rj…` | Literatura contemporánea mexicana | **Modernismo** (`cmrr1kfcj…`) | movimiento finisecular contemporáneo del modernismo y emparejado con él en el temario estándar; G39 tenía razón en que **no** es "clásico" |
+
+`cmtf6e7te…` cargaba además una coletilla inicial cuya única función era
+justificar que un tema peninsular viviera en un `Topic` mexicano. Con el
+archivado corregido, la coletilla es un vestigio: se eliminó. **Eso cambia
+contenido ⇒ re-verificación ciega** (misma regla que G39 §8 aplicó al revés:
+metadato solo ⇒ sin re-verificación). Es la tercera reparada.
+
+`cmtf6e8rj…` **solo** cambió de `topicId`: metadato, la respuesta no se
+mueve, `isVerified` sigue `true`, **sin re-verificación** — y por eso no
+entra en la tasa de rescate.
+
+Literatura (UNAM A4) tras los movimientos, 35 reactivos intactos:
+**5 / 6 / 5 / 5 / 6 / 2 / 6** (prehispánica · colonial · neoclásica y
+romántica · realismo y naturalismo · modernismo · contemporánea mexicana ·
+universal clásica). **Ninguna reparación tocó `options`**, así que la
+distribución de posición del lote de G37 queda intacta por construcción, no
+por suerte.
+
+### 5) Resolución y tasa de rescate — con el arnés auditado antes de reportar
+
+Los 3 se exportaron con `content:blind-batch --ids` (no `--topic`: así el
+duplicado retirado de §8, que también está en `isVerified=false`, no se cuela
+en la cohorte) y se resolvieron desde cero.
+
+| Cohorte | Resueltos | Rescatados | Sin publicar | Tasa de rescate |
+|---|---|---|---|---|
+| **Reparadas de G40** | 3 | **3** | 0 | **100 %** |
+
+- **3/3 conceptuales.** Ninguno admite cálculo: `usedCalculation:false` en los
+  tres, declarado con verdad y no por inercia (el campo se persiste tal cual
+  en el registro de auditoría). El control fue el **descarte razonado de los
+  tres distractores por contenido** — periodo histórico incompatible, corpus
+  incompatible, categoría incompatible, y orden invertido respecto del
+  "respectivamente" que pide uno de los `stem` — **cero referencias
+  posicionales**.
+- Confianza **0.97 mínima / 0.977 promedio**. `model` declarado:
+  `claude-opus-5`, el que realmente resolvió (defecto de G14 corregido en
+  G17, respetado aquí).
+- `problems: []` en los tres. Tras la reparación no quedó ningún defecto
+  bloqueante que reportar en estos ítems.
+
+**El 100 % se auditó antes de reportarlo**, con el criterio de G19 §5 — tres
+de tres es justo el resultado que también produciría un arnés degenerado:
+
+- **2 de 3** etiquetas ciegas tradujeron a un id de opción **distinto** del
+  elegido: el barajado permutó de verdad.
+- La traducción es **biyección por reactivo**: 3 × 4 = **12** imágenes
+  distintas, **0 colisiones**.
+- La semilla de `shuffleOptionsForQuestion` se deriva solo del `questionId`;
+  no toca `isCorrect`, así que no puede sesgarse hacia la correcta.
+
+A `n=3` la tasa no tiene poder estadístico y no se presenta como si lo
+tuviera: **es la confirmación de que las tres reparaciones se sostienen**, no
+una medición de salud del generador. La métrica de salud sigue siendo la
+global de §9.
+
+### 6) Hallazgo nuevo, no pedido: paráfrasis cercana de la guía fuente
+
+Al abrir el `SourceChunk` para cerrar §9.2/d (después de resolver) aparece un
+problema que ninguna fase anterior había mirado: **3 de los 4 reactivos
+anclados a ese fragmento son paráfrasis cercanas de los ítems de la guía
+fuente, uno de ellos casi literal en el `stem`.** Los juegos de opciones sí
+se rehicieron —y se rehicieron mejor: el original se contestaba por un rasgo
+superficial que los distractores nuevos eliminan— pero los enunciados siguen
+demasiado pegados al original.
+
+- **No es un defecto de corrección.** Los cuatro son factualmente correctos y
+  ya están verificados; nada que despublicar hoy.
+- **Sí es riesgo de originalidad** en un producto de paga, y toca justo la
+  disciplina de derechos que G37 declaró haber cuidado para los textos de
+  análisis (los reactivos derivados del banco de preguntas de la guía no
+  pasaron por ese mismo filtro).
+- **Disposición: al work order, con re-verificación ciega obligatoria en una
+  sesión DISTINTA.** Reescribir los `stem` aquí sería inútil: esta sesión ya
+  vio las claves de los cuatro al auditar el arnés (§5) y el chunk completo
+  (§7). Se documenta y se pasa.
+
+### 7) §9.2/d resuelto con veredicto: el chunk está rebanado por página
+
+G38 §10 y G39 §9(d) describieron el `SourceChunk` `cmrsromj5…` como "mal
+clasificado y de contenido mixto", y lo difirieron a una fase con el texto
+completo a la vista. Con el texto a la vista, el diagnóstico cambia:
+
+**El chunk no está mal clasificado por juicio: está rebanado por página.** Es
+una página de la guía fuente, cortada por límite de página y no por sección,
+de modo que arrastra la cola de un reactivo de **otra materia** antes del
+encabezado de sección, y después ítems de literatura de dos tradiciones
+distintas. Su `topicId` es un solo valor y **ningún valor único puede servir a
+ese contenido** — no porque se haya elegido mal, sino porque el fragmento no
+es una unidad temática.
+
+- **No se movió el chunk.** Moverlo solo cambiaría cuál de sus mitades queda
+  mal servida. Su materia (Literatura) sí es correcta para la mayoría de su
+  contenido.
+- **El arreglo real vive en el chunker**, no en el chunk: rebanar por
+  encabezado de sección en vez de por página. Va al work order como mejora de
+  ingesta, no como corrección de datos.
+- **Lo que sí importaba ya está corregido:** el `topicId` de los **reactivos**
+  —que es lo que decide dónde se sirven— quedó bien en §4. El `topicId` del
+  chunk es una pista de recuperación, no una afirmación sobre cada reactivo
+  que respalda.
+- Nota de procedencia, registrada por honestidad: el fragmento proviene de la
+  guía de **otra institución** que la del examen al que sirven los reactivos.
+  No lo prohíbe ningún guardrail (la reutilización que G26 restringe es la de
+  *reactivos* entre áreas, nunca entre instituciones; una guía es material de
+  estudio), pero significa que el `SOURCED` de esos 4 está anclado fuera de la
+  institución destino. Se anota, no se cambia.
+
+### 8) §9.3 desbloqueado: el duplicado se retira, y `manualReview` ya sabe decirlo
+
+G24 y G39 declararon el mismo bloqueo sin resolverlo: despublicar un duplicado
+exige una anotación de cola que `manualReview` no tenía (solo
+`approved_with_option` / `edited`). Se resolvió el bloqueo en vez de diferirlo
+una tercera vez.
+
+- `src/lib/admin/verification.ts`: `manualReview.action` acepta ahora
+  **`'duplicate'`**, con un campo `note` opcional. Cambio **aditivo**: ningún
+  consumidor ramifica por el valor de `action` (verificado),
+  `classifyReviewQueue` ya sacaba de toda cola cualquier registro con
+  `manualReview`, y `decision`/`reasons`/`audit` quedan intactos — el histórico
+  del pipeline se preserva, que era el punto del diseño de F3. **+2 tests** en
+  `tests/admin/verification.test.ts`.
+- Retirado `cmrul0y5k003s13p9jr7ham8x` (tema "Reacciones químicas"),
+  conservado `cmrul1p9e006a13p9goneclnw` (tema "Ácidos, bases y sales"): ambos
+  plantean la misma neutralización y el tema conservado es el más específico
+  para ese contenido. **`isVerified=false` + `manualReview.action='duplicate'`
+  + `note` que apunta al conservado.**
+- **Guardrail respetado, comprobado en código antes de escribir:**
+  `SessionAnswer` del retirado = **0**. No se borró: despublicar preserva el
+  registro y no rompe nada del aprendizaje (CLAUDE.md prohíbe borrar reactivos
+  con respuestas históricas; aquí ni siquiera hizo falta invocar la excepción).
+
+**Consecuencia para las fases de balance:** la consulta cruda
+`isVerified=false ∧ verification IS NOT NULL` ya **no** es la cola. La
+definición canónica —la que usa la app en `reviewQueueFor`— es
+`isVerified=false ∧ verification≠null ∧ manualReview=null`, y con ella la cola
+sigue en **cero**. Las próximas fases deben usar esa, no la cruda.
+
+### 9) Acumulado real, consultado en vivo antes y después
+
+| Métrica | Antes (G39) | Después (G40) |
+|---|---|---|
+| Reactivos en banco | 832 | **832** |
+| Servibles (`isVerified=true`) | 832 | **831** |
+| Retirados a propósito | 0 | **1** |
+| Cola canónica | 0 | **0** |
+| `decision=AUTO_APPROVED` | 832 | **832** |
+| `decision=UNPUBLISHED` | 0 | **0** |
+| Auto-aprobación global | 100 % | **100 % (832/832)** |
+| `ExplanationLayer` | 2 496 | **2 496** = 832×3 |
+| `SOURCED` ↔ `QuestionSourceChunk` | 218 = 218 | **218 = 218** |
+| Brecha a la meta efectiva (G26, 1 222) | 546 | **546** (sin cambio) |
+
+- El servible baja en 1 **a propósito**: el duplicado retirado. Las 3
+  reparadas salieron de servibles y volvieron (832 → 828 durante la
+  reparación → 831 tras resolver), medido en cada paso, no inferido.
+- La auto-aprobación global sigue contando el veredicto original del retirado
+  —así se diseñó `manualReview`: mide la salud del **pipeline**, no el estado
+  editorial— por eso 832/832 con 831 servibles. No es una inconsistencia.
+- `session-v1`: **523/523** coincidencias generador↔verificador. **No sube a
+  526**, y la distinción importa: cuenta *reactivos distintos*, no *eventos de
+  resolución*. Los 3 de esta fase ya estaban dentro desde G38; se resolvieron
+  por segunda vez y su registro se sobrescribió. Los eventos ciegos acumulados
+  sí son 3 más. `adversarial-v1` sigue en 309/309.
+- **La brecha NO sube con el retiro**, contra lo que sugeriría restar un
+  servible: se midió en vez de suponerse. La meta efectiva se suma por celda
+  con piso en cero, y el retirado vive en una celda (UNAM Química, Área 1: 51
+  servibles) que ya está **por encima** de su cuota — restarle uno no abre
+  brecha donde no la había. Sigue en **546 (~16 lotes)**. `content:coverage`
+  en vivo: **831 servibles · 0 pendientes · 1 retirado · 832 en banco · 55 %
+  de la meta efectiva**.
+
+### 10) Corrección de instrumento: `content:coverage` ya cuadra con `COUNT(*)`
+
+El retiro destapó un defecto de reporte en el propio instrumento que las fases
+de balance leen: `grandTotal` se calculaba como `servibles + pendientes`, y un
+reactivo despublicado a propósito **no es ninguno de los dos** (tiene
+veredicto, así que no cuenta como pendiente; no es servible, así que no cuenta
+como servible). La línea "en banco" decía **831** con 832 filas reales. Antes
+de G40 las dos cifras coincidían por accidente: nunca se había retirado nada.
+
+Corregido en `scripts/content-coverage.ts`: se cuenta `retired`
+(`isVerified=false ∧ manualReview≠null`), entra en el total y se imprime solo
+cuando es > 0. Ahora la línea dice **831 servibles · 0 pendientes · 1 retirado
+· 832 en banco**, y "en banco" vuelve a ser verificable contra `COUNT(*)`. Sin
+este arreglo, cada fase futura habría tenido que explicar un descuadre de 1.
+
+### 11) Verificación técnica
+
+- `pnpm typecheck` → **verde**.
+- `pnpm lint` → **verde**.
+- `pnpm test:unit` → **493/493** en 52 archivos (491 → 493: +2 del retiro por
+  duplicado).
+- Cambios de código: `src/lib/admin/verification.ts` (aditivo),
+  `scripts/content-coverage.ts` (reporte), `tests/admin/verification.test.ts`
+  (+2). **0 cambios a `prisma/schema.prisma`.**
+- Cambios de datos: **3 `stem`** (los tres re-verificados a ciegas), **2
+  `topicId`**, **1 retiro** (`isVerified` + `manualReview`). **0 escrituras a
+  `options` / `isCorrect` / explicaciones**, ni por la reparación ni por la
+  resolución.
+- Cero llamadas a la API de pago de Anthropic.
+
+### 12) Limpieza
+
+Los 8 scripts auxiliares de la fase (estado, lectura de `stem` sin `options`,
+taxonomía, reparación con `--dry-run`, auditoría del arnés, inspección del
+chunk, cierre, conteo de pipeline) se borraron al terminar: `ls scripts/ |
+grep g40` → **0**. El lote ciego y el archivo de respuestas
+(`scripts/content-exports/g40-blind.json`, `g40-answers.json`) quedan **solo en
+local**: `scripts/content-exports/` está en `.gitignore` desde antes de esta
+fase, así que —como en toda ronda ciega previa— no se versionan. Lo que sí
+persiste en el repo es este registro, y en la DB el `Question.verification` de
+cada reparada, que guarda el veredicto ciego completo.
+
+### Siguiente (G40)
+
+1. **Volver a componer.** La cola vuelve a estar en cero y esta fase no movió
+   la brecha (546, ~16 lotes). Siguen vigentes los 5 pools de G39 §7 en orden:
+   **IPN Física**, **IPN Química** (pool, sirve 2 ramas), **IPN Matemáticas**
+   (celda MEDBIO), **UNAM A1 Matemáticas**, **IPN MEDBIO Biología**. Consultar
+   `content:coverage` en vivo antes de cada lote.
+2. **Regla nueva de §3 en composición:** revisar la fuga entre reactivos que
+   comparten estímulo **en las dos direcciones**, incluidas las etiquetas de
+   paso con que un `stem` presenta el estímulo. Suma a las reglas de G38 (§2
+   canal de entrada, §3 valor exacto en `## GNN`, §4 no publicar la secuencia
+   de clave, §6 ningún `stem` nombra lo que otro pide identificar).
+3. **Al work order (§6): reescribir los `stem` demasiado pegados a la guía
+   fuente** de los 4 reactivos anclados a `cmrsromj5…`, en una sesión
+   **distinta** de ésta, con re-verificación ciega. Extender el criterio de
+   originalidad de G37 a los reactivos derivados de bancos de preguntas de
+   guías, no solo a los textos de análisis.
+4. **Al work order (§7): rebanar los `SourceChunk` por encabezado de sección**
+   en vez de por página, en la ingesta. Es la causa raíz de la clasificación
+   imposible, y afectará a cualquier guía futura con secciones por materia.
+5. **Auditoría 5 %:** sigue vencida (2 ciclos). La muestra de 40 ids ya está
+   generada; exige una sesión ciega con tier **≠ opus-5**, que esta fase no
+   podía ser. `session-v1` en 3.4 %.
+6. **Heredado sin tocar:** rotación A→B→C→D (~140 reactivos con
+   `SessionAnswer`), decisión del dueño, 7 fases marcado.
 
 ## G39 — Balance intermedio del banco (2026-08-30)
 

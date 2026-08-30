@@ -162,6 +162,27 @@ describe('withManualReview', () => {
     const updated = withManualReview(original, { action: 'edited' })!;
     expect(classifyReviewQueue(updated)).toBeNull();
   });
+
+  // G40: retiro por duplicado. Un reactivo despublicado a propósito (duplicado
+  // de otro, 0 respuestas) no debe volver a ninguna cola ni perder el veredicto
+  // original del pipeline — así el "0 en cola" de las fases de balance sigue
+  // significando lo mismo.
+  it('anota un retiro por duplicado y lo saca de la cola sin borrar el veredicto', () => {
+    const original = record({ decision: 'AUTO_APPROVED', reasons: [] });
+    const updated = withManualReview(original, {
+      action: 'duplicate',
+      note: 'duplicado de cmXXXX',
+    })!;
+    expect(updated.manualReview?.action).toBe('duplicate');
+    expect(updated.manualReview?.note).toBe('duplicado de cmXXXX');
+    expect(updated.decision).toBe('AUTO_APPROVED'); // histórico del pipeline intacto
+    expect(classifyReviewQueue(updated)).toBeNull();
+  });
+
+  it('el registro anotado como duplicado sigue siendo parseable', () => {
+    const updated = withManualReview(record(), { action: 'duplicate', note: 'dup' })!;
+    expect(parseVerificationRecord(updated)).not.toBeNull();
+  });
 });
 
 describe('parseAdminOptions / withCorrectOption', () => {

@@ -43,15 +43,19 @@ const auditSchema = z.object({
 
 /**
  * Anotación de resolución manual (F3): un admin aprobó con una opción
- * específica, o guardó una edición que resuelve la cola. Se AGREGA al
+ * específica, guardó una edición que resuelve la cola, o retiró el reactivo
+ * por ser duplicado de otro (`duplicate`, G40 — despublicado a propósito:
+ * `isVerified=false` permanente, fuera de toda cola, sin borrar el histórico
+ * del pipeline). Se AGREGA al
  * registro sin tocar `decision`/`reasons`/`audit` — esos preservan lo que el
  * PIPELINE decidió originalmente (para poder medir su salud sin importar qué
  * pase después); `manualReview` es lo único que decide si sigue en la cola.
  */
 const manualReviewSchema = z.object({
-  action: z.enum(['approved_with_option', 'edited']),
+  action: z.enum(['approved_with_option', 'edited', 'duplicate']),
   optionId: z.string().optional(),
   at: z.string(),
+  note: z.string().optional(),
 });
 
 export const verificationRecordSchema = z.object({
@@ -83,7 +87,11 @@ export function parseVerificationRecord(raw: unknown): VerificationRecord | null
  * `undefined` si no había veredicto del pipeline (nada que anotar). */
 export function withManualReview(
   raw: unknown,
-  entry: { action: 'approved_with_option' | 'edited'; optionId?: string },
+  entry: {
+    action: 'approved_with_option' | 'edited' | 'duplicate';
+    optionId?: string;
+    note?: string;
+  },
 ): VerificationRecord | undefined {
   const record = parseVerificationRecord(raw);
   if (!record) return undefined;

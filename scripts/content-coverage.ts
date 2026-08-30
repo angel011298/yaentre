@@ -32,6 +32,7 @@ interface SubjectRow {
   verified: number;
   pendingResolution: number; // sin veredicto aún (no han pasado por F2)
   unpublished: number; // veredicto adverso: quedaron sin publicar
+  retired: number; // G40: despublicado a propósito (manualReview), no es cola
   autoApproved: number; // decision AUTO_APPROVED en verification
   sourced: number; // F2b: anclados en fragmento fuente real
   temarioOnly: number; // F2b: generados solo con el temario
@@ -56,6 +57,7 @@ function parseExamFilter(argv: string[]): string | undefined {
 
 interface VerificationShape {
   decision?: string;
+  manualReview?: { action?: string } | null;
 }
 
 interface SubjectForGoal {
@@ -147,6 +149,7 @@ async function main() {
 
   let totalVerified = 0;
   let totalPending = 0;
+  let totalRetired = 0;
   let totalAutoApproved = 0;
   let totalResolved = 0;
   let totalSourced = 0;
@@ -164,6 +167,7 @@ async function main() {
         verified: 0,
         pendingResolution: 0,
         unpublished: 0,
+        retired: 0,
         autoApproved: 0,
         sourced: 0,
         temarioOnly: 0,
@@ -184,6 +188,10 @@ async function main() {
           } else {
             row.unpublished++;
           }
+          // G40: retirado a propósito (p. ej. duplicado) — tiene veredicto del
+          // pipeline y NO está en cola, pero tampoco es servible. Sin esta
+          // cuenta, "en banco" perdía la fila y no cuadraba con COUNT(*).
+          if (!q.isVerified && v?.manualReview) row.retired++;
         }
       }
       subjectRows.push(row);
@@ -196,6 +204,7 @@ async function main() {
       });
       totalVerified += row.verified;
       totalPending += row.pendingResolution;
+      totalRetired += row.retired;
       totalAutoApproved += row.autoApproved;
       totalResolved += row.autoApproved + row.unpublished;
       totalSourced += row.sourced;
@@ -224,13 +233,15 @@ async function main() {
     }
   }
 
-  const grandTotal = totalVerified + totalPending;
+  const grandTotal = totalVerified + totalPending + totalRetired;
   const goalPct = Math.round((totalVerified / GOAL_VERIFIED) * 100);
   const globalRate = totalResolved > 0 ? totalAutoApproved / totalResolved : null;
 
   console.log('\n' + '═'.repeat(72));
   console.log(
-    `TOTAL: ${totalVerified} servibles · ${totalPending} pendientes de resolución · ${grandTotal} en banco`,
+    `TOTAL: ${totalVerified} servibles · ${totalPending} pendientes de resolución · ` +
+      (totalRetired > 0 ? `${totalRetired} retirados · ` : '') +
+      `${grandTotal} en banco`,
   );
   if (globalRate !== null) {
     const warn =
