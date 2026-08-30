@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G37 (**COMPLETADA — lote de 35 reactivos de **Literatura, UNAM Área 4 (Humanidades y Artes)**. **Abre el Área 4**, que estaba entera en cero (nota de G34/G36). **Consulta en vivo a Supabase (2026-08-30):** Literatura existe como **una sola fila `Subject`, en el Área 4**, `questionWeight` 4, **`sharedContentKey` NULL** — no hay materia «Literatura» en el Área 3 (que tiene Historia de México, Historia Universal, Geografía, Español, Inglés) y G26 no le dio clave de contenido compartido (solo Español/Inglés/Química de la UNAM la tienen). Por eso «Áreas 3 y 4» del encargo se resuelve a la **única Literatura del Área 4**: el lote va a sus **7 temas propios** y no se reutiliza entre áreas — mismo patrón que Historia de México (G33) y Geografía (G35), ambas `sharedKey` NULL. Reparto por los 7 temas: **5 / 6 / 5 / 5 / 5 / 4 / 5** (prehispánica · colonial · neoclásica y romántica · realismo y naturalismo · modernismo · contemporánea mexicana · universal clásica), que cubre géneros literarios, corrientes y movimientos, figuras retóricas y literatura mexicana e hispanoamericana. **31/35 TEMARIO_ONLY · 4/35 SOURCED:** el tema «Literatura contemporánea mexicana» tiene **1 `SourceChunk`** (`cmrsromj5…`, p. 39 de `uam_csh.pdf` — banco de preguntas de la guía CSH de la UAM con 3 ítems literarios: novela picaresca/Quevedo, Generación del 98, Octavio Paz), y `grounding.ts` obliga a citar cuando hay fragmento → sus 4 reactivos llevan `sourceChunks:[1]`. **Imprecisión de clasificación heredada de F2b, documentada y no bloqueante:** 2 de esos 4 (picaresca, Generación del 98) tratan letras españolas, no mexicanas contemporáneas — derivan **directo** del fragmento y son factualmente correctos (la ronda ciega los revalida uno por uno); los `stem` lo explicitan («en la tradición literaria hispánica que también se estudia en México», «en las letras españolas»). Mismo criterio que G33 (componer al tema que el pipeline asignó al chunk). **35 `MULTIPLE_CHOICE`.** Dificultad **BASIC 7 / INTERMEDIATE 17 / ADVANCED 9 / EXPERT 2** (≈ 20/49/26/6, la distribución objetivo de `_base.md`; misma que G33/G35). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15–40 % de G3c, **confirmada por query directa a la DB** (`jsonb_array_elements` sobre `options`) tras insertar; la letra la asigna el generador con búsqueda de semilla fija que impide corridas cíclicas A→B→C→D de longitud ≥ 3 (rotación +1: 3/34 = 8.8 %). **Regla de G34 §2, reportada como veredicto contra el umbral (G36 §3):** el puntaje esperado tie-aware de «elige la más larga» quedó **por debajo del azar del 25 % y muy por debajo de la cota de 14/35**, y «elige la más corta» también quedó en el azar; ratio medio de longitud correcta/distractores ≈ 1.0. El primer borrador daba la correcta como la más larga en la mitad del lote (arrastraba la cláusula justificativa, el patrón que ya corrigieron G33/G35); se recortaron las correctas a la aserción y se homogeneizaron los distractores en dos pasadas. `content:validate-batch` **0 violaciones** (antes de tocar la DB y de nuevo como paso obligatorio de `content:insert --lot-dir` sobre los 7 archivos). **0 citas por letra** y **0 citas posicionales** en las 105 capas (auto-chequeo con las regex de `lot-validation.ts` + `POSITION_REF` de G33; las capas 2 se titulan «Cómo se descarta cada opción» y citan los distractores **por su contenido**). **Atendida la observación de G36 §5:** en BASIC/INTERMEDIATE los distractores son alternativas **reales** que exigen conocimiento específico para rechazarse (otros movimientos con su set de rasgos, otras escritoras del Barroco, otra revista modernista, otros poetas del Siglo de Oro, otras vanguardias); caveat honesto (G34 §4): en ~4 reactivos algún distractor cae también por anacronismo o imposibilidad. **Derechos de autor (criterio de aceptación del encargo):** cero reproducción de fragmentos extensos de obras vigentes; de autores con derechos (Paz, Rulfo, Fuentes, García Márquez, Federico Gamboa) solo título/autor/datos; los **3 reactivos que piden analizar un texto** (personificación, ironía, sinestesia) usan textos **originales** escritos para el lote «a la manera de» cada movimiento — pastiche, no cita; no se citan traducciones de la lírica náhuatl (las de León-Portilla/Garibay tienen derechos): se describe, no se transcribe. Única cita textual: el íncipit-título «Hombres necios que acusáis» (4 palabras, Sor Juana, s. XVII, dominio público). **Exactitud factual verificada opción por opción antes de insertar.** **Acumulado real, consultado en vivo antes y después:** banco **797 → 832** total · verificados **797** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · Literatura UNAM A4 **0✓/0⧗ → 0✓/35⧗** por los 7 temas 5/6/5/5/5/4/5 · 105 `ExplanationLayer` · 4 `question_source_chunks`. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador y los 7 archivos del lote corren en el scratchpad y no se committean); cero llamadas a la API de pago. **Siguiente: G38 = verificación ciega de este lote** — mayormente verbal (0/35 admiten cálculo → no cabe el candado de G28); los 4 `SOURCED` se resuelven igual con conocimiento literario de bachillerato porque `loadPendingQuestionsWithContext` no pasa el texto del `SourceChunk`; el control será el descarte explícito de los tres distractores por contenido y la confianza declarada, más recalcular los diagnósticos de longitud contra las respuestas ciegas (G36 §2)**)
+Última actualización: 2026-08-29 · Última fase ejecutada: G38 (**COMPLETADA — verificación ciega del lote de G37 (35 reactivos de **Literatura, UNAM Área 4**), segunda mitad del ciclo adversarial de G2. **35/35 auto-aprobados = tasa de auto-aprobación 100 %**, undécima ronda consecutiva al 100 % (métrica saturada; se dice cada vez). **Ceguera estructural verificada antes de leer el lote:** `grep -c` de `isCorrect|explanation|correctOption|"answer"|correctAnswer|solution` = **0**; claves de opción solo `label, text, imageUrl`; **35/35 `MULTIPLE_CHOICE`**, **0 con `requiresCalculation`**, **0 con pasaje**. **Aislamiento comprobado:** no se abrió el commit `91532b1`, ni el registro permanente del lote, ni `Question.options`, ni la sección `## G37`, ni su bloque `### Siguiente` antes de responder. **Contaminación real medida — la primera desde G32:** la línea 3 de G37 **inventarió el contenido de los ítems del `SourceChunk`** del lote, y dos de esos puntos son el dato que un reactivo pide identificar → **2/35 contaminados, 1 parcial, 32 limpios** (G34 y G36: 35/35 limpios). **Regla nueva:** la línea 3 describe el fragmento por fuente/página/naturaleza, nunca inventariando lo que sus ítems contienen. **El candado de G36 §2 resultó inejecutable:** G36 §3 sacó los valores exactos del canal de entrada y G37 los mandó al registro permanente del lote —el archivo que contiene la clave—, así que la sesión ciega no puede alcanzarlos sin romper el sello; solo cupo comparar **contra veredictos**: tie-aware «más larga» **por debajo del azar y de la cota de 14/35**, «más corta» **en el azar**, ratio medio ≈ 1.0 — los tres consistentes con lo que G37 declaró. **Regla nueva:** el valor exacto va en la sección `## GNN` (que la ciega abre solo después de resolver), no solo en el permanente. **Candado más fuerte hallado de paso:** traducidas de vuelta, las 35 respuestas **reprodujeron carácter por carácter la secuencia de clave de 35 letras** y la clave agregada **A9/B9/C9/D8** que G37 declaró — corroboración exacta e inyectiva, no con pérdida como el estadístico de longitud. **Contrapartida:** esa secuencia **es la clave en texto plano**, y estaba publicada en `## G37`; esta fase la **redactó** y dejó en su lugar sus propiedades (sin corridas cíclicas ≥ 3, rotación +1 3/34 = 8.8 %). **Regla nueva:** ninguna composición publica la secuencia de letras de su clave en este documento. **Resolución:** 35 `stem` y 140 opciones revisados uno por uno verificando fechas, autoría, orden religiosa, nacionalidad, siglo y adscripción de movimiento; **ninguna atribución resultó falsa**; **0 problemas declarados**; autochequeo mecánico **0 citas por letra**, **0 referencias posicionales**, **35/35 con los tres distractores descartados por contenido**. Confianza mínima **0.96**, máxima 0.99, promedio **0.983**. Dos matices no bloqueantes registrados **sin decir a qué opción pertenecen** (cambio respecto de cómo los escribieron G34 §4 y G36 §4, por la fuga de §4). **Defecto real hallado — relacional, invisible para `lot-validation.ts`:** un `stem` del lote nombra el dato que otro reactivo del mismo lote pide identificar; ambos son individualmente correctos, así que **no** se declararon como `problems` (habría dejado sin publicar reactivos sanos). **Regla nueva:** ningún `stem` puede nombrar el dato que otro reactivo del mismo lote pide identificar; reparación editorial pendiente, no bloqueante. **Observación de G36 §5, medida:** los reactivos cuyos 3 distractores caen sin el dato evaluado bajan de ~11/35 (G34 y G36) a **4/35 claros + 2 discutibles**; G37 declaró «~4» por su lado y **las dos mediciones convergen sin haberse visto**. **Barajado real:** la etiqueta ciega coincide con la original en **10/35 = 28.6 %**, cerca del azar; 25 respuestas cambiaron de letra. **Acumulado real, consultado en vivo antes y después:** banco **832** · verificados **797 → 832** · cola ciega **35 → 0** · sin publicar con veredicto **0** · UNAM A4 Literatura **0✓/35⧗ → 35✓/0⧗** · `Question.verification` **0/35 → 35/35** (`session-v1`, `AUTO_APPROVED`, `model=claude-opus-5`, `usedCalculation=false`, por query directa). `content:coverage`: **832 servibles**, auto-aprobación global 100 % (832/832), meta efectiva G26 (1 222) al **55 %**, brecha **546 ≈ 16 lotes**; meta nominal de 1 500: 53 % → **55 %**. **Veredicto pedido por G37 sobre la clasificación F2b del chunk:** los reactivos son correctos y no se marcan; el chunk sí está mal clasificado y el Área 4 ya tiene el tema donde encajan, así que basta reclasificar, sin sembrar tema nuevo. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción; cero llamadas a la API de pago**)
+
+<details><summary>Historial: G37 (2026-08-29)</summary>
+
+Última fase ejecutada: G37 (**COMPLETADA — lote de 35 reactivos de **Literatura, UNAM Área 4 (Humanidades y Artes)**. **Abre el Área 4**, que estaba entera en cero (nota de G34/G36). **Consulta en vivo a Supabase (2026-08-30):** Literatura existe como **una sola fila `Subject`, en el Área 4**, `questionWeight` 4, **`sharedContentKey` NULL** — no hay materia «Literatura» en el Área 3 (que tiene Historia de México, Historia Universal, Geografía, Español, Inglés) y G26 no le dio clave de contenido compartido (solo Español/Inglés/Química de la UNAM la tienen). Por eso «Áreas 3 y 4» del encargo se resuelve a la **única Literatura del Área 4**: el lote va a sus **7 temas propios** y no se reutiliza entre áreas — mismo patrón que Historia de México (G33) y Geografía (G35), ambas `sharedKey` NULL. Reparto por los 7 temas: **5 / 6 / 5 / 5 / 5 / 4 / 5** (prehispánica · colonial · neoclásica y romántica · realismo y naturalismo · modernismo · contemporánea mexicana · universal clásica), que cubre géneros literarios, corrientes y movimientos, figuras retóricas y literatura mexicana e hispanoamericana. **31/35 TEMARIO_ONLY · 4/35 SOURCED:** el tema «Literatura contemporánea mexicana» tiene **1 `SourceChunk`** (`cmrsromj5…`, p. 39 de `uam_csh.pdf` — banco de preguntas de la guía CSH de la UAM con 3 ítems literarios: novela picaresca/Quevedo, Generación del 98, Octavio Paz), y `grounding.ts` obliga a citar cuando hay fragmento → sus 4 reactivos llevan `sourceChunks:[1]`. **Imprecisión de clasificación heredada de F2b, documentada y no bloqueante:** 2 de esos 4 (picaresca, Generación del 98) tratan letras españolas, no mexicanas contemporáneas — derivan **directo** del fragmento y son factualmente correctos (la ronda ciega los revalida uno por uno); los `stem` lo explicitan («en la tradición literaria hispánica que también se estudia en México», «en las letras españolas»). Mismo criterio que G33 (componer al tema que el pipeline asignó al chunk). **35 `MULTIPLE_CHOICE`.** Dificultad **BASIC 7 / INTERMEDIATE 17 / ADVANCED 9 / EXPERT 2** (≈ 20/49/26/6, la distribución objetivo de `_base.md`; misma que G33/G35). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15–40 % de G3c, **confirmada por query directa a la DB** (`jsonb_array_elements` sobre `options`) tras insertar; la letra la asigna el generador con búsqueda de semilla fija que impide corridas cíclicas A→B→C→D de longitud ≥ 3 (rotación +1: 3/34 = 8.8 %). **Regla de G34 §2, reportada como veredicto contra el umbral (G36 §3):** el puntaje esperado tie-aware de «elige la más larga» quedó **por debajo del azar del 25 % y muy por debajo de la cota de 14/35**, y «elige la más corta» también quedó en el azar; ratio medio de longitud correcta/distractores ≈ 1.0. El primer borrador daba la correcta como la más larga en la mitad del lote (arrastraba la cláusula justificativa, el patrón que ya corrigieron G33/G35); se recortaron las correctas a la aserción y se homogeneizaron los distractores en dos pasadas. `content:validate-batch` **0 violaciones** (antes de tocar la DB y de nuevo como paso obligatorio de `content:insert --lot-dir` sobre los 7 archivos). **0 citas por letra** y **0 citas posicionales** en las 105 capas (auto-chequeo con las regex de `lot-validation.ts` + `POSITION_REF` de G33; las capas 2 se titulan «Cómo se descarta cada opción» y citan los distractores **por su contenido**). **Atendida la observación de G36 §5:** en BASIC/INTERMEDIATE los distractores son alternativas **reales** que exigen conocimiento específico para rechazarse (otros movimientos con su set de rasgos, otras escritoras del Barroco, otra revista modernista, otros poetas del Siglo de Oro, otras vanguardias); caveat honesto (G34 §4): en ~4 reactivos algún distractor cae también por anacronismo o imposibilidad. **Derechos de autor (criterio de aceptación del encargo):** cero reproducción de fragmentos extensos de obras vigentes; de autores con derechos (Paz, Rulfo, Fuentes, García Márquez, Federico Gamboa) solo título/autor/datos; los **3 reactivos que piden analizar un texto** (personificación, ironía, sinestesia) usan textos **originales** escritos para el lote «a la manera de» cada movimiento — pastiche, no cita; no se citan traducciones de la lírica náhuatl (las de León-Portilla/Garibay tienen derechos): se describe, no se transcribe. Única cita textual: el íncipit-título «Hombres necios que acusáis» (4 palabras, Sor Juana, s. XVII, dominio público). **Exactitud factual verificada opción por opción antes de insertar.** **Acumulado real, consultado en vivo antes y después:** banco **797 → 832** total · verificados **797** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · Literatura UNAM A4 **0✓/0⧗ → 0✓/35⧗** por los 7 temas 5/6/5/5/5/4/5 · 105 `ExplanationLayer` · 4 `question_source_chunks`. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador y los 7 archivos del lote corren en el scratchpad y no se committean); cero llamadas a la API de pago. **Siguiente: G38 = verificación ciega de este lote** — mayormente verbal (0/35 admiten cálculo → no cabe el candado de G28); los 4 `SOURCED` se resuelven igual con conocimiento literario de bachillerato porque `loadPendingQuestionsWithContext` no pasa el texto del `SourceChunk`; el control será el descarte explícito de los tres distractores por contenido y la confianza declarada, más recalcular los diagnósticos de longitud contra las respuestas ciegas (G36 §2)**)
+
+</details>
 
 <details><summary>Historial: G36 (2026-08-30)</summary>
 
@@ -61,6 +67,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G38 | Verificación ciega: Literatura, UNAM Área 4 (lote de G37) | **COMPLETADA — 35/35 auto-aprobados = 100 %, banco 832, verificados 797 → 832, cola ciega 35 → 0** | (G38) | Ver sección dedicada abajo. Contaminación del canal de entrada medida (2/35) y regla nueva para lotes `SOURCED`; el candado de G36 §2 resultó inejecutable y se corrige dónde vive el valor exacto; **la secuencia de clave se recuperó exacta desde las respuestas ciegas** y por eso se redactó de `## G37`; defecto relacional entre dos reactivos del lote (no bloqueante); distractores que caen por implausibilidad general bajan de ~11/35 a 4/35. |
 | G37 | Lote de reactivos: Literatura, UNAM Área 4 | **COMPLETADA — 35 insertados, isVerified=false, banco 797 → 832, cola ciega 0 → 35** | (G37) | Ver sección dedicada abajo. **Abre el Área 4** (Humanidades y Artes), que estaba entera en cero. Consulta en vivo a Supabase: **Literatura es una sola fila `Subject`, en el Área 4**, `questionWeight` 4, **`sharedContentKey` NULL** — no hay «Literatura» en el Área 3 y G26 no le dio clave compartida, así que «Áreas 3 y 4» del encargo se resuelve a la única Literatura del Área 4; el lote va a sus **7 temas propios**, sin reutilización entre áreas (como G33 y G35). Reparto por los 7 temas: **5/6/5/5/5/4/5** (prehispánica · colonial · neoclásica y romántica · realismo y naturalismo · modernismo · contemporánea mexicana · universal clásica); cubre géneros, corrientes y movimientos, figuras retóricas y literatura mexicana e hispanoamericana. **31/35 TEMARIO_ONLY · 4/35 SOURCED** (el tema «Literatura contemporánea mexicana» tiene 1 `SourceChunk` — banco de preguntas de la guía CSH de la UAM: picaresca/Quevedo, Generación del 98, Octavio Paz; `grounding.ts` obliga a citar → sus 4 reactivos llevan `sourceChunks:[1]`). **Imprecisión de clasificación F2b documentada y no bloqueante:** 2 de esos 4 tratan letras españolas, derivan directo del fragmento y son factualmente correctos; los `stem` lo explicitan. 35 `MULTIPLE_CHOICE`; dificultad **7/17/9/2**. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; rotación cíclica +1 = 3/34. **Regla de G34 §2, reportada como veredicto (G36 §3):** tie-aware de «elige la más larga» **por debajo del azar y de la cota 14/35**; «elige la más corta» en el azar; ratio medio ≈ 1.0 (el primer borrador tenía la correcta como la más larga en la mitad del lote — patrón G33/G35 —, corregido en dos pasadas). `content:validate-batch` **0 violaciones**. 0 citas por letra / posicionales en 105 `ExplanationLayer` (capas 2 tituladas «Cómo se descarta cada opción», citan distractores por contenido). **Atendida la observación de G36 §5:** en BASIC/INTERMEDIATE los distractores son alternativas reales que exigen conocimiento para rechazarse. **Derechos de autor:** cero fragmentos extensos de obras vigentes; los 3 reactivos de análisis de texto usan textos **originales**; sin citas de traducciones. Exactitud factual verificada opción por opción. Registro en `docs/content-batches/g37-unam-a4-literatura.json`. Generador de Python desechable (no committeado). |
 | G36 | Verificación ciega: Geografía, UNAM Área 3 (lote de G35) | **COMPLETADA — 35/35 auto-aprobados = 100 %, banco 797, verificados 762 → 797, cola ciega 35 → 0** | (G36) | Ver sección dedicada abajo. **Segunda ronda consecutiva de canal limpio** (G32 §2 / G34 §3): la línea 3 nombró los 6 temas pero ningún punto por su forma correcta → acuerdo **35/35 independiente, 0 contaminados**. Ceguera estructural verificada (`grep` de campos de respuesta = 0; opciones solo `label/text/imageUrl`; 35/35 `MULTIPLE_CHOICE`; 0 `requiresCalculation`; 0 pasajes). Cuarta ronda **puramente verbal**: control = descarte de los tres distractores **por contenido** (0 citas por letra, 0 referencias posicionales) + **verificación factual opción por opción** de 35 `stem` y 140 opciones — **0 problemas**, 2 imprecisiones didácticas registradas sin bloquear. **Aporte metodológico (§2): candado mecánico para lotes verbales** — recalcular los diagnósticos de longitud de G34 §2 sobre las respuestas ciegas reprodujo **exactamente** los valores de G35, lo que solo es posible si ambas sesiones coinciden reactivo a reactivo; es el análogo verbal del candado de unicidad de G28. **§3:** ese estadístico es un checksum derivado de la clave y la línea 3 lo publica — canal débil, mitigación barata, regla nueva para composición. Confianza mín **0.96** / prom **0.984**. Barajado real: etiqueta ciega = original en **4/35 = 11.4 %**, la más baja registrada. Reconteo en vivo confirma la clave **A9/B9/C9/D8** de G35. |
 | G35 | Lote de reactivos: Geografía, UNAM Área 3 | **COMPLETADA — 35 insertados, isVerified=false, banco 762 → 797, cola ciega 0 → 35** | (G35) | Ver sección dedicada abajo. **Segunda de las 3 materias propias del Área 3 con contenido**, tras Historia de México (G33); Historia Universal sigue en cero. Materia **NO compartida** (`sharedContentKey` null): el lote va a sus **6 temas propios**, sin reutilización entre áreas — como G33 y G27. Consulta en vivo: los 6 temas en 0 reactivos y 0 `SourceChunk` → **35/35 TEMARIO_ONLY** (no hay guía de Geografía de la UNAM en `content_sources`). Reparto por los 6 temas sembrados: **5/6/6/6/6/6** (cartografía · geomorfología · climas y vegetación · geografía política · geografía económica · geografía de México), que cubre las ramas física, humana, económica y de México. 35 `MULTIPLE_CHOICE`; dificultad 7/17/9/2. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; rotación cíclica +1 = 4/34. **Regla de G34 §2 aplicada:** puntaje esperado tie-aware de «elige la más larga» = **6.5/35 ≈ 19 %** (umbral < 14/35), ratio medio de longitud **0.998**. `content:validate-batch` 0 violaciones. 0 citas por letra / posicionales en 105 `ExplanationLayer`. Exactitud factual verificada opción por opción. Registro en `docs/content-batches/g35-unam-a3-geografia.json`. Generador de Python desechable (no committeado). |
@@ -2138,6 +2145,343 @@ fase — solo contenido en la DB y documentación).
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
 
+## G38 — Verificación ciega: Literatura, UNAM Área 4 (lote de G37) (2026-08-29)
+
+**Modelo:** `claude-opus-5` (tier Opus del Plan de Implementación: razonamiento
+denso y verificación de implementaciones críticas). **COMPLETADA. 35/35
+auto-aprobados = tasa de auto-aprobación 100 %.** Segunda mitad del ciclo
+adversarial de G2 sobre el lote que G37 insertó con `isVerified=false`.
+Undécima ronda ciega consecutiva al 100 %.
+
+### 1. Ceguera y aislamiento
+
+**Verificados estructuralmente antes de leer un solo reactivo**, no asumidos:
+
+| Control | Resultado |
+|---|---|
+| `grep -c` de `isCorrect\|explanation\|correctOption\|"answer"\|correctAnswer\|solution` sobre el lote ciego | **0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Claves de nivel ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Formato | **35/35 `MULTIPLE_CHOICE`** |
+| `requiresCalculation` | **0/35** |
+| Reactivos con pasaje | **0/35** (los 35 llegan autocontenidos en el `stem`, incluidos los 3 con texto original para analizar) |
+| Opciones por reactivo · ids únicos | 4/4 en los 35 · 35 ids únicos |
+
+**Aislamiento:** no se abrió el commit `91532b1` de G37, ni
+`docs/content-batches/g37-unam-a4-literatura.json`, ni `Question.options`, ni
+la sección `## G37` de este documento, ni el bloque `### Siguiente (G37)`
+antes de responder. La sección `## G37` se leyó **después** de correr
+`content:resolve`, únicamente para redactar esta. El registro permanente del
+lote (que contiene la clave) **no se abrió en ningún momento** — ver §3, donde
+esa disciplina tiene una consecuencia metodológica.
+
+### 2. Canal de entrada — primera contaminación real desde G32
+
+La línea 3 de este documento se lee al inicio de toda sesión por diseño. La de
+G37 **inventarió el contenido de los ítems del `SourceChunk`** en que se anclan
+4 reactivos del lote: nombró tres puntos literarios del fragmento, y **dos de
+ellos son exactamente el dato que un reactivo del lote pide identificar** (un
+emparejamiento autor–género y un nombre de autor). Un tercero nombró solo el
+tema, no su forma correcta.
+
+**Recuento honesto: 2/35 reactivos contaminados, 1 parcialmente, 32 limpios.**
+Las dos respuestas afectadas se derivaron del contenido de las opciones y son
+de manual de bachillerato —cualquier sesión las produce sin el fragmento—, pero
+**el canal existió y se declara**, que es la regla desde G32 §2. Es la primera
+contaminación medida desde entonces (G34: 35/35 limpios; G36: 35/35 limpios;
+G32: 26/35).
+
+**Regla nueva:** cuando un lote se ancla en un `SourceChunk`, la línea 3
+describe el fragmento por **fuente, página y naturaleza** («banco de preguntas
+de la guía X, 3 ítems literarios»), **nunca por inventario de lo que sus ítems
+contienen**. Nombrar el contenido de un ítem del fragmento es nombrar la
+respuesta del reactivo que se compuso a partir de él — el mismo defecto de
+G32 §2, por una vía que ninguna fase había cerrado porque hasta G37 los lotes
+`SOURCED` no habían llegado a la línea 3 con su inventario.
+
+### 3. El candado de G36 §2 quedó inalcanzable — §2 y §3 de G36 se estorban
+
+G36 dejó dos reglas que en G37 resultaron incompatibles:
+
+- **§2** obliga a la ronda ciega a recalcular los diagnósticos de longitud
+  sobre sus respuestas y **compararlos con los valores exactos** de la fase de
+  composición; la coincidencia exacta corrobora el acuerdo por una vía que no
+  pasa por el acuerdo mismo.
+- **§3** obliga a la fase de composición a **sacar esos valores exactos del
+  canal de entrada**, porque son una función de la clave.
+
+G37 cumplió §3 mandando los valores exactos al registro permanente
+`docs/content-batches/g37-unam-a4-literatura.json` — **el archivo que contiene
+`isCorrect`**. Es decir: la sesión ciega no puede alcanzarlos sin romper el
+sello. **El candado de §2 fue inejecutable en su forma exacta.** Solo quedó la
+comparación **contra los veredictos** que `## G37` §5 publica en prosa:
+
+| Estadístico | G38 (recalculado sobre las respuestas ciegas) | Veredicto que declaró G37 | ¿Consistente? |
+|---|---|---|---|
+| «elige la más larga», tie-aware | **5.00/35 = 14.3 %** | por debajo del azar (25 %) y muy por debajo de 14/35 | **sí** |
+| «elige la más corta», tie-aware | **9.00/35 = 25.7 %** | en el azar | **sí** |
+| Conteo estricto (única más larga) | 4/35 | — | — |
+| Ratio medio de longitud correcta/distractores | **0.990** (mín 0.72, máx 1.41) | ≈ 1.0 | **sí** |
+| Histograma de rango por longitud (1 = más larga) | {1: 4, 2: 16, 3: 6, 4: 9} | — | — |
+
+Consistencia a nivel de veredicto en los tres estadísticos que G37 publicó, y
+el lote pasa el umbral de G34 §2 con holgura. Pero **es una corroboración más
+débil que la de G36**: infinitas asignaciones de clave dan 14.3 %, así que la
+consistencia no prueba el acuerdo reactivo a reactivo.
+
+**Regla nueva (corrige G36 §3 sin revertirla):** el valor exacto de los
+diagnósticos va en la sección `## GNN` de este documento —que la sesión ciega
+no abre **antes** de resolver, pero sí **después**, que es cuando la
+comparación de §2 ocurre—, **no** solo en el registro permanente del lote. El
+registro permanente contiene la clave y la sesión ciega no debe abrirlo nunca,
+ni antes ni después: es el universo muestreable de la auditoría del 5 %.
+
+### 4. Un candado más fuerte, encontrado de paso: la secuencia de clave
+
+Al traducir las 35 respuestas ciegas de vuelta a las etiquetas originales
+(`translateChosenOption` recompone el barajado determinista), la ronda ciega
+**reprodujo carácter por carácter la secuencia de 35 letras** que `## G37` §5
+publicó, y la clave agregada **A9/B9/C9/D8** que G37 declaró:
+
+| Comprobación | Resultado |
+|---|---|
+| Secuencia recuperada por la ronda ciega vs. la publicada en `## G37` §5 | **idénticas, 35/35 caracteres, 0 posiciones distintas** |
+| Clave agregada recontada desde la traducción | **A9 / B9 / C9 / D8** — coincide con la de G37 |
+
+Esto **sí** es el candado mecánico que §2 buscaba, y es estrictamente más
+fuerte que el estadístico de longitud: la secuencia es una función **inyectiva**
+de la clave, no una función con pérdida. Un solo desacuerdo habría cambiado un
+carácter.
+
+**Y por eso mismo es el peor canal de fuga que este proyecto ha publicado.**
+G36 §3 advirtió que el puntaje tie-aware «es un checksum de la clave»; la
+secuencia **es la clave**, en texto plano, en el documento que toda sesión
+abre. Vive en `## GNN`, que la ronda ciega no lee antes de resolver, así que la
+disciplina del canal de entrada aguantó — pero G34 §3 extendió la regla a los
+lotes ya publicados justamente porque la **auditoría del 5 % vuelve a correr
+pasadas ciegas** sobre ellos, y una sesión de auditoría que abra `## G37` por
+cualquier motivo se lleva la clave entera de 35 reactivos.
+
+**Acción tomada en esta fase:** se **redactó** la secuencia literal de `## G37`
+§5 y se dejó en su lugar el veredicto que sí importa (sin corridas cíclicas
+A→B→C→D de longitud ≥ 3; rotación +1 medida 3/34 = 8.8 %, en el azar). La
+secuencia sigue existiendo donde debe: en la DB y en el registro permanente del
+lote. **Regla nueva:** ninguna fase de composición publica la secuencia de
+letras de su clave en este documento; publica sus **propiedades** (corridas,
+rotación, distribución agregada por letra).
+
+### 5. Resolución y exactitud factual
+
+**Control declarado:** el encargo pidió resolver desde cero razonando el
+descarte de cada distractor y **verificando la exactitud de las atribuciones**
+(autor, obra, movimiento, época). Autochequeo mecánico sobre los 35
+razonamientos, con las regex de `lot-validation.ts` más el patrón
+`POSITION_REF` de G33:
+
+| Control sobre mis 35 razonamientos | Resultado |
+|---|---|
+| Citas por letra (`opción A`, `inciso B`, `letra C`, `D)`) | **0** |
+| Referencias posicionales («la primera opción», «la de arriba») | **0** |
+| Razonamientos con los **tres** distractores descartados por contenido | **35/35** |
+| Ids cubiertos vs. lote ciego | 35/35, 0 faltantes, 0 sobrantes |
+
+**35 `stem` y 140 opciones revisados uno por uno. 0 problemas declarados.**
+Se verificaron: fechas de publicación de las obras citadas, autoría, orden
+religiosa y geografía de las figuras del Barroco novohispano, nacionalidad y
+adscripción de movimiento de los poetas, siglo de los autores del Siglo de Oro
+y de la generación finisecular española, y la correspondencia
+obra↔género↔movimiento en los reactivos de clasificación. **Ninguna atribución
+resultó falsa.**
+
+**Confianza declarada:** mínima **0.96**, máxima **0.99**, promedio **0.983**.
+Empata prácticamente el piso de G34/G36 (0.96). Las tres mínimas caen en el
+reactivo que contrasta la tradición oral prehispánica con la poesía culta
+europea (§5.1) y en los dos que piden nombrar una figura retórica sobre un
+texto original donde conviven dos figuras.
+
+**Dos matices registrados sin bloquear publicación** —y, a diferencia de cómo
+los escribieron G34 §4 y G36 §4, **sin decir a qué opción pertenecen**, por lo
+que §4 acaba de establecer:
+
+1. **Lírica prehispánica.** Una opción del reactivo de contraste atribuye a la
+   tradición oral la ausencia de autoría fija. Es la simplificación didáctica
+   estándar del temario, pero la tradición sí atribuye poemas a figuras
+   nombradas —otro reactivo del mismo tema descansa en una de esas
+   atribuciones—; el matiz real es que la atribución es posterior a la
+   Conquista y de tipo tradicional, no de propiedad autoral a la europea. No
+   altera qué evalúa el reactivo.
+2. **Análisis de figura retórica.** En uno de los tres textos originales
+   conviven dos figuras (una domina y otra la acompaña en una comparación).
+   El enunciado pide la que **predomina** y ninguna opción ofrece la
+   acompañante, así que no hay ambigüedad resoluble; se anota porque el
+   margen es más estrecho que en los otros dos.
+
+**Disciplina de derechos verificada desde el lado ciego:** los 3 reactivos que
+piden analizar un texto lo traen **original**, escrito «a la manera de» cada
+movimiento (pastiche, no cita); no hay transcripción de traducciones de la
+lírica náhuatl —se describe el recurso, no se reproduce el poema—; la única
+cita textual del lote es un íncipit de cuatro palabras del siglo XVII, en
+dominio público. Coincide con lo que G37 declaró y **se comprobó leyendo los 35
+`stem`**, no tomándolo del registro.
+
+### 6. Defecto real hallado: fuga entre dos reactivos del mismo lote
+
+**Un reactivo del lote nombra en su enunciado —por necesidad de la pregunta que
+hace— el mismo dato que otro reactivo del lote pide identificar.** Quien vea el
+primero obtiene el segundo sin conocimiento adicional. Los dos son
+individualmente correctos, inequívocos y con distractores válidos, así que
+**no se declararon como `problems`** (declararlos habría dejado sin publicar
+reactivos sanos, y `resolveVerdict` no distingue defectos de reactivo de
+defectos de lote).
+
+Es un defecto **relacional**, invisible para `lot-validation.ts`, que valida
+reactivo a reactivo y distribución agregada. Importa porque el motor adaptativo
+puede servir ambos en la misma sesión de práctica.
+
+- **Regla nueva de composición:** ningún `stem` puede nombrar el dato que otro
+  reactivo del mismo lote pide identificar. Es barato de cumplir (basta
+  despersonalizar el enunciado del segundo) y ninguna capa actual lo detecta.
+- **Reparación editorial pendiente**, no ejecutada aquí porque excede el
+  encargo de la ronda ciega: reescribir el enunciado del reactivo que nombra el
+  dato para que no lo nombre. No requiere tocar opciones ni clave.
+
+### 7. Calidad de distractores — la observación de G36 §5, medida
+
+G36 §5 pidió subir el listón de los distractores en BASIC/INTERMEDIATE, tras
+medir ~11/35 reactivos cuyos tres distractores caían por implausibilidad
+general en G34 y otros ~11/35 en G36. Medición independiente de esta ronda,
+hecha reactivo a reactivo mientras se resolvía y **antes** de leer lo que G37
+declaró:
+
+| Lote | Reactivos donde los 3 distractores caen sin el dato evaluado |
+|---|---|
+| G34 (Historia de México) | ~11/35 |
+| G36 (Geografía) | ~11/35 |
+| **G38 (Literatura, lote de G37)** | **4/35 claros + 2 discutibles** |
+
+Los 4 claros son aquellos donde los distractores usan absolutos
+(«únicamente», «siempre», «por completo») que se rechazan sin saber la materia.
+En el resto los distractores son **alternativas reales**: otros movimientos con
+su set de rasgos correctamente descrito, otras escritoras del Barroco
+hispánico, otra revista y otro poeta del mismo movimiento, otras figuras
+retóricas bien definidas, y —el mejor del lote— **otra obra del mismo autor**
+correctamente descrita. G37 declaró «~4 reactivos» por su lado; **las dos
+mediciones convergen sin haberse visto.** La recomendación de G36 §5 funcionó y
+es el segundo resultado que esta fase aporta.
+
+### 8. El barajado es real
+
+La etiqueta ciega coincide con la original en **10/35 = 28.6 %**, cerca del
+25 % de azar: 25 de las 35 respuestas cambiaron de letra al traducirse de
+vuelta, así que el acuerdo no puede venir de la posición.
+
+| Ronda | Coincidencia etiqueta ciega = original |
+|---|---|
+| G36 | 4/35 = 11.4 % |
+| G28 | 6/35 = 17.1 % |
+| G34 | 7/35 = 20.0 % |
+| **G38** | **10/35 = 28.6 %** |
+| G32 | 10/35 = 28.6 % |
+| G30 | 12/35 = 34.3 % |
+
+### 9. Acumulado real (consultado en vivo antes y después)
+
+| Métrica | Antes | Después |
+|---|---:|---:|
+| Banco total | 832 | **832** |
+| Verificados (`isVerified=true`) | 797 | **832** |
+| Cola ciega (`isVerified=false`) | 35 | **0** |
+| Sin publicar con veredicto | 0 | **0** |
+| UNAM A4 · Literatura | 0✓ / 35⧗ | **35✓ / 0⧗** |
+| `ExplanationLayer` del lote | 105 | 105 |
+| `question_source_chunks` del lote | 4 | 4 |
+| `Question.verification` persistido | 0/35 | **35/35** |
+
+`Question.verification` guarda `pipeline="session-v1"`,
+`decision=AUTO_APPROVED`, `verdict.model="claude-opus-5"` y
+`usedCalculation=false` en los 35 — verificado por query directa, no por el log
+del script.
+
+`content:coverage` después: **832 servibles**, 0 pendientes, auto-aprobación
+global **100 % (832/832)**, meta efectiva G26 (1 222) al **55 %**, brecha
+**546 ≈ 16 lotes**; meta nominal de 1 500: 53 % → **55 %**. Anclaje en fuentes:
+218 `SOURCED` (26 %).
+
+**Nota honesta: undécima ronda ciega consecutiva al 100 %.** La métrica está
+saturada y no discrimina; decirlo cada vez es parte del registro. Lo que esta
+fase aporta no es el 100 %: es la contaminación medida de §2, el conflicto
+§2↔§3 de G36 y su corrección, el candado de secuencia de §4 con su fuga
+cerrada, el defecto relacional de §6 y la confirmación medida de §7.
+
+### 10. Clasificación F2b del chunk — veredicto pedido por G37
+
+G37 §Siguiente-2 pidió que esta ronda dictaminara sobre los ítems del
+`SourceChunk` clasificados en «Literatura contemporánea mexicana» que tratan
+letras españolas. **Veredicto: los reactivos son factualmente correctos y sus
+enunciados explicitan el marco hispánico, así que no se marcan como problema**;
+la clasificación del chunk **sí** está mal y el Área 4 **ya tiene** el tema
+donde encajarían («Literatura universal clásica»), de modo que no hace falta
+sembrar un tema nuevo: basta reclasificar el chunk y mover esos reactivos de
+`topicId`. Queda como tarea editorial, no bloqueante.
+
+### 11. Guardrails
+
+- **Cero cambios de código de producción.** Los diagnósticos corrieron en dos
+  scripts desechables (uno en el scratchpad, uno temporal en `scripts/`),
+  creados y borrados dentro de la sesión; `git status` limpio salvo esta
+  documentación. Los dos artefactos del lote ciego (`g38-blind.json`,
+  `g38-answers.json`) viven en `scripts/content-exports/`, que `.gitignore:49`
+  excluye — no se committean, igual que los de G14/G16/G21/…
+- **Cero llamadas a la API de pago de Anthropic.** La resolución la produjo
+  esta sesión de Claude Code, como exige CLAUDE.md.
+- `pnpm typecheck` y `pnpm lint` **en verde**.
+- **Deriva de fechas, anotada:** G35–G37 están fechadas 2026-08-30 en este
+  documento y sus commits son del 2026-08-29. Sin impacto; esta sección usa la
+  fecha real.
+
+### Siguiente (G38)
+
+1. **Siguiente lote de material nuevo.** Los huecos, por peso:
+   - **UNAM A3 Historia Universal** (8 temas, `questionWeight` 5, cero) — la
+     **última materia propia del Área 3 sin contenido**, con 1 `SourceChunk` en
+     Guerras Mundiales. Materia **NO compartida** (`sharedContentKey` null) →
+     lote a sus 8 temas propios, patrón de G27/G33/G35/G37.
+   - **UNAM A4 Filosofía** (5 temas, w3, cero; 3 `SourceChunk` en «Historia de
+     la filosofía occidental») y **Artes** (5 temas, w2, cero; `SourceChunk` en
+     3 temas). El Área 4 va 1 de 3 materias propias con contenido.
+   - **IPN SOCADM Historia de México** (6 temas, cero) — el que G30–G37
+     nombran y ninguna fase ha abierto.
+2. **Reglas nuevas a aplicar desde la próxima composición:**
+   - **§2:** la línea 3 describe el `SourceChunk` por fuente/página/naturaleza,
+     **nunca** inventariando el contenido de sus ítems.
+   - **§3:** el valor **exacto** de los diagnósticos de longitud va en la
+     sección `## GNN`, no solo en el registro permanente del lote (que la
+     sesión ciega no debe abrir nunca). En línea 3 sigue yendo el veredicto.
+   - **§4:** **no publicar la secuencia de letras de la clave** en este
+     documento; publicar sus propiedades (corridas, rotación, distribución).
+   - **§6:** ningún `stem` puede nombrar el dato que otro reactivo del mismo
+     lote pide identificar.
+3. **Regla nueva a aplicar en la próxima ronda ciega:** además de los
+   diagnósticos de longitud (G36 §2), **recuperar la secuencia de clave** desde
+   las respuestas traducidas y compararla con la que registre el permanente —
+   es el candado exacto de §4. Como la secuencia ya no se publica en `## GNN`,
+   la comparación la hace el **dueño** o una fase editorial con acceso al
+   permanente, no la sesión ciega.
+4. **Reparaciones editoriales pendientes de este lote** (ninguna bloqueante):
+   despersonalizar el enunciado que filtra la respuesta de otro reactivo (§6) y
+   reclasificar el chunk `cmrsromj5…` con sus 2 reactivos de letras españolas
+   al tema de literatura universal (§10).
+5. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): ¿entran UNAM
+   A3/A4 e IPN SOCADM en la meta de 1 500 / 1 222? Lleva diez fases
+   condicionando la planeación sin respuesta del dueño.
+6. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), par duplicado H₂SO₄, auditoría 5 % (**el lote de G37 ya
+   entra al universo muestreable** ahora que esta fase lo verificó), las 8
+   `CHART_TABLE` sin tabla ni imagen de G28, y `content:coverage` que aún no
+   refleja la reutilización de G26 (G30 §10.3).
+
+---
+
 ## G37 — Lote de reactivos: Literatura, UNAM Área 4 (2026-08-30)
 
 **Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
@@ -2266,9 +2610,12 @@ respuesta (G32 §2 / G34 §3):
   (`jsonb_array_elements` sobre `options` de las 35 filas), no solo por el log.
 - **La letra la asigna el generador**, no la mano: búsqueda con semilla fija
   (seed 3737) que descarta secuencias con corridas cíclicas A→B→C→D de longitud ≥ 3
-  (ambos sentidos), triples repeticiones y rotación +1 alta. Secuencia resultante
-  `BDDBDCCADADBACACCBCABDBDBACCADBBAAC`; rotación +1 medida **3/34 = 8.8 %**, en el
-  azar (≈ 8.5).
+  (ambos sentidos), triples repeticiones y rotación +1 alta. **La secuencia
+  literal se redactó en G38 §4** —publicarla es publicar la clave en texto plano y
+  la auditoría del 5 % vuelve a correr pasadas ciegas sobre este lote—; vive en la
+  DB y en el registro permanente. Sus propiedades: **sin corridas cíclicas
+  A→B→C→D de longitud ≥ 3**, sin triples repeticiones, rotación +1 medida
+  **3/34 = 8.8 %**, en el azar (≈ 8.5).
 - **Cue de longitud — G34 §2, reportado como veredicto contra el umbral (regla de
   G36 §3):** el puntaje esperado **tie-aware de «elige la más larga», empates al
   azar**, quedó **por debajo del 25 % de azar y muy por debajo de la cota de
