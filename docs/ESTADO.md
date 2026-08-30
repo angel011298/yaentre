@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G43 (**COMPLETADA — lote de 35 reactivos de **Historia Universal, UNAM Área 3 (Ciencias Sociales)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet para lotes de contenido). **Cierra las 3 materias propias del Área 3** (Historia de México G33, Geografía G35, Historia Universal G43); era la última en cero absoluto. `sharedContentKey` NULL → lote a sus **8 temas propios**, sin reutilización entre áreas (patrón G33/G35/G37/G41). «Áreas 3 y 4» del encargo se resuelve a la única Historia Universal del Área 3 (no existe en el Área 4; la del IPN SOCADM es otra institución y G26 no cruza). Reparto: **5/4/4/4/4/5/5/4** (Antigüedad clásica · Edad Media · Renacimiento · Ilustración · Revoluciones de 1848 · Imperialismo e Industrialización · Guerras Mundiales · Siglo XXI). **30 TEMARIO_ONLY / 5 SOURCED:** «Guerras Mundiales» tiene 1 `SourceChunk` (p. 44 de `uam_csh.pdf`, guía UAM — banco de 4 ítems de historia contemporánea homogéneos, sin arrastre de otros temas a diferencia de G40/G41); sus 5 reactivos citan `sourceChunks:[1]` y transforman la tarea de atribución/«qué provocó X» a comprensión de proceso/causalidad (patrón G40 §6 / G41 §3); #31 es el más alejado de su ítem-semilla y se declara para G44. **35 `MULTIPLE_CHOICE`**, 0 con cálculo, 0 con pasaje. Dificultad **7/17/9/2** (los 2 EXPERT: caída de Roma multicausal, por qué Gran Bretaña industrializó primero). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en 15-40 %, **confirmada por query directa a la DB** (`jsonb_array_elements` sobre `options`); equilibrio también por tema (tope 2 por letra, ≥3 letras distintas); DFS con semilla fija (43043), **rotación cíclica A→B→C→D 0.0 %**. **Señuelo de longitud tie-aware (G34 §2): «elige la más larga» 5.00/35 = 14.3 %, «elige la más corta» 5.00/35 = 14.3 %**, ratio medio 1.045 (mín 0.89, máx 1.20) — el primer borrador daba la correcta como la más larga en 34/35 (arrastraba la síntesis multicausal, patrón G33/G35/G37/G41); tres pasadas hasta nivelar, con varianza deliberada en ambos extremos (5 rank-1, 5 rank-4) para que el rango no sea un pico en 2. `content:validate-batch` **0 violaciones** (antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 8 archivos). **0 citas por letra y 0 posicionales** en las 105 capas (regex de `lot-validation.ts` + `POSITION_REF`; las capas 2 se titulan «Cómo se descarta cada opción» y citan los distractores por su contenido). **Cruce intra-lote clave↔distractor (G42 §8):** #11/#12 (imprenta/Reforma) y #24/#27 (motivo económico/imperialismo colonial) desacoplados; pares reforzantes (#22/#23, #24/#26, #18–#21) conservados a propósito. **Exactitud factual verificada opción por opción** antes de insertar (fechas, atribuciones, procesos). **Acumulado real, DB en vivo antes y después:** banco **867 → 902** · verificados **866** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · Historia Universal UNAM A3 **0✓/0⧗ → 0✓/35⧗** por los 8 temas 5/4/4/4/4/5/5/4 · 105 `ExplanationLayer` · 5 `question_source_chunks`. `content:coverage`: **866 servibles · 35 pendientes · 1 retirado · 902 en banco**; auto-aprobación global 100 % (867/867); `SOURCED` **230 (25 %)** · 672 `TEMARIO_ONLY`; meta efectiva G26 (1 222) al **57 %**, brecha **529 ≈ 16 lotes** — no se mueve hasta que G44 verifique (la meta efectiva de la celda w5 ≈ 28, la cubrirán y superarán los 35, patrón G37/G41). Meta nominal de 1 500: **58 %**. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (generador y 8 archivos del lote en el scratchpad, no se committean); cero llamadas a la API de pago. **Siguiente: G44 = verificación ciega de este lote, modelo Fable 5.**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G44 (**COMPLETADA — verificación ciega del lote de G43 (35 reactivos de **Historia Universal, UNAM Área 3 (Ciencias Sociales)**). **35/35 auto-aprobados = tasa de auto-aprobación 100 %**, **decimocuarta ronda ciega consecutiva al 100 %**. Modelo `claude-opus-5` — G43 anticipaba `fable-5`; la sesión corrió en tier Opus y el `model` declarado dice la verdad (corrección de G17). **Cierra el Área 3 completa**: sus 3 materias propias quedan en 35✓/0⧗ — Historia de México (G33→G34), Geografía (G35→G36), Historia Universal (G43→G44). **Acumulado real, DB en vivo antes y después:** banco **902** sin cambio · servibles **866 → 901** · cola ciega **35 → 0** · 1 retirado a propósito · auto-aprobación global **100 % (902/902)** · UNAM A3 Historia Universal **0✓/35⧗ → 35✓/0⧗** (⚓5/30) · `SOURCED` 230 (25 %); meta efectiva G26 (1 222) **57 % → 59 %**, brecha **529 → 501 ≈ 15 lotes**; meta nominal de 1 500: **58 % → 60 %**. **Ceguera verificada estructuralmente**, no asumida: 0 ocurrencias de `isCorrect`/`explanation`/`correct` en el lote ciego, opciones solo con `label`/`text`/`imageUrl`, 35/35 `MULTIPLE_CHOICE`, 0 con cálculo (`usedCalculation:false` verdadero por construcción), 0 con pasaje; no se abrió el commit `7e7d781`, ni el JSON del lote, ni `Question.options`, ni la sección `## G43`. **Fuga potencial declarada:** el `grep` inicial trajo la línea 3 de este documento, que reporta agregados del lote (clave A9/B9/C9/D8, diagnósticos de longitud) pero **ninguna clave por reactivo**, y el rebarajado por `questionId` la vuelve inservible para las etiquetas ciegas — no se usó; la próxima ronda debe localizar la fase con `grep "^## G4x"`. **Control de transcripción de G42 §2 aplicado:** 35/35 fragmentos con match único y 35/35 letras derivadas del contenido == las escritas (aquí como validación posterior; la forma preventiva de G42 es la buena). **Clave real leída después de responder: A9/B9/C9/D8**, reproduce al reactivo lo que G43 midió por query directa a la DB; rotación cíclica **0.0 %**, racha máxima 2. **Señuelo de longitud recalculado sobre las respuestas ciegas (G36 §2 / G38 §3): 14.3 % «más larga» y 14.3 % «más corta», ratio medio 1.045 — idéntico al de G43 por vía independiente**; histograma 5/23/2/5 (el pico en rango 2 es el residuo del ajuste, no explotable). **Lo que aporta por encima del 100 %: dos señuelos de forma medidos, no intuidos.** **(§6) El distractor se delata por el lenguaje absolutista:** 43 marcadores en 105 distractores (0.41/opción) contra **1 en 35 claves** (0.03/opción), ~14×; en **11/35** la clave no tiene marcador y ≥2 distractores sí, en 3/35 lo tienen los tres. **(§7) La clave es la única opción compuesta:** 8/35 `stem` anuncian multicausalidad y en **10/35** la clave es la única que enumera ≥2 factores heterogéneos frente a tres distractores monocausales — «elige la opción compuesta» acierta sin saber historia; #6 y #31 muestran la corrección (un distractor también compuesto, pero equivocado). **Ninguno se marcó como `problem`**: los 35 son correctos y despublicarlos habría sido el error; van como regla al compositor y como propuesta a `lot-validation.ts`, junto al señuelo de longitud de G34 §2 y al cruce intra-lote de G42 §8. **Exactitud factual verificada opción por opción:** 0 atribuciones erróneas, 0 fechas incorrectas, 0 claves discutibles; detectadas las dos trampas anacrónicas (la Revolución francesa como «muy anterior» a 1517; las independencias hispanoamericanas atribuidas a 1929), el mito de la Tierra plana y las dos tesis monocausales sobre la caída de Roma. **De los 4 reactivos que G43 marcó como apretados, el único que lo fue es #19** (la «cuestión social» de 1848, confianza 0.94, mínima del lote); los 2 `EXPERT` salieron a 0.96-0.97 porque son justo donde opera el señuelo de §7, y el `SOURCED` #31 —el más alejado de su ítem-semilla— a 0.98, lo que confirma que la transformación de G43 funcionó. Auditoría 5 % **vencida, 4 ciclos**: exige tier ≠ opus-5 y esta sesión fue opus-5. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción; cero llamadas a la API de pago. **Siguiente: G45.**)
+
+<details><summary>Historial: G43 (2026-08-30)</summary>
+
+Última fase ejecutada: G43 (**COMPLETADA — lote de 35 reactivos de **Historia Universal, UNAM Área 3 (Ciencias Sociales)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet para lotes de contenido). **Cierra las 3 materias propias del Área 3** (Historia de México G33, Geografía G35, Historia Universal G43); era la última en cero absoluto. `sharedContentKey` NULL → lote a sus **8 temas propios**, sin reutilización entre áreas (patrón G33/G35/G37/G41). «Áreas 3 y 4» del encargo se resuelve a la única Historia Universal del Área 3 (no existe en el Área 4; la del IPN SOCADM es otra institución y G26 no cruza). Reparto: **5/4/4/4/4/5/5/4** (Antigüedad clásica · Edad Media · Renacimiento · Ilustración · Revoluciones de 1848 · Imperialismo e Industrialización · Guerras Mundiales · Siglo XXI). **30 TEMARIO_ONLY / 5 SOURCED:** «Guerras Mundiales» tiene 1 `SourceChunk` (p. 44 de `uam_csh.pdf`, guía UAM — banco de 4 ítems de historia contemporánea homogéneos, sin arrastre de otros temas a diferencia de G40/G41); sus 5 reactivos citan `sourceChunks:[1]` y transforman la tarea de atribución/«qué provocó X» a comprensión de proceso/causalidad (patrón G40 §6 / G41 §3); #31 es el más alejado de su ítem-semilla y se declara para G44. **35 `MULTIPLE_CHOICE`**, 0 con cálculo, 0 con pasaje. Dificultad **7/17/9/2** (los 2 EXPERT: caída de Roma multicausal, por qué Gran Bretaña industrializó primero). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en 15-40 %, **confirmada por query directa a la DB** (`jsonb_array_elements` sobre `options`); equilibrio también por tema (tope 2 por letra, ≥3 letras distintas); DFS con semilla fija (43043), **rotación cíclica A→B→C→D 0.0 %**. **Señuelo de longitud tie-aware (G34 §2): «elige la más larga» 5.00/35 = 14.3 %, «elige la más corta» 5.00/35 = 14.3 %**, ratio medio 1.045 (mín 0.89, máx 1.20) — el primer borrador daba la correcta como la más larga en 34/35 (arrastraba la síntesis multicausal, patrón G33/G35/G37/G41); tres pasadas hasta nivelar, con varianza deliberada en ambos extremos (5 rank-1, 5 rank-4) para que el rango no sea un pico en 2. `content:validate-batch` **0 violaciones** (antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 8 archivos). **0 citas por letra y 0 posicionales** en las 105 capas (regex de `lot-validation.ts` + `POSITION_REF`; las capas 2 se titulan «Cómo se descarta cada opción» y citan los distractores por su contenido). **Cruce intra-lote clave↔distractor (G42 §8):** #11/#12 (imprenta/Reforma) y #24/#27 (motivo económico/imperialismo colonial) desacoplados; pares reforzantes (#22/#23, #24/#26, #18–#21) conservados a propósito. **Exactitud factual verificada opción por opción** antes de insertar (fechas, atribuciones, procesos). **Acumulado real, DB en vivo antes y después:** banco **867 → 902** · verificados **866** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · Historia Universal UNAM A3 **0✓/0⧗ → 0✓/35⧗** por los 8 temas 5/4/4/4/4/5/5/4 · 105 `ExplanationLayer` · 5 `question_source_chunks`. `content:coverage`: **866 servibles · 35 pendientes · 1 retirado · 902 en banco**; auto-aprobación global 100 % (867/867); `SOURCED` **230 (25 %)** · 672 `TEMARIO_ONLY`; meta efectiva G26 (1 222) al **57 %**, brecha **529 ≈ 16 lotes** — no se mueve hasta que G44 verifique (la meta efectiva de la celda w5 ≈ 28, la cubrirán y superarán los 35, patrón G37/G41). Meta nominal de 1 500: **58 %**. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (generador y 8 archivos del lote en el scratchpad, no se committean); cero llamadas a la API de pago. **Siguiente: G44 = verificación ciega de este lote, modelo Fable 5.**)
+
+</details>
 
 <details><summary>Historial: G42 (2026-08-30)</summary>
 
@@ -2177,6 +2183,303 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G44 — Verificación ciega: Historia Universal, UNAM Área 3 (lote de G43) (2026-08-30)
+
+**Modelo:** `claude-opus-5`. **G43 §1 anticipaba `fable-5`; la sesión corrió en tier
+Opus**, y el `model` del archivo de respuestas declara el modelo que **realmente**
+resolvió, no el que el plan preveía — que es justo lo que exige la corrección de
+G17. **COMPLETADA. 35/35 auto-aprobados = tasa de auto-aprobación 100 %.** Segunda
+mitad del ciclo adversarial de G2 sobre el lote que G43 insertó con
+`isVerified=false`. **Decimocuarta ronda ciega consecutiva al 100 %** — métrica
+saturada, se sigue diciendo porque es el criterio de publicación. Con esta fase
+**cierra el Área 3 (Ciencias Sociales) de la UNAM**: sus 3 materias propias quedan
+en **35✓/0⧗** — Historia de México (G33→G34), Geografía (G35→G36) e Historia
+Universal (G43→**G44**).
+
+Lo que esta fase aporta por encima del 100 % está en §6 y §7: **dos señuelos de
+forma medidos, no intuidos**, que permiten acertar una parte del lote sin saber
+historia. Ninguno afecta la corrección — los 35 reactivos son correctos y la clave
+es la que debe ser— pero sí la validez de constructo, y por eso no se marcaron como
+`problems` (que habrían despublicado reactivos correctos) sino que se dejan como
+regla para el compositor.
+
+### 1. Ceguera y aislamiento
+
+**Verificados estructuralmente antes de leer un solo reactivo**, no asumidos:
+
+| Control | Resultado |
+|---|---|
+| `grep -c` de `isCorrect\|explanation\|correct` sobre el lote ciego | **0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Claves de nivel ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Formato | **35/35 `MULTIPLE_CHOICE`** |
+| `requiresCalculation` | **0/35** → `usedCalculation:false` declarado con verdad en los 35 |
+| Reactivos con pasaje | **0/35** (los 35 llegan autocontenidos en el `stem`) |
+| Opciones por reactivo · ids únicos | 4/4 en los 35 · 35 ids únicos |
+| Longitud de opción | mín 95 · máx 148 · media 119.5 caracteres |
+| Longitud de `stem` | mín 58 · máx 259 · media 137.0 caracteres |
+| Institución/materia del lote | 35/35 UNAM · Historia Universal |
+
+**Aislamiento:** no se abrió el commit `7e7d781` de G43, ni el JSON del lote, ni
+`Question.options`, ni la sección `## G43` de este documento, ni su bloque
+`### Siguiente`, antes de responder. El único insumo del razonamiento fue
+`scripts/content-exports/g44-blind.json`.
+
+**Fuga potencial, declarada:** la línea 3 de este documento (encabezado del
+proyecto) apareció en el `grep -n "G43"` con que se localizó la fase, y contiene
+agregados del lote —clave **A9/B9/C9/D8**, diagnósticos de longitud, reparto por
+tema—. **No transmite ninguna clave por reactivo**, y además el lote ciego rebaraja
+las etiquetas con semilla por `questionId`, así que la distribución sobre las
+etiquetas originales no dice nada sobre las etiquetas ciegas. No se usó. Se anota
+porque la afirmación de ceguera debe ser exacta, no aproximada: **conviene que la
+próxima ronda localice la fase con `grep "^## G4x"` en vez de con el término suelto**,
+para no traer la línea 3 al contexto.
+
+**Reparto por tema del lote** (visible en el lote ciego, no es clave): Antigüedad
+clásica 5 · Edad Media 4 · Renacimiento 4 · Ilustración 4 · Revoluciones de 1848 4 ·
+Imperialismo e Industrialización 5 · Guerras Mundiales 5 · Siglo XXI 4.
+
+### 2. El control de transcripción de G42 §2, aplicado
+
+G42 §2 dejó recomendado como paso fijo del arnés que la letra del `chosenOption` no
+se copie a mano, sino que se **derive del contenido**. Aquí se aplicó como
+verificación independiente sobre el archivo ya escrito: un script del scratchpad
+recibe, por reactivo, **un fragmento distintivo del texto de la opción que el
+razonamiento describe**, y resuelve la etiqueta contra `g44-blind.json` con dos
+asserts duros — `snippets.length === items.length` y **exactamente un match** por
+fragmento.
+
+| Control | Resultado |
+|---|---|
+| Fragmentos con match único (≠1 lanza) | **35/35** |
+| Letra derivada del contenido == letra escrita en el JSON | **35/35** |
+
+Cero desajustes: la transcripción de esta ronda fue correcta, y ahora consta por
+contenido y no por memoria. **Nota de arnés:** aquí el control corrió *después* de
+escribir el archivo, así que valida pero no previene. G42 lo corrió *antes* (generó
+el archivo desde los fragmentos) y por eso atrapó un error real. **La forma
+preventiva es la buena**; esta ronda la degradó a comprobación posterior y conviene
+volver al orden de G42.
+
+### 3. Resolución
+
+`pnpm content:resolve --file scripts/content-exports/g44-answers.json`, con
+`--dry-run` previo para validar el formato contra `VerifierAnswersFileSchema`
+(35/35 parseadas) antes de escribir.
+
+| Resultado | n |
+|---|---:|
+| ✔ Auto-aprobados (coincide + `confidence ≥ 0.85` + `problems` vacío) | **35** |
+| ✋ Sin publicar con veredicto | **0** |
+| ⚠️ Omitidos | **0** |
+
+Confianzas declaradas: **0.94 la mínima** (#19, la «cuestión social» de 1848),
+0.95–0.96 en once, 0.97–0.98 en los veintitrés restantes. `model` declarado
+`claude-opus-5`; `usedCalculation:false` en los 35, verdadero por construcción
+(0/35 admiten cálculo). **Comprobado en la DB tras escribir**, no solo en el log:
+`verification.verdict.model = claude-opus-5`, `usedCalculation = false`,
+`decision = AUTO_APPROVED`, `pipeline = session-v1`.
+
+### 4. Balance de la clave real (leído después de responder)
+
+El log de `content:resolve` traduce la etiqueta barajada de vuelta a la original, así
+que la clave se conoce **solo después** de haber respondido:
+
+| | A | B | C | D |
+|---|---:|---:|---:|---:|
+| n | 9 | 9 | 9 | 8 |
+| % | 25.7 | 25.7 | 25.7 | 22.9 |
+
+Reproduce **al reactivo** lo que G43 reportó por query directa a la DB, ahora por vía
+independiente. Rotación cíclica A→B→C→D: **0/34 pares consecutivos = 0.0 %**. Racha
+máxima de la misma letra: **2**. Equilibrio por tema respetado en los 8 temas (tope
+2 por letra, ≥3 letras distintas; 4 letras distintas en los dos temas de 5).
+
+### 5. Diagnóstico de longitud recalculado sobre las respuestas ciegas (G36 §2 / G38 §3)
+
+G43 §1 pidió recalcular el señuelo de longitud sobre las **respuestas ciegas** y
+compararlo con lo que reportó el compositor. Coincide exactamente:
+
+| Métrica (tie-aware) | G43 (contra `isCorrect`) | G44 (contra la clave elegida a ciegas) |
+|---|---:|---:|
+| «elige la más larga» | 5.00/35 = 14.3 % | **5.00/35 = 14.3 %** |
+| «elige la más corta» | 5.00/35 = 14.3 % | **5.00/35 = 14.3 %** |
+| ratio medio clave/distractores | 1.045 (mín 0.89, máx 1.20) | **1.045 (mín 0.89, máx 1.20)** |
+
+Histograma de rango por longitud (1 = la más larga): **5 / 23 / 2 / 5**. Los extremos
+están deliberadamente equilibrados (5 y 5), como G43 describe. **El pico en rango 2
+(23/35) es el residuo del ajuste**: al bajar la clave desde «la más larga» sin
+empujarla al extremo corto, quedó parqueada un escalón abajo. No es explotable —
+«elige la segunda más larga» no es una heurística que un sustentante aplique— pero
+explica por qué el ratio medio sigue por encima de 1.
+
+### 6. Hallazgo: el distractor se delata por el lenguaje absolutista
+
+Al descartar distractores apareció un patrón sistemático, y se midió con regex sobre
+las 140 opciones (`únicamente`, `por sí sola`, `del todo`, `por completo`, `ninguna`,
+`todas las`, `siempre`, `nunca`, `inmediata`, `permanente`, `definitiva`, `única`,
+`de un día para otro`, `en exclusiva`…):
+
+| | marcadores | opciones | por opción |
+|---|---:|---:|---:|
+| Claves | **1** | 35 | **0.03** |
+| Distractores | **43** | 105 | **0.41** |
+
+**Un distractor lleva lenguaje absolutista ~14 veces más que una clave.** En
+**11/35** reactivos la clave tiene cero marcadores mientras ≥2 distractores llevan al
+menos uno; en **3/35**, los tres distractores lo llevan y la clave no. En esos casos
+«descarta la opción que absolutiza» resuelve el reactivo sin saber historia.
+
+Es un señuelo de forma clásico y aquí es fuerte. **No se marcó como `problem`**: los
+reactivos son correctos y el descarte por contenido, que es lo que se hizo, llega a
+la misma clave. Pero baja la discriminación real del ítem. **Regla para el
+compositor: el matiz absolutista debe repartirse, no concentrarse en los
+distractores** — un distractor puede ser falso sin decir «únicamente», y una clave
+puede contener un absoluto verdadero («ningún Estado los resuelve solo» lo hace, y es
+la única clave con marcador del lote).
+
+### 7. Hallazgo: la clave es la única opción que enumera varios factores
+
+Segundo señuelo de forma, del mismo tipo pero por otra vía. **8/35 `stem` anuncian
+multicausalidad o piden dos cosas a la vez** (#4, #5, #6, #12, #13, #17, #21, #31:
+«rara vez se atribuye a una sola causa», «¿qué factores confluyeron?», «la
+explicación más completa», «¿qué las vincula… y qué las precipitó?»). En **10 de los
+35** reactivos del lote —#4, #5, #12, #13, #17, #21, #22, #24, #26, #28— la clave es
+**la única opción que enumera dos o más factores heterogéneos**, mientras los tres
+distractores son monocausales, varios autodelatándose («por sí sola», «única»,
+«únicamente», «directa e inmediata»). Ahí basta con **elegir la opción compuesta**.
+
+Dos reactivos resisten el patrón y muestran cómo se corrige: **#6** (feudalismo)
+tiene un distractor —el del Estado centralizado con burocracia, ejército permanente e
+impuesto en dinero— tan compuesto como la clave, y **#31** (fin de la 2GM) enfrenta
+dos opciones con dos consecuencias cada una, así que hay que saber cuál par ocurrió.
+**Regla: cuando el `stem` pide varios factores, al menos un distractor debe ofrecer
+también varios factores —pero equivocados.** Es la contraparte de la regla de G43
+sobre el señuelo de longitud, y por la misma causa: la síntesis multicausal tiende a
+ser más larga *y* más compuesta que sus alternativas, así que corregir solo la
+longitud deja intacto el segundo canal.
+
+### 8. Los 4 reactivos que G43 marcó como más apretados
+
+G43 §1 señaló cuáles serían los difíciles (sin decir cómo resolverlos, por G30 §1).
+Contraste con lo que salió a ciegas:
+
+| # | Qué es | Confianza declarada | Resultado |
+|---|---|---:|---|
+| #5 | `EXPERT` — caída de Roma multicausal | 0.96 | ✔ |
+| #22 | `EXPERT` — por qué Gran Bretaña industrializó primero | 0.97 | ✔ |
+| #19 | la «cuestión social» en 1848 | **0.94 (mínima del lote)** | ✔ |
+| #31 | `SOURCED` — dos consecuencias del fin de la 2GM, el más alejado de su ítem-semilla | **0.98** | ✔ |
+
+**#19 fue en efecto el más apretado**, y por sí solo: distinguir «programa obrero
+propio» de «revolución exclusivamente campesina» exige saber que 1848 fue urbano y
+que las Jornadas de Junio rompieron el bloque con la burguesía; la confianza bajó a
+0.94 por eso, no por ambigüedad de la clave. **Los dos `EXPERT` no resultaron
+apretados en la práctica** — son justamente los dos casos donde el señuelo de §7
+opera con más fuerza (ambos son «elige la síntesis multicausal»), lo que sugiere que
+su dificultad declarada es mayor que la real. **#31 salió a 0.98**: la
+transformación de G43 (de atribución a comprensión de proceso) funcionó, el reactivo
+se resuelve con conocimiento de bachillerato y no depende del `SourceChunk` que no
+viaja al lote ciego.
+
+### 9. Exactitud factual: qué se verificó
+
+El encargo pidió verificar exactitud factual, no solo elegir. Se comprobó opción por
+opción; los puntos donde un error habría cambiado el veredicto:
+
+- **Cronología de las trampas anacrónicas**, dos deliberadas y ambas detectadas: la
+  opción de #12 llama a la Revolución francesa «muy anterior» a 1517, y la de #21
+  atribuye las independencias hispanoamericanas a la crisis de **1929**.
+- **Fechas de la clave y de los distractores:** ley de ciudadanía de Pericles
+  451/450 a. C.; tesoro de Delos a Atenas **454 a. C.**; caída del Imperio persa ante
+  Alejandro **330 a. C.** (falsea el «hundimiento inmediato» tras las Guerras
+  Médicas); Verdún **843**; coronación de Carlomagno **800**; caída de Acre **1291** y
+  de Constantinopla **1453** (falsean el «dominio permanente» y el «fin de Bizancio
+  como propósito de todas las cruzadas»); *Exsurge Domine* **1520** y excomunión
+  **1521**; Italia **1861** y Alemania **1871**; abdicaciones de Bayona **1808**;
+  Conferencia de Berlín **1884-1885**; Sociedad de Naciones **1919-1920** (no Viena
+  1815); salida del patrón oro **1933**; República Popular China **1 de octubre de
+  1949**; CECA **1951** / Declaración Schuman.
+- **Datos cuantitativos de distractores:** la población británica de 1760 (~7-8
+  millones) es muy inferior a la francesa (~25 millones), así que «la más numerosa de
+  Europa» es falsa; y el combustible de la primera industrialización fue el **carbón**
+  — no hubo petróleo británico a mediados del XVIII (el del Mar del Norte es de los
+  años setenta del XX).
+- **Un mito historiográfico usado como distractor**, correctamente identificado: el
+  de la Tierra plana en #13. La esfericidad se conocía desde la Antigüedad; el debate
+  real de 1492 era sobre el **tamaño** del globo, y Colón lo tenía mal.
+- **Tesis monocausales rechazadas por la historiografía**, no por ser falsas de plano:
+  el cristianismo como causa única de la caída de Roma (Gibbon) en #5 y la división
+  de 395 como causa «directa e inmediata» — hechos reales convertidos en distractor
+  por el salto causal, que es la forma correcta de construirlos.
+
+**0 atribuciones erróneas, 0 fechas incorrectas, 0 claves discutibles.** No se marcó
+ningún `problem`: nada en el lote depende de una interpretación en disputa entre
+escuelas historiográficas.
+
+### 10. Acumulado real (DB en vivo, antes y después)
+
+| Métrica | Antes de G44 | Después de G44 |
+|---|---:|---:|
+| Banco (`Question`) | 902 | **902** |
+| Servibles (`isVerified=true`) | 866 | **901** |
+| Cola ciega (pendientes de resolución) | 35 | **0** |
+| Retirados a propósito (`isVerified=false`) | 1 | **1** |
+| Auto-aprobación global | 100 % (867/867) | **100 % (902/902)** |
+| UNAM A3 · Historia Universal | 0✓ / 35⧗ | **35✓ / 0⧗** (⚓5/30) |
+| `SOURCED` | 230 (25 %) | **230 (25 %)** |
+| Meta efectiva G26 (1 222) | 57 % · brecha 529 (~16 lotes) | **59 % · brecha 501 (~15 lotes)** |
+| Meta nominal 1 500 | 58 % | **60 %** |
+
+Cruzado con `content:coverage` y con `groupBy` directo sobre `Question.isVerified`
+(901 `true` + 1 `false` = 902). **Cola ciega y cola canónica de discrepancias, ambas
+en cero.** `pnpm typecheck` y `pnpm lint` en verde; **cero cambios de código de
+producción** (el lote ciego y el archivo de respuestas viven en
+`scripts/content-exports/`, el verificador de fragmentos en el scratchpad); cero
+llamadas a la API de pago.
+
+**Nota sobre `content:coverage` y el Área 3:** sus 3 materias propias quedan en
+35✓, pero Español e Inglés del Área 3 siguen mostrando 0✓ porque son materias
+**compartidas** (`sharedContentKey`, G26) y `content:coverage` aún no refleja la
+reutilización — el hueco es de reporte, no de contenido (G30 §10.3, sigue abierto).
+
+### Siguiente (G44)
+
+1. **Composición nueva.** El Área 3 y el Área 4 de la UNAM quedan cerradas en sus
+   materias propias salvo una: **UNAM A4 Artes** (5 temas, `questionWeight` 2, cero
+   reactivos, con `SourceChunk` en 3 de sus 5 temas) — la última materia propia de
+   UNAM A3/A4 en cero, y la que mejor anclaje en fuentes tiene de las pendientes.
+   Alternativa de mayor impacto sobre la brecha **efectiva**: los 5 pools STEM de alto
+   peso de G39 §7 (IPN Física, IPN Química, IPN Matemáticas celda MEDBIO, UNAM A1
+   Matemáticas, IPN MEDBIO Biología). **IPN SOCADM** sigue intacto en sus tres
+   materias de historia y geografía (Historia de México 6 temas, Historia Universal 7,
+   Geografía 5), nombrado desde G30 y nunca abierto.
+2. **Las dos reglas de §6 y §7 al arnés, no solo al documento.** Ambas son medibles
+   con regex y ambas se calcularon aquí en tres líneas de Node:
+   - concentración de lenguaje absolutista en distractores vs. clave (umbral
+     razonable: que la clave no sea la única sin marcador en más de ~1/5 del lote);
+   - «la clave es la única opción compuesta» cuando el `stem` pide varios factores.
+   Van naturalmente en `scripts/lib/lot-validation.ts`, junto al señuelo de longitud
+   de G34 §2 y a la regla de cruce intra-lote de G42 §8 (que sigue sin implementarse).
+3. **Auditoría 5 %: vencida, 4 ciclos.** La muestra exige tier **≠ opus-5**, y esta
+   sesión fue opus-5, así que tampoco esta vez. Los lotes de G41 (verificado en G42) y
+   de **G43 (verificado aquí)** ya están en el universo muestreable. **Es la deuda más
+   vieja del pipeline y la única que no se puede saldar cambiando de materia: hay que
+   correr una ronda en otro tier.**
+4. **Orden preventivo del control de transcripción** (§2): generar el archivo de
+   respuestas desde los fragmentos, como en G42, en vez de validarlo después.
+5. **Localizar la fase con `grep "^## G4x"`** y no con el término suelto, para no
+   traer la línea 3 de este documento al contexto de una sesión ciega (§1).
+6. **Heredados sin tocar:** el work order de G40 §3-§4 (reescribir los 4 `stem` de
+   G37 pegados a la guía; rebanar `SourceChunk` por encabezado de sección en la
+   ingesta, que afecta a `uam_csh.pdf`), la rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, y el **alcance del
+   21-nov** (G24 §7 / G26 §8.4): ¿entran UNAM A3/A4 e IPN SOCADM en la meta de
+   1 500 / 1 222? Lleva trece fases condicionando la planeación sin respuesta del
+   dueño.
+
+---
 
 ## G43 — Lote de reactivos: Historia Universal, UNAM Área 3 (2026-08-30)
 
