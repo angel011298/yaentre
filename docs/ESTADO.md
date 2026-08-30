@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G42 (**COMPLETADA — verificación ciega del lote de G41 (35 reactivos de **Filosofía, UNAM Área 4**, segunda materia propia del Área 4 con contenido). **35/35 auto-aprobados = tasa de auto-aprobación 100 %**, **decimotercera ronda ciega consecutiva al 100 %** — métrica saturada, se dice cada vez. **Acumulado real (DB en vivo, cruzado con `content:coverage`): 867 en banco / 866 servibles / 1 retirado a propósito**; auto-aprobación global **100 % (867/867)**; `SOURCED` 225 (26 %); **cola ciega y cola canónica de discrepancias, ambas en cero** (`isVerified=false ∧ verification≠null ∧ manualReview=null`). UNAM A4 · Filosofía pasa de 0✓/35⧗ a **35✓/0⧗**; meta efectiva G26 (1 222) al **57 %**, brecha **529 ≈ 16 lotes**; meta nominal de 1 500: **58 %**. **Lo que aporta esta fase por encima del 100 %:** **(§2) el arnés dejó de depender de una letra copiada a mano** — el archivo de respuestas se genera desde un fragmento del texto de la opción elegida, con assert de match único, y el control disparó de verdad atrapando un error de transcripción antes de tocar la DB; **(§5) auditoría de atribución que pidió el encargo: 23 de 35 reactivos nombran autor, 17 autores distintos, 0 atribuciones erróneas**, con distractores que son posiciones rivales reales (akrasía, atomismo, escepticismo académico, Hume literal) o errores documentados de estudiante; **(§6) tres interpretaciones discutibles examinadas y ninguna marcada** (compatibilismo, «muerte del arte» en Hegel, Gorgias sincero vs. retórico) porque los tres `stem` están redactados de modo que la clave no depende del punto en disputa — criterio explícito: se marca cuando otra escuela viva respondería otra letra, no cuando hay debate; **(§8) hallazgo propio: tres solapamientos entre reactivos del MISMO lote**, uno fuerte (el distractor utilitarista del reactivo del imperativo categórico enuncia el principio de utilidad casi con las palabras de la clave del reactivo de Bentham y Mill), uno medio (mímesis → teoría de las Ideas) y una redundancia conceptual en los dos primeros de Epistemología — **ninguno afecta la corrección**, los 35 son correctos; **regla que se desprende: el cruce intra-lote debe comparar claves contra distractores, no solo enunciado contra enunciado**. **(§7) El señuelo de longitud tie-aware (6.50/35 = 18.6 % larga; 5.33/35 = 15.2 % corta; ratio 0.99) reproduce al decimal el de G41 por vía independiente** —G41 lo midió contra `isCorrect`, esta sesión contra la clave elegida a ciegas. Anotado: `manualReview` **no es columna**, es clave dentro del JSON de `Question.verification`. Auditoría 5 % **vencida, ahora 3 ciclos**. `pnpm typecheck` / `pnpm lint` verdes. Cero llamadas a la API de pago.)
+Última actualización: 2026-08-30 · Última fase ejecutada: G43 (**COMPLETADA — lote de 35 reactivos de **Historia Universal, UNAM Área 3 (Ciencias Sociales)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet para lotes de contenido). **Cierra las 3 materias propias del Área 3** (Historia de México G33, Geografía G35, Historia Universal G43); era la última en cero absoluto. `sharedContentKey` NULL → lote a sus **8 temas propios**, sin reutilización entre áreas (patrón G33/G35/G37/G41). «Áreas 3 y 4» del encargo se resuelve a la única Historia Universal del Área 3 (no existe en el Área 4; la del IPN SOCADM es otra institución y G26 no cruza). Reparto: **5/4/4/4/4/5/5/4** (Antigüedad clásica · Edad Media · Renacimiento · Ilustración · Revoluciones de 1848 · Imperialismo e Industrialización · Guerras Mundiales · Siglo XXI). **30 TEMARIO_ONLY / 5 SOURCED:** «Guerras Mundiales» tiene 1 `SourceChunk` (p. 44 de `uam_csh.pdf`, guía UAM — banco de 4 ítems de historia contemporánea homogéneos, sin arrastre de otros temas a diferencia de G40/G41); sus 5 reactivos citan `sourceChunks:[1]` y transforman la tarea de atribución/«qué provocó X» a comprensión de proceso/causalidad (patrón G40 §6 / G41 §3); #31 es el más alejado de su ítem-semilla y se declara para G44. **35 `MULTIPLE_CHOICE`**, 0 con cálculo, 0 con pasaje. Dificultad **7/17/9/2** (los 2 EXPERT: caída de Roma multicausal, por qué Gran Bretaña industrializó primero). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en 15-40 %, **confirmada por query directa a la DB** (`jsonb_array_elements` sobre `options`); equilibrio también por tema (tope 2 por letra, ≥3 letras distintas); DFS con semilla fija (43043), **rotación cíclica A→B→C→D 0.0 %**. **Señuelo de longitud tie-aware (G34 §2): «elige la más larga» 5.00/35 = 14.3 %, «elige la más corta» 5.00/35 = 14.3 %**, ratio medio 1.045 (mín 0.89, máx 1.20) — el primer borrador daba la correcta como la más larga en 34/35 (arrastraba la síntesis multicausal, patrón G33/G35/G37/G41); tres pasadas hasta nivelar, con varianza deliberada en ambos extremos (5 rank-1, 5 rank-4) para que el rango no sea un pico en 2. `content:validate-batch` **0 violaciones** (antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 8 archivos). **0 citas por letra y 0 posicionales** en las 105 capas (regex de `lot-validation.ts` + `POSITION_REF`; las capas 2 se titulan «Cómo se descarta cada opción» y citan los distractores por su contenido). **Cruce intra-lote clave↔distractor (G42 §8):** #11/#12 (imprenta/Reforma) y #24/#27 (motivo económico/imperialismo colonial) desacoplados; pares reforzantes (#22/#23, #24/#26, #18–#21) conservados a propósito. **Exactitud factual verificada opción por opción** antes de insertar (fechas, atribuciones, procesos). **Acumulado real, DB en vivo antes y después:** banco **867 → 902** · verificados **866** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · Historia Universal UNAM A3 **0✓/0⧗ → 0✓/35⧗** por los 8 temas 5/4/4/4/4/5/5/4 · 105 `ExplanationLayer` · 5 `question_source_chunks`. `content:coverage`: **866 servibles · 35 pendientes · 1 retirado · 902 en banco**; auto-aprobación global 100 % (867/867); `SOURCED` **230 (25 %)** · 672 `TEMARIO_ONLY`; meta efectiva G26 (1 222) al **57 %**, brecha **529 ≈ 16 lotes** — no se mueve hasta que G44 verifique (la meta efectiva de la celda w5 ≈ 28, la cubrirán y superarán los 35, patrón G37/G41). Meta nominal de 1 500: **58 %**. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (generador y 8 archivos del lote en el scratchpad, no se committean); cero llamadas a la API de pago. **Siguiente: G44 = verificación ciega de este lote, modelo Fable 5.**)
+
+<details><summary>Historial: G42 (2026-08-30)</summary>
+
+Última fase ejecutada: G42 (**COMPLETADA — verificación ciega del lote de G41 (35 reactivos de **Filosofía, UNAM Área 4**, segunda materia propia del Área 4 con contenido). **35/35 auto-aprobados = tasa de auto-aprobación 100 %**, **decimotercera ronda ciega consecutiva al 100 %** — métrica saturada, se dice cada vez. **Acumulado real (DB en vivo, cruzado con `content:coverage`): 867 en banco / 866 servibles / 1 retirado a propósito**; auto-aprobación global **100 % (867/867)**; `SOURCED` 225 (26 %); **cola ciega y cola canónica de discrepancias, ambas en cero** (`isVerified=false ∧ verification≠null ∧ manualReview=null`). UNAM A4 · Filosofía pasa de 0✓/35⧗ a **35✓/0⧗**; meta efectiva G26 (1 222) al **57 %**, brecha **529 ≈ 16 lotes**; meta nominal de 1 500: **58 %**. **Lo que aporta esta fase por encima del 100 %:** **(§2) el arnés dejó de depender de una letra copiada a mano** — el archivo de respuestas se genera desde un fragmento del texto de la opción elegida, con assert de match único, y el control disparó de verdad atrapando un error de transcripción antes de tocar la DB; **(§5) auditoría de atribución que pidió el encargo: 23 de 35 reactivos nombran autor, 17 autores distintos, 0 atribuciones erróneas**, con distractores que son posiciones rivales reales (akrasía, atomismo, escepticismo académico, Hume literal) o errores documentados de estudiante; **(§6) tres interpretaciones discutibles examinadas y ninguna marcada** (compatibilismo, «muerte del arte» en Hegel, Gorgias sincero vs. retórico) porque los tres `stem` están redactados de modo que la clave no depende del punto en disputa — criterio explícito: se marca cuando otra escuela viva respondería otra letra, no cuando hay debate; **(§8) hallazgo propio: tres solapamientos entre reactivos del MISMO lote**, uno fuerte (el distractor utilitarista del reactivo del imperativo categórico enuncia el principio de utilidad casi con las palabras de la clave del reactivo de Bentham y Mill), uno medio (mímesis → teoría de las Ideas) y una redundancia conceptual en los dos primeros de Epistemología — **ninguno afecta la corrección**, los 35 son correctos; **regla que se desprende: el cruce intra-lote debe comparar claves contra distractores, no solo enunciado contra enunciado**. **(§7) El señuelo de longitud tie-aware (6.50/35 = 18.6 % larga; 5.33/35 = 15.2 % corta; ratio 0.99) reproduce al decimal el de G41 por vía independiente** —G41 lo midió contra `isCorrect`, esta sesión contra la clave elegida a ciegas. Anotado: `manualReview` **no es columna**, es clave dentro del JSON de `Question.verification`. Auditoría 5 % **vencida, ahora 3 ciclos**. `pnpm typecheck` / `pnpm lint` verdes. Cero llamadas a la API de pago.)
+
+</details>
 
 <details><summary>Historial: G41 (2026-08-30)</summary>
 
@@ -2171,6 +2177,303 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G43 — Lote de reactivos: Historia Universal, UNAM Área 3 (2026-08-30)
+
+**Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
+contenido). **COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la
+cola de verificación ciega. **Última de las 3 materias propias del Área 3 (Ciencias
+Sociales) con contenido**, tras Historia de México (G33) y Geografía (G35); Historia
+Universal estaba en cero absoluto.
+
+### 1) El encargo y la elección de materia
+
+El encargo pidió **35 reactivos de Historia Universal para UNAM Áreas 3 y 4**.
+Consulta en vivo a Supabase (2026-08-30) antes de componer:
+
+| Institución · Área | Materia | `sharedContentKey` | `questionWeight` | Temas | Reactivos hoy | `SourceChunk` |
+|---|---|---|---:|---:|---:|---:|
+| UNAM · Área 3 | **Historia Universal** | `null` | **5** | **8** | **0** | **1** (tema 7) |
+| IPN · SOCADM | Historia Universal | `null` | 4 | 7 | 0 | 0 |
+
+**Historia Universal solo existe en el Área 3 de la UNAM.** El Área 4 (Humanidades y
+Artes) tiene Literatura, Filosofía, Artes y Español —no historia—, así que «Áreas 3
+y 4» se resuelve a la **única Historia Universal del Área 3**, mismo criterio que
+Literatura en G37 (materia del Área 4 sin gemela en el Área 3). La Historia Universal
+del IPN SOCADM es de **otra institución** y **G26 no cruza instituciones**
+(§G26.2). `sharedContentKey` NULL → el lote va a sus **8 temas propios**, sin
+reutilización entre áreas — patrón de Historia de México (G33), Geografía (G35),
+Literatura (G37) y Filosofía (G41). Con este lote, las 3 materias de historia y
+geografía del Área 3 quedan cubiertas.
+
+### 2) Reparto por los 8 temas y anclaje: 30 TEMARIO_ONLY / 5 SOURCED
+
+| Tema (posición en el temario) | Reactivos | Grounding | Ejes cubiertos |
+|---|---:|---|---|
+| Antigüedad clásica | 5 | TEMARIO_ONLY | democracia directa ateniense y sus exclusiones, Liga de Delos y hegemonía, helenismo como fusión cultural, crisis de la República y Principado, caída de Roma de Occidente (multicausal, EXPERT) |
+| Edad Media | 4 | TEMARIO_ONLY | feudalismo como sistema (vasallaje + señorío) y su origen poscarolingio, la Iglesia como institución de cohesión, consecuencias comerciales de las Cruzadas, resurgir urbano y alianza rey-burguesía |
+| Renacimiento | 4 | TEMARIO_ONLY | humanismo y antropocentrismo, imprenta y difusión de ideas, causas de la Reforma, causas de la expansión oceánica ibérica |
+| Ilustración | 4 | TEMARIO_ONLY | idea central de la Ilustración, división de poderes, aportación de la independencia de EE. UU., causas convergentes de la Revolución francesa |
+| Revoluciones de 1848 | 4 | TEMARIO_ONLY | Restauración de Viena frente a la «primavera de los pueblos», aparición de la «cuestión social» en 1848, nacionalismo y unificaciones de Italia y Alemania, independencias hispanoamericanas en el ciclo atlántico |
+| Imperialismo e Industrialización | 5 | TEMARIO_ONLY | por qué la Revolución industrial arrancó en Gran Bretaña (confluencia, EXPERT), de la sociedad de estamentos a la de clases, componente económico del imperialismo, Conferencia de Berlín, ideología de la «misión civilizadora» |
+| Guerras Mundiales | 5 | **SOURCED** | imperialismo colonial 1870-1914 y su enlace con 1914, rivalidad y alianzas en la escalada de la Gran Guerra, derrota de Japón y triunfo comunista en China, mecanismo del New Deal, consecuencias del fin de la 2GM (orden bipolar y descolonización) |
+| Siglo XXI | 4 | TEMARIO_ONLY | disolución de la URSS y fin del orden bipolar, definición de globalización económica, integración supranacional (Unión Europea), naturaleza de los desafíos transnacionales |
+
+**Anclaje del tema 7.** `loadTopicChunks` devolvió **1 `SourceChunk`** para «Guerras
+Mundiales» (`cmrsromj5007w13b3kucb24uh`): **p. 44 de `uam_csh.pdf`** —la guía de
+Ciencias Sociales y Humanidades de la UAM, la misma familia que aportó los chunks de
+G33/G37/G40/G41— un **banco de 4 reactivos de opción múltiple** de historia
+contemporánea (imperialismo colonial 1870-1914; rivalidad imperialista y Primera
+Guerra Mundial; derrota de Japón y República Popular China; New Deal ante la
+depresión mundial), clasificado a este tema por el pipeline F2b. `grounding.ts` hace
+**obligatoria** la cita cuando hay fragmento: los **5 reactivos** de ese tema citan
+`sourceChunks:[1]` y quedan `groundingStatus = SOURCED`; los otros **7 temas** salen
+`TEMARIO_ONLY` (**30**), compuestos desde el temario oficial del Área 3.
+
+**Procedencia y rebanado del chunk (patrón G40 §7 / G41 §2), documentado, no
+bloqueante.** El fragmento proviene de la guía de **otra institución** (UAM) que la
+del examen destino (UNAM); no lo prohíbe ningún guardrail —G26 restringe la
+reutilización de *reactivos* entre áreas, no el uso de una guía como material de
+estudio—, pero se anota. A diferencia de los chunks de G40/G41, este está **rebanado
+por página pero sus 4 ítems son homogéneos** (todos de historia contemporánea): no
+arrastra ítems de temas ajenos, así que los 5 reactivos derivan de material del
+propio tema.
+
+### 3) Originalidad de los reactivos SOURCED (patrón G40 §6 / G41 §3)
+
+Los 5 SOURCED **transforman la tarea cognitiva** del ítem-semilla:
+
+- Los ítems de la guía son de atribución («¿cómo se llama…?») o de «¿qué provocó
+  *X*?», con respuesta de una palabra o una frase corta. Los reactivos compuestos
+  **nombran el hecho en el `stem`** y preguntan por el **proceso** o la
+  **causalidad**: «¿qué distingue esta fase y cómo se enlaza con 1914?», «¿qué
+  proceso previo explica que un incidente local escalara?», «¿cuál fue el efecto
+  sobre la política interna de China?», «¿cuál fue el mecanismo central del New
+  Deal?». `stem` propio y juegos de opciones compuestos de cero (no se copiaron los
+  de la guía).
+- **#27** combina los ítems 73 y 74 (el término «imperialismo colonial» para
+  1870-1914 + su enlace con la Gran Guerra). **#31** es el más alejado de su
+  ítem-semilla: generaliza el momento del ítem 75 (la reorganización del mundo tras
+  1945, que empieza en Asia con la caída de Japón y la RPC) a sus **dos
+  consecuencias geopolíticas globales** (orden bipolar + descolonización). Se
+  **declara** aquí para que la ronda ciega de G44 lo revalide.
+- No es un defecto de corrección: los 5 son factualmente correctos.
+
+### 4) Formato, dificultad y cobertura
+
+- **Formato:** 35 `MULTIPLE_CHOICE`. La sección de Historia del examen de la UNAM es
+  opción múltiple simple; los reactivos que presentan un contexto para analizarlo lo
+  llevan **dentro del `stem`** (autocontenido), sin `Passage`. 0 admiten cálculo.
+- **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6,
+  la distribución objetivo de `_base.md`; misma que G33/G35/G37/G41). Los 2 `EXPERT`
+  son de síntesis: la **caída de Roma de Occidente** (proceso multicausal frente a
+  causa única) y **por qué la Revolución industrial arrancó en Gran Bretaña**
+  (confluencia de factores frente a causa única).
+- **Prioridad del encargo — procesos y causalidad sobre fechas aisladas:** la
+  práctica totalidad de los 35 pregunta por causas, consecuencias, contrastes o la
+  naturaleza de un proceso. Las fechas aparecen en el `stem` como marco temporal,
+  **nunca como lo que se pide identificar**. Ningún reactivo es de efeméride.
+- **Distractores (observación de G36 §5 atendida):** cada distractor es una
+  **posición rival plausible** o un **error documentado de estudiante**: sistema
+  representativo confundido con democracia directa, feudalismo confundido con Estado
+  centralizado o con esclavismo romano, causa única (cristianismo, una batalla, la
+  partición de 395) para la caída de Roma, Reforma confundida con la disputa de la
+  Pascua, esfericidad de la Tierra como objeto de los viajes de Colón, anacronismos
+  (Revolución industrial antes de 1500, crisis de 1929 antes de las independencias
+  americanas), inversión de la posición (Japón ocupante de China en vez de
+  derrotado). **Caveat honesto (patrón G34 §4):** en ~6 reactivos algún distractor
+  cae además por imposibilidad material o cronológica sin necesitar el dato exacto
+  («Sociedad de Naciones» fundada por el Congreso de Viena, «Imperio romano» como
+  meta de 1848, catástrofe natural para la caída de la URSS); sus etiquetas son
+  INTERMEDIATE/BASIC.
+
+### 5) Distribución de posición y cue de longitud (G3c / G8 / G34 §2)
+
+- **Clave A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %), las cuatro
+  en la banda 15-40 %. **Confirmada por query directa a la DB tras insertar**
+  (`jsonb_array_elements` sobre `options` de las 35 filas).
+- **Equilibrio también por tema:** tope 2 por letra y ≥ 3 letras distintas por tema —
+  Antigüedad A2/B0/C2/D1, Edad Media A0/B1/C1/D2, Renacimiento A2/B0/C1/D1,
+  Ilustración A1/B2/C0/D1, Rev. 1848 A1/B1/C2/D0, Imperialismo A1/B1/C1/D2, Guerras
+  A1/B2/C1/D1, Siglo XXI A1/B2/C1/D0.
+- **La letra la asigna el generador:** DFS aleatorizada con semilla fija (**43043**)
+  que descarta corridas cíclicas A→B→C→D de longitud ≥ 3 (ambos sentidos) y triples,
+  y minimiza la rotación +1 — resultado **rotación +1 = 0.0 %** (azar ≈ 25 %). **La
+  secuencia literal NO se publica aquí** (regla de G38 §4): vive en la DB y en
+  `docs/content-batches/g43-unam-a3-historia-universal.json`, que la sesión ciega de
+  G44 no abre.
+- **Cue de longitud — G34 §2, valor exacto en esta sección (G38 §3):** el puntaje
+  esperado **tie-aware de «elige la más larga», empates al azar**, quedó en **5.00 /
+  35 = 14.3 %** — por debajo del azar del 25 % y de la cota de 14/35. La heurística
+  inversa **«elige la más corta»** quedó también en **5.00 / 35 = 14.3 %**. **Ratio
+  medio** de longitud correcta / distractores = **1.045** (mín 0.89, máx 1.20).
+  Histograma de rango de longitud de la correcta (1 = más larga): **{1: 5, 2: 23,
+  3: 2, 4: 5}** — con **varianza deliberada en ambos extremos** (5 reactivos con la
+  correcta como la más larga, 5 con la más corta) para que el rango no sea un pico
+  en 2, patrón aprendible por sí mismo. El **primer borrador** daba la correcta como
+  la más larga en **34/35** —arrastraba la síntesis multicausal («A, B, C y D»),
+  el mismo defecto que corrigieron G33/G35/G37/G41—; **tres pasadas**: recorte de
+  las correctas a la aserción, homogeneización de los distractores y varianza
+  controlada.
+- `content:validate-batch --dir <lote>`: **0 violaciones** (corrido antes de tocar
+  la DB y de nuevo como paso obligatorio de `content:insert --lot-dir` sobre los
+  8 archivos).
+- **0 citas por letra** y **0 citas posicionales** en las 105 capas de explicación
+  (auto-chequeo del generador con las regex de `lot-validation.ts` más el patrón
+  `POSITION_REF` de G33). Las **35 capas 2** se titulan **«Cómo se descarta cada
+  opción»** y descartan los tres distractores **por su contenido** (numerados 1/2/3
+  en el orden de redacción), nunca por su posición ni su letra.
+
+### 6) Fuga entre reactivos — revisada en las dos direcciones y en la diagonal (G38 §6 / G40 §3 / G42 §8)
+
+Ningún `stem` nombra el dato que otro reactivo del lote pide identificar. Se aplicó
+la regla nueva de G42 §8 (cruzar **claves contra distractores** de todo el lote), y
+dos pares necesitaron desacople:
+
+1. **#11 (imprenta) → #12 (Reforma):** la clave de #12 enumeraba «la imprenta» como
+   uno de los factores de la rápida expansión de la Reforma, que es justo lo que #11
+   establece. Se **quitó «la imprenta» de la clave de #12** (pasa a su capa 1): así,
+   resolver #11 ya no sirve #12.
+2. **#24 (componente económico del imperialismo) ↔ #27 (imperialismo colonial):** la
+   clave de #27 decía «asegurar recursos y mercados», que reproduce casi entera la
+   clave de #24. Se **reescribió la clave de #27** para centrarla en «el control
+   político directo del territorio en vez del simple comercio», sin enunciar el
+   motivo económico (que queda en su capa 1).
+
+**Pares reforzantes conservados a propósito** (patrón G41 §6): #22/#23 (causas de la
+industrialización / sociedad de clases resultante), #24/#26 (motivo económico /
+discurso ideológico), #18–#21 (cuatro caras de la Europa de 1848). #29 (Japón→RPC) y
+#31 (fin de la 2GM→bipolaridad + descolonización) tratan consecuencias distintas de
+la misma guerra y ninguna clave nombra la respuesta de la otra. Un heurístico de
+n-gramas sobre las 35 solo devolvió coincidencias triviales de encuadre.
+
+`lot-validation.ts` sigue sin poder ver este tipo de fuga: es una relación entre dos
+ítems, no una propiedad de uno (defecto anotado en G38 §6; candidato a regla en
+`scripts/lib/lot-validation.ts` según G42 §8).
+
+### 7) Exactitud factual
+
+**Los 35 `stem` y las 140 opciones verificados uno por uno antes de insertar**
+(criterio del encargo). Se comprobaron fecha, autoría, orden y adscripción de proceso
+de, entre otros: ley de ciudadanía de Pericles (451 a. C.); traslado del tesoro de
+Delos a Atenas; koiné y sincretismo helenístico; reformas de los Gracos y Principado
+de Augusto (27 a. C.); crisis del s. III, migraciones germánicas y deposición de
+Rómulo Augústulo (476), con supervivencia del Imperio de Oriente; disolución
+carolingia y señorío; querella de las investiduras; caída de Acre (1291) y saqueo de
+Constantinopla por la IV Cruzada (1204); revolución agrícola medieval y fueros
+urbanos; `studia humanitatis`; Gutenberg (h. 1450) y >200 imprentas hacia 1500; 95
+tesis (1517), paz de Augsburgo (1555) y Contrarreforma; caída de Constantinopla
+(1453), carabela/brújula/astrolabio y Tratado de Tordesillas; derechos naturales y
+`sapere aude`; *Del espíritu de las leyes* (1748); Declaración de Independencia
+(1776) y Constitución de 1787; Estados Generales (1789), fuga de Varennes (1791),
+ejecución de Luis XVI (1793); Congreso de Viena (1815), Santa Alianza y primavera de
+los pueblos; jornadas de junio de 1848 y *Manifiesto Comunista*; Reino de Italia
+(1861) e Imperio alemán (1871); invasión napoleónica de España (1808) y Constitución
+de Cádiz (1812); cercamientos y máquina de vapor de Watt; burguesía y proletariado
+frente a la sociedad de órdenes; materias primas, mercados e inversiones coloniales;
+Conferencia de Berlín (1884-85) y ocupación efectiva; misión civilizadora y
+darwinismo social; paz armada, crisis marroquíes y balcánicas, Triple Alianza y
+Triple Entente, invasión de Bélgica; guerra sino-japonesa desde 1937, proclamación
+de la RPC (1 oct 1949) y repliegue a Taiwán; New Deal y abandono del patrón oro
+(1933); Yalta y Potsdam, doctrina Truman y plan Marshall, descolonización (India
+1947, oleada africana de 1960); perestroika/glásnost, caída del Muro (1989), golpe
+fallido de agosto de 1991; OMC y multinacionales; de la CECA (1951) a Maastricht
+(1993), euro y Schengen; conferencias sanitarias internacionales del s. XIX.
+**Ninguna atribución, fecha ni proceso resultó falso.**
+
+### 8) Inserción real — verificada en la DB
+
+| Métrica | Antes de G43 | Después de G43 |
+|---|---:|---:|
+| Banco total | 867 | **902** |
+| Servibles (`isVerified=true`) | 866 | 866 |
+| Retirados a propósito | 1 | 1 |
+| Cola ciega (`isVerified=false`, sin veredicto) | 0 | **35** |
+| Cola canónica de discrepancias (`manualReview=null`) | 0 | **0** |
+| `ExplanationLayer` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **5** (1 × 5 de «Guerras Mundiales») |
+| `SOURCED` en el banco | 225 | **230** |
+| `TEMARIO_ONLY` en el banco | 642 | **672** |
+| UNAM A3 Historia Universal · 8 temas | 0×8 | **5 / 4 / 4 / 4 / 4 / 5 / 5 / 4** |
+
+Chequeos post-inserción (query directa): los 35 con exactamente 4 opciones y 1
+correcta, 105 `ExplanationLayer`, **5 `SOURCED` / 30 `TEMARIO_ONLY`**, los 5
+`SOURCED` citan el chunk `cmrsromj5007w…`, cola ciega 0 → 35, clave A9/B9/C9/D8
+(por `jsonb_array_elements`), dificultad 7/17/9/2, 0 con formato ≠ `MULTIPLE_CHOICE`.
+Cohorte con `id` prefijo `cmtg7d…`–`cmtg7eq…` del 2026-08-30 — separable por
+`topicId` o por timestamp para la verificación ciega de G44.
+
+**La brecha efectiva no se mueve** (529, ~16 lotes): la meta efectiva de Historia
+Universal (w5 → ~28 por G39 §7) la cubrirán y superarán los 35 cuando G44 los
+apruebe — mismo patrón que Literatura (G37) y Filosofía (G41): cobertura de producto
+real (un aspirante del Área 3 no tenía nada de Historia Universal), pero contra la
+meta del 21-nov ~28 cierran y ~7 caen en un pool que quedará sobre-cubierto.
+`content:coverage` en vivo: **866 servibles · 35 pendientes · 1 retirado · 902 en
+banco · 57 % de la meta efectiva**.
+
+### 9) Limpieza
+
+El lote se compuso con un generador de Python desechable (`items_g43.py` redactado a
+mano + `build_g43.py` + parches de longitud) en el scratchpad de la sesión: los 35
+reactivos están **redactados a mano** en `items_g43.py`; el generador solo asigna la
+letra correcta (DFS anti-rotación con semilla + equilibrio por tema), auto-chequea
+—antes de validar— la distribución de letra, el **puntaje tie-aware de longitud
+(G34 §2)**, las citas por letra y posicionales y el grounding obligatorio del tema 7,
+y emite los 8 archivos del lote. Un segundo script (`enrich_g43.py`) construyó el
+registro permanente con los `questionId` reales. El generador, los parches, el
+verificador de fugas y los 8 archivos del lote **no se committean**; el registro
+permanente es `docs/content-batches/g43-unam-a3-historia-universal.json`. `pnpm
+typecheck` y `pnpm lint` en verde (cero cambios de código de producción). Cero
+llamadas a la API de pago.
+
+### Siguiente (G43)
+
+1. **Verificación ciega del lote de G43** (segunda mitad del ciclo de G2), **modelo
+   Fable 5**: `pnpm content:blind-batch --topic <cada uno de los 8 topicId>` →
+   `content:resolve`. **Lote 100 % verbal**, como G30/G33/G35/G37/G41: **0/35
+   admiten cálculo**, así que no cabe el candado aritmético de G28; el control es el
+   **descarte explícito de los tres distractores por su contenido** y la
+   **confianza declarada**. Los **5 reactivos de «Guerras Mundiales» son `SOURCED`**,
+   pero `loadPendingQuestionsWithContext` **no pasa el texto del `SourceChunk`** a la
+   sesión ciega (mismo caso que los `SOURCED` de G33/G37/G41): se resuelven con
+   conocimiento de historia de bachillerato, igual que el resto. **Sin pasajes** →
+   los 35 llegan autocontenidos en el `stem`. **Aplicar G36 §2 / G38 §3:**
+   recalcular los diagnósticos de longitud (tie-aware «más larga»/«más corta», ratio
+   medio) sobre las **respuestas ciegas** y compararlos con los veredictos de §5
+   (que la sesión ciega abre solo *después* de resolver). **La comparación de la
+   secuencia de clave exacta (G38 §4) la hace el dueño o una fase editorial** con
+   acceso al registro permanente, no la sesión ciega. **Reactivos más apretados** (se
+   señala cuáles, no cómo resolverlos, por G30 §1): los **2 `EXPERT`** (#5 caída de
+   Roma multicausal, #22 por qué Gran Bretaña industrializó primero), **#19** (la
+   «cuestión social» en 1848) y el `SOURCED` **#31** (dos consecuencias del fin de la
+   2GM), que es el más alejado de su ítem-semilla.
+2. **Huecos que siguen abiertos** tras G43:
+   - **UNAM A4 Artes** (5 temas, w2, cero; tiene `SourceChunk` en 3 temas) — la
+     última materia propia del Área 4 sin contenido, y la última materia propia de
+     UNAM A3/A4 en cero.
+   - **IPN SOCADM Historia de México** (6 temas, cero) — lo nombran G30–G42 y ninguna
+     fase lo ha abierto; **IPN SOCADM Historia Universal** (7 temas, cero) y
+     **Geografía** (5 temas, cero) también.
+   - Los 5 pools STEM de alto peso de G39 §7 (IPN Física, IPN Química, IPN
+     Matemáticas celda MEDBIO, UNAM A1 Matemáticas, IPN MEDBIO Biología) siguen
+     siendo la recomendación para cerrar brecha **efectiva**.
+3. **Al work order (heredado de G40 §3-§4 / G42 §6):** reescribir los `stem`
+   demasiado pegados a la guía de los 4 reactivos de G37 anclados a `cmrsromj5007r…`,
+   y rebanar los `SourceChunk` por encabezado de sección en la ingesta (afecta a
+   `uam_csh.pdf`, que G33/G37/G41/**G43** ya usaron con rebanado por página — en G43
+   sin consecuencia porque los 4 ítems del chunk eran homogéneos).
+4. **Auditoría 5 %: vencida, 3 ciclos.** La muestra de 40 ids está generada y exige
+   sesión ciega con tier **≠ opus-5**. Los lotes de G41 y **G43** entran al universo
+   muestreable cuando G42 y G44 los verifiquen.
+5. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): ¿entran UNAM A3/A4 e
+   IPN SOCADM en la meta de 1 500 / 1 222? Lleva doce fases condicionando la
+   planeación sin respuesta del dueño.
+6. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, la regla de G42 §8
+   como código en `lot-validation.ts`, y `content:coverage` que aún no refleja la
+   reutilización de G26 (G30 §10.3).
+
+---
 
 ## G42 — Verificación ciega: Filosofía, UNAM Área 4 (lote de G41) (2026-08-30)
 

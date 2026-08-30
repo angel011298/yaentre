@@ -1,0 +1,2012 @@
+{
+  "batch": "G43",
+  "phase": "G43 — Lote de reactivos: Historia Universal, UNAM Área 3 (Ciencias Sociales)",
+  "generatedAt": "2026-08-30",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago (el Plan de Implementación asigna el tier Sonnet a los lotes de contenido)",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 3 — Ciencias Sociales",
+  "subject": "Historia Universal",
+  "subjectId": "cmrr1k1d20052hi3nz9pu9umy",
+  "questionWeight": 5,
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G43: 35 reactivos de Historia Universal para UNAM Áreas 3 y 4. Consulta en vivo a Supabase (2026-08-30): Historia Universal existe como UNA sola fila Subject, en el Área 3 (Ciencias Sociales), questionWeight 5, sharedContentKey NULL. NO hay materia 'Historia Universal' en el Área 4 (Literatura, Filosofía, Artes, Español); la IPN sí la tiene en SOCADM pero es otra institución y G26 no cruza instituciones. Por tanto 'Áreas 3 y 4' se resuelve a la única Historia Universal del Área 3 — mismo patrón que Literatura (G37), materia del Área 4 sin gemela en el Área 3. Materia NO compartida: el lote va a sus 8 temas propios y no se reutiliza entre áreas, como Historia de México (G33), Geografía (G35), Literatura (G37) y Filosofía (G41), todas sharedKey NULL. Última de las 3 materias propias del Área 3 en cero absoluto (tras Historia de México en G33 y Geografía en G35): el Área 3 pasa a tener sus 3 materias de historia y geografía con contenido.",
+  "grounding": "30/35 TEMARIO_ONLY · 5/35 SOURCED. El tema 'Guerras Mundiales' (cmrr1k4x3005ghi3n487nbc0v) tiene 1 SourceChunk (cmrsromj5007w13b3kucb24uh, p. 44 de uam_csh.pdf — guía de Ciencias Sociales y Humanidades de la UAM, la misma familia de guía que aportó los chunks de G33/G37/G40/G41). Es un banco de reactivos de opción múltiple con 4 ítems de historia contemporánea (imperialismo colonial 1870-1914, rivalidad imperialista y Primera Guerra Mundial, derrota de Japón y República Popular China, y el New Deal ante la depresión mundial), clasificado a este tema por el pipeline F2b. grounding.ts hace OBLIGATORIA la cita cuando hay fragmento: los 5 reactivos de 'Guerras Mundiales' citan sourceChunks:[1] y quedan SOURCED; los otros 7 temas no tienen SourceChunk y salen TEMARIO_ONLY (30), compuestos desde el temario oficial del Área 3, como G22/G27/G33/G35/G37. PROCEDENCIA (patrón G40 §7 / G41 §2): el chunk viene de la guía de OTRA institución (UAM) que la del examen destino (UNAM). No lo prohíbe ningún guardrail (G26 restringe la reutilización de reactivos entre áreas, no el uso de guías como material de estudio), pero se anota. El chunk está rebanado por página, no por sección — sus 4 ítems son homogéneos (historia contemporánea), a diferencia de los chunks de G40/G41 que arrastraban ítems de temas distintos. ORIGINALIDAD (patrón G40 §6 / G41 §3): los 5 SOURCED transforman la tarea cognitiva del ítem-semilla. Los ítems de la guía son de atribución o de 'qué provocó X' con respuesta de una palabra o una frase corta; los reactivos compuestos nombran el hecho en el stem y preguntan por el PROCESO o la CAUSALIDAD ('qué distingue esta fase', 'qué proceso previo explica la escalada', 'cuál fue el efecto sobre la política interna', 'cuál fue el mecanismo central'), con stem propio y juegos de opciones compuestos de cero (no se copiaron los de la guía). #27 combina los ítems 73 y 74 (imperialismo colonial + su enlace con 1914); #31 generaliza el momento del ítem 75 (la reorganización del mundo tras 1945 que empieza en Asia) a sus dos consecuencias geopolíticas globales — es el SOURCED más alejado de su ítem, se declara para que la ronda ciega de G44 lo revalide uno por uno.",
+  "totalQuestions": 35,
+  "bankBefore": {
+    "total": 867,
+    "verified": 866,
+    "servibles": 866,
+    "retired": 1,
+    "blindQueue": 0,
+    "sourced": 225,
+    "temarioOnly": 642
+  },
+  "bankAfter": {
+    "total": 902,
+    "verified": 866,
+    "servibles": 866,
+    "retired": 1,
+    "blindQueue": 35,
+    "sourced": 230,
+    "temarioOnly": 672
+  },
+  "positionsSequence": "ACCADDBDCACADBDBACACBDDBACBBDCAACBB",
+  "seed": 43043,
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "difficultyDistribution": {
+    "BASIC": 7,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 35
+  },
+  "perTopic": {
+    "Antigüedad clásica": 5,
+    "Edad Media": 4,
+    "Renacimiento": 4,
+    "Ilustración": 4,
+    "Revoluciones de 1848": 4,
+    "Imperialismo e Industrialización": 5,
+    "Guerras Mundiales (SOURCED)": 5,
+    "Siglo XXI": 4
+  },
+  "perTopicId": {
+    "cmrr1k1it0054hi3nwnsstpon": 5,
+    "cmrr1k22p0056hi3nnfnp8mso": 4,
+    "cmrr1k2nm0058hi3nd9so7q9d": 4,
+    "cmrr1k377005ahi3nf32xb9i4": 4,
+    "cmrr1k3wg005chi3ni8pnnljo": 4,
+    "cmrr1k4d6005ehi3no5n306ln": 5,
+    "cmrr1k4x3005ghi3n487nbc0v": 5,
+    "cmrr1k5cl005ihi3n4wlr9qte": 4
+  },
+  "perTopicKeys": {
+    "Antigüedad clásica": "A2/B0/C2/D1",
+    "Edad Media": "A0/B1/C1/D2",
+    "Renacimiento": "A2/B0/C1/D1",
+    "Ilustración": "A1/B2/C0/D1",
+    "Revoluciones de 1848": "A1/B1/C2/D0",
+    "Imperialismo e Industrialización": "A1/B1/C1/D2",
+    "Guerras Mundiales": "A1/B2/C1/D1",
+    "Siglo XXI": "A1/B2/C1/D0"
+  },
+  "coverageByAxis": {
+    "temario oficial (8 temas por periodo)": "Antigüedad clásica 5 · Edad Media 4 · Renacimiento 4 · Ilustración 4 · Revoluciones de 1848 4 · Imperialismo e Industrialización 5 · Guerras Mundiales 5 (SOURCED) · Siglo XXI 4",
+    "antigüedad": "democracia directa ateniense y sus exclusiones, Liga de Delos y hegemonía ateniense, helenismo como fusión cultural, crisis de la República romana y Principado, caída de Roma de Occidente (multicausal)",
+    "Edad Media": "feudalismo como sistema (vasallaje + señorío) y su origen poscarolingio, la Iglesia como institución de cohesión, consecuencias comerciales y culturales de las Cruzadas, resurgir urbano y alianza rey-burguesía frente a la nobleza",
+    "modernidad (Renacimiento e Ilustración)": "humanismo y antropocentrismo, imprenta y difusión de ideas, causas de la Reforma protestante, causas de la expansión oceánica ibérica; idea central de la Ilustración, división de poderes, aportación de la independencia de EE. UU., causas convergentes de la Revolución francesa",
+    "Revoluciones (siglo XIX)": "Restauración de Viena frente a la 'primavera de los pueblos', aparición de la 'cuestión social' en 1848, nacionalismo y unificaciones de Italia y Alemania, independencias hispanoamericanas en el ciclo atlántico",
+    "industrialización e imperialismo": "por qué la Revolución industrial arrancó en Gran Bretaña (confluencia de factores), de la sociedad de estamentos a la de clases, componente económico del imperialismo, Conferencia de Berlín y reparto de África, ideología de la 'misión civilizadora'",
+    "siglo XX (Guerras Mundiales, SOURCED)": "imperialismo colonial 1870-1914 y su enlace con 1914, rivalidad imperialista y sistema de alianzas en la escalada de la Gran Guerra, derrota de Japón y triunfo comunista en China, mecanismo del New Deal, consecuencias geopolíticas del fin de la Segunda Guerra Mundial (orden bipolar y descolonización)",
+    "mundo contemporáneo (Siglo XXI)": "disolución de la URSS y fin del orden bipolar, definición de globalización económica, integración supranacional (Unión Europea), naturaleza de los desafíos transnacionales",
+    "procesos y causalidad sobre fechas aisladas (criterio del encargo)": "de los 35, la práctica totalidad pregunta por causas, consecuencias, contrastes o la naturaleza de un proceso; las fechas aparecen en el stem como marco, nunca como lo que se pide identificar. Ningún reactivo es de efeméride."
+  },
+  "copyright": "Materia sin obras literarias que citar; el riesgo es reproducir enunciados de la guía fuente. Cero transcripción de fragmentos de la guía: los 5 SOURCED reformulan el ítem-semilla con stem propio y cambian la tarea (de atribución/'qué provocó' a comprensión de proceso/causalidad); sus juegos de opciones se compusieron de cero. Sin citas textuales de ningún tipo. Términos históricos estándar de dominio público (imperialismo colonial, primavera de los pueblos, misión civilizadora, New Deal, Conferencia de Berlín) usados como vocabulario del temario, no como cita.",
+  "qualityChecks": {
+    "validateBatch": "0 violaciones (G3c); corrido antes de tocar la DB y de nuevo como paso obligatorio de content:insert --lot-dir sobre los 8 archivos",
+    "correctPositionBand": "A9/B9/C9/D8 = 25.7/25.7/25.7/22.9 %, las cuatro en 15-40 % (confirmado por query directa a la DB con jsonb_array_elements sobre options tras insertar). Por tema, ninguna letra concentra la correcta (tope 2 por letra y >=3 letras distintas por tema): Antigüedad A2/B0/C2/D1, Edad Media A0/B1/C1/D2, Renacimiento A2/B0/C1/D1, Ilustración A1/B2/C0/D1, Rev. 1848 A1/B1/C2/D0, Imperialismo A1/B1/C1/D2, Guerras A1/B2/C1/D1, Siglo XXI A1/B2/C1/D0.",
+    "cyclicRotation": "corrida cíclica A->B->C->D de longitud >=3 (ambos sentidos): False; triple repetición: False; rotación +1 = 0.0 % (azar ~25 %; muy por debajo). Letra asignada por DFS aleatorizada con semilla fija (seed 43043) anti-rotación, con restricción de equilibrio por tema.",
+    "lengthCue_G34s2": "puntaje esperado tie-aware de 'elige la más larga', empates al azar = 5.00/35 = 14.3 % (umbral G34 §2: < 14/35 estricto y por debajo del azar del 25 %). 'elige la más corta' tie-aware = 5.00/35 = 14.3 % (también por debajo del azar). Ratio medio de longitud correcta/distractores: 1.045 (mín 0.89, máx 1.20). Histograma de rango de longitud de la correcta (1 = más larga): {1: 5, 2: 23, 3: 2, 4: 5} — varianza deliberada en ambos extremos para que el rango no sea un pico en 2 (patrón aprendible). El primer borrador daba la correcta como la más larga en 34/35 (arrastraba la síntesis multicausal, patrón G33/G35/G37/G41); tres pasadas: recorte de las correctas a la aserción, homogeneización de distractores y varianza controlada.",
+    "letterCitations": "0 en las 105 capas de explicación (regex de lot-validation.ts: 'opción [ABCD]', 'inciso [ABCD]', 'letra [ABCD]', '[ABCD])').",
+    "positionalCitations": "0 (auto-chequeo POSITION_REF del generador). Las 35 capas 2 se titulan 'Cómo se descarta cada opción' y descartan los tres distractores por su CONTENIDO (numerados 1/2/3 en el orden de redacción, cada uno introducido por su contenido, nunca por su posición ni su letra).",
+    "distractorQuality": "Cada distractor es una posición rival plausible o un error documentado de estudiante: sistema representativo confundido con democracia directa, feudalismo confundido con Estado centralizado o con esclavismo romano, causa única (cristianismo, una batalla, la partición de 395) para la caída de Roma, Reforma confundida con la disputa de la Pascua, esfericidad de la Tierra como objeto de los viajes de Colón, anacronismos (Revolución industrial antes de 1500, crisis de 1929 antes de las independencias americanas), inversión de la posición (Japón ocupante de China en vez de derrotado). Caveat honesto (patrón G34 §4): en ~6 reactivos algún distractor cae además por imposibilidad material o cronológica sin necesitar el dato exacto (p. ej. 'Sociedad de Naciones' fundada por el Congreso de Viena, 'Imperio romano' como meta de 1848, catástrofe natural para la caída de la URSS); sus etiquetas son INTERMEDIATE/BASIC.",
+    "factualReview": "Los 35 stem y las 140 opciones verificados uno por uno antes de insertar: ley de ciudadanía de Pericles (451 a. C.); traslado del tesoro de Delos a Atenas y programa de Pericles; koiné y sincretismo helenístico; reformas de los Gracos, ejércitos de Mario/Sila/César, Principado (27 a. C.); crisis del s. III, migraciones germánicas, deposición de Rómulo Augústulo (476), supervivencia de Oriente; disolución carolingia y señorío; querella de las investiduras; caída de Acre (1291), IV Cruzada y saqueo de Constantinopla (1204); revolución agrícola medieval y fueros urbanos; studia humanitatis y antropocentrismo; Gutenberg (h. 1450) y >200 imprentas hacia 1500; 95 tesis (1517), paz de Augsburgo (1555), Contrarreforma; caída de Constantinopla (1453), carabela/brújula/astrolabio, Tordesillas; derechos naturales y 'sapere aude'; Del espíritu de las leyes (1748) y pesos y contrapesos; Declaración de Independencia (1776) y Constitución (1787); Estados Generales (1789), fuga de Varennes (1791), ejecución de Luis XVI (1793); Congreso de Viena (1815), Santa Alianza, primavera de los pueblos; jornadas de junio de 1848 y Manifiesto Comunista; Reino de Italia (1861), Imperio alemán (1871); invasión napoleónica de España (1808), Constitución de Cádiz (1812); cercamientos, máquina de vapor de Watt, carbón/hierro; burguesía y proletariado frente a la sociedad de órdenes; materias primas, mercados e inversiones coloniales; Conferencia de Berlín (1884-85), ocupación efectiva; misión civilizadora y darwinismo social; paz armada y crisis marroquíes/balcánicas; Triple Alianza y Triple Entente, invasión de Bélgica; guerra sino-japonesa desde 1937, proclamación de la RPC (1 oct 1949), repliegue a Taiwán; New Deal, abandono del patrón oro (1933); Yalta y Potsdam, doctrina Truman y plan Marshall, descolonización (India 1947, oleada africana de 1960); perestroika/glásnost, caída del Muro (1989), golpe fallido de agosto de 1991; OMC y multinacionales; de la CECA (1951) a Maastricht (1993), euro, Schengen; conferencias sanitarias internacionales del s. XIX. Ninguna atribución, fecha ni proceso resultó falso.",
+    "typecheck": "verde (cero cambios de código de producción)",
+    "lint": "verde",
+    "unitTests": "sin cambios (esta fase no toca código)",
+    "paidApiCalls": 0
+  },
+  "crossItemLeakCheck": "Revisado en las dos direcciones y en la diagonal clave<->distractor (G38 §6 / G40 §3 / G42 §8): ningún stem nombra el dato que otro reactivo pide identificar. Dos pares se desacoplaron: (1) #11 (imprenta) y #12 (Reforma) — la clave de #12 dejó de enumerar 'la imprenta' como factor (pasa a la capa 1), para que resolver #11 no sirva #12; (2) #24 (componente económico del imperialismo) y #27 (imperialismo colonial) — la clave de #27 dejó de decir 'recursos y mercados' y se centró en 'control político directo vs. simple comercio'. Pares reforzantes que se conservan a propósito (patrón G41 §6): #22/#23 (causas de la industrialización / sociedad de clases resultante), #24/#26 (motivo económico / discurso ideológico del imperialismo), #18-#21 (cuatro caras de la Europa de 1848). #29 (Japón->RPC) y #31 (fin de la 2GM->bipolaridad+descolonización) tratan consecuencias distintas de la 2GM y ninguna clave nombra la respuesta de la otra. Un heurístico de n-gramas sobre las 35 solo devolvió dos coincidencias triviales: la frase de encuadre '¿cuál es la explicación más...' (#5/#17) y la mención de paso 'Revolución francesa 1789' en un distractor-trampa de #12 mientras #17 pregunta por sus causas — ninguna es fuga.",
+  "nextPhase": "G44 — verificación ciega del lote de G43 (segunda mitad del ciclo adversarial de G2). Modelo Fable 5. Lote 100 % verbal, como G30/G33/G35/G37/G41: 0/35 admiten cálculo -> sin candado aritmético; el control es el descarte explícito de los tres distractores por su contenido y la confianza declarada. Los 5 SOURCED de 'Guerras Mundiales' NO reciben el texto del SourceChunk en la sesión ciega (loadPendingQuestionsWithContext no lo pasa): se resuelven con conocimiento de historia de bachillerato, igual que el resto. Sin pasajes -> los 35 llegan autocontenidos en el stem. Aplicar G36 §2 / G38 §3 (recalcular los diagnósticos de longitud sobre las respuestas ciegas y comparar con los veredictos de esta sección; la secuencia de clave literal vive en la DB y en este registro permanente, no en la sección ## G43). Reactivos más apretados (se señala cuáles, no cómo resolverlos): los 2 EXPERT (#5 caída de Roma multicausal, #22 por qué Gran Bretaña industrializó), #19 (la 'cuestión social' en 1848) y el SOURCED #31 (dos consecuencias del fin de la 2GM), que es el más alejado de su ítem-semilla.",
+  "questions": [
+    {
+      "questionId": "cmtg7d0ck000148pd01b1lsxb",
+      "n": 1,
+      "topic": "Antigüedad clásica",
+      "topicId": "cmrr1k1it0054hi3nwnsstpon",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La democracia ateniense del siglo V a. C. se califica de democracia directa. ¿Qué rasgo del sistema justifica ese nombre y qué límite tenía?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El ciudadano deliberaba y votaba las leyes en persona, y la ciudadanía se reservaba al varón adulto de familia ateniense.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Los ciudadanos elegían a representantes que legislaban y gobernaban en su nombre, y el voto abarcaba a toda la población libre de la ciudad.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Un consejo hereditario de aristócratas tomaba las decisiones, y la Asamblea solo podía ratificarlas o rechazarlas en bloque.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El poder recaía en un único magistrado electo cada año por sorteo, sin una asamblea deliberante de ciudadanos.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Participar en persona, no por representantes",
+          "content": "En Atenas los ciudadanos ejercían el poder directamente: acudían a la Asamblea a discutir y votar las leyes, y muchos cargos se cubrían por sorteo. Por eso se habla de democracia directa. Su límite era el cuerpo de ciudadanos: quedaban fuera las mujeres, los esclavos y los extranjeros residentes (metecos), de modo que participaba una minoría de los habitantes.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El gobierno por representantes electos y el sufragio de toda la población libre describen a la democracia representativa moderna; el voto de las mujeres es una conquista muy posterior. 2) Que un consejo aristocrático concentrara la decisión corresponde a la oligarquía anterior a las reformas democráticas, no al sistema del siglo V. 3) Reducir el poder a un magistrado único electo por sorteo confunde la democracia con una forma personal de gobierno; el órgano soberano era la Asamblea reunida.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "La polis y las formas de gobierno",
+          "content": "La polis griega ensayó monarquía, aristocracia, tiranía, oligarquía y democracia. Conviene distinguir la democracia directa (el ciudadano decide en persona) de la representativa moderna, y recordar quiénes eran ciudadanos en la Antigüedad. Repasa: reformas de Solón y Clístenes, instituciones atenienses (Ekklesía, Bulé, Heliea) y la crítica de Platón y Aristóteles.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7d16u000648pd25mm7gqt",
+      "n": 2,
+      "topic": "Antigüedad clásica",
+      "topicId": "cmrr1k1it0054hi3nwnsstpon",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Tras rechazar la invasión persa (490 y 480-479 a. C.), Atenas encabezó la Liga de Delos. ¿Qué consecuencia tuvo ese liderazgo para la propia Atenas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Provocó la caída inmediata del Imperio persa y el reparto de sus provincias entre las polis griegas que vencieron en la guerra.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Unificó a todas las ciudades griegas en un solo Estado, con capital en Atenas y una única ciudadanía común a todas ellas.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Convirtió la alianza defensiva en un imperio marítimo cuyos tributos pagaron su hegemonía y el arte de la época de Pericles.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Obligó a Atenas a renunciar a su flota y a someterse militarmente a Esparta durante el siglo siguiente a la guerra.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De alianza a imperio",
+          "content": "La Liga de Delos nació para seguir la guerra contra Persia, pero Atenas trasladó el tesoro común a su ciudad, impuso su moneda y castigó las deserciones. Los tributos de los aliados sostuvieron su flota y pagaron obras como el Partenón. Ese predominio abrió la llamada 'edad de oro' de Pericles y, a la vez, la rivalidad con Esparta que estallaría en la guerra del Peloponeso.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Los griegos no conquistaron Persia entonces: solo rechazaron la invasión; la caída del Imperio persa llegaría con Alejandro Magno, siglo y medio después. 2) Grecia nunca se unificó en un solo Estado: siguió siendo un mosaico de polis rivales, y esa fragmentación es un rasgo permanente del mundo griego. 3) Atenas no renunció a su flota: precisamente su poder naval fue la base de su hegemonía; la sumisión a Esparta llegaría solo tras perder la guerra del Peloponeso en 404 a. C.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Hegemonías y guerra del Peloponeso",
+          "content": "Las guerras médicas dejaron a Grecia dividida en dos bloques: la Liga de Delos ateniense y la Liga del Peloponeso espartana. Su choque (431-404 a. C.) agotó a las polis y preparó el ascenso de Macedonia. Repasa: causas y etapas de la guerra del Peloponeso y el concepto de hegemonía.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7d1yx000b48pd3rxj78ew",
+      "n": 3,
+      "topic": "Antigüedad clásica",
+      "topicId": "cmrr1k1it0054hi3nwnsstpon",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Las conquistas de Alejandro Magno (siglo IV a. C.) dieron paso al periodo helenístico. ¿Qué proceso cultural caracteriza a esa etapa?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La imposición forzosa de la lengua y la religión griegas y la desaparición de las culturas locales previas.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El regreso a la polis clásica y autónoma como única forma de organización política del mundo mediterráneo.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La fusión de la cultura griega con las tradiciones de Egipto y de Oriente en los territorios que Alejandro conquistó.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La adopción del latín y de las instituciones de Roma en todo el antiguo territorio del Imperio persa.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Mezcla, no sustitución",
+          "content": "Tras Alejandro, el griego se volvió lengua común (koiné) del comercio y la administración desde Egipto hasta la India, pero se mezcló con saberes, cultos y formas de gobierno orientales. De ese cruce nacen la ciencia de Alejandría, el arte helenístico y religiones sincréticas. 'Helenístico' significa 'a la manera griega', pero teñido de Oriente.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hubo desaparición de las culturas locales: los reinos helenísticos gobernaban poblaciones egipcias, persas o judías que conservaron su lengua y su religión; la novedad fue la convivencia. 2) La polis clásica y autónoma entró en crisis: el marco político pasó a ser el gran reino territorial (Egipto ptolemaico, Siria seléucida). 3) El latín y las instituciones romanas se difundirían después, con la expansión de Roma, no con Alejandro.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Del mundo griego al helenístico",
+          "content": "El periodo helenístico (323-30 a. C.) va de la muerte de Alejandro a la anexión de Egipto por Roma. Se distingue del clásico por la escala territorial, el cosmopolitismo y el auge científico. Repasa: reparto del imperio de Alejandro entre los diádocos, la biblioteca de Alejandría y el concepto de sincretismo cultural.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7d2rb000g48pd6hyuofls",
+      "n": 4,
+      "topic": "Antigüedad clásica",
+      "topicId": "cmrr1k1it0054hi3nwnsstpon",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El paso de la República romana al Principado de Augusto (siglo I a. C.) suele explicarse como el desenlace de una crisis interna. ¿Qué elementos de esa crisis condujeron a la concentración del poder?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Conflictos sociales, ejércitos leales a sus generales y guerras civiles que las instituciones republicanas ya no contenían.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La conquista de la ciudad de Roma por un pueblo extranjero, que disolvió el Senado y le impuso una monarquía de origen foráneo.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Una votación del pueblo romano que decidió, de forma pacífica y unánime, restaurar la monarquía abolida siglos atrás.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una reforma religiosa que entregó el gobierno del Estado a los sacerdotes y apartó a los magistrados civiles.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Instituciones rebasadas por la violencia política",
+          "content": "En el siglo I a. C. la República no logró integrar a los itálicos ni repartir tierras, y las reformas de los Gracos terminaron en sangre. Las legiones pasaron a depender de generales que las pagaban (Mario, Sila, Pompeyo, César), y las guerras civiles se encadenaron. Octavio venció en la última y, sin abolir formalmente la República, acumuló los poderes clave: nació el Principado.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Roma no fue conquistada por un pueblo extranjero en esa época; la crisis fue interna y el cambio de régimen lo protagonizaron ciudadanos romanos. 2) No hubo una restauración pacífica y unánime de la monarquía: Augusto evitó con cuidado el título de rey y presentó su poder como una 'restauración de la República'. 3) No fue una reforma religiosa: aunque Augusto asumió el cargo de pontífice máximo, el poder se sostenía en el ejército y en los poderes tribunicio y proconsular, no en el clero.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "República, crisis y Principado",
+          "content": "La República romana combinaba magistraturas, Senado y asambleas con un equilibrio que funcionó mientras Roma fue una ciudad-Estado. La expansión territorial rompió ese equilibrio. Repasa: reformas de los Gracos, ejército profesional de Mario, primer y segundo triunvirato, y las bases jurídicas del poder de Augusto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7d3je000l48pdbgdd65o8",
+      "n": 5,
+      "topic": "Antigüedad clásica",
+      "topicId": "cmrr1k1it0054hi3nwnsstpon",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La caída del Imperio romano de Occidente (476) rara vez se atribuye a una sola causa. ¿Cuál es la explicación más aceptada por la historiografía actual?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Una única gran batalla en la que un ejército germánico derrotó de forma definitiva a las legiones y ocupó la ciudad de Roma.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La difusión del cristianismo, que por sí sola habría destruido la moral cívica y la voluntad de defender el Estado.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La división administrativa entre Oriente y Occidente de 395, tomada como la causa directa e inmediata del derrumbe.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Un desgaste interno de siglos —económico, político y militar— agravado por la presión de las migraciones germánicas.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Muchas causas a lo largo de siglos",
+          "content": "Desde la crisis del siglo III, Occidente sufrió inflación, caída de la producción, huida de las ciudades y presión fiscal sobre el campesinado. A la vez se sucedían usurpaciones militares y el ejército dependía cada vez más de tropas de origen germánico. La llegada de los hunos empujó a godos y otros pueblos dentro de las fronteras. En 476 un jefe germano depuso al último emperador de Occidente: el punto final de un desgaste acumulado.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hubo una batalla decisiva única: el año 476 fue la deposición de un emperador ya sin poder real, no una gran derrota militar. 2) Atribuirlo solo al cristianismo repite un argumento antiguo que la historiografía actual rechaza: el Imperio de Oriente, más cristianizado, sobrevivió mil años más. 3) La partición de 395 fue una medida de gobierno, no la causa: Oriente, con la misma división, se mantuvo; lo que hundió a Occidente fue la suma de factores económicos, políticos y externos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Transición del mundo antiguo al medieval",
+          "content": "La caída de Occidente no fue un corte brusco, sino una transformación: continuidad de la Iglesia, mezcla de romanos y germanos y aparición de reinos romano-germánicos. El Imperio de Oriente (Bizancio) prolongó la tradición romana. Repasa: crisis del siglo III, reformas de Diocleciano y Constantino, y el debate entre 'invasiones' y 'migraciones' germánicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7d8690001vw3i8wara3pl",
+      "n": 6,
+      "topic": "Edad Media",
+      "topicId": "cmrr1k22p0056hi3nnfnp8mso",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El feudalismo europeo se entiende mejor como un sistema que como una simple época. ¿Qué combinación lo define y de qué situación surgió?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un Estado centralizado con burocracia y ejército permanentes, sostenido por el cobro regular de impuestos en dinero a la población.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una economía de mercado con trabajo asalariado y libre circulación de las personas entre el campo y las ciudades industriales.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La continuidad sin cambios del sistema esclavista romano, con idénticas leyes, cultivos y organización de la producción agrícola.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Poder político fragmentado en vínculos personales de vasallaje y economía señorial, tras hundirse la autoridad carolingia.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Poder repartido y economía de la tierra",
+          "content": "Cuando el Imperio carolingio se disgregó (siglo IX) y arreciaron las incursiones de normandos, sarracenos y magiares, la protección dejó de venir de un rey lejano y pasó a los señores locales. El vínculo político se volvió un pacto personal (el vasallo sirve, el señor protege y entrega un feudo), y la economía giró en torno al señorío rural donde trabajaban los campesinos, muchos de ellos siervos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El Estado centralizado con burocracia, ejército permanente e impuestos regulares es lo contrario del feudalismo: reaparece al final de la Edad Media con las monarquías autoritarias. 2) El trabajo asalariado y la libre movilidad caracterizan a la economía capitalista posterior; en el señorío el siervo estaba adscrito a la tierra. 3) No es la esclavitud romana sin cambios: la servidumbre medieval es una condición jurídica distinta y la unidad productiva ya no es la villa esclavista, sino el señorío.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Feudalismo: vínculos y señorío",
+          "content": "El feudalismo tiene una cara político-militar (vasallaje, feudo, homenaje) y una cara socioeconómica (señorío, servidumbre, rentas). Distinguir ambas evita reducirlo a 'la época de los castillos'. Repasa: disolución del Imperio carolingio, la 'pirámide' feudal, obligaciones recíprocas señor-vasallo y diferencias entre siervo y esclavo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7d8yi0006vw3iprfa7akr",
+      "n": 7,
+      "topic": "Edad Media",
+      "topicId": "cmrr1k22p0056hi3nnfnp8mso",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En la Europa occidental medieval, políticamente fragmentada, ¿qué papel desempeñó la Iglesia católica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Careció por completo de influencia política y se limitó a lo espiritual, sin intervenir en el gobierno ni en la economía de los reinos.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Fue la principal institución de cohesión: unificaba la cultura escrita, legitimaba a los reyes y daba un marco moral común.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Fue un organismo puramente religioso, sin tierras ni rentas propias, que vivía de la caridad ocasional de los fieles.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Estuvo del todo subordinada a un emperador que nombraba y destituía a los papas según su conveniencia.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El hilo que unía a una Europa dividida",
+          "content": "Sin un poder político común, la Iglesia proporcionaba lo que los reinos no podían: el latín como lengua de cultura, los monasterios como copistas del saber, la coronación como fuente de legitimidad de los monarcas y el derecho canónico como norma compartida. Su autoridad moral llegaba a toda la cristiandad por encima de las fronteras.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La Iglesia sí intervenía en la política: mediaba en conflictos, imponía la 'paz de Dios' y muchos obispos y abades eran señores con poder temporal. 2) No era pobre: acumuló grandes patrimonios de tierras, cobraba el diezmo y era el mayor propietario de Europa. 3) No estaba subordinada al emperador: la querella de las investiduras (siglos XI-XII) enfrentó al papado con el Imperio precisamente por quién nombraba a los obispos, y el papado defendió su autonomía.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Poder espiritual y poder temporal",
+          "content": "La Edad Media europea vivió una tensión permanente entre el papado y los poderes laicos por la primacía. Repasa: querella de las investiduras y Concordato de Worms, reforma gregoriana, órdenes de Cluny y del Císter, y el concepto de cristiandad como comunidad supranacional.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7d9qt000bvw3iqjeogsw1",
+      "n": 8,
+      "topic": "Edad Media",
+      "topicId": "cmrr1k22p0056hi3nnfnp8mso",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Más allá de su objetivo religioso y militar, ¿qué consecuencia duradera tuvieron las Cruzadas (siglos XI-XIII) para Europa occidental?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aseguraron el dominio cristiano permanente sobre Tierra Santa y detuvieron de forma definitiva y completa el avance del islam en toda la región.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Lograron la unificación política y religiosa inmediata del mundo cristiano con el mundo musulmán bajo un solo poder.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Provocaron el fin de Bizancio, propósito declarado de todas las expediciones desde la primera de ellas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Reactivaron el comercio con Oriente, enriquecieron a las ciudades italianas y devolvieron a Occidente el saber griego y árabe.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un efecto económico y cultural inesperado",
+          "content": "Las Cruzadas movilizaron hombres, barcos y dinero hacia Oriente durante dos siglos. Venecia, Génova y Pisa organizaron el transporte y el abastecimiento, y de ahí salieron fortalecidas como potencias comerciales. El contacto sostenido con Bizancio y el mundo islámico devolvió a Occidente textos de filosofía, medicina y matemáticas que allí se habían conservado.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El dominio cristiano de Tierra Santa no fue permanente: los Estados cruzados cayeron y en 1291 se perdió Acre, el último bastión. 2) No hubo unificación con el mundo musulmán: las Cruzadas ahondaron la hostilidad entre ambas esferas. 3) El fin de Bizancio no era el propósito, aunque la Cuarta Cruzada (1204) desvió su rumbo y saqueó Constantinopla, debilitando al Imperio bizantino que en teoría venía a auxiliar.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Cruzadas y renacimiento comercial",
+          "content": "Las Cruzadas coinciden con la reactivación del comercio y las ciudades en la Europa de los siglos XI-XIII. Repasa: motivaciones religiosas, económicas y demográficas de las Cruzadas, papel de las repúblicas marítimas italianas y transmisión del saber clásico a través de Al-Ándalus y Sicilia.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7daj0000gvw3islzlqe6s",
+      "n": 9,
+      "topic": "Edad Media",
+      "topicId": "cmrr1k22p0056hi3nnfnp8mso",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Entre los siglos XI y XIII, el aumento de la producción agrícola y el renacer del comercio transformaron la sociedad europea. ¿Qué cambio político favoreció ese proceso?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El fortalecimiento de los señores feudales, que fundaron ciudades con el fin de aumentar el número de siervos bajo su jurisdicción.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La desaparición del comercio de larga distancia, que obligó a cada señorío a vivir de forma por completo autárquica y aislada.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El auge de las ciudades y de una burguesía aliada con los reyes, que reforzó a la monarquía frente a la nobleza feudal.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El traslado del poder político a la Iglesia, que asumió el gobierno directo de los reinos y suprimió la figura de los monarcas.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ciudades y burguesía inclinan la balanza",
+          "content": "Las mejoras técnicas (arado pesado, rotación trienal, molinos) dieron excedentes; con ellos crecieron la población, las ferias y las ciudades. Sus habitantes, los burgueses, buscaban seguridad y libertad de comercio, y las obtenían del rey a cambio de dinero e impuestos. Con esos recursos el monarca pudo pagar funcionarios y tropas y depender menos de la hueste feudal.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Los señores feudales no impulsaron las ciudades: estas crecían al margen del señorío y sus 'fueros' liberaban a los vecinos de las cargas serviles; el dicho 'el aire de la ciudad hace libre' resume ese contraste. 2) El comercio de larga distancia no desapareció: al contrario, se reactivó con las rutas del Mediterráneo, del Báltico y las ferias de Champaña. 3) La Iglesia no sustituyó a los reyes: conservó gran influencia, pero el proceso reforzó a la monarquía, no al clero.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Del feudalismo a la monarquía autoritaria",
+          "content": "La recuperación económica de la plena Edad Media prepara el paso hacia los Estados centralizados de los siglos XV-XVI. Repasa: revolución agrícola medieval, resurgir urbano, gremios y ligas de mercaderes (Hansa), y la alianza entre el rey y la burguesía frente a la nobleza.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7df7g0001y19zrv5d3t86",
+      "n": 10,
+      "topic": "Renacimiento",
+      "topicId": "cmrr1k2nm0058hi3nd9so7q9d",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El humanismo renacentista supuso un cambio de enfoque respecto al pensamiento medieval. ¿En qué consistió ese cambio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Recuperó la cultura clásica y puso al ser humano y la vida terrena en el centro, frente al teocentrismo medieval.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Rechazó toda creencia religiosa y proclamó el ateísmo como el fundamento común de la nueva cultura y de la educación europea.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Se dedicó en exclusiva a inventar máquinas y herramientas, sin interés por las letras, la historia ni la filosofía.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Propuso volver a los valores feudales y a la sociedad de estamentos como modelo ideal de organización.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Del teocentrismo al antropocentrismo",
+          "content": "Los humanistas volvieron a leer directamente a los autores griegos y latinos y valoraron la dignidad, la razón y las capacidades del ser humano. Dios no desaparece de su mundo, pero el foco se desplaza: interesan la historia, la política, la lengua y la naturaleza como objetos de estudio en sí mismos. A eso se le llama antropocentrismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El humanismo no fue ateo: la mayoría de los humanistas eran cristianos y algunos, como Erasmo, buscaban una religión más interior; lo nuevo era el método, no la incredulidad. 2) No se limitó a la técnica: su núcleo eran los 'studia humanitatis' (gramática, retórica, historia, poesía, filosofía moral). 3) No propuso volver al feudalismo: miró hacia la Antigüedad clásica, no hacia la Edad Media, a la que llamó despectivamente 'edad media' u oscura.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Humanismo y Renacimiento",
+          "content": "El humanismo es la base intelectual del Renacimiento: recuperación de los clásicos, crítica de textos y confianza en el ser humano. Repasa: Petrarca, Erasmo, Pico della Mirandola, el mecenazgo de los Médici y la relación entre humanismo y difusión de la imprenta.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7dfzh0006y19zkfp5pvr2",
+      "n": 11,
+      "topic": "Renacimiento",
+      "topicId": "cmrr1k2nm0058hi3nd9so7q9d",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La imprenta de tipos móviles de Gutenberg (hacia 1450) tuvo efectos que van mucho más allá de la técnica. ¿Cuál fue su consecuencia histórica principal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Se creó por orden expresa de la Iglesia para imprimir solo la Biblia y los libros de culto y controlar mejor lo que la gente podía leer.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Tuvo un efecto muy escaso hasta el siglo XVIII, cuando por fin se autorizó su uso fuera de los monasterios.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Multiplicó y abarató la circulación de textos, lo que aceleró la difusión de ideas nuevas y las polémicas del siglo siguiente.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Eliminó de un día para otro y por ley la copia manuscrita, prohibida desde entonces en toda Europa.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ideas que viajan más rápido y más lejos",
+          "content": "Antes de la imprenta, copiar un libro llevaba meses y costaba una fortuna. Con tipos móviles y prensa se producían cientos de ejemplares idénticos en poco tiempo. El resultado fue una circulación de textos sin precedentes: tratados humanistas, panfletos, obras científicas y polémicas religiosas llegaron a un público amplio y difícil de controlar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La imprenta no fue una iniciativa de la Iglesia ni se limitó a la Biblia: Gutenberg era un artesano que buscaba un negocio, y pronto se imprimió de todo, incluidos textos que la Iglesia condenaría. 2) Su impacto fue inmediato: en 1500 ya había imprentas en más de 200 ciudades europeas y millones de ejemplares en circulación. 3) No prohibió el manuscrito: la copia a mano convivió con la imprenta durante décadas y siguió usándose para ciertos documentos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Revolución de la imprenta",
+          "content": "La imprenta es una condición técnica de fenómenos posteriores: Reforma, revolución científica, Ilustración, opinión pública. Repasa: los incunables, el índice de libros prohibidos como respuesta de la Iglesia y la relación entre imprenta y alfabetización.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7dgrm000by19zmgbrepx2",
+      "n": 12,
+      "topic": "Renacimiento",
+      "topicId": "cmrr1k2nm0058hi3nd9so7q9d",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La Reforma protestante iniciada por Lutero en 1517 no se explica solo por un desacuerdo teológico. ¿Qué factores confluyeron en su rápida expansión?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La crítica a las indulgencias y a la riqueza del clero, más el apoyo de príncipes que buscaban gobernar sin la tutela de Roma.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Un desacuerdo que giraba únicamente sobre la fecha exacta en que debía celebrarse la fiesta de la Pascua en los distintos reinos cristianos.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Una reforma promovida, redactada y proclamada por el propio papa para modernizar la Iglesia católica desde su cúpula.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Un efecto directo de la Revolución francesa, muy anterior, que ya había separado la Iglesia del Estado.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Doctrina, política e imprenta a la vez",
+          "content": "Lutero cuestionó la venta de indulgencias y afirmó que la salvación depende de la fe, no de las obras ni de la mediación de la Iglesia. Su mensaje prendió porque muchos príncipes alemanes vieron la oportunidad de quedarse con los bienes eclesiásticos y de gobernar sin la tutela de Roma, y porque la imprenta difundió sus escritos en semanas por todo el Sacro Imperio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No fue una disputa sobre el calendario: el cómputo de la Pascua fue un conflicto de la Iglesia antigua, resuelto siglos antes. 2) El papa no promovió la Reforma: la condenó, excomulgó a Lutero y respondió con la Contrarreforma y el Concilio de Trento. 3) La cronología lo impide: la Reforma es de 1517 y la Revolución francesa, de 1789; la Reforma es muy anterior, no una consecuencia de aquella.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Reforma y Contrarreforma",
+          "content": "La Reforma rompió la unidad religiosa de Europa occidental y desató guerras de religión. Repasa: las 95 tesis, luteranismo, calvinismo y anglicanismo, la paz de Augsburgo (1555) con el principio 'cuius regio, eius religio' y la respuesta católica en Trento.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7dhjp000gy19zou9n5q8p",
+      "n": 13,
+      "topic": "Renacimiento",
+      "topicId": "cmrr1k2nm0058hi3nd9so7q9d",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Los viajes oceánicos ibéricos de finales del siglo XV respondieron a varias causas que confluyeron. ¿Cuáles fueron?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El propósito de demostrar que la Tierra era esférica y no plana, frente a la creencia entonces general de que el planeta era una superficie llana.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una finalidad únicamente misionera y religiosa, sin ningún interés comercial ni político de las coronas ibéricas.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La necesidad de mercados para las manufacturas creada por la Revolución industrial de esos mismos años.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Buscar rutas directas a Asia sin intermediarios, con mejores técnicas de navegación y monarquías capaces de financiarlas.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Comercio, técnica y Estado",
+          "content": "Tras la caída de Constantinopla (1453), las rutas del Mediterráneo oriental quedaron bajo control otomano y encarecieron las especias. Portugal y Castilla buscaron llegar a Asia por mar, apoyadas en la carabela, la brújula y el astrolabio, y en unas monarquías ya unificadas que podían costear y organizar los viajes. El resultado fue la apertura de rutas atlánticas y la llegada de Colón a América en 1492.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La esfericidad de la Tierra ya era admitida por las personas instruidas desde la Antigüedad; el debate con Colón era sobre el tamaño del globo, no sobre su forma. 2) El motivo no fue solo misionero: la evangelización acompañó a la expansión, pero el impulso central era el acceso a las riquezas del comercio oriental y a nuevas fuentes de metales. 3) La Revolución industrial es de finales del siglo XVIII: no pudo causar viajes ocurridos trescientos años antes.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Expansión europea y economía-mundo",
+          "content": "Los descubrimientos abren la economía atlántica y la primera globalización: metales americanos, plantación esclavista, intercambio de cultivos. Repasa: exploración portuguesa de África, Tratado de Tordesillas y las consecuencias demográficas y económicas de la conquista de América.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7dthi0001bqodqalccjym",
+      "n": 14,
+      "topic": "Ilustración",
+      "topicId": "cmrr1k377005ahi3nf32xb9i4",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué idea central define a la Ilustración del siglo XVIII?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que el poder de los reyes procede de forma directa de Dios y por eso no puede ser cuestionado, limitado ni discutido por parte de los súbditos.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que la razón, no la tradición ni la autoridad revelada, debe guiar la vida social, con derechos naturales y poder limitado.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Que la fe religiosa debe sustituir por completo a la ciencia como única vía válida para conocer el mundo y la sociedad.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Que la organización ideal es la de los tres estamentos medievales, con privilegios para la nobleza y el clero.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La razón como guía",
+          "content": "Los ilustrados confiaban en que, usando la razón y la crítica, se podían mejorar las leyes, la economía y la educación. De ahí sus banderas: derechos naturales (vida, libertad, propiedad), separación de poderes, tolerancia religiosa, igualdad ante la ley y soberanía que reside en la nación. Kant lo resumió como 'atrévete a pensar por ti mismo'.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El origen divino y absoluto del poder real es la doctrina que la Ilustración combate: frente a ella opone el contrato social y la soberanía popular. 2) Los ilustrados no subordinaron la ciencia a la fe: al contrario, tomaron el método científico como modelo de conocimiento y criticaron la superstición. 3) La sociedad estamental con privilegios hereditarios es precisamente lo que denunciaron como injusto e irracional.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Ilustración y pensamiento político moderno",
+          "content": "La Ilustración es la matriz intelectual de las revoluciones atlánticas y del liberalismo. Repasa: Locke y los derechos naturales, Montesquieu y la división de poderes, Rousseau y el contrato social, Voltaire y la tolerancia, y la Enciclopedia de Diderot y D'Alembert.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7du9u0006bqod0bpsf8uw",
+      "n": 15,
+      "topic": "Ilustración",
+      "topicId": "cmrr1k377005ahi3nf32xb9i4",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Montesquieu propuso dividir el poder del Estado en legislativo, ejecutivo y judicial. ¿Cuál es la finalidad de esa división?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Agilizar la acción del gobierno concentrando la decisión final en un solo órgano capaz de responder con la mayor rapidez posible.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Reunir las tres funciones en manos del monarca para reforzar la unidad, la disciplina y la eficacia del conjunto del Estado.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Suprimir toda forma de gobierno y de instituciones y dejar que la sociedad se organice sola, sin ninguna autoridad política.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Evitar la tiranía haciendo que cada poder controle a los demás, de modo que ninguno concentre toda la autoridad.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Que el poder frene al poder",
+          "content": "Montesquieu observó que quien hace las leyes, las aplica y juzga su cumplimiento puede gobernar a su antojo. Separando esas funciones en órganos distintos y dándoles capacidad de vigilarse entre sí, se protege la libertad del ciudadano. Es el principio de los 'pesos y contrapesos'.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La división de poderes no busca rapidez: al contrario, introduce controles que hacen la decisión más lenta, pero más segura frente al abuso. 2) Reunir las tres funciones en el monarca es el absolutismo, justo el modelo que Montesquieu quiere superar. 3) No propone abolir el gobierno: propone organizarlo para que ningún órgano quede sin control, que es lo contrario del anarquismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "División de poderes",
+          "content": "El principio de Montesquieu (Del espíritu de las leyes, 1748) pasó a las constituciones modernas, empezando por la de Estados Unidos. Repasa: funciones de cada poder, la idea de contrapesos y la diferencia entre separación rígida (presidencialismo) y colaboración de poderes (parlamentarismo).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7dv23000bbqoduagl7yrs",
+      "n": 16,
+      "topic": "Ilustración",
+      "topicId": "cmrr1k377005ahi3nf32xb9i4",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué aportó la independencia de las Trece Colonias (1776) a la historia política moderna?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El establecimiento de una monarquía de tipo británico, con un rey propio, una cámara de lores hereditaria y una nobleza con títulos.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una república con soberanía popular y constitución escrita, primera gran aplicación de las ideas ilustradas a un Estado nuevo.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Un cambio de alcance local, sin repercusión fuera de América del Norte ni influencia sobre otros procesos políticos.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La instauración de una democracia directa sin representantes, con el voto en persona de cada una de las leyes.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Principios ilustrados hechos gobierno",
+          "content": "La Declaración de Independencia invocó los derechos naturales y el derecho del pueblo a darse su propio gobierno. La Constitución de 1787 organizó una república federal con poderes separados y contrapesos. Por primera vez, un Estado nuevo se fundaba de forma deliberada sobre la teoría política ilustrada.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No se creó una monarquía: los constituyentes rechazaron la figura del rey y optaron por un presidente electo y con mandato temporal. 2) La repercusión fue enorme: la independencia estadounidense sirvió de referencia a la Revolución francesa y a las independencias hispanoamericanas. 3) No fue una democracia directa: se diseñó un sistema representativo, y además el voto estaba restringido por criterios de propiedad, sexo y condición.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Revoluciones atlánticas",
+          "content": "La independencia de Estados Unidos abre el ciclo de revoluciones liberales de fines del siglo XVIII y principios del XIX. Repasa: causas del conflicto con Gran Bretaña, Declaración de Independencia, Constitución de 1787 y su influencia en el constitucionalismo posterior.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7dvue000gbqodv9lq3exw",
+      "n": 17,
+      "topic": "Ilustración",
+      "topicId": "cmrr1k377005ahi3nf32xb9i4",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La Revolución francesa (1789) estalló por la convergencia de varias causas. ¿Cuál es la explicación más completa de su origen inmediato?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Crisis fiscal del absolutismo, privilegios estamentales, ideas ilustradas y malas cosechas; el Tercer Estado exigía representación real.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Una invasión militar extranjera que ocupó la ciudad de París, disolvió las instituciones del reino y derrocó por la fuerza a la monarquía francesa.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La decisión personal del rey Luis XVI, que resolvió abolir de forma voluntaria su trono y proclamar la república.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una guerra campesina aislada, sin participación de las ciudades ni de los sectores burgueses ilustrados.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Varias tensiones que estallan juntas",
+          "content": "La monarquía estaba endeudada por las guerras y no podía cobrar más a los privilegiados. Al convocar los Estados Generales en 1789, el Tercer Estado —casi toda la población— se negó a que su voto valiera igual que el de dos minorías privilegiadas. Sobre ese conflicto pesaban las ideas ilustradas y una crisis de subsistencias por las malas cosechas. De ahí se pasó a la Asamblea Nacional y a la toma de la Bastilla.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hubo invasión extranjera en el origen: las guerras contra Francia vinieron después, en 1792, como reacción de las monarquías europeas. 2) Luis XVI no abdicó voluntariamente: intentó frenar el proceso, huyó en 1791 y finalmente fue juzgado y ejecutado. 3) No fue solo una revuelta campesina: la dirección política la tomaron abogados, periodistas y comerciantes de las ciudades, aunque el campo también se levantó (el 'Gran Miedo').",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Antiguo Régimen y Revolución",
+          "content": "La Revolución francesa liquida la sociedad estamental y proclama la Declaración de Derechos del Hombre y del Ciudadano. Repasa: sociedad de órdenes, Estados Generales, fases de la Revolución (monárquica, republicana, del Terror, Directorio) y el ascenso de Napoleón.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e0l80001fo6gys1f2vih",
+      "n": 18,
+      "topic": "Revoluciones de 1848",
+      "topicId": "cmrr1k3wg005chi3ni8pnnljo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El Congreso de Viena (1815) intentó reconstruir el orden europeo anterior a la Revolución. ¿Cómo se relacionan ese orden y las revoluciones de 1848?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1848 fue una reacción monárquica y conservadora dirigida contra las repúblicas que ya gobernaban entonces en la mayor parte de Europa occidental.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El Congreso de Viena fundó la Sociedad de Naciones, y 1848 fue el movimiento que exigió disolver ese organismo.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Viena restauró las monarquías legitimistas, y 1848 fue la reacción liberal y nacional que reclamó constituciones y autogobierno.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "1848 buscó restaurar el Imperio romano y unificar el continente bajo una sola corona hereditaria.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Restauración y respuesta",
+          "content": "Tras derrotar a Napoleón, las potencias reunidas en Viena repusieron a los reyes 'legítimos', redibujaron fronteras sin consultar a los pueblos y formaron la Santa Alianza para sofocar revoluciones. Contra ese sistema, en 1848 una oleada de levantamientos pidió constituciones, libertades y el derecho de cada nación a gobernarse: es la 'primavera de los pueblos'.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 1848 no fue conservadora: fue liberal y nacionalista, y en varios países había monarquías absolutas, no repúblicas, que era justo lo que se quería reformar. 2) La Sociedad de Naciones se fundó en 1919, tras la Primera Guerra Mundial; el Congreso de Viena organizó el 'Concierto de Europa', que es otra cosa. 3) Nadie pretendía restaurar el Imperio romano: el objetivo era el Estado-nación constitucional, no un imperio universal.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Restauración, liberalismo y nación",
+          "content": "El periodo 1815-1848 enfrenta el principio de legitimidad con el de soberanía nacional. Repasa: Congreso de Viena y Santa Alianza, oleadas revolucionarias de 1820 y 1830, y los resultados desiguales de 1848 (Segunda República francesa, Parlamento de Fráncfort, caída de Metternich).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e1da0006fo6g7l74m4gq",
+      "n": 19,
+      "topic": "Revoluciones de 1848",
+      "topicId": "cmrr1k3wg005chi3ni8pnnljo",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿Qué novedad, respecto a las revoluciones anteriores, aparece con claridad en 1848?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Las demandas de los trabajadores industriales se presentan como un programa propio, distinto del de la burguesía liberal.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Fue la primera revolución protagonizada de forma exclusiva por campesinos que reclamaban la abolición de la servidumbre y el reparto de las tierras.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Trabajadores y burguesía compartieron exactamente los mismos objetivos, sin ninguna tensión entre unos y otros.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El conflicto tuvo un carácter puramente religioso, entre confesiones cristianas rivales por el Estado.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La 'cuestión social' se vuelve visible",
+          "content": "En 1848, sobre todo en Francia, los obreros no solo pidieron libertades políticas: exigieron talleres nacionales y garantía de empleo. Cuando el nuevo gobierno republicano los cerró, estalló la insurrección de junio en París, reprimida a sangre y fuego. Ese choque entre la 'república política' y la 'república social' anuncia la separación futura entre liberalismo y socialismo. Ese mismo año se publicó el Manifiesto Comunista.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No fue una revolución solo campesina: aunque en Europa central se abolió la servidumbre, el rasgo nuevo fue la presencia autónoma del proletariado urbano. 2) Trabajadores y burguesía no compartían el mismo programa: coincidían al derribar al absolutismo, pero diferían sobre la propiedad, el trabajo y el sufragio, y esa fractura se hizo pública en 1848. 3) No fue un conflicto religioso: las divisiones decisivas fueron políticas y sociales, no confesionales.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Liberalismo, nacionalismo y socialismo",
+          "content": "1848 marca el momento en que el movimiento obrero se distingue del liberalismo burgués. Repasa: socialismo utópico y socialismo 'científico', el Manifiesto Comunista, las jornadas de junio en París y el fracaso político de la oleada revolucionaria.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e25b000bfo6gjegqxax4",
+      "n": 20,
+      "topic": "Revoluciones de 1848",
+      "topicId": "cmrr1k3wg005chi3ni8pnnljo",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El nacionalismo del siglo XIX sostiene que cada nación debe constituir su propio Estado. ¿En qué procesos históricos se concretó ese principio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "En la ruptura inmediata de Francia y de Gran Bretaña, que se dividieron cada una en varios Estados regionales independientes entre sí.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En la creación de un único Estado europeo que integró bajo un gobierno común a todas las naciones del continente.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En las unificaciones de Italia (1861) y de Alemania (1871), que reunieron en un Estado territorios antes fragmentados.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "En la expansión de los imperios multinacionales, que incorporaron por la fuerza nuevas nacionalidades a su territorio.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Unir lo disperso en nombre de la nación",
+          "content": "Hasta mediados del siglo XIX, Italia y Alemania eran conjuntos de reinos, ducados y ciudades. El nacionalismo, junto con la acción política de figuras como Cavour y Bismarck y varias guerras, logró unificar cada uno de esos espacios en un solo Estado nacional. Son los ejemplos clásicos del nacionalismo 'unificador'.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Francia y Gran Bretaña no se fragmentaron: ya eran Estados nacionales consolidados y el nacionalismo del XIX reforzó su cohesión. 2) No surgió un Estado europeo único: esa idea es muy posterior y de otra naturaleza (integración voluntaria, no nación). 3) Los imperios multinacionales (Austria-Hungría, Imperio otomano, Rusia) sufrieron el efecto contrario: el nacionalismo alimentó movimientos que buscaban separarse de ellos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Nacionalismo unificador y disgregador",
+          "content": "El nacionalismo puede unir territorios (Italia, Alemania) o fragmentar imperios (Balcanes). Repasa: etapas de la unificación italiana y alemana, el papel de Prusia y del Piamonte, y la 'cuestión de las nacionalidades' en el Imperio austrohúngaro.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e2xc000gfo6gi4ftwha5",
+      "n": 21,
+      "topic": "Revoluciones de 1848",
+      "topicId": "cmrr1k3wg005chi3ni8pnnljo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Las independencias de la América española (hacia 1808-1826) forman parte del ciclo revolucionario atlántico. ¿Qué las vincula con ese ciclo y qué las precipitó?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fueron una consecuencia directa de la crisis económica mundial de 1929 y del hundimiento del comercio internacional de esos años.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Comparten las ideas ilustradas y liberales del ciclo atlántico, y se precipitaron con la ocupación napoleónica de España.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Conservaron la monarquía absoluta como forma de gobierno, elegida libremente por la mayoría de los nuevos países independientes.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Se produjeron sin ninguna relación con lo que ocurría en Europa, por dinámicas locales y del todo aisladas del ciclo atlántico.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Mismas ideas, detonante europeo",
+          "content": "Los criollos americanos conocían a Locke, a Rousseau y el ejemplo de Estados Unidos y de Francia. Cuando Napoleón invadió España en 1808 y forzó la abdicación de los Borbones, se abrió la pregunta de dónde residía la soberanía en ausencia del rey. Se formaron juntas de gobierno y de ahí, en pocos años, se pasó a la independencia y, en la mayoría de los casos, a la forma republicana.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La cronología lo descarta: las independencias son de las primeras décadas del siglo XIX, más de un siglo antes de la crisis de 1929. 2) La mayoría de los nuevos Estados adoptó repúblicas; las excepciones monárquicas (el efímero imperio de Iturbide en México, el Brasil independiente) fueron minoritarias o de otra matriz. 3) No fueron procesos aislados: la ocupación de España, la Constitución de Cádiz de 1812 y el clima ideológico atlántico influyeron de forma decisiva.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Independencias hispanoamericanas",
+          "content": "El proceso combina causas internas (descontento criollo, reformas borbónicas) y externas (Ilustración, independencia de EE. UU., crisis de la monarquía española). Repasa: juntas de 1810, campañas de Bolívar y San Martín, Constitución de Cádiz y el mapa político de la América independiente.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e7iw0001xv3o3x7ansh8",
+      "n": 22,
+      "topic": "Imperialismo e Industrialización",
+      "topicId": "cmrr1k4d6005ehi3no5n306ln",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La Revolución industrial comenzó en Gran Bretaña hacia 1760-1780. ¿Qué explica que ese proceso arrancara allí antes que en otros países?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un decreto del gobierno británico que ordenó industrializar el país en un plazo fijo, con metas de producción para cada sector económico.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El hecho de que Gran Bretaña tuviera en ese momento, con gran diferencia, la población más numerosa de Europa.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El descubrimiento de grandes yacimientos de petróleo en las islas británicas hacia mediados del siglo XVIII.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La confluencia de capital comercial, carbón y hierro, mano de obra desplazada del campo, mercados coloniales e innovación técnica.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Una suma de condiciones, no una causa única",
+          "content": "Gran Bretaña reunió a la vez varios factores: beneficios del comercio atlántico y colonial que se pudieron invertir; yacimientos de carbón y hierro cerca de los centros de producción; campesinos expulsados de las tierras comunales (cercamientos) disponibles como asalariados; un imperio que ofrecía materias primas y mercados; y un clima favorable a la innovación (patentes, sociedades científicas) que dio la máquina de vapor y las máquinas textiles.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hubo ningún decreto: la industrialización fue un proceso gradual impulsado por empresarios privados, no una orden del Estado. 2) La población británica no era la mayor de Europa —Francia y Rusia tenían más habitantes—; lo decisivo fue la combinación de recursos, capital y mercados, no el número. 3) El petróleo no tuvo papel en la primera industrialización, basada en el carbón; se volvería central recién en la segunda fase, a finales del siglo XIX.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Primera y segunda Revolución industrial",
+          "content": "La primera fase (carbón, vapor, textil, hierro) es británica; la segunda (electricidad, petróleo, acero, química) suma a Alemania y Estados Unidos. Repasa: revolución agrícola y cercamientos, innovaciones textiles, el ferrocarril y las consecuencias sociales de la fábrica.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e8az0006xv3o02vaztol",
+      "n": 23,
+      "topic": "Imperialismo e Industrialización",
+      "topicId": "cmrr1k4d6005ehi3no5n306ln",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La industrialización transformó la estructura social. ¿Qué cambio produjo respecto a la sociedad del Antiguo Régimen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Restableció el vínculo entre el señor y el siervo propio del feudalismo, con trabajo obligatorio y personas atadas de por vida a la tierra.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Eliminó las diferencias sociales y económicas, de manera que todos los habitantes pasaron a tener ingresos iguales.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Convirtió a todos los trabajadores en propietarios de tierras y talleres, sin que existiera el trabajo asalariado.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Sustituyó la sociedad de estamentos por una sociedad de clases: una burguesía dueña del capital y un proletariado asalariado.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De estamentos a clases",
+          "content": "En el Antiguo Régimen la posición social se heredaba y venía marcada por el nacimiento (nobleza, clero, tercer estado) y por privilegios jurídicos. La industrialización impuso otra división: la posición depende ahora de la relación con los medios de producción. Quien es dueño de la fábrica y del capital forma la burguesía; quien solo dispone de su fuerza de trabajo y recibe un salario forma el proletariado.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hubo vuelta al feudalismo: el obrero de fábrica es jurídicamente libre y vende su trabajo por contrato, a diferencia del siervo adscrito a la tierra. 2) Las diferencias no desaparecieron: al contrario, en la primera industrialización crecieron la desigualdad y la pobreza urbana. 3) Los trabajadores no se volvieron propietarios: el rasgo definitorio de la nueva sociedad es, precisamente, la extensión del trabajo asalariado.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Sociedad de clases y movimiento obrero",
+          "content": "La sociedad industrial genera nuevos conflictos y nuevas organizaciones. Repasa: condiciones de vida obreras, ludismo, sindicatos, cartismo, y las corrientes que buscan responder a la 'cuestión social' (liberalismo social, socialismo, doctrina social de la Iglesia).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e92y000bxv3on2v5ol6r",
+      "n": 24,
+      "topic": "Imperialismo e Industrialización",
+      "topicId": "cmrr1k4d6005ehi3no5n306ln",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El imperialismo europeo del siglo XIX tuvo un fuerte componente económico. ¿En qué consistía ese componente?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El único móvil de la expansión era difundir una religión, sin ningún interés por los recursos ni el comercio.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Las economías industriales buscaban en las colonias materias primas baratas y mercados protegidos para sus manufacturas.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Las colonias se adquirían para reducir de forma deliberada la riqueza y la industria del país colonizador.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Se trataba de una expansión puramente defensiva, sin ninguna dimensión comercial ni financiera detrás.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Materias primas, mercados e inversiones",
+          "content": "La gran industria necesitaba algodón, caucho, minerales y aceites que Europa no producía, y buscaba dónde vender un volumen creciente de manufacturas y dónde invertir capitales con alta rentabilidad. Las colonias aseguraban ambas cosas mediante el control político, que permitía imponer condiciones de intercambio favorables a la metrópoli. A ese motivo se sumaban el prestigio nacional y la estrategia militar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La evangelización acompañó al imperialismo y sirvió para justificarlo, pero no era el móvil central: las decisiones las tomaban gobiernos y empresas atendiendo a intereses materiales. 2) Ninguna potencia colonizaba para empobrecerse: el objetivo era extraer beneficios, no perderlos. 3) No era defensivo: la 'carrera' por África y Asia fue una expansión ofensiva y planificada, con dimensión comercial y financiera evidente.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Causas del imperialismo",
+          "content": "El imperialismo del XIX combina causas económicas, políticas, estratégicas, demográficas e ideológicas. Repasa: relación entre segunda industrialización e imperialismo, reparto de África, y las críticas contemporáneas al colonialismo (Hobson, Lenin).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7e9v2000gxv3ohbmvamlg",
+      "n": 25,
+      "topic": "Imperialismo e Industrialización",
+      "topicId": "cmrr1k4d6005ehi3no5n306ln",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "En la Conferencia de Berlín (1884-1885) las potencias europeas fijaron reglas para el reparto de África. ¿Qué caracterizó ese proceso?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Las potencias europeas se repartieron el continente y trazaron fronteras que ignoraron a los pueblos y reinos de África.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Los Estados africanos fueron invitados en pie de igualdad para repartirse, a su vez, territorios de los países de Europa.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La conferencia reconoció la independencia de las naciones africanas y garantizó sus fronteras y sus gobiernos.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Fue un tratado de paz que puso fin a una guerra entre dos grandes reinos africanos del centro del continente.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un mapa dibujado en Europa",
+          "content": "Convocada por Bismarck, la Conferencia de Berlín estableció que para reclamar un territorio africano había que ocuparlo efectivamente y notificarlo a las demás potencias. En la práctica legalizó la 'carrera por África': en pocos años casi todo el continente quedó bajo dominio europeo, con fronteras rectas trazadas sobre el mapa que partían etnias y unían pueblos enemigos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Ningún Estado africano participó en la conferencia: las decisiones las tomaron solo potencias europeas (más Estados Unidos y el Imperio otomano como observadores). 2) No se reconoció ninguna independencia: el efecto fue el contrario, la ocupación casi total de África. 3) No fue un tratado de paz entre reinos africanos: fue un acuerdo entre colonizadores para no chocar entre sí durante el reparto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Reparto de África y sus consecuencias",
+          "content": "Las fronteras coloniales trazadas entonces siguen siendo, en gran medida, las de los Estados africanos actuales, y explican parte de sus conflictos. Repasa: 'carrera por África', principio de ocupación efectiva, casos del Congo y de Sudáfrica, y las formas de resistencia africana.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7ean2000lxv3od8m3fewo",
+      "n": 26,
+      "topic": "Imperialismo e Industrialización",
+      "topicId": "cmrr1k4d6005ehi3no5n306ln",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "El imperialismo del siglo XIX se acompañó de un discurso que presentaba la dominación europea como una 'misión civilizadora'. ¿Qué función cumplía ese discurso?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Era una crítica anticolonial que pedía a los gobiernos europeos renunciar de inmediato a sus conquistas.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Constituía la única causa real del imperialismo: detrás de la expansión no existía interés material alguno.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Daba una justificación moral e ideológica a una expansión movida en el fondo por intereses económicos y estratégicos.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "No tenía influencia sobre la opinión pública europea, contraria en su mayoría a la posesión de colonias.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Justificar lo que ya se hacía por interés",
+          "content": "La idea de que Europa llevaba el progreso, la civilización y el cristianismo a pueblos 'atrasados' —reforzada por versiones del darwinismo social y por teorías racistas— servía para presentar la conquista como un deber generoso. Así se ocultaba o embellecía el móvil económico y geopolítico y se ganaba el apoyo de la opinión pública metropolitana.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No era una crítica: existieron voces anticolonialistas, pero el discurso de la 'misión civilizadora' iba en sentido opuesto, a favor de la expansión. 2) No era la única causa: las causas materiales (materias primas, mercados, inversiones, estrategia) eran centrales; el discurso las acompañaba y las legitimaba. 3) Sí influía en la opinión pública: la prensa, la escuela y las exposiciones coloniales difundieron con éxito el orgullo imperial en las metrópolis.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Ideología del imperialismo",
+          "content": "Junto a las causas económicas y políticas, el imperialismo tuvo una dimensión cultural: eurocentrismo, racismo 'científico', darwinismo social. Repasa: la 'carga del hombre blanco', el nacionalismo de fines del siglo XIX y las relaciones entre ciencia, prejuicio y poder.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7efdo0001ddigzgszjkl1",
+      "n": 27,
+      "topic": "Guerras Mundiales",
+      "topicId": "cmrr1k4x3005ghi3n487nbc0v",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Entre 1870 y 1914 las potencias industriales pasaron de una influencia comercial informal a dominar de forma directa vastos territorios de ultramar. ¿Qué distingue a esta fase, llamada imperialismo colonial, y cómo se enlaza con la guerra que estalló en 1914?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un intercambio mercantil libre y en pie de igualdad, sin que la potencia llegara a ocupar, administrar ni gobernar el territorio de la otra parte.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El control político directo del territorio en vez del simple comercio; la competencia por él tensó a las potencias antes de la guerra.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Un sistema de alianzas entre iguales en el que la colonia y la metrópoli compartían el gobierno y la política común.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El abandono progresivo de las posesiones de ultramar por resultar demasiado costosas de mantener y defender.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Del comercio al gobierno del territorio",
+          "content": "En etapas anteriores, Europa comerciaba con Asia y África desde factorías costeras sin gobernar el interior. Entre 1870 y 1914 las potencias industriales ocuparon, administraron y militarizaron enormes territorios para garantizarse materias primas, mercados protegidos y bases estratégicas. Esa competencia por repartirse el mundo tensó las relaciones entre las grandes potencias y fue uno de los antecedentes de la guerra de 1914.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El intercambio mercantil libre y sin ocupación describe la fase anterior de influencia informal, no el imperialismo colonial, que se define por el control político directo. 2) La relación colonia-metrópoli no era entre iguales ni de gobierno compartido: la metrópoli decidía y la colonia obedecía. 3) No hubo abandono de colonias en ese periodo: al contrario, fue el momento de máxima expansión, con la ocupación de casi toda África y de buena parte de Asia.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Imperialismo y origen de la Gran Guerra",
+          "content": "El imperialismo de fines del siglo XIX enlaza con las causas de la Primera Guerra Mundial: rivalidad colonial, carrera armamentista, sistema de alianzas y nacionalismo. Repasa: 'paz armada', crisis marroquíes, cuestión balcánica y el detonante de Sarajevo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7egc80006ddigf8zzy4mq",
+      "n": 28,
+      "topic": "Guerras Mundiales",
+      "topicId": "cmrr1k4x3005ghi3n487nbc0v",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En 1914, el asesinato del heredero austrohúngaro en Sarajevo desató en pocas semanas una guerra general. ¿Qué proceso previo explica que un incidente local escalara hasta convertirse en guerra mundial?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No existía tensión previa entre las potencias: la guerra nació de un malentendido diplomático repentino.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una rivalidad previa entre potencias por colonias y mercados y un sistema de alianzas que encadenó la entrada en guerra.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La guerra se declaró de común acuerdo entre las potencias para poner fin al colonialismo y liberar colonias.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Fue una crisis solo económica y financiera, sin dimensión política ni militar entre los Estados europeos.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un detonante sobre un polvorín",
+          "content": "Durante décadas, las grandes potencias habían competido por colonias, mercados y armamento, y se habían agrupado en dos bloques de alianzas (Triple Alianza y Triple Entente). Cuando Austria-Hungría, con respaldo alemán, declaró la guerra a Serbia, las alianzas activaron una reacción en cadena: Rusia movilizó, Alemania declaró la guerra a Rusia y a Francia e invadió Bélgica, lo que llevó a Gran Bretaña al conflicto.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Sí había tensión previa: la 'paz armada', las crisis marroquíes y balcánicas y la carrera naval venían de años atrás; no fue un malentendido súbito. 2) La guerra no se declaró para acabar con el colonialismo: los imperios coloniales entraron enteros en la contienda y movilizaron a sus colonias. 3) Tuvo una dimensión política y militar central: rivalidades de poder, nacionalismo y planes de guerra, no solo finanzas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Causas de la Primera Guerra Mundial",
+          "content": "Se suelen distinguir causas profundas (imperialismo, nacionalismo, militarismo, alianzas) y causa inmediata (atentado de Sarajevo). Repasa: los dos sistemas de alianzas, la 'guerra de movimientos' y la 'guerra de trincheras', y la entrada de Estados Unidos en 1917.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7ehac000bddigiaabn35k",
+      "n": 29,
+      "topic": "Guerras Mundiales",
+      "topicId": "cmrr1k4x3005ghi3n487nbc0v",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "La derrota de Japón en la Segunda Guerra Mundial (1945) tuvo consecuencias directas sobre la política interna de China. ¿Cuál fue el efecto principal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Unificó de inmediato a toda China bajo el gobierno nacionalista, que salió reforzado y sin rivales tras el largo conflicto contra Japón.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Colocó a China entera bajo administración japonesa permanente, sin cambios posteriores en su régimen político.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "No tuvo ningún efecto sobre la política interna de China, que continuó igual que antes de la guerra.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Dejó agotado al gobierno nacionalista y abrió el camino al triunfo comunista, que en 1949 proclamó la República Popular China.",
+          "isCorrect": true
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un vacío que llenó el Partido Comunista",
+          "content": "China llevaba desde 1937 resistiendo la invasión japonesa, lo que desgastó sobre todo al ejército nacionalista de Chiang Kai-shek. Cuando Japón capituló en 1945, la guerra civil entre nacionalistas y comunistas se reanudó con un gobierno nacionalista agotado y desprestigiado. El Partido Comunista de Mao Zedong ganó esa guerra y proclamó la República Popular China el 1 de octubre de 1949; los nacionalistas se replegaron a Taiwán.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El gobierno nacionalista no salió reforzado: la larga guerra contra Japón lo dejó exhausto, con la economía en crisis y una fuerte pérdida de apoyo popular. 2) China no quedó bajo administración japonesa: Japón fue el país derrotado y ocupado, no el ocupante de China después de 1945. 3) El efecto fue enorme, no nulo: la caída de Japón fue una de las condiciones que hizo posible el cambio de régimen en 1949.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Revolución china y Guerra Fría en Asia",
+          "content": "La victoria comunista en China (1949) desplazó el equilibrio de la Guerra Fría en Asia y precede a la guerra de Corea (1950-1953). Repasa: guerra sino-japonesa, guerra civil china y las consecuencias de la Segunda Guerra Mundial en el continente asiático.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7ei8r000gddig0vxlofn2",
+      "n": 30,
+      "topic": "Guerras Mundiales",
+      "topicId": "cmrr1k4x3005ghi3n487nbc0v",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Frente a la Gran Depresión de los años treinta, la política del New Deal en Estados Unidos buscó reactivar la economía. ¿Cuál fue su mecanismo central?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El recorte de todo el gasto público y la confianza en que el mercado, por sí solo, corrigiera el desequilibrio sin ayuda estatal.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El financiamiento de la recuperación únicamente con exportaciones industriales a las grandes potencias europeas.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El Estado intervino con obra pública, empleo y regulación para elevar la capacidad de compra y, con ella, la demanda interna.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El regreso inmediato y estricto al patrón oro como única medida, sin programas de empleo ni de gasto.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El Estado sostiene la demanda",
+          "content": "El New Deal partió de un diagnóstico: si millones de personas no tienen ingresos, no compran, y las fábricas no venden ni contratan. Para romper ese círculo, el gobierno de Roosevelt lanzó grandes programas de obra pública y empleo, ayudas sociales y regulación de la banca y la bolsa. El objetivo era poner dinero en manos de la gente para que el consumo reactivara la producción.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El New Deal no recortó el gasto ni dejó actuar solo al mercado: hizo lo contrario, aumentó la intervención y el gasto público. 2) No se apoyó en las exportaciones a Europa: Europa también estaba en crisis y el comercio mundial se había hundido; el eje fue el mercado interno. 3) Estados Unidos abandonó el patrón oro en 1933 justamente para tener margen de maniobra; volver a él no era la política, sino lo que se dejó atrás.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Crisis de 1929 y respuestas del Estado",
+          "content": "La Gran Depresión puso en duda la ortodoxia liberal y dio paso a un mayor papel económico del Estado, teorizado luego por Keynes. Repasa: causas del crac de 1929, mecanismos de propagación de la crisis y comparación entre el New Deal y otras respuestas nacionales a la Depresión.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7ej6w000lddige1jamf9k",
+      "n": 31,
+      "topic": "Guerras Mundiales",
+      "topicId": "cmrr1k4x3005ghi3n487nbc0v",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "El final de la Segunda Guerra Mundial reorganizó el mapa político mundial. ¿Cuáles fueron sus dos grandes consecuencias geopolíticas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El inicio de un orden bipolar entre Estados Unidos y la Unión Soviética y la aceleración de la descolonización en Asia y África.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La restauración intacta de los imperios coloniales europeos y el regreso al equilibrio entre varias potencias que había antes de 1914.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La creación de un gobierno mundial único que sustituyó a los Estados nacionales en la toma de todas las grandes decisiones políticas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El reparto de Europa entre Francia y Gran Bretaña, convertidas en las dos grandes superpotencias rivales de todo el periodo de posguerra.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos superpotencias y el fin de los imperios",
+          "content": "La guerra dejó a Europa arruinada y a dos potencias en la cima: Estados Unidos y la Unión Soviética, que encabezaron bloques rivales durante la Guerra Fría. Al mismo tiempo, las metrópolis europeas habían quedado debilitadas y los movimientos nacionalistas de sus colonias, reforzados: en las décadas siguientes decenas de países de Asia y de África lograron la independencia.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Los imperios coloniales no se restauraron intactos: entraron en una descomposición acelerada, y el mundo de 1914 (varias potencias europeas en equilibrio) no volvió. 2) No se creó un gobierno mundial: la ONU es una organización de Estados soberanos, no un poder por encima de ellos. 3) Ni Francia ni Gran Bretaña fueron superpotencias tras 1945: quedaron en segundo plano frente a Estados Unidos y la URSS.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Guerra Fría y descolonización",
+          "content": "1945 abre a la vez el enfrentamiento bipolar y el proceso de independencia del 'Tercer Mundo'. Repasa: conferencias de Yalta y Potsdam, creación de la ONU, doctrina Truman y plan Marshall, y las grandes fechas de la descolonización (India 1947, oleada africana de 1960).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7eo1i00017opxof4othbs",
+      "n": 32,
+      "topic": "Siglo XXI",
+      "topicId": "cmrr1k5cl005ihi3n4wlr9qte",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "La disolución de la Unión Soviética en 1991 puso fin al orden bipolar. ¿Cómo se explica ese desenlace?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Una crisis económica interna larga, reformas que no la resolvieron y la pérdida de Europa del Este, no una derrota militar.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La derrota de la Unión Soviética en una guerra directa y abierta contra Estados Unidos y el conjunto de sus aliados de Europa occidental.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Su integración voluntaria en la Comunidad Europea, que fue absorbiendo una tras otra a las repúblicas soviéticas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una catástrofe natural de gran escala que destruyó su capacidad productiva en unos pocos meses.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un derrumbe desde dentro",
+          "content": "La economía soviética, muy militarizada y poco productiva, llevaba años estancada. Las reformas de Gorbachov (perestroika y glásnost) buscaban modernizar el sistema, pero abrieron la crítica y aceleraron la crisis. En 1989 los países del bloque del Este se desligaron de Moscú sin intervención militar soviética; en 1991, tras un golpe fallido de la línea dura, las repúblicas se independizaron y la URSS dejó de existir.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No hubo derrota militar: la Guerra Fría no terminó en una guerra directa entre las superpotencias, que nunca llegó a producirse. 2) La URSS no se integró en la Comunidad Europea: sus repúblicas se convirtieron en Estados independientes, y solo las bálticas se acercarían a la Unión Europea años más tarde. 3) No fue una catástrofe natural: el colapso fue político y económico, resultado de décadas de problemas estructurales.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Fin de la Guerra Fría",
+          "content": "El derrumbe soviético cierra el siglo de las ideologías y abre un periodo de hegemonía estadounidense y de nuevas tensiones. Repasa: carrera armamentista, estancamiento brezhneviano, reformas de Gorbachov, caída del Muro de Berlín (1989) y disolución de la URSS (1991).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7eotg00067opxkbuujlj8",
+      "n": 33,
+      "topic": "Siglo XXI",
+      "topicId": "cmrr1k5cl005ihi3n4wlr9qte",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "¿En qué consiste la globalización económica que se intensifica desde finales del siglo XX?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un proceso por el cual cada país se vuelve autosuficiente y corta de forma deliberada sus vínculos externos.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una alianza de carácter militar entre las mayores economías del mundo para coordinar su política de defensa.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La integración creciente de mercados, producción y finanzas a escala mundial, que aumenta la interdependencia entre los países.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La sustitución de todas las monedas nacionales del planeta por una sola moneda de curso legal mundial.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un mundo más conectado y más interdependiente",
+          "content": "La globalización consiste en que bienes, capitales, información y personas circulan cada vez con menos trabas entre países. La abaratan y la aceleran el transporte en contenedores, las telecomunicaciones e internet, y la impulsan los acuerdos de libre comercio y las empresas multinacionales. Su rasgo distintivo es la interdependencia: lo que pasa en una economía repercute pronto en las demás.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La autosuficiencia y el aislamiento (autarquía) son lo contrario de la globalización, que se define por la apertura y la conexión. 2) No es una alianza militar: aunque tiene efectos políticos, la globalización es un fenómeno económico, tecnológico y cultural. 3) No implica una moneda única mundial: existen zonas con moneda común, como el euro, pero la mayoría de los países conserva la suya.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Globalización: oportunidades y críticas",
+          "content": "La globalización amplía el comercio y difunde tecnología, pero también se le atribuyen aumento de la desigualdad, deslocalización industrial y crisis financieras que se contagian. Repasa: OMC y bloques comerciales, empresas transnacionales y los debates entre globalización y los movimientos que la cuestionan.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7epli000b7opxdmjl7lqm",
+      "n": 34,
+      "topic": "Siglo XXI",
+      "topicId": "cmrr1k5cl005ihi3n4wlr9qte",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Bloques como la Unión Europea representan una forma de integración supranacional. ¿En qué consiste y para qué se creó?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Existen para cerrar las fronteras entre los países miembros y suspender de forma indefinida todo el comercio recíproco entre ellos.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Los Estados ceden parte de su soberanía a órganos comunes para la libre circulación y para alejar el riesgo de guerra entre ellos.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Suponen la desaparición completa de los Estados nacionales, que se disuelven y dejan de existir como tales.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Son acuerdos de tipo puramente cultural, sin ninguna función económica, política ni jurídica obligatoria.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Soberanía compartida para un fin común",
+          "content": "La integración europea nació tras la Segunda Guerra Mundial para unir económicamente a países que habían sido enemigos, empezando por el carbón y el acero. Con el tiempo se creó un mercado único, una moneda común para muchos de sus miembros y órganos con capacidad de dictar normas obligatorias. Los Estados siguen existiendo, pero delegan competencias en instituciones comunes.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La finalidad es la contraria a cerrar fronteras: se busca eliminar aduanas y controles internos y facilitar la circulación. 2) Los Estados nacionales no desaparecen: mantienen su gobierno, su ejército y buena parte de sus competencias; solo ceden algunas a la Unión. 3) No es un acuerdo solo cultural: la Unión legisla, tiene tribunales y políticas comunes con efectos jurídicos directos sobre los ciudadanos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Integración regional",
+          "content": "Junto a la Unión Europea existen otros esquemas de integración con distinto grado de profundidad. Repasa: de la CECA (1951) a la Unión Europea (Maastricht, 1993), el euro y el espacio Schengen, y la diferencia entre zona de libre comercio, unión aduanera y unión económica.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtg7eqdd000g7opxr3csnln2",
+      "n": 35,
+      "topic": "Siglo XXI",
+      "topicId": "cmrr1k5cl005ihi3n4wlr9qte",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "stem": "Problemas como el cambio climático, las pandemias y las crisis financieras se describen como desafíos transnacionales. ¿Qué implica esa característica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que afectan solo a los países pobres y no tienen ninguna repercusión sobre el orden mundial ni sobre las grandes potencias del planeta.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que sus causas y efectos cruzan las fronteras, así que ningún Estado los resuelve solo y hace falta cooperación internacional.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Que cada uno puede resolverse por completo dentro de las fronteras de un solo país, sin coordinación con otros.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Que son problemas del todo inéditos, sin ningún antecedente en la historia de las relaciones internacionales.",
+          "isCorrect": false
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Problemas que no respetan fronteras",
+          "content": "Un gas de efecto invernadero emitido en un país calienta todo el planeta; un virus surgido en una región llega en días a otros continentes; una crisis en un mercado financiero se contagia al resto. Como el problema no se detiene en la frontera, tampoco puede resolverlo una política nacional aislada: hacen falta acuerdos, organismos y compromisos compartidos entre Estados.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) No afectan solo a los países pobres: el cambio climático y las crisis financieras golpean también a las grandes potencias, aunque el impacto sea desigual. 2) No se resuelven dentro de una sola frontera: esa es justamente la definición de un problema transnacional. 3) No carecen de antecedentes: ya en el siglo XIX hubo conferencias sanitarias internacionales contra el cólera y crisis económicas de alcance mundial; lo nuevo es la escala y la velocidad.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Gobernanza global",
+          "content": "Los desafíos transnacionales han impulsado la cooperación multilateral y organismos especializados, con resultados desiguales. Repasa: sistema de la ONU y sus agencias, acuerdos ambientales (del Protocolo de Kioto al Acuerdo de París) y el debate sobre la eficacia de la cooperación internacional frente a los intereses nacionales.",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}
