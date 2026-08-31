@@ -1,0 +1,2038 @@
+{
+  "batch": "G53",
+  "phase": "G53 — Lote de reactivos: Física, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)",
+  "generatedAt": "2026-08-31",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago. El Plan de Implementación asigna el tier Sonnet a los lotes de contenido; el cierre de G52 anunciaba «Sonnet 4.6» pero este campo declara el modelo real de la sesión (corrección de G17).",
+  "institution": "IPN (Instituto Politécnico Nacional)",
+  "exam": "Concurso de Ingreso a Nivel Superior 2027",
+  "area": "Ingeniería y Ciencias Físico-Matemáticas (rama FISMAT)",
+  "subject": "Física",
+  "subjectId": "cmrr1l31q00a3hi3n607qhvfu",
+  "questionWeight": 20,
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G53: generar 35 reactivos para la materia de mayor brecha pendiente entre las instituciones activas del launch (UNAM + IPN Superior), decidiéndolo con datos reales. Brecha efectiva por pool (metodología G26: densidad 1500/270 = 5.5556 reactivos por punto de questionWeight; pools compartidos = meta de su celda de mayor peso): IPN·FISMAT·Física meta 111 (w20), verificados 35 → brecha 76 (la mayor); IPN:MATEMATICAS 63; IPN:QUIMICA 54; IPN·MEDBIO·Biología 52; UNAM:INGLES 33; IPN·SOCADM·Historia de México 33; UNAM·A1·Matemáticas 30. Se eligió Física de IPN FISMAT (subjectId cmrr1l31q00a3hi3n607qhvfu, questionWeight 20, sharedContentKey NULL — materia NO compartida, así que el lote descuenta brecha efectiva 1:1 cuando G54 lo verifique). Consulta en vivo a Supabase (2026-08-31): 35 verificados repartidos en los 14 temas 3/3/3/2/2/2/2/3/2/3/3/3/2/2. El lote prioriza los de menor cobertura: +3 a los 7 temas en 2 verificados y +2 a los 7 en 3 verificados → los 14 temas quedan en 5. Único lote previo de esta materia: G18 (→ G19, 35/35 auto-aprobados).",
+  "grounding": "2/35 SOURCED · 33/35 TEMARIO_ONLY. loadTopicChunks devolvió SourceChunk solo en Cinemática: 1 fragmento de ceneval_exanii_i.pdf p. 9 (ejemplo del Nuevo EXANI-I que distingue el concepto de VELOCIDAD = razón distancia/tiempo del de ACELERACIÓN). Procedencia CENEVAL — otra institución que la del examen destino; se anota (patrón G18/G33/G45/G49). Los 2 reactivos de Cinemática citan sourceChunks:[1] y transforman la tarea del ítem-semilla: el ejemplo de la guía es de identificación conceptual («¿qué enunciado involucra el concepto de velocidad?»); C1 lo convierte en un cálculo de rapidez media y C2 en discriminar rapidez constante (aceleración nula) de tres escenarios con aceleración. Los otros 13 temas no tienen fragmento fuente → TEMARIO_ONLY, redactados desde el temario oficial de FISMAT.",
+  "isCalcSubject": true,
+  "calcNote": "Física ES isCalcSubject (CALC_SUBJECT_KEYS incluye 'fisica', scripts/lib/blind-verification.ts). La sesión ciega de G54 recibirá requiresCalculation:true y el candado de G28 aplica a los 35. 21 de los 35 son numéricos y se recalcularon desde cero con Python (math), exigiendo para cada uno: (a) el valor coincide con la opción marcada correcta, (b) coincidencia ÚNICA contra las 4 opciones (tolerancia relativa 2 %), (c) opciones numéricas en orden ascendente. 21/21 en verde por dos vías independientes (check_numeric + recompute por fórmula). 0/35 con pasaje.",
+  "totalQuestions": 35,
+  "bankBefore": 1042,
+  "bankAfter": 1077,
+  "servibleBefore": 1038,
+  "servibleAfter": 1038,
+  "blindQueueBefore": 0,
+  "blindQueueAfter": 35,
+  "discrepancyQueue": 3,
+  "retired": 1,
+  "fisicaFismatBefore": {
+    "total": 35,
+    "verified": 35
+  },
+  "fisicaFismatAfter": {
+    "total": 70,
+    "verified": 35
+  },
+  "sourcedBankBefore": 282,
+  "sourcedBankAfter": 284,
+  "explanationLayers": 105,
+  "questionSourceChunks": 2,
+  "seed": "gen.py con semilla fija 53053 para la búsqueda del orden de inserción. Los 21 numéricos fijan su letra por el rango del valor correcto entre las 4 opciones ascendentes (regla G46 §7); los 14 conceptuales se asignaron a mano al objetivo global A9/B9/C9/D8, con ≥3 letras distintas en cada tema de ≥3 reactivos y ≤2 por letra por tema.",
+  "positionDistribution": {
+    "B": 9,
+    "A": 9,
+    "D": 8,
+    "C": 9
+  },
+  "difficultyDistribution": {
+    "BASIC": 7,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "formatDistribution": {
+    "PROBLEM_SOLVING": 21,
+    "MULTIPLE_CHOICE": 12,
+    "SENTENCE_COMPLETION": 2
+  },
+  "perTopic": {
+    "Cinemática": 2,
+    "Dinámica": 2,
+    "Trabajo y energía": 2,
+    "Momentum e impulso": 3,
+    "Gravitación": 3,
+    "Fluidos": 3,
+    "Termodinámica": 3,
+    "Ondas y sonido": 2,
+    "Óptica": 3,
+    "Electrostática": 2,
+    "Corriente eléctrica": 2,
+    "Magnetismo": 2,
+    "Inducción electromagnética": 3,
+    "Física moderna": 3
+  },
+  "perTopicId": {
+    "Cinemática": "cmrr1l37m00a5hi3n0nuo6d74",
+    "Dinámica": "cmrr1l3xo00a7hi3n6w2vlzv4",
+    "Trabajo y energía": "cmrr1l4k900a9hi3nvijwv2wq",
+    "Momentum e impulso": "cmrr1l54400abhi3ne1tiajuj",
+    "Gravitación": "cmrr1l5tg00adhi3n7c87lzal",
+    "Fluidos": "cmrr1l6e100afhi3n7a0w3yvo",
+    "Termodinámica": "cmrr1l6x700ahhi3nwa4pglxl",
+    "Ondas y sonido": "cmrr1l7h700ajhi3n4tua0c9q",
+    "Óptica": "cmrr1l7ys00alhi3nf2bgwato",
+    "Electrostática": "cmrr1l8fb00anhi3nzcmxn6jy",
+    "Corriente eléctrica": "cmrr1l93500aphi3nps3hcvdv",
+    "Magnetismo": "cmrr1l9po00arhi3n1ay5m5kv",
+    "Inducción electromagnética": "cmrr1la6500athi3nz5sx1rb1",
+    "Física moderna": "cmrr1lat400avhi3nhi2mxz1n"
+  },
+  "keySequenceByInsertOrder": "ABBABDBDCBDCBCABDACDBCACAADACDCABDC",
+  "qualityChecks": {
+    "calc": "21/21 numéricos recalculados desde cero con Python, coincidencia única contra las 4 opciones, opciones ascendentes. Verificado por dos rutas (check_numeric por lista de opciones + recompute por fórmula independiente).",
+    "lotValidation": "pnpm content:validate-batch --dir scripts/g53-lote → 0 violaciones (POSITION_SKEW / LETTER_CITATION / MALFORMED_OPTIONS / PASSAGE_LINK). Repetido como paso obligatorio de content:insert --lot-dir sobre los 14 archivos.",
+    "positionSkew": "A9 / B9 / C9 / D8 (25.7 / 25.7 / 25.7 / 22.9 %), confirmado por jsonb sobre options de las 35 filas tras insertar. Las cuatro letras dentro de 15-40 %.",
+    "cyclicRun": "Racha cíclica A→B→C→D máx 2, racha de misma letra máx 2 sobre la secuencia de 35 en orden de inserción (candado G16/G38). El orden dentro de cada tema se eligió por búsqueda aleatoria con semilla fija.",
+    "letterCitation": "0 citas por letra y 0 referencias posicionales en las 105 capas (regex de lot-validation.ts + POSITION_REF de G33). Las 35 capa 2 se titulan «Resolución paso a paso» / «Cómo se descarta cada opción» y describen los distractores por su valor o su contenido.",
+    "lengthCue": "Señuelo de longitud tie-aware medido sobre los 14 ítems con opciones-oración (los 21 de opción-valor quedan fuera, criterio G45/G46): «más larga» 3/14 = 21.4 %, «más corta» 3/14 = 21.4 %, ambos < 25 %, con varianza deliberada en los dos extremos.",
+    "formCues": "Lenguaje absolutista (G44 §6): 0.03 marcadores/opción en las 35 claves vs 0.05 en los 105 distractores; 0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/35.",
+    "duplicateOptions": "Hueco de G52 (lot-validation.ts no compara los TEXTOS de las opciones): auto-chequeo en gen.py → 0/35 con opciones textualmente duplicadas."
+  },
+  "crossItemLeakCheck": "Heurístico de 4-gramas sobre (stem+clave) y sobre la diagonal (clave ↔ distractores de todo el lote), en las dos direcciones (G38 §6 / G42 §8): 0 coincidencias no triviales.",
+  "copyright": "Cero reproducción de texto extenso del fragmento fuente de CENEVAL. Los 2 reactivos SOURCED usan el principio (velocidad como razón distancia/tiempo) con escenarios, datos y opciones nuevos.",
+  "nextPhase": "G54 = verificación ciega de este lote (segunda mitad del ciclo adversarial de G2), modelo Fable 5. LOTE DE CÁLCULO: isCalcSubject(\"Física\")=true → la sesión ciega recibe requiresCalculation:true y debe EJECUTAR cada cálculo con código real (candado G28) en los 21 numéricos. 0/35 con pasaje. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los 2 EXPERT (ON2 modo fundamental de un tubo abierto; FM2 efecto fotoeléctrico al duplicar la frecuencia) y MG1 (fuerza magnética sobre una carga que viaja paralela al campo). Cuando G54 apruebe, el pool IPN FISMAT Física (peso 20, meta efectiva 111, no compartido) pasa de 35 a ~70: los 35 caen enteros en la brecha efectiva y la descuentan 1:1 (patrón G45), bajándola de 438 a ~403.",
+  "questions": [
+    {
+      "questionId": "cmtgvmfmn0006bc5w7egrcc1y",
+      "tag": "C1",
+      "topic": "Cinemática",
+      "topicId": "cmrr1l37m00a5hi3n0nuo6d74",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        "cmrsrog05001013b314euvib6"
+      ],
+      "sourceChunkRefs": [
+        "ceneval_exanii_i.pdf p. 9"
+      ],
+      "correctPosition": "B",
+      "correctValue": 15.0,
+      "stem": "Un autobús recorre en línea recta una distancia de $150\\,\\text{m}$ con rapidez constante y tarda $10\\,\\text{s}$ en hacerlo. ¿Cuál es su rapidez media?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1.5\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$15\\,\\text{m/s}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$140\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$1\\,500\\,\\text{m/s}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$v=\\dfrac{150\\,\\text{m}}{10\\,\\text{s}}=15\\,\\text{m/s}$. El valor $1\\,500\\,\\text{m/s}$ resulta de multiplicar la distancia por el tiempo en vez de dividir; $140\\,\\text{m/s}$ proviene de restar el tiempo a la distancia; $1.5\\,\\text{m/s}$ es un error de posición del punto decimal (dividir entre $100$).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "La rapidez media es la razón entre la distancia recorrida y el tiempo empleado: $v=\\dfrac{d}{t}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$v=\\dfrac{150\\,\\text{m}}{10\\,\\text{s}}=15\\,\\text{m/s}$. El valor $1\\,500\\,\\text{m/s}$ resulta de multiplicar la distancia por el tiempo en vez de dividir; $140\\,\\text{m/s}$ proviene de restar el tiempo a la distancia; $1.5\\,\\text{m/s}$ es un error de posición del punto decimal (dividir entre $100$)."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Confundir el orden de la división ($t/d$ da $0.067\\,\\text{s/m}$, que no es una rapidez) o mezclar las operaciones. Como el movimiento es de rapidez constante, la rapidez media coincide con la rapidez en cualquier instante."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmeo60001bc5w5kn2vj79",
+      "tag": "C2",
+      "topic": "Cinemática",
+      "topicId": "cmrr1l37m00a5hi3n0nuo6d74",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        "cmrsrog05001013b314euvib6"
+      ],
+      "sourceChunkRefs": [
+        "ceneval_exanii_i.pdf p. 9"
+      ],
+      "correctPosition": "A",
+      "correctValue": null,
+      "stem": "¿Cuál de las siguientes situaciones describe un movimiento con rapidez constante, es decir, con aceleración nula?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un tren recorre $20\\,\\text{m}$ cada segundo por una vía recta, sin variar su marcha.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Un automóvil parte del reposo justo cuando el semáforo de la esquina cambia a verde.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Una manzana se desprende de la rama de un árbol y cae hacia el suelo cada vez más rápido.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Un corredor aumenta poco a poco su ritmo durante la recta final de una carrera de fondo.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Recorrer $20\\,\\text{m}$ por segundo siempre es rapidez constante. Partir del reposo al arrancar implica pasar de $0$ a cierta rapidez: hay aceleración. Una manzana que cae gana rapidez por la gravedad: aceleración. Aumentar el ritmo en la recta final es, por definición, acelerar.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Hay aceleración cuando la velocidad cambia, ya sea en magnitud (rapidez) o en dirección. Rapidez constante en línea recta significa recorrer distancias iguales en tiempos iguales."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Recorrer $20\\,\\text{m}$ por segundo siempre es rapidez constante. Partir del reposo al arrancar implica pasar de $0$ a cierta rapidez: hay aceleración. Una manzana que cae gana rapidez por la gravedad: aceleración. Aumentar el ritmo en la recta final es, por definición, acelerar."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Creer que 'moverse' ya implica 'acelerar'. Un móvil puede tener velocidad grande y aceleración cero si esa velocidad no cambia."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvksh10001z0vufbpykd53",
+      "tag": "D1",
+      "topic": "Dinámica",
+      "topicId": "cmrr1l3xo00a7hi3n6w2vlzv4",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 2400.0,
+      "stem": "Un automóvil de $1\\,200\\,\\text{kg}$ parte del reposo y alcanza una rapidez de $24\\,\\text{m/s}$ en $12\\,\\text{s}$ sobre una vía recta. ¿Cuál es la magnitud de la fuerza neta que actúa sobre él?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1\\,200\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2\\,400\\,\\text{N}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$4\\,800\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$28\\,800\\,\\text{N}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$a=\\dfrac{24\\,\\text{m/s}}{12\\,\\text{s}}=2\\,\\text{m/s}^2$, entonces $F=(1\\,200\\,\\text{kg})(2\\,\\text{m/s}^2)=2\\,400\\,\\text{N}$. El valor $28\\,800\\,\\text{N}$ es $m\\,\\Delta v$, que es el impulso, no la fuerza (falta dividir entre el tiempo); $1\\,200\\,\\text{N}$ toma $a=1\\,\\text{m/s}^2$; $4\\,800\\,\\text{N}$ duplica la aceleración.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Primero la aceleración: $a=\\dfrac{\\Delta v}{t}$. Luego la segunda ley de Newton: $F=ma$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$a=\\dfrac{24\\,\\text{m/s}}{12\\,\\text{s}}=2\\,\\text{m/s}^2$, entonces $F=(1\\,200\\,\\text{kg})(2\\,\\text{m/s}^2)=2\\,400\\,\\text{N}$. El valor $28\\,800\\,\\text{N}$ es $m\\,\\Delta v$, que es el impulso, no la fuerza (falta dividir entre el tiempo); $1\\,200\\,\\text{N}$ toma $a=1\\,\\text{m/s}^2$; $4\\,800\\,\\text{N}$ duplica la aceleración."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Usar directamente la rapidez final en lugar de la aceleración. $F=ma$ necesita la razón de cambio de la velocidad, no la velocidad misma."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvkt9e0006z0vuuvj7ix53",
+      "tag": "D2",
+      "topic": "Dinámica",
+      "topicId": "cmrr1l3xo00a7hi3n6w2vlzv4",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": null,
+      "stem": "Un libro descansa en reposo sobre una mesa. La mesa ejerce sobre el libro una fuerza normal dirigida hacia arriba. Según la tercera ley de Newton, ¿cuál es la fuerza que forma la pareja de acción y reacción con esa normal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La fuerza que el libro, a su vez, ejerce sobre la mesa, dirigida verticalmente hacia abajo.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El peso del libro, es decir, la atracción que la Tierra ejerce sobre él.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La fuerza de fricción entre el libro y la superficie de la mesa.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La fuerza que el aire de la habitación ejerce sobre la cara superior del libro.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "La normal es 'mesa sobre libro'; su pareja es 'libro sobre mesa', hacia abajo. El peso del libro actúa sobre el mismo cuerpo (el libro) y es de origen gravitacional, no de contacto: equilibra a la normal, pero no es su reacción. La fricción es tangencial, no perpendicular. La fuerza del aire es otra interacción distinta.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Las parejas de la tercera ley son fuerzas del mismo tipo, de igual magnitud y sentido opuesto, que actúan sobre cuerpos distintos: si A empuja a B, B empuja a A."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "La normal es 'mesa sobre libro'; su pareja es 'libro sobre mesa', hacia abajo. El peso del libro actúa sobre el mismo cuerpo (el libro) y es de origen gravitacional, no de contacto: equilibra a la normal, pero no es su reacción. La fricción es tangencial, no perpendicular. La fuerza del aire es otra interacción distinta."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Confundir 'fuerzas que se equilibran sobre un cuerpo' con 'pareja de acción y reacción'. El peso y la normal se equilibran, pero actúan sobre el mismo objeto."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlcrl0006kf0267puh5kp",
+      "tag": "TE1",
+      "topic": "Trabajo y energía",
+      "topicId": "cmrr1l4k900a9hi3nvijwv2wq",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": 120.0,
+      "stem": "Se levanta verticalmente y a rapidez constante un objeto de $4\\,\\text{kg}$ hasta una altura de $3\\,\\text{m}$. Con $g=10\\,\\text{m/s}^2$, ¿cuál es el trabajo realizado contra la gravedad?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$12\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$30\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$40\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$120\\,\\text{J}$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "$W=(4\\,\\text{kg})(10\\,\\text{m/s}^2)(3\\,\\text{m})=120\\,\\text{J}$. El valor $40\\,\\text{J}$ es $mg$ (se olvidó la altura); $30\\,\\text{J}$ es $gh$ (se olvidó la masa); $12\\,\\text{J}$ es $mh$ (se olvidó $g$).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "El trabajo contra la gravedad al subir una altura $h$ es $W=mgh$ (igual al aumento de energía potencial gravitacional)."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$W=(4\\,\\text{kg})(10\\,\\text{m/s}^2)(3\\,\\text{m})=120\\,\\text{J}$. El valor $40\\,\\text{J}$ es $mg$ (se olvidó la altura); $30\\,\\text{J}$ es $gh$ (se olvidó la masa); $12\\,\\text{J}$ es $mh$ (se olvidó $g$)."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Como la rapidez es constante, la energía cinética no cambia y todo el trabajo del agente externo se convierte en energía potencial. No hay que sumar un término de $\\tfrac12 mv^2$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlbzx0001kf026apwb045",
+      "tag": "TE2",
+      "topic": "Trabajo y energía",
+      "topicId": "cmrr1l4k900a9hi3nvijwv2wq",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 10.0,
+      "stem": "Un carrito de $2\\,\\text{kg}$ parte del reposo y se desliza sin fricción por una rampa desde una altura de $5\\,\\text{m}$. Con $g=10\\,\\text{m/s}^2$, ¿cuál es su rapidez al llegar al pie de la rampa?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$7.1\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$10\\,\\text{m/s}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$50\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$100\\,\\text{m/s}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$v=\\sqrt{2(10\\,\\text{m/s}^2)(5\\,\\text{m})}=\\sqrt{100}=10\\,\\text{m/s}$. El valor $100\\,\\text{m/s}$ es $2gh$ sin sacar la raíz cuadrada; $50\\,\\text{m/s}$ es $gh$ sin la raíz; $7.1\\,\\text{m/s}$ es $\\sqrt{gh}$, olvidando el factor $2$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Conservación de energía sin fricción: $mgh=\\tfrac12 mv^2$, de donde $v=\\sqrt{2gh}$. La masa se cancela."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$v=\\sqrt{2(10\\,\\text{m/s}^2)(5\\,\\text{m})}=\\sqrt{100}=10\\,\\text{m/s}$. El valor $100\\,\\text{m/s}$ es $2gh$ sin sacar la raíz cuadrada; $50\\,\\text{m/s}$ es $gh$ sin la raíz; $7.1\\,\\text{m/s}$ es $\\sqrt{gh}$, olvidando el factor $2$."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Pensar que el resultado depende de la masa: no lo hace. Tampoco depende de la inclinación de la rampa, solo de la altura, mientras no haya fricción."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvl61g0006ptzag4yls2h8",
+      "tag": "MI1",
+      "topic": "Momentum e impulso",
+      "topicId": "cmrr1l54400abhi3ne1tiajuj",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": 60.0,
+      "stem": "Una fuerza neta constante de $12\\,\\text{N}$ actúa sobre un cuerpo durante $5\\,\\text{s}$. ¿Cuál es la magnitud del impulso que recibe el cuerpo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2.4\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$7\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$17\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$60\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "$J=(12\\,\\text{N})(5\\,\\text{s})=60\\,\\text{N}\\cdot\\text{s}$. El valor $2.4\\,\\text{N}\\cdot\\text{s}$ divide la fuerza entre el tiempo; $7\\,\\text{N}\\cdot\\text{s}$ los resta; $17\\,\\text{N}\\cdot\\text{s}$ los suma.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "El impulso de una fuerza constante es $J=F\\,\\Delta t$ y equivale al cambio de cantidad de movimiento del cuerpo."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$J=(12\\,\\text{N})(5\\,\\text{s})=60\\,\\text{N}\\cdot\\text{s}$. El valor $2.4\\,\\text{N}\\cdot\\text{s}$ divide la fuerza entre el tiempo; $7\\,\\text{N}\\cdot\\text{s}$ los resta; $17\\,\\text{N}\\cdot\\text{s}$ los suma."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "El impulso es un producto, no un cociente ni una suma. Sus unidades ($\\text{N}\\cdot\\text{s}$) son equivalentes a las de la cantidad de movimiento ($\\text{kg}\\cdot\\text{m/s}$)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvl59z0001ptza6mzctz6x",
+      "tag": "MI2",
+      "topic": "Momentum e impulso",
+      "topicId": "cmrr1l54400abhi3ne1tiajuj",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 0.8,
+      "stem": "Un patinador de $50\\,\\text{kg}$ está en reposo sobre hielo sin fricción y lanza horizontalmente una mochila de $5\\,\\text{kg}$ a $8\\,\\text{m/s}$. ¿Cuál es la rapidez de retroceso del patinador?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.08\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$0.8\\,\\text{m/s}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$1.6\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$8\\,\\text{m/s}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$(50\\,\\text{kg})\\,v_p=(5\\,\\text{kg})(8\\,\\text{m/s})\\Rightarrow v_p=\\dfrac{40}{50}=0.8\\,\\text{m/s}$. El valor $8\\,\\text{m/s}$ supone que el patinador retrocede a la misma rapidez que la mochila (ignora las masas); $1.6\\,\\text{m/s}$ usa la mitad de la masa del patinador; $0.08\\,\\text{m/s}$ es un error de factor $10$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "El sistema parte con cantidad de movimiento total cero y no hay fuerzas externas horizontales, así que $m_p v_p = m_m v_m$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$(50\\,\\text{kg})\\,v_p=(5\\,\\text{kg})(8\\,\\text{m/s})\\Rightarrow v_p=\\dfrac{40}{50}=0.8\\,\\text{m/s}$. El valor $8\\,\\text{m/s}$ supone que el patinador retrocede a la misma rapidez que la mochila (ignora las masas); $1.6\\,\\text{m/s}$ usa la mitad de la masa del patinador; $0.08\\,\\text{m/s}$ es un error de factor $10$."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Olvidar que el cuerpo más masivo retrocede más despacio: las rapideces son inversamente proporcionales a las masas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvl6sv000bptzaz10kgpp5",
+      "tag": "MI3",
+      "topic": "Momentum e impulso",
+      "topicId": "cmrr1l54400abhi3ne1tiajuj",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": null,
+      "stem": "Dos vehículos chocan de frente y quedan unidos, moviéndose juntos después del impacto (choque perfectamente inelástico). Si las fuerzas externas son despreciables, ¿qué ocurre con la cantidad de movimiento y la energía cinética del sistema formado por los dos vehículos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tanto la cantidad de movimiento como la energía cinética totales se conservan.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La energía cinética total se conserva, pero la cantidad de movimiento total disminuye.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La cantidad de movimiento total se conserva, pero la energía cinética total disminuye.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Ni la cantidad de movimiento ni la energía cinética totales se conservan.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "En un choque inelástico parte de la energía cinética se transforma en deformación, calor y sonido, así que disminuye; la cantidad de movimiento no. Que se conserven ambas describe un choque elástico. Que la cantidad de movimiento disminuya contradice la ausencia de fuerzas externas. Que no se conserve ninguna también viola la conservación del momento.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "En ausencia de fuerzas externas, la cantidad de movimiento total siempre se conserva. La energía cinética solo se conserva si el choque es elástico."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "En un choque inelástico parte de la energía cinética se transforma en deformación, calor y sonido, así que disminuye; la cantidad de movimiento no. Que se conserven ambas describe un choque elástico. Que la cantidad de movimiento disminuya contradice la ausencia de fuerzas externas. Que no se conserve ninguna también viola la conservación del momento."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Suponer que 'chocar y quedar pegados' destruye la cantidad de movimiento. El sistema completo la conserva; lo que se pierde es energía mecánica."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvkzce0006bynkzruqaejm",
+      "tag": "GR1",
+      "topic": "Gravitación",
+      "topicId": "cmrr1l5tg00adhi3n7c87lzal",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": null,
+      "stem": "Según la ley de gravitación universal, si la masa de uno de los dos cuerpos se triplica y la distancia entre sus centros se duplica (todo lo demás igual), ¿cómo cambia la fuerza gravitacional entre ellos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Queda multiplicada por $\\tfrac32$, porque cada cambio la aumenta por separado.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Queda multiplicada por $12$, sumando el efecto de la masa y el de la distancia.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Se reduce a la cuarta parte, ya que solo influye el cambio de la distancia.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Queda multiplicada por $\\tfrac34$ de su valor original.",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "Triplicar una masa multiplica $F$ por $3$; duplicar la distancia la divide entre $2^2=4$. Resultado: $3/4$. El factor $3/2$ olvida elevar la distancia al cuadrado. El factor $12$ multiplica por $3$ y por $4$ en vez de dividir entre $4$. Reducir a $1/4$ ignora el cambio de masa.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "$F=\\dfrac{Gm_1m_2}{r^2}$: la fuerza es proporcional al producto de las masas e inversamente proporcional al cuadrado de la distancia."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Triplicar una masa multiplica $F$ por $3$; duplicar la distancia la divide entre $2^2=4$. Resultado: $3/4$. El factor $3/2$ olvida elevar la distancia al cuadrado. El factor $12$ multiplica por $3$ y por $4$ en vez de dividir entre $4$. Reducir a $1/4$ ignora el cambio de masa."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "El error más común es tratar la distancia de forma lineal ($1/r$) en lugar de cuadrática ($1/r^2$)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvl03z000bbynkzvx9lgu1",
+      "tag": "GR2",
+      "topic": "Gravitación",
+      "topicId": "cmrr1l5tg00adhi3n7c87lzal",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": 150.0,
+      "stem": "Un objeto pesa $600\\,\\text{N}$ en la superficie de la Tierra. ¿Cuánto pesaría en la superficie de un planeta donde la aceleración de gravedad es la cuarta parte de la terrestre?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$37.5\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$60\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$150\\,\\text{N}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$2\\,400\\,\\text{N}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$W'=\\dfrac{600\\,\\text{N}}{4}=150\\,\\text{N}$. El valor $2\\,400\\,\\text{N}$ multiplica por $4$ (invierte la razón); $60\\,\\text{N}$ divide entre $10$ (confunde el resultado con la masa); $37.5\\,\\text{N}$ aplica el factor $1/4$ dos veces.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "El peso es $W=mg$. La masa no cambia de un planeta a otro; solo cambia $g$. Si $g$ se divide entre $4$, el peso también."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$W'=\\dfrac{600\\,\\text{N}}{4}=150\\,\\text{N}$. El valor $2\\,400\\,\\text{N}$ multiplica por $4$ (invierte la razón); $60\\,\\text{N}$ divide entre $10$ (confunde el resultado con la masa); $37.5\\,\\text{N}$ aplica el factor $1/4$ dos veces."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Calcular la masa ($m=W/g\\approx61\\,\\text{kg}$) y reportar ese número como si fuera un peso en newtons."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvkyks0001bynklps01p7q",
+      "tag": "GR3",
+      "topic": "Gravitación",
+      "topicId": "cmrr1l5tg00adhi3n7c87lzal",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 0.25,
+      "stem": "La aceleración de gravedad en la superficie de la Tierra vale $g$. A una altura sobre la superficie igual al radio terrestre $R$ (es decir, a una distancia $2R$ del centro de la Tierra), ¿cuánto vale la aceleración de gravedad?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{g}{8}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{g}{4}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{g}{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$g$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "A $r=2R$: $g(2R)=g\\left(\\dfrac{R}{2R}\\right)^2=g\\cdot\\dfrac14=\\dfrac{g}{4}$. El resultado $g/2$ usa $1/r$ (lineal, no al cuadrado); $g/8$ usa $1/r^3$; $g$ sin cambio supone que la gravedad es la misma a cualquier altura.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "La aceleración de gravedad varía como $1/r^2$ medida desde el centro del planeta: $g(r)=g\\left(\\dfrac{R}{r}\\right)^2$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "A $r=2R$: $g(2R)=g\\left(\\dfrac{R}{2R}\\right)^2=g\\cdot\\dfrac14=\\dfrac{g}{4}$. El resultado $g/2$ usa $1/r$ (lineal, no al cuadrado); $g/8$ usa $1/r^3$; $g$ sin cambio supone que la gravedad es la misma a cualquier altura."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Medir la distancia desde la superficie ($h=R$) en vez de desde el centro ($r=2R$). En la ley del inverso del cuadrado siempre se usa la distancia al centro."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvm23i0006c9q1xg8fowpg",
+      "tag": "FL1",
+      "topic": "Fluidos",
+      "topicId": "cmrr1l6e100afhi3n7a0w3yvo",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": 6.0,
+      "stem": "Por una tubería horizontal fluye agua de manera estable. En una sección de área $6\\,\\text{cm}^2$ la rapidez del agua es $2\\,\\text{m/s}$. ¿Cuál es la rapidez del agua donde la tubería se estrecha a $2\\,\\text{cm}^2$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.67\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6\\,\\text{m/s}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$12\\,\\text{m/s}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$v_2=\\dfrac{A_1v_1}{A_2}=\\dfrac{(6\\,\\text{cm}^2)(2\\,\\text{m/s})}{2\\,\\text{cm}^2}=6\\,\\text{m/s}$. El valor $0.67\\,\\text{m/s}$ invierte la razón de áreas; $2\\,\\text{m/s}$ supone que la rapidez no cambia; $12\\,\\text{m/s}$ multiplica $A_1v_1$ sin dividir entre el área menor.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Ecuación de continuidad para un fluido incompresible: $A_1v_1=A_2v_2$. Donde el área disminuye, la rapidez aumenta."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$v_2=\\dfrac{A_1v_1}{A_2}=\\dfrac{(6\\,\\text{cm}^2)(2\\,\\text{m/s})}{2\\,\\text{cm}^2}=6\\,\\text{m/s}$. El valor $0.67\\,\\text{m/s}$ invierte la razón de áreas; $2\\,\\text{m/s}$ supone que la rapidez no cambia; $12\\,\\text{m/s}$ multiplica $A_1v_1$ sin dividir entre el área menor."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "No hace falta convertir los $\\text{cm}^2$ a $\\text{m}^2$ porque las áreas aparecen como una razón; lo que sí importa es cuál área va en el numerador."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvm1bz0001c9q1scidx2iw",
+      "tag": "FL2",
+      "topic": "Fluidos",
+      "topicId": "cmrr1l6e100afhi3n7a0w3yvo",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 600.0,
+      "stem": "Un bloque de madera flota en agua ($\\rho_{\\text{agua}}=1\\,000\\,\\text{kg/m}^3$) con el $60$ por ciento de su volumen sumergido. ¿Cuál es la densidad de la madera?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$400\\,\\text{kg/m}^3$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$600\\,\\text{kg/m}^3$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$1\\,000\\,\\text{kg/m}^3$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$1\\,667\\,\\text{kg/m}^3$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$\\rho_{\\text{madera}}=(1\\,000\\,\\text{kg/m}^3)(0.60)=600\\,\\text{kg/m}^3$. El valor $400\\,\\text{kg/m}^3$ usa la fracción emergida ($40$ por ciento); $1\\,000\\,\\text{kg/m}^3$ iguala la densidad al agua; $1\\,667\\,\\text{kg/m}^3$ invierte la razón ($1\\,000/0.6$).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Al flotar, el peso del cuerpo iguala al empuje: $\\rho_{\\text{cuerpo}}V g=\\rho_{\\text{agua}}V_{\\text{sum}}g$. Entonces $\\rho_{\\text{cuerpo}}=\\rho_{\\text{agua}}\\cdot\\dfrac{V_{\\text{sum}}}{V}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$\\rho_{\\text{madera}}=(1\\,000\\,\\text{kg/m}^3)(0.60)=600\\,\\text{kg/m}^3$. El valor $400\\,\\text{kg/m}^3$ usa la fracción emergida ($40$ por ciento); $1\\,000\\,\\text{kg/m}^3$ iguala la densidad al agua; $1\\,667\\,\\text{kg/m}^3$ invierte la razón ($1\\,000/0.6$)."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "La fracción sumergida es igual a la razón de densidades solo cuando el líquido es agua pura y el cuerpo flota libremente; con otro líquido se usa su densidad."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvm2v4000bc9q190qglu7a",
+      "tag": "FL3",
+      "topic": "Fluidos",
+      "topicId": "cmrr1l6e100afhi3n7a0w3yvo",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": null,
+      "stem": "Un buzo desciende lentamente en un lago de agua tranquila. ¿Qué ocurre con la presión total que soporta a medida que baja?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aumenta conforme baja, además de la presión atmosférica que ya actúa sobre la superficie del lago.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Permanece constante durante el descenso, porque los líquidos son incompresibles.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Disminuye poco a poco, porque cada vez hay menos columna de aire sobre el buzo.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Depende sobre todo de la temperatura del agua, no de la profundidad alcanzada.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "El término $\\rho g h$ crece de forma lineal con la profundidad, sobre la atmosférica. Que sea incompresible no impide que la presión aumente con $h$. La columna de aire influye poco frente a la de agua, que es mucho más densa. La temperatura tiene un efecto menor comparado con la profundidad.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "La presión en un fluido en reposo es $P=P_0+\\rho g h$, donde $P_0$ es la presión en la superficie y $h$ la profundidad."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "El término $\\rho g h$ crece de forma lineal con la profundidad, sobre la atmosférica. Que sea incompresible no impide que la presión aumente con $h$. La columna de aire influye poco frente a la de agua, que es mucho más densa. La temperatura tiene un efecto menor comparado con la profundidad."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Olvidar sumar la presión atmosférica: a $10\\,\\text{m}$ de agua la presión ya es aproximadamente el doble de la de la superficie."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlum6000116xh15t5pjdz",
+      "tag": "TH1",
+      "topic": "Termodinámica",
+      "topicId": "cmrr1l6x700ahhi3nwa4pglxl",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 126000.0,
+      "stem": "¿Cuánto calor se libera al enfriar $0.5\\,\\text{kg}$ de agua desde $80°\\text{C}$ hasta $20°\\text{C}$? El calor específico del agua es $c=4\\,200\\,\\text{J/(kg·°C)}$.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2\\,100\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$126\\,000\\,\\text{J}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$168\\,000\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$210\\,000\\,\\text{J}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$\\Delta T=80-20=60°\\text{C}$, así que $Q=(0.5\\,\\text{kg})(4\\,200\\,\\text{J/(kg·°C)})(60°\\text{C})=126\\,000\\,\\text{J}$. El valor $168\\,000\\,\\text{J}$ usa la temperatura inicial $80$ en lugar de la variación $60$; $210\\,000\\,\\text{J}$ toma $\\Delta T=100$; $2\\,100\\,\\text{J}$ olvida multiplicar por $\\Delta T$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "El calor sensible es $Q=mc\\,\\Delta T$, con $\\Delta T$ la variación de temperatura (no la temperatura inicial ni la final)."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$\\Delta T=80-20=60°\\text{C}$, así que $Q=(0.5\\,\\text{kg})(4\\,200\\,\\text{J/(kg·°C)})(60°\\text{C})=126\\,000\\,\\text{J}$. El valor $168\\,000\\,\\text{J}$ usa la temperatura inicial $80$ en lugar de la variación $60$; $210\\,000\\,\\text{J}$ toma $\\Delta T=100$; $2\\,100\\,\\text{J}$ olvida multiplicar por $\\Delta T$."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Enfriar o calentar da la misma magnitud de calor para el mismo $\\Delta T$; solo cambia el signo (sale o entra energía)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlvdo000616xh5e2tytwn",
+      "tag": "TH2",
+      "topic": "Termodinámica",
+      "topicId": "cmrr1l6x700ahhi3nwa4pglxl",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": null,
+      "stem": "Un gas ideal se comprime lentamente mientras se le extrae calor, de modo que su temperatura no cambia (proceso isotérmico). Según la primera ley de la termodinámica, ¿qué se puede afirmar?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Su energía interna aumenta y el gas absorbe calor, porque se hace trabajo de compresión sobre él.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "No hay intercambio de calor con el entorno mientras la temperatura se mantenga constante.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El trabajo neto es nulo, aunque al final el gas ocupe un volumen distinto del inicial.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Su energía interna se mantiene, y el gas cede un calor de igual magnitud que el trabajo hecho sobre él.",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "Con $\\Delta U=0$, el calor cedido iguala en magnitud al trabajo hecho sobre el gas. Que la energía interna aumente contradice $T$ constante. Que no haya calor confunde 'isotérmico' con 'adiabático'. El trabajo no es nulo: el volumen sí cambia durante una compresión.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Para un gas ideal la energía interna depende solo de la temperatura. Si $T$ es constante, $\\Delta U=0$, y la primera ley $\\Delta U=Q-W$ obliga a que $Q=W$."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Con $\\Delta U=0$, el calor cedido iguala en magnitud al trabajo hecho sobre el gas. Que la energía interna aumente contradice $T$ constante. Que no haya calor confunde 'isotérmico' con 'adiabático'. El trabajo no es nulo: el volumen sí cambia durante una compresión."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Creer que temperatura constante implica que no fluye calor. Justamente el calor que sale es lo que mantiene la temperatura fija mientras se comprime."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlw56000b16xh49mww2h6",
+      "tag": "TH3",
+      "topic": "Termodinámica",
+      "topicId": "cmrr1l6x700ahhi3nwa4pglxl",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": 25.0,
+      "stem": "Una máquina térmica ideal (de Carnot) opera entre una fuente caliente a $400\\,\\text{K}$ y una fuente fría a $300\\,\\text{K}$. ¿Cuál es su eficiencia máxima teórica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$25$ por ciento",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$33$ por ciento",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$75$ por ciento",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$100$ por ciento",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$\\eta=1-\\dfrac{300\\,\\text{K}}{400\\,\\text{K}}=1-0.75=0.25=25$ por ciento. El valor $75$ por ciento reporta el cociente $T_{\\text{fría}}/T_{\\text{caliente}}$ sin restarlo de $1$; $33$ por ciento divide la diferencia de temperaturas entre la temperatura fría; $100$ por ciento supone que toda la energía térmica se convierte en trabajo.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "La eficiencia de Carnot es $\\eta=1-\\dfrac{T_{\\text{fría}}}{T_{\\text{caliente}}}$, con las temperaturas en kelvin."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$\\eta=1-\\dfrac{300\\,\\text{K}}{400\\,\\text{K}}=1-0.75=0.25=25$ por ciento. El valor $75$ por ciento reporta el cociente $T_{\\text{fría}}/T_{\\text{caliente}}$ sin restarlo de $1$; $33$ por ciento divide la diferencia de temperaturas entre la temperatura fría; $100$ por ciento supone que toda la energía térmica se convierte en trabajo."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Usar grados Celsius en vez de kelvin: con $127°\\text{C}$ y $27°\\text{C}$ el resultado es el mismo solo si se convierten a $400\\,\\text{K}$ y $300\\,\\text{K}$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmlqm0006kfe7uqib1ezq",
+      "tag": "ON1",
+      "topic": "Ondas y sonido",
+      "topicId": "cmrr1l7h700ajhi3n4tua0c9q",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": 40.0,
+      "stem": "Una onda que viaja por una cuerda tiene una rapidez de $20\\,\\text{m/s}$ y una longitud de onda de $0.5\\,\\text{m}$. ¿Cuál es su frecuencia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.025\\,\\text{Hz}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$10\\,\\text{Hz}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$19.5\\,\\text{Hz}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$40\\,\\text{Hz}$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "$f=\\dfrac{20\\,\\text{m/s}}{0.5\\,\\text{m}}=40\\,\\text{Hz}$. El valor $10\\,\\text{Hz}$ multiplica $v$ por $\\lambda$ en vez de dividir; $0.025\\,\\text{Hz}$ invierte el cociente ($\\lambda/v$); $19.5\\,\\text{Hz}$ resta $\\lambda$ a $v$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "La relación fundamental de una onda es $v=\\lambda f$, de donde $f=\\dfrac{v}{\\lambda}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$f=\\dfrac{20\\,\\text{m/s}}{0.5\\,\\text{m}}=40\\,\\text{Hz}$. El valor $10\\,\\text{Hz}$ multiplica $v$ por $\\lambda$ en vez de dividir; $0.025\\,\\text{Hz}$ invierte el cociente ($\\lambda/v$); $19.5\\,\\text{Hz}$ resta $\\lambda$ a $v$."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Dividir entre $0.5$ es lo mismo que multiplicar por $2$: un error de $\\times2$ frente a $\\div2$ manda el resultado a $10\\,\\text{Hz}$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmkyq0001kfe7w4mghqcw",
+      "tag": "ON2",
+      "topic": "Ondas y sonido",
+      "topicId": "cmrr1l7h700ajhi3n4tua0c9q",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": 340.0,
+      "stem": "Un tubo sonoro abierto en sus dos extremos tiene una longitud de $0.5\\,\\text{m}$. Si la rapidez del sonido en el aire es $340\\,\\text{m/s}$, ¿cuál es la frecuencia de su modo fundamental?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$85\\,\\text{Hz}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$170\\,\\text{Hz}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$340\\,\\text{Hz}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$680\\,\\text{Hz}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$f_1=\\dfrac{340\\,\\text{m/s}}{2(0.5\\,\\text{m})}=\\dfrac{340}{1.0}=340\\,\\text{Hz}$. El valor $170\\,\\text{Hz}$ usa la fórmula de un tubo cerrado en un extremo, $v/(4L)$; $680\\,\\text{Hz}$ olvida el factor $2$ y toma $v/L$; $85\\,\\text{Hz}$ divide la rapidez entre $4$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "En un tubo abierto en ambos extremos, el modo fundamental tiene media longitud de onda en el tubo: $\\lambda=2L$, así que $f_1=\\dfrac{v}{2L}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$f_1=\\dfrac{340\\,\\text{m/s}}{2(0.5\\,\\text{m})}=\\dfrac{340}{1.0}=340\\,\\text{Hz}$. El valor $170\\,\\text{Hz}$ usa la fórmula de un tubo cerrado en un extremo, $v/(4L)$; $680\\,\\text{Hz}$ olvida el factor $2$ y toma $v/L$; $85\\,\\text{Hz}$ divide la rapidez entre $4$."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Confundir tubo abierto ($\\lambda=2L$ en el fundamental) con tubo cerrado en un extremo ($\\lambda=4L$): la frecuencia fundamental del cerrado es la mitad."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlnwt0001bxtn5cuj3y54",
+      "tag": "OP1",
+      "topic": "Óptica",
+      "topicId": "cmrr1l7ys00alhi3nf2bgwato",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 15.0,
+      "stem": "Un objeto se coloca a $30\\,\\text{cm}$ de un espejo cóncavo cuya distancia focal es $10\\,\\text{cm}$. Usando $\\dfrac{1}{f}=\\dfrac{1}{d_o}+\\dfrac{1}{d_i}$, ¿a qué distancia del espejo se forma la imagen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$7.5\\,\\text{cm}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$15\\,\\text{cm}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$20\\,\\text{cm}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$40\\,\\text{cm}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$\\dfrac{1}{d_i}=\\dfrac{1}{10}-\\dfrac{1}{30}=\\dfrac{3-1}{30}=\\dfrac{2}{30}=\\dfrac{1}{15}$, así que $d_i=15\\,\\text{cm}$. El valor $7.5\\,\\text{cm}$ suma las fracciones en vez de restarlas; $20\\,\\text{cm}$ toma $2f$ directamente; $40\\,\\text{cm}$ suma la distancia objeto y la focal.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Se despeja $\\dfrac{1}{d_i}=\\dfrac{1}{f}-\\dfrac{1}{d_o}$ y luego se invierte."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$\\dfrac{1}{d_i}=\\dfrac{1}{10}-\\dfrac{1}{30}=\\dfrac{3-1}{30}=\\dfrac{2}{30}=\\dfrac{1}{15}$, así que $d_i=15\\,\\text{cm}$. El valor $7.5\\,\\text{cm}$ suma las fracciones en vez de restarlas; $20\\,\\text{cm}$ toma $2f$ directamente; $40\\,\\text{cm}$ suma la distancia objeto y la focal."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Olvidar invertir $1/d_i$ al final: $2/30$ es $1/d_i$, no $d_i$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvloof0006bxtntyf19fjc",
+      "tag": "OP2",
+      "topic": "Óptica",
+      "topicId": "cmrr1l7ys00alhi3nf2bgwato",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": null,
+      "stem": "Una lente convergente forma sobre una hoja de papel la imagen de un objeto muy lejano, como el Sol. ¿Qué características tiene esa imagen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Es virtual y derecha, del mismo tamaño que el objeto lejano.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Es real y derecha, bastante más grande que el objeto observado.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Es real e invertida, formada cerca del plano focal.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Es virtual e invertida, y se ubica por detrás de la lente convergente.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Que la imagen se pueda proyectar en un papel ya indica que es real. Las imágenes reales de una sola lente convergente son invertidas. Una imagen virtual (derecha, detrás de la lente) no se proyecta en una pantalla. La imagen del Sol es diminuta, no del tamaño del objeto ni más grande.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Un objeto en el infinito manda rayos paralelos a la lente; una lente convergente los reúne en su foco, formando ahí una imagen real e invertida."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Que la imagen se pueda proyectar en un papel ya indica que es real. Las imágenes reales de una sola lente convergente son invertidas. Una imagen virtual (derecha, detrás de la lente) no se proyecta en una pantalla. La imagen del Sol es diminuta, no del tamaño del objeto ni más grande."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Suponer que 'convergente' siempre agranda: para objetos lejanos la imagen es reducida y se forma en el foco."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlpg5000bbxtn03gmqtx4",
+      "tag": "OP3",
+      "topic": "Óptica",
+      "topicId": "cmrr1l7ys00alhi3nf2bgwato",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": null,
+      "stem": "Un rayo de luz pasa del aire a un vidrio, que es ópticamente más denso (mayor índice de refracción). ¿Qué ocurre con la rapidez y la longitud de onda de la luz al entrar al vidrio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ambas disminuyen, mientras que la frecuencia se mantiene igual.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La rapidez disminuye, pero la longitud de onda aumenta.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Ambas aumentan, y también aumenta la frecuencia.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Solo cambia la frecuencia; la rapidez y la longitud de onda no varían.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Con $n>1$, tanto $v$ como $\\lambda$ se reducen en el mismo factor. Si $v$ baja y $f$ es fija, $\\lambda=v/f$ también baja: no puede aumentar. Que ambas aumenten corresponde a pasar a un medio menos denso. La frecuencia es lo único que se conserva, no lo único que cambia.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Al entrar a un medio de índice $n$, la rapidez pasa a $v=c/n$ y la longitud de onda a $\\lambda/n$. La frecuencia la fija la fuente y no cambia al cambiar de medio."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Con $n>1$, tanto $v$ como $\\lambda$ se reducen en el mismo factor. Si $v$ baja y $f$ es fija, $\\lambda=v/f$ también baja: no puede aumentar. Que ambas aumenten corresponde a pasar a un medio menos denso. La frecuencia es lo único que se conserva, no lo único que cambia."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Pensar que la frecuencia cambia con el medio: el color de la luz (ligado a la frecuencia) es el mismo dentro del vidrio."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvm8290001trj7ktp5el07",
+      "tag": "EL1",
+      "topic": "Electrostática",
+      "topicId": "cmrr1l8fb00anhi3nzcmxn6jy",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": 0.9,
+      "stem": "Dos cargas puntuales, $+3\\times10^{-6}\\,\\text{C}$ y $-3\\times10^{-6}\\,\\text{C}$, están separadas $0.30\\,\\text{m}$. Usando $k=9\\times10^{9}\\,\\text{N}\\cdot\\text{m}^2/\\text{C}^2$, ¿cuál es la magnitud de la fuerza eléctrica entre ellas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.081\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$0.27\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$0.9\\,\\text{N}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$9\\,\\text{N}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$F=\\dfrac{(9\\times10^{9})(3\\times10^{-6})(3\\times10^{-6})}{(0.30)^2}=\\dfrac{9\\times10^{9}\\cdot9\\times10^{-12}}{0.09}=\\dfrac{0.081}{0.09}=0.9\\,\\text{N}$. El valor $0.27\\,\\text{N}$ no eleva la distancia al cuadrado (divide entre $0.30$); $0.081\\,\\text{N}$ no divide entre la distancia; $9\\,\\text{N}$ usa una distancia de $0.10\\,\\text{m}$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Ley de Coulomb: $F=\\dfrac{k\\,|q_1||q_2|}{r^2}$. El signo solo indica atracción; la magnitud usa los valores absolutos."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$F=\\dfrac{(9\\times10^{9})(3\\times10^{-6})(3\\times10^{-6})}{(0.30)^2}=\\dfrac{9\\times10^{9}\\cdot9\\times10^{-12}}{0.09}=\\dfrac{0.081}{0.09}=0.9\\,\\text{N}$. El valor $0.27\\,\\text{N}$ no eleva la distancia al cuadrado (divide entre $0.30$); $0.081\\,\\text{N}$ no divide entre la distancia; $9\\,\\text{N}$ usa una distancia de $0.10\\,\\text{m}$."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "El $r^2$ del denominador: con $r=0.30\\,\\text{m}$, $r^2=0.09\\,\\text{m}^2$, no $0.30$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvm8tv0006trj74ol61d80",
+      "tag": "EL2",
+      "topic": "Electrostática",
+      "topicId": "cmrr1l8fb00anhi3nzcmxn6jy",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": null,
+      "stem": "Una esfera metálica hueca y aislada tiene una carga eléctrica neta positiva y está en equilibrio electrostático. ¿Dónde se localiza esa carga y cuánto vale el campo eléctrico dentro del metal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Toda la carga neta se distribuye en la superficie exterior, y el campo eléctrico dentro del metal es cero.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La carga se reparte de manera uniforme en todo el volumen del metal, y el campo interior es constante.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La carga se concentra en el centro de la esfera, y el campo apunta radialmente hacia afuera en su interior.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La carga se reparte por igual entre la superficie interior y la exterior, y el campo interior es distinto de cero.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Campo cero dentro del metal y carga en la superficie exterior es la situación de equilibrio. Que la carga llene el volumen implicaría campo interno y corriente. Que se concentre en el centro es imposible en un conductor: las cargas se repelen hacia afuera. Sin carga encerrada por la cavidad, la superficie interior no acumula carga.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "En un conductor en equilibrio el campo interno es cero (si no, las cargas libres se moverían). Por la ley de Gauss, la carga neta se aloja en la superficie exterior."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Campo cero dentro del metal y carga en la superficie exterior es la situación de equilibrio. Que la carga llene el volumen implicaría campo interno y corriente. Que se concentre en el centro es imposible en un conductor: las cargas se repelen hacia afuera. Sin carga encerrada por la cavidad, la superficie interior no acumula carga."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Confundir conductor con aislante: en un aislante cargado la carga sí puede quedar distribuida en el volumen."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmxnt00018msq900ki3dw",
+      "tag": "CE1",
+      "topic": "Corriente eléctrica",
+      "topicId": "cmrr1l93500aphi3nps3hcvdv",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": 2.0,
+      "stem": "Dos resistores, de $3\\,\\Omega$ y $6\\,\\Omega$, se conectan en serie a una batería de $18\\,\\text{V}$ de resistencia interna despreciable. ¿Cuál es la corriente que entrega la batería?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2\\,\\text{A}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$3\\,\\text{A}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6\\,\\text{A}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$9\\,\\text{A}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$R_{\\text{eq}}=3\\,\\Omega+6\\,\\Omega=9\\,\\Omega$, entonces $I=\\dfrac{18\\,\\text{V}}{9\\,\\Omega}=2\\,\\text{A}$. El valor $6\\,\\text{A}$ usa solo el resistor de $3\\,\\Omega$; $3\\,\\text{A}$ usa solo el de $6\\,\\Omega$; $9\\,\\text{A}$ combina los resistores en paralelo ($2\\,\\Omega$) en vez de en serie.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "En serie las resistencias se suman: $R_{\\text{eq}}=R_1+R_2$. Luego $I=\\dfrac{V}{R_{\\text{eq}}}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$R_{\\text{eq}}=3\\,\\Omega+6\\,\\Omega=9\\,\\Omega$, entonces $I=\\dfrac{18\\,\\text{V}}{9\\,\\Omega}=2\\,\\text{A}$. El valor $6\\,\\text{A}$ usa solo el resistor de $3\\,\\Omega$; $3\\,\\text{A}$ usa solo el de $6\\,\\Omega$; $9\\,\\text{A}$ combina los resistores en paralelo ($2\\,\\Omega$) en vez de en serie."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "En serie la resistencia total es mayor que cualquiera de las dos; en paralelo, menor. Sumar da $9\\,\\Omega$, no $2\\,\\Omega$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmyfg00068msqh7dyqu4l",
+      "tag": "CE2",
+      "topic": "Corriente eléctrica",
+      "topicId": "cmrr1l93500aphi3nps3hcvdv",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": 240.0,
+      "stem": "Un foco incandescente está diseñado para operar a $120\\,\\text{V}$ y consumir $60\\,\\text{W}$. ¿Cuál es la resistencia de su filamento en operación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.5\\,\\Omega$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2\\,\\Omega$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$120\\,\\Omega$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$240\\,\\Omega$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "$R=\\dfrac{(120\\,\\text{V})^2}{60\\,\\text{W}}=\\dfrac{14\\,400}{60}=240\\,\\Omega$. El valor $2\\,\\Omega$ usa $V/P$ sin elevar el voltaje al cuadrado; $0.5\\,\\Omega$ calcula la corriente $P/V$ y la reporta como resistencia; $120\\,\\Omega$ toma el valor del voltaje como si fuera la resistencia.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Combinando $P=VI$ e $I=V/R$ se obtiene $P=\\dfrac{V^2}{R}$, de donde $R=\\dfrac{V^2}{P}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$R=\\dfrac{(120\\,\\text{V})^2}{60\\,\\text{W}}=\\dfrac{14\\,400}{60}=240\\,\\Omega$. El valor $2\\,\\Omega$ usa $V/P$ sin elevar el voltaje al cuadrado; $0.5\\,\\Omega$ calcula la corriente $P/V$ y la reporta como resistencia; $120\\,\\Omega$ toma el valor del voltaje como si fuera la resistencia."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "La corriente del foco es $I=P/V=0.5\\,\\text{A}$; comprobación: $R=V/I=120/0.5=240\\,\\Omega$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvlhxc00018yr2vvw24l4p",
+      "tag": "MG1",
+      "topic": "Magnetismo",
+      "topicId": "cmrr1l9po00arhi3n1ay5m5kv",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": 0.0,
+      "stem": "Un protón ($q=1.6\\times10^{-19}\\,\\text{C}$) entra en un campo magnético uniforme de $0.4\\,\\text{T}$ moviéndose con rapidez $2\\times10^{6}\\,\\text{m/s}$ en dirección paralela a las líneas del campo. ¿Cuál es la magnitud de la fuerza magnética sobre el protón?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0\\,\\text{N}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$6.4\\times10^{-14}\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1.28\\times10^{-13}\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$2.56\\times10^{-13}\\,\\text{N}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$F=qvB\\sin 0°=0\\,\\text{N}$: no hay fuerza. El valor $1.28\\times10^{-13}\\,\\text{N}$ es $qvB$ suponiendo $\\theta=90°$ (perpendicular); $6.4\\times10^{-14}\\,\\text{N}$ es la mitad de ese producto; $2.56\\times10^{-13}\\,\\text{N}$ es el doble.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "La fuerza magnética sobre una carga es $F=qvB\\sin\\theta$, donde $\\theta$ es el ángulo entre la velocidad y el campo. Si la velocidad es paralela al campo, $\\theta=0$ y $\\sin\\theta=0$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$F=qvB\\sin 0°=0\\,\\text{N}$: no hay fuerza. El valor $1.28\\times10^{-13}\\,\\text{N}$ es $qvB$ suponiendo $\\theta=90°$ (perpendicular); $6.4\\times10^{-14}\\,\\text{N}$ es la mitad de ese producto; $2.56\\times10^{-13}\\,\\text{N}$ es el doble."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Aplicar $F=qvB$ sin revisar la dirección. Una carga que viaja a lo largo de las líneas de campo no siente fuerza magnética y sigue en línea recta."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvliox00068yr2wq0x9k1n",
+      "tag": "MG2",
+      "topic": "Magnetismo",
+      "topicId": "cmrr1l9po00arhi3n1ay5m5kv",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": null,
+      "stem": "Al acercar la aguja de una brújula a un alambre recto por el que circula corriente eléctrica, la aguja se desvía de su orientación normal. ¿Qué demuestra este hecho (experimento de Oersted)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que el alambre tiene una carga eléctrica estática acumulada sobre su superficie.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que la corriente circula por el alambre gracias a la presencia cercana de un imán.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Que una corriente eléctrica produce un campo magnético en el espacio que la rodea.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Que el campo magnético de la Tierra se debilita en la cercanía de un cable con corriente.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "La aguja responde a campos magnéticos, y aquí el único elemento nuevo es la corriente. Una carga estática no desviaría una brújula (no una aguja imantada). La corriente circula por la batería, exista o no un imán cerca. El campo terrestre sigue presente; lo que ocurre es que se suma el del alambre.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "El experimento de Oersted (1820) mostró que las corrientes eléctricas generan campos magnéticos, unificando electricidad y magnetismo."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "La aguja responde a campos magnéticos, y aquí el único elemento nuevo es la corriente. Una carga estática no desviaría una brújula (no una aguja imantada). La corriente circula por la batería, exista o no un imán cerca. El campo terrestre sigue presente; lo que ocurre es que se suma el del alambre."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Pensar que hace falta un imán para que haya magnetismo: una simple corriente basta."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvn4eu00065xj30uisnk8q",
+      "tag": "IE1",
+      "topic": "Inducción electromagnética",
+      "topicId": "cmrr1la6500athi3nz5sx1rb1",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": 40.0,
+      "stem": "Una bobina de $200$ espiras experimenta un cambio de flujo magnético de $4\\times10^{-3}\\,\\text{Wb}$ en cada espira durante un intervalo de $0.02\\,\\text{s}$. ¿Cuál es la magnitud de la fem inducida en la bobina?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.2\\,\\text{V}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$0.8\\,\\text{V}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$40\\,\\text{V}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$8\\,000\\,\\text{V}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$|\\varepsilon|=200\\cdot\\dfrac{4\\times10^{-3}\\,\\text{Wb}}{0.02\\,\\text{s}}=200\\cdot0.2=40\\,\\text{V}$. El valor $0.8\\,\\text{V}$ olvida dividir entre el tiempo ($N\\,\\Delta\\Phi$); $0.2\\,\\text{V}$ olvida el número de espiras ($\\Delta\\Phi/\\Delta t$); $8\\,000\\,\\text{V}$ multiplica por el número de espiras dos veces.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Ley de Faraday para una bobina: $|\\varepsilon|=N\\dfrac{|\\Delta\\Phi|}{\\Delta t}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$|\\varepsilon|=200\\cdot\\dfrac{4\\times10^{-3}\\,\\text{Wb}}{0.02\\,\\text{s}}=200\\cdot0.2=40\\,\\text{V}$. El valor $0.8\\,\\text{V}$ olvida dividir entre el tiempo ($N\\,\\Delta\\Phi$); $0.2\\,\\text{V}$ olvida el número de espiras ($\\Delta\\Phi/\\Delta t$); $8\\,000\\,\\text{V}$ multiplica por el número de espiras dos veces."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "El factor $N$ aparece una sola vez. Es fácil dejarlo fuera o aplicarlo por partida doble."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvn56b000b5xj3r3q9sbjr",
+      "tag": "IE2",
+      "topic": "Inducción electromagnética",
+      "topicId": "cmrr1la6500athi3nz5sx1rb1",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "correctValue": null,
+      "stem": "Se acerca el polo norte de un imán a una espira conductora. Según la ley de Lenz, ¿en qué sentido circula la corriente inducida en la espira?",
+      "options": [
+        {
+          "id": "A",
+          "text": "En el sentido que hace que la cara encarada al imán se comporte como un polo norte y lo repela.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "En el sentido que convierte esa cara en un polo sur, de modo que atrae al imán y lo acerca más rápido.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En cualquiera de los dos sentidos, porque la ley de Lenz no llega a fijar la dirección de la corriente.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En ningún sentido todavía: no hay corriente hasta que el imán toca la espira.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Frente a un polo norte que se acerca, la espira genera un polo norte que lo repele. Un polo sur atraería al imán y aceleraría el cambio, violando la conservación de energía. La ley de Lenz sí fija el sentido. La corriente se induce por el cambio de flujo, sin necesidad de contacto.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "La ley de Lenz dice que la corriente inducida se opone al cambio que la produce: si el flujo hacia la espira aumenta, la corriente crea un campo que lo contrarresta."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Frente a un polo norte que se acerca, la espira genera un polo norte que lo repele. Un polo sur atraería al imán y aceleraría el cambio, violando la conservación de energía. La ley de Lenz sí fija el sentido. La corriente se induce por el cambio de flujo, sin necesidad de contacto."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Si la corriente inducida favoreciera el movimiento del imán, se obtendría energía de la nada. La oposición es una consecuencia de la conservación de la energía."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvn3nb00015xj3n8kck032",
+      "tag": "IE3",
+      "topic": "Inducción electromagnética",
+      "topicId": "cmrr1la6500athi3nz5sx1rb1",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": null,
+      "stem": "Un generador eléctrico produce corriente al ______.",
+      "options": [
+        {
+          "id": "A",
+          "text": "calentar un conductor metálico hasta que sus electrones se desprenden y circulan",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "conectar dos placas de carga opuesta con un cable grueso",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "aprovechar la corriente que, según se cree, fluye entre los polos de un imán permanente",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "hacer que varíe el flujo magnético a través de una bobina que gira dentro de un campo",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "El principio es la variación del flujo magnético en el tiempo. Calentar un metal describe la emisión termoiónica, no un generador. Conectar placas cargadas describe la descarga de un capacitor. Un imán permanente no tiene una 'corriente entre sus polos'.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Un generador transforma energía mecánica en eléctrica mediante inducción electromagnética: una bobina gira en un campo y el flujo que la atraviesa varía."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "El principio es la variación del flujo magnético en el tiempo. Calentar un metal describe la emisión termoiónica, no un generador. Conectar placas cargadas describe la descarga de un capacitor. Un imán permanente no tiene una 'corriente entre sus polos'."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Confundir el generador (produce fem por flujo variable) con la pila (produce fem por reacción química)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmqyy0001nvti9v94xtmp",
+      "tag": "FM1",
+      "topic": "Física moderna",
+      "topicId": "cmrr1lat400avhi3nhi2mxz1n",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "correctValue": 2e-19,
+      "stem": "En el efecto fotoeléctrico, un fotón de energía $5\\times10^{-19}\\,\\text{J}$ incide sobre un metal cuya función trabajo es $3\\times10^{-19}\\,\\text{J}$. ¿Cuál es la energía cinética máxima del electrón emitido?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1.5\\times10^{-19}\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2.0\\times10^{-19}\\,\\text{J}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$3.0\\times10^{-19}\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$8.0\\times10^{-19}\\,\\text{J}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$K_{\\max}=5\\times10^{-19}\\,\\text{J}-3\\times10^{-19}\\,\\text{J}=2\\times10^{-19}\\,\\text{J}$. El valor $8\\times10^{-19}\\,\\text{J}$ suma las energías en vez de restarlas; $3\\times10^{-19}\\,\\text{J}$ reporta la función trabajo; $1.5\\times10^{-19}\\,\\text{J}$ divide la energía del fotón entre la función trabajo.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Ecuación de Einstein del efecto fotoeléctrico: $K_{\\max}=h f-\\phi$, la energía del fotón menos la función trabajo."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "$K_{\\max}=5\\times10^{-19}\\,\\text{J}-3\\times10^{-19}\\,\\text{J}=2\\times10^{-19}\\,\\text{J}$. El valor $8\\times10^{-19}\\,\\text{J}$ suma las energías en vez de restarlas; $3\\times10^{-19}\\,\\text{J}$ reporta la función trabajo; $1.5\\times10^{-19}\\,\\text{J}$ divide la energía del fotón entre la función trabajo."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Si la energía del fotón fuera menor que la función trabajo, no habría emisión: $K_{\\max}$ no puede ser negativa."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmsi8000bnvtiqrce2xot",
+      "tag": "FM2",
+      "topic": "Física moderna",
+      "topicId": "cmrr1lat400avhi3nhi2mxz1n",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "correctValue": null,
+      "stem": "Se ilumina un metal con luz de frecuencia $f$ y se emiten electrones con cierta energía cinética máxima. Si se duplica la frecuencia de la luz (manteniendo la intensidad), ¿qué ocurre con la energía cinética máxima de los electrones emitidos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Se duplica exactamente, ya que la energía cinética resulta proporcional a la frecuencia de la luz.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Aumenta, pero se queda por debajo del doble, debido a la resistencia interna del material.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Aumenta a más del doble, ya que $hf$ se duplica pero la función trabajo se resta una sola vez.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "No cambia: la energía cinética depende de la intensidad de la luz y no de su frecuencia.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "El aumento supera el doble por el $+\\phi$ extra. 'Se duplica exactamente' ignora que $\\phi$ se resta una vez, no dos. 'Menos del doble' invierte el efecto de la función trabajo. La intensidad cambia el número de electrones, no su energía; esta depende de la frecuencia.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "$K_{\\max}=hf-\\phi$. Con frecuencia $2f$: $K'_{\\max}=h(2f)-\\phi=2hf-\\phi$. Como $2hf=2(K_{\\max}+\\phi)$, entonces $K'_{\\max}=2K_{\\max}+\\phi>2K_{\\max}$."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "El aumento supera el doble por el $+\\phi$ extra. 'Se duplica exactamente' ignora que $\\phi$ se resta una vez, no dos. 'Menos del doble' invierte el efecto de la función trabajo. La intensidad cambia el número de electrones, no su energía; esta depende de la frecuencia."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Tratar $K_{\\max}$ como proporcional a $f$. Lo proporcional a $f$ es la energía del fotón; $K_{\\max}$ es esa energía desplazada por $-\\phi$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgvmrqk0006nvtifqt3m6ee",
+      "tag": "FM3",
+      "topic": "Física moderna",
+      "topicId": "cmrr1lat400avhi3nhi2mxz1n",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "correctValue": null,
+      "stem": "Al comparar dos radiaciones electromagnéticas, la que tiene mayor longitud de onda transporta fotones de ______.",
+      "options": [
+        {
+          "id": "A",
+          "text": "mayor energía y también mayor frecuencia que la otra",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la misma energía, pero una rapidez de propagación mayor",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "mayor energía, aunque conservando exactamente la misma frecuencia",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "menor energía y menor frecuencia",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "Mayor longitud de onda equivale a menor frecuencia y, por $E=hf$, a menor energía. 'Mayor energía y mayor frecuencia' describe la onda de menor longitud de onda. Todas las ondas electromagnéticas viajan a $c$ en el vacío: la rapidez no distingue. Energía y frecuencia van siempre juntas: no puede haber más energía con igual frecuencia.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Idea clave",
+          "content": "Para una onda electromagnética, $c=\\lambda f$ (mayor $\\lambda$ implica menor $f$) y $E=hf$ (menor $f$ implica menor energía del fotón)."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "Mayor longitud de onda equivale a menor frecuencia y, por $E=hf$, a menor energía. 'Mayor energía y mayor frecuencia' describe la onda de menor longitud de onda. Todas las ondas electromagnéticas viajan a $c$ en el vacío: la rapidez no distingue. Energía y frecuencia van siempre juntas: no puede haber más energía con igual frecuencia."
+        },
+        {
+          "layer": 3,
+          "title": "Errores frecuentes",
+          "content": "Asociar 'onda más larga' con 'más energética'. Es al revés: los rayos gamma (longitud de onda cortísima) son los más energéticos."
+        }
+      ]
+    }
+  ]
+}
