@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G45 (**COMPLETADA — lote de 35 reactivos de **Matemáticas, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet para lotes de contenido). **Pool STEM de mayor peso de la UNAM** (`questionWeight` 26), materia **NO compartida** (`sharedContentKey` NULL, a diferencia de Español/Inglés/Química de la UNAM en G26): el lote va a sus 12 temas propios. Consulta en vivo a Supabase (2026-08-30): 81 verificados repartidos 10/10/7/5/8/7/7/6/5/6/4/6. **El lote prioriza los 10 temas de menor cobertura y deja intactos los dos de 10** (Números reales, Álgebra ecuaciones). Reparto: Trigonometría 5 (5→10), Progresiones y combinatoria 4 (4→8), Series y sucesiones 3 (5→8), Integrales 5 (6→11), Matrices y sistemas 3 (6→9), Estadística descriptiva 2 (6→8), Límites y continuidad 4 (7→11), Derivadas 4 (7→11), Polinomios y funciones 2 (7→9), Geometría analítica 3 (8→11) — cubre álgebra, geometría analítica, trigonometría y cálculo diferencial e integral. **21 SOURCED / 14 TEMARIO_ONLY:** 6 temas tienen `SourceChunk` clasificado por F2b (Trigonometría, Progresiones/combinatoria, Series, Derivadas, Polinomios, Geometría analítica — guías de la UAM y CENEVAL, otra institución que la del examen destino; `grounding.ts` hace obligatoria la cita; se anota, patrón G33/G37/G40/G41/G43) y sus 21 reactivos **transforman la tarea del ítem-semilla** (los de las guías son ejercicios resueltos con la respuesta a la vista; los compuestos usan la misma técnica con datos y opciones nuevas). Los 4 temas sin chunk (Integrales, Matrices, Estadística, Límites) salen TEMARIO_ONLY. **35 con cálculo verificable — recalculados uno por uno con `sympy` antes de insertar: 35/35 coinciden** (criterio del encargo); los distractores numéricos derivan de un error de procedimiento nombrado (signo, olvidar `/2`, confundir vértice con raíces, reportar `x` en vez de `x+y`…). **Formato:** 23 `PROBLEM_SOLVING` · 10 `MULTIPLE_CHOICE` · 2 `NUMERIC_SERIES`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6, distribución objetivo de `_base.md`, misma que G43). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15-40 %, **confirmada por `jsonb_array_elements` tras insertar**; equilibrio también por tema: ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra. La letra se asignó a mano (sin barajado del generador). `content:validate-batch --dir` **0 violaciones** (antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos). **0 citas por letra y 0 referencias posicionales** en las 105 capas (regex de `lot-validation.ts` + `POSITION_REF` de G33); las 35 capas 2 descartan los distractores **por su contenido** (el valor o la fórmula), numerados 1/2/3. **Señuelo de longitud tie-aware (G34 §2): «más larga» 24.1 % y «más corta» 22.6 %**, ambos por debajo del azar (25 %) y de 14/35 — en un lote de matemáticas las opciones son valores/expresiones cortas y homogéneas; se homogeneizaron a mano las 4 conceptuales que traían un outlier. Lenguaje absolutista **0.0/opción** en claves y distractores; opción compuesta como única clave **0/35** (los señuelos de forma de G44 §6-§7 son de humanidades). **Fuga entre reactivos** revisada en las dos direcciones y en la diagonal clave↔distractor (G42 §8): 0 coincidencias no triviales de 4-gramas. **Acumulado real, DB en vivo antes y después:** banco **902 → 937** · servibles **901** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · 1 retirado a propósito · auto-aprobación global **100 % (902/902)** · UNAM A1 Matemáticas **81✓/0⧗ → 81✓/35⧗** (⚓ del pool **57/24 → 78/38**, fuentes 8/12 temas) · `SOURCED` banco **230 → 251 (27 %)** · `TEMARIO_ONLY` **672 → 686** · 105 `ExplanationLayer` · 36 `question_source_chunks`. `content:coverage`: **901 servibles · 35 pendientes · 1 retirado · 937 en banco**; meta efectiva G26 (1 222) **59 %**, brecha **501 ≈ 15 lotes** — no se mueve hasta que G46 verifique, **pero a diferencia de los lotes de humanidades de G33–G43 este SÍ moverá la brecha efectiva**: el pool está en 81 vs meta ~144 (G26), así que los 35 caen enteros dentro (recomendación de G39 §7 / G43 §2). Meta nominal de 1 500: **60 %**. Auditoría 5 % **vencida, ahora 5 ciclos** (exige tier ≠ opus-5). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 10 archivos del lote corren en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g45-unam-a1-matematicas.json`); cero llamadas a la API de pago. **Siguiente: G46 = verificación ciega de este lote, modelo Fable 5.**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G46 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G45 dejó en la cola: **Matemáticas, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, el pool STEM de mayor peso del banco (`questionWeight` 26). **35/35 coinciden con la clave del generador**; **auto-aprobados 33/35 = 94.3 %** — los 2 restantes **también acertaron la letra** y quedan sin publicar únicamente porque esta sesión reportó `problems` sobre su enunciado. **Es la primera ronda ciega por debajo del 100 % en quince**, y bajó sin que fallara una sola clave: la movieron dos defectos editoriales reales, de modo que la métrica que G39/G44 daban por saturada volvió a discriminar. Modelo real `claude-opus-5` — el plan anunciaba Fable 5; el campo `model` declara el que corrió de verdad (corrección de G17, segundo ciclo consecutivo en que difieren). **Aislamiento:** sesión distinta de la que compuso el lote; no se leyó el commit de G45, ni los JSON del lote, ni `Question.options` — único insumo `g46-blind.json`, **0 fugas** de `isCorrect`/`explanation`, opciones con solo `label`/`text`/`imageUrl`, y la clave cayó en la **misma posición tras barajar solo 8/35** (azar ≈ 8.8). **Candado de G28 aplicado a los 35** (`isCalcSubject("Matemáticas")`=true, `requiresCalculation` 35/35): cada reactivo se resolvió **desde cero con `sympy` 1.14** y se exigió **coincidencia única** contra las 4 opciones (`assert len(hits)==1`) — 21 por expresión exacta, 8 numéricos con tolerancia, 2 ecuaciones de curva, 2 antiderivadas (derivando la opción y exigiendo `+C`, lo que decide un reactivo donde dos opciones solo se distinguen por la constante), 1 identidad falsa evaluada en 5 ángulos agudos y 1 patrón de serie inferido de sus términos. **El control de transcripción de G42 §2 atrapó un defecto propio:** comparar el fragmento **como substring** dio un falso «no único» en el reactivo con opciones `6` y `−6` (`"6"` ⊂ `"-6"`); se endureció a **igualdad del texto normalizado completo** — en humanidades el substring basta porque las opciones son oraciones, en matemáticas colisiona. **Clave real A9/B9/C9/D8 confirmada**, con ≥3 letras distintas en todo tema de ≥3 reactivos. **Los dos señuelos de forma de G44 §6-§7 salen inertes y está medido:** absolutismo **0.00/opción** en claves y distractores (vs 0.03 y 0.41 en G43), clave única sin marcador **0/35** (vs 11/35), longitud tie-aware **21.2 % más larga / 22.6 % más corta** — cuando las opciones son valores cortos no hay superficie lingüística donde alojar el señuelo. **Hallazgo: el diagnóstico que sí toca vigilar en STEM es el rango del valor correcto** (si la clave tiende al 2º-3er valor de las cuatro ordenadas, «descarta los extremos» acierta sin saber matemáticas, y G45 fijó la letra de los numéricos precisamente por ese rango): sobre los **25 reactivos 100 % numéricos** salió 5/5/9/6, **χ²=1.72 (gl 3), p=0.63**; extremos 11 vs centrales 14, binomial **p=0.69** — **sin señuelo**, y queda propuesto para `lot-validation.ts` como reemplazo de §6-§7 en lotes STEM. **Los 2 retenidos** (primeras entradas de la cola de discrepancias desde que se drenó en G40): (a) Trigonometría/antena `OTHER` — el `stem` manda usar `tan30°≈0.577`, que da 23.08, pero la opción dice 23.09 (el exacto 23.0940 redondeado); la respuesta sigue siendo única porque ninguna otra opción queda cerca, pero el reactivo se contradice; (b) Progresiones/sucesión `AMBIGUOUS_STEM` — la lectura literal del paso compuesto da 321, que no está entre las opciones, y solo la lectura alternada (+2, ×3, +2, ×3) produce una; ambas se calcularon en código antes de elegir. Los dos son una reescritura de una línea + `blind-batch --ids`. **Acumulado real, DB en vivo antes y después:** banco **937** sin cambio · servibles **901 → 934** · cola ciega **35 → 0** · cola canónica de discrepancias **0 → 2** · 1 retirado a propósito · auto-aprobación global **100 % (902/902) → 99.8 % (935/937)** · UNAM A1 Matemáticas **81✓/35⧗ → 114✓/0⧗/2✋** (98 %) · `SOURCED` 251 (27 %). `content:coverage`: **934 servibles · 0 pendientes · 1 retirado · 937 en banco**; meta efectiva G26 (1 222) **59 % → 62 %**, brecha **501 → 468 (≈ 14 lotes)** — **la predicción de G45/G39 §7 se cumplió**: por caer en un pool bajo su meta, los 33 publicados descuentan uno a uno, a diferencia de los lotes de humanidades de G33–G43. Meta nominal 1 500: **60 % → 62 %**. Auditoría 5 % **vencida, ahora 6 ciclos** (exige tier ≠ opus-5, y esta sesión volvió a correr en opus-5). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción; cero llamadas a la API de pago. **Siguiente: G47, modelo Sonnet 4.6.**)
+
+<details><summary>Historial: G45 (2026-08-30)</summary>
+
+Última fase ejecutada: G45 (**COMPLETADA — lote de 35 reactivos de **Matemáticas, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet para lotes de contenido). **Pool STEM de mayor peso de la UNAM** (`questionWeight` 26), materia **NO compartida** (`sharedContentKey` NULL, a diferencia de Español/Inglés/Química de la UNAM en G26): el lote va a sus 12 temas propios. Consulta en vivo a Supabase (2026-08-30): 81 verificados repartidos 10/10/7/5/8/7/7/6/5/6/4/6. **El lote prioriza los 10 temas de menor cobertura y deja intactos los dos de 10** (Números reales, Álgebra ecuaciones). Reparto: Trigonometría 5 (5→10), Progresiones y combinatoria 4 (4→8), Series y sucesiones 3 (5→8), Integrales 5 (6→11), Matrices y sistemas 3 (6→9), Estadística descriptiva 2 (6→8), Límites y continuidad 4 (7→11), Derivadas 4 (7→11), Polinomios y funciones 2 (7→9), Geometría analítica 3 (8→11) — cubre álgebra, geometría analítica, trigonometría y cálculo diferencial e integral. **21 SOURCED / 14 TEMARIO_ONLY:** 6 temas tienen `SourceChunk` clasificado por F2b (Trigonometría, Progresiones/combinatoria, Series, Derivadas, Polinomios, Geometría analítica — guías de la UAM y CENEVAL, otra institución que la del examen destino; `grounding.ts` hace obligatoria la cita; se anota, patrón G33/G37/G40/G41/G43) y sus 21 reactivos **transforman la tarea del ítem-semilla** (los de las guías son ejercicios resueltos con la respuesta a la vista; los compuestos usan la misma técnica con datos y opciones nuevas). Los 4 temas sin chunk (Integrales, Matrices, Estadística, Límites) salen TEMARIO_ONLY. **35 con cálculo verificable — recalculados uno por uno con `sympy` antes de insertar: 35/35 coinciden** (criterio del encargo); los distractores numéricos derivan de un error de procedimiento nombrado (signo, olvidar `/2`, confundir vértice con raíces, reportar `x` en vez de `x+y`…). **Formato:** 23 `PROBLEM_SOLVING` · 10 `MULTIPLE_CHOICE` · 2 `NUMERIC_SERIES`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6, distribución objetivo de `_base.md`, misma que G43). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15-40 %, **confirmada por `jsonb_array_elements` tras insertar**; equilibrio también por tema: ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra. La letra se asignó a mano (sin barajado del generador). `content:validate-batch --dir` **0 violaciones** (antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos). **0 citas por letra y 0 referencias posicionales** en las 105 capas (regex de `lot-validation.ts` + `POSITION_REF` de G33); las 35 capas 2 descartan los distractores **por su contenido** (el valor o la fórmula), numerados 1/2/3. **Señuelo de longitud tie-aware (G34 §2): «más larga» 24.1 % y «más corta» 22.6 %**, ambos por debajo del azar (25 %) y de 14/35 — en un lote de matemáticas las opciones son valores/expresiones cortas y homogéneas; se homogeneizaron a mano las 4 conceptuales que traían un outlier. Lenguaje absolutista **0.0/opción** en claves y distractores; opción compuesta como única clave **0/35** (los señuelos de forma de G44 §6-§7 son de humanidades). **Fuga entre reactivos** revisada en las dos direcciones y en la diagonal clave↔distractor (G42 §8): 0 coincidencias no triviales de 4-gramas. **Acumulado real, DB en vivo antes y después:** banco **902 → 937** · servibles **901** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · 1 retirado a propósito · auto-aprobación global **100 % (902/902)** · UNAM A1 Matemáticas **81✓/0⧗ → 81✓/35⧗** (⚓ del pool **57/24 → 78/38**, fuentes 8/12 temas) · `SOURCED` banco **230 → 251 (27 %)** · `TEMARIO_ONLY` **672 → 686** · 105 `ExplanationLayer` · 36 `question_source_chunks`. `content:coverage`: **901 servibles · 35 pendientes · 1 retirado · 937 en banco**; meta efectiva G26 (1 222) **59 %**, brecha **501 ≈ 15 lotes** — no se mueve hasta que G46 verifique, **pero a diferencia de los lotes de humanidades de G33–G43 este SÍ moverá la brecha efectiva**: el pool está en 81 vs meta ~144 (G26), así que los 35 caen enteros dentro (recomendación de G39 §7 / G43 §2). Meta nominal de 1 500: **60 %**. Auditoría 5 % **vencida, ahora 5 ciclos** (exige tier ≠ opus-5). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 10 archivos del lote corren en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g45-unam-a1-matematicas.json`); cero llamadas a la API de pago. **Siguiente: G46 = verificación ciega de este lote, modelo Fable 5.**)
+
+</details>
 
 <details><summary>Historial: G44 (2026-08-30)</summary>
 
@@ -2189,6 +2195,230 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G46 — Verificación ciega: Matemáticas, UNAM Área 1 (lote de G45) (2026-08-30)
+
+**Estado: COMPLETADA.** Verificación ciega adversarial (G2) de los 35 reactivos
+que G45 dejó en la cola (`isVerified=false`, `verification=null`): **Matemáticas,
+UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, el pool STEM de
+mayor peso del banco (`questionWeight` 26).
+
+**35/35 coinciden con la clave del generador.** Auto-aprobados **33/35 = 94.3 %**:
+los 2 restantes **también acertaron la letra** y quedan sin publicar únicamente
+porque esta sesión reportó `problems` sobre ellos (§8). Modelo real
+`claude-opus-5` — el plan anunciaba Fable 5; el campo `model` declara el modelo
+que de verdad resolvió, no la constante del plan (corrección de G17, segundo
+ciclo consecutivo en que difieren: ver G44).
+
+**Es la primera ronda ciega por debajo del 100 % en quince.** El número bajó sin
+que fallara una sola clave: lo que lo movió fueron dos defectos editoriales
+reales. G39/G44 venían anotando que la tasa estaba saturada y ya no discriminaba;
+aquí volvió a discriminar, y lo hizo por el canal correcto.
+
+### 1. Ceguera y aislamiento
+
+Sesión distinta de la que compuso el lote (G45). Esta sesión **nunca leyó** el
+commit de G45, los archivos JSON del lote ni `Question.options`; el único insumo
+fue `scripts/content-exports/g46-blind.json`.
+
+| Control | Resultado |
+|---|---|
+| `grep -c` de `isCorrect\|explanation\|correct` sobre el lote ciego | **0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Claves de nivel ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Formato | **23 `PROBLEM_SOLVING` · 10 `MULTIPLE_CHOICE` · 2 `NUMERIC_SERIES`** |
+| `requiresCalculation` | **35/35** → `usedCalculation:true` declarado con verdad en los 35 |
+| Reactivos con pasaje | **0/35** (los 35 llegan autocontenidos en el `stem`) |
+| Opciones por reactivo · ids únicos | 4/4 en los 35 · 35 ids únicos |
+| Longitud de `stem` | mín 41 · máx 232 · media 104.1 caracteres |
+| Longitud de opción (LaTeX aplanado) | mín 1 · máx 39 · media 7.0 caracteres |
+| Institución/materia del lote | 35/35 UNAM · Matemáticas |
+| Clave en la MISMA posición tras barajar | **8/35** (azar ≈ 8.8) — el barajado determinista de `blind-verification.ts` sí esconde la letra original |
+
+### 2. Todos los cálculos EJECUTADOS (candado de G28)
+
+`isCalcSubject("Matemáticas")` = true, así que el candado de G28 aplica a los 35.
+Ninguna respuesta salió de razonar en prosa: cada reactivo se resolvió **desde
+cero con `sympy` 1.14** y después se compararon las 4 opciones contra el valor
+calculado, exigiendo **coincidencia única** (`assert len(hits) == 1`, lanza con
+la tabla de las 4 opciones si hay 0 o ≥2).
+
+| Modo de comparación | Reactivos | Qué ejecuta |
+|---|---|---|
+| Expresión exacta (`simplify(opción − calculado) == 0`) | 21 | derivadas, límites, integrales definidas, sistemas, álgebra |
+| Numérico con tolerancia | 8 | ley de senos, altura por tangente, medias, áreas |
+| Ecuación de curva (`expand(lhs − rhs)`) | 2 | circunferencias de geometría analítica |
+| Antiderivada (deriva la opción y compara con el integrando) | 2 | exige además la constante `+C` |
+| Identidad falsa (evalúa las 4 igualdades en 5 ángulos agudos) | 1 | reactivo de razones recíprocas con `INCORRECTA` |
+| Serie/patrón (infiere la regla de los términos dados y la extiende) | 1 | sucesión de diferencias alternadas |
+
+Dos comparaciones merecen nota porque no son una igualdad numérica:
+
+- **Antiderivadas.** En el reactivo de `∫(6x² − 4x + 3)dx` **dos opciones tienen
+  la misma expresión y solo se distinguen por el `+C`**. La regla ejecutada
+  (derivar la opción y exigir la constante) descarta la que la omite; sin ese
+  segundo criterio el ítem tendría dos respuestas válidas. El arnés lo trató como
+  parte del cálculo, no como detalle de estilo.
+- **Identidades recíprocas.** Se evaluó `lhs − rhs` en cinco ángulos agudos: tres
+  opciones dan |diferencia| ~1e-124 (identidades verdaderas) y **una sola** da
+  5.23. La opción que falla es la respuesta, y el que sea exactamente una es lo
+  que valida el reactivo.
+
+### 3. El control de transcripción de G42 §2, endurecido
+
+La letra **nunca se escribió a mano**: se deriva del campo `label` de la opción
+que coincidió, y se exige que el texto de esa opción la identifique de forma
+única dentro del reactivo.
+
+**El control atrapó un defecto propio.** La versión heredada comparaba el
+fragmento **como substring**, y eso lanzó un falso positivo de «fragmento no
+único» en el reactivo cuyas opciones incluyen `6` y `−6`: `"6"` está contenido en
+`"-6"`. Se cambió a **igualdad del texto normalizado completo** (`$`, espacios).
+En un lote de humanidades el substring basta porque las opciones son oraciones
+largas; en uno de matemáticas, donde una opción es un número corto, **el
+substring genera colisiones y hay que comparar el texto entero**.
+
+| Control | Resultado |
+|---|---|
+| Opciones con texto normalizado único (≠1 lanza) | **35/35** |
+| Letra derivada del contenido == letra escrita en el JSON | **35/35** |
+| Reactivos con 0 o ≥2 opciones coincidentes con el cálculo | **0/35** |
+
+La misma clase de problema apareció al medir: un normalizador que borraba las
+macros LaTeX dejaba opciones de 1 carácter y hacía colapsar dos opciones
+distintas al mismo string (35 claves contadas como 38). Se corrigió conservando
+el **nombre** de la macro (`\cos` → `cos`, `\infty` → `infty`) antes de fijar las
+cifras de §5 y §6.
+
+### 4. Resolución
+
+| Resultado | n |
+|---|---|
+| ✔ Auto-aprobados (coincide + `confidence ≥ 0.85` + `problems` vacío) | **33** |
+| ✋ Sin publicar con veredicto (coinciden, pero con `problems`) | **2** |
+| ⚠️ Omitidos | **0** |
+| Letra elegida == letra del generador | **35/35** |
+
+Confianza declarada: 0.98 en 33 reactivos, 0.93 y 0.88 en los dos marcados.
+
+### 5. Balance de la clave real (leído después de responder)
+
+|  | A | B | C | D |
+|---|---|---|---|---|
+| n | 9 | 9 | 9 | 8 |
+| % | 25.7 | 25.7 | 25.7 | 22.9 |
+
+Confirma el A9/B9/C9/D8 que G45 declaró. Por tema, **todo tema con ≥3 reactivos
+usa ≥3 letras distintas** (Trigonometría ADCBA, Integrales BCCAD, Progresiones
+BCAD, Series CBD, Matrices CAD, Límites DDBC, Derivadas ACBC, Geometría ADB) y
+los dos temas de 2 reactivos usan 2 letras distintas.
+
+Las letras que **esta** sesión eligió sobre el lote barajado (A7/B10/C12/D6) no
+tienen por qué parecerse: el barajado es por reactivo y sembrado con su id.
+
+### 6. Los dos señuelos de forma de G44 §6-§7 son inertes aquí, y está medido
+
+| Métrica | G43/G44 (humanidades) | G45/G46 (matemáticas) |
+|---|---|---|
+| Marcadores absolutistas por opción — claves | 0.03 | **0.00** |
+| Marcadores absolutistas por opción — distractores | 0.41 | **0.00** |
+| Reactivos donde la clave es la única sin marcador | 11/35 | **0/35** |
+| «elige la más larga» (tie-aware) | 14.3 % | **21.2 %** |
+| «elige la más corta» (tie-aware) | 14.3 % | **22.6 %** |
+| ratio medio clave/distractores | 1.045 | **0.952** |
+
+Cuando las opciones son valores o expresiones cortas no hay superficie
+lingüística donde alojar el señuelo: los tres canales de forma de humanidades
+salen en cero o en azar **sin que nadie los combatiera**. La conclusión operativa
+es que en un lote STEM esos tres diagnósticos no informan, y **hace falta otro**.
+
+### 7. El señuelo que sí habría que vigilar en STEM: el rango del valor correcto
+
+Análogo posicional del señuelo de longitud: si la clave tiende a ser el 2º o 3er
+valor de las cuatro opciones ordenadas, «descarta los extremos» acierta sin saber
+matemáticas. G45 fijó la letra de los numéricos precisamente **por el rango del
+valor correcto**, así que el riesgo era estructural, no hipotético.
+
+Medido sobre los **25 reactivos cuyas 4 opciones son valores numéricos puros**:
+
+| Rango del valor correcto (ascendente) | 1º (menor) | 2º | 3º | 4º (mayor) |
+|---|---|---|---|---|
+| n | 5 | 5 | 9 | 6 |
+
+χ² = 1.72 (gl 3), **p = 0.63**; extremos 11 vs centrales 14, binomial bilateral
+**p = 0.69**. **No hay señuelo de rango**: la distribución es indistinguible del
+azar. Queda como el diagnóstico que reemplaza a §6-§7 para lotes STEM, propuesto
+para `scripts/lib/lot-validation.ts` junto con los dos de humanidades.
+
+### 8. Los 2 reactivos sin publicar (ambos con la letra correcta)
+
+Los dos coinciden con la clave del generador; están retenidos porque el defecto
+es del **enunciado**, no de la clave. Son las dos primeras entradas de la cola
+canónica de discrepancias desde que se drenó en G40.
+
+**(a) Trigonometría — antena, `OTHER`, confianza 0.93.** El `stem` indica «usa
+`tan 30° ≈ 0.577`», pero `40 × 0.577 = 23.08` y la opción dice `23.09` (que es el
+valor exacto `23.0940` redondeado). Quien siga la instrucción al pie de la letra
+obtiene un número que no está entre las opciones. **La respuesta sigue siendo
+única** — ninguna otra opción queda cerca (69.28, 20, 46.19), por eso la letra
+coincidió — pero el reactivo se contradice a sí mismo. Arreglo: dar
+`tan 30° ≈ 0.5774`, o poner `23.08` en la opción.
+
+**(b) Progresiones y combinatoria — sucesión, `AMBIGUOUS_STEM`, confianza 0.88.**
+El `stem` describe la regla como **un solo paso compuesto** («al término anterior
+se le suma 2 y al resultado se le multiplica por 3»); esa lectura literal da 321
+como quinto término, que no está entre las opciones. La lectura que sí produce
+una opción es la **alternada** (+2, luego ×3, luego +2, luego ×3), y dos de los
+distractores son términos intermedios de esa misma lectura, lo que confirma la
+intención. Ambas lecturas se calcularon en código antes de elegir. Arreglo:
+redactar «los términos se obtienen alternando: sumar 2 al anterior y, al
+siguiente, multiplicarlo por 3».
+
+Ninguno exige rehacer el reactivo: los dos son una reescritura de una línea, y
+después se re-verifican con `content:blind-batch --ids` sobre esos dos ids.
+
+### 9. Acumulado real (DB en vivo, antes → después)
+
+| Métrica | Antes de G46 | Después de G46 |
+|---|---|---|
+| Banco total | 937 | **937** |
+| Servibles (`isVerified=true`) | 901 | **934** |
+| Cola ciega (`verification=null`) | 35 | **0** |
+| Cola canónica de discrepancias | 0 | **2** |
+| Retirados a propósito | 1 | 1 |
+| Auto-aprobación global | 100 % (902/902) | **99.8 % (935/937)** |
+| UNAM A1 Matemáticas | 81✓ / 35⧗ | **114✓ / 0⧗ / 2✋** (98 %) |
+| `SOURCED` en banco | 251 (27 %) | 251 (27 %) |
+
+`content:coverage`: **934 servibles · 0 pendientes de resolución · 1 retirado ·
+937 en banco**. Meta efectiva G26 (1 222): **59 % → 62 %**, brecha **501 → 468
+(≈ 14 lotes)**. Meta nominal 1 500: **60 % → 62 %**. El lote movió la brecha los
+33 reactivos que publicó — **la predicción de G45/G39 §7 se cumplió**: por caer
+en un pool que estaba bajo su meta (81 vs ~144), a diferencia de los lotes de
+humanidades de G33–G43, cada reactivo cuenta contra la brecha.
+
+### 10. Criterios de aceptación
+
+- [x] Nunca se vio la respuesta correcta antes de responder — solo el lote ciego,
+      0 fugas, sin leer commit ni JSON del lote.
+- [x] Los 35 verificados **ejecutando** la operación con `sympy`, con
+      coincidencia única obligatoria.
+- [x] `pnpm typecheck` y `pnpm lint` en verde.
+- [x] Cero cambios de código de producción; cero llamadas a la API de pago (el
+      arnés de Python vive en el scratchpad y no se committea).
+
+### 11. Deuda y recomendación para G47
+
+- **Los 2 reactivos retenidos** piden una micro-fase editorial al estilo de G40:
+  reescribir las dos líneas y re-verificar solo esos ids.
+- **Auditoría 5 % vencida, ahora 6 ciclos** — exige un tier ≠ opus-5 y esta
+  sesión volvió a correr en opus-5.
+- **UNAM A1 Matemáticas sigue bajo meta**: 114 vs ~144. Un segundo lote de la
+  misma materia vuelve a caer entero dentro de la brecha.
+- Siguen abiertos: los otros 4 pools STEM de alto peso de G39 §7, UNAM A4 Artes,
+  IPN SOCADM completo, la rotación A→B→C→D de ~140 reactivos viejos y los 3
+  reactivos de G37 que son paráfrasis cercanas de su guía fuente.
+- El alcance del 21-nov sigue **sin respuesta del dueño, quince fases después**.
 
 ## G45 — Lote de reactivos: Matemáticas, UNAM Área 1 (2026-08-30)
 
