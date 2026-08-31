@@ -1,0 +1,2532 @@
+{
+  "batch": "G47",
+  "phase": "G47 — Lote de reactivos: Biología, UNAM Área 2 (Ciencias Biológicas, Químicas y de la Salud)",
+  "generatedAt": "2026-08-30",
+  "model": "claude-sonnet-5 — sesión de Claude Code (suscripción), sin API de pago. El Plan de Implementación asigna el tier Sonnet a los lotes de contenido; el campo declara el modelo real (corrección de G17).",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 2 — Ciencias Biológicas, Químicas y de la Salud",
+  "subject": "Biología",
+  "subjectId": "cmrr1jkdr0036hi3nkq27ujm0",
+  "questionWeight": 14,
+  "sharedContentKey": null,
+  "shared": false,
+  "totalQuestions": 35,
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 28,
+    "SENTENCE_COMPLETION": 3,
+    "PROBLEM_SOLVING": 4
+  },
+  "difficultyDistribution": {
+    "BASIC": 8,
+    "INTERMEDIATE": 17,
+    "ADVANCED": 8,
+    "EXPERT": 2
+  },
+  "grounding": {
+    "TEMARIO_ONLY": 20,
+    "SOURCED": 15
+  },
+  "lengthDecoy": {
+    "longest_tie_aware_pct": 17.1,
+    "shortest_tie_aware_pct": 20.0,
+    "mean_ratio": 1.007
+  },
+  "absolutism": {
+    "per_key": 0.057,
+    "per_distractor": 0.133,
+    "key_only_clean": 0
+  },
+  "perTopic": {
+    "Célula y organelos": {
+      "topicId": "cmrr1jkj70038hi3naxd30iye",
+      "count": 4,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Mitosis y meiosis": {
+      "topicId": "cmrr1jkyn003ahi3n0k1woi8v",
+      "count": 3,
+      "grounding": "SOURCED"
+    },
+    "Genética mendeliana": {
+      "topicId": "cmrr1jli8003chi3nyihwnrin",
+      "count": 3,
+      "grounding": "SOURCED"
+    },
+    "Evolución": {
+      "topicId": "cmrr1jlzb003ehi3n6h4m14gg",
+      "count": 3,
+      "grounding": "SOURCED"
+    },
+    "Ecología y ecosistemas": {
+      "topicId": "cmrr1jmie003ghi3n4mpy62ik",
+      "count": 3,
+      "grounding": "SOURCED"
+    },
+    "Sistemas del cuerpo humano": {
+      "topicId": "cmrr1jn53003ihi3nj0juipyz",
+      "count": 3,
+      "grounding": "SOURCED"
+    },
+    "Nutrición y metabolismo": {
+      "topicId": "cmrr1jnpm003khi3ncolo8t4p",
+      "count": 4,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Homeostasis": {
+      "topicId": "cmrr1jo97003mhi3nom9uiutt",
+      "count": 4,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Reproducción": {
+      "topicId": "cmrr1jovn003ohi3nbfm7lq1z",
+      "count": 4,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Inmunología": {
+      "topicId": "cmrr1jpij003qhi3nqnh9ee83",
+      "count": 4,
+      "grounding": "TEMARIO_ONLY"
+    }
+  },
+  "questions": [
+    {
+      "tag": "C1",
+      "topic": "Célula y organelos",
+      "topicId": "cmrr1jkj70038hi3naxd30iye",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "¿Cuál es la función principal del retículo endoplásmico rugoso en una célula eucariota?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sintetizar proteínas de secreción y de membrana gracias a los ribosomas de su superficie",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Empaquetar proteínas ya terminadas y enviarlas en vesículas a su destino",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Sintetizar lípidos y hormonas esteroides y participar en la desintoxicación celular",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Degradar organelos gastados y macromoléculas de desecho, mediante enzimas digestivas, y reciclar sus componentes",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Empaquetar proteínas ya terminadas y enviarlas en vesículas a su destino",
+          "note": "esa es la función del aparato de Golgi, no del retículo"
+        },
+        {
+          "text": "Sintetizar lípidos y hormonas esteroides y participar en la desintoxicación celular",
+          "note": "esa es la función del retículo endoplásmico LISO, que no tiene ribosomas"
+        },
+        {
+          "text": "Degradar organelos gastados y macromoléculas de desecho, mediante enzimas digestivas, y reciclar sus componentes",
+          "note": "esa es la función de los lisosomas, no del retículo"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ribosomas adheridos a una red de membranas",
+          "content": "El retículo endoplásmico rugoso debe su aspecto a los ribosomas pegados a su cara externa. Las proteínas que esos ribosomas fabrican entran a la red de membranas, donde se pliegan y se marcan para salir de la célula o para integrarse a una membrana.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La síntesis de lípidos, de hormonas esteroides y la desintoxicación corresponden al retículo endoplásmico liso, que carece de ribosomas. 2) El empaquetado y reparto de proteínas ya terminadas lo hace el aparato de Golgi, que recibe lo que el retículo le envía. 3) La degradación de organelos y macromoléculas con enzimas digestivas es tarea de los lisosomas. Solo el retículo rugoso sintetiza proteínas de exportación con sus ribosomas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Sistema de endomembranas",
+          "content": "El retículo endoplásmico (rugoso y liso), el aparato de Golgi, los lisosomas y las vesículas forman un sistema conectado que fabrica, modifica y transporta moléculas. Repasa: diferencia entre retículo rugoso y liso, y la ruta retículo → Golgi → vesícula secretora.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksb310001ox1hzyeku16q"
+    },
+    {
+      "tag": "C2",
+      "topic": "Célula y organelos",
+      "topicId": "cmrr1jkj70038hi3naxd30iye",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "¿Qué característica distingue de manera fundamental a una célula procariota de una eucariota?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La procariota usa ARN en lugar de ADN como su material genético",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La procariota depende de habitar dentro de otra célula que la aloje y le dé refugio",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En la procariota el ADN está disperso en el citoplasma, no encerrado en un núcleo con membrana",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La procariota carece de membrana plasmática, así que su citoplasma está en contacto directo con el medio externo",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "La procariota usa ARN en lugar de ADN como su material genético",
+          "note": "las procariotas sí tienen ADN; el error confunde la bacteria con ciertos virus"
+        },
+        {
+          "text": "La procariota depende de habitar dentro de otra célula que la aloje y le dé refugio",
+          "note": "la mayoría de las bacterias y arqueas son de vida libre"
+        },
+        {
+          "text": "La procariota carece de membrana plasmática, así que su citoplasma está en contacto directo con el medio externo",
+          "note": "toda célula, procariota incluida, está rodeada por una membrana plasmática"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Presencia o ausencia de núcleo verdadero",
+          "content": "El rasgo que define a las procariotas es que su material genético no está encerrado en un núcleo con membrana: el ADN, casi siempre un cromosoma circular, ocupa una región del citoplasma llamada nucleoide. En las eucariotas el ADN está aislado dentro del núcleo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Afirmar que la procariota no tiene ADN es falso: bacterias y arqueas tienen ADN; el error viene de confundirlas con ciertos virus. 2) Decir que carece de membrana plasmática también es falso: la membrana es común a todas las células. 3) Que solo pueda vivir dentro de otra célula describe a parásitos intracelulares, no a las procariotas en general, en su mayoría de vida libre. Lo que realmente falta en la procariota es el núcleo con membrana.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Procariota frente a eucariota",
+          "content": "Ambos tipos comparten membrana, citoplasma, ribosomas y ADN. Se diferencian en el núcleo (ausente en procariotas), el tamaño y la presencia de organelos con membrana. Repasa: estructura de la bacteria y concepto de nucleoide.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksbvm0006ox1hncllsig5"
+    },
+    {
+      "tag": "C3",
+      "topic": "Célula y organelos",
+      "topicId": "cmrr1jkj70038hi3naxd30iye",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "En una célula de una hoja hay mitocondrias y cloroplastos. ¿Qué enunciado describe correctamente la relación entre ambos organelos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La mitocondria fabrica la clorofila que el cloroplasto usa para captar la luz",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El cloroplasto capta la energía de la luz para formar glucosa y la mitocondria degrada esa glucosa para liberar el ATP que la célula necesita",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El cloroplasto degrada la glucosa para obtener ATP y la mitocondria almacena el oxígeno que le sobra a la planta",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los dos organelos producen glucosa: el cloroplasto a partir de la luz y la mitocondria combinando oxígeno con el dióxido de carbono del aire",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "La mitocondria fabrica la clorofila que el cloroplasto usa para captar la luz",
+          "note": "la clorofila se sintetiza dentro del propio cloroplasto"
+        },
+        {
+          "text": "El cloroplasto degrada la glucosa para obtener ATP y la mitocondria almacena el oxígeno que le sobra a la planta",
+          "note": "invierte por completo la función de cada organelo"
+        },
+        {
+          "text": "Los dos organelos producen glucosa: el cloroplasto a partir de la luz y la mitocondria combinando oxígeno con el dióxido de carbono del aire",
+          "note": "la mitocondria consume glucosa y oxígeno; no fabrica azúcar"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos pasos complementarios del flujo de energía",
+          "content": "El cloroplasto realiza la fotosíntesis: transforma energía luminosa, agua y dióxido de carbono en glucosa y oxígeno. La mitocondria hace la respiración celular: toma esa glucosa y ese oxígeno para liberar energía como ATP, y devuelve dióxido de carbono y agua.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Decir que la mitocondria produce glucosa combinando oxígeno y dióxido de carbono es incorrecto: la mitocondria consume glucosa y oxígeno, no los sintetiza. 2) La clorofila no la fabrica la mitocondria; el cloroplasto la produce y la contiene. 3) Intercambiar los papeles —cloroplasto que respira, mitocondria que almacena oxígeno— contradice la función de cada organelo. La respuesta correcta mantiene el orden: fotosíntesis primero, respiración después.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Fotosíntesis y respiración celular",
+          "content": "Son procesos casi inversos: la fotosíntesis fija carbono y guarda energía; la respiración oxida ese carbono y la libera. En una planta ocurren los dos a la vez. Repasa: ecuación general de la fotosíntesis y de la respiración, y qué organelo realiza cada una.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkscnh000box1h5a4srsbh"
+    },
+    {
+      "tag": "C4",
+      "topic": "Célula y organelos",
+      "topicId": "cmrr1jkj70038hi3naxd30iye",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "Según el modelo del mosaico fluido, la membrana plasmática está formada por...",
+      "options": [
+        {
+          "id": "A",
+          "text": "una sola capa rígida de proteínas fuertemente unidas que envuelve por completo a la célula",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "varias capas superpuestas de celulosa que bloquean el paso de casi todas las sustancias",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "una red entretejida de fibras de ADN y de ARN que elige qué moléculas entran a la célula",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "una bicapa de fosfolípidos con proteínas incrustadas que se desplazan por ella",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "una sola capa rígida de proteínas fuertemente unidas que envuelve por completo a la célula",
+          "note": "ignora los fosfolípidos y la fluidez de la membrana"
+        },
+        {
+          "text": "varias capas superpuestas de celulosa que bloquean el paso de casi todas las sustancias",
+          "note": "confunde la membrana con la pared celular de las plantas"
+        },
+        {
+          "text": "una red entretejida de fibras de ADN y de ARN que elige qué moléculas entran a la célula",
+          "note": "los ácidos nucleicos no forman la membrana"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Bicapa lipídica con proteínas móviles",
+          "content": "El modelo del mosaico fluido describe la membrana como dos capas de fosfolípidos, con las colas hidrófobas hacia adentro y las cabezas hidrófilas hacia afuera, y proteínas incrustadas que se mueven por el plano de la bicapa. De ahí 'mosaico' (piezas distintas) y 'fluido' (no es rígida).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Una capa única y rígida solo de proteínas no explica la permeabilidad selectiva ni el movimiento de sus componentes. 2) La celulosa en varias capas corresponde a la pared celular vegetal, externa a la membrana y con otra función. 3) El ADN y el ARN están dentro de la célula almacenando y transmitiendo información; no forman la membrana. La estructura real es la bicapa de fosfolípidos con proteínas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Estructura y transporte de membrana",
+          "content": "La bicapa lipídica es la base; las proteínas actúan como canales, transportadores y receptores. La membrana es selectivamente permeable. Repasa: fosfolípido (parte polar y no polar), tipos de proteínas de membrana y transporte pasivo frente a activo.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksdf8000gox1h3n7ckb8d"
+    },
+    {
+      "tag": "M1",
+      "topic": "Mitosis y meiosis",
+      "topicId": "cmrr1jkyn003ahi3n0k1woi8v",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En la anafase de la mitosis las cromátidas hermanas se separan y migran hacia polos opuestos. Si en una división ese reparto fallara y una célula hija recibiera las dos cromátidas de un mismo cromosoma, ¿qué ocurriría?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Las dos células hijas serían idénticas entre sí y a la célula original, con su número de cromosomas intacto, tal como en una mitosis normal",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una célula hija tendría un cromosoma de más y la otra uno de menos; ese cambio en el número normal se llama aneuploidía y es la causa de trisomías y monosomías",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La célula original ya no podría duplicar su ADN en la fase S que viene justo después de la división celular",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Las dos células hijas quedarían con la mitad de los cromosomas de la especie, igual que ocurre al final de la meiosis",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Las dos células hijas serían idénticas entre sí y a la célula original, con su número de cromosomas intacto, tal como en una mitosis normal",
+          "note": "describe el resultado correcto de la mitosis, no la falla planteada"
+        },
+        {
+          "text": "La célula original ya no podría duplicar su ADN en la fase S que viene justo después de la división celular",
+          "note": "la fase S ocurre en la interfase, antes de la mitosis, no después"
+        },
+        {
+          "text": "Las dos células hijas quedarían con la mitad de los cromosomas de la especie, igual que ocurre al final de la meiosis",
+          "note": "confunde un error de reparto con la reducción cromosómica programada de la meiosis"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un reparto desigual produce aneuploidía",
+          "content": "La anafase asegura que cada célula hija reciba una copia de cada cromosoma. Si las cromátidas de un cromosoma no se separan (no disyunción), ambas van a la misma célula: una hija queda con un cromosoma extra y la otra con uno menos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Células idénticas a la original' es lo que pasa cuando la mitosis funciona bien, no cuando falla el reparto. 2) La duplicación del ADN sucede en la interfase, antes de que empiece la mitosis; un error en anafase no la impide. 3) Que las hijas tengan la mitad de cromosomas es el resultado de la meiosis, un proceso distinto; aquí no hay una reducción programada, sino un reparto equivocado. La consecuencia real es un cromosoma de más en una hija y de menos en la otra.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Fases de la mitosis y no disyunción",
+          "content": "Profase, metafase, anafase y telofase reparten con exactitud el material genético duplicado. La no disyunción en anafase origina trisomías y monosomías. Repasa: qué se separa en la anafase mitótica (cromátidas) frente a la meiótica (homólogos en anafase I).",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksi5x000113wgylpjbdfq"
+    },
+    {
+      "tag": "M2",
+      "topic": "Mitosis y meiosis",
+      "topicId": "cmrr1jkyn003ahi3n0k1woi8v",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "¿Cuál de las siguientes es una diferencia correcta entre la mitosis y la meiosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La mitosis forma los gametos y la meiosis forma la piel y el músculo",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La mitosis reparte cromosomas ya duplicados y la meiosis reparte cromosomas sin duplicar",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La mitosis genera variabilidad por el entrecruzamiento de los cromosomas homólogos, y la meiosis produce copias exactas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La mitosis da dos células con el mismo número de cromosomas que la original; la meiosis da cuatro con la mitad",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "La mitosis forma los gametos y la meiosis forma la piel y el músculo",
+          "note": "invierte el papel de cada división en el cuerpo"
+        },
+        {
+          "text": "La mitosis reparte cromosomas ya duplicados y la meiosis reparte cromosomas sin duplicar",
+          "note": "ambas divisiones van precedidas por la duplicación del ADN en la fase S"
+        },
+        {
+          "text": "La mitosis genera variabilidad por el entrecruzamiento de los cromosomas homólogos, y la meiosis produce copias exactas",
+          "note": "invierte los procesos: el entrecruzamiento es propio de la meiosis"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Número de células y de cromosomas resultante",
+          "content": "La mitosis produce dos células hijas con la misma dotación cromosómica que la madre (de 2n a 2n) y sirve para crecer y reparar tejidos. La meiosis produce cuatro células con la mitad de los cromosomas (de 2n a n) y forma los gametos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Decir que la meiosis no duplica el ADN antes es falso: tanto la mitosis como la meiosis empiezan después de la fase S, con los cromosomas ya duplicados. 2) Atribuir el entrecruzamiento a la mitosis y las copias exactas a la meiosis es exactamente al revés. 3) Que la mitosis forme gametos y la meiosis forme piel y músculo también invierte los papeles. La diferencia válida está en el número de células y de cromosomas.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Comparación mitosis / meiosis",
+          "content": "Puntos clave: número de divisiones (una frente a dos), células resultantes (dos frente a cuatro), cromosomas (se conservan frente a se reducen a la mitad) y variabilidad (sin cambio frente a entrecruzamiento y recombinación). Repasa: fases de la meiosis I y II.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksj4a000613wgpf5rqz37"
+    },
+    {
+      "tag": "M3",
+      "topic": "Mitosis y meiosis",
+      "topicId": "cmrr1jkyn003ahi3n0k1woi8v",
+      "grounding": "SOURCED",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Todas las células de un embrión provienen de divisiones mitóticas del cigoto, de modo que tienen el mismo ADN. Sin embargo, el tejido muscular, el óseo y el sanguíneo —los tres derivados del mesodermo— son muy distintos entre sí. ¿Cómo se explica esa diferencia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cada tipo de célula activa un conjunto distinto de genes, aunque conserva el genoma completo",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Durante cada mitosis, la célula hija va perdiendo los genes que no va a necesitar en su tejido",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El cigoto contiene varios núcleos distintos, uno por cada capa embrionaria y cada tejido futuro",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La mitosis reparte al azar solo la mitad de los cromosomas del cigoto a cada célula hija",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Durante cada mitosis, la célula hija va perdiendo los genes que no va a necesitar en su tejido",
+          "note": "la mitosis reparte copias íntegras del genoma; no se descartan genes"
+        },
+        {
+          "text": "El cigoto contiene varios núcleos distintos, uno por cada capa embrionaria y cada tejido futuro",
+          "note": "el cigoto es una sola célula con un único núcleo"
+        },
+        {
+          "text": "La mitosis reparte al azar solo la mitad de los cromosomas del cigoto a cada célula hija",
+          "note": "describe erróneamente a la meiosis; la mitosis no reduce ni azariza el reparto"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Mismo genoma, distinta expresión génica",
+          "content": "La diferenciación celular no cambia el ADN: una célula muscular y una ósea tienen los mismos genes que el cigoto. Lo que cambia es cuáles genes están activos: cada linaje enciende los que necesita y mantiene apagados los demás.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Perder genes en cada mitosis contradice que la mitosis produce copias íntegras del genoma. 2) Un cigoto con varios núcleos no existe: es una sola célula con un núcleo. 3) Un reparto al azar de la mitad de los cromosomas describe mal a la meiosis y no ocurre en la mitosis, que separa cromátidas de forma equitativa. La explicación correcta es la expresión diferencial de genes.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Diferenciación y regulación génica",
+          "content": "Todas las células somáticas son genéticamente equivalentes; la identidad de cada tejido depende de qué genes se transcriben. Las capas embrionarias (ectodermo, mesodermo, endodermo) originan tejidos distintos por este mecanismo. Repasa: concepto de expresión génica y de célula madre.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksk2f000b13wgaz9zb810"
+    },
+    {
+      "tag": "G3",
+      "topic": "Genética mendeliana",
+      "topicId": "cmrr1jli8003chi3nyihwnrin",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctPosition": "D",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En el sistema sanguíneo ABO, el alelo A y el alelo B son codominantes entre sí y ambos dominan sobre el alelo O. Un hombre de grupo AB tiene descendencia con una mujer de grupo O. ¿Qué grupos sanguíneos pueden tener los hijos y en qué proporción?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un cuarto de cada grupo por igual: grupo A, grupo B, grupo AB y grupo O, según las cuatro casillas del cuadro de Punnett",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Todos los hijos serían de grupo AB, igual que el padre, porque AB es el fenotipo que domina sobre el grupo O de la madre",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La mitad de los hijos de grupo AB y la mitad de grupo O, es decir, cada hijo repite el grupo sanguíneo de uno de sus dos padres",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La mitad de grupo A y la mitad de grupo B; ninguno de grupo AB ni de grupo O",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Un cuarto de cada grupo por igual: grupo A, grupo B, grupo AB y grupo O, según las cuatro casillas del cuadro de Punnett",
+          "note": "supone cuatro combinaciones equiprobables, propio de un cruce entre dos personas de grupo A y B heterocigotas"
+        },
+        {
+          "text": "Todos los hijos serían de grupo AB, igual que el padre, porque AB es el fenotipo que domina sobre el grupo O de la madre",
+          "note": "ignora que la madre aporta forzosamente un alelo O a cada hijo"
+        },
+        {
+          "text": "La mitad de los hijos de grupo AB y la mitad de grupo O, es decir, cada hijo repite el grupo sanguíneo de uno de sus dos padres",
+          "note": "supone que los hijos heredan en bloque el fenotipo completo de un progenitor"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El padre aporta A o B; la madre aporta siempre O",
+          "content": "El padre de grupo AB lleva un alelo A y un alelo B, así que la mitad de sus gametos porta A y la otra mitad porta B. La madre de grupo O lleva dos alelos O; todos sus gametos aportan O. Cada hijo recibe A y O, que da grupo A, o B y O, que da grupo B, con igual probabilidad. No hay hijos de grupo AB ni de grupo O.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Genotipos: padre con alelos A y B; madre con dos alelos O. 2) Gametos del padre: mitad A, mitad B. Gametos de la madre: todos O. 3) Descendencia: mitad hereda A y O, que se expresa como grupo A; mitad hereda B y O, que se expresa como grupo B. 4) Proporción 1:1 entre grupo A y grupo B; cero de grupo AB y cero de grupo O. 'Un cuarto de cada grupo' correspondería a un cruce entre dos heterocigotos; 'todos AB' olvida el aporte materno; 'mitad AB y mitad O' supone herencia en bloque.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Alelos múltiples y codominancia en el sistema ABO",
+          "content": "El gen ABO tiene tres alelos: A y B son codominantes entre sí y los dos dominan sobre O. El fenotipo depende de la pareja de alelos heredada. Repasa: genotipos posibles de cada grupo sanguíneo y cómo construir un cuadro de Punnett con codominancia.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksozl0001149pfdtbgltg"
+    },
+    {
+      "tag": "G1",
+      "topic": "Genética mendeliana",
+      "topicId": "cmrr1jli8003chi3nyihwnrin",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "correctPosition": "B",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En el chícharo, el alelo para semilla lisa (L) domina por completo sobre el de semilla rugosa (l). Se cruzan dos plantas heterocigotas (Ll x Ll) y se obtienen 320 semillas. ¿Cuántas se espera que sean rugosas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "80",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "160",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "240",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "0",
+          "note": "supuso que dos plantas de fenotipo liso no pueden dar descendencia rugosa"
+        },
+        {
+          "text": "160",
+          "note": "usó la fracción 1/2 (la del genotipo Ll), no la del fenotipo recesivo"
+        },
+        {
+          "text": "240",
+          "note": "contó las de fenotipo dominante (3/4) en vez de las rugosas"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un cuarto de la descendencia es recesiva",
+          "content": "En Ll x Ll el cuadro de Punnett da 1 LL : 2 Ll : 1 ll. Solo el genotipo ll, una cuarta parte, produce semilla rugosa. De 320 semillas: 320 x 1/4 = 80 rugosas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Cruza Ll x Ll: cada progenitor forma gametos L y l. 2) Descendencia: 1/4 LL, 2/4 Ll, 1/4 ll. 3) Con dominancia completa, LL y Ll son lisas (3/4) y solo ll es rugosa (1/4). 4) 320 x 1/4 = 80. Si obtuviste 160, aplicaste la fracción del genotipo heterocigoto; si obtuviste 240, contaste las lisas; el 0 supone que dos plantas lisas no pueden tener descendencia rugosa.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Cruce monohíbrido y leyes de Mendel",
+          "content": "La primera ley (segregación) explica por qué Ll x Ll da la proporción fenotípica 3:1. Distingue proporción genotípica (1:2:1) de fenotípica (3:1). Repasa: cuadro de Punnett, dominancia completa y cómo pasar de una proporción a un número esperado.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkspxr0006149puvxqy3or"
+    },
+    {
+      "tag": "G2",
+      "topic": "Genética mendeliana",
+      "topicId": "cmrr1jli8003chi3nyihwnrin",
+      "grounding": "SOURCED",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "correctPosition": "C",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Una planta de tomate de genotipo AaBb se cruza con otra aabb (cruce de prueba). Los genes A y B están en cromosomas distintos y ambos muestran dominancia completa. De 400 descendientes, ¿cuántos se espera que presenten los dos rasgos recesivos a la vez?",
+      "options": [
+        {
+          "id": "A",
+          "text": "25",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "50",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "100",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "200",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "25",
+          "note": "aplicó la fracción 1/16 del doble recesivo de un cruce dihíbrido F2, no la de un cruce de prueba"
+        },
+        {
+          "text": "50",
+          "note": "aplicó 1/8, a mitad de camino entre 1/4 y 1/16, sin justificación"
+        },
+        {
+          "text": "200",
+          "note": "usó la fracción 1/2, la de un solo gen recesivo"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada gen segrega por separado: 1/2 x 1/2",
+          "content": "El progenitor AaBb forma cuatro gametos en igual proporción (AB, Ab, aB, ab); el aabb solo forma ab. Para el gen A, la probabilidad de descendencia aa es 1/2; para el gen B, la de bb es 1/2. Por distribución independiente, P(aabb) = 1/2 x 1/2 = 1/4. De 400 descendientes: 400 x 1/4 = 100.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Gen A: Aa x aa da 1/2 Aa y 1/2 aa. 2) Gen B: Bb x bb da 1/2 Bb y 1/2 bb. 3) Doble recesivo: 1/2 x 1/2 = 1/4. 4) 400 x 1/4 = 100. El 25 sale de usar 1/16, la fracción del doble recesivo cuando se cruzan dos dihíbridos AaBb x AaBb, no un cruce de prueba; el 200 usa 1/2 (un solo gen); el 50 usa un 1/8 intermedio sin justificación.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Cruce de prueba y distribución independiente",
+          "content": "El cruce de prueba, con el homocigoto recesivo, revela el genotipo del otro progenitor porque la descendencia refleja directamente sus gametos. La segunda ley de Mendel permite multiplicar probabilidades de genes en cromosomas distintos. Repasa: diferencia entre AaBb x aabb y AaBb x AaBb.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksqvu000b149pp618cr8c"
+    },
+    {
+      "tag": "E1",
+      "topic": "Evolución",
+      "topicId": "cmrr1jlzb003ehi3n6h4m14gg",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "La teoría endosimbiótica propone que las mitocondrias y los cloroplastos se originaron a partir de bacterias englobadas por una célula ancestral. ¿Cuál de las siguientes observaciones apoya esa hipótesis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ambos organelos tienen ADN circular propio y ribosomas parecidos a los de las bacterias",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Ambos organelos los fabrica de cero el núcleo cada vez que se necesitan",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Ambos organelos desaparecen de la célula en cuanto esta deja de dividirse por mitosis",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Ambos organelos aparecen solamente en los organismos pluricelulares que superan cierto tamaño corporal",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Ambos organelos los fabrica de cero el núcleo cada vez que se necesitan",
+          "note": "se originan por división de organelos preexistentes, no por síntesis nuclear"
+        },
+        {
+          "text": "Ambos organelos desaparecen de la célula en cuanto esta deja de dividirse por mitosis",
+          "note": "es falso; mitocondrias y cloroplastos persisten en células que ya no se dividen"
+        },
+        {
+          "text": "Ambos organelos aparecen solamente en los organismos pluricelulares que superan cierto tamaño corporal",
+          "note": "también están en eucariotas unicelulares, como las algas"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Rasgos de tipo bacteriano dentro de la célula eucariota",
+          "content": "Mitocondrias y cloroplastos conservan un ADN propio circular, ribosomas del tamaño de los bacterianos y una doble membrana; además se dividen por un proceso parecido a la fisión binaria. Esos rasgos se explican bien si descienden de bacterias que vivieron dentro de otra célula.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Que los organelos desaparezcan al detenerse la mitosis es falso: una neurona, que no se divide, mantiene sus mitocondrias toda la vida. 2) No están limitados a organismos grandes y pluricelulares; un alga unicelular tiene cloroplastos. 3) El núcleo no los fabrica de cero: se multiplican dividiéndose ellos mismos. La evidencia real es el ADN y los ribosomas de tipo bacteriano.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Origen de la célula eucariota",
+          "content": "La endosimbiosis seriada (Lynn Margulis) explica el origen de organelos con doble membrana. Las pruebas son moleculares (ADN, ARN ribosómico), estructurales (doble membrana) y funcionales (división independiente). Repasa: diferencias entre procariota y eucariota y tipos de evidencia evolutiva.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksvq90001qvcj2hnwzq57"
+    },
+    {
+      "tag": "E2",
+      "topic": "Evolución",
+      "topicId": "cmrr1jlzb003ehi3n6h4m14gg",
+      "grounding": "SOURCED",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En una población de bacterias, unas pocas portan por azar una mutación que las hace resistentes a un antibiótico. Si ese antibiótico se aplica de forma repetida durante muchas generaciones, ¿qué se espera que ocurra en la población?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cada bacteria desarrollará la resistencia que necesita como reacción directa ante el antibiótico",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La población entera se extinguirá, porque el antibiótico mata por igual a todas las bacterias",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Las bacterias sensibles y las resistentes se mantendrán siempre en la misma proporción, sin que la selección natural altere ese equilibrio",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Aumentará la proporción de bacterias resistentes, porque sobreviven y se reproducen más que las sensibles",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Cada bacteria desarrollará la resistencia que necesita como reacción directa ante el antibiótico",
+          "note": "idea lamarckista: la variación es previa y al azar, no una respuesta dirigida"
+        },
+        {
+          "text": "La población entera se extinguirá, porque el antibiótico mata por igual a todas las bacterias",
+          "note": "ignora que las bacterias resistentes ya existen antes del tratamiento"
+        },
+        {
+          "text": "Las bacterias sensibles y las resistentes se mantendrán siempre en la misma proporción, sin que la selección natural altere ese equilibrio",
+          "note": "descarta el efecto de la selección sobre las frecuencias"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Selección natural sobre variación preexistente",
+          "content": "La mutación que da resistencia surge antes del antibiótico y por azar. Cuando el antibiótico está presente, las sensibles mueren y las resistentes sobreviven y dejan más descendencia. Generación tras generación, la fracción de resistentes crece: eso es selección natural.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Cada bacteria desarrolla la resistencia que necesita' es la explicación lamarckista, descartada: el ambiente no dirige la mutación, solo filtra a las que ya la tienen. 2) La extinción total no ocurre porque hay individuos resistentes desde el inicio. 3) Que las proporciones no cambien contradice la definición de selección: si un rasgo aumenta la supervivencia y la reproducción, su frecuencia sube. La respuesta correcta describe ese aumento.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Mecanismo de la evolución adaptativa",
+          "content": "Requisitos de la selección natural: variación heredable, más descendencia de la que sobrevive y diferencias de aptitud. La resistencia a antibióticos es el ejemplo mejor documentado. Repasa: diferencia entre la explicación de Lamarck y la de Darwin, y qué significa aptitud (fitness).",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkswo40006qvcjo74qdops"
+    },
+    {
+      "tag": "E3",
+      "topic": "Evolución",
+      "topicId": "cmrr1jlzb003ehi3n6h4m14gg",
+      "grounding": "SOURCED",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "El reino Protista reúne organismos muy variados (algas, protozoarios, mohos mucilaginosos) que se agrupan sobre todo porque no encajan en los reinos animal, vegetal ni de los hongos. ¿Qué indica esto acerca de dicho reino?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que es en realidad una fase larvaria por la que pasan los animales y las plantas",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que todos los protistas descienden de un mismo ancestro casi idéntico a las especies actuales",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Reúne linajes muy distintos entre sí y se define en parte por exclusión, no por un ancestro común",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Que los protistas son, sin ninguna excepción, las formas de vida más simples y más antiguas del planeta",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Que es en realidad una fase larvaria por la que pasan los animales y las plantas",
+          "note": "los protistas son organismos completos, no estadios de otros seres"
+        },
+        {
+          "text": "Que todos los protistas descienden de un mismo ancestro casi idéntico a las especies actuales",
+          "note": "el grupo no es monofilético; no comparte un ancestro común exclusivo"
+        },
+        {
+          "text": "Que los protistas son, sin ninguna excepción, las formas de vida más simples y más antiguas del planeta",
+          "note": "confunde diversidad con simplicidad; hay protistas muy complejos"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un grupo definido por lo que no es",
+          "content": "Que un reino sea el más diverso entre los eucariontes y se arme 'con lo que sobra' de los otros tres es señal de que no es un grupo natural: sus miembros no comparten un antepasado común que excluya a los demás eucariontes. Por eso la clasificación moderna reparte a los antiguos protistas en varios grupos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Un origen a partir de un único ancestro exclusivo definiría un grupo monofilético; los datos moleculares muestran que los protistas no lo son. 2) Igualar diversidad con simplicidad es un error: hay protistas con ciclos de vida y estructuras muy elaborados. 3) No son fases larvarias de otros seres: cada protista es un organismo completo que se reproduce por sí mismo. La lectura correcta es que Protista es una categoría de conveniencia.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Sistemática y grupos monofiléticos",
+          "content": "Una clasificación natural agrupa a los organismos por ascendencia común. Protista es el ejemplo clásico de grupo parafilético o polifilético que la filogenia molecular ha desmontado. Repasa: diferencia entre semejanza y parentesco, y qué es un árbol filogenético.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgksxlv000bqvcj9k9kyvnz"
+    },
+    {
+      "tag": "Ec1",
+      "topic": "Ecología y ecosistemas",
+      "topicId": "cmrr1jmie003ghi3n4mpy62ik",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "La selva tropical húmeda tiene lluvia abundante todo el año y vegetación exuberante, y alberga más especies que casi cualquier otro bioma. ¿Qué factor explica principalmente esa altísima biodiversidad?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El agua, la luz y el calor disponibles todo el año, que sostienen alta productividad y muchos nichos",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Un suelo profundo y muy rico en nutrientes, que es el más fértil de todos los biomas del planeta",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La ausencia total de depredadores, que deja crecer sin ningún límite a todas las poblaciones",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Las noches muy frías del trópico, que obligan a las especies a diversificarse para resistir",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Un suelo profundo y muy rico en nutrientes, que es el más fértil de todos los biomas del planeta",
+          "note": "los suelos de selva tropical suelen ser pobres; los nutrientes están en la biomasa viva"
+        },
+        {
+          "text": "La ausencia total de depredadores, que deja crecer sin ningún límite a todas las poblaciones",
+          "note": "la selva tiene abundantes depredadores; su ausencia no explicaría más especies"
+        },
+        {
+          "text": "Las noches muy frías del trópico, que obligan a las especies a diversificarse para resistir",
+          "note": "la selva tropical no tiene noches frías; el clima es cálido y estable"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Clima estable y productivo todo el año",
+          "content": "En la franja ecuatorial la temperatura es alta y pareja y la lluvia es abundante en cualquier estación. Eso permite que las plantas fotosinteticen sin interrupción, que haya mucha energía disponible y que el espacio se reparta en muchísimos nichos, lo que sostiene una gran variedad de especies.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El suelo de la selva tropical es pobre y delgado: la fertilidad aparente está en la hojarasca y la biomasa, que se reciclan muy rápido. 2) La selva está llena de depredadores; además, quitar los depredadores suele reducir la diversidad. 3) No hay noches frías en el trópico húmedo. El factor real es la combinación de agua, luz y calor constantes.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Biomas y factores de la biodiversidad",
+          "content": "Cada bioma queda definido por su clima (temperatura y precipitación) y su vegetación dominante. La productividad primaria y la variedad de nichos explican por qué unos biomas tienen más especies que otros. Repasa: características de selva, desierto, tundra y bosque templado.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkt2ir0001gqi7w6qmtcv0"
+    },
+    {
+      "tag": "Ec2",
+      "topic": "Ecología y ecosistemas",
+      "topicId": "cmrr1jmie003ghi3n4mpy62ik",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En un liquen, un hongo y un alga viven juntos: el alga aporta azúcares que produce por fotosíntesis y el hongo aporta agua, sales minerales y protección frente a la desecación. ¿Qué tipo de interacción representa?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Parasitismo: el hongo se alimenta del alga y la daña",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Comensalismo, porque el alga se beneficia y el hongo no se ve afectado",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Mutualismo, porque las dos especies obtienen un beneficio de la relación",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Depredación, porque una de las especies captura a la otra, la mata y luego se la come",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Parasitismo: el hongo se alimenta del alga y la daña",
+          "note": "en el parasitismo una especie se perjudica; aquí ambas se benefician"
+        },
+        {
+          "text": "Comensalismo, porque el alga se beneficia y el hongo no se ve afectado",
+          "note": "en el comensalismo solo una gana; aquí el hongo también gana"
+        },
+        {
+          "text": "Depredación, porque una de las especies captura a la otra, la mata y luego se la come",
+          "note": "no hay captura ni consumo de un organismo por otro"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Beneficio para las dos especies",
+          "content": "En el liquen el alga recibe agua, minerales y un ambiente protegido; el hongo recibe azúcares que no sabe fabricar. Como ambas partes salen ganando, la interacción es mutualismo. Es tan estrecha que el liquen funciona casi como un solo organismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El parasitismo implica que una especie sale perjudicada, y aquí ninguna lo está. 2) El comensalismo supone que solo una se beneficia y la otra queda igual; en el liquen el hongo también obtiene alimento. 3) La depredación requiere que un organismo capture y se coma a otro, lo que no ocurre. Al ganar las dos, es mutualismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Interacciones entre especies",
+          "content": "Se clasifican por el signo del efecto sobre cada especie: mutualismo (+/+), comensalismo (+/0), parasitismo y depredación (+/-), competencia (-/-). Repasa: ejemplos como las micorrizas, la rémora y el tiburón, y el muérdago.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkt3gu0006gqi734ei4hab"
+    },
+    {
+      "tag": "Ec3",
+      "topic": "Ecología y ecosistemas",
+      "topicId": "cmrr1jmie003ghi3n4mpy62ik",
+      "grounding": "SOURCED",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "correctPosition": "B",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En un ecosistema los productores fijan 20 000 kcal por metro cuadrado al año. Si en promedio solo el 10 % de la energía de un nivel trófico pasa al siguiente, ¿cuánta energía queda disponible para los consumidores secundarios?",
+      "options": [
+        {
+          "id": "A",
+          "text": "20 kcal por metro cuadrado al año",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "200 kcal por metro cuadrado al año",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "2 000 kcal por metro cuadrado al año",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "18 000 kcal por metro cuadrado al año",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "20 kcal por metro cuadrado al año",
+          "note": "aplicó el 10 % tres veces en lugar de dos"
+        },
+        {
+          "text": "2 000 kcal por metro cuadrado al año",
+          "note": "aplicó el 10 % una sola vez; ese valor corresponde a los consumidores primarios"
+        },
+        {
+          "text": "18 000 kcal por metro cuadrado al año",
+          "note": "restó el 10 % en vez de conservar el 10 %"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos saltos de nivel, dos veces el 10 %",
+          "content": "De productores a consumidores primarios pasa el 10 %: 20 000 x 0.10 = 2 000 kcal/m². De consumidores primarios a secundarios pasa otra vez el 10 %: 2 000 x 0.10 = 200 kcal/m². Los consumidores secundarios están dos niveles por encima de los productores.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Productores: 20 000 kcal/m². 2) Consumidores primarios (herbívoros): 20 000 x 0.10 = 2 000. 3) Consumidores secundarios (que comen herbívoros): 2 000 x 0.10 = 200. Si respondiste 2 000, te quedaste en el primer nivel de consumidores; si respondiste 20, multiplicaste por 0.10 una vez de más; 18 000 sale de restar el 10 % en lugar de tomarlo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Flujo de energía y regla del 10 %",
+          "content": "La energía disminuye en cada nivel porque los organismos la gastan en respiración y la pierden como calor; por eso las pirámides de energía se estrechan hacia arriba y las cadenas tienen pocos eslabones. Repasa: niveles tróficos, pirámides ecológicas y por qué la energía no se recicla.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkt4ev000bgqi7l6v8ezpm"
+    },
+    {
+      "tag": "S1",
+      "topic": "Sistemas del cuerpo humano",
+      "topicId": "cmrr1jn53003ihi3nj0juipyz",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "En una neurona el impulso entra por las dendritas, pasa por el cuerpo celular y sale por el axón hacia la siguiente célula. En la sinapsis, ¿qué parte de la primera neurona libera los neurotransmisores?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Las dendritas, que son la parte por donde el impulso había entrado a esa neurona",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El cuerpo celular o soma, que es donde se integra toda la información que llega",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El extremo final del axón, llamado botón sináptico",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La vaina de mielina, que es la cubierta que rodea a tramos el axón de la neurona",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Las dendritas, que son la parte por donde el impulso había entrado a esa neurona",
+          "note": "las dendritas reciben la señal siguiente, no la envían"
+        },
+        {
+          "text": "El cuerpo celular o soma, que es donde se integra toda la información que llega",
+          "note": "el soma procesa la información, pero no contacta con la neurona siguiente"
+        },
+        {
+          "text": "La vaina de mielina, que es la cubierta que rodea a tramos el axón de la neurona",
+          "note": "la mielina aísla y acelera la conducción; no libera sustancias"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La señal sale por donde termina el axón",
+          "content": "El impulso viaja en un solo sentido: dendritas, soma, axón. Al llegar al final del axón, el botón sináptico libera neurotransmisores que cruzan el espacio sináptico y actúan sobre las dendritas de la neurona siguiente.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Las dendritas son la entrada de la señal, no la salida; recibirían los neurotransmisores de otra neurona, no los liberarían. 2) El soma integra las señales que llegan, pero no hace contacto sináptico con la célula siguiente. 3) La vaina de mielina envuelve al axón para que el impulso viaje más rápido; no participa en la liberación química. La estructura que secreta es el extremo del axón.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Neurona y sinapsis",
+          "content": "Partes de la neurona: dendritas (reciben), soma (integra), axón (conduce), botón sináptico (transmite). La sinapsis química convierte la señal eléctrica en química y de vuelta en eléctrica. Repasa: potencial de acción, sentido de la conducción y papel de la mielina.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkthaz0001iywucs17c7sf"
+    },
+    {
+      "tag": "S2",
+      "topic": "Sistemas del cuerpo humano",
+      "topicId": "cmrr1jn53003ihi3nj0juipyz",
+      "grounding": "SOURCED",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "El esqueleto axial (cráneo, columna vertebral y caja torácica) y el apendicular (extremidades y sus cinturas) cumplen funciones algo distintas. ¿Cuál es una función característica del esqueleto axial?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Producir los glóbulos rojos, pero solo en los huesos de las manos y los pies",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Proteger órganos vitales como el encéfalo, la médula espinal, el corazón y los pulmones",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Guardar casi todo el calcio del cuerpo en los huesos largos de brazos y piernas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Permitir los movimientos amplios de los brazos y las piernas al caminar, correr y manipular objetos",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Producir los glóbulos rojos, pero solo en los huesos de las manos y los pies",
+          "note": "la hematopoyesis ocurre sobre todo en huesos axiales, no en manos y pies"
+        },
+        {
+          "text": "Guardar casi todo el calcio del cuerpo en los huesos largos de brazos y piernas",
+          "note": "el calcio se almacena en todo el tejido óseo, no solo en el apendicular"
+        },
+        {
+          "text": "Permitir los movimientos amplios de los brazos y las piernas al caminar, correr y manipular objetos",
+          "note": "es una función asociada al esqueleto apendicular"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El eje del cuerpo rodea y protege a los órganos internos",
+          "content": "El esqueleto axial forma una caja alrededor de las estructuras más delicadas: el cráneo protege el encéfalo, la columna protege la médula espinal y la caja torácica protege el corazón y los pulmones. El apendicular se especializa en el movimiento de las extremidades.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Los movimientos amplios de brazos y piernas dependen del esqueleto apendicular y sus articulaciones. 2) Los glóbulos rojos se forman sobre todo en la médula ósea roja de huesos axiales (esternón, vértebras, costillas, pelvis), no en manos y pies. 3) El calcio se almacena en todo el tejido óseo, sin un papel especial del apendicular. La función propia del axial es proteger órganos vitales.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Divisiones y funciones del esqueleto",
+          "content": "Funciones del sistema óseo: sostén, protección, movimiento junto con los músculos, reserva de minerales y hematopoyesis. El axial protege; el apendicular mueve. Repasa: huesos de cada división y concepto de médula ósea roja.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkti8i0006iywucnbqar5u"
+    },
+    {
+      "tag": "S3",
+      "topic": "Sistemas del cuerpo humano",
+      "topicId": "cmrr1jn53003ihi3nj0juipyz",
+      "grounding": "SOURCED",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [
+        1
+      ],
+      "stem": "Los eritrocitos participan en el transporte de los gases respiratorios en la sangre humana. ¿Cuál de las siguientes afirmaciones es correcta?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Llevan oxígeno de los pulmones a los tejidos y ayudan a transportar el dióxido de carbono en sentido inverso, de los tejidos a los pulmones",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Transportan el oxígeno hacia los tejidos, mientras que la sangre entrega el dióxido de carbono a los riñones para eliminarlo por la orina",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Fabrican dentro de la sangre el oxígeno que el cuerpo necesita, usando el agua y los nutrientes que circulan por ella",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Llevan el dióxido de carbono desde los pulmones hasta los tejidos y de regreso recogen el oxígeno que estos producen",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Transportan el oxígeno hacia los tejidos, mientras que la sangre entrega el dióxido de carbono a los riñones para eliminarlo por la orina",
+          "note": "el dióxido de carbono se elimina por los pulmones, no por los riñones"
+        },
+        {
+          "text": "Fabrican dentro de la sangre el oxígeno que el cuerpo necesita, usando el agua y los nutrientes que circulan por ella",
+          "note": "el oxígeno no se fabrica; entra por la respiración pulmonar"
+        },
+        {
+          "text": "Llevan el dióxido de carbono desde los pulmones hasta los tejidos y de regreso recogen el oxígeno que estos producen",
+          "note": "invierte por completo el sentido del intercambio de gases"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Intercambio de gases en dos sentidos",
+          "content": "El eritrocito capta oxígeno en los pulmones, unido a la hemoglobina, y lo suelta en los tejidos. En el camino de regreso ayuda a llevar dióxido de carbono desde los tejidos hacia los pulmones, en parte unido a la hemoglobina y en parte como bicarbonato.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El dióxido de carbono no lo eliminan los riñones: sale por los pulmones al exhalar; los riñones eliminan sobre todo urea y regulan el agua y las sales. 2) El oxígeno no se sintetiza en el organismo; ingresa por los alvéolos desde el aire. 3) Decir que el eritrocito lleva dióxido de carbono a los tejidos y recoge oxígeno de ellos invierte el intercambio. La afirmación correcta respeta el doble sentido: oxígeno hacia los tejidos, dióxido de carbono hacia los pulmones.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Sistema circulatorio y respiratorio",
+          "content": "La hemoglobina de los eritrocitos transporta la mayor parte del oxígeno; el dióxido de carbono viaja disuelto, como bicarbonato y unido a la hemoglobina. El intercambio ocurre en los alvéolos y en los capilares de los tejidos. Repasa: hematosis, papel de la hemoglobina y circulación mayor y menor.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktj67000biywur3ikdv09"
+    },
+    {
+      "tag": "N1",
+      "topic": "Nutrición y metabolismo",
+      "topicId": "cmrr1jnpm003khi3ncolo8t4p",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "La glucólisis, primera etapa de la degradación de la glucosa, ocurre en el...",
+      "options": [
+        {
+          "id": "A",
+          "text": "interior de la mitocondria, y convierte el piruvato en acetil-coenzima A antes del ciclo de Krebs",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "conjunto de crestas de la mitocondria, y ahí genera la mayor parte del ATP de toda la célula",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "interior del cloroplasto, y fija el dióxido de carbono del aire en moléculas orgánicas nuevas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "citoplasma, y parte la glucosa en dos moléculas de piruvato",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "interior de la mitocondria, y convierte el piruvato en acetil-coenzima A antes del ciclo de Krebs",
+          "note": "describe la oxidación del piruvato, que es posterior a la glucólisis"
+        },
+        {
+          "text": "conjunto de crestas de la mitocondria, y ahí genera la mayor parte del ATP de toda la célula",
+          "note": "describe la fosforilación oxidativa (cadena respiratoria)"
+        },
+        {
+          "text": "interior del cloroplasto, y fija el dióxido de carbono del aire en moléculas orgánicas nuevas",
+          "note": "describe el ciclo de Calvin de la fotosíntesis"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ocurre fuera de la mitocondria",
+          "content": "La glucólisis se realiza en el citoplasma, no necesita oxígeno y parte una molécula de glucosa (6 carbonos) en dos de piruvato (3 carbonos cada una), con una ganancia neta de 2 ATP y 2 NADH.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La conversión de piruvato en acetil-coenzima A ocurre en la matriz mitocondrial y es el paso siguiente, no la glucólisis. 2) La producción de la mayor parte del ATP corresponde a la cadena de transporte de electrones, en las crestas mitocondriales. 3) Fijar dióxido de carbono en moléculas orgánicas es el ciclo de Calvin, propio del cloroplasto. La glucólisis es citoplasmática y termina en piruvato.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Etapas de la respiración celular",
+          "content": "Orden: glucólisis (citoplasma), oxidación del piruvato y ciclo de Krebs (matriz mitocondrial), cadena de transporte de electrones (crestas). Repasa: dónde ocurre cada etapa, qué entra y qué sale, y el balance aproximado de ATP.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktnzd0001xh64jz6d567e"
+    },
+    {
+      "tag": "N2",
+      "topic": "Nutrición y metabolismo",
+      "topicId": "cmrr1jnpm003khi3ncolo8t4p",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "¿Por qué la respiración aerobia proporciona mucho más ATP por molécula de glucosa que la fermentación?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque la glucólisis solo ocurre en la respiración aerobia y falta en la fermentación",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque la fermentación descompone y destruye la molécula de glucosa antes de que pueda entrar a la glucólisis",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque el oxígeno acepta los electrones al final de la cadena y permite oxidar la glucosa por completo",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Porque la fermentación consume más ATP del que produce y siempre termina con un saldo energético negativo para la célula",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Porque la glucólisis solo ocurre en la respiración aerobia y falta en la fermentación",
+          "note": "la glucólisis es común a las dos rutas"
+        },
+        {
+          "text": "Porque la fermentación descompone y destruye la molécula de glucosa antes de que pueda entrar a la glucólisis",
+          "note": "la fermentación ocurre después de la glucólisis, no la impide"
+        },
+        {
+          "text": "Porque la fermentación consume más ATP del que produce y siempre termina con un saldo energético negativo para la célula",
+          "note": "la fermentación tiene un saldo neto positivo de 2 ATP, aunque pequeño"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La oxidación completa libera mucha más energía",
+          "content": "En la fermentación la glucosa solo se degrada de forma parcial y el saldo son 2 ATP. En la respiración aerobia, el piruvato entra a la mitocondria y se oxida por completo; los electrones llegan a la cadena de transporte, donde el oxígeno los acepta al final. Esa vía rinde alrededor de 30 a 38 ATP por glucosa.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La fermentación no impide la glucólisis: ocurre justo después de ella, para regenerar el NAD+. 2) La glucólisis es el punto de partida común de ambas rutas. 3) La fermentación sí produce ATP neto (2 por glucosa), solo que mucho menos que la respiración aerobia. La razón real es que el oxígeno permite extraer casi toda la energía de la glucosa.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Respiración aerobia frente a fermentación",
+          "content": "Ambas empiezan con la glucólisis. Sin oxígeno, la célula recurre a la fermentación (láctica o alcohólica) para seguir obteniendo algo de ATP. Con oxígeno, la mitocondria multiplica el rendimiento. Repasa: función del aceptor final de electrones y balance de ATP de cada vía.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktor20006xh64r0a02gr9"
+    },
+    {
+      "tag": "N3",
+      "topic": "Nutrición y metabolismo",
+      "topicId": "cmrr1jnpm003khi3ncolo8t4p",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "Una enzima digestiva humana deja de funcionar cuando la temperatura sube a 60 grados Celsius. ¿Cuál es la explicación correcta?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El calor rompe los enlaces débiles que sostienen la forma tridimensional de la enzima y deforma su sitio activo, de modo que ya no encaja con el sustrato",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El calor transforma la enzima en su propio sustrato y en fragmentos inertes, así que ya no queda nada que catalizar",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El calor acelera tanto la reacción que el sustrato se agota casi al instante y la actividad solo parece haberse detenido",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El calor hace que la enzima se una de modo permanente a su producto y quede bloqueada, sin posibilidad de reutilizarse",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "El calor transforma la enzima en su propio sustrato y en fragmentos inertes, así que ya no queda nada que catalizar",
+          "note": "una enzima no se convierte en su sustrato; son moléculas distintas"
+        },
+        {
+          "text": "El calor acelera tanto la reacción que el sustrato se agota casi al instante y la actividad solo parece haberse detenido",
+          "note": "eso no explicaría una pérdida permanente de actividad"
+        },
+        {
+          "text": "El calor hace que la enzima se una de modo permanente a su producto y quede bloqueada, sin posibilidad de reutilizarse",
+          "note": "una enzima libera su producto y vuelve a quedar libre"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Desnaturalización: sin forma no hay función",
+          "content": "La actividad de una enzima depende de su estructura tridimensional, sostenida por enlaces débiles. El calor excesivo rompe esos enlaces, la proteína se despliega y el sitio activo pierde la forma que le permite encajar con el sustrato. El cambio suele ser irreversible.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La enzima y el sustrato son moléculas diferentes; el calor no convierte una en otra. 2) Si la reacción solo fuera muy rápida, al añadir más sustrato se reanudaría; aquí la pérdida es permanente. 3) Una enzima normal suelta el producto y vuelve a quedar disponible; no se pega a él de forma definitiva. Lo que ocurre a 60 grados es la desnaturalización de la proteína.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Factores que afectan la actividad enzimática",
+          "content": "Temperatura y pH tienen un valor óptimo; alejarse de él reduce la actividad y, en casos extremos, desnaturaliza la enzima. Repasa: modelo llave-cerradura y de ajuste inducido, y por qué las enzimas humanas trabajan mejor cerca de 37 grados.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktpip000bxh648muoeut1"
+    },
+    {
+      "tag": "N4",
+      "topic": "Nutrición y metabolismo",
+      "topicId": "cmrr1jnpm003khi3ncolo8t4p",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "¿Cuál de los siguientes procesos es un ejemplo de catabolismo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La unión de aminoácidos para construir una proteína",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La degradación del glucógeno para liberar moléculas de glucosa y energía",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La síntesis de almidón a partir de glucosa en las células de una hoja iluminada",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La formación de un triglicérido a partir de una molécula de glicerol y tres moléculas de ácido graso",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "La unión de aminoácidos para construir una proteína",
+          "note": "es anabolismo: construye una molécula compleja"
+        },
+        {
+          "text": "La síntesis de almidón a partir de glucosa en las células de una hoja iluminada",
+          "note": "es anabolismo: guarda energía en un polímero"
+        },
+        {
+          "text": "La formación de un triglicérido a partir de una molécula de glicerol y tres moléculas de ácido graso",
+          "note": "es anabolismo: sintetiza una molécula de reserva"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Catabolismo: romper para liberar energía",
+          "content": "El metabolismo tiene dos caras. El catabolismo descompone moléculas grandes en otras más pequeñas y libera energía (glucógeno a glucosa, o glucosa a dióxido de carbono y agua). El anabolismo hace lo contrario: construye moléculas complejas y consume energía.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Unir aminoácidos para formar una proteína es síntesis: anabolismo. 2) Fabricar almidón a partir de glucosa también construye un polímero: anabolismo. 3) Formar un triglicérido a partir de glicerol y ácidos grasos crea una molécula de reserva: anabolismo. Solo la degradación del glucógeno rompe una molécula para liberar energía, que es catabolismo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Anabolismo y catabolismo",
+          "content": "Regla práctica: si el proceso construye y gasta energía, es anabolismo; si descompone y libera energía, es catabolismo. Ambos ocurren a la vez y están acoplados por el ATP. Repasa: ejemplos en la digestión y en la síntesis de biomoléculas.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktqae000gxh64ki3ils82"
+    },
+    {
+      "tag": "H1",
+      "topic": "Homeostasis",
+      "topicId": "cmrr1jo97003mhi3nom9uiutt",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "Tras una comida rica en carbohidratos, el páncreas libera insulina y la concentración de glucosa en la sangre desciende hasta su valor normal. Este mecanismo es un ejemplo de...",
+      "options": [
+        {
+          "id": "A",
+          "text": "retroalimentación positiva: la respuesta intensifica el cambio inicial y lo lleva cada vez más lejos de lo normal",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "aclimatación gradual: el organismo termina por ajustar su valor de referencia a una glucemia más alta",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "acto reflejo medular: una respuesta rápida e involuntaria del sistema nervioso ante un estímulo doloroso",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "retroalimentación negativa: la respuesta contrarresta el cambio y devuelve la variable a su valor de referencia",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "retroalimentación positiva: la respuesta intensifica el cambio inicial y lo lleva cada vez más lejos de lo normal",
+          "note": "la retroalimentación positiva amplifica el cambio; aquí se corrige"
+        },
+        {
+          "text": "aclimatación gradual: el organismo termina por ajustar su valor de referencia a una glucemia más alta",
+          "note": "no hay un cambio permanente del valor de referencia"
+        },
+        {
+          "text": "acto reflejo medular: una respuesta rápida e involuntaria del sistema nervioso ante un estímulo doloroso",
+          "note": "no interviene un arco reflejo ni un estímulo doloroso"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La respuesta se opone al cambio",
+          "content": "Sube la glucosa, el páncreas lo detecta, libera insulina, las células captan glucosa, la glucemia baja y el páncreas reduce la insulina. Como la respuesta empuja la variable en dirección contraria al cambio inicial, es retroalimentación negativa, el mecanismo típico de la homeostasis.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La retroalimentación positiva amplifica el cambio, como en las contracciones del parto; aquí ocurre lo contrario. 2) La aclimatación implica adoptar de forma estable una condición nueva; el cuerpo no fija una glucemia alta como su nuevo valor normal. 3) Un acto reflejo responde a un estímulo mediante un arco reflejo medular; la regulación de la glucosa es hormonal. El caso descrito es retroalimentación negativa.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Mecanismos de control homeostático",
+          "content": "La mayoría de las variables internas (temperatura, glucosa, pH, presión) se regulan por retroalimentación negativa. La positiva es menos frecuente y lleva un proceso a término. Repasa: componentes receptor-centro de control-efector y ejemplos de cada tipo.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktuwk0001aevmlclqrja1"
+    },
+    {
+      "tag": "H2",
+      "topic": "Homeostasis",
+      "topicId": "cmrr1jo97003mhi3nom9uiutt",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "¿Qué describe mejor el concepto de homeostasis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El crecimiento continuo del organismo desde el nacimiento hasta que alcanza el tamaño adulto",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La capacidad de un organismo de reproducirse y de dejar descendencia fértil y viable",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Mantener las condiciones internas estables pese a los cambios del ambiente externo",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El conjunto de reacciones químicas que degradan los nutrientes de la dieta para liberar energía",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "El crecimiento continuo del organismo desde el nacimiento hasta que alcanza el tamaño adulto",
+          "note": "confunde homeostasis con desarrollo"
+        },
+        {
+          "text": "La capacidad de un organismo de reproducirse y de dejar descendencia fértil y viable",
+          "note": "confunde homeostasis con reproducción"
+        },
+        {
+          "text": "El conjunto de reacciones químicas que degradan los nutrientes de la dieta para liberar energía",
+          "note": "confunde homeostasis con catabolismo"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Estabilidad del medio interno",
+          "content": "Homeostasis significa mantener el medio interno (temperatura, pH, glucosa, agua, sales) dentro de un rango estrecho y estable, aunque el exterior cambie. No es inmovilidad: es un equilibrio dinámico que el cuerpo ajusta a cada momento.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El crecimiento hasta el tamaño adulto es desarrollo, un proceso con dirección y final, no el mantenimiento de un estado. 2) Reproducirse y dejar descendencia es otra función, ligada a la perpetuación de la especie. 3) Las reacciones que degradan nutrientes para obtener energía son el catabolismo. La homeostasis es la regulación que mantiene constante el medio interno.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Homeostasis y regulación",
+          "content": "La homeostasis se logra por la acción coordinada de los sistemas nervioso y endocrino sobre órganos efectores. Ejemplos: termorregulación, osmorregulación, regulación de la glucosa y del pH. Repasa: concepto de valor de referencia y de rango normal.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktvol0006aevm9yw5zxx4"
+    },
+    {
+      "tag": "H3",
+      "topic": "Homeostasis",
+      "topicId": "cmrr1jo97003mhi3nom9uiutt",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "Cuando una persona se expone al frío, su cuerpo responde con vasoconstricción de la piel y con escalofríos. ¿Cómo contribuyen estas dos respuestas a mantener la temperatura corporal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La vasoconstricción disminuye la pérdida de calor por la piel y los escalofríos generan calor mediante contracciones musculares rápidas e involuntarias, de modo que la temperatura central se sostiene",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Las dos respuestas llevan más sangre hacia la superficie de la piel para que el cuerpo capte calor del aire frío del ambiente",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La vasoconstricción libera hacia el exterior el calor que estaba guardado en la sangre y, al mismo tiempo, los escalofríos enfrían los músculos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los escalofríos hacen que se evapore el sudor para conservar el calor y la vasoconstricción abre los poros de la piel para lo mismo",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Las dos respuestas llevan más sangre hacia la superficie de la piel para que el cuerpo capte calor del aire frío del ambiente",
+          "note": "la vasoconstricción reduce el flujo cutáneo; el aire frío no aporta calor"
+        },
+        {
+          "text": "La vasoconstricción libera hacia el exterior el calor que estaba guardado en la sangre y, al mismo tiempo, los escalofríos enfrían los músculos",
+          "note": "invierte el efecto de las dos respuestas"
+        },
+        {
+          "text": "Los escalofríos hacen que se evapore el sudor para conservar el calor y la vasoconstricción abre los poros de la piel para lo mismo",
+          "note": "mezcla mecanismos de enfriamiento con los de conservación de calor"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Menos pérdida y más producción de calor",
+          "content": "Con frío, el hipotálamo ordena dos cosas: cerrar los vasos de la piel para que la sangre caliente no ceda calor al exterior, y provocar escalofríos, contracciones musculares que producen calor. Juntas, sostienen la temperatura central.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Llevar más sangre a la piel es lo que se hace con calor, no con frío, y el aire frío no entrega calor al cuerpo. 2) Decir que la vasoconstricción libera calor y que los escalofríos enfrían el músculo invierte ambos efectos. 3) Evaporar sudor y abrir poros son mecanismos para perder calor. La respuesta correcta combina menos pérdida (vasoconstricción) con más producción (escalofríos).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Termorregulación",
+          "content": "Frente al calor: vasodilatación y sudoración. Frente al frío: vasoconstricción, escalofríos, piloerección y aumento del metabolismo. El centro integrador es el hipotálamo. Repasa: mecanismos de transferencia de calor (radiación, conducción, convección, evaporación).",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktwgm000baevmrjdffbhs"
+    },
+    {
+      "tag": "H4",
+      "topic": "Homeostasis",
+      "topicId": "cmrr1jo97003mhi3nom9uiutt",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "En todo sistema de control homeostático se distinguen un receptor, un centro de control y un efector. En la regulación de la temperatura corporal, ¿qué estructura actúa como centro de control?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La sangre, que reparte el calor por el cuerpo y llega a cada órgano",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El hipotálamo, que compara la temperatura de la sangre con un valor de referencia y ordena la respuesta",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Los termorreceptores de la piel, que detectan cuánto sube o baja la temperatura del ambiente",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los músculos esqueléticos y las glándulas sudoríparas, que son las estructuras encargadas de ejecutar la respuesta ordenada",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "La sangre, que reparte el calor por el cuerpo y llega a cada órgano",
+          "note": "es el medio de transporte del calor, no un centro de integración"
+        },
+        {
+          "text": "Los termorreceptores de la piel, que detectan cuánto sube o baja la temperatura del ambiente",
+          "note": "son los receptores, no el centro que decide la respuesta"
+        },
+        {
+          "text": "Los músculos esqueléticos y las glándulas sudoríparas, que son las estructuras encargadas de ejecutar la respuesta ordenada",
+          "note": "son los efectores, no el centro de control"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El centro de control compara y decide",
+          "content": "El centro de control recibe la información del receptor, la compara con el valor de referencia y ordena a los efectores qué hacer. En la termorregulación ese papel lo cumple el hipotálamo, que funciona como un termostato.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Los termorreceptores de la piel detectan el cambio y lo informan: son el receptor. 2) Los músculos (escalofríos) y las glándulas sudoríparas llevan a cabo la respuesta: son los efectores. 3) La sangre transporta el calor y las señales, pero no integra información ni toma decisiones. Quien compara con el valor de referencia es el hipotálamo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Componentes de un circuito de regulación",
+          "content": "Receptor (detecta), centro de control (compara y decide), efector (actúa), y la variable regresa al valor normal por retroalimentación negativa. Repasa: identificar los tres componentes en la regulación de la glucosa, del agua y de la presión arterial.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgktx8n000gaevmpyrvyezz"
+    },
+    {
+      "tag": "R1",
+      "topic": "Reproducción",
+      "topicId": "cmrr1jovn003ohi3nbfm7lq1z",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "¿Cuál es la principal ventaja de la reproducción sexual frente a la asexual en un ambiente que cambia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Genera variabilidad genética en la descendencia, materia prima para adaptarse a condiciones nuevas",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Genera un número mucho mayor de descendientes en menos tiempo y con un gasto de energía más bajo",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Origina descendientes genéticamente idénticos a los progenitores, que ya vienen bien adaptados al medio",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Permite que un solo individuo forme por sí mismo una población entera sin necesitar una pareja",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Genera un número mucho mayor de descendientes en menos tiempo y con un gasto de energía más bajo",
+          "note": "esas son ventajas de la reproducción asexual, no de la sexual"
+        },
+        {
+          "text": "Origina descendientes genéticamente idénticos a los progenitores, que ya vienen bien adaptados al medio",
+          "note": "describe la reproducción asexual"
+        },
+        {
+          "text": "Permite que un solo individuo forme por sí mismo una población entera sin necesitar una pareja",
+          "note": "es una característica de la reproducción asexual"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Variabilidad genética como seguro ante el cambio",
+          "content": "La reproducción sexual mezcla los genes de dos progenitores por meiosis y fecundación, de modo que cada hijo es una combinación distinta. Si el ambiente cambia, es más probable que al menos algunas combinaciones resulten favorables. La asexual produce clones: si la condición nueva perjudica a uno, los perjudica a todos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Tener muchos descendientes rápido y con poco gasto es una ventaja de la reproducción asexual (bipartición, gemación). 2) Producir copias idénticas ya adaptadas también describe a la asexual, y es su desventaja cuando el ambiente cambia. 3) Que un solo individuo funde una población sin pareja es asexual. Lo propio de la sexual es la variabilidad.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Reproducción sexual y asexual",
+          "content": "Asexual: rápida, económica, sin pareja, descendencia clónica; buena en ambientes estables. Sexual: lenta, costosa, con variabilidad; ventajosa en ambientes cambiantes. Repasa: fuentes de variabilidad en la meiosis (entrecruzamiento y distribución independiente).",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgku1v2000113ijkga4e2lu"
+    },
+    {
+      "tag": "R2",
+      "topic": "Reproducción",
+      "topicId": "cmrr1jovn003ohi3nbfm7lq1z",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "¿Por qué es indispensable que la formación de gametos ocurra por meiosis y no por mitosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque la mitosis detiene la producción de cromosomas en las células reproductoras",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque la mitosis produciría gametos que solo tendrían la mitad de la información genética necesaria",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque la meiosis reduce a la mitad el número de cromosomas y la fecundación lo restablece",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Porque la meiosis genera cuatro células diploides que ya están listas para unirse entre sí durante la fecundación",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Porque la mitosis detiene la producción de cromosomas en las células reproductoras",
+          "note": "la mitosis no detiene la producción de cromosomas"
+        },
+        {
+          "text": "Porque la mitosis produciría gametos que solo tendrían la mitad de la información genética necesaria",
+          "note": "la mitosis conserva el número de cromosomas; no lo reduce"
+        },
+        {
+          "text": "Porque la meiosis genera cuatro células diploides que ya están listas para unirse entre sí durante la fecundación",
+          "note": "las células de la meiosis son haploides, no diploides"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Reducir a la mitad para no duplicar en cada generación",
+          "content": "Si los gametos se formaran por mitosis tendrían el número completo (2n) y, al unirse dos, el cigoto sería 4n; a la generación siguiente 8n, sin control. La meiosis reduce los gametos a n, de manera que la fecundación (n + n) devuelve el 2n de la especie.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La mitosis conserva el número de cromosomas (de 2n produce 2n), no lo deja a la mitad. 2) Las cuatro células de la meiosis son haploides (n), no diploides; ese es el punto. 3) La mitosis no detiene la producción de cromosomas: los reparte tras duplicarlos. La razón válida es la reducción cromosómica que compensa la fecundación.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Meiosis, ploidía y ciclo de vida",
+          "content": "Diploide (2n): dos juegos de cromosomas. Haploide (n): un juego. La alternancia n y 2n mediante meiosis y fecundación mantiene constante el número cromosómico de la especie. Repasa: meiosis I (separa homólogos) y meiosis II (separa cromátidas).",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgku2mk000613ijpf81pxme"
+    },
+    {
+      "tag": "R3",
+      "topic": "Reproducción",
+      "topicId": "cmrr1jovn003ohi3nbfm7lq1z",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "Tras la polinización y la fecundación en una planta con flor, el óvulo se transforma en ______ y el ovario se transforma en ______.",
+      "options": [
+        {
+          "id": "A",
+          "text": "fruto; semilla",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "semilla; fruto",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "embrión; endospermo",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "tallo; raíz",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "fruto; semilla",
+          "note": "invierte las dos transformaciones"
+        },
+        {
+          "text": "embrión; endospermo",
+          "note": "son partes internas de la semilla, no el resultado de óvulo y ovario"
+        },
+        {
+          "text": "tallo; raíz",
+          "note": "no corresponden al desarrollo posterior a la fecundación"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El óvulo da la semilla; el ovario da el fruto",
+          "content": "Dentro del ovario de la flor están los óvulos. Al ser fecundados, cada óvulo se convierte en una semilla, que contiene el embrión y su reserva alimenticia. El ovario que los rodea crece y madura hasta formar el fruto, que protege a las semillas y suele favorecer su dispersión.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Fruto; semilla' invierte el resultado: el ovario nunca se vuelve semilla ni el óvulo se vuelve fruto. 2) 'Embrión; endospermo' nombra estructuras que quedan dentro de la semilla; no son en lo que se transforman el óvulo y el ovario. 3) 'Tallo; raíz' se refiere a órganos vegetativos, no al desarrollo que sigue a la fecundación. La correspondencia correcta es óvulo a semilla y ovario a fruto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Reproducción en angiospermas",
+          "content": "Partes de la flor: cáliz, corola, estambres (androceo) y pistilo (gineceo, con estigma, estilo y ovario). Tras la fecundación, óvulo a semilla y ovario a fruto. Repasa: polinización, tubo polínico y tipos de fruto.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgku3dx000b13ijdt06xrxe"
+    },
+    {
+      "tag": "R4",
+      "topic": "Reproducción",
+      "topicId": "cmrr1jovn003ohi3nbfm7lq1z",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "Durante el embarazo humano la placenta permite el intercambio de sustancias entre la sangre de la madre y la del feto sin que ambas se mezclen. ¿Qué sustancias pasan normalmente de la sangre materna a la fetal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dióxido de carbono, urea y otros productos de desecho del metabolismo del feto que deben ser eliminados",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Glóbulos rojos de la madre que sustituyen a los del feto hasta el momento del nacimiento del bebé",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Espermatozoides que fecundan óvulos adicionales de la madre a lo largo de los meses de gestación",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Oxígeno, glucosa, aminoácidos y ciertos anticuerpos que atraviesan la placenta",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Dióxido de carbono, urea y otros productos de desecho del metabolismo del feto que deben ser eliminados",
+          "note": "esas sustancias viajan del feto a la madre, no al revés"
+        },
+        {
+          "text": "Glóbulos rojos de la madre que sustituyen a los del feto hasta el momento del nacimiento del bebé",
+          "note": "las células sanguíneas no cruzan la placenta; las sangres no se mezclan"
+        },
+        {
+          "text": "Espermatozoides que fecundan óvulos adicionales de la madre a lo largo de los meses de gestación",
+          "note": "no hay fecundación durante el embarazo ni paso de gametos por la placenta"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "De la madre al feto: nutrientes, oxígeno y defensa",
+          "content": "La placenta acerca la sangre materna y la fetal para que se intercambien moléculas por difusión y transporte, sin contacto directo. Hacia el feto pasan oxígeno, glucosa, aminoácidos, agua, vitaminas y ciertos anticuerpos maternos, que lo protegen durante los primeros meses de vida.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El dióxido de carbono y la urea son desechos del feto: salen hacia la sangre materna para eliminarse por los pulmones y los riñones de la madre. 2) Los glóbulos rojos no cruzan la placenta; si las sangres se mezclaran habría problemas de incompatibilidad. 3) Durante el embarazo no ocurre fecundación y la placenta no transporta gametos. Lo que pasa de la madre al feto son nutrientes, oxígeno y anticuerpos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Función de la placenta",
+          "content": "La placenta cumple funciones de nutrición, respiración, excreción, protección inmunitaria y producción de hormonas del embarazo. El cordón umbilical conecta al feto con ella. Repasa: circulación fetal y qué barreras separan la sangre materna de la fetal.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgku45f000g13ij7m0cyxht"
+    },
+    {
+      "tag": "I1",
+      "topic": "Inmunología",
+      "topicId": "cmrr1jpij003qhi3nqnh9ee83",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "¿Qué tipo de célula del sistema inmunitario produce y libera los anticuerpos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Los linfocitos T citotóxicos, que reconocen y destruyen por contacto a las células propias infectadas por virus",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Los linfocitos B, que al activarse se convierten en células plasmáticas",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Los macrófagos, que engullen y digieren a los microorganismos y luego presentan sus fragmentos a otros linfocitos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los eritrocitos, que llevarían los anticuerpos disueltos dentro de su citoplasma hasta el sitio de la infección",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Los linfocitos T citotóxicos, que reconocen y destruyen por contacto a las células propias infectadas por virus",
+          "note": "los T citotóxicos matan células infectadas; no secretan anticuerpos"
+        },
+        {
+          "text": "Los macrófagos, que engullen y digieren a los microorganismos y luego presentan sus fragmentos a otros linfocitos",
+          "note": "los macrófagos fagocitan y presentan antígenos; no producen anticuerpos"
+        },
+        {
+          "text": "Los eritrocitos, que llevarían los anticuerpos disueltos dentro de su citoplasma hasta el sitio de la infección",
+          "note": "los eritrocitos transportan gases; no participan en la respuesta inmune"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Del linfocito B a la célula plasmática",
+          "content": "Cuando un linfocito B reconoce su antígeno y recibe la ayuda adecuada, se multiplica y se diferencia en células plasmáticas, verdaderas fábricas de anticuerpos. Los anticuerpos se unen al antígeno y lo marcan para su destrucción.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Los linfocitos T citotóxicos actúan por contacto, destruyendo células propias infectadas por virus; no fabrican anticuerpos. 2) Los macrófagos son fagocitos: se comen a los patógenos y muestran sus fragmentos a otros linfocitos, pero no secretan anticuerpos. 3) Los eritrocitos transportan oxígeno y dióxido de carbono y no tienen función inmunitaria. Los anticuerpos los produce el linfocito B convertido en célula plasmática.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Inmunidad humoral y celular",
+          "content": "La inmunidad humoral depende de los linfocitos B y sus anticuerpos, contra patógenos en los líquidos corporales. La celular depende de los linfocitos T, contra células infectadas. Repasa: estructura del anticuerpo y concepto de antígeno.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgku8qb0001gnj19qjr7igc"
+    },
+    {
+      "tag": "I2",
+      "topic": "Inmunología",
+      "topicId": "cmrr1jpij003qhi3nqnh9ee83",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "¿Por qué los antibióticos no sirven para tratar la gripe u otra enfermedad causada por un virus?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque los virus son mucho más grandes que las bacterias, y su gruesa cubierta externa impide que el antibiótico los rodee o los penetre",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque los antibióticos hacen efecto solo si se administran junto con la vacuna correspondiente",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque los virus se encuentran fuera de las células del cuerpo, en un lugar al que el antibiótico no llega",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque actúan sobre estructuras propias de las bacterias, como la pared celular o sus ribosomas, que un virus no posee",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "Porque los virus son mucho más grandes que las bacterias, y su gruesa cubierta externa impide que el antibiótico los rodee o los penetre",
+          "note": "los virus son más pequeños que las bacterias; el tamaño no es la razón"
+        },
+        {
+          "text": "Porque los antibióticos hacen efecto solo si se administran junto con la vacuna correspondiente",
+          "note": "los antibióticos actúan por sí solos; su blanco son las bacterias"
+        },
+        {
+          "text": "Porque los virus se encuentran fuera de las células del cuerpo, en un lugar al que el antibiótico no llega",
+          "note": "los virus se multiplican dentro de las células; además el problema es la falta de blanco"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sin bacteria, no hay blanco para el antibiótico",
+          "content": "Los antibióticos funcionan porque atacan algo que solo tienen las bacterias: la pared celular, ciertos ribosomas, enzimas propias. Un virus no está hecho así; es material genético dentro de una cápside y usa la maquinaria de la célula que infecta. Contra virus se usan antivirales o se previene con vacunas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El tamaño no es el problema, y de hecho los virus son más pequeños que las bacterias. 2) Los antibióticos no necesitan una vacuna para actuar; su diana simplemente no existe en los virus. 3) Los virus se replican dentro de las células, no siempre fuera; y aunque estuvieran accesibles seguirían sin tener las estructuras que el antibiótico ataca. La razón correcta es la ausencia de blanco bacteriano.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Diferencias entre bacterias y virus",
+          "content": "Bacterias: células completas, con metabolismo propio, sensibles a antibióticos. Virus: no son células, dependen de un hospedero, se combaten con antivirales y vacunas. El uso indebido de antibióticos favorece la resistencia bacteriana. Repasa: estructura de un virus y modo de acción de los antibióticos.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgku9i30006gnj1obn8sm7n"
+    },
+    {
+      "tag": "I3",
+      "topic": "Inmunología",
+      "topicId": "cmrr1jpij003qhi3nqnh9ee83",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "¿Cuál de las siguientes corresponde a una defensa de la inmunidad innata (inespecífica)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El reconocimiento de un patógeno gracias a linfocitos seleccionados para él",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El ataque de los linfocitos T citotóxicos a las células del cuerpo que muestran un antígeno viral concreto",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La piel intacta y las secreciones ácidas, que estorban la entrada y la multiplicación de los microorganismos",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La fabricación de anticuerpos a la medida de cada antígeno por los linfocitos B, y su liberación al plasma tras varios días",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "El reconocimiento de un patógeno gracias a linfocitos seleccionados para él",
+          "note": "el reconocimiento específico es adaptativo, no innato"
+        },
+        {
+          "text": "El ataque de los linfocitos T citotóxicos a las células del cuerpo que muestran un antígeno viral concreto",
+          "note": "es una respuesta específica, propia de la inmunidad adaptativa"
+        },
+        {
+          "text": "La fabricación de anticuerpos a la medida de cada antígeno por los linfocitos B, y su liberación al plasma tras varios días",
+          "note": "es una respuesta específica de la inmunidad adaptativa"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Barreras generales, iguales para cualquier microbio",
+          "content": "La inmunidad innata actúa desde el nacimiento, es rápida y no distingue un patógeno de otro. Incluye barreras físicas y químicas (piel, mucosas, lágrimas, jugo gástrico, sudor ácido), la fagocitosis y la inflamación. La piel intacta y las secreciones ácidas son un ejemplo claro de esa primera línea inespecífica.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Los linfocitos T citotóxicos que reconocen un antígeno viral concreto son parte de la respuesta específica. 2) Fabricar anticuerpos a la medida de cada antígeno es la respuesta humoral adaptativa. 3) Reconocer un patógeno particular con linfocitos seleccionados para él también es adaptativo. Solo la piel y las secreciones ácidas son una defensa innata e inespecífica.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Inmunidad innata frente a adaptativa",
+          "content": "Innata: presente al nacer, rápida, sin memoria, inespecífica (barreras, fagocitos, inflamación, fiebre). Adaptativa: se desarrolla con la exposición, más lenta la primera vez, con memoria y muy específica (linfocitos B y T). Repasa: líneas de defensa del organismo.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkua9k000bgnj113l9w3vx"
+    },
+    {
+      "tag": "I4",
+      "topic": "Inmunología",
+      "topicId": "cmrr1jpij003qhi3nqnh9ee83",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "SENTENCE_COMPLETION",
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "El VIH provoca una inmunodeficiencia grave porque infecta y destruye poco a poco a los...",
+      "options": [
+        {
+          "id": "A",
+          "text": "linfocitos T colaboradores (CD4), que son los que coordinan y activan al resto del sistema inmunitario",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "anticuerpos del plasma, que quedan destruidos apenas el virus entra",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "osteocitos del tejido óseo compacto, que es la zona donde se forman todas las células de la sangre",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "glóbulos rojos de la sangre, y así disminuye el transporte de oxígeno y termina por aparecer un cuadro de anemia",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "anticuerpos del plasma, que quedan destruidos apenas el virus entra",
+          "note": "los anticuerpos son proteínas, no células; el virus no las infecta"
+        },
+        {
+          "text": "osteocitos del tejido óseo compacto, que es la zona donde se forman todas las células de la sangre",
+          "note": "confunde el hueso con la médula ósea; el VIH no ataca osteocitos"
+        },
+        {
+          "text": "glóbulos rojos de la sangre, y así disminuye el transporte de oxígeno y termina por aparecer un cuadro de anemia",
+          "note": "el VIH no infecta eritrocitos; ese sería un cuadro de anemia"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ataca a la célula que dirige la defensa",
+          "content": "Los linfocitos T colaboradores (CD4) actúan como coordinadores: activan a los linfocitos B para que produzcan anticuerpos y a los T citotóxicos para que destruyan células infectadas. El VIH se multiplica dentro de estos linfocitos y los elimina; sin ellos, el sistema inmunitario deja de funcionar y aparecen las infecciones oportunistas.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El VIH no infecta glóbulos rojos; su blanco lleva el receptor CD4. 2) Los osteocitos son células del hueso, no de la médula, y no son diana del virus. 3) Los anticuerpos son proteínas disueltas en el plasma, no células, así que el virus no puede infectarlas ni destruirlas al entrar. La célula que el VIH destruye es el linfocito T colaborador.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "VIH y respuesta inmunitaria",
+          "content": "El linfocito T colaborador es el centro de la coordinación inmune. Su pérdida progresiva explica por qué el sida se manifiesta como infecciones y tumores que un sistema sano controlaría. Repasa: papel de los linfocitos T colaboradores y diferencia entre estar infectado por VIH y tener sida.",
+          "latexContent": null
+        }
+      ],
+      "questionId": "cmtgkub16000ggnj1kmmiwiyd"
+    }
+  ],
+  "sourceChunkNote": "5/10 temas con SourceChunk clasificado por F2b, todos de uam_cbs.pdf (guía de la División CBS de la UAM, pp. 42-46) — institución distinta de la del examen destino, se anota (patrón G33/G37/G41/G43/G45). Los 15 reactivos SOURCED transforman la tarea del ítem-semilla (los de la guía son de recuerdo/atribución; los compuestos exigen aplicar el concepto a un caso nuevo).",
+  "bankBefore": {
+    "total": 937,
+    "servibles": 934,
+    "blindQueue": 0,
+    "discrepancyQueue": 2,
+    "retired": 1,
+    "unamA2BiologiaVerified": 65,
+    "sourced": 251
+  },
+  "bankAfter": {
+    "total": 972,
+    "servibles": 934,
+    "blindQueue": 35,
+    "discrepancyQueue": 2,
+    "retired": 1,
+    "unamA2BiologiaVerified": 65,
+    "unamA2BiologiaBlindQueue": 35,
+    "sourced": 266
+  },
+  "arithmeticVerification": "G1 (Ll x Ll, 320 -> 80 rugosas = 1/4), G2 (AaBb x aabb, 400 -> 100 doble recesivo = 1/4), G3 (AB x O -> 1/2 grupo A, 1/2 grupo B), Ec3 (20000 x 0.1 x 0.1 = 200 kcal/m2) — recalculados desde cero con itertools+Fraction, coincidencia única contra las 4 opciones (assert len(hits)==1). 4/4 correctos.",
+  "nextPhase": "G48 = verificación ciega de este lote (segunda mitad del ciclo de G2), modelo Fable 5."
+}

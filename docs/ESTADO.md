@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G46 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G45 dejó en la cola: **Matemáticas, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, el pool STEM de mayor peso del banco (`questionWeight` 26). **35/35 coinciden con la clave del generador**; **auto-aprobados 33/35 = 94.3 %** — los 2 restantes **también acertaron la letra** y quedan sin publicar únicamente porque esta sesión reportó `problems` sobre su enunciado. **Es la primera ronda ciega por debajo del 100 % en quince**, y bajó sin que fallara una sola clave: la movieron dos defectos editoriales reales, de modo que la métrica que G39/G44 daban por saturada volvió a discriminar. Modelo real `claude-opus-5` — el plan anunciaba Fable 5; el campo `model` declara el que corrió de verdad (corrección de G17, segundo ciclo consecutivo en que difieren). **Aislamiento:** sesión distinta de la que compuso el lote; no se leyó el commit de G45, ni los JSON del lote, ni `Question.options` — único insumo `g46-blind.json`, **0 fugas** de `isCorrect`/`explanation`, opciones con solo `label`/`text`/`imageUrl`, y la clave cayó en la **misma posición tras barajar solo 8/35** (azar ≈ 8.8). **Candado de G28 aplicado a los 35** (`isCalcSubject("Matemáticas")`=true, `requiresCalculation` 35/35): cada reactivo se resolvió **desde cero con `sympy` 1.14** y se exigió **coincidencia única** contra las 4 opciones (`assert len(hits)==1`) — 21 por expresión exacta, 8 numéricos con tolerancia, 2 ecuaciones de curva, 2 antiderivadas (derivando la opción y exigiendo `+C`, lo que decide un reactivo donde dos opciones solo se distinguen por la constante), 1 identidad falsa evaluada en 5 ángulos agudos y 1 patrón de serie inferido de sus términos. **El control de transcripción de G42 §2 atrapó un defecto propio:** comparar el fragmento **como substring** dio un falso «no único» en el reactivo con opciones `6` y `−6` (`"6"` ⊂ `"-6"`); se endureció a **igualdad del texto normalizado completo** — en humanidades el substring basta porque las opciones son oraciones, en matemáticas colisiona. **Clave real A9/B9/C9/D8 confirmada**, con ≥3 letras distintas en todo tema de ≥3 reactivos. **Los dos señuelos de forma de G44 §6-§7 salen inertes y está medido:** absolutismo **0.00/opción** en claves y distractores (vs 0.03 y 0.41 en G43), clave única sin marcador **0/35** (vs 11/35), longitud tie-aware **21.2 % más larga / 22.6 % más corta** — cuando las opciones son valores cortos no hay superficie lingüística donde alojar el señuelo. **Hallazgo: el diagnóstico que sí toca vigilar en STEM es el rango del valor correcto** (si la clave tiende al 2º-3er valor de las cuatro ordenadas, «descarta los extremos» acierta sin saber matemáticas, y G45 fijó la letra de los numéricos precisamente por ese rango): sobre los **25 reactivos 100 % numéricos** salió 5/5/9/6, **χ²=1.72 (gl 3), p=0.63**; extremos 11 vs centrales 14, binomial **p=0.69** — **sin señuelo**, y queda propuesto para `lot-validation.ts` como reemplazo de §6-§7 en lotes STEM. **Los 2 retenidos** (primeras entradas de la cola de discrepancias desde que se drenó en G40): (a) Trigonometría/antena `OTHER` — el `stem` manda usar `tan30°≈0.577`, que da 23.08, pero la opción dice 23.09 (el exacto 23.0940 redondeado); la respuesta sigue siendo única porque ninguna otra opción queda cerca, pero el reactivo se contradice; (b) Progresiones/sucesión `AMBIGUOUS_STEM` — la lectura literal del paso compuesto da 321, que no está entre las opciones, y solo la lectura alternada (+2, ×3, +2, ×3) produce una; ambas se calcularon en código antes de elegir. Los dos son una reescritura de una línea + `blind-batch --ids`. **Acumulado real, DB en vivo antes y después:** banco **937** sin cambio · servibles **901 → 934** · cola ciega **35 → 0** · cola canónica de discrepancias **0 → 2** · 1 retirado a propósito · auto-aprobación global **100 % (902/902) → 99.8 % (935/937)** · UNAM A1 Matemáticas **81✓/35⧗ → 114✓/0⧗/2✋** (98 %) · `SOURCED` 251 (27 %). `content:coverage`: **934 servibles · 0 pendientes · 1 retirado · 937 en banco**; meta efectiva G26 (1 222) **59 % → 62 %**, brecha **501 → 468 (≈ 14 lotes)** — **la predicción de G45/G39 §7 se cumplió**: por caer en un pool bajo su meta, los 33 publicados descuentan uno a uno, a diferencia de los lotes de humanidades de G33–G43. Meta nominal 1 500: **60 % → 62 %**. Auditoría 5 % **vencida, ahora 6 ciclos** (exige tier ≠ opus-5, y esta sesión volvió a correr en opus-5). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción; cero llamadas a la API de pago. **Siguiente: G47, modelo Sonnet 4.6.**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G47 (**COMPLETADA — lote de 35 reactivos de **Biología, UNAM Área 2 (Ciencias Biológicas, Químicas y de la Salud)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido). Materia **NO compartida** (`sharedContentKey` NULL), `questionWeight` **14**, 10 temas propios. **El encargo pidió priorizar los temas de menor cobertura:** consulta en vivo a Supabase (2026-08-30) → **65 verificados repartidos 6/7/7/7/7/7/6/6/6/6**; el lote da **+4 a los 5 temas de 6** (Célula y organelos, Nutrición y metabolismo, Homeostasis, Reproducción, Inmunología) y **+3 a los 5 de 7** (Mitosis y meiosis, Genética mendeliana, Evolución, Ecología y ecosistemas, Sistemas del cuerpo humano) → **los 10 temas quedan en 10**. Cubre célula, genética, evolución, ecología, fisiología y diversidad del temario. **15 SOURCED / 20 TEMARIO_ONLY:** los 5 temas con `SourceChunk` clasificado por F2b (1 c/u, todos de `uam_cbs.pdf` — guía de la División CBS de la UAM, pp. 42-46, otra institución que la del examen destino, se anota; patrón G33/G37/G41/G43/G45) llevan `sourceChunks:[1]` obligatorio y **transforman la tarea del ítem-semilla** (los de la guía son de recuerdo/atribución; los compuestos exigen aplicar el concepto — p. ej. la anafase pasa de «¿en qué fase migran los cromosomas?» a «¿qué consecuencia tiene una no disyunción?»). **Genética con cálculo de proporciones (criterio 5 del encargo):** los 3 reactivos de Genética + Ec3 se **recalcularon desde cero** con `itertools`+`Fraction` exigiendo coincidencia única contra las 4 opciones — G1 (Ll×Ll, 320→80 rugosas = 1/4), G2 (cruce de prueba AaBb×aabb, 400→100 doble recesivo; el distractor 25 es la trampa de aplicar el 1/16 de un F2 dihíbrido), G3 (AB×O → ½ grupo A, ½ grupo B), Ec3 (regla del 10 %: 20 000→200 kcal/m²) — **4/4 correctos**. **Formato:** 28 `MULTIPLE_CHOICE` · 4 `PROBLEM_SOLVING` · 3 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 8 · INTERMEDIATE 17 · ADVANCED 8 · EXPERT 2 (≈ 23/49/23/6, distribución de `_base.md`). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las 4 en la banda 15-40 %, **confirmada por `jsonb_array_elements` tras insertar**; ≥3 letras distintas por tema, tope 1 por letra por tema; **0 rachas cíclicas A→B→C→D** (candado de G16/G38); los 3 numéricos van con las opciones en orden ascendente y la letra la fija el rango del valor (hallazgo G46 §7). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos. **0 citas por letra y 0 referencias posicionales** en las 105 capas (regex de `lot-validation.ts` + `POSITION_REF` de G33; las 35 capas 2 se titulan «Cómo se descarta cada opción» y descartan los distractores por su contenido, numerados 1/2/3). **Señuelo de longitud tie-aware (G34 §2 / G43): 2ª pasada** — el 1er borrador dejaba la clave como la más larga en 22/35 (arrastre de la síntesis multicausal); tras recortar claves a la aserción, homogeneizar distractores y meter varianza deliberada, quedó en **18.8 % «más larga» / 21.9 % «más corta»** (histograma de rango 6/14/5/7 sobre 32 ítems con opciones-oración; los 3 de opción-valor quedan fuera, criterio G45/G46), ambos < 25 % y < 14/35. **Lenguaje absolutista (G44 §6):** 0.06 marcadores/opción en claves vs 0.13 en distractores (~2×, vs 14× de G43), **0/35 con la clave como única sin marcador**. **Opción compuesta como única clave (G44 §7): 0/35** (se añadió un distractor compuesto a los 7 reactivos donde solo la clave lo era). **Fuga entre reactivos (G38 §6 / G42 §8):** revisada en las dos direcciones y en la diagonal clave↔distractor; heurístico de 4-gramas sobre `(stem+clave)` y `(clave↔distractores)` de los 35 → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes y después:** banco **937 → 972** · servibles **934** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega **0 → 35** · cola canónica de discrepancias **2** sin cambio (los 2 retenidos de G46) · 1 retirado a propósito · UNAM A2 Biología **65✓/0⧗ → 65✓/35⧗** (⚓ del pool **35/30 → 50/50**, fuentes 5/10 temas) · `SOURCED` banco **251 → 266 (27 %)** · 105 `explanation_layers` · 15 `question_source_chunks` (5 chunks distintos). `content:coverage`: **934 servibles · 35 pendientes · 1 retirado · 970 en banco**; meta efectiva G26 (1 222) **62 %**, brecha **468 ≈ 14 lotes** — no se mueve hasta que G48 verifique; UNAM A2 Biología (peso 14, meta efectiva ~78) está en 65, así que ~13 de los 35 caen en la brecha efectiva y ~22 en un pool ya en meta (caso intermedio entre los lotes de humanidades de G33–G43 y el de Matemáticas de G45). Meta nominal 1 500: **62 %**. Auditoría 5 % **vencida, ahora 6 ciclos** (esta fase compone, no audita). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 10 archivos del lote corren en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g47-unam-a2-biologia.json`); cero llamadas a la API de pago. **Siguiente: G48 = verificación ciega de este lote, modelo Fable 5.**)
+
+<details><summary>Historial: G46 (2026-08-30)</summary>
+
+Última fase ejecutada: G46 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G45 dejó en la cola: **Matemáticas, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, el pool STEM de mayor peso del banco (`questionWeight` 26). **35/35 coinciden con la clave del generador**; **auto-aprobados 33/35 = 94.3 %** — los 2 restantes **también acertaron la letra** y quedan sin publicar únicamente porque esta sesión reportó `problems` sobre su enunciado. **Es la primera ronda ciega por debajo del 100 % en quince**, y bajó sin que fallara una sola clave: la movieron dos defectos editoriales reales, de modo que la métrica que G39/G44 daban por saturada volvió a discriminar. Modelo real `claude-opus-5` — el plan anunciaba Fable 5; el campo `model` declara el que corrió de verdad (corrección de G17, segundo ciclo consecutivo en que difieren). **Aislamiento:** sesión distinta de la que compuso el lote; no se leyó el commit de G45, ni los JSON del lote, ni `Question.options` — único insumo `g46-blind.json`, **0 fugas** de `isCorrect`/`explanation`, opciones con solo `label`/`text`/`imageUrl`, y la clave cayó en la **misma posición tras barajar solo 8/35** (azar ≈ 8.8). **Candado de G28 aplicado a los 35** (`isCalcSubject("Matemáticas")`=true, `requiresCalculation` 35/35): cada reactivo se resolvió **desde cero con `sympy` 1.14** y se exigió **coincidencia única** contra las 4 opciones (`assert len(hits)==1`) — 21 por expresión exacta, 8 numéricos con tolerancia, 2 ecuaciones de curva, 2 antiderivadas (derivando la opción y exigiendo `+C`, lo que decide un reactivo donde dos opciones solo se distinguen por la constante), 1 identidad falsa evaluada en 5 ángulos agudos y 1 patrón de serie inferido de sus términos. **El control de transcripción de G42 §2 atrapó un defecto propio:** comparar el fragmento **como substring** dio un falso «no único» en el reactivo con opciones `6` y `−6` (`"6"` ⊂ `"-6"`); se endureció a **igualdad del texto normalizado completo** — en humanidades el substring basta porque las opciones son oraciones, en matemáticas colisiona. **Clave real A9/B9/C9/D8 confirmada**, con ≥3 letras distintas en todo tema de ≥3 reactivos. **Los dos señuelos de forma de G44 §6-§7 salen inertes y está medido:** absolutismo **0.00/opción** en claves y distractores (vs 0.03 y 0.41 en G43), clave única sin marcador **0/35** (vs 11/35), longitud tie-aware **21.2 % más larga / 22.6 % más corta** — cuando las opciones son valores cortos no hay superficie lingüística donde alojar el señuelo. **Hallazgo: el diagnóstico que sí toca vigilar en STEM es el rango del valor correcto** (si la clave tiende al 2º-3er valor de las cuatro ordenadas, «descarta los extremos» acierta sin saber matemáticas, y G45 fijó la letra de los numéricos precisamente por ese rango): sobre los **25 reactivos 100 % numéricos** salió 5/5/9/6, **χ²=1.72 (gl 3), p=0.63**; extremos 11 vs centrales 14, binomial **p=0.69** — **sin señuelo**, y queda propuesto para `lot-validation.ts` como reemplazo de §6-§7 en lotes STEM. **Los 2 retenidos** (primeras entradas de la cola de discrepancias desde que se drenó en G40): (a) Trigonometría/antena `OTHER` — el `stem` manda usar `tan30°≈0.577`, que da 23.08, pero la opción dice 23.09 (el exacto 23.0940 redondeado); la respuesta sigue siendo única porque ninguna otra opción queda cerca, pero el reactivo se contradice; (b) Progresiones/sucesión `AMBIGUOUS_STEM` — la lectura literal del paso compuesto da 321, que no está entre las opciones, y solo la lectura alternada (+2, ×3, +2, ×3) produce una; ambas se calcularon en código antes de elegir. Los dos son una reescritura de una línea + `blind-batch --ids`. **Acumulado real, DB en vivo antes y después:** banco **937** sin cambio · servibles **901 → 934** · cola ciega **35 → 0** · cola canónica de discrepancias **0 → 2** · 1 retirado a propósito · auto-aprobación global **100 % (902/902) → 99.8 % (935/937)** · UNAM A1 Matemáticas **81✓/35⧗ → 114✓/0⧗/2✋** (98 %) · `SOURCED` 251 (27 %). `content:coverage`: **934 servibles · 0 pendientes · 1 retirado · 937 en banco**; meta efectiva G26 (1 222) **59 % → 62 %**, brecha **501 → 468 (≈ 14 lotes)** — **la predicción de G45/G39 §7 se cumplió**: por caer en un pool bajo su meta, los 33 publicados descuentan uno a uno, a diferencia de los lotes de humanidades de G33–G43. Meta nominal 1 500: **60 % → 62 %**. Auditoría 5 % **vencida, ahora 6 ciclos** (exige tier ≠ opus-5, y esta sesión volvió a correr en opus-5). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción; cero llamadas a la API de pago. **Siguiente: G47, modelo Sonnet 4.6.**)
+
+</details>
 
 <details><summary>Historial: G45 (2026-08-30)</summary>
 
@@ -2195,6 +2201,239 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G47 — Lote de reactivos: Biología, UNAM Área 2 (2026-08-30)
+
+**Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
+contenido). **COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la cola
+de verificación ciega. Materia día 1 del alcance del 21-nov (launch = UNAM 4 áreas +
+IPN 3 ramas).
+
+### 1) El encargo y el estado de la materia
+
+El encargo pidió **35 reactivos adicionales de Biología para UNAM Área 2,
+priorizando los temas con menor cobertura**, cubriendo célula, genética, evolución,
+ecología, fisiología y diversidad, con verificación aritmética de los cruces de
+genética. Consulta en vivo a Supabase (2026-08-30) antes de componer:
+
+| Materia | `subjectId` | `sharedContentKey` | `questionWeight` | Temas | Verificados |
+|---|---|---|---:|---:|---:|
+| Biología · UNAM Área 2 | `cmrr1jkdr0036hi3nkq27ujm0` | `null` | **14** | **10** | **65** |
+
+**Materia NO compartida** (`sharedContentKey` NULL — a diferencia de
+Español/Inglés/Química de la UNAM; G26 confirma que Biología es de una sola área):
+el lote va a sus **10 temas propios** y no se reutiliza entre áreas. Reparto
+verificado por tema antes del lote: Célula y organelos **6**, Mitosis y meiosis
+**7**, Genética mendeliana **7**, Evolución **7**, Ecología y ecosistemas **7**,
+Sistemas del cuerpo humano **7**, Nutrición y metabolismo **6**, Homeostasis **6**,
+Reproducción **6**, Inmunología **6**.
+
+### 2) Reparto — los 5 temas de menor cobertura reciben más
+
+| Tema (posición) | `topicId` | Antes → después | Reactivos | Grounding |
+|---|---|---:|---:|---|
+| Célula y organelos (1) | `cmrr1jkj70038hi3naxd30iye` | 6 → 10 | 4 | TEMARIO_ONLY |
+| Nutrición y metabolismo (7) | `cmrr1jnpm003khi3ncolo8t4p` | 6 → 10 | 4 | TEMARIO_ONLY |
+| Homeostasis (8) | `cmrr1jo97003mhi3nom9uiutt` | 6 → 10 | 4 | TEMARIO_ONLY |
+| Reproducción (9) | `cmrr1jovn003ohi3nbfm7lq1z` | 6 → 10 | 4 | TEMARIO_ONLY |
+| Inmunología (10) | `cmrr1jpij003qhi3nqnh9ee83` | 6 → 10 | 4 | TEMARIO_ONLY |
+| Mitosis y meiosis (2) | `cmrr1jkyn003ahi3n0k1woi8v` | 7 → 10 | 3 | SOURCED |
+| Genética mendeliana (3) | `cmrr1jli8003chi3nyihwnrin` | 7 → 10 | 3 | SOURCED |
+| Evolución (4) | `cmrr1jlzb003ehi3n6h4m14gg` | 7 → 10 | 3 | SOURCED |
+| Ecología y ecosistemas (5) | `cmrr1jmie003ghi3n4mpy62ik` | 7 → 10 | 3 | SOURCED |
+| Sistemas del cuerpo humano (6) | `cmrr1jn53003ihi3nj0juipyz` | 7 → 10 | 3 | SOURCED |
+
+Los 5 temas de menor cobertura (6 verificados) reciben **+4** y los 5 de 7 reciben
+**+3**: los 10 temas quedan **en 10**. Los 5 con menos contenido coinciden con los 5
+que no tienen `SourceChunk`, así que "priorizar lo flaco" y "los TEMARIO_ONLY reciben
+más" salen alineados. Cobertura del temario: **célula** (Célula y organelos, Mitosis
+y meiosis), **genética** (Genética mendeliana), **evolución** (Evolución), **ecología**
+(Ecología y ecosistemas), **fisiología** (Sistemas del cuerpo humano, Nutrición,
+Homeostasis, Reproducción, Inmunología) y **diversidad** (E3 polifilia de Protista,
+Ec1 biodiversidad de biomas, E2 variación en poblaciones).
+
+### 3) Anclaje: 15 SOURCED / 20 TEMARIO_ONLY
+
+`loadTopicChunks` devolvió **1 `SourceChunk` en 5 de los 10 temas**, todos de
+`uam_cbs.pdf` (guía de la División de Ciencias Biológicas y de la Salud de la **UAM**,
+pp. 42-46 — banco de reactivos de opción múltiple resueltos), y `grounding.ts` hace
+**obligatoria** la cita cuando hay fragmento:
+
+- **Mitosis y meiosis** — p. 44 (movimiento de cromosomas a los polos en anafase;
+  tejidos derivados del mesodermo).
+- **Genética mendeliana** — p. 42 (locus, homocigoto = dos alelos iguales, alelo).
+- **Evolución** — p. 43 (endosimbiosis como origen de mitocondrias y cloroplastos;
+  Protista como reino más diverso entre eucariontes).
+- **Ecología y ecosistemas** — p. 46 (bioma de selva tropical; interacciones
+  biológicas; cadena trófica como transferencia de energía).
+- **Sistemas del cuerpo humano** — p. 45 (dirección del impulso nervioso; esqueleto
+  axial; eritrocitos y transporte de gases).
+
+**Procedencia (patrón G33/G37/G41/G43/G45), documentada, no bloqueante:** la guía es
+de la UAM, institución distinta de la del examen destino (UNAM). No lo prohíbe ningún
+guardrail —G26 restringe la reutilización de *reactivos* entre áreas, no el uso de
+una guía como material de estudio—, pero se anota. **Originalidad (patrón G40 §6 /
+G41 §3):** los ítems de la guía son de **recuerdo o atribución** («¿en qué fase
+migran los cromosomas hacia los polos?»); los 15 SOURCED usan el mismo punto de
+temario pero **transforman la tarea cognitiva** a comprensión de proceso, evaluación
+de evidencia o clasificación, con datos y contextos nuevos — p. ej. la anafase pasa
+de identificar la fase a **razonar la consecuencia de una no disyunción**
+(aneuploidía); la endosimbiosis pasa de nombrar la teoría a **elegir qué observación
+la apoya**. Los 5 temas sin chunk (Célula, Nutrición, Homeostasis, Reproducción,
+Inmunología) salen **TEMARIO_ONLY**, desde el temario oficial de bachillerato.
+
+### 4) Verificación de cálculo (criterio del encargo)
+
+Biología **no es `isCalcSubject`** (el candado de G28 no aplicará a la sesión ciega
+de G48), pero el encargo exige verificar la aritmética de los cruces de genética
+antes de insertar. Los **4 reactivos con proporción calculable** se recalcularon
+**desde cero** con `itertools` + `Fraction` (gametos → descendencia → fenotipo),
+exigiendo que el valor coincida con la opción correcta **y con ninguna otra**
+(`assert len(hits) == 1`):
+
+| Reactivo | Cruce | Cálculo | Clave | Distractor-trampa |
+|---|---|---|---:|---|
+| G1 (Genética) | Ll × Ll, 320 semillas | 320 × 1/4 (ll) | **80** | 160 = usar 1/2; 240 = contar dominantes |
+| G2 (Genética, EXPERT) | AaBb × aabb, 400 desc. | 400 × (1/2 × 1/2) | **100** | **25 = aplicar el 1/16 de un F2 dihíbrido** |
+| G3 (Genética) | AB × O (codominancia + recesivo) | ½ IAi, ½ IBi | **½ A, ½ B; 0 AB, 0 O** | ¼ de cada grupo = cruce entre heterocigotos |
+| Ec3 (Ecología, ADVANCED) | 20 000 kcal/m², regla del 10 % | 20 000 × 0,1 × 0,1 | **200** | 2 000 = un solo salto; 20 = tres saltos |
+
+**4/4 coinciden con coincidencia única.** Los distractores numéricos derivan cada
+uno de un error de procedimiento nombrable (la capa 2 lo explicita). Los 3
+reactivos con opciones puramente numéricas van con las 4 opciones **en orden
+ascendente** y la letra la fija el rango del valor correcto (`_base.md` / hallazgo
+G46 §7), no la asignación manual.
+
+### 5) Formato, dificultad y distribución de posición
+
+- **Formato:** 28 `MULTIPLE_CHOICE` · 4 `PROBLEM_SOLVING` · 3 `SENTENCE_COMPLETION`
+  (se varió como el examen real; el grueso es conceptual, como corresponde a
+  Biología — patrón G3d/G15).
+- **Dificultad:** BASIC 8 · INTERMEDIATE 17 · ADVANCED 8 · EXPERT 2 (≈ 23/49/23/6,
+  la distribución objetivo de `_base.md`). Los 2 `EXPERT`: cruce de prueba dihíbrido
+  con la trampa del 1/16, y la naturaleza polifilética del reino Protista.
+- **Clave A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %), las cuatro
+  en la banda 15-40 %. **Confirmada por `jsonb_array_elements` sobre `options`** de las
+  35 filas tras insertar. **La letra se asignó a mano** para los conceptuales (por
+  rango del valor para los numéricos): objetivo global A9/B9/C9/D8 con **≥ 3 letras
+  distintas en cada tema** y **1 por letra por tema**. **Sin racha cíclica
+  A→B→C→D de longitud ≥ 3** en el orden de inserción (candado de G16/G38, verificado
+  por script): reordenar Genética a G3-G1-G2 fue necesario para romper una racha que
+  aparecía al fijar la letra de los numéricos por rango.
+- **La secuencia literal de la clave NO se publica aquí** (regla de G38 §4): vive en
+  la DB y en `docs/content-batches/g47-unam-a2-biologia.json`, que la sesión ciega
+  de G48 no abre.
+
+### 6) Chequeos de forma (G3c / G34 §2 / G44 §6-§7 / G38 §6)
+
+- `content:validate-batch --dir <lote>`: **0 violaciones**
+  (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y de
+  nuevo como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos.
+- **0 citas por letra** y **0 referencias posicionales** en las 105 capas
+  (auto-chequeo con las regex de `lot-validation.ts` más `POSITION_REF` de G33). Las
+  **35 capas 2** se titulan «Cómo se descarta cada opción» y descartan los tres
+  distractores **por su contenido**, numerados 1/2/3 en el orden de redacción.
+- **Señuelo de longitud tie-aware (G34 §2 / G43): hicieron falta dos pasadas.** El
+  primer borrador dejaba la clave como la más larga en **22/35** (63 %) — el arrastre
+  clásico de la síntesis multicausal en Biología, como avisó G43. Tras (a) recortar
+  las claves a la aserción, (b) homogeneizar los distractores con la clave y (c) meter
+  **varianza deliberada** (~6 reactivos con la clave como la más larga y ~6 como la
+  más corta), el puntaje esperado quedó en **18.8 % «más larga» / 21.9 % «más corta»**
+  (histograma de rango 6/14/5/7, ratio medio 1.007), ambos por debajo del azar (25 %)
+  y de la cota de 14/35. Medido sobre los **32 ítems con opciones-oración**; los 3 de
+  opción-valor (G1, G2, R3) quedan fuera, criterio G45/G46.
+- **Lenguaje absolutista (G44 §6):** **0.06** marcadores por opción en las 35 claves
+  contra **0.13** en los 105 distractores (≈ 2×, muy lejos del 14× de G43); **0/35**
+  reactivos tienen la clave como la única opción sin marcador. Los 2 hits de clave son
+  falsos positivos del regex («todo el año» temporal, «ninguno» como cantidad real en
+  una respuesta de genética).
+- **Opción compuesta como única clave (G44 §7): 0/35.** El primer borrador tenía 7
+  reactivos donde solo la clave enumeraba ≥ 2 elementos; se añadió un distractor
+  también compuesto (pero equivocado) a cada uno.
+- **Fuga entre reactivos (G38 §6 / G40 §3 / G42 §8):** revisada en las dos
+  direcciones y en la diagonal clave↔distractor. Un heurístico de 4-gramas sobre
+  `(stem + clave)` y sobre `(clave ↔ distractores de todo el lote)` de los 35 devolvió
+  **0 coincidencias no triviales**. Pares reforzantes conservados a propósito (E2
+  resistencia a antibióticos ↔ I2 antibióticos vs. virus; Ec1/Ec2/Ec3 sobre flujo de
+  energía y biodiversidad) — ninguno filtra la clave del otro.
+
+### 7) Inserción real — verificada en la DB
+
+| Métrica | Antes de G47 | Después de G47 |
+|---|---:|---:|
+| Banco total | 937 | **972** |
+| Servibles (`isVerified=true`) | 934 | 934 |
+| Retirados a propósito | 1 | 1 |
+| Cola ciega (`isVerified=false`, sin veredicto) | 0 | **35** |
+| Cola canónica de discrepancias (`manualReview=null`) | 2 | 2 |
+| `explanation_layers` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **15** (15 SOURCED, 1 chunk c/u, 5 chunks distintos) |
+| `SOURCED` en el banco | 251 | **266** (27 %) |
+| UNAM A2 Biología · pool (⚓ SOURCED/TEMARIO) | 65✓ · 35/30 | **65✓ / 35⧗ · 50/50** |
+
+Chequeos post-inserción (query directa): los 35 con exactamente 4 opciones y 1
+correcta, 105 `explanation_layers`, **15 `SOURCED` / 20 `TEMARIO_ONLY`**, clave
+A9/B9/C9/D8 por `jsonb_array_elements`, dificultad 8/17/8/2, formato 28/4/3, reparto
+por tema 4/3/3/3/3/3/4/4/4/4, 0 con formato inválido. Cohorte con `id` prefijo
+`cmtgks…`–`cmtgku…` del 2026-08-30 — separable por `topicId` o por timestamp para
+la verificación ciega de G48.
+
+`content:coverage` en vivo: **934 servibles · 35 pendientes · 1 retirado · 970 en
+banco** (el "en banco" del reporte no cuenta los 2 de la cola de discrepancias; el
+`COUNT(*)` crudo es 972); meta efectiva G26 (1 222) **62 %**, brecha **468 ≈ 14
+lotes** — no se mueve hasta que G48 verifique. Cuando apruebe, el pool UNAM A2
+Biología (peso 14, meta efectiva ~78) pasa de 65 a 100, así que **~13 de los 35
+descuentan la brecha efectiva y ~22 caen en un pool ya en meta** — caso intermedio
+entre los lotes de humanidades de G33–G43 (0 movimiento) y el de Matemáticas de G45
+(35 enteros dentro). Meta nominal de 1 500: **62 %**.
+
+### 8) Limpieza
+
+El lote se compuso con un generador de Python desechable en el scratchpad
+(`g47/items.py` con los 35 reactivos y sus 3 capas; `g47/build.py` fija la letra
+objetivo por reactivo y auto-chequea distribución de letra / racha cíclica / señuelo
+de longitud tie-aware / citas por letra / absolutismo / opción compuesta / fuga de
+4-gramas y emite los 10 archivos del lote; `g47/verify_genetics.py` recalcula los 4
+cruces con `Fraction`; `g47/make_record.py` construye el registro permanente con los
+`questionId` reales cruzando la DB). El generador, los scripts de verificación y los
+10 archivos del lote **no se committean**; el registro permanente es
+`docs/content-batches/g47-unam-a2-biologia.json`. `pnpm typecheck` y `pnpm lint` en
+verde (cero cambios de código de producción). Cero llamadas a la API de pago.
+
+### Siguiente (G47)
+
+1. **Verificación ciega del lote de G47** (segunda mitad del ciclo de G2), **modelo
+   Fable 5**: `pnpm content:blind-batch --topic <cada uno de los 10 topicId>` →
+   `content:resolve`. **LOTE MAYORMENTE VERBAL:** `isCalcSubject("Biología")` es
+   `false`, así que la sesión ciega recibe `requiresCalculation:false` y **no aplica
+   el candado aritmético de G28**. Aun así, **4 reactivos exigen aritmética** (los 3
+   de Genética + Ec3) y conviene ejecutarla en código: G2 (`EXPERT`) es la trampa del
+   1/16 dihíbrido, G3 pide fenotipos y proporción a la vez. Los 15 `SOURCED` se
+   resuelven con conocimiento de bachillerato porque `loadPendingQuestionsWithContext`
+   **no pasa el texto del `SourceChunk`** (mismo caso que G33/G37/G41/G43/G45).
+   **Aplicar G36 §2 / G38 §3:** recalcular el señuelo de longitud tie-aware sobre las
+   respuestas ciegas y compararlo con §6. **Reactivos más apretados** (se señala
+   cuáles, no cómo resolverlos, por G30 §1): los **2 `EXPERT`** (cruce de prueba
+   dihíbrido; polifilia de Protista), el reactivo de eritrocitos y transporte de gases
+   (S3, la guía fuente lo plantea de forma que admite matiz) y el de la placenta (R4,
+   dirección del intercambio).
+2. **Huecos que siguen abiertos** tras G47:
+   - **UNAM A2 Biología** cerca de meta con G48 (100 vs ~78) — el pool queda cubierto.
+   - **UNAM A1 Matemáticas** aún por debajo de meta (114/144) — un lote más cerraría
+     el pool STEM de mayor peso.
+   - **UNAM A4 Artes** (5 temas, w2, cero; tiene `SourceChunk` en 3 temas).
+   - **IPN SOCADM** completo (Historia de México / Universal / Geografía).
+   - Los otros pools STEM de alto peso de G39 §7 (IPN Física, IPN Química, IPN MEDBIO
+     Biología, IPN Matemáticas celda MEDBIO).
+3. **Auditoría 5 %: vencida, 6 ciclos.** La muestra de 40 ids exige sesión ciega con
+   tier **≠ opus-5**.
+4. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): quince fases
+   condicionando la planeación sin respuesta del dueño.
+5. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, la regla de G42 §8
+   como código en `lot-validation.ts`, el rebanado de `SourceChunk` por página en vez
+   de por encabezado, y los 3 reactivos de G37 que son paráfrasis cercanas de su guía
+   fuente.
 
 ## G46 — Verificación ciega: Matemáticas, UNAM Área 1 (lote de G45) (2026-08-30)
 
