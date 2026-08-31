@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G49 (**COMPLETADA — lote de 35 reactivos de **Física, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido). Materia **NO compartida** (`sharedContentKey` NULL), `questionWeight` **16**, 12 temas propios, día 1 del alcance del 21-nov. **El encargo pidió priorizar los temas de menor cobertura:** consulta en vivo a Supabase (2026-08-30) → **72 verificados repartidos 11/7/2/6/5/6/6/5/6/6/6/6**; el lote deja intactos Cinemática y dinámica (11) y Trabajo y energía (7) y reparte los 35 entre los 10 más flacos, con más peso en los peores: **Conservación de momento +5 (2→7)**, Fluidos +4 (5→9), Óptica +4 (5→9), Termodinámica +4 (6→10), Ondas y sonido +4 (6→10), Gravitación universal +3 (6→9), Electrostática +3 (6→9), Circuitos eléctricos +3 (6→9), Magnetismo +3 (6→9), Física moderna +2 (6→8). Cubre los dominios que nombró el encargo: mecánica, termodinámica, ondas, electricidad y magnetismo, óptica, y física moderna. **16 SOURCED / 19 TEMARIO_ONLY:** 4 de los 10 temas tienen `SourceChunk` clasificado por F2b (`loadTopicChunks`): Conservación de momento (`uam_cad.pdf` p. 46 — choque de bolas de billar, principio de conservación en sistemas sin agentes externos), Fluidos (`uam_cbi.pdf` p. 113 — Arquímedes/Pascal/continuidad/Bernoulli/densidad), Óptica (2 chunks, `uam_cad.pdf` p. 47 espejo parabólico y ley de reflexión + `uam_cbs.pdf` p. 50 espejo plano y lente convergente), Electrostática (4 chunks, `uam_cbi.pdf` pp. 53/54/114 — placas y electrón, ley de Coulomb, carga por transferencia y conservación). Procedencia UAM (otra institución que la del examen, se anota, patrón G33/…/G47); los chunks de Óptica y Electrostática están rebanados por página con material de otros temas mezclado (artefacto G40 §9.2) — se citaron solo los que traen material real del tema. Originalidad: los 16 SOURCED **transforman la tarea del ítem-semilla** (la ley de reflexión pasa de «θi vs θr» a convertir un ángulo medido desde la superficie; la parábola pasa de «rayos paralelos → foco» a «fuente en el foco → haz paralelo» de un faro). **Cálculo verificado con unidades (Física es `isCalcSubject`, el candado de G28 aplicará a G50):** los 15 reactivos numéricos + G1 (razón `g'/g`) + W3 (factor `A²`) se recalcularon desde cero con Python/`Fraction` (`scratchpad g49/verify.py`) exigiendo para cada uno (a) coincidencia con la opción correcta, (b) **coincidencia única** contra las 4 opciones, (c) opciones numéricas en orden ascendente y (d) las unidades del resultado — **17/17 en verde**. Cada distractor numérico deriva de un error de procedimiento nombrable (omitir un factor, invertir una razón, sumar en vez de multiplicar, usar la temperatura final en vez de la diferencia, confundir razón de áreas con razón de radios), explicitado en la capa 2. **Formato:** 18 `MULTIPLE_CHOICE` · 15 `PROBLEM_SOLVING` · 2 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6, distribución de `_base.md`). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15-40 %, **confirmada por `jsonb_array_elements` tras insertar**; ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; **0 rachas cíclicas A→B→C→D de longitud ≥ 3** (candado G16/G38: Ondas se insertó W2,W4,W1,W3 y Electrostática E1,E3,E2 para romper rachas que aparecían al fijar la letra de los numéricos por rango). El rango del valor correcto entre los 15 numéricos salió 4/4/4/3 sobre los rangos 1/2/3/4 — sin sesgo al centro (diagnóstico G46 §7). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos. **0 citas por letra y 0 referencias posicionales** en las 105 capas. **Señuelo de longitud tie-aware (G34 §2 / G43 / G47): 3 pasadas** — el 1er borrador dejaba la clave como la más larga en ~40 %; tras recortar claves y homogeneizar distractores con varianza deliberada, quedó en **9.5 % «más larga» / 11.9 % «más corta»** (sobre 21 ítems con opciones-oración; 14 de opción-valor fuera, criterio G45/G46), ambos < 25 % y < 14/35. **Lenguaje absolutista (G44 §6):** 0.00 marcadores/opción en las 35 claves vs 0.02 en los 105 distractores; **0/35 con la clave como única sin marcador**. **Opción compuesta como única clave (G44 §7): 0/35.** **Fuga entre reactivos (G38 §6 / G42 §8):** heurístico de 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` de los 35 → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes y después:** banco **972 → 1 007** · servibles **969** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega (`verification=null`) **0 → 35** · cola canónica de discrepancias **2** sin cambio (los 2 de Matemáticas de G46) · 1 retirado a propósito · UNAM A1 Física **72✓/0⧗ → 72✓/35⧗** (⚓ del pool **30/42 → 46/61**, fuentes 5/12 temas) · `SOURCED` banco **266 → 282 (28 %)** · 105 `explanation_layers` · 17 `question_source_chunks` (E1 cita 2). `content:coverage`: **969 servibles · 35 pendientes · 1 retirado · 1 007 en banco**; meta efectiva G26 (1 222) **63 %**, brecha **455 ≈ 13 lotes** — no se mueve hasta que G50 verifique. Cuando apruebe, el pool UNAM A1 Física (peso 16, meta efectiva ≈ 89) pasa de 72 a ~107, así que **~17 de los 35 descuentan la brecha efectiva y ~18 caen en un pool ya en meta** — caso intermedio como G47. Meta nominal 1 500: **65 %**. Auditoría 5 % **vencida, 7 ciclos** (esta fase compone, no audita). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 10 archivos del lote corren en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g49-unam-a1-fisica.json`); cero llamadas a la API de pago. **Siguiente: G50 = verificación ciega de este lote, modelo Fable 5.**)
+Última actualización: 2026-08-30 · Última fase ejecutada: G50 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G49 dejó en la cola: **Física, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)** (`questionWeight` 16, materia NO compartida, 10 de sus 12 temas). **35/35 coinciden con la clave del generador. Auto-aprobados 35/35 = 100 %**, cero `problems`, cero discrepancias, cero retenidos. Modelo real `claude-opus-5` — el plan de G49 anunciaba Fable 5; el campo `model` declara el que resolvió de verdad (corrección de G17, **cuarto ciclo consecutivo** en que difieren, tras G44/G46/G48). **Ceguera comprobada, no asumida:** `grep` de `isCorrect`/`explanation`/`correct` sobre el lote ciego = **0**, las opciones solo traen `label`/`text`/`imageUrl`, y la clave quedó en la misma letra tras barajar solo en **6/35** (azar ≈ 8.75). **`isCalcSubject("Física")` = true, así que el candado de G28 exigía cálculo ejecutado en los 35 y en los 35 se ejecutó:** arnés de Python con `sympy.physics.units` que (1) construye cada magnitud con unidades SI y la convierte con `convert_to` a la unidad del enunciado, **fallando ruidosamente si la dimensión no cuadra**, (2) parsea las cuatro opciones desde LaTeX descartando por dimensión las incompatibles, y (3) exige **coincidencia única** (`assert len(hits) == 1`) — cero coincidencias sería `NONE_VALID`, dos o más `MULTIPLE_VALID`; los 35 dieron exactamente una. Los ítems conceptuales tampoco se resolvieron a ojo: llevan detrás un cálculo ejecutado (trazado de rayos sobre la parábola del faro, ecuación de la lente, `TV^(γ−1)` adiabática, `g` a 400 km, De Broglie, balance `τω` vs `fem²/R`) más un predicado con la misma exigencia de unicidad, descartando distractores **por contenido**, nunca por letra. **Defecto de herramienta hallado y corregido en la sesión:** un heredoc de Bash colapsó los backslashes del parser y `\text`/`\times` llegaron al regex como TABULADOR, así que la sustitución nunca disparaba — se reescribió con `Write` + `re.escape()`; queda anotado que **`\,` de LaTeX es a la vez separador de miles y espacio número-unidad** y debe eliminarse DESPUÉS de resolver `\text{}` y `\times10^{n}`. Clave real del lote **A9/B9/C9/D8**, los 9 temas con ≥3 reactivos usan ≥3 letras distintas, cero corridas cíclicas. **Acumulado real (consulta en vivo, antes → después):** servibles **969 → 1 004**, cola ciega **35 → 0**, banco 1 007, discrepancias 2, retirados 1; auto-aprobación global **99.8 % (1 005/1 007)**; **UNAM A1 Física 72✓ → 107✓** (⚓46/61) con los 10 temas flacos reforzados exactamente como G49 planeó y Conservación de momento fuera del sótano; `SOURCED` en banco 282 (28 %), sin cambio (los 16 del lote entraron con G49). Meta efectiva G26 (1 222): **63 % → 64 %**, brecha **455 → 438 (≈ 13 lotes)**; meta nominal 1 500: **65 % → 67 %**. La celda de Física tenía meta 89 y pasa de −17 a **+18**, así que 17 de los 35 descontaron brecha efectiva y 18 cayeron en un pool ya rebasado. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el arnés de Python vive en el scratchpad y **no se committea**); cero llamadas a la API de pago. **Siguiente: G51, modelo Sonnet 4.6.**)
+
+<details><summary>Historial: G49 (2026-08-30)</summary>
+
+Última fase ejecutada: G49 (**COMPLETADA — lote de 35 reactivos de **Física, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido). Materia **NO compartida** (`sharedContentKey` NULL), `questionWeight` **16**, 12 temas propios, día 1 del alcance del 21-nov. **El encargo pidió priorizar los temas de menor cobertura:** consulta en vivo a Supabase (2026-08-30) → **72 verificados repartidos 11/7/2/6/5/6/6/5/6/6/6/6**; el lote deja intactos Cinemática y dinámica (11) y Trabajo y energía (7) y reparte los 35 entre los 10 más flacos, con más peso en los peores: **Conservación de momento +5 (2→7)**, Fluidos +4 (5→9), Óptica +4 (5→9), Termodinámica +4 (6→10), Ondas y sonido +4 (6→10), Gravitación universal +3 (6→9), Electrostática +3 (6→9), Circuitos eléctricos +3 (6→9), Magnetismo +3 (6→9), Física moderna +2 (6→8). Cubre los dominios que nombró el encargo: mecánica, termodinámica, ondas, electricidad y magnetismo, óptica, y física moderna. **16 SOURCED / 19 TEMARIO_ONLY:** 4 de los 10 temas tienen `SourceChunk` clasificado por F2b (`loadTopicChunks`): Conservación de momento (`uam_cad.pdf` p. 46 — choque de bolas de billar, principio de conservación en sistemas sin agentes externos), Fluidos (`uam_cbi.pdf` p. 113 — Arquímedes/Pascal/continuidad/Bernoulli/densidad), Óptica (2 chunks, `uam_cad.pdf` p. 47 espejo parabólico y ley de reflexión + `uam_cbs.pdf` p. 50 espejo plano y lente convergente), Electrostática (4 chunks, `uam_cbi.pdf` pp. 53/54/114 — placas y electrón, ley de Coulomb, carga por transferencia y conservación). Procedencia UAM (otra institución que la del examen, se anota, patrón G33/…/G47); los chunks de Óptica y Electrostática están rebanados por página con material de otros temas mezclado (artefacto G40 §9.2) — se citaron solo los que traen material real del tema. Originalidad: los 16 SOURCED **transforman la tarea del ítem-semilla** (la ley de reflexión pasa de «θi vs θr» a convertir un ángulo medido desde la superficie; la parábola pasa de «rayos paralelos → foco» a «fuente en el foco → haz paralelo» de un faro). **Cálculo verificado con unidades (Física es `isCalcSubject`, el candado de G28 aplicará a G50):** los 15 reactivos numéricos + G1 (razón `g'/g`) + W3 (factor `A²`) se recalcularon desde cero con Python/`Fraction` (`scratchpad g49/verify.py`) exigiendo para cada uno (a) coincidencia con la opción correcta, (b) **coincidencia única** contra las 4 opciones, (c) opciones numéricas en orden ascendente y (d) las unidades del resultado — **17/17 en verde**. Cada distractor numérico deriva de un error de procedimiento nombrable (omitir un factor, invertir una razón, sumar en vez de multiplicar, usar la temperatura final en vez de la diferencia, confundir razón de áreas con razón de radios), explicitado en la capa 2. **Formato:** 18 `MULTIPLE_CHOICE` · 15 `PROBLEM_SOLVING` · 2 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6, distribución de `_base.md`). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15-40 %, **confirmada por `jsonb_array_elements` tras insertar**; ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; **0 rachas cíclicas A→B→C→D de longitud ≥ 3** (candado G16/G38: Ondas se insertó W2,W4,W1,W3 y Electrostática E1,E3,E2 para romper rachas que aparecían al fijar la letra de los numéricos por rango). El rango del valor correcto entre los 15 numéricos salió 4/4/4/3 sobre los rangos 1/2/3/4 — sin sesgo al centro (diagnóstico G46 §7). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 10 archivos. **0 citas por letra y 0 referencias posicionales** en las 105 capas. **Señuelo de longitud tie-aware (G34 §2 / G43 / G47): 3 pasadas** — el 1er borrador dejaba la clave como la más larga en ~40 %; tras recortar claves y homogeneizar distractores con varianza deliberada, quedó en **9.5 % «más larga» / 11.9 % «más corta»** (sobre 21 ítems con opciones-oración; 14 de opción-valor fuera, criterio G45/G46), ambos < 25 % y < 14/35. **Lenguaje absolutista (G44 §6):** 0.00 marcadores/opción en las 35 claves vs 0.02 en los 105 distractores; **0/35 con la clave como única sin marcador**. **Opción compuesta como única clave (G44 §7): 0/35.** **Fuga entre reactivos (G38 §6 / G42 §8):** heurístico de 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` de los 35 → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes y después:** banco **972 → 1 007** · servibles **969** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega (`verification=null`) **0 → 35** · cola canónica de discrepancias **2** sin cambio (los 2 de Matemáticas de G46) · 1 retirado a propósito · UNAM A1 Física **72✓/0⧗ → 72✓/35⧗** (⚓ del pool **30/42 → 46/61**, fuentes 5/12 temas) · `SOURCED` banco **266 → 282 (28 %)** · 105 `explanation_layers` · 17 `question_source_chunks` (E1 cita 2). `content:coverage`: **969 servibles · 35 pendientes · 1 retirado · 1 007 en banco**; meta efectiva G26 (1 222) **63 %**, brecha **455 ≈ 13 lotes** — no se mueve hasta que G50 verifique. Cuando apruebe, el pool UNAM A1 Física (peso 16, meta efectiva ≈ 89) pasa de 72 a ~107, así que **~17 de los 35 descuentan la brecha efectiva y ~18 caen en un pool ya en meta** — caso intermedio como G47. Meta nominal 1 500: **65 %**. Auditoría 5 % **vencida, 7 ciclos** (esta fase compone, no audita). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 10 archivos del lote corren en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g49-unam-a1-fisica.json`); cero llamadas a la API de pago. **Siguiente: G50 = verificación ciega de este lote, modelo Fable 5.**)
+
+</details>
 
 <details><summary>Historial: G48 (2026-08-30)</summary>
 
@@ -2213,6 +2219,184 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G50 — Verificación ciega: Física, UNAM Área 1 (lote de G49) (2026-08-30)
+
+**Estado: COMPLETADA.** Verificación ciega adversarial (G2) de los 35 reactivos que G49
+dejó en la cola (`isVerified=false`, `verification=null`): **Física, UNAM Área 1
+(Ciencias Físico-Matemáticas y las Ingenierías)** — `questionWeight` 16, materia NO
+compartida (`sharedContentKey` NULL), 10 de sus 12 temas.
+
+**35/35 coinciden con la clave del generador. Auto-aprobados 35/35 = 100 %.** Cero
+`problems`, cero discrepancias, cero retenidos. Modelo real `claude-opus-5` — el plan de
+G49 anunciaba Fable 5; el campo `model` declara el que resolvió de verdad (corrección de
+G17, **cuarto ciclo consecutivo** en que el modelo real y el planeado difieren, tras G44,
+G46 y G48).
+
+### 1. Ceguera y aislamiento
+
+Sesión distinta de la que compuso el lote (G49). Esta sesión **nunca abrió** el commit
+`394d723`, el registro permanente `docs/content-batches/g49-unam-a1-fisica.json`,
+`Question.options` ni la sección `## G49`; el único insumo fue
+`scripts/content-exports/g50-blind.json` (gitignored).
+
+| Control | Resultado |
+|---|---|
+| `grep -c` de `isCorrect`/`explanation`/`correct` sobre el lote ciego | **0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Claves de nivel ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Formato | **18 `MULTIPLE_CHOICE` · 15 `PROBLEM_SOLVING` · 2 `SENTENCE_COMPLETION`** |
+| Dificultad | 7 `BASIC` · 17 `INTERMEDIATE` · 9 `ADVANCED` · 2 `EXPERT` |
+| `requiresCalculation` | **35/35** (`isCalcSubject("Física")` = true — el candado de G28 aplica de oficio, a diferencia de G48) |
+| Reactivos con pasaje | 0/35 |
+| Opciones por reactivo · ids únicos | 4/4 en los 35 · 35 ids únicos |
+| Institución / materia / temas | 35/35 UNAM · Física · los 10 temas reforzados |
+| Clave en la MISMA posición tras barajar | **6/35** (azar ≈ 8.75) — el barajado determinista de `blind-verification.ts` sí esconde la letra original |
+
+### 2. Los 35 se resolvieron ejecutando el cálculo, con unidades verificadas
+
+`isCalcSubject("Física")` es `true`, así que el candado de G28 exigía cálculo ejecutado en
+**los 35**, no razonamiento en texto. El arnés (Python + `sympy.physics.units`, en el
+scratchpad, no se committea) hace tres cosas por reactivo:
+
+1. **Construye la magnitud con unidades SI** y la convierte con `convert_to` a la unidad
+   que pide el enunciado. `as_number_in()` **falla ruidosamente si la dimensión no
+   cuadra**, así que un error de unidades no puede pasar como número correcto.
+2. **Parsea las cuatro opciones desde LaTeX** y descarta por dimensión las
+   incompatibles antes de comparar.
+3. **Exige coincidencia única**: `assert len(hits) == 1`. Cero coincidencias sería
+   `NONE_VALID`; dos o más, `MULTIPLE_VALID`. Los 35 dieron exactamente una.
+
+| Tema | Cálculo ejecutado | Resultado | Trampa descartada |
+|---|---|---|---|
+| Conservación de momento | choque inelástico `v=m₁v₁/(m₁+m₂)`; retroceso con `p_total=0`; impulso `Δp=m|v_f−v_i|` | 2.4 m/s · 0.8 m/s · 3 N·s | 12 m/s (no dividir entre la masa total); **1.5 N·s** (olvidar que el rebote invierte el signo) |
+| Conservación de momento (conceptual) | `K=p²/(2m)` con `p` fija: 240 kJ (1 200 kg) vs 36 kJ (8 000 kg) | el de menor masa | "el camión, porque pesa más" |
+| Fluidos | `p=ρgh`; Pascal `F₁/A₁=F₂/A₂`; continuidad `A₁v₁=A₂v₂` (gasto verificado igual en ambas secciones) | 40 000 Pa · 400 N · 15 m/s | 400 000 Pa (una potencia de 10); 2.4 m/s (invertir la razón de áreas) |
+| Fluidos (flotación) | fracción sumergida `ρ_cuerpo/ρ_fluido` = 0.60 y `E = W` = 60 N en equilibrio | densidad menor que la del agua | "el empuje **supera** al peso" — falso en equilibrio |
+| Óptica | ángulo dado respecto a la **superficie**: normal = 90−20; trazado de rayos sobre `y=x²/(4f)` con la fuente en el foco (dirección reflejada (0,1) en los tres `x₀` probados); lente `1/f=1/dₒ+1/dᵢ` con `dₒ<f` → `dᵢ=−0.10 m`, `M=+2` | 70° · haz paralelo · virtual, derecha, mayor | **20°** (leer el dato como si ya fuera respecto a la normal) |
+| Óptica (espejo plano) | imagen virtual simétrica: separación persona-imagen `= 1.5 + 1.5` | 3 m y virtual | 1.5 m (distancia al **espejo**, no a la imagen); "real" |
+| Termodinámica | `Q=mcΔT` (ΔT de 30 °C = 30 K); `e=1−Q_c/Q_h`; adiabática `TV^(γ−1)=cte` (γ=5/3, V a la mitad): 300 K → 476.2 K | 252 000 J · 25 % · la temperatura sube | **75 %** (reportar `Q_c/Q_h`); "permanece constante porque Q=0" |
+| Ondas y sonido | `λ=c/f` con 60 MHz → 6×10⁷ s⁻¹; energía ∝ A²: `(2A)²/A² = 4` | 5 m · se cuadruplica | 0.2 m (invertir la razón); "se duplica, igual que la amplitud" |
+| Gravitación universal | `g=GM/R²` evaluada simbólicamente con M→2M, R→2R: `g'/g = 2/4`; Kepler `T∝r^{3/2}`: `4^{3/2}`; `g` a 400 km = 8.68 m/s² (89 % de la superficial) | la mitad · 8 veces · caída libre continua | "el doble" (olvidar el cuadrado del radio); **16** = 4² y **64** = 4³; "ya casi no hay gravedad allá arriba" |
+| Electrostática | `E=F/q`; `E_r=kq/r²` con q<0 → componente radial **negativa**; contacto entre conductores idénticos resuelto simbólicamente exigiendo que la opción **conserve la carga total Y sea simétrica** | 5 N/C · hacia la carga · Q/2 en cada una | 20 N/C (multiplicar en vez de dividir); "Q en cada una" (duplicaría la carga) |
+| Circuitos eléctricos | `P=I²R` (comprobado por la vía `V=IR=20 V → P=VI`); `E=Pt` en watt-hora; paralelo `1/R_eq=1/R₁+1/R₂` = 5 Ω < 10 Ω | 80 W · 300 Wh · disminuye | **20 W** (quedarse en `V=IR`); 18 000 Wh (mezclar horas y segundos); "aumenta porque hay más resistores" |
+| Magnetismo | `F=qvB sen 90°` (dimensión C·(m/s)·T reducida a N); Faraday `fem=−dΦ/dt` evaluada en Φ constante (0) y Φ variable (≠0); balance `τω = fem²/R` = 20 W | 6 N · flujo variable · mecánica→eléctrica | 1.5 N; "espira inmóvil en campo constante"; el sentido inverso (motor) |
+| Física moderna | Bohr `E_n=−13.6/n²`: n=3→2 libera 1.89 eV = 656 nm (H-α); De Broglie con 100 V: `λ=h/p` = 123 pm | emisión al bajar de nivel · comportamiento ondulatorio | "absorbe un fotón" (eso **sube** de nivel); "la luz es corpuscular" (cierto, pero no es lo que demuestra difractar **electrones**) |
+
+`usedCalculation:true` se declaró con verdad en **los 35**. Los ítems conceptuales no se
+resolvieron "a ojo": cada uno lleva detrás un cálculo ejecutado (trazado de rayos,
+ecuación de la lente, `TV^(γ−1)`, `g` a 400 km, De Broglie, balance de potencia del
+generador, `K=p²/2m`, `R_eq` en paralelo) más un predicado sobre el texto de la opción
+con la **misma exigencia de unicidad** que la vía numérica. Los distractores se
+descartaron siempre **por su contenido**, nunca por su letra ni su posición.
+
+### 3. Defecto de herramienta hallado y corregido dentro de la sesión
+
+El primer arnés se escribió con un heredoc de Bash que **colapsó los backslashes**: el
+patrón `\text{...}` llegó al `re.sub` como `\t` + `ext`, es decir **un TABULADOR**, y la
+sustitución nunca disparaba. El síntoma fue limpio —la unidad quedaba como
+`\text{m/s}`, no existía en la tabla de unidades y el ítem 1 reportaba **cero**
+coincidencias— justo el `assert` de unicidad haciendo su trabajo. Correcciones:
+
+- Los archivos con regex se escriben con la herramienta `Write`, no por heredoc.
+- El backslash del patrón va con `re.escape()`, nunca crudo.
+- **`\,` de LaTeX es a la vez separador de miles (`400\,000`) y espacio número-unidad
+  (`4\,\text{m}`)**: se elimina **DESPUÉS** de resolver `\text{}` y `\times10^{n}`, o
+  `1.8\times10^{16}` se parsea como `1.8`. (Riesgo ya anotado en G45/G49; aquí quedó
+  cubierto por código y por prueba de humo sobre 5 reactivos antes de la corrida.)
+
+### 4. Resolución
+
+| Resultado | n |
+|---|---|
+| ✔ Auto-aprobados (coincide + `confidence ≥ 0.85` + `problems` vacío) | **35** |
+| ✋ Sin publicar con veredicto | **0** |
+| ⚠️ Omitidos | **0** |
+| Letra elegida (traducida) == letra del generador | **35/35** |
+
+Confianza declarada: **0.97 en los 18** resueltos por comparación numérica directa,
+**0.96 en los 17** resueltos por cálculo de respaldo + predicado. Ninguno por debajo de
+0.96. Cero `problems` de cualquier tipo.
+
+### 5. Balance de la clave real (leído después de responder)
+
+|  | A | B | C | D |
+|---|---|---|---|---|
+| n | 9 | 9 | 9 | 8 |
+| % | 25.7 | 25.7 | 25.7 | 22.9 |
+
+Distribución sana. Por tema, los 9 temas con ≥3 reactivos usan ≥3 letras distintas;
+el único con 2 reactivos (Física moderna) usa 2 letras distintas — **cero corridas
+cíclicas A→B→C→D** y ningún tema con la clave concentrada. Las letras que **esta**
+sesión eligió sobre el lote barajado (A12/B7/C8/D8) no tienen por qué parecerse: el
+barajado es por reactivo y sembrado con su `id`.
+
+### 6. Higiene del canal ciego: la línea 3 (G48 §6)
+
+La lectura de estado inicial se cortó **antes** de que la línea 3 expusiera los agregados
+de G49; esta sesión no vio la clave A/B/C/D agregada ni ningún valor numérico del lote.
+La memoria de sesiones previas sí conservaba el agregado `A9/B9/C9/D8` de G49, y se
+declara: **no se usó**, y de todos modos es inservible para las etiquetas ciegas porque
+el rebarajado va sembrado por `questionId` (mismo argumento que G44/G46/G48). Los 35
+valores se **calcularon desde cero**; el `assert` de unicidad habría fallado si la
+composición hubiera errado alguno.
+
+**La regla sigue sin implementarse:** la sección `## GNN` de composición no debe
+inventariar los valores de los ítems, y la línea 3 tampoco. El arreglo es de la fase que
+compone.
+
+### 7. Acumulado real (DB en vivo, antes → después)
+
+| Métrica | Antes de G50 | Después de G50 |
+|---|---|---|
+| Banco total (COUNT crudo) | 1 007 | **1 007** |
+| Servibles (`isVerified=true`) | 969 | **1 004** |
+| Cola ciega (`verification=null`) | 35 | **0** |
+| Cola canónica de discrepancias | 2 | **2** (los 2 retenidos de G46) |
+| Retirados a propósito | 1 | 1 |
+| Auto-aprobación global | 99.8 % (970/972) | **99.8 % (1 005/1 007)** |
+| UNAM A1 Física | 72✓ / 35⧗ | **107✓ / 0⧗ / 0✋** (⚓46/61) |
+| `SOURCED` en banco | 282 (28 %) | 282 (28 %) — los 16 del lote entraron con G49 |
+
+Cobertura por tema de Física UNAM A1 (consulta en vivo, después): Cinemática y dinámica
+11 · Trabajo y energía 7 · **Conservación de momento 7** · Gravitación universal 9 ·
+Fluidos 9 · Termodinámica 10 · Ondas y sonido 10 · Óptica 9 · Electrostática 9 ·
+Circuitos eléctricos 9 · Magnetismo 9 · Física moderna 8. **Los 10 temas que G49
+priorizó quedaron reforzados exactamente como se planeó** y el peor de todos
+(Conservación de momento, 2) sale del sótano.
+
+`content:coverage`: **1 004 servibles · 0 pendientes de resolución · 1 retirado · 1 005 en
+banco** (no cuenta los 2 de discrepancias). Meta efectiva G26 (1 222): **63 % → 64 %**,
+brecha **455 → 438 (≈ 13 lotes)**. Meta nominal 1 500: **65 % → 67 %**. La celda de
+Física UNAM A1 tenía meta 89 (`questionWeight` 16 × densidad 1 500/270): estaba en 72
+(−17) y **queda en 107 (+18)**, así que 17 de los 35 descontaron brecha efectiva y 18
+cayeron en un pool que ya rebasó su meta.
+
+### 8. Criterios de aceptación
+
+- [x] Nunca se vio la respuesta correcta antes de responder — solo el lote ciego, 0
+      fugas de `isCorrect`/`explanation`, sin abrir commit, JSON del lote ni `## G49`.
+- [x] Cálculos **ejecutados con unidades verificadas** en los 35 (`sympy.physics.units`,
+      conversión con `convert_to` que falla si la dimensión no cuadra, descarte de
+      opciones por dimensión y coincidencia única obligatoria).
+- [x] `pnpm typecheck` y `pnpm lint` en verde.
+- [x] Cero cambios de código de producción; cero llamadas a la API de pago (el arnés de
+      Python vive en el scratchpad y no se committea).
+
+### 9. Deuda y recomendación para G51
+
+- **UNAM A1 Física queda cubierto** (107 vs meta 89) — el pool sale de la lista de
+  huecos, igual que A2 Biología tras G48.
+- **UNAM A1 Matemáticas sigue siendo el hueco STEM más caro** (114 vs meta ~144): un
+  lote entero cae dentro de la brecha efectiva, sin desperdicio.
+- **Auditoría 5 % vencida** (contada en 8 ciclos ya): exige un tier ≠ el que aprobó. La
+  mayoría del banco reciente la aprobó `opus-5`/`sonnet-5`, así que un `opus-4-8` o
+  `fable-5` la habilitaría.
+- Siguen abiertos: UNAM A4 Artes, IPN SOCADM completo, los otros pools STEM de alto peso
+  de G39 §7, la rotación A→B→C→D de ~140 reactivos viejos, la regla de G42 §8 como
+  código en `lot-validation.ts`, los 3 reactivos de G37 que parafrasean su guía, y la
+  regla de G48 §6 (no inventariar valores en la sección de composición ni en la línea 3).
+- El alcance del 21-nov sigue **sin respuesta del dueño, dieciocho fases después**.
 
 ## G49 — Lote de reactivos: Física, UNAM Área 1 (2026-08-30)
 
