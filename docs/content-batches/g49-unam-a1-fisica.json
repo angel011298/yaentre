@@ -1,0 +1,2697 @@
+{
+  "batch": "G49",
+  "phase": "G49 — Lote de reactivos: Física, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)",
+  "generatedAt": "2026-08-30",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago (el Plan de Implementación asigna el tier Sonnet a los lotes de contenido; ver corrección de G17: este campo declara el modelo real de la sesión, no el planeado)",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 1 — Ciencias Físico-Matemáticas y las Ingenierías",
+  "subject": "Física",
+  "subjectId": "cmrr1j24f0014hi3n3o6yv282",
+  "questionWeight": 16,
+  "sharedContentKey": null,
+  "shared": false,
+  "selectionRule": "Encargo G49: 35 reactivos adicionales de Física para UNAM Área 1, priorizando los temas con menor cobertura. Consulta en vivo a Supabase (2026-08-30) antes de componer: Física de UNAM Área 1 (subjectId cmrr1j24f0014hi3n3o6yv282, questionWeight 16, sharedContentKey NULL — materia NO compartida) tenía 72 verificados repartidos en sus 12 temas propios: Cinemática y dinámica 11, Trabajo y energía 7, Conservación de momento 2, Gravitación universal 6, Fluidos 5, Termodinámica 6, Ondas y sonido 6, Óptica 5, Electrostática 6, Circuitos eléctricos 6, Magnetismo 6, Física moderna 6. El lote va a los 10 temas de MENOR cobertura y deja intactos Cinemática y dinámica (11) y Trabajo y energía (7). Reparto: Conservación de momento +5 (2->7), Fluidos +4 (5->9), Óptica +4 (5->9), Termodinámica +4 (6->10), Ondas y sonido +4 (6->10), Gravitación universal +3 (6->9), Electrostática +3 (6->9), Circuitos eléctricos +3 (6->9), Magnetismo +3 (6->9), Física moderna +2 (6->8). Cubre los dominios que nombró el encargo: mecánica (Momento, Fluidos, Gravitación), termodinámica, ondas, electricidad y magnetismo (Electrostática, Circuitos, Magnetismo), óptica, y física moderna del temario. Materia día 1 del alcance del 21-nov (launch = UNAM 4 áreas + IPN 3 ramas).",
+  "grounding": "16/35 SOURCED · 19/35 TEMARIO_ONLY. loadTopicChunks devolvió SourceChunk clasificado por F2b en 4 de los 10 temas del lote (grounding.ts hace obligatoria la cita cuando hay fragmento): Conservación de momento (1 chunk, uam_cad.pdf p. 46: choque de bolas de billar en sentidos opuestos; el principio de conservación del momento aplica a sistemas libres de agentes externos), Fluidos (1 chunk, uam_cbi.pdf p. 113: principios de Arquímedes, Pascal, continuidad y Bernoulli, cálculo de densidad), Óptica (2 chunks, uam_cad.pdf p. 47 espejo parabólico -> foco y ley de reflexión; uam_cbs.pdf p. 50 espejo plano y lente convergente), Electrostática (4 chunks, uam_cbi.pdf pp. 53/54/114: placas cargadas y electrón, ley de Coulomb q=1C/q'=2C/d=0.1m/K=1, distancia para cuadruplicar la fuerza, carga por transferencia de electrones, conservación de la carga en un sistema cerrado). PROCEDENCIA (patrón G33/G37/G40/G41/G43/G45/G47): los chunks vienen de guías de la UAM, otra institución que la del examen destino (UNAM). No lo prohíbe ningún guardrail (G26 restringe la reutilización de reactivos entre áreas, no el uso de guías como material de estudio), pero se anota. Los chunks de Óptica y Electrostática están rebanados por página y contienen material de otros temas mezclado (artefacto de G40 §9.2): se citaron solo los que contienen material real del tema. ORIGINALIDAD: los ítems de las guías son de recuerdo o de cálculo con la respuesta a la vista; los 16 SOURCED transforman la tarea cognitiva (p. ej. la ley de reflexión pasa de 'theta_i vs theta_r' a convertir un ángulo medido desde la superficie; el espejo parabólico pasa de 'rayos paralelos -> foco' a 'fuente en el foco -> haz paralelo' en un faro) con datos y contextos nuevos, redactados de cero. Los 6 temas sin chunk (Termodinámica, Ondas y sonido, Gravitación universal, Circuitos eléctricos, Magnetismo, Física moderna) salen TEMARIO_ONLY.",
+  "totalQuestions": 35,
+  "bankBefore": 972,
+  "bankAfter": 1007,
+  "servibleBefore": 969,
+  "servibleAfter": 969,
+  "seed": "n/a — la letra de los 15 reactivos numéricos la fija el rango del valor correcto entre las 4 opciones en orden ascendente (_base.md / hallazgo G46 §7); la de los 20 conceptuales se asignó a mano con objetivo global A9/B9/C9/D8 y >=3 letras distintas por tema. Verificada por jsonb_array_elements tras insertar.",
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "difficultyDistribution": {
+    "ADVANCED": 9,
+    "BASIC": 7,
+    "EXPERT": 2,
+    "INTERMEDIATE": 17
+  },
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 18,
+    "PROBLEM_SOLVING": 15,
+    "SENTENCE_COMPLETION": 2
+  },
+  "perTopic": {
+    "Conservación de momento": 5,
+    "Fluidos": 4,
+    "Óptica": 4,
+    "Termodinámica": 4,
+    "Ondas y sonido": 4,
+    "Gravitación universal": 3,
+    "Electrostática": 3,
+    "Circuitos eléctricos": 3,
+    "Magnetismo": 3,
+    "Física moderna": 2
+  },
+  "perTopicId": {
+    "Conservación de momento": "cmrr1j3h1001ahi3n67jt9c2w",
+    "Fluidos": "cmrr1j4kv001ehi3np8h1wvow",
+    "Óptica": "cmrr1j696001khi3nr26vwdpq",
+    "Termodinámica": "cmrr1j54t001ghi3ni44riz12",
+    "Ondas y sonido": "cmrr1j5ll001ihi3nrdmhndfy",
+    "Gravitación universal": "cmrr1j43j001chi3nittur92m",
+    "Electrostática": "cmrr1j6v4001mhi3n18gi7566",
+    "Circuitos eléctricos": "cmrr1j7f1001ohi3nprccwl4g",
+    "Magnetismo": "cmrr1j7wp001qhi3nadp2f3yo",
+    "Física moderna": "cmrr1j8d5001shi3njpd6wnn1"
+  },
+  "qualityChecks": {
+    "calc": "los 15 reactivos con cálculo (más G1 razón de gravedades y W3 factor de energía) se recalcularon desde cero con Python/Fraction (scratchpad g49/verify.py), verificando para cada uno: (a) el valor correcto coincide con la opción marcada, (b) coincidencia ÚNICA contra las 4 opciones, (c) las opciones numéricas en orden ascendente, y (d) las unidades del resultado. 17/17 en verde. Física es isCalcSubject: el candado de G28 aplicará a la sesión ciega de G50. Cada distractor numérico deriva de un error de procedimiento nombrable (omitir un factor, invertir una razón, sumar en vez de multiplicar, usar la temperatura final en vez de la diferencia, confundir razón de áreas con razón de radios, etc.), explicitado en la capa 2.",
+    "lotValidation": "content:validate-batch --dir: 0 violaciones (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y de nuevo como paso obligatorio de content:insert --lot-dir sobre los 10 archivos.",
+    "positionSkew": "clave A9/B9/C9/D8 (25.7/25.7/25.7/22.9 %), las cuatro en la banda 15-40 %, confirmada por jsonb_array_elements tras insertar. Equilibrio también por tema: >=3 letras distintas en cada tema de >=3 reactivos, tope 2 por letra por tema. Rango del valor correcto entre los 15 numéricos: 4/4/4/3 (rangos 1/2/3/4) — sin sesgo al centro (diagnóstico de G46 §7). Sin racha cíclica A->B->C->D de longitud >=3 en el orden de inserción (candado G16/G38): Ondas se insertó W2,W4,W1,W3 y Electrostática E1,E3,E2 para romper rachas que aparecían al fijar la letra de los numéricos por rango.",
+    "letterCitation": "0 citas por letra y 0 referencias posicionales en las 105 capas (regex de lot-validation.ts + patrón POSITION_REF de G33). Las 35 capas 2 se titulan «Cómo se descarta cada opción» / «Resolución paso a paso» y descartan los distractores por su CONTENIDO (el valor o la fórmula), numerados 1/2/3.",
+    "lengthCue": "señuelo de longitud tie-aware (G34 §2 / G43 / G47): «más larga» 2.00/21 = 9.5 %, «más corta» 2.50/21 = 11.9 %, ambos muy por debajo del azar (25 %) y de la cota 14/35. Medido sobre los 21 ítems con opciones-oración; los 14 de opción-valor quedan fuera (criterio G45/G46). Hicieron falta 3 pasadas: el primer borrador dejaba la clave como la más larga en ~40 % (arrastre de la síntesis); se recortaron claves y se homogeneizó la longitud de los distractores con varianza deliberada.",
+    "formCues": "lenguaje absolutista (G44 §6): 0.00 marcadores/opción en las 35 claves vs 0.02 en los 105 distractores; 0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/35."
+  },
+  "crossItemLeakCheck": "revisado en las dos direcciones y en la diagonal clave<->distractor (G38 §6 / G40 §3 / G42 §8): heurístico de 4-gramas sobre (stem+clave) x (stem+clave) y sobre clave_i x distractores_j de los 35 -> 0 coincidencias no triviales. Pares reforzantes conservados a propósito (M1/M5 sobre choque inelástico; E2/E3 sobre carga; F2/F3 sobre Pascal/Arquímedes) — ninguno filtra la clave del otro.",
+  "copyright": "cero reproducción de texto extenso de las guías fuente. Los reactivos SOURCED usan la técnica o el principio del ítem-semilla con datos, contextos y opciones nuevos; los ejemplos numéricos de las guías no se copiaron.",
+  "nextPhase": "G50 = verificación ciega de este lote (segunda mitad del ciclo adversarial de G2), modelo Fable 5. pnpm content:blind-batch --topic <cada uno de los 10 topicId> -> content:resolve. LOTE DE CÁLCULO: isCalcSubject(\"Física\") = true, así que la sesión ciega recibe requiresCalculation:true y DEBE EJECUTAR cada cálculo con código real (Bash/su propio intérprete), no solo razonarlo — candado aritmético de G28; aplica a los 15 numéricos (M1-M3, F1-F2-F4, O1, E1, G2, T1-T2, W1, C1-C2, Mag1) más G1 (razón g'/g) y W3 (factor A^2). 0/35 con pasaje; los 16 SOURCED se resuelven igual con conocimiento de bachillerato porque loadPendingQuestionsWithContext no pasa el texto del SourceChunk (mismo caso que G33/G37/G41/G43/G45/G47). Aplicar G36 §2 / G38 §3: recalcular el señuelo de longitud tie-aware sobre las respuestas ciegas y compararlo con qualityChecks.lengthCue. La secuencia de clave exacta NO se publica en ESTADO.md (G38 §4): vive aquí y en la DB, que la sesión ciega no abre. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los 2 EXPERT (O4 lente convergente como lupa: tipo de imagen según la posición respecto al foco; G2 Kepler con la doble manipulación de exponentes), M3 (impulso: la trampa del 'Δp = 0' porque la rapidez no cambia) y E3 (dirección del campo de una carga negativa).",
+  "questions": [
+    {
+      "questionId": "cmtgnr8hk0001hhbca95w1liq",
+      "tag": "M1",
+      "topic": "Conservación de momento",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 46"
+      ],
+      "correctPosition": "A",
+      "stem": "Un carro de $3\\,\\text{kg}$ se mueve a $4\\,\\text{m/s}$ sobre una vía sin fricción y choca contra un carro de $2\\,\\text{kg}$ que está en reposo. Si después del choque los dos carros quedan unidos, ¿con qué rapidez se mueven?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2.4\\,\\text{m/s}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$4\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$12\\,\\text{m/s}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$4\\,\\text{m/s}$",
+          "note": "supuso que el carro que se movía conserva su rapidez, como si no le transfiriera momento al otro"
+        },
+        {
+          "pos": "C",
+          "text": "$6\\,\\text{m/s}$",
+          "note": "dividió el momento inicial entre la masa del carro golpeado ($12/2$) en lugar de entre la masa total"
+        },
+        {
+          "pos": "D",
+          "text": "$12\\,\\text{m/s}$",
+          "note": "reportó el momento inicial ($3 \\times 4$) sin dividirlo entre ninguna masa"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Momento lineal antes y después del choque",
+          "content": "En un choque sin fuerzas externas el momento total se conserva. Antes: $p = (3\\,\\text{kg})(4\\,\\text{m/s}) + (2\\,\\text{kg})(0) = 12\\,\\text{kg}\\cdot\\text{m/s}$. Después los carros van juntos con masa $5\\,\\text{kg}$, así que $v = 12/5 = 2.4\\,\\text{m/s}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Momento inicial total: solo el primer carro se mueve, $p_i = m_1 v_1 = (3)(4) = 12\\,\\text{kg}\\cdot\\text{m/s}$. 2) Tras el choque perfectamente inelástico la masa combinada es $m_1 + m_2 = 5\\,\\text{kg}$. 3) Conservación del momento: $p_i = (m_1 + m_2)\\,v_f$, de donde $v_f = 12/5 = 2.4\\,\\text{m/s}$. Si obtuviste $6\\,\\text{m/s}$ dividiste entre $2\\,\\text{kg}$ y no entre la masa total; si obtuviste $4\\,\\text{m/s}$ supusiste que la rapidez del primer carro no cambia.",
+          "latexContent": "p_i = m_1 v_1 = (3\\,\\text{kg})(4\\,\\text{m/s}) = 12\\,\\text{kg}\\cdot\\text{m/s} \\\\ v_f = \\frac{p_i}{m_1 + m_2} = \\frac{12}{5} = 2.4\\,\\text{m/s}"
+        },
+        {
+          "layer": 3,
+          "title": "Conservación del momento en choques",
+          "content": "El momento lineal $p = mv$ de un sistema aislado se conserva en cualquier choque. En un choque perfectamente inelástico los cuerpos quedan unidos y se mueven con una sola velocidad; la energía cinética NO se conserva (parte se disipa). Repasa: momento lineal, choques elásticos e inelásticos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnr9gb0006hhbcq5t4zgfq",
+      "tag": "M2",
+      "topic": "Conservación de momento",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 46"
+      ],
+      "correctPosition": "A",
+      "stem": "Una patinadora de $30\\,\\text{kg}$ está en reposo sobre hielo sin fricción y lanza horizontalmente una pelota de $2\\,\\text{kg}$ a $12\\,\\text{m/s}$. ¿Con qué rapidez retrocede la patinadora?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.8\\,\\text{m/s}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$6\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$12\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$24\\,\\text{m/s}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$6\\,\\text{m/s}$",
+          "note": "repartió la rapidez de la pelota en partes iguales, como si el retroceso fuera la mitad de $12\\,\\text{m/s}$"
+        },
+        {
+          "pos": "C",
+          "text": "$12\\,\\text{m/s}$",
+          "note": "le asignó a la patinadora la misma rapidez que la pelota"
+        },
+        {
+          "pos": "D",
+          "text": "$24\\,\\text{m/s}$",
+          "note": "calculó el momento de la pelota ($2 \\times 12$) y no lo dividió entre la masa de la patinadora"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El momento total del sistema parte de cero",
+          "content": "Nadie empuja al sistema patinadora + pelota, así que su momento total sigue siendo cero. Si la pelota lleva $p = (2)(12) = 24\\,\\text{kg}\\cdot\\text{m/s}$ hacia adelante, la patinadora debe llevar $24\\,\\text{kg}\\cdot\\text{m/s}$ hacia atrás: $v = 24/30 = 0.8\\,\\text{m/s}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Momento inicial del sistema: todo está en reposo, $p_i = 0$. 2) Momento final: $m_p v_p + m_P v_P = 0$, con $m_p = 30\\,\\text{kg}$ (patinadora) y la pelota de $2\\,\\text{kg}$ a $12\\,\\text{m/s}$. 3) Despeja: $v_P \\cdot 30 = -(2)(12) = -24$, entonces $|v_P| = 24/30 = 0.8\\,\\text{m/s}$. Si obtuviste $24\\,\\text{m/s}$ olvidaste dividir entre la masa de la patinadora; si obtuviste $6\\,\\text{m/s}$ supusiste que el retroceso es la mitad de la rapidez de la pelota.",
+          "latexContent": "0 = m_{\\text{pat}}\\,v_{\\text{pat}} + m_{\\text{pel}}\\,v_{\\text{pel}} \\\\ v_{\\text{pat}} = -\\frac{(2\\,\\text{kg})(12\\,\\text{m/s})}{30\\,\\text{kg}} = -0.8\\,\\text{m/s}"
+        },
+        {
+          "layer": 3,
+          "title": "Retroceso y conservación del momento",
+          "content": "Cuando un cuerpo en reposo expulsa una parte de su masa (una pelota, gas de un cohete, una bala), el resto retrocede para que el momento total del sistema siga valiendo lo mismo que antes (cero, si partía del reposo). El cuerpo más pesado adquiere la menor rapidez. Repasa: conservación del momento, sistemas aislados, propulsión.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnraee000bhhbc25d35lmm",
+      "tag": "M3",
+      "topic": "Conservación de momento",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 46"
+      ],
+      "correctPosition": "C",
+      "stem": "Una pelota de $0.1\\,\\text{kg}$ llega a una pared a $15\\,\\text{m/s}$ y rebota en sentido contrario con la misma rapidez de $15\\,\\text{m/s}$. ¿Cuál es la magnitud del impulso que la pared ejerce sobre la pelota?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$1.5\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$30\\,\\text{N}\\cdot\\text{s}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$0\\,\\text{N}\\cdot\\text{s}$",
+          "note": "supuso que como la rapidez no cambia el momento tampoco, ignorando que la velocidad invirtió su dirección"
+        },
+        {
+          "pos": "B",
+          "text": "$1.5\\,\\text{N}\\cdot\\text{s}$",
+          "note": "calculó $m\\,v$ para un solo sentido, sin considerar el cambio de dirección"
+        },
+        {
+          "pos": "D",
+          "text": "$30\\,\\text{N}\\cdot\\text{s}$",
+          "note": "sumó las dos rapideces ($15 + 15$) pero omitió multiplicar por la masa"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El impulso es el cambio de momento",
+          "content": "El impulso es igual a la variación del momento: $J = \\Delta p = m(v_f - v_i)$. Tomando como positivo el sentido de llegada, $v_i = +15\\,\\text{m/s}$ y $v_f = -15\\,\\text{m/s}$, así que $\\Delta p = 0.1(-15 - 15) = -3\\,\\text{kg}\\cdot\\text{m/s}$. Su magnitud es $3\\,\\text{N}\\cdot\\text{s}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Fija un sentido positivo (el de la pelota al acercarse). 2) $v_i = +15\\,\\text{m/s}$, $v_f = -15\\,\\text{m/s}$ porque rebota. 3) $J = \\Delta p = m(v_f - v_i) = 0.1(-15 - 15) = -3\\,\\text{kg}\\cdot\\text{m/s}$; la magnitud es $3\\,\\text{N}\\cdot\\text{s}$. Si obtuviste $1.5\\,\\text{N}\\cdot\\text{s}$ usaste $\\Delta v = 15\\,\\text{m/s}$ (un solo sentido); si obtuviste $0$ olvidaste que la velocidad cambió de signo.",
+          "latexContent": "J = \\Delta p = m(v_f - v_i) \\\\ J = (0.1\\,\\text{kg})(-15\\,\\text{m/s} - 15\\,\\text{m/s}) = -3\\,\\text{kg}\\cdot\\text{m/s} \\\\ |J| = 3\\,\\text{N}\\cdot\\text{s}"
+        },
+        {
+          "layer": 3,
+          "title": "Impulso y momento (teorema del impulso)",
+          "content": "El impulso de una fuerza es $J = F\\,\\Delta t$ y equivale al cambio de momento lineal $\\Delta p$. El momento es un vector: al rebotar, la velocidad cambia de signo y el cambio de momento es el doble de $mv$, no cero. $1\\,\\text{N}\\cdot\\text{s} = 1\\,\\text{kg}\\cdot\\text{m/s}$. Repasa: teorema del impulso-momento y carácter vectorial de la velocidad.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrbci000ghhbcvulfskx1",
+      "tag": "M4",
+      "topic": "Conservación de momento",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 46"
+      ],
+      "correctPosition": "C",
+      "stem": "Un camión y un automóvil se mueven con el mismo momento lineal. ¿Cuál de los dos tiene mayor energía cinética?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El camión, porque un cuerpo de mayor masa siempre tiene más energía cinética, sin importar la rapidez.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Los dos por igual, ya que su momento lineal es el mismo.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El automóvil: con el mismo momento, la menor masa da mayor energía cinética.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "No puede saberse sin conocer la rapidez exacta de cada vehículo.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "El camión, porque un cuerpo de mayor masa siempre tiene más energía cinética, sin importar la rapidez.",
+          "note": "confunde: la energía cinética depende de la masa y de la rapidez juntas, no solo de la masa"
+        },
+        {
+          "pos": "B",
+          "text": "Los dos por igual, ya que su momento lineal es el mismo.",
+          "note": "supone que momento igual implica energía cinética igual, lo cual solo pasa si además las masas coinciden"
+        },
+        {
+          "pos": "D",
+          "text": "No puede saberse sin conocer la rapidez exacta de cada vehículo.",
+          "note": "sí puede: con $E_c = p^2/2m$ y $p$ fijo, la masa menor da la energía mayor"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Relación entre momento y energía cinética",
+          "content": "La energía cinética se puede escribir como $E_c = \\dfrac{p^2}{2m}$. Si el momento $p$ es el mismo para ambos, la energía cinética es inversamente proporcional a la masa: el vehículo de menor masa (el automóvil) tiene MÁS energía cinética.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'El camión por su mayor masa' ignora que con $p$ fijo la rapidez del camión es mucho menor, y $E_c$ depende de $v^2$. 2) 'La misma energía cinética' solo sería cierto si las masas fueran iguales. 3) 'No puede determinarse' es falso: $E_c = p^2/2m$ resuelve la comparación con solo saber cuál masa es menor. Partiendo de $p = mv$, se despeja $v = p/m$ y se sustituye en $E_c = \\tfrac{1}{2}mv^2$.",
+          "latexContent": "E_c = \\frac{1}{2}mv^2 = \\frac{1}{2}m\\left(\\frac{p}{m}\\right)^2 = \\frac{p^2}{2m}"
+        },
+        {
+          "layer": 3,
+          "title": "Momento y energía cinética no son lo mismo",
+          "content": "El momento $p = mv$ es lineal en la rapidez; la energía cinética $E_c = \\tfrac{1}{2}mv^2$ es cuadrática. Dos cuerpos con igual momento tienen distinta energía cinética salvo que tengan la misma masa. La expresión $E_c = p^2/2m$ conecta ambas magnitudes. Repasa: momento lineal, energía cinética y sus unidades.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrcan000lhhbchewjqt7n",
+      "tag": "M5",
+      "topic": "Conservación de momento",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 46"
+      ],
+      "correctPosition": "D",
+      "stem": "En una colisión perfectamente inelástica entre dos cuerpos que forman un sistema aislado, la magnitud que siempre se conserva es __________.",
+      "options": [
+        {
+          "id": "A",
+          "text": "la energía cinética total del sistema",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la energía potencial del sistema",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la energía cinética de cada cuerpo por separado",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el momento lineal total del sistema",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "la energía cinética total del sistema",
+          "note": "en un choque inelástico parte de la energía cinética se transforma en calor y deformación"
+        },
+        {
+          "pos": "B",
+          "text": "la energía potencial del sistema",
+          "note": "no hay campo conservativo en juego durante el choque; esta magnitud no es la relevante"
+        },
+        {
+          "pos": "C",
+          "text": "la energía cinética de cada cuerpo por separado",
+          "note": "cada cuerpo cambia su rapidez en el choque, así que su energía cinética individual cambia"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Qué se conserva en un choque inelástico",
+          "content": "En cualquier choque de un sistema aislado (sin fuerzas externas netas) el momento lineal total se conserva. En el choque perfectamente inelástico los cuerpos quedan unidos y una parte de la energía cinética se disipa como calor, sonido y deformación, así que esa NO se conserva.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Energía cinética total': se pierde parte en el choque inelástico. 2) 'Energía potencial': no interviene un campo conservativo durante el impacto. 3) 'Energía cinética de cada cuerpo': cada uno cambia de rapidez, así que su valor individual cambia. Solo el momento lineal total ($p = \\sum m_i v_i$) permanece constante, porque las fuerzas del choque son internas al sistema.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Choques elásticos vs. inelásticos",
+          "content": "En TODO choque de un sistema aislado se conserva el momento lineal. La energía cinética se conserva solo en el choque elástico; en el inelástico disminuye, y en el perfectamente inelástico (cuerpos que quedan pegados) la pérdida es máxima. Repasa: tipos de choque y leyes de conservación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrh9g0001sha6h5kx3fcc",
+      "tag": "F1",
+      "topic": "Fluidos",
+      "topicId": "cmrr1j4kv001ehi3np8h1wvow",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 113"
+      ],
+      "correctPosition": "B",
+      "stem": "¿Cuál es la presión hidrostática que ejerce el agua ($\\rho = 1000\\,\\text{kg/m}^3$) en el fondo de un tanque de $4\\,\\text{m}$ de profundidad? (Usa $g = 10\\,\\text{m/s}^2$ y desprecia la presión atmosférica.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4\\,000\\,\\text{Pa}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$40\\,000\\,\\text{Pa}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$100\\,000\\,\\text{Pa}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$400\\,000\\,\\text{Pa}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$4\\,000\\,\\text{Pa}$",
+          "note": "multiplicó solo $\\rho \\cdot h$ y omitió el factor $g$"
+        },
+        {
+          "pos": "C",
+          "text": "$100\\,000\\,\\text{Pa}$",
+          "note": "usó el valor estándar de la presión atmosférica en lugar de calcular la hidrostática"
+        },
+        {
+          "pos": "D",
+          "text": "$400\\,000\\,\\text{Pa}$",
+          "note": "error de una potencia de diez al multiplicar $\\rho \\, g \\, h$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Presión hidrostática",
+          "content": "La presión que ejerce una columna de fluido en reposo es $P = \\rho g h$. Sustituyendo: $P = (1000\\,\\text{kg/m}^3)(10\\,\\text{m/s}^2)(4\\,\\text{m}) = 40\\,000\\,\\text{Pa}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Datos: $\\rho = 1000\\,\\text{kg/m}^3$, $g = 10\\,\\text{m/s}^2$, $h = 4\\,\\text{m}$. 2) Fórmula de la presión hidrostática (manométrica): $P = \\rho g h$. 3) Multiplica: $1000 \\times 10 \\times 4 = 40\\,000\\,\\text{Pa}$ (equivale a $40\\,\\text{kPa}$). Si obtuviste $4\\,000\\,\\text{Pa}$ olvidaste el factor $g$; si pusiste $100\\,000\\,\\text{Pa}$ confundiste el dato con la presión atmosférica.",
+          "latexContent": "P = \\rho g h = (1000\\,\\text{kg/m}^3)(10\\,\\text{m/s}^2)(4\\,\\text{m}) = 40\\,000\\,\\text{Pa}"
+        },
+        {
+          "layer": 3,
+          "title": "Presión en fluidos",
+          "content": "La presión en el seno de un líquido en reposo crece con la profundidad según $P = \\rho g h$ y es la misma en todos los puntos a igual nivel. Si se pide la presión absoluta se suma la atmosférica: $P_{\\text{abs}} = P_0 + \\rho g h$. Unidad: $1\\,\\text{Pa} = 1\\,\\text{N/m}^2$. Repasa: presión hidrostática, principio fundamental de la hidrostática.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnri7d0006sha6bty9qdj9",
+      "tag": "F2",
+      "topic": "Fluidos",
+      "topicId": "cmrr1j4kv001ehi3np8h1wvow",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 113"
+      ],
+      "correctPosition": "A",
+      "stem": "En una prensa hidráulica, el pistón grande tiene un área de $0.6\\,\\text{m}^2$ y sostiene un automóvil que pesa $12\\,000\\,\\text{N}$. Si el pistón pequeño tiene un área de $0.02\\,\\text{m}^2$, ¿qué fuerza hay que aplicar sobre él para mantener el equilibrio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$400\\,\\text{N}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$600\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$12\\,000\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$360\\,000\\,\\text{N}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$600\\,\\text{N}$",
+          "note": "usó una razón de áreas de $1/20$ en vez de $0.02/0.6 = 1/30$"
+        },
+        {
+          "pos": "C",
+          "text": "$12\\,000\\,\\text{N}$",
+          "note": "supuso que la fuerza se transmite sin cambio, ignorando la ventaja mecánica"
+        },
+        {
+          "pos": "D",
+          "text": "$360\\,000\\,\\text{N}$",
+          "note": "invirtió la razón de áreas: multiplicó por $A_{\\text{grande}}/A_{\\text{pequeño}}$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Principio de Pascal aplicado a la prensa",
+          "content": "La presión es la misma en los dos pistones: $\\dfrac{F_1}{A_1} = \\dfrac{F_2}{A_2}$. Entonces $F_1 = F_2 \\dfrac{A_1}{A_2} = 12\\,000 \\cdot \\dfrac{0.02}{0.6} = 400\\,\\text{N}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) La presión aplicada se transmite íntegra (principio de Pascal): $P = F_1/A_1 = F_2/A_2$. 2) Despeja la fuerza en el pistón pequeño: $F_1 = F_2 \\cdot (A_1/A_2)$. 3) $F_1 = 12\\,000 \\times (0.02/0.6) = 12\\,000/30 = 400\\,\\text{N}$. Si obtuviste $360\\,000\\,\\text{N}$ multiplicaste por $30$ en vez de dividir; si pusiste $12\\,000\\,\\text{N}$ ignoraste que la prensa multiplica la fuerza.",
+          "latexContent": "\\frac{F_1}{A_1} = \\frac{F_2}{A_2} \\\\ F_1 = F_2\\,\\frac{A_1}{A_2} = (12\\,000\\,\\text{N})\\frac{0.02\\,\\text{m}^2}{0.6\\,\\text{m}^2} = 400\\,\\text{N}"
+        },
+        {
+          "layer": 3,
+          "title": "Principio de Pascal y prensa hidráulica",
+          "content": "Un cambio de presión en un fluido confinado se transmite sin disminución a todo el fluido. En la prensa hidráulica esto permite equilibrar una fuerza grande con una pequeña, en proporción directa a las áreas de los pistones. El 'precio' es que el pistón pequeño recorre una distancia mayor (el trabajo se conserva). Repasa: principio de Pascal, presión y ventaja mecánica.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrj59000bsha6jqd0zya4",
+      "tag": "F3",
+      "topic": "Fluidos",
+      "topicId": "cmrr1j4kv001ehi3np8h1wvow",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 113"
+      ],
+      "correctPosition": "C",
+      "stem": "Un bloque de madera flota en agua con una parte de su volumen fuera de la superficie. ¿Qué condición explica que flote?",
+      "options": [
+        {
+          "id": "A",
+          "text": "El empuje sobre la madera supera a su peso todo el tiempo que permanece flotando.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La madera no desplaza agua mientras flota.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La densidad de la madera es menor que la densidad del agua.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La densidad de la madera es igual a la densidad del agua.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "El empuje sobre la madera supera a su peso todo el tiempo que permanece flotando.",
+          "note": "en equilibrio el empuje iguala al peso; si lo superara todo el tiempo, el bloque saldría acelerando del agua"
+        },
+        {
+          "pos": "B",
+          "text": "La madera no desplaza agua mientras flota.",
+          "note": "sí la desplaza: el volumen sumergido desplaza un peso de agua igual al peso del bloque"
+        },
+        {
+          "pos": "D",
+          "text": "La densidad de la madera es igual a la densidad del agua.",
+          "note": "si fueran iguales el bloque flotaría completamente sumergido, sin parte fuera del agua"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Flotación y densidad",
+          "content": "Un cuerpo flota parcialmente sumergido cuando su densidad media es menor que la del fluido. Así, basta sumergir una fracción de su volumen para que el peso del agua desplazada (el empuje) iguale al peso del cuerpo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'El empuje supera al peso todo el tiempo': en equilibrio de flotación el empuje es exactamente igual al peso; solo mientras se ajusta hay diferencia. 2) 'No desplaza agua': el principio de Arquímedes exige que la parte sumergida desplace un peso de agua igual al del bloque. 3) 'Densidades iguales': entonces el bloque quedaría totalmente sumergido, en equilibrio a cualquier profundidad, no con parte fuera del agua. La condición correcta es $\\rho_{\\text{madera}} < \\rho_{\\text{agua}}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Principio de Arquímedes",
+          "content": "Todo cuerpo sumergido recibe un empuje hacia arriba igual al peso del fluido que desplaza. La fracción sumergida al flotar es $\\rho_{\\text{cuerpo}}/\\rho_{\\text{fluido}}$. Si la densidad del cuerpo es mayor que la del fluido, se hunde. Repasa: principio de Arquímedes, empuje y condición de flotación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrk33000gsha6kbscb7w4",
+      "tag": "F4",
+      "topic": "Fluidos",
+      "topicId": "cmrr1j4kv001ehi3np8h1wvow",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 113"
+      ],
+      "correctPosition": "D",
+      "stem": "Por una tubería fluye agua. En una sección de área $0.02\\,\\text{m}^2$ la rapidez del agua es $6\\,\\text{m/s}$. ¿Cuál es la rapidez del agua donde la tubería se estrecha a $0.008\\,\\text{m}^2$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2.4\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$6\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$12\\,\\text{m/s}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$15\\,\\text{m/s}$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$2.4\\,\\text{m/s}$",
+          "note": "invirtió la ecuación de continuidad: usó $v_2 = v_1 (A_2/A_1)$"
+        },
+        {
+          "pos": "B",
+          "text": "$6\\,\\text{m/s}$",
+          "note": "supuso que la rapidez del agua no cambia al variar el área de la tubería"
+        },
+        {
+          "pos": "C",
+          "text": "$12\\,\\text{m/s}$",
+          "note": "usó una razón de áreas de $2$, confundiendo la razón de áreas con la de radios"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ecuación de continuidad",
+          "content": "Para un fluido incompresible, $A_1 v_1 = A_2 v_2$. Despejando: $v_2 = \\dfrac{A_1 v_1}{A_2} = \\dfrac{(0.02)(6)}{0.008} = 15\\,\\text{m/s}$. Al estrecharse la tubería, el agua se acelera.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Continuidad: el caudal $Q = Av$ es constante, así que $A_1 v_1 = A_2 v_2$. 2) $A_1 v_1 = (0.02\\,\\text{m}^2)(6\\,\\text{m/s}) = 0.12\\,\\text{m}^3/\\text{s}$. 3) $v_2 = 0.12 / 0.008 = 15\\,\\text{m/s}$. Si obtuviste $2.4\\,\\text{m/s}$ dividiste al revés; si pusiste $6\\,\\text{m/s}$ olvidaste que en un estrechamiento la rapidez aumenta.",
+          "latexContent": "A_1 v_1 = A_2 v_2 \\\\ v_2 = \\frac{A_1 v_1}{A_2} = \\frac{(0.02\\,\\text{m}^2)(6\\,\\text{m/s})}{0.008\\,\\text{m}^2} = 15\\,\\text{m/s}"
+        },
+        {
+          "layer": 3,
+          "title": "Continuidad y conservación de la masa",
+          "content": "En un fluido incompresible que circula por un tubo cerrado, el producto área por rapidez permanece constante. Donde la sección es menor, la rapidez es mayor. Esto se combina con el principio de Bernoulli (más rapidez implica menos presión). Repasa: ecuación de continuidad, caudal y principio de Bernoulli.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrp1w0001p449p2c97iys",
+      "tag": "O1",
+      "topic": "Óptica",
+      "topicId": "cmrr1j696001khi3nr26vwdpq",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 47"
+      ],
+      "correctPosition": "C",
+      "stem": "Un rayo de luz incide sobre un espejo plano formando un ángulo de $20^\\circ$ con la superficie del espejo. ¿Cuál es el ángulo de reflexión medido respecto a la normal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$20^\\circ$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$40^\\circ$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$70^\\circ$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$110^\\circ$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$20^\\circ$",
+          "note": "usó el ángulo respecto a la superficie sin convertirlo al ángulo respecto a la normal"
+        },
+        {
+          "pos": "B",
+          "text": "$40^\\circ$",
+          "note": "duplicó el ángulo que forma el rayo con la superficie"
+        },
+        {
+          "pos": "D",
+          "text": "$110^\\circ$",
+          "note": "sumó $90^\\circ$ al ángulo de incidencia"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La ley de reflexión se mide desde la normal",
+          "content": "El ángulo de incidencia se mide entre el rayo y la NORMAL a la superficie. Si el rayo forma $20^\\circ$ con el espejo, forma $90^\\circ - 20^\\circ = 70^\\circ$ con la normal. Por la ley de reflexión, el ángulo de reflexión también es $70^\\circ$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Dato: el rayo forma $20^\\circ$ con la superficie del espejo. 2) La normal es perpendicular a la superficie, así que el ángulo de incidencia respecto a la normal es $90^\\circ - 20^\\circ = 70^\\circ$. 3) Ley de reflexión: $\\theta_r = \\theta_i = 70^\\circ$. Si respondiste $20^\\circ$ no convertiste al ángulo respecto a la normal; si respondiste $110^\\circ$ sumaste $90^\\circ$ en lugar de restar.",
+          "latexContent": "\\theta_i = 90^\\circ - 20^\\circ = 70^\\circ \\\\ \\theta_r = \\theta_i = 70^\\circ"
+        },
+        {
+          "layer": 3,
+          "title": "Ley de reflexión",
+          "content": "Cuando la luz se refleja en una superficie, el ángulo de incidencia es igual al ángulo de reflexión, y ambos se miden entre el rayo y la normal (perpendicular) a la superficie, no entre el rayo y la superficie. El rayo incidente, el reflejado y la normal están en un mismo plano. Repasa: leyes de la reflexión, normal a una superficie.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrpzz0006p4495flk0g6i",
+      "tag": "O2",
+      "topic": "Óptica",
+      "topicId": "cmrr1j696001khi3nr26vwdpq",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 47"
+      ],
+      "correctPosition": "A",
+      "stem": "Los faros de un automóvil usan un espejo parabólico con la bombilla colocada en el foco de la parábola. ¿Cómo sale la luz del faro?",
+      "options": [
+        {
+          "id": "A",
+          "text": "En un haz de rayos aproximadamente paralelos al eje del espejo.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Concentrada en un solo punto situado delante del automóvil.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Dispersa por igual en todas las direcciones del espacio.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En un haz que converge hacia un punto a media distancia focal.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "Concentrada en un solo punto situado delante del automóvil.",
+          "note": "eso ocurriría si la luz llegara paralela y se reflejara hacia el foco, que es el caso inverso"
+        },
+        {
+          "pos": "C",
+          "text": "Dispersa por igual en todas las direcciones del espacio.",
+          "note": "así saldría sin el espejo; la parábola precisamente evita esa dispersión"
+        },
+        {
+          "pos": "D",
+          "text": "En un haz que converge hacia un punto a media distancia focal.",
+          "note": "el espejo parabólico con la fuente en el foco produce rayos paralelos, no convergentes"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Propiedad reflectora de la parábola",
+          "content": "En un espejo parabólico, los rayos que llegan paralelos al eje se reflejan pasando por el foco. Por reversibilidad de la luz, una fuente colocada EN el foco produce, tras reflejarse, un haz de rayos paralelos al eje: justo lo que se busca en un faro.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Concentrada en un punto': es el comportamiento cuando la luz ENTRA paralela (antenas, telescopios), no cuando la fuente está en el foco. 2) 'Dispersa en todas direcciones': es lo que hace una bombilla sola; el espejo existe para corregir eso. 3) 'Converge a media distancia focal': el espejo parabólico no enfoca a media distancia; con la fuente en el foco los rayos salen paralelos. La opción correcta es el haz paralelo al eje.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Espejos parabólicos y el foco",
+          "content": "La parábola tiene la propiedad geométrica de que todo rayo paralelo a su eje se refleja hacia el foco, y viceversa. Se usa en faros, linternas, antenas y telescopios. Repasa: espejos curvos, foco, eje óptico y reversibilidad de los rayos de luz.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrqyd000bp449ret1i48k",
+      "tag": "O3",
+      "topic": "Óptica",
+      "topicId": "cmrr1j696001khi3nr26vwdpq",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_cbs.pdf p. 50"
+      ],
+      "correctPosition": "B",
+      "stem": "Una persona se coloca frente a un espejo plano, a $1.5\\,\\text{m}$ de él. ¿A qué distancia de la persona se forma su imagen y de qué tipo es?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A $1.5\\,\\text{m}$, y es una imagen real.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "A $3\\,\\text{m}$, y es una imagen virtual.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "A $1.5\\,\\text{m}$, y es una imagen virtual.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "A $3\\,\\text{m}$, y es una imagen real.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "A $1.5\\,\\text{m}$, y es una imagen real.",
+          "note": "el espejo plano no forma imágenes reales; además la imagen está detrás del espejo, no sobre la persona"
+        },
+        {
+          "pos": "C",
+          "text": "A $1.5\\,\\text{m}$, y es una imagen virtual.",
+          "note": "confunde la distancia persona-espejo con la distancia persona-imagen"
+        },
+        {
+          "pos": "D",
+          "text": "A $3\\,\\text{m}$, y es una imagen real.",
+          "note": "la distancia es correcta pero un espejo plano solo produce imágenes virtuales"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Imagen en un espejo plano",
+          "content": "El espejo plano forma la imagen a la misma distancia detrás del espejo que el objeto delante: $1.5\\,\\text{m}$ detrás. La distancia entre la persona y su imagen es $1.5 + 1.5 = 3\\,\\text{m}$. La imagen es virtual (se forma por la prolongación de los rayos, no se puede proyectar en una pantalla).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'A $1.5\\,\\text{m}$, real': la imagen de un espejo plano nunca es real, y $1.5\\,\\text{m}$ es la distancia al espejo, no a la imagen. 2) 'A $1.5\\,\\text{m}$, virtual': el tipo es correcto pero la distancia persona-imagen es el doble. 3) 'A $3\\,\\text{m}$, real': la distancia es correcta pero el espejo plano solo da imágenes virtuales. La imagen está a $3\\,\\text{m}$ de la persona y es virtual, derecha y del mismo tamaño.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Características de la imagen en espejo plano",
+          "content": "El espejo plano forma una imagen virtual, derecha, del mismo tamaño que el objeto y con inversión izquierda-derecha, situada tan atrás del espejo como el objeto está delante. Repasa: imágenes en espejos planos, imagen real vs. virtual.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrrwo000gp4490c656x87",
+      "tag": "O4",
+      "topic": "Óptica",
+      "topicId": "cmrr1j696001khi3nr26vwdpq",
+      "difficulty": "EXPERT",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_cbs.pdf p. 50"
+      ],
+      "correctPosition": "D",
+      "stem": "Una lente convergente se usa como lupa: el objeto se coloca entre la lente y su foco. La imagen que se observa es:",
+      "options": [
+        {
+          "id": "A",
+          "text": "real, invertida y de mayor tamaño que el objeto.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "real, invertida y de menor tamaño que el objeto.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "virtual, derecha y del mismo tamaño que el objeto.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "virtual, derecha y de mayor tamaño que el objeto.",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "real, invertida y de mayor tamaño que el objeto.",
+          "note": "una lente convergente da imagen real e invertida solo cuando el objeto está MÁS allá del foco, no entre la lente y el foco"
+        },
+        {
+          "pos": "B",
+          "text": "real, invertida y de menor tamaño que el objeto.",
+          "note": "corresponde a un objeto muy alejado de la lente, no a la posición de lupa"
+        },
+        {
+          "pos": "C",
+          "text": "virtual, derecha y del mismo tamaño que el objeto.",
+          "note": "el mismo tamaño lo daría un espejo plano; la lupa amplía"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La lente convergente como lupa",
+          "content": "Cuando el objeto está entre la lente convergente y su foco, los rayos refractados divergen al salir y su prolongación forma una imagen virtual, derecha y más grande que el objeto, del mismo lado que el objeto. Ese es el uso de la lupa.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) y 2) 'Real e invertida': una lente convergente forma imagen real solo si el objeto está más lejos que el foco; entre la lente y el foco la imagen es virtual. 3) 'Del mismo tamaño': eso es lo propio del espejo plano; la lupa aumenta. La imagen de la lupa es virtual, derecha y aumentada.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Formación de imágenes con lentes convergentes",
+          "content": "Con una lente convergente, la posición del objeto respecto al foco determina la imagen: más allá del doble del foco (real, invertida, menor), entre $f$ y $2f$ (real, invertida, mayor), y entre la lente y el foco (virtual, derecha, mayor: modo lupa). Repasa: lentes delgadas, distancia focal y tipos de imagen.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrwoj00016pq3c3y19pn2",
+      "tag": "T1",
+      "topic": "Termodinámica",
+      "topicId": "cmrr1j54t001ghi3ni44riz12",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "stem": "¿Cuánto calor se necesita para elevar la temperatura de $2\\,\\text{kg}$ de agua en $30\\,^\\circ\\text{C}$? El calor específico del agua es $4\\,200\\,\\text{J/(kg}\\cdot\\text{K)}$.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$8\\,400\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$126\\,000\\,\\text{J}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$252\\,000\\,\\text{J}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$420\\,000\\,\\text{J}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$8\\,400\\,\\text{J}$",
+          "note": "multiplicó solo $m \\cdot c$ y omitió el cambio de temperatura"
+        },
+        {
+          "pos": "B",
+          "text": "$126\\,000\\,\\text{J}$",
+          "note": "omitió la masa y calculó solo $c \\cdot \\Delta T$"
+        },
+        {
+          "pos": "D",
+          "text": "$420\\,000\\,\\text{J}$",
+          "note": "usó $50$ (una temperatura final imaginada) en lugar del cambio de $30\\,^\\circ\\text{C}$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Calor sensible",
+          "content": "El calor para cambiar la temperatura de una masa sin cambio de fase es $Q = m c \\Delta T$. Sustituyendo: $Q = (2\\,\\text{kg})(4\\,200\\,\\text{J/(kg}\\cdot\\text{K)})(30\\,\\text{K}) = 252\\,000\\,\\text{J}$. (Un cambio de $30\\,^\\circ\\text{C}$ equivale a $30\\,\\text{K}$.)",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Datos: $m = 2\\,\\text{kg}$, $c = 4\\,200\\,\\text{J/(kg}\\cdot\\text{K)}$, $\\Delta T = 30\\,\\text{K}$. 2) Fórmula: $Q = m c \\Delta T$. 3) $Q = 2 \\times 4\\,200 \\times 30 = 252\\,000\\,\\text{J}$. Si obtuviste $8\\,400\\,\\text{J}$ olvidaste multiplicar por $\\Delta T$; si obtuviste $126\\,000\\,\\text{J}$ olvidaste la masa.",
+          "latexContent": "Q = m\\,c\\,\\Delta T = (2\\,\\text{kg})\\left(4\\,200\\,\\frac{\\text{J}}{\\text{kg}\\cdot\\text{K}}\\right)(30\\,\\text{K}) = 252\\,000\\,\\text{J}"
+        },
+        {
+          "layer": 3,
+          "title": "Calor específico",
+          "content": "El calor específico $c$ es la energía necesaria para elevar $1\\,\\text{K}$ (o $1\\,^\\circ\\text{C}$) la temperatura de $1\\,\\text{kg}$ de sustancia. El agua tiene un calor específico alto, por eso modera el clima. Para cambios de fase se usa el calor latente, no esta fórmula. Repasa: calor sensible, calor específico y escalas de temperatura.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnrxgc00066pq3mbjz818q",
+      "tag": "T2",
+      "topic": "Termodinámica",
+      "topicId": "cmrr1j54t001ghi3ni44riz12",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "stem": "Una máquina térmica recibe $800\\,\\text{J}$ de calor de la fuente caliente y cede $600\\,\\text{J}$ a la fuente fría en cada ciclo. ¿Cuál es su eficiencia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$15\\,\\%$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$25\\,\\%$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$33\\,\\%$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$75\\,\\%$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$15\\,\\%$",
+          "note": "dividió el trabajo entre la suma de los dos calores ($200/1400$)"
+        },
+        {
+          "pos": "C",
+          "text": "$33\\,\\%$",
+          "note": "dividió el trabajo entre el calor cedido en lugar del calor absorbido"
+        },
+        {
+          "pos": "D",
+          "text": "$75\\,\\%$",
+          "note": "calculó la fracción de calor que se desecha ($Q_{\\text{frío}}/Q_{\\text{caliente}}$), no la eficiencia"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Eficiencia de una máquina térmica",
+          "content": "El trabajo útil es $W = Q_c - Q_f = 800 - 600 = 200\\,\\text{J}$. La eficiencia es el trabajo entre el calor absorbido: $e = W/Q_c = 200/800 = 0.25 = 25\\,\\%$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Primera ley en un ciclo: $W = Q_{\\text{absorbido}} - Q_{\\text{cedido}} = 800 - 600 = 200\\,\\text{J}$. 2) Eficiencia: $e = \\dfrac{W}{Q_{\\text{absorbido}}}$. 3) $e = 200/800 = 0.25$, es decir $25\\,\\%$. Si obtuviste $75\\,\\%$ calculaste $Q_f/Q_c$ (la fracción desperdiciada); si obtuviste $33\\,\\%$ dividiste entre $Q_f$ en vez de entre $Q_c$.",
+          "latexContent": "W = Q_c - Q_f = 800\\,\\text{J} - 600\\,\\text{J} = 200\\,\\text{J} \\\\ e = \\frac{W}{Q_c} = \\frac{200}{800} = 0.25 = 25\\,\\%"
+        },
+        {
+          "layer": 3,
+          "title": "Máquinas térmicas y la segunda ley",
+          "content": "Ninguna máquina térmica convierte todo el calor en trabajo: siempre cede una parte a una fuente fría (segunda ley de la termodinámica). La eficiencia $e = W/Q_c = 1 - Q_f/Q_c$ es siempre menor que $1$. La eficiencia máxima teórica la fija el ciclo de Carnot. Repasa: primera y segunda ley, ciclos termodinámicos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnry83000b6pq32lus3yr6",
+      "tag": "T3",
+      "topic": "Termodinámica",
+      "topicId": "cmrr1j54t001ghi3ni44riz12",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "stem": "El calor que llega del Sol a la Tierra se transmite principalmente por:",
+      "options": [
+        {
+          "id": "A",
+          "text": "conducción, por contacto directo entre el Sol y la Tierra.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "convección, por corrientes de aire caliente que suben.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "conducción y convección combinadas.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "radiación, es decir, por medio de ondas electromagnéticas.",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "conducción, por contacto directo entre el Sol y la Tierra.",
+          "note": "no hay contacto material entre el Sol y la Tierra; la conducción requiere un medio en contacto"
+        },
+        {
+          "pos": "B",
+          "text": "convección, por corrientes de aire caliente que suben.",
+          "note": "la convección necesita un fluido; entre el Sol y la Tierra hay vacío"
+        },
+        {
+          "pos": "C",
+          "text": "conducción y convección combinadas.",
+          "note": "ambos mecanismos requieren materia, y el espacio entre el Sol y la Tierra es prácticamente vacío"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Transmisión de calor en el vacío",
+          "content": "Entre el Sol y la Tierra hay vacío. La conducción y la convección necesitan un medio material, así que el único mecanismo posible es la radiación: energía transportada por ondas electromagnéticas que se propagan sin necesidad de medio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Conducción': transfiere calor entre cuerpos en contacto o por un sólido; no hay contacto Sol-Tierra. 2) 'Convección': mueve calor con un fluido (aire, agua) que circula; en el espacio no hay fluido. 3) 'Conducción y convección combinadas': ambas requieren materia. La radiación es el único mecanismo que funciona en el vacío.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Los tres mecanismos de transmisión de calor",
+          "content": "Conducción: por contacto, sin transporte de materia (una cuchara en una olla caliente). Convección: por movimiento de un fluido (el agua que hierve). Radiación: por ondas electromagnéticas, funciona incluso en el vacío (el calor del Sol o de una fogata). Repasa: conducción, convección y radiación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnryzq000g6pq31t1wn6dl",
+      "tag": "T4",
+      "topic": "Termodinámica",
+      "topicId": "cmrr1j54t001ghi3ni44riz12",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "stem": "Un gas ideal se comprime rápidamente dentro de un cilindro aislado, de modo que no intercambia calor con el exterior (proceso adiabático). ¿Qué ocurre con su temperatura?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Disminuye, porque al comprimirse el gas cede parte de su energía.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Aumenta, porque el trabajo de compresión eleva su energía interna.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Permanece constante, porque si no entra ni sale calor entonces la energía interna tampoco cambia.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Primero aumenta y después regresa poco a poco a su valor inicial.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "Disminuye, porque al comprimirse el gas cede parte de su energía.",
+          "note": "al comprimirlo se hace trabajo SOBRE el gas, que gana energía interna"
+        },
+        {
+          "pos": "C",
+          "text": "Permanece constante, porque si no entra ni sale calor entonces la energía interna tampoco cambia.",
+          "note": "confunde 'sin intercambio de calor' con 'sin cambio de energía interna': el trabajo también cambia la energía interna"
+        },
+        {
+          "pos": "D",
+          "text": "Primero aumenta y después regresa poco a poco a su valor inicial.",
+          "note": "no hay ningún proceso que devuelva la energía; la temperatura queda más alta tras la compresión"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Primera ley en un proceso adiabático",
+          "content": "La primera ley es $\\Delta U = Q - W$. En un proceso adiabático $Q = 0$, y al comprimir el gas el entorno hace trabajo sobre él, así que $W$ (trabajo hecho POR el gas) es negativo. Entonces $\\Delta U = -W > 0$: la energía interna aumenta y, con ella, la temperatura.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Disminuye': el gas no pierde energía; recibe trabajo del pistón. 3) 'Permanece constante': eso sería un proceso isotérmico; aquí no hay flujo de calor, pero sí trabajo, y el trabajo cambia $U$. 4) 'Regresa a su valor inicial': no hay un segundo proceso que lo lleve de vuelta. En una compresión adiabática la temperatura sube (es el principio del encendido de un motor diésel).",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Procesos termodinámicos",
+          "content": "Isotérmico: $T$ constante. Adiabático: $Q = 0$ (sistema aislado o proceso muy rápido). Isobárico: presión constante. Isocórico: volumen constante. En el adiabático, comprimir calienta el gas y expandir lo enfría. Repasa: primera ley de la termodinámica y tipos de procesos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgns3lr0001fsb4c5psc56r",
+      "tag": "W2",
+      "topic": "Ondas y sonido",
+      "topicId": "cmrr1j5ll001ihi3nrdmhndfy",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "stem": "En una onda sonora que se propaga por el aire, las partículas del medio oscilan:",
+      "options": [
+        {
+          "id": "A",
+          "text": "en trayectorias circulares alrededor de su posición de equilibrio.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "permanecen quietas; lo que viaja de un lugar a otro es la materia, no la energía.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "perpendicularmente a la dirección en que avanza la onda.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "en la misma dirección en que avanza la onda, adelante y atrás.",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "en trayectorias circulares alrededor de su posición de equilibrio.",
+          "note": "el movimiento circular de partículas es característico de las ondas en la superficie del agua, no del sonido"
+        },
+        {
+          "pos": "B",
+          "text": "permanecen quietas; lo que viaja de un lugar a otro es la materia, no la energía.",
+          "note": "es al revés: la energía se transporta y las partículas solo oscilan alrededor de su posición"
+        },
+        {
+          "pos": "C",
+          "text": "perpendicularmente a la dirección en que avanza la onda.",
+          "note": "esa es una onda transversal (como en una cuerda); el sonido en el aire es longitudinal"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El sonido es una onda longitudinal",
+          "content": "En una onda longitudinal las partículas del medio oscilan en la misma dirección en que se propaga la onda, generando compresiones y enrarecimientos. El sonido en el aire es de este tipo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Trayectorias circulares': es lo que hacen las partículas de agua en una ola superficial, no las del aire con el sonido. 2) 'Permanecen quietas y viaja la materia': falso; en cualquier onda mecánica lo que se transporta es energía, no materia, y las partículas sí oscilan. 3) 'Perpendicularmente': eso define una onda transversal, como la de una cuerda o la luz. El sonido en aire es longitudinal.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Ondas transversales y longitudinales",
+          "content": "Transversal: la oscilación es perpendicular a la propagación (cuerda, ondas electromagnéticas). Longitudinal: la oscilación es paralela a la propagación (sonido, resorte comprimido y estirado). En ambas se transporta energía, no materia. Repasa: clasificación de ondas mecánicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgns4df0006fsb4o7x6qf1h",
+      "tag": "W4",
+      "topic": "Ondas y sonido",
+      "topicId": "cmrr1j5ll001ihi3nrdmhndfy",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "stem": "¿Qué característica distingue a las ondas electromagnéticas (como la luz) de las ondas sonoras?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pueden propagarse en el vacío, sin requerir un medio material.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Solo las electromagnéticas transportan energía de un lugar a otro.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Solo las electromagnéticas se reflejan al chocar con un obstáculo.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Solo las electromagnéticas tienen una frecuencia y una longitud de onda bien definidas.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "Solo las electromagnéticas transportan energía de un lugar a otro.",
+          "note": "ambas transportan energía; el sonido también lleva energía de un lugar a otro"
+        },
+        {
+          "pos": "C",
+          "text": "Solo las electromagnéticas se reflejan al chocar con un obstáculo.",
+          "note": "el sonido también se refleja: el eco es una reflexión de ondas sonoras"
+        },
+        {
+          "pos": "D",
+          "text": "Solo las electromagnéticas tienen una frecuencia y una longitud de onda bien definidas.",
+          "note": "toda onda, incluido el sonido, tiene frecuencia y longitud de onda"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ondas con y sin medio",
+          "content": "El sonido es una onda mecánica: necesita un medio material (aire, agua, sólido) para propagarse. Las ondas electromagnéticas no necesitan medio y por eso la luz del Sol nos llega a través del vacío del espacio.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "2) 'Solo las electromagnéticas transportan energía': falso, toda onda transporta energía. 3) 'Solo las electromagnéticas se reflejan': el sonido también se refleja (eco, ecolocalización). 4) 'Solo las electromagnéticas tienen frecuencia y longitud de onda': todas las ondas las tienen. La diferencia real es que las electromagnéticas se propagan en el vacío y las mecánicas no.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Ondas mecánicas y electromagnéticas",
+          "content": "Ondas mecánicas (sonido, olas, ondas en cuerdas): requieren un medio material y su rapidez depende de las propiedades del medio. Ondas electromagnéticas (luz, radio, rayos X): son oscilaciones de campos eléctrico y magnético, viajan en el vacío a $3\\times10^{8}\\,\\text{m/s}$. Repasa: naturaleza de las ondas, espectro electromagnético.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgns555000bfsb4r369bl62",
+      "tag": "W1",
+      "topic": "Ondas y sonido",
+      "topicId": "cmrr1j5ll001ihi3nrdmhndfy",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "stem": "Una estación de radio transmite en una frecuencia de $60\\,\\text{MHz}$. Si las ondas de radio viajan a $3\\times10^{8}\\,\\text{m/s}$, ¿cuál es su longitud de onda?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.2\\,\\text{m}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2\\,\\text{m}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$5\\,\\text{m}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$1.8\\times10^{16}\\,\\text{m}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$0.2\\,\\text{m}$",
+          "note": "calculó $f/v$ en lugar de $v/f$"
+        },
+        {
+          "pos": "B",
+          "text": "$2\\,\\text{m}$",
+          "note": "manejó mal la potencia de diez de los $60\\,\\text{MHz}$"
+        },
+        {
+          "pos": "D",
+          "text": "$1.8\\times10^{16}\\,\\text{m}$",
+          "note": "multiplicó la rapidez por la frecuencia en lugar de dividir"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Relación entre rapidez, frecuencia y longitud de onda",
+          "content": "Para toda onda, $v = f\\lambda$. Despejando: $\\lambda = \\dfrac{v}{f} = \\dfrac{3\\times10^{8}\\,\\text{m/s}}{6\\times10^{7}\\,\\text{Hz}} = 5\\,\\text{m}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Convierte la frecuencia: $60\\,\\text{MHz} = 60\\times10^{6}\\,\\text{Hz} = 6\\times10^{7}\\,\\text{Hz}$. 2) Usa $\\lambda = v/f$. 3) $\\lambda = (3\\times10^{8})/(6\\times10^{7}) = 5\\,\\text{m}$. Si obtuviste $1.8\\times10^{16}\\,\\text{m}$ multiplicaste en vez de dividir; si obtuviste $0.2\\,\\text{m}$ invertiste la fracción.",
+          "latexContent": "\\lambda = \\frac{v}{f} = \\frac{3\\times10^{8}\\,\\text{m/s}}{6\\times10^{7}\\,\\text{Hz}} = 5\\,\\text{m}"
+        },
+        {
+          "layer": 3,
+          "title": "Parámetros de una onda",
+          "content": "La rapidez de propagación, la frecuencia y la longitud de onda están ligadas por $v = f\\lambda$. La rapidez depende del medio; si la onda pasa a otro medio cambian $v$ y $\\lambda$, pero la frecuencia se conserva. $1\\,\\text{Hz} = 1\\,\\text{ciclo/s}$. Repasa: longitud de onda, frecuencia, periodo y la ecuación $v = f\\lambda$.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgns5ww000gfsb4fh1avxyu",
+      "tag": "W3",
+      "topic": "Ondas y sonido",
+      "topicId": "cmrr1j5ll001ihi3nrdmhndfy",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "stem": "Si se duplica la amplitud de una onda mecánica sin cambiar su frecuencia ni el medio, la energía que transporta:",
+      "options": [
+        {
+          "id": "A",
+          "text": "se mantiene igual, porque la energía de una onda depende solo de su frecuencia.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "se cuadruplica, porque la energía es proporcional al cuadrado de la amplitud.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "se duplica, en la misma proporción que la amplitud.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "se reduce a la mitad.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "se mantiene igual, porque la energía de una onda depende solo de su frecuencia.",
+          "note": "la energía depende también del cuadrado de la amplitud, no solo de la frecuencia"
+        },
+        {
+          "pos": "C",
+          "text": "se duplica, en la misma proporción que la amplitud.",
+          "note": "la relación no es lineal: al ser proporcional a $A^2$, duplicar $A$ multiplica la energía por cuatro"
+        },
+        {
+          "pos": "D",
+          "text": "se reduce a la mitad.",
+          "note": "aumentar la amplitud aumenta la energía, no la disminuye"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Energía y amplitud de una onda",
+          "content": "La energía que transporta una onda mecánica es proporcional al cuadrado de su amplitud (y al cuadrado de la frecuencia). Si la amplitud se duplica, la energía se multiplica por $2^2 = 4$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Se mantiene igual': la energía sí depende de la amplitud, no solo de la frecuencia. 3) 'Se duplica': la dependencia es cuadrática, $E \\propto A^2$, no lineal. 4) 'Se reduce a la mitad': aumentar la amplitud nunca reduce la energía. Con $E \\propto A^2$, pasar de $A$ a $2A$ lleva la energía de $E$ a $4E$.",
+          "latexContent": "E \\propto A^2 \\quad\\Rightarrow\\quad \\frac{E_2}{E_1} = \\left(\\frac{2A}{A}\\right)^2 = 4"
+        },
+        {
+          "layer": 3,
+          "title": "Amplitud, intensidad y energía",
+          "content": "La amplitud mide el desplazamiento máximo de las partículas del medio. La intensidad (potencia por unidad de área) y la energía de una onda crecen con el cuadrado de la amplitud. Por eso una onda de sonido con el doble de amplitud entrega cuatro veces más energía. Repasa: amplitud, intensidad y energía de las ondas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnsfj100017gga2rsgxuhl",
+      "tag": "G1",
+      "topic": "Gravitación universal",
+      "topicId": "cmrr1j43j001chi3nittur92m",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "stem": "En un planeta cuya masa es el doble de la de la Tierra y cuyo radio es también el doble del terrestre, la aceleración de la gravedad en su superficie, comparada con la de la Tierra, es:",
+      "options": [
+        {
+          "id": "A",
+          "text": "cuatro veces mayor.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el doble.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "igual.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la mitad.",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "cuatro veces mayor.",
+          "note": "solo consideró el radio al cuadrado en el numerador, en vez de en el denominador"
+        },
+        {
+          "pos": "B",
+          "text": "el doble.",
+          "note": "solo aplicó el factor de la masa y no el efecto del radio mayor"
+        },
+        {
+          "pos": "C",
+          "text": "igual.",
+          "note": "supuso que los factores de masa y radio se cancelan, pero el radio entra al cuadrado"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Gravedad superficial $g = GM/R^2$",
+          "content": "La aceleración de la gravedad en la superficie es $g = \\dfrac{GM}{R^2}$. Con $M' = 2M$ y $R' = 2R$: $g' = \\dfrac{G(2M)}{(2R)^2} = \\dfrac{2GM}{4R^2} = \\dfrac{1}{2}\\dfrac{GM}{R^2} = \\dfrac{g}{2}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Cuatro veces mayor': pondría $R^2$ multiplicando, cuando divide. 2) 'El doble': solo usa el factor de masa e ignora que el radio creció. 3) 'Igual': el radio entra al cuadrado, así que no se cancela con la masa. Sustituyendo $M \\to 2M$ y $R \\to 2R$ en $g = GM/R^2$ se obtiene $g/2$.",
+          "latexContent": "g' = \\frac{G(2M)}{(2R)^2} = \\frac{2GM}{4R^2} = \\frac{1}{2}\\,\\frac{GM}{R^2} = \\frac{g}{2}"
+        },
+        {
+          "layer": 3,
+          "title": "Campo gravitatorio en la superficie de un planeta",
+          "content": "La gravedad superficial crece con la masa del planeta y disminuye con el cuadrado de su radio. Un planeta muy masivo pero muy grande puede tener una gravedad superficial menor que la de la Tierra. Repasa: ley de gravitación universal, campo gravitatorio $g = GM/R^2$.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnsgao00067ggaolle3kj4",
+      "tag": "G2",
+      "topic": "Gravitación universal",
+      "topicId": "cmrr1j43j001chi3nittur92m",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "stem": "El planeta A está cuatro veces más lejos del Sol que el planeta B. Usando la tercera ley de Kepler ($T^2 \\propto r^3$), ¿cuántas veces mayor es el periodo orbital de A respecto al de B?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4 veces mayor",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "8 veces mayor",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "16 veces mayor",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "64 veces mayor",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "4 veces mayor",
+          "note": "supuso que el periodo es proporcional a la distancia (relación lineal)"
+        },
+        {
+          "pos": "C",
+          "text": "16 veces mayor",
+          "note": "elevó al cuadrado la razón de distancias en vez de aplicar $T \\propto r^{3/2}$"
+        },
+        {
+          "pos": "D",
+          "text": "64 veces mayor",
+          "note": "usó $T \\propto r^3$ sin sacar la raíz cuadrada"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Tercera ley de Kepler",
+          "content": "$\\dfrac{T_A^2}{T_B^2} = \\dfrac{r_A^3}{r_B^3}$. Con $r_A = 4 r_B$: $\\dfrac{T_A^2}{T_B^2} = 4^3 = 64$, así que $\\dfrac{T_A}{T_B} = \\sqrt{64} = 8$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $T^2 \\propto r^3$, entonces $(T_A/T_B)^2 = (r_A/r_B)^3$. 2) $r_A/r_B = 4$, así que $(T_A/T_B)^2 = 4^3 = 64$. 3) $T_A/T_B = \\sqrt{64} = 8$. Si obtuviste $64$ olvidaste la raíz cuadrada; si obtuviste $16$ elevaste al cuadrado la razón $4$; si obtuviste $4$ supusiste proporción lineal.",
+          "latexContent": "\\left(\\frac{T_A}{T_B}\\right)^2 = \\left(\\frac{r_A}{r_B}\\right)^3 = 4^3 = 64 \\\\ \\frac{T_A}{T_B} = \\sqrt{64} = 8"
+        },
+        {
+          "layer": 3,
+          "title": "Leyes de Kepler",
+          "content": "Primera: las órbitas son elipses con el Sol en un foco. Segunda: el radio vector barre áreas iguales en tiempos iguales. Tercera: $T^2 = k\\,r^3$ (el cuadrado del periodo es proporcional al cubo del semieje mayor). De la tercera se deduce $T \\propto r^{3/2}$. Repasa: leyes de Kepler y gravitación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnsh28000b7ggao5mq0ygq",
+      "tag": "G3",
+      "topic": "Gravitación universal",
+      "topicId": "cmrr1j43j001chi3nittur92m",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "stem": "Los astronautas dentro de la Estación Espacial Internacional, a unos $400\\,\\text{km}$ de altura, parecen flotar. ¿Por qué?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Están en caída libre continua junto con la estación, con la misma aceleración.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "A esa altura la gravedad de la Tierra ya casi no se siente debido a la enorme distancia.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Se encuentran más allá del alcance del campo gravitatorio de la Tierra.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La rotación de la Tierra genera una fuerza que anula su peso.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "A esa altura la gravedad de la Tierra ya casi no se siente debido a la enorme distancia.",
+          "note": "a $400\\,\\text{km}$ la gravedad terrestre es cerca del $90\\,\\%$ de la que hay en la superficie"
+        },
+        {
+          "pos": "C",
+          "text": "Se encuentran más allá del alcance del campo gravitatorio de la Tierra.",
+          "note": "el campo gravitatorio se extiende indefinidamente; de hecho es la gravedad la que mantiene la órbita"
+        },
+        {
+          "pos": "D",
+          "text": "La rotación de la Tierra genera una fuerza que anula su peso.",
+          "note": "la rotación terrestre produce un efecto minúsculo y no explica la ingravidez aparente"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ingravidez aparente",
+          "content": "En órbita, la estación y todo lo que hay dentro caen continuamente hacia la Tierra con la misma aceleración, pero su gran rapidez tangencial hace que 'fallen' el suelo una y otra vez. Como caen juntos, no hay fuerza de contacto entre el astronauta y el piso: eso es lo que se percibe como flotar.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "2) 'Gravedad casi nula': falso, a $400\\,\\text{km}$ vale alrededor de $8.7\\,\\text{m/s}^2$, cerca del $90\\,\\%$ del valor en la superficie. 3) 'Fuera del campo gravitatorio': imposible; el campo se extiende sin límite y es justo lo que curva la trayectoria en órbita. 4) 'Fuerza centrífuga por la rotación terrestre': su efecto es diminuto. La causa real es la caída libre orbital compartida.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Órbitas como caída libre",
+          "content": "Un cuerpo en órbita circular está en caída libre: la gravedad le da una aceleración centrípeta y su rapidez tangencial es tal que su trayectoria curva sigue la curvatura de la Tierra. El 'peso aparente' es cero porque nada empuja al astronauta contra una superficie. Repasa: caída libre, movimiento circular, gravitación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnsltg0001vnjvrogr7grm",
+      "tag": "E1",
+      "topic": "Electrostática",
+      "topicId": "cmrr1j6v4001mhi3n18gi7566",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        1,
+        2
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 54",
+        "uam_cbi.pdf p. 114"
+      ],
+      "correctPosition": "A",
+      "stem": "Sobre una carga de prueba de $2\\,\\text{C}$ colocada en cierto punto del espacio actúa una fuerza eléctrica de $10\\,\\text{N}$. ¿Cuál es la magnitud del campo eléctrico en ese punto?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$5\\,\\text{N/C}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$8\\,\\text{N/C}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$12\\,\\text{N/C}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$20\\,\\text{N/C}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "$8\\,\\text{N/C}$",
+          "note": "restó la carga a la fuerza en lugar de dividir"
+        },
+        {
+          "pos": "C",
+          "text": "$12\\,\\text{N/C}$",
+          "note": "sumó la fuerza y la carga"
+        },
+        {
+          "pos": "D",
+          "text": "$20\\,\\text{N/C}$",
+          "note": "multiplicó la fuerza por la carga en vez de dividir"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El campo eléctrico es fuerza por unidad de carga",
+          "content": "El campo eléctrico en un punto se define como $E = \\dfrac{F}{q}$, la fuerza que actuaría sobre una carga de prueba positiva dividida entre esa carga. $E = 10/2 = 5\\,\\text{N/C}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Datos: $F = 10\\,\\text{N}$, $q = 2\\,\\text{C}$. 2) Definición: $E = F/q$. 3) $E = 10/2 = 5\\,\\text{N/C}$. Si obtuviste $20\\,\\text{N/C}$ multiplicaste; si obtuviste $8\\,\\text{N/C}$ restaste. El campo NO depende del valor de la carga de prueba: si duplicaras $q$, la fuerza también se duplicaría y el cociente seguiría siendo $5\\,\\text{N/C}$.",
+          "latexContent": "E = \\frac{F}{q} = \\frac{10\\,\\text{N}}{2\\,\\text{C}} = 5\\,\\text{N/C}"
+        },
+        {
+          "layer": 3,
+          "title": "Campo eléctrico",
+          "content": "El campo eléctrico describe la influencia eléctrica en cada punto del espacio, independientemente de si hay o no una carga de prueba allí. Su unidad es $\\text{N/C}$ (equivale a $\\text{V/m}$). Cerca de una carga puntual, $E = kQ/r^2$. Repasa: campo eléctrico, carga de prueba, ley de Coulomb.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnsmrc0006vnjv12d70zb9",
+      "tag": "E3",
+      "topic": "Electrostática",
+      "topicId": "cmrr1j6v4001mhi3n18gi7566",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        4
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 114"
+      ],
+      "correctPosition": "C",
+      "stem": "El campo eléctrico se define en la dirección de la fuerza sobre una carga de prueba positiva. Cerca de una carga puntual negativa aislada, ¿hacia dónde apunta el campo eléctrico?",
+      "options": [
+        {
+          "id": "A",
+          "text": "En trayectorias circulares alrededor de la carga.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Radialmente hacia afuera, alejándose de la carga.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Radialmente hacia la carga, acercándose a ella.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "No tiene una dirección definida, solo una magnitud.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "En trayectorias circulares alrededor de la carga.",
+          "note": "los campos circulares son propios del campo magnético alrededor de una corriente, no del campo eléctrico de una carga"
+        },
+        {
+          "pos": "B",
+          "text": "Radialmente hacia afuera, alejándose de la carga.",
+          "note": "esa es la dirección del campo de una carga POSITIVA; una carga de prueba positiva sería repelida"
+        },
+        {
+          "pos": "D",
+          "text": "No tiene una dirección definida, solo una magnitud.",
+          "note": "el campo eléctrico es una magnitud vectorial: tiene dirección y sentido en cada punto"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dirección del campo de una carga negativa",
+          "content": "Una carga de prueba positiva colocada cerca de una carga negativa es atraída hacia ella. Como el campo apunta en la dirección de la fuerza sobre una carga positiva, el campo de una carga negativa apunta radialmente hacia la carga.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Trayectorias circulares': así se dibuja el campo magnético alrededor de un alambre con corriente, no el campo eléctrico de una carga puntual. 2) 'Radialmente hacia afuera': eso corresponde a una carga positiva. 4) 'Sin dirección definida': el campo eléctrico es un vector. Como cargas opuestas se atraen, la carga de prueba positiva va hacia la negativa, y esa es la dirección del campo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Líneas de campo eléctrico",
+          "content": "Las líneas de campo salen de las cargas positivas y entran a las negativas. Cerca de una carga puntual son radiales; su densidad indica la intensidad del campo. El campo es siempre tangente a la línea en cada punto. Repasa: líneas de campo, campo de cargas puntuales, atracción y repulsión.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnsnp7000bvnjv0xpr6gai",
+      "tag": "E2",
+      "topic": "Electrostática",
+      "topicId": "cmrr1j6v4001mhi3n18gi7566",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunks": [
+        3
+      ],
+      "sourceChunkRefs": [
+        "uam_cbi.pdf p. 53"
+      ],
+      "correctPosition": "B",
+      "stem": "Dos esferas conductoras idénticas, una con carga $Q$ y la otra sin carga, se ponen en contacto y luego se separan. ¿Qué carga queda en cada esfera?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$Q$ en cada una; la carga total se habría duplicado.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$Q/2$ en cada una, repartida por partes iguales.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Cero en ambas; las cargas se neutralizan mutuamente.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$Q$ en la primera esfera y $0$ en la segunda.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$Q$ en cada una; la carga total se habría duplicado.",
+          "note": "violaría la conservación de la carga: no se puede crear carga por contacto"
+        },
+        {
+          "pos": "C",
+          "text": "Cero en ambas; las cargas se neutralizan mutuamente.",
+          "note": "no hay carga negativa que neutralice; solo hay carga $Q$ para repartir"
+        },
+        {
+          "pos": "D",
+          "text": "$Q$ en la primera esfera y $0$ en la segunda.",
+          "note": "al ser conductoras idénticas en contacto, la carga se redistribuye por igual"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Conservación y reparto de la carga",
+          "content": "La carga total se conserva: sigue siendo $Q$. Al ser dos conductores idénticos en contacto, la carga se reparte por igual entre ambos por simetría: $Q/2$ en cada esfera.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) '$Q$ en cada una': sumaría $2Q$, se crearía carga de la nada. 3) 'Cero en ambas': no hay carga de signo contrario para anular; la carga $Q$ tiene que quedar en algún lado. 4) 'Nada cambia': dos conductores idénticos en contacto forman un solo conductor y la carga se distribuye uniformemente. Total $Q$ repartido en partes iguales da $Q/2$ y $Q/2$.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Conservación de la carga eléctrica",
+          "content": "En un sistema cerrado la carga eléctrica total es constante: no se crea ni se destruye, solo se transfiere. Al tocar dos conductores, los electrones se mueven hasta igualar el potencial; si son idénticos, la carga final es la misma en cada uno. Repasa: conservación de la carga, conductores, carga por contacto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnssga0001uejegzbvvghc",
+      "tag": "C1",
+      "topic": "Circuitos eléctricos",
+      "topicId": "cmrr1j7f1001ohi3nprccwl4g",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "stem": "Por un resistor de $5\\,\\Omega$ circula una corriente de $4\\,\\text{A}$. ¿Cuánta potencia disipa el resistor?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1.25\\,\\text{W}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$3.2\\,\\text{W}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$20\\,\\text{W}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$80\\,\\text{W}$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$1.25\\,\\text{W}$",
+          "note": "invirtió la fórmula: calculó $R/I^2$"
+        },
+        {
+          "pos": "B",
+          "text": "$3.2\\,\\text{W}$",
+          "note": "dividió $I^2$ entre $R$ en lugar de multiplicar"
+        },
+        {
+          "pos": "C",
+          "text": "$20\\,\\text{W}$",
+          "note": "usó $P = IR$ sin elevar la corriente al cuadrado"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Potencia disipada en un resistor",
+          "content": "La potencia disipada por efecto Joule es $P = I^2 R$. Sustituyendo: $P = (4\\,\\text{A})^2 (5\\,\\Omega) = 16 \\times 5 = 80\\,\\text{W}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Datos: $I = 4\\,\\text{A}$, $R = 5\\,\\Omega$. 2) Fórmula: $P = I^2 R$ (también $P = VI$ con $V = IR = 20\\,\\text{V}$, que da $20 \\times 4 = 80\\,\\text{W}$). 3) $P = 16 \\times 5 = 80\\,\\text{W}$. Si obtuviste $20\\,\\text{W}$ olvidaste elevar $I$ al cuadrado; si obtuviste $3.2\\,\\text{W}$ dividiste en vez de multiplicar.",
+          "latexContent": "P = I^2 R = (4\\,\\text{A})^2 (5\\,\\Omega) = 16 \\times 5 = 80\\,\\text{W}"
+        },
+        {
+          "layer": 3,
+          "title": "Potencia eléctrica",
+          "content": "La potencia entregada o disipada en un elemento se puede calcular como $P = VI$, y usando la ley de Ohm también como $P = I^2 R$ o $P = V^2/R$. En un resistor toda esa potencia se convierte en calor (efecto Joule). Unidad: $1\\,\\text{W} = 1\\,\\text{J/s}$. Repasa: ley de Ohm, potencia eléctrica, efecto Joule.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnst7x0006ueje8tw8jpfz",
+      "tag": "C2",
+      "topic": "Circuitos eléctricos",
+      "topicId": "cmrr1j7f1001ohi3nprccwl4g",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "stem": "Un foco de $60\\,\\text{W}$ permanece encendido durante $5\\,\\text{horas}$. ¿Cuánta energía consume, expresada en watt-hora?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$12\\,\\text{Wh}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$55\\,\\text{Wh}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$300\\,\\text{Wh}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$18\\,000\\,\\text{Wh}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$12\\,\\text{Wh}$",
+          "note": "dividió la potencia entre el tiempo en lugar de multiplicar"
+        },
+        {
+          "pos": "B",
+          "text": "$55\\,\\text{Wh}$",
+          "note": "restó el tiempo a la potencia"
+        },
+        {
+          "pos": "D",
+          "text": "$18\\,000\\,\\text{Wh}$",
+          "note": "convirtió las $5$ horas a $300$ minutos y multiplicó, mezclando unidades"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Energía = potencia por tiempo",
+          "content": "La energía consumida es $E = P \\cdot t$. Con la potencia en watts y el tiempo en horas, el resultado queda en watt-hora: $E = 60\\,\\text{W} \\times 5\\,\\text{h} = 300\\,\\text{Wh}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Datos: $P = 60\\,\\text{W}$, $t = 5\\,\\text{h}$. 2) Fórmula: $E = P \\cdot t$. 3) $E = 60 \\times 5 = 300\\,\\text{Wh}$ (equivale a $0.3\\,\\text{kWh}$). Si obtuviste $12\\,\\text{Wh}$ dividiste en lugar de multiplicar; si obtuviste $18\\,000$ convertiste las horas a minutos sin ajustar las unidades.",
+          "latexContent": "E = P\\,t = (60\\,\\text{W})(5\\,\\text{h}) = 300\\,\\text{Wh}"
+        },
+        {
+          "layer": 3,
+          "title": "Potencia y energía eléctrica",
+          "content": "La potencia es la rapidez con que se consume energía; la energía es la potencia acumulada en el tiempo. El recibo de luz cobra energía en kilowatt-hora ($1\\,\\text{kWh} = 1\\,000\\,\\text{W}$ durante $1\\,\\text{h} = 3.6\\times10^{6}\\,\\text{J}$). Repasa: potencia, energía, unidades de consumo eléctrico.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnstzm000bueje1yorjvoi",
+      "tag": "C3",
+      "topic": "Circuitos eléctricos",
+      "topicId": "cmrr1j7f1001ohi3nprccwl4g",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "stem": "A un circuito que tiene un solo resistor se le conecta un segundo resistor en paralelo con el primero. La resistencia total del circuito:",
+      "options": [
+        {
+          "id": "A",
+          "text": "aumenta, porque al añadir otro resistor hay más oposición total a la corriente.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "disminuye, porque el segundo resistor abre otro camino para la corriente.",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "no cambia, porque cada resistor conserva su propio valor.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "se duplica, si los dos resistores tienen el mismo valor.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "aumenta, porque al añadir otro resistor hay más oposición total a la corriente.",
+          "note": "en serie la resistencia sí aumentaría, pero en paralelo ocurre lo contrario"
+        },
+        {
+          "pos": "C",
+          "text": "no cambia, porque cada resistor conserva su propio valor.",
+          "note": "aunque cada resistor conserva su valor, la resistencia equivalente del conjunto sí cambia"
+        },
+        {
+          "pos": "D",
+          "text": "se duplica, si los dos resistores tienen el mismo valor.",
+          "note": "con dos resistores iguales en paralelo la resistencia equivalente es la MITAD, no el doble"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Resistencias en paralelo",
+          "content": "Al añadir un resistor en paralelo se ofrece a la corriente un camino adicional, así que fluye más corriente para el mismo voltaje: eso equivale a una resistencia total MENOR. La equivalente en paralelo cumple $\\dfrac{1}{R_{eq}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2}$ y siempre es menor que la más pequeña.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Aumenta': eso pasa al conectar en SERIE, donde $R_{eq} = R_1 + R_2$. 3) 'No cambia': aunque cada resistor mantiene su valor, el conjunto se comporta como una resistencia distinta (menor). 4) 'Se duplica': con dos resistores iguales en paralelo, $R_{eq} = R/2$. La respuesta es que disminuye.",
+          "latexContent": "\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} \\quad\\Rightarrow\\quad R_{eq} < \\min(R_1, R_2)"
+        },
+        {
+          "layer": 3,
+          "title": "Asociación de resistencias",
+          "content": "En serie las resistencias se suman y la equivalente es mayor que cualquiera. En paralelo se suman los inversos y la equivalente es menor que la más pequeña. La corriente se reparte entre las ramas en paralelo; el voltaje es el mismo en todas. Repasa: resistencias en serie y en paralelo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnsykq00014hvmzmdmw23r",
+      "tag": "Mag1",
+      "topic": "Magnetismo",
+      "topicId": "cmrr1j7wp001qhi3nadp2f3yo",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numeric",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "B",
+      "stem": "Una carga de $0.5\\,\\text{C}$ se mueve a $4\\,\\text{m/s}$ en dirección perpendicular a un campo magnético de $3\\,\\text{T}$. ¿Cuál es la magnitud de la fuerza magnética sobre la carga?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1.5\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$6\\,\\text{N}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$7.5\\,\\text{N}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$12\\,\\text{N}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "$1.5\\,\\text{N}$",
+          "note": "multiplicó solo la carga por el campo, omitiendo la rapidez"
+        },
+        {
+          "pos": "C",
+          "text": "$7.5\\,\\text{N}$",
+          "note": "sumó los tres valores ($0.5 + 4 + 3$) en lugar de multiplicarlos"
+        },
+        {
+          "pos": "D",
+          "text": "$12\\,\\text{N}$",
+          "note": "multiplicó solo la rapidez por el campo, omitiendo la carga"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Fuerza magnética sobre una carga en movimiento",
+          "content": "Cuando la velocidad es perpendicular al campo, la magnitud de la fuerza es $F = qvB$. Sustituyendo: $F = (0.5\\,\\text{C})(4\\,\\text{m/s})(3\\,\\text{T}) = 6\\,\\text{N}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Datos: $q = 0.5\\,\\text{C}$, $v = 4\\,\\text{m/s}$, $B = 3\\,\\text{T}$, con $v \\perp B$. 2) Fórmula: $F = qvB\\,\\sin\\theta$, y como $\\theta = 90^\\circ$, $\\sin\\theta = 1$. 3) $F = 0.5 \\times 4 \\times 3 = 6\\,\\text{N}$. Si obtuviste $7.5\\,\\text{N}$ sumaste los datos; si obtuviste $12\\,\\text{N}$ olvidaste la carga.",
+          "latexContent": "F = qvB\\,\\sin\\theta = (0.5\\,\\text{C})(4\\,\\text{m/s})(3\\,\\text{T})(1) = 6\\,\\text{N}"
+        },
+        {
+          "layer": 3,
+          "title": "Fuerza magnética (fuerza de Lorentz)",
+          "content": "Una carga en movimiento dentro de un campo magnético siente una fuerza $F = qvB\\,\\sin\\theta$, perpendicular tanto a la velocidad como al campo (su dirección se obtiene con la regla de la mano derecha). Si la carga se mueve paralela al campo, la fuerza es cero. $1\\,\\text{T} = 1\\,\\text{N}/(\\text{A}\\cdot\\text{m})$. Repasa: fuerza de Lorentz, regla de la mano derecha.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnszcb00064hvmv8lmewce",
+      "tag": "Mag2",
+      "topic": "Magnetismo",
+      "topicId": "cmrr1j7wp001qhi3nadp2f3yo",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "stem": "¿En cuál de las siguientes situaciones se induce una corriente eléctrica en una espira conductora cerrada?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cuando varía con el tiempo el flujo magnético que atraviesa la espira.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Cuando la espira permanece inmóvil dentro de un campo magnético constante.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Cuando la espira está fabricada con un material ferromagnético.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cuando los dos extremos de la espira adquieren polaridad magnética opuesta.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "Cuando la espira permanece inmóvil dentro de un campo magnético constante.",
+          "note": "sin cambio de flujo no hay corriente inducida, por más intenso que sea el campo"
+        },
+        {
+          "pos": "C",
+          "text": "Cuando la espira está fabricada con un material ferromagnético.",
+          "note": "el material de la espira no induce corriente por sí mismo; se necesita un flujo variable"
+        },
+        {
+          "pos": "D",
+          "text": "Cuando los dos extremos de la espira adquieren polaridad magnética opuesta.",
+          "note": "una espira cerrada no tiene 'extremos' con polaridad; lo determinante es la variación del flujo"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ley de inducción de Faraday",
+          "content": "Se induce una fuerza electromotriz (y por tanto corriente en un circuito cerrado) solo cuando cambia el flujo magnético a través de la espira, ya sea porque cambia el campo, el área o la orientación. Un campo constante y una espira quieta no inducen nada.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "2) 'Espira inmóvil en campo constante': el flujo no cambia, no hay inducción. 3) 'Material ferromagnético': el material puede concentrar el campo, pero sin variación de flujo no hay corriente inducida. 4) 'Polaridad opuesta en los extremos': una espira cerrada no funciona así. Lo único que induce corriente es un flujo magnético variable en el tiempo.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Inducción electromagnética",
+          "content": "La ley de Faraday establece que la fem inducida es igual a la rapidez de cambio del flujo magnético: $\\varepsilon = -\\dfrac{\\Delta \\Phi}{\\Delta t}$. La ley de Lenz dice que la corriente inducida se opone al cambio que la produce. Es el principio de generadores, transformadores y micrófonos. Repasa: flujo magnético, ley de Faraday, ley de Lenz.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnt03z000b4hvmtx33wgvv",
+      "tag": "Mag3",
+      "topic": "Magnetismo",
+      "topicId": "cmrr1j7wp001qhi3nadp2f3yo",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "D",
+      "stem": "En un generador eléctrico se hace girar una bobina dentro de un campo magnético. ¿Qué transformación de energía realiza principalmente?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Energía eléctrica en energía mecánica.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Energía química en energía eléctrica.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Energía eléctrica en energía térmica.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Energía mecánica en energía eléctrica.",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "Energía eléctrica en energía mecánica.",
+          "note": "esa es la transformación que realiza un motor eléctrico, el proceso inverso al del generador"
+        },
+        {
+          "pos": "B",
+          "text": "Energía química en energía eléctrica.",
+          "note": "esa es la transformación propia de una pila o batería, no de un generador de inducción"
+        },
+        {
+          "pos": "C",
+          "text": "Energía eléctrica en energía térmica.",
+          "note": "eso ocurre en una resistencia o un calentador, no en un generador"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Función de un generador",
+          "content": "Al girar la bobina cambia el flujo magnético que la atraviesa y se induce una corriente (ley de Faraday). La energía mecánica que mueve la bobina (agua, vapor, viento) se convierte en energía eléctrica.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Eléctrica en mecánica': es lo que hace un motor, que es el generador funcionando al revés. 2) 'Química en eléctrica': es una batería. 3) 'Eléctrica en térmica': es una resistencia calefactora. El generador toma trabajo mecánico y produce electricidad mediante inducción.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Generadores y motores",
+          "content": "Un generador convierte energía mecánica en eléctrica usando la inducción electromagnética; un motor hace lo contrario, convierte energía eléctrica en mecánica usando la fuerza sobre corrientes en un campo magnético. Ambos se basan en la relación entre electricidad y magnetismo. Repasa: inducción electromagnética, conversión de energía.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnt4of00014va605uk082q",
+      "tag": "FM1",
+      "topic": "Física moderna",
+      "topicId": "cmrr1j8d5001shi3njpd6wnn1",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "A",
+      "stem": "Según el modelo atómico de Bohr, un átomo emite luz de un color específico cuando un electrón:",
+      "options": [
+        {
+          "id": "A",
+          "text": "pasa de un nivel de energía mayor a uno menor, emitiendo un fotón.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "absorbe un fotón externo para subir a un nivel mayor.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "se mantiene girando de forma estable dentro de uno de sus niveles de energía permitidos.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "es arrancado por completo del átomo y queda libre.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "B",
+          "text": "absorbe un fotón externo para subir a un nivel mayor.",
+          "note": "esa es la absorción de luz, no la emisión; ocurre en sentido contrario"
+        },
+        {
+          "pos": "C",
+          "text": "se mantiene girando de forma estable dentro de uno de sus niveles de energía permitidos.",
+          "note": "mientras el electrón permanece en un nivel no emite energía; solo emite al cambiar de nivel"
+        },
+        {
+          "pos": "D",
+          "text": "es arrancado por completo del átomo y queda libre.",
+          "note": "eso es la ionización, que no produce una línea de emisión de color definido"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Transiciones de energía en el modelo de Bohr",
+          "content": "En el modelo de Bohr, el electrón solo puede estar en ciertos niveles de energía. Cuando cae de un nivel superior a uno inferior, emite un fotón cuya energía es exactamente la diferencia entre los dos niveles; esa energía determina el color (la longitud de onda) de la luz.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "2) 'Absorbe un fotón y sube': eso es absorción, el proceso inverso a la emisión. 3) 'Se mueve en círculos dentro de un nivel': mientras está en un nivel estacionario no radia energía (postulado de Bohr). 4) 'Es expulsado del átomo': eso es ionización, que da un espectro continuo, no una línea de color. La emisión de luz corresponde al salto de un nivel alto a uno bajo.",
+          "latexContent": "E_{\\text{fot}} = E_{\\text{inicial}} - E_{\\text{final}} = h f"
+        },
+        {
+          "layer": 3,
+          "title": "Niveles de energía y espectros",
+          "content": "Los niveles de energía discretos del átomo explican por qué cada elemento emite y absorbe solo ciertas longitudes de onda (su espectro característico). La energía del fotón se relaciona con su frecuencia por $E = hf$. Repasa: modelo de Bohr, cuantización de la energía, espectros de emisión y absorción.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "questionId": "cmtgnt5gh00064va6ptkb3ulc",
+      "tag": "FM2",
+      "topic": "Física moderna",
+      "topicId": "cmrr1j8d5001shi3njpd6wnn1",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunks": [],
+      "sourceChunkRefs": [],
+      "correctPosition": "C",
+      "stem": "En ciertos experimentos, un haz de electrones atraviesa una rendija muy estrecha y produce un patrón de difracción sobre una pantalla. ¿Qué demuestra este resultado?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Que los electrones tienen carga eléctrica negativa.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que la luz está formada por partículas llamadas fotones.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Que los electrones también presentan un comportamiento ondulatorio.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Que los electrones, en ciertas condiciones, pueden moverse a velocidades mayores que la de la luz.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "pos": "A",
+          "text": "Que los electrones tienen carga eléctrica negativa.",
+          "note": "la difracción no depende de la carga; es un fenómeno ondulatorio"
+        },
+        {
+          "pos": "B",
+          "text": "Que la luz está formada por partículas llamadas fotones.",
+          "note": "ese es el efecto fotoeléctrico; aquí el experimento es con electrones, no con luz"
+        },
+        {
+          "pos": "D",
+          "text": "Que los electrones, en ciertas condiciones, pueden moverse a velocidades mayores que la de la luz.",
+          "note": "ninguna partícula con masa alcanza la rapidez de la luz; la difracción no dice nada sobre eso"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dualidad onda-partícula de la materia",
+          "content": "La difracción es un fenómeno característico de las ondas. Que un haz de electrones se difracte al pasar por una rendija demuestra que la materia, no solo la luz, tiene un comportamiento ondulatorio: es la dualidad onda-partícula propuesta por De Broglie.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Carga negativa': cierto en general, pero la difracción no lo demuestra ni depende de ello. 2) 'La luz es partícula': eso lo muestra el efecto fotoeléctrico; aquí no interviene la luz. 4) 'Más rápidos que la luz': imposible y ajeno al experimento. El patrón de difracción prueba el carácter ondulatorio de los electrones.",
+          "latexContent": "\\lambda = \\frac{h}{p}"
+        },
+        {
+          "layer": 3,
+          "title": "Ondas de materia (De Broglie)",
+          "content": "A toda partícula con momento $p$ le corresponde una longitud de onda $\\lambda = h/p$. Para objetos cotidianos esa longitud es imperceptible, pero para electrones es comparable al tamaño de los átomos, y por eso se observan efectos ondulatorios. Es la base del microscopio electrónico. Repasa: dualidad onda-partícula, hipótesis de De Broglie, efecto fotoeléctrico.",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}
