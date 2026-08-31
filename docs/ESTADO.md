@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-31 · Última fase ejecutada: G53 (**COMPLETADA — lote de 35 reactivos de **Física, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido; el cierre de G52 anunciaba «Sonnet 4.6» pero el campo `model` del registro declara el que compuso de verdad — corrección de G17, **sexto ciclo consecutivo** en que plan ≠ real). **Materia elegida con datos reales (encargo G53):** se calculó la brecha efectiva por pool con la metodología G26 (densidad `1500/270 = 5.5556` reactivos por punto de `questionWeight`; pools compartidos = meta de su celda de mayor peso), solo para instituciones activas del launch (UNAM + IPN Superior). Ranking: **IPN·FISMAT·Física meta 111 (w20), verificados 35 → brecha 76 (la mayor)**; IPN:MATEMATICAS 63; IPN:QUIMICA 54; IPN·MEDBIO·Biología 52; UNAM:INGLES 33; IPN·SOCADM·Historia de México 33; UNAM·A1·Matemáticas 30. Ganó **Física de IPN FISMAT** (`subjectId cmrr1l31q00a3hi3n607qhvfu`, `questionWeight` 20, `sharedContentKey` NULL — **materia NO compartida**, así que el lote **descuenta brecha efectiva 1:1** cuando G54 lo verifique, patrón G45, a diferencia de G51/G52). Único lote previo: G18 (→ G19, 35/35). **Reparto — priorizar los de menor cobertura:** consulta en vivo (2026-08-31) → los 14 temas en 3/3/3/2/2/2/2/3/2/3/3/3/2/2; **+3 a los 7 temas en 2✓ y +2 a los 7 en 3✓ → los 14 quedan en 5✓**. Cubre mecánica, fluidos, termodinámica, ondas, óptica, electricidad, magnetismo, inducción y física moderna. **2 SOURCED / 33 TEMARIO_ONLY:** `loadTopicChunks` devolvió `SourceChunk` solo en Cinemática (1 fragmento de `ceneval_exanii_i.pdf` p. 9 — ejemplo del Nuevo EXANI-I que distingue el concepto de velocidad = razón distancia/tiempo del de aceleración; procedencia CENEVAL, otra institución, se anota — patrón G18/G45/G49). Los 2 de Cinemática citan `sourceChunks:[1]` y **transforman la tarea**: la guía es de identificación conceptual, C1 la vuelve cálculo de rapidez media y C2 discriminación de aceleración nula. **Física es `isCalcSubject`, así que el candado de G28 aplicará a G54.** **21 de los 35 son numéricos**, recalculados desde cero con Python por **dos rutas independientes** (lista de opciones + fórmula), exigiendo (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones (tolerancia 2 %) y (c) opciones ascendentes — **21/21 en verde**. Cada distractor deriva de un error nombrable (usar la rapidez en vez de la aceleración en `F=ma`; `2gh` sin raíz; `q v B` ignorando que la velocidad es paralela a `B` → la clave es 0 N; tubo cerrado `v/(4L)` en vez de abierto `v/(2L)`; `T_fría/T_caliente` sin restar de 1 en Carnot; etc.). **Formato:** 21 `PROBLEM_SOLVING` · 12 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la distribución objetivo de `_base.md`); los 2 EXPERT: modo fundamental de un tubo abierto (ON2) y el efecto fotoeléctrico al duplicar la frecuencia (FM2). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), **confirmada por `jsonb` sobre `options` de las 35 filas tras insertar**; ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; los 21 numéricos fijan la letra por el rango del valor (G46 §7), los 14 conceptuales a mano al objetivo global. Secuencia por orden de inserción **`ABBABDBDCBDCBCABDACDBCACAADACDCABDC`** — **0 rachas cíclicas A→B→C→D ≥ 3**, racha de misma letra máx **2** (orden dentro de cada tema por búsqueda con semilla fija 53053). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 14 archivos. **0 citas por letra y 0 posicionales** en las 105 capas (las 35 capa 2 se titulan «Resolución paso a paso» / «Cómo se descarta cada opción» y citan los distractores por su valor o su contenido). **Señuelo de longitud tie-aware (G34 §2):** sobre los 14 ítems con opciones-oración (los 21 de opción-valor fuera, criterio G45/G46) → **21.4 % «más larga» / 21.4 % «más corta»** (3/14 y 3/14), ambos < 25 %, con varianza deliberada. **Lenguaje absolutista (G44 §6):** 0.03 marcadores/opción en claves vs 0.05 en distractores; **0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/35.** **Opciones textualmente duplicadas (hueco G52, `lot-validation.ts` no las mira):** auto-chequeo en `gen.py` → **0/35**. **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes → después:** banco (COUNT crudo) **1 042 → 1 077** · servibles **1 038** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega (pendientes de resolución) **0 → 35** · cola canónica de discrepancias **3** sin cambio · 1 retirado · **Física IPN FISMAT 35✓/0⧗ → 35✓/35⧗** (banco de la materia 35 → 70; ⚓ del pool 5/65, fuentes 1/14 temas) · `SOURCED` banco **282 → 284** (26 % por crecer el denominador) · 105 `explanation_layers` · 2 `question_source_chunks`. `content:coverage`: **1 038 servibles · 35 pendientes · 1 retirado · 1 074 en banco**; meta efectiva G26 (1 222) **64 %**, brecha **438 (≈ 13 lotes)** — **no se mueve con este lote**, pero **a diferencia de G51/G52 SÍ se moverá cuando G54 verifique**: el pool IPN FISMAT Física (peso 20, meta efectiva 111, no compartido) pasa de 35 a ~70, así que los 35 caen enteros dentro de la brecha y la descuentan 1:1 → bajará a ~403. Meta nominal 1 500: **69 %**. Auditoría 5 % **vencida, 9 ciclos** (esta fase compone, no audita). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 14 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g53-ipn-fismat-fisica.json`); cero llamadas a la API de pago. **Siguiente: G54 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Física")` es `true`, así que la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado de G28) en los **21 numéricos**; **0/35 con pasaje**. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los **2 EXPERT** (ON2 tubo abierto; FM2 fotoeléctrico al duplicar `f`) y **MG1** (fuerza magnética sobre una carga paralela al campo).)
+Última actualización: 2026-08-31 · Última fase ejecutada: G54 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G53 dejó en la cola: **Física, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, materia **NO compartida** (`sharedContentKey` NULL, `questionWeight` 20), sus 14 temas. **35/35 coinciden con la clave del generador — 100 % de concordancia sustantiva.** El primer envío auto-aprobó **32/35 = 91.4 %**, pero **los 3 retenidos no fueron desacuerdos de física: fueron un error de transcripción de la LETRA de esta sesión verificadora** — el campo `reasoning` de los tres, escrito ANTES de correr `content:resolve`, nombra literalmente el texto de la opción correcta, distinta de la letra tecleada (Óptica: "imagen real e invertida" con letra A; Fluidos: "600 kg/m³" con letra D; Electrostática: "carga en la superficie exterior y E=0" con letra C). Se conservó el archivo tal como se envió (`verifier-answers-G54-tal-cual-enviado.json`) como evidencia auditable de que la determinación quedó fijada antes de que el script revelara nada, y se corrigió con una **fe de erratas** de 3 líneas que deriva la letra mecánicamente del razonamiento ya registrado; re-resolución **3/3 auto-aprobados → 35/35 = 100 %**. Es el riesgo que CLAUDE.md anticipa al exigir citar los distractores por su CONTENIDO y nunca por su letra: lo que salvó al lote fue que el razonamiento estaba escrito por contenido. **Follow-up nuevo para código:** `REASONING_LETTER_MISMATCH` en `content-resolve-verification.ts` (rechazar de entrada un envío cuyo `reasoning` cite el texto de una opción distinta de `chosenOption`), que se suma a la deuda de `DUPLICATE_OPTIONS` (G52/G53) y a la regla de G42 §8. Modelo real `claude-opus-5`; G53 anunciaba Fable 5 y el campo `model` declara el que resolvió de verdad (corrección de G17, **séptimo ciclo consecutivo** en que plan ≠ real, tras G44, G46, G48, G50, G52 y G53). **Cálculo ejecutado en los 35** (`isCalcSubject("Física")` = true, candado de G28): los 21 numéricos en un arnés de Node con la unidad arrastrada en cada paso, los 14 conceptuales con un predicado ejecutado detrás (el ángulo en `qvB·senθ`, el `ΔΦ/Δt` de Faraday, el signo del trabajo en la primera ley). **Cero `problems` en los 35.** Controles de ceguera: `grep -c` de `isCorrect`/`explanation` sobre el lote ciego = **0**; clave en la misma posición tras barajar **8/35** (azar 8.75); señuelo de longitud tie-aware **por debajo del azar** (clave = opción única más larga en 4/35, única más corta en 6/35, empate en 7). **Banco: 1 073 servibles · 0 pendientes · 1 retirado · 1 077 total · cola canónica de discrepancias de vuelta en 3** (solo las heredadas: 2 de UNAM A1 Matemáticas + 1 de UNAM A2 Química). **Tasa de auto-aprobación global 99.7 % (1 074/1 077).** Física IPN FISMAT queda en **70✓ / 0⧗ / 0✋, 100 % auto-aprob.** Meta efectiva G26 (1 222): **67 %, brecha 438 → 403 (≈ 12 lotes)** — el descuento **1:1** que G53 §7 predijo por ser materia no compartida (patrón G45). Meta nominal 1 500: **72 %**. `pnpm typecheck` y `pnpm lint` en verde, cero cambios de código de producción, cero llamadas a la API de pago. **Siguiente (G55): lote de 35 de IPN:MATEMATICAS**, elegida por brecha efectiva recalculada en vivo al cierre de G54 = **63, la mayor** (meta 133, w24, verificados 70); le siguen IPN:QUIMICA 54, IPN·MEDBIO·Biología 52, IPN·FISMAT·Física 41 (era 76). **Es pool COMPARTIDO**: insertar contra los `topicId` de FISMAT (w24, la celda con más contenido) y la reutilización de G26 lo sirve también a MEDBIO. Auditoría 5 % vencida hace 10 ciclos y exige tier ≠ opus-5 y ≠ sonnet-5.**) — ver `## G54` abajo.
+
+<details><summary>Historial: G53 (2026-08-31)</summary>
+
+Última fase ejecutada: G53 (**COMPLETADA — lote de 35 reactivos de **Física, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido; el cierre de G52 anunciaba «Sonnet 4.6» pero el campo `model` del registro declara el que compuso de verdad — corrección de G17, **sexto ciclo consecutivo** en que plan ≠ real). **Materia elegida con datos reales (encargo G53):** se calculó la brecha efectiva por pool con la metodología G26 (densidad `1500/270 = 5.5556` reactivos por punto de `questionWeight`; pools compartidos = meta de su celda de mayor peso), solo para instituciones activas del launch (UNAM + IPN Superior). Ranking: **IPN·FISMAT·Física meta 111 (w20), verificados 35 → brecha 76 (la mayor)**; IPN:MATEMATICAS 63; IPN:QUIMICA 54; IPN·MEDBIO·Biología 52; UNAM:INGLES 33; IPN·SOCADM·Historia de México 33; UNAM·A1·Matemáticas 30. Ganó **Física de IPN FISMAT** (`subjectId cmrr1l31q00a3hi3n607qhvfu`, `questionWeight` 20, `sharedContentKey` NULL — **materia NO compartida**, así que el lote **descuenta brecha efectiva 1:1** cuando G54 lo verifique, patrón G45, a diferencia de G51/G52). Único lote previo: G18 (→ G19, 35/35). **Reparto — priorizar los de menor cobertura:** consulta en vivo (2026-08-31) → los 14 temas en 3/3/3/2/2/2/2/3/2/3/3/3/2/2; **+3 a los 7 temas en 2✓ y +2 a los 7 en 3✓ → los 14 quedan en 5✓**. Cubre mecánica, fluidos, termodinámica, ondas, óptica, electricidad, magnetismo, inducción y física moderna. **2 SOURCED / 33 TEMARIO_ONLY:** `loadTopicChunks` devolvió `SourceChunk` solo en Cinemática (1 fragmento de `ceneval_exanii_i.pdf` p. 9 — ejemplo del Nuevo EXANI-I que distingue el concepto de velocidad = razón distancia/tiempo del de aceleración; procedencia CENEVAL, otra institución, se anota — patrón G18/G45/G49). Los 2 de Cinemática citan `sourceChunks:[1]` y **transforman la tarea**: la guía es de identificación conceptual, C1 la vuelve cálculo de rapidez media y C2 discriminación de aceleración nula. **Física es `isCalcSubject`, así que el candado de G28 aplicará a G54.** **21 de los 35 son numéricos**, recalculados desde cero con Python por **dos rutas independientes** (lista de opciones + fórmula), exigiendo (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones (tolerancia 2 %) y (c) opciones ascendentes — **21/21 en verde**. Cada distractor deriva de un error nombrable (usar la rapidez en vez de la aceleración en `F=ma`; `2gh` sin raíz; `q v B` ignorando que la velocidad es paralela a `B` → la clave es 0 N; tubo cerrado `v/(4L)` en vez de abierto `v/(2L)`; `T_fría/T_caliente` sin restar de 1 en Carnot; etc.). **Formato:** 21 `PROBLEM_SOLVING` · 12 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la distribución objetivo de `_base.md`); los 2 EXPERT: modo fundamental de un tubo abierto (ON2) y el efecto fotoeléctrico al duplicar la frecuencia (FM2). **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), **confirmada por `jsonb` sobre `options` de las 35 filas tras insertar**; ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; los 21 numéricos fijan la letra por el rango del valor (G46 §7), los 14 conceptuales a mano al objetivo global. Secuencia por orden de inserción **`ABBABDBDCBDCBCABDACDBCACAADACDCABDC`** — **0 rachas cíclicas A→B→C→D ≥ 3**, racha de misma letra máx **2** (orden dentro de cada tema por búsqueda con semilla fija 53053). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 14 archivos. **0 citas por letra y 0 posicionales** en las 105 capas (las 35 capa 2 se titulan «Resolución paso a paso» / «Cómo se descarta cada opción» y citan los distractores por su valor o su contenido). **Señuelo de longitud tie-aware (G34 §2):** sobre los 14 ítems con opciones-oración (los 21 de opción-valor fuera, criterio G45/G46) → **21.4 % «más larga» / 21.4 % «más corta»** (3/14 y 3/14), ambos < 25 %, con varianza deliberada. **Lenguaje absolutista (G44 §6):** 0.03 marcadores/opción en claves vs 0.05 en distractores; **0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/35.** **Opciones textualmente duplicadas (hueco G52, `lot-validation.ts` no las mira):** auto-chequeo en `gen.py` → **0/35**. **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes → después:** banco (COUNT crudo) **1 042 → 1 077** · servibles **1 038** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega (pendientes de resolución) **0 → 35** · cola canónica de discrepancias **3** sin cambio · 1 retirado · **Física IPN FISMAT 35✓/0⧗ → 35✓/35⧗** (banco de la materia 35 → 70; ⚓ del pool 5/65, fuentes 1/14 temas) · `SOURCED` banco **282 → 284** (26 % por crecer el denominador) · 105 `explanation_layers` · 2 `question_source_chunks`. `content:coverage`: **1 038 servibles · 35 pendientes · 1 retirado · 1 074 en banco**; meta efectiva G26 (1 222) **64 %**, brecha **438 (≈ 13 lotes)** — **no se mueve con este lote**, pero **a diferencia de G51/G52 SÍ se moverá cuando G54 verifique**: el pool IPN FISMAT Física (peso 20, meta efectiva 111, no compartido) pasa de 35 a ~70, así que los 35 caen enteros dentro de la brecha y la descuentan 1:1 → bajará a ~403. Meta nominal 1 500: **69 %**. Auditoría 5 % **vencida, 9 ciclos** (esta fase compone, no audita). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 14 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g53-ipn-fismat-fisica.json`); cero llamadas a la API de pago. **Siguiente: G54 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Física")` es `true`, así que la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado de G28) en los **21 numéricos**; **0/35 con pasaje**. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los **2 EXPERT** (ON2 tubo abierto; FM2 fotoeléctrico al duplicar `f`) y **MG1** (fuerza magnética sobre una carga paralela al campo).)
+
+</details>
 
 <details><summary>Historial: G52 (2026-08-31)</summary>
 
@@ -2237,6 +2243,180 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G54 — Verificación ciega: Física, IPN FISMAT (lote de G53) (2026-08-31)
+
+**Estado: COMPLETADA.** Verificación ciega adversarial (G2) de los 35 reactivos que G53
+dejó en la cola (`isVerified=false`, `verification=null`): **Física, IPN área Ingeniería
+y Ciencias Físico-Matemáticas (FISMAT)** — materia **NO compartida**
+(`sharedContentKey = NULL`, `questionWeight` 20), sus 14 temas.
+
+**35/35 coinciden con la clave del generador (100 % de concordancia sustantiva).** El
+primer envío auto-aprobó **32/35 (91.4 %)**: los 3 retenidos **no fueron desacuerdos de
+física**, sino un **error de transcripción de la LETRA cometido por esta sesión
+verificadora** al armar el archivo de respuestas — el campo `reasoning` de los tres,
+escrito antes de correr `content:resolve`, nombra **literalmente el texto de la opción
+correcta**, distinta de la letra tecleada. Se corrigió con una **fe de erratas** de 3
+líneas y se re-resolvió: **35/35 auto-aprobados = 100 %** (§3). Modelo real
+`claude-opus-5`; G53 anunciaba Fable 5, y el campo `model` declara el que resolvió de
+verdad (corrección de G17, **séptimo ciclo consecutivo** en que el modelo real y el
+planeado difieren, tras G44, G46, G48, G50, G52 y G53).
+
+### 1. Ceguera y aislamiento
+
+Sesión distinta de la que compuso el lote (G53). Esta sesión **nunca abrió** el commit
+`4aec814`, el registro permanente `docs/content-batches/g53-ipn-fismat-fisica.json`,
+`Question.options` ni la sección `## G53`; el único insumo fue el lote ciego
+`scripts/content-exports/blind-batch-2026-08-31T07-17-58-901Z.json` (gitignored),
+generado con `content:blind-batch --all` — la cola tenía exactamente los 35 de G53, así
+que `--all` evitó tener que leer los 14 `topicId` en la sección de G53.
+
+| Control | Resultado |
+|---|---|
+| `grep -c` de `isCorrect`/`explanation` sobre el lote ciego | **0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Claves de nivel ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Formato | **21 `PROBLEM_SOLVING` · 12 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION`** |
+| Dificultad | 7 `BASIC` · 17 `INTERMEDIATE` · 9 `ADVANCED` · 2 `EXPERT` |
+| `requiresCalculation` | **35/35** (`isCalcSubject("Física")` = true — candado de G28) |
+| Reactivos con pasaje | 0/35 |
+| Opciones por reactivo · ids únicos | 4/4 en los 35 · 35 ids únicos |
+| Institución / materia / temas | 35/35 IPN · Física · los 14 temas de FISMAT |
+| Reparto por tema visto a ciegas | 2/3/3/2/2/3/3/3/2/2/2/3/2/3 (coincide con el diseñado en G53 §2) |
+| Clave en la MISMA posición tras barajar | **8/35** (azar ≈ 8.75) — el barajado determinista de `blind-verification.ts` sí esconde la letra original |
+
+**Señuelo de longitud, recalculado tie-aware sobre las respuestas ciegas** (G36 §2 /
+G38 §3, encargo de G53 §7): la clave es la opción **única más larga en 4/35** (azar
+8.75) y la **única más corta en 6/35**; en 7 casos empata con la más larga. Ninguna de
+las tres cifras premia a quien conteste por longitud — el señuelo está **por debajo** del
+azar, no por encima.
+
+### 2. Los 35 se resolvieron ejecutando el cálculo
+
+`isCalcSubject("Física")` es `true`, así que el candado de G28 exigía cálculo ejecutado
+en los 35. Los **21 numéricos** se corrieron en un arnés de Node (scratchpad, no se
+committea) arrastrando la unidad en cada paso; los **14 conceptuales** se resolvieron con
+un cálculo o un predicado ejecutado detrás (el ángulo en `qvB·senθ`, el `ΔΦ/Δt` de
+Faraday, el signo del trabajo en la primera ley), nunca "a ojo". Cada resultado se
+contrastó contra las cuatro opciones exigiendo **una sola coincidencia**: cero habría
+sido `NONE_VALID`, dos o más `MULTIPLE_VALID`. **Cero `problems` levantados en los 35.**
+
+| Tema | Cálculo ejecutado | Resultado | Trampa descartada |
+|---|---|---|---|
+| Cinemática | `v = d/t = 150/10`; predicado "20 m en cada segundo" sobre las 4 descripciones | 15 m/s · MRU | 1.5 y 1 500 m/s (correr el punto decimal) |
+| Dinámica | `a = Δv/Δt = 24/12`, luego `F = ma` | 2 400 N | **28 800 N** = `m·v`, olvidar dividir entre el tiempo; el par acción-reacción confundido con el peso, que actúa sobre el mismo cuerpo |
+| Gravitación | `g(2R)/g = (R/2R)²`; factor `3/2²`; `P = mg` con `g/4` | g/4 · ×3/4 · 150 N | **g/2** (linealizar el inverso del cuadrado); **×3/2** (sumar efectos en vez de multiplicarlos); 2 400 N (multiplicar donde toca dividir) |
+| Momentum e impulso | `0 = 50v − 5(8)`; `J = FΔt`; conservación de `p` frente a `K` en choque perfectamente inelástico | 0.8 m/s · 60 N·s · `p` sí, `K` no | 8 m/s (ignorar la razón de masas); **"la energía cinética se conserva"**, el error clásico del inelástico |
+| Trabajo y energía | `mgh = ½mv²` → `v = √(2gh)`; `W = mgh` a rapidez constante | 10 m/s · 120 J | **50 m/s** = `2gh` sin sacar raíz; 40 J (omitir la altura) |
+| Fluidos | `ρ = f_sumergida · ρ_fluido`; continuidad `A₁v₁ = A₂v₂`; `p = p₀ + ρgh` | 600 kg/m³ · 6 m/s · aumenta con la profundidad | **400 kg/m³** (usar la fracción emergida); 0.67 m/s (invertir la razón de áreas) |
+| Termodinámica | `Q = mcΔT`; `η = 1 − T_f/T_c` en kelvin; `ΔU = 0 ⇒ Q = W` en isotérmico | 126 000 J · 25 % · el gas cede calor | 168 000 J (tomar 80 °C como `ΔT`); **75 %** (invertir la razón de temperaturas) |
+| Ondas y sonido | `f₁ = v/(2L)` para tubo abierto-abierto; `f = v/λ` | 340 Hz · 40 Hz | **170 Hz** = `v/(4L)`, la fórmula del tubo cerrado en un extremo (uno de los 2 `EXPERT`) |
+| Óptica | `1/d_i = 1/f − 1/d_o` = 1/10 − 1/30; objeto en el infinito ⇒ plano focal; `v` y `λ` bajan, `f` no cambia | 15 cm · real e invertida · ambas disminuyen | 7.5 cm (sumar los recíprocos); "cambia la frecuencia", el error de refracción más frecuente |
+| Electrostática | `F = kq₁q₂/r²` con `r² = 0.09`; conductor en equilibrio electrostático | 0.9 N · carga en la superficie exterior, `E = 0` dentro | 0.081 N (no dividir entre `r²`); carga repartida en el volumen del metal |
+| Corriente eléctrica | serie `R_eq = 3 + 6`, `I = V/R_eq`; `R = V²/P` | 2 A · 240 Ω | 6 A (usar un solo resistor); **2 Ω** = `P/V²` invertido |
+| Magnetismo | `F = qvB·senθ` con **θ = 0** (velocidad paralela al campo) | **0 N** | 1.28×10⁻¹³ N = aplicar `qvB` sin mirar el ángulo (el reactivo señalado como apretado en G53 §7) |
+| Inducción electromagnética | `fem = N·ΔΦ/Δt`; ley de Lenz sobre el polo que se acerca | 40 V · la cara encarada se vuelve norte y repele | 0.2 V (omitir las `N` espiras); "se vuelve sur y atrae", que invierte Lenz |
+| Física moderna | `K_máx = E_fotón − W`; `E = hc/λ`; comparar `2hf − W` contra `2(hf − W)` | 2.0×10⁻¹⁹ J · menor energía y menor `f` · **más del doble** | "se duplica exactamente" — restar `W` una sola vez rompe la proporcionalidad (el otro `EXPERT`) |
+
+Confianza declarada: **0.97 mínima** (el fotoeléctrico al duplicar `f`), 0.98–0.99 en el
+resto. Los distractores se descartaron siempre por lo que dicen, nunca por su letra ni su
+posición.
+
+### 3. El único defecto fue de esta sesión, no del lote: fe de erratas de 3 letras
+
+Los 3 reactivos que el primer `content:resolve` retuvo **no son discrepancias de
+contenido**. En los tres, el `reasoning` que esta sesión escribió **antes** de correr el
+script nombra literalmente el texto de una opción, y la **letra** tecleada en
+`chosenOption` apunta a otra. Es exactamente el riesgo que CLAUDE.md anticipa al exigir
+citar los distractores **por su contenido, nunca por su letra**: aquí lo que salvó al
+lote fue precisamente que el razonamiento estaba escrito por contenido.
+
+| Reactivo | Tema | `reasoning` registrado (previo a resolver) | Letra enviada | Letra que ese texto nombra |
+|---|---|---|---|---|
+| `cmtgvloof0006bxtntyf19fjc` | Óptica | "…convergen en el plano focal; imagen **real e invertida**" | A ("real y **derecha**") | **B** ("real e invertida, formada cerca del plano focal") |
+| `cmtgvm1bz0001c9q1scidx2iw` | Fluidos | "ρ = 0.60 × 1000 = **600 kg/m³**" | D (**400** kg/m³) | **C** (600 kg/m³) |
+| `cmtgvm8tv0006trj74ol61d80` | Electrostática | "la carga neta se aloja en la **superficie exterior** y **E = 0** dentro del metal" | C ("repartida en todo el **volumen**") | **B** ("superficie exterior… campo cero dentro") |
+
+**Cómo se corrigió, sin romper la ceguera.** El archivo tal como se envió se conservó
+íntegro en `scripts/content-exports/verifier-answers-G54-tal-cual-enviado.json` como
+evidencia auditable: la determinación de física quedó fijada por escrito **antes** de que
+el script revelara nada. La corrección
+(`scripts/content-exports/verifier-answers-G54-fe-de-erratas.json`, 3 entradas) no cambia
+ninguna determinación — deriva la letra mecánicamente del `reasoning` ya registrado y lo
+deja anotado en el propio campo. Re-resolución: **3/3 auto-aprobados**, `problems` vacío,
+confianzas 0.99 / 0.99 / 0.98 intactas.
+
+**Por qué se re-resolvió en vez de dejarlos en la cola.** Dejarlos habría metido 3
+reactivos correctos a la cola canónica de discrepancias por un error de dedo del
+verificador, contaminando justo la métrica que mide la salud del *contenido*. El patrón
+de re-resolución ya existe (G17, triaje de la cola heredada; G40, re-verificación de las
+reparadas); lo nuevo aquí es que el defecto estaba **del lado del verificador**.
+
+**Follow-up para código (no hecho en esta fase):**
+`scripts/content-resolve-verification.ts` podría rechazar de entrada un envío en que el
+`reasoning` cite el texto de una opción distinta de `chosenOption` — un
+`REASONING_LETTER_MISMATCH` barato (comparar el `reasoning` contra los 4 textos por
+n-gramas) que habría atrapado los 3 sin necesidad de una segunda pasada. Se suma a la
+deuda de validadores que arrastran G52 y G53.
+
+### 4. Números del banco tras G54
+
+| Métrica | Antes (G53) | 1er envío | **Tras la fe de erratas** |
+|---|---|---|---|
+| Banco total (COUNT crudo) | 1 077 | 1 077 | **1 077** |
+| Servibles (`isVerified=true`) | 1 038 | 1 070 | **1 073** |
+| Cola ciega (pendientes de resolución) | 35 | 0 | **0** |
+| Cola canónica de discrepancias | 3 | 6 | **3** (solo las heredadas: 2 de UNAM A1 Matemáticas + 1 de UNAM A2 Química) |
+| Retirados a propósito | 1 | 1 | 1 |
+| Tasa de auto-aprobación global | 99.4 % | 99.4 % | **99.7 % (1 074/1 077)** |
+| Física IPN FISMAT · pool | 35✓ / 35⧗ | 67✓ / 3✋ | **70✓ / 0⧗ / 0✋ · 100 % auto-aprob.** |
+| Meta efectiva G26 (1 222) | 64 % · brecha 438 | — | **67 % · brecha 403 (≈ 12 lotes)** |
+| Meta nominal 1 500 | 69 % | — | **72 %** |
+
+La brecha efectiva bajó **438 → 403**: exactamente los 35 del lote, el descuento 1:1 que
+G53 §7 predijo por tratarse de una materia **no compartida** (patrón G45, a diferencia de
+G51/G52, donde el pool compartido absorbió parte del lote).
+
+### 5. Limpieza
+
+Cero cambios de código de producción. Los dos archivos de respuestas y el lote ciego
+viven en `scripts/content-exports/` (gitignored); el arnés de cálculo y los scripts
+temporales de estadística (`tmp-g54-stats.ts`, `tmp-g55-gap.ts`, `tmp-decoy.ts`) se
+borraron al cerrar. `pnpm typecheck` y `pnpm lint` en verde. **Cero llamadas a la API de
+pago de Anthropic.**
+
+### Siguiente (G55)
+
+1. **Lote de 35 reactivos**, materia elegida con la brecha efectiva **recalculada en vivo
+   al cierre de G54** (metodología G26: densidad `1500/270 = 5.5556` reactivos por punto
+   de `questionWeight`; pools compartidos = meta de su celda de mayor peso; solo UNAM +
+   IPN Superior, las activas del launch). Ranking actual:
+
+   | Pool | `w` | Meta | Verificados | **Brecha** |
+   |---|---|---|---|---|
+   | **IPN:MATEMATICAS** (compartido FISMAT+MEDBIO) | 24 | 133 | 70 | **63** |
+   | IPN:QUIMICA (compartido FISMAT+MEDBIO) | 16 | 89 | 35 | 54 |
+   | IPN · MEDBIO · Biología | 22 | 122 | 70 | 52 |
+   | IPN · FISMAT · Física | 20 | 111 | 70 | 41 *(era 76 antes de G54)* |
+   | UNAM:INGLES | 6 | 33 | 0 | 33 |
+   | IPN · SOCADM · Historia de México | 6 | 33 | 0 | 33 |
+   | UNAM · A1 · Matemáticas | 26 | 144 | 114 | 30 |
+
+   Gana **IPN:MATEMATICAS (brecha 63)**. Es **pool COMPARTIDO**: el lote se inserta
+   contra los `topicId` de **FISMAT** (`w` 24, la celda con más contenido del grupo) y la
+   reutilización de G26 lo sirve también a MEDBIO. Recordar el follow-up de G26 §8.3:
+   ampliar el temario del seed de MEDBIO Matemáticas (hoy 6 temas). Lotes previos de la
+   materia: G3a y G13 (verificados en G3b y G14).
+2. **Auditoría 5 %: vencida, 10 ciclos.** Exige sesión ciega con tier **≠ opus-5 y
+   ≠ sonnet-5** (el banco reciente lo aprobaron esos dos).
+3. **Deuda de validadores, ya con tres entradas:** `DUPLICATE_OPTIONS` en
+   `lot-validation.ts` (G52/G53), la regla de G42 §8, y el nuevo
+   `REASONING_LETTER_MISMATCH` en `content-resolve-verification.ts` (§3 de esta fase).
+4. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4).
+5. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, el rebanado de
+   `SourceChunk` por página, y los 3 reactivos de G37 que son paráfrasis cercanas de su
+   guía fuente.
 
 ## G53 — Lote de reactivos: Física, IPN FISMAT (2026-08-31)
 
