@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-31 · Última fase ejecutada: G55 (**COMPLETADA — lote de 35 reactivos de **Matemáticas, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido; el cierre de G54 anunciaba «Sonnet 4.6» pero el campo `model` del registro declara el que compuso de verdad — corrección de G17, **décimo ciclo** en que plan ≠ real). **Materia elegida con datos reales (encargo G55):** brecha efectiva por pool con la metodología G26 (densidad `1500/270 = 5.5556` reactivos por punto de `questionWeight`; pools compartidos = meta de su celda de mayor peso, `computeSharedGoal`), solo UNAM + IPN Superior, consulta en vivo a Supabase tras la verificación de G54. Ranking: **IPN:MATEMATICAS (FISMAT w24 + MEDBIO w8) meta 133, verificados 70 → brecha 63 (la MAYOR)**; IPN:QUIMICA 54; IPN·MEDBIO·Biología 52; IPN·FISMAT·Física 41 (era 76 antes de G53/G54); UNAM:INGLES 33; IPN·SOCADM·Historia de México 33; UNAM·A1·Matemáticas 30. Ganó **IPN:MATEMATICAS** (`subjectId cmrr1kvuv009dhi3nrfzki2c1`). **Pool COMPARTIDO:** la regla (CLAUDE.md / G26 §2) es insertar contra el `topicId` de la materia con más contenido del grupo — FISMAT 70 verificados vs MEDBIO 0 — así que el lote va a los 12 temas de FISMAT y `loadEquivalentSubjectIds` lo sirve también a MEDBIO. El pool combinado (105) sigue por debajo de la meta 133, así que el lote **descuenta brecha efectiva ~1:1** cuando G56 lo verifique (caso favorable, patrón G45/G53, opuesto a G51/G52). Lotes previos de la materia: G3a y G13 (→ G3b, G14). **Reparto — priorizar los de menor cobertura:** los 12 temas de FISMAT en 7/6/7/6/5/6/6/5/5/5/6/6 verificados; el lote reparte **2/2/2/3/4/3/3/4/4/4/2/2** (mínimo 2 por tema, +4 a los cuatro temas en 5✓, +3 a tres de los seis temas en 6✓, +2 a los dos temas en 7✓ y a los demás) → los 12 quedan en 8-9✓ nivelados. **6 SOURCED / 29 TEMARIO_ONLY:** `loadTopicChunks` devolvió `SourceChunk` en 3 de los 12 temas y `grounding.ts` hace obligatoria la cita cuando el tema tiene fragmento — Números y operaciones (`uam_csh.pdf` p. 36), Ecuaciones lineales y cuadráticas (`ceneval_exanii_i.pdf` p. 18), Sucesiones y series (`uam_cad.pdf` p. 18), 2 reactivos cada uno; procedencia UAM/CENEVAL (otras instituciones, se anota — patrón G18/G45/G49/G53). Los 6 **transforman la tarea** del ítem-semilla (proporción directa→inversa; análisis de error→corte con el eje y; completar→término general y rasgo definitorio; la argumentación de un distractor de la guía usada como pregunta de análisis de error). **Matemáticas es `isCalcSubject`, así que el candado de G28 aplicará a G56.** **18 de los 35 son numéricos**, recalculados desde cero con **sympy** por una ruta independiente a la del enunciado (`sp.integrate`, `sp.solve`, `Matrix.det`, `factorial`), exigiendo (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones (tolerancia 2 %) y (c) opciones ascendentes estrictas — **18/18 en verde**. Cada distractor deriva de un error nombrable (proporción directa donde va inversa; `(2x)^2` sin elevar el coeficiente; leer `x=4` del factor `(x+4)`; `f(g(x))` vs `g(f(x))`; olvidar restar `F(a)` en la integral definida; suponer reemplazo en probabilidad; `i^3 = i`). **Formato:** 21 `PROBLEM_SOLVING` · 11 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION` · 1 `NUMERIC_SERIES`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la objetivo de `_base.md`); los 2 EXPERT: integral de `x^2 − 1/x^2` (doble signo) y división `1/(2+i)` por el conjugado. **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), **confirmada por query sobre las 35 filas tras insertar**; ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; los 18 numéricos fijan la letra por el rango del valor (G46 §7), los 17 restantes a mano al objetivo global. Secuencia por orden de inserción **`BACBDCCDBCBDAACDCADDBCAACDBBABDBAAC`** — **0 rachas cíclicas A→B→C→D ≥ 3**, racha de misma letra máx **2** (búsqueda con semilla fija 55055). **Diagnóstico STEM (G46 §7):** rango del valor correcto entre las 4 opciones ascendentes A5/B7/C3/D3 sobre los 18 numéricos (χ² ≈ 2.4, gl 3, p ≈ 0.49 — sin sesgo, aunque B es la moda); se reporta por transparencia (patrón G53). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 12 archivos. **0 citas por letra y 0 posicionales** en las 105 capas (confirmado también por query sobre las capas en la DB; se reescribieron dos fórmulas `$P(A\cap B)$` que la regex marcaba por el patrón «B)»). **Señuelo de longitud tie-aware (G34 §2):** sobre los 4 ítems con opciones-oración (los 31 de opción-valor/expresión/punto fuera, criterio G45/G46/G53) → **12.5 % «más larga» / 8.3 % «más corta»**, ambos < 25 %. **Lenguaje absolutista (G44 §6):** 1 marcador en las 35 claves vs 1 en los 105 distractores (términos matemáticos sustantivos, no retórica); **0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/4.** **Opciones textualmente duplicadas (hueco G52):** auto-chequeo `len(set(textos))==4` → **0/35**. **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes → después:** banco (COUNT crudo) **1 077 → 1 112** · servibles **1 073** sin cambio (esta sesión no verifica sus propios reactivos) · cola ciega **0 → 35** · cola canónica de discrepancias **3** sin cambio · 1 retirado · **IPN FISMAT Matemáticas 70✓/0⧗ → 70✓/35⧗** (⚓ del pool 20/50 → 26/79, fuentes 3/12 temas) · `SOURCED` banco **284 → 290** · 105 `explanation_layers` · 6 `question_source_chunks`. `content:coverage`: **1 073 servibles · 35 pendientes · 1 retirado · 1 109 en banco**; meta efectiva G26 (1 222) **67 %**, brecha **403** — **no se mueve con este lote**, pero **SÍ se moverá cuando G56 verifique**: el pool IPN:MATEMATICAS (meta 133, compartido, hoy 70) pasa a ~105, sigue por debajo de la meta y los 35 caen enteros en la brecha → bajará a ~368. Meta nominal 1 500: **72 %**. Auditoría 5 % **vencida, 10 ciclos** (esta fase compone, no audita; exige tier ≠ `opus-5` y ≠ `sonnet-5`). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 12 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g55-ipn-fismat-matematicas.json`); cero llamadas a la API de pago. **Siguiente: G56 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Matemáticas")` es `true` → la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado de G28) en los **18 numéricos**; **0/35 con pasaje**. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los **2 EXPERT** (CI1 integral de `x^2 − 1/x^2`; NC1 `1/(2+i)`) y **CI2** (integral definida donde el distractor `16` queda a solo 1 unidad de la clave `15`).**) — ver `## G55` abajo.
+Última actualización: 2026-08-31 · Última fase ejecutada: G56 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G55 dejó en la cola: **Matemáticas, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, pool **COMPARTIDO** `sharedContentKey = IPN:MATEMATICAS` (FISMAT `questionWeight` 24 + MEDBIO 8), sus 12 temas. **35/35 coinciden con la clave del generador y 35/35 se auto-aprobaron en el PRIMER envío: 100 % de concordancia y 100 % de auto-aprobación, cero `problems`, cero discrepancias nuevas.** No hizo falta fe de erratas. Modelo real `claude-opus-5` (G55 anunciaba Fable 5; el campo `model` declara el que resolvió de verdad — corrección de G17, **undécimo ciclo** consecutivo plan ≠ real). **Aislamiento:** sesión distinta de la que compuso; único insumo el lote ciego generado con `content:blind-batch --all` (la cola tenía exactamente los 35, atajo de G54, evita abrir la sección `## G55` para copiar los `topicId`); nunca se abrieron el commit `59752ee`, `docs/content-batches/g55-*.json`, `Question.options` ni `## G55`. Controles: `grep -c` de `isCorrect`/`explanation` = **0/0**; opciones solo con `label`/`text`/`imageUrl`; 4/4 opciones y `ABCD` en los 35; clave en la misma posición tras barajar **8/35** (azar 8.75). **Candado G28:** `isCalcSubject("Matemáticas")`=true → `requiresCalculation` 35/35 y los 35 resueltos EJECUTANDO código (sympy), no razonando en texto; cada resultado contrastado contra las 4 opciones exigiendo **coincidencia única** (`assert len(hits)==1`); los 4 conceptuales llevan un predicado ejecutado que **elige el fragmento de texto a buscar** (`linsolve`→conjunto vacío; diferencias vs cocientes consecutivos). Parser LaTeX→sympy escrito con `Write` y **nunca por heredoc** (lección G50 §3) + prueba de humo sobre 12 ítems antes de la corrida. **La corrección que G54 dejó pedida, implementada:** el arnés emite el archivo de respuestas y **ninguna letra se escribe a mano** — cada ítem deriva su letra por dos rutas independientes que un `assert` obliga a coincidir, (a) la opción cuyo valor/predicado casa con lo computado y (b) `key_text`, el TEXTO COMPLETO de la opción nombrada por la determinación escrita, comparado por **igualdad exacta y no por substring** (obligatorio aquí: `"4"` ⊂ `"-4"`, `"6"` ⊂ `"36"`); **el assert no disparó ni una vez**, así que la fase prueba que cuesta tres líneas, no que fuera necesaria. 0/35 `reasoning` citan por letra; 35/35 nombran contenido; confianza mínima 0.98. **Diagnósticos:** señuelo de longitud tie-aware **0/35 única más larga** (azar 8.75), 2/35 única más corta, 14/35 empate (mecánico: 32 ítems de opción-valor corta); solo 3 ítems de opciones-oración, y en los 3 la clave no es ni la más larga ni la más corta. Diagnóstico STEM (G46 §7, rango del valor correcto entre las 4 ascendentes) sobre los **18 ítems 100 % numéricos**: **1º5/2º7/3º3/4º3, χ²=2.44 (gl 3), p≈0.49** — sin sesgo, y es confirmación **independiente** de lo que G55 midió al componer. **FUGA DECLARADA, canal NUEVO — la MEMORIA persistente, no el ESTADO:** la mitigación de lectura de G50/G52 (cortar el `head` antes de los agregados de la línea 3) **ya no basta**, porque la línea 3 de G55 se había copiado al archivo de memoria del proyecto, que entra al contexto **automáticamente al abrir la sesión**; esa memoria nombraba los 2 `EXPERT` por su contenido y **el valor exacto** de un ítem de Cálculo integral, así que la ceguera de ese reactivo estaba comprometida antes del primer comando. Se recalculó igual desde cero con coincidencia única, y la clave agregada que la memoria conservaba es inservible tras el rebarajado por `questionId` — pero sobre ese ítem esta sesión ya no era juez independiente. **Regla: la prohibición de G51 aplica con más fuerza a la memoria que al ESTADO — el ESTADO se puede leer con cuidado, la memoria no se puede *no* leer.** Cuarta reincidencia (G47→G48, G51→G52, G55→G56), primera por memoria. **Banco: 1 112 total (COUNT crudo) / 1 108 servibles / 1 retirado / 0 en cola ciega / 3 en la cola canónica de discrepancias** (las heredadas: 2 de UNAM A1 Matemáticas + 1 de UNAM A2 Química). Matemáticas IPN FISMAT: **105✓ / 0⧗ / 0✋ · 100 % auto-aprob.** (⚓26/79). Auto-aprobación global **99.7 % (1 109/1 112)**. Meta efectiva G26 = 1 222: **70 %, brecha 368 (~11 lotes)**, bajó 403→368, descuento **1:1** exacto como G55 predijo (el pool compartido sigue bajo su meta 133, así que ninguno de los 35 se desperdició — patrón G45/G53, opuesto a G51/G52). Meta nominal 1 500: **74 %**. **Sobre la tasa, sin adornos:** en 21+ rondas ciegas **nunca ha aparecido una clave equivocada**; la métrica solo ha discriminado defectos de armado (G46 enunciados, G52 opciones duplicadas) y de higiene del propio verificador (G54 letras); el valor de esta fase está en el candado de doble derivación y en la fuga por memoria, no en el 100 %. Cero cambios de código de producción; `pnpm typecheck` y `pnpm lint` en verde; **cero llamadas a la API de pago de Anthropic**. **SIGUIENTE = G57 = lote de 35**, materia por brecha recalculada en vivo al cierre: **IPN:QUIMICA (compartido FISMAT+MEDBIO), meta 89, 35 verificados, brecha 54 — la MAYOR**; siguen IPN·MEDBIO·Biología 52, IPN·FISMAT·Física 41, UNAM:INGLES 33, IPN·SOCADM·Historia de México 33, UNAM·A1·Matemáticas 30, IPN:MATEMATICAS 28 (era 63). **Ojo, caso INVERSO al de G55:** los 35 verificados de `IPN:QUIMICA` están del lado de **MEDBIO** y FISMAT Química tiene **0**, así que la regla de G26 §2 manda insertar contra los 9 temas de **MEDBIO** aunque FISMAT sea la celda de mayor peso — consultarlo en vivo antes de componer. Química **es `isCalcSubject`** → G58 recibirá `requiresCalculation: true` en los 35.)
+
+<details><summary>Historial: G55 (2026-08-31)</summary>
+
+Última fase ejecutada: G55 (**COMPLETADA — lote de 35 reactivos de **Matemáticas, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido; el cierre de G54 anunciaba «Sonnet 4.6» pero el campo `model` del registro declara el que compuso de verdad — corrección de G17, **décimo ciclo** en que plan ≠ real). **Materia elegida con datos reales (encargo G55):** brecha efectiva por pool con la metodología G26 (densidad `1500/270 = 5.5556` reactivos por punto de `questionWeight`; pools compartidos = meta de su celda de mayor peso, `computeSharedGoal`), solo UNAM + IPN Superior, consulta en vivo a Supabase tras la verificación de G54. Ranking: **IPN:MATEMATICAS (FISMAT w24 + MEDBIO w8) meta 133, verificados 70 → brecha 63 (la MAYOR)**; IPN:QUIMICA 54; IPN·MEDBIO·Biología 52; IPN·FISMAT·Física 41 (era 76 antes de G53/G54); UNAM:INGLES 33; IPN·SOCADM·Historia de México 33; UNAM·A1·Matemáticas 30. Ganó **IPN:MATEMATICAS** (`subjectId cmrr1kvuv009dhi3nrfzki2c1`). **Pool COMPARTIDO:** la regla (CLAUDE.md / G26 §2) es insertar contra el `topicId` de la materia con más contenido del grupo — FISMAT 70 verificados vs MEDBIO 0 — así que el lote va a los 12 temas de FISMAT y `loadEquivalentSubjectIds` lo sirve también a MEDBIO. El pool combinado (105) sigue por debajo de la meta 133, así que el lote **descuenta brecha efectiva ~1:1** cuando G56 lo verifique (caso favorable, patrón G45/G53, opuesto a G51/G52). Lotes previos de la materia: G3a y G13 (→ G3b, G14). **Reparto — priorizar los de menor cobertura:** los 12 temas de FISMAT en 7/6/7/6/5/6/6/5/5/5/6/6 verificados; el lote reparte **2/2/2/3/4/3/3/4/4/4/2/2** (mínimo 2 por tema, +4 a los cuatro temas en 5✓, +3 a tres de los seis temas en 6✓, +2 a los dos temas en 7✓ y a los demás) → los 12 quedan en 8-9✓ nivelados. **6 SOURCED / 29 TEMARIO_ONLY:** `loadTopicChunks` devolvió `SourceChunk` en 3 de los 12 temas y `grounding.ts` hace obligatoria la cita cuando el tema tiene fragmento — Números y operaciones (`uam_csh.pdf` p. 36), Ecuaciones lineales y cuadráticas (`ceneval_exanii_i.pdf` p. 18), Sucesiones y series (`uam_cad.pdf` p. 18), 2 reactivos cada uno; procedencia UAM/CENEVAL (otras instituciones, se anota — patrón G18/G45/G49/G53). Los 6 **transforman la tarea** del ítem-semilla (proporción directa→inversa; análisis de error→corte con el eje y; completar→término general y rasgo definitorio; la argumentación de un distractor de la guía usada como pregunta de análisis de error). **Matemáticas es `isCalcSubject`, así que el candado de G28 aplicará a G56.** **18 de los 35 son numéricos**, recalculados desde cero con **sympy** por una ruta independiente a la del enunciado (`sp.integrate`, `sp.solve`, `Matrix.det`, `factorial`), exigiendo (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones (tolerancia 2 %) y (c) opciones ascendentes estrictas — **18/18 en verde**. Cada distractor deriva de un error nombrable (proporción directa donde va inversa; `(2x)^2` sin elevar el coeficiente; leer `x=4` del factor `(x+4)`; `f(g(x))` vs `g(f(x))`; olvidar restar `F(a)` en la integral definida; suponer reemplazo en probabilidad; `i^3 = i`). **Formato:** 21 `PROBLEM_SOLVING` · 11 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION` · 1 `NUMERIC_SERIES`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la objetivo de `_base.md`); los 2 EXPERT: integral de `x^2 − 1/x^2` (doble signo) y división `1/(2+i)` por el conjugado. **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), **confirmada por query sobre las 35 filas tras insertar**; ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; los 18 numéricos fijan la letra por el rango del valor (G46 §7), los 17 restantes a mano al objetivo global. Secuencia por orden de inserción **`BACBDCCDBCBDAACDCADDBCAACDBBABDBAAC`** — **0 rachas cíclicas A→B→C→D ≥ 3**, racha de misma letra máx **2** (búsqueda con semilla fija 55055). **Diagnóstico STEM (G46 §7):** rango del valor correcto entre las 4 opciones ascendentes A5/B7/C3/D3 sobre los 18 numéricos (χ² ≈ 2.4, gl 3, p ≈ 0.49 — sin sesgo, aunque B es la moda); se reporta por transparencia (patrón G53). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 12 archivos. **0 citas por letra y 0 posicionales** en las 105 capas (confirmado también por query sobre las capas en la DB; se reescribieron dos fórmulas `$P(A\cap B)$` que la regex marcaba por el patrón «B)»). **Señuelo de longitud tie-aware (G34 §2):** sobre los 4 ítems con opciones-oración (los 31 de opción-valor/expresión/punto fuera, criterio G45/G46/G53) → **12.5 % «más larga» / 8.3 % «más corta»**, ambos < 25 %. **Lenguaje absolutista (G44 §6):** 1 marcador en las 35 claves vs 1 en los 105 distractores (términos matemáticos sustantivos, no retórica); **0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/4.** **Opciones textualmente duplicadas (hueco G52):** auto-chequeo `len(set(textos))==4` → **0/35**. **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes → después:** banco (COUNT crudo) **1 077 → 1 112** · servibles **1 073** sin cambio (esta sesión no verifica sus propios reactivos) · cola ciega **0 → 35** · cola canónica de discrepancias **3** sin cambio · 1 retirado · **IPN FISMAT Matemáticas 70✓/0⧗ → 70✓/35⧗** (⚓ del pool 20/50 → 26/79, fuentes 3/12 temas) · `SOURCED` banco **284 → 290** · 105 `explanation_layers` · 6 `question_source_chunks`. `content:coverage`: **1 073 servibles · 35 pendientes · 1 retirado · 1 109 en banco**; meta efectiva G26 (1 222) **67 %**, brecha **403** — **no se mueve con este lote**, pero **SÍ se moverá cuando G56 verifique**: el pool IPN:MATEMATICAS (meta 133, compartido, hoy 70) pasa a ~105, sigue por debajo de la meta y los 35 caen enteros en la brecha → bajará a ~368. Meta nominal 1 500: **72 %**. Auditoría 5 % **vencida, 10 ciclos** (esta fase compone, no audita; exige tier ≠ `opus-5` y ≠ `sonnet-5`). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 12 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g55-ipn-fismat-matematicas.json`); cero llamadas a la API de pago. **Siguiente: G56 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Matemáticas")` es `true` → la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado de G28) en los **18 numéricos**; **0/35 con pasaje**. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los **2 EXPERT** (CI1 integral de `x^2 − 1/x^2`; NC1 `1/(2+i)`) y **CI2** (integral definida donde el distractor `16` queda a solo 1 unidad de la clave `15`).**) — ver `## G55` abajo.
+
+</details>
 
 <details><summary>Historial: G54 (2026-08-31)</summary>
 
@@ -2249,6 +2255,234 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G56 — Verificación ciega: Matemáticas, IPN FISMAT (lote de G55) (2026-08-31)
+
+**Estado: COMPLETADA.** Verificación ciega adversarial (G2) de los 35 reactivos que G55
+dejó en la cola (`isVerified=false`, `verification=null`): **Matemáticas, IPN área
+Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, pool **COMPARTIDO**
+(`sharedContentKey = IPN:MATEMATICAS`, FISMAT `questionWeight` 24 + MEDBIO 8), sus 12
+temas.
+
+**35/35 coinciden con la clave del generador y 35/35 se auto-aprobaron en el PRIMER
+envío: 100 % de concordancia y 100 % de auto-aprobación, cero `problems` levantados.**
+No hizo falta fe de erratas — el candado que G54 dejó pedido se implementó y sostuvo
+(§3). Modelo real `claude-opus-5`; G55 anunciaba Fable 5, y el campo `model` declara el
+que resolvió de verdad (corrección de G17, **undécimo ciclo consecutivo** en que el
+modelo real y el planeado difieren, tras G44, G46, G48, G50, G52, G53, G54 y G55).
+
+### 1. Ceguera y aislamiento
+
+Sesión distinta de la que compuso el lote (G55). Esta sesión **nunca abrió** el commit
+`59752ee`, el registro permanente `docs/content-batches/g55-ipn-fismat-matematicas.json`,
+`Question.options` ni la sección `## G55`; el único insumo fue el lote ciego
+`scripts/content-exports/blind-batch-2026-08-31T23-42-00-879Z.json` (gitignored),
+generado con `content:blind-batch --all` — la cola tenía exactamente los 35 de G55, así
+que `--all` volvió a evitar tener que leer los 12 `topicId` en la sección de G55 (atajo
+de G54).
+
+| Control | Resultado |
+|---|---|
+| `grep -c` de `isCorrect` / `explanation` sobre el lote ciego | **0 / 0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Claves de nivel ítem | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options` |
+| Formato | **21 `PROBLEM_SOLVING` · 11 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION` · 1 `NUMERIC_SERIES`** |
+| Dificultad | 7 `BASIC` · 17 `INTERMEDIATE` · 9 `ADVANCED` · 2 `EXPERT` |
+| `requiresCalculation` | **35/35** (`isCalcSubject("Matemáticas")` = true — candado de G28) |
+| Reactivos con pasaje | 0/35 |
+| Opciones por reactivo · ids únicos | 4/4 en los 35 · 35 ids únicos · etiquetas `ABCD` en los 35 |
+| Institución / materia / temas | 35/35 IPN · Matemáticas · los 12 temas de FISMAT |
+| Reparto por tema visto a ciegas | 2/2/2/3/4/3/3/4/4/4/2/2 (coincide con el diseñado en G55) |
+| Clave en la MISMA posición tras barajar | **8/35** (azar 8.75) — el barajado determinista de `blind-verification.ts` sí esconde la letra original |
+
+**Fuga declarada, y esta vez el canal es nuevo: la MEMORIA persistente, no el ESTADO.**
+La mitigación de lectura que funcionó en G50 y G52 (cortar el `head` del ESTADO antes de
+que la línea 3 llegue a los agregados) **ya no basta**, porque la línea 3 de G55 se había
+copiado al archivo de memoria del proyecto, que entra en el contexto **automáticamente al
+abrir la sesión**, antes de cualquier decisión de lectura. Esa memoria nombraba los dos
+`EXPERT` por su contenido y, sobre uno de los ítems de Cálculo integral, **su valor
+exacto** («∫₁² 4x³ = 15, distractor 16 a una unidad»). Es decir: **la ceguera de ese
+reactivo estaba comprometida antes del primer comando de esta sesión.** Se declara sin
+adornos. Lo que la mitiga parcialmente: (a) el valor se recalculó igual desde cero con
+`integrate(4*x**3,(x,1,2))` exigiendo coincidencia única contra las cuatro opciones, y
+(b) la clave agregada `A9/B9/C9/D8` que la misma memoria conservaba es **inservible** tras
+el rebarajado por `questionId`. Lo que no la mitiga: si ese ítem hubiera tenido la clave
+mal, esta sesión no era ya un juez independiente sobre él. **Regla que deja: la prohibición
+de G51 («la sección `## GNN` describe los ítems por tema/fuente, nunca inventaría sus
+valores») aplica con más fuerza al archivo de memoria que a `docs/ESTADO.md`** — el ESTADO
+se puede leer con cuidado, la memoria no se puede *no* leer. Corregido en esta fase:
+la entrada de memoria del proyecto ya no conserva valores de ítems.
+
+**Señuelo de longitud, recalculado tie-aware sobre las respuestas ciegas** (G34 §2 /
+G36 §2): la clave es la opción **única más larga en 0/35** (azar 8.75), la **única más
+corta en 2/35**, y empata con la más larga en 14/35 — los empates son consecuencia
+mecánica de que 32 de los 35 ítems tienen opciones-valor cortas (`$4$`, `$15$`,
+`$\dfrac{5}{12}$`), no de un patrón editorial. **Solo 3 de los 35 tienen opciones-oración**
+(el diagnóstico del error de factorización, el tipo de solución del sistema y la
+definición de sucesión aritmética) y en los tres la clave no es ni la más larga ni la más
+corta. El canal de longitud está **por debajo del azar**, como en G54: en un lote STEM casi
+puro no hay superficie lingüística donde alojarlo (confirma la medición de G46).
+
+**Diagnóstico STEM (rango del valor correcto entre las 4 opciones ordenadas, G46 §7):**
+sobre los **18 ítems 100 % numéricos** del lote la clave cae en el rango
+**1º:5 · 2º:7 · 3º:3 · 4º:3**, **χ² = 2.44 (gl 3), p ≈ 0.49** — sin sesgo aprovechable;
+«descarta los extremos» no acierta por encima del azar. Es la **confirmación independiente**
+de la cifra que G55 declaró haber medido al componer (misma repartición), obtenida aquí
+sin ver su clave.
+
+### 2. Los 35 se resolvieron ejecutando el cálculo
+
+`isCalcSubject("Matemáticas")` es `true`, así que el candado de G28 exigía cálculo
+ejecutado en los 35. El arnés vive en el scratchpad (no se committea) y son **dos
+archivos escritos con la herramienta `Write`, nunca por heredoc** — la lección de G50 §3
+sobre el colapso de backslashes aplica igual aquí, porque el normalizador de LaTeX es
+todo regex sobre `\dfrac`, `\sqrt` y `\text{}`. `g56_parse.py` convierte el LaTeX de cada
+opción a sympy (emparejado real de llaves para `\frac{}{}` y `\sqrt{}`, `\text{}`
+resuelto **antes** de borrar `\,`, `\approx` cortado para quedarse con el valor exacto) y
+`g56_solve.py` resuelve. **Prueba de humo del parser sobre 12 ítems representativos antes
+de la corrida completa** (porcentajes, polinomios, puntos, matrices, complejos,
+antiderivadas con `+C`, `f^{-1}(x) = …` con RHS, unidades `\text{m}`): 12/12 parseados
+bien, cero silenciosos.
+
+Cada resultado se contrastó contra las cuatro opciones exigiendo **una sola coincidencia**
+(`assert len(hits)==1`, que lanza mostrando las cuatro): cero habría sido `NONE_VALID`,
+dos o más `MULTIPLE_VALID`. **Cero `problems` levantados en los 35.** Los ítems
+conceptuales tampoco se respondieron "a ojo": los cuatro que no son numéricos llevan un
+predicado ejecutado detrás cuyo resultado **elige el fragmento de texto a buscar**, en vez
+de que la sesión lo elija.
+
+| Tema | Cálculo ejecutado | Resultado | Trampa descartada |
+|---|---|---|---|
+| Números y operaciones | `Rational(36,100)*Rational(5,6)*100`; jornadas-obrero `6·15/9` (proporcionalidad **inversa**) | 30 % · 10 días | 43.2 % (multiplicar por 6/5, invertir la fracción); **22.5 días**, tratar la relación como directa — más gente tardaría más |
+| Álgebra elemental | `expand((2x-3)**2)`; `together(2/x + 3/x**2)` comprobado evaluando en `x=2` | 4x²−12x+9 · (2x+3)/x² | −6x (olvidar el 2 del doble producto); 5/x² (sumar numeradores sin igualar denominadores) |
+| Ecuaciones lineales y cuadráticas | `f.subs(x,0)` para el corte con el eje **y**; `solve(x²+9x+20)` + `expand((x+4)(x+5))` | (0, 28) · el fallo está en no igualar el factor a cero | (28, 0) y las raíces (−7,0)/(−4,0), que son cortes con el **otro** eje; el diagnóstico de "signos al revés", descartado porque la factorización sí reproduce el trinomio |
+| Funciones y gráficas | `solve(3x−12)`; despeje real de la inversa con `solve(y−(x−1)/2, x)` + comprobación de la composición; `f(g(5))` | 4 · 2x+1 · 14 | −4 (signo al despejar); 2x−1 (signo del término independiente) y el **recíproco** 2/(x−1) confundido con la inversa; 12 = `g(f(5))`, composición invertida |
+| Trigonometría | `tan(pi/4)`; `cos=√(1−sen²)` para ángulo agudo; **las 4 igualdades evaluadas en 5 ángulos**; `12√3·tan(pi/6)` | 1 · 5/12 · la relación pitagórica · 12 m | √3/3 y √3 (tangentes de 30 y 60); 12/5 (cotangente, razón invertida); `1+cot²=csc` **sin elevar al cuadrado** y `sen(2θ)=2senθ` sin el coseno; **36 m** = multiplicar por √3 en vez de dividir |
+| Geometría analítica | `−1/(3/4)` con verificación `m₁m₂=−1`; recta evaluada en `x=0` y derivada; `B=2M−A` devuelto al promedio | −4/3 · y=2x−3 · (7,−2) | 4/3 sin signo (ni paralela ni perpendicular); y=2x+3, que no pasa por el punto; (2,5), sumar el vector en vez de duplicar el medio |
+| Cálculo diferencial | `diff((3x²+1)**4)`; `diff(x/(x+1))` contrastada numéricamente en x=1; punto crítico + **segunda derivada** | 24x(3x²+1)³ · 1/(x+1)² · x=4 | 12x… (usar 2x como derivada interna) y 4(…)³ (omitirla); el signo negativo (invertir el numerador de la regla del cociente); **−13**, que es el valor mínimo y no la abscisa donde ocurre |
+| Cálculo integral | **antiderivada verificada derivando cada candidata**; `integrate(4x³,(x,1,2))`; área por integral **y** por triángulo; `integrate(3x²−2x,(x,0,2))` | x³/3 + 1/x + C · 15 · 9 · 4 | el signo **−1/x**, que deriva a x²+1/x² (uno de los 2 `EXPERT`); **16**, olvidar restar el límite inferior; 18 (rectángulo sin dividir entre 2); 8 (quedarse con el primer término) |
+| Matrices y sistemas | `linsolve` (**conjunto vacío**) + determinante 0; producto `Matrix` fila×columna; `solve` del 2×2 con ambas ecuaciones verificadas; `.det()` | sin solución · (13,12) · x=5 · 2 | "infinitas soluciones", que exigiría proporcionalidad **también** en el término independiente (5 no es el doble de 6); el vector (8,12), que omite un sumando; −2 (invertir el orden de la resta) y 22 (sumar en vez de restar) |
+| Combinatoria y probabilidad | conteo **enumerado**: `permutations(range(7),3)`, los 36 pares del dado, las 30 extracciones ordenadas sin reemplazo, `product` de los 3 menús | 210 · 1/36 · 2/5 · 24 | 35 (combinaciones, sin orden) y 343 (con repetición); 1/12 (sumar en vez de multiplicar); **4/9**, que es la versión CON reemplazo; 9 (sumar los factores) |
+| Sucesiones y series | `solve` de `an+b` sobre los 2 primeros términos y **verificación en los 5**; conjuntos de diferencias y de cocientes consecutivos | 2n+30 · diferencia constante | 2n+32, que arranca corrido un lugar (da 34 en la primera posición); "ser creciente" y "todos pares", ciertos pero compartidos con una geométrica como 2,4,8,16 |
+| Números complejos | `simplify(I**15)` con el periodo 4; `simplify(1/(2+I))` comprobado multiplicando por 2+i | −i · 2/5 − (1/5)i | i (= i¹³), −1 (= i¹⁴), 1 (= i¹⁶); el signo **positivo** en la parte imaginaria, que olvida el conjugado, y 2−i, el conjugado sin dividir entre el módulo al cuadrado (el otro `EXPERT`) |
+
+Confianza declarada: **0.98 mínima** (los dos `EXPERT` y la clasificación del sistema
+incompatible), 0.99 en el resto. Los distractores se descartaron siempre por lo que dicen,
+nunca por su letra ni su posición.
+
+### 3. El candado que G54 pidió, implementado: doble derivación de la letra
+
+G54 falló por transcripción: el `reasoning` nombraba el texto correcto y la **letra**
+tecleada apuntaba a otra, porque el archivo de respuestas se armó escribiendo 35 letras a
+mano en un array posicional. Esta fase no escribió **ninguna** letra: el archivo lo emite
+el propio arnés, y cada ítem deriva su letra por **dos rutas independientes que un
+`assert` obliga a coincidir**.
+
+| Ruta | Cómo obtiene la letra | Cubre |
+|---|---|---|
+| **(a) cálculo** | la única opción cuyo valor parseado (o cuyo predicado ejecutado) casa con lo computado | los 31 de opción-valor/expresión/punto/matriz y la identidad trigonométrica |
+| **(b) texto** | `key_text`: el **texto completo** de la opción que la determinación escrita nombra, comparado por **igualdad exacta** | los 35 |
+
+```
+assert letra_calculo == letra_texto, f'{qid}: DERIVA letra<->contenido — ... Es exactamente el fallo de G54.'
+```
+
+**La comparación de la ruta (b) es por texto COMPLETO, no por substring, y en este lote eso
+era obligatorio, no cosmético:** las opciones son valores cortos (`$4$`, `$-4$`, `$12$`,
+`$15$`, `$6\%$`, `$36\%$`) donde `"4"` es substring de `"-4"` y `"6"` de `"36"` — el falso
+"fragmento no único" que ya había mordido en un lote de matemáticas anterior. En los 4
+ítems de opciones-oración el fragmento sí se usa, pero **quien lo elige es el resultado del
+cálculo**, no la sesión: `linsolve` devuelve el conjunto vacío → el código busca «ninguna
+solución»; el conjunto de diferencias consecutivas tiene un solo elemento y el de cocientes
+cuatro → busca «La diferencia entre un término y el anterior se mantiene constante».
+
+Se añadió además un chequeo barato en la línea del `REASONING_LETTER_MISMATCH` que G54
+propuso: un `assert` de que ningún `reasoning` cite una opción por su letra
+(`\bopci[oó]n\s+[ABCD]\b`). **0/35 citan por letra; 35/35 nombran contenido.**
+**El `assert` de doble derivación no disparó ni una vez** — así que esta fase no aporta
+evidencia de que fuera necesario, solo de que cuesta tres líneas. La propuesta de moverlo
+a `content-resolve-verification.ts` como validación de entrada **sigue abierta**: aquí vivió
+en el arnés desechable del verificador, y el próximo verificador puede simplemente no
+escribirlo.
+
+### 4. Números del banco tras G56
+
+| Métrica | Antes (G55) | **Tras G56** |
+|---|---|---|
+| Banco total (COUNT crudo) | 1 112 | **1 112** |
+| Servibles (`isVerified=true`) | 1 073 | **1 108** |
+| Cola ciega (pendientes de resolución) | 35 | **0** |
+| Cola canónica de discrepancias | 3 | **3** (las heredadas: 2 de UNAM A1 Matemáticas + 1 de UNAM A2 Química — **cero nuevas**) |
+| Retirados a propósito | 1 | 1 |
+| Tasa de auto-aprobación global | 99.7 % | **99.7 % (1 109/1 112)** |
+| Matemáticas IPN FISMAT · pool `IPN:MATEMATICAS` | 70✓ / 35⧗ | **105✓ / 0⧗ / 0✋ · 100 % auto-aprob.** · ⚓26/79 |
+| Meta efectiva G26 (1 222) | 67 % · brecha 403 | **70 % · brecha 368 (~11 lotes)** |
+| Meta nominal 1 500 | 72 % | **74 %** |
+
+La brecha efectiva bajó **403 → 368**: exactamente los 35 del lote, el descuento 1:1 que
+G55 predijo — el pool compartido `IPN:MATEMATICAS` pasó de 70 a 105 verificados y **sigue
+por debajo de su meta 133**, así que ninguno de los 35 se desperdició (patrón G45/G53,
+opuesto a G51/G52, donde el pool ya rebasaba la meta y el lote no movió la brecha).
+
+**Sobre la tasa, dicho otra vez con honestidad:** 100 % es el resultado esperado, no una
+noticia. En 21+ rondas ciegas **nunca ha aparecido una clave equivocada**; lo que la
+métrica ha discriminado alguna vez son defectos de **armado** (G46: enunciados; G52:
+opciones duplicadas) y de **higiene del propio verificador** (G54: letras mal transcritas).
+El valor de esta fase no está en el 100 %, sino en (a) el candado de doble derivación que
+elimina la clase de fallo de G54 y (b) el hallazgo de la fuga por memoria de §1.
+
+### 5. Limpieza
+
+Cero cambios de código de producción. El lote ciego y el archivo de respuestas
+(`verifier-answers-G56.json`) viven en `scripts/content-exports/` (gitignored); el arnés
+(`g56_parse.py`, `g56_solve.py`, `g56_smoke.py`, `g56_diag.py`) vive en el scratchpad y no
+se committea; los scripts temporales de consulta (`tmp-g56-before.ts`, `tmp-g56-after.ts`,
+`tmp-g57-gap.ts`, `tmp-g57-names.ts`) se borraron al cerrar. `pnpm typecheck` y `pnpm lint`
+en verde. **Cero llamadas a la API de pago de Anthropic.**
+
+### Siguiente (G57)
+
+1. **Lote de 35 reactivos**, materia elegida con la brecha efectiva **recalculada en vivo
+   al cierre de G56** (metodología G26: densidad `1500/270 = 5.5556` reactivos por punto de
+   `questionWeight`; los pools compartidos toman la meta de su celda de mayor peso; solo
+   UNAM + IPN Superior, las activas del launch):
+
+   | Pool | `w` | Meta | Verificados | **Brecha** |
+   |---|---|---|---|---|
+   | **IPN:QUIMICA** (compartido FISMAT+MEDBIO) | 16 | 89 | 35 | **54** |
+   | IPN · MEDBIO · Biología | 22 | 122 | 70 | 52 |
+   | IPN · FISMAT · Física | 20 | 111 | 70 | 41 |
+   | UNAM:INGLES (compartido A1+A2+A3) | 6 | 33 | 0 | 33 |
+   | IPN · SOCADM · Historia de México | 6 | 33 | 0 | 33 |
+   | UNAM · A1 · Matemáticas | 26 | 144 | 114 | 30 |
+   | IPN:MATEMATICAS (compartido) | 24 | 133 | 105 | 28 *(era 63 antes de G56)* |
+
+   Gana **IPN:QUIMICA (brecha 54)**. Es **pool COMPARTIDO**: hoy los 35 verificados están
+   del lado de **MEDBIO** y FISMAT Química tiene **0**, así que la regla de CLAUDE.md /
+   G26 §2 («insértalo contra el `topicId` de la materia con más contenido del grupo»)
+   manda insertar contra los 9 temas de **MEDBIO**, no contra los de FISMAT, aunque FISMAT
+   sea la celda de mayor peso — conviene **consultarlo en vivo** antes de componer, porque
+   es el caso inverso al de G55. Química **es `isCalcSubject`**, así que G58 recibirá
+   `requiresCalculation: true` en los 35 (candado G28). `fuentes 6/9 temas` del lado FISMAT
+   y `1/9` del lado MEDBIO.
+2. **La fuga de §1 se corrige en la fase que COMPONE, no en la que verifica.** Al cerrar
+   G57 la línea 3 del ESTADO y la entrada de memoria deben describir el lote por
+   tema/fuente/dificultad y **no nombrar ni un solo valor, resultado o distractor** de un
+   ítem que siga en la cola ciega. Es la cuarta reincidencia (G47 → G48, G51 → G52,
+   G55 → G56) y la primera en que el canal es la memoria persistente.
+3. **Auditoría 5 %: vencida, 11 ciclos.** Exige sesión ciega con tier **≠ opus-5 y
+   ≠ sonnet-5** (el banco reciente lo aprobaron esos dos).
+4. **Deuda de validadores, tres entradas abiertas:** `DUPLICATE_OPTIONS` en
+   `lot-validation.ts` (G52/G53), la diagonal clave↔distractor de G42 §8, y
+   `REASONING_LETTER_MISMATCH` en `content-resolve-verification.ts` (G54 §3) — este último
+   se implementó **solo en el arnés desechable** de esta fase (§3), no en el script.
+   Añadida una cuarta: el falso positivo de `LETTER_CITATION` sobre `$P(A\cap B)$` que G55
+   documentó.
+5. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4).
+6. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos (G3a/G3d/G13/G15),
+   las 8 `CHART_TABLE` reclasificadas en G39, el rebanado de `SourceChunk` por página, los
+   3 reactivos de G37 que son paráfrasis cercanas de su guía fuente, y el follow-up de
+   G26 §8.3 (ampliar el temario del seed de MEDBIO Matemáticas, hoy 6 temas).
 
 ## G55 — Lote de reactivos: Matemáticas, IPN FISMAT (pool IPN:MATEMATICAS) (2026-08-31)
 
