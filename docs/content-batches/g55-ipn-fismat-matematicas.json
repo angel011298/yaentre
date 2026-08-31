@@ -1,0 +1,2129 @@
+{
+  "batch": "G55",
+  "phase": "G55 — Lote de reactivos: Matemáticas, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT) — pool compartido IPN:MATEMATICAS",
+  "generatedAt": "2026-08-31",
+  "model": "claude-sonnet-5 — sesión de Claude Code, suscripción, sin API de pago. El Plan de Implementación asigna el tier Sonnet a los lotes de contenido; el cierre de G54 anunciaba «Sonnet 4.6» pero este campo declara el modelo real de la sesión (corrección de G17, décimo ciclo plan≠real).",
+  "institution": "IPN (Instituto Politécnico Nacional)",
+  "exam": "Concurso de Ingreso a Nivel Superior 2027",
+  "area": "Ingeniería y Ciencias Físico-Matemáticas (rama FISMAT) — servible también a Ciencias Médico-Biológicas vía sharedContentKey IPN:MATEMATICAS (G26)",
+  "subject": "Matemáticas",
+  "subjectId": "cmrr1kvuv009dhi3nrfzki2c1",
+  "questionWeight": 24,
+  "sharedContentKey": "IPN:MATEMATICAS",
+  "shared": true,
+  "selectionRule": "Encargo G55: generar 35 reactivos para la materia de mayor brecha efectiva pendiente entre las instituciones activas del launch (UNAM + IPN Superior), decidiéndolo con datos reales. Metodología G26: densidad 1500/270 = 5.5556 reactivos por punto de questionWeight; meta de un pool compartido = meta de su celda de mayor peso (computeSharedGoal). Brecha efectiva por pool, consulta en vivo a Supabase (2026-08-31, tras la verificación ciega de G54): IPN:MATEMATICAS (FISMAT w24 + MEDBIO w8) meta 133, verificados 70 → brecha 63 (la MAYOR); IPN:QUIMICA (FISMAT w10 + MEDBIO w16) 54; IPN·MEDBIO·Biología 52; IPN·FISMAT·Física 41 (era 76 antes de G53/G54); UNAM:INGLES 33; IPN·SOCADM·Historia de México 33; UNAM·A1·Matemáticas 30. Se eligió IPN:MATEMATICAS. Pool COMPARTIDO: la regla (CLAUDE.md / G26 §2) es insertar contra el topicId de la materia con más contenido del grupo — FISMAT tiene 70 verificados vs MEDBIO 0, así que el lote va a los 12 temas de FISMAT (subjectId cmrr1kvuv009dhi3nrfzki2c1) y loadEquivalentSubjectIds lo sirve también a MEDBIO. Como el pool combinado (105) sigue por debajo de la meta 133, el lote descuenta brecha efectiva ~1:1 cuando G56 lo verifique (caso favorable, patrón G45/G53, opuesto a G51/G52). Lotes previos de la materia: G3a y G13 (→ G3b, G14).",
+  "grounding": "6/35 SOURCED · 29/35 TEMARIO_ONLY. loadTopicChunks devolvió SourceChunk en 3 de los 12 temas de FISMAT Matemáticas y grounding.ts hace obligatoria la cita cuando el tema tiene fragmento, así que los reactivos de esos 3 temas son todos SOURCED: Números y operaciones (uam_csh.pdf p. 36: porcentaje de un porcentaje, proporción, interés) — 2 reactivos; Ecuaciones lineales y cuadráticas (ceneval_exanii_i.pdf p. 18: ejemplo de intersección de una parábola con el eje x, con la argumentación de cada distractor) — 2; Sucesiones y series (uam_cad.pdf p. 18: completar una sucesión aritmética por paridad y diferencia común) — 2. Procedencia UAM/CENEVAL — otras instituciones que la del examen destino; se anota (patrón G18/G33/G45/G49/G53). Los 6 SOURCED transforman la tarea del ítem-semilla: identificación → cálculo inverso (NO2 proporción directa→inversa; EC2 análisis de error→pregunta directa por el corte con el eje y; SS1 completar→término general; SS2 completar→rasgo definitorio; EC1 usa la argumentación del distractor A de la guía como pregunta de análisis de error; NO1 lleva el \"porcentaje de un porcentaje\" a un caso nuevo). Los otros 9 temas no tienen fragmento → TEMARIO_ONLY, redactados desde el temario oficial de FISMAT.",
+  "isCalcSubject": true,
+  "calcNote": "Matemáticas ES isCalcSubject (CALC_SUBJECT_KEYS incluye \"matematica\" y \"algebra\"/\"calculo\", scripts/lib/blind-verification.ts). La sesión ciega de G56 recibirá requiresCalculation:true y el candado de G28 aplica a los 35. 18 de los 35 son numéricos y se recalcularon desde cero con sympy (scratchpad/g55/gen.py) por una ruta independiente a la del enunciado, exigiendo para cada uno: (a) el valor coincide con la opción marcada correcta, (b) coincidencia ÚNICA contra las 4 opciones (tolerancia relativa 2 %), (c) opciones numéricas en orden ascendente estricto — 18/18 en verde. Los 17 no numéricos (expresiones algebraicas, identidades, clasificación de sistemas/sucesiones, análisis de error) llevan igual una verificación simbólica o lógica detrás.",
+  "totalQuestions": 35,
+  "perTopicGrounding": "2 SOURCED / 0 — Números y operaciones · 2 SOURCED — Ecuaciones · 2 SOURCED — Sucesiones y series · resto TEMARIO_ONLY",
+  "seed": "gen.py con semilla fija 55055 para la búsqueda del orden de inserción (200 000 intentos; encontró uno sin racha cíclica A→B→C→D ni de misma letra ≥ 3). Los 18 numéricos fijan su letra por el rango del valor correcto entre las 4 opciones ascendentes (regla G46 §7); los 17 no numéricos se asignaron a mano al objetivo global A9/B9/C9/D8, con ≥ 3 letras distintas en cada tema de ≥ 3 reactivos y tope 2 por letra por tema.",
+  "bankBefore": 1077,
+  "bankAfter": 1112,
+  "servibleBefore": 1073,
+  "servibleAfter": 1073,
+  "blindQueueBefore": 0,
+  "blindQueueAfter": 35,
+  "discrepancyQueue": 3,
+  "retired": 1,
+  "ipnMatematicasFismatBefore": 70,
+  "ipnMatematicasFismatAfter": 70,
+  "ipnMatematicasFismatPending": 35,
+  "sourcedBankBefore": 284,
+  "sourcedBankAfter": 290,
+  "explanationLayers": 105,
+  "questionSourceChunks": 6,
+  "qualityChecks": {
+    "calc": "18/18 numéricos recalculados desde cero con sympy por ruta independiente (integrales con sp.integrate, sistemas con sp.solve, determinante con Matrix.det, permutaciones con factorial), coincidencia única contra las 4 opciones (tol. 2 %), opciones ascendentes.",
+    "lotValidation": "pnpm content:validate-batch --dir scripts/g55-lote → 0 violaciones (POSITION_SKEW / LETTER_CITATION / MALFORMED_OPTIONS / PASSAGE_LINK). Repetido como paso obligatorio de content:insert --lot-dir sobre los 12 archivos.",
+    "positionSkew": "clave A9 / B9 / C9 / D8 (25.7 / 25.7 / 25.7 / 22.9 %), confirmada por query directa sobre las 35 filas tras insertar. Las cuatro letras dentro de 15-40 %. Equilibrio por tema: ≥ 3 letras distintas en cada tema de ≥ 3 reactivos, tope 2 por letra por tema.",
+    "numericRank": "rango del valor correcto entre las 4 opciones ascendentes (diagnóstico STEM G46 §7): A5 / B7 / C3 / D3 sobre los 18 numéricos (χ² ≈ 2.4, gl 3, p ≈ 0.49 — sin sesgo significativo, aunque B es la moda). Se reporta por transparencia (patrón G53).",
+    "cyclicRun": "secuencia de la clave por orden de inserción BACBDCCDBCBDAACDCADDBCAACDBBABDBAAC — 0 rachas cíclicas A→B→C→D de longitud ≥ 3, racha de misma letra máx 2 (candado G16/G38).",
+    "letterCitation": "0 citas por letra y 0 referencias posicionales en las 105 capas (regex de lot-validation.ts + POSITION_REF de G33), confirmado también por query sobre las capas en la DB. Las 35 capa 2 se titulan «Resolución paso a paso» / «Cómo se descarta cada opción» y describen los distractores por su valor o su contenido. Reescritas dos fórmulas de probabilidad ($P(A\\cap B)$) que la regex marcaba por el patrón «B)».",
+    "lengthCue": "señuelo de longitud tie-aware (G34 §2) medido sobre los 4 ítems con opciones-oración (EC1, TR4, MS4, SS2; los 31 de opción-valor/expresión/punto quedan fuera, criterio G45/G46/G53): «más larga» 0.50/4 = 12.5 %, «más corta» 0.33/4 = 8.3 %, ambos < 25 %. Se homogeneizaron a mano las opciones conceptuales.",
+    "formCues": "lenguaje absolutista (G44 §6): 1 marcador en las 35 claves vs 1 en los 105 distractores (ambos son términos matemáticos sustantivos — «ninguna solución», «única solución» — no retórica); 0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/4 conceptuales.",
+    "duplicateOptions": "auto-chequeo en gen.py (len(set(textos)) == 4) sobre los 35 → 0 con opciones textualmente duplicadas (hueco de G52).",
+    "crossItemLeak": "heurístico de 4-gramas sobre (stem + clave) y sobre la diagonal (clave ↔ distractores de todo el lote), en ambas direcciones (G38 §6 / G42 §8): 0 coincidencias no triviales.",
+    "katex": "auto-chequeo de gen.py: 0 caracteres «º»/«°» crudos (se usa ^\\circ). Validación KaTeX del pipeline (question-draft-schema.ts): 0 fragmentos $...$ inválidos en los 35 (matrices \\begin{pmatrix}, sistemas \\begin{cases})."
+  },
+  "copyright": "Cero reproducción de texto extenso de los fragmentos fuente (UAM/CENEVAL). Los 6 reactivos SOURCED usan el principio (porcentaje de un porcentaje, argumentación de un distractor de parábola, sucesión aritmética 32-40) con datos, contexto y opciones nuevos.",
+  "nextPhase": "G56 = verificación ciega de este lote (segunda mitad del ciclo adversarial de G2), modelo Fable 5 según el plan. LOTE DE CÁLCULO: isCalcSubject(\"Matemáticas\")=true → la sesión ciega recibe requiresCalculation:true y debe EJECUTAR cada cálculo con código real (candado G28) en los 18 numéricos. 0/35 con pasaje. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los 2 EXPERT (CI1 integral de x^2 - 1/x^2 con el doble signo; NC1 división 1/(2+i) por el conjugado) y CI2 (integral definida donde el distractor 16 queda a solo 1 unidad de la clave 15). Cuando G56 apruebe, el pool IPN:MATEMATICAS (FISMAT w24 + MEDBIO w8, meta efectiva 133, compartido) pasa de 70 a ~105 verificados: como sigue por debajo de la meta, los 35 caen enteros en la brecha efectiva y la descuentan ~1:1 (patrón G45/G53), bajándola de 403 a ~368. Follow-up G26 §8.3: ampliar el temario del seed de MEDBIO Matemáticas (hoy 6 temas) sigue pendiente.",
+  "keySequenceByInsertOrder": "BACBDCCDBCBDAACDCADDBCAACDBBABDBAAC",
+  "positionDistribution": {
+    "B": 9,
+    "A": 9,
+    "C": 9,
+    "D": 8
+  },
+  "difficultyDistribution": {
+    "INTERMEDIATE": 17,
+    "BASIC": 7,
+    "ADVANCED": 9,
+    "EXPERT": 2
+  },
+  "formatDistribution": {
+    "PROBLEM_SOLVING": 21,
+    "MULTIPLE_CHOICE": 11,
+    "SENTENCE_COMPLETION": 2,
+    "NUMERIC_SERIES": 1
+  },
+  "perTopic": {
+    "Números y operaciones": 2,
+    "Álgebra elemental": 2,
+    "Ecuaciones lineales y cuadráticas": 2,
+    "Funciones y gráficas": 3,
+    "Trigonometría": 4,
+    "Geometría analítica": 3,
+    "Cálculo diferencial": 3,
+    "Cálculo integral": 4,
+    "Matrices y sistemas": 4,
+    "Combinatoria y probabilidad": 4,
+    "Sucesiones y series": 2,
+    "Números complejos": 2
+  },
+  "perTopicId": {
+    "Números y operaciones": "cmrr1kw1c009fhi3nuw7hczl9",
+    "Álgebra elemental": "cmrr1kwvw009hhi3nr37qipkh",
+    "Ecuaciones lineales y cuadráticas": "cmrr1kxll009jhi3n8g2zoku1",
+    "Funciones y gráficas": "cmrr1ky75009lhi3nez0n14di",
+    "Trigonometría": "cmrr1kyv6009nhi3nt4xnrerr",
+    "Geometría analítica": "cmrr1kzda009phi3nj9dflifk",
+    "Cálculo diferencial": "cmrr1kzty009rhi3n401xbyy6",
+    "Cálculo integral": "cmrr1l0g1009thi3nvhn52qr5",
+    "Matrices y sistemas": "cmrr1l0vj009vhi3ntaaehqnc",
+    "Combinatoria y probabilidad": "cmrr1l1ej009xhi3nm9rpwlhs",
+    "Sucesiones y series": "cmrr1l1vr009zhi3ns2t44soo",
+    "Números complejos": "cmrr1l2f500a1hi3nanpwcnyb"
+  },
+  "numericRankDistribution": {
+    "B": 7,
+    "A": 5,
+    "C": 3,
+    "D": 3
+  },
+  "numericMargins": {
+    "NO1": 0.2,
+    "NO2": 0.2,
+    "FG1": 0.143,
+    "FG2": 2,
+    "TR1": 0.077,
+    "TR2": 0.293,
+    "TR3": 0.5,
+    "GA2": 0.437,
+    "CD2": 0.25,
+    "CI2": 0.067,
+    "CI3": 0.333,
+    "CI4": 1,
+    "MS1": 2,
+    "MS2": 0.1,
+    "CP1": 0.633,
+    "CP2": 2,
+    "CP3": 0.111,
+    "CP4": 0.417
+  },
+  "lengthCue": {
+    "n": 4,
+    "longest": 0.5,
+    "longestPct": 12.5,
+    "shortest": 0.33,
+    "shortestPct": 8.3
+  },
+  "questions": [
+    {
+      "questionId": "cmth8hh5b0001wzedi01f9i1p",
+      "tag": "NO1",
+      "topic": "Números y operaciones",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "SOURCED",
+      "sourceChunkRef": "uam_csh.pdf p. 36",
+      "correctPosition": "B",
+      "correctValue": 0.3,
+      "insertOrderIndex": 1,
+      "stem": "En una colonia, el $36\\%$ de las familias tiene mascota. De las familias con mascota, $\\dfrac{5}{6}$ tienen perro. ¿Qué porcentaje del total de familias de la colonia tiene perro?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$6\\%$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$30\\%$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$36\\%$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$43.2\\%$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "El $36\\%$ tiene mascota y de ellas $\\tfrac{5}{6}$ tienen perro: $0.36\\times\\tfrac{5}{6}=0.30$, es decir $30\\%$. El $6\\%$ sale de usar $\\tfrac{1}{6}$ (las que NO tienen perro) en vez de $\\tfrac{5}{6}$. El $36\\%$ es quedarse en el porcentaje de familias con mascota sin aplicar la fracción. El $43.2\\%$ resulta de invertir la fracción y multiplicar por $\\tfrac{6}{5}$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Porcentaje de un porcentaje",
+          "content": "Se pide una fracción ($\\tfrac{5}{6}$) de un subconjunto que ya es un porcentaje del total. Hay que multiplicar las dos proporciones: $0.36\\times\\tfrac{5}{6}=0.30$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Familias con mascota: $36\\%$ del total. 2) De ese grupo, tienen perro las $\\tfrac{5}{6}$ partes. 3) Fracción del total con perro: $0.36\\times\\tfrac{5}{6}=0.30=30\\%$. Si obtuviste $6\\%$ usaste $\\tfrac{1}{6}$ en vez de $\\tfrac{5}{6}$; si obtuviste $36\\%$ no aplicaste la fracción; si obtuviste $43.2\\%$ multiplicaste por $\\tfrac{6}{5}$.",
+          "latexContent": "0.36 \\times \\dfrac{5}{6} = \\dfrac{36}{100}\\times\\dfrac{5}{6} = \\dfrac{180}{600} = 0.30 = 30\\%"
+        },
+        {
+          "layer": 3,
+          "title": "Composición de proporciones",
+          "content": "Cuando un dato es 'una fracción de una fracción' (o un porcentaje de un porcentaje), las proporciones se multiplican, no se suman ni se restan. Repasa: porcentaje como número decimal y producto de fracciones."
+        }
+      ],
+      "sourceChunks": [
+        "cmrsromj5007p13b31x5lhk6b"
+      ],
+      "sourceChunkRefs": [
+        "uam_csh.pdf p. 36"
+      ]
+    },
+    {
+      "questionId": "cmth8hhzh0006wzed8gcdbctq",
+      "tag": "NO2",
+      "topic": "Números y operaciones",
+      "topicId": "cmrr1kw1c009fhi3nuw7hczl9",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "SOURCED",
+      "sourceChunkRef": "uam_csh.pdf p. 36",
+      "correctPosition": "A",
+      "correctValue": 10,
+      "insertOrderIndex": 2,
+      "stem": "Una cuadrilla de $6$ obreros construye una barda en $15$ días. Trabajando al mismo ritmo, ¿cuántos días tardarían $9$ obreros en construir una barda igual?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$10$ días",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$12$ días",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$15$ días",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$22.5$ días",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Es proporción inversa: más obreros, menos días. El trabajo total es $6\\times15=90$ obrero-días, así que $9$ obreros tardan $90\\div9=10$ días. El valor $12$ es restar la diferencia de obreros a los días ($15-3$). El valor $15$ supone que el tiempo no cambia. El valor $22.5$ plantea proporción directa $15\\times\\tfrac{9}{6}$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Proporción inversa",
+          "content": "El número de obreros y el número de días son inversamente proporcionales: su producto (el trabajo total) es constante. $6\\times15=9\\times d \\Rightarrow d=10$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Trabajo total $=6\\text{ obreros}\\times15\\text{ días}=90$ obrero-días. 2) Con $9$ obreros: $d=\\dfrac{90}{9}=10$ días. Si obtuviste $22.5$ usaste proporción directa ($15\\times\\tfrac{9}{6}$); si obtuviste $12$ restaste $15-(9-6)$; si obtuviste $15$ no ajustaste el tiempo.",
+          "latexContent": "6 \\times 15 = 9 \\times d \\\\ 90 = 9d \\\\ d = 10 \\text{ días}"
+        },
+        {
+          "layer": 3,
+          "title": "Proporcionalidad directa e inversa",
+          "content": "En la proporción directa el cociente entre magnitudes es constante; en la inversa lo constante es el producto. Antes de plantear una regla de tres, decide si al aumentar una cantidad la otra aumenta (directa) o disminuye (inversa). Repasa: regla de tres simple directa e inversa."
+        }
+      ],
+      "sourceChunks": [
+        "cmrsromj5007p13b31x5lhk6b"
+      ],
+      "sourceChunkRefs": [
+        "uam_csh.pdf p. 36"
+      ]
+    },
+    {
+      "questionId": "cmth8hm8s0001tj7cpvmi4aq1",
+      "tag": "AL1",
+      "topic": "Álgebra elemental",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": null,
+      "insertOrderIndex": 3,
+      "stem": "Desarrolla el producto notable $(2x - 3)^2$.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4x^2 + 9$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2x^2 - 12x + 9$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$4x^2 - 12x + 9$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$4x^2 - 6x + 9$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$(2x-3)^2=(2x)^2-2(2x)(3)+3^2=4x^2-12x+9$. $4x^2+9$ omite el doble producto. $2x^2-12x+9$ no eleva al cuadrado el coeficiente $2$. $4x^2-6x+9$ calcula el doble producto como $2x\\cdot3$, olvidando el factor $2$ de $2x$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Binomio al cuadrado",
+          "content": "El cuadrado de un binomio es el cuadrado del primero, más (o menos) el doble producto, más el cuadrado del segundo: $(a-b)^2=a^2-2ab+b^2$ con $a=2x$, $b=3$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Primer término al cuadrado: $(2x)^2=4x^2$. 2) Doble producto: $-2\\cdot(2x)\\cdot(3)=-12x$. 3) Segundo término al cuadrado: $(-3)^2=9$. 4) Resultado: $4x^2-12x+9$. Si obtuviste $4x^2+9$ omitiste el doble producto; si obtuviste $2x^2-12x+9$ no elevaste al cuadrado el $2$.",
+          "latexContent": "(2x-3)^2 = (2x)^2 - 2(2x)(3) + (3)^2 = 4x^2 - 12x + 9"
+        },
+        {
+          "layer": 3,
+          "title": "Productos notables",
+          "content": "Los productos notables (binomio al cuadrado, suma por diferencia, binomio al cubo) evitan multiplicar término a término. El error más común es olvidar el doble producto o el factor numérico del término lineal. Repasa: productos notables."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8hmw60006tj7crynkzn0k",
+      "tag": "AL2",
+      "topic": "Álgebra elemental",
+      "topicId": "cmrr1kwvw009hhi3nr37qipkh",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "B",
+      "correctValue": null,
+      "insertOrderIndex": 4,
+      "stem": "Efectúa la suma $\\dfrac{2}{x} + \\dfrac{3}{x^2}$ y exprésala como una sola fracción (con $x \\neq 0$).",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{5}{x^3}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{2x+3}{x^2}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{2x^2+3}{x^2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{5}{x^2}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Con denominador común $x^2$: $\\dfrac{2}{x}=\\dfrac{2x}{x^2}$, así que $\\dfrac{2x}{x^2}+\\dfrac{3}{x^2}=\\dfrac{2x+3}{x^2}$. $\\dfrac{5}{x^3}$ suma numeradores y multiplica denominadores. $\\dfrac{5}{x^2}$ toma $x^2$ como común pero no convierte la primera fracción. $\\dfrac{2x^2+3}{x^2}$ multiplica el numerador de $\\dfrac{2}{x}$ por $x^2$ en vez de por $x$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Suma de fracciones algebraicas",
+          "content": "Para sumar fracciones se necesita un denominador común. El mínimo común denominador de $x$ y $x^2$ es $x^2$: hay que reescribir $\\dfrac{2}{x}$ como $\\dfrac{2x}{x^2}$ antes de sumar."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Denominador común: $x^2$. 2) $\\dfrac{2}{x}=\\dfrac{2\\cdot x}{x\\cdot x}=\\dfrac{2x}{x^2}$. 3) Suma: $\\dfrac{2x}{x^2}+\\dfrac{3}{x^2}=\\dfrac{2x+3}{x^2}$. Si obtuviste $\\dfrac{5}{x^2}$ sumaste $2+3$ sin convertir la primera fracción; si obtuviste $\\dfrac{5}{x^3}$ multiplicaste los denominadores.",
+          "latexContent": "\\dfrac{2}{x} + \\dfrac{3}{x^2} = \\dfrac{2x}{x^2} + \\dfrac{3}{x^2} = \\dfrac{2x+3}{x^2}"
+        },
+        {
+          "layer": 3,
+          "title": "Fracciones algebraicas",
+          "content": "Sumar o restar fracciones algebraicas exige mínimo común denominador y ajustar cada numerador por el factor que multiplicó a su denominador. Solo se pueden 'cancelar' factores comunes, nunca sumandos. Repasa: operaciones con expresiones racionales."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8hr4g000183w8hj9opv7p",
+      "tag": "EC2",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunkRef": "ceneval_exanii_i.pdf p. 18",
+      "correctPosition": "D",
+      "correctValue": null,
+      "insertOrderIndex": 5,
+      "stem": "¿En qué punto la parábola $y = x^2 + 11x + 28$ corta al eje $y$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(-7,\\ 0)$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$(-4,\\ 0)$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(28,\\ 0)$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$(0,\\ 28)$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "El corte con el eje $y$ ocurre donde $x=0$: $y=(0)^2+11(0)+28=28$, es decir el punto $(0,28)$. $(-7,0)$ y $(-4,0)$ son los cortes con el eje $x$ (raíces de $(x+4)(x+7)$). $(28,0)$ pone el término independiente sobre el eje $x$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Corte con el eje $y$",
+          "content": "Toda gráfica corta al eje $y$ en el punto de abscisa $0$. Basta evaluar la función en $x=0$: para un polinomio, el resultado es el término independiente."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) En el eje $y$, $x=0$. 2) $y=0^2+11\\cdot0+28=28$. 3) El punto es $(0,28)$. Si respondiste $(28,0)$ colocaste el $28$ como abscisa; si respondiste $(-4,0)$ o $(-7,0)$ diste un corte con el eje $x$.",
+          "latexContent": "x = 0 \\;\\Rightarrow\\; y = (0)^2 + 11(0) + 28 = 28 \\;\\Rightarrow\\; (0,\\,28)"
+        },
+        {
+          "layer": 3,
+          "title": "Intersecciones con los ejes",
+          "content": "Corte con el eje $y$: se hace $x=0$. Cortes con el eje $x$: se resuelve $y=0$. Confundir ambos es un error frecuente. Repasa: intersecciones de una función con los ejes coordenados."
+        }
+      ],
+      "sourceChunks": [
+        "cmrsrog05001913b3ebvhrqhr"
+      ],
+      "sourceChunkRefs": [
+        "ceneval_exanii_i.pdf p. 18"
+      ]
+    },
+    {
+      "questionId": "cmth8hrxl000683w846awjzf0",
+      "tag": "EC1",
+      "topic": "Ecuaciones lineales y cuadráticas",
+      "topicId": "cmrr1kxll009jhi3n8g2zoku1",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunkRef": "ceneval_exanii_i.pdf p. 18",
+      "correctPosition": "C",
+      "correctValue": null,
+      "insertOrderIndex": 6,
+      "stem": "Para hallar dónde la parábola $y = x^2 + 9x + 20$ corta al eje $x$, un estudiante factoriza correctamente como $(x+4)(x+5)$, pero al terminar afirma que una de las intersecciones ocurre en $x = 4$. ¿Cuál fue su error?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Factorizó con los signos al revés: serían $(x-4)$ y $(x-5)$.",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Tomó el corte de la parábola con el eje $x$ como si fuera el corte con el eje $y$.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Del factor $(x+4)$ leyó $x=4$ sin igualarlo a cero para despejar $x=-4$.",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Aplicó la fórmula general y cambió el signo del discriminante al despejar.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "La factorización $(x+4)(x+5)$ es correcta. Las raíces se obtienen igualando cada factor a cero: $x+4=0\\Rightarrow x=-4$ y $x+5=0\\Rightarrow x=-5$. Reportar $x=4$ es leer el $+4$ del factor sin cambiarle el signo al despejar. La opción de $(x-4)(x-5)$ contradice el dato de que factorizó bien; el eje $y$ daría un valor ligado a $20$; la fórmula general no interviene si ya se factorizó.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Del factor a la raíz",
+          "content": "Si un producto de factores vale cero, algún factor es cero. Del factor $(x+4)$ la raíz es $x=-4$, no $x=+4$: hay que igualar a cero y despejar, cambiando el signo del término independiente."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La factorización dada, $(x+4)(x+5)$, es correcta, así que 'los signos están mal' no aplica. 2) El corte con el eje $y$ se obtiene con $x=0$ y daría $y=20$, no $x=4$. 3) El error real: de $(x+4)=0$ se sigue $x=-4$; quien escribe $x=4$ no igualó a cero ni despejó. 4) La fórmula general no se usa cuando ya se factorizó.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Raíces de una ecuación cuadrática",
+          "content": "Las intersecciones de $y=ax^2+bx+c$ con el eje $x$ son las soluciones de $ax^2+bx+c=0$. Por factorización: se iguala cada factor a cero y se despeja. Repasa: teorema del factor y factorización de trinomios."
+        }
+      ],
+      "sourceChunks": [
+        "cmrsrog05001913b3ebvhrqhr"
+      ],
+      "sourceChunkRefs": [
+        "ceneval_exanii_i.pdf p. 18"
+      ]
+    },
+    {
+      "questionId": "cmth8hw640001rv1xxc37prr1",
+      "tag": "FG2",
+      "topic": "Funciones y gráficas",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": 4,
+      "insertOrderIndex": 7,
+      "stem": "¿En qué valor de $x$ la gráfica de la función $f(x) = 3x - 12$ corta al eje $x$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-12$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-4$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$4$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$12$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "El corte con el eje $x$ es donde $f(x)=0$: $3x-12=0\\Rightarrow x=4$. El $-12$ es $f(0)$, la ordenada al origen. El $-4$ es un error de signo ($3x=-12$). El $12$ olvida dividir entre $3$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Raíz de una función lineal",
+          "content": "La gráfica de $f$ cruza el eje $x$ donde el valor de la función es cero. Se resuelve $3x-12=0$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Igualar a cero: $3x-12=0$. 2) $3x=12$. 3) $x=4$. Si obtuviste $-12$ diste la ordenada al origen; si obtuviste $12$ no dividiste entre $3$; si obtuviste $-4$ hubo error de signo al pasar el $12$.",
+          "latexContent": "3x - 12 = 0 \\;\\Rightarrow\\; 3x = 12 \\;\\Rightarrow\\; x = 4"
+        },
+        {
+          "layer": 3,
+          "title": "Ceros de una función",
+          "content": "El cero (o raíz) de una función es el valor de $x$ que la anula, y corresponde al corte de su gráfica con el eje $x$. Repasa: función lineal, pendiente, ordenada al origen y raíz."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8hwt90006rv1xkoizvx19",
+      "tag": "FG3",
+      "topic": "Funciones y gráficas",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "D",
+      "correctValue": null,
+      "insertOrderIndex": 8,
+      "stem": "Si $f(x) = \\dfrac{x - 1}{2}$, ¿cuál es su función inversa $f^{-1}(x)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$f^{-1}(x) = \\dfrac{2}{x-1}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$f^{-1}(x) = \\dfrac{x+1}{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$f^{-1}(x) = 2x - 1$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$f^{-1}(x) = 2x + 1$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "Se escribe $y=\\dfrac{x-1}{2}$, se intercambian $x$ e $y$ y se despeja: $x=\\dfrac{y-1}{2}\\Rightarrow 2x=y-1\\Rightarrow y=2x+1$. $\\dfrac{2}{x-1}$ invierte la fracción en vez de despejar. $\\dfrac{x+1}{2}$ solo cambia el signo del $-1$. $2x-1$ es un error de signo al despejar.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Función inversa",
+          "content": "La inversa deshace lo que hace $f$. Se obtiene despejando $x$ en $y=f(x)$ y luego renombrando las variables."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $y=\\dfrac{x-1}{2}$. 2) Multiplica por $2$: $2y=x-1$. 3) Despeja: $x=2y+1$. 4) Intercambia nombres: $f^{-1}(x)=2x+1$. Si obtuviste $2x-1$ hubo error de signo; si obtuviste $\\dfrac{2}{x-1}$ tomaste el recíproco en vez de la inversa.",
+          "latexContent": "y = \\dfrac{x-1}{2} \\;\\Rightarrow\\; 2y = x - 1 \\;\\Rightarrow\\; x = 2y + 1 \\;\\Rightarrow\\; f^{-1}(x) = 2x + 1"
+        },
+        {
+          "layer": 3,
+          "title": "Funciones inversas",
+          "content": "$f^{-1}$ existe cuando $f$ es inyectiva. La inversa NO es el recíproco $1/f(x)$: es la operación que revierte $f$, y sus gráficas son reflejo una de la otra respecto de $y=x$. Repasa: cálculo de la función inversa."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8hxgf000brv1xeie32vfi",
+      "tag": "FG1",
+      "topic": "Funciones y gráficas",
+      "topicId": "cmrr1ky75009lhi3nez0n14di",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "B",
+      "correctValue": 14,
+      "insertOrderIndex": 9,
+      "stem": "Si $f(x) = 2x$ y $g(x) = x + 2$, ¿cuál es el valor de $(f \\circ g)(5)$, es decir $f(g(5))$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$12$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$14$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$17$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$20$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$(f\\circ g)(5)=f(g(5))$. Primero $g(5)=5+2=7$; luego $f(7)=2\\cdot7=14$. El $12$ es $g(f(5))$: componer en el orden inverso. El $17$ es $f(5)+g(5)=10+7$. El $20$ es $2\\cdot5\\cdot2$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Composición de funciones",
+          "content": "$(f\\circ g)(x)$ significa aplicar primero $g$ y con ese resultado aplicar $f$. Se evalúa de adentro hacia afuera."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $g(5)=5+2=7$. 2) $f(7)=2\\cdot7=14$. Si obtuviste $12$ calculaste $g(f(5))$ (orden inverso); si obtuviste $17$ sumaste $f(5)+g(5)$.",
+          "latexContent": "(f\\circ g)(5) = f(g(5)) = f(5+2) = f(7) = 2\\cdot 7 = 14"
+        },
+        {
+          "layer": 3,
+          "title": "Álgebra de funciones",
+          "content": "La composición no es conmutativa: $f\\circ g$ y $g\\circ f$ suelen dar resultados distintos. El paréntesis interno se evalúa primero. Repasa: composición y evaluación de funciones."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8i1ik0001i2d50a73hnqw",
+      "tag": "TR2",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": 1,
+      "insertOrderIndex": 10,
+      "stem": "¿Cuál es el valor exacto de $\\tan(45^\\circ)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{\\sqrt{3}}{3}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{\\sqrt{2}}{2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$\\sqrt{3}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "En un triángulo rectángulo isósceles los catetos son iguales, así que $\\tan45^\\circ=\\dfrac{\\text{cateto}}{\\text{cateto}}=1$. $\\tfrac{\\sqrt{3}}{3}$ es $\\tan30^\\circ$. $\\tfrac{\\sqrt{2}}{2}$ es $\\sin45^\\circ$ y $\\cos45^\\circ$. $\\sqrt{3}$ es $\\tan60^\\circ$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ángulo de $45^\\circ$",
+          "content": "El triángulo de $45^\\circ$-$45^\\circ$-$90^\\circ$ tiene los dos catetos iguales, por lo que la tangente (opuesto entre adyacente) vale exactamente $1$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $\\tan45^\\circ=\\dfrac{\\text{cateto opuesto}}{\\text{cateto adyacente}}$. 2) En el triángulo isósceles ambos catetos son iguales. 3) El cociente es $1$. Si respondiste $\\tfrac{\\sqrt{2}}{2}$ diste el seno o el coseno de $45^\\circ$; si respondiste $\\tfrac{\\sqrt{3}}{3}$ es la tangente de $30^\\circ$.",
+          "latexContent": "\\tan 45^\\circ = \\dfrac{\\text{cateto}}{\\text{cateto}} = 1"
+        },
+        {
+          "layer": 3,
+          "title": "Valores de ángulos notables",
+          "content": "Conviene memorizar seno, coseno y tangente de $0^\\circ$, $30^\\circ$, $45^\\circ$, $60^\\circ$ y $90^\\circ$. La tangente es el cociente seno/coseno. Repasa: tabla de razones trigonométricas de ángulos notables."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8i25p0006i2d5zl6gwtym",
+      "tag": "TR1",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "B",
+      "correctValue": 0.4166666666666667,
+      "insertOrderIndex": 11,
+      "stem": "Si $\\sin(\\theta) = \\dfrac{5}{13}$ y $\\theta$ es un ángulo agudo, ¿cuál es el valor de $\\tan(\\theta)$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{5}{13}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{5}{12}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{13}{12}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{12}{5}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Con $\\sin\\theta=\\tfrac{5}{13}$ (opuesto $5$, hipotenusa $13$), el adyacente es $\\sqrt{13^2-5^2}=12$. Entonces $\\tan\\theta=\\dfrac{\\text{opuesto}}{\\text{adyacente}}=\\dfrac{5}{12}$. $\\tfrac{5}{13}$ repite el valor de $\\sin\\theta$. $\\tfrac{12}{5}$ es $\\cot\\theta$ (razón invertida). $\\tfrac{13}{12}$ es $\\sec\\theta$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Identidad pitagórica",
+          "content": "En el triángulo rectángulo, si $\\sin\\theta=\\tfrac{5}{13}$ el tercer lado se obtiene con el teorema de Pitágoras: $\\text{adyacente}=\\sqrt{13^2-5^2}=12$, y $\\tan\\theta=\\tfrac{5}{12}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Opuesto $=5$, hipotenusa $=13$. 2) Adyacente $=\\sqrt{169-25}=\\sqrt{144}=12$. 3) $\\tan\\theta=\\dfrac{5}{12}$. Si obtuviste $\\tfrac{12}{5}$ invertiste la razón; si obtuviste $\\tfrac{13}{12}$ calculaste la secante.",
+          "latexContent": "\\text{adyacente} = \\sqrt{13^2 - 5^2} = \\sqrt{144} = 12 \\\\ \\tan\\theta = \\dfrac{\\text{opuesto}}{\\text{adyacente}} = \\dfrac{5}{12}"
+        },
+        {
+          "layer": 3,
+          "title": "Razones trigonométricas en el triángulo rectángulo",
+          "content": "Seno = opuesto/hipotenusa, coseno = adyacente/hipotenusa, tangente = opuesto/adyacente. Conocida una razón, el teorema de Pitágoras da el lado que falta. Repasa: triángulo $5$-$12$-$13$ y razones recíprocas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8i2su000bi2d5a2e5mgkl",
+      "tag": "TR4",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "D",
+      "correctValue": null,
+      "insertOrderIndex": 12,
+      "stem": "¿Cuál de las siguientes igualdades es una identidad trigonométrica válida para todo ángulo $\\theta$ en el que ambos lados están definidos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\sec^2\\theta - \\tan^2\\theta = 2$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\sin(2\\theta) = 2\\sin\\theta$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1 + \\cot^2\\theta = \\csc\\theta$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\sin^2\\theta + \\cos^2\\theta = 1$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "La identidad pitagórica $\\sin^2\\theta+\\cos^2\\theta=1$ se cumple para todo $\\theta$. $\\sec^2\\theta-\\tan^2\\theta$ vale $1$, no $2$. $\\sin(2\\theta)=2\\sin\\theta\\cos\\theta$, no $2\\sin\\theta$. $1+\\cot^2\\theta=\\csc^2\\theta$ (al cuadrado).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Identidad pitagórica",
+          "content": "De $x^2+y^2=r^2$ dividiendo entre $r^2$ se obtiene $\\sin^2\\theta+\\cos^2\\theta=1$, válida para cualquier ángulo."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $\\sec^2\\theta-\\tan^2\\theta=1$ (identidad pitagórica dividida entre $\\cos^2\\theta$), no $2$. 2) El ángulo doble es $\\sin(2\\theta)=2\\sin\\theta\\cos\\theta$. 3) La identidad correcta es $1+\\cot^2\\theta=\\csc^2\\theta$, con el cuadrado. 4) $\\sin^2\\theta+\\cos^2\\theta=1$ es la identidad fundamental.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Identidades trigonométricas fundamentales",
+          "content": "De la identidad pitagórica se derivan $1+\\tan^2\\theta=\\sec^2\\theta$ y $1+\\cot^2\\theta=\\csc^2\\theta$. Las fórmulas de ángulo doble llevan producto de razones. Repasa: identidades pitagóricas y de ángulo doble."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8i3g4000gi2d5vyy3wlgd",
+      "tag": "TR3",
+      "topic": "Trigonometría",
+      "topicId": "cmrr1kyv6009nhi3nt4xnrerr",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "A",
+      "correctValue": 12,
+      "insertOrderIndex": 13,
+      "stem": "Desde un punto en el suelo, el ángulo de elevación a la punta de un asta es de $30^\\circ$. Si el punto está a $12\\sqrt{3}\\,\\text{m}$ de la base del asta, ¿cuál es la altura del asta?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$12\\,\\text{m}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$18\\,\\text{m}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$12\\sqrt{3}\\,\\text{m} \\approx 20.8\\,\\text{m}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$36\\,\\text{m}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$\\tan30^\\circ=\\dfrac{h}{12\\sqrt{3}}$, y $\\tan30^\\circ=\\dfrac{1}{\\sqrt{3}}$, así que $h=12\\sqrt{3}\\cdot\\dfrac{1}{\\sqrt{3}}=12$. El $18$ multiplica por $\\cos30^\\circ$. El $12\\sqrt{3}$ deja la distancia como altura. El $36$ usa $\\tan30^\\circ=\\sqrt{3}$ (invertido).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Razón tangente en el ángulo de elevación",
+          "content": "La tangente del ángulo de elevación es la altura (opuesto) entre la distancia horizontal (adyacente): $\\tan30^\\circ=\\dfrac{h}{12\\sqrt{3}}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $\\tan30^\\circ=\\dfrac{h}{12\\sqrt{3}}$. 2) $\\tan30^\\circ=\\dfrac{1}{\\sqrt{3}}$. 3) $h=\\dfrac{12\\sqrt{3}}{\\sqrt{3}}=12$. Si obtuviste $36$ usaste $\\tan30^\\circ=\\sqrt{3}$; si obtuviste $12\\sqrt{3}$ no despejaste $h$.",
+          "latexContent": "\\tan 30^\\circ = \\dfrac{h}{12\\sqrt{3}} \\\\ \\dfrac{1}{\\sqrt{3}} = \\dfrac{h}{12\\sqrt{3}} \\\\ h = \\dfrac{12\\sqrt{3}}{\\sqrt{3}} = 12\\,\\text{m}"
+        },
+        {
+          "layer": 3,
+          "title": "Ángulos de elevación y depresión",
+          "content": "En problemas de altura con un ángulo desde el suelo, la tangente relaciona la altura buscada con la distancia horizontal conocida. Conviene recordar $\\tan30^\\circ=\\tfrac{1}{\\sqrt{3}}$ y $\\tan60^\\circ=\\sqrt{3}$. Repasa: resolución de triángulos rectángulos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8i7mo0001wkjlrxfrrzmg",
+      "tag": "GA2",
+      "topic": "Geometría analítica",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "A",
+      "correctValue": -1.3333333333333333,
+      "insertOrderIndex": 14,
+      "stem": "¿Cuál es la pendiente de cualquier recta perpendicular a la recta $y = \\dfrac{3}{4}x + 2$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-\\dfrac{4}{3}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$-\\dfrac{3}{4}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{3}{4}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{4}{3}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Dos rectas son perpendiculares si el producto de sus pendientes es $-1$; la pendiente perpendicular es el recíproco negativo: $m_\\perp=-\\dfrac{1}{3/4}=-\\dfrac{4}{3}$. $\\dfrac{3}{4}$ es la misma pendiente (rectas paralelas). $-\\dfrac{3}{4}$ cambia el signo pero no toma el recíproco. $\\dfrac{4}{3}$ toma el recíproco sin cambiar el signo.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Recíproco negativo",
+          "content": "Para que dos rectas se corten en ángulo recto, sus pendientes deben ser recíprocas y de signo opuesto: $m_1\\cdot m_2=-1$. Con $m_1=\\tfrac{3}{4}$ resulta $m_2=-\\tfrac{4}{3}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Pendiente dada: $\\tfrac{3}{4}$. 2) Recíproco: $\\tfrac{4}{3}$. 3) Cambia el signo: $-\\tfrac{4}{3}$. Si respondiste $\\tfrac{3}{4}$ diste la pendiente de una paralela; si respondiste $-\\tfrac{3}{4}$ no invertiste la fracción.",
+          "latexContent": "m_1 \\cdot m_2 = -1 \\;\\Rightarrow\\; \\dfrac{3}{4}\\cdot m_2 = -1 \\;\\Rightarrow\\; m_2 = -\\dfrac{4}{3}"
+        },
+        {
+          "layer": 3,
+          "title": "Rectas paralelas y perpendiculares",
+          "content": "Paralelas: misma pendiente. Perpendiculares: pendientes recíprocas y opuestas ($m_2=-1/m_1$). Repasa: condición de paralelismo y perpendicularidad entre rectas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8i89t0006wkjl5vowg1fk",
+      "tag": "GA1",
+      "topic": "Geometría analítica",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": null,
+      "insertOrderIndex": 15,
+      "stem": "¿Cuál es la ecuación de la recta que pasa por el punto $(0, -3)$ y tiene pendiente $2$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$y = -3x + 2$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$y = 3x - 2$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$y = 2x - 3$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$y = 2x + 3$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "La forma pendiente-ordenada es $y=mx+b$. La pendiente es $m=2$ y la recta pasa por $(0,-3)$, que es justamente la ordenada al origen: $b=-3$. Queda $y=2x-3$. $y=2x+3$ tiene el signo de $b$ cambiado. $y=-3x+2$ y $y=3x-2$ intercambian pendiente y ordenada al origen.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Forma pendiente-ordenada al origen",
+          "content": "Como el punto dado tiene abscisa $0$, su ordenada ES la ordenada al origen $b$. Con $m=2$ y $b=-3$ la ecuación es $y=2x-3$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $y=mx+b$. 2) $m=2$. 3) El punto $(0,-3)$ da $b=-3$. 4) $y=2x-3$. Si obtuviste $y=2x+3$ copiaste mal el signo de $b$; si intercambiaste los coeficientes tomaste la pendiente como ordenada.",
+          "latexContent": "y = mx + b,\\quad m = 2,\\quad b = -3 \\;\\Rightarrow\\; y = 2x - 3"
+        },
+        {
+          "layer": 3,
+          "title": "Ecuación de la recta",
+          "content": "Con un punto y la pendiente se usa $y-y_1=m(x-x_1)$; si el punto está sobre el eje $y$, se lee $b$ directamente. Repasa: formas de la ecuación de la recta (pendiente-ordenada, punto-pendiente, general)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8i8wy000bwkjlqsbqk4u8",
+      "tag": "GA3",
+      "topic": "Geometría analítica",
+      "topicId": "cmrr1kzda009phi3nj9dflifk",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "D",
+      "correctValue": null,
+      "insertOrderIndex": 16,
+      "stem": "El punto medio del segmento $\\overline{AB}$ es $M(3, 1)$. Si el extremo $A$ es $(-1, 4)$, ¿cuáles son las coordenadas del extremo $B$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$(1,\\ 2.5)$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$(2,\\ 5)$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$(4,\\ -3)$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$(7,\\ -2)$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "El punto medio es el promedio de los extremos: $M=\\dfrac{A+B}{2}$, así que $B=2M-A$. $B=(2\\cdot3-(-1),\\ 2\\cdot1-4)=(7,-2)$. $(1,2.5)$ promedia $A$ y $M$. $(2,5)$ suma $A+M$. $(4,-3)$ resta $M-A$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Fórmula del punto medio despejada",
+          "content": "De $M=\\left(\\dfrac{x_A+x_B}{2},\\dfrac{y_A+y_B}{2}\\right)$ se despeja el extremo desconocido: $B=2M-A$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $x_B=2x_M-x_A=2(3)-(-1)=7$. 2) $y_B=2y_M-y_A=2(1)-4=-2$. 3) $B=(7,-2)$. Si obtuviste $(4,-3)$ calculaste $M-A$; si obtuviste $(1,2.5)$ promediaste $A$ con $M$.",
+          "latexContent": "x_B = 2x_M - x_A = 2(3) - (-1) = 7 \\\\ y_B = 2y_M - y_A = 2(1) - 4 = -2 \\\\ B = (7,\\,-2)"
+        },
+        {
+          "layer": 3,
+          "title": "Punto medio de un segmento",
+          "content": "El punto medio tiene por coordenadas el promedio de las coordenadas de los extremos. Si se conoce un extremo y el punto medio, se despeja el otro con $B=2M-A$. Repasa: fórmula del punto medio y sus aplicaciones."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8iif3000111aytzm3qzfj",
+      "tag": "CD1",
+      "topic": "Cálculo diferencial",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": null,
+      "insertOrderIndex": 17,
+      "stem": "¿Cuál es la derivada de $f(x) = (3x^2 + 1)^4$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4(3x^2+1)^3$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$12x(3x^2+1)^3$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$24x(3x^2+1)^3$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$24x(3x^2+1)^4$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Regla de la cadena: $\\dfrac{d}{dx}[u^4]=4u^3\\cdot u'$ con $u=3x^2+1$, $u'=6x$. $4(3x^2+1)^3\\cdot6x=24x(3x^2+1)^3$. $4(3x^2+1)^3$ omite la derivada interna. $12x(3x^2+1)^3$ usa $u'=3x$ en vez de $6x$. $24x(3x^2+1)^4$ no baja el exponente.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Regla de la cadena",
+          "content": "Para derivar una potencia de una función se aplica la regla de la potencia y se multiplica por la derivada de la base: $4(3x^2+1)^3\\cdot(6x)$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Base $u=3x^2+1$, exponente $4$. 2) Regla de la potencia: $4u^3$. 3) Derivada interna: $u'=6x$. 4) Producto: $4(3x^2+1)^3\\cdot6x=24x(3x^2+1)^3$. Si obtuviste $4(3x^2+1)^3$ olvidaste $u'$; si obtuviste $24x(3x^2+1)^4$ no redujiste el exponente.",
+          "latexContent": "\\dfrac{d}{dx}\\left[(3x^2+1)^4\\right] = 4(3x^2+1)^3 \\cdot \\dfrac{d}{dx}(3x^2+1) = 4(3x^2+1)^3 \\cdot 6x = 24x(3x^2+1)^3"
+        },
+        {
+          "layer": 3,
+          "title": "Regla de la cadena",
+          "content": "Derivar funciones compuestas: derivada de la función externa evaluada en la interna, por la derivada de la interna. Es el error más común omitir el segundo factor. Repasa: regla de la cadena y regla de la potencia generalizada."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8ij2r000611ayrh3809ek",
+      "tag": "CD3",
+      "topic": "Cálculo diferencial",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "A",
+      "correctValue": null,
+      "insertOrderIndex": 18,
+      "stem": "Usando la regla del cociente, ¿cuál es la derivada de $f(x) = \\dfrac{x}{x+1}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{1}{(x+1)^2}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$-\\dfrac{1}{(x+1)^2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{2x+1}{(x+1)^2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$1$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Regla del cociente: $\\left(\\dfrac{u}{v}\\right)'=\\dfrac{u'v-uv'}{v^2}$ con $u=x$, $v=x+1$. $\\dfrac{(1)(x+1)-(x)(1)}{(x+1)^2}=\\dfrac{1}{(x+1)^2}$. El signo negativo sale de invertir el orden del numerador. $\\dfrac{2x+1}{(x+1)^2}$ desarrolla mal $u'v-uv'$. El $1$ deriva numerador y denominador por separado.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Regla del cociente",
+          "content": "La derivada de un cociente es (derivada del numerador por el denominador, menos numerador por derivada del denominador), todo sobre el denominador al cuadrado."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $u=x$, $u'=1$; $v=x+1$, $v'=1$. 2) $u'v-uv'=(1)(x+1)-(x)(1)=x+1-x=1$. 3) Entre $v^2$: $\\dfrac{1}{(x+1)^2}$. Si obtuviste el resultado con signo negativo invertiste el orden a $uv'-u'v$; si obtuviste $1$ derivaste por separado.",
+          "latexContent": "\\left(\\dfrac{x}{x+1}\\right)' = \\dfrac{(1)(x+1) - (x)(1)}{(x+1)^2} = \\dfrac{1}{(x+1)^2}"
+        },
+        {
+          "layer": 3,
+          "title": "Regla del cociente",
+          "content": "El orden en el numerador importa: es $u'v-uv'$, no al revés; un intercambio cambia el signo de toda la derivada. Repasa: reglas del producto y del cociente."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8ijq9000b11ayiqalu7gt",
+      "tag": "CD2",
+      "topic": "Cálculo diferencial",
+      "topicId": "cmrr1kzty009rhi3n401xbyy6",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "D",
+      "correctValue": 4,
+      "insertOrderIndex": 19,
+      "stem": "¿En qué valor de $x$ la función $f(x) = x^2 - 8x + 3$ alcanza su valor mínimo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-13$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$-4$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$4$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "El mínimo de una parábola con $a>0$ está donde la derivada se anula: $f'(x)=2x-8=0\\Rightarrow x=4$. El $-13$ es el valor mínimo $f(4)$, no la abscisa. El $-4$ es un error de signo. El $3$ es el término independiente $c$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Punto crítico",
+          "content": "En un mínimo (o máximo) la recta tangente es horizontal, así que $f'(x)=0$. Para $f(x)=x^2-8x+3$, $f'(x)=2x-8$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $f'(x)=2x-8$. 2) $2x-8=0$. 3) $x=4$. (Comprobación: $f''(x)=2>0$, es mínimo.) Si obtuviste $-13$ diste el valor mínimo $f(4)$; si obtuviste $8$ no dividiste entre $2$; si obtuviste $-4$ hubo error de signo.",
+          "latexContent": "f'(x) = 2x - 8 = 0 \\;\\Rightarrow\\; x = 4 \\qquad (f''(x) = 2 > 0 \\Rightarrow \\text{mínimo})"
+        },
+        {
+          "layer": 3,
+          "title": "Máximos y mínimos con la derivada",
+          "content": "Los puntos críticos se hallan resolviendo $f'(x)=0$; el criterio de la segunda derivada distingue máximo ($f''<0$) de mínimo ($f''>0$). La pregunta pide DÓNDE ocurre el mínimo (el valor de $x$), no CUÁNTO vale. Repasa: optimización con cálculo diferencial."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8inrs0001gpg04xcy1dib",
+      "tag": "CI1",
+      "topic": "Cálculo integral",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "D",
+      "correctValue": null,
+      "insertOrderIndex": 20,
+      "stem": "Calcula la integral indefinida $\\displaystyle\\int \\left(x^2 - \\dfrac{1}{x^2}\\right) dx$ (con $x \\neq 0$).",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{x^3}{3} - \\ln(x^2) + C$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$3x^3 + \\dfrac{1}{x} + C$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{x^3}{3} - \\dfrac{1}{x} + C$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{x^3}{3} + \\dfrac{1}{x} + C$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "$\\displaystyle\\int x^2\\,dx=\\dfrac{x^3}{3}$ y $\\displaystyle\\int -x^{-2}\\,dx=-\\dfrac{x^{-1}}{-1}=\\dfrac{1}{x}$, así que el resultado es $\\dfrac{x^3}{3}+\\dfrac{1}{x}+C$. El signo $-\\dfrac{1}{x}$ ignora que $\\int x^{-2}dx=-x^{-1}$. $-\\ln(x^2)$ integra $\\dfrac{1}{x^2}$ como si fuera $\\dfrac{1}{x}$. $3x^3$ multiplica por $3$ en vez de dividir.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Regla de la potencia para integrar",
+          "content": "$\\displaystyle\\int x^n\\,dx=\\dfrac{x^{n+1}}{n+1}+C$ también con $n=-2$: $\\int x^{-2}dx=\\dfrac{x^{-1}}{-1}=-\\dfrac{1}{x}$, y con el signo menos del integrando queda $+\\dfrac{1}{x}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $\\int x^2\\,dx=\\dfrac{x^3}{3}$. 2) $\\int \\dfrac{1}{x^2}\\,dx=\\int x^{-2}\\,dx=\\dfrac{x^{-1}}{-1}=-\\dfrac{1}{x}$. 3) Como el término es $-\\dfrac{1}{x^2}$, su integral es $-\\left(-\\dfrac{1}{x}\\right)=+\\dfrac{1}{x}$. 4) Resultado: $\\dfrac{x^3}{3}+\\dfrac{1}{x}+C$. Si obtuviste $-\\ln(x^2)$ confundiste $\\dfrac{1}{x^2}$ con $\\dfrac{1}{x}$; si obtuviste el signo $-\\dfrac{1}{x}$ perdiste el doble signo.",
+          "latexContent": "\\int\\left(x^2 - \\dfrac{1}{x^2}\\right)dx = \\dfrac{x^3}{3} - \\left(\\dfrac{x^{-1}}{-1}\\right) + C = \\dfrac{x^3}{3} + \\dfrac{1}{x} + C"
+        },
+        {
+          "layer": 3,
+          "title": "Integral de potencias con exponente negativo",
+          "content": "$\\int x^{-2}dx$ NO es logarítmica (esa es $\\int x^{-1}dx=\\ln|x|$): se aplica la regla de la potencia y da $-x^{-1}$. Ojo con el doble signo cuando el término del integrando ya es negativo. Repasa: integrales inmediatas y regla de la potencia."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8ioev0006gpg00mvv316u",
+      "tag": "CI2",
+      "topic": "Cálculo integral",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "B",
+      "correctValue": 15,
+      "insertOrderIndex": 21,
+      "stem": "Calcula el valor de la integral definida $\\displaystyle\\int_{1}^{2} 4x^3\\, dx$.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-15$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$15$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$16$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$60$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$\\displaystyle\\int_1^2 4x^3\\,dx=\\left[x^4\\right]_1^2=2^4-1^4=16-1=15$. El $-15$ intercambia los límites y calcula $F(1)-F(2)$. El $16$ evalúa solo en el límite superior sin restar $F(1)$. El $60$ usa $4x^4$ como antiderivada (no divide entre el nuevo exponente).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Teorema fundamental del cálculo",
+          "content": "La integral definida es $F(b)-F(a)$, donde $F$ es una antiderivada. Antiderivada de $4x^3$: $\\dfrac{4x^4}{4}=x^4$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Antiderivada: $\\displaystyle\\int 4x^3\\,dx=x^4$. 2) $F(2)=16$, $F(1)=1$. 3) $F(2)-F(1)=16-1=15$. Si obtuviste $16$ no restaste el límite inferior; si obtuviste $-15$ evaluaste $F(1)-F(2)$ con los límites cambiados.",
+          "latexContent": "\\int_1^2 4x^3\\,dx = \\left[x^4\\right]_1^2 = 2^4 - 1^4 = 16 - 1 = 15"
+        },
+        {
+          "layer": 3,
+          "title": "Integral definida",
+          "content": "Para evaluar $\\int_a^b f$: se halla una antiderivada, se evalúa en $b$ y en $a$, y se RESTA en ese orden. Invertir los límites cambia el signo del resultado. Repasa: regla de Barrow (teorema fundamental del cálculo)."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8ip20000bgpg05m6idlt1",
+      "tag": "CI3",
+      "topic": "Cálculo integral",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": 9,
+      "insertOrderIndex": 22,
+      "stem": "El área bajo la curva $y = 2x$ desde $x = 0$ hasta $x = 3$ es igual a:",
+      "options": [
+        {
+          "id": "A",
+          "text": "$3$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$6$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$9$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$18$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "El área bajo $y=2x$ de $0$ a $3$ es $\\displaystyle\\int_0^3 2x\\,dx=\\left[x^2\\right]_0^3=9$. El $3$ es el valor de $x$. El $6$ evalúa $y=2x$ en $x=3$. El $18$ usa $2x^2$ como antiderivada (no divide entre $2$).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Área como integral definida",
+          "content": "El área entre la gráfica de una función no negativa y el eje $x$ es la integral definida en ese intervalo. Antiderivada de $2x$: $x^2$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $\\displaystyle\\int_0^3 2x\\,dx$. 2) Antiderivada $x^2$. 3) $F(3)-F(0)=9-0=9$. (Coincide con el área del triángulo de base $3$ y altura $6$: $\\tfrac{1}{2}(3)(6)=9$.) Si obtuviste $18$ no dividiste entre $2$ al integrar; si obtuviste $6$ evaluaste la función en vez de integrarla.",
+          "latexContent": "\\int_0^3 2x\\,dx = \\left[x^2\\right]_0^3 = 3^2 - 0^2 = 9"
+        },
+        {
+          "layer": 3,
+          "title": "Interpretación geométrica de la integral",
+          "content": "La integral definida de una función positiva mide el área bajo su curva. Para rectas se puede comprobar con la fórmula del área del triángulo o trapecio. Repasa: integral definida y cálculo de áreas planas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8ipp3000ggpg0n0hvdx1a",
+      "tag": "CI4",
+      "topic": "Cálculo integral",
+      "topicId": "cmrr1l0g1009thi3nvhn52qr5",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "A",
+      "correctValue": 4,
+      "insertOrderIndex": 23,
+      "stem": "Calcula el valor de la integral definida $\\displaystyle\\int_{0}^{2} (3x^2 - 2x)\\, dx$.",
+      "options": [
+        {
+          "id": "A",
+          "text": "$4$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$8$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$12$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$20$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "$\\displaystyle\\int_0^2 (3x^2-2x)\\,dx=\\left[x^3-x^2\\right]_0^2=(8-4)-0=4$. El $8$ integra solo $3x^2$ y omite $-2x$. El $12$ evalúa la derivada $6x-2$ en los límites. El $20$ usa $3x^3-x^2$ como antiderivada (no divide $3x^2$ entre $3$).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Antiderivada término a término",
+          "content": "Se integra cada sumando: $\\int 3x^2\\,dx=x^3$ y $\\int 2x\\,dx=x^2$. Antiderivada: $x^3-x^2$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Antiderivada: $x^3-x^2$. 2) $F(2)=8-4=4$. 3) $F(0)=0$. 4) $F(2)-F(0)=4$. Si obtuviste $8$ olvidaste el término $-2x$; si obtuviste $12$ evaluaste la derivada en vez de la antiderivada.",
+          "latexContent": "\\int_0^2 (3x^2 - 2x)\\,dx = \\left[x^3 - x^2\\right]_0^2 = (8 - 4) - 0 = 4"
+        },
+        {
+          "layer": 3,
+          "title": "Linealidad de la integral",
+          "content": "La integral de una suma es la suma de las integrales; cada potencia se integra con la regla $\\dfrac{x^{n+1}}{n+1}$. Repasa: integración de polinomios y evaluación de integrales definidas."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8itue00012zii5xir8xyo",
+      "tag": "MS4",
+      "topic": "Matrices y sistemas",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "difficulty": "INTERMEDIATE",
+      "format": "SENTENCE_COMPLETION",
+      "kind": "conceptual",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "A",
+      "correctValue": null,
+      "insertOrderIndex": 24,
+      "stem": "El sistema $\\begin{cases} 2x + 3y = 6 \\\\ 4x + 6y = 5 \\end{cases}$ tiene:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ninguna solución, porque las rectas son paralelas pero no coinciden.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "una única solución, que se obtiene por sustitución o por igualación.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "infinitas soluciones, porque una ecuación es proporcional a la otra.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "exactamente dos soluciones, una aportada por cada una de las ecuaciones.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Multiplicando la primera ecuación por $2$ se obtiene $4x+6y=12$, que tiene el mismo lado izquierdo que la segunda ($4x+6y$) pero distinto lado derecho ($12\\neq5$): el sistema es incompatible y no tiene solución. Si el lado derecho fuera $12$ habría infinitas soluciones; un sistema lineal nunca tiene exactamente dos.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Sistema incompatible",
+          "content": "Cuando dos ecuaciones lineales tienen coeficientes proporcionales pero términos independientes que no respetan esa proporción, las rectas son paralelas distintas y no hay punto común."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $2\\times(2x+3y=6)$ da $4x+6y=12$; la segunda dice $4x+6y=5$. Como $12\\neq5$, no hay solución. 2) No hay solución única porque las rectas no se cortan. 3) Habría infinitas soluciones solo si el término independiente también cumpliera la proporción ($10$, no $5$). 4) Un sistema lineal tiene $0$, $1$ o infinitas soluciones, nunca exactamente dos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Clasificación de sistemas lineales",
+          "content": "Compatible determinado (una solución), compatible indeterminado (infinitas) o incompatible (ninguna). Se distingue comparando la proporción de coeficientes con la de términos independientes. Repasa: discusión de sistemas $2\\times2$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8iuih00062ziip0zitwsg",
+      "tag": "MS3",
+      "topic": "Matrices y sistemas",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": null,
+      "insertOrderIndex": 25,
+      "stem": "Si $A = \\begin{pmatrix} 2 & 1 \\\\ 3 & 0 \\end{pmatrix}$ y $B = \\begin{pmatrix} 4 \\\\ 5 \\end{pmatrix}$, ¿cuál es el producto $A\\,B$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\begin{pmatrix} 8 \\\\ 12 \\end{pmatrix}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\begin{pmatrix} 13 \\\\ 12 \\end{pmatrix}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$\\begin{pmatrix} 13 \\\\ 15 \\end{pmatrix}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Cada renglón del resultado es el producto punto del renglón de $A$ con la columna de $B$. Renglón 1: $2\\cdot4+1\\cdot5=13$. Renglón 2: $3\\cdot4+0\\cdot5=12$. Resultado $\\begin{pmatrix}13\\\\12\\end{pmatrix}$. $\\begin{pmatrix}3\\\\3\\end{pmatrix}$ suma los elementos de cada renglón de $A$ e ignora $B$. $\\begin{pmatrix}8\\\\12\\end{pmatrix}$ hace solo $2\\cdot4$ en el primer renglón. $\\begin{pmatrix}13\\\\15\\end{pmatrix}$ usa $3\\cdot5$ en el segundo renglón (elemento equivocado de $B$).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Producto renglón por columna",
+          "content": "Para multiplicar una matriz $2\\times2$ por un vector $2\\times1$, cada componente del resultado es la suma de los productos del renglón correspondiente de $A$ por la columna de $B$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Renglón 1: $(2)(4)+(1)(5)=8+5=13$. 2) Renglón 2: $(3)(4)+(0)(5)=12+0=12$. 3) Resultado: $\\begin{pmatrix}13\\\\12\\end{pmatrix}$. Si en el segundo renglón obtuviste $15$ multiplicaste $3\\cdot5$ (elemento equivocado); si obtuviste $8$ en el primero, omitiste el sumando $1\\cdot5$.",
+          "latexContent": "A\\,B = \\begin{pmatrix} 2 & 1 \\\\ 3 & 0 \\end{pmatrix}\\begin{pmatrix} 4 \\\\ 5 \\end{pmatrix} = \\begin{pmatrix} 2(4)+1(5) \\\\ 3(4)+0(5) \\end{pmatrix} = \\begin{pmatrix} 13 \\\\ 12 \\end{pmatrix}"
+        },
+        {
+          "layer": 3,
+          "title": "Multiplicación de matrices",
+          "content": "El producto se define renglón por columna; el número de columnas de la primera debe igualar el número de renglones de la segunda. No es conmutativo. Repasa: producto de matrices y dimensiones compatibles."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8iv6r000b2ziil0fp7fc4",
+      "tag": "MS2",
+      "topic": "Matrices y sistemas",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "D",
+      "correctValue": 5,
+      "insertOrderIndex": 26,
+      "stem": "Resuelve el sistema $x + 2y = 9$ y $x - y = 3$. ¿Cuál es el valor de $x$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$3$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$4.5$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$5$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "De $x-y=3$ se tiene $x=y+3$. Sustituyendo en $x+2y=9$: $(y+3)+2y=9\\Rightarrow3y=6\\Rightarrow y=2$, y $x=5$. El $2$ es el valor de $y$. El $3$ es el término independiente de la segunda ecuación. El $4.5$ es $9\\div2$ sin resolver el sistema.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Método de sustitución",
+          "content": "Se despeja una variable en la ecuación más simple ($x=y+3$) y se sustituye en la otra para obtener una ecuación con una sola incógnita."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $x-y=3\\Rightarrow x=y+3$. 2) $(y+3)+2y=9$. 3) $3y=6\\Rightarrow y=2$. 4) $x=2+3=5$. Si respondiste $2$ diste el valor de $y$; si respondiste $4.5$ dividiste $9$ entre $2$ sin usar la otra ecuación.",
+          "latexContent": "x = y + 3 \\\\ (y+3) + 2y = 9 \\;\\Rightarrow\\; 3y = 6 \\;\\Rightarrow\\; y = 2 \\\\ x = 2 + 3 = 5"
+        },
+        {
+          "layer": 3,
+          "title": "Sistemas de ecuaciones lineales",
+          "content": "Se resuelven por sustitución, igualación, suma-resta (eliminación) o determinantes. Conviene revisar QUÉ variable pide el problema. Repasa: métodos de solución de sistemas $2\\times2$ y comprobación."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8ivuu000g2zii9tfjy718",
+      "tag": "MS1",
+      "topic": "Matrices y sistemas",
+      "topicId": "cmrr1l0vj009vhi3ntaaehqnc",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "B",
+      "correctValue": 2,
+      "insertOrderIndex": 27,
+      "stem": "¿Cuál es el determinante de la matriz $\\begin{pmatrix} 3 & 5 \\\\ 2 & 4 \\end{pmatrix}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-2$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$7$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$22$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Para $\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ el determinante es $ad-bc=3\\cdot4-5\\cdot2=12-10=2$. El $-2$ calcula $bc-ad$ (orden invertido). El $7$ suma la diagonal principal $3+4$. El $22$ suma los productos $3\\cdot4+5\\cdot2$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Determinante de una matriz $2\\times2$",
+          "content": "Es el producto de la diagonal principal menos el producto de la diagonal secundaria: $ad-bc$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Diagonal principal: $3\\cdot4=12$. 2) Diagonal secundaria: $5\\cdot2=10$. 3) $12-10=2$. Si obtuviste $22$ sumaste en vez de restar; si obtuviste $-2$ invertiste el orden a $bc-ad$.",
+          "latexContent": "\\det\\begin{pmatrix} 3 & 5 \\\\ 2 & 4 \\end{pmatrix} = (3)(4) - (5)(2) = 12 - 10 = 2"
+        },
+        {
+          "layer": 3,
+          "title": "Determinantes",
+          "content": "El determinante $2\\times2$ es la base para resolver sistemas por la regla de Cramer y para saber si una matriz es invertible ($\\det\\neq0$). Repasa: cálculo de determinantes $2\\times2$ y $3\\times3$."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8izz100014t996niiolop",
+      "tag": "CP1",
+      "topic": "Combinatoria y probabilidad",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "B",
+      "correctValue": 210,
+      "insertOrderIndex": 28,
+      "stem": "¿De cuántas maneras se puede formar una fila con $3$ de $7$ estudiantes, si el orden en que se colocan importa?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$35$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$210$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$343$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$5040$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Como el orden importa y no hay repetición, son permutaciones: $P(7,3)=7\\cdot6\\cdot5=210$. El $35$ es $\\binom{7}{3}$ (combinaciones, sin orden). El $343$ es $7^3$ (permitiría repetir estudiante). El $5040$ es $7!$ (ordena a los siete).",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Permutaciones de $3$ entre $7$",
+          "content": "Para el primer lugar hay $7$ opciones, para el segundo $6$ y para el tercero $5$: $7\\cdot6\\cdot5=210$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) El orden en la fila importa $\\Rightarrow$ permutaciones. 2) Sin repetir personas: $7\\cdot6\\cdot5$. 3) $=210$. Si obtuviste $35$ usaste combinaciones; si obtuviste $5040$ calculaste $7!$ en vez de $\\dfrac{7!}{4!}$.",
+          "latexContent": "P(7,3) = \\dfrac{7!}{(7-3)!} = 7 \\cdot 6 \\cdot 5 = 210"
+        },
+        {
+          "layer": 3,
+          "title": "Permutaciones y combinaciones",
+          "content": "Si el orden distingue los arreglos, se usan permutaciones $\\dfrac{n!}{(n-r)!}$; si no, combinaciones $\\dfrac{n!}{r!(n-r)!}$. Repasa: principio multiplicativo, permutaciones y combinaciones."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8j0mz00064t992ird5jcc",
+      "tag": "CP2",
+      "topic": "Combinatoria y probabilidad",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "A",
+      "correctValue": 0.027777777777777776,
+      "insertOrderIndex": 29,
+      "stem": "Se lanza un dado justo dos veces. ¿Cuál es la probabilidad de obtener un $6$ en ambos lanzamientos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{1}{36}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{1}{12}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{1}{6}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{1}{3}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Los lanzamientos son independientes, así que las probabilidades se multiplican: $\\dfrac{1}{6}\\cdot\\dfrac{1}{6}=\\dfrac{1}{36}$. $\\dfrac{1}{12}$ suma $\\dfrac{1}{6}+\\dfrac{1}{6}$. $\\dfrac{1}{6}$ es un solo lanzamiento. $\\dfrac{1}{3}$ es $\\dfrac{2}{6}$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Eventos independientes",
+          "content": "El resultado de un dado no afecta al otro. La probabilidad de que ocurran ambos ($6$ y $6$) es el producto de sus probabilidades."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $P(6)=\\dfrac{1}{6}$ en cada lanzamiento. 2) Independientes $\\Rightarrow$ se multiplican. 3) $\\dfrac{1}{6}\\cdot\\dfrac{1}{6}=\\dfrac{1}{36}$. Si obtuviste $\\dfrac{1}{12}$ sumaste en vez de multiplicar; si obtuviste $\\dfrac{1}{3}$ contaste el doble de casos favorables.",
+          "latexContent": "P(6 \\text{ y } 6) = P(6)\\cdot P(6) = \\dfrac{1}{6}\\cdot\\dfrac{1}{6} = \\dfrac{1}{36}"
+        },
+        {
+          "layer": 3,
+          "title": "Probabilidad de eventos compuestos",
+          "content": "Para dos eventos independientes, la probabilidad de que ocurran ambos es el producto de sus probabilidades. Sumar probabilidades corresponde a eventos mutuamente excluyentes (que ocurra uno u otro, no los dos). Repasa: probabilidad de la intersección y de la unión de eventos."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8j1au000b4t99etftwbjh",
+      "tag": "CP3",
+      "topic": "Combinatoria y probabilidad",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "B",
+      "correctValue": 0.4,
+      "insertOrderIndex": 30,
+      "stem": "En una caja hay $4$ focos buenos y $2$ defectuosos. Se extraen $2$ focos al azar, uno tras otro y sin reemplazo. ¿Cuál es la probabilidad de que ambos sean buenos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{1}{3}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\dfrac{2}{5}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{4}{9}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{2}{3}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Sin reemplazo: la probabilidad de que el primer foco sea bueno es $\\dfrac{4}{6}$ y, ya sacado uno, la del segundo es $\\dfrac{3}{5}$. $\\dfrac{4}{6}\\cdot\\dfrac{3}{5}=\\dfrac{12}{30}=\\dfrac{2}{5}$. $\\dfrac{4}{9}$ supone reemplazo ($\\dfrac{4}{6}\\cdot\\dfrac{4}{6}$). $\\dfrac{1}{3}$ no reduce el total en la segunda extracción ($\\dfrac{4}{6}\\cdot\\dfrac{3}{6}$). $\\dfrac{2}{3}$ solo considera la primera extracción.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Probabilidad sin reemplazo",
+          "content": "Al no devolver el primer foco, cambian tanto los casos favorables como el total: la probabilidad del segundo foco es condicional, $\\dfrac{3}{5}$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Probabilidad de que el primer foco sea bueno: $\\dfrac{4}{6}=\\dfrac{2}{3}$. 2) Quedan $3$ buenos de $5$, así que la probabilidad del segundo es $\\dfrac{3}{5}$. 3) $\\dfrac{2}{3}\\cdot\\dfrac{3}{5}=\\dfrac{2}{5}$. Si obtuviste $\\dfrac{4}{9}$ supusiste reemplazo; si obtuviste $\\dfrac{1}{3}$ no bajaste el denominador a $5$.",
+          "latexContent": "P = \\dfrac{4}{6}\\cdot\\dfrac{3}{5} = \\dfrac{12}{30} = \\dfrac{2}{5}"
+        },
+        {
+          "layer": 3,
+          "title": "Probabilidad condicional",
+          "content": "En extracciones sucesivas sin reemplazo, la probabilidad de cada etapa depende de lo ya ocurrido: la probabilidad de que ambas ocurran es la de la primera por la de la segunda calculada ya con un elemento menos. Repasa: probabilidad condicional y regla del producto."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8j1yr000g4t994626ybqn",
+      "tag": "CP4",
+      "topic": "Combinatoria y probabilidad",
+      "topicId": "cmrr1l1ej009xhi3nm9rpwlhs",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "kind": "numérico",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "D",
+      "correctValue": 24,
+      "insertOrderIndex": 31,
+      "stem": "Un restaurante ofrece $3$ entradas, $4$ platos fuertes y $2$ postres. ¿Cuántos menús distintos de una entrada, un plato fuerte y un postre se pueden armar?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$9$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$12$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$14$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$24$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": "Por el principio multiplicativo: $3\\cdot4\\cdot2=24$ menús. El $9$ suma $3+4+2$. El $12$ multiplica solo entradas y platos fuertes. El $14$ hace $3\\cdot4$ y luego suma $2$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Principio multiplicativo",
+          "content": "Si una decisión se toma en etapas independientes, el total de resultados es el producto del número de opciones de cada etapa: $3\\cdot4\\cdot2$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Entradas: $3$. 2) Por cada una, $4$ platos fuertes: $3\\cdot4=12$. 3) Por cada combinación, $2$ postres: $12\\cdot2=24$. Si obtuviste $9$ sumaste las opciones; si obtuviste $14$ multiplicaste dos etapas y sumaste la tercera.",
+          "latexContent": "3 \\times 4 \\times 2 = 24"
+        },
+        {
+          "layer": 3,
+          "title": "Conteo por etapas",
+          "content": "El principio multiplicativo (o regla del producto) es la base del conteo: se multiplican las opciones de cada paso, no se suman. Repasa: principio fundamental del conteo y diagramas de árbol."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8j68e0001famrqs6pelsw",
+      "tag": "SS1",
+      "topic": "Sucesiones y series",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "difficulty": "INTERMEDIATE",
+      "format": "NUMERIC_SERIES",
+      "kind": "expresión",
+      "grounding": "SOURCED",
+      "sourceChunkRef": "uam_cad.pdf p. 18",
+      "correctPosition": "B",
+      "correctValue": null,
+      "insertOrderIndex": 32,
+      "stem": "Los términos de una sucesión aritmética son $32, 34, 36, 38, 40, \\ldots$ ¿Cuál expresión representa el término que ocupa la posición $n$ (con $n = 1$ para el primer término)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$2n$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2n + 30$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$2n + 32$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$32n$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Es una sucesión aritmética con primer término $a_1=32$ y diferencia $d=2$. El término general es $a_n=a_1+(n-1)d=32+2(n-1)=2n+30$. $2n$ usa solo la diferencia e ignora el término inicial. $2n+32$ suma $a_1$ en vez de $a_1-d=30$. $32n$ multiplica el primer término por $n$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Término general de una sucesión aritmética",
+          "content": "$a_n=a_1+(n-1)d$. Con $a_1=32$ y $d=2$: $a_n=32+2(n-1)=32+2n-2=2n+30$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Diferencia común: $34-32=2$, así que $d=2$. 2) $a_n=a_1+(n-1)d=32+(n-1)(2)$. 3) Desarrolla: $32+2n-2=2n+30$. Comprobación: $n=1\\Rightarrow2+30=32$; $n=5\\Rightarrow10+30=40$. Si obtuviste $2n+32$ no restaste una diferencia; si obtuviste $2n$ olvidaste el término inicial.",
+          "latexContent": "a_n = a_1 + (n-1)d = 32 + (n-1)(2) = 32 + 2n - 2 = 2n + 30"
+        },
+        {
+          "layer": 3,
+          "title": "Sucesiones aritméticas",
+          "content": "Tienen diferencia constante entre términos consecutivos. El término general es lineal en $n$: $a_n=dn+(a_1-d)$. Verifica siempre con $n=1$ y $n=2$. Repasa: término general y suma de una progresión aritmética."
+        }
+      ],
+      "sourceChunks": [
+        "cmrsroinh002e13b359s8ricu"
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 18"
+      ]
+    },
+    {
+      "questionId": "cmth8j71m0006famr1zjx4ult",
+      "tag": "SS2",
+      "topic": "Sucesiones y series",
+      "topicId": "cmrr1l1vr009zhi3ns2t44soo",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "conceptual",
+      "grounding": "SOURCED",
+      "sourceChunkRef": "uam_cad.pdf p. 18",
+      "correctPosition": "A",
+      "correctValue": null,
+      "insertOrderIndex": 33,
+      "stem": "La sucesión $32, 34, 36, 38, 40, \\ldots$ es una sucesión aritmética. ¿Qué característica la define como aritmética y no como geométrica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La diferencia entre un término y el anterior se mantiene constante.",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El cociente entre cada término y el término que lo precede se mantiene constante.",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Todos los términos de la sucesión resultan ser números pares.",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cada término es estrictamente mayor que el término que lo antecede.",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Una sucesión es aritmética cuando la DIFERENCIA entre términos consecutivos es constante ($34-32=36-34=\\dots=2$). El cociente constante define una sucesión geométrica. Que los términos sean pares o que la sucesión crezca son rasgos de este ejemplo, pero no la definen como aritmética.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Diferencia constante",
+          "content": "El rasgo que distingue a una sucesión aritmética de una geométrica es que se pasa de un término al siguiente SUMANDO siempre la misma cantidad (la diferencia común), no multiplicando."
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) Diferencia constante $\\to$ aritmética: es la definición. 2) Cociente constante $\\to$ geométrica. 3) 'Todos pares' es cierto aquí pero $31,33,35,\\dots$ también es aritmética. 4) 'Creciente' tampoco define: $40,38,36,\\dots$ es aritmética decreciente.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Sucesiones aritméticas vs. geométricas",
+          "content": "Aritmética: término siguiente = anterior + $d$. Geométrica: término siguiente = anterior $\\times r$. Una propiedad que comparten muchos ejemplos (paridad, monotonía) no es una definición. Repasa: clasificación de sucesiones."
+        }
+      ],
+      "sourceChunks": [
+        "cmrsroinh002e13b359s8ricu"
+      ],
+      "sourceChunkRefs": [
+        "uam_cad.pdf p. 18"
+      ]
+    },
+    {
+      "questionId": "cmth8jbb50001sshtl8vu9rm4",
+      "tag": "NC2",
+      "topic": "Números complejos",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "A",
+      "correctValue": null,
+      "insertOrderIndex": 34,
+      "stem": "Si $i$ es la unidad imaginaria ($i^2 = -1$), ¿cuál es el valor de $i^{15}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$-i$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$-1$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$i$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Las potencias de $i$ se repiten en ciclo de $4$: $i^1=i$, $i^2=-1$, $i^3=-i$, $i^4=1$. Como $15=4\\cdot3+3$, $i^{15}=i^3=-i$. El $i$ resulta de creer que $i^3=i$. El $-1$ toma $i^3=i^2=-1$ (pierde un factor $i$). El $1$ usa residuo $0$ en vez de $3$.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Ciclo de las potencias de $i$",
+          "content": "$i$ elevado a un entero solo puede valer $i$, $-1$, $-i$ o $1$, según el residuo del exponente al dividir entre $4$. $15\\bmod4=3$, y $i^3=-i$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $i^4=1$. 2) $i^{15}=i^{12}\\cdot i^3=(i^4)^3\\cdot i^3=1\\cdot i^3$. 3) $i^3=i^2\\cdot i=(-1)(i)=-i$. Si obtuviste $-1$ te detuviste en $i^2$; si obtuviste $1$ usaste residuo $0$ (pero $15=4\\cdot3+3$).",
+          "latexContent": "i^{15} = i^{4\\cdot 3 + 3} = (i^4)^3 \\cdot i^3 = 1 \\cdot (i^2 \\cdot i) = (-1)(i) = -i"
+        },
+        {
+          "layer": 3,
+          "title": "Potencias de la unidad imaginaria",
+          "content": "$i^n$ se calcula reduciendo $n$ módulo $4$. Es útil para simplificar expresiones con complejos y para las raíces de la unidad. Repasa: definición de $i$, potencias cíclicas y forma binómica."
+        }
+      ]
+    },
+    {
+      "questionId": "cmth8jbz70006ssht96rcj08r",
+      "tag": "NC1",
+      "topic": "Números complejos",
+      "topicId": "cmrr1l2f500a1hi3nanpwcnyb",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "kind": "expresión",
+      "grounding": "TEMARIO_ONLY",
+      "sourceChunkRef": null,
+      "correctPosition": "C",
+      "correctValue": null,
+      "insertOrderIndex": 35,
+      "stem": "¿Cuál es el resultado de $\\dfrac{1}{2 + i}$, expresado en la forma $a + bi$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\dfrac{1}{2} - i$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2 - i$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\dfrac{2}{5} - \\dfrac{1}{5}i$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$\\dfrac{2}{5} + \\dfrac{1}{5}i$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": "Se multiplica numerador y denominador por el conjugado $2-i$: $\\dfrac{1}{2+i}\\cdot\\dfrac{2-i}{2-i}=\\dfrac{2-i}{4+1}=\\dfrac{2-i}{5}=\\dfrac{2}{5}-\\dfrac{1}{5}i$. $\\dfrac{2}{5}+\\dfrac{1}{5}i$ multiplica por $2+i$ en vez del conjugado. $2-i$ olvida dividir entre $|2+i|^2=5$. $\\dfrac{1}{2}-i$ separa la fracción término a término.",
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "División por el conjugado",
+          "content": "Para escribir un cociente de complejos en la forma $a+bi$ se multiplica por el conjugado del denominador, que vuelve real el denominador: $(2+i)(2-i)=4+1=5$."
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Conjugado del denominador: $2-i$. 2) $\\dfrac{1\\cdot(2-i)}{(2+i)(2-i)}=\\dfrac{2-i}{4-i^2}=\\dfrac{2-i}{5}$. 3) Separa: $\\dfrac{2}{5}-\\dfrac{1}{5}i$. Si obtuviste $\\dfrac{2}{5}+\\dfrac{1}{5}i$ usaste $2+i$; si obtuviste $2-i$ no dividiste entre $5$.",
+          "latexContent": "\\dfrac{1}{2+i} = \\dfrac{1}{2+i}\\cdot\\dfrac{2-i}{2-i} = \\dfrac{2-i}{4 - i^2} = \\dfrac{2-i}{5} = \\dfrac{2}{5} - \\dfrac{1}{5}i"
+        },
+        {
+          "layer": 3,
+          "title": "Operaciones con números complejos",
+          "content": "El conjugado de $a+bi$ es $a-bi$, y $(a+bi)(a-bi)=a^2+b^2$ es real. Ese es el truco para dividir complejos. Repasa: conjugado, módulo y división de números complejos."
+        }
+      ]
+    }
+  ]
+}
