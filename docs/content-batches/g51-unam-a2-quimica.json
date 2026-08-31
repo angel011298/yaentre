@@ -1,0 +1,2536 @@
+{
+  "batch": "G51",
+  "phase": "G51 — Lote de reactivos: Química, UNAM Área 2 (Ciencias Biológicas, Químicas y de la Salud)",
+  "generatedAt": "2026-08-31",
+  "model": "claude-sonnet-5 — sesión de Claude Code (suscripción), sin API de pago. El Plan de Implementación asigna el tier Sonnet a los lotes de contenido; el campo declara el modelo real (corrección de G17).",
+  "institution": "UNAM",
+  "exam": "Concurso de Selección Licenciatura 2027",
+  "area": "Área 2 — Ciencias Biológicas, Químicas y de la Salud",
+  "subject": "Química",
+  "subjectId": "cmrr1jq55003shi3nanr7cmtm",
+  "questionWeight": 8,
+  "sharedContentKey": "UNAM:QUIMICA",
+  "shared": true,
+  "sharedNote": "Materia compartida UNAM:QUIMICA (A1 w12 + A2 w8). Regla G26 §2 / CLAUDE.md: el lote se compone contra los temas de la materia con más contenido del grupo — A2 tenía 72 verificados frente a 51 de A1 — y la reutilización lo sirve también a A1. El pool combinado (123) ya rebasa la meta efectiva G26 del grupo (67), así que estos 35 dan profundidad, no cierran brecha efectiva.",
+  "totalQuestions": 35,
+  "insertionOrder": {
+    "topicOrder": [
+      "Estructura atómica",
+      "Tabla periódica",
+      "Ácidos y bases",
+      "Reacciones orgánicas",
+      "Enlace químico",
+      "Equilibrio químico"
+    ],
+    "keySequenceById": "ABDBDCDCBAACCBDBABADCBCBCADADACADBC"
+  },
+  "positionDistribution": {
+    "A": 9,
+    "B": 9,
+    "C": 9,
+    "D": 8
+  },
+  "formatDistribution": {
+    "MULTIPLE_CHOICE": 22,
+    "PROBLEM_SOLVING": 11,
+    "SENTENCE_COMPLETION": 2
+  },
+  "difficultyDistribution": {
+    "ADVANCED": 9,
+    "BASIC": 7,
+    "EXPERT": 2,
+    "INTERMEDIATE": 17
+  },
+  "grounding": {
+    "TEMARIO_ONLY": 35,
+    "SOURCED": 0
+  },
+  "calcVerified": {
+    "numericItems": [
+      "EA2",
+      "EA5",
+      "TP3",
+      "AB2",
+      "AB4",
+      "AB1",
+      "AB5",
+      "OR6",
+      "OR4",
+      "EQ2"
+    ],
+    "method": "Python (math/Fraction): masa atómica promedio ponderada, moles y nº de partículas, % composición isotópica, suma de coeficientes de combustión, masa de producto por estequiometría mol-masa, Kc, pH = -log[H+], pOH y [OH-] vía Kw, volumen de titulación 1:1, dilución M1V1=M2V2. Para cada uno: coincidencia con la clave, coincidencia ÚNICA contra las 4 opciones y opciones numéricas en orden ascendente.",
+    "result": "10/10 en verde"
+  },
+  "formChecks": {
+    "lotValidation": "content:validate-batch --dir: 0 violaciones (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), y de nuevo como paso obligatorio de content:insert --lot-dir sobre los 6 archivos.",
+    "letterCitations": 0,
+    "cyclicKeyRun>=3": false,
+    "maxSameLetterRun": 2,
+    "lengthDecoyTieAware": {
+      "pickLongestPct": 12.3,
+      "pickShortestPct": 23.7,
+      "rankHist_1to4": [
+        3,
+        6,
+        6,
+        4
+      ],
+      "measuredOverSentenceOptionItems": 19
+    },
+    "absolutism": {
+      "perKey": 0.0,
+      "perDistractor": 0.0,
+      "keyOnlyMarkerFree": 0
+    },
+    "interItem4gramLeak": 0
+  },
+  "perTopic": {
+    "Estructura atómica": {
+      "topicId": "cmrr1jq8d003uhi3no2ng7syr",
+      "count": 6,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Tabla periódica": {
+      "topicId": "cmrr1jqwi003whi3n0b98ca98",
+      "count": 5,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Ácidos y bases": {
+      "topicId": "cmrr1jt050044hi3nw1kv4oq4",
+      "count": 6,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Reacciones orgánicas": {
+      "topicId": "cmrr1jrw70040hi3n0616pez7",
+      "count": 6,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Enlace químico": {
+      "topicId": "cmrr1jrea003yhi3no3ujdhrq",
+      "count": 6,
+      "grounding": "TEMARIO_ONLY"
+    },
+    "Equilibrio químico": {
+      "topicId": "cmrr1jsii0042hi3nbcx4wu7m",
+      "count": 6,
+      "grounding": "TEMARIO_ONLY"
+    }
+  },
+  "questions": [
+    {
+      "tag": "EA2",
+      "questionId": "cmtgttvnp0001l7g83surn2m5",
+      "topic": "Estructura atómica",
+      "topicId": "cmrr1jq8d003uhi3no2ng7syr",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "El cobre natural es una mezcla de $^{63}\\text{Cu}$ (masa 62.93 u, abundancia 69.2 %) y $^{65}\\text{Cu}$ (masa 64.93 u, abundancia 30.8 %). ¿Cuál es la masa atómica promedio del cobre?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$63.55\\ \\text{u}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$63.93\\ \\text{u}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$64.31\\ \\text{u}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$127.86\\ \\text{u}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$63.93\\ \\text{u}$",
+          "note": "sacó el promedio aritmético simple de las dos masas, $(62.93+64.93)/2$, sin usar las abundancias"
+        },
+        {
+          "text": "$64.31\\ \\text{u}$",
+          "note": "intercambió las abundancias y multiplicó 62.93 por 30.8\\% y 64.93 por 69.2\\%"
+        },
+        {
+          "text": "$127.86\\ \\text{u}$",
+          "note": "sumó las dos masas isotópicas en vez de promediarlas ponderadamente"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La masa atómica es un promedio ponderado por abundancia",
+          "content": "La masa atómica que aparece en la tabla periódica es el promedio de las masas de los isótopos, ponderado por la fracción con que cada uno se presenta en la naturaleza: $0.692\\times62.93 + 0.308\\times64.93 = 63.55\\ \\text{u}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Convierte los porcentajes a fracciones: 0.692 y 0.308. 2) Multiplica cada masa por su fracción: $0.692\\times62.93=43.55$ y $0.308\\times64.93=20.00$. 3) Suma: $43.55+20.00=63.55\\ \\text{u}$. Si obtuviste 63.93, promediaste sin ponderar; si obtuviste 127.86, sumaste las masas.",
+          "latexContent": "\\bar{M} = 0.692(62.93) + 0.308(64.93) = 43.55 + 20.00 = 63.55\\ \\text{u}"
+        },
+        {
+          "layer": 3,
+          "title": "Isótopos y masa atómica",
+          "content": "Los isótopos de un elemento tienen el mismo número de protones pero distinto número de neutrones, y por tanto distinta masa. Repasa: cálculo de masa atómica promedio y lectura de abundancias isotópicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EA1",
+      "questionId": "cmtgttwft0006l7g8r27ocb56",
+      "topic": "Estructura atómica",
+      "topicId": "cmrr1jq8d003uhi3no2ng7syr",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "El ion calcio $\\text{Ca}^{2+}$ proviene de un átomo con número atómico 20 y número de masa 40. ¿Cuántos electrones, protones y neutrones tiene el ion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "20 electrones, 20 protones y 20 neutrones",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "18 electrones, 20 protones y 20 neutrones",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "22 electrones, 20 protones y 20 neutrones",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "18 electrones, 20 protones y 40 neutrones",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "20 electrones, 20 protones y 20 neutrones",
+          "note": "trató el ion como un átomo neutro y no restó los 2 electrones que corresponden a la carga 2+"
+        },
+        {
+          "text": "22 electrones, 20 protones y 20 neutrones",
+          "note": "sumó 2 electrones, como si la carga positiva significara ganancia de electrones"
+        },
+        {
+          "text": "18 electrones, 20 protones y 40 neutrones",
+          "note": "tomó el número de masa (40) como número de neutrones en vez de restarle el número atómico"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Un catión 2+ ha perdido 2 electrones",
+          "content": "El número de masa es protones + neutrones. Un ion $\\text{Ca}^{2+}$ tiene la misma cantidad de protones y neutrones que el átomo neutro; solo cambió su número de electrones: perdió 2. Por eso queda con 18 electrones, 20 protones y $40-20=20$ neutrones.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Protones $=Z=20$ (define al elemento y no cambia al formarse el ion). 2) Neutrones $=A-Z=40-20=20$. 3) El átomo neutro tendría 20 electrones; la carga $2+$ indica que perdió 2, así que quedan $20-2=18$. Si respondiste 20 electrones, olvidaste aplicar la carga; si respondiste 22, sumaste en vez de restar.",
+          "latexContent": "p = Z = 20 \\\\ n = A - Z = 40 - 20 = 20 \\\\ e^- = 20 - 2 = 18"
+        },
+        {
+          "layer": 3,
+          "title": "Iones y partículas subatómicas",
+          "content": "Un catión se forma cuando un átomo pierde electrones y un anión cuando los gana; los protones y neutrones del núcleo no cambian en estos procesos. Repasa: número atómico, número de masa, formación de iones y carga eléctrica.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EA3",
+      "questionId": "cmtgttx7f000bl7g8ky4bdfsq",
+      "topic": "Estructura atómica",
+      "topicId": "cmrr1jq8d003uhi3no2ng7syr",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "El azufre tiene número atómico 16. ¿Cuál es la configuración electrónica del ion sulfuro $\\text{S}^{2-}$ en su estado basal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^4$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^2$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6\\,4s^2$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^4$",
+          "note": "escribió la configuración del azufre neutro y no agregó los 2 electrones que gana el anión"
+        },
+        {
+          "text": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^2$",
+          "note": "quitó 2 electrones, como si el ion sulfuro fuera un catión"
+        },
+        {
+          "text": "$1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6\\,4s^2$",
+          "note": "acomodó los 2 electrones ganados en el subnivel 4s en lugar de completar primero el 3p"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El ion sulfuro tiene 18 electrones",
+          "content": "El átomo neutro de azufre tiene 16 electrones. El ion $\\text{S}^{2-}$ ganó 2, así que tiene 18 y su configuración es $1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6$, isoelectrónica con el argón.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $\\dots3p^4$ tiene solo 16 electrones: es el azufre neutro, no el ion. 2) $\\dots3p^2$ tiene 14 electrones: correspondería a haber perdido 2, no ganado. 3) $\\dots3p^6\\,4s^2$ tiene 20 electrones y además viola el orden de llenado, porque el 3p debe completarse antes que el 4s. La correcta completa el 3p hasta $3p^6$ y suma 18 electrones.",
+          "latexContent": "S: 16\\,e^- \\quad\\Rightarrow\\quad S^{2-}: 18\\,e^- = 1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^6"
+        },
+        {
+          "layer": 3,
+          "title": "Configuración electrónica de iones",
+          "content": "Para un anión se agregan electrones siguiendo el orden de llenado (principio de Aufbau); para un catión se retiran primero los del nivel de energía más alto. Repasa: principio de Aufbau, regla de Hund y especies isoelectrónicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EA4",
+      "questionId": "cmtgttxz3000gl7g88h9y2r7n",
+      "topic": "Estructura atómica",
+      "topicId": "cmrr1jq8d003uhi3no2ng7syr",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "usedCalculation": false,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "El número cuántico que determina la forma del orbital es el ________; el que determina la orientación del orbital en el espacio es el ________.",
+      "options": [
+        {
+          "id": "A",
+          "text": "principal o de nivel ($n$); azimutal o secundario ($l$)",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "secundario o azimutal ($l$); magnético ($m_l$)",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "magnético ($m_l$); de espín o giro del electrón ($m_s$)",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "principal ($n$); magnético ($m_l$)",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "principal o de nivel ($n$); azimutal o secundario ($l$)",
+          "note": "asignó a $n$ la forma, cuando $n$ fija el tamaño y el nivel de energía del orbital"
+        },
+        {
+          "text": "magnético ($m_l$); de espín o giro del electrón ($m_s$)",
+          "note": "confundió: $m_l$ da la orientación, no la forma, y $m_s$ describe el giro del electrón, no una orientación espacial"
+        },
+        {
+          "text": "principal ($n$); magnético ($m_l$)",
+          "note": "atribuyó la forma a $n$; la forma la fija el número cuántico secundario"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada número cuántico describe un rasgo distinto del orbital",
+          "content": "El número cuántico principal ($n$) fija el nivel y el tamaño; el secundario o azimutal ($l$) fija la forma (s, p, d, f); el magnético ($m_l$) fija la orientación en el espacio; el de espín ($m_s$) describe el giro del electrón.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Descarta las opciones que ponen $n$ para la forma: $n$ solo dice en qué nivel está el orbital. 2) La forma (esfera para s, lóbulos para p) la da $l$. 3) Cómo está girado ese orbital respecto a los ejes lo da $m_l$. Quien elige $m_l$ para la forma confunde orientación con forma.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Números cuánticos",
+          "content": "Los cuatro números cuánticos ($n$, $l$, $m_l$, $m_s$) identifican de manera única a cada electrón de un átomo. Repasa: significado físico de cada número cuántico y su relación con los subniveles s, p, d, f.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EA6",
+      "questionId": "cmtgttyqt000ll7g8e0o7qin7",
+      "topic": "Estructura atómica",
+      "topicId": "cmrr1jq8d003uhi3no2ng7syr",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "Dos átomos que tienen el mismo número de neutrones pero distinto número atómico se denominan:",
+      "options": [
+        {
+          "id": "A",
+          "text": "isótopos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "isóbaros",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "iones isoelectrónicos",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "isótonos",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "isótopos",
+          "note": "los isótopos comparten el número atómico (son el mismo elemento) y difieren en el número de neutrones"
+        },
+        {
+          "text": "isóbaros",
+          "note": "los isóbaros comparten el número de masa, no el de neutrones, y tienen distinto número atómico"
+        },
+        {
+          "text": "iones isoelectrónicos",
+          "note": "las especies isoelectrónicas comparten el número de electrones, no el de neutrones"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Isótonos: igual número de neutrones",
+          "content": "El prefijo 'iso-' indica igualdad. Los isótonos son átomos de elementos distintos ($Z$ diferente) que coinciden en el número de neutrones, por ejemplo $^{13}_{6}\\text{C}$ y $^{14}_{7}\\text{N}$, ambos con 7 neutrones.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Isótopos' exige el mismo $Z$: son variantes del mismo elemento, no de elementos distintos. 2) 'Isóbaros' exige el mismo número de masa $A$. 3) 'Isoelectrónicos' exige el mismo número de electrones. Solo 'isótonos' describe la coincidencia en neutrones con $Z$ distinto.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Relaciones entre núcleos atómicos",
+          "content": "Isótopos (igual $Z$), isóbaros (igual $A$) e isótonos (igual $N$) clasifican a los núcleos según qué magnitud comparten. Repasa: notación $^{A}_{Z}X$ y cálculo de neutrones como $A-Z$.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EA5",
+      "questionId": "cmtgttzie000ql7g89jfsarx3",
+      "topic": "Estructura atómica",
+      "topicId": "cmrr1jq8d003uhi3no2ng7syr",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "¿Cuántos protones hay en total en $0.50\\ \\text{mol}$ de moléculas de amoniaco, $\\text{NH}_3$? (Número de Avogadro $= 6.0\\times10^{23}\\ \\text{mol}^{-1}$)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$3.0\\times10^{23}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$2.4\\times10^{24}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$3.0\\times10^{24}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$6.0\\times10^{24}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$3.0\\times10^{23}$",
+          "note": "contó el número de moléculas ($0.50\\times6.0\\times10^{23}$) y no lo multiplicó por los protones de cada molécula"
+        },
+        {
+          "text": "$2.4\\times10^{24}$",
+          "note": "contó solo 8 protones por molécula, olvidando uno de los tres átomos de hidrógeno"
+        },
+        {
+          "text": "$6.0\\times10^{24}$",
+          "note": "usó 1.0 mol en lugar de los 0.50 mol del enunciado"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Cada molécula de $\\text{NH}_3$ tiene 10 protones",
+          "content": "El nitrógeno aporta 7 protones y cada hidrógeno 1, así que una molécula de $\\text{NH}_3$ tiene 10 protones. En $0.50\\ \\text{mol}$ hay $0.50\\times6.0\\times10^{23}=3.0\\times10^{23}$ moléculas, y $3.0\\times10^{23}\\times10 = 3.0\\times10^{24}$ protones.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Protones por molécula: $Z(\\text{N})+3\\,Z(\\text{H}) = 7+3 = 10$. 2) Moléculas en 0.50 mol: $0.50\\times6.0\\times10^{23}=3.0\\times10^{23}$. 3) Protones totales: $3.0\\times10^{23}\\times10=3.0\\times10^{24}$. Si obtuviste $3.0\\times10^{23}$, te quedaste en el número de moléculas.",
+          "latexContent": "N_{\\text{prot}} = (0.50\\ \\text{mol})(6.0\\times10^{23}\\ \\text{mol}^{-1})(10) = 3.0\\times10^{24}"
+        },
+        {
+          "layer": 3,
+          "title": "El mol como puente entre lo macroscópico y lo atómico",
+          "content": "El mol permite pasar de una cantidad de sustancia a un número de partículas y, de ahí, a un número de partículas subatómicas. Repasa: número de Avogadro, cálculo de partículas y composición atómica de una molécula.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "TP5",
+      "questionId": "cmtgtu6a50001cop4ly50htbp",
+      "topic": "Tabla periódica",
+      "topicId": "cmrr1jqwi003whi3n0b98ca98",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "Ordena los siguientes elementos de menor a mayor electronegatividad: oxígeno ($\\text{O}$), flúor ($\\text{F}$), azufre ($\\text{S}$) y selenio ($\\text{Se}$).",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\text{F} < \\text{O} < \\text{S} < \\text{Se}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\text{O} < \\text{F} < \\text{S} < \\text{Se}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\text{S} < \\text{Se} < \\text{O} < \\text{F}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\text{Se} < \\text{S} < \\text{O} < \\text{F}$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$\\text{F} < \\text{O} < \\text{S} < \\text{Se}$",
+          "note": "invirtió la tendencia: supuso que la electronegatividad crece al bajar por el grupo, cuando disminuye"
+        },
+        {
+          "text": "$\\text{O} < \\text{F} < \\text{S} < \\text{Se}$",
+          "note": "ordenó por número atómico creciente en lugar de por electronegatividad"
+        },
+        {
+          "text": "$\\text{S} < \\text{Se} < \\text{O} < \\text{F}$",
+          "note": "invirtió el orden dentro del grupo 16: el selenio, más abajo, es menos electronegativo que el azufre"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La electronegatividad crece hacia arriba y hacia la derecha",
+          "content": "$\\text{F}$ es el elemento más electronegativo. En el grupo 16, $\\text{O}$ supera a $\\text{S}$ y este a $\\text{Se}$ (baja al descender). Y $\\text{O}$ (periodo 2) es más electronegativo que $\\text{S}$ (periodo 3). El orden creciente es $\\text{Se} < \\text{S} < \\text{O} < \\text{F}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) $\\text{F}<\\text{O}<\\text{S}<\\text{Se}$ pone al flúor como el menos electronegativo: es lo contrario de la realidad. 2) $\\text{O}<\\text{F}<\\text{S}<\\text{Se}$ sigue el número atómico, no la tendencia periódica. 3) $\\text{S}<\\text{Se}<\\dots$ invierte el grupo 16, donde bajar reduce la electronegatividad.",
+          "latexContent": "\\text{Se (2.55)} < \\text{S (2.58)} < \\text{O (3.44)} < \\text{F (3.98)}"
+        },
+        {
+          "layer": 3,
+          "title": "Tendencias periódicas: electronegatividad",
+          "content": "La electronegatividad mide la tendencia de un átomo a atraer los electrones de un enlace; crece hacia el flúor. Repasa: escala de Pauling, relación con el radio y con la energía de ionización.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "TP3",
+      "questionId": "cmtgtu71p0006cop4plbywmjn",
+      "topic": "Tabla periódica",
+      "topicId": "cmrr1jqwi003whi3n0b98ca98",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "El galio tiene dos isótopos: $^{69}\\text{Ga}$ (68.93 u) y $^{71}\\text{Ga}$ (70.92 u). Si la masa atómica promedio del galio es $69.72\\ \\text{u}$, ¿cuál es el porcentaje aproximado de $^{69}\\text{Ga}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$40\\%$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$50\\%$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$60\\%$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$69\\%$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$40\\%$",
+          "note": "calculó el porcentaje del isótopo pesado $^{71}\\text{Ga}$ y no el del ligero que pide el enunciado"
+        },
+        {
+          "text": "$50\\%$",
+          "note": "supuso que los dos isótopos tienen la misma abundancia, sin resolver la ecuación del promedio"
+        },
+        {
+          "text": "$69\\%$",
+          "note": "usó el número de masa 69 como si fuera directamente el porcentaje de abundancia"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Se plantea la ecuación del promedio ponderado y se despeja",
+          "content": "Si $x$ es la fracción de $^{69}\\text{Ga}$, entonces $68.93x + 70.92(1-x) = 69.72$. Al despejar, $x = (70.92-69.72)/(70.92-68.93) = 1.20/1.99 \\approx 0.60$, es decir $60\\%$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Escribe el promedio ponderado con una incógnita: $68.93x + 70.92(1-x) = 69.72$. 2) Desarrolla: $70.92 - 1.99x = 69.72$. 3) Despeja: $1.99x = 1.20$, $x = 0.603$. 4) Como porcentaje, $\\approx 60\\%$. Si respondiste $40\\%$, ese es el porcentaje del otro isótopo.",
+          "latexContent": "x = \\dfrac{70.92 - 69.72}{70.92 - 68.93} = \\dfrac{1.20}{1.99} \\approx 0.60 \\;\\Rightarrow\\; 60\\%"
+        },
+        {
+          "layer": 3,
+          "title": "Masa atómica y composición isotópica",
+          "content": "Conociendo la masa promedio y las masas de dos isótopos se puede recuperar su abundancia relativa resolviendo una ecuación lineal. Repasa: promedio ponderado, planteamiento con una incógnita y despeje.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "TP2",
+      "questionId": "cmtgtu7t8000bcop4jo20e7qf",
+      "topic": "Tabla periódica",
+      "topicId": "cmrr1jqwi003whi3n0b98ca98",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "¿Cuál de los siguientes elementos del tercer periodo tiene la mayor primera energía de ionización?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\text{Na}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\text{Ar}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$\\text{Al}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\text{S}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$\\text{Na}$",
+          "note": "el sodio es el átomo más grande del periodo y el que cede su electrón de valencia con más facilidad: tiene la menor energía de ionización"
+        },
+        {
+          "text": "$\\text{Al}$",
+          "note": "el aluminio tiene energía de ionización intermedia, menor que la del azufre y muy inferior a la del gas noble"
+        },
+        {
+          "text": "$\\text{S}$",
+          "note": "el azufre tiene alta energía de ionización, pero menor que la del argón, que ya tiene el octeto completo"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El gas noble del periodo cuesta más ionizar",
+          "content": "La energía de ionización crece a lo largo del periodo y alcanza su máximo en el gas noble, cuyo octeto completo lo hace muy estable. Entre $\\text{Na}$, $\\text{Al}$, $\\text{S}$ y $\\text{Ar}$, el argón tiene la mayor primera energía de ionización.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) El sodio, con un solo electrón de valencia sobre un octeto interno, lo suelta fácilmente: energía mínima. 2) El aluminio pierde su electrón $3p$ con relativa facilidad. 3) El azufre resiste más, pero el argón resiste todavía más porque quitarle un electrón rompe una configuración de gas noble.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tendencias periódicas: energía de ionización",
+          "content": "La energía de ionización aumenta hacia la derecha y hacia arriba en la tabla, con máximos en los gases nobles. Repasa: estabilidad del octeto, excepciones (grupos 2→13 y 15→16) y relación con el carácter metálico.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "TP1",
+      "questionId": "cmtgtu8kq000gcop495egzdgj",
+      "topic": "Tabla periódica",
+      "topicId": "cmrr1jqwi003whi3n0b98ca98",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "Al recorrer el tercer periodo de la tabla periódica de izquierda a derecha, del sodio ($\\text{Na}$) al cloro ($\\text{Cl}$), el radio atómico:",
+      "options": [
+        {
+          "id": "A",
+          "text": "disminuye, porque la carga nuclear efectiva sobre los electrones de valencia aumenta",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "aumenta, porque en cada elemento se añaden más electrones a la capa de valencia",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "permanece constante, porque el número de niveles de energía no cambia dentro del periodo",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "aumenta, porque también aumentan la masa y el número atómico del elemento",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "aumenta, porque en cada elemento se añaden más electrones a la capa de valencia",
+          "note": "los electrones se agregan al mismo nivel, sin crear una capa nueva; el aumento de carga nuclear domina y contrae el átomo"
+        },
+        {
+          "text": "permanece constante, porque el número de niveles de energía no cambia dentro del periodo",
+          "note": "aunque el número de capas no cambia, la mayor carga nuclear reduce el radio a lo largo del periodo"
+        },
+        {
+          "text": "aumenta, porque también aumentan la masa y el número atómico del elemento",
+          "note": "ni la masa ni el número atómico por sí mismos determinan el tamaño del átomo"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Más protones, mismo nivel: el átomo se contrae",
+          "content": "A lo largo de un periodo se añaden protones al núcleo y electrones a la misma capa. Como el apantallamiento casi no cambia, la carga nuclear efectiva crece y jala más fuerte a los electrones de valencia, por lo que el radio disminuye.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Aumenta porque se agregan electrones': se agregan al mismo nivel; no hay capa nueva que agrande el átomo. 2) 'Permanece constante': el número de capas se mantiene, pero la contracción por carga nuclear efectiva es medible. 3) 'Aumenta por la masa': la masa vive en el núcleo y no fija el radio.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Tendencias periódicas: radio atómico",
+          "content": "El radio atómico disminuye a lo largo de un periodo (aumenta $Z_{ef}$) y aumenta al bajar por un grupo (nuevas capas). Repasa: carga nuclear efectiva, apantallamiento y periodicidad de las propiedades.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "TP4",
+      "questionId": "cmtgtu9cc000lcop4vsu1wm37",
+      "topic": "Tabla periódica",
+      "topicId": "cmrr1jqwi003whi3n0b98ca98",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "Los elementos del grupo 17 (halógenos) se caracterizan por:",
+      "options": [
+        {
+          "id": "A",
+          "text": "tener 7 electrones de valencia y ganar 1 para formar aniones con carga $-1$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "tener un solo electrón de valencia y cederlo para formar cationes con carga $+1$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "ser elementos muy poco reactivos porque su capa de valencia ya está completa",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "tener 7 electrones de valencia y perderlos todos para formar cationes $+7$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "tener un solo electrón de valencia y cederlo para formar cationes con carga $+1$",
+          "note": "esa es la descripción de los metales alcalinos, el grupo 1, no de los halógenos"
+        },
+        {
+          "text": "ser elementos muy poco reactivos porque su capa de valencia ya está completa",
+          "note": "esa es la descripción de los gases nobles, el grupo 18"
+        },
+        {
+          "text": "tener 7 electrones de valencia y perderlos todos para formar cationes $+7$",
+          "note": "los halógenos completan el octeto ganando un electrón, no perdiendo siete"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Siete electrones de valencia, a uno del octeto",
+          "content": "Los halógenos ($\\text{F}$, $\\text{Cl}$, $\\text{Br}$, $\\text{I}$) tienen configuración de valencia $ns^2\\,np^5$: 7 electrones. Les falta uno para el octeto, así que son muy reactivos y forman aniones $X^-$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) '1 electrón de valencia, catión $+1$' corresponde a los alcalinos. 2) 'Gases inertes con capa completa' corresponde a los gases nobles. 3) 'Perder 7 electrones' es energéticamente inviable frente a ganar solo uno. La ruta real al octeto es ganar un electrón.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Grupos de la tabla periódica y electrones de valencia",
+          "content": "El número de grupo (notación 1-18) permite deducir los electrones de valencia y la carga iónica más probable. Repasa: alcalinos, alcalinotérreos, halógenos y gases nobles; regla del octeto.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "AB2",
+      "questionId": "cmtgtugg00001j7ewpgart1bf",
+      "topic": "Ácidos y bases",
+      "topicId": "cmrr1jt050044hi3nw1kv4oq4",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "Una disolución tiene pH $= 9$ a $25\\ ^\\circ\\text{C}$. ¿Cuál es su concentración de iones hidroxilo, $[\\text{OH}^-]$? ($K_w = 1.0\\times10^{-14}$)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1\\times10^{-9}\\ \\text{M}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$1\\times10^{-9}\\ \\text{M}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$1\\times10^{-5}\\ \\text{M}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$1\\times10^{-4}\\ \\text{M}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$1\\times10^{-14}\\ \\text{M}$",
+          "note": "tomó el valor de $K_w$ como si fuera directamente la concentración de hidroxilo"
+        },
+        {
+          "text": "$1\\times10^{-9}\\ \\text{M}$",
+          "note": "calculó $[\\text{H}^+]$ (el antilogaritmo del pH) en lugar de $[\\text{OH}^-]$"
+        },
+        {
+          "text": "$1\\times10^{-4}\\ \\text{M}$",
+          "note": "restó $13 - 9$ en vez de $14 - 9$ para obtener el pOH"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "$\\text{pOH} = 14 - \\text{pH}$, y $[\\text{OH}^-] = 10^{-\\text{pOH}}$",
+          "content": "Con pH $= 9$, el pOH es $14 - 9 = 5$. Entonces $[\\text{OH}^-] = 10^{-5}\\ \\text{M}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $\\text{pOH} = 14 - \\text{pH} = 14 - 9 = 5$. 2) $[\\text{OH}^-] = 10^{-\\text{pOH}} = 10^{-5}\\ \\text{M}$. Comprobación: $[\\text{H}^+][\\text{OH}^-] = 10^{-9}\\times10^{-5} = 10^{-14} = K_w$. Si obtuviste $10^{-9}$, calculaste $[\\text{H}^+]$.",
+          "latexContent": "\\text{pOH} = 14 - 9 = 5 \\quad\\Rightarrow\\quad [\\text{OH}^-] = 10^{-5}\\ \\text{M}"
+        },
+        {
+          "layer": 3,
+          "title": "Producto iónico del agua",
+          "content": "A 25 °C, $[\\text{H}^+][\\text{OH}^-] = K_w = 1.0\\times10^{-14}$ y $\\text{pH} + \\text{pOH} = 14$. Repasa: relación entre pH, pOH, $[\\text{H}^+]$ y $[\\text{OH}^-]$; disoluciones ácidas, neutras y básicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "AB4",
+      "questionId": "cmtgtuh7p0006j7ew6d3tafka",
+      "topic": "Ácidos y bases",
+      "topicId": "cmrr1jt050044hi3nw1kv4oq4",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "¿Qué volumen de $\\text{NaOH}$ $0.10\\ \\text{M}$ se necesita para neutralizar por completo $25\\ \\text{mL}$ de $\\text{HCl}$ $0.20\\ \\text{M}$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$12.5\\ \\text{mL}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$25\\ \\text{mL}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$50\\ \\text{mL}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$100\\ \\text{mL}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$12.5\\ \\text{mL}$",
+          "note": "invirtió la relación de concentraciones y multiplicó 25 mL por $0.10/0.20$"
+        },
+        {
+          "text": "$25\\ \\text{mL}$",
+          "note": "supuso que se requiere el mismo volumen sin notar que las concentraciones son distintas"
+        },
+        {
+          "text": "$100\\ \\text{mL}$",
+          "note": "aplicó una relación estequiométrica 1:2 en vez de la 1:1 que corresponde a $\\text{HCl} + \\text{NaOH}$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "En la neutralización 1:1, $\\text{mol}_{\\text{ácido}} = \\text{mol}_{\\text{base}}$",
+          "content": "Moles de $\\text{HCl}$: $0.025\\ \\text{L}\\times0.20\\ \\text{M} = 0.0050\\ \\text{mol}$. Como $\\text{HCl} + \\text{NaOH} \\rightarrow \\text{NaCl} + \\text{H}_2\\text{O}$ es 1:1, se necesitan $0.0050\\ \\text{mol}$ de $\\text{NaOH}$: $V = 0.0050 / 0.10 = 0.050\\ \\text{L} = 50\\ \\text{mL}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) $n_{\\text{HCl}} = V\\cdot M = 0.025\\times0.20 = 0.0050\\ \\text{mol}$. 2) Relación 1:1 $\\Rightarrow n_{\\text{NaOH}} = 0.0050\\ \\text{mol}$. 3) $V_{\\text{NaOH}} = n/M = 0.0050/0.10 = 0.050\\ \\text{L}$. Si obtuviste 12.5 mL, invertiste el cociente de concentraciones.",
+          "latexContent": "V_{\\text{NaOH}} = \\dfrac{n_{\\text{NaOH}}}{M_{\\text{NaOH}}} = \\dfrac{0.0050\\ \\text{mol}}{0.10\\ \\text{mol/L}} = 0.050\\ \\text{L} = 50\\ \\text{mL}"
+        },
+        {
+          "layer": 3,
+          "title": "Titulación ácido-base",
+          "content": "En el punto de equivalencia los moles de $\\text{H}^+$ igualan a los de $\\text{OH}^-$ (ajustando por la estequiometría del ácido y la base). Repasa: molaridad, moles = $V\\cdot M$ y estequiometría de neutralización.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "AB1",
+      "questionId": "cmtgtuhz5000bj7ewtpksp94v",
+      "topic": "Ácidos y bases",
+      "topicId": "cmrr1jt050044hi3nw1kv4oq4",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "¿Cuál es el pH de una disolución de ácido clorhídrico ($\\text{HCl}$) $0.001\\ \\text{M}$? (El $\\text{HCl}$ es un ácido fuerte y se ioniza por completo)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$1$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$3$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$4$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$11$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$1$",
+          "note": "leyó la concentración como $0.1\\ \\text{M}$ ($10^{-1}$), confundiendo el número de ceros"
+        },
+        {
+          "text": "$4$",
+          "note": "contó cuatro cifras decimales en 0.001 y usó el exponente $-4$"
+        },
+        {
+          "text": "$11$",
+          "note": "calculó el pOH ($-\\log[\\text{OH}^-]$ vía $\\text{p}K_w$) y no lo convirtió a pH"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "$\\text{pH} = -\\log[\\text{H}^+]$",
+          "content": "Como el $\\text{HCl}$ es fuerte, $[\\text{H}^+] = 0.001\\ \\text{M} = 1\\times10^{-3}\\ \\text{M}$. Entonces $\\text{pH} = -\\log(1\\times10^{-3}) = 3$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Un ácido fuerte se ioniza por entero, así que $[\\text{H}^+]$ es igual a la concentración del ácido: $10^{-3}\\ \\text{M}$. 2) Aplica $\\text{pH} = -\\log[\\text{H}^+] = -\\log(10^{-3}) = 3$. Si respondiste 11, calculaste el pOH; si respondiste 1, tomaste la concentración como $10^{-1}$.",
+          "latexContent": "\\text{pH} = -\\log(1\\times10^{-3}) = 3"
+        },
+        {
+          "layer": 3,
+          "title": "Escala de pH",
+          "content": "El pH mide la acidez: $\\text{pH} = -\\log[\\text{H}^+]$, y $\\text{pH} + \\text{pOH} = 14$ a 25 °C. Repasa: ácidos y bases fuertes vs. débiles, y cálculo de pH a partir de la concentración.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "AB6",
+      "questionId": "cmtgtuiqp000gj7ew3wv3zyc2",
+      "topic": "Ácidos y bases",
+      "topicId": "cmrr1jt050044hi3nw1kv4oq4",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "Una disolución acuosa enrojece el papel tornasol azul y presenta un pH de 2. Esta disolución:",
+      "options": [
+        {
+          "id": "A",
+          "text": "es básica, porque un pH menor que 7 indica exceso de iones $\\text{OH}^-$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "es neutra, porque el papel tornasol solo cambia de color con las sales",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "es ácida, pero con concentraciones iguales de $\\text{H}^+$ y $\\text{OH}^-$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "es ácida, con una concentración de iones $\\text{H}^+$ mayor que la de iones $\\text{OH}^-$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "es básica, porque un pH menor que 7 indica exceso de iones $\\text{OH}^-$",
+          "note": "un pH menor que 7 indica exceso de $\\text{H}^+$, no de $\\text{OH}^-$"
+        },
+        {
+          "text": "es neutra, porque el papel tornasol solo cambia de color con las sales",
+          "note": "el tornasol responde a la acidez o basicidad del medio, no a la presencia de sales"
+        },
+        {
+          "text": "es ácida, pero con concentraciones iguales de $\\text{H}^+$ y $\\text{OH}^-$",
+          "note": "si las concentraciones fueran iguales la disolución sería neutra (pH 7), no ácida"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "pH 2 y tornasol enrojecido: medio ácido",
+          "content": "Un pH de 2 está muy por debajo de 7, y que el tornasol azul se vuelva rojo confirma la acidez. En una disolución ácida $[\\text{H}^+] > [\\text{OH}^-]$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Básica porque pH < 7': está invertido; pH < 7 es ácido. 2) 'Neutra, el tornasol solo cambia con sales': el tornasol es un indicador ácido-base. 3) 'Ácida con $[\\text{H}^+]=[\\text{OH}^-]$': esa igualdad define una disolución neutra, no una de pH 2.",
+          "latexContent": "[\\text{H}^+] = 10^{-2}\\ \\text{M} \\;>\\; [\\text{OH}^-] = 10^{-12}\\ \\text{M}"
+        },
+        {
+          "layer": 3,
+          "title": "Indicadores y escala de pH",
+          "content": "Los indicadores ácido-base cambian de color según el pH del medio; el tornasol vira a rojo en medio ácido y a azul en medio básico. Repasa: escala de pH, indicadores comunes y relación $[\\text{H}^+]$/$[\\text{OH}^-]$.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "AB5",
+      "questionId": "cmtgtuji9000lj7ewk2t9psup",
+      "topic": "Ácidos y bases",
+      "topicId": "cmrr1jt050044hi3nw1kv4oq4",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "Se toman $20\\ \\text{mL}$ de ácido nítrico ($\\text{HNO}_3$) $6.0\\ \\text{M}$ y se diluyen con agua hasta un volumen final de $500\\ \\text{mL}$. ¿Cuál es la concentración molar de la disolución resultante?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$0.12\\ \\text{M}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$0.24\\ \\text{M}$",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$2.4\\ \\text{M}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$15\\ \\text{M}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$0.12\\ \\text{M}$",
+          "note": "usó $1000\\ \\text{mL}$ como volumen final en lugar de los $500\\ \\text{mL}$ del enunciado"
+        },
+        {
+          "text": "$2.4\\ \\text{M}$",
+          "note": "cometió un error de factor 10 al tomar el volumen final como $50\\ \\text{mL}$"
+        },
+        {
+          "text": "$15\\ \\text{M}$",
+          "note": "invirtió la fórmula y calculó $(6.0\\times500)/200$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dilución: $M_1V_1 = M_2V_2$",
+          "content": "En una dilución la cantidad de soluto no cambia. $M_2 = M_1V_1/V_2 = (6.0\\ \\text{M}\\times20\\ \\text{mL})/500\\ \\text{mL} = 120/500 = 0.24\\ \\text{M}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Identifica los datos: $M_1 = 6.0\\ \\text{M}$, $V_1 = 20\\ \\text{mL}$, $V_2 = 500\\ \\text{mL}$. 2) Despeja $M_2 = M_1V_1/V_2$. 3) Calcula: $(6.0\\times20)/500 = 120/500 = 0.24\\ \\text{M}$. Si obtuviste 0.12 M, usaste 1000 mL en el denominador.",
+          "latexContent": "M_2 = \\dfrac{M_1 V_1}{V_2} = \\dfrac{(6.0)(20)}{500} = \\dfrac{120}{500} = 0.24\\ \\text{M}"
+        },
+        {
+          "layer": 3,
+          "title": "Preparación de disoluciones por dilución",
+          "content": "Al diluir, los moles de soluto se conservan: $M_1V_1 = M_2V_2$ (con $V$ en las mismas unidades a ambos lados). Repasa: molaridad, factor de dilución y preparación de disoluciones a partir de una más concentrada.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "AB3",
+      "questionId": "cmtgtuk9u000qj7ewq56k10qn",
+      "topic": "Ácidos y bases",
+      "topicId": "cmrr1jt050044hi3nw1kv4oq4",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "En la reacción $\\text{NH}_3 + \\text{H}_2\\text{O} \\rightleftharpoons \\text{NH}_4^+ + \\text{OH}^-$, según la teoría de Brønsted-Lowry el agua actúa como:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ácido, porque dona un protón al amoniaco",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "base, porque acepta un protón del amoniaco",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "especie neutra, porque no participa en la transferencia de protones",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "anfótero que en esta reacción acepta un protón",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "base, porque acepta un protón del amoniaco",
+          "note": "en esta reacción es el amoniaco el que acepta el protón; el agua lo cede"
+        },
+        {
+          "text": "especie neutra, porque no participa en la transferencia de protones",
+          "note": "el agua sí participa: se convierte en $\\text{OH}^-$ al perder un $\\text{H}^+$"
+        },
+        {
+          "text": "anfótero que en esta reacción acepta un protón",
+          "note": "el agua es anfótera, pero aquí concretamente dona el protón, no lo acepta"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Quien dona el protón es el ácido de Brønsted-Lowry",
+          "content": "El agua pierde un $\\text{H}^+$ y se transforma en $\\text{OH}^-$: dona un protón, así que actúa como ácido. El amoniaco lo capta y se vuelve $\\text{NH}_4^+$: es la base.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Base porque acepta un protón': ese papel lo tiene el $\\text{NH}_3$. 2) 'Especie neutra que no participa': el agua cambia a $\\text{OH}^-$, sí participa. 3) 'Anfótero que acepta': el agua es anfótera en general, pero el par ácido/base de ESTA reacción la deja como donadora.",
+          "latexContent": "\\text{H}_2\\text{O} \\rightarrow \\text{OH}^- + \\text{H}^+ \\quad (\\text{el agua dona: es el ácido})"
+        },
+        {
+          "layer": 3,
+          "title": "Teoría ácido-base de Brønsted-Lowry",
+          "content": "Un ácido de Brønsted-Lowry dona protones y una base los acepta; el agua es anfótera y su papel depende de la otra especie. Repasa: pares ácido-base conjugados y anfoterismo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "OR5",
+      "questionId": "cmtgtuqzt00015m1tnii856ju",
+      "topic": "Reacciones orgánicas",
+      "topicId": "cmrr1jrw70040hi3n0616pez7",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "En medio ácido, el ácido acético ($\\text{CH}_3\\text{COOH}$) reacciona con el etanol ($\\text{CH}_3\\text{CH}_2\\text{OH}$) para formar acetato de etilo. ¿Qué otro producto se obtiene?",
+      "options": [
+        {
+          "id": "A",
+          "text": "hidrógeno gaseoso, porque el alcohol se oxidaría al perder su hidrógeno",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "agua, en una reacción de condensación llamada esterificación de Fischer",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "dióxido de carbono, porque el ácido acético perdería su grupo carboxilo",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "un alcano, porque el ácido acético se reduciría a hidrocarburo",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "hidrógeno gaseoso, porque el alcohol se oxidaría al perder su hidrógeno",
+          "note": "no hay oxidación ni desprendimiento de $\\text{H}_2$; el alcohol conserva su carbono unido al oxígeno"
+        },
+        {
+          "text": "dióxido de carbono, porque el ácido acético perdería su grupo carboxilo",
+          "note": "el grupo carboxilo se conserva en el éster; no se pierde como $\\text{CO}_2$"
+        },
+        {
+          "text": "un alcano, porque el ácido acético se reduciría a hidrocarburo",
+          "note": "el ácido no se reduce a hidrocarburo en estas condiciones"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El $\\text{-OH}$ del ácido y un $\\text{H}$ del alcohol salen como agua",
+          "content": "En la esterificación, el grupo $\\text{-OH}$ del ácido carboxílico se une con el $\\text{H}$ del hidroxilo del alcohol y se libera una molécula de agua; el resto de ambos fragmentos queda enlazado como éster ($\\text{-COO-}$).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) '$\\text{H}_2$ por oxidación': no hay cambio en el número de oxidación del carbono del alcohol. 2) '$\\text{CO}_2$ por descarboxilación': el carbono del carboxilo forma parte del éster. 3) 'Un alcano por reducción': requeriría un reductor fuerte y no ocurre aquí. El subproducto es agua.",
+          "latexContent": "\\text{CH}_3\\text{COOH} + \\text{CH}_3\\text{CH}_2\\text{OH} \\underset{\\text{H}^+}{\\rightleftharpoons} \\text{CH}_3\\text{COOCH}_2\\text{CH}_3 + \\text{H}_2\\text{O}"
+        },
+        {
+          "layer": 3,
+          "title": "Reacciones de ácidos carboxílicos y alcoholes",
+          "content": "La esterificación de Fischer es una condensación reversible catalizada por ácido; se favorece retirando agua. Repasa: formación e hidrólisis de ésteres y equilibrio químico aplicado a reacciones orgánicas.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "OR2",
+      "questionId": "cmtgturrg00065m1tzkaehu30",
+      "topic": "Reacciones orgánicas",
+      "topicId": "cmrr1jrw70040hi3n0616pez7",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "La reacción $\\text{CH}_2\\!=\\!\\text{CH}_2 + \\text{H}_2 \\rightarrow \\text{CH}_3\\text{-CH}_3$ (hidrogenación del eteno) es una reacción de:",
+      "options": [
+        {
+          "id": "A",
+          "text": "adición, porque el doble enlace se abre para admitir dos átomos",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "sustitución, porque se supondría que un átomo de hidrógeno reemplaza a otro",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "eliminación, porque en el proceso se formaría un nuevo enlace múltiple",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "condensación, porque se liberaría una molécula pequeña como el agua",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "sustitución, porque se supondría que un átomo de hidrógeno reemplaza a otro",
+          "note": "no se reemplaza ningún átomo: la molécula gana dos hidrógenos sin perder nada"
+        },
+        {
+          "text": "eliminación, porque en el proceso se formaría un nuevo enlace múltiple",
+          "note": "es el proceso inverso: aquí un enlace doble se satura, no se genera"
+        },
+        {
+          "text": "condensación, porque se liberaría una molécula pequeña como el agua",
+          "note": "no se desprende ninguna molécula; todos los átomos de los reactivos quedan en el producto"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Los alquenos reaccionan por adición al doble enlace",
+          "content": "El doble enlace $\\text{C}=\\text{C}$ es rico en electrones y reactivo. En la hidrogenación se abre uno de sus dos enlaces y cada carbono recibe un átomo de hidrógeno: la molécula pasa de eteno (insaturado) a etano (saturado) sin perder átomos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Sustitución' requiere que un átomo entre y otro salga, típico de alcanos y aromáticos; aquí nada sale. 2) 'Eliminación' produce insaturación; esta reacción la quita. 3) 'Condensación' libera una molécula pequeña; aquí no se libera nada.",
+          "latexContent": "\\text{CH}_2\\!=\\!\\text{CH}_2 + \\text{H}_2 \\longrightarrow \\text{CH}_3\\text{-CH}_3 \\quad (\\text{adición})"
+        },
+        {
+          "layer": 3,
+          "title": "Tipos de reacción orgánica",
+          "content": "Las reacciones orgánicas se clasifican en adición (a insaturaciones), sustitución, eliminación y reordenamiento. Repasa: reactividad de alquenos y alquinos, y regla de Markovnikov.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "OR3",
+      "questionId": "cmtgtusix000b5m1tsa050zo9",
+      "topic": "Reacciones orgánicas",
+      "topicId": "cmrr1jrw70040hi3n0616pez7",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "El butano y el 2-metilpropano (isobutano) comparten la fórmula molecular $\\text{C}_4\\text{H}_{10}$ pero tienen estructuras distintas. Son isómeros:",
+      "options": [
+        {
+          "id": "A",
+          "text": "de posición, porque difieren en el lugar que ocupa un grupo funcional",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "geométricos (cis-trans), por la disposición de los sustituyentes alrededor de un doble enlace",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "ópticos, porque son imágenes especulares no superponibles entre sí",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "de cadena, porque difieren en la forma en que se ramifica el esqueleto de carbono",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "de posición, porque difieren en el lugar que ocupa un grupo funcional",
+          "note": "ninguno de los dos tiene grupo funcional; lo que cambia es la ramificación de la cadena"
+        },
+        {
+          "text": "geométricos (cis-trans), por la disposición de los sustituyentes alrededor de un doble enlace",
+          "note": "son alcanos: no hay doble enlace que restrinja el giro"
+        },
+        {
+          "text": "ópticos, porque son imágenes especulares no superponibles entre sí",
+          "note": "no hay ningún carbono unido a cuatro grupos distintos, así que no hay actividad óptica"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Misma fórmula, distinto armazón de carbonos: isomería de cadena",
+          "content": "El butano tiene una cadena lineal de 4 carbonos; el isobutano tiene 3 carbonos en línea y uno como rama. La conectividad del esqueleto es diferente aunque la fórmula molecular sea idéntica: es isomería de cadena, un tipo de isomería estructural.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'De posición' exige un grupo funcional que se mueva de sitio (por ejemplo $\\text{-OH}$ en el 1-propanol vs. 2-propanol). 2) 'Geométrica' exige un doble enlace con giro impedido. 3) 'Óptica' exige un carbono quiral. Aquí solo cambia cómo se conectan los carbonos.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Isomería en química orgánica",
+          "content": "La isomería estructural incluye la de cadena, la de posición y la de función; la estereoisomería incluye la geométrica y la óptica. Repasa: identificación de carbonos quirales y condiciones para cada tipo de isómero.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "OR6",
+      "questionId": "cmtgtutae000g5m1tv6pcnewm",
+      "topic": "Reacciones orgánicas",
+      "topicId": "cmrr1jrw70040hi3n0616pez7",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "En la combustión completa del etanol, $\\text{C}_2\\text{H}_5\\text{OH} + 3\\text{O}_2 \\rightarrow 2\\text{CO}_2 + 3\\text{H}_2\\text{O}$, ¿qué masa de $\\text{CO}_2$ se produce al quemar $1.0\\ \\text{mol}$ de etanol? ($M_{\\text{CO}_2} = 44\\ \\text{g/mol}$)",
+      "options": [
+        {
+          "id": "A",
+          "text": "$44\\ \\text{g}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$46\\ \\text{g}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$88\\ \\text{g}$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$132\\ \\text{g}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$44\\ \\text{g}$",
+          "note": "usó una relación 1:1 entre etanol y $\\text{CO}_2$, ignorando el coeficiente 2 de la ecuación"
+        },
+        {
+          "text": "$46\\ \\text{g}$",
+          "note": "reportó la masa molar del etanol ($C_2H_5OH$, 46 g/mol) en lugar de la masa de $\\text{CO}_2$"
+        },
+        {
+          "text": "$132\\ \\text{g}$",
+          "note": "tomó el coeficiente 3 del agua y lo aplicó al $\\text{CO}_2$, calculando 3 mol"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "1 mol de etanol produce 2 mol de $\\text{CO}_2$",
+          "content": "La ecuación balanceada indica una relación molar $1:2$ entre el etanol y el $\\text{CO}_2$. De $1.0\\ \\text{mol}$ de etanol salen $2.0\\ \\text{mol}$ de $\\text{CO}_2$, y $2.0\\ \\text{mol}\\times 44\\ \\text{g/mol} = 88\\ \\text{g}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Lee la relación molar de la ecuación balanceada: 1 etanol : 2 $\\text{CO}_2$. 2) Moles de $\\text{CO}_2$: $1.0\\times2 = 2.0\\ \\text{mol}$. 3) Masa: $2.0\\ \\text{mol}\\times44\\ \\text{g/mol} = 88\\ \\text{g}$. Si respondiste 44 g, usaste una relación 1:1 en vez de 1:2.",
+          "latexContent": "n_{\\text{CO}_2} = 1.0\\ \\text{mol} \\times \\dfrac{2}{1} = 2.0\\ \\text{mol} \\quad\\Rightarrow\\quad m = 2.0(44) = 88\\ \\text{g}"
+        },
+        {
+          "layer": 3,
+          "title": "Estequiometría de reacciones",
+          "content": "Los coeficientes de una ecuación balanceada son proporciones molares; para pasar a masa se usa la masa molar. Repasa: cálculo mol-mol y mol-masa, y reactivo limitante.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "OR1",
+      "questionId": "cmtgtuu1v000l5m1trzmqa2xl",
+      "topic": "Reacciones orgánicas",
+      "topicId": "cmrr1jrw70040hi3n0616pez7",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "El compuesto $\\text{CH}_3\\text{-CH}_2\\text{-OH}$ pertenece a la familia de los:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ácidos carboxílicos, porque la molécula contiene átomos de oxígeno y de hidrógeno",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "alcoholes, por tener el grupo hidroxilo ($\\text{-OH}$) sobre un carbono saturado",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "éteres, porque el átomo de oxígeno aparece unido a una cadena de carbono",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "aldehídos, por la presencia de un enlace entre un carbono y un oxígeno",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "ácidos carboxílicos, porque la molécula contiene átomos de oxígeno y de hidrógeno",
+          "note": "el grupo carboxilo es $\\text{-COOH}$; aquí no hay un carbono unido a la vez a $=\\!\\text{O}$ y a $\\text{-OH}$"
+        },
+        {
+          "text": "éteres, porque el átomo de oxígeno aparece unido a una cadena de carbono",
+          "note": "en un éter el oxígeno está entre dos carbonos ($\\text{R-O-R'}$), no unido a un hidrógeno"
+        },
+        {
+          "text": "aldehídos, por la presencia de un enlace entre un carbono y un oxígeno",
+          "note": "el grupo aldehído es $\\text{-CHO}$ terminal, con doble enlace $\\text{C}=\\text{O}$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El grupo $\\text{-OH}$ sobre carbono saturado define a un alcohol",
+          "content": "La molécula es el etanol. Su grupo funcional es el hidroxilo $\\text{-OH}$ enlazado a un carbono con solo enlaces simples; esa es la definición de alcohol.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Ácido carboxílico' exige el grupo $\\text{-COOH}$ (carbonilo y hidroxilo en el mismo carbono). 2) 'Éter' exige $\\text{C-O-C}$. 3) 'Aldehído' exige $\\text{-CHO}$ con doble enlace al oxígeno. Ninguno aparece: solo hay $\\text{C-OH}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Grupos funcionales de la química orgánica",
+          "content": "Cada familia orgánica se identifica por su grupo funcional: $\\text{-OH}$ (alcohol), $\\text{-CHO}$ (aldehído), $\\text{-CO-}$ (cetona), $\\text{-COOH}$ (ácido), $\\text{-O-}$ (éter). Repasa: reconocimiento de grupos funcionales a partir de la fórmula.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "OR4",
+      "questionId": "cmtgtuutd000q5m1th0dmso8v",
+      "topic": "Reacciones orgánicas",
+      "topicId": "cmrr1jrw70040hi3n0616pez7",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "Al balancear la combustión completa del propano, $\\text{C}_3\\text{H}_8 + \\text{O}_2 \\rightarrow \\text{CO}_2 + \\text{H}_2\\text{O}$, ¿cuál es la suma de todos los coeficientes estequiométricos mínimos enteros?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$9$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$12$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$13$",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$14$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$9$",
+          "note": "dejó el $\\text{O}_2$ con coeficiente 1 sin balancear el oxígeno, sumando $1+1+3+4$"
+        },
+        {
+          "text": "$12$",
+          "note": "escribió 3 moléculas de agua en vez de 4, sumando $1+5+3+3$"
+        },
+        {
+          "text": "$14$",
+          "note": "asignó 6 moléculas de $\\text{O}_2$ en lugar de 5, sumando $1+6+3+4$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "La ecuación balanceada es $\\text{C}_3\\text{H}_8 + 5\\text{O}_2 \\rightarrow 3\\text{CO}_2 + 4\\text{H}_2\\text{O}$",
+          "content": "Balanceando por elementos: 3 carbonos $\\rightarrow$ 3 $\\text{CO}_2$; 8 hidrógenos $\\rightarrow$ 4 $\\text{H}_2\\text{O}$; el oxígeno del lado derecho es $3\\times2 + 4\\times1 = 10$, así que se necesitan 5 $\\text{O}_2$. Los coeficientes son $1, 5, 3, 4$ y suman $13$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Carbono: coeficiente 3 en $\\text{CO}_2$. 2) Hidrógeno: 8 H $\\Rightarrow$ 4 $\\text{H}_2\\text{O}$. 3) Oxígeno: hay 10 O a la derecha $\\Rightarrow$ 5 $\\text{O}_2$. 4) Suma: $1+5+3+4=13$. Si obtuviste 9, dejaste el $\\text{O}_2$ en 1 sin balancearlo.",
+          "latexContent": "\\text{C}_3\\text{H}_8 + 5\\,\\text{O}_2 \\rightarrow 3\\,\\text{CO}_2 + 4\\,\\text{H}_2\\text{O} \\\\ 1 + 5 + 3 + 4 = 13"
+        },
+        {
+          "layer": 3,
+          "title": "Balanceo de ecuaciones de combustión",
+          "content": "En una combustión completa el hidrocarburo reacciona con $\\text{O}_2$ para dar $\\text{CO}_2$ y $\\text{H}_2\\text{O}$; conviene balancear C, luego H y por último O. Repasa: ley de conservación de la masa y balanceo por tanteo.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EN4",
+      "questionId": "cmtgtv1xf000114m247100vw3",
+      "topic": "Enlace químico",
+      "topicId": "cmrr1jrea003yhi3no3ujdhrq",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "El agua ($\\text{H}_2\\text{O}$) hierve a $100\\ ^\\circ\\text{C}$ mientras que el sulfuro de hidrógeno ($\\text{H}_2\\text{S}$), de mayor masa molar, hierve a $-60\\ ^\\circ\\text{C}$. La causa principal de esta diferencia es que:",
+      "options": [
+        {
+          "id": "A",
+          "text": "el $\\text{H}_2\\text{S}$ tiene enlaces iónicos que se rompen a baja temperatura",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el agua forma puentes de hidrógeno entre sus moléculas, y el $\\text{H}_2\\text{S}$ casi no los forma",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "el agua tiene mayor masa molar y por eso fuerzas de dispersión más intensas",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el $\\text{H}_2\\text{S}$ es una molécula no polar, a diferencia del agua",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "el $\\text{H}_2\\text{S}$ tiene enlaces iónicos que se rompen a baja temperatura",
+          "note": "el $\\text{H}_2\\text{S}$ es un compuesto covalente; no hay iones que separar"
+        },
+        {
+          "text": "el agua tiene mayor masa molar y por eso fuerzas de dispersión más intensas",
+          "note": "el enunciado indica lo contrario: el $\\text{H}_2\\text{S}$ es el de mayor masa molar"
+        },
+        {
+          "text": "el $\\text{H}_2\\text{S}$ es una molécula no polar, a diferencia del agua",
+          "note": "el $\\text{H}_2\\text{S}$ también es polar (angular); lo que le falta es el puente de hidrógeno"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "El puente de hidrógeno eleva el punto de ebullición del agua",
+          "content": "El puente de hidrógeno aparece cuando el H está unido a $\\text{N}$, $\\text{O}$ o $\\text{F}$. En el agua es intenso y hay que aportar mucha energía para separar las moléculas. El azufre es poco electronegativo y grande, así que el $\\text{H}_2\\text{S}$ casi no forma esos puentes y hierve muchísimo más bajo.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Enlaces iónicos en el $\\text{H}_2\\text{S}$': es covalente polar, sin iones. 2) 'El agua tiene mayor masa molar': falso, $M(\\text{H}_2\\text{S})=34 > M(\\text{H}_2\\text{O})=18$; si solo contara la masa, el $\\text{H}_2\\text{S}$ herviría más alto. 3) 'El $\\text{H}_2\\text{S}$ es no polar': sí es polar, pero sin puente de hidrógeno.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Fuerzas intermoleculares y propiedades físicas",
+          "content": "El punto de ebullición depende de las fuerzas intermoleculares: dispersión < dipolo-dipolo < puente de hidrógeno < ion-dipolo. Repasa: la anomalía del agua frente a los hidruros de su grupo y el papel de $\\text{N}$, $\\text{O}$, $\\text{F}$.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EN2",
+      "questionId": "cmtgtv2p2000614m2tlczksxi",
+      "topic": "Enlace químico",
+      "topicId": "cmrr1jrea003yhi3no3ujdhrq",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "Según la teoría de repulsión de pares electrónicos de valencia (TRPEV), la molécula de agua ($\\text{H}_2\\text{O}$) tiene geometría molecular:",
+      "options": [
+        {
+          "id": "A",
+          "text": "lineal, con los dos átomos de hidrógeno en lados opuestos separados $180^\\circ$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "trigonal plana, con los tres enlaces separados por ángulos de $120^\\circ$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "angular, doblada unos $104.5^\\circ$ por los dos pares libres del oxígeno",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "tetraédrica, con los enlaces dirigidos a los vértices de un tetraedro",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "lineal, con los dos átomos de hidrógeno en lados opuestos separados $180^\\circ$",
+          "note": "ignora los dos pares de electrones no enlazantes del oxígeno, que empujan a los hidrógenos"
+        },
+        {
+          "text": "trigonal plana, con los tres enlaces separados por ángulos de $120^\\circ$",
+          "note": "corresponde a un átomo central con tres zonas de densidad electrónica y sin pares libres"
+        },
+        {
+          "text": "tetraédrica, con los enlaces dirigidos a los vértices de un tetraedro",
+          "note": "esa es la geometría de los pares electrónicos del oxígeno; la de los átomos es angular"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos pares libres doblan la molécula",
+          "content": "El oxígeno del agua tiene 4 zonas de densidad electrónica: 2 enlaces y 2 pares libres. Los pares libres repelen con más fuerza, así que la molécula se dobla: los hidrógenos quedan a unos $104.5^\\circ$, un poco menos que el ángulo tetraédrico ideal.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Lineal' solo aplicaría si el oxígeno no tuviera pares libres. 2) 'Trigonal plana' pediría 3 zonas de densidad electrónica alrededor del átomo central. 3) 'Tetraédrica' describe la distribución de los 4 pares, pero la geometría MOLECULAR solo considera dónde están los átomos: angular.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Geometría molecular (TRPEV)",
+          "content": "La geometría molecular considera solo las posiciones de los átomos; la geometría electrónica incluye los pares libres. Repasa: número estérico, efecto de los pares libres sobre los ángulos y casos $\\text{AX}_2\\text{E}_2$, $\\text{AX}_3\\text{E}$, $\\text{AX}_4$.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EN5",
+      "questionId": "cmtgtv3gr000b14m2zqgunwvi",
+      "topic": "Enlace químico",
+      "topicId": "cmrr1jrea003yhi3no3ujdhrq",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "En la molécula de dióxido de carbono ($\\text{O}=\\text{C}=\\text{O}$), ¿cuántos pares de electrones enlazantes y cuántos pares libres (no enlazantes) hay en total?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4 pares enlazantes y 4 pares libres",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "2 pares enlazantes y 4 pares libres",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "4 pares enlazantes y 2 pares libres",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "2 pares enlazantes y 2 pares libres",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "2 pares enlazantes y 4 pares libres",
+          "note": "contó cada doble enlace $\\text{C}=\\text{O}$ como un solo par en vez de dos"
+        },
+        {
+          "text": "4 pares enlazantes y 2 pares libres",
+          "note": "asignó un solo par libre a cada oxígeno en lugar de dos"
+        },
+        {
+          "text": "2 pares enlazantes y 2 pares libres",
+          "note": "combinó los dos errores: subcontó los enlaces y los pares libres"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Dos dobles enlaces y dos pares libres por oxígeno",
+          "content": "Cada enlace doble $\\text{C}=\\text{O}$ está formado por 2 pares de electrones, así que hay $2\\times2 = 4$ pares enlazantes. Cada oxígeno conserva 2 pares libres, de modo que hay $2\\times2 = 4$ pares libres. El carbono no tiene pares libres.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) '2 pares enlazantes': trata cada doble enlace como uno solo; un $\\text{C}=\\text{O}$ tiene 2 pares. 2) '2 pares libres': olvida un par libre por oxígeno; con 6 electrones de valencia y 2 en enlaces, a cada oxígeno le quedan 2 pares. 3) '2 y 2' junta ambos descuidos.",
+          "latexContent": "\\text{enlazantes} = 2(\\text{C=O}) \\times 2 = 4 \\qquad \\text{libres} = 2\\,\\text{O} \\times 2 = 4"
+        },
+        {
+          "layer": 3,
+          "title": "Estructuras de Lewis",
+          "content": "Una estructura de Lewis reparte los electrones de valencia en pares enlazantes y libres cumpliendo el octeto. Repasa: conteo de electrones de valencia, enlaces múltiples y verificación por carga formal.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EN6",
+      "questionId": "cmtgtv48f000g14m26xqmte9z",
+      "topic": "Enlace químico",
+      "topicId": "cmrr1jrea003yhi3no3ujdhrq",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "SENTENCE_COMPLETION",
+      "usedCalculation": false,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "En el enlace metálico, los cationes se mantienen unidos gracias a ________, lo que explica que los metales sean ________.",
+      "options": [
+        {
+          "id": "A",
+          "text": "pares de electrones localizados y compartidos entre dos átomos; aislantes eléctricos",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la atracción electrostática entre iones de carga opuesta fijos en una red; quebradizos y solubles en agua",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "puentes de hidrógeno entre átomos metálicos; sustancias volátiles",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "un mar de electrones de valencia deslocalizados; buenos conductores de electricidad y calor",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "pares de electrones localizados y compartidos entre dos átomos; aislantes eléctricos",
+          "note": "esa es la descripción del enlace covalente, no del metálico"
+        },
+        {
+          "text": "la atracción electrostática entre iones de carga opuesta fijos en una red; quebradizos y solubles en agua",
+          "note": "esa es la descripción de los sólidos iónicos"
+        },
+        {
+          "text": "puentes de hidrógeno entre átomos metálicos; sustancias volátiles",
+          "note": "los puentes de hidrógeno requieren H unido a $\\text{N}$, $\\text{O}$ o $\\text{F}$ y no operan entre metales"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Electrones libres que se mueven por todo el sólido",
+          "content": "En un metal, los átomos ceden sus electrones de valencia a una nube común que baña a los cationes. Esos electrones móviles transportan carga y energía, de ahí la alta conductividad eléctrica y térmica, además de la maleabilidad.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Descarta 'pares localizados': eso es covalente y no explica la conducción. 2) Descarta 'red de iones opuestos': eso es iónico, y los iónicos no conducen en estado sólido. 3) Descarta 'puentes de hidrógeno': no hay H ni $\\text{N/O/F}$. Queda el modelo del mar de electrones.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "El enlace metálico",
+          "content": "El modelo del mar de electrones explica conductividad, maleabilidad, ductilidad y brillo de los metales. Repasa: comparación entre enlace iónico, covalente y metálico y sus propiedades características.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EN1",
+      "questionId": "cmtgtv500000l14m2jm865zo8",
+      "topic": "Enlace químico",
+      "topicId": "cmrr1jrea003yhi3no3ujdhrq",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "El fluoruro de potasio ($\\text{KF}$) se forma entre un metal alcalino y un halógeno, con una diferencia de electronegatividad cercana a 3.2. Su enlace se clasifica como:",
+      "options": [
+        {
+          "id": "A",
+          "text": "iónico, porque el potasio le entrega su electrón de valencia al átomo de flúor",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "covalente polar, porque el par de electrones se comparte de forma desigual",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "covalente no polar, porque ambos átomos atraen el par de electrones con la misma fuerza",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "metálico, porque en el compuesto participa el potasio, que es un metal alcalino",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "covalente polar, porque el par de electrones se comparte de forma desigual",
+          "note": "con una diferencia de electronegatividad tan grande no hay compartición: el electrón se transfiere"
+        },
+        {
+          "text": "covalente no polar, porque ambos átomos atraen el par de electrones con la misma fuerza",
+          "note": "los átomos son muy distintos; no puede haber compartición equitativa"
+        },
+        {
+          "text": "metálico, porque en el compuesto participa el potasio, que es un metal alcalino",
+          "note": "el enlace metálico ocurre entre átomos metálicos; aquí interviene también un no metal"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Diferencia de electronegatividad grande: enlace iónico",
+          "content": "Cuando la diferencia de electronegatividad entre dos átomos es mayor que ~1.7, el más electronegativo arranca el electrón. El $\\text{K}$ cede su electrón de valencia y el $\\text{F}$ lo capta; se forman $\\text{K}^+$ y $\\text{F}^-$, que se atraen electrostáticamente.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Covalente polar' implica compartir un par desplazado; aquí el electrón cambia de dueño. 2) 'Covalente no polar' exige átomos de electronegatividad casi igual, lo contrario de $\\text{K}$ y $\\text{F}$. 3) 'Metálico' describe un mar de electrones entre cationes metálicos, no una pareja metal–no metal.",
+          "latexContent": "\\Delta\\chi(\\text{K},\\text{F}) \\approx 3.98 - 0.82 = 3.16 \\;\\Rightarrow\\; \\text{enlace iónico}"
+        },
+        {
+          "layer": 3,
+          "title": "Tipos de enlace y electronegatividad",
+          "content": "La diferencia de electronegatividad predice el carácter del enlace: pequeña → covalente no polar, intermedia → covalente polar, grande → iónico. Repasa: escala de Pauling, formación de iones y propiedades de los compuestos iónicos.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EN3",
+      "questionId": "cmtgtv5rk000q14m20zukox7p",
+      "topic": "Enlace químico",
+      "topicId": "cmrr1jrea003yhi3no3ujdhrq",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "¿Cuál de las siguientes moléculas es no polar a pesar de que sus enlaces individuales son polares?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$\\text{H}_2\\text{O}$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$\\text{NH}_3$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$\\text{HF}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$\\text{CO}_2$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$\\text{H}_2\\text{O}$",
+          "note": "es angular, así que los dos dipolos de enlace no se cancelan y la molécula tiene momento dipolar neto"
+        },
+        {
+          "text": "$\\text{NH}_3$",
+          "note": "es piramidal y el par libre del nitrógeno refuerza un dipolo neto hacia ese vértice"
+        },
+        {
+          "text": "$\\text{HF}$",
+          "note": "es una molécula diatómica con un solo enlace polar, por lo que necesariamente es polar"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Geometría lineal: los dipolos se cancelan",
+          "content": "El $\\text{CO}_2$ es lineal ($\\text{O}=\\text{C}=\\text{O}$). Los dos dipolos $\\text{C}\\!\\to\\!\\text{O}$ apuntan en sentidos opuestos y de igual magnitud, así que su suma vectorial es cero: la molécula es no polar aunque cada enlace sí lo sea.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) En el agua, angular, los dipolos forman un ángulo de $104.5^\\circ$ y su resultante no es nula. 2) En el amoniaco, piramidal, los tres dipolos $\\text{N}\\!\\to\\!\\text{H}$ y el par libre dan una resultante hacia el nitrógeno. 3) El $\\text{HF}$ tiene un único enlace polar: no hay forma de que se cancele.",
+          "latexContent": "\\vec{\\mu}_{\\text{total}}(\\text{CO}_2) = \\vec{\\mu}_1 + \\vec{\\mu}_2 = 0 \\quad (\\text{dipolos opuestos, geometría lineal})"
+        },
+        {
+          "layer": 3,
+          "title": "Polaridad molecular",
+          "content": "Una molécula es polar si la suma vectorial de sus dipolos de enlace es distinta de cero; eso depende de la geometría. Repasa: momento dipolar, simetría molecular y cancelación de dipolos en $\\text{CO}_2$, $\\text{BF}_3$, $\\text{CCl}_4$.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EQ1",
+      "questionId": "cmtgtvcni0001fp4pyefb88j1",
+      "topic": "Equilibrio químico",
+      "topicId": "cmrr1jsii0042hi3nbcx4wu7m",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "Para el equilibrio $\\text{N}_2(g) + 3\\text{H}_2(g) \\rightleftharpoons 2\\text{NH}_3(g)$, la expresión correcta de la constante de equilibrio $K_c$ es:",
+      "options": [
+        {
+          "id": "A",
+          "text": "$K_c = \\dfrac{[\\text{NH}_3]^2}{[\\text{N}_2]\\,[\\text{H}_2]^3}$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "$K_c = \\dfrac{[\\text{N}_2]\\,[\\text{H}_2]^3}{[\\text{NH}_3]^2}$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$K_c = \\dfrac{2[\\text{NH}_3]}{[\\text{N}_2] + 3[\\text{H}_2]}$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$K_c = \\dfrac{[\\text{NH}_3]^2}{[\\text{N}_2]\\,[\\text{H}_2]}$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$K_c = \\dfrac{[\\text{N}_2]\\,[\\text{H}_2]^3}{[\\text{NH}_3]^2}$",
+          "note": "colocó los reactivos en el numerador y el producto en el denominador, invirtiendo la definición"
+        },
+        {
+          "text": "$K_c = \\dfrac{2[\\text{NH}_3]}{[\\text{N}_2] + 3[\\text{H}_2]}$",
+          "note": "usó los coeficientes como factores y sumó las concentraciones en vez de elevarlas a la potencia del coeficiente y multiplicarlas"
+        },
+        {
+          "text": "$K_c = \\dfrac{[\\text{NH}_3]^2}{[\\text{N}_2]\\,[\\text{H}_2]}$",
+          "note": "omitió el exponente 3 del $\\text{H}_2$, que proviene de su coeficiente estequiométrico"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Productos sobre reactivos, cada uno elevado a su coeficiente",
+          "content": "La constante de equilibrio es el cociente de las concentraciones de los productos entre las de los reactivos, cada concentración elevada a su coeficiente: $K_c = [\\text{NH}_3]^2 / ([\\text{N}_2][\\text{H}_2]^3)$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) La que pone reactivos sobre productos corresponde a la reacción inversa. 2) La que suma en el denominador y multiplica los coeficientes al frente confunde la ley de acción de masas con un promedio. 3) La que escribe $[\\text{H}_2]$ sin exponente ignora que el coeficiente 3 se vuelve potencia.",
+          "latexContent": "K_c = \\dfrac{[\\text{NH}_3]^2}{[\\text{N}_2]^1\\,[\\text{H}_2]^3}"
+        },
+        {
+          "layer": 3,
+          "title": "Ley de acción de masas",
+          "content": "Para $aA + bB \\rightleftharpoons cC + dD$, $K_c = \\dfrac{[C]^c[D]^d}{[A]^a[B]^b}$; los sólidos y líquidos puros se omiten. Repasa: escritura de $K_c$ y $K_p$ y su relación.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EQ3",
+      "questionId": "cmtgtvdf20006fp4pqpjub7dw",
+      "topic": "Equilibrio químico",
+      "topicId": "cmrr1jsii0042hi3nbcx4wu7m",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "En el equilibrio en fase gas $\\text{N}_2(g) + 3\\text{H}_2(g) \\rightleftharpoons 2\\text{NH}_3(g)$, si se aumenta la presión total del sistema reduciendo el volumen del recipiente, el equilibrio se desplaza:",
+      "options": [
+        {
+          "id": "A",
+          "text": "hacia los reactivos, es decir hacia el lado que tiene más moles de gas",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "no se desplaza, porque la presión no influye en los equilibrios en fase gaseosa",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "hacia los productos, el lado con menos moles de gas (2 frente a 4)",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "hacia los productos, porque la reacción es exotérmica",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "hacia los reactivos, es decir hacia el lado que tiene más moles de gas",
+          "note": "el sistema responde al aumento de presión reduciendo el número de moléculas de gas, no aumentándolo"
+        },
+        {
+          "text": "no se desplaza, porque la presión no influye en los equilibrios en fase gaseosa",
+          "note": "sí influye cuando los dos lados tienen distinto número de moles de gas"
+        },
+        {
+          "text": "hacia los productos, porque la reacción es exotérmica",
+          "note": "la exotermicidad importa frente a cambios de temperatura, no de presión"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Más presión: el equilibrio va hacia donde hay menos gas",
+          "content": "Por el principio de Le Chatelier, si se comprime el sistema, este contrarresta el aumento de presión desplazándose hacia el lado con menor número de moles gaseosos. Aquí los reactivos suman $1+3=4$ moles y los productos 2, así que el equilibrio avanza hacia el $\\text{NH}_3$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Hacia los reactivos, más moles de gas': eso aumentaría la presión, lo contrario de lo que hace el sistema. 2) 'No se desplaza': solo sería cierto si ambos lados tuvieran igual número de moles de gas. 3) 'Hacia productos por ser exotérmica': la entalpía responde a la temperatura, no a la presión.",
+          "latexContent": "\\text{reactivos: } 1+3 = 4\\ \\text{mol gas} \\quad>\\quad \\text{productos: } 2\\ \\text{mol gas}"
+        },
+        {
+          "layer": 3,
+          "title": "Principio de Le Chatelier: efecto de la presión",
+          "content": "Un cambio de presión por volumen solo afecta al equilibrio si $\\Delta n_{gas} \\neq 0$; el sistema se mueve hacia el lado con menos moles de gas al comprimir. Repasa: efectos de concentración, presión, temperatura y catalizador.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EQ5",
+      "questionId": "cmtgtve6l000bfp4p1ttfy9mu",
+      "topic": "Equilibrio químico",
+      "topicId": "cmrr1jsii0042hi3nbcx4wu7m",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "EXPERT",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": false,
+      "correctPosition": "A",
+      "sourceChunks": [],
+      "stem": "Para el equilibrio $\\text{A}(g) \\rightleftharpoons 2\\text{B}(g)$ se sabe que $K_c = 4.0$. En cierto instante $[\\text{A}] = 0.50\\ \\text{M}$ y $[\\text{B}] = 1.0\\ \\text{M}$. ¿Hacia dónde evoluciona el sistema para alcanzar el equilibrio?",
+      "options": [
+        {
+          "id": "A",
+          "text": "hacia los productos, porque el cociente $Q = 2.0$ es menor que $K_c$",
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "hacia los reactivos, porque el cociente $Q = 2.0$ es menor que $K_c$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "ya está en equilibrio, porque $Q$ es igual a $K_c$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "hacia los reactivos, porque $Q = 4.0$ resulta igual a $K_c$",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "hacia los reactivos, porque el cociente $Q = 2.0$ es menor que $K_c$",
+          "note": "cuando $Q < K_c$ la reacción avanza en el sentido directo (hacia productos), no retrocede"
+        },
+        {
+          "text": "ya está en equilibrio, porque $Q$ es igual a $K_c$",
+          "note": "$Q = 2.0$ y $K_c = 4.0$ no coinciden, así que el sistema no está en equilibrio"
+        },
+        {
+          "text": "hacia los reactivos, porque $Q = 4.0$ resulta igual a $K_c$",
+          "note": "calculó $Q$ multiplicando $[\\text{B}]$ por el coeficiente 2 en vez de elevarla al cuadrado"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Se compara el cociente de reacción $Q$ con $K_c$",
+          "content": "El cociente de reacción tiene la misma forma que $K_c$ pero con las concentraciones del momento: $Q = [\\text{B}]^2/[\\text{A}] = (1.0)^2/0.50 = 2.0$. Como $Q < K_c$ ($2.0 < 4.0$), el sistema debe generar más productos, así que avanza hacia $\\text{B}$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Escribe $Q = [\\text{B}]^2/[\\text{A}]$ (el coeficiente 2 es exponente, no factor). 2) Sustituye: $Q = (1.0)^2/0.50 = 2.0$. 3) Compara: $Q = 2.0 < K_c = 4.0$. 4) Regla: si $Q < K$, la reacción va hacia productos. Si obtuviste $Q = 4.0$, multiplicaste $[\\text{B}]$ por 2 en vez de elevarla al cuadrado.",
+          "latexContent": "Q = \\dfrac{[\\text{B}]^2}{[\\text{A}]} = \\dfrac{(1.0)^2}{0.50} = 2.0 \\;<\\; K_c = 4.0 \\;\\Rightarrow\\; \\text{hacia productos}"
+        },
+        {
+          "layer": 3,
+          "title": "Cociente de reacción y sentido de avance",
+          "content": "Comparar $Q$ con $K$ indica el sentido en que evolucionará una reacción: $Q<K$ hacia productos, $Q>K$ hacia reactivos, $Q=K$ equilibrio. Repasa: cálculo de $Q$, exponentes de los coeficientes y predicción del desplazamiento.",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EQ2",
+      "questionId": "cmtgtvey5000gfp4p5ttfn5ps",
+      "topic": "Equilibrio químico",
+      "topicId": "cmrr1jsii0042hi3nbcx4wu7m",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "INTERMEDIATE",
+      "format": "PROBLEM_SOLVING",
+      "usedCalculation": true,
+      "correctPosition": "D",
+      "sourceChunks": [],
+      "stem": "En un recipiente de $1.0\\ \\text{L}$ en equilibrio hay $0.20\\ \\text{mol}$ de $\\text{H}_2$, $0.20\\ \\text{mol}$ de $\\text{I}_2$ y $1.6\\ \\text{mol}$ de $\\text{HI}$, según $\\text{H}_2 + \\text{I}_2 \\rightleftharpoons 2\\text{HI}$. ¿Cuál es el valor de $K_c$?",
+      "options": [
+        {
+          "id": "A",
+          "text": "$6.4$",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$8$",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$40$",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$64$",
+          "isCorrect": true
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "$6.4$",
+          "note": "sumó las concentraciones del denominador ($0.20 + 0.20$) en lugar de multiplicarlas"
+        },
+        {
+          "text": "$8$",
+          "note": "sacó la raíz cuadrada del resultado en vez de elevar al cuadrado la concentración de $\\text{HI}$"
+        },
+        {
+          "text": "$40$",
+          "note": "no elevó al cuadrado la concentración de $\\text{HI}$ y calculó $1.6/(0.20\\times0.20)$"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Se sustituyen las concentraciones en la expresión de $K_c$",
+          "content": "Como el volumen es $1.0\\ \\text{L}$, las concentraciones coinciden con los moles. $K_c = [\\text{HI}]^2 / ([\\text{H}_2][\\text{I}_2]) = (1.6)^2 / (0.20\\times0.20) = 2.56/0.04 = 64$.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Resolución paso a paso",
+          "content": "1) Escribe $K_c = [\\text{HI}]^2/([\\text{H}_2][\\text{I}_2])$. 2) Sustituye: $[\\text{HI}]=1.6$, $[\\text{H}_2]=[\\text{I}_2]=0.20$. 3) Numerador: $1.6^2 = 2.56$. 4) Denominador: $0.20\\times0.20 = 0.04$. 5) $K_c = 2.56/0.04 = 64$. Si obtuviste 40, olvidaste elevar al cuadrado.",
+          "latexContent": "K_c = \\dfrac{[\\text{HI}]^2}{[\\text{H}_2][\\text{I}_2]} = \\dfrac{(1.6)^2}{(0.20)(0.20)} = \\dfrac{2.56}{0.04} = 64"
+        },
+        {
+          "layer": 3,
+          "title": "Cálculo del valor de la constante de equilibrio",
+          "content": "Con las concentraciones en el equilibrio se sustituye en la expresión de $K_c$; cuidar el exponente de cada término. Repasa: tablas ICE, unidades y significado del valor de $K_c$ ($K_c \\gg 1$ favorece productos).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EQ4",
+      "questionId": "cmtgtvfpq000lfp4pagb7bzur",
+      "topic": "Equilibrio químico",
+      "topicId": "cmrr1jsii0042hi3nbcx4wu7m",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "ADVANCED",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "B",
+      "sourceChunks": [],
+      "stem": "La síntesis de amoniaco es exotérmica: $\\text{N}_2 + 3\\text{H}_2 \\rightleftharpoons 2\\text{NH}_3 + \\text{calor}$. Si se aumenta la temperatura del sistema en equilibrio:",
+      "options": [
+        {
+          "id": "A",
+          "text": "el equilibrio se desplaza hacia los productos y el valor de $K_c$ aumenta",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el equilibrio se desplaza hacia los reactivos y el valor de $K_c$ disminuye",
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "el equilibrio se desplaza hacia los reactivos, pero el valor de $K_c$ no cambia",
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "solo cambia la rapidez con que se alcanza el equilibrio, no la posición del equilibrio",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "el equilibrio se desplaza hacia los productos y el valor de $K_c$ aumenta",
+          "note": "en una reacción exotérmica el calor es un producto; agregar calor empuja el equilibrio hacia los reactivos"
+        },
+        {
+          "text": "el equilibrio se desplaza hacia los reactivos, pero el valor de $K_c$ no cambia",
+          "note": "la temperatura es la única variable que sí modifica el valor numérico de $K_c$"
+        },
+        {
+          "text": "solo cambia la rapidez con que se alcanza el equilibrio, no la posición del equilibrio",
+          "note": "un cambio de temperatura desplaza la posición del equilibrio, no solo la cinética"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Agregar calor a una reacción exotérmica favorece la reacción inversa",
+          "content": "En una reacción exotérmica se puede tratar el calor como un producto. Subir la temperatura equivale a añadir producto, así que el equilibrio se desplaza hacia los reactivos y $K_c$ disminuye (menos $\\text{NH}_3$ en el equilibrio).",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Hacia productos, $K_c$ aumenta': sería el efecto en una reacción endotérmica. 2) '$K_c$ no cambia': falso; la temperatura es justo la variable que cambia el valor de $K_c$ (concentración y presión solo desplazan sin cambiar $K_c$). 3) 'Solo la rapidez': confunde efecto cinético con efecto termodinámico.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Principio de Le Chatelier: efecto de la temperatura",
+          "content": "Solo la temperatura modifica el valor de $K_c$: al subirla, $K$ crece para reacciones endotérmicas y disminuye para exotérmicas. Repasa: signo de $\\Delta H$, tratamiento del calor como reactivo o producto y ecuación de van't Hoff (cualitativa).",
+          "latexContent": null
+        }
+      ]
+    },
+    {
+      "tag": "EQ6",
+      "questionId": "cmtgtvghc000qfp4p9r53o2pe",
+      "topic": "Equilibrio químico",
+      "topicId": "cmrr1jsii0042hi3nbcx4wu7m",
+      "grounding": "TEMARIO_ONLY",
+      "difficulty": "BASIC",
+      "format": "MULTIPLE_CHOICE",
+      "usedCalculation": false,
+      "correctPosition": "C",
+      "sourceChunks": [],
+      "stem": "Cuando una reacción reversible alcanza el equilibrio químico:",
+      "options": [
+        {
+          "id": "A",
+          "text": "las reacciones directa e inversa se detienen y ya no hay ningún cambio",
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "las concentraciones de todos los reactivos y productos se igualan entre sí",
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "las reacciones directa e inversa ocurren a la misma rapidez",
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "todo el reactivo disponible ya se transformó en producto",
+          "isCorrect": false
+        }
+      ],
+      "distractorRationale": [
+        {
+          "text": "las reacciones directa e inversa se detienen y ya no hay ningún cambio",
+          "note": "el equilibrio es dinámico: ambas reacciones siguen ocurriendo a la misma rapidez"
+        },
+        {
+          "text": "las concentraciones de todos los reactivos y productos se igualan entre sí",
+          "note": "se vuelven constantes, pero no necesariamente iguales: dependen del valor de $K_c$"
+        },
+        {
+          "text": "todo el reactivo disponible ya se transformó en producto",
+          "note": "en el equilibrio coexisten reactivos y productos en proporciones fijas"
+        }
+      ],
+      "explanations": [
+        {
+          "layer": 1,
+          "title": "Equilibrio dinámico: misma rapidez en ambos sentidos",
+          "content": "El equilibrio químico se alcanza cuando la reacción directa y la inversa ocurren a igual rapidez. Como consecuencia, las concentraciones de todas las especies dejan de cambiar, aunque las moléculas siguen reaccionando en ambos sentidos.",
+          "latexContent": null
+        },
+        {
+          "layer": 2,
+          "title": "Cómo se descarta cada opción",
+          "content": "1) 'Se detienen por completo': el equilibrio no es estático; ambas reacciones continúan. 2) 'Concentraciones iguales entre sí': lo constante no implica lo igual; si $K_c$ es grande habrá más producto que reactivo. 3) 'Todo el reactivo se convirtió': eso sería una reacción completa, no un equilibrio.",
+          "latexContent": null
+        },
+        {
+          "layer": 3,
+          "title": "Naturaleza del equilibrio químico",
+          "content": "El equilibrio es dinámico y se caracteriza por concentraciones constantes y $Q = K$. Repasa: reversibilidad, rapidez de reacción directa e inversa y factores que alteran el equilibrio.",
+          "latexContent": null
+        }
+      ]
+    }
+  ]
+}

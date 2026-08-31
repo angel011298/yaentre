@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-30 · Última fase ejecutada: G50 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G49 dejó en la cola: **Física, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)** (`questionWeight` 16, materia NO compartida, 10 de sus 12 temas). **35/35 coinciden con la clave del generador. Auto-aprobados 35/35 = 100 %**, cero `problems`, cero discrepancias, cero retenidos. Modelo real `claude-opus-5` — el plan de G49 anunciaba Fable 5; el campo `model` declara el que resolvió de verdad (corrección de G17, **cuarto ciclo consecutivo** en que difieren, tras G44/G46/G48). **Ceguera comprobada, no asumida:** `grep` de `isCorrect`/`explanation`/`correct` sobre el lote ciego = **0**, las opciones solo traen `label`/`text`/`imageUrl`, y la clave quedó en la misma letra tras barajar solo en **6/35** (azar ≈ 8.75). **`isCalcSubject("Física")` = true, así que el candado de G28 exigía cálculo ejecutado en los 35 y en los 35 se ejecutó:** arnés de Python con `sympy.physics.units` que (1) construye cada magnitud con unidades SI y la convierte con `convert_to` a la unidad del enunciado, **fallando ruidosamente si la dimensión no cuadra**, (2) parsea las cuatro opciones desde LaTeX descartando por dimensión las incompatibles, y (3) exige **coincidencia única** (`assert len(hits) == 1`) — cero coincidencias sería `NONE_VALID`, dos o más `MULTIPLE_VALID`; los 35 dieron exactamente una. Los ítems conceptuales tampoco se resolvieron a ojo: llevan detrás un cálculo ejecutado (trazado de rayos sobre la parábola del faro, ecuación de la lente, `TV^(γ−1)` adiabática, `g` a 400 km, De Broglie, balance `τω` vs `fem²/R`) más un predicado con la misma exigencia de unicidad, descartando distractores **por contenido**, nunca por letra. **Defecto de herramienta hallado y corregido en la sesión:** un heredoc de Bash colapsó los backslashes del parser y `\text`/`\times` llegaron al regex como TABULADOR, así que la sustitución nunca disparaba — se reescribió con `Write` + `re.escape()`; queda anotado que **`\,` de LaTeX es a la vez separador de miles y espacio número-unidad** y debe eliminarse DESPUÉS de resolver `\text{}` y `\times10^{n}`. Clave real del lote **A9/B9/C9/D8**, los 9 temas con ≥3 reactivos usan ≥3 letras distintas, cero corridas cíclicas. **Acumulado real (consulta en vivo, antes → después):** servibles **969 → 1 004**, cola ciega **35 → 0**, banco 1 007, discrepancias 2, retirados 1; auto-aprobación global **99.8 % (1 005/1 007)**; **UNAM A1 Física 72✓ → 107✓** (⚓46/61) con los 10 temas flacos reforzados exactamente como G49 planeó y Conservación de momento fuera del sótano; `SOURCED` en banco 282 (28 %), sin cambio (los 16 del lote entraron con G49). Meta efectiva G26 (1 222): **63 % → 64 %**, brecha **455 → 438 (≈ 13 lotes)**; meta nominal 1 500: **65 % → 67 %**. La celda de Física tenía meta 89 y pasa de −17 a **+18**, así que 17 de los 35 descontaron brecha efectiva y 18 cayeron en un pool ya rebasado. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el arnés de Python vive en el scratchpad y **no se committea**); cero llamadas a la API de pago. **Siguiente: G51, modelo Sonnet 4.6.**)
+Última actualización: 2026-08-31 · Última fase ejecutada: G51 (**COMPLETADA — lote de 35 reactivos de **Química, UNAM Área 2 (Ciencias Biológicas, Químicas y de la Salud)**, insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (tier Sonnet del Plan para lotes de contenido; el cierre de G50 anunciaba «Sonnet 4.6» pero el campo `model` del registro declara el que compuso de verdad — corrección de G17). **Materia COMPARTIDA `UNAM:QUIMICA`** (A1 `questionWeight` 12 + A2 `questionWeight` 8): la regla de G26 §2 / CLAUDE.md manda componer contra los temas de la materia con **más contenido del grupo** — consulta en vivo: **A2 tenía 72 verificados frente a 51 de A1** —, así que el lote va a los **6 temas de A2** y la reutilización lo sirve también a A1. **El pool combinado A1+A2 (123 verificados) ya rebasa la meta efectiva G26 del grupo (67)**, de modo que estos 35 dan **profundidad, no cierran brecha efectiva** — caso extremo frente a G45 (donde los 35 descontaban 1:1) y más allá de G47/G49. **El encargo pidió priorizar los temas de menor cobertura:** los 6 temas de A2 estaban **exactamente los 6 en 12 verificados** (72, perfectamente parejo), así que el reparto los nivela: Estructura atómica 6, Tabla periódica 5, Enlace químico 6, Reacciones orgánicas 6, Equilibrio químico 6, Ácidos y bases 6 (cada tema 12 → 17/18). Cubre los dominios del encargo dentro del temario real de A2: **estructura atómica**, **enlace químico**, **estequiometría** (balanceo de combustión, masa de producto por relación mol-masa, $K_c$, titulación, masa atómica promedio ponderada), **soluciones** (dilución $M_1V_1{=}M_2V_2$, molaridad, pH↔concentración), **ácido-base** y **orgánica** (grupos funcionales, tipos de reacción, isomería, esterificación). **35 TEMARIO_ONLY:** los 6 temas de A2 no tienen `SourceChunk` (los chunks de Química de la UNAM están clasificados bajo temas de A1 y `loadTopicChunks` filtra por `topicId`). **Química es `isCalcSubject`, así que el candado de G28 aplicará a G52.** Los **10 reactivos numéricos** se recalcularon desde cero con Python (`math`/`Fraction`): masa atómica promedio del Cu (**63.55 u**), nº de protones en 0.50 mol de $\text{NH}_3$ (**$3.0\times10^{24}$**), % isotópico del Ga (**60 %**), suma de coeficientes de la combustión del propano (**13**), masa de $\text{CO}_2$ por estequiometría (**88 g**), $K_c$ del $\text{HI}$ (**64**), pH de $\text{HCl}$ 0.001 M (**3**), $[\text{OH}^-]$ a pH 9 (**$1\times10^{-5}$ M**), volumen de $\text{NaOH}$ para titular $\text{HCl}$ (**50 mL**), dilución de $\text{HNO}_3$ (**0.24 M**). Para cada uno se exigió (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones y (c) opciones numéricas en orden ascendente — **10/10 en verde**. Cada distractor numérico deriva de un error nombrable (promedio sin ponderar, contar moléculas en vez de protones, tomar el isótopo equivocado, dejar el $\text{O}_2$ sin balancear, relación 1:1 en vez de 1:2, no elevar $[\text{HI}]$ al cuadrado, reportar el pOH, aplicar $K_w$ directo, invertir el cociente de volúmenes). **Formato:** 22 `MULTIPLE_CHOICE` · 11 `PROBLEM_SOLVING` · 2 `SENTENCE_COMPLETION` (Química más conceptual, patrón G20). **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6 de `_base.md`); los 2 EXPERT: nº de protones en 0.50 mol de $\text{NH}_3$ y el cociente $Q$ frente a $K_c$ con la trampa del coeficiente como exponente. **Clave A9/B9/C9/D8** (25.7/25.7/25.7/22.9 %), confirmada por `jsonb` tras insertar; ≥3 letras distintas en los 6 temas, tope 2 por letra por tema; para los 10 numéricos la letra la fija el rango del valor, los 25 conceptuales se asignaron a mano al objetivo global. Secuencia de clave por orden de `id` **`ABDBDCDCBAACCBDBABADCBCBCADADACADBC`** — **0 rachas cíclicas A→B→C→D ≥ 3**, racha de misma letra máx **2** (el orden de inserción de temas EA/TP/AB/OR/EN/EQ se eligió por búsqueda para romper rachas). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 6 archivos. **0 citas por letra y 0 posicionales** en las 105 capas (las 35 capa 2 se titulan «Resolución paso a paso» / «Cómo se descarta cada opción» y citan los distractores por su contenido). **Señuelo de longitud tie-aware (G34 §2): 3 pasadas** — el 1er borrador dejaba la clave como la más larga en 15/19; tras recortar claves y homogeneizar distractores con varianza en ambos extremos quedó en **12.3 % «más larga» / 23.7 % «más corta»** (sobre 19 ítems con opciones-oración; 10 de opción-valor y 6 de opción-fórmula fuera, criterio G45/G46), ambos < 25 % y < 14/35; histograma de rango 3/6/6/4. **Lenguaje absolutista (G44 §6): 0.00 marcadores/opción en claves y en distractores; 0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/35.** **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` de los 35 → **0 coincidencias no triviales**. **Acumulado real, DB en vivo antes → después:** banco **1 007 → 1 042** (COUNT crudo) · servibles **1 004** sin cambio (esta sesión no verifica sus propios reactivos, por diseño) · cola ciega (pendientes de resolución) **0 → 35** · cola canónica de discrepancias **2** sin cambio · 1 retirado · **UNAM A2 Química 72✓/0⧗ → 72✓/35⧗** (⚓0/107, 0/6 temas con fuente) · `SOURCED` banco **282** sin cambio (27 % por crecer el denominador) · `TEMARIO_ONLY` **725 → 760** · 105 `explanation_layers` · 0 `question_source_chunks`. `content:coverage`: **1 004 servibles · 35 pendientes · 1 retirado · 1 040 en banco**; meta efectiva G26 (1 222) **64 %**, brecha **438 (≈ 13 lotes)** — **no se mueve con este lote ni se moverá cuando G52 verifique**, porque el pool compartido `UNAM:QUIMICA` (123 verif, meta 67) ya está rebasado y los 35 caen enteros en un pool en meta. Meta nominal 1 500: **67 %**. Auditoría 5 % **vencida, 8 ciclos** (esta fase compone, no audita). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 6 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g51-unam-a2-quimica.json`); cero llamadas a la API de pago. **Siguiente: G52 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Química")` es `true`, así que la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo** (candado de G28) en los **10 numéricos** (EA2, EA5, TP3, OR4, OR6, EQ2, AB1, AB2, AB4, AB5); **0/35 con pasaje**. Reactivos más apretados (se señala cuáles, no cómo resolverlos, por G30 §1): los **2 EXPERT** (EA5 protones en 0.50 mol; EQ5 $Q$ vs $K_c$), **EA2** (masa atómica ponderada — la trampa del promedio simple) y **AB2** (pH→pOH→antilogaritmo en dos pasos).)
+
+<details><summary>Historial: G50 (2026-08-30)</summary>
+
+Última fase ejecutada: G50 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G49 dejó en la cola: **Física, UNAM Área 1 (Ciencias Físico-Matemáticas y las Ingenierías)** (`questionWeight` 16, materia NO compartida, 10 de sus 12 temas). **35/35 coinciden con la clave del generador. Auto-aprobados 35/35 = 100 %**, cero `problems`, cero discrepancias, cero retenidos. Modelo real `claude-opus-5` — el plan de G49 anunciaba Fable 5; el campo `model` declara el que resolvió de verdad (corrección de G17, **cuarto ciclo consecutivo** en que difieren, tras G44/G46/G48). **Ceguera comprobada, no asumida:** `grep` de `isCorrect`/`explanation`/`correct` sobre el lote ciego = **0**, las opciones solo traen `label`/`text`/`imageUrl`, y la clave quedó en la misma letra tras barajar solo en **6/35** (azar ≈ 8.75). **`isCalcSubject("Física")` = true, así que el candado de G28 exigía cálculo ejecutado en los 35 y en los 35 se ejecutó:** arnés de Python con `sympy.physics.units` que (1) construye cada magnitud con unidades SI y la convierte con `convert_to` a la unidad del enunciado, **fallando ruidosamente si la dimensión no cuadra**, (2) parsea las cuatro opciones desde LaTeX descartando por dimensión las incompatibles, y (3) exige **coincidencia única** (`assert len(hits) == 1`) — cero coincidencias sería `NONE_VALID`, dos o más `MULTIPLE_VALID`; los 35 dieron exactamente una. Los ítems conceptuales tampoco se resolvieron a ojo: llevan detrás un cálculo ejecutado (trazado de rayos sobre la parábola del faro, ecuación de la lente, `TV^(γ−1)` adiabática, `g` a 400 km, De Broglie, balance `τω` vs `fem²/R`) más un predicado con la misma exigencia de unicidad, descartando distractores **por contenido**, nunca por letra. **Defecto de herramienta hallado y corregido en la sesión:** un heredoc de Bash colapsó los backslashes del parser y `\text`/`\times` llegaron al regex como TABULADOR, así que la sustitución nunca disparaba — se reescribió con `Write` + `re.escape()`; queda anotado que **`\,` de LaTeX es a la vez separador de miles y espacio número-unidad** y debe eliminarse DESPUÉS de resolver `\text{}` y `\times10^{n}`. Clave real del lote **A9/B9/C9/D8**, los 9 temas con ≥3 reactivos usan ≥3 letras distintas, cero corridas cíclicas. **Acumulado real (consulta en vivo, antes → después):** servibles **969 → 1 004**, cola ciega **35 → 0**, banco 1 007, discrepancias 2, retirados 1; auto-aprobación global **99.8 % (1 005/1 007)**; **UNAM A1 Física 72✓ → 107✓** (⚓46/61) con los 10 temas flacos reforzados exactamente como G49 planeó y Conservación de momento fuera del sótano; `SOURCED` en banco 282 (28 %), sin cambio (los 16 del lote entraron con G49). Meta efectiva G26 (1 222): **63 % → 64 %**, brecha **455 → 438 (≈ 13 lotes)**; meta nominal 1 500: **65 % → 67 %**. La celda de Física tenía meta 89 y pasa de −17 a **+18**, así que 17 de los 35 descontaron brecha efectiva y 18 cayeron en un pool ya rebasado. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el arnés de Python vive en el scratchpad y **no se committea**); cero llamadas a la API de pago. **Siguiente: G51, modelo Sonnet 4.6.**)
+
+</details>
 
 <details><summary>Historial: G49 (2026-08-30)</summary>
 
@@ -2219,6 +2225,217 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G51 — Lote de reactivos: Química, UNAM Área 2 (2026-08-31)
+
+**Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
+contenido). **COMPLETADA. 35 reactivos insertados con `isVerified=false`** en la cola
+de verificación ciega. Registro permanente: `docs/content-batches/g51-unam-a2-quimica.json`.
+
+### 1) El encargo y la decisión de materia compartida
+
+El encargo pidió **35 reactivos adicionales de Química para UNAM Área 2, priorizando
+los temas de menor cobertura**, cubriendo estructura atómica, enlace químico,
+estequiometría, soluciones, ácido-base y orgánica, con cada cálculo verificado antes
+de insertar. Consulta en vivo a Supabase (2026-08-31):
+
+| Materia | `subjectId` | `sharedContentKey` | `questionWeight` | Temas | Verificados |
+|---|---|---|---:|---:|---:|
+| Química · UNAM Área 2 | `cmrr1jq55003shi3nanr7cmtm` | `UNAM:QUIMICA` | **8** | 6 | **72** |
+| Química · UNAM Área 1 | `cmrr1j8xn001uhi3n0zapxx25` | `UNAM:QUIMICA` | 12 | 9 | 51 |
+
+**Química de la UNAM es materia COMPARTIDA** (`sharedContentKey = 'UNAM:QUIMICA'`,
+migración 0011 / G26): A1 y A2 comparten un único pool de reactivos verificados. La
+regla de CLAUDE.md y de G26 §8.2 es explícita: **al componer un lote de una materia
+compartida, insértalo contra el `topicId` de la materia con más contenido del
+grupo**. A2 tiene **72** verificados frente a **51** de A1, así que el lote va a los
+**6 temas propios de A2** y la reutilización G26 lo sirve también a A1 (verificado en
+código: `loadEquivalentSubjectIds` / `loadAreaServablePool` filtran por
+`topic.subjectId ∈ grupo`). Contraste con G45 (Matemáticas UNAM A1, `sharedContentKey`
+NULL → temas propios) y con G29 (Español IPN, compartida pero con una sola celda
+poblada): aquí las dos celdas ya tenían contenido y ganó A2 por volumen.
+
+**Consecuencia sobre la brecha:** el pool combinado `UNAM:QUIMICA` (51 + 72 = **123**
+verificados) **ya rebasa la meta efectiva G26 del grupo (67 — la de su celda de mayor
+peso, A1)**. Estos 35 caen **enteros en un pool que ya está en meta**, así que dan
+profundidad pero **no descuentan brecha efectiva**, ni ahora ni cuando G52 los
+verifique — el caso opuesto a G45 (donde los 35 descontaban 1:1) y más extremo que
+G47/G49 (parciales). Se documenta sin adornos: la meta efectiva sigue en **64 %,
+brecha 438**.
+
+### 2) Reparto — los 6 temas de A2 estaban parejos
+
+Consulta por tema antes del lote: **los 6 temas de A2 tenían exactamente 12
+verificados cada uno** (72, sin dispersión). «Priorizar los de menor cobertura» se
+resuelve nivelando:
+
+| Tema | `topicId` | Antes → después | Reactivos |
+|---|---|---:|---:|
+| Estructura atómica | `cmrr1jq8d003uhi3no2ng7syr` | 12 → 18 | 6 |
+| Tabla periódica | `cmrr1jqwi003whi3n0b98ca98` | 12 → 17 | 5 |
+| Enlace químico | `cmrr1jrea003yhi3no3ujdhrq` | 12 → 18 | 6 |
+| Reacciones orgánicas | `cmrr1jrw70040hi3n0616pez7` | 12 → 18 | 6 |
+| Equilibrio químico | `cmrr1jsii0042hi3nbcx4wu7m` | 12 → 18 | 6 |
+| Ácidos y bases | `cmrr1jt050044hi3nw1kv4oq4` | 12 → 18 | 6 |
+
+El temario oficial de A2 no tiene un tema dedicado de «Estequiometría» ni de
+«Soluciones» (sí los de A1), así que esos dominios del encargo se cubren **dentro de
+los temas que sí existen**: balanceo de combustión y masa de producto por relación
+mol-masa en Reacciones orgánicas; masa atómica promedio ponderada en Estructura
+atómica y Tabla periódica; $K_c$ y estequiometría de gases en Equilibrio; molaridad,
+dilución $M_1V_1{=}M_2V_2$, pH↔concentración y titulación en Ácidos y bases.
+
+### 3) Anclaje — 35 TEMARIO_ONLY
+
+`loadTopicChunks` devolvió **0 `SourceChunk` para los 6 temas de A2**. Los fragmentos
+de Química de la UNAM que sí existen (guías UAM/CENEVAL) están clasificados por F2b
+bajo temas de **A1** (Estructura atómica 4, Estequiometría 3, Ácidos/bases/sales 2,
+Enlace 1, Estados de la materia 1, Reacciones 1) y `loadTopicChunks` filtra por
+`topicId`, no por materia — así que no viajan al lote de A2. Los 35 son
+**TEMARIO_ONLY**, redactados de cero desde el temario.
+
+### 4) Verificación de cálculo (criterio del encargo)
+
+**Química es `isCalcSubject`** (`CALC_SUBJECT_KEYS` incluye `quimica`), así que el
+candado aritmético de G28 aplicará a la sesión ciega de G52. Los **10 reactivos
+numéricos** se recalcularon **desde cero** con Python (`math` / `Fraction`,
+`scratchpad g51/gen.py`), exigiendo para cada uno: (a) el valor coincide con la opción
+marcada correcta, (b) **la opción más cercana al valor calculado es la correcta y la
+siguiente está ≥ 4× más lejos** (unicidad real, no solo coincidencia) y (c) las
+opciones numéricas quedan en orden ascendente:
+
+| Tag | Qué se calculó | Resultado |
+|---|---|---|
+| EA2 | masa atómica promedio ponderada del Cu, $0.692(62.93)+0.308(64.93)$ | 63.55 u |
+| EA5 | protones en 0.50 mol de $\text{NH}_3$: $0.50\times6.0\times10^{23}\times10$ | $3.0\times10^{24}$ |
+| TP3 | % de $^{69}\text{Ga}$ despejado de $68.93x+70.92(1-x)=69.72$ | 60 % |
+| OR4 | suma de coeficientes de $\text{C}_3\text{H}_8+5\text{O}_2\to3\text{CO}_2+4\text{H}_2\text{O}$ | 13 |
+| OR6 | masa de $\text{CO}_2$ de 1 mol de etanol: $1\times2\times44$ | 88 g |
+| EQ2 | $K_c=[\text{HI}]^2/([\text{H}_2][\text{I}_2])=1.6^2/(0.2\times0.2)$ | 64 |
+| AB1 | $\text{pH}=-\log(1\times10^{-3})$ | 3 |
+| AB2 | $[\text{OH}^-]=10^{-(14-9)}$ | $1\times10^{-5}$ M |
+| AB4 | $V=(0.025\times0.20/0.10)\times1000$, neutralización 1:1 | 50 mL |
+| AB5 | dilución $M_2=(6.0\times20)/500$ | 0.24 M |
+
+**10/10 en verde.** Cada distractor numérico deriva de un error de procedimiento
+**nombrable** —promedio aritmético sin ponderar, contar moléculas en vez de protones,
+tomar el isótopo pesado, dejar el $\text{O}_2$ con coeficiente 1, relación 1:1 en vez
+de 1:2, no elevar $[\text{HI}]$ al cuadrado, reportar el pOH, tomar $K_w$ como
+concentración, invertir el cociente de volúmenes— y la capa 2 de cada reactivo lo
+explicita.
+
+### 5) Formato, dificultad y posición
+
+- **Formato:** 22 `MULTIPLE_CHOICE` · 11 `PROBLEM_SOLVING` · 2 `SENTENCE_COMPLETION`
+  (Química se compone más conceptual que Física/Matemáticas, patrón G20: 22 + 13).
+- **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (≈ 20/49/26/6, la
+  distribución objetivo de `_base.md`). Los 2 `EXPERT`: nº de protones en 0.50 mol de
+  $\text{NH}_3$ (EA5) y el cociente de reacción $Q$ frente a $K_c$ con la trampa de
+  usar el coeficiente como factor y no como exponente (EQ5).
+- **Clave A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %),
+  **confirmada por `jsonb` sobre `options` de las 35 filas tras insertar**. Para los
+  10 numéricos la letra la fija el rango del valor correcto entre las 4 opciones
+  ascendentes; para los 25 conceptuales se asignó a mano al objetivo global, con
+  **≥ 3 letras distintas en cada uno de los 6 temas** y tope 2 por letra por tema.
+- **Secuencia de la clave por orden de `id` (= orden de inserción):**
+  `ABDBDCDCBAACCBDBABADCBCBCADADACADBC` — **0 rachas cíclicas A→B→C→D de longitud
+  ≥ 3**, racha de misma letra máx **2** (candado G16/G38). El orden de inserción de
+  temas (**EA · TP · AB · OR · EN · EQ**) y el orden dentro de cada archivo se
+  eligieron por búsqueda aleatoria (semilla fija) para romper las rachas que
+  aparecían al fijar la letra de los 10 numéricos por su rango.
+
+### 6) Chequeos de forma (G3c / G34 §2 / G44 §6-§7 / G38 §6)
+
+- `content:validate-batch --dir scripts/g51-lote`: **0 violaciones**
+  (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y de
+  nuevo como paso obligatorio de `content:insert --lot-dir` sobre los 6 archivos.
+- **0 citas por letra** y **0 referencias posicionales** en las 105 capas
+  (auto-chequeo con las regex de `lot-validation.ts` más `POSITION_REF` de G33). Las
+  35 capa 2 se titulan «Resolución paso a paso» / «Cómo se descarta cada opción» y
+  descartan los distractores **por su contenido** (el valor, la fórmula o el concepto).
+- **Señuelo de longitud tie-aware (G34 §2): 3 pasadas.** El 1er borrador dejaba la
+  clave como la más larga en 15/19 (arrastre de la síntesis explicativa en las
+  claves); tras recortar las claves a la aserción y homogeneizar los distractores con
+  varianza deliberada en ambos extremos, quedó en **12.3 % «más larga» / 23.7 % «más
+  corta»**, ambos < 25 % y < 14/35, histograma de rango **3/6/6/4**. Medido sobre los
+  **19 ítems con opciones-oración**; los 10 de opción-valor y los 6 de opción-fórmula
+  quedan fuera (criterio G45/G46).
+- **Lenguaje absolutista (G44 §6):** **0.00** marcadores por opción tanto en las 35
+  claves como en los 105 distractores; **0/35** con la clave como única sin marcador.
+  **Opción compuesta como única clave (G44 §7): 0/35.**
+- **Fuga entre reactivos (G38 §6 / G42 §8):** heurístico de 4-gramas sobre
+  `(stem + clave)` y sobre la diagonal `(clave ↔ distractores de todo el lote)` de los
+  35 → **0 coincidencias no triviales**.
+
+### 7) Inserción real — verificada en la DB
+
+| Métrica | Antes de G51 | Después de G51 |
+|---|---:|---:|
+| Banco total (COUNT crudo) | 1 007 | **1 042** |
+| Servibles (`isVerified=true`) | 1 004 | 1 004 |
+| Retirados a propósito | 1 | 1 |
+| Cola ciega (pendientes de resolución) | 0 | **35** |
+| Cola canónica de discrepancias (`manualReview=null`) | 2 | 2 |
+| `explanation_layers` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **0** (35 TEMARIO_ONLY) |
+| `SOURCED` en el banco | 282 | 282 (27 % — el denominador creció) |
+| UNAM A2 Química · pool | 72✓ · 0⧗ | **72✓ / 35⧗** · ⚓0/107 |
+
+Chequeos post-inserción (query directa, cruzada 35/35 contra el registro permanente):
+los 35 con exactamente 4 opciones y 1 correcta, 105 `explanation_layers`, clave
+A9/B9/C9/D8, dificultad 7/17/9/2, formato 22/11/2, reparto por tema 6/5/6/6/6/6,
+`groundingStatus=TEMARIO_ONLY` y `verification=null` en los 35. Cohorte con `id`
+prefijo `cmtgtt…`–`cmtgtv…` del 2026-08-31 — separable por `topicId` o por timestamp
+para la verificación ciega de G52.
+
+`content:coverage` en vivo: **1 004 servibles · 35 pendientes · 1 retirado · 1 040 en
+banco**; meta efectiva G26 (1 222) **64 %**, brecha **438 (≈ 13 lotes)** — **no se
+mueve**, ni ahora ni cuando G52 verifique, porque el pool compartido `UNAM:QUIMICA`
+(123 verif, meta 67) ya está rebasado y `computeSharedGoal` topa el aporte en la meta.
+Meta nominal de 1 500: **67 %**.
+
+### 8) Limpieza
+
+El lote se compuso con un generador de Python desechable en el scratchpad
+(`g51/gen.py` con los 35 reactivos, sus 3 capas, la verificación de los 10 cálculos,
+la asignación de letra por reactivo y el auto-chequeo de distribución / racha cíclica
+/ señuelo de longitud tie-aware / citas por letra / absolutismo / opción compuesta /
+fuga de 4-gramas, y la búsqueda del orden de inserción; `g51/record.py` construye el
+registro permanente cruzando la DB). El generador y los 6 archivos del lote **no se
+committean**; el registro permanente es `docs/content-batches/g51-unam-a2-quimica.json`.
+`pnpm typecheck` y `pnpm lint` en verde (cero cambios de código de producción). Cero
+llamadas a la API de pago.
+
+### Siguiente (G51)
+
+1. **Verificación ciega del lote de G51** (segunda mitad del ciclo de G2), **modelo
+   Fable 5**: `pnpm content:blind-batch --topic <cada uno de los 6 topicId>` →
+   `content:resolve`. **LOTE DE CÁLCULO:** `isCalcSubject("Química")` es `true`, así
+   que la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada
+   cálculo con código real** (candado de G28), en los **10 numéricos** (EA2, EA5, TP3,
+   OR4, OR6, EQ2, AB1, AB2, AB4, AB5). **0/35 con pasaje.** **Aplicar G36 §2 / G38
+   §3:** recalcular el señuelo de longitud tie-aware sobre las respuestas ciegas y
+   compararlo con §6. **Reactivos más apretados** (se señala cuáles, no cómo
+   resolverlos, por G30 §1): los **2 `EXPERT`** (EA5 protones en 0.50 mol de
+   $\text{NH}_3$; EQ5 $Q$ vs $K_c$), **EA2** (masa atómica ponderada — la trampa del
+   promedio simple, distractor a 0.6 % de la clave) y **AB2** (pH → pOH →
+   antilogaritmo en dos pasos).
+2. **Huecos que siguen abiertos** tras G51:
+   - **UNAM A1 Matemáticas** aún por debajo de meta (114/144) — el pool STEM de mayor
+     peso de la UNAM.
+   - **UNAM A4 Artes** (5 temas, w2, cero; tiene `SourceChunk` en 3 temas).
+   - **IPN SOCADM** completo (Historia de México / Universal / Geografía / Civismo).
+   - Los pools STEM de alto peso de G39 §7 (IPN Física, IPN Química ambas ramas, IPN
+     MEDBIO Biología y Matemáticas).
+   - **UNAM Español** necesita solo 21 más (35→56) para cubrir sus 4 áreas.
+3. **Auditoría 5 %: vencida, 8 ciclos.** La muestra de 40 ids exige sesión ciega con
+   tier **≠ opus-5**.
+4. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4): sigue condicionando la
+   planeación sin respuesta del dueño.
+5. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, la regla de G42 §8
+   como código en `lot-validation.ts`, el rebanado de `SourceChunk` por página, y los
+   3 reactivos de G37 que son paráfrasis cercanas de su guía fuente.
 
 ## G50 — Verificación ciega: Física, UNAM Área 1 (lote de G49) (2026-08-30)
 
