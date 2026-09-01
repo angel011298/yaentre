@@ -29,6 +29,8 @@
     "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",
     "stripe:setup-webhook": "tsx scripts/setup-stripe-webhook.ts",
     "reconcile:payments": "tsx scripts/reconcile-pending-payments.ts",
+    "backup:export": "tsx scripts/backup-content-export.ts",
+    "backup:import": "tsx scripts/backup-content-import.ts",
     "test:rls": "tsx scripts/verify-rls-isolation.ts",
     "perf:audit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-audit.ts",
     "perf:pool": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-pool-probe.ts"

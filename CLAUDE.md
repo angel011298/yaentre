@@ -94,6 +94,7 @@ Estas decisiones vienen del TRD. **No las contradigas sin instrucción explícit
 - `Subject.questionWeight` = # de reactivos esperados de esa materia en el examen real. Es el input del Entrómetro.
 - `Question.isVerified`: ningún reactivo con `false` es visible para usuarios. El pipeline de IA inserta `false`; el admin lo pasa a `true`.
 - **Nunca borrar reactivos con respuestas históricas** (rompe el aprendizaje). Despublicar con `isVerified=false`.
+- **Respaldo del banco (G61):** el plan gratuito de Supabase no da respaldos restaurables. Tras cada lote de contenido corre `pnpm backup:export` y commitea `backups/content-bank.json` en el mismo commit del lote — el historial de git es la retención. Restauración: `pnpm backup:import` (`--dry-run` para verificar sin escribir). Detalle en `docs/RESPALDOS.md`.
 - El `LearningProfile` sobrevive entre ciclos (clave para re-engagement de rechazados).
 - `Subject.sharedContentKey` (G26): materias que varias áreas de un mismo examen evalúan con el mismo temario (UNAM Español/Inglés/Química; IPN Español/Inglés/Química/Matemáticas) comparten su pool de reactivos verificados. Al componer un lote de una materia compartida, insértalo contra el `topicId` de la materia con más contenido del grupo — la reutilización lo sirve a las demás áreas. Nunca cruza instituciones. Lógica en `src/lib/content/shared-subjects.ts` + `src/lib/db/shared-content.ts`; ver `docs/ESTADO.md` §G26.
 

@@ -187,6 +187,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G61 | Respaldos y recuperación | **COMPLETADA — el plan gratuito de Supabase NO da respaldos restaurables; se implementó un respaldo lógico propio del banco de contenido (13 tablas, versionado en git) con export/import probados round-trip byte-idéntico. Reporte: `docs/RESPALDOS.md`** | (G61) | `pnpm backup:export` → `backups/content-bank.json` (5 658 filas, 3.9 MB); `pnpm backup:import` (`--dry-run` / `--wipe --yes` / `--schema <x>`). Prueba real: import a esquema aislado → checksum md5 idéntico en las 13 tablas + 16 FK validadas; `--dry-run` contra prod (ROLLBACK, prod intacta). Spec derivada del DMMF de Prisma (sin listas hardcodeadas). **Decisión pendiente del dueño: subir a Pro ($25/mes) antes del launch** — el free no tiene red para datos de usuario/pago y pausa por inactividad. PITR (~$125/mes) sobredimensionado a ~20 MB de base. |
 | G60 | Integridad y resiliencia del backend | **COMPLETADA — 10 hallazgos corregidos, 1 documentado. 2 🔴: `finishSession` no atómico (doble `simulation_completed` — la North Star), y bypass del muro suave por doble arranque de simulacro (usuario FREE → 2 gratis). Auditoría completa en `docs/AUDITORIA_BACKEND.md` §G60** | (G60) | Nuevo `withUserAdvisoryLock` (`pg_advisory_xact_lock`, seguro con pgbouncer) serializa arranque de simulacro/diagnóstico por usuario; `finishSession` reclama la transición con `updateMany` condicionado; activación de plan Stripe ahora condicional atómica (webhook + reconciliación en paralelo ya no duplican `Payment`/insignia/evento); `redeemParentLinkCode` en transacción; sesión+`SessionAnswer` en un `create` anidado. Bug latente corregido: `getAuthEmails` comparaba `UserProfile.id` (cuid) vs `auth.users.id` (uuid) — **sigue pendiente el grant del dueño** (G59 §5). Anti open-redirect en `?next=`. Cotas Zod. `try/catch` de último recurso en Route Handlers. **No se tocó `prisma/schema.prisma`.** |
 | G59 | Auditoría y optimización de base de datos | **COMPLETADA — 454 → 300 viajes de red, +18 índices, 29 políticas RLS optimizadas (55× en el peor caso), 2 bugs corregidos (fuga de respuestas correctas vía anon key; insignia calculada sobre todos los usuarios), 1 bloqueado por permisos** | (G59) | Ver `docs/AUDITORIA_BACKEND.md`. Medición con el SQL real de Prisma + banco de pruebas aislado a escala de lanzamiento (856 729 respuestas) porque con 480 respuestas ningún plan malo se nota. N+1 corregidos: sinc del simulador (282 → 4 viajes), insignia de materia, historial de respuestas (3 → 1 consulta, leído una vez por cierre de sesión en vez de tres), cadena perfil→carrera→área→examen (4 lecturas → 1), taxonomía (24 → 1 viaje por render, cacheada), y tres agregaciones que se hacían en Node movidas a SQL. `?pgbouncer=true` se CONSERVA: quitarlo es 4,7× más rápido con una conexión y falla en las 8 con concurrencia. |
 | G41 | Lote de reactivos: Filosofía, UNAM Área 4 | **COMPLETADA — 35 insertados, isVerified=false, banco 832 → 867, cola ciega 0 → 35** | (G41) | Ver sección dedicada abajo. **Segunda materia del Área 4 con contenido** (tras Literatura en G37): Filosofía estaba en cero absoluto. Consulta en vivo a Supabase: **Filosofía es una sola fila `Subject` en el Área 4**, `questionWeight` 3, **`sharedContentKey` NULL** (no entra en G26 — en la UNAM solo Español/Inglés/Química la tienen). Lote a sus **5 temas propios**: Epistemología 9 (incluye lógica) · Metafísica 6 · Ética 8 · Estética 5 · Historia de la filosofía occidental 7. **28/35 TEMARIO_ONLY · 7/35 SOURCED** (el tema «Historia de la filosofía occidental» tiene 3 `SourceChunk` — `uam_csh.pdf` pp. 45-47, banco de preguntas de la guía CSH de la UAM; cada reactivo SOURCED cita el fragmento cuya página contiene su ítem-semilla; el chunk está rebanado por página y arrastra ítems de historia/serie numérica, patrón G40 §7). **Originalidad (G40 §6):** 5 de los 7 SOURCED cambian la tarea de atribución («¿de quién es X?») a comprensión («¿qué sostiene X?»); los 2 más cercanos (#30 Gorgias, #35 Wittgenstein prop. 7) reproducen un enunciado canónico inevitable, reformulado, con la tarea desplazada — se declaran para G42. Prioriza comprensión de argumentos sobre memorización: solo 3 reactivos son de clasificación por definición. 35 `MULTIPLE_CHOICE`; dificultad **7/17/9/2**. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; sin corridas cíclicas ≥3, rotación +1 = 11.8 %; **equilibrio también por tema** (ninguna letra concentra la correcta en un tema). **Cue de longitud (G34 §2, reportado como veredicto — G36 §3):** tie-aware «elige la más larga» = **6.5/35 = 18.6 %**, «elige la más corta» = **5.3/35 = 15.2 %**, ambas por debajo del azar (25 %) y de la cota 14/35; ratio medio **0.99** (el primer borrador tenía la correcta como la más larga en 31/35 — patrón G33/G35/G37 —, corregido en dos pasadas). `content:validate-batch` **0 violaciones**. 0 citas por letra / posicionales en 105 `ExplanationLayer` (capas 2 «Cómo se descarta cada opción», distractores por contenido). Distractores = **posturas filosóficas reales** correctamente descritas (G36 §5). **Fuga entre reactivos revisada en las dos direcciones (G38 §6 / G40 §3):** #30 (Gorgias) se desacopló de #10 (Parménides/Heráclito) y de #22 (Sócrates) cambiando sus distractores. Las 35 atribuciones de postura verificadas una por una. Registro en `docs/content-batches/g41-unam-a4-filosofia.json`. Generador Python desechable (no committeado). `typecheck`/`lint` verde, 0 cambios de código, 0 API de pago. |
@@ -2521,6 +2522,64 @@ alcance — mismo criterio que ya usa `notification-jobs.ts`).
 1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
 2. Idempotencia real de los correos programados → tabla nueva → instrucción
    explícita.
+
+
+## G61 — Respaldos y recuperación (2026-09-01)
+
+**Reporte completo: `docs/RESPALDOS.md`.** Aquí solo lo esencial. Modelo real:
+`claude-sonnet-5`. No se tocó `prisma/schema.prisma`.
+
+### 1. El plan gratuito de Supabase NO da respaldos restaurables
+
+Verificado por la Management API: org `553angelortiz@gmail.com's Org` = plan
+`free`. En free: los respaldos diarios "existen internamente" pero **no se
+pueden descargar ni restaurar** hasta subir de plan (y Supabase avisa que
+podría dejar de tomarlos para free). Sin PITR, sin clone-to-project. Además
+pausa por inactividad a los 7 días. **Recomendación textual de Supabase para
+free: exportar la data uno mismo y mantener respaldos off-site.**
+
+Planes de pago: Pro $25/mes (diarios, 7 días retención, RPO ≤24 h) · PITR add-on
+~$100/mes + cómputo Small ~$10 (RPO ≈2 min) · Team $599 (14 días).
+
+### 2. Respaldo lógico propio del contenido — implementado y probado
+
+- `pnpm backup:export` → `backups/content-bank.json` (**versionado en git**, la
+  retención es el historial de commits). 13 tablas de contenido: reactivos +
+  opciones, `explanation_layers`, `passages`, taxonomía completa (institución →
+  tema + carreras), `content_sources` + `source_chunks` +
+  `question_source_chunks`. Preserva `id` (cuid) y timestamps. **NO** incluye
+  datos de usuario/sesión/pago ni Fase 2 (a propósito).
+- `pnpm backup:import` con `--dry-run` (transacción + ROLLBACK, no escribe nada),
+  `--wipe --yes` (reemplaza `public`), `--schema <x>` (esquema aislado),
+  `--file <p>`.
+- `scripts/lib/content-backup.ts`: la lista de columnas / fechas / json /
+  claves primarias se deriva del **DMMF de Prisma en runtime** — si el schema
+  cambia, el respaldo lo refleja solo. El `_manifest` guarda el SHA-256 de
+  `prisma/schema.prisma` para detectar drift.
+
+### 3. Prueba real (G61)
+
+- Export contra prod: **5 658 filas**, 3.91 MB.
+- Import a un esquema aislado `g61_restore_test` (vacío, 13 tablas + 8 enums
+  copiados): 5 658 filas. **Checksum md5 por tabla, `public` vs restaurado:
+  idéntico en las 13** (incluidos `jsonb` y timestamps). 16 FK añadidas
+  post-import → todas validaron.
+- `--dry-run` contra prod: wipe+insert+verificación dentro de transacción →
+  ROLLBACK. Prod intacta (1 147 reactivos, 480 respuestas — sin cambios).
+- Esquema de prueba eliminado. (Gotcha resuelto: Prisma con `?schema=` califica
+  los casts de enum contra ese esquema → hay que copiar los enums; y las
+  consultas crudas de Prisma no heredan `search_path`, hay que calificar con el
+  esquema — el rol `acierta_ci` no trae `public` en su search_path por defecto.)
+
+### 4. Pendiente del dueño (decisión, no código)
+
+1. **Subir `Acierta` a Supabase Pro ($25/mes) antes del launch (6-ene-2027)** —
+   idealmente ya, para quitar la pausa por inactividad durante la beta. El plan
+   free deja los datos de usuario/pago **sin ninguna red** ante un borrado o
+   fallo. Ver `docs/RESPALDOS.md §6`.
+2. Evaluar PITR en el launch (hoy sobredimensionado: base ~20 MB, pocos pagos).
+3. Seguir corriendo `pnpm backup:export` tras cada lote de contenido y
+   commiteando el `backups/content-bank.json` en el mismo commit del lote.
 
 
 ## G58 — Verificación ciega (lote de G57) + BALANCE FINAL DE CONTENIDO (2026-08-31)
