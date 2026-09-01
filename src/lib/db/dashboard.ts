@@ -65,37 +65,28 @@ async function loadAllTimeTopicRanking(
   userProfileId: string,
   limit: number
 ): Promise<WeakTopicSummary[]> {
-  const answers = await prisma.sessionAnswer.findMany({
-    where: {
-      selectedOption: { not: null },
-      session: { userProfileId, status: { in: [...FINISHED_STATUSES] } },
-    },
-    select: {
-      isCorrect: true,
-      question: { select: { topic: { select: { id: true, name: true, subject: { select: { name: true } } } } } },
-    },
-  });
-
-  const byTopic = new Map<string, { topicName: string; subjectName: string; correct: number; attempts: number }>();
-  for (const a of answers) {
-    const t = a.question.topic;
-    const prev = byTopic.get(t.id) ?? { topicName: t.name, subjectName: t.subject.name, correct: 0, attempts: 0 };
-    byTopic.set(t.id, {
-      ...prev,
-      correct: prev.correct + (a.isCorrect ? 1 : 0),
-      attempts: prev.attempts + 1,
-    });
-  }
-
-  return [...byTopic.entries()]
-    .map(([topicId, s]) => ({
-      topicId,
-      topicName: s.topicName,
-      subjectName: s.subjectName,
-      hitRate: s.correct / s.attempts,
-    }))
-    .sort((a, b) => a.hitRate - b.hitRate)
-    .slice(0, limit);
+  // G59: agrupar, ordenar y recortar en Postgres. La versión anterior traía
+  // CADA respuesta del alumno (con el nombre del tema y de la materia repetidos
+  // en cada renglón) para quedarse con tres — y además eran cuatro viajes de
+  // red, porque el `select` anidado de Prisma resuelve reactivo, tema y materia
+  // por separado.
+  return prisma.$queryRaw<WeakTopicSummary[]>`
+    SELECT t."id"    AS "topicId",
+           t."name"  AS "topicName",
+           sub."name" AS "subjectName",
+           (count(*) FILTER (WHERE sa."isCorrect"))::float / count(*)::float AS "hitRate"
+      FROM "session_answers" sa
+      JOIN "exam_sessions" s   ON s."id" = sa."sessionId"
+      JOIN "questions"     q   ON q."id" = sa."questionId"
+      JOIN "topics"        t   ON t."id" = q."topicId"
+      JOIN "subjects"      sub ON sub."id" = t."subjectId"
+     WHERE s."userProfileId" = ${userProfileId}
+       AND s."status" IN ('COMPLETED', 'COMPLETED_BY_TIMEOUT')
+       AND sa."selectedOption" IS NOT NULL
+     GROUP BY t."id", t."name", sub."name"
+     ORDER BY "hitRate" ASC, t."id" ASC
+     LIMIT ${limit}
+  `;
 }
 
 /** Temas a reforzar (F11 Task 3 y 6): prefiere `WeakTopic` (confiable, ≥3

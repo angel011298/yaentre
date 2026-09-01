@@ -1,4 +1,5 @@
 import { prisma } from './prisma';
+import { loadAnswerHistory } from './answer-history';
 import { toDateKey } from './dashboard';
 import { loadAreaSharedContent } from './shared-content';
 import { startOfMexicoDay } from '@/lib/paywall/mexico-time';
@@ -57,38 +58,58 @@ export async function loadEntrometroHistory(
   const shared = await loadAreaSharedContent(areaId);
   if (shared.areaSubjects.length === 0) return [];
 
-  const sessions = await prisma.examSession.findMany({
-    where: { userProfileId, status: { in: [...FINISHED_STATUSES] }, finishedAt: { not: null } },
-    orderBy: { finishedAt: 'asc' },
-    select: {
-      finishedAt: true,
-      answers: {
-        select: { isCorrect: true, question: { select: { topic: { select: { subjectId: true } } } } },
-      },
-    },
-  });
-  if (sessions.length === 0) return [];
+  // G59: una sola consulta. La versión anterior pedía las sesiones con sus
+  // respuestas anidadas, y eso en Prisma son CUATRO viajes (sesiones →
+  // respuestas → reactivos → temas). Aquí el JOIN lo hace Postgres y las filas
+  // ya vienen en el orden cronológico que necesita la reconstrucción.
+  const rows = await prisma.$queryRaw<
+    { sessionId: string; finishedAt: Date; subjectId: string; isCorrect: boolean }[]
+  >`
+    SELECT s."id"          AS "sessionId",
+           s."finishedAt"  AS "finishedAt",
+           t."subjectId"   AS "subjectId",
+           sa."isCorrect"  AS "isCorrect"
+      FROM "exam_sessions" s
+      JOIN "session_answers" sa ON sa."sessionId" = s."id"
+      JOIN "questions"       q  ON q."id" = sa."questionId"
+      JOIN "topics"          t  ON t."id" = q."topicId"
+     WHERE s."userProfileId" = ${userProfileId}
+       AND s."status" IN ('COMPLETED', 'COMPLETED_BY_TIMEOUT')
+       AND s."finishedAt" IS NOT NULL
+     ORDER BY s."finishedAt" ASC, s."id" ASC
+  `;
+  if (rows.length === 0) return [];
 
   const answersSoFar: SubjectAnswer[] = [];
   const byDay = new Map<string, number>();
   const dayOrder: string[] = [];
 
-  for (const session of sessions) {
-    for (const a of session.answers) {
-      answersSoFar.push({ subjectId: a.question.topic.subjectId, isCorrect: a.isCorrect });
-    }
+  // Un punto por SESIÓN (colapsado por día más abajo): se acumula hasta que
+  // cambia el id de sesión, exactamente como el bucle anterior.
+  let currentSessionId: string | null = null;
+  let currentFinishedAt: Date | null = null;
 
+  const snapshot = (finishedAt: Date): void => {
     const perf = aggregateSharedSubjectPerformance(
       answersSoFar,
       shared.areaSubjects,
       shared.keyBySubjectId,
     );
     const { predictedScore } = predictScore({ subjects: perf, totalQuestions });
-
-    const dateKey = toDateKey(startOfMexicoDay(session.finishedAt as Date));
+    const dateKey = toDateKey(startOfMexicoDay(finishedAt));
     if (!byDay.has(dateKey)) dayOrder.push(dateKey);
     byDay.set(dateKey, predictedScore);
+  };
+
+  for (const row of rows) {
+    if (currentSessionId !== null && row.sessionId !== currentSessionId) {
+      snapshot(currentFinishedAt as Date);
+    }
+    currentSessionId = row.sessionId;
+    currentFinishedAt = row.finishedAt;
+    answersSoFar.push({ subjectId: row.subjectId, isCorrect: row.isCorrect });
   }
+  if (currentFinishedAt !== null) snapshot(currentFinishedAt);
 
   return dayOrder.slice(-HISTORY_MAX_POINTS).map((date) => ({ date, predictedScore: byDay.get(date)! }));
 }
@@ -122,19 +143,12 @@ export async function loadSubjectMastery(userProfileId: string): Promise<Subject
   const shared = await loadAreaSharedContent(areaId);
   if (shared.areaSubjects.length === 0) return [];
 
-  const subjects = await prisma.subject.findMany({
-    where: { id: { in: shared.areaSubjects.map((s) => s.subjectId) } },
-    select: { id: true, name: true },
-  });
-  const nameById = new Map(subjects.map((s) => [s.id, s.name]));
+  // G59: el nombre de la materia ya viene con la taxonomía cacheada (una
+  // consulta menos) y el historial se acota a las materias del pool en la
+  // misma consulta que lo trae.
+  const nameById = new Map(shared.areaSubjects.map((s) => [s.subjectId, s.subjectName]));
 
-  const answers = await prisma.sessionAnswer.findMany({
-    where: {
-      session: { userProfileId, status: { in: [...FINISHED_STATUSES] } },
-      question: { topic: { subject: { id: { in: shared.poolSubjectIds } } } },
-    },
-    select: { isCorrect: true, question: { select: { topic: { select: { subjectId: true } } } } },
-  });
+  const answers = await loadAnswerHistory(userProfileId, { subjectIds: shared.poolSubjectIds });
 
   // Agregación por clave canónica: la respuesta a una materia hermana suma a la
   // materia del área del alumno.
@@ -143,7 +157,7 @@ export async function loadSubjectMastery(userProfileId: string): Promise<Subject
   );
   const byCanonical = new Map<string, { correct: number; attempts: number }>();
   for (const a of answers) {
-    const key = canonicalSubjectKey(a.question.topic.subjectId, shared.keyBySubjectId);
+    const key = canonicalSubjectKey(a.subjectId, shared.keyBySubjectId);
     const prev = byCanonical.get(key) ?? { correct: 0, attempts: 0 };
     byCanonical.set(key, {
       correct: prev.correct + (a.isCorrect ? 1 : 0),
@@ -210,35 +224,46 @@ export interface CumulativeStats {
   longestStreak: number;
 }
 
+/**
+ * G59: tres consultas que traían FILAS (todas las respuestas del alumno, todas
+ * sus sesiones) solo para contarlas y sumar duraciones, colapsadas en un solo
+ * agregado. Contar y sumar es trabajo de la base de datos: el resultado son
+ * cuatro números, no miles de renglones cruzando la red.
+ */
 export async function loadCumulativeStats(userProfileId: string): Promise<CumulativeStats> {
-  const [answers, sessions, streak] = await Promise.all([
-    prisma.sessionAnswer.findMany({
-      where: {
-        session: { userProfileId, status: { in: [...FINISHED_STATUSES] } },
-        selectedOption: { not: null },
-      },
-      select: { isCorrect: true },
-    }),
-    prisma.examSession.findMany({
-      where: { userProfileId, status: { in: [...FINISHED_STATUSES] } },
-      select: { startedAt: true, finishedAt: true },
-    }),
-    prisma.streakRecord.findUnique({ where: { userProfileId }, select: { longestStreak: true } }),
-  ]);
+  const rows = await prisma.$queryRaw<
+    { totalAnswered: number; correct: number; studySecs: number; longestStreak: number }[]
+  >`
+    SELECT
+      (SELECT count(*)::int
+         FROM "session_answers" sa
+         JOIN "exam_sessions" s2 ON s2."id" = sa."sessionId"
+        WHERE s2."userProfileId" = ${userProfileId}
+          AND s2."status" IN ('COMPLETED', 'COMPLETED_BY_TIMEOUT')
+          AND sa."selectedOption" IS NOT NULL)                        AS "totalAnswered",
+      (SELECT count(*)::int
+         FROM "session_answers" sa
+         JOIN "exam_sessions" s2 ON s2."id" = sa."sessionId"
+        WHERE s2."userProfileId" = ${userProfileId}
+          AND s2."status" IN ('COMPLETED', 'COMPLETED_BY_TIMEOUT')
+          AND sa."selectedOption" IS NOT NULL
+          AND sa."isCorrect")                                         AS "correct",
+      (SELECT COALESCE(sum(EXTRACT(EPOCH FROM (s3."finishedAt" - s3."startedAt"))), 0)::int
+         FROM "exam_sessions" s3
+        WHERE s3."userProfileId" = ${userProfileId}
+          AND s3."status" IN ('COMPLETED', 'COMPLETED_BY_TIMEOUT')
+          AND s3."finishedAt" IS NOT NULL)                            AS "studySecs",
+      (SELECT COALESCE(sr."longestStreak", 0)
+         FROM "streak_records" sr
+        WHERE sr."userProfileId" = ${userProfileId})                  AS "longestStreak"
+  `;
 
-  const totalAnswered = answers.length;
-  const overallHitRate =
-    totalAnswered > 0 ? answers.filter((a) => a.isCorrect).length / totalAnswered : 0;
-
-  const totalStudyMs = sessions.reduce(
-    (acc, s) => acc + (s.finishedAt ? s.finishedAt.getTime() - s.startedAt.getTime() : 0),
-    0
-  );
+  const r = rows[0] ?? { totalAnswered: 0, correct: 0, studySecs: 0, longestStreak: 0 };
 
   return {
-    totalAnswered,
-    overallHitRate,
-    studyHours: totalStudyMs / 3_600_000,
-    longestStreak: streak?.longestStreak ?? 0,
+    totalAnswered: r.totalAnswered,
+    overallHitRate: r.totalAnswered > 0 ? r.correct / r.totalAnswered : 0,
+    studyHours: r.studySecs / 3600,
+    longestStreak: r.longestStreak ?? 0,
   };
 }

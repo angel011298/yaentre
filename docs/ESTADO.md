@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-31 · Última fase ejecutada: G58 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G57 dejó en la cola (**Química, IPN Ciencias Médico-Biológicas, pool COMPARTIDO `IPN:QUIMICA`**) **+ balance final de contenido y proyección al Content Freeze del 21-nov**. **35/35 coinciden con la clave del generador · auto-aprobados 35/35 = 100 %**, 0 `problems`, 0 discrepancias, 0 retenidos. Modelo real `claude-opus-5` (el cierre de G57 anunciaba «Fable 5» — **decimotercer ciclo** consecutivo plan ≠ real, corrección de G17). **Aislamiento comprobado, no asumido:** no se abrió el commit `74ed7a9`, ni `docs/content-batches/g57-ipn-medbio-quimica.json`, ni `Question.options`, ni la `## G57` antes de cerrar la verificación; único insumo `scripts/content-exports/g58-blind.json` (gitignored) — `grep` de `isCorrect`/`explanation`/`correct` = **0**, las opciones solo traen `label`/`text`/`imageUrl`, **0/35 con pasaje**, y la clave cayó en la misma letra tras barajar en **6/35** (azar ≈ 8.75). **Candado de G28 (lote de cálculo):** los **15 numéricos** se recalcularon desde cero en Python por ruta independiente (electrones de un ion, `E_n = −13.6/n²`, número de oxidación por suma algebraica, balanceo, estequiometría masa→masa y masa→moléculas, % de disociación, `K_c`, `√(K_a·C)`, pOH→pH, codones→aminoácidos) — 15/15 en verde; los 20 conceptuales se resolvieron descartando cada distractor **por su contenido**, nunca por letra. **EL CANDADO DE DOBLE DERIVACIÓN (G42 §2 / G54 / G56) ATRAPÓ DOS DEFECTOS REALES — primera vez que dispara con hallazgo:** (1) la letra **tecleada a mano** para 2 de los 35 (los dos de *Tabla periódica*) estaba **intercambiada** respecto de la derivada del TEXTO de la opción — sin el candado se habrían enviado 2 respuestas con la letra equivocada y el lote habría cerrado en 33/35 con **2 falsas discrepancias**; (2) tres fragmentos de contenido con `	imes`/`	ext` perdieron el backslash dentro del heredoc de Python y `	` llegó al comparador como **TABULADOR** (defecto de herramienta **idéntico al que documentó G50**, ahora reincidente en un heredoc de Bash→Python) — se reescribió con *raw strings* y la segunda pasada dio **35/35 de acuerdo entre las dos derivaciones**. Regla reforzada: la letra **nunca** se teclea como array; se deriva del texto y se contrasta contra la tecleada. **Señuelo de longitud tie-aware (G36 §2 / G38 §3), único hallazgo NO verde:** sobre los 12 ítems con opciones-oración → **25.0 % «única más larga» (3/12)** / 0.0 % «única más corta»; el umbral de G34 §2 es **< 25 %**, así que queda **exactamente en el límite, no por debajo** — se reporta como hallazgo abierto, no como verde. Clave real del lote **A9/B9/C9/D8**, idéntica a la que G57 declaró. **BALANCE FINAL (consulta en vivo, 2026-08-31):** banco **1 147** · **servibles 1 143** · cola ciega **35 → 0** · 3 sin publicar (2 UNAM A1 Matemáticas + 1 UNAM A2 Química) · 1 retirado · auto-aprobación global **99.7 % (1 144/1 147)**. **Posición de la clave en los 1 143 servibles: A 298 / B 295 / C 279 / D 271 (26.1/25.8/24.4/23.7 %), χ² = 1.745 (gl 3, crítico 7.815) — uniforme, sin sesgo explotable.** **SOURCED 292 (25.5 %) / TEMARIO_ONLY 851 (74.5 %)** entre los servibles (295/852 sobre el banco); 46/217 temas con `SourceChunk`. **Meta efectiva G26 = 1 222 → 810 cubiertos = 66 %; brecha 333** (la predicción de G57 —«bajará a ~333»— se cumplió **exacta**); meta nominal 1 500 → **76 %**. **PROYECCIÓN AL 21-NOV: ALCANZA, con ~6 semanas de margen aun degradando la puntería.** 82 días (11.7 semanas) → cadencia requerida **4.06 verificados/día**; brecha 333 = **10 lotes con puntería perfecta**, **14 lotes** a la puntería realmente observada en G41–G57 (**68.5 %**: +311 verificados movieron la brecha solo −213, porque el resto cayó en pools ya en meta) = 20–28 sesiones. Al ritmo **más pesimista jamás medido** (13.4/día, la ventana de G39 que ya incluye la pausa muerta de 19 días de agosto) el cierre es **2026-09-24** con puntería perfecta y **2026-10-06** con la puntería real. Haría falta caer por debajo de **~6 verificados/día sostenidos** —menos de la mitad del peor ritmo histórico— para tocar el 21-nov. **El riesgo no es el calendario: es la puntería y la deuda de auditoría.** **138 de los 333 (41 %) están en 6 pools en CERO ABSOLUTO** —UNAM Inglés 33 (agujero en **3 de las 4 áreas UNAM**), IPN Historia de México 33, IPN Historia Universal 22, IPN Geografía 22, IPN Civismo/Derecho 17, UNAM Artes 11— y **254 reactivos ya producidos están en pools sobre-cubiertos** (UNAM Química +90, IPN Español +37, UNAM Biología +22, UNAM Física/Filosofía/Mat. Aplicadas/Inglés +18 c/u, UNAM Geografía/Literatura +13, UNAM Historia Universal +7). **Auditoría del 5 %: 47/1 143 = 4.1 % y CAYENDO** (era 5.6 % en G39); `session-v1` en **18/834 = 2.2 %**; **vencida 13 ciclos** — es la única red que detectaría un sesgo compartido entre generador y verificador, y 12 de los últimos 13 lotes los resolvió `opus-5` o `sonnet-5`. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (los scripts de consulta de esta fase se borraron al terminar, patrón G13 §8); cero llamadas a la API de pago de Anthropic. **SIGUIENTE = G59, modelo Opus 4.8.**)
+Última actualización: 2026-08-31 · Última fase ejecutada: G59 (**COMPLETADA — auditoría y optimización de la capa de datos antes del lanzamiento**). Modelo real `claude-opus-5` (el cierre de G58 anunciaba «Opus 4.8» — **decimocuarto ciclo** consecutivo plan ≠ real). Medición instrumentada de los 16 flujos críticos con el SQL que Prisma REALMENTE emite: **454 → 300 viajes de red** (−34 %), **163 → 99 sentencias reales** (−39 %); dashboard 78 → 58 viajes (4 704 → 1 774 ms), progreso 81 → 45, resultados del simulacro 58 → 38, delta del Entrómetro 30 → 13. Como el volumen actual (5 usuarios, 480 respuestas) no revela ningún plan malo, se construyó un **banco de pruebas aislado a escala de lanzamiento** (esquema `perf_g59`: 2 000 alumnos, 36 000 sesiones, **856 729 respuestas**, 1 500 reactivos) y se midió ahí con `EXPLAIN ANALYZE`; el esquema se eliminó al cerrar. **+18 índices** (~360 kB) y las 29 políticas RLS reescritas con `(SELECT …)` para que las funciones de auth se evalúen una vez por consulta y no una vez por fila: `explanation_layers` **38,3 → 0,69 ms (55×)**. **TRES HALLAZGOS QUE NO ERAN DE RENDIMIENTO:** (1) 🔴 **fuga de las respuestas correctas** — la política `read_verified` dejaba a cualquiera con la anon key (pública por diseño) leer `questions` vía PostgREST, y `options` incluye `isCorrect`; comprobado en vivo con `SET ROLE anon` que devolvía la letra correcta de los 1 143 reactivos servibles, lo que anula el simulador entero — **corregido** (admin-only, como el resto del contenido desde 0009); (2) 🟠 la insignia «materia dominada» **agregaba las respuestas de TODOS los usuarios**, no las del alumno — **corregido**, y de paso pasó de 204 ms × materia (102 564 filas a Node) a 2,1 ms total (97 filas); (3) 🟠 **los tres correos programados fallan en silencio** porque `acierta_ci` no tiene acceso al esquema `auth` — **NO se pudo corregir** desde aquí (el rol `postgres` solo tiene USAGE sin grant option y `SET ROLE supabase_admin` está denegado): requiere acción del dueño, ver §7 de la auditoría. **Pool serverless:** medido que `?pgbouncer=true` cuesta **4 viajes por operación** en vez de 1, y que quitarlo es 4,7× más rápido con una conexión **pero rompe las 8 con clientes en paralelo** (`26000 prepared statement "sNN" does not exist`) — o sea el atajo se ve perfecto en el escritorio y tumba el sitio bajo carga: **se queda**, y la única palanca real es hacer menos operaciones, que es justo lo que se hizo. La cadena se normaliza ahora en código (`connection_limit=5`, `pool_timeout=20`, `connect_timeout=10`), el singleton de Prisma se cachea también en producción y `vercel.json` fija `regions: ["iad1"]` (misma región que la base). Reporte completo en **`docs/AUDITORIA_BACKEND.md`**. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (53 archivos, **502 pruebas**) en verde. Siguiente **G60, modelo Sonnet 4.6**.
 
 <details><summary>Historial: G57 (2026-08-31)</summary>
 
@@ -187,6 +187,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G59 | Auditoría y optimización de base de datos | **COMPLETADA — 454 → 300 viajes de red, +18 índices, 29 políticas RLS optimizadas (55× en el peor caso), 2 bugs corregidos (fuga de respuestas correctas vía anon key; insignia calculada sobre todos los usuarios), 1 bloqueado por permisos** | (G59) | Ver `docs/AUDITORIA_BACKEND.md`. Medición con el SQL real de Prisma + banco de pruebas aislado a escala de lanzamiento (856 729 respuestas) porque con 480 respuestas ningún plan malo se nota. N+1 corregidos: sinc del simulador (282 → 4 viajes), insignia de materia, historial de respuestas (3 → 1 consulta, leído una vez por cierre de sesión en vez de tres), cadena perfil→carrera→área→examen (4 lecturas → 1), taxonomía (24 → 1 viaje por render, cacheada), y tres agregaciones que se hacían en Node movidas a SQL. `?pgbouncer=true` se CONSERVA: quitarlo es 4,7× más rápido con una conexión y falla en las 8 con concurrencia. |
 | G41 | Lote de reactivos: Filosofía, UNAM Área 4 | **COMPLETADA — 35 insertados, isVerified=false, banco 832 → 867, cola ciega 0 → 35** | (G41) | Ver sección dedicada abajo. **Segunda materia del Área 4 con contenido** (tras Literatura en G37): Filosofía estaba en cero absoluto. Consulta en vivo a Supabase: **Filosofía es una sola fila `Subject` en el Área 4**, `questionWeight` 3, **`sharedContentKey` NULL** (no entra en G26 — en la UNAM solo Español/Inglés/Química la tienen). Lote a sus **5 temas propios**: Epistemología 9 (incluye lógica) · Metafísica 6 · Ética 8 · Estética 5 · Historia de la filosofía occidental 7. **28/35 TEMARIO_ONLY · 7/35 SOURCED** (el tema «Historia de la filosofía occidental» tiene 3 `SourceChunk` — `uam_csh.pdf` pp. 45-47, banco de preguntas de la guía CSH de la UAM; cada reactivo SOURCED cita el fragmento cuya página contiene su ítem-semilla; el chunk está rebanado por página y arrastra ítems de historia/serie numérica, patrón G40 §7). **Originalidad (G40 §6):** 5 de los 7 SOURCED cambian la tarea de atribución («¿de quién es X?») a comprensión («¿qué sostiene X?»); los 2 más cercanos (#30 Gorgias, #35 Wittgenstein prop. 7) reproducen un enunciado canónico inevitable, reformulado, con la tarea desplazada — se declaran para G42. Prioriza comprensión de argumentos sobre memorización: solo 3 reactivos son de clasificación por definición. 35 `MULTIPLE_CHOICE`; dificultad **7/17/9/2**. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; sin corridas cíclicas ≥3, rotación +1 = 11.8 %; **equilibrio también por tema** (ninguna letra concentra la correcta en un tema). **Cue de longitud (G34 §2, reportado como veredicto — G36 §3):** tie-aware «elige la más larga» = **6.5/35 = 18.6 %**, «elige la más corta» = **5.3/35 = 15.2 %**, ambas por debajo del azar (25 %) y de la cota 14/35; ratio medio **0.99** (el primer borrador tenía la correcta como la más larga en 31/35 — patrón G33/G35/G37 —, corregido en dos pasadas). `content:validate-batch` **0 violaciones**. 0 citas por letra / posicionales en 105 `ExplanationLayer` (capas 2 «Cómo se descarta cada opción», distractores por contenido). Distractores = **posturas filosóficas reales** correctamente descritas (G36 §5). **Fuga entre reactivos revisada en las dos direcciones (G38 §6 / G40 §3):** #30 (Gorgias) se desacopló de #10 (Parménides/Heráclito) y de #22 (Sócrates) cambiando sus distractores. Las 35 atribuciones de postura verificadas una por una. Registro en `docs/content-batches/g41-unam-a4-filosofia.json`. Generador Python desechable (no committeado). `typecheck`/`lint` verde, 0 cambios de código, 0 API de pago. |
 | G40 | Micro-fase editorial + verificación ciega de las reparadas | **COMPLETADA — 3 reparadas, 3/3 rescatadas = 100 % de rescate; banco 832, servibles 832 → 831 (1 retirado a propósito), cola canónica en cero** | (G40) | Ver sección dedicada abajo. **La cola ciega estaba vacía: esta fase la creó reparando, no componiendo** — ejecuta el work order que G39 §9 dejó abierto y lo cierra completo. §9.1 fuga relacional reparada; **hallazgo propio: la fuga era BIDIRECCIONAL** (el reactivo protegido filtraba en su `stem` el punto que evaluaba el otro), así que se repararon los dos, no el señalado. §9.2 los dos reactivos de letras peninsulares salen del `Topic` mexicano a sus temas correctos (uno de ellos además pierde la coletilla que solo justificaba el archivado equivocado ⇒ tercera reparada). §9.3 **desbloqueado**: `manualReview.action` acepta `'duplicate'` (+2 tests) — el bloqueo que G24 y G39 declararon sin resolver; el duplicado de neutralización queda despublicado con veredicto del pipeline intacto y fuera de toda cola. §9.2/d **resuelto con veredicto**: el `SourceChunk` no está mal clasificado por juicio sino **rebanado por página** (arrastra la cola de un reactivo de otra materia), así que ningún `topicId` único puede servirlo — el arreglo vive en el chunker. **Hallazgo nuevo para el work order:** 3 de los 4 reactivos anclados a ese chunk son paráfrasis cercanas de los ítems de la guía fuente, uno casi literal en el `stem` — riesgo de originalidad, no de corrección, y **exige sesión ciega distinta** porque ésta ya quedó contaminada sobre ellos. Arnés auditado antes de reportar el 100 %: **2/3** etiquetas ciegas tradujeron a un id distinto, traducción **biyectiva** (12/12 imágenes, 0 colisiones). **Caveat declarado:** reparación y pasada ciega en la MISMA sesión — la garantía sobre la clave se sostiene (`grep` de campos de respuesta = 0 antes de abrir el lote), la de independencia editorial no. `content:coverage` corregido para que «en banco» cuadre con `COUNT(*)` cuando hay retirados. 493/493 tests. |
 | G39 | Balance intermedio del banco | **COMPLETADA — banco 832/832/832, colas en cero (3ª vez consecutiva), brecha efectiva 546 (16 lotes), proyección al 21-nov con ~6 sem de margen** | (G39) | Ver sección dedicada abajo. Pasada editorial (no ciega). Estado consolidado desde la DB real por institución/área/materia; cola formal de discrepancias vacía verificada por 4 vías; 7 defectos editoriales heredados triados con las 4 categorías (0 auto-aprobados); **1 cambio de datos**: 8 `format` `CHART_TABLE → PROBLEM_SOLVING` (G28 §8.1, metadato, sin re-verificación). Auditoría 5 %: mecanismo sano, ejecución vencida 2 ciclos (47/832 = 5.6 %, `session-v1` diluido a 3.4 %), muestra de 40 ids regenerada. Los últimos 6 lotes rindieron ~46 % bajo su potencial contra la meta (97/210 en pools ya cubiertos). Top-5 pools de brecha: IPN Física 76 · UNAM A1 Mat 63 · IPN Mat 63 · IPN Química 54 · IPN MEDBIO Bio 52. |
@@ -2267,6 +2268,163 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G59 — Auditoría y optimización de la capa de datos (2026-08-31)
+
+**Reporte completo: `docs/AUDITORIA_BACKEND.md`.** Aquí solo lo que hay que
+recordar sin abrir el reporte.
+
+### 1. Por qué no bastaba medir contra la base de hoy
+
+El banco tiene 1 147 reactivos, pero solo **5 usuarios y 480 respuestas**.
+Contra ese volumen *todo* es un recorrido secuencial de sub-milisegundo y
+ningún índice se justifica: auditar así habría dado el veredicto falso "todo
+está bien". Por eso se construyó un esquema aislado `perf_g59` con copias de
+las seis tablas calientes (`LIKE … INCLUDING ALL`, o sea con los mismos
+índices) poblado a escala de temporada — **2 000 alumnos, 36 000 sesiones,
+856 729 respuestas, 1 500 reactivos** — y ahí se corrieron los `EXPLAIN
+ANALYZE`. El esquema se **eliminó** al cerrar la fase (la base volvió a 19 MB)
+y nunca tocó las tablas de `public`.
+
+La diferencia de veredicto: la consulta de la insignia "materia dominada" mide
+0,3 ms con los datos de hoy y **204 ms con 102 564 filas** a escala.
+
+### 2. La métrica que importa: viajes de red, no milisegundos
+
+El SQL que Prisma emite **no se parece al código**. Un `select` anidado
+`{ isCorrect, question: { topic: { subjectId } } }` no es un JOIN: son TRES
+consultas. Eso solo se ve instrumentando el cliente
+(`log: [{ emit: 'event', level: 'query' }]`), que es lo que hace
+`scripts/perf-audit.ts` (`pnpm perf:audit`).
+
+**454 → 300 viajes** en los 16 flujos críticos; **163 → 99** sentencias reales.
+Dashboard 78 → 58 (4 704 → 1 774 ms), progreso 81 → 45, resultados del
+simulacro 58 → 38, delta del Entrómetro 30 → 13.
+
+> Las latencias absolutas están infladas: se mide desde México contra
+> us-east-1 (~110 ms por viaje). Lo que se traslada a producción tal cual es el
+> número de VIAJES.
+
+### 3. 🔴 La respuesta correcta era pública (corregido)
+
+La política `read_verified` era
+`FOR SELECT USING ("isVerified" = true OR is_admin())`: **cualquiera** con
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` —que va en el bundle del cliente— podía leer
+`questions` por PostgREST. Y `questions.options` es
+`[{ id, text, isCorrect }]`. Comprobado en vivo antes de corregirlo:
+
+```sql
+SET ROLE anon;
+SELECT jsonb_path_query_first(options::jsonb, '$[*] ? (@.isCorrect == true).id')
+  FROM questions WHERE "isVerified";
+-- → la letra correcta de los 1 143 reactivos servibles
+```
+
+Eso anula el simulador entero y contradice el primer guardrail de CLAUDE.md.
+El scoring server-side estaba bien; la fuga era por la puerta de atrás. Es el
+mismo agujero que 0009 cerró para `explanation_layers`, pero `questions` se
+quedó fuera porque su política *parecía* deliberada. **Ahora es admin-only**,
+como el resto del contenido. Verificado con `SET ROLE anon`: 1 143 → **0**.
+
+### 4. 🟠 La insignia "materia dominada" era de todos (corregido)
+
+`loadSubjectTopicMastery` no filtraba por alumno: agregaba las respuestas de
+**toda la plataforma**. Con un solo usuario de prueba coincidía por accidente;
+con tráfico real la insignia se habría dado o negado según cómo le fuera al
+resto del mundo. Corregido, y de paso reescrita como agregado en SQL:
+**204 ms × materia (102 564 filas) → 2,1 ms total (97 filas)**, con las cuatro
+consultas fijas en vez de cuatro por materia.
+
+### 5. 🟠 Los correos programados fallan en silencio (NO corregido — requiere al dueño)
+
+`getAuthEmails` lee `auth.users`, y `acierta_ci` **no tiene acceso al esquema
+`auth`** (`has_schema_privilege(...,'auth','USAGE')` = `false`). Los tres jobs
+(racha en riesgo, cuenta regresiva, resumen al tutor) fallan con
+`42501 permission denied for schema auth`; como el runner usa
+`Promise.allSettled`, el cron **no truena**: reporta 0 enviados y deja el error
+en el log. Por eso nadie lo había notado.
+
+No se pudo arreglar: el esquema `auth` es de `supabase_admin`, el rol
+`postgres` solo tiene `USAGE` **sin grant option** (su `GRANT` es un no-op
+silencioso) y `SET ROLE supabase_admin` está denegado. Se intentó, se verificó
+que no tomaba y se **revirtió** el grant parcial de columnas para no dejar
+media configuración aplicada.
+
+**Acción pendiente del dueño**, con un rol suficiente:
+
+```sql
+GRANT USAGE ON SCHEMA auth TO acierta_ci;
+GRANT SELECT (id, email) ON auth.users TO acierta_ci;
+```
+
+El grant por COLUMNA es deliberado: `acierta_ci` no debe poder leer
+`encrypted_password`.
+
+### 6. El pool: la optimización que era una trampa
+
+Instrumentando se ve que **cada operación de Prisma cuesta 4 viajes**
+(`BEGIN` / `DEALLOCATE ALL` / consulta / `COMMIT`) — 201 de los 300 viajes
+restantes son protocolo. Lo causa `?pgbouncer=true`. Medido con
+`pnpm perf:pool`:
+
+| | Viajes/operación | Tiempo (30 ops) |
+|---|---|---|
+| `pgbouncer=true` | 4,0 | 16 646 ms |
+| sin `pgbouncer` | 1,0 | **3 552 ms** |
+
+4,7× más rápido… con **una** conexión secuencial. Con **8 clientes en
+paralelo** (que es lo que pasa con varias instancias lambda) fallaron los 8:
+`26000 prepared statement "s42" does not exist`,
+`42P05 … "s47" already exists`. Supavisor reasigna la conexión de servidor
+entre transacciones y la sentencia preparada ya no está ahí.
+
+**`pgbouncer=true` se queda.** Y como esos 4 viajes son un costo fijo
+inevitable, **la única palanca real es hacer menos operaciones de Prisma por
+petición** — que es exactamente el trabajo de N+1 de esta fase. Eso es lo que
+amarra toda la auditoría: los 454 → 300 viajes valen 4× más de lo que parecen.
+
+### 7. Qué quedó en el código
+
+- `src/lib/db/connection-url.ts` (nuevo, puro, 9 pruebas): normaliza la cadena
+  en CÓDIGO — `DATABASE_URL` vive en el panel de Vercel y basta con que alguien
+  la reescriba sin parámetros para degradar la app hasta el primer pico.
+  `connection_limit=5` (no 1: el dashboard dispara sus loaders con
+  `Promise.all`), `pool_timeout=20`, `connect_timeout=10`. **Nunca toca la
+  conexión directa del 5432** ni sobreescribe lo que el operador puso a mano.
+- `src/lib/db/prisma.ts`: usa `datasourceUrl` y cachea el singleton **también
+  en producción** (cada bundle de ruta puede evaluar el módulo por separado
+  dentro de la misma lambda y abrir otro pool).
+- `src/lib/db/answer-history.ts` (nuevo): el historial en UNA consulta;
+  `onSessionFinished` lo lee una vez y lo comparte con los tres recálculos.
+- `prisma/migrations/0012_perf_indexes_and_rls_g59.sql`: 18 índices + las 29
+  políticas. **Aplicada.**
+- `scripts/perf-audit.ts` y `scripts/perf-pool-probe.ts`: la medición es
+  repetible (`pnpm perf:audit`, `pnpm perf:pool`).
+
+### 8. Lo que se decidió NO hacer
+
+- **No se tocó `prisma/schema.prisma`** (guardrail de CLAUDE.md). Eso descarta
+  activar `relationJoins`, que colapsaría los `select` anidados en un solo
+  JOIN — es la mejora grande que queda sobre la mesa, y necesita instrucción
+  explícita.
+- **No se borró ningún índice redundante** (`user_profiles_userId_idx` duplica
+  el único; `idx_questions_publishable` casi duplica
+  `questions_servable_verified_idx`): el primero lo genera `@@index` del schema
+  y borrarlo crearía deriva. Anotados en la auditoría §8.4.
+- **No se indexaron** las FK de Fase 2 (`content_items.*`,
+  `questions.videoLectureId/professorNoteId`): tablas vacías y columnas 100 %
+  NULL. El linter las seguirá reportando.
+
+### 9. Advertencia para el que siga
+
+`pnpm test:rls` **no se pudo correr**: sus cuentas de sondeo en `auth.users` ya
+no existen y recrearlas exige `SUPABASE_SERVICE_ROLE_KEY` (pendiente desde G9;
+`.env.local` trae un marcador de 22 caracteres, no una llave). El aislamiento
+se verificó por la vía equivalente —`SET ROLE authenticated` +
+`request.jwt.claims` contra las políticas reales— y da correcto en las 7
+comprobaciones (alumno vs alumno, tutor vinculado vs no vinculado, anon). Ver
+§5.2 de la auditoría. Esa misma llave desbloquearía también §5 de arriba.
+
 
 ## G58 — Verificación ciega (lote de G57) + BALANCE FINAL DE CONTENIDO (2026-08-31)
 

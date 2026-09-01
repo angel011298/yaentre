@@ -2,6 +2,11 @@ import type { ConfidenceLevel } from '@prisma/client';
 import { unstable_cache } from 'next/cache';
 import { prisma } from './prisma';
 import {
+  loadAnswerHistory,
+  loadRecentlyAnsweredQuestionIds,
+  type AnswerHistoryRow,
+} from './answer-history';
+import {
   aggregateTopicStats,
   classifyTopicTier,
   isWeakTopic,
@@ -36,31 +41,41 @@ import { recomputeStreak } from './streak';
  * dispara el recálculo (finishSession actualiza el estado antes).
  */
 
-const FINISHED_STATUSES = ['COMPLETED', 'COMPLETED_BY_TIMEOUT'] as const;
-
-interface RawAnswer {
-  isCorrect: boolean;
-  topicId: string;
-  subjectId: string;
+/**
+ * Objetivo de predicción del alumno resuelto en UNA consulta (G59): perfil →
+ * carrera meta → área → examen, más la predicción ya persistida.
+ *
+ * Antes cada consumidor (`recomputeLearningProfile`, los dos deltas del
+ * Entrometro y `computeCareerStrategy`) recorría esa cadena por su cuenta con
+ * `findUnique` anidados — y como el dashboard llama a tres de ellos en el
+ * mismo render, la misma fila de `user_profiles`, `careers`, `areas` y `exams`
+ * se leía hasta cuatro veces por página. Un JOIN de cuatro tablas por PK es
+ * trabajo despreciable para Postgres; los viajes de red no lo eran.
+ */
+interface PredictionTarget {
+  targetCareerId: string;
+  areaId: string;
+  totalQuestions: number;
+  predictedScore: number | null;
+  confidence: number | null;
 }
 
-/** Carga todas las respuestas históricas del alumno (sesiones finalizadas). */
-async function loadFinishedAnswers(userProfileId: string): Promise<RawAnswer[]> {
-  const rows = await prisma.sessionAnswer.findMany({
-    where: {
-      session: { userProfileId, status: { in: [...FINISHED_STATUSES] } },
-    },
-    select: {
-      isCorrect: true,
-      question: { select: { topicId: true, topic: { select: { subjectId: true } } } },
-    },
-  });
-
-  return rows.map((r) => ({
-    isCorrect: r.isCorrect,
-    topicId: r.question.topicId,
-    subjectId: r.question.topic.subjectId,
-  }));
+async function loadPredictionTarget(userProfileId: string): Promise<PredictionTarget | null> {
+  const rows = await prisma.$queryRaw<PredictionTarget[]>`
+    SELECT c."id"              AS "targetCareerId",
+           a."id"              AS "areaId",
+           e."totalQuestions"  AS "totalQuestions",
+           lp."predictedScore" AS "predictedScore",
+           lp."confidence"     AS "confidence"
+      FROM "user_profiles" up
+      JOIN "careers" c ON c."id" = up."targetCareerId"
+      JOIN "areas"   a ON a."id" = c."areaId"
+      JOIN "exams"   e ON e."id" = a."examId"
+      LEFT JOIN "learning_profiles" lp ON lp."userProfileId" = up."id"
+     WHERE up."id" = ${userProfileId}
+     LIMIT 1
+  `;
+  return rows[0] ?? null;
 }
 
 /**
@@ -69,8 +84,11 @@ async function loadFinishedAnswers(userProfileId: string): Promise<RawAnswer[]> 
  * cumplen la regla de debilidad (hitRate < 0.60 con ≥ 3 intentos): un tema que
  * mejoró y dejó de ser débil se elimina de la tabla.
  */
-export async function recomputeWeakTopics(userProfileId: string): Promise<number> {
-  const answers = await loadFinishedAnswers(userProfileId);
+export async function recomputeWeakTopics(
+  userProfileId: string,
+  history?: AnswerHistoryRow[]
+): Promise<number> {
+  const answers = history ?? (await loadAnswerHistory(userProfileId));
   const stats = aggregateTopicStats(
     answers.map((a): AnsweredQuestion => ({ topicId: a.topicId, isCorrect: a.isCorrect }))
   );
@@ -107,34 +125,19 @@ export interface LearningProfilePrediction {
  * (sin área no hay materias que ponderar).
  */
 export async function recomputeLearningProfile(
-  userProfileId: string
+  userProfileId: string,
+  history?: AnswerHistoryRow[]
 ): Promise<LearningProfilePrediction | null> {
-  const profile = await prisma.userProfile.findUnique({
-    where: { id: userProfileId },
-    select: { targetCareerId: true },
-  });
-  if (!profile?.targetCareerId) return null;
-
-  const career = await prisma.career.findUnique({
-    where: { id: profile.targetCareerId },
-    select: {
-      area: {
-        select: {
-          id: true,
-          exam: { select: { totalQuestions: true } },
-        },
-      },
-    },
-  });
-  if (!career) return null;
-
-  const { area } = career;
+  const target = await loadPredictionTarget(userProfileId);
+  if (!target) return null;
 
   // G26: las materias del área CON su clave de contenido compartido, y el mapa
   // de claves de TODO el examen — así una respuesta a una materia hermana
   // (mismo temario, otra área) cuenta para la materia del área del alumno.
-  const shared = await loadAreaSharedContent(area.id);
-  const answers = await loadFinishedAnswers(userProfileId);
+  const [shared, answers] = await Promise.all([
+    loadAreaSharedContent(target.areaId),
+    history ? Promise.resolve(history) : loadAnswerHistory(userProfileId),
+  ]);
 
   // TODAS las materias del área (las que el alumno no tocó — ni directamente ni
   // por contenido compartido — entran con 0 intentos → default pesimista 0.30).
@@ -144,7 +147,7 @@ export async function recomputeLearningProfile(
     shared.keyBySubjectId,
   );
 
-  const prediction = predictScore({ subjects: perf, totalQuestions: area.exam.totalQuestions });
+  const prediction = predictScore({ subjects: perf, totalQuestions: target.totalQuestions });
 
   const totalAttempts = answers.length;
   const totalCorrect = answers.reduce((acc, a) => acc + (a.isCorrect ? 1 : 0), 0);
@@ -195,18 +198,6 @@ async function predictFromAnswers(
   return predictScore({ subjects: perf, totalQuestions }).predictedScore;
 }
 
-/** Carrera meta del alumno resuelta a `{ areaId, totalQuestions }`, o null. */
-async function targetAreaForPrediction(
-  targetCareerId: string
-): Promise<{ areaId: string; totalQuestions: number } | null> {
-  const career = await prisma.career.findUnique({
-    where: { id: targetCareerId },
-    select: { area: { select: { id: true, exam: { select: { totalQuestions: true } } } } },
-  });
-  if (!career) return null;
-  return { areaId: career.area.id, totalQuestions: career.area.exam.totalQuestions };
-}
-
 /**
  * Cambio del Entrómetro respecto a hace una semana (F11 Task 2). NO existe
  * una tabla de historial de predicciones (y no se agrega una — CLAUDE.md
@@ -224,37 +215,21 @@ export async function computeWeekOverWeekDelta(
   userProfileId: string,
   now: Date = new Date()
 ): Promise<number | null> {
-  const profile = await prisma.userProfile.findUnique({
-    where: { id: userProfileId },
-    select: { targetCareerId: true, learningProfile: { select: { predictedScore: true } } },
+  const target = await loadPredictionTarget(userProfileId);
+  if (!target || target.predictedScore == null) return null;
+
+  const historicalAnswers = await loadAnswerHistory(userProfileId, {
+    startedBefore: new Date(now.getTime() - WEEK_MS),
   });
-  if (!profile?.targetCareerId || profile.learningProfile?.predictedScore == null) return null;
-
-  const target = await targetAreaForPrediction(profile.targetCareerId);
-  if (!target) return null;
-
-  const weekAgo = new Date(now.getTime() - WEEK_MS);
-
-  const historicalAnswers = await prisma.sessionAnswer.findMany({
-    where: {
-      session: {
-        userProfileId,
-        status: { in: [...FINISHED_STATUSES] },
-        startedAt: { lt: weekAgo },
-      },
-    },
-    select: { isCorrect: true, question: { select: { topic: { select: { subjectId: true } } } } },
-  });
-
   if (historicalAnswers.length === 0) return null;
 
   const historical = await predictFromAnswers(
     target.areaId,
     target.totalQuestions,
-    historicalAnswers.map((a) => ({ subjectId: a.question.topic.subjectId, isCorrect: a.isCorrect }))
+    historicalAnswers
   );
 
-  return profile.learningProfile.predictedScore - historical;
+  return target.predictedScore - historical;
 }
 
 /**
@@ -271,31 +246,19 @@ export async function computeSessionPredictionDelta(
   userProfileId: string,
   sessionId: string
 ): Promise<number | null> {
-  const profile = await prisma.userProfile.findUnique({
-    where: { id: userProfileId },
-    select: { targetCareerId: true, learningProfile: { select: { predictedScore: true } } },
-  });
-  if (!profile?.targetCareerId || profile.learningProfile?.predictedScore == null) return null;
+  const target = await loadPredictionTarget(userProfileId);
+  if (!target || target.predictedScore == null) return null;
 
-  const target = await targetAreaForPrediction(profile.targetCareerId);
-  if (!target) return null;
-
-  const beforeAnswers = await prisma.sessionAnswer.findMany({
-    where: {
-      session: { userProfileId, status: { in: [...FINISHED_STATUSES] }, id: { not: sessionId } },
-    },
-    select: { isCorrect: true, question: { select: { topic: { select: { subjectId: true } } } } },
-  });
-
+  const beforeAnswers = await loadAnswerHistory(userProfileId, { excludeSessionId: sessionId });
   if (beforeAnswers.length === 0) return null;
 
   const before = await predictFromAnswers(
     target.areaId,
     target.totalQuestions,
-    beforeAnswers.map((a) => ({ subjectId: a.question.topic.subjectId, isCorrect: a.isCorrect }))
+    beforeAnswers
   );
 
-  return profile.learningProfile.predictedScore - before;
+  return target.predictedScore - before;
 }
 
 /**
@@ -305,13 +268,27 @@ export async function computeSessionPredictionDelta(
  * cada paso se envuelve y los errores se registran sin propagarse.
  */
 export async function onSessionFinished(userProfileId: string): Promise<void> {
+  // G59: el historial se lee UNA vez y se comparte. Antes cada recálculo lo
+  // pedía por su cuenta — dos lecturas completas del historial (seis viajes de
+  // red con el `select` anidado de entonces) en el camino crítico del cierre de
+  // sesión, que es cuando el alumno está esperando su resultado.
+  let history: AnswerHistoryRow[] | undefined;
   try {
-    await recomputeWeakTopics(userProfileId);
+    history = await loadAnswerHistory(userProfileId);
+  } catch (err) {
+    console.error('[adaptive] no se pudo leer el historial; cada paso lo pedirá aparte', {
+      userProfileId,
+      err,
+    });
+  }
+
+  try {
+    await recomputeWeakTopics(userProfileId, history);
   } catch (err) {
     console.error('[adaptive] recomputeWeakTopics falló', { userProfileId, err });
   }
   try {
-    await recomputeLearningProfile(userProfileId);
+    await recomputeLearningProfile(userProfileId, history);
   } catch (err) {
     console.error('[adaptive] recomputeLearningProfile falló', { userProfileId, err });
   }
@@ -324,7 +301,7 @@ export async function onSessionFinished(userProfileId: string): Promise<void> {
 
 /** Clasificación fresca (topicId → tier) de TODOS los temas con historial. */
 async function computeTopicTiers(userProfileId: string): Promise<Map<string, TopicTier>> {
-  const answers = await loadFinishedAnswers(userProfileId);
+  const answers = await loadAnswerHistory(userProfileId);
   const stats = aggregateTopicStats(
     answers.map((a): AnsweredQuestion => ({ topicId: a.topicId, isCorrect: a.isCorrect }))
   );
@@ -337,13 +314,8 @@ async function computeTopicTiers(userProfileId: string): Promise<Map<string, Top
 
 /** Ids de reactivos respondidos en las últimas 72h (no se repiten en el drill).
  *  SessionAnswer no tiene timestamp propio: se usa el startedAt de su sesión. */
-async function loadRecentlyAnsweredIds(userProfileId: string): Promise<Set<string>> {
-  const cutoff = new Date(Date.now() - RECENT_EXCLUSION_HOURS * 3600 * 1000);
-  const rows = await prisma.sessionAnswer.findMany({
-    where: { session: { userProfileId, startedAt: { gte: cutoff } } },
-    select: { questionId: true },
-  });
-  return new Set(rows.map((r) => r.questionId));
+function loadRecentlyAnsweredIds(userProfileId: string): Promise<Set<string>> {
+  return loadRecentlyAnsweredQuestionIds(userProfileId, RECENT_EXCLUSION_HOURS);
 }
 
 /** F20 tarea 3: mismo criterio de caché que src/lib/db/question-read.ts. */
@@ -513,30 +485,13 @@ export interface CareerStrategyResponse extends StrategyResult {
 export async function computeCareerStrategy(
   userProfileId: string
 ): Promise<CareerStrategyResponse | null> {
-  const profile = await prisma.userProfile.findUnique({
-    where: { id: userProfileId },
-    select: {
-      targetCareerId: true,
-      learningProfile: { select: { predictedScore: true, confidence: true } },
-    },
-  });
-  if (!profile?.targetCareerId) return null;
+  const target = await loadPredictionTarget(userProfileId);
+  if (!target) return null;
 
-  const chosen = await prisma.career.findUnique({
-    where: { id: profile.targetCareerId },
-    select: {
-      id: true,
-      name: true,
-      minAciertos: true,
-      minAciertosYear: true,
-      minAciertosConfidence: true,
-      areaId: true,
-    },
-  });
-  if (!chosen) return null;
-
+  // Todas las carreras del área en UNA consulta (la elegida sale de aquí
+  // mismo: ya se sabe que pertenece a esta área).
   const areaCareers = await prisma.career.findMany({
-    where: { areaId: chosen.areaId },
+    where: { areaId: target.areaId },
     select: {
       id: true,
       name: true,
@@ -545,6 +500,8 @@ export async function computeCareerStrategy(
       minAciertosConfidence: true,
     },
   });
+  const chosen = areaCareers.find((c) => c.id === target.targetCareerId);
+  if (!chosen) return null;
 
   const toTarget = (c: {
     id: string;
@@ -561,7 +518,7 @@ export async function computeCareerStrategy(
   });
 
   // Sin predicción previa aún, se asume el escenario más conservador (0).
-  const predictedScore = profile.learningProfile?.predictedScore ?? 0;
+  const predictedScore = target.predictedScore ?? 0;
 
   const strategy = recommendCareerStrategy({
     predictedScore,
@@ -572,6 +529,6 @@ export async function computeCareerStrategy(
   return {
     ...strategy,
     predictedScore,
-    predictionConfidence: profile.learningProfile?.confidence ?? null,
+    predictionConfidence: target.confidence ?? null,
   };
 }

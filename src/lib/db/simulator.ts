@@ -15,7 +15,7 @@ import { canStartFullSimulation, type GateDecision, type PaywallTrigger } from '
 import { simulatorConfigFor } from '@/lib/simulator/config';
 import { orderQuestionOptions } from '@/lib/simulator/shuffle';
 import { computeRemainingSecs, isTimeUp } from '@/lib/simulator/time';
-import { computePercentileRank } from '@/lib/simulator/percentile';
+import { percentileRankFromCounts } from '@/lib/simulator/percentile';
 import { subjectColorFor } from '@/lib/simulator/subjectColors';
 import {
   mergeIntegrityCounters,
@@ -358,6 +358,73 @@ export type SimulatorSyncResult =
  * respuestas se hacen upsert por (sesión, reactivo) y los contadores se fusionan
  * al MÁXIMO. NUNCA devuelve la correctitud — solo cuántas registró.
  */
+interface SyncSessionState {
+  id: string;
+  tabBlurCount: number;
+  rightClickAttempts: number;
+  keyboardShortcutAttempts: number;
+  completedFullscreen: boolean;
+}
+
+/** Contadores de integridad fusionados al MÁXIMO + eventos, en una consulta. */
+async function persistIntegrity(
+  session: SyncSessionState,
+  input: SimulatorSyncInput
+): Promise<void> {
+  const merged = mergeIntegrityCounters(
+    {
+      tabBlurCount: session.tabBlurCount,
+      rightClickAttempts: session.rightClickAttempts,
+      keyboardShortcutAttempts: session.keyboardShortcutAttempts,
+    },
+    input.integrity
+  );
+
+  await prisma.examSession.update({
+    where: { id: session.id },
+    data: {
+      ...merged,
+      completedFullscreen: session.completedFullscreen || input.completedFullscreen,
+      suspicionEvents: input.suspicionEvents as unknown as Prisma.InputJsonValue,
+    },
+  });
+}
+
+/**
+ * Escribe TODO el lote en un solo statement, con la misma semántica de upsert
+ * por (sesión, reactivo) que tenía el bucle. El `id` de las filas nuevas lo
+ * genera Postgres: en el flujo normal esta rama no corre nunca —
+ * `startSimulation` pre-crea las N filas del simulacro— y solo existe como
+ * defensa para que una respuesta jamás se pierda por no tener fila previa.
+ */
+async function upsertSessionAnswers(
+  sessionId: string,
+  answers: Array<SimulatorSyncAnswer & { isCorrect: boolean }>
+): Promise<void> {
+  const values = answers.map(
+    (a) => Prisma.sql`(
+      gen_random_uuid()::text,
+      ${sessionId}::text,
+      ${a.questionId}::text,
+      ${a.selectedOption}::text,
+      ${a.isCorrect}::boolean,
+      ${a.timeSpentSecs}::int,
+      ${a.position}::int
+    )`
+  );
+
+  await prisma.$executeRaw`
+    INSERT INTO "session_answers"
+      ("id", "sessionId", "questionId", "selectedOption", "isCorrect", "timeSpentSecs", "position")
+    VALUES ${Prisma.join(values, ', ')}
+    ON CONFLICT ("sessionId", "questionId") DO UPDATE SET
+      "selectedOption" = EXCLUDED."selectedOption",
+      "isCorrect"      = EXCLUDED."isCorrect",
+      "timeSpentSecs"  = EXCLUDED."timeSpentSecs",
+      "position"       = EXCLUDED."position"
+  `;
+}
+
 export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<SimulatorSyncResult> {
   const session = await prisma.examSession.findUnique({
     where: { id: input.sessionId },
@@ -376,13 +443,42 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
   if (session.userProfileId !== input.userProfileId) return { ok: false, code: 'FORBIDDEN' };
   if (session.status !== 'IN_PROGRESS') return { ok: false, code: 'NOT_IN_PROGRESS' };
 
-  let recorded = 0;
-  for (const answer of input.answers) {
-    const question = await prisma.question.findUnique({
-      where: { id: answer.questionId },
-      select: { id: true, options: true },
-    });
-    if (!question) continue;
+  // G59: el lote se resuelve con un número FIJO de consultas.
+  //
+  // La versión anterior recorría `input.answers` haciendo un `findUnique` del
+  // reactivo y un `upsert` por cada respuesta: 2N+2 viajes a la base de datos.
+  // Un simulacro IPN son 140 reactivos ⇒ 282 viajes secuenciales en el mismo
+  // request. Este endpoint es el destino del `sendBeacon` de `pagehide`, donde
+  // el navegador da unos pocos segundos antes de matar la petición: con la
+  // latencia real de red esa cuenta se acerca peligrosamente al límite, y una
+  // petición cortada a la mitad significa un alumno que pierde respuestas de su
+  // simulacro. Ahora son 4 consultas, sin importar el tamaño del lote.
+  //
+  // Se conserva íntegro el aislamiento por reactivo de F19 (ver abajo) y la
+  // idempotencia por (sesión, reactivo).
+
+  // Última respuesta gana si el lote trae el mismo reactivo dos veces: un
+  // `ON CONFLICT DO UPDATE` no puede tocar la misma fila dos veces en el mismo
+  // statement.
+  const byQuestion = new Map<string, SimulatorSyncAnswer>();
+  for (const answer of input.answers) byQuestion.set(answer.questionId, answer);
+  const batch = [...byQuestion.values()];
+
+  if (batch.length === 0) {
+    await persistIntegrity(session, input);
+    return { ok: true, recorded: 0 };
+  }
+
+  const questions = await prisma.question.findMany({
+    where: { id: { in: batch.map((a) => a.questionId) } },
+    select: { id: true, options: true },
+  });
+  const optionsByQuestion = new Map(questions.map((q) => [q.id, q.options]));
+
+  const scored: Array<SimulatorSyncAnswer & { isCorrect: boolean }> = [];
+  for (const answer of batch) {
+    const rawOptions = optionsByQuestion.get(answer.questionId);
+    if (rawOptions === undefined) continue;
 
     // F19 (bug real corregido): `parseQuestionOptions`/`isAnswerCorrect` LANZAN
     // ante un reactivo corrupto (options malformadas, o 0/≥2 opciones marcadas
@@ -392,62 +488,29 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
     // se aísla al reactivo culpable — se registra y se salta, el resto del
     // lote se persiste igual. Nunca se marca "correcta" a la fuerza: si no se
     // puede puntuar con certeza, esa respuesta simplemente no se guarda.
-    let options;
-    let correct: boolean;
     try {
-      options = parseQuestionOptions(question.options);
+      const options = parseQuestionOptions(rawOptions);
       // Opción inexistente ⇒ se ignora (defensa; la UI solo manda ids válidos).
       if (answer.selectedOption !== null && !options.some((o) => o.id === answer.selectedOption)) {
         continue;
       }
       // Correctitud SIEMPRE server-side (guardrail CLAUDE.md).
-      correct = isAnswerCorrect(options, answer.selectedOption);
+      scored.push({ ...answer, isCorrect: isAnswerCorrect(options, answer.selectedOption) });
     } catch (err) {
       console.error('[simulator/sync] Reactivo no puntuable, se omite del lote', {
         sessionId: session.id,
         questionId: answer.questionId,
         err,
       });
-      continue;
     }
-
-    await prisma.sessionAnswer.upsert({
-      where: { sessionId_questionId: { sessionId: session.id, questionId: answer.questionId } },
-      create: {
-        sessionId: session.id,
-        questionId: answer.questionId,
-        selectedOption: answer.selectedOption,
-        isCorrect: correct,
-        timeSpentSecs: answer.timeSpentSecs,
-        position: answer.position,
-      },
-      update: {
-        selectedOption: answer.selectedOption,
-        isCorrect: correct,
-        timeSpentSecs: answer.timeSpentSecs,
-        position: answer.position,
-      },
-    });
-    recorded++;
   }
 
-  const merged = mergeIntegrityCounters(
-    {
-      tabBlurCount: session.tabBlurCount,
-      rightClickAttempts: session.rightClickAttempts,
-      keyboardShortcutAttempts: session.keyboardShortcutAttempts,
-    },
-    input.integrity
-  );
+  if (scored.length > 0) {
+    await upsertSessionAnswers(session.id, scored);
+  }
+  const recorded = scored.length;
 
-  await prisma.examSession.update({
-    where: { id: session.id },
-    data: {
-      ...merged,
-      completedFullscreen: session.completedFullscreen || input.completedFullscreen,
-      suspicionEvents: input.suspicionEvents as unknown as Prisma.InputJsonValue,
-    },
-  });
+  await persistIntegrity(session, input);
 
   return { ok: true, recorded };
 }
@@ -501,6 +564,30 @@ export interface SimulatorResultData {
   percentile: number | null;
 }
 
+/**
+ * Los dos números que necesita el percentil: cuántas OTRAS sesiones terminadas
+ * del mismo examen hay, y cuántas quedaron estrictamente por debajo de `score`.
+ * Un solo renglón de vuelta, sin importar cuántos alumnos haya en la
+ * plataforma.
+ */
+async function countPercentilePeers(
+  examId: string,
+  excludeSessionId: string,
+  score: number
+): Promise<{ total: number; beaten: number }> {
+  const rows = await prisma.$queryRaw<{ total: number; beaten: number }[]>`
+    SELECT count(*)::int                                  AS "total",
+           count(*) FILTER (WHERE s."score" < ${score})::int AS "beaten"
+      FROM "exam_sessions" s
+     WHERE s."examId" = ${examId}
+       AND s."mode" = 'FULL_SIMULATION'
+       AND s."status" IN ('COMPLETED', 'COMPLETED_BY_TIMEOUT')
+       AND s."id" <> ${excludeSessionId}
+       AND s."score" IS NOT NULL
+  `;
+  return rows[0] ?? { total: 0, beaten: 0 };
+}
+
 /** Sesión terminada del usuario, con desglose por materia (para resultados). */
 export async function loadSimulatorResult(
   userProfileId: string,
@@ -509,7 +596,9 @@ export async function loadSimulatorResult(
   const session = await loadOwnedFinishedSession(userProfileId, sessionId);
   if (!session) return null;
 
-  const [exam, strategy, predictionDelta, otherScores] = await Promise.all([
+  const score = session.score ?? 0;
+
+  const [exam, strategy, predictionDelta, percentileCounts] = await Promise.all([
     prisma.exam.findUnique({
       where: { id: session.examId },
       select: { totalQuestions: true },
@@ -520,16 +609,14 @@ export async function loadSimulatorResult(
     // (mismo examId ⇒ misma institución+nivel+año, "mismo ciclo"), excluyendo
     // esta sesión. Cualquier alumno, no solo este usuario — es una comparación
     // contra la comunidad.
-    prisma.examSession.findMany({
-      where: {
-        examId: session.examId,
-        mode: 'FULL_SIMULATION',
-        status: { in: [...FINISHED_STATUSES] },
-        id: { not: sessionId },
-        score: { not: null },
-      },
-      select: { score: true },
-    }),
+    //
+    // G59: se cuentan en Postgres. La versión anterior traía el score de CADA
+    // sesión terminada del examen a memoria de Node para filtrarlas ahí; esa
+    // lista crece con la base de usuarios completa (no con la del alumno), así
+    // que era la consulta del producto que peor escalaba con el éxito
+    // comercial. El resultado es idéntico: `percentileRankFromCounts` aplica
+    // exactamente la misma regla, ahora sobre los dos números que importan.
+    countPercentilePeers(session.examId, sessionId, score),
   ]);
 
   const bySubject = new Map<string, { subjectName: string; correct: number; total: number }>();
@@ -547,12 +634,8 @@ export async function loadSimulatorResult(
     ? computeElapsedSecs(session.startedAt, session.finishedAt)
     : session.timeLimitSecs;
   const servedCount = session.answers.length;
-  const score = session.score ?? 0;
 
-  const percentile = computePercentileRank(
-    score,
-    otherScores.map((s) => s.score as number)
-  );
+  const percentile = percentileRankFromCounts(percentileCounts.beaten, percentileCounts.total);
 
   return {
     sessionId: session.id,

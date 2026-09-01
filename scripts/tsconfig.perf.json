@@ -1,0 +1,21 @@
+{
+  "//": "Config SOLO para correr scripts/perf-audit.ts con tsx (G59). Repite los alias del tsconfig raíz y añade el stub de `server-only` — el paquete real no existe en node_modules (Next lo resuelve internamente en el build), así que sin este mapeo cualquier módulo de src/lib/db/* marcado como server-only revienta fuera de Next. El tsconfig de la app NO se toca: la protección del build sigue intacta.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/app/*": ["../app/*"],
+      "@/*": ["../src/*"],
+      "server-only": ["../tests/stubs/server-only.ts"],
+      "next/cache": ["./lib/next-cache-passthrough.ts"]
+    }
+  }
+}

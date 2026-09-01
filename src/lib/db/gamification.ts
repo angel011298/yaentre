@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { prisma } from './prisma';
 import { isSubjectMastered, type TopicMasteryInput } from '@/lib/gamification/mastery';
 import { isStreakAtRisk, newlyReachedStreakMilestone } from '@/lib/gamification/streak-signals';
@@ -12,59 +13,89 @@ import { trackServerEvent } from '@/lib/analytics/server';
  * delega en `selectCelebration` (puro).
  */
 
-const FINISHED_STATUSES = ['COMPLETED', 'COMPLETED_BY_TIMEOUT'] as const;
-
 function badgeKey(subjectId: string): string {
   return `MATERIA_DOMINADA:${subjectId}`;
 }
 
 /** Materias tocadas por una sesión (vía los temas de las preguntas respondidas). */
 async function loadSessionSubjectIds(sessionId: string): Promise<string[]> {
-  const rows = await prisma.sessionAnswer.findMany({
-    where: { sessionId },
-    select: { question: { select: { topic: { select: { subjectId: true } } } } },
-  });
-  return [...new Set(rows.map((r) => r.question.topic.subjectId))];
+  const rows = await prisma.$queryRaw<{ subjectId: string }[]>`
+    SELECT DISTINCT t."subjectId"
+      FROM "session_answers" sa
+      JOIN "questions" q ON q."id" = sa."questionId"
+      JOIN "topics"    t ON t."id" = q."topicId"
+     WHERE sa."sessionId" = ${sessionId}
+  `;
+  return rows.map((r) => r.subjectId);
+}
+
+interface SubjectTopicStatRow {
+  subjectId: string;
+  topicId: string;
+  attempts: number;
+  correct: number;
 }
 
 /**
- * Stats acumuladas (TODO el historial finalizado) de CADA tema de una materia,
- * incluyendo temas sin ningún intento (attempts: 0) — necesario para que
- * `isSubjectMastered` los excluya correctamente en vez de simplemente no
- * verlos.
+ * Stats acumuladas del ALUMNO (todo su historial finalizado) para cada tema de
+ * las materias indicadas, incluyendo los temas sin ningún intento
+ * (`attempts: 0`) — necesario para que `isSubjectMastered` los cuente como
+ * "sin evidencia" en vez de simplemente no verlos.
+ *
+ * ── G59: dos defectos corregidos aquí ──
+ *
+ * 1. CORRECCIÓN. La versión anterior NO filtraba por alumno: agregaba las
+ *    respuestas de TODOS los usuarios. La insignia "materia dominada" es
+ *    personal, así que el veredicto era sencillamente el equivocado — con un
+ *    solo usuario de prueba coincidía por accidente, y con tráfico real habría
+ *    otorgado (o negado) la insignia según cómo le fuera al resto del mundo.
+ *
+ * 2. RENDIMIENTO. La versión anterior corría una consulta POR MATERIA tocada
+ *    por la sesión (un simulacro completo las toca todas) y cada una traía a
+ *    Node cada respuesta individual. Medido en G59 sobre 857 k respuestas:
+ *    204 ms y 102 564 filas por materia — por ~11 materias, más de 2 s de base
+ *    de datos en el cierre de cada simulacro, creciendo con el total de
+ *    respuestas de TODA la plataforma. Ahora es UNA consulta para todas las
+ *    materias y devuelve un renglón por tema (decenas), porque la agregación
+ *    la hace Postgres.
  */
-async function loadSubjectTopicMastery(subjectId: string): Promise<TopicMasteryInput[]> {
-  const topics = await prisma.topic.findMany({
-    where: { subjectId },
-    select: { id: true },
-  });
-  if (topics.length === 0) return [];
+async function loadSubjectTopicMastery(
+  userProfileId: string,
+  subjectIds: readonly string[]
+): Promise<Map<string, TopicMasteryInput[]>> {
+  const bySubject = new Map<string, TopicMasteryInput[]>();
+  if (subjectIds.length === 0) return bySubject;
 
-  const answers = await prisma.sessionAnswer.findMany({
-    where: {
-      session: { status: { in: [...FINISHED_STATUSES] } },
-      question: { topic: { subjectId } },
-    },
-    select: { isCorrect: true, question: { select: { topicId: true } } },
-  });
+  const rows = await prisma.$queryRaw<SubjectTopicStatRow[]>`
+    SELECT t."subjectId"                   AS "subjectId",
+           t."id"                          AS "topicId",
+           COALESCE(st."attempts", 0)::int AS "attempts",
+           COALESCE(st."correct", 0)::int  AS "correct"
+      FROM "topics" t
+      LEFT JOIN (
+        SELECT q."topicId"                                 AS "topicId",
+               count(*)::int                               AS "attempts",
+               count(*) FILTER (WHERE sa."isCorrect")::int AS "correct"
+          FROM "session_answers" sa
+          JOIN "exam_sessions" s ON s."id" = sa."sessionId"
+          JOIN "questions"     q ON q."id" = sa."questionId"
+         WHERE s."userProfileId" = ${userProfileId}
+           AND s."status" IN ('COMPLETED', 'COMPLETED_BY_TIMEOUT')
+         GROUP BY q."topicId"
+      ) st ON st."topicId" = t."id"
+     WHERE t."subjectId" IN (${Prisma.join([...subjectIds])})
+  `;
 
-  const acc = new Map<string, { attempts: number; correct: number }>();
-  for (const a of answers) {
-    const prev = acc.get(a.question.topicId) ?? { attempts: 0, correct: 0 };
-    acc.set(a.question.topicId, {
-      attempts: prev.attempts + 1,
-      correct: prev.correct + (a.isCorrect ? 1 : 0),
+  for (const r of rows) {
+    const list = bySubject.get(r.subjectId) ?? [];
+    list.push({
+      topicId: r.topicId,
+      attempts: r.attempts,
+      hitRate: r.attempts > 0 ? r.correct / r.attempts : 0,
     });
+    bySubject.set(r.subjectId, list);
   }
-
-  return topics.map((t) => {
-    const stat = acc.get(t.id);
-    return {
-      topicId: t.id,
-      attempts: stat?.attempts ?? 0,
-      hitRate: stat && stat.attempts > 0 ? stat.correct / stat.attempts : 0,
-    };
-  });
+  return bySubject;
 }
 
 /**
@@ -72,43 +103,42 @@ async function loadSubjectTopicMastery(subjectId: string): Promise<TopicMasteryI
  * `grantEarlyBirdBadge` en billing.ts) para las materias tocadas en esta
  * sesión que ACABAN de cumplir el umbral en TODOS sus temas y aún no tenían
  * la insignia. Devuelve solo las recién otorgadas en ESTA llamada.
+ *
+ * G59: el bucle por materia (2 consultas de stats + 1 de nombre + 1 update
+ * cada una) se colapsó a cuatro consultas fijas, independientes de cuántas
+ * materias tocó la sesión.
  */
 async function grantNewlyMasteredSubjects(
   userProfileId: string,
   sessionId: string
 ): Promise<{ subjectId: string; subjectName: string }[]> {
-  const subjectIds = await loadSessionSubjectIds(sessionId);
-  if (subjectIds.length === 0) return [];
+  const [subjectIds, profile] = await Promise.all([
+    loadSessionSubjectIds(sessionId),
+    prisma.userProfile.findUnique({ where: { id: userProfileId }, select: { badges: true } }),
+  ]);
+  if (subjectIds.length === 0 || !profile) return [];
 
-  const profile = await prisma.userProfile.findUnique({
-    where: { id: userProfileId },
-    select: { badges: true },
+  const candidates = subjectIds.filter((id) => !profile.badges.includes(badgeKey(id)));
+  if (candidates.length === 0) return [];
+
+  const masteryBySubject = await loadSubjectTopicMastery(userProfileId, candidates);
+  const mastered = candidates.filter((id) => isSubjectMastered(masteryBySubject.get(id) ?? []));
+  if (mastered.length === 0) return [];
+
+  const subjects = await prisma.subject.findMany({
+    where: { id: { in: mastered } },
+    select: { id: true, name: true },
   });
-  if (!profile) return [];
+  if (subjects.length === 0) return [];
 
-  const granted: { subjectId: string; subjectName: string }[] = [];
+  // Un solo `push` con todas las claves: el bucle anterior hacía un UPDATE por
+  // materia sobre la misma fila.
+  await prisma.userProfile.update({
+    where: { id: userProfileId },
+    data: { badges: { push: subjects.map((s) => badgeKey(s.id)) } },
+  });
 
-  for (const subjectId of subjectIds) {
-    const key = badgeKey(subjectId);
-    if (profile.badges.includes(key)) continue;
-
-    const topics = await loadSubjectTopicMastery(subjectId);
-    if (!isSubjectMastered(topics)) continue;
-
-    const subject = await prisma.subject.findUnique({
-      where: { id: subjectId },
-      select: { name: true },
-    });
-    if (!subject) continue;
-
-    await prisma.userProfile.update({
-      where: { id: userProfileId },
-      data: { badges: { push: key } },
-    });
-    granted.push({ subjectId, subjectName: subject.name });
-  }
-
-  return granted;
+  return subjects.map((s) => ({ subjectId: s.id, subjectName: s.name }));
 }
 
 /**
