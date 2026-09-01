@@ -63,11 +63,13 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       {!authUser.email_confirmed_at && <VerificationBanner />}
       <OfflineBanner />
       <main className="mx-auto w-full max-w-5xl space-y-4 px-4 py-8 pb-24 flex-1 lg:pl-60 lg:pb-8">
-        <InstallPrompt />
         {children}
       </main>
       <AppFooter />
       <BottomNav />
+      {/* G62: fuera del flujo de `<main>` — se renderiza `fixed` y solo tras
+          hidratar, así que dentro del contenido causaba layout shift. */}
+      <InstallPrompt />
     </div>
   );
 }

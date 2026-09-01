@@ -1,30 +1,21 @@
-'use client';
-
-import dynamic from 'next/dynamic';
-import { Skeleton } from '@/components/ui/Skeleton';
-
 /**
- * `next/dynamic` con `ssr:false` solo se permite dentro de un Client
- * Component (regla de Next.js App Router) — este wrapper existe únicamente
- * para eso, así `DiagnosticResults` (Server Component) puede seguir siendo
- * server-side y solo este widget se monta 100% en cliente. Ver comentario en
- * `Entrometro.tsx` sobre por qué `@number-flow/react` lo necesita.
+ * `EntrometroLoader` — alias histórico de `Entrometro`.
  *
- * `loading` (F20 tarea 4): sin esto, `ssr:false` deja este espacio en 0px
- * hasta que el chunk del cliente carga+monta — como el resto del dashboard
- * SÍ se sirve en el HTML inicial, todo lo que va DEBAJO (recomendación de
- * Tino, "Tu semana", ...) brinca hacia abajo en cuanto el anillo por fin
- * aparece. Este esqueleto reserva el mismo alto que `Entrometro` real.
+ * G62 (rendimiento): antes esto era un `next/dynamic` con `ssr:false` + un
+ * esqueleto `loading`. Ese patrón METÍA layout shift en el dashboard y en la
+ * pantalla de resultados: el servidor mandaba un esqueleto de ~188px y, al
+ * hidratar, el cliente lo cambiaba por el `Entrometro` real (~240-260px según
+ * haya delta semanal / meta de carrera), empujando todo lo de abajo — CLS
+ * medido de 0.30 en `/app`.
+ *
+ * `@number-flow/react` es SSR-safe desde 0.4 (renderiza el número estático en
+ * el servidor y solo anima al hidratar), así que el anillo entero puede
+ * renderizarse server-side: cero esqueleto, cero swap, cero CLS, y el número
+ * central entra ya pintado en el HTML inicial (candidato a LCP temprano). El
+ * costo es ~8KB de `@number-flow/react` en el bundle inicial de la ruta en vez
+ * de un chunk aparte — un intercambio favorable frente a un CLS en "poor".
+ *
+ * Se conserva el nombre `EntrometroLoader` para no tocar los 3 call sites
+ * (dashboard, resultados de diagnóstico, resultados de simulacro).
  */
-export const EntrometroLoader = dynamic(
-  () => import('./Entrometro').then((m) => m.Entrometro),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="flex flex-col items-center gap-3">
-        <Skeleton className="h-40 w-40 rounded-full" />
-        <Skeleton className="h-4 w-40" />
-      </div>
-    ),
-  }
-);
+export { Entrometro as EntrometroLoader } from './Entrometro';

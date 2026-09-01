@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-31 · Última fase ejecutada: G59 (**COMPLETADA — auditoría y optimización de la capa de datos antes del lanzamiento**). Modelo real `claude-opus-5` (el cierre de G58 anunciaba «Opus 4.8» — **decimocuarto ciclo** consecutivo plan ≠ real). Medición instrumentada de los 16 flujos críticos con el SQL que Prisma REALMENTE emite: **454 → 300 viajes de red** (−34 %), **163 → 99 sentencias reales** (−39 %); dashboard 78 → 58 viajes (4 704 → 1 774 ms), progreso 81 → 45, resultados del simulacro 58 → 38, delta del Entrómetro 30 → 13. Como el volumen actual (5 usuarios, 480 respuestas) no revela ningún plan malo, se construyó un **banco de pruebas aislado a escala de lanzamiento** (esquema `perf_g59`: 2 000 alumnos, 36 000 sesiones, **856 729 respuestas**, 1 500 reactivos) y se midió ahí con `EXPLAIN ANALYZE`; el esquema se eliminó al cerrar. **+18 índices** (~360 kB) y las 29 políticas RLS reescritas con `(SELECT …)` para que las funciones de auth se evalúen una vez por consulta y no una vez por fila: `explanation_layers` **38,3 → 0,69 ms (55×)**. **TRES HALLAZGOS QUE NO ERAN DE RENDIMIENTO:** (1) 🔴 **fuga de las respuestas correctas** — la política `read_verified` dejaba a cualquiera con la anon key (pública por diseño) leer `questions` vía PostgREST, y `options` incluye `isCorrect`; comprobado en vivo con `SET ROLE anon` que devolvía la letra correcta de los 1 143 reactivos servibles, lo que anula el simulador entero — **corregido** (admin-only, como el resto del contenido desde 0009); (2) 🟠 la insignia «materia dominada» **agregaba las respuestas de TODOS los usuarios**, no las del alumno — **corregido**, y de paso pasó de 204 ms × materia (102 564 filas a Node) a 2,1 ms total (97 filas); (3) 🟠 **los tres correos programados fallan en silencio** porque `acierta_ci` no tiene acceso al esquema `auth` — **NO se pudo corregir** desde aquí (el rol `postgres` solo tiene USAGE sin grant option y `SET ROLE supabase_admin` está denegado): requiere acción del dueño, ver §7 de la auditoría. **Pool serverless:** medido que `?pgbouncer=true` cuesta **4 viajes por operación** en vez de 1, y que quitarlo es 4,7× más rápido con una conexión **pero rompe las 8 con clientes en paralelo** (`26000 prepared statement "sNN" does not exist`) — o sea el atajo se ve perfecto en el escritorio y tumba el sitio bajo carga: **se queda**, y la única palanca real es hacer menos operaciones, que es justo lo que se hizo. La cadena se normaliza ahora en código (`connection_limit=5`, `pool_timeout=20`, `connect_timeout=10`), el singleton de Prisma se cachea también en producción y `vercel.json` fija `regions: ["iad1"]` (misma región que la base). Reporte completo en **`docs/AUDITORIA_BACKEND.md`**. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (53 archivos, **502 pruebas**) en verde. Siguiente **G60, modelo Sonnet 4.6**.
+Última actualización: 2026-09-01 · Última fase ejecutada: **G62 (COMPLETADA — optimización de rendimiento del frontend)**. Modelo real `claude-sonnet-5`. Las 5 pantallas críticas ≥ 85 en Lighthouse móvil (mediana de 5): **landing 90→96, registro 89→98, dashboard 67→87, práctica 75→90, simulador 67→94**. CLS 0.20–0.32 → ≤ 0.06 (elementos que aparecían tras hidratar: aviso móvil del simulador, `InstallPrompt`, anillo del Entrómetro, banner de cookies — a primer render / `position:fixed` / SSR; fuentes a `display:optional`, que era la causa raíz del swap tardío). Sentry cliente → `import()` dinámico sólo con DSN real: chunk de vendor de TODA ruta **422→228 KB**. `framer-motion` fuera de la carga inicial de `/simulador` (−131 KB, 99 % sin usar). Dashboard con `<Suspense>` por sección (esqueletos de altura reservada). `requireUser`/`createSupabaseServerClient` + 2 loaders con `cache()` de React; 3 loaders de `/practicar` de serie→paralelo. Sin imágenes rasterizadas que optimizar (emoji + SVG inline). **No se tocó `prisma/schema.prisma`.** El "después" contra prod real requiere deploy (sin remoto git; deployments de proyecto tras SSO). Reporte: **`docs/AUDITORIA_FRONTEND.md`**. `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G63, modelo Sonnet 4.6**.
+
+<details><summary>Historial: G59 (2026-08-31)</summary>
+
+Última fase ejecutada: G59 (**COMPLETADA — auditoría y optimización de la capa de datos antes del lanzamiento**). Modelo real `claude-opus-5` (el cierre de G58 anunciaba «Opus 4.8» — **decimocuarto ciclo** consecutivo plan ≠ real). Medición instrumentada de los 16 flujos críticos con el SQL que Prisma REALMENTE emite: **454 → 300 viajes de red** (−34 %), **163 → 99 sentencias reales** (−39 %); dashboard 78 → 58 viajes (4 704 → 1 774 ms), progreso 81 → 45, resultados del simulacro 58 → 38, delta del Entrómetro 30 → 13. Como el volumen actual (5 usuarios, 480 respuestas) no revela ningún plan malo, se construyó un **banco de pruebas aislado a escala de lanzamiento** (esquema `perf_g59`: 2 000 alumnos, 36 000 sesiones, **856 729 respuestas**, 1 500 reactivos) y se midió ahí con `EXPLAIN ANALYZE`; el esquema se eliminó al cerrar. **+18 índices** (~360 kB) y las 29 políticas RLS reescritas con `(SELECT …)` para que las funciones de auth se evalúen una vez por consulta y no una vez por fila: `explanation_layers` **38,3 → 0,69 ms (55×)**. **TRES HALLAZGOS QUE NO ERAN DE RENDIMIENTO:** (1) 🔴 **fuga de las respuestas correctas** — la política `read_verified` dejaba a cualquiera con la anon key (pública por diseño) leer `questions` vía PostgREST, y `options` incluye `isCorrect`; comprobado en vivo con `SET ROLE anon` que devolvía la letra correcta de los 1 143 reactivos servibles, lo que anula el simulador entero — **corregido** (admin-only, como el resto del contenido desde 0009); (2) 🟠 la insignia «materia dominada» **agregaba las respuestas de TODOS los usuarios**, no las del alumno — **corregido**, y de paso pasó de 204 ms × materia (102 564 filas a Node) a 2,1 ms total (97 filas); (3) 🟠 **los tres correos programados fallan en silencio** porque `acierta_ci` no tiene acceso al esquema `auth` — **NO se pudo corregir** desde aquí (el rol `postgres` solo tiene USAGE sin grant option y `SET ROLE supabase_admin` está denegado): requiere acción del dueño, ver §7 de la auditoría. **Pool serverless:** medido que `?pgbouncer=true` cuesta **4 viajes por operación** en vez de 1, y que quitarlo es 4,7× más rápido con una conexión **pero rompe las 8 con clientes en paralelo** (`26000 prepared statement "sNN" does not exist`) — o sea el atajo se ve perfecto en el escritorio y tumba el sitio bajo carga: **se queda**, y la única palanca real es hacer menos operaciones, que es justo lo que se hizo. La cadena se normaliza ahora en código (`connection_limit=5`, `pool_timeout=20`, `connect_timeout=10`), el singleton de Prisma se cachea también en producción y `vercel.json` fija `regions: ["iad1"]` (misma región que la base). Reporte completo en **`docs/AUDITORIA_BACKEND.md`**. `pnpm typecheck`, `pnpm lint` y `pnpm test:unit` (53 archivos, **502 pruebas**) en verde. Siguiente **G60, modelo Sonnet 4.6**.
+
+</details>
 
 <details><summary>Historial: G57 (2026-08-31)</summary>
 
@@ -187,6 +193,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G62 | Optimización de rendimiento del frontend | **COMPLETADA — las 5 pantallas críticas ≥ 85 en Lighthouse móvil (mediana de 5): landing 90→96, registro 89→98, dashboard 67→87, práctica 75→90, simulador 67→94. Reporte: `docs/AUDITORIA_FRONTEND.md`** | (G62) | Modelo real `claude-sonnet-5`. CLS 0.20–0.32 → ≤ 0.06 (elementos que aparecían tras hidratar: aviso móvil del simulador, `InstallPrompt`, anillo del Entrómetro, banner de cookies — todos a primer render / fuera de flujo / `display:optional`). Sentry cliente → `import()` dinámico sólo con DSN real (chunk de vendor 422→228 KB en TODA ruta). `framer-motion` fuera de la carga inicial de `/simulador` (−131 KB, 99% sin usar). Dashboard: `<Suspense>` por sección con esqueletos de altura reservada. `requireUser`/`createSupabaseServerClient` + 2 loaders del dashboard con `cache()` de React; 3 loaders de `/practicar` de serie→paralelo. Fuentes: pesos recortados, `preload:false` en mono, `display:optional`. Borrados 5 SVG de arranque. **No hay imágenes rasterizadas que optimizar** (emoji + SVG inline). **No se tocó `prisma/schema.prisma`.** El "después" contra prod real requiere deploy (sin remoto git); el TTFB local infla ~2 s el LCP de las pantallas con base (latencia MX→us-east-1, no existe en `iad1`). |
 | G61 | Respaldos y recuperación | **COMPLETADA — el plan gratuito de Supabase NO da respaldos restaurables; se implementó un respaldo lógico propio del banco de contenido (13 tablas, versionado en git) con export/import probados round-trip byte-idéntico. Reporte: `docs/RESPALDOS.md`** | (G61) | `pnpm backup:export` → `backups/content-bank.json` (5 658 filas, 3.9 MB); `pnpm backup:import` (`--dry-run` / `--wipe --yes` / `--schema <x>`). Prueba real: import a esquema aislado → checksum md5 idéntico en las 13 tablas + 16 FK validadas; `--dry-run` contra prod (ROLLBACK, prod intacta). Spec derivada del DMMF de Prisma (sin listas hardcodeadas). **Decisión pendiente del dueño: subir a Pro ($25/mes) antes del launch** — el free no tiene red para datos de usuario/pago y pausa por inactividad. PITR (~$125/mes) sobredimensionado a ~20 MB de base. |
 | G60 | Integridad y resiliencia del backend | **COMPLETADA — 10 hallazgos corregidos, 1 documentado. 2 🔴: `finishSession` no atómico (doble `simulation_completed` — la North Star), y bypass del muro suave por doble arranque de simulacro (usuario FREE → 2 gratis). Auditoría completa en `docs/AUDITORIA_BACKEND.md` §G60** | (G60) | Nuevo `withUserAdvisoryLock` (`pg_advisory_xact_lock`, seguro con pgbouncer) serializa arranque de simulacro/diagnóstico por usuario; `finishSession` reclama la transición con `updateMany` condicionado; activación de plan Stripe ahora condicional atómica (webhook + reconciliación en paralelo ya no duplican `Payment`/insignia/evento); `redeemParentLinkCode` en transacción; sesión+`SessionAnswer` en un `create` anidado. Bug latente corregido: `getAuthEmails` comparaba `UserProfile.id` (cuid) vs `auth.users.id` (uuid) — **sigue pendiente el grant del dueño** (G59 §5). Anti open-redirect en `?next=`. Cotas Zod. `try/catch` de último recurso en Route Handlers. **No se tocó `prisma/schema.prisma`.** |
 | G59 | Auditoría y optimización de base de datos | **COMPLETADA — 454 → 300 viajes de red, +18 índices, 29 políticas RLS optimizadas (55× en el peor caso), 2 bugs corregidos (fuga de respuestas correctas vía anon key; insignia calculada sobre todos los usuarios), 1 bloqueado por permisos** | (G59) | Ver `docs/AUDITORIA_BACKEND.md`. Medición con el SQL real de Prisma + banco de pruebas aislado a escala de lanzamiento (856 729 respuestas) porque con 480 respuestas ningún plan malo se nota. N+1 corregidos: sinc del simulador (282 → 4 viajes), insignia de materia, historial de respuestas (3 → 1 consulta, leído una vez por cierre de sesión en vez de tres), cadena perfil→carrera→área→examen (4 lecturas → 1), taxonomía (24 → 1 viaje por render, cacheada), y tres agregaciones que se hacían en Node movidas a SQL. `?pgbouncer=true` se CONSERVA: quitarlo es 4,7× más rápido con una conexión y falla en las 8 con concurrencia. |
@@ -2522,6 +2529,92 @@ alcance — mismo criterio que ya usa `notification-jobs.ts`).
 1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
 2. Idempotencia real de los correos programados → tabla nueva → instrucción
    explícita.
+
+
+## G62 — Optimización de rendimiento del frontend (2026-09-01)
+
+**Reporte completo: `docs/AUDITORIA_FRONTEND.md`.** Aquí sólo lo esencial.
+Modelo real: `claude-sonnet-5`. No se tocó `prisma/schema.prisma`.
+
+### 1. Resultado (Lighthouse móvil, mediana de 5 corridas)
+
+| Pantalla | Antes | Después |
+|---|---|---|
+| Landing `/` (local) | 90 | **96** |
+| Registro `/registro` (local) | 89 | **98** |
+| Dashboard `/app` (local, con sesión) | 67 | **87** |
+| Práctica `/practicar` (local, con sesión) | 75 | **90** |
+| Simulador `/simulador` (local, con sesión) | 67 | **94** |
+
+Landing y registro también medidas contra `yaentre.com` real (94 / 96 — sin
+cambio porque prod sirve el commit anterior; no hay remoto git para el
+auto-deploy y los deployments `*-angel011298s-projects` están tras SSO).
+
+### 2. Cómo se midió
+
+Lighthouse 12.8 API + Playwright para el login, 5 corridas por pantalla,
+mediana. Las 3 pantallas con sesión se midieron contra el build de producción
+local + Supabase real, autenticado como `e2e.sim@acierta-test.mx`. **Se cambió
+la contraseña de esa cuenta de forma temporal y se restauró al hash original
+exacto al terminar** (se guardó el hash antes de tocarlo). El arnés
+(`scripts/content-exports/perf-suite2.mjs`) es instrumentación gitignored.
+
+**El TTFB local infla el LCP ~2 s** en las pantallas con base: la máquina está
+en México y la base en `us-east-1` (~110 ms/viaje, `docs/AUDITORIA_BACKEND.md`
+§1.1); el dashboard hace 19 consultas secuenciales. En `iad1` (co-ubicado,
+fijado en `vercel.json`) eso son ~40 ms. Los números "después (local)" de
+dashboard/práctica/simulador son un piso conservador.
+
+### 3. Qué se cambió (13 puntos, detalle en el reporte)
+
+- **CLS 0.20–0.32 → ≤ 0.06** en las 3 pantallas con sesión. Cuatro elementos
+  aparecían *después* de hidratar y empujaban el contenido: (a) aviso "estás en
+  móvil" del pre-flight del simulador — `useSyncExternalStore` → clase CSS
+  `lg:hidden`; (b) `InstallPrompt` — a `position: fixed`, fuera de `<main>`;
+  (c) anillo del Entrómetro — era `next/dynamic({ssr:false})` + esqueleto, ahora
+  SSR directo (`@number-flow/react` es SSR-safe); (d) banner de cookies — copy
+  compacto (~200→~90px) + SSR + script inline que lo oculta pre-paint para quien
+  ya eligió. Y las **fuentes a `display: optional`** (sin swap tardío, que era
+  la causa raíz del CLS intermitente de 0.30 sobre bloques de texto apilados).
+- **Sentry cliente por `import()` dinámico**, sólo con DSN real
+  (`isSentryConfigured`). Hoy el DSN es placeholder → coste 0 en el navegador.
+  El chunk de vendor compartido por TODA ruta: **422 → 228 KB** sin comprimir.
+- **`framer-motion` (131 KB, 99% sin usar) fuera de la carga inicial de
+  `/simulador`**: `CelebrationDisplayLazy` (`'use client'` + `dynamic ssr:false`),
+  usado por `SimulatorResult` y `DrillSummary`.
+- **Dashboard con `<Suspense>` por sección**: el `<h1>` pinta apenas responde el
+  servidor; cada tarjeta rellena su hueco (altura reservada, medida contra el
+  contenido real) cuando su consulta resuelve, en vez de esperar el `Promise.all`
+  de 9. Borrado `app/(app)/app/loading.tsx`.
+- **`cache()` de React** en `requireUser` + `createSupabaseServerClient` (se
+  hacía `supabase.auth.getUser()` — valida el JWT contra el server de Auth — +
+  consulta de perfil DOS veces por carga de `/app/*`: guard del layout + guard
+  de la página). Y en `loadExamCountdown` / `loadWeakestTopics` (2 islas c/u).
+- **`/practicar`**: los 3 loaders de serie → `Promise.all`. Borrado su
+  `loading.tsx` (el esqueleto metía más CLS del que quitaba).
+- **Fuentes**: Outfit 400/500 fuera (0 usos), Mono `preload:false`, las 3 a
+  `display:optional`. Precargadas en `/`: 3 → 1.
+- **Imágenes**: no hay rasterizadas (emoji + SVG inline de Tino). Avatares ya
+  pasan por `next/image` (WebP/AVIF, F17). Se borraron 5 SVG de `create-next-app`
+  sin usar en `public/`.
+- **KaTeX**: ya se renderiza server-side (`LatexText`, Node puro) — el navegador
+  no baja la librería para ver un reactivo. Sólo carga su CSS + fuentes dentro
+  del *runner* (sesión activa), nunca en las pantallas medidas. Sacarlo también
+  del chunk del runner (−256 KB) queda como mejora futura (cambia el contrato de
+  la API de reactivos).
+
+### 4. Verificación
+
+`pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Sin cambios en
+motor/scoring/pagos. Verificación funcional en vivo (login + navegación por las
+3 pantallas con sesión).
+
+### 5. Pendiente del dueño
+
+1. **Desplegar y re-medir prod.** El repo no tiene remoto git; el deploy es
+   decisión del dueño.
+2. **Activar Sentry**: sólo poner `NEXT_PUBLIC_SENTRY_DSN` real — el `import()`
+   dinámico se dispara solo.
 
 
 ## G61 — Respaldos y recuperación (2026-09-01)

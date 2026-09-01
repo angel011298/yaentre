@@ -9,22 +9,38 @@ import { SignupConversionTracker } from "@/components/marketing/SignupConversion
 import { BRAND_PRIMARY_HEX } from "@/lib/brand/colors";
 import "./globals.css";
 
+// G62 (rendimiento):
+//  - Pesos recortados: Outfit es solo DISPLAY (títulos, `<strong>`), el copy
+//    la usa únicamente en 600/700/800 — 400/500 no se aplicaban nunca.
+//  - `display: "optional"` en las tres: en una conexión móvil lenta la fuente
+//    no llega en los ~100 ms de gracia, así que el navegador se queda con la
+//    de sistema para esa carga y **no hace swap tardío** — eso eliminaba un
+//    reflow de bloques de texto apilados que disparaba CLS de hasta 0.30 en
+//    el pre-flight del simulador. `adjustFontFallback` (por defecto) deja la
+//    fuente de sistema métricamente cerca; en la segunda visita la fuente ya
+//    está en caché y entra al instante.
+//  - `preload: false` en Mono: solo se usa en el timer y contadores, nunca
+//    por encima del pliegue.
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["600", "700", "800"],
+  display: "optional",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "optional",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "600"],
+  display: "optional",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -69,6 +85,15 @@ export default function RootLayout({
       data-theme="dark"
     >
       <body className="min-h-full flex flex-col bg-base text-text-primary">
+        {/* G62: antes de pintar, oculta el banner de cookies para quien ya
+            eligió (su decisión vive en localStorage, invisible al servidor).
+            El banner se renderiza en SSR igual; esto solo evita el flash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var c=localStorage.getItem('yaentre-cookies-consent');if(c==='true'||c==='false')document.documentElement.setAttribute('data-cookie-consent','set')}catch(e){}",
+          }}
+        />
         <ServiceWorkerRegister />
         <Suspense fallback={null}>
           <SignupConversionTracker />

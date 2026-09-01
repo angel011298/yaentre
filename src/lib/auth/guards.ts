@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import type { Subscription, UserProfile, UserRole } from '@prisma/client';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
@@ -14,8 +15,16 @@ export type RequireUserResult = {
 /**
  * Exige una sesión válida y un UserProfile existente. Base de todos los
  * demás guards. Lanza AuthError('UNAUTHORIZED') si falta cualquiera de los dos.
+ *
+ * G62 (rendimiento): envuelto en `cache()` de React — en una carga de `/app/*`
+ * el guard corre al menos dos veces por request (`(app)/layout.tsx` para el
+ * shell + la propia página vía `requireOnboarding`), y cada llamada hacía un
+ * `supabase.auth.getUser()` (valida el JWT contra el servidor de Auth, ~ida y
+ * vuelta de red) MÁS una consulta a `user_profiles`. `cache()` deduplica ambas
+ * dentro del mismo render: la segunda llamada es gratis. No cambia semántica —
+ * la sesión no muta a mitad de request.
  */
-export async function requireUser(): Promise<RequireUserResult> {
+export const requireUser = cache(async function requireUser(): Promise<RequireUserResult> {
   const supabase = await createSupabaseServerClient();
 
   let authUser: SupabaseUser | null = null;
@@ -43,7 +52,7 @@ export async function requireUser(): Promise<RequireUserResult> {
   }
 
   return { authUser, profile };
-}
+});
 
 /**
  * Exige uno de los roles indicados. No aplica el guard de verificación de

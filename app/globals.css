@@ -126,6 +126,14 @@ body {
   outline-offset: 2px;
 }
 
+/* Banner de consentimiento de cookies (G62): va en el HTML inicial para ser
+   contenido temprano (LCP). El script inline de `app/layout.tsx` marca
+   `data-cookie-consent="set"` antes del primer paint si el visitante ya
+   eligió, así que quien ya decidió no ve el flash. */
+:root[data-cookie-consent="set"] [data-cookie-banner] {
+  display: none !important;
+}
+
 /* Accesibilidad: respetar prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   * {

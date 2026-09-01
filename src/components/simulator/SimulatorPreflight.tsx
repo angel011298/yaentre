@@ -1,27 +1,11 @@
 'use client';
 
-import { useCallback, useState, useSyncExternalStore } from 'react';
+import { useState } from 'react';
 import { Tino } from '@/components/mascot/Tino';
 import { Button } from '@/components/ui/Button';
 import { simulatorFreeWelcome } from '@/lib/tino/copy';
 
 type CameraStatus = 'idle' | 'granted' | 'denied' | 'unsupported';
-
-const MOBILE_QUERY = '(max-width: 1024px)';
-
-/** Detección reactiva de "dispositivo móvil" sin setState-en-efecto (SSR-safe). */
-function useIsMobile(): boolean {
-  const subscribe = useCallback((cb: () => void) => {
-    const mq = window.matchMedia(MOBILE_QUERY);
-    mq.addEventListener('change', cb);
-    return () => mq.removeEventListener('change', cb);
-  }, []);
-  return useSyncExternalStore(
-    subscribe,
-    () => window.matchMedia(MOBILE_QUERY).matches || (navigator.maxTouchPoints ?? 0) > 0,
-    () => false
-  );
-}
 
 /**
  * Pantalla previa del simulador (F12 tarea 2). Explica las reglas, ofrece el
@@ -48,7 +32,6 @@ export function SimulatorPreflight({
   onStart: (cameraGranted: boolean | null) => void;
 }) {
   const [camera, setCamera] = useState<CameraStatus>('idle');
-  const isMobile = useIsMobile();
 
   async function requestCamera() {
     if (!navigator.mediaDevices?.getUserMedia) {
@@ -120,13 +103,17 @@ export function SimulatorPreflight({
         </div>
       </div>
 
-      {isMobile && (
-        <div className="rounded-lg border border-warning/40 bg-warning/10 p-4 text-sm text-text-secondary">
-          <strong className="text-text-primary">Estás en un dispositivo móvil.</strong> El examen
-          real requiere una computadora. Puedes practicar aquí, pero te recomendamos hacer los
-          simulacros en una laptop o PC.
-        </div>
-      )}
+      {/* Aviso de móvil por CSS puro (G62): antes se decidía con
+          `useSyncExternalStore` y aparecía SOLO tras hidratar — en un teléfono
+          eso empujaba el botón "Iniciar examen" hacia abajo al montar
+          (CLS 0.32 medido, y este bloque era el elemento LCP). `lg:hidden`
+          mobile-first lo deja en el HTML inicial y lo oculta en pantallas
+          grandes, sin JS y sin salto. */}
+      <div className="rounded-lg border border-warning/40 bg-warning/10 p-4 text-sm text-text-secondary lg:hidden">
+        <strong className="text-text-primary">Estás en un dispositivo móvil.</strong> El examen
+        real requiere una computadora. Puedes practicar aquí, pero te recomendamos hacer los
+        simulacros en una laptop o PC.
+      </div>
 
       {startError && <p className="text-sm text-danger">{startError}</p>}
 

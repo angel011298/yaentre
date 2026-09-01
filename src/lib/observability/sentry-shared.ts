@@ -56,6 +56,18 @@ export function isFromBrowserExtension(event: { exception?: { values?: Array<{ s
   return frames.every((f) => f.filename && SENTRY_DENY_URLS.some((re) => re.test(f.filename!)));
 }
 
+/**
+ * ¿Hay un DSN de Sentry REAL configurado? (no vacío, no el placeholder de
+ * `.env.example`). G62 (rendimiento): el cliente usa esto para NO importar
+ * dinámicamente el SDK del navegador (~40KB gzip) cuando Sentry todavía no
+ * está activado — hoy el DSN es placeholder, así que el SDK viajaba en cada
+ * página sin capturar nada. En cuanto exista un DSN real (el único cambio de
+ * env que anticipa docs/ESTADO.md) el import se dispara solo.
+ */
+export function isSentryConfigured(dsn: string | undefined = process.env.NEXT_PUBLIC_SENTRY_DSN): boolean {
+  return Boolean(dsn) && !dsn!.startsWith('your-') && !dsn!.includes('placeholder');
+}
+
 export const SENTRY_ENVIRONMENT =
   process.env.VERCEL_ENV ?? (process.env.NODE_ENV === 'production' ? 'production' : 'development');
 

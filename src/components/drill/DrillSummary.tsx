@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplay';
+import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplayLazy';
 import { Tino } from '@/components/mascot/Tino';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';

@@ -20,15 +20,22 @@ export default async function PracticarPage({
 }) {
   const { profile } = await requireOnboarding();
 
-  const state = await drillDb.loadDrillState(profile.id);
+  // G62 (rendimiento): antes estos tres loaders se hacían en serie —
+  // `loadDrillState` → `loadPracticeOptions` → `evaluateDrillAccess` —, ~3 s
+  // apilados desde una máquina lejos de la base (LCP de `/practicar` en ~4,6 s).
+  // El caso "hay sesión activa" es raro; se resuelven los tres en paralelo y
+  // se descartan `options`/`access` si resultó que había una sesión en curso.
+  const [state, options, access] = await Promise.all([
+    drillDb.loadDrillState(profile.id),
+    drillDb.loadPracticeOptions(profile.id),
+    drillDb.evaluateDrillAccess(profile.id),
+  ]);
+
   if (state.kind === 'active') {
     return <DrillApp initial={{ kind: 'active', payload: state.payload }} />;
   }
 
-  const options = await drillDb.loadPracticeOptions(profile.id);
   if (!options) return <NoTargetMessage />;
-
-  const access = await drillDb.evaluateDrillAccess(profile.id);
 
   // Deep link desde "reforzar hoy" del dashboard (F11 WeakTopicCard): arranca
   // directo esa práctica sin pasar por el selector. `subjectId` es el mismo

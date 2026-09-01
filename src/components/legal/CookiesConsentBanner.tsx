@@ -7,6 +7,15 @@ import { Button } from '@/components/ui/Button';
 const CONSENT_STORAGE_KEY = 'yaentre-cookies-consent';
 
 export function CookiesConsentBanner() {
+  // G62: se RENDERIZA en el HTML inicial (arranca `undefined`, no `return
+  // null`) — así es contenido temprano para LCP/Speed Index en vez de un
+  // bloque que aparece tras hidratar (~3,7 s en móvil lento) y se volvía el
+  // elemento LCP de pantallas escasas como `/practicar`. El script inline de
+  // `app/layout.tsx` lo oculta por CSS antes de pintar si el visitante ya
+  // eligió (evita el flash del caso "ya decidió"); este efecto solo sincroniza
+  // el estado de React. El copy es compacto (~90px) y las fuentes van con
+  // `display: optional`, así que no reflowa al cargar — el CLS que esto
+  // causaba en un intento anterior era el swap de fuente, ya eliminado.
   const [consent, setConsent] = useState<boolean | null | undefined>(undefined);
 
   useLayoutEffect(() => {
@@ -15,38 +24,49 @@ export function CookiesConsentBanner() {
     setConsent(stored === 'true' ? true : stored === 'false' ? false : null);
   }, []);
 
-  if (consent !== null) {
+  if (consent === true || consent === false) {
     return null;
   }
 
+  const persist = (value: 'true' | 'false') => {
+    try {
+      localStorage.setItem(CONSENT_STORAGE_KEY, value);
+      document.documentElement.setAttribute('data-cookie-consent', 'set');
+    } catch {
+      // Modo privado / almacenamiento bloqueado: la UI sigue funcionando,
+      // solo no se recuerda la decisión entre visitas.
+    }
+  };
+
   const handleAccept = () => {
-    localStorage.setItem(CONSENT_STORAGE_KEY, 'true');
+    persist('true');
     setConsent(true);
     // Trigger analytics load
     window.dispatchEvent(new Event('yaentre:cookies-accepted'));
   };
 
   const handleReject = () => {
-    localStorage.setItem(CONSENT_STORAGE_KEY, 'false');
+    persist('false');
     setConsent(false);
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-surface shadow-lg border-t border-border-subtle">
-      <div className="mx-auto max-w-4xl px-4 py-4 sm:px-6 sm:py-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex-1 text-sm text-text-secondary">
-            <p className="mb-2">
-              Usamos cookies técnicas (obligatorias para que la plataforma funcione) y analíticas (para mejorar tu experiencia). Puedes rechazar las analíticas sin problemas.
-            </p>
-            <p>
-              Lee nuestro{' '}
-              <Link href="/legal/privacidad" className="font-semibold text-brand hover:underline">
-                aviso de privacidad
-              </Link>{' '}
-              para más detalles.
-            </p>
-          </div>
+    <div
+      data-cookie-banner
+      className="fixed bottom-0 left-0 right-0 z-50 bg-surface shadow-lg border-t border-border-subtle"
+    >
+      <div className="mx-auto max-w-4xl px-4 py-3 sm:px-6 sm:py-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          {/* G62: copy compacto — antes eran dos párrafos (bloque de ~200px que
+              competía por ser el elemento LCP en pantallas escasas). El detalle
+              vive en el aviso de privacidad enlazado. */}
+          <p className="flex-1 text-sm text-text-secondary">
+            Usamos cookies técnicas y analíticas. Puedes rechazar las analíticas.{' '}
+            <Link href="/legal/privacidad" className="font-semibold text-brand hover:underline">
+              Aviso de privacidad
+            </Link>
+            .
+          </p>
           <div className="flex gap-3 flex-shrink-0">
             <Button
               onClick={handleReject}

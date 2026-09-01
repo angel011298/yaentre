@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { EntrometroLoader as Entrometro } from '@/components/gamification/EntrometroLoader';
-import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplay';
+import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplayLazy';
 import { StreakFlame } from '@/components/gamification/StreakFlame';
 import { Tino } from '@/components/mascot/Tino';
 import { Button } from '@/components/ui/Button';

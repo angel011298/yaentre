@@ -68,7 +68,15 @@ export function InstallPrompt() {
   if (!visible) return null;
 
   return (
-    <div className="flex items-start gap-3 rounded-lg border border-brand/40 bg-brand-tint p-4">
+    // G62 (rendimiento): posición `fixed`. Antes vivía en el flujo, al inicio
+    // de `<main>`, y como solo aparece TRAS hidratar (lee `localStorage` en un
+    // efecto), empujaba todo el contenido del tablero/práctica hacia abajo al
+    // montar — layout shift medido. Anclado sobre la `BottomNav` en móvil.
+    <div
+      role="dialog"
+      aria-label="Instalar YaEntre"
+      className="fixed inset-x-0 bottom-24 z-30 mx-auto flex max-w-md items-start gap-3 rounded-lg border border-brand/40 bg-brand-tint p-4 shadow-md lg:bottom-4 lg:left-64"
+    >
       <span className="text-2xl" aria-hidden>
         📲
       </span>

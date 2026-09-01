@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { prisma } from './prisma';
 import { countCompletedFullSimulations, isUserPaid } from './paywall';
 import { startOfMexicoDay } from '@/lib/paywall/mexico-time';
@@ -23,7 +24,12 @@ export interface ExamCountdown {
   totalQuestions: number;
 }
 
-export async function loadExamCountdown(
+// G62: `cache()` — el dashboard lo consulta desde dos islas que hidratan por
+// separado (la línea de cuenta regresiva y el Entrómetro, que necesita
+// `totalQuestions`). Sin el `now` explícito la clave de `cache()` es solo el
+// `userProfileId`, así que la segunda llamada del mismo render no vuelve a
+// pegarle a la base.
+export const loadExamCountdown = cache(async function loadExamCountdown(
   userProfileId: string,
   now: Date = new Date()
 ): Promise<ExamCountdown | null> {
@@ -41,7 +47,7 @@ export async function loadExamCountdown(
     daysRemaining,
     totalQuestions: exam.totalQuestions,
   };
-}
+});
 
 // ─────────────────────────────── Temas a reforzar ───────────────────────────────
 
@@ -90,8 +96,10 @@ async function loadAllTimeTopicRanking(
 }
 
 /** Temas a reforzar (F11 Task 3 y 6): prefiere `WeakTopic` (confiable, ≥3
- *  intentos) y rellena con el ranking histórico completo si no alcanza. */
-export async function loadWeakestTopics(
+ *  intentos) y rellena con el ranking histórico completo si no alcanza.
+ *  G62: `cache()` — el dashboard lo consulta desde dos islas (la recomendación
+ *  de Tino y "Reforzar hoy"); deduplica la consulta dentro del mismo render. */
+export const loadWeakestTopics = cache(async function loadWeakestTopics(
   userProfileId: string,
   limit = 3
 ): Promise<WeakTopicSummary[]> {
@@ -122,7 +130,7 @@ export async function loadWeakestTopics(
     }
   }
   return merged;
-}
+});
 
 // ─────────────────────────────── Simulacros recientes ───────────────────────────────
 
