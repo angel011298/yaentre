@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-31 · Última fase ejecutada: G57 (**COMPLETADA — lote de 35 reactivos de **Química, IPN área Ciencias Médico-Biológicas (MEDBIO)**, pool **COMPARTIDO** `sharedContentKey = IPN:QUIMICA` (celda FISMAT `questionWeight` 10 + celda MEDBIO 16), insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (el Plan asigna el tier Sonnet a los lotes de contenido; el cierre de G56 anunciaba «Fable 5» — **duodécimo ciclo** consecutivo plan ≠ real, corrección de G17). **Materia elegida con datos reales (encargo idéntico a G53/G55):** brecha efectiva por pool con la metodología G26 (densidad `1500/270 = 5.5556` reactivos por punto de `questionWeight`; los pools compartidos toman la meta de su celda de mayor peso, `computeSharedGoal`), solo UNAM + IPN Superior, consulta en vivo a Supabase al cierre de G56. Ranking: **IPN:QUIMICA (FISMAT w10 + MEDBIO w16) meta 89, 35 verificados → brecha 54, la MAYOR**; siguen IPN·MEDBIO·Biología 52, IPN·FISMAT·Física 41, UNAM:INGLES 33, IPN·SOCADM·Historia de México 33, UNAM·A1·Matemáticas 30, IPN:MATEMATICAS 28 (era 63 antes de la verificación ciega de G56). **Caso INVERSO al de G55, confirmado en vivo:** los 35 verificados del pool están **enteros del lado de MEDBIO** y FISMAT Química tiene **0**, así que la regla de CLAUDE.md / G26 §2 («insértalo contra el `topicId` de la materia con MÁS contenido del grupo») mandó insertar contra los **9 temas de MEDBIO** (`subjectId cmrr1lskp00cphi3nkzq1sg6k`) aunque FISMAT sea la celda de mayor peso; `loadEquivalentSubjectIds` sirve el lote también a FISMAT. **Reparto — priorizar los de menor cobertura:** los 9 temas de MEDBIO Química en 4/4/4/4/5/4/4/3/3 verificados; el lote reparte **4/4/4/4/2/4/3/5/5** (mínimo 2 por tema, +5 a los dos temas en 3✓, +2 al de más cobertura) → los 9 quedan nivelados en 7-8✓. **5 SOURCED / 30 TEMARIO_ONLY:** `loadTopicChunks` devolvió `SourceChunk` en 1 de los 9 temas — Química orgánica, `uam_cbs.pdf` p. 54 (ítems de la UAM sobre oxidación = pérdida de electrones, hibridación `sp²`, deshidratación de dos alcoholes → éter); `grounding.ts` hace obligatoria la cita cuando el tema tiene fragmento, así que los 5 reactivos de ese tema son SOURCED y **transforman la tarea** del ítem-semilla (identificación conceptual → clasificación de grupos funcionales, ordenamiento y cálculo de estados de oxidación del carbono, contraste deshidratación intra/intermolecular, identificación de compuesto aromático). Procedencia UAM (otra institución, se anota — patrón G18/G45/G49/G53/G55). Los otros 8 temas → **TEMARIO_ONLY**. **Química es `isCalcSubject`** (`CALC_SUBJECT_KEYS` incluye `quimica`), así que G58 recibirá `requiresCalculation: true` en los 35 y el candado de G28 exige cálculo EJECUTADO en los **15 numéricos**; los 15 se recalcularon desde cero con **sympy** por ruta independiente (`linsolve` del balanceo, `solve` de números de oxidación, `√(K_a·C)`, conteo de orbitales de Hund enumerado) exigiendo (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones y (c) opciones numéricas ascendentes estrictas — **15/15 en verde**. **Formato:** 15 `PROBLEM_SOLVING` · 18 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la objetivo de `_base.md`; los 2 EXPERT en Enlace químico y Ácidos y bases). **Clave agregada A9/B9/C9/D8** (confirmada por query sobre las 35 filas tras insertar; inservible como pista tras el rebarajado por `questionId` de G58, patrón G56); ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; los 15 numéricos fijan la letra por el rango del valor (G46 §7), los 20 restantes a mano al objetivo global. Secuencia por orden de inserción sin racha cíclica A→B→C→D ≥3 ni racha de misma letra ≥3 (búsqueda con semilla fija 57057). **Diagnóstico STEM (G46 §7):** rango del valor correcto entre las 4 opciones ascendentes 1º4/2º5/3º3/4º3 sobre los 15 numéricos, **χ² ≈ 0.73 (gl 3)** — sin sesgo aprovechable; se reporta por transparencia (patrón G53/G55). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 9 archivos. **0 citas por letra** en el stem, las 140 opciones, las 105 capas y los 35 `distractorRationale`. **Señuelo de longitud tie-aware (G34 §2):** sobre los 18 ítems con opciones-oración (los 15 de opción-valor y los 2 de completar fuera, criterio G45/G46/G53) → **16.7 % «única más larga» / 16.7 % «única más corta»**, ambos < 25 %, tras tres pasadas de homogeneización. **Absolutismo (G44 §6):** 0 marcadores en las 35 claves vs 6 en los 105 distractores; **0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/20.** **Opciones duplicadas (hueco G52):** `len(set(textos))==4` → **0/35**. **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` → **0 coincidencias no triviales** (se reescribió el arranque del stem de un ítem de Química orgánica que compartía la cita literal del fragmento con otro del mismo tema). **Acumulado real, DB en vivo antes → después:** banco (COUNT crudo) **1 112 → 1 147** · servibles **1 108** sin cambio (esta sesión no verifica sus propios reactivos) · cola ciega **0 → 35** · cola canónica de discrepancias **3** sin cambio (2 UNAM A1 Matemáticas + 1 UNAM A2 Química) · 1 retirado · **MEDBIO Química por tema 4/4/4/4/5/4/4/3/3 → 8/8/8/8/7/8/7/8/8** (pool `IPN:QUIMICA` 35✓/0⧗ → 35✓/35⧗) · `SOURCED` banco **290 → 295** · 105 `explanation_layers` · 5 `question_source_chunks`. `content:coverage`: **1 108 servibles · 35 pendientes · 1 retirado · 1 144 en banco**; meta efectiva G26 (1 222) **70 %, brecha 368** — **no se mueve con este lote**, pero **SÍ se moverá cuando G58 verifique**: el pool `IPN:QUIMICA` (meta 89, compartido, hoy 35) pasa a ~70, sigue por debajo de la meta y los 35 caen enteros en la brecha → bajará a **~333**. Meta nominal 1 500: **74 %**. Auditoría 5 % **vencida, 12 ciclos** (esta fase compone, no audita; exige tier ≠ `opus-5` y ≠ `sonnet-5`). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 9 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g57-ipn-medbio-quimica.json`); **cero llamadas a la API de pago de Anthropic**. **FUGA DEL CANAL CIEGO — corregida en origen esta vez:** ni la línea 3, ni la memoria de proyecto, ni la §4 de `## G57` nombran **un solo valor, resultado, clave puntual ni distractor** de un ítem de la cola ciega — solo tema, fuente, formato, dificultad, reparto y las *categorías* de cálculo (regla que dejó G56 tras la cuarta reincidencia G47→G48 / G51→G52 / G55→G56). **SIGUIENTE = G58 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Química")` es `true` → la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado de G28) en los **15 numéricos**; **0/35 con pasaje**. Aplicar G36 §2 / G38 §3 (recalcular el señuelo de longitud tie-aware sobre las respuestas ciegas) y G42 §2 / G54 / G56 (derivar `chosenOption` del TEXTO de la opción por doble ruta con `assert` de igualdad exacta — nunca teclear el array de letras). Reactivos más apretados (se señalan por tag y tema, no cómo resolverlos, por G30 §1): los **2 EXPERT** (EN4, tema Enlace químico — comparar energías de red; AB2, tema Ácidos y bases — `[H⁺]` de un ácido débil con la aproximación de la raíz) y **QO2** (tema Química orgánica — ordenar cuatro estados de oxidación del carbono).)
+Última actualización: 2026-08-31 · Última fase ejecutada: G58 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G57 dejó en la cola (**Química, IPN Ciencias Médico-Biológicas, pool COMPARTIDO `IPN:QUIMICA`**) **+ balance final de contenido y proyección al Content Freeze del 21-nov**. **35/35 coinciden con la clave del generador · auto-aprobados 35/35 = 100 %**, 0 `problems`, 0 discrepancias, 0 retenidos. Modelo real `claude-opus-5` (el cierre de G57 anunciaba «Fable 5» — **decimotercer ciclo** consecutivo plan ≠ real, corrección de G17). **Aislamiento comprobado, no asumido:** no se abrió el commit `74ed7a9`, ni `docs/content-batches/g57-ipn-medbio-quimica.json`, ni `Question.options`, ni la `## G57` antes de cerrar la verificación; único insumo `scripts/content-exports/g58-blind.json` (gitignored) — `grep` de `isCorrect`/`explanation`/`correct` = **0**, las opciones solo traen `label`/`text`/`imageUrl`, **0/35 con pasaje**, y la clave cayó en la misma letra tras barajar en **6/35** (azar ≈ 8.75). **Candado de G28 (lote de cálculo):** los **15 numéricos** se recalcularon desde cero en Python por ruta independiente (electrones de un ion, `E_n = −13.6/n²`, número de oxidación por suma algebraica, balanceo, estequiometría masa→masa y masa→moléculas, % de disociación, `K_c`, `√(K_a·C)`, pOH→pH, codones→aminoácidos) — 15/15 en verde; los 20 conceptuales se resolvieron descartando cada distractor **por su contenido**, nunca por letra. **EL CANDADO DE DOBLE DERIVACIÓN (G42 §2 / G54 / G56) ATRAPÓ DOS DEFECTOS REALES — primera vez que dispara con hallazgo:** (1) la letra **tecleada a mano** para 2 de los 35 (los dos de *Tabla periódica*) estaba **intercambiada** respecto de la derivada del TEXTO de la opción — sin el candado se habrían enviado 2 respuestas con la letra equivocada y el lote habría cerrado en 33/35 con **2 falsas discrepancias**; (2) tres fragmentos de contenido con `	imes`/`	ext` perdieron el backslash dentro del heredoc de Python y `	` llegó al comparador como **TABULADOR** (defecto de herramienta **idéntico al que documentó G50**, ahora reincidente en un heredoc de Bash→Python) — se reescribió con *raw strings* y la segunda pasada dio **35/35 de acuerdo entre las dos derivaciones**. Regla reforzada: la letra **nunca** se teclea como array; se deriva del texto y se contrasta contra la tecleada. **Señuelo de longitud tie-aware (G36 §2 / G38 §3), único hallazgo NO verde:** sobre los 12 ítems con opciones-oración → **25.0 % «única más larga» (3/12)** / 0.0 % «única más corta»; el umbral de G34 §2 es **< 25 %**, así que queda **exactamente en el límite, no por debajo** — se reporta como hallazgo abierto, no como verde. Clave real del lote **A9/B9/C9/D8**, idéntica a la que G57 declaró. **BALANCE FINAL (consulta en vivo, 2026-08-31):** banco **1 147** · **servibles 1 143** · cola ciega **35 → 0** · 3 sin publicar (2 UNAM A1 Matemáticas + 1 UNAM A2 Química) · 1 retirado · auto-aprobación global **99.7 % (1 144/1 147)**. **Posición de la clave en los 1 143 servibles: A 298 / B 295 / C 279 / D 271 (26.1/25.8/24.4/23.7 %), χ² = 1.745 (gl 3, crítico 7.815) — uniforme, sin sesgo explotable.** **SOURCED 292 (25.5 %) / TEMARIO_ONLY 851 (74.5 %)** entre los servibles (295/852 sobre el banco); 46/217 temas con `SourceChunk`. **Meta efectiva G26 = 1 222 → 810 cubiertos = 66 %; brecha 333** (la predicción de G57 —«bajará a ~333»— se cumplió **exacta**); meta nominal 1 500 → **76 %**. **PROYECCIÓN AL 21-NOV: ALCANZA, con ~6 semanas de margen aun degradando la puntería.** 82 días (11.7 semanas) → cadencia requerida **4.06 verificados/día**; brecha 333 = **10 lotes con puntería perfecta**, **14 lotes** a la puntería realmente observada en G41–G57 (**68.5 %**: +311 verificados movieron la brecha solo −213, porque el resto cayó en pools ya en meta) = 20–28 sesiones. Al ritmo **más pesimista jamás medido** (13.4/día, la ventana de G39 que ya incluye la pausa muerta de 19 días de agosto) el cierre es **2026-09-24** con puntería perfecta y **2026-10-06** con la puntería real. Haría falta caer por debajo de **~6 verificados/día sostenidos** —menos de la mitad del peor ritmo histórico— para tocar el 21-nov. **El riesgo no es el calendario: es la puntería y la deuda de auditoría.** **138 de los 333 (41 %) están en 6 pools en CERO ABSOLUTO** —UNAM Inglés 33 (agujero en **3 de las 4 áreas UNAM**), IPN Historia de México 33, IPN Historia Universal 22, IPN Geografía 22, IPN Civismo/Derecho 17, UNAM Artes 11— y **254 reactivos ya producidos están en pools sobre-cubiertos** (UNAM Química +90, IPN Español +37, UNAM Biología +22, UNAM Física/Filosofía/Mat. Aplicadas/Inglés +18 c/u, UNAM Geografía/Literatura +13, UNAM Historia Universal +7). **Auditoría del 5 %: 47/1 143 = 4.1 % y CAYENDO** (era 5.6 % en G39); `session-v1` en **18/834 = 2.2 %**; **vencida 13 ciclos** — es la única red que detectaría un sesgo compartido entre generador y verificador, y 12 de los últimos 13 lotes los resolvió `opus-5` o `sonnet-5`. `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (los scripts de consulta de esta fase se borraron al terminar, patrón G13 §8); cero llamadas a la API de pago de Anthropic. **SIGUIENTE = G59, modelo Opus 4.8.**)
+
+<details><summary>Historial: G57 (2026-08-31)</summary>
+
+Última fase ejecutada: G57 (**COMPLETADA — lote de 35 reactivos de **Química, IPN área Ciencias Médico-Biológicas (MEDBIO)**, pool **COMPARTIDO** `sharedContentKey = IPN:QUIMICA` (celda FISMAT `questionWeight` 10 + celda MEDBIO 16), insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (el Plan asigna el tier Sonnet a los lotes de contenido; el cierre de G56 anunciaba «Fable 5» — **duodécimo ciclo** consecutivo plan ≠ real, corrección de G17). **Materia elegida con datos reales (encargo idéntico a G53/G55):** brecha efectiva por pool con la metodología G26 (densidad `1500/270 = 5.5556` reactivos por punto de `questionWeight`; los pools compartidos toman la meta de su celda de mayor peso, `computeSharedGoal`), solo UNAM + IPN Superior, consulta en vivo a Supabase al cierre de G56. Ranking: **IPN:QUIMICA (FISMAT w10 + MEDBIO w16) meta 89, 35 verificados → brecha 54, la MAYOR**; siguen IPN·MEDBIO·Biología 52, IPN·FISMAT·Física 41, UNAM:INGLES 33, IPN·SOCADM·Historia de México 33, UNAM·A1·Matemáticas 30, IPN:MATEMATICAS 28 (era 63 antes de la verificación ciega de G56). **Caso INVERSO al de G55, confirmado en vivo:** los 35 verificados del pool están **enteros del lado de MEDBIO** y FISMAT Química tiene **0**, así que la regla de CLAUDE.md / G26 §2 («insértalo contra el `topicId` de la materia con MÁS contenido del grupo») mandó insertar contra los **9 temas de MEDBIO** (`subjectId cmrr1lskp00cphi3nkzq1sg6k`) aunque FISMAT sea la celda de mayor peso; `loadEquivalentSubjectIds` sirve el lote también a FISMAT. **Reparto — priorizar los de menor cobertura:** los 9 temas de MEDBIO Química en 4/4/4/4/5/4/4/3/3 verificados; el lote reparte **4/4/4/4/2/4/3/5/5** (mínimo 2 por tema, +5 a los dos temas en 3✓, +2 al de más cobertura) → los 9 quedan nivelados en 7-8✓. **5 SOURCED / 30 TEMARIO_ONLY:** `loadTopicChunks` devolvió `SourceChunk` en 1 de los 9 temas — Química orgánica, `uam_cbs.pdf` p. 54 (ítems de la UAM sobre oxidación = pérdida de electrones, hibridación `sp²`, deshidratación de dos alcoholes → éter); `grounding.ts` hace obligatoria la cita cuando el tema tiene fragmento, así que los 5 reactivos de ese tema son SOURCED y **transforman la tarea** del ítem-semilla (identificación conceptual → clasificación de grupos funcionales, ordenamiento y cálculo de estados de oxidación del carbono, contraste deshidratación intra/intermolecular, identificación de compuesto aromático). Procedencia UAM (otra institución, se anota — patrón G18/G45/G49/G53/G55). Los otros 8 temas → **TEMARIO_ONLY**. **Química es `isCalcSubject`** (`CALC_SUBJECT_KEYS` incluye `quimica`), así que G58 recibirá `requiresCalculation: true` en los 35 y el candado de G28 exige cálculo EJECUTADO en los **15 numéricos**; los 15 se recalcularon desde cero con **sympy** por ruta independiente (`linsolve` del balanceo, `solve` de números de oxidación, `√(K_a·C)`, conteo de orbitales de Hund enumerado) exigiendo (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones y (c) opciones numéricas ascendentes estrictas — **15/15 en verde**. **Formato:** 15 `PROBLEM_SOLVING` · 18 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la objetivo de `_base.md`; los 2 EXPERT en Enlace químico y Ácidos y bases). **Clave agregada A9/B9/C9/D8** (confirmada por query sobre las 35 filas tras insertar; inservible como pista tras el rebarajado por `questionId` de G58, patrón G56); ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; los 15 numéricos fijan la letra por el rango del valor (G46 §7), los 20 restantes a mano al objetivo global. Secuencia por orden de inserción sin racha cíclica A→B→C→D ≥3 ni racha de misma letra ≥3 (búsqueda con semilla fija 57057). **Diagnóstico STEM (G46 §7):** rango del valor correcto entre las 4 opciones ascendentes 1º4/2º5/3º3/4º3 sobre los 15 numéricos, **χ² ≈ 0.73 (gl 3)** — sin sesgo aprovechable; se reporta por transparencia (patrón G53/G55). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 9 archivos. **0 citas por letra** en el stem, las 140 opciones, las 105 capas y los 35 `distractorRationale`. **Señuelo de longitud tie-aware (G34 §2):** sobre los 18 ítems con opciones-oración (los 15 de opción-valor y los 2 de completar fuera, criterio G45/G46/G53) → **16.7 % «única más larga» / 16.7 % «única más corta»**, ambos < 25 %, tras tres pasadas de homogeneización. **Absolutismo (G44 §6):** 0 marcadores en las 35 claves vs 6 en los 105 distractores; **0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/20.** **Opciones duplicadas (hueco G52):** `len(set(textos))==4` → **0/35**. **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` → **0 coincidencias no triviales** (se reescribió el arranque del stem de un ítem de Química orgánica que compartía la cita literal del fragmento con otro del mismo tema). **Acumulado real, DB en vivo antes → después:** banco (COUNT crudo) **1 112 → 1 147** · servibles **1 108** sin cambio (esta sesión no verifica sus propios reactivos) · cola ciega **0 → 35** · cola canónica de discrepancias **3** sin cambio (2 UNAM A1 Matemáticas + 1 UNAM A2 Química) · 1 retirado · **MEDBIO Química por tema 4/4/4/4/5/4/4/3/3 → 8/8/8/8/7/8/7/8/8** (pool `IPN:QUIMICA` 35✓/0⧗ → 35✓/35⧗) · `SOURCED` banco **290 → 295** · 105 `explanation_layers` · 5 `question_source_chunks`. `content:coverage`: **1 108 servibles · 35 pendientes · 1 retirado · 1 144 en banco**; meta efectiva G26 (1 222) **70 %, brecha 368** — **no se mueve con este lote**, pero **SÍ se moverá cuando G58 verifique**: el pool `IPN:QUIMICA` (meta 89, compartido, hoy 35) pasa a ~70, sigue por debajo de la meta y los 35 caen enteros en la brecha → bajará a **~333**. Meta nominal 1 500: **74 %**. Auditoría 5 % **vencida, 12 ciclos** (esta fase compone, no audita; exige tier ≠ `opus-5` y ≠ `sonnet-5`). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 9 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g57-ipn-medbio-quimica.json`); **cero llamadas a la API de pago de Anthropic**. **FUGA DEL CANAL CIEGO — corregida en origen esta vez:** ni la línea 3, ni la memoria de proyecto, ni la §4 de `## G57` nombran **un solo valor, resultado, clave puntual ni distractor** de un ítem de la cola ciega — solo tema, fuente, formato, dificultad, reparto y las *categorías* de cálculo (regla que dejó G56 tras la cuarta reincidencia G47→G48 / G51→G52 / G55→G56). **SIGUIENTE = G58 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Química")` es `true` → la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado de G28) en los **15 numéricos**; **0/35 con pasaje**. Aplicar G36 §2 / G38 §3 (recalcular el señuelo de longitud tie-aware sobre las respuestas ciegas) y G42 §2 / G54 / G56 (derivar `chosenOption` del TEXTO de la opción por doble ruta con `assert` de igualdad exacta — nunca teclear el array de letras). Reactivos más apretados (se señalan por tag y tema, no cómo resolverlos, por G30 §1): los **2 EXPERT** (EN4, tema Enlace químico — comparar energías de red; AB2, tema Ácidos y bases — `[H⁺]` de un ácido débil con la aproximación de la raíz) y **QO2** (tema Química orgánica — ordenar cuatro estados de oxidación del carbono).)
+
+</details>
 
 <details><summary>Historial: G56 (2026-08-31)</summary>
 
@@ -2261,6 +2267,356 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G58 — Verificación ciega (lote de G57) + BALANCE FINAL DE CONTENIDO (2026-08-31)
+
+Doble encargo: cerrar la cola ciega que dejó G57 y, ya con el banco completo,
+producir el **balance final** y una **proyección honesta** contra el Content
+Freeze del **21-nov-2026**. Modelo real: `claude-opus-5`.
+
+### 1) Verificación ciega — 35/35, cero discrepancias
+
+`pnpm content:blind-batch --all --limit 100` → 35 reactivos (la cola entera),
+**35 con `requiresCalculation: true`** (`isCalcSubject("Química")`).
+`pnpm content:resolve` → **auto-aprobados 35/35 = 100 %**, 0 `problems`,
+0 discrepancias, 0 retenidos. Confianza declarada 0.95 en los 35.
+
+**Aislamiento comprobado, no asumido.** No se abrió el commit `74ed7a9`, ni
+`docs/content-batches/g57-ipn-medbio-quimica.json`, ni `Question.options`, ni la
+sección `## G57`, hasta **después** de correr `content:resolve`. Único insumo:
+`scripts/content-exports/g58-blind.json` (gitignored).
+
+| Comprobación de ceguera | Resultado |
+|---|---|
+| `grep` de `isCorrect` / `explanation` / `correct` sobre el lote ciego | **0** |
+| Claves presentes en cada opción | solo `label`, `text`, `imageUrl` |
+| Ítems con pasaje | 0/35 |
+| Clave en la **misma** letra tras barajar | **6/35** (azar ≈ 8.75) |
+| Clave real del lote (leída al terminar) | **A9/B9/C9/D8** — idéntica a lo que declaró G57 |
+
+### 2) Candado de G28 — cálculo EJECUTADO en los 15 numéricos
+
+Los 15 ítems numéricos se recalcularon **desde cero en Python**, por ruta
+independiente de la del generador, antes de mirar ninguna clave: electrones de
+un ion a partir de `Z` y carga; `E_n = −13.6/n²` y la energía de ionización
+desde un estado excitado; número de oxidación por suma algebraica (ion
+poliatómico y molécula orgánica); balanceo con coeficientes enteros mínimos;
+estequiometría masa→masa y masa→moléculas vía `N_A`; porcentaje de disociación;
+`K_c` con **conversión previa mol→molaridad** (la trampa del recipiente de 2 L);
+raíz de `K_a·C`; `pOH → pH` de una base fuerte; codones → aminoácidos. **15/15 en
+verde.** Los 20 conceptuales no se resolvieron a ojo: cada distractor se
+descartó **por su contenido** (nunca por letra) — configuración de Hund,
+excepción O vs N en la energía de ionización, RPECV, ley de Coulomb aplicada a
+energía de red, Le Châtelier con sólidos fuera del cociente, hidrólisis de
+sales, hibridación `sp²`, deshidratación intra- vs intermolecular.
+
+### 3) El candado de doble derivación disparó — con DOS hallazgos reales
+
+Es la primera vez que el candado de G42 §2 / G54 / G56 **encuentra algo**. La
+primera pasada comparó, para los 35, la letra **tecleada a mano** contra la
+letra **derivada del texto** de la opción resuelta. No coincidieron:
+
+1. **Dos letras intercambiadas.** En los dos ítems de *Tabla periódica* la
+   letra manual estaba cruzada respecto de la derivada del contenido. El
+   razonamiento era correcto en ambos; el error fue puramente de transcripción
+   al teclear la cadena de 35 letras en bloques de 5. **Sin el candado, el lote
+   habría cerrado 33/35 con dos discrepancias falsas**, y G59 habría gastado una
+   sesión "reparando" dos reactivos sanos.
+2. **`\t` de LaTeX interpretado como TABULADOR.** Tres fragmentos de contenido
+   (los de notación científica y el de ordenamiento de estados de oxidación)
+   perdieron el backslash dentro del heredoc Bash→Python y `\t` llegó al
+   comparador como **tabulador**, así que no casaban con ninguna opción.
+   **Es el mismo defecto que documentó G50** (ahí fue un heredoc de Bash y un
+   regex; aquí, un heredoc y un literal de Python) — **reincidente**. Corregido
+   con *raw strings*.
+
+Tras corregir, **35/35 de acuerdo entre las dos derivaciones**. Regla que se
+refuerza para las fases de verificación: **la letra nunca se teclea como array
+de respuestas**; se deriva del texto de la opción y la cadena tecleada sirve
+**solo** como segunda ruta de contraste. Cualquier fragmento con LaTeX va en
+*raw string*, jamás dentro de un heredoc sin escapar.
+
+### 4) Señuelo de longitud — único hallazgo NO verde
+
+Recalculado sobre las respuestas ciegas (G36 §2 / G38 §3), tie-aware, sobre los
+**12 ítems con opciones-oración** (los de opción-valor quedan fuera, criterio
+G45/G46/G53):
+
+- «única más larga» = **3/12 = 25.0 %**
+- «única más corta» = **0/12 = 0.0 %**
+
+El umbral de G34 §2 es **< 25 %**. Queda **exactamente en el límite, no por
+debajo**. No invalida el lote (n=12 es chico y el ruido de una sola reasignación
+mueve 8.3 puntos), pero **se registra como hallazgo abierto**, no como verde:
+es el primer lote desde G43 que no baja del umbral con holgura.
+
+---
+
+## BALANCE FINAL DE CONTENIDO (consulta en vivo a Supabase, 2026-08-31)
+
+### 5) Totales
+
+| Métrica | Valor |
+|---|---:|
+| Reactivos en banco (COUNT crudo) | **1 147** |
+| **Verificados y servibles** (`isVerified=true`) | **1 143** |
+| Cola de verificación ciega (`verification=null`) | **0** |
+| Sin publicar por veredicto adverso | 3 |
+| Retirados a propósito (`manualReview`) | 1 |
+| **Tasa de auto-aprobación global** | **99.7 % (1 144/1 147)** ✅ |
+
+Los 3 sin publicar son los 2 de UNAM A1 Matemáticas (G46) y el 1 de UNAM A2
+Química (G52); no son cola, son discrepancias no resueltas — por diseño no se
+publican.
+
+### 6) Desglose completo por institución / área / materia
+
+Solo UNAM y IPN, nivel SUPERIOR (el alcance del launch del 6-ene). `⚓` = SOURCED.
+Las filas marcadas *(pool)* no tienen reactivos propios: los reciben por
+`sharedContentKey` (G26) desde la celda del grupo con más contenido.
+
+**UNAM — Ciencias Físico-Matemáticas y las Ingenierías (Área 1)**
+
+| Materia | w | Servibles | ⚓ SOURCED | Nota |
+|---|---:|---:|---:|---|
+| Matemáticas | 26 | 114 | 76 | 2 sin publicar |
+| Física | 16 | 107 | 46 | |
+| Química *(pool `UNAM:QUIMICA`)* | 12 | 51 | 33 | 1 sin publicar |
+| Español *(pool `UNAM:ESPANOL`)* | 10 | 35 | 25 | |
+| Inglés *(pool `UNAM:INGLES`)* | 6 | **0** ⛔ | 0 | |
+
+**UNAM — Ciencias Biológicas, Químicas y de la Salud (Área 2)**
+
+| Materia | w | Servibles | ⚓ SOURCED |
+|---|---:|---:|---:|
+| Química *(pool `UNAM:QUIMICA`)* | 8 | 106 | 0 |
+| Biología | 14 | 100 | 50 |
+| Español *(pool)* | 5 | *(sirve el pool: 35)* | — |
+| Inglés *(pool)* | 3 | **0** ⛔ | 0 |
+
+**UNAM — Ciencias Sociales (Área 3)**
+
+| Materia | w | Servibles | ⚓ SOURCED |
+|---|---:|---:|---:|
+| Historia de México | 7 | 35 | 7 |
+| Historia Universal | 5 | 35 | 5 |
+| Geografía | 4 | 35 | 0 |
+| Español *(pool)* | 3 | *(sirve el pool: 35)* | — |
+| Inglés *(pool)* | 1 | **0** ⛔ | 0 |
+
+**UNAM — Humanidades y Artes (Área 4)**
+
+| Materia | w | Servibles | ⚓ SOURCED |
+|---|---:|---:|---:|
+| Literatura | 4 | 35 | 4 |
+| Filosofía | 3 | 35 | 7 |
+| Artes | 2 | **0** ⛔ | 0 |
+| Español *(pool)* | 1 | *(sirve el pool: 35)* | — |
+
+**IPN — Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**
+
+| Materia | w | Servibles | ⚓ SOURCED |
+|---|---:|---:|---:|
+| Matemáticas *(pool `IPN:MATEMATICAS`)* | 24 | 105 | 26 |
+| Física | 20 | 70 | 5 |
+| Química *(pool `IPN:QUIMICA`)* | 10 | *(sirve el pool: 70)* | — |
+| Español/Lectura *(pool `IPN:ESPANOL`)* | 4 | 70 | 0 |
+| Inglés *(pool `IPN:INGLES`)* | 2 | *(sirve el pool: 35)* | — |
+
+**IPN — Ciencias Médico-Biológicas (MEDBIO)**
+
+| Materia | w | Servibles | ⚓ SOURCED |
+|---|---:|---:|---:|
+| Biología | 22 | 70 | 0 |
+| Química *(pool `IPN:QUIMICA`)* | 16 | **70** *(35 previos + 35 de G57/G58)* | 8 |
+| Matemáticas *(pool)* | 8 | *(sirve el pool: 105)* | — |
+| Español/Lectura *(pool)* | 6 | *(sirve el pool: 70)* | — |
+| Inglés *(pool `IPN:INGLES`)* | 3 | 35 | 0 |
+
+**IPN — Ciencias Sociales y Administrativas (SOCADM)**
+
+| Materia | w | Servibles | ⚓ SOURCED |
+|---|---:|---:|---:|
+| Historia de México | 6 | **0** ⛔ | 0 |
+| Historia Universal | 4 | **0** ⛔ | 0 |
+| Geografía | 4 | **0** ⛔ | 0 |
+| Civismo/Derecho | 3 | **0** ⛔ | 0 |
+| Matemáticas Aplicadas | 3 | 35 | 0 |
+| Español/Lectura *(pool)* | 3 | *(sirve el pool: 70)* | — |
+| Inglés *(pool)* | 2 | *(sirve el pool: 35)* | — |
+
+### 7) Distribución de la posición de la respuesta correcta
+
+Sobre los **1 143 servibles**, leyendo `options` con `findIndex(isCorrect)`:
+
+| Posición | n | % |
+|---|---:|---:|
+| A | 298 | 26.1 % |
+| B | 295 | 25.8 % |
+| C | 279 | 24.4 % |
+| D | 271 | 23.7 % |
+
+**χ² = 1.745 (gl 3; crítico 7.815 al 5 %) → uniforme, sin sesgo explotable.**
+Las cuatro posiciones caen dentro de la banda 15-40 % del guardrail de
+CLAUDE.md con enorme holgura. El artefacto de sesgo que G24/G39 confinaron a
+**2 lotes viejos** sigue confinado: la práctica de composición con semilla
+anti-rotación (desde G21) lo cerró y 37 lotes después el agregado es plano.
+
+### 8) SOURCED vs TEMARIO_ONLY
+
+| | Servibles (1 143) | Banco (1 147) |
+|---|---:|---:|
+| `SOURCED` (cita ≥1 `SourceChunk` real) | **292 (25.5 %)** | 295 (25.7 %) |
+| `TEMARIO_ONLY` | **851 (74.5 %)** | 852 (74.3 %) |
+
+**46 de 217 temas** tienen algún `SourceChunk`; **171 siguen sin fuente**.
+La serie histórica sigue bajando: F4 44 % → G24 33 % → G28 32 % → G39 26 % →
+**G58 25.5 %**, porque el grueso de los lotes recientes es `TEMARIO_ONLY`.
+Es **transparente y no bloqueante** por diseño (`grounding.ts` exige la cita
+solo cuando el tema tiene fragmento), pero la palanca para subirlo es agregar
+material fuente y correr `pnpm content:scan-sources`, no cambiar el generador.
+
+### 9) Auditoría del 5 % — la deuda que sí importa
+
+| Pipeline | Verificados | Auditados | % |
+|---|---:|---:|---:|
+| `adversarial-v1` (F4) | 309 | 29 | 9.4 % |
+| `session-v1` (G2+) | **834** | **18** | **2.2 %** |
+| **Total** | **1 143** | **47** | **4.1 %** |
+
+**0 degradados** en los 47. Pero la cobertura **cayó** de 5.6 % (G39) a 4.1 %
+por pura dilución: **+311 verificados, +0 auditados**. G25 encargó repetirla
+«cada ~3 lotes»; van **13 ciclos** sin una sola pasada. Es la única red que
+detecta un **sesgo compartido** entre generador y verificador, y el riesgo de
+que exista uno subió: **12 de los últimos 13 lotes los resolvió `opus-5` o
+`sonnet-5`**, y de los 47 ya auditados **16 se auditaron con el mismo tier que
+su 2ª pasada** (diversidad de contexto, no de modelo).
+
+### 10) Brecha contra la meta
+
+**Meta nominal (por celda): 1 500 → 1 143 = 76 %.**
+**Meta efectiva (G26, pools de contenido compartido): 1 222 → 810 cubiertos = 66 %.**
+**Brecha: 333 verificados.** La predicción que dejó G57 («bajará a ~333») se
+cumplió **exacta**. Confirmada por dos vías: `pnpm content:coverage` y suma
+por pool con `computeSharedGoal` (densidad `1500/270 = 5.5556` por punto de
+`questionWeight`).
+
+**Los 13 pools con brecha (suman 333):**
+
+| # | Pool | Meta | Tiene | Brecha | Nota |
+|---|---|---:|---:|---:|---|
+| 1 | IPN Biología (MEDBIO, w22) | 122 | 70 | **52** | |
+| 2 | IPN Física (FISMAT, w20) | 111 | 70 | **41** | |
+| 3 | **UNAM Inglés** (pool A1+A2+A3, w6+3+1) | 33 | **0** | **33** | ⛔ CERO · agujero en 3 áreas |
+| 4 | **IPN Historia de México** (SOCADM, w6) | 33 | **0** | **33** | ⛔ CERO |
+| 5 | UNAM Matemáticas (A1, w26) | 144 | 114 | **30** | |
+| 6 | IPN Matemáticas (pool w24+8) | 133 | 105 | **28** | |
+| 7 | **IPN Historia Universal** (SOCADM, w4) | 22 | **0** | **22** | ⛔ CERO |
+| 8 | **IPN Geografía** (SOCADM, w4) | 22 | **0** | **22** | ⛔ CERO |
+| 9 | UNAM Español (pool w10+5+3+1) | 56 | 35 | **21** | |
+| 10 | IPN Química (pool w10+16) | 89 | 70 | **19** | ← movido por G57/G58 |
+| 11 | **IPN Civismo/Derecho** (SOCADM, w3) | 17 | **0** | **17** | ⛔ CERO |
+| 12 | **UNAM Artes** (A4, w2) | 11 | **0** | **11** | ⛔ CERO |
+| 13 | UNAM Historia de México (A3, w7) | 39 | 35 | **4** | |
+
+**138 de los 333 (41 %) están en 6 pools en CERO ABSOLUTO.**
+
+**Los 10 pools sobre-cubiertos (254 reactivos que no descuentan brecha):**
+UNAM Química **+90** (157 vs meta 67), IPN Español/Lectura +37, UNAM Biología
++22, UNAM Física +18, UNAM Filosofía +18, IPN Matemáticas Aplicadas +18, IPN
+Inglés +18, UNAM Geografía +13, UNAM Literatura +13, UNAM Historia Universal +7.
+No son desperdicio de producto (dan profundidad real al alumno), pero **contra
+la meta del 21-nov no cuentan**.
+
+### 11) Proyección honesta al Content Freeze (21-nov-2026)
+
+**Días: 2026-08-31 → 2026-11-21 = 82 días = 11.7 semanas.**
+**Cadencia requerida: 333 / 82 = 4.06 verificados/día.**
+
+**Cuántos lotes faltan** (35 reactivos por lote, 2 sesiones por lote —
+composición y verificación ciega, separadas por aislamiento):
+
+- Con **puntería perfecta** (todo lote cae en pool con brecha): `333/35` =
+  **10 lotes = 20 sesiones**.
+- Con la **puntería realmente observada** en G41–G57: esos 9 lotes sumaron
+  **+311 verificados** pero la brecha solo bajó **546 → 333 = −213**, o sea
+  **68.5 % de puntería**. A ese ritmo: `333 / (35 × 0.685)` = **14 lotes =
+  28 sesiones**.
+
+**Contra los ritmos demostrados:**
+
+| Ritmo | Origen | Cierre con puntería perfecta | Cierre con puntería real (68.5 %) |
+|---|---|---|---|
+| 13.4 verif./día | ventana más **pesimista** de G39 (40 días **incluyendo** la pausa muerta de 19 días de agosto) | **2026-09-24** (~8 sem. margen) | **2026-10-06** (~6 sem. margen) |
+| 9.0 verif./día | escenario con **otra** pausa tipo agosto | 2026-10-07 (~6 sem.) | 2026-10-24 (~4 sem.) |
+| 6.0 verif./día | escenario severo | 2026-10-25 (~3 sem.) | **2026-11-20** (margen 0) |
+| 4.06 verif./día | mínimo requerido | 2026-11-20 | ❌ no llega |
+
+**VEREDICTO: ALCANZA, y con margen.** La cadencia requerida (4.06/día ≈ 1.2
+lotes/semana) está **3.3× por debajo** del peor ritmo jamás medido. Para perder
+el 21-nov habría que sostener **menos de ~6 verificados/día durante los 82
+días** — es decir, menos de la mitad del ritmo más pesimista del historial, que
+ya contiene un tramo muerto de 19 días. Respecto de G39 («alcanza con holgura»,
+brecha 546, margen ~2 pausas) la posición **mejoró**: brecha 546 → 333, y el
+margen aguanta ahora ~2 pausas **aun con la puntería degradada**.
+
+**Los dos riesgos reales no son el calendario:**
+
+1. **Puntería.** Si los próximos lotes siguen cayendo 31 % en pools ya cubiertos,
+   son 14 lotes en vez de 10 — todavía caben, pero el colchón pasa de 8 a 6
+   semanas. Es un problema **de elección de materia, gratis de arreglar**: basta
+   seguir el ranking de §10, que es exactamente lo que G53/G55/G57 ya hacen.
+2. **Auditoría del 5 %, vencida 13 ciclos y cayendo (4.1 %).** Un sesgo
+   compartido generador↔verificador no lo detecta nada más. Es la única
+   amenaza que podría **invalidar retroactivamente** parte de las 1 143 —y por
+   tanto la única capaz de mover el Content Freeze de verdad.
+
+### 12) Orden recomendado de lotes para un mínimo viable
+
+Aunque la meta completa alcanza, el orden importa: **una materia en CERO es un
+agujero de producto** (el alumno abre la materia y ve un estado vacío), mientras
+que una materia en 70/111 es delgada pero funcional. Prioridad sugerida:
+
+1. **UNAM Inglés** (33, CERO) — el peor agujero del banco: es materia de
+   **3 de las 4 áreas UNAM**, así que hoy *cualquier* aspirante UNAM que abra
+   Inglés no ve nada. Un solo lote de 35 lo cierra **entero** y sirve a las tres
+   áreas por `UNAM:INGLES`.
+2. **IPN SOCADM: Historia de México (33), Historia Universal (22), Geografía
+   (22), Civismo/Derecho (17)** — 4 de las 7 materias del área están en CERO;
+   el área es hoy una cáscara (solo Matemáticas Aplicadas propia más los pools
+   de Español e Inglés). ~3 lotes cierran las cuatro.
+3. **UNAM Artes** (11, CERO) — barato, cierra el último cero de UNAM.
+4. **IPN Biología (52)** e **IPN Física (41)** — las dos brechas más grandes en
+   materias que ya existen; 3 lotes.
+5. **UNAM Matemáticas (30)**, **IPN Matemáticas (28)**, **UNAM Español (21)**,
+   **IPN Química (19)**, **UNAM Historia de México (4)** — el remate.
+
+Con los pasos 1-3 (**~5 lotes**) desaparecen **los 6 ceros** y el banco queda
+**sin ningún agujero de producto** en el alcance del launch; los pasos 4-5
+(**~5 lotes más**) cierran la meta efectiva completa.
+
+### 13) Limpieza
+
+Scripts desechables de consulta (`scripts/g58-balance.ts`, `scripts/g58-audit.ts`,
+`scripts/g58-tmp.ts`) **eliminados al terminar** (patrón G13 §8). El lote ciego y
+el archivo de respuestas viven en `scripts/content-exports/` (gitignored).
+`pnpm typecheck` y `pnpm lint` en verde. Cero cambios de código de producción.
+Cero llamadas a la API de pago de Anthropic.
+
+### Siguiente (G59)
+
+1. **Lote de UNAM Inglés** (pool `UNAM:INGLES`, 33 de brecha, CERO absoluto) —
+   §12 punto 1: el agujero que afecta a más aspirantes por reactivo invertido.
+2. **Correr por fin la auditoría del 5 %** (`pnpm content:audit-sample` →
+   sesión ciega → `content:audit-resolve`) con un tier **≠ `opus-5` y
+   ≠ `sonnet-5`** para que aporte diversidad de modelo y no solo de contexto.
+   Vencida 13 ciclos; es el único riesgo capaz de mover el Content Freeze.
+3. **Señuelo de longitud en 25.0 % exacto** (§4): vigilar en el próximo lote
+   que vuelva a bajar del umbral con holgura.
+4. Regla reforzada de §3: **la letra nunca se teclea como array**; se deriva del
+   texto y la cadena manual es solo la segunda ruta. LaTeX siempre en *raw
+   string*, nunca dentro de un heredoc sin escapar (2ª reincidencia, tras G50).
+
 
 ## G57 — Lote de reactivos: Química, IPN Ciencias Médico-Biológicas (pool IPN:QUIMICA) (2026-08-31)
 
