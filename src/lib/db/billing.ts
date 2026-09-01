@@ -161,8 +161,16 @@ export const billingStore: BillingStore = {
       const expiresAt = computeExpiresAt(sub.plan, sub.userProfile.targetExam?.examDate ?? null, now);
       const amountMxn = resolveAmountMxn(activation, sub.plan, sub.season);
 
-      await tx.subscription.update({
-        where: { id: sub.id },
+      // G60 — activación atómica. El webhook real y el job de reconciliación
+      // (F22) pueden intentar activar la MISMA suscripción casi a la vez, cada
+      // uno con su propio `eventId` (el de reconciliación es sintético), así
+      // que la guarda `sub.status === 'ACTIVE'` de arriba —una lectura— no los
+      // detiene si corren en paralelo: ambos leerían PENDING. El `updateMany`
+      // condicionado a `status: { not: 'ACTIVE' }` hace que solo UNO gane la
+      // transición; el otro ve `count === 0` y sale sin duplicar el `Payment`,
+      // la insignia Early Bird ni el evento `purchase_completed`.
+      const activated = await tx.subscription.updateMany({
+        where: { id: sub.id, status: { not: 'ACTIVE' } },
         data: {
           status: 'ACTIVE',
           startedAt: now,
@@ -171,6 +179,7 @@ export const billingStore: BillingStore = {
           stripeSubscriptionId: activation.stripeSubscriptionId ?? undefined,
         },
       });
+      if (activated.count === 0) return;
 
       await upsertPayment(tx, sub.id, activation, amountMxn, 'SUCCEEDED');
 
@@ -235,7 +244,15 @@ export const billingStore: BillingStore = {
       // Sin suscripción, o ya activa: no hay nada seguro que degradar.
       if (!sub || sub.status === 'ACTIVE') return;
 
-      await tx.subscription.update({ where: { id: sub.id }, data: { status: 'FAILED' } });
+      // G60 — condicionado a `status: { not: 'ACTIVE' }`: si `async_payment_
+      // succeeded` y `async_payment_failed` llegaran cruzados, jamás se marca
+      // FAILED una suscripción que otra transacción acaba de activar.
+      const failed = await tx.subscription.updateMany({
+        where: { id: sub.id, status: { not: 'ACTIVE' } },
+        data: { status: 'FAILED' },
+      });
+      if (failed.count === 0) return;
+
       await tx.payment.updateMany({
         where: { subscriptionId: sub.id, status: 'PENDING' },
         data: { status: 'FAILED' },

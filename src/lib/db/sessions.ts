@@ -35,6 +35,8 @@ export type SessionErrorCode =
   | 'QUESTION_NOT_FOUND'
   | 'INVALID_OPTION';
 
+const FINISHED_STATUSES: ExamSession['status'][] = ['COMPLETED', 'COMPLETED_BY_TIMEOUT'];
+
 export class SessionError extends Error {
   code: SessionErrorCode;
 
@@ -119,6 +121,50 @@ export async function startSession(params: {
       mode,
       status: 'IN_PROGRESS',
       timeLimitSecs: limitSecs,
+    },
+  });
+}
+
+/**
+ * Abre una sesión Y pre-crea sus filas `SessionAnswer` en UNA sola operación
+ * atómica (G60). Antes cada orquestador (diagnóstico, drill, simulador) hacía
+ * `examSession.create` y luego un `sessionAnswer.createMany` por separado: si
+ * el segundo fallaba, quedaba una sesión IN_PROGRESS sin reactivos —
+ * imposible de retomar y contaba hacia los barridos de sesiones viejas. El
+ * `create` anidado de Prisma envuelve ambos INSERT en una transacción.
+ *
+ * Recibe `questionIds` ya resueltos por el llamador (el reparto por peso de
+ * materia vive en cada orquestador). Acepta un cliente de transacción para
+ * poder correr dentro de `withUserAdvisoryLock`.
+ */
+export async function startSessionWithQuestions(params: {
+  userProfileId: string;
+  examId: string;
+  mode: SessionMode;
+  timeLimitSecs: number;
+  questionIds: string[];
+  client?: Prisma.TransactionClient;
+}): Promise<ExamSession> {
+  const { userProfileId, examId, mode, timeLimitSecs, questionIds, client = prisma } = params;
+
+  return client.examSession.create({
+    data: {
+      userProfileId,
+      examId,
+      mode,
+      status: 'IN_PROGRESS',
+      timeLimitSecs,
+      answers: {
+        createMany: {
+          data: questionIds.map((questionId, position) => ({
+            questionId,
+            selectedOption: null,
+            isCorrect: false,
+            timeSpentSecs: 0,
+            position,
+          })),
+        },
+      },
     },
   });
 }
@@ -248,8 +294,16 @@ export async function finishSession(params: {
       })
     : undefined;
 
-  const updated = await prisma.examSession.update({
-    where: { id: sessionId },
+  // G60 — cierre atómico. Dos peticiones pueden intentar cerrar la misma
+  // sesión a la vez (el usuario da clic en "Finalizar" justo cuando el timer
+  // dispara `TIMEOUT`, o dos pestañas). Sin esto, AMBAS corrían los efectos
+  // secundarios: doble evento `simulation_completed` (la métrica estrella del
+  // negocio se contaba dos veces), doble celebración, doble recálculo
+  // adaptativo. El `updateMany` condicionado a `status: 'IN_PROGRESS'`
+  // garantiza que exactamente UNA transición gane; la perdedora devuelve el
+  // resultado ya persistido SIN re-disparar nada.
+  const claim = await prisma.examSession.updateMany({
+    where: { id: sessionId, status: 'IN_PROGRESS' },
     data: {
       status,
       finishedAt: now,
@@ -259,6 +313,33 @@ export async function finishSession(params: {
         : {}),
     },
   });
+
+  if (claim.count === 0) {
+    const persisted = await prisma.examSession.findUniqueOrThrow({ where: { id: sessionId } });
+    if (!FINISHED_STATUSES.includes(persisted.status)) {
+      throw new SessionError('NOT_IN_PROGRESS', 'Este examen ya terminó. Empieza uno nuevo.');
+    }
+    const persistedElapsed = persisted.finishedAt
+      ? computeElapsedSecs(persisted.startedAt, persisted.finishedAt)
+      : elapsedSecs;
+    return {
+      session: persisted,
+      score: persisted.score ?? score,
+      elapsedSecs: persistedElapsed,
+      status: persisted.status,
+      timeExceeded: persisted.status === 'COMPLETED_BY_TIMEOUT',
+      answers: answers.map((a) => ({
+        questionId: a.questionId,
+        selectedOption: a.selectedOption,
+        isCorrect: a.isCorrect,
+        position: a.position,
+      })),
+      // La llamada ganadora ya calculó y devolvió la celebración de esta sesión.
+      celebration: null,
+    };
+  }
+
+  const updated = await prisma.examSession.findUniqueOrThrow({ where: { id: sessionId } });
 
   // F15: captura la racha ANTES del recálculo, para poder detectar si esta
   // sesión es la que cruza un milestone (7/14/30) — después de

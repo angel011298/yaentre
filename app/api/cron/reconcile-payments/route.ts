@@ -21,6 +21,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'No autorizado.' }, { status: 401 });
   }
 
-  const summary = await runPaymentReconciliation(new Date());
-  return NextResponse.json({ ok: true, ...summary });
+  try {
+    const summary = await runPaymentReconciliation(new Date());
+    return NextResponse.json({ ok: true, ...summary });
+  } catch (err) {
+    // Seguro de re-ejecutar: cada activación pasa por `runIdempotent` +
+    // la guarda `status !== 'ACTIVE'`, así que un reintento tras un fallo
+    // parcial no doble-activa ni doble-cobra.
+    console.error('[cron/reconcile-payments] Falló la corrida', err);
+    return NextResponse.json({ ok: false, error: 'CRON_FAILED' }, { status: 500 });
+  }
 }

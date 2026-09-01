@@ -21,11 +21,21 @@ export async function GET() {
     if (err instanceof AuthError) {
       return NextResponse.json({ error: err.message }, { status: 401 });
     }
-    throw err;
+    console.error('[account/export] Error de autenticación inesperado', err);
+    return NextResponse.json({ error: 'No pudimos verificar tu sesión.' }, { status: 500 });
   }
 
-  const data = await buildUserDataExport(profileId, authUser.email ?? null);
-  const json = JSON.stringify(data, null, 2);
+  let json: string;
+  try {
+    const data = await buildUserDataExport(profileId, authUser.email ?? null);
+    json = JSON.stringify(data, null, 2);
+  } catch (err) {
+    console.error('[account/export] No se pudo construir la exportación', { profileId, err });
+    return NextResponse.json(
+      { error: 'No pudimos generar tu exportación ahora. Intenta de nuevo en un momento.' },
+      { status: 500 }
+    );
+  }
 
   return new NextResponse(json, {
     headers: {

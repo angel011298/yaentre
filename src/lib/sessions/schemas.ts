@@ -26,8 +26,11 @@ export const submitAnswerSchema = z.object({
   // null = respuesta omitida. Un id concreto se valida contra el reactivo
   // real en la capa DB (aquí solo se garantiza forma).
   selectedOption: z.string().min(1).nullable(),
-  position: z.number().int().min(0),
-  timeSpentSecs: z.number().int().min(0),
+  // Cotas superiores (G60): ninguna sesión real pasa de unos cientos de
+  // reactivos ni una respuesta de un día; sin `.max()` un cliente podía
+  // mandar valores absurdos (o desbordar el `int4` de Postgres → 500).
+  position: z.number().int().min(0).max(1000),
+  timeSpentSecs: z.number().int().min(0).max(86_400),
 });
 
 export const finishSessionSchema = z.object({

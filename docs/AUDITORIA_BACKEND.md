@@ -644,3 +644,274 @@ una transacción, uno por uno.
 
 **Verde al cierre**: `pnpm typecheck` · `pnpm lint` · `pnpm test:unit`
 (53 archivos, **502 pruebas**).
+
+---
+---
+
+# Auditoría de integridad y resiliencia — G60 (2026-08-31)
+
+> Objetivo: que el backend se comporte bien ante fallos, datos inesperados y
+> condiciones de carrera. G59 midió el rendimiento; G60 audita la
+> **corrección bajo concurrencia y error**.
+>
+> No hay banco de pruebas de integración con DB en este proyecto (los 502
+> tests son de lógica pura). Las correcciones de la capa de datos se apoyan en
+> `typecheck` + `lint` + revisión de invariantes; los cambios se mantuvieron
+> pequeños y localizados a propósito.
+
+## G60.0 Resumen ejecutivo
+
+| # | Hallazgo | Severidad | Estado |
+|---|---|---|---|
+| 1 | `finishSession` no era atómico: dos cierres simultáneos de la misma sesión disparaban **dos** `simulation_completed` (la métrica estrella), dos celebraciones, dos recálculos | 🔴 | Corregido |
+| 2 | Simulador: dos `startSimulation` simultáneos → un usuario FREE se llevaba **dos** simulacros gratis (bypass del muro suave F9) | 🔴 | Corregido |
+| 3 | Activación de plan por webhook + reconciliación en paralelo podían duplicar `Payment`, insignia Early Bird y `purchase_completed` | 🟠 | Corregido |
+| 4 | `redeemParentLinkCode`: marcar el código usado y crear el vínculo eran dos escrituras sueltas — un fallo entre ambas quemaba el código sin vincular | 🟠 | Corregido |
+| 5 | Sesión + filas `SessionAnswer` se creaban en dos pasos: un fallo dejaba una sesión IN_PROGRESS vacía, irretomable | 🟠 | Corregido |
+| 6 | `getAuthEmails` comparaba `UserProfile.id` (cuid) contra `auth.users.id` (uuid) con cast `::uuid[]` — **nunca** casaba y el cast reventaba | 🟠 | Corregido (código); grant sigue pendiente del dueño |
+| 7 | `?next=` sin sanear en login/registro/confirmación → redirector abierto (phishing) | 🟠 | Corregido |
+| 8 | `QuestionReport` sin unique (questionId, reportedBy): un solo usuario podía empujar cualquier reactivo al umbral de revisión (≥3) | 🟡 | Corregido |
+| 9 | Zod sin cota superior en `timeSpentSecs` / `position` / contadores de integridad → valores absurdos, posible desborde de `int4` → 500 | 🟡 | Corregido |
+| 10 | Route Handlers y un par de Server Actions sin `try/catch` de último recurso | 🟡 | Corregido |
+| 11 | Cron de notificaciones: una re-ejecución el mismo día reenvía los correos | 🟡 | Documentado (requiere schema) |
+
+## G60.1 Operaciones multi-tabla → transacciones (tarea 1)
+
+Barrido de toda escritura que toca ≥2 tablas:
+
+| Operación | Antes | Ahora |
+|---|---|---|
+| `finishSession` (`examSession` + `learning_profiles` + `weak_topics` + `streak_records` + `user_profiles.diagnosticDone`) | 5+ escrituras sueltas; los recálculos ya eran idempotentes y tolerantes a fallo (`onSessionFinished` no propaga) | La **transición de estado** es atómica (§G60.2); los recálculos siguen fuera de la transacción a propósito — su diseño "recalcular desde cero, tolerar fallo" ya los hace seguros y no deben poder abortar el cierre |
+| `redeemParentLinkCode` (`parent_link_codes` + `parent_links`) | 2 escrituras sueltas | `prisma.$transaction` |
+| `startSimulation` / `startDiagnosticSession` / `startDrillSession` (`exam_sessions` + `session_answers`) | `create` + `createMany` sueltos | `startSessionWithQuestions`: un `create` anidado (Prisma lo envuelve en transacción) |
+| `activateFromCheckout` / `failCheckout` (`subscriptions` + `payments` + `user_profiles.badges` + `processed_stripe_events`) | Ya en `runIdempotent` (transacción con el marcador del evento como 1ª sentencia) — **correcto** | Se añadió el candado condicional de §G60.3 |
+| `anonymizeAndDeletePersonalData` | Ya `prisma.$transaction([...])` — **correcto** | Sin cambios |
+| `updateQuestion` (admin) | Ya `prisma.$transaction(async tx => ...)` — **correcto** | Sin cambios |
+| `recomputeWeakTopics` (`deleteMany` + `createMany`) | Ya `prisma.$transaction([...])` — **correcto** | Sin cambios |
+
+## G60.2 Condiciones de carrera (tarea 2)
+
+### 🔴 `finishSession` — doble finalización
+
+`DiagnosticRunner` dispara `handleFinish('TIMEOUT')` desde el `onExpire` del
+timer **y** el alumno puede dar clic en "Finalizar" en el mismo instante; el
+simulador tiene el mismo patrón; `simulador/page.tsx` cierra sesiones expiradas
+en cada carga. Dos peticiones entraban, las dos leían `status: IN_PROGRESS`,
+las dos pasaban `assertActionable`, las dos corrían **todos** los efectos:
+
+- `trackSessionCompletion` → **`simulation_completed` dos veces**. Es la North
+  Star del negocio ("simulacros completos en los 30 días previos al examen").
+- `computeSessionCelebration` dos veces.
+- `onSessionFinished` dos veces (inofensivo: recalcula desde cero, pero
+  desperdicia trabajo en el camino crítico).
+
+**Corrección** (`src/lib/db/sessions.ts`): la transición se reclama con
+`updateMany({ where: { id, status: 'IN_PROGRESS' }, data: {...} })`. Solo una
+llamada obtiene `count === 1` y corre los efectos; la perdedora (`count === 0`)
+re-lee la fila ya persistida y devuelve ese resultado **sin** re-disparar nada
+(`celebration: null` — la ganadora ya la calculó).
+
+### 🔴 Simulador — bypass del muro suave por doble arranque
+
+`startSimulation` hacía: pre-check del muro (`countCompletedFullSimulations`) →
+`startSession` → `createMany`. Dos pestañas de un usuario FREE arrancando a la
+vez: **ambas** ven 0 simulacros completos, ambas crean una sesión
+`FULL_SIMULATION`, el alumno las termina las dos → **2 simulacros gratis**. El
+muro suave (1 gratis) es la regla de negocio central de F9.
+
+**Corrección**: la creación va dentro de `withUserAdvisoryLock` (nuevo,
+`src/lib/db/locks.ts` — `pg_advisory_xact_lock` sobre el hash del
+`userProfileId`, seguro con `?pgbouncer=true` porque es *xact*, no de sesión).
+Dentro del lock: (1) si ya hay un simulacro vivo se **retoma** en vez de crear
+otro; (2) el muro suave se **re-verifica** contra la base ya serializada;
+(3) sesión + reactivos se crean atómicamente. Mismo patrón en
+`startDiagnosticSession` (evita dos sesiones diagnósticas por doble carga de
+`/diagnostico`).
+
+### 🟠 Webhook de Stripe + reconciliación en paralelo
+
+`runIdempotent` mete el `event.id` como 1ª sentencia de la transacción — pero
+el webhook real (`evt_...`) y el job de reconciliación (id **sintético**
+`reconcile:...:<ts>`) tienen ids distintos, así que ese candado no los detiene
+entre sí. Si corrieran a la vez con la suscripción aún en PENDING, ambos
+`update` a ACTIVE, ambos `upsertPayment`, ambos `grantEarlyBirdBadge` (leen
+`badges` viejo → `push` dos veces → **insignia duplicada en el arreglo**),
+ambos `purchase_completed`.
+
+**Corrección** (`src/lib/db/billing.ts`): `activateFromCheckout` y
+`failCheckout` cambian el `update` incondicional por
+`updateMany({ where: { id, status: { not: 'ACTIVE' } } })` y salen si
+`count === 0`. La transición de suscripción es ahora atómica aunque los dos
+caminos corran en paralelo. (En la práctica la reconciliación corre 24 h
+después, cuando el webhook ya activó y la guarda de lectura `sub.status ===
+'ACTIVE'` ya basta — esto es defensa en profundidad para la ventana de solape.)
+
+### 🟠 `redeemParentLinkCode` — código quemado sin vínculo
+
+`updateMany` (marcar usado, atómico por sí mismo) + `parentLink.upsert` sueltos.
+Si el `upsert` fallaba, el código quedaba `usedAt != null` sin `ParentLink`
+creado y el tutor pedía otro sin explicación. Ahora los dos van en
+`prisma.$transaction`.
+
+### Carreras revisadas y **descartadas**
+
+- **`submitAnswer` upsert**: las filas `SessionAnswer` se pre-crean en
+  `startSession*`, así que `upsert` siempre toma el camino `update` — sin
+  carrera real de inserción.
+- **`recordSimulatorSync`**: ya idempotente (upsert por (sesión, reactivo),
+  contadores fusionados al máximo, aislamiento por reactivo de F19). El guard
+  `status !== 'IN_PROGRESS'` lo cierra tras la finalización.
+- **`generateParentLinkCode`**: ya maneja la colisión de código con reintento
+  (P2002).
+- **Early Bird `count`**: sobreventa marginal ya documentada y aceptada como
+  mecanismo de negocio (no inventario físico).
+
+## G60.3 Errores técnicos expuestos al usuario (tarea 3)
+
+Las Server Actions ya seguían el patrón `ActionResult` con un `toError` que
+mapea lo desconocido a `"Algo salió mal. Intenta de nuevo."` — **cero stack
+traces, cero nombres de tabla, cero mensajes de Prisma al cliente**. Next.js
+además enmascara cualquier excepción no capturada de un Server Action / Route
+Handler en producción (queda un `digest` en el cliente y el stack en el log del
+servidor).
+
+Huecos cerrados en G60:
+
+| Lugar | Antes | Ahora |
+|---|---|---|
+| `startCheckoutAction` → `createPendingSubscription` / `resolveEffectiveSeason` | throw sin capturar | `try/catch` → `{ ok:false, code:'DB' }` + log con `checkoutSessionId` |
+| `api/simulator/sync` → `recordSimulatorSync` | throw → 500 sin cuerpo | `try/catch` → `{ ok:false, error:'UNKNOWN' }` 500 + log con `sessionId` |
+| `api/cron/notifications`, `api/cron/reconcile-payments` | throw → cron marcado fallido sin resumen | `try/catch` → 500 con `error` + log claro |
+| `api/email/unsubscribe` → `setNotificationPreference` | throw → 500 HTML feo | `try/catch` → página "intenta de nuevo" |
+| `api/adaptive/*` | throw → 500 | `try/catch` → mensaje en la voz de la interfaz |
+| `api/account/export` → `buildUserDataExport` | throw sin capturar | `try/catch` → 500 con mensaje |
+
+## G60.4 Validación Zod (tarea 4)
+
+Inventario completo de Server Actions y Route Handlers:
+
+**Con Zod (o validación equivalente adecuada):** `sessions.ts` (3),
+`simulator.ts`, `drill.ts` (3), `checkout.ts`, `parent.ts` (2), `profile.ts`
+(6), `admin-questions.ts` (5), `auth.ts` (4 — schemas dedicados),
+`billing.ts` (sin input), `account.ts` (comparación exacta de correo),
+`api/webhooks/stripe` (firma HMAC), `api/simulator/sync` (`simulatorSyncSchema`),
+`api/adaptive/next-questions` (`nextQuestionsSchema`), `api/email/unsubscribe`
+(HMAC + whitelist de tipo), `api/cron/*` (`CRON_SECRET`, sin body),
+`api/adaptive/predict` / `api/account/export` (sin body).
+
+**Sin Zod formal pero validado por lookup+ownership contra la DB:**
+`onboarding.ts` (4 acciones) — el `examId`/`areaId`/`careerId` se revalida con
+`findUnique` + pertenencia al perfil; una selección inválida solo puede venir
+de manipular el request y ahí el comportamiento seguro es re-mostrar el paso.
+Se deja así (es defensa real, no una brecha).
+
+**Corregido:** `auth/confirm` no validaba el `type` del OTP (se casteaba
+`as EmailOtpType` y se pasaba a Supabase) — ahora contra una whitelist.
+
+**Cotas superiores añadidas** (`submitAnswerSchema`, `simulatorSyncSchema`):
+`position ≤ 1000`, `timeSpentSecs ≤ 86 400`, contadores de integridad
+`≤ 100 000`. Sin ellas un cliente podía mandar `2^31` y reventar el `UPDATE`
+(`int4` de Postgres) con un 500 — justo en el endpoint del `sendBeacon`.
+
+## G60.5 Resiliencia del simulador (tarea 5)
+
+Los tres escenarios del encargo, verificados contra el código:
+
+| Escenario | Comportamiento | Veredicto |
+|---|---|---|
+| **Se cae la conexión a media sesión** | Respuestas se encolan en Zustand; el timer sigue local; `recordSimulatorSync` es el destino del flush/reintento/`sendBeacon`, idempotente por (sesión, reactivo); el servidor recalcula `elapsed` contra `startedAt` real al finalizar. La creación sesión+reactivos ahora es atómica (antes: un fallo del 2º INSERT dejaba una sesión sin reactivos, irretomable). | ✅ consistente |
+| **El usuario recarga** | `loadSimulatorState` resuelve el estado real server-side: retomar (con `remainingSecs` recalculado por el servidor), `expired` (cierra + resultados), o abandona lo >24 h. Nunca confía en el cliente. | ✅ consistente |
+| **Envía la misma respuesta dos veces** | `upsert` por (sesión, reactivo) en `submitAnswer`; `ON CONFLICT DO UPDATE` en el lote de `recordSimulatorSync` (última gana, dedup por `questionId` en memoria antes del statement). Correctitud siempre server-side. | ✅ idempotente |
+
+Extra encontrado y corregido aquí: **doble arranque** (§G60.2) y **doble
+finalización** (§G60.2).
+
+## G60.6 Crons seguros de re-ejecutar (tarea 6)
+
+| Cron | ¿Seguro de re-ejecutar? | Notas |
+|---|---|---|
+| `reconcile-payments` | **Sí** | Cada activación pasa por `runIdempotent` + guarda `status !== 'ACTIVE'` (ahora condicional atómica). Re-ejecutar solo acumula filas sintéticas en `processed_stripe_events` (bloat menor). |
+| `notifications` | **Parcial** | El runner aísla cada job con `Promise.allSettled` — un fallo no deja datos a medias (los jobs solo *envían correo*, no escriben dominio). **Pero** una 2ª corrida el mismo día **reenvía** los correos: la regla "1×/día" es estructural por la cadencia del cron, no hay bandera de "ya enviado". Vercel Cron **no reintenta** por sí solo, así que el riesgo real es una invocación manual. Arreglo de fondo = una tabla `NotificationLog` (cambio de schema, fuera de alcance — mismo criterio que ya usa `notification-jobs.ts`). |
+
+**Bug encontrado en los jobs de correo** (`getAuthEmails`): ver §G60.7 #6.
+
+## G60.7 Detalle de las demás correcciones
+
+**#6 — `getAuthEmails` comparaba tipos incompatibles.** Todos los llamadores
+(los 3 jobs de cron) pasan `UserProfile.id` (un `cuid`). La consulta hacía
+`SELECT ... FROM auth.users WHERE id = ANY($1::uuid[])`. Dos errores: (a)
+`auth.users.id` casa con `UserProfile.userId`, no con `.id`; (b) castear
+`cuid`s a `::uuid[]` lanza `invalid input syntax for type uuid`. Con un solo
+usuario de prueba nadie lo notó — y G59 lo tapó el `42501 permission denied for
+schema auth`, que ocurre **antes** del cast. Ahora hace el JOIN correcto
+`user_profiles p JOIN auth.users u ON u.id = p."userId"` y devuelve el mapa
+indexado por `p.id`. **Sigue necesitando el grant pendiente de G59 §5**
+(`GRANT USAGE ON SCHEMA auth` + `GRANT SELECT (id, email) ON auth.users`) —
+pero ahora, cuando el dueño lo aplique, los correos de verdad saldrán.
+
+**#7 — redirector abierto.** `signUpAction`/`signInAction` hacían
+`redirect(next)` con `next` del formulario; `auth/confirm` hacía
+`redirect(${origin}${next})` con `next` de la URL del correo. `next=@evil.com`
+(o `//evil.com`, o `https://evil.com`) → redirección fuera del sitio, base para
+phishing tras un enlace de aspecto legítimo. Nuevo `safeInternalPath()`
+(`src/lib/auth/safe-redirect.ts`): solo acepta rutas que empiezan con un único
+`/`, sin `//`, `/\`, `\` ni caracteres de control.
+
+**#8 — `QuestionReport` inflable.** Sin unique en (questionId, reportedBy), un
+usuario podía reportar el mismo reactivo N veces y empujarlo él solo al umbral
+de revisión admin (≥3, Flujo_App §15.1). `reportQuestion` ahora es no-op si el
+usuario ya tiene un reporte sin resolver de ese reactivo.
+
+**#10 — Server Actions de `onboarding.ts`:** se dejaron sin `try/catch` extra.
+Usan `redirect()` intensivamente (que funciona lanzando `NEXT_REDIRECT`), el
+input se revalida contra la DB, y un fallo transitorio de DB cae en el
+`error.tsx` de Next con el stack en el log del servidor. Envolver cada una para
+ganar un mensaje marginalmente mejor no valía el riesgo de tragarse un
+`NEXT_REDIRECT` por error.
+
+## G60.8 Lo que NO se tocó (y por qué)
+
+- **`prisma/schema.prisma`** — guardrail de CLAUDE.md. Eso descarta: un unique
+  `(questionId, reportedBy)` en `QuestionReport` (se resolvió en código), un
+  índice único parcial "un simulacro IN_PROGRESS por usuario" (se resolvió con
+  advisory lock), y una tabla `NotificationLog` para la idempotencia de los
+  correos (queda documentado).
+- **El rate-limiter en memoria** (`proxy.ts`) solo cubre `/api/*`, no las
+  Server Actions (que hacen POST a la ruta de la página). Ya documentado como
+  "básico" desde F20; sin Redis no hay límite distribuido real. No se amplió.
+- **`getActiveSubscription` con `expiresAt` pasada** sigue devolviendo la fila
+  hasta que un cron la transicione a EXPIRED — es el diseño de F22 (el `OR:
+  [{expiresAt: null}, {expiresAt: {gt: now}}]` ya excluye las vencidas del
+  acceso). Sin cambios.
+
+## G60.9 Pendiente que esta fase deja al dueño
+
+1. **`GRANT USAGE ON SCHEMA auth TO acierta_ci;`** +
+   **`GRANT SELECT (id, email) ON auth.users TO acierta_ci;`** — sin esto los
+   3 jobs de correo (racha en riesgo, cuenta regresiva, resumen al tutor)
+   reportan 0 enviados. El código ya quedó correcto (§G60.7 #6); solo falta el
+   grant. (Mismo pendiente que G59 §5, ahora con el bug de tipos ya resuelto.)
+2. **Idempotencia real de los correos programados** — requiere una tabla nueva
+   (`NotificationLog` o similar) → cambio de schema, instrucción explícita.
+
+## G60.10 Archivos
+
+| Archivo | Qué |
+|---|---|
+| `src/lib/db/locks.ts` | **Nuevo.** `withUserAdvisoryLock` — serializa operaciones por usuario |
+| `src/lib/auth/safe-redirect.ts` | **Nuevo.** `safeInternalPath` — anti open-redirect |
+| `src/lib/db/sessions.ts` | Cierre atómico de `finishSession`; `startSessionWithQuestions` |
+| `src/lib/db/simulator.ts` | `startSimulation` bajo lock + retomar + re-check del muro |
+| `src/lib/db/diagnostic.ts` | `startDiagnosticSession` bajo lock + retomar; check de examen inactivo |
+| `src/lib/db/drill.ts` | `startDrillSession` atómico; `reportQuestion` dedup; check de examen inactivo |
+| `src/lib/db/parent.ts` | `redeemParentLinkCode` en transacción |
+| `src/lib/db/billing.ts` | `activateFromCheckout` / `failCheckout` con transición condicional |
+| `src/lib/db/auth-users.ts` | `getAuthEmails` — JOIN correcto por `userId`, indexado por `profileId` |
+| `src/lib/sessions/schemas.ts`, `src/lib/simulator/schema.ts` | Cotas superiores |
+| `app/actions/auth.ts`, `app/actions/checkout.ts` | `safeInternalPath`; `try/catch` en checkout |
+| `app/auth/confirm/route.ts` | Whitelist de `type`; `safeInternalPath` en `next` |
+| `app/api/simulator/sync/`, `app/api/cron/*`, `app/api/email/unsubscribe/`, `app/api/adaptive/*`, `app/api/account/export/` | `try/catch` de último recurso |
+| `tests/auth/safe-redirect.test.ts` | **Nuevo.** 5 casos de `safeInternalPath` |
+
+**Verde al cierre**: `pnpm typecheck` · `pnpm lint` · `pnpm test:unit`
+(54 archivos, **507 pruebas**).

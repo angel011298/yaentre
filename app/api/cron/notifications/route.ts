@@ -24,6 +24,13 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'No autorizado.' }, { status: 401 });
   }
 
-  const results = await runDailyNotificationJobs(new Date());
-  return NextResponse.json({ ok: true, ...results });
+  try {
+    const results = await runDailyNotificationJobs(new Date());
+    return NextResponse.json({ ok: true, ...results });
+  } catch (err) {
+    // El runner interno ya aísla cada job con `Promise.allSettled`; esto cubre
+    // un fallo del propio orquestador (p. ej. la DB caída al arrancar).
+    console.error('[cron/notifications] Falló la corrida diaria', err);
+    return NextResponse.json({ ok: false, error: 'CRON_FAILED' }, { status: 500 });
+  }
 }

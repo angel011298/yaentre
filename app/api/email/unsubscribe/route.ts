@@ -46,6 +46,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return page('Este enlace no es válido o ya expiró.');
   }
 
-  await setNotificationPreference(userProfileId, type as NotificationType, false);
+  try {
+    await setNotificationPreference(userProfileId, type as NotificationType, false);
+  } catch (err) {
+    console.error('[email/unsubscribe] No se pudo guardar la preferencia', { userProfileId, type, err });
+    return page('No pudimos procesar tu baja ahora. Intenta abrir el enlace de nuevo en un momento.');
+  }
   return page('Listo — ya no recibirás este tipo de correo.');
 }

@@ -1,6 +1,6 @@
 import type { SessionMode } from '@prisma/client';
 import { prisma } from './prisma';
-import * as sessionsDb from './sessions';
+import { startSessionWithQuestions } from './sessions';
 import {
   selectNextAdaptiveQuestions,
   selectSubjectAdaptiveQuestions,
@@ -43,6 +43,7 @@ export interface PracticeSubject {
 
 export interface PracticeOptions {
   examId: string;
+  examActive: boolean;
   areaId: string;
   subjects: PracticeSubject[];
   /** Temas más débiles reales (F6/F11) — para destacar "reforzar débiles". */
@@ -53,7 +54,11 @@ export interface PracticeOptions {
 export async function loadPracticeOptions(userProfileId: string): Promise<PracticeOptions | null> {
   const profile = await prisma.userProfile.findUnique({
     where: { id: userProfileId },
-    select: { targetExamId: true, targetCareer: { select: { areaId: true } } },
+    select: {
+      targetExamId: true,
+      targetExam: { select: { isActive: true } },
+      targetCareer: { select: { areaId: true } },
+    },
   });
   const areaId = profile?.targetCareer?.areaId;
   if (!profile?.targetExamId || !areaId) return null;
@@ -73,6 +78,7 @@ export async function loadPracticeOptions(userProfileId: string): Promise<Practi
 
   return {
     examId: profile.targetExamId,
+    examActive: profile.targetExam?.isActive ?? true,
     areaId,
     subjects: subjects.map((s) => ({
       subjectId: s.id,
@@ -146,6 +152,7 @@ export async function startDrillSession(
 ): Promise<DrillStartResult> {
   const options = await loadPracticeOptions(userProfileId);
   if (!options) return { ok: false, code: 'NO_TARGET' };
+  if (!options.examActive) return { ok: false, code: 'NO_CONTENT' };
 
   const access = await evaluateDrillAccess(userProfileId);
   if (!access.decision.allowed) {
@@ -178,22 +185,14 @@ export async function startDrillSession(
 
   if (selection.questionIds.length === 0) return { ok: false, code: 'NO_CONTENT' };
 
-  const session = await sessionsDb.startSession({
+  // G60: sesión + filas de respuesta en una sola operación atómica — nunca
+  // queda una sesión IN_PROGRESS sin reactivos si el segundo INSERT falla.
+  const session = await startSessionWithQuestions({
     userProfileId,
     examId: options.examId,
     mode,
     timeLimitSecs: DRILL_TIME_LIMIT_SECS,
-  });
-
-  await prisma.sessionAnswer.createMany({
-    data: selection.questionIds.map((questionId, position) => ({
-      sessionId: session.id,
-      questionId,
-      selectedOption: null,
-      isCorrect: false,
-      timeSpentSecs: 0,
-      position,
-    })),
+    questionIds: selection.questionIds,
   });
 
   const full = await prisma.examSession.findUniqueOrThrow({
@@ -311,6 +310,17 @@ export async function reportQuestion(
   questionId: string,
   reason: string | null
 ): Promise<void> {
+  // G60 — un reporte por usuario y reactivo. `QuestionReport` no tiene un
+  // unique en (questionId, reportedBy) (no se toca el schema), así que sin
+  // este chequeo un solo usuario podía crear N reportes del mismo reactivo y
+  // empujarlo él solo al umbral de revisión admin (≥3). Si ya tiene uno sin
+  // resolver, esta llamada es un no-op idempotente.
+  const already = await prisma.questionReport.findFirst({
+    where: { questionId, reportedBy: reportedByAuthUserId, resolved: false },
+    select: { id: true },
+  });
+  if (already) return;
+
   await prisma.questionReport.create({
     data: { questionId, reportedBy: reportedByAuthUserId, reason },
   });

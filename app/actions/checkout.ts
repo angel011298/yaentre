@@ -50,7 +50,15 @@ export async function startCheckoutAction(
   // Temporada EFECTIVA (F9): si Early Bird ya agotó sus 500 licencias, esto
   // degrada a Temporada Alta — es el MISMO cálculo que usa el paywall para
   // decidir qué precio mostrar, así nunca se muestra un precio y se cobra otro.
-  const season = await resolveEffectiveSeason(new Date());
+  // G60: es una consulta a la DB — un fallo aquí devuelve un error limpio, no
+  // una excepción sin manejar al borde cliente.
+  let season;
+  try {
+    season = await resolveEffectiveSeason(new Date());
+  } catch (err) {
+    console.error('[checkout] No se pudo resolver la temporada de precios', err);
+    return { ok: false, code: 'DB', message: 'No pudimos iniciar el pago. Intenta de nuevo.' };
+  }
   const pricing = getPlanPricing(plan, season);
   const site = getSiteUrl();
 
@@ -114,14 +122,33 @@ export async function startCheckoutAction(
   }
 
   // Registro PENDING con el id de la sesión: es la fila que el webhook activará.
-  await createPendingSubscription({
-    userProfileId: profileId,
-    plan,
-    season,
-    checkoutSessionId: session.id,
-    hasGuarantee: pricing.hasGuarantee,
-    stripeCustomerId: typeof session.customer === 'string' ? session.customer : session.customer?.id,
-  });
+  // G60: si esta escritura falla, la sesión de Stripe ya existe pero sin fila
+  // local — el webhook la rechazaría (SubscriptionNotFoundError) y el job de
+  // reconciliación (que solo mira filas PENDING) tampoco la vería. Se registra
+  // el `session.id` para poder rastrearla a mano y se devuelve un error limpio
+  // en vez de propagar la excepción al borde cliente.
+  try {
+    await createPendingSubscription({
+      userProfileId: profileId,
+      plan,
+      season,
+      checkoutSessionId: session.id,
+      hasGuarantee: pricing.hasGuarantee,
+      stripeCustomerId:
+        typeof session.customer === 'string' ? session.customer : session.customer?.id,
+    });
+  } catch (err) {
+    console.error('[checkout] Sesión de Stripe creada sin Subscription local', {
+      checkoutSessionId: session.id,
+      userProfileId: profileId,
+      err,
+    });
+    return {
+      ok: false,
+      code: 'DB',
+      message: 'No pudimos iniciar el pago. Intenta de nuevo.',
+    };
+  }
 
   await trackServerEvent(profileId, 'checkout_started', { plan, season });
 

@@ -37,32 +37,43 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const drillGate = await evaluateDrillGate(guard.profile.id);
-  if (!drillGate.decision.allowed) {
+  try {
+    const drillGate = await evaluateDrillGate(guard.profile.id);
+    if (!drillGate.decision.allowed) {
+      return NextResponse.json(
+        {
+          error: 'Llegaste a tu práctica gratis de hoy. Vuelve mañana o desbloquea ilimitado.',
+          trigger: drillGate.decision.trigger,
+        },
+        { status: 402 }
+      );
+    }
+
+    const areaId = parsed.data.areaId ?? (await getDefaultAreaId(guard.profile.id));
+    if (!areaId) {
+      return NextResponse.json(
+        { error: 'Aún no tienes un área de estudio. Completa tu onboarding para practicar.' },
+        { status: 409 }
+      );
+    }
+
+    const requestedCount = parsed.data.count ?? DEFAULT_ADAPTIVE_COUNT;
+    const count =
+      drillGate.remainingToday === null
+        ? requestedCount
+        : Math.min(requestedCount, drillGate.remainingToday);
+
+    const result = await selectNextAdaptiveQuestions(guard.profile.id, areaId, count);
+
+    return NextResponse.json({ areaId, remainingToday: drillGate.remainingToday, ...result });
+  } catch (err) {
+    console.error('[adaptive/next-questions] Falló la selección', {
+      userProfileId: guard.profile.id,
+      err,
+    });
     return NextResponse.json(
-      {
-        error: 'Llegaste a tu práctica gratis de hoy. Vuelve mañana o desbloquea ilimitado.',
-        trigger: drillGate.decision.trigger,
-      },
-      { status: 402 }
+      { error: 'No pudimos preparar tu práctica. Intenta de nuevo.' },
+      { status: 500 }
     );
   }
-
-  const areaId = parsed.data.areaId ?? (await getDefaultAreaId(guard.profile.id));
-  if (!areaId) {
-    return NextResponse.json(
-      { error: 'Aún no tienes un área de estudio. Completa tu onboarding para practicar.' },
-      { status: 409 }
-    );
-  }
-
-  const requestedCount = parsed.data.count ?? DEFAULT_ADAPTIVE_COUNT;
-  const count =
-    drillGate.remainingToday === null
-      ? requestedCount
-      : Math.min(requestedCount, drillGate.remainingToday);
-
-  const result = await selectNextAdaptiveQuestions(guard.profile.id, areaId, count);
-
-  return NextResponse.json({ areaId, remainingToday: drillGate.remainingToday, ...result });
 }

@@ -39,14 +39,25 @@ export async function POST(req: Request): Promise<Response> {
     return NextResponse.json({ ok: false, error: 'VALIDATION' }, { status: 400 });
   }
 
-  const result = await recordSimulatorSync({
-    userProfileId: profileId,
-    sessionId: parsed.data.sessionId,
-    answers: parsed.data.answers,
-    integrity: parsed.data.integrity,
-    suspicionEvents: parsed.data.suspicionEvents,
-    completedFullscreen: parsed.data.completedFullscreen,
-  });
+  let result;
+  try {
+    result = await recordSimulatorSync({
+      userProfileId: profileId,
+      sessionId: parsed.data.sessionId,
+      answers: parsed.data.answers,
+      integrity: parsed.data.integrity,
+      suspicionEvents: parsed.data.suspicionEvents,
+      completedFullscreen: parsed.data.completedFullscreen,
+    });
+  } catch (err) {
+    // El destino del `sendBeacon` del simulador: un 500 con cuerpo genérico,
+    // nunca un stack. Se registra con el sessionId para diagnóstico.
+    console.error('[simulator/sync] Falló al persistir el lote', {
+      sessionId: parsed.data.sessionId,
+      err,
+    });
+    return NextResponse.json({ ok: false, error: 'UNKNOWN' }, { status: 500 });
+  }
 
   if (!result.ok) {
     const status = result.code === 'FORBIDDEN' ? 403 : result.code === 'NOT_FOUND' ? 404 : 409;

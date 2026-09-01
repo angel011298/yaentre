@@ -187,6 +187,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G60 | Integridad y resiliencia del backend | **COMPLETADA — 10 hallazgos corregidos, 1 documentado. 2 🔴: `finishSession` no atómico (doble `simulation_completed` — la North Star), y bypass del muro suave por doble arranque de simulacro (usuario FREE → 2 gratis). Auditoría completa en `docs/AUDITORIA_BACKEND.md` §G60** | (G60) | Nuevo `withUserAdvisoryLock` (`pg_advisory_xact_lock`, seguro con pgbouncer) serializa arranque de simulacro/diagnóstico por usuario; `finishSession` reclama la transición con `updateMany` condicionado; activación de plan Stripe ahora condicional atómica (webhook + reconciliación en paralelo ya no duplican `Payment`/insignia/evento); `redeemParentLinkCode` en transacción; sesión+`SessionAnswer` en un `create` anidado. Bug latente corregido: `getAuthEmails` comparaba `UserProfile.id` (cuid) vs `auth.users.id` (uuid) — **sigue pendiente el grant del dueño** (G59 §5). Anti open-redirect en `?next=`. Cotas Zod. `try/catch` de último recurso en Route Handlers. **No se tocó `prisma/schema.prisma`.** |
 | G59 | Auditoría y optimización de base de datos | **COMPLETADA — 454 → 300 viajes de red, +18 índices, 29 políticas RLS optimizadas (55× en el peor caso), 2 bugs corregidos (fuga de respuestas correctas vía anon key; insignia calculada sobre todos los usuarios), 1 bloqueado por permisos** | (G59) | Ver `docs/AUDITORIA_BACKEND.md`. Medición con el SQL real de Prisma + banco de pruebas aislado a escala de lanzamiento (856 729 respuestas) porque con 480 respuestas ningún plan malo se nota. N+1 corregidos: sinc del simulador (282 → 4 viajes), insignia de materia, historial de respuestas (3 → 1 consulta, leído una vez por cierre de sesión en vez de tres), cadena perfil→carrera→área→examen (4 lecturas → 1), taxonomía (24 → 1 viaje por render, cacheada), y tres agregaciones que se hacían en Node movidas a SQL. `?pgbouncer=true` se CONSERVA: quitarlo es 4,7× más rápido con una conexión y falla en las 8 con concurrencia. |
 | G41 | Lote de reactivos: Filosofía, UNAM Área 4 | **COMPLETADA — 35 insertados, isVerified=false, banco 832 → 867, cola ciega 0 → 35** | (G41) | Ver sección dedicada abajo. **Segunda materia del Área 4 con contenido** (tras Literatura en G37): Filosofía estaba en cero absoluto. Consulta en vivo a Supabase: **Filosofía es una sola fila `Subject` en el Área 4**, `questionWeight` 3, **`sharedContentKey` NULL** (no entra en G26 — en la UNAM solo Español/Inglés/Química la tienen). Lote a sus **5 temas propios**: Epistemología 9 (incluye lógica) · Metafísica 6 · Ética 8 · Estética 5 · Historia de la filosofía occidental 7. **28/35 TEMARIO_ONLY · 7/35 SOURCED** (el tema «Historia de la filosofía occidental» tiene 3 `SourceChunk` — `uam_csh.pdf` pp. 45-47, banco de preguntas de la guía CSH de la UAM; cada reactivo SOURCED cita el fragmento cuya página contiene su ítem-semilla; el chunk está rebanado por página y arrastra ítems de historia/serie numérica, patrón G40 §7). **Originalidad (G40 §6):** 5 de los 7 SOURCED cambian la tarea de atribución («¿de quién es X?») a comprensión («¿qué sostiene X?»); los 2 más cercanos (#30 Gorgias, #35 Wittgenstein prop. 7) reproducen un enunciado canónico inevitable, reformulado, con la tarea desplazada — se declaran para G42. Prioriza comprensión de argumentos sobre memorización: solo 3 reactivos son de clasificación por definición. 35 `MULTIPLE_CHOICE`; dificultad **7/17/9/2**. Clave **A9/B9/C9/D8**, confirmada por query directa a la DB; sin corridas cíclicas ≥3, rotación +1 = 11.8 %; **equilibrio también por tema** (ninguna letra concentra la correcta en un tema). **Cue de longitud (G34 §2, reportado como veredicto — G36 §3):** tie-aware «elige la más larga» = **6.5/35 = 18.6 %**, «elige la más corta» = **5.3/35 = 15.2 %**, ambas por debajo del azar (25 %) y de la cota 14/35; ratio medio **0.99** (el primer borrador tenía la correcta como la más larga en 31/35 — patrón G33/G35/G37 —, corregido en dos pasadas). `content:validate-batch` **0 violaciones**. 0 citas por letra / posicionales en 105 `ExplanationLayer` (capas 2 «Cómo se descarta cada opción», distractores por contenido). Distractores = **posturas filosóficas reales** correctamente descritas (G36 §5). **Fuga entre reactivos revisada en las dos direcciones (G38 §6 / G40 §3):** #30 (Gorgias) se desacopló de #10 (Parménides/Heráclito) y de #22 (Sócrates) cambiando sus distractores. Las 35 atribuciones de postura verificadas una por una. Registro en `docs/content-batches/g41-unam-a4-filosofia.json`. Generador Python desechable (no committeado). `typecheck`/`lint` verde, 0 cambios de código, 0 API de pago. |
 | G40 | Micro-fase editorial + verificación ciega de las reparadas | **COMPLETADA — 3 reparadas, 3/3 rescatadas = 100 % de rescate; banco 832, servibles 832 → 831 (1 retirado a propósito), cola canónica en cero** | (G40) | Ver sección dedicada abajo. **La cola ciega estaba vacía: esta fase la creó reparando, no componiendo** — ejecuta el work order que G39 §9 dejó abierto y lo cierra completo. §9.1 fuga relacional reparada; **hallazgo propio: la fuga era BIDIRECCIONAL** (el reactivo protegido filtraba en su `stem` el punto que evaluaba el otro), así que se repararon los dos, no el señalado. §9.2 los dos reactivos de letras peninsulares salen del `Topic` mexicano a sus temas correctos (uno de ellos además pierde la coletilla que solo justificaba el archivado equivocado ⇒ tercera reparada). §9.3 **desbloqueado**: `manualReview.action` acepta `'duplicate'` (+2 tests) — el bloqueo que G24 y G39 declararon sin resolver; el duplicado de neutralización queda despublicado con veredicto del pipeline intacto y fuera de toda cola. §9.2/d **resuelto con veredicto**: el `SourceChunk` no está mal clasificado por juicio sino **rebanado por página** (arrastra la cola de un reactivo de otra materia), así que ningún `topicId` único puede servirlo — el arreglo vive en el chunker. **Hallazgo nuevo para el work order:** 3 de los 4 reactivos anclados a ese chunk son paráfrasis cercanas de los ítems de la guía fuente, uno casi literal en el `stem` — riesgo de originalidad, no de corrección, y **exige sesión ciega distinta** porque ésta ya quedó contaminada sobre ellos. Arnés auditado antes de reportar el 100 %: **2/3** etiquetas ciegas tradujeron a un id distinto, traducción **biyectiva** (12/12 imágenes, 0 colisiones). **Caveat declarado:** reparación y pasada ciega en la MISMA sesión — la garantía sobre la clave se sostiene (`grep` de campos de respuesta = 0 antes de abrir el lote), la de independencia editorial no. `content:coverage` corregido para que «en banco» cuadre con `COUNT(*)` cuando hay retirados. 493/493 tests. |
@@ -2424,6 +2425,102 @@ se verificó por la vía equivalente —`SET ROLE authenticated` +
 `request.jwt.claims` contra las políticas reales— y da correcto en las 7
 comprobaciones (alumno vs alumno, tutor vinculado vs no vinculado, anon). Ver
 §5.2 de la auditoría. Esa misma llave desbloquearía también §5 de arriba.
+
+
+## G60 — Integridad y resiliencia del backend (2026-08-31)
+
+**Reporte completo: `docs/AUDITORIA_BACKEND.md` §G60.** Aquí solo lo que hay
+que recordar sin abrir el reporte. Modelo real: `claude-sonnet-5`. **No se
+tocó `prisma/schema.prisma`.**
+
+### 1. 🔴 `finishSession` no era atómico — la North Star se contaba doble
+
+El `DiagnosticRunner`/simulador disparan el cierre desde el `onExpire` del
+timer **y** desde el clic del usuario; podían entrar dos peticiones, las dos
+leían `IN_PROGRESS`, las dos corrían **todos** los efectos: `simulation_
+completed` (métrica estrella del negocio) emitido **dos veces**, doble
+celebración, doble recálculo. Ahora la transición se reclama con
+`updateMany({ where: { id, status: 'IN_PROGRESS' } })`: solo una gana y corre
+los efectos; la perdedora devuelve el resultado ya persistido sin re-disparar
+nada.
+
+### 2. 🔴 Bypass del muro suave por doble arranque de simulacro
+
+`startSimulation` hacía pre-check del muro → crear sesión, sin candado. Dos
+pestañas de un usuario FREE arrancando a la vez: ambas ven 0 simulacros
+completos → **2 simulacros gratis** (la regla central de F9). Corregido con
+`withUserAdvisoryLock` (nuevo, `src/lib/db/locks.ts`): `pg_advisory_xact_lock`
+sobre el hash del `userProfileId` — **seguro con `?pgbouncer=true`** porque es
+un lock de *transacción*, no de sesión (se libera en COMMIT, dentro de la
+misma transacción que Supavisor mantiene fija). Dentro del lock: retomar el
+simulacro vivo si lo hay, re-verificar el muro contra la base serializada,
+crear sesión+reactivos atómicamente. Mismo patrón en `startDiagnosticSession`.
+
+### 3. 🟠 Webhook + reconciliación de Stripe podían duplicar
+
+`runIdempotent` marca el `event.id` como 1ª sentencia — pero el webhook real y
+el job de reconciliación usan ids distintos (el de reconciliación es
+sintético), así que ese candado no los cruza. En paralelo con la suscripción
+en PENDING: doble `Payment`, **insignia Early Bird duplicada en el arreglo**
+(`push` sobre `badges` leído dos veces), doble `purchase_completed`. Ahora
+`activateFromCheckout`/`failCheckout` usan
+`updateMany({ where: { id, status: { not: 'ACTIVE' } } })` y salen si
+`count === 0`.
+
+### 4. 🟠 Bug latente en los correos programados (además del pendiente de G59)
+
+`getAuthEmails` recibía `UserProfile.id` (un `cuid`) de sus 3 llamadores pero
+consultaba `auth.users WHERE id = ANY($1::uuid[])`: (a) la clave de Auth es
+`UserProfile.userId`, no `.id`; (b) castear `cuid`s a `::uuid[]` **lanza**.
+G59 solo vio el `42501 permission denied` porque ocurre antes del cast. Ahora
+hace el JOIN correcto `user_profiles JOIN auth.users ON u.id = p.userId`,
+indexado por `p.id`. **Sigue pendiente el grant del dueño** (idéntico a G59
+§5):
+
+```sql
+GRANT USAGE ON SCHEMA auth TO acierta_ci;
+GRANT SELECT (id, email) ON auth.users TO acierta_ci;
+```
+
+Con el grant aplicado, ahora sí saldrán los correos (antes, ni con grant).
+
+### 5. Otras correcciones
+
+- **Transacciones multi-tabla**: `redeemParentLinkCode` (código usado +
+  vínculo) y `startSimulation`/`startDiagnosticSession`/`startDrillSession`
+  (sesión + `SessionAnswer`) ahora atómicas. Auditadas y ya correctas:
+  `anonymizeAndDeletePersonalData`, `updateQuestion`, `recomputeWeakTopics`,
+  `runIdempotent`.
+- **Open-redirect** en `?next=` (login/registro/`auth/confirm`): nuevo
+  `safeInternalPath` — solo rutas internas con un único `/` inicial.
+- **`QuestionReport`** sin unique (questionId, reportedBy): un usuario podía
+  empujar solo cualquier reactivo al umbral de revisión (≥3). `reportQuestion`
+  ahora es no-op si ya tiene un reporte sin resolver.
+- **Cotas Zod** (`position ≤ 1000`, `timeSpentSecs ≤ 86 400`, contadores
+  `≤ 100 000`): sin ellas un `2^31` reventaba el `UPDATE` del `sendBeacon`
+  (`int4`) con 500.
+- **`try/catch` de último recurso** en `api/simulator/sync`, `api/cron/*`,
+  `api/email/unsubscribe`, `api/adaptive/*`, `api/account/export`, y en
+  `startCheckoutAction` (throw de `createPendingSubscription` /
+  `resolveEffectiveSeason`).
+- **`auth/confirm`** validaba el `type` del OTP con `as EmailOtpType`; ahora
+  contra whitelist.
+
+### 6. Crons — seguros de re-ejecutar
+
+`reconcile-payments`: **sí** (idempotencia + guarda condicional; re-ejecutar
+solo acumula filas sintéticas en `processed_stripe_events`). `notifications`:
+el runner aísla cada job con `Promise.allSettled` (no deja datos a medias —
+solo envían correo), **pero** una 2ª corrida el mismo día **reenvía** los
+correos. Vercel Cron no reintenta solo; el riesgo real es una invocación
+manual. Arreglo de fondo = tabla `NotificationLog` (cambio de schema, fuera de
+alcance — mismo criterio que ya usa `notification-jobs.ts`).
+
+### 7. Pendiente del dueño
+
+1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
+2. Idempotencia real de los correos programados → tabla nueva → instrucción
+   explícita.
 
 
 ## G58 — Verificación ciega (lote de G57) + BALANCE FINAL DE CONTENIDO (2026-08-31)

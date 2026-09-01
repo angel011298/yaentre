@@ -11,6 +11,7 @@ import {
   updatePasswordSchema,
 } from '@/lib/auth/schemas';
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
+import { safeInternalPath } from '@/lib/auth/safe-redirect';
 import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
 import { trackServerEvent } from '@/lib/analytics/server';
@@ -48,7 +49,7 @@ export async function signUpAction(
   const isParent = formData.get('role') === 'PARENT';
   const role = isParent ? 'PARENT' : 'STUDENT';
   const defaultNext = isParent ? '/tutor' : '/app';
-  const next = (formData.get('next') as string) || defaultNext;
+  const next = safeInternalPath(formData.get('next'), defaultNext);
   const supabase = await createSupabaseServerClient();
 
   const { data, error } = await supabase.auth.signUp({
@@ -149,7 +150,11 @@ export async function signInAction(
   // `next` explícito (p. ej. `/login?next=/tutor` cuando un guard redirige
   // aquí) siempre gana. Sin uno, el destino depende del ROL (F16): un tutor
   // jamás debe aterrizar en /app (ahí lo esperaría el onboarding de alumno).
-  const explicitNext = formData.get('next') as string | null;
+  const rawNext = formData.get('next');
+  const explicitNext =
+    typeof rawNext === 'string' && rawNext.length > 0
+      ? safeInternalPath(rawNext, '')
+      : '';
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase.auth.signInWithPassword(parsed.data);
 

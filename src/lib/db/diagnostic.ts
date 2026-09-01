@@ -1,6 +1,7 @@
 import { Prisma, type ExamSession, type SessionStatus } from '@prisma/client';
 import { prisma } from './prisma';
-import * as sessionsDb from './sessions';
+import { startSessionWithQuestions } from './sessions';
+import { withUserAdvisoryLock } from './locks';
 import { computeCareerStrategy, type CareerStrategyResponse } from './adaptive';
 import { loadAreaSharedContent } from './shared-content';
 import { allocateDiagnosticQuestions, type SubjectAvailability } from '@/lib/diagnostic/distribution';
@@ -124,15 +125,29 @@ export type DiagnosticStartResult =
  * diagnóstico a medias sin guardar el set de preguntas en ningún otro lado:
  * el set completo de 30 SIEMPRE vive en `session.answers`, respondidas o no.
  */
-export async function startDiagnosticSession(userProfileId: string): Promise<DiagnosticStartResult> {
+export async function startDiagnosticSession(
+  userProfileId: string,
+  now: Date = new Date(),
+): Promise<DiagnosticStartResult> {
   const profile = await prisma.userProfile.findUnique({
     where: { id: userProfileId },
-    select: { targetExamId: true, targetCareer: { select: { areaId: true } } },
+    select: {
+      targetExamId: true,
+      targetExam: { select: { isActive: true } },
+      targetCareer: { select: { areaId: true } },
+    },
   });
 
   const areaId = profile?.targetCareer?.areaId;
   if (!profile?.targetExamId || !areaId) {
     return { ok: false, code: 'NO_TARGET' };
+  }
+  const examId = profile.targetExamId;
+  // Examen desactivado entre el onboarding y ahora: se trata como "sin
+  // contenido servible" (mismo mensaje que un área sin reactivos) en vez de
+  // dejar escapar un error sin manejar por el render de la página.
+  if (profile.targetExam && !profile.targetExam.isActive) {
+    return { ok: false, code: 'NO_CONTENT' };
   }
 
   const { questionIds } = await buildDiagnosticQuestionSet(areaId);
@@ -140,22 +155,24 @@ export async function startDiagnosticSession(userProfileId: string): Promise<Dia
     return { ok: false, code: 'NO_CONTENT' };
   }
 
-  const session = await sessionsDb.startSession({
-    userProfileId,
-    examId: profile.targetExamId,
-    mode: 'DIAGNOSTIC',
-    timeLimitSecs: DIAGNOSTIC_TIME_LIMIT_SECS,
-  });
+  // G60 — bajo el lock del usuario: si dos cargas de /diagnostico entran a la
+  // vez (dos pestañas, doble navegación), la segunda RETOMA la sesión que abrió
+  // la primera en vez de crear una segunda sesión diagnóstica huérfana.
+  const session = await withUserAdvisoryLock(userProfileId, async (tx) => {
+    const open = await tx.examSession.findFirst({
+      where: { userProfileId, mode: 'DIAGNOSTIC', status: 'IN_PROGRESS' },
+      orderBy: { startedAt: 'desc' },
+    });
+    if (open && !isSessionStale(open.startedAt, now)) return open;
 
-  await prisma.sessionAnswer.createMany({
-    data: questionIds.map((questionId, position) => ({
-      sessionId: session.id,
-      questionId,
-      selectedOption: null,
-      isCorrect: false,
-      timeSpentSecs: 0,
-      position,
-    })),
+    return startSessionWithQuestions({
+      userProfileId,
+      examId,
+      mode: 'DIAGNOSTIC',
+      timeLimitSecs: DIAGNOSTIC_TIME_LIMIT_SECS,
+      questionIds,
+      client: tx,
+    });
   });
 
   return { ok: true, session };

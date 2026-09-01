@@ -1,6 +1,7 @@
 import { Prisma, type InstitutionCode, type SessionStatus } from '@prisma/client';
 import { prisma } from './prisma';
-import * as sessionsDb from './sessions';
+import { startSessionWithQuestions } from './sessions';
+import { withUserAdvisoryLock } from './locks';
 import { buildDiagnosticQuestionSet, toRunnerQuestion, type RunnerQuestion } from './diagnostic';
 import {
   countCompletedFullSimulations,
@@ -11,7 +12,12 @@ import {
   computeSessionPredictionDelta,
   type CareerStrategyResponse,
 } from './adaptive';
-import { canStartFullSimulation, type GateDecision, type PaywallTrigger } from '@/lib/paywall/gates';
+import {
+  canStartFullSimulation,
+  FREE_FULL_SIMULATION_LIMIT,
+  type GateDecision,
+  type PaywallTrigger,
+} from '@/lib/paywall/gates';
 import { simulatorConfigFor } from '@/lib/simulator/config';
 import { orderQuestionOptions } from '@/lib/simulator/shuffle';
 import { computeRemainingSecs, isTimeUp } from '@/lib/simulator/time';
@@ -259,30 +265,61 @@ export async function startSimulation(
   const { questionIds } = await buildDiagnosticQuestionSet(ctx.areaId, ctx.totalQuestions);
   if (questionIds.length === 0) return { ok: false, code: 'NO_CONTENT' };
 
-  const session = await sessionsDb.startSession({
-    userProfileId,
-    examId: ctx.examId,
-    mode: 'FULL_SIMULATION',
-    timeLimitSecs: ctx.durationMins * 60,
+  // G60 — la creación va bajo el lock del usuario. Dos peticiones simultáneas
+  // (dos pestañas, doble clic en "Iniciar examen") pasaban las dos el muro
+  // suave de arriba —ambas ven 0 simulacros completos— y un usuario FREE se
+  // llevaba DOS simulacros gratis, saltándose la regla de negocio central de
+  // F9. Dentro del lock: (1) si ya hay un simulacro vivo, se RETOMA; (2) el
+  // muro suave se re-verifica contra la base ya serializada; (3) sesión +
+  // reactivos se crean atómicamente.
+  const outcome = await withUserAdvisoryLock(userProfileId, async (tx): Promise<
+    { kind: 'session'; sessionId: string; resumed: boolean } | { kind: 'paywall' }
+  > => {
+    const open = await tx.examSession.findFirst({
+      where: { userProfileId, mode: 'FULL_SIMULATION', status: 'IN_PROGRESS' },
+      orderBy: { startedAt: 'desc' },
+      select: { id: true, startedAt: true, timeLimitSecs: true },
+    });
+    if (
+      open &&
+      !isSessionStale(open.startedAt, now) &&
+      !isTimeUp(open.startedAt, open.timeLimitSecs, now)
+    ) {
+      return { kind: 'session', sessionId: open.id, resumed: true };
+    }
+
+    if (!access.isPaid) {
+      const completed = await tx.examSession.count({
+        where: {
+          userProfileId,
+          mode: 'FULL_SIMULATION',
+          status: { in: FINISHED_STATUSES },
+        },
+      });
+      if (completed >= FREE_FULL_SIMULATION_LIMIT) return { kind: 'paywall' };
+    }
+
+    const created = await startSessionWithQuestions({
+      userProfileId,
+      examId: ctx.examId,
+      mode: 'FULL_SIMULATION',
+      timeLimitSecs: ctx.durationMins * 60,
+      questionIds,
+      client: tx,
+    });
+    return { kind: 'session', sessionId: created.id, resumed: false };
   });
 
-  await prisma.sessionAnswer.createMany({
-    data: questionIds.map((questionId, position) => ({
-      sessionId: session.id,
-      questionId,
-      selectedOption: null,
-      isCorrect: false,
-      timeSpentSecs: 0,
-      position,
-    })),
-  });
+  if (outcome.kind === 'paywall') {
+    return { ok: false, code: 'PAYWALL', trigger: 'FULL_SIMULATION_LIMIT' };
+  }
 
   const full = await prisma.examSession.findUniqueOrThrow({
-    where: { id: session.id },
+    where: { id: outcome.sessionId },
     include: simulatorSessionInclude,
   });
 
-  return { ok: true, payload: buildPayload(full, ctx, false, now) };
+  return { ok: true, payload: buildPayload(full, ctx, outcome.resumed, now) };
 }
 
 // ─────────────────────────────── Estado / reanudación ───────────────────────────────

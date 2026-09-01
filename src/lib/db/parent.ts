@@ -96,24 +96,30 @@ export async function redeemParentLinkCode(
   const existing = await prisma.parentLinkCode.findUnique({ where: { code } });
   if (!existing || !isLinkCodeRedeemable(existing, now)) return 'INVALID_CODE';
 
-  const result = await prisma.parentLinkCode.updateMany({
-    where: { code, usedAt: null, expiresAt: { gt: now } },
-    data: { usedAt: now },
-  });
-  if (result.count === 0) return 'INVALID_CODE';
+  // G60 — canje + creación del vínculo en UNA transacción. Antes eran dos
+  // escrituras sueltas: si `parentLink.upsert` fallaba tras marcar el código
+  // como usado, el código quedaba quemado sin vínculo creado y el tutor tenía
+  // que pedir otro sin saber por qué. Ahora, o pasan las dos o ninguna.
+  return prisma.$transaction(async (tx) => {
+    const claimed = await tx.parentLinkCode.updateMany({
+      where: { code, usedAt: null, expiresAt: { gt: now } },
+      data: { usedAt: now },
+    });
+    if (claimed.count === 0) return 'INVALID_CODE';
 
-  await prisma.parentLink.upsert({
-    where: {
-      parentProfileId_studentProfileId: {
-        parentProfileId,
-        studentProfileId: existing.studentProfileId,
+    await tx.parentLink.upsert({
+      where: {
+        parentProfileId_studentProfileId: {
+          parentProfileId,
+          studentProfileId: existing.studentProfileId,
+        },
       },
-    },
-    create: { parentProfileId, studentProfileId: existing.studentProfileId },
-    update: {},
-  });
+      create: { parentProfileId, studentProfileId: existing.studentProfileId },
+      update: {},
+    });
 
-  return 'OK';
+    return 'OK';
+  });
 }
 
 export interface LinkedStudent {
