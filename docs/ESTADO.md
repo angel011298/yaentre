@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-08-31 · Última fase ejecutada: G56 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G55 dejó en la cola: **Matemáticas, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, pool **COMPARTIDO** `sharedContentKey = IPN:MATEMATICAS` (FISMAT `questionWeight` 24 + MEDBIO 8), sus 12 temas. **35/35 coinciden con la clave del generador y 35/35 se auto-aprobaron en el PRIMER envío: 100 % de concordancia y 100 % de auto-aprobación, cero `problems`, cero discrepancias nuevas.** No hizo falta fe de erratas. Modelo real `claude-opus-5` (G55 anunciaba Fable 5; el campo `model` declara el que resolvió de verdad — corrección de G17, **undécimo ciclo** consecutivo plan ≠ real). **Aislamiento:** sesión distinta de la que compuso; único insumo el lote ciego generado con `content:blind-batch --all` (la cola tenía exactamente los 35, atajo de G54, evita abrir la sección `## G55` para copiar los `topicId`); nunca se abrieron el commit `59752ee`, `docs/content-batches/g55-*.json`, `Question.options` ni `## G55`. Controles: `grep -c` de `isCorrect`/`explanation` = **0/0**; opciones solo con `label`/`text`/`imageUrl`; 4/4 opciones y `ABCD` en los 35; clave en la misma posición tras barajar **8/35** (azar 8.75). **Candado G28:** `isCalcSubject("Matemáticas")`=true → `requiresCalculation` 35/35 y los 35 resueltos EJECUTANDO código (sympy), no razonando en texto; cada resultado contrastado contra las 4 opciones exigiendo **coincidencia única** (`assert len(hits)==1`); los 4 conceptuales llevan un predicado ejecutado que **elige el fragmento de texto a buscar** (`linsolve`→conjunto vacío; diferencias vs cocientes consecutivos). Parser LaTeX→sympy escrito con `Write` y **nunca por heredoc** (lección G50 §3) + prueba de humo sobre 12 ítems antes de la corrida. **La corrección que G54 dejó pedida, implementada:** el arnés emite el archivo de respuestas y **ninguna letra se escribe a mano** — cada ítem deriva su letra por dos rutas independientes que un `assert` obliga a coincidir, (a) la opción cuyo valor/predicado casa con lo computado y (b) `key_text`, el TEXTO COMPLETO de la opción nombrada por la determinación escrita, comparado por **igualdad exacta y no por substring** (obligatorio aquí: `"4"` ⊂ `"-4"`, `"6"` ⊂ `"36"`); **el assert no disparó ni una vez**, así que la fase prueba que cuesta tres líneas, no que fuera necesaria. 0/35 `reasoning` citan por letra; 35/35 nombran contenido; confianza mínima 0.98. **Diagnósticos:** señuelo de longitud tie-aware **0/35 única más larga** (azar 8.75), 2/35 única más corta, 14/35 empate (mecánico: 32 ítems de opción-valor corta); solo 3 ítems de opciones-oración, y en los 3 la clave no es ni la más larga ni la más corta. Diagnóstico STEM (G46 §7, rango del valor correcto entre las 4 ascendentes) sobre los **18 ítems 100 % numéricos**: **1º5/2º7/3º3/4º3, χ²=2.44 (gl 3), p≈0.49** — sin sesgo, y es confirmación **independiente** de lo que G55 midió al componer. **FUGA DECLARADA, canal NUEVO — la MEMORIA persistente, no el ESTADO:** la mitigación de lectura de G50/G52 (cortar el `head` antes de los agregados de la línea 3) **ya no basta**, porque la línea 3 de G55 se había copiado al archivo de memoria del proyecto, que entra al contexto **automáticamente al abrir la sesión**; esa memoria nombraba los 2 `EXPERT` por su contenido y **el valor exacto** de un ítem de Cálculo integral, así que la ceguera de ese reactivo estaba comprometida antes del primer comando. Se recalculó igual desde cero con coincidencia única, y la clave agregada que la memoria conservaba es inservible tras el rebarajado por `questionId` — pero sobre ese ítem esta sesión ya no era juez independiente. **Regla: la prohibición de G51 aplica con más fuerza a la memoria que al ESTADO — el ESTADO se puede leer con cuidado, la memoria no se puede *no* leer.** Cuarta reincidencia (G47→G48, G51→G52, G55→G56), primera por memoria. **Banco: 1 112 total (COUNT crudo) / 1 108 servibles / 1 retirado / 0 en cola ciega / 3 en la cola canónica de discrepancias** (las heredadas: 2 de UNAM A1 Matemáticas + 1 de UNAM A2 Química). Matemáticas IPN FISMAT: **105✓ / 0⧗ / 0✋ · 100 % auto-aprob.** (⚓26/79). Auto-aprobación global **99.7 % (1 109/1 112)**. Meta efectiva G26 = 1 222: **70 %, brecha 368 (~11 lotes)**, bajó 403→368, descuento **1:1** exacto como G55 predijo (el pool compartido sigue bajo su meta 133, así que ninguno de los 35 se desperdició — patrón G45/G53, opuesto a G51/G52). Meta nominal 1 500: **74 %**. **Sobre la tasa, sin adornos:** en 21+ rondas ciegas **nunca ha aparecido una clave equivocada**; la métrica solo ha discriminado defectos de armado (G46 enunciados, G52 opciones duplicadas) y de higiene del propio verificador (G54 letras); el valor de esta fase está en el candado de doble derivación y en la fuga por memoria, no en el 100 %. Cero cambios de código de producción; `pnpm typecheck` y `pnpm lint` en verde; **cero llamadas a la API de pago de Anthropic**. **SIGUIENTE = G57 = lote de 35**, materia por brecha recalculada en vivo al cierre: **IPN:QUIMICA (compartido FISMAT+MEDBIO), meta 89, 35 verificados, brecha 54 — la MAYOR**; siguen IPN·MEDBIO·Biología 52, IPN·FISMAT·Física 41, UNAM:INGLES 33, IPN·SOCADM·Historia de México 33, UNAM·A1·Matemáticas 30, IPN:MATEMATICAS 28 (era 63). **Ojo, caso INVERSO al de G55:** los 35 verificados de `IPN:QUIMICA` están del lado de **MEDBIO** y FISMAT Química tiene **0**, así que la regla de G26 §2 manda insertar contra los 9 temas de **MEDBIO** aunque FISMAT sea la celda de mayor peso — consultarlo en vivo antes de componer. Química **es `isCalcSubject`** → G58 recibirá `requiresCalculation: true` en los 35.)
+Última actualización: 2026-08-31 · Última fase ejecutada: G57 (**COMPLETADA — lote de 35 reactivos de **Química, IPN área Ciencias Médico-Biológicas (MEDBIO)**, pool **COMPARTIDO** `sharedContentKey = IPN:QUIMICA` (celda FISMAT `questionWeight` 10 + celda MEDBIO 16), insertados con `isVerified=false` en la cola de verificación ciega. Modelo real `claude-sonnet-5` (el Plan asigna el tier Sonnet a los lotes de contenido; el cierre de G56 anunciaba «Fable 5» — **duodécimo ciclo** consecutivo plan ≠ real, corrección de G17). **Materia elegida con datos reales (encargo idéntico a G53/G55):** brecha efectiva por pool con la metodología G26 (densidad `1500/270 = 5.5556` reactivos por punto de `questionWeight`; los pools compartidos toman la meta de su celda de mayor peso, `computeSharedGoal`), solo UNAM + IPN Superior, consulta en vivo a Supabase al cierre de G56. Ranking: **IPN:QUIMICA (FISMAT w10 + MEDBIO w16) meta 89, 35 verificados → brecha 54, la MAYOR**; siguen IPN·MEDBIO·Biología 52, IPN·FISMAT·Física 41, UNAM:INGLES 33, IPN·SOCADM·Historia de México 33, UNAM·A1·Matemáticas 30, IPN:MATEMATICAS 28 (era 63 antes de la verificación ciega de G56). **Caso INVERSO al de G55, confirmado en vivo:** los 35 verificados del pool están **enteros del lado de MEDBIO** y FISMAT Química tiene **0**, así que la regla de CLAUDE.md / G26 §2 («insértalo contra el `topicId` de la materia con MÁS contenido del grupo») mandó insertar contra los **9 temas de MEDBIO** (`subjectId cmrr1lskp00cphi3nkzq1sg6k`) aunque FISMAT sea la celda de mayor peso; `loadEquivalentSubjectIds` sirve el lote también a FISMAT. **Reparto — priorizar los de menor cobertura:** los 9 temas de MEDBIO Química en 4/4/4/4/5/4/4/3/3 verificados; el lote reparte **4/4/4/4/2/4/3/5/5** (mínimo 2 por tema, +5 a los dos temas en 3✓, +2 al de más cobertura) → los 9 quedan nivelados en 7-8✓. **5 SOURCED / 30 TEMARIO_ONLY:** `loadTopicChunks` devolvió `SourceChunk` en 1 de los 9 temas — Química orgánica, `uam_cbs.pdf` p. 54 (ítems de la UAM sobre oxidación = pérdida de electrones, hibridación `sp²`, deshidratación de dos alcoholes → éter); `grounding.ts` hace obligatoria la cita cuando el tema tiene fragmento, así que los 5 reactivos de ese tema son SOURCED y **transforman la tarea** del ítem-semilla (identificación conceptual → clasificación de grupos funcionales, ordenamiento y cálculo de estados de oxidación del carbono, contraste deshidratación intra/intermolecular, identificación de compuesto aromático). Procedencia UAM (otra institución, se anota — patrón G18/G45/G49/G53/G55). Los otros 8 temas → **TEMARIO_ONLY**. **Química es `isCalcSubject`** (`CALC_SUBJECT_KEYS` incluye `quimica`), así que G58 recibirá `requiresCalculation: true` en los 35 y el candado de G28 exige cálculo EJECUTADO en los **15 numéricos**; los 15 se recalcularon desde cero con **sympy** por ruta independiente (`linsolve` del balanceo, `solve` de números de oxidación, `√(K_a·C)`, conteo de orbitales de Hund enumerado) exigiendo (a) coincidencia con la clave, (b) **coincidencia única** contra las 4 opciones y (c) opciones numéricas ascendentes estrictas — **15/15 en verde**. **Formato:** 15 `PROBLEM_SOLVING` · 18 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION`. **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la objetivo de `_base.md`; los 2 EXPERT en Enlace químico y Ácidos y bases). **Clave agregada A9/B9/C9/D8** (confirmada por query sobre las 35 filas tras insertar; inservible como pista tras el rebarajado por `questionId` de G58, patrón G56); ≥3 letras distintas en cada tema de ≥3 reactivos, tope 2 por letra por tema; los 15 numéricos fijan la letra por el rango del valor (G46 §7), los 20 restantes a mano al objetivo global. Secuencia por orden de inserción sin racha cíclica A→B→C→D ≥3 ni racha de misma letra ≥3 (búsqueda con semilla fija 57057). **Diagnóstico STEM (G46 §7):** rango del valor correcto entre las 4 opciones ascendentes 1º4/2º5/3º3/4º3 sobre los 15 numéricos, **χ² ≈ 0.73 (gl 3)** — sin sesgo aprovechable; se reporta por transparencia (patrón G53/G55). `content:validate-batch --dir` **0 violaciones** (POSITION_SKEW/LETTER_CITATION/MALFORMED_OPTIONS/PASSAGE_LINK), antes de la DB y como paso obligatorio de `content:insert --lot-dir` sobre los 9 archivos. **0 citas por letra** en el stem, las 140 opciones, las 105 capas y los 35 `distractorRationale`. **Señuelo de longitud tie-aware (G34 §2):** sobre los 18 ítems con opciones-oración (los 15 de opción-valor y los 2 de completar fuera, criterio G45/G46/G53) → **16.7 % «única más larga» / 16.7 % «única más corta»**, ambos < 25 %, tras tres pasadas de homogeneización. **Absolutismo (G44 §6):** 0 marcadores en las 35 claves vs 6 en los 105 distractores; **0/35 con la clave como única sin marcador. Opción compuesta como única clave (G44 §7): 0/20.** **Opciones duplicadas (hueco G52):** `len(set(textos))==4` → **0/35**. **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem+clave)` y la diagonal `clave↔distractores` → **0 coincidencias no triviales** (se reescribió el arranque del stem de un ítem de Química orgánica que compartía la cita literal del fragmento con otro del mismo tema). **Acumulado real, DB en vivo antes → después:** banco (COUNT crudo) **1 112 → 1 147** · servibles **1 108** sin cambio (esta sesión no verifica sus propios reactivos) · cola ciega **0 → 35** · cola canónica de discrepancias **3** sin cambio (2 UNAM A1 Matemáticas + 1 UNAM A2 Química) · 1 retirado · **MEDBIO Química por tema 4/4/4/4/5/4/4/3/3 → 8/8/8/8/7/8/7/8/8** (pool `IPN:QUIMICA` 35✓/0⧗ → 35✓/35⧗) · `SOURCED` banco **290 → 295** · 105 `explanation_layers` · 5 `question_source_chunks`. `content:coverage`: **1 108 servibles · 35 pendientes · 1 retirado · 1 144 en banco**; meta efectiva G26 (1 222) **70 %, brecha 368** — **no se mueve con este lote**, pero **SÍ se moverá cuando G58 verifique**: el pool `IPN:QUIMICA` (meta 89, compartido, hoy 35) pasa a ~70, sigue por debajo de la meta y los 35 caen enteros en la brecha → bajará a **~333**. Meta nominal 1 500: **74 %**. Auditoría 5 % **vencida, 12 ciclos** (esta fase compone, no audita; exige tier ≠ `opus-5` y ≠ `sonnet-5`). `pnpm typecheck` y `pnpm lint` en verde; cero cambios de código de producción (el generador de Python y los 9 archivos del lote viven en el scratchpad y **no se committean**; el registro permanente es `docs/content-batches/g57-ipn-medbio-quimica.json`); **cero llamadas a la API de pago de Anthropic**. **FUGA DEL CANAL CIEGO — corregida en origen esta vez:** ni la línea 3, ni la memoria de proyecto, ni la §4 de `## G57` nombran **un solo valor, resultado, clave puntual ni distractor** de un ítem de la cola ciega — solo tema, fuente, formato, dificultad, reparto y las *categorías* de cálculo (regla que dejó G56 tras la cuarta reincidencia G47→G48 / G51→G52 / G55→G56). **SIGUIENTE = G58 = verificación ciega de este lote, modelo Fable 5.** LOTE DE CÁLCULO: `isCalcSubject("Química")` es `true` → la sesión ciega recibe `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado de G28) en los **15 numéricos**; **0/35 con pasaje**. Aplicar G36 §2 / G38 §3 (recalcular el señuelo de longitud tie-aware sobre las respuestas ciegas) y G42 §2 / G54 / G56 (derivar `chosenOption` del TEXTO de la opción por doble ruta con `assert` de igualdad exacta — nunca teclear el array de letras). Reactivos más apretados (se señalan por tag y tema, no cómo resolverlos, por G30 §1): los **2 EXPERT** (EN4, tema Enlace químico — comparar energías de red; AB2, tema Ácidos y bases — `[H⁺]` de un ácido débil con la aproximación de la raíz) y **QO2** (tema Química orgánica — ordenar cuatro estados de oxidación del carbono).)
+
+<details><summary>Historial: G56 (2026-08-31)</summary>
+
+Última fase ejecutada: G56 (**COMPLETADA — verificación ciega (G2) de los 35 reactivos que G55 dejó en la cola: **Matemáticas, IPN área Ingeniería y Ciencias Físico-Matemáticas (FISMAT)**, pool **COMPARTIDO** `sharedContentKey = IPN:MATEMATICAS` (FISMAT `questionWeight` 24 + MEDBIO 8), sus 12 temas. **35/35 coinciden con la clave del generador y 35/35 se auto-aprobaron en el PRIMER envío: 100 % de concordancia y 100 % de auto-aprobación, cero `problems`, cero discrepancias nuevas.** No hizo falta fe de erratas. Modelo real `claude-opus-5` (G55 anunciaba Fable 5; el campo `model` declara el que resolvió de verdad — corrección de G17, **undécimo ciclo** consecutivo plan ≠ real). **Aislamiento:** sesión distinta de la que compuso; único insumo el lote ciego generado con `content:blind-batch --all` (la cola tenía exactamente los 35, atajo de G54, evita abrir la sección `## G55` para copiar los `topicId`); nunca se abrieron el commit `59752ee`, `docs/content-batches/g55-*.json`, `Question.options` ni `## G55`. Controles: `grep -c` de `isCorrect`/`explanation` = **0/0**; opciones solo con `label`/`text`/`imageUrl`; 4/4 opciones y `ABCD` en los 35; clave en la misma posición tras barajar **8/35** (azar 8.75). **Candado G28:** `isCalcSubject("Matemáticas")`=true → `requiresCalculation` 35/35 y los 35 resueltos EJECUTANDO código (sympy), no razonando en texto; cada resultado contrastado contra las 4 opciones exigiendo **coincidencia única** (`assert len(hits)==1`); los 4 conceptuales llevan un predicado ejecutado que **elige el fragmento de texto a buscar** (`linsolve`→conjunto vacío; diferencias vs cocientes consecutivos). Parser LaTeX→sympy escrito con `Write` y **nunca por heredoc** (lección G50 §3) + prueba de humo sobre 12 ítems antes de la corrida. **La corrección que G54 dejó pedida, implementada:** el arnés emite el archivo de respuestas y **ninguna letra se escribe a mano** — cada ítem deriva su letra por dos rutas independientes que un `assert` obliga a coincidir, (a) la opción cuyo valor/predicado casa con lo computado y (b) `key_text`, el TEXTO COMPLETO de la opción nombrada por la determinación escrita, comparado por **igualdad exacta y no por substring** (obligatorio aquí: `"4"` ⊂ `"-4"`, `"6"` ⊂ `"36"`); **el assert no disparó ni una vez**, así que la fase prueba que cuesta tres líneas, no que fuera necesaria. 0/35 `reasoning` citan por letra; 35/35 nombran contenido; confianza mínima 0.98. **Diagnósticos:** señuelo de longitud tie-aware **0/35 única más larga** (azar 8.75), 2/35 única más corta, 14/35 empate (mecánico: 32 ítems de opción-valor corta); solo 3 ítems de opciones-oración, y en los 3 la clave no es ni la más larga ni la más corta. Diagnóstico STEM (G46 §7, rango del valor correcto entre las 4 ascendentes) sobre los **18 ítems 100 % numéricos**: **1º5/2º7/3º3/4º3, χ²=2.44 (gl 3), p≈0.49** — sin sesgo, y es confirmación **independiente** de lo que G55 midió al componer. **FUGA DECLARADA, canal NUEVO — la MEMORIA persistente, no el ESTADO:** la mitigación de lectura de G50/G52 (cortar el `head` antes de los agregados de la línea 3) **ya no basta**, porque la línea 3 de G55 se había copiado al archivo de memoria del proyecto, que entra al contexto **automáticamente al abrir la sesión**; esa memoria nombraba los 2 `EXPERT` por su contenido y **el valor exacto** de un ítem de Cálculo integral, así que la ceguera de ese reactivo estaba comprometida antes del primer comando. Se recalculó igual desde cero con coincidencia única, y la clave agregada que la memoria conservaba es inservible tras el rebarajado por `questionId` — pero sobre ese ítem esta sesión ya no era juez independiente. **Regla: la prohibición de G51 aplica con más fuerza a la memoria que al ESTADO — el ESTADO se puede leer con cuidado, la memoria no se puede *no* leer.** Cuarta reincidencia (G47→G48, G51→G52, G55→G56), primera por memoria. **Banco: 1 112 total (COUNT crudo) / 1 108 servibles / 1 retirado / 0 en cola ciega / 3 en la cola canónica de discrepancias** (las heredadas: 2 de UNAM A1 Matemáticas + 1 de UNAM A2 Química). Matemáticas IPN FISMAT: **105✓ / 0⧗ / 0✋ · 100 % auto-aprob.** (⚓26/79). Auto-aprobación global **99.7 % (1 109/1 112)**. Meta efectiva G26 = 1 222: **70 %, brecha 368 (~11 lotes)**, bajó 403→368, descuento **1:1** exacto como G55 predijo (el pool compartido sigue bajo su meta 133, así que ninguno de los 35 se desperdició — patrón G45/G53, opuesto a G51/G52). Meta nominal 1 500: **74 %**. **Sobre la tasa, sin adornos:** en 21+ rondas ciegas **nunca ha aparecido una clave equivocada**; la métrica solo ha discriminado defectos de armado (G46 enunciados, G52 opciones duplicadas) y de higiene del propio verificador (G54 letras); el valor de esta fase está en el candado de doble derivación y en la fuga por memoria, no en el 100 %. Cero cambios de código de producción; `pnpm typecheck` y `pnpm lint` en verde; **cero llamadas a la API de pago de Anthropic**. **SIGUIENTE = G57 = lote de 35**, materia por brecha recalculada en vivo al cierre: **IPN:QUIMICA (compartido FISMAT+MEDBIO), meta 89, 35 verificados, brecha 54 — la MAYOR**; siguen IPN·MEDBIO·Biología 52, IPN·FISMAT·Física 41, UNAM:INGLES 33, IPN·SOCADM·Historia de México 33, UNAM·A1·Matemáticas 30, IPN:MATEMATICAS 28 (era 63). **Ojo, caso INVERSO al de G55:** los 35 verificados de `IPN:QUIMICA` están del lado de **MEDBIO** y FISMAT Química tiene **0**, así que la regla de G26 §2 manda insertar contra los 9 temas de **MEDBIO** aunque FISMAT sea la celda de mayor peso — consultarlo en vivo antes de componer. Química **es `isCalcSubject`** → G58 recibirá `requiresCalculation: true` en los 35.)
+
+</details>
 
 <details><summary>Historial: G55 (2026-08-31)</summary>
 
@@ -2255,6 +2261,249 @@ fase — solo contenido en la DB y documentación).
    siguiente lote de material nuevo (a diferencia de G13, que reforzó una
    materia ya cubierta por seguir la regla de prioridad tal como se
    especificó).
+
+## G57 — Lote de reactivos: Química, IPN Ciencias Médico-Biológicas (pool IPN:QUIMICA) (2026-08-31)
+
+**Modelo:** `claude-sonnet-5` (tier Sonnet del Plan de Implementación para lotes de
+contenido; el cierre de G56 anunciaba «Fable 5» — **duodécimo ciclo** consecutivo
+plan ≠ real, corrección de G17). **COMPLETADA. 35 reactivos insertados con
+`isVerified=false`** en la cola de verificación ciega. Registro permanente:
+`docs/content-batches/g57-ipn-medbio-quimica.json`.
+
+### 1) El encargo y la decisión de materia (con números reales)
+
+Igual que G53/G55: 35 reactivos para **la materia de mayor brecha efectiva pendiente
+entre las instituciones activas del launch** (UNAM Superior + IPN Superior), con la
+metodología de G26:
+
+- densidad = `GOAL_VERIFIED / Σ questionWeight` = `1 500 / 270` = **5.5556 reactivos por
+  punto de peso**;
+- meta de un pool compartido = la meta de su **celda de mayor peso** (`computeSharedGoal`).
+
+Brecha (`meta − verificados`) por pool, solo UNAM + IPN Superior, consulta en vivo a
+Supabase (2026-08-31, tras la verificación ciega de G56):
+
+| Pool | Peso | Meta | Verificados | **Brecha** |
+|---|---|---:|---:|---:|
+| **IPN:QUIMICA** (FISMAT w10 + MEDBIO w16) | — | **89** | 35 | **54** |
+| IPN · MEDBIO · Biología (no compartida) | 22 | 122 | 70 | 52 |
+| IPN · FISMAT · Física (no compartida) | 20 | 111 | 70 | 41 |
+| UNAM:INGLES (A1 w6 + A2 w3 + A3 w1) | — | 33 | 0 | 33 |
+| IPN · SOCADM · Historia de México | 6 | 33 | 0 | 33 |
+| UNAM · A1 · Matemáticas | 26 | 144 | 114 | 30 |
+| IPN:MATEMATICAS (FISMAT w24 + MEDBIO w8) | — | 133 | 105 | 28 *(era 63 antes de G56)* |
+
+**Elegida: IPN:QUIMICA** (`sharedContentKey` **IPN:QUIMICA**; celda FISMAT
+`subjectId cmrr1lblb00axhi3n1gfjbr7g` w10, celda MEDBIO
+`subjectId cmrr1lskp00cphi3nkzq1sg6k` w16). Es la mayor brecha (54). **Pool
+COMPARTIDO y CASO INVERSO al de G55:** hoy los 35 verificados del pool están
+**enteros del lado de MEDBIO** y FISMAT Química tiene **0**, así que la regla
+(CLAUDE.md / G26 §2) — «insértalo contra el `topicId` de la materia con MÁS contenido
+del grupo» — manda insertar contra los **9 temas de MEDBIO**, no contra los de FISMAT,
+aunque FISMAT sea la celda de mayor peso. Se consultó en vivo (`prisma.question.count`
+por `subjectId`) antes de componer, tal como pidió el cierre de G56.
+`loadEquivalentSubjectIds` sirve el lote también a FISMAT. El pool combinado pasa de 35
+a 70 verificados, **aún por debajo de la meta 89**, así que el lote **descuenta brecha
+efectiva ~1:1** cuando G58 lo verifique (caso favorable, patrón G45/G53/G55, opuesto a
+G51/G52 donde el pool ya rebasaba la meta). Lote previo de la materia: **G20** (→ G21).
+
+### 2) Reparto — priorizar los temas de menor cobertura
+
+Consulta por tema antes del lote: los 9 temas de MEDBIO Química en
+**4/4/4/4/5/4/4/3/3** verificados (total 35). Reparto del lote (mínimo 2 por tema; +5 a
+los dos temas en 3✓; +2 al tema de mayor cobertura; el resto +3/+4):
+
+| Tema | `topicId` | Antes → después | Nuevos |
+|---|---|---:|---:|
+| Estructura atómica | `cmrr1lspn00crhi3nu3ux5vd8` | 4 → 8 | 4 |
+| Tabla periódica | `cmrr1ltac00cthi3ncygnnwbp` | 4 → 8 | 4 |
+| Enlace químico | `cmrr1ltx200cvhi3nj16vwveb` | 4 → 8 | 4 |
+| Reacciones químicas | `cmrr1lupg00cxhi3nqgpxg61m` | 4 → 8 | 4 |
+| Estequiometría | `cmrr1lv9n00czhi3nlvj2zjey` | 5 → 7 | 2 |
+| Equilibrio químico | `cmrr1lvr500d1hi3n734891xv` | 4 → 8 | 4 |
+| Ácidos y bases | `cmrr1lw7j00d3hi3nljxqh393` | 4 → 7 | 3 |
+| Química orgánica | `cmrr1lwqj00d5hi3n87iqt9zv` | 3 → 8 | 5 |
+| Bioquímica básica | `cmrr1lx6400d7hi3nrhl2yc7y` | 3 → 8 | 5 |
+
+Nota: los temas de MEDBIO Química **no coinciden uno a uno** con los de FISMAT
+Química (MEDBIO tiene «Química orgánica» y «Bioquímica básica»; FISMAT, «Electroquímica»
+y «Química orgánica básica»). Da igual: `sharedContentKey` reúne el pool a nivel de
+materia, no de tema (G26).
+
+### 3) Anclaje — 5 SOURCED / 30 TEMARIO_ONLY
+
+`loadTopicChunks` devolvió `SourceChunk` en **1 de los 9 temas**: **Química orgánica**,
+un fragmento de `uam_cbs.pdf` p. 54 (tres ítems del examen de la UAM: oxidación =
+pérdida de electrones, un compuesto con todos los carbonos `sp²`, y la deshidratación
+de dos alcoholes para obtener un éter). `grounding.ts` hace obligatoria la cita cuando
+el tema tiene fragmento, así que los **5 reactivos de Química orgánica son todos
+SOURCED** y **transforman la tarea cognitiva** del ítem-semilla (identificación
+conceptual → clasificación de grupos funcionales, ordenamiento de estados de oxidación
+del carbono, cálculo de número de oxidación, contraste deshidratación
+intra-/intermolecular, identificación del compuesto aromático). Procedencia UAM — otra
+institución que la del examen destino; se anota (patrón G18/G33/G45/G49/G53/G55). Los
+otros 8 temas no tienen fragmento → **TEMARIO_ONLY**, redactados desde el temario
+oficial de Química de MEDBIO.
+
+### 4) Verificación de cálculo (criterio del encargo)
+
+**Química es `isCalcSubject`** (`CALC_SUBJECT_KEYS` incluye `quimica`,
+`scripts/lib/blind-verification.ts`), así que el candado de G28 aplicará a G58. **15 de
+los 35 son numéricos** y se recalcularon desde cero con **sympy** por una ruta
+**independiente** de la del enunciado, exigiendo para cada uno: (a) el valor coincide
+con la opción marcada correcta, (b) **coincidencia única** contra las 4 opciones
+(tolerancia relativa `1e-3`; `5e-2` en el único ítem con opción redondeada a 2 cifras),
+(c) opciones numéricas en orden ascendente estricto — **15/15 en verde por ambas
+rutas**.
+
+Las **categorías** de cálculo verificadas (sin citar valores, para no comprometer la
+ceguera de G58 — regla de G51/G56): conteo de electrones desapareados por la regla de
+Hund; electrones de un ion a partir de `Z` y carga; energía de ionización desde un
+estado excitado del hidrógeno (`E_n = −13.6/n²`); número atómico a partir de grupo y
+periodo; diferencia de electronegatividad de un enlace; suma de coeficientes de un
+balanceo (`linsolve`); número de oxidación en un ion poliatómico y en una molécula
+orgánica (`solve`); estequiometría masa-masa; conteo de moléculas vía `N_A`; `K_c` a
+partir de moles y volumen; porcentaje de disociación; pH de una base fuerte; `[H⁺]`
+de un ácido débil por la aproximación `√(K_a·C)`; aminoácidos codificados por una
+longitud de ARNm. Cada distractor deriva de un **error de procedimiento nombrable**
+(ignorar la carga de un ion, no dividir entre el número de átomos equivalentes, no
+elevar al cuadrado en la expresión de `K_c`, confundir pH con pOH, tomar la fracción
+que queda en vez de la que reaccionó…), explicitado en el `distractorRationale` y en la
+capa 2.
+
+### 5) Formato, dificultad y posición
+
+- **Formato:** 15 `PROBLEM_SOLVING` · 18 `MULTIPLE_CHOICE` · 2 `SENTENCE_COMPLETION`.
+- **Dificultad:** BASIC 7 · INTERMEDIATE 17 · ADVANCED 9 · EXPERT 2 (7/17/9/2, la
+  distribución objetivo de `_base.md`). Los 2 `EXPERT` están en Enlace químico
+  (comparación de energías de red por la ley de Coulomb) y en Ácidos y bases (`[H⁺]`
+  de un ácido débil con la aproximación de la raíz).
+- **Clave agregada A = 9 · B = 9 · C = 9 · D = 8** (25.7 / 25.7 / 25.7 / 22.9 %),
+  **confirmada por query sobre las `options` de las 35 filas tras insertar**. Deja de
+  ser pista tras el rebarajado por `questionId` de `blind-verification.ts` (patrón
+  G56). Los 15 numéricos fijan la letra por el rango del valor correcto entre las 4
+  opciones ascendentes (G46 §7); los 20 restantes se asignaron a mano al objetivo
+  global, con **≥ 3 letras distintas en cada tema de ≥ 3 reactivos** y tope 2 por letra
+  por tema.
+- **Secuencia de la clave por orden de inserción:** sin **rachas cíclicas A→B→C→D de
+  longitud ≥ 3** y con racha de misma letra máx **2** (candado G16/G38); el orden de
+  los temas y de los reactivos dentro de cada tema se eligió por búsqueda aleatoria con
+  semilla fija **57057**.
+- **Diagnóstico STEM (G46 §7 / G53 / G55):** rango del valor correcto entre las 4
+  opciones ascendentes = **1º 4 / 2º 5 / 3º 3 / 4º 3** sobre los 15 numéricos
+  (**χ² ≈ 0.73, gl 3** — sin sesgo aprovechable; «descarta los extremos» no acierta por
+  encima del azar). Se reporta por transparencia.
+
+### 6) Chequeos de forma (G3c / G34 §2 / G44 §6-§7 / G38 §6 / G52)
+
+- `content:validate-batch --dir scripts/g57-lote`: **0 violaciones**
+  (POSITION_SKEW / LETTER_CITATION / MALFORMED_OPTIONS / PASSAGE_LINK), antes de la DB
+  y de nuevo como paso obligatorio de `content:insert --lot-dir` sobre los 9 archivos.
+- **0 citas por letra** y **0 referencias posicionales** en el `stem`, las 140 opciones,
+  las 105 capas y los 35 `distractorRationale` (regex de `lot-validation.ts` corrida en
+  el generador sobre las cuatro superficies).
+- **Señuelo de longitud tie-aware (G34 §2):** medido sobre los **18 ítems con
+  opciones-oración** (los 15 de opción-valor y los 2 de completar quedan fuera, criterio
+  G45/G46/G53) → **16.7 % «única más larga» / 16.7 % «única más corta»** (3/18 y 3/18),
+  ambos < 25 %, tras tres pasadas de homogeneización (recortar claves a la aserción,
+  alargar distractores con cláusulas paralelas, meter varianza deliberada).
+- **Lenguaje absolutista (G44 §6):** 0 marcadores en las 35 claves vs 6 en los 105
+  distractores; **0/35** con la clave como única sin marcador. **Opción compuesta como
+  única clave (G44 §7): 0/20** conceptuales.
+- **Opciones textualmente duplicadas (hueco de G52):** auto-chequeo
+  `len(set(textos)) == 4` en el generador → **0/35**.
+- **Fuga entre reactivos (G38 §6 / G42 §8):** 4-gramas sobre `(stem + clave)` y sobre
+  la diagonal `(clave ↔ distractores de todo el lote)` → **0 coincidencias no
+  triviales**; se reescribió el arranque del `stem` de un ítem de Química orgánica que
+  compartía la cita literal del fragmento fuente con otro del mismo tema.
+- **KaTeX:** `$` balanceados en los 35 stems y las 140 opciones; sin ordinal `º` crudo;
+  sin `°` dentro de `\text{}` (lecciones G55).
+
+### 7) Inserción real — verificada en la DB
+
+| Métrica | Antes de G57 | Después de G57 |
+|---|---:|---:|
+| Banco total (COUNT crudo) | 1 112 | **1 147** |
+| Servibles (`isVerified=true`) | 1 108 | 1 108 |
+| Retirados a propósito | 1 | 1 |
+| Cola ciega (pendientes de resolución) | 0 | **35** |
+| Cola canónica de discrepancias (`manualReview=null`) | 3 | 3 |
+| `explanation_layers` del lote | — | **105** (3 × 35) |
+| `question_source_chunks` del lote | — | **5** (Química orgánica) |
+| `SOURCED` en el banco | 290 | 295 |
+| MEDBIO Química · pool `IPN:QUIMICA` | 35✓ · 0⧗ | **35✓ / 35⧗** (banco de la celda 35 → 70) |
+
+Chequeos post-inserción (query directa sobre la cohorte de 35 ids `cmthxe…`–`cmthxg…`):
+los 35 con exactamente 4 opciones y 1 correcta, 105 `explanation_layers`, clave
+A9/B9/C9/D8, dificultad 7/17/9/2, formato 15/18/2, reparto por tema 4/4/4/4/2/4/3/5/5,
+`groundingStatus = SOURCED` en 5 (Química orgánica) y `TEMARIO_ONLY` en 30,
+`verification = null` e `isVerified = false` en los 35 — separable por `topicId` o por
+timestamp para G58.
+
+`content:coverage` en vivo: **1 108 servibles · 35 pendientes · 1 retirado · 1 144 en
+banco**; meta efectiva G26 (1 222) **70 %**, brecha **368 (~11 lotes)** — **no se mueve
+con este lote**, pero **SÍ se moverá cuando G58 verifique**: el pool `IPN:QUIMICA`
+(meta 89, compartido, hoy 35) pasa a ~70, sigue por debajo de la meta y los 35 caen
+enteros en la brecha efectiva → bajará a **~333**. Meta nominal de 1 500: **74 %**.
+
+### 8) Limpieza y canal ciego
+
+El lote se compuso con un generador de Python desechable en el scratchpad
+(`g57/gen.py`: los 35 reactivos con sus 3 capas, la verificación de los 15 cálculos con
+sympy por ruta independiente, la asignación de letra, la búsqueda del orden de
+inserción y los auto-chequeos de distribución / racha cíclica / señuelo de longitud
+tie-aware / citas por letra / absolutismo / opción compuesta / opciones duplicadas /
+fuga de 4-gramas / KaTeX). El generador y los 9 archivos del lote **no se committean**;
+los scripts temporales de consulta (`tmp-g57-gap.ts`, `tmp-g57-chunks.ts`,
+`tmp-g57-exam.ts`, `tmp-g57-snapshot.ts`, `tmp-g57-verify.ts`) se borraron al cerrar.
+El registro permanente es `docs/content-batches/g57-ipn-medbio-quimica.json`.
+`pnpm typecheck` y `pnpm lint` en verde (cero cambios de código de producción). Cero
+llamadas a la API de pago.
+
+**La fuga del canal ciego se corrige en la fase que COMPONE (regla de G56 tras la
+cuarta reincidencia).** Ni la línea 3 del ESTADO, ni la entrada de memoria del
+proyecto, ni la §4 de arriba nombran **un solo valor, resultado, clave puntual o
+distractor** de un ítem que siga en la cola ciega — solo tema, fuente, formato,
+dificultad, reparto y las *categorías* de cálculo. La clave agregada A9/B9/C9/D8 que sí
+se registra queda inservible como pista tras el rebarajado por `questionId` de G58.
+
+### Siguiente (G57)
+
+1. **Verificación ciega del lote de G57** (segunda mitad del ciclo de G2), **modelo
+   Fable 5**: `pnpm content:blind-batch --topic <cada uno de los 9 topicId>` (o `--all`
+   si la cola tiene exactamente este lote, atajo de G54) → `content:resolve`. **LOTE DE
+   CÁLCULO:** `isCalcSubject("Química")` es `true`, así que la sesión ciega recibe
+   `requiresCalculation:true` y **debe EJECUTAR cada cálculo con código real** (candado
+   de G28) en los **15 numéricos**. **0/35 con pasaje.** Aplicar G36 §2 / G38 §3
+   (recalcular el señuelo de longitud tie-aware sobre las respuestas ciegas y
+   compararlo con §6). **Aplicar G42 §2 / G54 / G56 sin falta:** derivar `chosenOption`
+   de un fragmento del TEXTO de la opción elegida por doble ruta con `assert` de match
+   único — **nunca escribir el array de letras a mano** (fallo de G54, eliminado en G56
+   con la doble derivación). **Reactivos más apretados** (se señalan por tag y tema, no
+   cómo resolverlos, por G30 §1): los **2 `EXPERT`** (EN4, Enlace químico — comparar
+   energías de red; AB2, Ácidos y bases — `[H⁺]` de un ácido débil con la aproximación
+   de la raíz) y **QO2** (Química orgánica — ordenar cuatro estados de oxidación del
+   carbono, con las opciones como secuencias completas).
+2. **Huecos que siguen abiertos** tras G57 (siguiente en brecha efectiva, tras la
+   verificación de G58): **IPN · MEDBIO · Biología** (brecha 52, no compartida);
+   **IPN · FISMAT · Física** (41); **UNAM:INGLES** (33, 0 verificados, cubre A1/A2/A3);
+   **IPN · SOCADM · Historia de México** (33) e IPN SOCADM completo; **UNAM A1
+   Matemáticas** (114/144); **UNAM A4 Artes** (0, con `SourceChunk` en 3 temas).
+3. **Auditoría 5 %: vencida, 12 ciclos.** Exige sesión ciega con tier **≠ opus-5 y
+   ≠ sonnet-5** (el banco reciente lo aprobaron esos dos).
+4. **Deuda de validadores, cuatro entradas abiertas:** `DUPLICATE_OPTIONS` en
+   `lot-validation.ts` (G52/G53), la diagonal clave↔distractor de G42 §8,
+   `REASONING_LETTER_MISMATCH` en `content-resolve-verification.ts` (G54 §3, hoy solo
+   en el arnés desechable), y el falso positivo de `LETTER_CITATION` sobre
+   `$P(A\cap B)$` (G55). Propuesta de G53/G56 de añadir `NUMERIC_RANK` como reemplazo
+   de §6-§7 en STEM, sin cerrar.
+5. **Alcance del 21-nov aún sin resolver** (G24 §7 / G26 §8.4).
+6. **Heredados sin tocar:** rotación A→B→C→D de ~140 reactivos viejos
+   (G3a/G3d/G13/G15), las 8 `CHART_TABLE` reclasificadas en G39, el rebanado de
+   `SourceChunk` por página, los 3 reactivos de G37 que son paráfrasis cercanas de su
+   guía fuente, y el follow-up de G26 §8.3 (ampliar el temario del seed de MEDBIO
+   Matemáticas, hoy 6 temas).
+
 
 ## G56 — Verificación ciega: Matemáticas, IPN FISMAT (lote de G55) (2026-08-31)
 
