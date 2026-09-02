@@ -51,7 +51,7 @@ export function SimulatorPreflight({
   const cameraGranted = camera === 'granted' ? true : camera === 'denied' ? false : null;
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-6 px-4 py-10">
+    <main className="yaentre-safe-viewport mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-6 px-4">
       {isFreeFirstTime && (
         <div className="flex items-start gap-3 rounded-lg border border-border-subtle bg-surface p-4">
           <Tino state={simulatorFreeWelcome().state} size={52} />

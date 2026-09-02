@@ -57,6 +57,14 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
     title: "YaEntre",
   },
+  // Next 16 emite `mobile-web-app-capable` (estándar nuevo) desde
+  // `appleWebApp.capable`, pero iOS < 17.4 y varios WebViews integrados
+  // (el navegador in-app de Facebook/Instagram donde muchos padres abren el
+  // panel) siguen leyendo solo la meta legacy con prefijo `apple-`. Se emite
+  // a mano para cubrir ambos.
+  other: {
+    "apple-mobile-web-app-capable": "yes",
+  },
 };
 
 // Accesibilidad (UIUX Spec §12): `maximumScale` generoso (5x), NUNCA

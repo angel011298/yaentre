@@ -1,12 +1,19 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLayoutEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 
 const CONSENT_STORAGE_KEY = 'yaentre-cookies-consent';
 
+/** Rutas dentro del grupo `(app)`: en móvil tienen la BottomNav fija abajo,
+ *  así que el banner debe elevarse por encima de ella en vez de taparla.
+ *  (En desktop mandan el Sidebar y `.yaentre-cookie-banner` vuelve a `bottom:0`.) */
+const APP_ROUTE_RE = /^\/(app|practicar|diagnostico|paywall|checkout)(\/|$)/;
+
 export function CookiesConsentBanner() {
+  const pathname = usePathname();
   // G62: se RENDERIZA en el HTML inicial (arranca `undefined`, no `return
   // null`) — así es contenido temprano para LCP/Speed Index en vez de un
   // bloque que aparece tras hidratar (~3,7 s en móvil lento) y se volvía el
@@ -53,7 +60,8 @@ export function CookiesConsentBanner() {
   return (
     <div
       data-cookie-banner
-      className="fixed bottom-0 left-0 right-0 z-50 bg-surface shadow-lg border-t border-border-subtle"
+      data-over-nav={pathname && APP_ROUTE_RE.test(pathname) ? 'true' : undefined}
+      className="yaentre-cookie-banner fixed bottom-0 left-0 right-0 z-50 bg-surface shadow-lg border-t border-border-subtle"
     >
       <div className="mx-auto max-w-4xl px-4 py-3 sm:px-6 sm:py-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

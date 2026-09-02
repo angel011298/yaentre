@@ -22,7 +22,10 @@ export function ParentShell({
 }) {
   return (
     <div data-theme="light" className="min-h-screen bg-base text-text-primary">
-      <header className="border-b border-border-subtle bg-surface">
+      {/* G64: `.yaentre-safe-top` mete el fondo del header bajo la muesca del
+          iPhone para que el título y "Cerrar sesión" no queden tapados en el
+          navegador integrado de redes sociales (donde muchos padres lo abren). */}
+      <header className="yaentre-safe-top border-b border-border-subtle bg-surface">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 py-3">
           <Link href="/tutor" className="font-display text-lg font-bold text-brand">
             YaEntre · Panel del tutor
@@ -40,7 +43,7 @@ export function ParentShell({
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-3xl px-4 py-8">{children}</main>
+      <main className="yaentre-safe-pb-lg mx-auto max-w-3xl px-4 py-8">{children}</main>
     </div>
   );
 }

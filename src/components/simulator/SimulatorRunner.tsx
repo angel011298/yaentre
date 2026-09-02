@@ -282,7 +282,10 @@ export function SimulatorRunner({
         </div>
       )}
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8">
+      {/* G64: `.yaentre-safe-pb-lg` mantiene el botón "Siguiente / Terminar"
+          fuera del indicador de inicio del iPhone (el examen corre en pantalla
+          completa; el header ya lleva `.yaentre-safe-top`). */}
+      <main className="yaentre-safe-pb-lg mx-auto w-full max-w-3xl flex-1 px-4 py-8">
         {current && (
           <div
             ref={questionRegionRef}

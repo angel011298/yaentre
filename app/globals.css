@@ -232,3 +232,60 @@ body {
 .yaentre-safe-top {
   padding-top: env(safe-area-inset-top);
 }
+
+/* ─── Zonas seguras — pantallas SIN chrome de la app (G64) ─────────────────
+   El simulador, el onboarding, el shell de auth y el panel del tutor no
+   tienen TopBar/BottomNav que absorba la muesca ni el indicador de inicio:
+   su contenedor de contenido lo hace. `max(base, env())` conserva un respiro
+   mínimo en pantallas normales (env()=0) y crece hasta la muesca en un
+   iPhone reciente. Mismo motivo que arriba para NO usar la sintaxis de valor
+   arbitrario de Tailwind con env(). */
+.yaentre-safe-viewport {
+  padding-top: max(2.5rem, env(safe-area-inset-top));
+  padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+}
+/* Solo el borde inferior (cuando la parte superior ya la cubre un header
+   con `.yaentre-safe-top`, p. ej. el simulador en curso). */
+.yaentre-safe-pb-lg {
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+
+/* Última franja visible antes de la BottomNav fija (AppFooter): despeja el
+   alto de la nav (~64px) más el indicador de inicio. En desktop la nav no
+   existe (`lg:hidden`), así que vuelve a un padding normal. */
+.yaentre-bottomnav-clearance {
+  padding-bottom: calc(1.5rem + 4rem + env(safe-area-inset-bottom));
+}
+@media (min-width: 1024px) {
+  .yaentre-bottomnav-clearance {
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Elementos flotantes anclados sobre la BottomNav en móvil (aviso de
+   instalación PWA, banner de cookies en rutas de la app). */
+.yaentre-above-bottomnav {
+  bottom: calc(4rem + env(safe-area-inset-bottom));
+}
+@media (min-width: 1024px) {
+  .yaentre-above-bottomnav {
+    bottom: 1rem;
+  }
+}
+
+/* Banner de cookies (sheet inferior global). Por defecto se ancla al borde
+   absorbiendo el safe-area del indicador de inicio; en las rutas de la app
+   —donde en móvil existe la BottomNav— se eleva por encima de ella. */
+.yaentre-cookie-banner {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.yaentre-cookie-banner[data-over-nav='true'] {
+  bottom: calc(4rem + env(safe-area-inset-bottom));
+  padding-bottom: 0;
+}
+@media (min-width: 1024px) {
+  .yaentre-cookie-banner[data-over-nav='true'] {
+    bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

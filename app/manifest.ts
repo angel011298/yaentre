@@ -11,6 +11,11 @@ import { BG_BASE_DARK_HEX, BRAND_PRIMARY_HEX } from '@/lib/brand/colors';
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    // `id` fija la identidad de la app instalada independientemente de que
+    // `start_url` cambie más adelante (Chrome/Android usa `id` para saber si
+    // "ya está instalada"). Sin él, `id` = `start_url` y mover el destino de
+    // arranque crearía un duplicado en la pantalla de inicio.
+    id: '/',
     name: 'YaEntre',
     short_name: 'YaEntre',
     description: 'Tu entrenador de admisión con IA — UNAM, IPN, UAM y CENEVAL.',

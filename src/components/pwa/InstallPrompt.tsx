@@ -34,12 +34,23 @@ export function InstallPrompt() {
     const dismissedAt = dismissedRaw ? Number(dismissedRaw) : null;
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
 
+    // G64: no competir con el banner de cookies por la franja inferior. Si el
+    // visitante aún no decidió sobre cookies (típico en la primera apertura de
+    // la PWA instalada, que arranca en `/app` sin pasar por una página
+    // pública), el banner de consentimiento tiene prioridad — este aviso
+    // espera a una visita posterior.
+    const cookieChoice = localStorage.getItem('yaentre-cookies-consent');
+    const cookiesDecided = cookieChoice === 'true' || cookieChoice === 'false';
+
     // Lectura de localStorage/matchMedia: no puede vivir en el cuerpo del
     // render (SSR no los tiene) ni es una suscripción a un evento externo —
     // es una sincronización de una sola vez al montar (mismo patrón que ya
     // usaba `ThemeToggle.tsx` antes de esta fase para lo mismo).
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setVisible(shouldShowInstallPrompt({ visitCount, dismissedAt, isStandalone, now: Date.now() }));
+    setVisible(
+      cookiesDecided &&
+        shouldShowInstallPrompt({ visitCount, dismissedAt, isStandalone, now: Date.now() })
+    );
   }, []);
 
   useEffect(() => {
@@ -78,7 +89,11 @@ export function InstallPrompt() {
       // G63: `bg-elevated` (superficie sólida, adaptable al tema) en vez de
       // `bg-brand-tint` (lila FIJO) — flotante `fixed`, necesita fondo opaco, y
       // en dark el texto blanco sobre el lila era invisible.
-      className="fixed inset-x-0 bottom-24 z-30 mx-auto flex max-w-md items-start gap-3 rounded-lg border border-l-4 border-border-subtle border-l-brand bg-elevated p-4 shadow-md lg:bottom-4 lg:left-64"
+      // G64: `.yaentre-above-bottomnav` ancla el aviso justo encima de la
+      // BottomNav (antes `bottom-24` no contaba el `env(safe-area-inset-bottom)`
+      // del iPhone y quedaba 1px montado sobre la nav); en desktop cae a
+      // `bottom: 1rem`.
+      className="yaentre-above-bottomnav fixed inset-x-0 z-30 mx-auto flex max-w-md items-start gap-3 rounded-lg border border-l-4 border-border-subtle border-l-brand bg-elevated p-4 shadow-md lg:left-64"
     >
       <span className="text-2xl" aria-hidden>
         📲

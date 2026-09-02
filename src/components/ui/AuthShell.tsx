@@ -10,7 +10,17 @@ export function AuthShell({
   children: ReactNode;
 }) {
   return (
-    <div data-theme="dark" className="flex min-h-screen items-center justify-center bg-base px-4 py-12 text-text-primary">
+    // G64: `py` mínimo de 3rem que crece hasta la muesca/indicador del iPhone
+    // (env()=0 en pantallas normales). Estilo inline en vez de clase Tailwind
+    // arbitraria con env() — esa sintaxis rompe el escáner de CSS (F11/F18).
+    <div
+      data-theme="dark"
+      className="flex min-h-screen items-center justify-center bg-base px-4 text-text-primary"
+      style={{
+        paddingTop: 'max(3rem, env(safe-area-inset-top))',
+        paddingBottom: 'max(3rem, env(safe-area-inset-bottom))',
+      }}
+    >
       {/* G63: landmark `<main>` — antes era solo `<div>`, sin punto de
           referencia para saltar a contenido con lector de pantalla. */}
       <main className="w-full max-w-sm rounded-xl border border-border-subtle bg-surface p-8 shadow-md">

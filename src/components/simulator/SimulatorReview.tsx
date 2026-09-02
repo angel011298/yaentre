@@ -19,7 +19,7 @@ export function SimulatorReview({
   sessionId: string;
 }) {
   return (
-    <main className="mx-auto max-w-2xl space-y-6 px-4 py-10">
+    <main className="yaentre-safe-viewport mx-auto max-w-2xl space-y-6 px-4">
       <div>
         <h1 className="font-display text-xl font-bold text-text-primary">
           Preguntas que fallaste

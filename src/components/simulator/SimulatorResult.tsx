@@ -58,7 +58,7 @@ export function SimulatorResult({
   const tino = simulatorResultCopy({ timedOut, perfectRound, fraction });
 
   return (
-    <main className="mx-auto max-w-2xl space-y-6 px-4 py-10">
+    <main className="yaentre-safe-viewport mx-auto max-w-2xl space-y-6 px-4">
       <div className="flex items-center gap-3">
         <Tino state={tino.state} size={64} />
         <div>

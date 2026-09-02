@@ -455,3 +455,213 @@ Sin cambios necesarios.
 2. Prueba con lector de pantalla real (NVDA / VoiceOver) del simulador activo,
    drill activo y panel del tutor — se revisaron por código; no se probaron en
    vivo por falta de cuentas PARENT / de una práctica en curso.
+
+
+---
+---
+
+# Auditoría de experiencia móvil y PWA — G64 (2026-09-01)
+
+> Objetivo: que la experiencia en teléfono (el canal principal — la mayoría
+> de los aspirantes entran desde el celular) y la app instalada como PWA sean
+> impecables. Barrido pantalla por pantalla en tres anchos.
+>
+> Método: build de producción (`pnpm build && pnpm start`, no dev) +
+> Playwright/Chromium — sesión real por cuenta de prueba, medición de
+> desbordamiento horizontal (`scrollWidth − clientWidth`) en cada ruta × ancho,
+> emulación de zonas seguras con el CDP `Emulation.setSafeAreaInsetsOverride`
+> (muesca 59px / indicador 34px), y modo offline con `context.setOffline`.
+> Modelo real: `claude-sonnet-5`. **No se tocó `prisma/schema.prisma`.**
+> `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde.
+
+## 0. Resumen
+
+| Tarea | Estado |
+|---|---|
+| 1. Responsivo en 360 / 768 / 1280 — todas las pantallas | **0 desbordamientos** en 21 rutas × 3 anchos (públicas, alumno, tutor) |
+| 2. Panel parental en WebView de redes sociales (altura corta, sin JS de cliente) | Usable — Server Component puro, header con zona segura, sin overflow a 390×560 |
+| 3. PWA instalable en Android e iOS con marca YaEntre | `id` estable + `apple-mobile-web-app-capable` legacy añadidos; íconos y splash verificados |
+| 4. Offline: tablero sí (con aviso), simulador no | Tablero 200 desde caché + `OfflineBanner`; `/simulador` → 503 "necesita conexión"; nunca se cachea |
+| 5. Teclado no tapa campos; campos numéricos → teclado numérico | Único campo numérico (`LinkCodeForm`) con `inputMode="numeric"`; formularios cortos, sin solape |
+| 6. Zonas seguras (muesca + barra inferior) | 9 contenedores sin chrome ahora absorben muesca/indicador; BottomNav ya no queda tapada por el banner de cookies |
+| 7. Simulador en móvil + aviso "requiere computadora" | Preflight OK a 360px; aviso `lg:hidden` visible en móvil/tablet, oculto en desktop |
+
+**Criterios de aceptación: CUMPLIDOS.**
+
+## 1. Responsivo — 360 / 768 / 1280
+
+Barrido con Playwright: para cada ruta y ancho se navega de verdad (con
+sesión donde aplica), se recorre el DOM buscando cualquier elemento más ancho
+que el viewport y se compara `documentElement.scrollWidth` con `clientWidth`.
+
+- **Públicas** (landing, precios, registro, login, recuperar-password,
+  legal/privacidad, legal/términos): 0 desbordamientos en los 3 anchos.
+- **Alumno** (`/app`, `/app/progreso`, `/app/perfil`, `/app/examen-oficial`,
+  `/practicar`, `/simulador`, `/paywall`): 0 desbordamientos en los 3 anchos.
+- **Tutor** (`/tutor`, estado bloqueado y desbloqueado): 0 desbordamientos en
+  360 / 768 / 1280 / 390×560. El `WeekActivityStrip` reescrito en G63 reparte
+  sus 7 columnas de día sin overflow a 360px; el `StudentSwitcher` usa
+  `overflow-x-auto` (sin barra visible con ≤ 1 alumno, que es el caso real).
+
+El estado desbloqueado del panel del tutor no tiene datos de prueba (0 filas
+en `parent_links`); se verificó creando un vínculo temporal
+`rlsprobe_tutor → e2e_sim_user`, capturando los 4 anchos, y **borrándolo
+enseguida** (`parent_links` quedó vacío, confirmado).
+
+## 2. Panel parental en el navegador integrado (Facebook / Instagram in-app)
+
+`/tutor` está fuera del grupo `(app)` a propósito y su página es un Server
+Component que resuelve todo server-side (`ParentShell` sin `'use client'`,
+solo `<Link>` y `<form>` nativos). Nada depende de hidratación, así que un
+WebView restringido no puede romperlo.
+
+- Verificado a **390×560** (WebView bajo, con muesca emulada): sin
+  desbordamiento horizontal ni vertical inesperado, formulario de vínculo y
+  "Cerrar sesión" completamente accesibles.
+- **Arreglo:** el `<header>` de `ParentShell` no tenía zona segura superior —
+  en un iPhone con muesca el título "YaEntre · Panel del tutor" y "Cerrar
+  sesión" quedaban parcialmente bajo la barra de estado. Ahora lleva
+  `.yaentre-safe-top` (el fondo del header se extiende bajo la muesca) y el
+  `<main>` lleva `.yaentre-safe-pb-lg`.
+- El render sin JS del formulario de login (WebView con JS deshabilitado) se
+  capturó como referencia — el `<form action>` postea de forma nativa.
+
+## 3. PWA instalable (Android + iOS)
+
+`curl` sobre el build de producción + inspección de los íconos renderizados:
+
+| Elemento | Antes | Después |
+|---|---|---|
+| `manifest.webmanifest` | servía OK, sin `id` | **`id: "/"`** — identidad estable de la app instalada aunque `start_url` cambie |
+| `<meta name="mobile-web-app-capable">` | presente (estándar nuevo, lo emite Next 16) | presente |
+| `<meta name="apple-mobile-web-app-capable">` | **faltaba** (Next 16 dejó de emitir la variante `apple-`) | **añadida a mano** vía `metadata.other` — la leen iOS < 17.4 y varios WebViews |
+| `<link rel="apple-touch-icon">` 180×180 | presente (`app/apple-icon.tsx`) | presente |
+| Íconos 192 / 512 / 512-maskable | 200 `image/png`, 13–41 KB | sin cambio — verificados visualmente |
+| `theme_color` / `background_color` | `#7C3AED` / `#0F0F14` | sin cambio |
+| `display: standalone`, `orientation: portrait`, `lang: es-MX` | OK | OK |
+
+- **Ícono maskable:** el búho 🦉 ocupa ~45% del lienzo de 512 — cae holgado
+  dentro de la zona segura del 80% de Android (círculo/squircle). El gradiente
+  de marca llena las esquinas. Correcto.
+- **apple-icon (splash / pantalla de inicio iOS):** búho centrado sobre
+  gradiente `#7C3AED → #6D28D9`, 180×180. iOS le aplica su máscara de esquina
+  redondeada sin recortar el búho.
+- **Nombre de marca:** `name` y `short_name` = "YaEntre", `apple-mobile-web-app-title`
+  = "YaEntre". Consistente.
+- `start_url: "/app"` cae en `/login?next=/app` si la PWA se abre sin sesión —
+  comportamiento correcto (inicia sesión → aterriza en el tablero).
+
+## 4. Comportamiento offline
+
+Service worker (`public/sw.js`, escrito a mano, sin Workbox). Verificado con
+Playwright + `context.setOffline(true)` tras calentar la caché:
+
+| Ruta (offline) | Resultado | Correcto |
+|---|---|---|
+| `/app` (visitada antes) | **200**, tablero con datos reales desde caché + `OfflineBanner` "📡 Sin conexión — viendo tus últimos datos guardados." | ✅ |
+| `/app/progreso` (visitada antes) | 200 desde caché | ✅ |
+| `/app/perfil` (**nunca** visitada) | 503 con aviso genérico "todavía no guardamos una versión de esta pantalla" | ✅ |
+| `/simulador` (incluso tras visitarla online) | **503** "El simulador necesita conexión a internet. Es intencional…" — **nunca** se cachea, nunca sirve preflight | ✅ (regla de negocio) |
+
+La caché `yaentre-shell-v1` contenía `/app` y `/app/progreso` pero **no**
+`/simulador` — confirmado que la rama del SW para el simulador es
+`network-only` sin `cache.put`.
+
+## 5. Teclados
+
+- **Único campo numérico de toda la app:** `LinkCodeForm` (código de 6 dígitos
+  del panel del tutor). Ya trae `inputMode="numeric"` + `autoComplete="one-time-code"`
+  → abre el teclado numérico en iOS y Android. Sin cambios.
+- El resto de campos son texto/email/password (registro, login, perfil) — el
+  `type` correcto ya dispara el teclado adecuado (`type="email"`, etc.).
+- **Solape teclado ↔ campo:** los formularios son cortos (login ~2 campos,
+  vínculo 1 campo) y viven en contenedores centrados con scroll natural; el
+  navegador hace `scrollIntoView` del campo enfocado. No se detectó ningún
+  campo que quedara bajo el teclado. El registro (formulario más largo) cabe
+  en un viewport de 812px con margen.
+
+## 6. Zonas seguras (iPhone con muesca)
+
+`viewport-fit: cover` ya estaba (F18). El problema era **qué contenedores
+absorbían los `env(safe-area-inset-*)`**: solo `TopBar` y `BottomNav` de la
+app del alumno. Todo lo demás dibujaba a `top:0` / `bottom:0` reales.
+
+Emulación con CDP `Emulation.setSafeAreaInsetsOverride` (top 59, bottom 34):
+
+| Contenedor | Antes | Después |
+|---|---|---|
+| `CookiesConsentBanner` | pegado al borde inferior → botones "Rechazar/Aceptar" bajo el indicador de inicio; **tapaba por completo la `BottomNav`** en rutas `(app)` | `.yaentre-cookie-banner`: absorbe el indicador; en rutas `(app)` se **eleva por encima de la BottomNav** (`data-over-nav`), que queda siempre visible y tocable |
+| `InstallPrompt` | `bottom-24` (96px) sin contar `env()` → 1px montado sobre la nav; podía apilarse con el banner de cookies | `.yaentre-above-bottomnav` (`calc(4rem + env())`); además **no aparece hasta que se resolvió el consentimiento de cookies** — un aviso a la vez |
+| `AppFooter` | al hacer scroll hasta el fondo en móvil, el pie quedaba tras la `BottomNav` | `.yaentre-bottomnav-clearance` — despeja el alto de la nav + el indicador; en desktop vuelve a padding normal |
+| `(app)/layout.tsx` `<main>` | `pb-24` = exactamente el alto de la nav → 1px de solape | reserva movida al `AppFooter` (que va siempre después); `<main>` solo con su `py-8` |
+| `SimulatorPreflight` / `SimulatorResult` / `SimulatorReview` | `py-10`, contenido bajo la muesca / indicador | `.yaentre-safe-viewport` (`max(2.5rem, env())` arriba y abajo) |
+| `SimulatorRunner` (examen en curso, pantalla completa) | header con `.yaentre-safe-top`, pero el botón "Siguiente / Terminar" bajo el indicador | `<main>` con `.yaentre-safe-pb-lg` |
+| `ParentShell` header | sin zona segura superior | `.yaentre-safe-top` |
+| `onboarding/layout.tsx` `<main>` | `py-10` | `.yaentre-safe-viewport` |
+| `AuthShell` (login, registro, recuperar/actualizar password) | `py-12` | estilo inline `max(3rem, env())` arriba y abajo |
+
+Técnica: clases CSS manuales en `globals.css` (o estilo inline) — **nunca** la
+sintaxis de valor arbitrario de Tailwind con `env()`, que rompe el escáner de
+CSS (documentado desde F11/F18). Las clases con `@media (min-width:1024px)`
+vuelven a valores de escritorio donde la `BottomNav` no existe (`lg:hidden`).
+
+**Tradeoff aceptado:** en `/app`, mientras el banner de cookies o el
+`InstallPrompt` están visibles, tapan el `AppFooter` (copyright + enlaces
+legales, información redundante disponible en otro lado). Ambos son
+transitorios y se descartan con un toque; una vez descartados el pie queda
+limpio sobre la nav. Empujar el contenido para dejarles sitio reintroduciría
+el layout shift que G62 eliminó.
+
+## 7. Simulador en móvil
+
+- **Preflight a 360px:** sin desbordamiento; título, reglas, sección de cámara
+  y botón "Iniciar examen" caben (scroll natural). El aviso
+  **"Estás en un dispositivo móvil. El examen real requiere una computadora…"**
+  (bloque ámbar, `lg:hidden` — decisión de G62 para evitar CLS) es visible en
+  móvil y tablet, y `display:none` en ≥ 1024px. Verificado en los 3 anchos.
+- **Examen en curso (`SimulatorRunner`):** verificado estructuralmente —
+  `<header>` con `.yaentre-safe-top` + `<main>` con `.yaentre-safe-pb-lg`,
+  ambas clases confirmadas en el CSS compilado. No se corrió un simulacro
+  completo en vivo (crea estado de sesión de 120 preguntas; desproporcionado
+  para verificar padding).
+
+## 8. Cambios aplicados
+
+`app/globals.css` — clases nuevas: `.yaentre-safe-viewport`,
+`.yaentre-safe-pb-lg`, `.yaentre-bottomnav-clearance` (+ `@media lg`),
+`.yaentre-above-bottomnav` (+ `@media lg`), `.yaentre-cookie-banner`
+(+ `[data-over-nav]` + `@media lg`).
+
+`app/manifest.ts` — `id: "/"`.
+`app/layout.tsx` — `metadata.other["apple-mobile-web-app-capable"] = "yes"`.
+`app/(app)/layout.tsx` — `<main>`: quitado `pb-24 lg:pb-8`.
+`app/onboarding/layout.tsx` — `<main>`: `py-10` → `.yaentre-safe-viewport`.
+`src/components/dashboard/AppFooter.tsx` — `.yaentre-bottomnav-clearance`.
+`src/components/legal/CookiesConsentBanner.tsx` — `usePathname`, `data-over-nav`
+en rutas `(app)`, clase `.yaentre-cookie-banner`.
+`src/components/pwa/InstallPrompt.tsx` — no se muestra hasta resolver cookies;
+`.yaentre-above-bottomnav`.
+`src/components/simulator/SimulatorPreflight.tsx`, `SimulatorResult.tsx`,
+`SimulatorReview.tsx` — `.yaentre-safe-viewport`.
+`src/components/simulator/SimulatorRunner.tsx` — `<main>` `.yaentre-safe-pb-lg`.
+`src/components/tutor/ParentShell.tsx` — `<header>` `.yaentre-safe-top`,
+`<main>` `.yaentre-safe-pb-lg`.
+`src/components/ui/AuthShell.tsx` — estilo inline `max(3rem, env())`.
+
+## 9. Verificación
+
+- `pnpm typecheck` ✅ · `pnpm lint` ✅ · `pnpm build` ✅
+- Arnés Playwright (login + barrido responsivo + zonas seguras + offline): no
+  versionado (instrumentación). Se autentica como `e2e.sim@acierta-test.mx` y
+  `rlsprobe.tutor@acierta-test.mx` con contraseña temporal; **los hashes
+  originales se restauraron** al terminar.
+- El vínculo temporal `parent_links` creado para el estado desbloqueado del
+  panel del tutor **se borró** (`parent_links` vacío, confirmado por SQL).
+
+## 10. Pendiente del dueño
+
+1. Plan Supabase Pro para respaldos restaurables (ya listado en G61) — sin
+   relación con esta fase.
+2. Prueba en dispositivos reales (iPhone con Dynamic Island + un Android de
+   gama media) de la instalación PWA y las zonas seguras — aquí se emuló con
+   CDP, que es fiel pero no idéntico a Safari/WebKit real.

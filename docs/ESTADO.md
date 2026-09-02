@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-09-01 · Última fase ejecutada: **G63 (COMPLETADA — accesibilidad WCAG AA)**. Modelo real `claude-sonnet-5`. Barrido pantalla por pantalla (contraste medido en navegador con compositado real, recorrido por teclado, dark + light). **Contraste: ~9 combinaciones que fallaban → 0.** Hallazgo mayor: `bg-brand-tint` (lila FIJO `#ede9fe`) con `text-text-primary` daba **1.1:1 — texto blanco invisible en tema oscuro** (`TinoRecommendation`, opción seleccionada del drill, "Reforzar mis temas débiles", celebración "materia dominada", `InstallPrompt`) → `bg-brand/10`. Tokens: `--text-muted` subido en ambos temas (daba 3.1–4.1:1), nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware para texto sobre fondos de color vivo (badge ✓/✗ del drill daba 2.3:1), `text-brand`→`text-brand-soft` como texto sobre superficies oscuras (2.6:1), botón `danger`→`bg-red-600`. Foco: `:focus-visible` global de `--brand-primary`→`--brand-soft` + `Button`/`TextField` sueltan su `focus:ring` propio (usaba un `ring-offset` blanco que hacía halo en dark). Teclado: aviso de reanudación del simulador → `<dialog>` nativo (atrapa foco + Escape), foco se mueve a la región del reactivo al avanzar, `QuestionNavigator` deja el patrón de tabs roto → `role="group"`. Solo-color: `WeekActivityStrip` (panel tutor) era **100% color** → reescrito con glifos + texto `sr-only`; timers con ícono + aviso a los umbrales; `HeatmapCalendar` con `role="img"` + resumen. Formularios: `role="alert"` en ~10 mensajes de error que no se anunciaban. Landmark `<main>` + "saltar al contenido" donde faltaban. `prefers-reduced-motion` ya cubierto (CSS global + `MotionConfig reducedMotion="user"`), sin cambios. Imágenes de reactivos: 0/1147 tienen imagen — `alt` genérico estandarizado, campo `imageAlt` real queda pendiente del dueño (no se toca el schema). **No se tocó `prisma/schema.prisma`.** Reporte: **`docs/AUDITORIA_FRONTEND.md`** (sección G63). `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G64, modelo Sonnet 4.6**.
+Última actualización: 2026-09-01 · Última fase ejecutada: **G64 (COMPLETADA — experiencia móvil y PWA)**. Modelo real `claude-sonnet-5` (el cierre de G63 anunciaba «Sonnet 4.6»). Barrido pantalla por pantalla en tres anchos (360 / 768 / 1280) sobre el build de producción con Playwright: **0 desbordamientos horizontales en 21 rutas × 3 anchos** (públicas, alumno, tutor). **PWA:** `manifest` gana `id: "/"` (identidad estable de la app instalada) y se añade a mano `<meta name="apple-mobile-web-app-capable">` (Next 16 dejó de emitir la variante `apple-`; la leen iOS < 17.4 y los WebViews); íconos 192/512/maskable + apple-icon verificados visualmente. **Offline** (SW `public/sw.js`, verificado con `context.setOffline`): `/app` visitada → 200 desde caché + `OfflineBanner`; `/simulador` → **503 "necesita conexión", nunca se cachea** (regla de negocio); ruta nunca visitada → 503 genérico. **Zonas seguras** (emuladas con CDP `Emulation.setSafeAreaInsetsOverride`, muesca 59 / indicador 34): solo `TopBar`/`BottomNav` del alumno absorbían `env(safe-area-inset-*)` — ahora también `CookiesConsentBanner`, `InstallPrompt`, `AppFooter`, `SimulatorPreflight/Result/Review/Runner`, `ParentShell` (header), `onboarding` y `AuthShell`. **Bug mayor:** el banner de cookies (pegado a `bottom:0`, z-50) **tapaba por completo la `BottomNav`** en móvil en rutas `(app)`; ahora se eleva por encima de ella (`data-over-nav` + `.yaentre-cookie-banner`), y el `InstallPrompt` no aparece hasta que se resolvió el consentimiento (un aviso a la vez). Clases CSS manuales en `globals.css` con `@media lg` — **nunca** la sintaxis de valor arbitrario de Tailwind con `env()` (rompe el escáner, F11/F18). Panel del tutor: verificado en WebView bajo (390×560) — Server Component puro, sin JS de cliente que un navegador in-app pueda romper. Simulador móvil: aviso "el examen real requiere computadora" (`lg:hidden`) visible en móvil/tablet, oculto en desktop. Campo numérico único (`LinkCodeForm`) ya con `inputMode="numeric"`. **No se tocó `prisma/schema.prisma`.** Se creó y **borró** un vínculo `parent_links` temporal para probar el panel desbloqueado; hashes de contraseñas de prueba **restaurados**. Reporte: **`docs/AUDITORIA_FRONTEND.md`** (sección G64). `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G65, modelo Opus 4.8**.
+
+<details><summary>Historial: G63 (2026-09-01)</summary>
+
+Última fase ejecutada: **G63 (COMPLETADA — accesibilidad WCAG AA)**. Modelo real `claude-sonnet-5`. Barrido pantalla por pantalla (contraste medido en navegador con compositado real, recorrido por teclado, dark + light). **Contraste: ~9 combinaciones que fallaban → 0.** Hallazgo mayor: `bg-brand-tint` (lila FIJO `#ede9fe`) con `text-text-primary` daba **1.1:1 — texto blanco invisible en tema oscuro** (`TinoRecommendation`, opción seleccionada del drill, "Reforzar mis temas débiles", celebración "materia dominada", `InstallPrompt`) → `bg-brand/10`. Tokens: `--text-muted` subido en ambos temas (daba 3.1–4.1:1), nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware para texto sobre fondos de color vivo (badge ✓/✗ del drill daba 2.3:1), `text-brand`→`text-brand-soft` como texto sobre superficies oscuras (2.6:1), botón `danger`→`bg-red-600`. Foco: `:focus-visible` global de `--brand-primary`→`--brand-soft` + `Button`/`TextField` sueltan su `focus:ring` propio (usaba un `ring-offset` blanco que hacía halo en dark). Teclado: aviso de reanudación del simulador → `<dialog>` nativo (atrapa foco + Escape), foco se mueve a la región del reactivo al avanzar, `QuestionNavigator` deja el patrón de tabs roto → `role="group"`. Solo-color: `WeekActivityStrip` (panel tutor) era **100% color** → reescrito con glifos + texto `sr-only`; timers con ícono + aviso a los umbrales; `HeatmapCalendar` con `role="img"` + resumen. Formularios: `role="alert"` en ~10 mensajes de error que no se anunciaban. Landmark `<main>` + "saltar al contenido" donde faltaban. `prefers-reduced-motion` ya cubierto (CSS global + `MotionConfig reducedMotion="user"`), sin cambios. Imágenes de reactivos: 0/1147 tienen imagen — `alt` genérico estandarizado, campo `imageAlt` real queda pendiente del dueño (no se toca el schema). **No se tocó `prisma/schema.prisma`.** Reporte: **`docs/AUDITORIA_FRONTEND.md`** (sección G63). `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G64, modelo Sonnet 4.6**.
+
+</details>
 
 <details><summary>Historial: G62 (2026-09-01)</summary>
 
@@ -199,6 +205,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G64 | Experiencia móvil y PWA | **COMPLETADA — barrido responsivo 360/768/1280 (0 desbordamientos en 21 rutas × 3 anchos), PWA (`manifest id` + `apple-mobile-web-app-capable`), offline (tablero sí / simulador no, verificado), zonas seguras en 9 contenedores sin chrome. Reporte: `docs/AUDITORIA_FRONTEND.md` §G64** | (G64) | Modelo real `claude-sonnet-5`. Método: build de producción + Playwright/Chromium (sesión real por cuenta de prueba, `scrollWidth−clientWidth` por ruta×ancho, zonas seguras con CDP `Emulation.setSafeAreaInsetsOverride`, offline con `context.setOffline`). **Bug mayor:** `CookiesConsentBanner` (`bottom:0`, z-50) tapaba por completo la `BottomNav` en móvil en rutas `(app)` → se eleva por encima (`data-over-nav` + `.yaentre-cookie-banner`); `InstallPrompt` no aparece hasta resolver el consentimiento (un aviso a la vez). Zonas seguras: solo `TopBar`/`BottomNav` absorbían `env(safe-area-inset-*)` → añadidas a `CookiesConsentBanner`, `InstallPrompt`, `AppFooter`, `SimulatorPreflight/Result/Review/Runner`, `ParentShell` header, `onboarding`, `AuthShell` (clases manuales en `globals.css` con `@media lg` — nunca la sintaxis arbitraria de Tailwind con `env()`, F11/F18). PWA: `manifest` gana `id:"/"`; `<meta name="apple-mobile-web-app-capable">` a mano (Next 16 dejó de emitir la variante `apple-`). Offline (SW `public/sw.js`): `/app` visitada → 200 desde caché + `OfflineBanner`; `/simulador` → 503 "necesita conexión", nunca cacheado. Panel del tutor verificado en WebView bajo (390×560), Server Component puro. Aviso "requiere computadora" del simulador (`lg:hidden`) visible en móvil/tablet. Vínculo `parent_links` temporal creado y **borrado**; hashes de contraseñas de prueba **restaurados**. **No se tocó `prisma/schema.prisma`.** `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. |
 | G63 | Accesibilidad WCAG AA | **COMPLETADA — barrido pantalla por pantalla. Contraste: ~9 combinaciones que fallaban → 0 (medido en navegador). Foco visible arreglado, estados solo-color eliminados, errores de formulario anunciados. Reporte: `docs/AUDITORIA_FRONTEND.md` §G63** | (G63) | Modelo real `claude-sonnet-5`. Hallazgo mayor: `bg-brand-tint` (lila FIJO) + `text-text-primary` = 1.1:1 (texto blanco invisible) en tema oscuro → `bg-brand/10`. Tokens `--text-muted` subidos (daba 3.1–4.1:1), nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware, `text-brand`→`text-brand-soft` sobre superficies oscuras, botón `danger`→`bg-red-600`. `:focus-visible` global → `--brand-soft`; `Button`/`TextField` sueltan su `focus:ring` (tenía `ring-offset` blanco). Aviso de reanudación del simulador → `<dialog>` nativo; foco a la región del reactivo al avanzar; `QuestionNavigator`/`ReviewTabs` dejan el patrón de tabs roto. `WeekActivityStrip` (tutor) era 100% color → glifos + `sr-only`. `role="alert"` en ~10 errores. `<main>` + "saltar al contenido" donde faltaban. `prefers-reduced-motion` ya OK, sin cambios. 0/1147 reactivos con imagen (campo `imageAlt` real pendiente del dueño). **No se tocó `prisma/schema.prisma`.** |
 | G62 | Optimización de rendimiento del frontend | **COMPLETADA — las 5 pantallas críticas ≥ 85 en Lighthouse móvil (mediana de 5): landing 90→96, registro 89→98, dashboard 67→87, práctica 75→90, simulador 67→94. Reporte: `docs/AUDITORIA_FRONTEND.md`** | (G62) | Modelo real `claude-sonnet-5`. CLS 0.20–0.32 → ≤ 0.06 (elementos que aparecían tras hidratar: aviso móvil del simulador, `InstallPrompt`, anillo del Entrómetro, banner de cookies — todos a primer render / fuera de flujo / `display:optional`). Sentry cliente → `import()` dinámico sólo con DSN real (chunk de vendor 422→228 KB en TODA ruta). `framer-motion` fuera de la carga inicial de `/simulador` (−131 KB, 99% sin usar). Dashboard: `<Suspense>` por sección con esqueletos de altura reservada. `requireUser`/`createSupabaseServerClient` + 2 loaders del dashboard con `cache()` de React; 3 loaders de `/practicar` de serie→paralelo. Fuentes: pesos recortados, `preload:false` en mono, `display:optional`. Borrados 5 SVG de arranque. **No hay imágenes rasterizadas que optimizar** (emoji + SVG inline). **No se tocó `prisma/schema.prisma`.** El "después" contra prod real requiere deploy (sin remoto git); el TTFB local infla ~2 s el LCP de las pantallas con base (latencia MX→us-east-1, no existe en `iad1`). |
 | G61 | Respaldos y recuperación | **COMPLETADA — el plan gratuito de Supabase NO da respaldos restaurables; se implementó un respaldo lógico propio del banco de contenido (13 tablas, versionado en git) con export/import probados round-trip byte-idéntico. Reporte: `docs/RESPALDOS.md`** | (G61) | `pnpm backup:export` → `backups/content-bank.json` (5 658 filas, 3.9 MB); `pnpm backup:import` (`--dry-run` / `--wipe --yes` / `--schema <x>`). Prueba real: import a esquema aislado → checksum md5 idéntico en las 13 tablas + 16 FK validadas; `--dry-run` contra prod (ROLLBACK, prod intacta). Spec derivada del DMMF de Prisma (sin listas hardcodeadas). **Decisión pendiente del dueño: subir a Pro ($25/mes) antes del launch** — el free no tiene red para datos de usuario/pago y pausa por inactividad. PITR (~$125/mes) sobredimensionado a ~20 MB de base. |
@@ -2536,6 +2543,104 @@ alcance — mismo criterio que ya usa `notification-jobs.ts`).
 1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
 2. Idempotencia real de los correos programados → tabla nueva → instrucción
    explícita.
+
+
+## G64 — Experiencia móvil y PWA (2026-09-01)
+
+**Reporte completo: `docs/AUDITORIA_FRONTEND.md` §G64.** Aquí lo esencial.
+Modelo real: `claude-sonnet-5` (el cierre de G63 anunciaba «Sonnet 4.6»). No se
+tocó `prisma/schema.prisma`.
+
+### 1. Responsivo — 0 desbordamientos en 21 rutas × 3 anchos
+
+Playwright sobre el build de producción, anchos 360 / 768 / 1280, navegación
+real con sesión donde aplica; se compara `documentElement.scrollWidth` con
+`clientWidth` y se recorre el DOM buscando elementos más anchos que el
+viewport. Públicas (7), alumno (7), tutor (bloqueado + desbloqueado): **cero**.
+El estado desbloqueado del tutor no tiene datos de prueba (`parent_links`
+vacío) — se probó con un vínculo temporal `rlsprobe_tutor → e2e_sim_user`,
+**borrado enseguida** (confirmado: 0 filas).
+
+### 2. Zonas seguras (iPhone con muesca) — el trabajo grueso
+
+`viewport-fit: cover` ya estaba (F18). El problema: **solo `TopBar` y
+`BottomNav` del alumno absorbían `env(safe-area-inset-*)`**. Emulado con CDP
+`Emulation.setSafeAreaInsetsOverride` (top 59 / bottom 34):
+
+- **Bug mayor:** `CookiesConsentBanner` (`fixed bottom-0`, z-50) **tapaba por
+  completo la `BottomNav`** en móvil en rutas `(app)`, dejándola intocable
+  hasta descartar cookies. Ahora `.yaentre-cookie-banner` + `data-over-nav`
+  (rutas `(app)` detectadas con `usePathname`) lo elevan por encima de la nav;
+  en `lg` (Sidebar, sin nav) vuelve a `bottom:0`. Además absorbe el indicador
+  de inicio.
+- `InstallPrompt`: `bottom-24` no contaba `env()` (1px sobre la nav) →
+  `.yaentre-above-bottomnav`. Y **no se muestra hasta que el consentimiento de
+  cookies está resuelto** — evita el apilamiento de dos avisos (visto en el
+  tablero durante la primera apertura de la PWA, que arranca en `/app`).
+- `AppFooter`: al hacer scroll hasta el fondo quedaba tras la `BottomNav` →
+  `.yaentre-bottomnav-clearance` (alto de nav + indicador; padding normal en
+  `lg`). La reserva de `pb-24` del `<main>` de `(app)/layout.tsx` se quitó (el
+  footer va siempre después y ahora carga él la reserva).
+- `SimulatorPreflight/Result/Review` (`py-10`) → `.yaentre-safe-viewport`
+  (`max(2.5rem, env())`). `SimulatorRunner` `<main>` → `.yaentre-safe-pb-lg`
+  (el header ya tenía `.yaentre-safe-top`). `ParentShell` header →
+  `.yaentre-safe-top`. `onboarding/layout` → `.yaentre-safe-viewport`.
+  `AuthShell` → estilo inline `max(3rem, env())`.
+- Técnica: clases manuales en `globals.css` (o estilo inline). **Nunca** la
+  sintaxis de valor arbitrario de Tailwind con `env()` — rompe el escáner de
+  CSS (F11/F18).
+- **Tradeoff aceptado:** en `/app`, mientras el banner de cookies o el
+  `InstallPrompt` están visibles, tapan el `AppFooter` (info redundante). Son
+  transitorios y se descartan con un toque; empujar el contenido reintroduce
+  el CLS que G62 eliminó.
+
+### 3. PWA instalable
+
+- `app/manifest.ts`: **`id: "/"`** — identidad estable de la app instalada
+  aunque `start_url` cambie (sin él, `id` = `start_url` y mover el arranque
+  duplica el ícono).
+- `app/layout.tsx`: `metadata.other["apple-mobile-web-app-capable"] = "yes"`.
+  Next 16 solo emite `mobile-web-app-capable` (estándar nuevo) desde
+  `appleWebApp.capable`; la variante `apple-` la siguen leyendo iOS < 17.4 y
+  varios WebViews integrados.
+- Íconos: `apple-touch-icon` 180×180, `/icon-192|512|512-maskable` todos 200
+  `image/png`. El búho maskable ocupa ~45 % del lienzo de 512 → holgado en la
+  zona segura del 80 % de Android. apple-icon = búho sobre gradiente de marca.
+
+### 4. Offline (SW `public/sw.js`, verificado con `context.setOffline`)
+
+| Ruta offline | Resultado |
+|---|---|
+| `/app` (visitada) | 200 desde caché + `OfflineBanner` "📡 Sin conexión — viendo tus últimos datos guardados." |
+| `/app/perfil` (nunca visitada) | 503 aviso genérico |
+| `/simulador` | **503 "necesita conexión"** — nunca se cachea, ni tras visitarla online (rama `network-only` sin `cache.put`) |
+
+### 5. Teclados y simulador móvil
+
+- Único campo numérico de la app: `LinkCodeForm` (código del tutor), ya con
+  `inputMode="numeric"` + `autoComplete="one-time-code"`. Sin cambios.
+- Formularios cortos, contenedores con scroll natural → sin solape teclado ↔
+  campo.
+- Simulador: preflight a 360px sin overflow; el aviso **"el examen real
+  requiere una computadora"** (`lg:hidden`, decisión de G62 contra CLS) es
+  visible en móvil y tablet, `display:none` en ≥ 1024px. `SimulatorRunner`
+  verificado estructuralmente (clases en el CSS compilado), no con un simulacro
+  completo en vivo.
+
+### 6. Verificación e higiene
+
+- `pnpm typecheck` ✅ · `pnpm lint` ✅ · `pnpm build` ✅.
+- Arnés Playwright no versionado (instrumentación). Cuentas
+  `e2e.sim@acierta-test.mx` y `rlsprobe.tutor@acierta-test.mx` con contraseña
+  temporal → **hashes originales restaurados** al terminar.
+- Vínculo `parent_links` temporal → **borrado** (`parent_links` vacío,
+  confirmado por SQL).
+
+### 7. Pendiente del dueño
+
+1. Prueba en dispositivos reales (iPhone con Dynamic Island + Android de gama
+   media) de la instalación PWA y las zonas seguras — aquí se emuló con CDP,
+   fiel pero no idéntico a Safari/WebKit real.
 
 
 ## G63 — Accesibilidad WCAG AA (2026-09-01)

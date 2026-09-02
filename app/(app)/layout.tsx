@@ -69,9 +69,13 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} avatarUrl={avatarUrl} />
       {!authUser.email_confirmed_at && <VerificationBanner />}
       <OfflineBanner />
+      {/* G64: la reserva de espacio para la BottomNav vive ahora en el
+          `AppFooter` (que va siempre después de `<main>` y era lo que de
+          verdad quedaba tapado al hacer scroll hasta el fondo en móvil).
+          `<main>` solo necesita su respiro inferior normal. */}
       <main
         id="contenido-principal"
-        className="mx-auto w-full max-w-5xl space-y-4 px-4 py-8 pb-24 flex-1 lg:pl-60 lg:pb-8"
+        className="mx-auto w-full max-w-5xl space-y-4 px-4 py-8 flex-1 lg:pl-60"
       >
         {children}
       </main>
