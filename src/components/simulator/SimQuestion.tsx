@@ -43,7 +43,7 @@ export function SimQuestion({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={question.imageUrl}
-            alt="Estímulo del reactivo"
+            alt="Figura del reactivo (necesaria para responder)"
             className="mt-4 max-h-72 w-auto rounded-md border border-border-subtle"
           />
         )}

@@ -157,15 +157,18 @@ export default async function DashboardPage() {
 
       {profile.targetExamId && <StartSimulationButton />}
 
-      <div className="flex flex-wrap items-center gap-4 border-t border-border-subtle pt-4">
+      <div className="flex flex-wrap items-center gap-2 border-t border-border-subtle pt-4">
         <Link
           href="/app/examen-oficial"
-          className="text-sm font-semibold text-text-muted hover:text-brand-soft"
+          className="inline-flex min-h-touch items-center text-sm font-semibold text-text-secondary hover:text-brand-soft"
         >
           📄 Examen muestra oficial
         </Link>
         <form action={signOutAction}>
-          <button type="submit" className="text-sm font-semibold text-brand-soft hover:underline">
+          <button
+            type="submit"
+            className="inline-flex min-h-touch items-center text-sm font-semibold text-brand-soft hover:underline"
+          >
             Cerrar sesión
           </button>
         </form>

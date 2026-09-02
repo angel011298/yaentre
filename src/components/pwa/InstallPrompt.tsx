@@ -75,7 +75,10 @@ export function InstallPrompt() {
     <div
       role="dialog"
       aria-label="Instalar YaEntre"
-      className="fixed inset-x-0 bottom-24 z-30 mx-auto flex max-w-md items-start gap-3 rounded-lg border border-brand/40 bg-brand-tint p-4 shadow-md lg:bottom-4 lg:left-64"
+      // G63: `bg-elevated` (superficie sólida, adaptable al tema) en vez de
+      // `bg-brand-tint` (lila FIJO) — flotante `fixed`, necesita fondo opaco, y
+      // en dark el texto blanco sobre el lila era invisible.
+      className="fixed inset-x-0 bottom-24 z-30 mx-auto flex max-w-md items-start gap-3 rounded-lg border border-l-4 border-border-subtle border-l-brand bg-elevated p-4 shadow-md lg:bottom-4 lg:left-64"
     >
       <span className="text-2xl" aria-hidden>
         📲
@@ -99,7 +102,7 @@ export function InstallPrompt() {
           <button
             type="button"
             onClick={dismiss}
-            className="text-sm font-semibold text-text-muted hover:text-brand-soft"
+            className="inline-flex min-h-touch items-center px-2 text-sm font-semibold text-text-muted hover:text-brand-soft"
           >
             Ahora no
           </button>

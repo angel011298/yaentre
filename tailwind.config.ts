@@ -31,6 +31,14 @@ export default {
         danger: 'var(--danger)',
         info: 'var(--info)',
         warning: 'var(--warning)',
+        // G63 (accesibilidad): color de texto/ícono para poner ENCIMA de un
+        // fondo sólido del color semántico correspondiente (theme-aware, ≥4.5:1
+        // en ambos temas — ver globals.css). Uso: `bg-success text-on-success`.
+        'on-success': 'var(--on-success)',
+        'on-danger': 'var(--on-danger)',
+        'on-warning': 'var(--on-warning)',
+        'on-info': 'var(--on-info)',
+        'on-streak': 'var(--on-streak)',
         base: 'var(--bg-base)',
         surface: 'var(--bg-surface)',
         elevated: 'var(--bg-elevated)',

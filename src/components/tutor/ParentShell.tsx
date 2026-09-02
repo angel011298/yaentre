@@ -30,7 +30,10 @@ export function ParentShell({
           <div className="flex items-center gap-4">
             {studentSwitcher}
             <form action={signOutAction}>
-              <button type="submit" className="text-sm font-semibold text-text-muted hover:text-brand">
+              <button
+                type="submit"
+                className="inline-flex min-h-touch items-center text-sm font-semibold text-text-muted hover:text-brand"
+              >
                 Cerrar sesión
               </button>
             </form>

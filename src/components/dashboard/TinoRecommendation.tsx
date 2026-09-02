@@ -12,7 +12,10 @@ export function TinoRecommendation({ weakestTopic }: { weakestTopic: WeakTopicSu
   const pct = Math.round(weakestTopic.hitRate * 100);
 
   return (
-    <div className="flex items-start gap-3 rounded-lg bg-brand-tint p-4">
+    // G63: `bg-brand/10` (tinte adaptable al tema) en vez de `bg-brand-tint`
+    // (lila claro FIJO) — en tema oscuro `text-text-primary` es blanco y sobre
+    // `#ede9fe` daba 1.1:1 (texto invisible).
+    <div className="flex items-start gap-3 rounded-lg border border-brand/25 bg-brand/10 p-4">
       <Tino state="encouraging" size={48} />
       <p className="text-sm leading-relaxed text-text-primary">
         <strong className="font-display">Tino recomienda:</strong> hoy enfócate en{' '}

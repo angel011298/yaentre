@@ -19,7 +19,7 @@ export function BottomNav() {
             href={item.href}
             aria-current={active ? 'page' : undefined}
             className={`flex min-h-touch flex-1 flex-col items-center justify-center gap-0.5 py-2 text-xs font-semibold ${
-              active ? 'text-brand' : 'text-text-muted'
+              active ? 'text-brand-soft' : 'text-text-muted'
             }`}
           >
             <span className="text-lg" aria-hidden>

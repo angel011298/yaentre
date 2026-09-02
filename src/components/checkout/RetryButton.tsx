@@ -35,7 +35,7 @@ export function RetryButton({ plan }: { plan: SubscriptionPlan }) {
       <Button variant="primary" onClick={retry} disabled={loading}>
         {loading ? 'Abriendo el pago…' : 'Reintentar pago'}
       </Button>
-      {error && <p className="text-sm text-danger">{error}</p>}
+      {error && <p role="alert" className="text-sm text-danger">{error}</p>}
     </div>
   );
 }

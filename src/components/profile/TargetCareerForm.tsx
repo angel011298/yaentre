@@ -68,7 +68,7 @@ export function TargetCareerForm({
         {pending ? 'Guardando…' : 'Actualizar meta'}
       </Button>
       {saved && <p className="text-sm text-success">Meta actualizada — tu Entrómetro ya refleja el nuevo hueco.</p>}
-      {error && <p className="text-sm text-danger">{error}</p>}
+      {error && <p role="alert" className="text-sm text-danger">{error}</p>}
     </form>
   );
 }

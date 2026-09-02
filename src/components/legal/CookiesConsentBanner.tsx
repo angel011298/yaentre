@@ -62,7 +62,7 @@ export function CookiesConsentBanner() {
               vive en el aviso de privacidad enlazado. */}
           <p className="flex-1 text-sm text-text-secondary">
             Usamos cookies técnicas y analíticas. Puedes rechazar las analíticas.{' '}
-            <Link href="/legal/privacidad" className="font-semibold text-brand hover:underline">
+            <Link href="/legal/privacidad" className="font-semibold text-brand-soft hover:underline">
               Aviso de privacidad
             </Link>
             .

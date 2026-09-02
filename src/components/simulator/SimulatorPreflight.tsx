@@ -51,7 +51,7 @@ export function SimulatorPreflight({
   const cameraGranted = camera === 'granted' ? true : camera === 'denied' ? false : null;
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-6 px-4 py-10">
+    <main className="mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-6 px-4 py-10">
       {isFreeFirstTime && (
         <div className="flex items-start gap-3 rounded-lg border border-border-subtle bg-surface p-4">
           <Tino state={simulatorFreeWelcome().state} size={52} />
@@ -115,7 +115,7 @@ export function SimulatorPreflight({
         simulacros en una laptop o PC.
       </div>
 
-      {startError && <p className="text-sm text-danger">{startError}</p>}
+      {startError && <p role="alert" className="text-sm text-danger">{startError}</p>}
 
       <Button
         variant="primary"
@@ -125,6 +125,6 @@ export function SimulatorPreflight({
       >
         {starting ? 'Iniciando…' : 'Iniciar examen'}
       </Button>
-    </div>
+    </main>
   );
 }

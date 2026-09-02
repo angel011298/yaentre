@@ -74,7 +74,7 @@ export function PracticeSelector({
         type="button"
         disabled={starting || limitReached}
         onClick={() => onStart({ kind: 'area' })}
-        className="w-full rounded-lg border border-brand bg-brand-tint p-4 text-left transition-all hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full rounded-lg border border-brand bg-brand/10 p-4 text-left transition-all hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
       >
         <p className="font-display font-semibold text-text-primary">
           🎯 Reforzar mis temas débiles
@@ -136,7 +136,7 @@ export function PracticeSelector({
         </div>
       </div>
 
-      {startError && <p className="text-sm text-danger">{startError}</p>}
+      {startError && <p role="alert" className="text-sm text-danger">{startError}</p>}
       {starting && <p className="text-sm text-text-secondary">Preparando tu práctica…</p>}
     </div>
   );

@@ -77,7 +77,7 @@ export function ParentLinkCard() {
         </Button>
       )}
 
-      {error && <p className="mt-2 text-sm text-danger">{error}</p>}
+      {error && <p role="alert" className="mt-2 text-sm text-danger">{error}</p>}
     </Card>
   );
 }

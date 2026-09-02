@@ -9,6 +9,15 @@ const TONE_CLASS = {
   urgent: 'text-danger',
 } as const;
 
+// G63: el tono también se comunica con un ícono (no solo color), y se anuncia
+// una vez al cruzar cada umbral (30 / 15 min) — antes solo cambiaba el color.
+const TONE_ICON = { normal: '', warning: '⏳', urgent: '⏰' } as const;
+const TONE_ANNOUNCE = {
+  normal: '',
+  warning: 'Quedan menos de 30 minutos.',
+  urgent: 'Quedan menos de 15 minutos.',
+} as const;
+
 /**
  * Temporizador del simulador (F12 tarea 4). Anclado a un `deadline` ABSOLUTO
  * calculado UNA vez al montar a partir del restante que dio el servidor
@@ -49,13 +58,24 @@ export function SimTimer({
   const tone = timerTone(left);
 
   return (
-    <span
-      className={`font-mono text-xl font-semibold tabular-nums sm:text-2xl ${TONE_CLASS[tone]}`}
-      role="timer"
-      aria-live="off"
-      aria-label="Tiempo restante"
-    >
-      {formatClock(left)}
+    <span className="flex items-center gap-1.5">
+      {TONE_ICON[tone] && (
+        <span aria-hidden className="text-base">
+          {TONE_ICON[tone]}
+        </span>
+      )}
+      <span
+        className={`font-mono text-xl font-semibold tabular-nums sm:text-2xl ${TONE_CLASS[tone]}`}
+        role="timer"
+        aria-live="off"
+        aria-label="Tiempo restante"
+      >
+        {formatClock(left)}
+      </span>
+      {/* Aviso puntual al cruzar 30/15 min (no repite cada segundo). */}
+      <span role="status" className="sr-only">
+        {TONE_ANNOUNCE[tone]}
+      </span>
     </span>
   );
 }

@@ -63,7 +63,7 @@ export function PlanCard({
       <ul className="flex-1 space-y-2 text-sm text-text-secondary">
         {PLAN_FEATURES[pricing.plan].map((feature) => (
           <li key={feature} className="flex items-start gap-2">
-            <span className="text-success">✓</span>
+            <span aria-hidden className="text-success">✓</span>
             <span>{feature}</span>
           </li>
         ))}

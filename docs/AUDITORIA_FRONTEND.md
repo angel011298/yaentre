@@ -304,3 +304,154 @@ necesitarlo.
 
 *Cifras y reportes HTML completos de Lighthouse: generados por
 `scripts/content-exports/perf-suite2.mjs` (no versionado).*
+
+
+---
+---
+
+# Auditoría de accesibilidad — G63 (2026-09-01)
+
+> Objetivo: que la app sea usable con discapacidad visual, motriz o cognitiva,
+> cumpliendo **WCAG 2.1 nivel AA**. Barrido pantalla por pantalla.
+>
+> Método: revisión de código + verificación en navegador (contraste calculado
+> con compositado real vía canvas, recorrido por teclado, `data-theme`
+> alternado dark/light). Modelo real: `claude-sonnet-5`.
+> **No se tocó `prisma/schema.prisma`.** `pnpm typecheck`, `pnpm lint`,
+> `pnpm build` en verde.
+
+## 0. Resumen
+
+| Área | Antes | Después |
+|---|---|---|
+| Contraste de texto (13 pantallas, dark + light) | ~9 combinaciones que fallaban | **0** (medido en navegador con compositado real) |
+| Foco visible por teclado | `--brand` sólido 2.6:1 sobre superficies elevadas + halo blanco del `ring-offset` | `--brand-soft` outline, ≥ 5.5:1 en toda superficie, offset limpio |
+| Estados solo-color | 6 componentes | **0** — todos con ícono/glifo + texto |
+| Errores de formulario anunciados | ~2 de ~25 | todos (`role="alert"` / `role="status"`) |
+| Landmark `<main>` | faltaba en login/registro/simulador | en todas las pantallas |
+| Enlace "saltar al contenido" | ninguno | shell `(app)` y páginas públicas |
+
+## 1. Contraste (WCAG 1.4.3 / 1.4.11)
+
+Fallos reales encontrados y corregidos (medidos, no teóricos):
+
+| Qué | Medido | Arreglo |
+|---|---|---|
+| `--text-muted` dark (`#7a7a88`) sobre `bg-surface`/`bg-elevated`/`bg-input` | 3.5–4.1:1 | token → `#9a9aa8` (≥ 5.4:1). ~100 usos, casi todos `text-xs`/`text-sm` |
+| `--text-muted` light (`#8a8a9a`) sobre fondos claros | 3.1–3.4:1 | token → `#6b6b7a` (≥ 4.75:1) |
+| `text-brand` (violeta) como TEXTO sobre superficies oscuras | 2.6–3.4:1 | → `text-brand-soft` (theme-aware: lila en dark ≥ 5.5:1, colapsa al violeta en light) — `BottomNav` activo, logos de `TopBar`/`Sidebar`, links del banner de cookies y del registro |
+| Botón `danger` (`bg-danger` `#ef4444` + blanco) | 3.76:1 | → `bg-red-600` (blanco 4.83:1) |
+| Fondo del badge del drill (`bg-success`/`bg-danger` + blanco para el símbolo) | 2.3 / 3.8:1 | tokens nuevos **`--on-success`/`--on-danger`/`--on-warning`/`--on-info`/`--on-streak`** (theme-aware: texto oscuro sobre el color vivo en dark, blanco en light) |
+| **`bg-brand-tint` (lila FIJO `#ede9fe`) + `text-text-primary` en tema OSCURO** | **1.1:1 — texto blanco casi invisible** en `TinoRecommendation`, opción seleccionada del drill/diagnóstico, "Reforzar mis temas débiles", celebración "materia dominada", `InstallPrompt` | → `bg-brand/10` (tinte por opacidad, adaptable) o `bg-elevated` para el flotante. Los *chips* con `text-brand` explícito sobre `bg-brand-tint` (4.84:1) se dejaron |
+| `EarlyBirdBanner`: precio tachado `text-white/60` sobre el morado | 3.0:1 | → `text-white/90` (4.9:1) |
+| Traza de datos del `EntrometroHistoryChart` (`stroke: --brand-primary`) sobre `bg-surface` oscuro | 3.0:1 | → `--brand-soft` (≥ 5.5:1) |
+| Barra de progreso del simulador (`bg-brand` sobre riel `bg-elevated`) | 2.6:1 | → `bg-brand-soft` (5.5:1) + `role="progressbar"` |
+
+`--brand-soft` (ya theme-aware desde F18) se reusó como el "acento legible"
+universal.
+
+## 2. Teclado y foco (WCAG 2.1.1 / 2.4.3 / 2.4.7 / 2.4.11)
+
+- **Anillo de foco global** (`:focus-visible` en `globals.css`): outline
+  `--brand-primary` → `--brand-soft` (2.6:1 → ≥ 5.5:1 sobre `bg-elevated`
+  oscuro). `Button` y `TextField` soltaron su `focus:ring` propio (usaba
+  `--brand` + un `ring-offset` **blanco** que dibujaba un halo alrededor del
+  botón en dark) y heredan el outline global. Verificado en navegador: visible
+  sobre botón morado y sobre fondo oscuro.
+- **`isSuspiciousKeyCombo`** del simulador (integridad): solo bloquea
+  Ctrl+C/V/X/S/P/U/A, Ctrl+Shift+I/J/C, F12, PrintScreen — **no** Tab, flechas,
+  Enter, Space ni Escape. La navegación por teclado del simulador NO estaba
+  rota.
+- **Aviso de reanudación del simulador**: era un `<div>` superpuesto sin
+  atrapamiento de foco ni Escape → ahora `<dialog>` nativo con `showModal()`
+  (foco atrapado, foco inicial en el botón primario, `aria-modal` implícito;
+  Escape cae a la salida explícita "continuar sin pantalla completa").
+- **Foco al cambiar de pregunta** (drill / diagnóstico / simulador): antes se
+  quedaba en el botón "Siguiente" ya desmontado. Ahora se mueve a la región del
+  reactivo (`role="group"` + `aria-label="Pregunta N de total"`).
+- **`QuestionNavigator`** (diagnóstico) usaba `role="tablist"`/`role="tab"` sin
+  navegación por flechas ni `aria-controls` (patrón de tabs roto) → `role="group"`
+  con botones normales, `aria-current`, `aria-label` con estado ("respondida" /
+  "sin responder"). Mismo cambio en `ReviewTabs` (admin).
+- **Áreas táctiles < 44px** corregidas: "Ahora no" del `InstallPrompt`, "Cerrar
+  sesión" del tablero y del tutor, "Volver" del simulador, "Ir a yaentre.com"
+  del tutor, enlaces de `NoTargetMessage`.
+- **"Saltar al contenido"** (primero en tabulación) en el shell `(app)` y en
+  `PublicPageShell`, con `<main id="contenido-principal">`.
+- Landmark **`<main>`** añadido donde faltaba: `AuthShell` (login/registro/
+  recuperar), `SimulatorPreflight`/`Result`/`Review`, `NoTargetMessage`.
+
+## 3. Botones de ícono (WCAG 4.1.2)
+
+Barrido completo: los íconos-botón ya tenían nombre (`aria-label="Perfil"` en el
+avatar del `TopBar`, `aria-label="Cerrar"` en el modal de admin). Los emoji de
+botones con texto se marcaron `aria-hidden` donde el texto ya lo dice. La
+mascota **Tino** (SVG sin nombre) → `aria-hidden` + `focusable="false"`.
+
+## 4. El color no es el único canal (WCAG 1.4.1)
+
+| Componente | Antes | Después |
+|---|---|---|
+| `DrillOptionButton` (correcto/incorrecto) | color + símbolo ✓/✗ | + palabra `sr-only` y el símbolo con `--on-*` a ≥ 3:1 |
+| `WeekActivityStrip` (panel tutor) | **solo color**, celdas `aria-hidden` sin texto | reescrito: contorno punteado / punto / palomita según nivel + texto `sr-only` por día, `<ul>`/`<li>` |
+| `HeatmapCalendar` (dashboard) | SVG solo color | `role="img"` + `aria-label` resumen ("Mapa de actividad de los últimos 90 días…") |
+| `SimTimer` / `Timer` (cambio de color a los 30/15/5/1 min) | solo color | + ícono y aviso `role="status"` `sr-only` al cruzar cada umbral |
+| `ThemeSelect` (tema activo) | solo borde/fondo | + `aria-pressed`, `role="group"` |
+| `DrillRunner` (feedback "¡Correcto!/Incorrecto") | color + ✓/✗ + texto, sin anunciar | + `role="status"` |
+| Nav activa (`AdminNav`, `StudentSwitcher`, `ReviewTabs`) | Sidebar/BottomNav ya con `aria-current` | `aria-current="page"` añadido donde faltaba |
+
+## 5. Movimiento reducido (WCAG 2.3.3 — cubierto)
+
+Ya estaba bien; se confirmó exhaustivo:
+
+- Regla CSS global `@media (prefers-reduced-motion: reduce)` neutraliza
+  `animate-pulse`, `animate-ring-fill` y todas las transiciones CSS.
+- `framer-motion`: los 3 únicos componentes envuelven en
+  `MotionConfig reducedMotion="user"` (grep confirmado).
+- `@number-flow/react`: `respectMotionPreference` por defecto `true`.
+
+Sin cambios necesarios.
+
+## 6. Imágenes y fórmulas (WCAG 1.1.1)
+
+- **Fórmulas (KaTeX)**: salida por defecto `htmlAndMathml` → cada fórmula lleva
+  **MathML** + la anotación `application/x-tex` para lectores de pantalla, y el
+  HTML visual va `aria-hidden`. Es la práctica recomendada; sin cambios.
+- **Imágenes de reactivos** (`question.imageUrl`): **0 de 1147 reactivos** tienen
+  imagen, así que en el contenido de lanzamiento no aplica. El `alt` genérico se
+  estandarizó a `"Figura del reactivo (necesaria para responder)"`. **Pendiente
+  del dueño**: un campo `imageAlt` en el schema para alt real cuando el pipeline
+  suba figuras — no se hizo porque `CLAUDE.md` prohíbe tocar
+  `prisma/schema.prisma` sin instrucción.
+- **Avatares** (`next/image alt=""`): correcto — decorativos, con el nombre al
+  lado. **Tino**: `aria-hidden` (§3).
+
+## 7. Formularios (WCAG 1.3.1 / 3.3.1 / 4.1.3)
+
+- `TextField`: `<label htmlFor>`, `aria-invalid`, `aria-describedby`, error con
+  `role="alert"`; el borde pasa a `border-danger` con error.
+- **Errores de formulario / de acción**: `role="alert"` añadido a ~10
+  `<p className="text-danger">{error}</p>` que aparecían sin región viva (drill,
+  diagnóstico, `PracticeSelector`, `SimulatorRunner`/`Preflight`, `ThemeSelect`,
+  `ParentLinkCard`, checkout, paywall, perfil…). Mensajes de éxito → `role="status"`.
+- Checkboxes: `<label>` asociado (implícito o `htmlFor`). `<select>` de carrera:
+  `<label>` desde F18.
+
+## 8. Descartado a propósito
+
+- **Hacer `--brand-tint` theme-aware**: arreglaría los `bg-brand-tint` + texto de
+  tema pero rompería los ~10 *chips* que usan `text-brand` sobre él. Se arregló
+  por componente.
+- **Focus-trap manual en `InstallPrompt`**: es un aviso no modal (toast); se deja
+  con `aria-label`.
+- **Auditoría profunda del panel de admin**: herramienta interna, no "producto";
+  pasada ligera (landmarks, `aria-current`, roles de tabs) + los arreglos de
+  token le aplican igual (tema claro).
+
+## 9. Pendiente del dueño
+
+1. Campo `imageAlt` en `Question` (schema) — hoy sin impacto (0 reactivos con
+   imagen), necesario post-launch (§6).
+2. Prueba con lector de pantalla real (NVDA / VoiceOver) del simulador activo,
+   drill activo y panel del tutor — se revisaron por código; no se probaron en
+   vivo por falta de cuentas PARENT / de una práctica en curso.

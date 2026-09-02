@@ -15,8 +15,17 @@ import { PublicHeader } from './PublicHeader';
 export function PublicPageShell({ children }: { children: ReactNode }) {
   return (
     <div data-theme="light" className="flex min-h-screen flex-col bg-base text-text-primary">
+      {/* G63: saltar el header de navegación con el teclado. */}
+      <a
+        href="#contenido-principal"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Saltar al contenido
+      </a>
       <PublicHeader />
-      <main className="flex-1">{children}</main>
+      <main id="contenido-principal" className="flex-1">
+        {children}
+      </main>
       <PublicFooter />
     </div>
   );

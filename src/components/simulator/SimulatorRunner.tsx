@@ -48,6 +48,7 @@ export function SimulatorRunner({
   const [error, setError] = useState<string | null>(null);
   const [fsNotice, setFsNotice] = useState(false);
   const [resumeDismissed, setResumeDismissed] = useState(false);
+  const resumeDialogRef = useRef<HTMLDialogElement>(null);
 
   // Estado de pantalla completa reactivo vía useSyncExternalStore (la forma
   // correcta de suscribirse a un sistema externo sin setState-en-efecto).
@@ -88,8 +89,14 @@ export function SimulatorRunner({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrate, payload.sessionId]);
 
+  // G63 (accesibilidad): al avanzar de pregunta, mover el foco a la región
+  // del reactivo — sin esto, un usuario de teclado/lector de pantalla se queda
+  // en el botón "Siguiente" ya desaparecido y no se le anuncia la pregunta
+  // nueva.
+  const questionRegionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     questionStartedAt.current = Date.now();
+    questionRegionRef.current?.focus();
   }, [currentIndex]);
 
   const ready = sessionId === payload.sessionId;
@@ -179,6 +186,23 @@ export function SimulatorRunner({
     setFsNotice(false);
   }, []);
 
+  // Reanudación: si la sesión ya venía en curso y no estamos en pantalla
+  // completa, ofrecemos retomarla en pantalla completa con un gesto del usuario
+  // (los navegadores exigen interacción para entrar a fullscreen).
+  const showResumeOverlay =
+    payload.isResume && !isFullscreen && screenfull.isEnabled && !resumeDismissed;
+
+  // G63 (accesibilidad): el aviso de reanudación es un `<dialog>` nativo —
+  // `showModal()` da atrapamiento de foco, foco inicial y `aria-modal` gratis.
+  // Escape cae a la salida explícita "continuar sin pantalla completa" (no un
+  // cierre silencioso), consistente con el botón.
+  useEffect(() => {
+    const dlg = resumeDialogRef.current;
+    if (!dlg) return;
+    if (showResumeOverlay && ready && !dlg.open) dlg.showModal();
+    else if ((!showResumeOverlay || !ready) && dlg.open) dlg.close();
+  }, [showResumeOverlay, ready]);
+
   if (!ready) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-base text-text-secondary">
@@ -203,12 +227,6 @@ export function SimulatorRunner({
     void flushNow();
   }
 
-  // Reanudación: si la sesión ya venía en curso y no estamos en pantalla
-  // completa, ofrecemos retomarla en pantalla completa con un gesto del usuario
-  // (los navegadores exigen interacción para entrar a fullscreen).
-  const showResumeOverlay =
-    payload.isResume && !isFullscreen && screenfull.isEnabled && !resumeDismissed;
-
   return (
     <div className="flex min-h-screen flex-col bg-base text-text-primary">
       {/* Barra superior sobria: examen · progreso · temporizador */}
@@ -224,9 +242,20 @@ export function SimulatorRunner({
           </div>
           <SimTimer remainingSecs={payload.remainingSecs} onExpire={onExpire} />
         </div>
-        <div className="h-1 w-full bg-elevated">
+        {/* G63: `bg-brand-soft` (relleno) vs `bg-elevated` (riel) da 5.5:1;
+            `bg-brand` daba 2.6:1, por debajo del 3:1 de WCAG 2.4.11 para un
+            objeto gráfico informativo. El texto "Pregunta N de total" comunica
+            lo mismo. */}
+        <div
+          className="h-1 w-full bg-elevated"
+          role="progressbar"
+          aria-valuenow={currentIndex + 1}
+          aria-valuemin={1}
+          aria-valuemax={total}
+          aria-label={`Pregunta ${currentIndex + 1} de ${total}`}
+        >
           <div
-            className="h-1 bg-brand transition-all"
+            className="h-1 bg-brand-soft transition-all"
             style={{ width: `${((currentIndex + 1) / total) * 100}%` }}
           />
         </div>
@@ -238,12 +267,15 @@ export function SimulatorRunner({
         </div>
       )}
       {fsNotice && !isFullscreen && screenfull.isEnabled && (
-        <div className="flex items-center justify-center gap-3 bg-elevated px-4 py-2 text-center text-sm text-text-secondary">
+        <div
+          role="status"
+          className="flex items-center justify-center gap-3 bg-elevated px-4 py-2 text-center text-sm text-text-secondary"
+        >
           Saliste de pantalla completa. El examen real es en pantalla completa.
           <button
             type="button"
             onClick={reenterFullscreen}
-            className="font-semibold text-brand-soft hover:underline"
+            className="inline-flex min-h-touch items-center font-semibold text-brand-soft hover:underline"
           >
             Volver
           </button>
@@ -252,14 +284,26 @@ export function SimulatorRunner({
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-8">
         {current && (
-          <SimQuestion question={current} selectedOption={selected} onSelect={handleSelect} />
+          <div
+            ref={questionRegionRef}
+            tabIndex={-1}
+            role="group"
+            aria-label={`Pregunta ${currentIndex + 1} de ${total}`}
+            className="rounded-md outline-none"
+          >
+            <SimQuestion question={current} selectedOption={selected} onSelect={handleSelect} />
+          </div>
         )}
 
-        {error && <p className="mt-4 text-sm text-danger">{error}</p>}
+        {error && (
+          <p role="alert" className="mt-4 text-sm text-danger">
+            {error}
+          </p>
+        )}
 
         <div className="mt-8 flex items-center justify-end gap-3">
           {confirming && (
-            <p className="text-sm text-text-secondary">
+            <p role="alert" className="text-sm text-text-secondary">
               No podrás volver a este examen. ¿Terminar?
             </p>
           )}
@@ -279,29 +323,34 @@ export function SimulatorRunner({
         </div>
       </main>
 
-      {showResumeOverlay && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-base p-6">
-          <div className="max-w-sm space-y-4 rounded-xl border border-border-subtle bg-surface p-6 text-center">
-            <h2 className="font-display text-lg font-bold text-text-primary">
-              Retomando tu simulacro
-            </h2>
-            <p className="text-sm text-text-secondary">
-              Tu tiempo siguió corriendo. Continúa en pantalla completa para replicar el examen
-              real.
-            </p>
-            <Button variant="primary" className="w-full" onClick={reenterFullscreen}>
-              Continuar en pantalla completa
-            </Button>
-            <button
-              type="button"
-              onClick={() => setResumeDismissed(true)}
-              className="flex min-h-touch w-full items-center justify-center text-xs text-text-muted hover:underline"
-            >
-              Continuar sin pantalla completa
-            </button>
-          </div>
-        </div>
-      )}
+      <dialog
+        ref={resumeDialogRef}
+        aria-labelledby="resume-title"
+        onCancel={(e) => {
+          e.preventDefault();
+          setResumeDismissed(true);
+        }}
+        className="max-w-sm space-y-4 rounded-xl border border-border-subtle bg-surface p-6 text-center text-text-primary backdrop:bg-base/90"
+      >
+        <h2 id="resume-title" className="font-display text-lg font-bold text-text-primary">
+          Retomando tu simulacro
+        </h2>
+        <p className="text-sm text-text-secondary">
+          Tu tiempo siguió corriendo. Continúa en pantalla completa para replicar el examen real.
+        </p>
+        {/* `dialog.showModal()` enfoca solo el primer elemento enfocable
+            (este botón) al abrir. */}
+        <Button variant="primary" className="w-full" onClick={reenterFullscreen}>
+          Continuar en pantalla completa
+        </Button>
+        <button
+          type="button"
+          onClick={() => setResumeDismissed(true)}
+          className="flex min-h-touch w-full items-center justify-center text-xs text-text-secondary hover:underline"
+        >
+          Continuar sin pantalla completa
+        </button>
+      </dialog>
     </div>
   );
 }

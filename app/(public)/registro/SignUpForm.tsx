@@ -44,11 +44,11 @@ export function SignUpForm({ next, isTutor = false }: { next?: string; isTutor?:
         />
         <label htmlFor="accept-terms" className="text-sm text-text-secondary leading-tight cursor-pointer">
           Acepto los{' '}
-          <Link href="/legal/terminos" target="_blank" className="font-semibold text-brand hover:underline">
+          <Link href="/legal/terminos" target="_blank" className="font-semibold text-brand-soft hover:underline">
             términos y condiciones
           </Link>
           {' '}y el{' '}
-          <Link href="/legal/privacidad" target="_blank" className="font-semibold text-brand hover:underline">
+          <Link href="/legal/privacidad" target="_blank" className="font-semibold text-brand-soft hover:underline">
             aviso de privacidad
           </Link>
         </label>

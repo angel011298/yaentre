@@ -111,7 +111,10 @@ export function ParentDashboard({
       </p>
 
       <div className="text-center">
-        <Link href="/" className="text-sm text-text-muted hover:text-brand">
+        <Link
+          href="/"
+          className="inline-flex min-h-touch items-center text-sm font-semibold text-text-secondary hover:text-brand"
+        >
           Ir a yaentre.com
         </Link>
       </div>

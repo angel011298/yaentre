@@ -121,8 +121,8 @@ export function ProfileIdentityCard({
           {savingName ? 'Guardando…' : 'Guardar'}
         </Button>
       </form>
-      {nameSaved && <p className="text-sm text-success">Guardado ✓</p>}
-      {error && <p className="text-sm text-danger">{error}</p>}
+      {nameSaved && <p role="status" className="text-sm text-success">Guardado ✓</p>}
+      {error && <p role="alert" className="text-sm text-danger">{error}</p>}
     </Card>
   );
 }

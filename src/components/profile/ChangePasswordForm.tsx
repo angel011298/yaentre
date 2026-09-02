@@ -46,8 +46,8 @@ export function ChangePasswordForm() {
           {pending ? 'Guardando…' : 'Cambiar'}
         </Button>
       </form>
-      {success && <p className="mt-2 text-sm text-success">Tu contraseña se actualizó ✓</p>}
-      {error && <p className="mt-2 text-sm text-danger">{error}</p>}
+      {success && <p role="status" className="mt-2 text-sm text-success">Tu contraseña se actualizó ✓</p>}
+      {error && <p role="alert" className="mt-2 text-sm text-danger">{error}</p>}
     </Card>
   );
 }

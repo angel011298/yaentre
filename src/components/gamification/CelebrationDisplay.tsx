@@ -26,7 +26,7 @@ export function CelebrationDisplay({ celebration }: { celebration: Celebration }
           animate={{ opacity: 1, rotateY: 0 }}
           transition={{ duration: 1.4, type: 'spring', bounce: 0.35 }}
           style={{ transformPerspective: 800 }}
-          className="relative overflow-hidden rounded-2xl border border-brand bg-brand-tint p-6 text-center"
+          className="relative overflow-hidden rounded-2xl border border-brand bg-brand/10 p-6 text-center"
         >
           <PerfectRoundReveal />
           <Tino state={copy.state} size={72} />

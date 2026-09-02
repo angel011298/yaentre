@@ -36,7 +36,7 @@ export function OfflineBanner() {
       role="status"
       className="border-b border-warning/40 bg-warning/15 px-4 py-2 text-center text-sm font-semibold text-warning"
     >
-      📡 Sin conexión — viendo tus últimos datos guardados.
+      <span aria-hidden>📡 </span>Sin conexión — viendo tus últimos datos guardados.
     </div>
   );
 }

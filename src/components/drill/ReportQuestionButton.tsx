@@ -18,7 +18,7 @@ export function ReportQuestionButton({ questionId }: { questionId: string }) {
   }
 
   if (status === 'sent') {
-    return <p className="text-xs text-text-muted">Gracias, ya lo reportamos. 🦉</p>;
+    return <p role="status" className="text-xs text-text-muted">Gracias, ya lo reportamos. 🦉</p>;
   }
 
   if (!open) {

@@ -22,7 +22,12 @@ interface Props {
 /** Navegación entre las 3 colas de revisión (F3), con conteos como badges. */
 export function ReviewTabs({ active, counts, basePath, extraParams }: Props) {
   return (
-    <div className="flex flex-wrap gap-1 border-b border-border-subtle" role="tablist">
+    // G63: navegación por enlaces (cada pestaña es una URL), no el patrón de
+    // tabs de WAI-ARIA — se marca la activa con `aria-current`.
+    <nav
+      className="flex flex-wrap gap-1 border-b border-border-subtle"
+      aria-label="Colas de revisión"
+    >
       {REVIEW_QUEUE_ORDER.map((kind) => {
         const params = new URLSearchParams();
         for (const [key, value] of Object.entries(extraParams ?? {})) {
@@ -35,8 +40,7 @@ export function ReviewTabs({ active, counts, basePath, extraParams }: Props) {
           <Link
             key={kind}
             href={`${basePath}?${params.toString()}`}
-            role="tab"
-            aria-selected={isActive}
+            aria-current={isActive ? 'page' : undefined}
             className={`min-h-touch inline-flex items-center gap-2 border-b-2 px-3 pb-2 text-sm font-medium transition-all ${
               isActive
                 ? TAB_STYLES[kind]
@@ -54,6 +58,6 @@ export function ReviewTabs({ active, counts, basePath, extraParams }: Props) {
           </Link>
         );
       })}
-    </div>
+    </nav>
   );
 }

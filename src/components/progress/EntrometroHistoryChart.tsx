@@ -66,9 +66,13 @@ export function EntrometroHistoryChart({ data }: { data: EntrometroHistoryPoint[
           stroke="var(--border-subtle)"
           strokeWidth={1}
         />
-        <path d={pathD} fill="none" stroke="var(--brand-primary)" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+        {/* G63: `--brand-soft` en vez de `--brand-primary` — el morado sólido
+            daba 3.0:1 sobre `bg-surface` oscuro, en el límite del 3:1 de WCAG
+            2.4.11 para un trazo de datos. `--brand-soft` da ≥ 5.5:1 en dark y
+            colapsa al morado en light. */}
+        <path d={pathD} fill="none" stroke="var(--brand-soft)" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
         {points.map((p) => (
-          <circle key={p.date} cx={p.x} cy={p.y} r={4} fill="var(--brand-primary)" />
+          <circle key={p.date} cx={p.x} cy={p.y} r={4} fill="var(--brand-soft)" />
         ))}
       </svg>
       <div className="mt-1 flex justify-between text-xs text-text-muted" aria-hidden>

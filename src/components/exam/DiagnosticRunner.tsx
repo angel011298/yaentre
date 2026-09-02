@@ -38,8 +38,12 @@ export function DiagnosticRunner({ sessionId, deadline, questions, initialSelect
   const [error, setError] = useState<string | null>(null);
 
   const questionStartedAt = useRef<number>(0);
+  // G63: al cambiar de pregunta (Siguiente/Anterior/salto), mover el foco a la
+  // región del reactivo para que se anuncie y el teclado no se quede colgado.
+  const questionRegionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     questionStartedAt.current = Date.now();
+    questionRegionRef.current?.focus();
   }, [currentIndex]);
 
   const answeredFlags = useMemo(() => selections.map((s) => s !== null), [selections]);
@@ -111,15 +115,23 @@ export function DiagnosticRunner({ sessionId, deadline, questions, initialSelect
         onJump={goTo}
       />
 
-      <QuestionCard
-        question={current}
-        index={currentIndex}
-        total={total}
-        selectedOption={selections[currentIndex]}
-        onSelect={handleSelect}
-      />
+      <div
+        ref={questionRegionRef}
+        tabIndex={-1}
+        role="group"
+        aria-label={`Pregunta ${currentIndex + 1} de ${total}`}
+        className="outline-none"
+      >
+        <QuestionCard
+          question={current}
+          index={currentIndex}
+          total={total}
+          selectedOption={selections[currentIndex]}
+          onSelect={handleSelect}
+        />
+      </div>
 
-      {error && <p className="text-sm text-danger">{error}</p>}
+      {error && <p role="alert" className="text-sm text-danger">{error}</p>}
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex gap-2">
@@ -137,7 +149,7 @@ export function DiagnosticRunner({ sessionId, deadline, questions, initialSelect
 
         <div className="flex items-center gap-3">
           {confirmingFinish && (
-            <p className="text-sm text-warning">
+            <p role="alert" className="text-sm text-warning">
               Te faltan {total - answeredCount} preguntas. ¿Terminar de todas formas?
             </p>
           )}

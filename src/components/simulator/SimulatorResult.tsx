@@ -58,7 +58,7 @@ export function SimulatorResult({
   const tino = simulatorResultCopy({ timedOut, perfectRound, fraction });
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6 px-4 py-10">
+    <main className="mx-auto max-w-2xl space-y-6 px-4 py-10">
       <div className="flex items-center gap-3">
         <Tino state={tino.state} size={64} />
         <div>
@@ -181,6 +181,6 @@ export function SimulatorResult({
           Ir a mi tablero
         </Button>
       </Link>
-    </div>
+    </main>
   );
 }

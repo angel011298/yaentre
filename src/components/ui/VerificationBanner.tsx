@@ -15,8 +15,12 @@ export function VerificationBanner() {
       <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2">
         <span>
           Verifica tu correo para desbloquear la compra de planes.
-          {state.status === 'success' && state.message ? ` ${state.message}` : ''}
-          {state.status === 'error' && state.message ? ` ${state.message}` : ''}
+          {/* G63: la respuesta a "Reenviar" se anuncia (antes solo se
+              concatenaba al texto, sin región viva). */}
+          <span role="status">
+            {state.status === 'success' && state.message ? ` ${state.message}` : ''}
+            {state.status === 'error' && state.message ? ` ${state.message}` : ''}
+          </span>
         </span>
         <form action={formAction}>
           <button

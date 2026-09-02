@@ -39,7 +39,7 @@ export function QuestionCard({ question, index, total, selectedOption, onSelect 
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={question.imageUrl}
-            alt={`Reactivo ${index + 1}`}
+            alt="Figura del reactivo (necesaria para responder)"
             className="max-h-64 w-auto rounded-md border border-border-subtle"
           />
         )}

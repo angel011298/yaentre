@@ -77,7 +77,7 @@ export function SuccessView({ subscription }: { subscription: SubscriptionForRes
         <ul className="space-y-1.5 text-sm text-text-secondary">
           {NEXT_STEPS[subscription.plan].map((step) => (
             <li key={step} className="flex gap-2">
-              <span className="text-success">✓</span>
+              <span aria-hidden className="text-success">✓</span>
               <span>{step}</span>
             </li>
           ))}
@@ -116,7 +116,7 @@ export function PendingView({
 
       <Card className="w-full max-w-sm space-y-3 p-5">
         <div className="flex items-center justify-center gap-2 text-sm text-text-secondary">
-          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-warning" />
+          <span aria-hidden className="inline-block h-2 w-2 animate-pulse rounded-full bg-warning" />
           Esperando confirmación del pago
         </div>
         {voucherUrl && (

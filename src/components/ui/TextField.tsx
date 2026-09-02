@@ -28,7 +28,13 @@ export function TextField({
         name={name}
         aria-invalid={hasErrors || undefined}
         aria-describedby={hasErrors ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
-        className={`min-h-touch w-full rounded-md border border-border-subtle bg-input px-3 text-text-primary outline-none placeholder:text-text-muted focus:border-transparent focus:ring-2 focus:ring-brand ${className}`}
+        // G63: sin `focus:ring` propio (usaba `--brand`, 2.9:1 sobre `bg-input`
+        // oscuro) — el `:focus-visible` global aplica y cumple 3:1. `aria-invalid`
+        // apunta el foco/border al estado de error; el borde base siempre es
+        // visible.
+        className={`min-h-touch w-full rounded-md border bg-input px-3 text-text-primary placeholder:text-text-muted ${
+          hasErrors ? 'border-danger' : 'border-border-subtle'
+        } ${className}`}
         {...props}
       />
       {hint && !hasErrors && (
@@ -37,7 +43,7 @@ export function TextField({
         </p>
       )}
       {hasErrors ? (
-        <p id={`${inputId}-error`} role="alert" className="text-xs text-danger">
+        <p id={`${inputId}-error`} role="alert" className="text-xs font-medium text-danger">
           {errors![0]}
         </p>
       ) : null}

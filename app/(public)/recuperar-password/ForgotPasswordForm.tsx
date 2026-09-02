@@ -14,7 +14,7 @@ export function ForgotPasswordForm() {
 
   if (state.status === 'success') {
     return (
-      <p className="rounded-md bg-success/10 px-3 py-2 text-sm text-success">
+      <p role="status" className="rounded-md bg-success/10 px-3 py-2 text-sm text-success">
         {state.message}
       </p>
     );

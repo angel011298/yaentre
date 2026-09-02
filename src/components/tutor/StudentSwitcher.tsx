@@ -17,20 +17,21 @@ export function StudentSwitcher({
   if (students.length <= 1) return null;
 
   return (
-    <div className="flex gap-2 overflow-x-auto">
+    <nav className="flex gap-2 overflow-x-auto" aria-label="Cambiar de alumno">
       {students.map((s) => (
         <Link
           key={s.studentProfileId}
           href={`/tutor?student=${s.studentProfileId}`}
+          aria-current={s.studentProfileId === selectedId ? 'page' : undefined}
           className={`flex min-h-touch items-center whitespace-nowrap rounded-full px-3 text-sm font-semibold transition-colors ${
             s.studentProfileId === selectedId
               ? 'bg-brand text-white'
-              : 'bg-elevated text-text-secondary hover:bg-brand-tint'
+              : 'bg-elevated text-text-secondary hover:bg-brand-tint hover:text-brand'
           }`}
         >
           {s.displayName}
         </Link>
       ))}
-    </div>
+    </nav>
   );
 }

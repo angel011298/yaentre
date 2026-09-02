@@ -36,13 +36,18 @@ export function ThemeSelect({ initialTheme }: { initialTheme: ThemePref }) {
 
   return (
     <div>
-      <p className="text-sm font-semibold text-text-primary">Tema</p>
-      <div className="mt-2 flex gap-2">
+      <p id="theme-label" className="text-sm font-semibold text-text-primary">
+        Tema
+      </p>
+      {/* G63: `aria-pressed` — antes el tema activo solo se distinguía por
+          color de borde/fondo, invisible para un lector de pantalla. */}
+      <div className="mt-2 flex gap-2" role="group" aria-labelledby="theme-label">
         {OPTIONS.map((opt) => (
           <button
             key={opt.value}
             type="button"
             disabled={pending}
+            aria-pressed={initialTheme === opt.value}
             onClick={() => select(opt.value)}
             className={`min-h-touch rounded-md border px-4 text-sm font-semibold transition-all disabled:opacity-50 ${
               initialTheme === opt.value
@@ -54,7 +59,11 @@ export function ThemeSelect({ initialTheme }: { initialTheme: ThemePref }) {
           </button>
         ))}
       </div>
-      {error && <p className="mt-1 text-sm text-danger">{error}</p>}
+      {error && (
+        <p role="alert" className="mt-1 text-sm text-danger">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

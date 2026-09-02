@@ -74,6 +74,12 @@ export function ExplanationAccordion({
               type="button"
               onClick={() => (isRevealed ? setOpenLayer(isOpen ? null : layer) : reveal(layer))}
               disabled={!isUnlocked || isLoading}
+              aria-expanded={isRevealed ? isOpen : undefined}
+              aria-label={
+                !isUnlocked
+                  ? `Capa ${layer} — ${LAYER_TITLES[layer]} (bloqueada: revela la capa anterior primero)`
+                  : undefined
+              }
               className="flex w-full min-h-touch items-center justify-between gap-2 p-3 text-left text-sm font-semibold text-text-primary disabled:cursor-not-allowed disabled:opacity-50"
             >
               <span>
@@ -99,7 +105,7 @@ export function ExplanationAccordion({
             )}
 
             {paywall?.layer === layer && (
-              <div className="space-y-2 border-t border-border-subtle p-3 text-sm">
+              <div role="status" className="space-y-2 border-t border-border-subtle p-3 text-sm">
                 <p className="text-text-secondary">
                   Las capas 2 a 4 son parte de los planes de pago.
                 </p>
@@ -113,7 +119,7 @@ export function ExplanationAccordion({
             )}
 
             {notFound === layer && (
-              <p className="border-t border-border-subtle p-3 text-sm text-text-muted">
+              <p role="status" className="border-t border-border-subtle p-3 text-sm text-text-muted">
                 Todavía no tenemos esta explicación para este reactivo.
               </p>
             )}

@@ -58,11 +58,21 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       className="flex min-h-screen flex-col bg-base text-text-primary"
     >
       <IdentifyUser profileId={profileId} />
+      {/* G63: enlace para saltar la barra lateral / superior con el teclado. */}
+      <a
+        href="#contenido-principal"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Saltar al contenido
+      </a>
       <Sidebar />
       <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} avatarUrl={avatarUrl} />
       {!authUser.email_confirmed_at && <VerificationBanner />}
       <OfflineBanner />
-      <main className="mx-auto w-full max-w-5xl space-y-4 px-4 py-8 pb-24 flex-1 lg:pl-60 lg:pb-8">
+      <main
+        id="contenido-principal"
+        className="mx-auto w-full max-w-5xl space-y-4 px-4 py-8 pb-24 flex-1 lg:pl-60 lg:pb-8"
+      >
         {children}
       </main>
       <AppFooter />

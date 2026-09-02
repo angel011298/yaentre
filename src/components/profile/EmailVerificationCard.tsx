@@ -29,10 +29,10 @@ export function EmailVerificationCard({ verified }: { verified: boolean }) {
             </button>
           </form>
           {state.status === 'success' && state.message && (
-            <p className="text-sm text-success">{state.message}</p>
+            <p role="status" className="text-sm text-success">{state.message}</p>
           )}
           {state.status === 'error' && state.message && (
-            <p className="text-sm text-danger">{state.message}</p>
+            <p role="alert" className="text-sm text-danger">{state.message}</p>
           )}
         </div>
       )}

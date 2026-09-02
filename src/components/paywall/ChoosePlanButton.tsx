@@ -40,7 +40,7 @@ export function ChoosePlanButton({
       <Button variant={variant} className="w-full" onClick={choose} disabled={loading}>
         {loading ? 'Abriendo pago…' : 'Elegir este plan'}
       </Button>
-      {error && <p className="text-xs text-danger">{error}</p>}
+      {error && <p role="alert" className="text-xs text-danger">{error}</p>}
     </div>
   );
 }

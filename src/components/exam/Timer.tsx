@@ -36,20 +36,38 @@ export function Timer({ deadline, onExpire }: { deadline: Date; onExpire: () => 
     return () => clearInterval(interval);
   }, [deadline, onExpire]);
 
-  const colorClass =
+  const level =
     remainingSecs <= DANGER_THRESHOLD_SECS
-      ? 'text-danger'
+      ? 'danger'
       : remainingSecs <= WARNING_THRESHOLD_SECS
-        ? 'text-warning'
-        : 'text-text-secondary';
+        ? 'warning'
+        : 'normal';
+  const colorClass =
+    level === 'danger' ? 'text-danger' : level === 'warning' ? 'text-warning' : 'text-text-secondary';
 
   return (
-    <span
-      className={`font-mono text-lg font-semibold tabular-nums ${colorClass}`}
-      role="timer"
-      aria-live="off"
-    >
-      {formatTime(remainingSecs)}
+    <span className="flex items-center gap-1.5">
+      {/* G63: ícono además del color, y aviso puntual al cruzar cada umbral. */}
+      {level !== 'normal' && (
+        <span aria-hidden className="text-sm">
+          {level === 'danger' ? '⏰' : '⏳'}
+        </span>
+      )}
+      <span
+        className={`font-mono text-lg font-semibold tabular-nums ${colorClass}`}
+        role="timer"
+        aria-live="off"
+        aria-label="Tiempo restante del diagnóstico"
+      >
+        {formatTime(remainingSecs)}
+      </span>
+      <span role="status" className="sr-only">
+        {level === 'danger'
+          ? 'Queda menos de 1 minuto.'
+          : level === 'warning'
+            ? 'Quedan menos de 5 minutos.'
+            : ''}
+      </span>
     </span>
   );
 }

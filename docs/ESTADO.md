@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-09-01 · Última fase ejecutada: **G62 (COMPLETADA — optimización de rendimiento del frontend)**. Modelo real `claude-sonnet-5`. Las 5 pantallas críticas ≥ 85 en Lighthouse móvil (mediana de 5): **landing 90→96, registro 89→98, dashboard 67→87, práctica 75→90, simulador 67→94**. CLS 0.20–0.32 → ≤ 0.06 (elementos que aparecían tras hidratar: aviso móvil del simulador, `InstallPrompt`, anillo del Entrómetro, banner de cookies — a primer render / `position:fixed` / SSR; fuentes a `display:optional`, que era la causa raíz del swap tardío). Sentry cliente → `import()` dinámico sólo con DSN real: chunk de vendor de TODA ruta **422→228 KB**. `framer-motion` fuera de la carga inicial de `/simulador` (−131 KB, 99 % sin usar). Dashboard con `<Suspense>` por sección (esqueletos de altura reservada). `requireUser`/`createSupabaseServerClient` + 2 loaders con `cache()` de React; 3 loaders de `/practicar` de serie→paralelo. Sin imágenes rasterizadas que optimizar (emoji + SVG inline). **No se tocó `prisma/schema.prisma`.** El "después" contra prod real requiere deploy (sin remoto git; deployments de proyecto tras SSO). Reporte: **`docs/AUDITORIA_FRONTEND.md`**. `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G63, modelo Sonnet 4.6**.
+Última actualización: 2026-09-01 · Última fase ejecutada: **G63 (COMPLETADA — accesibilidad WCAG AA)**. Modelo real `claude-sonnet-5`. Barrido pantalla por pantalla (contraste medido en navegador con compositado real, recorrido por teclado, dark + light). **Contraste: ~9 combinaciones que fallaban → 0.** Hallazgo mayor: `bg-brand-tint` (lila FIJO `#ede9fe`) con `text-text-primary` daba **1.1:1 — texto blanco invisible en tema oscuro** (`TinoRecommendation`, opción seleccionada del drill, "Reforzar mis temas débiles", celebración "materia dominada", `InstallPrompt`) → `bg-brand/10`. Tokens: `--text-muted` subido en ambos temas (daba 3.1–4.1:1), nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware para texto sobre fondos de color vivo (badge ✓/✗ del drill daba 2.3:1), `text-brand`→`text-brand-soft` como texto sobre superficies oscuras (2.6:1), botón `danger`→`bg-red-600`. Foco: `:focus-visible` global de `--brand-primary`→`--brand-soft` + `Button`/`TextField` sueltan su `focus:ring` propio (usaba un `ring-offset` blanco que hacía halo en dark). Teclado: aviso de reanudación del simulador → `<dialog>` nativo (atrapa foco + Escape), foco se mueve a la región del reactivo al avanzar, `QuestionNavigator` deja el patrón de tabs roto → `role="group"`. Solo-color: `WeekActivityStrip` (panel tutor) era **100% color** → reescrito con glifos + texto `sr-only`; timers con ícono + aviso a los umbrales; `HeatmapCalendar` con `role="img"` + resumen. Formularios: `role="alert"` en ~10 mensajes de error que no se anunciaban. Landmark `<main>` + "saltar al contenido" donde faltaban. `prefers-reduced-motion` ya cubierto (CSS global + `MotionConfig reducedMotion="user"`), sin cambios. Imágenes de reactivos: 0/1147 tienen imagen — `alt` genérico estandarizado, campo `imageAlt` real queda pendiente del dueño (no se toca el schema). **No se tocó `prisma/schema.prisma`.** Reporte: **`docs/AUDITORIA_FRONTEND.md`** (sección G63). `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G64, modelo Sonnet 4.6**.
+
+<details><summary>Historial: G62 (2026-09-01)</summary>
+
+Última fase ejecutada: **G62 (COMPLETADA — optimización de rendimiento del frontend)**. Modelo real `claude-sonnet-5`. Las 5 pantallas críticas ≥ 85 en Lighthouse móvil (mediana de 5): **landing 90→96, registro 89→98, dashboard 67→87, práctica 75→90, simulador 67→94**. CLS 0.20–0.32 → ≤ 0.06 (elementos que aparecían tras hidratar: aviso móvil del simulador, `InstallPrompt`, anillo del Entrómetro, banner de cookies — a primer render / `position:fixed` / SSR; fuentes a `display:optional`, que era la causa raíz del swap tardío). Sentry cliente → `import()` dinámico sólo con DSN real: chunk de vendor de TODA ruta **422→228 KB**. `framer-motion` fuera de la carga inicial de `/simulador` (−131 KB, 99 % sin usar). Dashboard con `<Suspense>` por sección (esqueletos de altura reservada). `requireUser`/`createSupabaseServerClient` + 2 loaders con `cache()` de React; 3 loaders de `/practicar` de serie→paralelo. Sin imágenes rasterizadas que optimizar (emoji + SVG inline). **No se tocó `prisma/schema.prisma`.** El "después" contra prod real requiere deploy (sin remoto git; deployments de proyecto tras SSO). Reporte: **`docs/AUDITORIA_FRONTEND.md`**. `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G63, modelo Sonnet 4.6**.
+
+</details>
 
 <details><summary>Historial: G59 (2026-08-31)</summary>
 
@@ -193,6 +199,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G63 | Accesibilidad WCAG AA | **COMPLETADA — barrido pantalla por pantalla. Contraste: ~9 combinaciones que fallaban → 0 (medido en navegador). Foco visible arreglado, estados solo-color eliminados, errores de formulario anunciados. Reporte: `docs/AUDITORIA_FRONTEND.md` §G63** | (G63) | Modelo real `claude-sonnet-5`. Hallazgo mayor: `bg-brand-tint` (lila FIJO) + `text-text-primary` = 1.1:1 (texto blanco invisible) en tema oscuro → `bg-brand/10`. Tokens `--text-muted` subidos (daba 3.1–4.1:1), nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware, `text-brand`→`text-brand-soft` sobre superficies oscuras, botón `danger`→`bg-red-600`. `:focus-visible` global → `--brand-soft`; `Button`/`TextField` sueltan su `focus:ring` (tenía `ring-offset` blanco). Aviso de reanudación del simulador → `<dialog>` nativo; foco a la región del reactivo al avanzar; `QuestionNavigator`/`ReviewTabs` dejan el patrón de tabs roto. `WeekActivityStrip` (tutor) era 100% color → glifos + `sr-only`. `role="alert"` en ~10 errores. `<main>` + "saltar al contenido" donde faltaban. `prefers-reduced-motion` ya OK, sin cambios. 0/1147 reactivos con imagen (campo `imageAlt` real pendiente del dueño). **No se tocó `prisma/schema.prisma`.** |
 | G62 | Optimización de rendimiento del frontend | **COMPLETADA — las 5 pantallas críticas ≥ 85 en Lighthouse móvil (mediana de 5): landing 90→96, registro 89→98, dashboard 67→87, práctica 75→90, simulador 67→94. Reporte: `docs/AUDITORIA_FRONTEND.md`** | (G62) | Modelo real `claude-sonnet-5`. CLS 0.20–0.32 → ≤ 0.06 (elementos que aparecían tras hidratar: aviso móvil del simulador, `InstallPrompt`, anillo del Entrómetro, banner de cookies — todos a primer render / fuera de flujo / `display:optional`). Sentry cliente → `import()` dinámico sólo con DSN real (chunk de vendor 422→228 KB en TODA ruta). `framer-motion` fuera de la carga inicial de `/simulador` (−131 KB, 99% sin usar). Dashboard: `<Suspense>` por sección con esqueletos de altura reservada. `requireUser`/`createSupabaseServerClient` + 2 loaders del dashboard con `cache()` de React; 3 loaders de `/practicar` de serie→paralelo. Fuentes: pesos recortados, `preload:false` en mono, `display:optional`. Borrados 5 SVG de arranque. **No hay imágenes rasterizadas que optimizar** (emoji + SVG inline). **No se tocó `prisma/schema.prisma`.** El "después" contra prod real requiere deploy (sin remoto git); el TTFB local infla ~2 s el LCP de las pantallas con base (latencia MX→us-east-1, no existe en `iad1`). |
 | G61 | Respaldos y recuperación | **COMPLETADA — el plan gratuito de Supabase NO da respaldos restaurables; se implementó un respaldo lógico propio del banco de contenido (13 tablas, versionado en git) con export/import probados round-trip byte-idéntico. Reporte: `docs/RESPALDOS.md`** | (G61) | `pnpm backup:export` → `backups/content-bank.json` (5 658 filas, 3.9 MB); `pnpm backup:import` (`--dry-run` / `--wipe --yes` / `--schema <x>`). Prueba real: import a esquema aislado → checksum md5 idéntico en las 13 tablas + 16 FK validadas; `--dry-run` contra prod (ROLLBACK, prod intacta). Spec derivada del DMMF de Prisma (sin listas hardcodeadas). **Decisión pendiente del dueño: subir a Pro ($25/mes) antes del launch** — el free no tiene red para datos de usuario/pago y pausa por inactividad. PITR (~$125/mes) sobredimensionado a ~20 MB de base. |
 | G60 | Integridad y resiliencia del backend | **COMPLETADA — 10 hallazgos corregidos, 1 documentado. 2 🔴: `finishSession` no atómico (doble `simulation_completed` — la North Star), y bypass del muro suave por doble arranque de simulacro (usuario FREE → 2 gratis). Auditoría completa en `docs/AUDITORIA_BACKEND.md` §G60** | (G60) | Nuevo `withUserAdvisoryLock` (`pg_advisory_xact_lock`, seguro con pgbouncer) serializa arranque de simulacro/diagnóstico por usuario; `finishSession` reclama la transición con `updateMany` condicionado; activación de plan Stripe ahora condicional atómica (webhook + reconciliación en paralelo ya no duplican `Payment`/insignia/evento); `redeemParentLinkCode` en transacción; sesión+`SessionAnswer` en un `create` anidado. Bug latente corregido: `getAuthEmails` comparaba `UserProfile.id` (cuid) vs `auth.users.id` (uuid) — **sigue pendiente el grant del dueño** (G59 §5). Anti open-redirect en `?next=`. Cotas Zod. `try/catch` de último recurso en Route Handlers. **No se tocó `prisma/schema.prisma`.** |
@@ -2529,6 +2536,89 @@ alcance — mismo criterio que ya usa `notification-jobs.ts`).
 1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
 2. Idempotencia real de los correos programados → tabla nueva → instrucción
    explícita.
+
+
+## G63 — Accesibilidad WCAG AA (2026-09-01)
+
+**Reporte completo: `docs/AUDITORIA_FRONTEND.md` §G63.** Aquí lo esencial.
+Modelo real: `claude-sonnet-5`. No se tocó `prisma/schema.prisma`.
+
+### 1. Contraste — de ~9 combinaciones que fallaban a 0
+
+Medido en el navegador con compositado real (canvas), dark y light, 13
+pantallas. Arreglos:
+
+- **`bg-brand-tint` (lila FIJO `#ede9fe`) + `text-text-primary` = 1.1:1 en tema
+  oscuro** — texto blanco casi invisible en `TinoRecommendation`, la opción
+  seleccionada del drill/diagnóstico, "Reforzar mis temas débiles", la
+  celebración "materia dominada" y el `InstallPrompt`. → `bg-brand/10` (tinte por
+  opacidad, adaptable al tema) o `bg-elevated` para el flotante. Los ~10 *chips*
+  con `text-brand` explícito sobre `bg-brand-tint` (4.84:1) se dejaron.
+- `--text-muted` subido: dark `#7a7a88`→`#9a9aa8` (daba 3.5–4.1:1 sobre
+  superficies), light `#8a8a9a`→`#6b6b7a` (daba 3.1–3.4:1). ~100 usos.
+- Nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware: texto
+  oscuro sobre el color vivo en dark, blanco sobre el oscuro en light. El badge
+  ✓/✗ del drill daba 2.3:1 con blanco.
+- `text-brand` (violeta) como TEXTO sobre superficies oscuras (2.6–3.4:1) →
+  `text-brand-soft` (theme-aware) en `BottomNav` activo, logos `TopBar`/`Sidebar`,
+  links del banner de cookies y del registro.
+- Botón `danger` (`bg-danger` + blanco, 3.76:1) → `bg-red-600` (4.83:1).
+- `EntrometroHistoryChart` traza `--brand-primary` (3.0:1) → `--brand-soft`.
+  Barra de progreso del simulador `bg-brand` (2.6:1) → `bg-brand-soft` +
+  `role="progressbar"`.
+- `EarlyBirdBanner` precio tachado `text-white/60` (3.0:1) → `/90`.
+
+### 2. Foco y teclado
+
+- `:focus-visible` global (`globals.css`): outline `--brand-primary` →
+  `--brand-soft` (2.6:1 → ≥ 5.5:1 sobre `bg-elevated` oscuro). `Button` y
+  `TextField` sueltan su `focus:ring` propio (usaba `--brand` + un `ring-offset`
+  **blanco** que dibujaba un halo alrededor del botón en dark). Verificado en
+  navegador.
+- El listener de integridad del simulador (`isSuspiciousKeyCombo`) NO bloquea
+  Tab/flechas/Enter/Space/Escape — la navegación por teclado no estaba rota.
+- Aviso de reanudación del simulador: `<div>` superpuesto → `<dialog>` nativo
+  con `showModal()` (atrapa foco, foco inicial, `aria-modal`; Escape → salida
+  explícita).
+- Foco a la región del reactivo (`role="group"` + `aria-label`) al cambiar de
+  pregunta en drill/diagnóstico/simulador.
+- `QuestionNavigator` y `ReviewTabs` dejan `role="tablist"`/`"tab"` (patrón roto
+  sin flechas/`aria-controls`) → `role="group"`/`<nav>` + `aria-current`.
+- Áreas táctiles < 44px corregidas (6 controles). `<main>` + "saltar al
+  contenido" donde faltaban (AuthShell, simulador).
+
+### 3. El color no es el único canal
+
+`WeekActivityStrip` del panel del tutor era **100% color** (celdas `aria-hidden`
+sin texto) → reescrito con contorno/punto/palomita + texto `sr-only` por día.
+`DrillOptionButton` + palabra `sr-only`. Timers con ícono + aviso `role="status"`
+al cruzar 30/15/5/1 min. `HeatmapCalendar` con `role="img"` + resumen.
+`ThemeSelect` con `aria-pressed`.
+
+### 4. Formularios
+
+`role="alert"` en ~10 `<p className="text-danger">{error}</p>` que aparecían sin
+región viva; mensajes de éxito → `role="status"`. `TextField` ya tenía
+`label`/`aria-invalid`/`aria-describedby`.
+
+### 5. Movimiento reducido, fórmulas, imágenes
+
+- `prefers-reduced-motion`: CSS global + `MotionConfig reducedMotion="user"` en
+  los 3 componentes framer-motion + `@number-flow` por defecto. **Ya exhaustivo,
+  sin cambios.**
+- KaTeX: salida por defecto `htmlAndMathml` → MathML + anotación LaTeX para
+  lectores de pantalla. Sin cambios.
+- Imágenes de reactivos: **0/1147 tienen imagen**. `alt` genérico estandarizado.
+  Campo `imageAlt` real en el schema = **pendiente del dueño** (post-launch).
+- Mascota Tino (SVG): `aria-hidden` (decorativa).
+
+### 6. Pendiente del dueño
+
+1. Campo `imageAlt` en `Question` (schema) para alt real de figuras — hoy sin
+   impacto (0 reactivos con imagen).
+2. Prueba con NVDA / VoiceOver real del simulador activo, drill activo y panel
+   del tutor (se revisaron por código; sin cuentas PARENT / práctica en curso
+   para probar en vivo).
 
 
 ## G62 — Optimización de rendimiento del frontend (2026-09-01)

@@ -20,6 +20,7 @@ export function AdminNav() {
           <Link
             key={link.href}
             href={link.href}
+            aria-current={active ? 'page' : undefined}
             className={`min-h-touch inline-flex items-center rounded-md px-3 text-sm font-medium transition-all ${
               active
                 ? 'bg-brand text-white'

@@ -105,15 +105,18 @@ export default async function SimuladorPage({
 function NoTargetMessage() {
   const copy = noTargetChosen('simulacro');
   return (
-    <div className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center gap-4 px-4 text-center">
+    <main className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center gap-4 px-4 text-center">
       <Tino state={copy.state} size={72} />
       <h1 className="font-display text-xl font-bold text-text-primary">
         Primero elige tu examen
       </h1>
       <p className="text-sm text-text-secondary">{copy.message}</p>
-      <Link href="/onboarding" className="font-semibold text-brand-soft hover:underline">
+      <Link
+        href="/onboarding"
+        className="inline-flex min-h-touch items-center font-semibold text-brand-soft hover:underline"
+      >
         Completar mi perfil
       </Link>
-    </div>
+    </main>
   );
 }

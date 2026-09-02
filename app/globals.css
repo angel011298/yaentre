@@ -36,6 +36,18 @@
   --info: #38bdf8;
   --warning: #fbbf24;
 
+  /* G63 (accesibilidad WCAG AA): color de TEXTO/ÍCONO que va ENCIMA de un
+     fondo sólido de cada color semántico. Los tonos vivos de arriba son
+     claros (para leerse sobre superficies oscuras como texto), así que sobre
+     ellos como fondo hace falta texto OSCURO — blanco da 1.7-2.8:1. En light
+     (más abajo) estos mismos tokens son tonos oscuros → el texto encima es
+     blanco. Medido ≥ 4.5:1 en ambos temas. */
+  --on-success: #052e16;
+  --on-danger: #450a0a;
+  --on-warning: #422006;
+  --on-info: #082f49;
+  --on-streak: #431407;
+
   /* Paleta categórica para el desglose por materia (F13,
      src/lib/simulator/subjectColors.ts) — DISTINTA de los tokens semánticos
      de arriba a propósito: --success/--danger ya significan correcto/
@@ -66,7 +78,11 @@
   --border-strong: #4a4a57;
   --text-primary: #fafafa;
   --text-secondary: #b4b4c0;
-  --text-muted: #7a7a88;
+  /* G63: subido de #7a7a88 — daba 4.09:1 sobre `bg-surface` y 3.55:1 sobre
+     `bg-elevated`, por debajo de 4.5:1 para texto normal (la mayoría del texto
+     `muted` es `text-xs`/`text-sm`). #9a9aa8 da ≥ 5.4:1 en todas las
+     superficies oscuras y sigue distinguiéndose de `text-secondary`. */
+  --text-muted: #9a9aa8;
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
@@ -87,7 +103,9 @@
   --border-strong: #d8d4e8;
   --text-primary: #1a1a1a;
   --text-secondary: #5a5a6a;
-  --text-muted: #8a8a9a;
+  /* G63: bajado de #8a8a9a (3.1-3.4:1) — texto normal necesita 4.5:1.
+     #6b6b7a da ≥ 4.75:1 sobre base/surface/input claros. */
+  --text-muted: #6b6b7a;
   --shadow-md: 0 4px 16px rgba(124, 58, 237, 0.1);
 
   /* Mismo verde/ámbar/rojo/azul, calibrados más oscuros para cumplir AA
@@ -98,6 +116,13 @@
   --danger: #dc2626;
   --info: #0369a1;
   --streak: #c2410c;
+  /* G63: en light estos tokens son oscuros → el texto/ícono encima es blanco
+     (dark text daría 3.4:1). Medido ≥ 4.8:1 con blanco. */
+  --on-success: #ffffff;
+  --on-danger: #ffffff;
+  --on-warning: #ffffff;
+  --on-info: #ffffff;
+  --on-streak: #ffffff;
   /* El lila claro de acento no cumple AA como texto sobre fondos claros —
      colapsa al morado principal (que sí cumple, 5.5:1+) solo en light. */
   --brand-soft: var(--brand-primary);
@@ -122,8 +147,15 @@ body {
    (Button, TextField, el <select> de TargetCareerForm), esa regla más
    específica gana sola, sin que esto se le sume encima. */
 :focus-visible {
-  outline: 2px solid var(--brand-primary);
+  /* G63: `--brand-soft` en vez de `--brand-primary` — el morado sólido daba
+     2.63:1 sobre `bg-elevated` oscuro (modales, dropdowns), por debajo del
+     3:1 que exige WCAG 2.4.11 para el indicador de foco. `--brand-soft` es
+     lila claro en dark (≥ 5.5:1 en toda superficie) y colapsa al morado en
+     light (≥ 5.4:1). El `outline-offset` deja el anillo sobre el fondo del
+     contenedor, nunca tocando un botón de color. */
+  outline: 2px solid var(--brand-soft);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Banner de consentimiento de cookies (G62): va en el HTML inicial para ser

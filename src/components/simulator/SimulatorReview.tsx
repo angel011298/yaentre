@@ -19,7 +19,7 @@ export function SimulatorReview({
   sessionId: string;
 }) {
   return (
-    <div className="mx-auto max-w-2xl space-y-6 px-4 py-10">
+    <main className="mx-auto max-w-2xl space-y-6 px-4 py-10">
       <div>
         <h1 className="font-display text-xl font-bold text-text-primary">
           Preguntas que fallaste
@@ -43,7 +43,7 @@ export function SimulatorReview({
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={q.imageUrl}
-                alt="Estímulo del reactivo"
+                alt="Figura del reactivo (necesaria para responder)"
                 className="max-h-56 w-auto rounded-md border border-border-subtle"
               />
             )}
@@ -104,6 +104,6 @@ export function SimulatorReview({
           </Button>
         </Link>
       </div>
-    </div>
+    </main>
   );
 }

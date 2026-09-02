@@ -23,7 +23,7 @@ export function OptionButton({ id, text, selected, onClick, disabled }: Props) {
       aria-pressed={selected}
       className={`flex w-full min-h-touch items-start gap-3 rounded-md border p-3 text-left text-sm transition-all active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50 ${
         selected
-          ? 'border-brand bg-brand-tint text-text-primary'
+          ? 'border-brand bg-brand/10 text-text-primary'
           : 'border-border-subtle bg-surface text-text-secondary hover:border-brand-soft hover:bg-elevated'
       }`}
     >

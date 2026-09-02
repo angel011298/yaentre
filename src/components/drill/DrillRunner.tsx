@@ -48,8 +48,11 @@ export function DrillRunner({
 
   // Date.now() no puede vivir en el cuerpo del render/useRef: se fija en efecto.
   const questionStartedAt = useRef<number>(0);
+  // G63: mover el foco a la pregunta al avanzar (teclado / lector de pantalla).
+  const questionRegionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     questionStartedAt.current = Date.now();
+    questionRegionRef.current?.focus();
   }, [currentIndex]);
 
   const current = payload.questions[currentIndex];
@@ -124,20 +127,36 @@ export function DrillRunner({
         </button>
       </div>
 
-      <DrillQuestion
-        question={current}
-        index={currentIndex}
-        total={total}
-        selectedOption={selections[currentIndex]}
-        correctOption={correctness[currentIndex]}
-        onSelect={handleSelect}
-      />
+      <div
+        ref={questionRegionRef}
+        tabIndex={-1}
+        role="group"
+        aria-label={`Reactivo ${currentIndex + 1} de ${total}`}
+        className="outline-none"
+      >
+        <DrillQuestion
+          question={current}
+          index={currentIndex}
+          total={total}
+          selectedOption={selections[currentIndex]}
+          correctOption={correctness[currentIndex]}
+          onSelect={handleSelect}
+        />
+      </div>
 
-      {error && <p className="text-sm text-danger">{error}</p>}
+      {error && (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      )}
 
       {answered && (
         <div className="space-y-3">
+          {/* `role="status"` para que el lector de pantalla anuncie el
+              resultado al responder; el color NO es el único canal (✓/✗ +
+              palabra). */}
           <p
+            role="status"
             className={`text-sm font-semibold ${
               selections[currentIndex] === correctness[currentIndex] ? 'text-success' : 'text-danger'
             }`}
