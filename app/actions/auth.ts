@@ -16,10 +16,27 @@ import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
 import { trackServerEvent } from '@/lib/analytics/server';
 import { ATTRIBUTION_COOKIE_NAME, parseAttributionCookie } from '@/lib/marketing/attribution';
+import { consumeAll, consumeRateLimit, type RateLimitVerdict } from '@/lib/rate-limit/store';
+import { currentClientIp, emailSubject } from '@/lib/rate-limit/request';
 
 /** Agrega un query param a una ruta relativa sin romper uno ya existente. */
 function withQueryParam(path: string, key: string, value: string): string {
   return `${path}${path.includes('?') ? '&' : '?'}${key}=${value}`;
+}
+
+/**
+ * G65 — mensaje único de "demasiados intentos".
+ *
+ * Se redacta en minutos (no en segundos) a propósito: un contador exacto le
+ * dice a un script cuándo volver justo a tiempo; los minutos redondeados
+ * bastan para orientar a una persona y no regalan precisión.
+ */
+function tooManyAttempts(verdict: RateLimitVerdict, que: string): ActionState {
+  const minutos = Math.max(1, Math.ceil(verdict.retryAfterSecs / 60));
+  return {
+    status: 'error',
+    message: `Demasiados intentos de ${que}. Espera ${minutos} minuto${minutos === 1 ? '' : 's'} y vuelve a intentar.`,
+  };
 }
 
 /**
@@ -40,6 +57,11 @@ export async function signUpAction(
   if (!parsed.success) {
     return { status: 'error', fieldErrors: parsed.error.flatten().fieldErrors };
   }
+
+  // G65: registro masivo por IP. Va DESPUÉS de validar la forma (no gasta
+  // presupuesto en un correo mal escrito) y ANTES de tocar Supabase.
+  const gate = await consumeRateLimit('SIGN_UP', await currentClientIp());
+  if (!gate.allowed) return tooManyAttempts(gate, 'registro');
 
   const { email, password } = parsed.data;
   // Registro de tutor (F16): un query param en /registro?role=tutor marca un
@@ -147,6 +169,24 @@ export async function signInAction(
     return { status: 'error', fieldErrors: parsed.error.flatten().fieldErrors };
   }
 
+  // G65 — fuerza bruta de contraseñas. Se comprobó en vivo que Supabase Auth
+  // acepta 25 intentos fallidos seguidos sin devolver 429, y que el limitador
+  // en memoria de `proxy.ts` ni siquiera cubre esta ruta (es una Server Action,
+  // no `/api`). Sin esto, adivinar la contraseña de una cuenta es cuestión de
+  // dejar corriendo un script.
+  //
+  // DOS presupuestos, y se consumen los dos:
+  //   • por CUENTA — frena el ataque dirigido a un alumno concreto, aunque el
+  //     atacante rote de IP;
+  //   • por IP — frena el "password spraying" (una contraseña común contra
+  //     miles de correos distintos), que el presupuesto por cuenta no ve.
+  const ip = await currentClientIp();
+  const gate = await consumeAll([
+    ['SIGN_IN', emailSubject(parsed.data.email)],
+    ['SIGN_IN', `ip:${ip}`],
+  ]);
+  if (!gate.allowed) return tooManyAttempts(gate, 'inicio de sesión');
+
   // `next` explícito (p. ej. `/login?next=/tutor` cuando un guard redirige
   // aquí) siempre gana. Sin uno, el destino depende del ROL (F16): un tutor
   // jamás debe aterrizar en /app (ahí lo esperaría el onboarding de alumno).
@@ -190,6 +230,16 @@ export async function forgotPasswordAction(
     return { status: 'error', fieldErrors: parsed.error.flatten().fieldErrors };
   }
 
+  // G65: sin límite, este formulario es un cañón de correo apuntado a la
+  // bandeja de cualquier persona cuyo correo se conozca (y una factura de
+  // Resend). Se limita por cuenta y por IP; la respuesta genérica de abajo se
+  // conserva intacta para no filtrar qué correos existen.
+  const gate = await consumeAll([
+    ['PASSWORD_RESET', emailSubject(parsed.data.email)],
+    ['PASSWORD_RESET', `ip:${await currentClientIp()}`],
+  ]);
+  if (!gate.allowed) return tooManyAttempts(gate, 'recuperación');
+
   const supabase = await createSupabaseServerClient();
   await supabase.auth.resetPasswordForEmail(parsed.data.email, {
     redirectTo: `${getSiteUrl()}/auth/confirm?next=/actualizar-password`,
@@ -211,6 +261,9 @@ export async function updatePasswordAction(
   if (!parsed.success) {
     return { status: 'error', fieldErrors: parsed.error.flatten().fieldErrors };
   }
+
+  const gate = await consumeRateLimit('PASSWORD_CHANGE', `ip:${await currentClientIp()}`);
+  if (!gate.allowed) return tooManyAttempts(gate, 'cambio de contraseña');
 
   const supabase = await createSupabaseServerClient();
   const { error } = await supabase.auth.updateUser({ password: parsed.data.password });
@@ -237,6 +290,11 @@ export async function resendVerificationAction(
   if (!user?.email) {
     return { status: 'error', message: 'No pudimos identificar tu cuenta.' };
   }
+
+  // G65: el botón "reenviar" con sesión abierta no debe poder usarse como
+  // remitente masivo hacia el propio correo (ni agotar el cupo de Resend).
+  const gate = await consumeRateLimit('RESEND_VERIFICATION', emailSubject(user.email));
+  if (!gate.allowed) return tooManyAttempts(gate, 'reenvío');
 
   const { error } = await supabase.auth.resend({ type: 'signup', email: user.email });
 

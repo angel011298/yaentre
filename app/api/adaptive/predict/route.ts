@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { guardApiUser } from '@/lib/auth/route-guard';
 import { computeCareerStrategy, recomputeLearningProfile } from '@/lib/db/adaptive';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
 
 /**
  * Endpoint protegido (F6, Task 5): recalcula la predicción de aciertos
@@ -13,6 +14,16 @@ import { computeCareerStrategy, recomputeLearningProfile } from '@/lib/db/adapti
 export async function POST() {
   const guard = await guardApiUser();
   if (!guard.ok) return guard.response;
+
+  // G65: recalcular el Entrometro dispara varias agregaciones sobre todo el
+  // historial del alumno; tope por alumno para que no se pueda pedir en bucle.
+  const gate = await consumeRateLimit('ADAPTIVE', guard.profile.id);
+  if (!gate.allowed) {
+    return NextResponse.json(
+      { error: 'Demasiadas solicitudes. Intenta de nuevo en unos segundos.' },
+      { status: 429, headers: { 'Retry-After': String(gate.retryAfterSecs) } }
+    );
+  }
 
   try {
     const prediction = await recomputeLearningProfile(guard.profile.id);

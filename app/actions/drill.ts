@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { AuthError } from '@/lib/auth/errors';
 import { requireUser } from '@/lib/auth/guards';
 import * as drillDb from '@/lib/db/drill';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
 import type { ActionResult } from '@/lib/sessions/schemas';
 import type { DrillPayload, ExplanationLayerContent } from '@/lib/db/drill';
 
@@ -59,6 +60,9 @@ const revealLayerSchema = z.object({
 const REVEAL_MESSAGES: Record<drillDb.RevealLayerError, string> = {
   NOT_FOUND: 'Todavía no tenemos esta explicación para este reactivo.',
   PAYWALL: 'Esta capa de explicación es parte de los planes de pago.',
+  // G65: no se explica un reactivo que sigue abierto en un examen. El mensaje
+  // dice qué falta, no que "no tienes permiso" — el camino para verlo existe.
+  NOT_ANSWERED: 'Responde este reactivo para ver su explicación.',
 };
 
 export async function revealExplanationLayerAction(
@@ -89,8 +93,19 @@ export async function reportQuestionAction(
   input: z.input<typeof reportQuestionSchema>
 ): Promise<ActionResult<{ reported: true }>> {
   try {
-    const { authUser } = await requireUser();
+    const { authUser, profile } = await requireUser();
     const parsed = reportQuestionSchema.parse(input);
+    // G65: `reportQuestion` ya es idempotente por (reactivo, usuario) desde
+    // G60, pero nada impedía recorrer el banco entero reportando un reactivo
+    // distinto en cada llamada y llenar la cola del admin.
+    const gate = await consumeRateLimit('QUESTION_REPORT', profile.id);
+    if (!gate.allowed) {
+      return {
+        ok: false,
+        code: 'RATE_LIMIT',
+        message: 'Reportaste muchos reactivos seguidos. Intenta de nuevo más tarde.',
+      };
+    }
     await drillDb.reportQuestion(authUser.id, parsed.questionId, parsed.reason || null);
     return { ok: true, data: { reported: true } };
   } catch (err) {

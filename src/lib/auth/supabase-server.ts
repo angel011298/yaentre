@@ -1,11 +1,13 @@
 import { cache } from 'react';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { AUTH_COOKIE_OPTIONS } from './cookie-options';
 
 /**
  * Cliente de Supabase para Server Components, Server Actions y Route Handlers.
- * La sesión vive en cookies httpOnly gestionadas por Supabase — nunca en
- * localStorage/sessionStorage.
+ * La sesión vive en cookies gestionadas por Supabase — nunca en
+ * localStorage/sessionStorage. Desde G65 esas cookies son `httpOnly`
+ * (ver `cookie-options.ts` para el porqué y lo que hubo que mover).
  *
  * G62 (rendimiento): `cache()` de React — varias capas por request (guard del
  * layout, guard de la página, loaders) piden el cliente; deduplicar la
@@ -20,6 +22,7 @@ export const createSupabaseServerClient = cache(async function createSupabaseSer
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      cookieOptions: AUTH_COOKIE_OPTIONS,
       cookies: {
         getAll() {
           return cookieStore.getAll();
@@ -27,7 +30,7 @@ export const createSupabaseServerClient = cache(async function createSupabaseSer
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) => {
-              cookieStore.set(name, value, options);
+              cookieStore.set(name, value, { ...options, ...AUTH_COOKIE_OPTIONS });
             });
           } catch {
             // Se invocó desde un Server Component (no puede escribir cookies).

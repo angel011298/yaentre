@@ -2,24 +2,29 @@
 
 import Image from 'next/image';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { updateAvatarAction, updateDisplayNameAction } from '@/app/actions/profile';
-import { createSupabaseBrowserClient } from '@/lib/auth/supabase-browser';
+import { updateDisplayNameAction, uploadAvatarAction } from '@/app/actions/profile';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { TextField } from '@/components/ui/TextField';
 
 /**
- * Nombre visible + foto de perfil (F17 tarea 2). La foto sube DIRECTO desde
- * el navegador al bucket "avatars" de Supabase Storage (RLS: cada quien solo
- * escribe en su propia carpeta, `auth.uid()`, F17 migración 0008) — el
- * servidor solo valida y persiste la URL resultante, nunca ve el archivo.
+ * Nombre visible + foto de perfil (F17 tarea 2).
+ *
+ * G65: la foto ya NO sube directo del navegador a Supabase Storage. Ese camino
+ * exigía que la cookie de sesión fuera legible por JavaScript (`httpOnly:
+ * false`), y era el único motivo por el que lo era — un precio altísimo para
+ * una foto de perfil. Ahora el archivo va por `uploadAvatarAction`, que lo
+ * sube con la sesión del usuario desde el servidor y aplica lista blanca de
+ * tipo y tope de tamaño. Las políticas del bucket (carpeta = `auth.uid()`,
+ * migración 0008) siguen siendo las que autorizan.
  */
+const ACCEPTED_AVATAR_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+const MAX_AVATAR_BYTES = 2 * 1024 * 1024;
+
 export function ProfileIdentityCard({
-  authUserId,
   initialDisplayName,
   initialAvatarUrl,
 }: {
-  authUserId: string;
   initialDisplayName: string | null;
   initialAvatarUrl: string | null;
 }) {
@@ -52,22 +57,21 @@ export function ProfileIdentityCard({
     setUploadingAvatar(true);
     setError(null);
     try {
-      const supabase = createSupabaseBrowserClient();
-      const ext = file.name.split('.').pop() ?? 'jpg';
-      const path = `${authUserId}/avatar.${ext}`;
+      // Se comprueba también en el cliente para dar el error al instante; la
+      // comprobación que MANDA es la del Server Action.
+      if (!ACCEPTED_AVATAR_TYPES.includes(file.type)) {
+        setError('Usa una imagen JPG, PNG o WebP.');
+        return;
+      }
+      if (file.size > MAX_AVATAR_BYTES) {
+        setError('La imagen debe pesar menos de 2 MB.');
+        return;
+      }
 
-      const { error: uploadError } = await supabase.storage
-        .from('avatars')
-        .upload(path, file, { upsert: true, cacheControl: '3600' });
-      if (uploadError) throw uploadError;
+      const formData = new FormData();
+      formData.append('file', file);
 
-      const { data } = supabase.storage.from('avatars').getPublicUrl(path);
-      // Cache-bust: el nombre de archivo no cambia entre subidas (siempre
-      // "avatar.<ext>"), así que sin esto el navegador seguiría mostrando la
-      // foto vieja desde su propia caché.
-      const publicUrl = `${data.publicUrl}?v=${Date.now()}`;
-
-      const result = await updateAvatarAction({ avatarUrl: publicUrl });
+      const result = await uploadAvatarAction(formData);
       if (result.ok) {
         setAvatarUrl(result.data.avatarUrl);
       } else {

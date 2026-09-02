@@ -6,6 +6,7 @@ import {
 } from '@/lib/db/adaptive';
 import { evaluateDrillGate } from '@/lib/db/paywall';
 import { DEFAULT_ADAPTIVE_COUNT, nextQuestionsSchema } from '@/lib/adaptive/api';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
 
 /**
  * Endpoint protegido (F6, Task 5): próximos reactivos adaptativos para una
@@ -21,6 +22,15 @@ import { DEFAULT_ADAPTIVE_COUNT, nextQuestionsSchema } from '@/lib/adaptive/api'
 export async function POST(request: NextRequest) {
   const guard = await guardApiUser();
   if (!guard.ok) return guard.response;
+
+  // G65: tope por ALUMNO, no por instancia Edge (ver `rate-limit/store.ts`).
+  const gate = await consumeRateLimit('ADAPTIVE', guard.profile.id);
+  if (!gate.allowed) {
+    return NextResponse.json(
+      { error: 'Demasiadas solicitudes. Intenta de nuevo en unos segundos.' },
+      { status: 429, headers: { 'Retry-After': String(gate.retryAfterSecs) } }
+    );
+  }
 
   let body: unknown;
   try {

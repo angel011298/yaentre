@@ -33,6 +33,7 @@ export type SessionErrorCode =
   | 'NOT_IN_PROGRESS'
   | 'EXAM_NOT_AVAILABLE'
   | 'QUESTION_NOT_FOUND'
+  | 'QUESTION_NOT_IN_SESSION'
   | 'INVALID_OPTION';
 
 const FINISHED_STATUSES: ExamSession['status'][] = ['COMPLETED', 'COMPLETED_BY_TIMEOUT'];
@@ -191,6 +192,40 @@ export async function submitAnswer(params: {
   const session = await loadOwnedSession(sessionId, userProfileId);
   await assertActionable(session, now);
 
+  // ── G65 🔴 EL REACTIVO DEBE PERTENECER A ESTA SESIÓN ─────────────────────
+  //
+  // Antes bastaba con ser dueño de la SESIÓN: el `questionId` se aceptaba tal
+  // cual viniera del cliente y la fila se creaba con `upsert` si no existía.
+  // Eso abría una fuga directa de la clave de respuestas, comprobada en vivo:
+  //
+  //   1. el alumno arranca su simulacro (FULL_SIMULATION, que NO revela
+  //      correctitud) y ya tiene en el cliente los 120 `questionId`;
+  //   2. en otra pestaña abre una práctica libre (AREA_PRACTICE, que SÍ
+  //      revela correctitud al responder — es su propósito);
+  //   3. llama a `submitAnswer` con el `sessionId` de la práctica y los
+  //      `questionId` del SIMULACRO. La respuesta traía
+  //      `{ isCorrect, correctOption }` de cada reactivo del examen en curso.
+  //
+  // La política de revelado se decide por el MODO de la sesión, así que la
+  // única forma de sostenerla es que el reactivo no pueda saltar de una
+  // sesión a otra. Todas las sesiones reales (diagnóstico, práctica y
+  // simulacro) pre-crean sus filas `SessionAnswer` en `startSessionWithQuestions`,
+  // así que exigir que la fila exista es exactamente "este reactivo se te
+  // asignó". De paso desaparece el `upsert`: ahora es un UPDATE condicionado,
+  // una sola operación en vez de dos, y ya no se pueden inyectar respuestas de
+  // reactivos que nunca se vieron (que contaminaban el propio historial y, vía
+  // score, el percentil de los demás).
+  const assigned = await prisma.sessionAnswer.findUnique({
+    where: { sessionId_questionId: { sessionId, questionId } },
+    select: { id: true },
+  });
+  if (!assigned) {
+    throw new SessionError(
+      'QUESTION_NOT_IN_SESSION',
+      'Este reactivo no forma parte de este examen.'
+    );
+  }
+
   const question = await prisma.question.findUnique({
     where: { id: questionId },
     select: { id: true, options: true },
@@ -209,17 +244,9 @@ export async function submitAnswer(params: {
   // Correctitud calculada server-side contra la DB — nunca se confía en el cliente.
   const correct = isAnswerCorrect(options, selectedOption);
 
-  await prisma.sessionAnswer.upsert({
+  await prisma.sessionAnswer.update({
     where: { sessionId_questionId: { sessionId, questionId } },
-    create: {
-      sessionId,
-      questionId,
-      selectedOption,
-      isCorrect: correct,
-      timeSpentSecs,
-      position,
-    },
-    update: { selectedOption, isCorrect: correct, timeSpentSecs, position },
+    data: { selectedOption, isCorrect: correct, timeSpentSecs, position },
   });
 
   // Único punto de retorno: la política de revelado por modo decide qué viaja

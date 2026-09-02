@@ -262,10 +262,56 @@ export interface ExplanationLayerContent {
   content: string;
 }
 
-export type RevealLayerError = 'NOT_FOUND' | 'PAYWALL';
+export type RevealLayerError = 'NOT_FOUND' | 'PAYWALL' | 'NOT_ANSWERED';
 export type RevealLayerResult =
   | { ok: true; data: ExplanationLayerContent }
   | { ok: false; code: RevealLayerError; trigger?: PaywallTrigger };
+
+/**
+ * G65 🟠 — ¿este alumno ya se ganó el derecho a ver la explicación de este
+ * reactivo?
+ *
+ * La capa 1 («¿Por qué es correcta?») dice, literalmente, cuál es la respuesta
+ * correcta, y era gratis y sin contexto: `revealExplanationLayer` aceptaba
+ * cualquier `questionId`. Comprobado en vivo — durante un simulacro en curso,
+ * pedir la capa 1 de un reactivo del propio examen devolvía la explicación con
+ * la clave dentro. Misma fuga que la de `submitAnswer`, por otra puerta.
+ *
+ * La regla que sí distingue el uso legítimo del abuso: solo se explica un
+ * reactivo que el alumno YA RESPONDIÓ, y en una sesión que ya reveló (o va a
+ * revelar) la correctitud de todas formas —
+ *
+ *   • sesión terminada (COMPLETED / COMPLETED_BY_TIMEOUT / ABANDONED): es la
+ *     pantalla de repaso, donde ver la respuesta es el propósito; o
+ *   • práctica libre (TOPIC_DRILL / AREA_PRACTICE) con la respuesta ya
+ *     enviada: es el flujo de `DrillRunner`, que muestra el acordeón justo
+ *     después de contestar.
+ *
+ * Un reactivo de un simulacro o diagnóstico EN CURSO no cumple ninguna de las
+ * dos, aunque ya esté contestado — que es exactamente lo que se quería cerrar.
+ */
+const REVEALING_MODES: SessionMode[] = ['TOPIC_DRILL', 'AREA_PRACTICE'];
+
+async function hasEarnedExplanation(
+  userProfileId: string,
+  questionId: string
+): Promise<boolean> {
+  const answer = await prisma.sessionAnswer.findFirst({
+    where: {
+      questionId,
+      selectedOption: { not: null },
+      session: {
+        userProfileId,
+        OR: [
+          { status: { in: ['COMPLETED', 'COMPLETED_BY_TIMEOUT', 'ABANDONED'] } },
+          { mode: { in: REVEALING_MODES } },
+        ],
+      },
+    },
+    select: { id: true },
+  });
+  return answer !== null;
+}
 
 /**
  * Revela UNA capa de explicación (F14 tarea 4), re-validando el muro suave
@@ -280,6 +326,13 @@ export async function revealExplanationLayer(
   questionId: string,
   layer: number
 ): Promise<RevealLayerResult> {
+  // G65: el candado de propiedad va PRIMERO — antes que el muro de pago y
+  // antes de tocar el contenido. Un reactivo que el alumno no ha respondido en
+  // una sesión que revele no se explica ni aunque tenga plan de pago.
+  if (!(await hasEarnedExplanation(userProfileId, questionId))) {
+    return { ok: false, code: 'NOT_ANSWERED' };
+  }
+
   const gate = await evaluateExplanationLayerGate(userProfileId, layer);
   if (!gate.allowed) return { ok: false, code: 'PAYWALL', trigger: gate.trigger };
 

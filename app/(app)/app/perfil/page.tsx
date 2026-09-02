@@ -13,6 +13,9 @@ import { ThemeSelect } from '@/components/profile/ThemeSelect';
 import { NotificationPrefsForm } from '@/components/profile/NotificationPrefsForm';
 import { Card } from '@/components/ui/Card';
 import { ParentLinkCard } from '@/components/dashboard/ParentLinkCard';
+import { LinkedParentsCard } from '@/components/profile/LinkedParentsCard';
+import { loadLinkedParents } from '@/lib/db/parent';
+import { getAuthEmails } from '@/lib/db/auth-users';
 
 export const metadata = { title: 'Mi perfil · YaEntre' };
 
@@ -25,17 +28,36 @@ export const metadata = { title: 'Mi perfil · YaEntre' };
 export default async function PerfilPage() {
   const { authUser, profile } = await requireUser();
 
-  const [overview, careerOptions, planStatus, masteredSubjects, streakRiskEnabled, examCountdownEnabled] =
-    await Promise.all([
-      loadProfileOverview(profile.id),
-      loadCareerOptions(profile.id),
-      loadPlanStatus(profile.id),
-      loadMasteredSubjectBadges(profile.id),
-      isNotificationTypeEnabled(profile.id, 'STREAK_RISK'),
-      isNotificationTypeEnabled(profile.id, 'EXAM_COUNTDOWN'),
-    ]);
+  const [
+    overview,
+    careerOptions,
+    planStatus,
+    masteredSubjects,
+    streakRiskEnabled,
+    examCountdownEnabled,
+    linkedParents,
+  ] = await Promise.all([
+    loadProfileOverview(profile.id),
+    loadCareerOptions(profile.id),
+    loadPlanStatus(profile.id),
+    loadMasteredSubjectBadges(profile.id),
+    isNotificationTypeEnabled(profile.id, 'STREAK_RISK'),
+    isNotificationTypeEnabled(profile.id, 'EXAM_COUNTDOWN'),
+    loadLinkedParents(profile.id),
+  ]);
 
   if (!overview) return null;
+
+  // G65: el alumno tiene que poder identificar a quién le está quitando el
+  // acceso. El correo del tutor es lo único que lo distingue (el onboarding de
+  // tutor no pide nombre). `getAuthEmails` puede fallar mientras siga
+  // pendiente el grant de `auth.users` (G59 §5) — en ese caso la tarjeta
+  // muestra "Tu tutor" y la desvinculación sigue funcionando igual.
+  const parentEmails =
+    linkedParents.length > 0
+      ? await getAuthEmails(linkedParents.map((p) => p.parentProfileId)).catch(() => new Map<string, string>())
+      : new Map<string, string>();
+  const parentNames = Object.fromEntries(parentEmails);
 
   const otherBadges = overview.badges.filter((b) => !b.startsWith('MATERIA_DOMINADA:'));
 
@@ -44,7 +66,6 @@ export default async function PerfilPage() {
       <h1 className="font-display text-2xl font-bold text-text-primary">Perfil y ajustes</h1>
 
       <ProfileIdentityCard
-        authUserId={authUser.id}
         initialDisplayName={overview.displayName}
         initialAvatarUrl={overview.avatarUrl}
       />
@@ -79,6 +100,8 @@ export default async function PerfilPage() {
       <ProfileBadges masteredSubjects={masteredSubjects} otherBadges={otherBadges} />
 
       <ParentLinkCard />
+
+      <LinkedParentsCard parents={linkedParents} parentNames={parentNames} />
 
       <DataRightsSection />
     </div>

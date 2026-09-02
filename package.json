@@ -32,6 +32,11 @@
     "backup:export": "tsx scripts/backup-content-export.ts",
     "backup:import": "tsx scripts/backup-content-import.ts",
     "test:rls": "tsx scripts/verify-rls-isolation.ts",
+    "security:isolation": "tsx scripts/security/isolation-probe.ts",
+    "security:authz": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/authz-probe.ts",
+    "security:session": "tsx scripts/security/session-probe.ts",
+    "security:ratelimit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/rate-limit-probe.ts",
+    "security:headers": "tsx scripts/security/headers-probe.ts",
     "perf:audit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-audit.ts",
     "perf:pool": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-pool-probe.ts"
   },

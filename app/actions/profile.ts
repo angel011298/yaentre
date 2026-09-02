@@ -12,6 +12,9 @@ import {
   updateThemePref,
 } from '@/lib/db/profile';
 import { setNotificationPreference } from '@/lib/db/notifications';
+import { MAX_PASSWORD_LENGTH } from '@/lib/auth/schemas';
+import { verifyPassword } from '@/lib/auth/verify-password';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
 import type { ActionResult } from '@/lib/sessions/schemas';
 
 /**
@@ -116,17 +119,57 @@ export async function updateTargetCareerAction(
 }
 
 const passwordSchema = z.object({
-  password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres.'),
+  currentPassword: z.string().min(1, 'Escribe tu contraseña actual.').max(1024),
+  password: z
+    .string()
+    .min(8, 'La contraseña debe tener al menos 8 caracteres.')
+    .max(MAX_PASSWORD_LENGTH, `La contraseña no puede pasar de ${MAX_PASSWORD_LENGTH} caracteres.`),
 });
 
+/**
+ * G65 — ahora exige la contraseña ACTUAL.
+ *
+ * Antes bastaba con tener la sesión abierta. Eso convierte cualquier sesión
+ * prestada o secuestrada (una laptop compartida en casa, una preparatoria, una
+ * cookie robada) en una toma de control permanente de la cuenta: el atacante
+ * cambia la contraseña y el dueño queda fuera. Re-autenticar antes de una
+ * operación así es el patrón estándar y es la única fricción del flujo.
+ *
+ * La comprobación se hace contra Supabase Auth porque el hash no es nuestro,
+ * pero con un cliente EFÍMERO (`verifyPassword`) y no con el de la petición:
+ * verificar sobre el cliente que sostiene la sesión la corrompe a media acción
+ * (ver `src/lib/auth/verify-password.ts`, con el error exacto que provocó).
+ *
+ * Ojo con el orden: el límite de tasa va ANTES de la comprobación — si no,
+ * este campo se convierte en un oráculo para adivinar la contraseña actual sin
+ * pasar por la pantalla de login.
+ */
 export async function changePasswordAction(
   input: z.input<typeof passwordSchema>
 ): Promise<ActionResult<{ changed: true }>> {
   try {
-    await requireUser();
+    const { authUser, profile } = await requireUser();
     const parsed = passwordSchema.safeParse(input);
     if (!parsed.success) {
       return { ok: false, code: 'VALIDATION', message: parsed.error.issues[0]?.message ?? 'Contraseña inválida.' };
+    }
+
+    const gate = await consumeRateLimit('PASSWORD_CHANGE', profile.id);
+    if (!gate.allowed) {
+      return {
+        ok: false,
+        code: 'RATE_LIMIT',
+        message: 'Demasiados intentos. Espera unos minutos y vuelve a intentar.',
+      };
+    }
+
+    if (!authUser.email) {
+      return { ok: false, code: 'AUTH', message: 'No pudimos identificar tu cuenta.' };
+    }
+
+    const correcta = await verifyPassword(authUser.email, parsed.data.currentPassword);
+    if (!correcta) {
+      return { ok: false, code: 'BAD_CURRENT_PASSWORD', message: 'Tu contraseña actual no coincide.' };
     }
 
     const supabase = await createSupabaseServerClient();
@@ -144,7 +187,7 @@ export async function changePasswordAction(
   }
 }
 
-const avatarSchema = z.object({ avatarUrl: z.string().url() });
+const avatarSchema = z.object({ avatarUrl: z.string().url().max(2048) });
 
 /**
  * Solo acepta URLs de NUESTRO bucket de Storage, y dentro de la carpeta del
@@ -174,6 +217,75 @@ export async function updateAvatarAction(
     }
     await updateAvatarUrl(profile.id, parsed.data.avatarUrl);
     return { ok: true, data: { avatarUrl: parsed.data.avatarUrl } };
+  } catch (err) {
+    return { ok: false, ...toError(err) };
+  }
+}
+
+/** Formatos aceptados para la foto de perfil, con su extensión canónica. */
+const AVATAR_TYPES: Record<string, string> = {
+  'image/jpeg': 'jpg',
+  'image/png': 'png',
+  'image/webp': 'webp',
+};
+const MAX_AVATAR_BYTES = 2 * 1024 * 1024;
+
+/**
+ * G65 — La subida del avatar se movió del navegador al servidor.
+ *
+ * Antes el cliente hacía `supabase.storage.from('avatars').upload(...)`
+ * directamente, y ése era el ÚNICO motivo por el que la cookie de sesión tenía
+ * que ser legible desde JavaScript (`httpOnly: false`) — a cambio de que
+ * cualquier XSS se llevara un refresh token de 400 días. Cambiar una cosa
+ * exigía la otra; ver `src/lib/auth/cookie-options.ts`.
+ *
+ * El archivo viaja por el Server Action y se sube con el cliente de servidor,
+ * que lleva la sesión del usuario: las políticas RLS de `storage.objects`
+ * (migración 0008, carpeta = `auth.uid()`) siguen siendo las que autorizan la
+ * escritura — no se usa la llave de servicio. Aquí se añade lo que el camino
+ * directo no podía comprobar: tipo declarado contra lista blanca, extensión
+ * derivada del TIPO (nunca del nombre que mandó el cliente) y tope de tamaño.
+ */
+export async function uploadAvatarAction(
+  formData: FormData
+): Promise<ActionResult<{ avatarUrl: string }>> {
+  try {
+    const { authUser, profile } = await requireUser();
+
+    const file = formData.get('file');
+    if (!(file instanceof File)) {
+      return { ok: false, code: 'VALIDATION', message: 'No recibimos ninguna imagen.' };
+    }
+
+    const ext = AVATAR_TYPES[file.type];
+    if (!ext) {
+      return { ok: false, code: 'VALIDATION', message: 'Usa una imagen JPG, PNG o WebP.' };
+    }
+    if (file.size === 0 || file.size > MAX_AVATAR_BYTES) {
+      return { ok: false, code: 'VALIDATION', message: 'La imagen debe pesar menos de 2 MB.' };
+    }
+
+    // La carpeta es SIEMPRE el uid de Auth: es la convención que hace
+    // cumplibles las políticas del bucket, y nada de lo que manda el cliente
+    // participa en el path.
+    const path = `${authUser.id}/avatar.${ext}`;
+
+    const supabase = await createSupabaseServerClient();
+    const { error: uploadError } = await supabase.storage
+      .from('avatars')
+      .upload(path, file, { upsert: true, cacheControl: '3600', contentType: file.type });
+    if (uploadError) {
+      console.error('[profile] No se pudo subir el avatar', uploadError);
+      return { ok: false, code: 'STORAGE', message: 'No pudimos subir tu foto. Intenta de nuevo.' };
+    }
+
+    const { data } = supabase.storage.from('avatars').getPublicUrl(path);
+    // Cache-bust: el nombre no cambia entre subidas, así que sin esto el
+    // navegador seguiría mostrando la foto anterior desde su propia caché.
+    const avatarUrl = `${data.publicUrl}?v=${Date.now()}`;
+
+    await updateAvatarUrl(profile.id, avatarUrl);
+    return { ok: true, data: { avatarUrl } };
   } catch (err) {
     return { ok: false, ...toError(err) };
   }

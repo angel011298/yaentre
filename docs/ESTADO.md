@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-01 · Última fase ejecutada: **G65 (COMPLETADA — auditoría de seguridad de la aplicación)**. Modelo real `claude-opus-5`. **Reporte completo: `docs/AUDITORIA_SEGURIDAD.md`.** 37 Server Actions + 8 Route Handlers auditados (100 %), **14 hallazgos: 3 🔴, 5 🟠, 4 🟡, 2 🔵 — 12 corregidos, 2 son del dueño**. Todo se probó EJECUTÁNDOLO: 4 sondas repetibles (`pnpm security:isolation|authz|session|ratelimit`) + `security:headers` + verificación en navegador real. **🔴 1 — la clave de respuestas se podía sacar durante el simulacro:** `submitAnswer` verificaba que la SESIÓN fuera tuya pero aceptaba CUALQUIER `questionId` (y lo insertaba con `upsert`); como la política de revelado se decide por el MODO de la sesión, bastaba abrir una práctica libre en otra pestaña y mandarle los `questionId` del simulacro en curso → devolvía `{isCorrect, correctOption}`. **Reproducido en vivo.** Arreglo: el par (sesión, reactivo) debe existir ya como `SessionAnswer` (las 3 sesiones reales las pre-crean en `startSessionWithQuestions`); `upsert` → `update` condicionado. Mismo filtro en `recordSimulatorSync`. **🟠 la explicación filtraba por la otra puerta:** la capa 1 es gratis y dice cuál es la correcta, y `revealExplanationLayer` aceptaba cualquier `questionId` sin contexto → ahora exige que el alumno ya haya RESPONDIDO ese reactivo en una sesión que revela (terminada o práctica); nuevo `NOT_ANSWERED`, antes del muro de pago. **🔴 2 — cero protección contra fuerza bruta:** login/registro/recuperación/canje parental son Server Actions y el limitador de F20 solo mira `/api`… y ahí **tampoco funcionaba** (medido en producción: **70 peticiones a `/api/adaptive/predict` sin un solo 429** — contador en memoria del proceso Edge, Vercel reparte entre instancias); Supabase Auth tampoco frena (**25 logins fallidos sin 429**). Nuevo contador DISTRIBUIDO en Postgres (`app_security.rate_limit_hits`, migración 0013, `INSERT … ON CONFLICT` atómico — 30 llamadas concurrentes dan 1..30 sin colisiones) con 11 presupuestos; doble cubo (cuenta **y** IP) en login, recuperación y canje parental. Esquema `app_security` a propósito: fuera de `public` Prisma no lo diffea ⇒ **cero deriva** sin tocar `schema.prisma`. **🔴 3 — el código de vinculación parental era forzable:** 6 dígitos, 10 min, canjes ilimitados y generado con `Math.random()` (xorshift128+, reconstruible observando salidas — y cualquiera puede pedir códigos propios a voluntad) → `crypto.randomInt` + 6 intentos por tutor / 20 por IP en la ventana ⇒ ≈1 entre 166 667. **Y no existía DESVINCULACIÓN**, pese a que el aviso de privacidad la promete: añadida para los dos lados (`LinkedParentsCard` del alumno, `UnlinkStudentForm` del tutor). **🟠 la cookie de sesión NO era httpOnly** (`@supabase/ssr` trae `httpOnly:false` por defecto; el comentario del código afirmaba lo contrario desde F0) — cualquier XSS entregaba un refresh token de **400 días**; su único motivo era la subida del avatar desde el navegador, que se movió al servidor (`uploadAvatarAction`, con lista blanca de MIME y tope de 2 MB) y `supabase-browser.ts` se **eliminó**. Verificado en navegador: `httpOnly=true`, `sameSite=Lax`, `document.cookie` vacío, login OK. **🟠 RLS: las políticas eran `FOR ALL`** y solo el GRANT (anon/authenticated = SELECT y nada más) impedía auto-ascenderse a `role='ADMIN'`, fabricar un `parent_links` a cualquier menor, regalarse un plan PREMIUM o falsear el score; un `GRANT ALL … TO authenticated` copiado de la documentación abría las cuatro a la vez → las 11 políticas de datos de usuario pasan a **`FOR SELECT`** y se retiran `profile_insert/update/delete`. **Aislamiento probado activamente, no leído: 22/22 intentos ilegítimos bloqueados por RLS con JWT reales de 3 cuentas contra `/rest/v1`, y 10/10 en la capa de aplicación** cambiando identificadores en las funciones reales. **Sesiones sanas:** cerrar sesión invalida el refresh (400) **y** el access token al instante (`getUser()` → 403), así que la ventana del JWT no importa. **Cabeceras verificadas contra `https://yaentre.com`:** faltaba `frame-ancestors` (solo protegía el `X-Frame-Options` obsoleto) y se exponía `X-Powered-By` → corregidas, 11/12 en el build local (el 12.º es `http→https`, que no aplica en localhost) — **producción sigue sirviendo lo anterior hasta el próximo deploy**. **Secretos: cero** en el bundle y **cero en los 117 commits del historial**; se retiró la `ANTHROPIC_API_KEY` (vencida, sin usar) que quedaba en `.env`/`.env.local` contra el guardrail de CLAUDE.md. **Inyección: limpia** — los 15 usos de SQL crudo son plantillas etiquetadas; `*Unsafe` solo en scripts offline. **Datos de menores: minimización correcta** (no se pide edad, dirección, teléfono, CURP ni escuela) y el tutor solo ve agregados; **brecha legal abierta y documentada: el aviso promete consentimiento del tutor para menores de 18 y el producto nunca pregunta la edad ni lo recoge** — es decisión de producto+abogado, no de código. También: `changePasswordAction` ahora exige la contraseña actual (con cliente efímero: verificarla sobre el cliente de la petición lanzaba `AuthRefreshDiscardedError` y colgaba el formulario — hallazgo que solo apareció al ejecutarlo), cotas de contraseña a 72 (bcrypt trunca en silencio) y de correo a 254, IP resuelta con `x-vercel-forwarded-for` (la única que el cliente no puede falsear), y **retirada** `startSession` (Server Action de escritura sin uso ni cuota). **No se tocó `prisma/schema.prisma`.** `pnpm typecheck`, `pnpm lint`, `pnpm build` y 526 tests en verde.
+
+<details><summary>Historial: G64 (2026-09-01)</summary>
+
 Última actualización: 2026-09-01 · Última fase ejecutada: **G64 (COMPLETADA — experiencia móvil y PWA)**. Modelo real `claude-sonnet-5` (el cierre de G63 anunciaba «Sonnet 4.6»). Barrido pantalla por pantalla en tres anchos (360 / 768 / 1280) sobre el build de producción con Playwright: **0 desbordamientos horizontales en 21 rutas × 3 anchos** (públicas, alumno, tutor). **PWA:** `manifest` gana `id: "/"` (identidad estable de la app instalada) y se añade a mano `<meta name="apple-mobile-web-app-capable">` (Next 16 dejó de emitir la variante `apple-`; la leen iOS < 17.4 y los WebViews); íconos 192/512/maskable + apple-icon verificados visualmente. **Offline** (SW `public/sw.js`, verificado con `context.setOffline`): `/app` visitada → 200 desde caché + `OfflineBanner`; `/simulador` → **503 "necesita conexión", nunca se cachea** (regla de negocio); ruta nunca visitada → 503 genérico. **Zonas seguras** (emuladas con CDP `Emulation.setSafeAreaInsetsOverride`, muesca 59 / indicador 34): solo `TopBar`/`BottomNav` del alumno absorbían `env(safe-area-inset-*)` — ahora también `CookiesConsentBanner`, `InstallPrompt`, `AppFooter`, `SimulatorPreflight/Result/Review/Runner`, `ParentShell` (header), `onboarding` y `AuthShell`. **Bug mayor:** el banner de cookies (pegado a `bottom:0`, z-50) **tapaba por completo la `BottomNav`** en móvil en rutas `(app)`; ahora se eleva por encima de ella (`data-over-nav` + `.yaentre-cookie-banner`), y el `InstallPrompt` no aparece hasta que se resolvió el consentimiento (un aviso a la vez). Clases CSS manuales en `globals.css` con `@media lg` — **nunca** la sintaxis de valor arbitrario de Tailwind con `env()` (rompe el escáner, F11/F18). Panel del tutor: verificado en WebView bajo (390×560) — Server Component puro, sin JS de cliente que un navegador in-app pueda romper. Simulador móvil: aviso "el examen real requiere computadora" (`lg:hidden`) visible en móvil/tablet, oculto en desktop. Campo numérico único (`LinkCodeForm`) ya con `inputMode="numeric"`. **No se tocó `prisma/schema.prisma`.** Se creó y **borró** un vínculo `parent_links` temporal para probar el panel desbloqueado; hashes de contraseñas de prueba **restaurados**. Reporte: **`docs/AUDITORIA_FRONTEND.md`** (sección G64). `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. Siguiente **G65, modelo Opus 4.8**.
+
+</details>
 
 <details><summary>Historial: G63 (2026-09-01)</summary>
 
@@ -205,6 +211,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G65 | Auditoría de seguridad de la aplicación | **COMPLETADA — 37 Server Actions + 8 Route Handlers auditados (100 %). 14 hallazgos (3 🔴 · 5 🟠 · 4 🟡 · 2 🔵): 12 corregidos, 2 del dueño. Aislamiento PROBADO: 22/22 bloqueados por RLS con JWT reales, 10/10 en la capa de aplicación. Reporte: `docs/AUDITORIA_SEGURIDAD.md`** | (G65) | Modelo real `claude-opus-5`. **🔴 Fuga de la clave de respuestas durante el simulacro** (`submitAnswer` aceptaba reactivos de otra sesión y la política de revelado se decide por el MODO ⇒ práctica libre en otra pestaña + `questionId` del simulacro = `{isCorrect, correctOption}`; reproducido en vivo) → el par (sesión, reactivo) debe existir ya como `SessionAnswer`; mismo filtro en `recordSimulatorSync`. **🟠 Misma fuga por la explicación** (capa 1 es gratis y dice la correcta) → exige haber respondido el reactivo en una sesión que revela; `NOT_ANSWERED` antes del muro de pago. **🔴 Cero protección contra fuerza bruta**: login/registro/recuperación/canje parental son Server Actions y el limitador de F20 solo mira `/api`, donde además **no funciona** (medido en prod: 70 peticiones sin un 429 — contador en memoria por instancia Edge); Supabase Auth tampoco (25 logins fallidos sin 429) → contador DISTRIBUIDO en Postgres (`app_security.rate_limit_hits`, migración 0013, `INSERT … ON CONFLICT` atómico, 30 concurrentes → 1..30 sin colisiones), 11 presupuestos, doble cubo cuenta+IP donde importa. Esquema `app_security` ⇒ invisible al diff de Prisma, **cero deriva** sin tocar `schema.prisma`. **🔴 Código de vinculación parental forzable** (6 dígitos, 10 min, canjes ilimitados, `Math.random()`) → `crypto.randomInt` + 6/tutor y 20/IP por ventana (≈1 entre 166 667); **y no existía DESVINCULACIÓN** pese a que el aviso de privacidad la promete → añadida para los dos lados. **🟠 Cookie de sesión sin `httpOnly`** (default de `@supabase/ssr`; el comentario del código decía lo contrario) ⇒ XSS = refresh token de 400 días → avatar movido al servidor, `supabase-browser.ts` eliminado, cookies `httpOnly`+`Lax`+`secure` en servidor Y middleware; verificado en navegador (`document.cookie` vacío, login OK). **🟠 Políticas RLS `FOR ALL`** (solo el GRANT impedía auto-ascenderse a ADMIN, fabricar `parent_links` a un menor, regalarse PREMIUM o falsear el score) → 11 políticas a `FOR SELECT`, fuera `profile_insert/update/delete`. **Cabeceras contra `https://yaentre.com`**: faltaba `frame-ancestors`, sobraba `X-Powered-By` → corregidas (11/12 local; **prod requiere deploy**). **Secretos: 0** en bundle y en los 117 commits; retirada la `ANTHROPIC_API_KEY` vencida de `.env`/`.env.local`. **Inyección: limpia** (15 plantillas etiquetadas; `*Unsafe` solo offline). **Menores: minimización correcta**; brecha legal abierta y documentada (el aviso promete consentimiento del tutor y el producto no pregunta la edad) — decisión del dueño. `changePasswordAction` exige la contraseña actual (con cliente efímero: hacerlo sobre el de la petición lanzaba `AuthRefreshDiscardedError`); cotas de contraseña 72 (bcrypt) y correo 254; IP vía `x-vercel-forwarded-for`; **retirada** `startSession` (escritura sin uso). 5 sondas repetibles `pnpm security:*`. **No se tocó `prisma/schema.prisma`.** `typecheck`/`lint`/`build` y 526 tests en verde. |
 | G64 | Experiencia móvil y PWA | **COMPLETADA — barrido responsivo 360/768/1280 (0 desbordamientos en 21 rutas × 3 anchos), PWA (`manifest id` + `apple-mobile-web-app-capable`), offline (tablero sí / simulador no, verificado), zonas seguras en 9 contenedores sin chrome. Reporte: `docs/AUDITORIA_FRONTEND.md` §G64** | (G64) | Modelo real `claude-sonnet-5`. Método: build de producción + Playwright/Chromium (sesión real por cuenta de prueba, `scrollWidth−clientWidth` por ruta×ancho, zonas seguras con CDP `Emulation.setSafeAreaInsetsOverride`, offline con `context.setOffline`). **Bug mayor:** `CookiesConsentBanner` (`bottom:0`, z-50) tapaba por completo la `BottomNav` en móvil en rutas `(app)` → se eleva por encima (`data-over-nav` + `.yaentre-cookie-banner`); `InstallPrompt` no aparece hasta resolver el consentimiento (un aviso a la vez). Zonas seguras: solo `TopBar`/`BottomNav` absorbían `env(safe-area-inset-*)` → añadidas a `CookiesConsentBanner`, `InstallPrompt`, `AppFooter`, `SimulatorPreflight/Result/Review/Runner`, `ParentShell` header, `onboarding`, `AuthShell` (clases manuales en `globals.css` con `@media lg` — nunca la sintaxis arbitraria de Tailwind con `env()`, F11/F18). PWA: `manifest` gana `id:"/"`; `<meta name="apple-mobile-web-app-capable">` a mano (Next 16 dejó de emitir la variante `apple-`). Offline (SW `public/sw.js`): `/app` visitada → 200 desde caché + `OfflineBanner`; `/simulador` → 503 "necesita conexión", nunca cacheado. Panel del tutor verificado en WebView bajo (390×560), Server Component puro. Aviso "requiere computadora" del simulador (`lg:hidden`) visible en móvil/tablet. Vínculo `parent_links` temporal creado y **borrado**; hashes de contraseñas de prueba **restaurados**. **No se tocó `prisma/schema.prisma`.** `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. |
 | G63 | Accesibilidad WCAG AA | **COMPLETADA — barrido pantalla por pantalla. Contraste: ~9 combinaciones que fallaban → 0 (medido en navegador). Foco visible arreglado, estados solo-color eliminados, errores de formulario anunciados. Reporte: `docs/AUDITORIA_FRONTEND.md` §G63** | (G63) | Modelo real `claude-sonnet-5`. Hallazgo mayor: `bg-brand-tint` (lila FIJO) + `text-text-primary` = 1.1:1 (texto blanco invisible) en tema oscuro → `bg-brand/10`. Tokens `--text-muted` subidos (daba 3.1–4.1:1), nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware, `text-brand`→`text-brand-soft` sobre superficies oscuras, botón `danger`→`bg-red-600`. `:focus-visible` global → `--brand-soft`; `Button`/`TextField` sueltan su `focus:ring` (tenía `ring-offset` blanco). Aviso de reanudación del simulador → `<dialog>` nativo; foco a la región del reactivo al avanzar; `QuestionNavigator`/`ReviewTabs` dejan el patrón de tabs roto. `WeekActivityStrip` (tutor) era 100% color → glifos + `sr-only`. `role="alert"` en ~10 errores. `<main>` + "saltar al contenido" donde faltaban. `prefers-reduced-motion` ya OK, sin cambios. 0/1147 reactivos con imagen (campo `imageAlt` real pendiente del dueño). **No se tocó `prisma/schema.prisma`.** |
 | G62 | Optimización de rendimiento del frontend | **COMPLETADA — las 5 pantallas críticas ≥ 85 en Lighthouse móvil (mediana de 5): landing 90→96, registro 89→98, dashboard 67→87, práctica 75→90, simulador 67→94. Reporte: `docs/AUDITORIA_FRONTEND.md`** | (G62) | Modelo real `claude-sonnet-5`. CLS 0.20–0.32 → ≤ 0.06 (elementos que aparecían tras hidratar: aviso móvil del simulador, `InstallPrompt`, anillo del Entrómetro, banner de cookies — todos a primer render / fuera de flujo / `display:optional`). Sentry cliente → `import()` dinámico sólo con DSN real (chunk de vendor 422→228 KB en TODA ruta). `framer-motion` fuera de la carga inicial de `/simulador` (−131 KB, 99% sin usar). Dashboard: `<Suspense>` por sección con esqueletos de altura reservada. `requireUser`/`createSupabaseServerClient` + 2 loaders del dashboard con `cache()` de React; 3 loaders de `/practicar` de serie→paralelo. Fuentes: pesos recortados, `preload:false` en mono, `display:optional`. Borrados 5 SVG de arranque. **No hay imágenes rasterizadas que optimizar** (emoji + SVG inline). **No se tocó `prisma/schema.prisma`.** El "después" contra prod real requiere deploy (sin remoto git); el TTFB local infla ~2 s el LCP de las pantallas con base (latencia MX→us-east-1, no existe en `iad1`). |
@@ -2543,6 +2550,208 @@ alcance — mismo criterio que ya usa `notification-jobs.ts`).
 1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
 2. Idempotencia real de los correos programados → tabla nueva → instrucción
    explícita.
+
+
+## G65 — Auditoría de seguridad de la aplicación (2026-09-01)
+
+**Reporte completo: `docs/AUDITORIA_SEGURIDAD.md`.** Aquí solo lo que hay que
+recordar sin abrir el reporte. Modelo real: `claude-opus-5`. **No se tocó
+`prisma/schema.prisma`.**
+
+### 1. La regla que hizo auditable la autorización
+
+En este código el `userProfileId` **nunca cruza el borde cliente→servidor**:
+sale del guard y viaja como argumento. Por eso `updateDisplayName(profileId,…)`
+no re-verifica nada — no puede recibir un id ajeno. Esa premisa ya **se
+comprueba sola**: `pnpm security:authz` recorre los 19 archivos de borde y falla
+si algún esquema Zod declara `userProfileId`/`studentProfileId`/`parentProfileId`/
+`authUserId`/`userId`. Hoy 0 de 19. Si alguien añade uno, la sonda lo caza.
+
+Donde el id **sí** viene del cliente (`sessionId`, `questionId`, `careerId`,
+`?student=`) hay comprobación explícita de propiedad, y las 7 se probaron
+ejecutándolas con dos cuentas reales.
+
+### 2. 🔴 La clave de respuestas se sacaba durante el simulacro
+
+`submitAnswer` verificaba que la SESIÓN fuera tuya, pero aceptaba **cualquier**
+`questionId` y creaba la fila con `upsert`. Como la política de revelado se
+decide por el **modo de la sesión**, el ataque era: abrir el simulacro (no
+revela, pero el cliente ya tiene los 120 `questionId`), abrir una práctica libre
+en otra pestaña (sí revela) y mandar a `submitAnswer` el `sessionId` de la
+práctica con los `questionId` del simulacro. Devolvía
+`{"recorded":true,"isCorrect":true,"correctOption":"A"}`. **Reproducido en vivo
+antes de corregir**, y dejó rastro: una fila `SessionAnswer` con el reactivo de
+otra sesión insertada por el `upsert`.
+
+Arreglo: el par (sesión, reactivo) **tiene que existir ya**. Las tres sesiones
+reales pre-crean sus filas en `startSessionWithQuestions` (G60), así que "la
+fila existe" ≡ "este reactivo se te asignó". `upsert` → `update` condicionado
+(una operación en vez de dos) + `QUESTION_NOT_IN_SESSION`. Mismo filtro en
+`recordSimulatorSync`: de paso cierra que se pudieran sembrar respuestas de
+reactivos nunca vistos, que subían el propio score y con él **el percentil que
+se calcula contra todas las sesiones del examen** — o sea, el resultado ajeno.
+
+### 3. 🟠 La explicación filtraba por la otra puerta
+
+La capa 1 es gratis y dice cuál es la correcta; `revealExplanationLayer`
+aceptaba cualquier `questionId` sin contexto de sesión. Ahora solo se explica un
+reactivo que el alumno **ya respondió**, y en una sesión que revela de todas
+formas (terminada, o práctica libre con la respuesta enviada). Un reactivo de un
+simulacro/diagnóstico **en curso** no cumple ninguna. `NOT_ANSWERED`, y el
+candado va **antes** del muro de pago.
+
+> Trampa metodológica que costó una re-corrida: la sonda anterior —cuando el
+> agujero existía— había dejado escrita una respuesta en una sesión abandonada,
+> y esa fila cumplía la regla nueva. Era residuo propio, no un agujero. **Las
+> sondas ahora BORRAN lo que crean**, no lo abandonan.
+
+### 4. 🔴 El límite de tasa existía y no servía
+
+Tres medidas, las tres en vivo:
+
+- Los puntos sensibles (login, registro, recuperación, canje parental) son
+  **Server Actions** — el limitador de F20 solo mira el prefijo `/api`.
+- Y en `/api` **tampoco funcionaba**: **70 peticiones seguidas a
+  `/api/adaptive/predict` en producción, cero 429**, con el límite nominal en
+  60/min. El contador vive en memoria del proceso Edge y Vercel reparte entre
+  instancias: ninguna llega a 60.
+- Supabase Auth tampoco frena: **25 logins fallidos seguidos sin 429**.
+
+Nuevo contador **compartido en Postgres** (`app_security.rate_limit_hits`,
+migración 0013) reclamado con un único `INSERT … ON CONFLICT DO UPDATE` — sin
+leer-luego-escribir. La prueba que el anterior no podía pasar: **30 llamadas
+concurrentes al mismo cubo dan los contadores 1..30, sin repetidos ni huecos**.
+
+**La tabla vive en el esquema `app_security` A PROPÓSITO:** Prisma solo diffea
+el esquema por defecto, así que fuera de `public` es invisible al generador de
+migraciones y **no produce deriva** — que es justo lo que pasaría con una tabla
+equivalente en `public`, dado que no se toca `schema.prisma`. Se accede por
+`$queryRaw`.
+
+Doble cubo (**cuenta y IP**, ambos se consumen) en login, recuperación y canje
+parental: rotar de cuenta no esquiva el presupuesto de IP y rotar de IP no
+esquiva el de la cuenta — eso último es lo que atrapa el *password spraying*.
+Si la base falla, **deja pasar y registra**: es una capa de defensa, no el guard.
+
+El limitador en memoria de `proxy.ts` se conserva como primera línea barata,
+con un comentario que dice exactamente qué NO garantiza.
+
+### 5. 🔴🟠 Vinculación parental — tres cosas
+
+1. **Forzable**: 6 dígitos (10⁶), 10 min, canjes ilimitados. Ahora 6 por tutor y
+   20 por IP en esa ventana ⇒ ≈1 entre 166 667.
+2. **`Math.random()` no servía para esto.** El comentario decía "no es un
+   secreto criptográfico de largo plazo"; falso para ESTE código, que es la
+   llave al tablero de un menor. V8 usa xorshift128+, reconstruible observando
+   unas pocas salidas — y observarlas es trivial: cualquiera se registra como
+   alumno y pide todos los códigos que quiera. Ahora `crypto.randomInt`.
+3. **No existía desvinculación**, pese a que el aviso de privacidad promete que
+   «si tu tutor se desvincula, sus permisos se revocan inmediatamente». Añadida
+   para los dos lados (`LinkedParentsCard` del alumno, `UnlinkStudentForm` del
+   tutor); cada uno solo rompe SUS vínculos. Probado: tercero → `false`, alumno
+   → `true`, tutor → `true`.
+
+### 6. 🟠 La cookie de sesión era legible por JavaScript
+
+`@supabase/ssr` trae `httpOnly: false` por defecto y el proyecto usaba el
+default — mientras el comentario de `supabase-server.ts` afirmaba lo contrario
+desde F0. Esa cookie lleva el refresh token, con **400 días** de vida:
+cualquier XSS no robaba una sesión, robaba la cuenta durante más de un año.
+
+Su único motivo era la subida del avatar desde el navegador. Se movió al
+servidor (`uploadAvatarAction`: sube con la sesión del usuario, las políticas
+del bucket de 0008 siguen autorizando, y gana lista blanca de MIME + tope de
+2 MB + extensión derivada del TIPO, no del nombre). `supabase-browser.ts` se
+**eliminó**. Cookies endurecidas en el cliente de servidor **y** en el del
+middleware — si solo se hiciera en uno, el primer refresco lo desharía.
+
+Verificado en navegador real: `httpOnly=true`, `sameSite=Lax`,
+`document.cookie` vacío, login funcionando.
+
+### 7. 🟠 Las políticas RLS eran `FOR ALL`
+
+22/22 intentos ilegítimos salían bloqueados… pero por el **GRANT**, no por la
+política: `anon`/`authenticated` solo tienen SELECT sobre `public`. Las
+políticas, escritas `FOR ALL`, autorizaban escrituras — y el `WITH CHECK` de
+`user_profiles` ataba `userId` pero **no `role`**:
+
+```sql
+UPDATE user_profiles SET role='ADMIN' WHERE "userId" = auth.uid();  -- ⚠️
+```
+
+Con un `GRANT ALL ON ALL TABLES IN SCHEMA public TO authenticated` (el snippet
+que circula en media documentación de Supabase) se abrían a la vez: auto-ascenso
+a ADMIN (⇒ la clave de los 1 143 reactivos), `parent_links` fabricados a
+cualquier menor, planes PREMIUM gratis y scores falseados.
+
+Las 11 políticas de datos de usuario pasan a **`FOR SELECT`** y se retiran
+`profile_insert`/`profile_update`/`profile_delete`. **Cero cambio de
+comportamiento**: la app nunca escribe esas tablas desde el navegador.
+
+### 8. Sesiones: sanas, y por qué la ventana del JWT no importa
+
+Cerrar sesión invalida el refresh token (400) **y** el access token al instante:
+`requireUser()` llama a `supabase.auth.getUser()`, que valida contra el servidor
+de Auth y devuelve **403** en cuanto la sesión se cierra. La preocupación
+habitual con JWT sin estado ("sobrevive hasta 1 h") no aplica aquí.
+
+`changePasswordAction` ahora exige la contraseña actual, con el límite de tasa
+**antes** de comprobarla (si no, el campo es un oráculo). **Hallazgo que solo
+apareció al ejecutarlo:** verificarla con `signInWithPassword` sobre el cliente
+de servidor de la propia petición lanza
+`AuthRefreshDiscardedError: session state changed mid-flight` y cuelga el
+formulario — ese cliente está cacheado por request (G62) y compartido con los
+guards. Se rehízo con un cliente **efímero** (`verify-password.ts`,
+`persistSession:false`).
+
+### 9. Lo limpio (verificado, no asumido)
+
+- **Secretos:** 0 en el bundle; **0 en los 117 commits** del historial completo
+  (`git log --all -p` contra `sk_live`/`sk_test`/`whsec_`/`re_`/JWT/`sbp_`/…).
+  Retirada la `ANTHROPIC_API_KEY` (vencida, sin referencias) que quedaba en
+  `.env`/`.env.local` contra el guardrail de CLAUDE.md.
+- **Inyección:** los 15 usos de SQL crudo son plantillas etiquetadas;
+  `$queryRawUnsafe`/`$executeRawUnsafe` solo en scripts offline.
+- **Datos de menores:** minimización correcta — no se pide edad, dirección,
+  teléfono, CURP, escuela ni nombre real. El tutor solo ve agregados.
+
+### 10. La brecha que NO se cerró (y por qué)
+
+El aviso de privacidad dice: «Si tienes menos de 18 años, necesitamos el
+consentimiento de un tutor legal para procesar tus datos». **El producto no
+pregunta la edad en ningún momento y no recoge ese consentimiento.** No se
+corrigió a propósito: las salidas (pedir fecha de nacimiento y bloquear el
+registro; exigir confirmación del tutor antes de activar; o ajustar el aviso al
+tratamiento real) cambian el embudo de registro, que es el número que decide el
+lanzamiento del 6 de enero. **Decisión del dueño, con abogado.** Lo inaceptable
+es el estado actual: el aviso afirma algo que el sistema no hace.
+
+### 11. Cinco comandos que dejan la auditoría repetible
+
+```bash
+pnpm security:isolation   # RLS: ataca /rest/v1 con JWT reales de 3 cuentas
+pnpm security:authz       # aplicación: cambia identificadores en las funciones reales
+pnpm security:session     # caducidad, renovación, logout, fuerza bruta de Auth
+pnpm security:ratelimit   # el contador distribuido, incluida la concurrencia
+pnpm security:headers     # cabeceras contra la URL pública real
+```
+
+Más `scripts/security/ui-probe.mjs` (Playwright) para lo que solo se ve en un
+navegador de verdad. Todas las cuentas de prueba quedaron con su contraseña,
+nombre y preferencias **restaurados**; la base volvió a 5 perfiles, 5 sesiones,
+480 respuestas y 0 vínculos.
+
+### 12. Advertencia para el que siga
+
+- **Producción sirve la versión anterior** hasta el próximo deploy: las
+  correcciones de cabeceras están en `next.config.ts` y verificadas contra el
+  build local (11/12; el 12.º es `http→https`, que no aplica en localhost).
+  Tras desplegar, `pnpm security:headers` debe dar 12/12.
+- `pnpm test:rls` **sigue sin poder correr** desde G59 (necesita
+  `SUPABASE_SERVICE_ROLE_KEY` real). El aislamiento se verificó por la vía
+  equivalente y más fuerte: peticiones HTTP con JWT reales.
+- La **protección de contraseñas filtradas** de Supabase Auth sigue apagada;
+  es un interruptor del panel, no configurable por código ni por el MCP.
 
 
 ## G64 — Experiencia móvil y PWA (2026-09-01)

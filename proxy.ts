@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { createSupabaseMiddlewareClient } from '@/lib/auth/supabase-middleware';
 import { checkRateLimit } from '@/lib/rate-limit/limiter';
+import { resolveClientIp } from '@/lib/rate-limit/client-ip';
 import {
   ATTRIBUTION_COOKIE_MAX_AGE_SECS,
   ATTRIBUTION_COOKIE_NAME,
@@ -16,6 +17,16 @@ const VERIFIED_EMAIL_REQUIRED_PREFIXES = ['/checkout'];
 // reintento legítimo de Stripe nunca debe recibir un 429) y los crons
 // (autenticados por CRON_SECRET, invocados por el scheduler de Vercel, no
 // por un usuario final que pudiera abusar).
+//
+// ⚠️ G65 — LO QUE ESTE LIMITADOR SÍ Y NO HACE. Se midió en producción: 70
+// peticiones seguidas a `/api/adaptive/predict` no recibieron NI UN 429 con el
+// límite nominal en 60/min. La causa no es un bug: el contador vive en memoria
+// del proceso Edge y Vercel reparte las peticiones entre instancias, así que
+// ninguna llega a 60. Sirve para frenar una ráfaga que caiga en la misma
+// instancia y no cuesta nada, pero NO es la protección contra abuso del
+// producto. Esa vive en `src/lib/rate-limit/store.ts` (contador compartido en
+// Postgres) y se aplica en cada punto sensible — que además, en su mayoría,
+// son Server Actions y ni siquiera pasan por este prefijo `/api`.
 const RATE_LIMITED_PREFIX = '/api';
 const RATE_LIMIT_EXEMPT_PREFIXES = ['/api/webhooks', '/api/cron'];
 const RATE_LIMIT_MAX_REQUESTS = 60;
@@ -23,13 +34,6 @@ const RATE_LIMIT_WINDOW_MS = 60_000;
 
 function matchesPrefix(pathname: string, prefixes: string[]) {
   return prefixes.some(prefix => pathname === prefix || pathname.startsWith(`${prefix}/`));
-}
-
-/** IP del cliente vía los headers que Vercel/proxies reenvían — `NextRequest.ip` ya no existe. */
-function resolveClientIp(request: NextRequest): string {
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  if (forwardedFor) return forwardedFor.split(',')[0]?.trim() || 'unknown';
-  return request.headers.get('x-real-ip') ?? 'unknown';
 }
 
 /**
@@ -67,7 +71,7 @@ export async function proxy(request: NextRequest) {
     pathname.startsWith(RATE_LIMITED_PREFIX) &&
     !matchesPrefix(pathname, RATE_LIMIT_EXEMPT_PREFIXES)
   ) {
-    const ip = resolveClientIp(request);
+    const ip = resolveClientIp((name) => request.headers.get(name));
     const { allowed, retryAfterSecs } = checkRateLimit(
       `${ip}:${pathname}`,
       RATE_LIMIT_MAX_REQUESTS,

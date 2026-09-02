@@ -6,6 +6,7 @@ import { ParentDashboard } from '@/components/tutor/ParentDashboard';
 import { ParentLockedPreview } from '@/components/tutor/ParentLockedPreview';
 import { ParentShell } from '@/components/tutor/ParentShell';
 import { StudentSwitcher } from '@/components/tutor/StudentSwitcher';
+import { UnlinkStudentForm } from '@/components/tutor/UnlinkStudentForm';
 
 export const metadata = { title: 'Panel del tutor · YaEntre' };
 
@@ -58,6 +59,13 @@ export default async function TutorPage({
         {dashboardResult.kind === 'not_linked' && (
           <ParentLockedPreview studentName={selected.displayName} />
         )}
+
+        {/* G65: la desvinculación vive junto al tablero del alumno
+            seleccionado — es sobre ESE vínculo, no sobre la cuenta. */}
+        <UnlinkStudentForm
+          studentProfileId={selected.studentProfileId}
+          studentName={selected.displayName}
+        />
 
         <div className="border-t border-border-subtle pt-6">
           <LinkCodeForm />

@@ -3,6 +3,8 @@ import type { NotificationType } from '@prisma/client';
 import { verifyUnsubscribeToken } from '@/lib/email/unsubscribe-token';
 import { unsubscribeSecret } from '@/lib/email/links';
 import { setNotificationPreference } from '@/lib/db/notifications';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
+import { resolveClientIp } from '@/lib/rate-limit/client-ip';
 
 /**
  * Enlace de baja (F16 tarea 9). Ruta PÚBLICA a propósito — quien la abre
@@ -40,6 +42,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
   if (!userProfileId || !type || !sig || !VALID_TYPES.includes(type as NotificationType)) {
     return page('Este enlace no es válido.');
+  }
+
+  // G65: ruta PÚBLICA. La firma HMAC (16 hex = 64 bits) es sólida, pero sin un
+  // tope por IP nada impide dejar corriendo un script contra ella; el límite
+  // convierte "inviable en teoría" en "inviable en la práctica" y de paso evita
+  // que la ruta sirva de bomba de consultas contra la base.
+  const gate = await consumeRateLimit('UNSUBSCRIBE', `ip:${resolveClientIp((n) => request.headers.get(n))}`);
+  if (!gate.allowed) {
+    return page('Recibimos demasiadas solicitudes desde aquí. Intenta de nuevo en un rato.');
   }
 
   if (!verifyUnsubscribeToken(userProfileId, type, sig, unsubscribeSecret())) {

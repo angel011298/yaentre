@@ -122,10 +122,52 @@ export async function redeemParentLinkCode(
   });
 }
 
+/**
+ * G65 — Rompe el vínculo tutor ↔ alumno. Lo puede pedir CUALQUIERA de los dos
+ * lados, y solo sobre sus propios vínculos: el `deleteMany` exige que el
+ * perfil que llama aparezca en la fila, en el lado que le corresponde. Un
+ * `counterpartProfileId` manipulado que apunte a un vínculo ajeno simplemente
+ * no casa con ninguna fila y devuelve `false`.
+ *
+ * Se borra la fila en vez de marcarla: `ParentLink` no tiene columna de estado
+ * (no se toca `prisma/schema.prisma`) y, sobre todo, conservar el vínculo
+ * "revocado" sería seguir guardando una relación que el titular pidió
+ * eliminar — justo lo contrario del derecho de cancelación.
+ */
+export async function unlinkParentStudent(
+  requesterProfileId: string,
+  counterpartProfileId: string
+): Promise<boolean> {
+  const { count } = await prisma.parentLink.deleteMany({
+    where: {
+      OR: [
+        { parentProfileId: requesterProfileId, studentProfileId: counterpartProfileId },
+        { parentProfileId: counterpartProfileId, studentProfileId: requesterProfileId },
+      ],
+    },
+  });
+  return count > 0;
+}
+
 export interface LinkedStudent {
   studentProfileId: string;
   displayName: string;
   examName: string | null;
+}
+
+export interface LinkedParent {
+  parentProfileId: string;
+  linkedAt: Date;
+}
+
+/** G65: tutores vinculados a un alumno — para que el alumno pueda revocarlos. */
+export async function loadLinkedParents(studentProfileId: string): Promise<LinkedParent[]> {
+  const links = await prisma.parentLink.findMany({
+    where: { studentProfileId },
+    orderBy: { createdAt: 'asc' },
+    select: { parentProfileId: true, createdAt: true },
+  });
+  return links.map((l) => ({ parentProfileId: l.parentProfileId, linkedAt: l.createdAt }));
 }
 
 /** Alumnos vinculados a un tutor (F16 tarea 6: selector multi-hijo). */

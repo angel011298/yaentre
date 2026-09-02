@@ -506,14 +506,28 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
     return { ok: true, recorded: 0 };
   }
 
+  // G65: SOLO los reactivos que de verdad se le asignaron a esta sesión. El
+  // lote llega por `sendBeacon` desde el cliente, así que sin este filtro un
+  // usuario podía sembrar respuestas de reactivos que nunca vio — su propio
+  // score subía y, con él, el percentil que se calcula contra TODAS las
+  // sesiones del examen (`loadSimulatorResult`), es decir, contaminaba también
+  // el resultado que ven los demás. Mismo criterio que `submitAnswer`: las
+  // filas ya existen porque `startSimulation` las pre-crea.
+  const asignados = await prisma.sessionAnswer.findMany({
+    where: { sessionId: session.id, questionId: { in: batch.map((a) => a.questionId) } },
+    select: { questionId: true },
+  });
+  const permitidos = new Set(asignados.map((a) => a.questionId));
+
   const questions = await prisma.question.findMany({
-    where: { id: { in: batch.map((a) => a.questionId) } },
+    where: { id: { in: [...permitidos] } },
     select: { id: true, options: true },
   });
   const optionsByQuestion = new Map(questions.map((q) => [q.id, q.options]));
 
   const scored: Array<SimulatorSyncAnswer & { isCorrect: boolean }> = [];
   for (const answer of batch) {
+    if (!permitidos.has(answer.questionId)) continue;
     const rawOptions = optionsByQuestion.get(answer.questionId);
     if (rawOptions === undefined) continue;
 

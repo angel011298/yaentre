@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { AuthError } from '@/lib/auth/errors';
 import { requireUser } from '@/lib/auth/guards';
 import { buildUserDataExport } from '@/lib/db/account';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
 
 /**
  * Exportar todos los datos del usuario (F17 tarea 3). Route Handler (no
@@ -23,6 +24,18 @@ export async function GET() {
     }
     console.error('[account/export] Error de autenticación inesperado', err);
     return NextResponse.json({ error: 'No pudimos verificar tu sesión.' }, { status: 500 });
+  }
+
+  // G65: la exportación lee TODO el historial del alumno (sesiones con sus
+  // respuestas incluidas) en una sola consulta pesada. Es el endpoint
+  // autenticado más caro del producto y no tenía tope propio — el de
+  // `proxy.ts` no cuenta entre instancias.
+  const gate = await consumeRateLimit('ACCOUNT_EXPORT', profileId);
+  if (!gate.allowed) {
+    return NextResponse.json(
+      { error: 'Ya pediste tu exportación varias veces. Intenta de nuevo en un rato.' },
+      { status: 429, headers: { 'Retry-After': String(gate.retryAfterSecs) } }
+    );
   }
 
   let json: string;

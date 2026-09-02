@@ -23,6 +23,25 @@ describe('generateLinkCode', () => {
     const code = generateLinkCode(() => 0.9999999);
     expect(code).toHaveLength(6);
   });
+
+  // ── G65 ────────────────────────────────────────────────────────────────────
+  // Este código es la llave que le abre a un adulto el tablero de un MENOR.
+  // Antes salía de `Math.random()` (xorshift128+, reconstruible observando unas
+  // pocas salidas — y cualquiera puede registrarse y pedir códigos a voluntad).
+  // Ahora, sin generador inyectado, viene de `crypto.randomInt`.
+  it('sin generador inyectado usa entropía criptográfica y no repite', () => {
+    const codes = new Set(Array.from({ length: 500 }, () => generateLinkCode()));
+    // 500 muestras de 10^6: por el problema del cumpleaños se esperan ~0.12
+    // colisiones. Más de 5 delataría un generador degenerado.
+    expect(codes.size).toBeGreaterThan(495);
+    for (const code of codes) expect(code).toMatch(/^\d{6}$/);
+  });
+
+  it('cubre todo el rango, incluidos los que empiezan por cero', () => {
+    const codes = Array.from({ length: 3000 }, () => generateLinkCode());
+    expect(codes.some((c) => c.startsWith('0'))).toBe(true);
+    expect(codes.some((c) => Number(c) > 500_000)).toBe(true);
+  });
 });
 
 describe('computeLinkCodeExpiry', () => {

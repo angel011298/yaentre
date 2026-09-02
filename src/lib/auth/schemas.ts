@@ -1,8 +1,35 @@
 import { z } from 'zod';
 
+/**
+ * G65 — cotas de longitud en el borde de auth.
+ *
+ * `MAX_PASSWORD_LENGTH` = 72 no es capricho: bcrypt (el algoritmo que usa
+ * Supabase Auth) TRUNCA en silencio a 72 bytes. Sin la cota, alguien que
+ * elige una frase de 90 caracteres cree tener una contraseña más fuerte de la
+ * que realmente se guarda, y dos contraseñas distintas que compartan los
+ * primeros 72 bytes abren la misma cuenta. Mejor rechazarla y decirlo.
+ *
+ * El correo se acota a 254 (RFC 5321) para que ninguna cadena arbitraria del
+ * exterior llegue larga a la base ni a la llave del límite de tasa.
+ */
+export const MAX_PASSWORD_LENGTH = 72;
+const MAX_EMAIL_LENGTH = 254;
+
+const emailField = z
+  .string()
+  .trim()
+  .toLowerCase()
+  .max(MAX_EMAIL_LENGTH, 'Ese correo es demasiado largo.')
+  .email('Ingresa un correo válido.');
+
+const newPasswordField = z
+  .string()
+  .min(8, 'La contraseña debe tener al menos 8 caracteres.')
+  .max(MAX_PASSWORD_LENGTH, `La contraseña no puede pasar de ${MAX_PASSWORD_LENGTH} caracteres.`);
+
 export const signUpSchema = z.object({
-  email: z.string().trim().toLowerCase().email('Ingresa un correo válido.'),
-  password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres.'),
+  email: emailField,
+  password: newPasswordField,
   acceptTerms: z.string().refine(
     (val) => val === 'on',
     'Debes aceptar los términos y condiciones para continuar.'
@@ -10,14 +37,16 @@ export const signUpSchema = z.object({
 });
 
 export const signInSchema = z.object({
-  email: z.string().trim().toLowerCase().email('Ingresa un correo válido.'),
-  password: z.string().min(1, 'Ingresa tu contraseña.'),
+  email: emailField,
+  // Sin `max` a propósito: aquí no se CREA una contraseña, se compara. Cortar
+  // la entrada dejaría fuera a quien ya tenga una más larga de 72.
+  password: z.string().min(1, 'Ingresa tu contraseña.').max(1024),
 });
 
 export const forgotPasswordSchema = z.object({
-  email: z.string().trim().toLowerCase().email('Ingresa un correo válido.'),
+  email: emailField,
 });
 
 export const updatePasswordSchema = z.object({
-  password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres.'),
+  password: newPasswordField,
 });

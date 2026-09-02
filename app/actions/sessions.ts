@@ -6,10 +6,8 @@ import { requireUser } from '@/lib/auth/guards';
 import * as sessionsDb from '@/lib/db/sessions';
 import { SessionError } from '@/lib/db/sessions';
 import type { FinishSessionResult } from '@/lib/db/sessions';
-import { evaluateSimulationGate } from '@/lib/db/paywall';
 import {
   finishSessionSchema,
-  startSessionSchema,
   submitAnswerSchema,
   type ActionResult,
 } from '@/lib/sessions/schemas';
@@ -32,41 +30,19 @@ function toError(err: unknown): { code: string; message: string } {
   return { code: 'UNKNOWN', message: 'Algo salió mal. Intenta de nuevo.' };
 }
 
-export async function startSession(
-  input: z.input<typeof startSessionSchema>
-): Promise<ActionResult<{ sessionId: string; timeLimitSecs: number; startedAt: string }>> {
-  try {
-    const { profile } = await requireUser();
-    const parsed = startSessionSchema.parse(input);
-
-    // Muro suave (F9): un usuario FREE solo puede iniciar 1 simulacro completo.
-    // Revisar los resultados de uno ya hecho no pasa por aquí (es una lectura,
-    // no un nuevo startSession), así que nunca consume el gratuito.
-    if (parsed.mode === 'FULL_SIMULATION') {
-      const gate = await evaluateSimulationGate(profile.id);
-      if (!gate.allowed) {
-        return {
-          ok: false,
-          code: 'PAYWALL',
-          message: 'Ya usaste tu simulacro completo gratis. Desbloquea los ilimitados.',
-          trigger: gate.trigger,
-        };
-      }
-    }
-
-    const session = await sessionsDb.startSession({ userProfileId: profile.id, ...parsed });
-    return {
-      ok: true,
-      data: {
-        sessionId: session.id,
-        timeLimitSecs: session.timeLimitSecs,
-        startedAt: session.startedAt.toISOString(),
-      },
-    };
-  } catch (err) {
-    return { ok: false, ...toError(err) };
-  }
-}
+/**
+ * G65 — `startSession` (abría una sesión SIN reactivos) se retiró.
+ *
+ * Ningún cliente la usaba: el diagnóstico, la práctica libre y el simulacro
+ * abren su sesión por su propio orquestador, que además pre-crea las filas
+ * `SessionAnswer` en la misma transacción (`startSessionWithQuestions`, G60).
+ * Era, por tanto, un punto de ESCRITURA autenticado, sin usar y sin cuota:
+ * cualquier usuario podía crear sesiones vacías en bucle. Se quita en vez de
+ * dejarla protegida — la superficie que no existe no hay que auditarla.
+ *
+ * `submitAnswer` y `finishSession` sí siguen aquí: las usan `DrillRunner` y
+ * `DiagnosticRunner`.
+ */
 
 export async function submitAnswer(
   input: z.input<typeof submitAnswerSchema>

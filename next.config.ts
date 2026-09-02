@@ -63,9 +63,19 @@ function buildCsp(): string {
     "font-src 'self' data:",
     `connect-src ${connectSrc.join(" ")}`,
     "frame-src 'none'",
+    // G65: `frame-ancestors` es el SUSTITUTO estándar de X-Frame-Options —
+    // la cabecera legacy se conserva abajo por navegadores viejos, pero es
+    // ésta la que la CSP nivel 2/3 define y la que aplican los navegadores
+    // actuales. Faltaba: la app solo estaba protegida contra clickjacking por
+    // la cabecera obsoleta. Verificado en vivo contra https://yaentre.com.
+    "frame-ancestors 'none'",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
+    // Cinturón junto al HSTS: cualquier subrecurso que quedara escrito con
+    // `http://` (un enlace viejo en contenido, un asset copiado a mano) se
+    // pide por https en vez de dispararse como contenido mixto bloqueado.
+    "upgrade-insecure-requests",
   ].join("; ");
 }
 
@@ -82,6 +92,20 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // G65: `X-Powered-By: Next.js` viajaba en cada respuesta (confirmado en
+  // producción). No abre nada por sí solo, pero le regala al atacante la
+  // versión de framework a la que apuntar sus exploits conocidos. No cuesta
+  // nada quitarlo.
+  poweredByHeader: false,
+  experimental: {
+    serverActions: {
+      // G65: la foto de perfil ahora viaja por un Server Action (antes subía
+      // directo del navegador a Storage). El tope por defecto es 1 MB; el
+      // Action rechaza cualquier cosa por encima de 2 MB, así que 3 MB deja
+      // margen para el sobre multipart sin volver este borde un buzón abierto.
+      bodySizeLimit: '3mb',
+    },
+  },
   images: {
     // Avatares reales (F17, Supabase Storage) — permite que next/image los
     // optimice (redimensiona + WebP/AVIF) en vez de servirlos tal cual.
