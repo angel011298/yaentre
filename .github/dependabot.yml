@@ -1,0 +1,38 @@
+# G66 — avisos de vulnerabilidades nuevas en dependencias.
+#
+# Hoy el repo NO tiene remoto de git (se despliega con `vercel --prod` desde
+# la CLI, ver docs/ESTADO.md); este archivo no hace nada hasta que el repo
+# viva en GitHub. Se deja listo a propósito: en cuanto exista el remoto y se
+# active Dependabot en la configuración del repositorio (Settings → Code
+# security → Dependabot alerts + Dependabot security updates), empieza a
+# abrir un PR automático cada vez que salga un parche para una vulnerabilidad
+# ya publicada — sin esperar a que alguien corra `pnpm audit` a mano.
+#
+# `open-pull-requests-limit: 0` para las actualizaciones de RUTINA (no
+# ligadas a una vulnerabilidad): este proyecto fija versiones exactas a
+# propósito (ver .npmrc `save-exact=true` y docs/AUDITORIA_SEGURIDAD.md §16)
+# — cada bump merece revisión y su propia corrida de `pnpm test:unit`, no un
+# PR semanal que nadie pida. Los avisos de SEGURIDAD (`security-updates`)
+# no obedecen este límite: siempre se abren, es la razón de ser de este
+# archivo.
+version: 2
+updates:
+  - package-ecosystem: 'npm' # Dependabot detecta pnpm-lock.yaml automáticamente.
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 0
+    labels:
+      - 'dependencies'
+      - 'security'
+    commit-message:
+      prefix: 'chore(deps)'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 0
+    labels:
+      - 'dependencies'
+      - 'ci'

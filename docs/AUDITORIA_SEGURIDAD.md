@@ -1,6 +1,11 @@
-# AUDITORÍA DE SEGURIDAD — YaEntre (G65)
+# AUDITORÍA DE SEGURIDAD — YaEntre
 
-**Fecha:** 2026-09-01 · **Alcance:** aplicación completa (Server Actions, Route
+Documento vivo de las fases de seguridad. **§0-15: G65** (aplicación).
+**§16: G66** (dependencias/cadena de suministro).
+
+## G65 — Auditoría de la aplicación (2026-09-01)
+
+**Alcance:** aplicación completa (Server Actions, Route
 Handlers, RLS, sesiones, secretos, cabeceras, datos de menores).
 **Modelo real de la sesión:** `claude-opus-5`.
 **No se tocó `prisma/schema.prisma`** (guardrail de CLAUDE.md).
@@ -791,3 +796,303 @@ Ninguno es ejecutable desde el código.
   arreglos.
 - Borradas las sesiones y vínculos temporales que crearon las sondas y la tabla
   auxiliar `public._g65_pwbackup`.
+
+---
+
+## 16. Seguridad de dependencias (G66 — 2026-09-02)
+
+**Alcance de esta sección:** el gestor de paquetes (`pnpm`), no la aplicación.
+La mayoría del código que corre en producción no lo escribió nadie de este
+proyecto — son las 782 dependencias (243 directas + transitivas de
+producción, 440 de desarrollo, 177 opcionales) que arrastra `next`, `@sentry/
+nextjs`, `posthog-js`, `stripe`, etc. Una vulnerabilidad en cualquiera de
+ellas es una vulnerabilidad del producto. Modelo real: `claude-sonnet-5`.
+**No se tocó `prisma/schema.prisma`.**
+
+### 16.0 Resumen
+
+| | Antes | Después |
+|---|---|---|
+| Vulnerabilidades (`pnpm audit`) | 14 (0 crítica · 9 alta · 5 media · 0 baja) | **0** |
+| `pnpm-lock.yaml` versionado | **No, nunca** (0 commits en el historial) | **Sí** |
+| Dependencias directas sin usar | 2 (`lucide-react`, `sonner`) | **0** |
+| Versiones fijadas de forma exacta | 4 de 37 (`next`, `eslint-config-next`, `react`, `react-dom`) | **37 de 37** |
+| Aviso de vulnerabilidades futuras | Ninguno | Dependabot + GitHub Action semanal (dormidos, ver §16.5) |
+
+### 16.1 Las 14 vulnerabilidades, por severidad
+
+`pnpm audit` contra el estado real del proyecto (782 dependencias totales).
+**Ninguna** de las 14 era una dependencia DIRECTA — las 37 declaradas en
+`package.json` no tenían un CVE propio; todas llegaban por una transitiva.
+
+| Severidad | Paquete | Vulnerable | Parcheado | Entra por |
+|---|---|---|---|---|
+| 🟠 Alta | `brace-expansion` (línea 1.x) | `1.1.16` | `>=1.1.18` | `eslint` → `minimatch@3.1.5` |
+| 🟠 Alta | `brace-expansion` (línea 5.x) | `5.0.8` | `>=5.0.9` | `@typescript-eslint` → `minimatch@10.2.5` |
+| 🟠 Alta | `undici` (×2 hallazgos) | `7.28.0` | `>=7.29.0` | `jsdom` (entorno de Vitest) |
+| 🟠 Alta | `fast-uri` | `4.1.1` | `>=4.1.2` | `@sentry/nextjs` → webpack → `ajv-formats` |
+| 🟠 Alta | `js-yaml` | `4.3.0` | `>=4.3.1` | `eslint` → `@eslint/eslintrc` |
+| 🟠 Alta | `nanoid` | `3.3.16` | `>=3.3.18` | `next`/`@tailwindcss/postcss`/`vite` → `postcss` |
+| 🟠 Alta ×2 | `browserslist` | `4.28.5` | `>=4.28.7` | `next`/`@sentry/nextjs`/`eslint-config-next` → `@babel/core` |
+| 🟡 Media ×4 | `undici` | `7.28.0` | `>=7.29.0` | mismo camino que arriba |
+| 🟡 Media | `dompurify` | `3.4.12` | `>=3.4.13` | `posthog-js` |
+
+Ninguna llegaba por una ruta con exposición directa a un atacante remoto en
+producción: `eslint`/`js-yaml`/`browserslist`/`brace-expansion@1.x` son
+herramientas de build/lint que solo procesan patrones y configuración que
+ESTE repositorio controla; `undici` vive en el entorno de pruebas de Vitest
+(`jsdom`), no en el bundle servido; `nanoid`/`browserslist@webpack` corren
+durante `next build`, contra el propio código fuente. Las dos que sí tocan
+una ruta con datos ajenos son `fast-uri` (SDK de Sentry, procesa datos que
+la propia app le manda) y `dompurify` (SDK de PostHog, sanea HTML antes de
+inyectarlo — la única con paths hacia contenido potencialmente no confiable).
+Se corrigieron las 14 igual: "bajo riesgo hoy" no es lo mismo que "sin riesgo".
+
+### 16.2 Cómo se corrigieron — y el mecanismo que YA existía
+
+Ninguna de las 14 es una dependencia directa, así que actualizar `next` o
+`@sentry/nextjs` a su última versión **no garantiza** arrastrar el parche (el
+paquete padre puede no haber re-publicado con la transitiva nueva todavía).
+El proyecto ya tenía la herramienta correcta desde F22 — `pnpm-workspace.yaml`
+→ `overrides`, que fuerza una versión concreta de una dependencia transitiva
+sin esperar a que el padre la adopte — y ya la usaba para `fast-uri`,
+`dompurify`, `postcss` y `sharp`. Se extendió el mismo mecanismo:
+
+```yaml
+overrides:
+  fast-uri: '^4.1.2'
+  dompurify: '^3.4.13'
+  postcss: '^8.5.18'
+  sharp: '^0.35.0'
+  minimatch@3.1.5>brace-expansion: '^1.1.18'
+  minimatch@10.2.5>brace-expansion: '^5.0.9'
+  undici: '^7.29.0'
+  js-yaml: '^4.3.1'
+  nanoid: '^3.3.18'
+  browserslist: '^4.28.7'
+```
+
+`brace-expansion` necesitó el selector `padre@versión>hijo` (sintaxis oficial
+de pnpm) porque **dos majors conviven a la vez**: `eslint@9.39.4` todavía
+usa `minimatch@3.1.5` en parte de su propio árbol y `minimatch@10.2.5` en
+otra (no ha terminado de migrar internamente), y cada minimatch pide su
+propia línea de `brace-expansion` (`^1.1.7` vs `^5.0.5`). Un override plano
+habría forzado las DOS ramas a una sola versión, rompiendo la que espera la
+otra.
+
+Resultado, verificado con `pnpm audit`:
+
+```
+{
+  "vulnerabilities": { "info": 0, "low": 0, "moderate": 0, "high": 0, "critical": 0 },
+  "totalDependencies": 780
+}
+```
+
+**0 pendientes.** No hizo falta documentar una mitigación de "no se pudo
+arreglar" — las 14 se cerraron por completo. Verificado después con la suite
+completa (`pnpm typecheck`, `pnpm lint`, `pnpm test:unit` → 526/526,
+`pnpm build`), dos veces: una tras aplicar los overrides y otra tras fijar
+las versiones (§16.4).
+
+### 16.3 🟠 El propio mecanismo de protección estaba roto — dos veces
+
+Esto es lo más importante de la fase, más que la lista de 14: **el
+`overrides` de F22 no protegía nada**, y al escribir el nuevo casi se
+introduce exactamente el tipo de actualización-sin-revisar que esta fase
+existe para evitar.
+
+**Primero.** `fast-uri` y `dompurify` YA tenían un override desde F22
+(`>=3.1.4` y `>=3.4.12`) y AUN ASÍ estaban resueltos a una versión
+vulnerable (`4.1.1` y `3.4.12`). La razón: un rango `>=` sin techo lo
+satisface CUALQUIER versión posterior, incluida una con un CVE publicado
+después de F22. Un override así no es "parcheado para siempre" — hay que
+revisarlo cada vez que corre `pnpm audit`, no solo la primera vez que se
+escribe.
+
+**Segundo, y más grave.** Al escribir los overrides NUEVOS de esta misma
+fase con el mismo patrón `>=x.y.z` que el resto ya usaba, tres saltaron de
+MAYOR sin avisar — comprobado inspeccionando `node_modules` directamente,
+no asumido:
+
+```
+nanoid:       override '>=3.3.18'  → resolvió nanoid@6.0.1   (¡major 6!)
+undici:       override '>=7.29.0'  → resolvió undici@8.10.1  (¡major 8!)
+js-yaml:      override '>=4.3.1'   → resolvió js-yaml@5.4.1  (¡major 5!)
+```
+
+`nanoid@4+` es **ESM-only** — revienta con `ERR_REQUIRE_ESM` a cualquier
+consumidor que lo pida con `require()`, y `webpack`/`postcss`/el propio
+`next` lo hacen internamente. Si esto hubiera llegado a un commit sin
+notarlo, la siguiente `pnpm install` de otra máquina —o el próximo deploy,
+una vez arreglado el punto de §16.4— habría podido romper el build entero
+por una dependencia de dependencia de dependencia, silenciosamente. Es
+exactamente el escenario que la tarea de "fijar versiones" pide evitar, y
+casi lo introduce el propio arreglo de la vulnerabilidad.
+
+**Corregido:** cada entrada de `overrides` —las 4 de F22 y las 6 nuevas—
+pasó de `>=x.y.z` a `^x.y.z` (techo de mayor). `^3.3.18` para `nanoid` deja
+CommonJS intacto; `^7.29.0` para `undici` deja a `jsdom` en la misma major
+que ya usaba; igual para el resto. Regla dejada por escrito en el propio
+`pnpm-workspace.yaml`: ningún override nuevo se escribe sin techo, sin
+excepción — ni siquiera los que llevan años sin problema por pura suerte de
+que nadie haya publicado una mayor nueva todavía.
+
+### 16.4 🔴 `pnpm-lock.yaml` nunca se había versionado
+
+**El hallazgo con más alcance de toda la fase**, y la razón de fondo por la
+que 14 vulnerabilidades se acumularon sin que nadie las notara.
+
+```
+git check-ignore -v pnpm-lock.yaml
+  .gitignore:15:pnpm-lock.yaml    pnpm-lock.yaml
+
+git log --all --oneline -- pnpm-lock.yaml
+  (sin salida — nunca, ni un commit, en los 117 commits del repo)
+```
+
+El archivo existía en disco (última modificación local: 3 de agosto), pero
+`.gitignore` lo excluía desde el origen del repositorio. Con `package.json`
+usando casi en su totalidad rangos abiertos (`^9.39.4`, o peor, majors
+sueltas como `"eslint": "^9"`, `"tailwindcss": "^4"`, `"typescript": "^5"`
+— CUALQUIER versión 9.x/4.x/5.x, sin límite superior real) y **sin lockfile
+que fijara qué se resolvió la última vez**, cada `pnpm install` en una
+máquina distinta —otro desarrollador, una corrida de CI que llegue a
+existir, y sobre todo **el propio `vercel --prod` que hace cada deploy**
+(este proyecto no tiene integración de git con Vercel; se despliega desde
+la CLI, ver `docs/ESTADO.md`)— resolvía el árbol de dependencias transitivas
+FRESCO contra lo que estuviera publicado en npm ESE día. Ni una sola de las
+14 vulnerabilidades encontradas en esta fase tenía que ver con el CÓDIGO del
+proyecto — todas entraban por ahí.
+
+Fijar las versiones en `package.json` (§16.5) no alcanza por sí solo:
+detiene un `pnpm add`/`pnpm update` descuidado, pero no dice nada sobre las
+transitivas — `next@16.2.12` exacto no evita que su copia de `browserslist`
+cambie de un día a otro sin el lockfile. El lockfile es quien fija ESO.
+
+**Corregido:** se quitó `pnpm-lock.yaml` de `.gitignore` y se commiteó.
+Efecto inmediato: `pnpm install --frozen-lockfile` (el modo con el que pnpm
+corre automáticamente en la mayoría de entornos de CI/CD, incluido Vercel al
+detectar un lockfile pnpm) ahora **falla** si `package.json` y el lockfile no
+coinciden, en vez de resolver algo distinto en silencio. El `.github/
+workflows/security-audit.yml` nuevo (§16.6) lo usa explícitamente por eso.
+
+### 16.5 Dependencias directas sin usar
+
+Revisadas las 37 declaradas (17 `dependencies` + 20 `devDependencies`) contra
+el código real (`grep` de cada nombre de paquete en `app/`, `src/`,
+`scripts/`, los archivos de configuración, y —para las que dieron cero—
+una segunda pasada sin filtrar por extensión para descartar un import
+dinámico o una referencia por texto):
+
+| Paquete | Resultado |
+|---|---|
+| `lucide-react` | **0 referencias en todo el repo.** Ningún componente lo importa; tampoco aparece en ningún archivo de configuración. **Eliminado.** |
+| `sonner` | **0 referencias.** No hay ningún `<Toaster />` montado — los avisos de error/éxito del proyecto son `<p role="alert">`/`<p role="status">` manuales (`TextField`, cada formulario). **Eliminado.** |
+| `react-dom` | 0 imports EXPLÍCITOS en el código de la app — y aun así es correcto conservarlo: Next.js (App Router) lo usa internamente para SSR/hidratación como dependencia de plataforma, nunca como algo que el código de la app importe directo. Confirmado que ningún otro paquete lo declara como peer opcional que dependiera de esta app proveyéndolo. |
+
+Las otras 34 sí se usan (revisadas una por una, no solo las "obvias"):
+`@number-flow/react` (Entrómetro), `posthog-js`/`posthog-node` (analítica,
+uno client uno server), `resend` (`src/lib/email/client.ts`),
+`react-calendar-heatmap` (mapa de actividad), `zustand` (el único uso
+permitido por CLAUDE.md, el store del simulador), `mammoth`/`pdf-parse`
+(pipeline de contenido, `scripts/lib/source-scan.ts`), `dotenv` (scripts
+offline), `@vitejs/plugin-react` (`vitest.config.ts`), `@tailwindcss/postcss`
+(`postcss.config.mjs`) — todas con al menos un `import` real encontrado.
+
+`pnpm remove lucide-react sonner` → `pnpm typecheck`, `pnpm lint`,
+`pnpm build` en verde: nada dependía de ellos ni siquiera indirectamente.
+
+### 16.6 Versiones fijadas
+
+Antes de esta fase, 33 de las 37 dependencias declaraban un rango (`^x.y.z`,
+o peor, una mayor suelta como `"eslint": "^9"` — sin límite superior real,
+literalmente CUALQUIER 9.x). Solo `next`, `eslint-config-next`, `react` y
+`react-dom` ya iban exactas (convención de Next.js: `next` y
+`eslint-config-next` deben coincidir dígito a dígito; React 19 fijado por
+estabilidad).
+
+Las 37 pasaron a la versión EXACTA ya resuelta, verificada y testeada en
+esta misma fase (sin `^`, sin mayor suelta):
+
+```diff
+- "eslint": "^9",
++ "eslint": "9.39.4",
+- "tailwindcss": "^4",
++ "tailwindcss": "4.3.2",
+- "@sentry/nextjs": "^10.64.0",
++ "@sentry/nextjs": "10.64.0",
+  … (37 en total)
+```
+
+Y `.npmrc` ganó `save-exact=true`: la próxima vez que alguien corra
+`pnpm add algo`, pnpm lo escribe en `package.json` ya sin `^`, para que esta
+disciplina no dependa de que quien lo use se acuerde de pasar `--save-exact`
+a mano.
+
+**Los dos, juntos, es lo que de verdad cierra la tarea:** el lockfile
+(§16.4) fija TODO el árbol —transitivas incluidas— entre instalaciones; las
+versiones exactas en `package.json` (esto) evitan que un `pnpm update`
+deliberado (que sí respeta el lockfile pero SÍ puede mover algo dentro del
+rango declarado) mueva nada sin que alguien edite el número a mano primero.
+
+### 16.7 Mecanismo de aviso para vulnerabilidades futuras
+
+Dos piezas, ambas **dormidas hasta que el repo tenga un remoto de git** —hoy
+no lo tiene; se despliega con `vercel --prod` desde la CLI (`docs/
+ESTADO.md`)— y ninguna requiere nada más que empujar el repo para activarse:
+
+1. **`.github/dependabot.yml`** — semanal, ecosistema `npm` (Dependabot
+   detecta `pnpm-lock.yaml` solo). Los avisos de SEGURIDAD abren PR sin
+   límite; las actualizaciones de rutina (`open-pull-requests-limit: 0`) se
+   suprimen a propósito — este proyecto fija versiones exactas y revisa cada
+   bump a mano (§16.6), no quiere un PR semanal de "hay una versión nueva".
+2. **`.github/workflows/security-audit.yml`** — corre `pnpm install
+   --frozen-lockfile` + `pnpm audit --audit-level=high` en cada push/PR que
+   toque `package.json`/`pnpm-lock.yaml`/`pnpm-workspace.yaml`, y además cada
+   lunes por cron — una vulnerabilidad publicada un martes contra algo que
+   YA está fijado no espera a que alguien tenga un motivo para tocar
+   `package.json`. Falla el job (no solo avisa) ante `high`/`critical`.
+
+Mientras tanto, mecanismo MANUAL ya disponible hoy, sin depender de GitHub:
+
+```bash
+pnpm security:deps   # = pnpm audit --audit-level=high
+```
+
+En la misma familia `security:*` que las sondas de G65
+(`security:isolation`, `authz`, `session`, `ratelimit`, `headers`).
+Recomendado correrlo antes de cada deploy manual, igual que el resto de la
+familia.
+
+### 16.8 Lo que se dejó igual, a propósito
+
+- **`.npmrc` → `ignore-scripts=true`** ya existía y sigue igual: bloquea que
+  cualquier dependencia corra un script de instalación arbitrario (el vector
+  de ataques de cadena de suministro más común de los últimos años). El
+  `allowBuilds` de `pnpm-workspace.yaml` ya listaba exactamente los paquetes
+  que sí necesitan compilar algo nativo (`sharp`, `@prisma/client`, `esbuild`,
+  `@sentry/cli`) — revisado, sigue siendo la lista correcta, no se tocó.
+- **No se actualizó ninguna dependencia directa fuera de lo que las 14
+  vulnerabilidades exigían.** `pnpm outdated` mostraba bumps disponibles de
+  mayor para `@prisma/client`/`prisma` (5→7), `typescript` (5→7), `eslint`
+  (9→10), `framer-motion` (12→13) y `jsdom` (29→30), ninguno ligado a un CVE.
+  Perseguir esos en la misma sesión que fija la cadena de suministro habría
+  mezclado dos tipos de riesgo distintos (uno de seguridad medible, otro de
+  compatibilidad sin acotar) en un solo diff. Quedan disponibles para una
+  fase dedicada, con su propia revisión de breaking changes.
+
+### 16.9 Verificación final
+
+```
+pnpm audit                    → 0 críticas, 0 altas, 0 medias, 0 bajas
+pnpm typecheck                → verde
+pnpm lint                     → verde
+pnpm test:unit                → 526/526
+pnpm build                    → verde (41 rutas)
+git check-ignore pnpm-lock.yaml → ya no aplica (rastreable)
+```
+
+Corrido dos veces completo: una vez tras aplicar los `overrides`, otra tras
+fijar las 37 versiones y quitar `lucide-react`/`sonner` — para separar "el
+override no rompió nada" de "fijar y limpiar tampoco rompió nada".

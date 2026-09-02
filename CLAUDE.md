@@ -33,7 +33,7 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | `Backend_Schema_Acierta_v1.0.md` | **Schema de Prisma final, enums, índices, RLS, seeds** |
 | `Plan_Implementacion_Acierta_v1.0.md` | Sesiones CC, orden de construcción, dependencias |
 | `ESTADO.md` | **Estado vivo del proyecto — consultar SIEMPRE antes de cualquier tarea** |
-| `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad (G65): inventario de autorización, RLS, sesiones, secretos, límites de tasa y datos de menores** |
+| `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad — G65: autorización, RLS, sesiones, secretos, límites de tasa, datos de menores. G66 (§16): dependencias, `pnpm audit`, cadena de suministro** |
 
 ---
 
@@ -71,6 +71,7 @@ pnpm security:authz           # autorización de la app cambiando identificadore
 pnpm security:session         # caducidad, renovación y cierre de sesión
 pnpm security:ratelimit       # el contador distribuido, incluida la concurrencia
 pnpm security:headers         # cabeceras contra la URL pública real
+pnpm security:deps            # pnpm audit --audit-level=high (G66)
 pnpm prisma migrate dev       # migración en desarrollo
 pnpm prisma generate          # regenerar client tipado
 pnpm prisma db seed           # sembrar taxonomía (no reactivos)
@@ -179,6 +180,8 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - ❌ No confiar en `src/lib/rate-limit/limiter.ts` (memoria) para frenar abuso real: no cuenta entre instancias de Vercel — medido, 70 peticiones sin un 429. Los puntos sensibles usan `src/lib/rate-limit/store.ts` (contador compartido en Postgres) (G65 §5).
 - ❌ No escribir políticas RLS `FOR ALL` sobre tablas de datos de usuario: la app nunca escribe desde el navegador, así que van `FOR SELECT`. Un `FOR ALL` solo lo detiene el GRANT, y basta un `GRANT ALL … TO authenticated` para abrirlo (G65 §7).
 - ❌ No devolver la cookie de sesión a `httpOnly: false`: `@supabase/ssr` lo trae así por defecto y hay que sobreescribirlo en el cliente de servidor **y** en el del middleware (`src/lib/auth/cookie-options.ts`). El refresh token vive 400 días (G65 §6).
+- ❌ No escribir un override de `pnpm-workspace.yaml` con `>=x.y.z` a secas: sin techo de mayor, pnpm puede saltar a la última versión publicada de CUALQUIER major — pasó en vivo con `nanoid` (ESM-only desde v4, revienta `require()`). Siempre `^x.y.z` (G66 §3).
+- ❌ No dejar `pnpm-lock.yaml` fuera de git: sin él, cada `pnpm install` —incluido el de cada deploy— resuelve las transitivas frescas contra npm ese día, sin fijar nada (G66 §4). Se versiona.
 - ❌ Al componer un lote de reactivos, no dejar la respuesta correcta concentrada en una sola posición: distribuirla de forma pareja entre las cuatro opciones, y citar los distractores por su contenido, nunca por su letra — el simulador no baraja opciones para todas las instituciones (`shuffleOptions:false` en `src/lib/simulator/config.ts` para IPN/UAM/CENEVAL/CNBV). Todo lote debe pasar `scripts/lib/lot-validation.ts` (`content:validate-batch` / paso obligatorio de `content:insert`) antes de insertarse — ver G3b/G3c en `docs/ESTADO.md`.
 
 ---

@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-02 · Última fase ejecutada: **G66 (COMPLETADA — seguridad de dependencias)**. Modelo real `claude-sonnet-5`. **Reporte en `docs/AUDITORIA_SEGURIDAD.md` §16.** `pnpm audit`: **14 vulnerabilidades (0 crítica, 9 alta, 5 media) → 0**, ninguna en una dependencia directa (todas transitivas de `eslint`/`vitest`/`@sentry/nextjs`/`posthog-js`/`next`). Corregidas extendiendo el override de `pnpm-workspace.yaml` que ya existía desde F22 — pero auditar el propio mecanismo encontró que estaba roto **dos veces**: (1) los overrides de F22 para `fast-uri`/`dompurify` (`>=3.1.4`, `>=3.4.12`) seguían resueltos a versión VULNERABLE, porque un `>=` sin techo lo satisface cualquier CVE publicado después; (2) al escribir los overrides nuevos con el mismo patrón `>=`, tres saltaron de MAYOR sin avisar — comprobado en `node_modules`: `nanoid` (override `>=3.3.18`) resolvió a `6.0.1` (¡ESM-only, revienta `require()` de webpack/postcss/next!), `undici` a `8.10.1`, `js-yaml` a `5.4.1`. Se corrigieron los 10 overrides (4 viejos + 6 nuevos) a `^x.y.z` con techo de mayor. `brace-expansion` tiene DOS majors legítimas coexistiendo (`minimatch@3.1.5`→`^1.1.7` dentro de `eslint`, `minimatch@10.2.5`→`^5.0.5` dentro de `@typescript-eslint`, el propio `eslint@9.39.4` no migró del todo) — resuelto con el selector oficial de pnpm `padre@versión>hijo`. **🔴 hallazgo mayor: `pnpm-lock.yaml` nunca se había versionado** — estaba en `.gitignore` desde el origen del repo (0 commits en 117), así que CADA `pnpm install` —incluido el que corre `vercel --prod` en cada deploy, sin integración de git— resolvía el árbol completo de transitivas fresco contra lo publicado ESE día; es la causa raíz real de las 14 vulnerabilidades. Corregido: fuera de `.gitignore`, commiteado — ahora `pnpm install --frozen-lockfile` (el modo que usa CI/Vercel con un lockfile presente) falla en vez de derivar en silencio. **Las 37 dependencias declaradas pasan de rangos abiertos (`^9.39.4`, o peor, `^9` sin techo real) a versión EXACTA** ya resuelta y probada; `.npmrc` gana `save-exact=true` para que un `pnpm add` futuro no vuelva a aflojarlo. **2 dependencias sin uso eliminadas** (`lucide-react`, `sonner` — cero referencias en todo el repo, confirmado con grep exhaustivo); `react-dom` se revisó y se CONSERVA pese a 0 imports explícitos (dependencia de plataforma de Next.js, no de la app). **Aviso a futuro:** `.github/dependabot.yml` + `.github/workflows/security-audit.yml` (`pnpm install --frozen-lockfile` + `pnpm audit --audit-level=high`, falla en high/critical, cron semanal) — ambos DORMIDOS hasta que el repo tenga remoto de git (hoy no lo tiene); mientras tanto `pnpm security:deps` corre lo mismo a mano, mismo namespace que las sondas de G65. Deliberadamente NO se tocaron los bumps de mayor disponibles sin CVE asociado (`@prisma/client`/`prisma` 5→7, `typescript` 5→7, `eslint` 9→10, `framer-motion` 12→13, `jsdom` 29→30) — mezclar eso con la cadena de suministro habría combinado dos riesgos distintos en un solo diff; quedan para una fase dedicada. `pnpm typecheck`/`lint`/`test:unit` (526/526)/`build` en verde, corridos dos veces completos. **No se tocó `prisma/schema.prisma`.**
+
+<details><summary>Historial: G65 (2026-09-01)</summary>
+
 Última actualización: 2026-09-01 · Última fase ejecutada: **G65 (COMPLETADA — auditoría de seguridad de la aplicación)**. Modelo real `claude-opus-5`. **Reporte completo: `docs/AUDITORIA_SEGURIDAD.md`.** 37 Server Actions + 8 Route Handlers auditados (100 %), **14 hallazgos: 3 🔴, 5 🟠, 4 🟡, 2 🔵 — 12 corregidos, 2 son del dueño**. Todo se probó EJECUTÁNDOLO: 4 sondas repetibles (`pnpm security:isolation|authz|session|ratelimit`) + `security:headers` + verificación en navegador real. **🔴 1 — la clave de respuestas se podía sacar durante el simulacro:** `submitAnswer` verificaba que la SESIÓN fuera tuya pero aceptaba CUALQUIER `questionId` (y lo insertaba con `upsert`); como la política de revelado se decide por el MODO de la sesión, bastaba abrir una práctica libre en otra pestaña y mandarle los `questionId` del simulacro en curso → devolvía `{isCorrect, correctOption}`. **Reproducido en vivo.** Arreglo: el par (sesión, reactivo) debe existir ya como `SessionAnswer` (las 3 sesiones reales las pre-crean en `startSessionWithQuestions`); `upsert` → `update` condicionado. Mismo filtro en `recordSimulatorSync`. **🟠 la explicación filtraba por la otra puerta:** la capa 1 es gratis y dice cuál es la correcta, y `revealExplanationLayer` aceptaba cualquier `questionId` sin contexto → ahora exige que el alumno ya haya RESPONDIDO ese reactivo en una sesión que revela (terminada o práctica); nuevo `NOT_ANSWERED`, antes del muro de pago. **🔴 2 — cero protección contra fuerza bruta:** login/registro/recuperación/canje parental son Server Actions y el limitador de F20 solo mira `/api`… y ahí **tampoco funcionaba** (medido en producción: **70 peticiones a `/api/adaptive/predict` sin un solo 429** — contador en memoria del proceso Edge, Vercel reparte entre instancias); Supabase Auth tampoco frena (**25 logins fallidos sin 429**). Nuevo contador DISTRIBUIDO en Postgres (`app_security.rate_limit_hits`, migración 0013, `INSERT … ON CONFLICT` atómico — 30 llamadas concurrentes dan 1..30 sin colisiones) con 11 presupuestos; doble cubo (cuenta **y** IP) en login, recuperación y canje parental. Esquema `app_security` a propósito: fuera de `public` Prisma no lo diffea ⇒ **cero deriva** sin tocar `schema.prisma`. **🔴 3 — el código de vinculación parental era forzable:** 6 dígitos, 10 min, canjes ilimitados y generado con `Math.random()` (xorshift128+, reconstruible observando salidas — y cualquiera puede pedir códigos propios a voluntad) → `crypto.randomInt` + 6 intentos por tutor / 20 por IP en la ventana ⇒ ≈1 entre 166 667. **Y no existía DESVINCULACIÓN**, pese a que el aviso de privacidad la promete: añadida para los dos lados (`LinkedParentsCard` del alumno, `UnlinkStudentForm` del tutor). **🟠 la cookie de sesión NO era httpOnly** (`@supabase/ssr` trae `httpOnly:false` por defecto; el comentario del código afirmaba lo contrario desde F0) — cualquier XSS entregaba un refresh token de **400 días**; su único motivo era la subida del avatar desde el navegador, que se movió al servidor (`uploadAvatarAction`, con lista blanca de MIME y tope de 2 MB) y `supabase-browser.ts` se **eliminó**. Verificado en navegador: `httpOnly=true`, `sameSite=Lax`, `document.cookie` vacío, login OK. **🟠 RLS: las políticas eran `FOR ALL`** y solo el GRANT (anon/authenticated = SELECT y nada más) impedía auto-ascenderse a `role='ADMIN'`, fabricar un `parent_links` a cualquier menor, regalarse un plan PREMIUM o falsear el score; un `GRANT ALL … TO authenticated` copiado de la documentación abría las cuatro a la vez → las 11 políticas de datos de usuario pasan a **`FOR SELECT`** y se retiran `profile_insert/update/delete`. **Aislamiento probado activamente, no leído: 22/22 intentos ilegítimos bloqueados por RLS con JWT reales de 3 cuentas contra `/rest/v1`, y 10/10 en la capa de aplicación** cambiando identificadores en las funciones reales. **Sesiones sanas:** cerrar sesión invalida el refresh (400) **y** el access token al instante (`getUser()` → 403), así que la ventana del JWT no importa. **Cabeceras verificadas contra `https://yaentre.com`:** faltaba `frame-ancestors` (solo protegía el `X-Frame-Options` obsoleto) y se exponía `X-Powered-By` → corregidas, 11/12 en el build local (el 12.º es `http→https`, que no aplica en localhost) — **producción sigue sirviendo lo anterior hasta el próximo deploy**. **Secretos: cero** en el bundle y **cero en los 117 commits del historial**; se retiró la `ANTHROPIC_API_KEY` (vencida, sin usar) que quedaba en `.env`/`.env.local` contra el guardrail de CLAUDE.md. **Inyección: limpia** — los 15 usos de SQL crudo son plantillas etiquetadas; `*Unsafe` solo en scripts offline. **Datos de menores: minimización correcta** (no se pide edad, dirección, teléfono, CURP ni escuela) y el tutor solo ve agregados; **brecha legal abierta y documentada: el aviso promete consentimiento del tutor para menores de 18 y el producto nunca pregunta la edad ni lo recoge** — es decisión de producto+abogado, no de código. También: `changePasswordAction` ahora exige la contraseña actual (con cliente efímero: verificarla sobre el cliente de la petición lanzaba `AuthRefreshDiscardedError` y colgaba el formulario — hallazgo que solo apareció al ejecutarlo), cotas de contraseña a 72 (bcrypt trunca en silencio) y de correo a 254, IP resuelta con `x-vercel-forwarded-for` (la única que el cliente no puede falsear), y **retirada** `startSession` (Server Action de escritura sin uso ni cuota). **No se tocó `prisma/schema.prisma`.** `pnpm typecheck`, `pnpm lint`, `pnpm build` y 526 tests en verde.
+
+</details>
 
 <details><summary>Historial: G64 (2026-09-01)</summary>
 
@@ -211,6 +217,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G66 | Seguridad de dependencias | **COMPLETADA — `pnpm audit`: 14 vulnerabilidades (0 crítica, 9 alta, 5 media) → 0, ninguna en dependencia directa. Lockfile versionado por primera vez (0 commits en 117). 37/37 versiones fijadas. 2 dependencias sin uso eliminadas. Reporte: `docs/AUDITORIA_SEGURIDAD.md` §16** | (G66) | Modelo real `claude-sonnet-5`. Las 14 entraban por transitivas de `eslint`/`vitest`(`jsdom`)/`@sentry/nextjs`/`posthog-js`/`next`(`postcss`,`@babel/core`) — corregidas extendiendo el `overrides` de `pnpm-workspace.yaml` que ya existía desde F22. **🟠 auditando el propio mecanismo se encontró que estaba roto DOS VECES**: (1) los overrides de F22 para `fast-uri`/`dompurify` (`>=3.1.4`/`>=3.4.12`) seguían resueltos a versión VULNERABLE — un `>=` sin techo lo satisface cualquier CVE publicado después de F22, no es "parcheado para siempre"; (2) al escribir los 6 overrides nuevos con el mismo patrón `>=`, TRES saltaron de MAYOR sin avisar — verificado en `node_modules`, no asumido: `nanoid` (`>=3.3.18`) resolvió a `6.0.1` (¡ESM-only, `ERR_REQUIRE_ESM` a cualquier `require()` de webpack/postcss/next!), `undici` a `8.10.1`, `js-yaml` a `5.4.1` — casi se introduce la actualización-sin-revisar que la fase debía evitar, por el propio arreglo. Los 10 overrides pasan a `^x.y.z` con techo. `brace-expansion` con DOS majors legítimas a la vez (`minimatch@3.1.5`→`^1.1.7` en `eslint`, `minimatch@10.2.5`→`^5.0.5` en `@typescript-eslint`) resuelto con el selector oficial `padre@versión>hijo`. **🔴 el hallazgo con más alcance: `pnpm-lock.yaml` NUNCA se había versionado** (`.gitignore` desde el origen, 0 commits) — cada `pnpm install`, incluido el de `vercel --prod` en cada deploy (sin integración de git), resolvía las transitivas frescas contra npm ese día; causa raíz real de las 14. Corregido: fuera de `.gitignore`, commiteado — `pnpm install --frozen-lockfile` ahora falla en vez de derivar en silencio. **37/37 dependencias declaradas pasan de rangos abiertos (`^9.39.4`, o `^9` sin techo real) a versión EXACTA**; `.npmrc` gana `save-exact=true`. **`lucide-react`/`sonner` eliminados** (0 referencias en todo el repo, grep exhaustivo); `react-dom` revisado y CONSERVADO (dependencia de plataforma de Next.js pese a 0 imports explícitos). **Aviso a futuro:** `.github/dependabot.yml` + `.github/workflows/security-audit.yml` (`--frozen-lockfile` + `audit --audit-level=high`, cron semanal, falla en high/critical) — dormidos hasta que el repo tenga remoto; `pnpm security:deps` corre lo mismo a mano ya hoy, mismo namespace que las sondas de G65. Deliberadamente sin tocar bumps de mayor sin CVE asociado (Prisma 5→7, TypeScript 5→7, eslint 9→10, framer-motion 12→13, jsdom 29→30) — fase dedicada aparte. `typecheck`/`lint`/`test:unit` (526/526)/`build` en verde, corridos dos veces completos. **No se tocó `prisma/schema.prisma`.** |
 | G65 | Auditoría de seguridad de la aplicación | **COMPLETADA — 37 Server Actions + 8 Route Handlers auditados (100 %). 14 hallazgos (3 🔴 · 5 🟠 · 4 🟡 · 2 🔵): 12 corregidos, 2 del dueño. Aislamiento PROBADO: 22/22 bloqueados por RLS con JWT reales, 10/10 en la capa de aplicación. Reporte: `docs/AUDITORIA_SEGURIDAD.md`** | (G65) | Modelo real `claude-opus-5`. **🔴 Fuga de la clave de respuestas durante el simulacro** (`submitAnswer` aceptaba reactivos de otra sesión y la política de revelado se decide por el MODO ⇒ práctica libre en otra pestaña + `questionId` del simulacro = `{isCorrect, correctOption}`; reproducido en vivo) → el par (sesión, reactivo) debe existir ya como `SessionAnswer`; mismo filtro en `recordSimulatorSync`. **🟠 Misma fuga por la explicación** (capa 1 es gratis y dice la correcta) → exige haber respondido el reactivo en una sesión que revela; `NOT_ANSWERED` antes del muro de pago. **🔴 Cero protección contra fuerza bruta**: login/registro/recuperación/canje parental son Server Actions y el limitador de F20 solo mira `/api`, donde además **no funciona** (medido en prod: 70 peticiones sin un 429 — contador en memoria por instancia Edge); Supabase Auth tampoco (25 logins fallidos sin 429) → contador DISTRIBUIDO en Postgres (`app_security.rate_limit_hits`, migración 0013, `INSERT … ON CONFLICT` atómico, 30 concurrentes → 1..30 sin colisiones), 11 presupuestos, doble cubo cuenta+IP donde importa. Esquema `app_security` ⇒ invisible al diff de Prisma, **cero deriva** sin tocar `schema.prisma`. **🔴 Código de vinculación parental forzable** (6 dígitos, 10 min, canjes ilimitados, `Math.random()`) → `crypto.randomInt` + 6/tutor y 20/IP por ventana (≈1 entre 166 667); **y no existía DESVINCULACIÓN** pese a que el aviso de privacidad la promete → añadida para los dos lados. **🟠 Cookie de sesión sin `httpOnly`** (default de `@supabase/ssr`; el comentario del código decía lo contrario) ⇒ XSS = refresh token de 400 días → avatar movido al servidor, `supabase-browser.ts` eliminado, cookies `httpOnly`+`Lax`+`secure` en servidor Y middleware; verificado en navegador (`document.cookie` vacío, login OK). **🟠 Políticas RLS `FOR ALL`** (solo el GRANT impedía auto-ascenderse a ADMIN, fabricar `parent_links` a un menor, regalarse PREMIUM o falsear el score) → 11 políticas a `FOR SELECT`, fuera `profile_insert/update/delete`. **Cabeceras contra `https://yaentre.com`**: faltaba `frame-ancestors`, sobraba `X-Powered-By` → corregidas (11/12 local; **prod requiere deploy**). **Secretos: 0** en bundle y en los 117 commits; retirada la `ANTHROPIC_API_KEY` vencida de `.env`/`.env.local`. **Inyección: limpia** (15 plantillas etiquetadas; `*Unsafe` solo offline). **Menores: minimización correcta**; brecha legal abierta y documentada (el aviso promete consentimiento del tutor y el producto no pregunta la edad) — decisión del dueño. `changePasswordAction` exige la contraseña actual (con cliente efímero: hacerlo sobre el de la petición lanzaba `AuthRefreshDiscardedError`); cotas de contraseña 72 (bcrypt) y correo 254; IP vía `x-vercel-forwarded-for`; **retirada** `startSession` (escritura sin uso). 5 sondas repetibles `pnpm security:*`. **No se tocó `prisma/schema.prisma`.** `typecheck`/`lint`/`build` y 526 tests en verde. |
 | G64 | Experiencia móvil y PWA | **COMPLETADA — barrido responsivo 360/768/1280 (0 desbordamientos en 21 rutas × 3 anchos), PWA (`manifest id` + `apple-mobile-web-app-capable`), offline (tablero sí / simulador no, verificado), zonas seguras en 9 contenedores sin chrome. Reporte: `docs/AUDITORIA_FRONTEND.md` §G64** | (G64) | Modelo real `claude-sonnet-5`. Método: build de producción + Playwright/Chromium (sesión real por cuenta de prueba, `scrollWidth−clientWidth` por ruta×ancho, zonas seguras con CDP `Emulation.setSafeAreaInsetsOverride`, offline con `context.setOffline`). **Bug mayor:** `CookiesConsentBanner` (`bottom:0`, z-50) tapaba por completo la `BottomNav` en móvil en rutas `(app)` → se eleva por encima (`data-over-nav` + `.yaentre-cookie-banner`); `InstallPrompt` no aparece hasta resolver el consentimiento (un aviso a la vez). Zonas seguras: solo `TopBar`/`BottomNav` absorbían `env(safe-area-inset-*)` → añadidas a `CookiesConsentBanner`, `InstallPrompt`, `AppFooter`, `SimulatorPreflight/Result/Review/Runner`, `ParentShell` header, `onboarding`, `AuthShell` (clases manuales en `globals.css` con `@media lg` — nunca la sintaxis arbitraria de Tailwind con `env()`, F11/F18). PWA: `manifest` gana `id:"/"`; `<meta name="apple-mobile-web-app-capable">` a mano (Next 16 dejó de emitir la variante `apple-`). Offline (SW `public/sw.js`): `/app` visitada → 200 desde caché + `OfflineBanner`; `/simulador` → 503 "necesita conexión", nunca cacheado. Panel del tutor verificado en WebView bajo (390×560), Server Component puro. Aviso "requiere computadora" del simulador (`lg:hidden`) visible en móvil/tablet. Vínculo `parent_links` temporal creado y **borrado**; hashes de contraseñas de prueba **restaurados**. **No se tocó `prisma/schema.prisma`.** `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. |
 | G63 | Accesibilidad WCAG AA | **COMPLETADA — barrido pantalla por pantalla. Contraste: ~9 combinaciones que fallaban → 0 (medido en navegador). Foco visible arreglado, estados solo-color eliminados, errores de formulario anunciados. Reporte: `docs/AUDITORIA_FRONTEND.md` §G63** | (G63) | Modelo real `claude-sonnet-5`. Hallazgo mayor: `bg-brand-tint` (lila FIJO) + `text-text-primary` = 1.1:1 (texto blanco invisible) en tema oscuro → `bg-brand/10`. Tokens `--text-muted` subidos (daba 3.1–4.1:1), nuevo grupo `--on-{success,danger,warning,info,streak}` theme-aware, `text-brand`→`text-brand-soft` sobre superficies oscuras, botón `danger`→`bg-red-600`. `:focus-visible` global → `--brand-soft`; `Button`/`TextField` sueltan su `focus:ring` (tenía `ring-offset` blanco). Aviso de reanudación del simulador → `<dialog>` nativo; foco a la región del reactivo al avanzar; `QuestionNavigator`/`ReviewTabs` dejan el patrón de tabs roto. `WeekActivityStrip` (tutor) era 100% color → glifos + `sr-only`. `role="alert"` en ~10 errores. `<main>` + "saltar al contenido" donde faltaban. `prefers-reduced-motion` ya OK, sin cambios. 0/1147 reactivos con imagen (campo `imageAlt` real pendiente del dueño). **No se tocó `prisma/schema.prisma`.** |
@@ -2550,6 +2557,141 @@ alcance — mismo criterio que ya usa `notification-jobs.ts`).
 1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
 2. Idempotencia real de los correos programados → tabla nueva → instrucción
    explícita.
+
+
+## G66 — Seguridad de dependencias (2026-09-02)
+
+**Reporte completo: `docs/AUDITORIA_SEGURIDAD.md` §16.** Aquí lo que hay que
+recordar sin abrir el reporte. Modelo real: `claude-sonnet-5`. **No se tocó
+`prisma/schema.prisma`.**
+
+### 1. Las 14, y de dónde venían
+
+`pnpm audit` contra las 782 dependencias del proyecto (243 de producción, 440
+de desarrollo, 177 opcionales): 14 vulnerabilidades, 0 crítica, 9 alta, 5
+media, 0 baja. **Ninguna era una dependencia DIRECTA** — las 37 declaradas en
+`package.json` no tenían CVE propio; todas entraban por una transitiva de
+`eslint`/`eslint-config-next` (brace-expansion, js-yaml), `vitest`/`jsdom`
+(undici), `@sentry/nextjs` (fast-uri, browserslist, brace-expansion línea 5.x),
+`posthog-js` (dompurify), o `next`/`@tailwindcss/postcss`/`@vitejs/plugin-react`
+(nanoid). Por eso actualizar `next` o `@sentry/nextjs` a su último release NO
+garantiza el parche — el padre puede no haber re-publicado con la transitiva
+nueva todavía.
+
+### 2. El mecanismo ya existía — extenderlo
+
+Desde F22, `pnpm-workspace.yaml` → `overrides` ya fuerza versiones concretas de
+transitivas (`fast-uri`, `dompurify`, `postcss`, `sharp`). Se añadieron 6 más:
+`undici`, `js-yaml`, `nanoid`, `browserslist`, y `brace-expansion` con selector
+de padre calificado por versión (`minimatch@3.1.5>brace-expansion` /
+`minimatch@10.2.5>brace-expansion`) porque **dos majors de minimatch conviven
+a la vez** dentro del propio árbol de `eslint@9.39.4` (no ha terminado de
+migrar internamente), y cada una pide su propia línea de brace-expansion
+(`^1.1.7` vs `^5.0.5`). Un override plano habría forzado las dos ramas a una
+sola versión, rompiendo la que espera la otra.
+
+### 3. 🟠 El propio mecanismo estaba roto — DOS veces, y una casi se repite aquí mismo
+
+Lo más importante de la fase, más que la lista de 14:
+
+**Uno.** `fast-uri`/`dompurify` YA tenían override desde F22 (`>=3.1.4`,
+`>=3.4.12`) y SEGUÍAN resueltos a versión vulnerable (`4.1.1`, `3.4.12`). Un
+`>=` sin techo lo satisface CUALQUIER versión posterior, incluida una con un
+CVE publicado después de F22. Un override no es "parcheado para siempre" — hay
+que revisarlo cada vez que corre `pnpm audit`, no solo la primera vez.
+
+**Dos, y peor.** Al escribir los 6 overrides NUEVOS con el mismo patrón `>=`
+que el resto ya usaba, TRES saltaron de MAYOR sin avisar — comprobado
+inspeccionando `node_modules` directamente, no asumido:
+
+```
+nanoid:  override '>=3.3.18' → resolvió nanoid@6.0.1   (¡ESM-only!)
+undici:  override '>=7.29.0' → resolvió undici@8.10.1  (major 8)
+js-yaml: override '>=4.3.1'  → resolvió js-yaml@5.4.1  (major 5)
+```
+
+`nanoid@4+` es ESM-only y revienta con `ERR_REQUIRE_ESM` a cualquier
+consumidor que lo pida con `require()` — que es como lo piden `webpack`,
+`postcss` y el propio `next` internamente. Si esto hubiera llegado a un commit
+sin notarlo, la siguiente instalación en otra máquina (o el próximo deploy,
+una vez resuelto §4) podía romper el build entero por una dependencia de
+dependencia de dependencia, en silencio. Es EXACTAMENTE el escenario que
+"fijar versiones" existe para evitar, y casi lo introduce el propio arreglo de
+la vulnerabilidad.
+
+Corregido: las 10 entradas de `overrides` (4 viejas + 6 nuevas) pasan de
+`>=x.y.z` a `^x.y.z` — techo de mayor siempre, regla dejada por escrito en el
+propio `pnpm-workspace.yaml`.
+
+### 4. 🔴 `pnpm-lock.yaml` nunca se había versionado
+
+El hallazgo con más alcance de la fase, y la causa raíz real de las 14:
+
+```
+git check-ignore -v pnpm-lock.yaml → .gitignore:15:pnpm-lock.yaml
+git log --all --oneline -- pnpm-lock.yaml → (vacío, 0 de 117 commits)
+```
+
+Estaba en `.gitignore` desde el origen del repo. Con `package.json` casi
+entero en rangos abiertos (`^9.39.4`, o peor, mayors sueltas como `"eslint":
+"^9"` sin techo real) y sin lockfile que fijara la resolución anterior, CADA
+`pnpm install` en cualquier máquina —y sobre todo el que corre `vercel --prod`
+en cada deploy, porque este proyecto se despliega desde la CLI sin integración
+de git— resolvía el árbol de transitivas fresco contra lo publicado en npm ese
+mismo día. Fijar las versiones en `package.json` (§5) no basta por sí solo:
+detiene un `pnpm add` descuidado, pero nada dice sobre las transitivas de esas
+mismas dependencias.
+
+Corregido: fuera de `.gitignore`, commiteado. Efecto inmediato:
+`pnpm install --frozen-lockfile` (el modo que usa CI/Vercel al detectar un
+lockfile pnpm) ahora FALLA si `package.json` y el lockfile no coinciden, en
+vez de resolver algo distinto en silencio.
+
+### 5. Versiones fijadas + dependencias sin uso
+
+37 de 37 dependencias declaradas pasan de rango a versión EXACTA (la ya
+resuelta y probada en esta fase). `.npmrc` gana `save-exact=true` para que un
+`pnpm add` futuro no vuelva a aflojarlo solo.
+
+Revisadas las 37 contra uso real (grep en `app/`, `src/`, `scripts/`,
+configs): `lucide-react` y `sonner` — **0 referencias en todo el repo** — se
+eliminaron (`pnpm remove`). `react-dom` se revisó y se CONSERVA pese a 0
+imports explícitos: es dependencia de plataforma de Next.js (SSR/hidratación
+internos), no algo que la app importe directo.
+
+### 6. Aviso a futuro — dormido hasta que exista remoto
+
+`.github/dependabot.yml` (semanal, PRs de seguridad sin límite, rutina
+suprimida — este proyecto fija y revisa cada bump a mano) +
+`.github/workflows/security-audit.yml` (`pnpm install --frozen-lockfile` +
+`pnpm audit --audit-level=high`, cron semanal + en cada push/PR que toque
+`package.json`/`pnpm-lock.yaml`/`pnpm-workspace.yaml`, falla en high/critical).
+Ninguno hace nada hasta que el repo tenga un remoto de git — hoy no lo tiene.
+Mientras tanto: `pnpm security:deps` (= el mismo `audit --audit-level=high`),
+mismo namespace `security:*` que las sondas de G65, disponible ya.
+
+### 7. Verificación
+
+```
+pnpm audit      → 0/0/0/0
+pnpm typecheck  → verde
+pnpm lint       → verde
+pnpm test:unit  → 526/526
+pnpm build      → verde (41 rutas)
+```
+
+Corrido dos veces completo: tras aplicar los overrides, y otra vez tras fijar
+versiones + quitar `lucide-react`/`sonner` — para separar qué cambio no rompió
+qué.
+
+### 8. Lo que se dejó fuera, a propósito
+
+`pnpm outdated` mostraba bumps de MAYOR disponibles sin CVE asociado:
+`@prisma/client`/`prisma` (5→7), `typescript` (5→7), `eslint` (9→10),
+`framer-motion` (12→13), `jsdom` (29→30). Ninguno se tocó — mezclar eso con la
+cadena de suministro habría combinado un riesgo de seguridad medible con uno
+de compatibilidad sin acotar, en el mismo diff. Candidatos para una fase
+dedicada, cada uno con su propia revisión de breaking changes.
 
 
 ## G65 — Auditoría de seguridad de la aplicación (2026-09-01)

@@ -12,7 +12,13 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-pnpm-lock.yaml
+# G66: `pnpm-lock.yaml` SÍ se versiona — deliberado, ver
+# docs/AUDITORIA_SEGURIDAD.md §16. Estaba en esta lista desde el origen del
+# repo, nunca se commiteó ni una vez, y por eso cada `pnpm install` (incluido
+# el que corre Vercel al desplegar) resolvía las dependencias transitivas
+# contra lo que estuviera publicado ESE día, sin fijar ni revisar nada — el
+# problema exacto que "versiones fijadas" existe para evitar. Sin el
+# lockfile en git, fijar las versiones en package.json no alcanza.
 
 # Testing
 /coverage

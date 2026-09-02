@@ -1,0 +1,55 @@
+# G66 — segunda red además de Dependabot (`.github/dependabot.yml`).
+#
+# Dependabot avisa cuando SALE un parche; esto corre `pnpm audit` contra lo
+# que el proyecto tiene YA fijado (`pnpm-lock.yaml`, versionado desde esta
+# misma fase — ver docs/AUDITORIA_SEGURIDAD.md §16) cada semana y en cada
+# push/PR a main, así una vulnerabilidad publicada un martes no espera al
+# siguiente `pnpm install` de alguien para notarse. Falla el job — no solo
+# avisa — ante cualquier hallazgo `high` o `critical`; `moderate`/`low`
+# quedan en el log para revisión sin bloquear.
+#
+# Dormido hasta que el repo tenga remoto en GitHub (hoy se despliega con
+# `vercel --prod` desde la CLI, sin integración de git — ver docs/ESTADO.md).
+# Actívalo solo empujando el repo; no requiere nada más.
+name: Auditoría de dependencias
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+  schedule:
+    # Lunes 09:00 UTC — una vulnerabilidad nueva en una dependencia YA fijada
+    # no depende de que alguien toque package.json para salir a la luz.
+    - cron: '0 9 * * 1'
+  workflow_dispatch: {}
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: 'pnpm'
+
+      # `--frozen-lockfile`: la instalación falla si package.json y el
+      # lockfile no coinciden, en vez de resolver algo distinto en silencio —
+      # el mismo problema que tener el lockfile sin versionar (§16).
+      - run: pnpm install --frozen-lockfile
+
+      - name: pnpm audit (high y critical rompen el job)
+        run: pnpm audit --audit-level=high

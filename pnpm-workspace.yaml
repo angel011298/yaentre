@@ -1,14 +1,50 @@
 verifyDepsBeforeRun: false
-# F22: fuerza versiones parcheadas de dependencias transitivas marcadas por
+# F22/G66: fuerza versiones parcheadas de dependencias TRANSITIVAS marcadas por
 # `pnpm audit`. `sharp` en particular procesa imágenes subidas por usuarios
 # reales (avatares vía next/image, F17/F20) — no es solo teórico, verificado
 # con `pnpm build` tras el override que el pipeline de optimización de
 # imágenes sigue compilando y funcionando.
+#
+# G66 — DOS bugs reales en este mismo mecanismo, encontrados auditándolo:
+#
+# 1. `fast-uri` y `dompurify` YA tenían un override desde F22 — y los dos
+#    seguían resueltos a una versión VULNERABLE (`4.1.1` y `3.4.12`) porque el
+#    rango `>=` de entonces (`>=3.1.4`, `>=3.4.12`) queda satisfecho por
+#    CUALQUIER versión posterior, incluida una con un CVE nuevo publicado
+#    después de F22. Un override con `>=` no es "parcheado para siempre": hay
+#    que revisarlo cada vez que `pnpm audit` encuentre algo, no la primera.
+#
+# 2. MÁS GRAVE: un `>=` sin techo no solo permite un parche futuro — permite
+#    CUALQUIER MAYOR futura. Comprobado en vivo al escribir los overrides
+#    nuevos de esta fase: `nanoid: '>=3.3.18'` resolvió, sin avisar, a
+#    `nanoid@6.0.1` — que es ESM-only y revienta a CUALQUIER consumidor que
+#    lo pida con `require()` (webpack/postcss/Next.js internos). `undici:
+#    '>=7.29.0'` saltó a `8.10.1` y `js-yaml: '>=4.3.1'` a `5.4.1`, ambos
+#    mayores sin verificar. El propio override —pensado para proteger— se
+#    había vuelto el vector de una actualización no revisada, justo lo que
+#    esta fase debía evitar (ver docs/AUDITORIA_SEGURIDAD.md §16). Regla desde
+#    ahora: TODO override de una dependencia transitiva va con techo de mayor
+#    (`^`, o `>=x <y` explícito) — nunca un `>=` desnudo, ni siquiera para
+#    `sharp`/`postcss` que llevaban así desde F22 sin haber saltado de mayor
+#    todavía solo porque nadie había publicado una.
+#
+# `brace-expansion` tiene además DOS líneas mayores instaladas a la vez:
+# `minimatch@3.1.5` (dentro de `eslint`) pide `^1.1.7`, y `minimatch@10.2.5`
+# (dentro de `@typescript-eslint`) pide `^5.0.5` — el propio paquete publica
+# ambas líneas en paralelo. Selector `padre@versión>hijo` (sintaxis oficial de
+# pnpm) para no cruzarlas, CON techo de mayor en el valor — la falta de techo
+# fue la causa real del cruce (ver punto 2), no el selector en sí.
 overrides:
-  fast-uri: '>=3.1.4'
-  dompurify: '>=3.4.12'
-  postcss: '>=8.5.18'
-  sharp: '>=0.35.0'
+  fast-uri: '^4.1.2'
+  dompurify: '^3.4.13'
+  postcss: '^8.5.18'
+  sharp: '^0.35.0'
+  minimatch@3.1.5>brace-expansion: '^1.1.18'
+  minimatch@10.2.5>brace-expansion: '^5.0.9'
+  undici: '^7.29.0'
+  js-yaml: '^4.3.1'
+  nanoid: '^3.3.18'
+  browserslist: '^4.28.7'
 allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true
