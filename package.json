@@ -39,6 +39,9 @@
     "security:headers": "tsx scripts/security/headers-probe.ts",
     "security:abuse": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/abuse-probe.ts",
     "security:deps": "pnpm audit --audit-level=high",
+    "scale:audit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/scale-audit.ts",
+    "scale:pool": "tsx scripts/scale-pool-probe.ts",
+    "scale:load": "tsx --tsconfig scripts/tsconfig.perf.json scripts/scale-load-probe.ts",
     "perf:audit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-audit.ts",
     "perf:pool": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-pool-probe.ts"
   },

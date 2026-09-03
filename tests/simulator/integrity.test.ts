@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   EMPTY_INTEGRITY,
+  integrityNeedsWrite,
   isSuspiciousKeyCombo,
   mergeIntegrityCounters,
   summarizeIntegrityEvents,
@@ -84,5 +85,86 @@ describe('summarizeIntegrityEvents', () => {
     for (const item of result) {
       expect(item.label.length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('integrityNeedsWrite (G69)', () => {
+  const stored = {
+    tabBlurCount: 2,
+    rightClickAttempts: 0,
+    keyboardShortcutAttempts: 1,
+    completedFullscreen: true,
+    suspicionEvents: [{ type: 'TAB_BLUR', at: '2026-09-02T10:00:00.000Z' }],
+  };
+  const sameCounters: IntegrityCounters = {
+    tabBlurCount: 2,
+    rightClickAttempts: 0,
+    keyboardShortcutAttempts: 1,
+  };
+
+  it('no escribe cuando el lote no trae nada nuevo (el caso normal)', () => {
+    // Es el 99% de los lotes de un simulacro sin trampas: el alumno solo
+    // contestó. Saltarse este UPDATE es el ahorro de la fase.
+    expect(
+      integrityNeedsWrite(stored, sameCounters, true, [
+        { type: 'TAB_BLUR', at: '2026-09-02T10:00:00.000Z' },
+      ])
+    ).toBe(false);
+  });
+
+  it('escribe si sube cualquiera de los tres contadores', () => {
+    expect(
+      integrityNeedsWrite(stored, { ...sameCounters, tabBlurCount: 3 }, true, stored.suspicionEvents)
+    ).toBe(true);
+    expect(
+      integrityNeedsWrite(
+        stored,
+        { ...sameCounters, rightClickAttempts: 1 },
+        true,
+        stored.suspicionEvents
+      )
+    ).toBe(true);
+    expect(
+      integrityNeedsWrite(
+        stored,
+        { ...sameCounters, keyboardShortcutAttempts: 2 },
+        true,
+        stored.suspicionEvents
+      )
+    ).toBe(true);
+  });
+
+  it('escribe si cambia completedFullscreen', () => {
+    expect(integrityNeedsWrite(stored, sameCounters, false, stored.suspicionEvents)).toBe(true);
+  });
+
+  it('escribe si llega un evento sospechoso nuevo', () => {
+    expect(
+      integrityNeedsWrite(stored, sameCounters, true, [
+        ...stored.suspicionEvents,
+        { type: 'RIGHT_CLICK', at: '2026-09-02T10:05:00.000Z' },
+      ])
+    ).toBe(true);
+  });
+
+  it('trata el JSON nulo guardado como lista vacía', () => {
+    const virgen = {
+      tabBlurCount: 0,
+      rightClickAttempts: 0,
+      keyboardShortcutAttempts: 0,
+      completedFullscreen: false,
+      suspicionEvents: null,
+    };
+    const cero: IntegrityCounters = {
+      tabBlurCount: 0,
+      rightClickAttempts: 0,
+      keyboardShortcutAttempts: 0,
+    };
+    // Sesión recién creada + primer lote sin nada raro: no hay que escribir.
+    expect(integrityNeedsWrite(virgen, cero, false, [])).toBe(false);
+    // Pero el primer evento sospechoso sí se persiste.
+    expect(
+      integrityNeedsWrite(virgen, cero, false, [{ type: 'TAB_BLUR', at: 'x' }])
+    ).toBe(true);
   });
 });

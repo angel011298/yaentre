@@ -7,10 +7,16 @@ import {
   ATTRIBUTION_COOKIE_NAME,
   extractAcquisitionSource,
 } from '@/lib/marketing/attribution';
-
 // Ver docs/Flujo_App_YaEntre_v1.0.md §16.1 (mapa de rutas) y §16.2 (guards).
-const AUTH_REQUIRED_PREFIXES = ['/app', '/onboarding', '/diagnostico', '/checkout', '/tutor', '/admin'];
-const VERIFIED_EMAIL_REQUIRED_PREFIXES = ['/checkout'];
+// La política vive en un módulo puro para poder probarla (G69).
+import {
+  AUTH_REQUIRED_PREFIXES,
+  VERIFIED_EMAIL_REQUIRED_PREFIXES,
+  hasSupabaseAuthCookie,
+  isRouterPrefetch,
+  matchesPrefix,
+  shouldResolveUser,
+} from '@/lib/auth/middleware-policy';
 
 // F20 tarea 5: límite básico de tasa en las rutas de API. Se excluyen los
 // webhooks (autenticados por firma HMAC de Stripe, no por volumen — un
@@ -31,10 +37,6 @@ const RATE_LIMITED_PREFIX = '/api';
 const RATE_LIMIT_EXEMPT_PREFIXES = ['/api/webhooks', '/api/cron'];
 const RATE_LIMIT_MAX_REQUESTS = 60;
 const RATE_LIMIT_WINDOW_MS = 60_000;
-
-function matchesPrefix(pathname: string, prefixes: string[]) {
-  return prefixes.some(prefix => pathname === prefix || pathname.startsWith(`${prefix}/`));
-}
 
 /**
  * Atribución de marketing (F24): captura los parámetros de campaña de la
@@ -83,6 +85,63 @@ export async function proxy(request: NextRequest) {
         { status: 429, headers: { 'Retry-After': String(retryAfterSecs) } }
       );
     }
+  }
+
+  // ── G69 ⚡ NO SE PREGUNTA POR EL USUARIO CUANDO LA RESPUESTA NO SE USA ──
+  //
+  // `matcher` cubre casi toda petición que no sea un asset estático, y hasta
+  // G69 TODAS construían el cliente de Supabase y llamaban `auth.getUser()`.
+  // Con una sesión abierta eso NO es gratis: `getUser()` valida el JWT contra
+  // el servidor de Auth de Supabase — un viaje de red por petición.
+  //
+  // Se evita en los dos casos donde es demostrablemente inútil:
+  //
+  //  1. **`/api/*`.** Este middleware solo usa `user` para dos redirecciones
+  //     de páginas; en una ruta de API el resultado se tiraba a la basura, y
+  //     cada Route Handler vuelve a preguntar por su cuenta con `requireUser`.
+  //     El caso que de verdad dolía: durante un simulacro el cliente manda un
+  //     lote a `/api/simulator/sync` cada 15 s — un examen del IPN son ~140
+  //     respuestas ⇒ ~140 llamadas a Auth por alumno **solo desde aquí**,
+  //     encima de la que el handler ya hace. Con cientos de aspirantes a la
+  //     vez en los días previos al examen, es tráfico y latencia puros sin una
+  //     sola decisión que dependa de ellos.
+  //
+  //  2. **Peticiones sin cookie de sesión.** Sin `sb-…-auth-token` no hay
+  //     sesión que validar ni que refrescar: `getUser()` devolvería `null` de
+  //     todos modos. Cubre a los visitantes anónimos, que son la mayor parte
+  //     del tráfico público (landing, precios, buscadores).
+  //
+  //  3. **Pre-cargas del router hacia rutas no protegidas.** Next precarga
+  //     cada `<Link>` que entra en el viewport: una sola vista de la landing
+  //     dispara ~20 peticiones `?_rsc=…` (contadas en el build de producción),
+  //     todas por aquí. En una ruta pública no hay redirección que decidir, y
+  //     el refresco de sesión lo hace la navegación de verdad.
+  //
+  // Fuera de esos tres casos el comportamiento es idéntico al de antes, y eso
+  // es deliberado: una navegación de página de alguien con sesión SIGUE
+  // pasando por `getUser()`, que es lo que refresca el token y reescribe la
+  // cookie. Los Route Handlers sí pueden escribir cookies por su cuenta
+  // (`supabase-server.ts` solo falla al hacerlo desde un Server Component),
+  // así que un alumno que pasa 3 h en `/simulador` refresca su sesión en cada
+  // `sync` aunque el middleware ya no lo haga por él.
+  const hasSessionCookie = hasSupabaseAuthCookie(request.cookies.getAll().map((c) => c.name));
+
+  if (
+    !shouldResolveUser({
+      pathname,
+      hasSessionCookie,
+      isPrefetch: isRouterPrefetch(request.headers),
+    })
+  ) {
+    if (matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES) && !hasSessionCookie) {
+      const loginUrl = new URL('/login', request.url);
+      loginUrl.searchParams.set('next', `${pathname}${search}`);
+      return withAttributionCookie(NextResponse.redirect(loginUrl), request);
+    }
+    return withAttributionCookie(
+      NextResponse.next({ request: { headers: request.headers } }),
+      request
+    );
   }
 
   const { supabase, response } = createSupabaseMiddlewareClient(request);

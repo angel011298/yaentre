@@ -70,6 +70,16 @@ export type FinishSessionResult = {
 };
 
 /**
+ * Los campos de la sesión que necesitan las dos guardas de abajo. Se declara
+ * aparte para que `submitAnswer` pueda pasarles su proyección de una sola
+ * consulta (G69) sin tener que traer la fila entera.
+ */
+type GuardableSession = Pick<
+  ExamSession,
+  'id' | 'userProfileId' | 'status' | 'mode' | 'startedAt' | 'timeLimitSecs'
+>;
+
+/**
  * Carga una sesión y verifica que pertenezca al usuario. Punto único de
  * validación de propiedad para todas las mutaciones.
  */
@@ -99,7 +109,7 @@ async function loadOwnedSession(
  * COMPLETO de la sesión (`finishSession`, con su cascada de efectos:
  * puntaje, temas débiles, Entrómetro, racha), no solo cambiar el `status`.
  */
-async function assertActionable(session: ExamSession, now: Date): Promise<void> {
+async function assertActionable(session: GuardableSession, now: Date): Promise<void> {
   if (session.status === 'IN_PROGRESS' && isSessionStale(session.startedAt, now)) {
     await prisma.examSession.update({
       where: { id: session.id },
@@ -143,7 +153,7 @@ async function assertActionable(session: ExamSession, now: Date): Promise<void> 
  * por eso `TIMED_EVALUATION_MODES` solo cubre los dos modos donde la app
  * promete un examen cronometrado de verdad.
  */
-async function closeIfTimeExceeded(session: ExamSession, now: Date): Promise<void> {
+async function closeIfTimeExceeded(session: GuardableSession, now: Date): Promise<void> {
   if (!TIMED_EVALUATION_MODES.includes(session.mode)) return;
   if (!isTimeExceeded(computeElapsedSecs(session.startedAt, now), session.timeLimitSecs)) return;
 
@@ -245,7 +255,71 @@ export async function submitAnswer(params: {
     now = new Date(),
   } = params;
 
-  const session = await loadOwnedSession(sessionId, userProfileId);
+  // ── G69 ⚡ UNA SOLA CONSULTA PARA LAS TRES COSAS QUE HAY QUE SABER ────────
+  //
+  // Antes eran tres operaciones de Prisma seguidas: la sesión, la fila
+  // `SessionAnswer` que prueba la asignación, y el reactivo con sus opciones.
+  // Con `?pgbouncer=true` cada una cuesta cuatro viajes al pooler y ocupa una
+  // conexión de servidor, y esto corre UNA VEZ POR REACTIVO RESPONDIDO: 30 en
+  // el diagnóstico, 10 en cada práctica. Era, con diferencia, el gasto
+  // dominante de esos dos recorridos.
+  //
+  // Un `LEFT JOIN` da las tres piezas de un golpe y NO relaja ninguna guarda:
+  // las comprobaciones de abajo son exactamente las mismas, en el mismo
+  // orden, con los mismos códigos de error. En particular sigue exigiéndose
+  // que exista la fila `session_answers` de ESTE (sesión, reactivo) — la
+  // condición del JOIN lleva las dos columnas — que es lo que impide que un
+  // reactivo salte de una sesión a otra y filtre la clave del simulacro
+  // (G65). El `LEFT JOIN` es deliberado: si el reactivo no está asignado hace
+  // falta distinguir "no es tuyo" de "no existe", y un INNER JOIN devolvería
+  // cero filas en los dos casos.
+  const rows = await prisma.$queryRaw<
+    Array<{
+      id: string;
+      userProfileId: string;
+      status: ExamSession['status'];
+      mode: SessionMode;
+      startedAt: Date;
+      timeLimitSecs: number;
+      assignedAnswerId: string | null;
+      questionRowId: string | null;
+      questionOptions: Prisma.JsonValue | null;
+    }>
+  >`
+    SELECT s."id",
+           s."userProfileId",
+           s."status",
+           s."mode",
+           s."startedAt",
+           s."timeLimitSecs",
+           sa."id"      AS "assignedAnswerId",
+           q."id"       AS "questionRowId",
+           q."options"  AS "questionOptions"
+      FROM "exam_sessions" s
+      LEFT JOIN "session_answers" sa
+             ON sa."sessionId" = s."id" AND sa."questionId" = ${questionId}
+      LEFT JOIN "questions" q
+             ON q."id" = ${questionId}
+     WHERE s."id" = ${sessionId}
+  `;
+
+  const row = rows[0];
+  if (!row) {
+    throw new SessionError('NOT_FOUND', 'No encontramos esta sesión.');
+  }
+  if (row.userProfileId !== userProfileId) {
+    throw new SessionError('FORBIDDEN', 'Esta sesión no te pertenece.');
+  }
+
+  const session: GuardableSession = {
+    id: row.id,
+    userProfileId: row.userProfileId,
+    status: row.status,
+    mode: row.mode,
+    startedAt: row.startedAt,
+    timeLimitSecs: row.timeLimitSecs,
+  };
+
   await assertActionable(session, now);
   await closeIfTimeExceeded(session, now);
 
@@ -272,26 +346,21 @@ export async function submitAnswer(params: {
   // una sola operación en vez de dos, y ya no se pueden inyectar respuestas de
   // reactivos que nunca se vieron (que contaminaban el propio historial y, vía
   // score, el percentil de los demás).
-  const assigned = await prisma.sessionAnswer.findUnique({
-    where: { sessionId_questionId: { sessionId, questionId } },
-    select: { id: true },
-  });
-  if (!assigned) {
+  if (!row.assignedAnswerId) {
     throw new SessionError(
       'QUESTION_NOT_IN_SESSION',
       'Este reactivo no forma parte de este examen.'
     );
   }
 
-  const question = await prisma.question.findUnique({
-    where: { id: questionId },
-    select: { id: true, options: true },
-  });
-  if (!question) {
+  // `questionRowId`, no `questionOptions`: distingue "el reactivo no existe"
+  // de "existe con un JSON raro" — este segundo caso debe seguir cayendo en
+  // `parseQuestionOptions`, que es quien sabe rechazarlo.
+  if (row.questionRowId === null) {
     throw new SessionError('QUESTION_NOT_FOUND', 'No encontramos este reactivo.');
   }
 
-  const options = parseQuestionOptions(question.options);
+  const options = parseQuestionOptions(row.questionOptions);
 
   // Una opción concreta debe existir en el reactivo; null (omitida) es válido.
   if (selectedOption !== null && !options.some(o => o.id === selectedOption)) {

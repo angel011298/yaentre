@@ -106,13 +106,40 @@ async function main(): Promise<void> {
   // Una sesión REAL de la víctima y sus reactivos.
   const sesionVictima = await prisma.examSession.findFirstOrThrow({
     where: { userProfileId: VICTIMA, mode: 'FULL_SIMULATION' },
-    include: { answers: { take: 1, select: { questionId: true } } },
+    include: { answers: { select: { questionId: true } } },
   });
-  const questionIdVictima = sesionVictima.answers[0]!.questionId;
 
   // Una sesión de práctica REAL del atacante (revela correctitud al responder).
   const drill = await drillDb.startDrillSession(ATACANTE, { kind: 'area' });
   const sesionAtacante = drill.ok ? drill.payload.sessionId : null;
+
+  // ── G69: el reactivo del ataque tiene que ser AJENO a la práctica ────────
+  //
+  // Antes se tomaba `answers[0]` sin más. `selectNextAdaptiveQuestions` baraja
+  // con `Math.random()` (`src/lib/adaptive/selector.ts`), así que de vez en
+  // cuando ese mismo reactivo caía TAMBIÉN en la práctica del atacante — y
+  // entonces responderlo es legítimo: la sonda reportaba «fuga de la clave»
+  // por su propio azar, no por un agujero. Un rojo que aparece una de cada
+  // varias corridas es peor que no tener la prueba, porque enseña a ignorarla.
+  //
+  // Ahora se elige un reactivo del simulacro de la víctima que NO esté
+  // asignado a la práctica del atacante, que es exactamente lo que la prueba
+  // quiere decir: «un reactivo que no es tuyo».
+  const asignadosAlAtacante = sesionAtacante
+    ? new Set(
+        (
+          await prisma.sessionAnswer.findMany({
+            where: { sessionId: sesionAtacante },
+            select: { questionId: true },
+          })
+        ).map((a) => a.questionId)
+      )
+    : new Set<string>();
+
+  const questionIdVictima = (
+    sesionVictima.answers.find((a) => !asignadosAlAtacante.has(a.questionId)) ??
+    sesionVictima.answers[0]!
+  ).questionId;
 
   console.log('G65 — sonda activa de autorización (capa de aplicación)\n');
   console.log(`  víctima : ${VICTIMA} (sesión ${sesionVictima.id})`);

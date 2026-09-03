@@ -37,6 +37,39 @@ export function mergeIntegrityCounters(
   };
 }
 
+/**
+ * ¿La fila persistida difiere de lo que se acaba de fusionar? (G69)
+ *
+ * `/api/simulator/sync` escribía los contadores de integridad en CADA lote —
+ * uno por respuesta, ~120-140 por simulacro— y casi siempre con los mismos
+ * valores: en un examen sin trampas los contadores no se mueven ni una vez.
+ * Ese UPDATE es una operación de Prisma completa (con `?pgbouncer=true`,
+ * cuatro viajes al pooler y una conexión de servidor ocupada), así que
+ * saltárselo cuando no cambió nada es capacidad regalada.
+ *
+ * Se compara contra el resultado YA fusionado (el máximo de lo guardado y lo
+ * que trae el cliente) y contra el `completedFullscreen` ya resuelto con OR:
+ * si todo coincide, el UPDATE habría escrito exactamente lo que ya estaba.
+ *
+ * `suspicionEvents` es JSON opaco que se guarda tal cual llega, así que se
+ * compara serializado. `null`/`undefined` guardado equivale a lista vacía —
+ * es lo que el cliente manda cuando no hubo nada sospechoso.
+ */
+export function integrityNeedsWrite(
+  stored: IntegrityCounters & { completedFullscreen: boolean; suspicionEvents: unknown },
+  mergedCounters: IntegrityCounters,
+  completedFullscreen: boolean,
+  incomingSuspicionEvents: unknown[]
+): boolean {
+  if (stored.tabBlurCount !== mergedCounters.tabBlurCount) return true;
+  if (stored.rightClickAttempts !== mergedCounters.rightClickAttempts) return true;
+  if (stored.keyboardShortcutAttempts !== mergedCounters.keyboardShortcutAttempts) return true;
+  if (stored.completedFullscreen !== completedFullscreen) return true;
+
+  const storedEvents = stored.suspicionEvents ?? [];
+  return JSON.stringify(storedEvents) !== JSON.stringify(incomingSuspicionEvents);
+}
+
 /** Forma mínima de un evento de teclado para decidir si es sospechoso (testeable sin DOM). */
 export interface KeyEventLike {
   key: string;

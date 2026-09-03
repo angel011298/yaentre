@@ -24,6 +24,7 @@ import { computeRemainingSecs, isTimeUp } from '@/lib/simulator/time';
 import { percentileRankFromCounts } from '@/lib/simulator/percentile';
 import { subjectColorFor } from '@/lib/simulator/subjectColors';
 import {
+  integrityNeedsWrite,
   mergeIntegrityCounters,
   type IntegrityCounters,
   type SuspicionInfoEvent,
@@ -409,9 +410,24 @@ interface SyncSessionState {
   rightClickAttempts: number;
   keyboardShortcutAttempts: number;
   completedFullscreen: boolean;
+  suspicionEvents: Prisma.JsonValue;
 }
 
-/** Contadores de integridad fusionados al MÁXIMO + eventos, en una consulta. */
+/**
+ * Contadores de integridad fusionados al MÁXIMO + eventos, en una consulta.
+ *
+ * G69 ⚡ — y SOLO si algo cambió. Este UPDATE salía en cada lote, y un lote
+ * sale cada vez que el alumno contesta: ~120-140 escrituras por simulacro que
+ * en la inmensa mayoría de los casos reescribían exactamente los mismos
+ * valores. Los contadores de integridad solo se mueven cuando el alumno hace
+ * algo raro (cambiar de pestaña, clic derecho, atajo de teclado); en un examen
+ * normal no se mueven ni una vez.
+ *
+ * La comparación es contra lo que ya está persistido y usa el resultado YA
+ * fusionado, así que la semántica no cambia en nada: si el máximo fusionado
+ * es igual a lo guardado, el UPDATE habría sido un no-op. `suspicionEvents`
+ * se compara serializado porque es JSON y se escribe tal cual llega.
+ */
 async function persistIntegrity(
   session: SyncSessionState,
   input: SimulatorSyncInput
@@ -424,12 +440,17 @@ async function persistIntegrity(
     },
     input.integrity
   );
+  const completedFullscreen = session.completedFullscreen || input.completedFullscreen;
+
+  if (!integrityNeedsWrite(session, merged, completedFullscreen, input.suspicionEvents)) {
+    return;
+  }
 
   await prisma.examSession.update({
     where: { id: session.id },
     data: {
       ...merged,
-      completedFullscreen: session.completedFullscreen || input.completedFullscreen,
+      completedFullscreen,
       suspicionEvents: input.suspicionEvents as unknown as Prisma.InputJsonValue,
     },
   });
@@ -483,6 +504,9 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
       rightClickAttempts: true,
       keyboardShortcutAttempts: true,
       completedFullscreen: true,
+      // G69: se lee para poder SALTARSE el UPDATE cuando nada cambió —
+      // ver `persistIntegrity`.
+      suspicionEvents: true,
     },
   });
 
@@ -542,22 +566,28 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
   // sesiones del examen (`loadSimulatorResult`), es decir, contaminaba también
   // el resultado que ven los demás. Mismo criterio que `submitAnswer`: las
   // filas ya existen porque `startSimulation` las pre-crea.
-  const asignados = await prisma.sessionAnswer.findMany({
-    where: { sessionId: session.id, questionId: { in: batch.map((a) => a.questionId) } },
-    select: { questionId: true },
-  });
-  const permitidos = new Set(asignados.map((a) => a.questionId));
-
-  const questions = await prisma.question.findMany({
-    where: { id: { in: [...permitidos] } },
-    select: { id: true, options: true },
-  });
-  const optionsByQuestion = new Map(questions.map((q) => [q.id, q.options]));
+  //
+  // G69 ⚡ — "qué se te asignó" y "cuáles son sus opciones" se resuelven en UNA
+  // consulta con JOIN, no en dos. Eran dos operaciones de Prisma (ocho viajes
+  // al pooler con `?pgbouncer=true`) por cada lote, y sale un lote por cada
+  // respuesta del alumno. El JOIN lo hace Postgres, que es donde cuesta
+  // microsegundos. El filtro de pertenencia NO se relaja: sigue siendo el
+  // `WHERE sa."sessionId" = …` el que decide qué reactivos entran — un
+  // reactivo sin fila en esta sesión simplemente no aparece en el resultado.
+  const asignados = await prisma.$queryRaw<Array<{ questionId: string; options: Prisma.JsonValue }>>`
+    SELECT sa."questionId", q."options"
+      FROM "session_answers" sa
+      JOIN "questions" q ON q."id" = sa."questionId"
+     WHERE sa."sessionId" = ${session.id}
+       AND sa."questionId" IN (${Prisma.join(batch.map((a) => a.questionId))})
+  `;
+  const optionsByQuestion = new Map(asignados.map((a) => [a.questionId, a.options]));
 
   const scored: Array<SimulatorSyncAnswer & { isCorrect: boolean }> = [];
   for (const answer of batch) {
-    if (!permitidos.has(answer.questionId)) continue;
     const rawOptions = optionsByQuestion.get(answer.questionId);
+    // No está en el mapa ⇒ o no se le asignó a esta sesión, o el reactivo ya
+    // no existe. En ambos casos se ignora, igual que antes.
     if (rawOptions === undefined) continue;
 
     // F19 (bug real corregido): `parseQuestionOptions`/`isAnswerCorrect` LANZAN

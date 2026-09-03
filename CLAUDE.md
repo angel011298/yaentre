@@ -33,6 +33,7 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | `Backend_Schema_Acierta_v1.0.md` | **Schema de Prisma final, enums, índices, RLS, seeds** |
 | `Plan_Implementacion_Acierta_v1.0.md` | Sesiones CC, orden de construcción, dependencias |
 | `ESTADO.md` | **Estado vivo del proyecto — consultar SIEMPRE antes de cualquier tarea** |
+| `ESCALA.md` | **Límites reales de cada servicio, consumo medido por recorrido, punto de quiebre, prueba de carga y proyección de costos para 500/1 000/5 000 alumnos (G69)** |
 | `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad — G65: autorización, RLS, sesiones, secretos, límites de tasa, datos de menores. G66 (§16): dependencias, `pnpm audit`, cadena de suministro. G67 (§17): extracción del banco, integridad del simulador, abuso del plan gratuito** |
 
 ---
@@ -74,6 +75,9 @@ pnpm security:headers         # cabeceras contra la URL pública real
 pnpm security:deps            # pnpm audit --audit-level=high (G66)
 pnpm security:abuse           # simulacro "1 gratis" / práctica "10/día" reales (G67)
 pnpm security:time-integrity  # el tiempo del examen se calcula en servidor (G67)
+pnpm scale:audit              # ops de Prisma y peticiones por recorrido, escrituras incluidas (G69)
+pnpm scale:pool               # techo real del pool de servidor de Supavisor (G69)
+pnpm scale:load               # carga controlada contra producción; --db para la capa de base (G69)
 pnpm prisma migrate dev       # migración en desarrollo
 pnpm prisma generate          # regenerar client tipado
 pnpm prisma db seed           # sembrar taxonomía (no reactivos)
@@ -187,6 +191,10 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - ❌ No contar solo lo TERMINADO/RESPONDIDO para un límite del muro suave si la acción entrega el contenido completo al ABRIR la sesión (el simulacro, la práctica libre): arrancar-y-no-terminar-nunca convertía el "1 simulacro gratis" y los "10 reactivos diarios" en ilimitados. El conteo tiene que reflejar cuánto contenido se SIRVIÓ, no cuánto se completó (G67 §1-2).
 - ❌ No usar `$queryRaw` con una función de Postgres que devuelve `void` (p. ej. `pg_advisory_xact_lock`) — Prisma no deserializa `void` y LANZA siempre. Usa `$executeRaw`. Esto tuvo rotos `startSimulation`/`startDiagnosticSession` al 100% desde el 31 de agosto sin que nadie lo notara (G67 §3).
 - ❌ No confiar en un cronómetro que el cliente calcula con su propio `Date.now()` para cerrar un examen cronometrado: congelar el reloj del sistema lo deja sin disparar nunca. El servidor debe rechazar la escritura (respuesta/sync) en cuanto SU reloj detecte que `timeLimitSecs` ya se superó, cerrando la sesión con el `finishSession` real (G67 §4).
+- ❌ No llamar a `supabase.auth.getUser()` en `proxy.ts` para rutas donde el resultado no se usa: es un viaje de red al servidor de Auth en CADA petición (81 ms medidos) y el middleware solo lo necesita para dos redirecciones. El simulador manda un lote a `/api/simulator/sync` cada 15 s durante 3 h — eran ~140 viajes por alumno que nadie leía. La frontera vive en `src/lib/auth/middleware-policy.ts` (puro y testeado); si hay que moverla, muévela ahí, no en el middleware (G69 §8.1).
+- ❌ No introducir un TERCER rol de base de datos para la app. Supavisor abre un pool de servidor **por rol** —medido: 17 conexiones— contra `max_connections=60` (57 útiles). Con `acierta_ci` y `acierta_prod` ya van 34; un tercero deja sin margen a Auth, PostgREST y `pg_cron` (G69 §5).
+- ❌ No escribir en el camino caliente algo que no cambió. El `UPDATE` de contadores de integridad del simulador salía ~120 veces por simulacro reescribiendo los mismos valores; `integrityNeedsWrite` compara contra lo persistido y se lo salta. Mismo criterio para cualquier escritura por respuesta (G69 §8.3).
+- ❌ Una sonda de seguridad no puede depender del azar. `security:authz` reportaba una fuga FALSA una de cada varias corridas porque tomaba `answers[0]` del simulacro de la víctima y el selector adaptativo baraja con `Math.random()`: a veces ese reactivo caía también en la práctica del atacante, donde responderlo es legítimo. Un rojo intermitente enseña a ignorar la prueba (G69 §8.4).
 - ❌ Al componer un lote de reactivos, no dejar la respuesta correcta concentrada en una sola posición: distribuirla de forma pareja entre las cuatro opciones, y citar los distractores por su contenido, nunca por su letra — el simulador no baraja opciones para todas las instituciones (`shuffleOptions:false` en `src/lib/simulator/config.ts` para IPN/UAM/CENEVAL/CNBV). Todo lote debe pasar `scripts/lib/lot-validation.ts` (`content:validate-batch` / paso obligatorio de `content:insert`) antes de insertarse — ver G3b/G3c en `docs/ESTADO.md`.
 
 ---
