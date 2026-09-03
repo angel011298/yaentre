@@ -8,7 +8,7 @@ import { ParentShell } from '@/components/tutor/ParentShell';
 import { StudentSwitcher } from '@/components/tutor/StudentSwitcher';
 import { UnlinkStudentForm } from '@/components/tutor/UnlinkStudentForm';
 
-export const metadata = { title: 'Panel del tutor · YaEntre' };
+export const metadata = { title: 'Panel del tutor' };
 
 /**
  * Entrada del panel parental (F16). Server Component: resuelve TODO server-

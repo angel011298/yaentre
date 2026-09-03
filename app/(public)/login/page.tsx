@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AuthShell } from '@/components/ui/AuthShell';
 import { LoginForm } from './LoginForm';
+
+export const metadata: Metadata = {
+  title: 'Inicia sesión',
+  description: 'Entra a tu cuenta de YaEntre y sigue tu preparación donde te quedaste.',
+  alternates: { canonical: '/login' },
+};
 
 export default async function LoginPage({
   searchParams,

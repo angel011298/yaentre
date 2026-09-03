@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import { PublicPageShell } from '@/components/marketing/PublicPageShell';
 
+// `noindex` a propósito mientras el documento tenga marcadores «PLACEHOLDER»
+// (razón social, domicilio). Cuando el dueño los complete, quitar el `robots`
+// y agregar la ruta a `app/sitemap.ts` (ver docs/SEO.md).
 export const metadata: Metadata = {
-  title: 'Términos y condiciones — YaEntre',
+  title: 'Términos y condiciones',
+  alternates: { canonical: '/legal/terminos' },
   robots: { index: false, follow: true },
 };
 

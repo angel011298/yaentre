@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AuthShell } from '@/components/ui/AuthShell';
+import { openGraphFor } from '@/lib/seo/metadata';
 import { SignUpForm } from './SignUpForm';
+
+export const metadata: Metadata = {
+  title: 'Crea tu cuenta gratis',
+  description:
+    'Regístrate gratis en YaEntre y empieza tu diagnóstico para el examen de admisión de la UNAM, el IPN, la UAM o el CENEVAL. Sin tarjeta, sin compromiso.',
+  alternates: { canonical: '/registro' },
+  openGraph: openGraphFor({ url: '/registro', title: 'Crea tu cuenta gratis — YaEntre' }),
+};
 
 export default async function RegistroPage({
   searchParams,

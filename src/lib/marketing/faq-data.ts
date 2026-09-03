@@ -1,0 +1,50 @@
+import type { FaqEntry } from '@/lib/seo/structured-data';
+
+/**
+ * Preguntas frecuentes de la landing. Viven aquí (no dentro del componente)
+ * para tener UNA sola fuente: `Faq.tsx` las pinta y `app/(public)/page.tsx`
+ * las emite como datos estructurados `FAQPage` (G68) — el texto visible y el
+ * que lee Google nunca pueden divergir.
+ */
+export const FAQ_ITEMS: readonly FaqEntry[] = [
+  {
+    question: '¿Cómo funciona YaEntre?',
+    answer:
+      'Empiezas con un diagnóstico de 30 preguntas. Con eso, nuestro motor calcula tu Entrómetro y arma tu ruta de estudio priorizando los temas donde más te conviene practicar. A partir de ahí practicas por tema, haces simulacros completos y tu predicción se actualiza sola.',
+  },
+  {
+    question: '¿En qué dispositivos funciona?',
+    answer:
+      'En cualquier celular, tablet o computadora con navegador — no necesitas instalar nada. También puedes agregarla a tu pantalla de inicio como app (PWA) para acceso rápido.',
+  },
+  {
+    question: '¿Puedo pagar en OXXO?',
+    answer:
+      'Sí. Aceptamos tarjeta de crédito/débito, OXXO y transferencia SPEI. El pago en OXXO se confirma en menos de 3 horas y tu acceso se activa automáticamente en cuanto se confirma — no necesitas hacer nada más.',
+  },
+  {
+    question: '¿Cómo funciona la garantía del plan Premium?',
+    answer:
+      'Si tomas el plan Premium Garantía y no ingresas a tu institución, te reembolsamos o repites el siguiente ciclo con nosotros sin costo. Esta garantía aplica únicamente al plan Premium.',
+  },
+  {
+    question: '¿Qué instituciones cubre?',
+    answer:
+      'Al lanzamiento: UNAM e IPN, nivel Superior. UAM, CENEVAL (EXANI II) y Media Superior se activan en las semanas siguientes al lanzamiento.',
+  },
+  {
+    question: '¿Necesito tarjeta para probarlo?',
+    answer:
+      'No. El plan Free no pide tarjeta: puedes hacer tu diagnóstico, tu primer simulacro completo y practicar todos los días sin pagar nada.',
+  },
+  {
+    question: '¿Puedo cancelar el plan Mensual cuando quiera?',
+    answer:
+      'Sí, puedes cancelar o cambiar de plan desde tu perfil en cualquier momento, sin tener que contactar soporte.',
+  },
+  {
+    question: '¿Cuánto tiempo debo estudiar al día?',
+    answer:
+      'No hay un mínimo fijo — el motor se adapta a tu ritmo. La mayoría de los alumnos ven resultados practicando entre 20 y 40 minutos al día, priorizando los temas que YaEntre marca como débiles.',
+  },
+];

@@ -1,7 +1,12 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { AuthError } from '@/lib/auth/errors';
 import { requireRole } from '@/lib/auth/guards';
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 /**
  * `/tutor` vive FUERA de `(app)` a propósito (F16): distinto rol, distinto

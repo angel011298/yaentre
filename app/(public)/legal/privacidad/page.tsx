@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
 import { PublicPageShell } from '@/components/marketing/PublicPageShell';
 
+// `noindex` a propósito mientras el documento tenga marcadores «EDITAR ANTES
+// DE PUBLICAR» (razón social, domicilio). Cuando el dueño los complete, quitar
+// el `robots` y agregar la ruta a `app/sitemap.ts` (ver docs/SEO.md).
 export const metadata: Metadata = {
-  title: 'Aviso de privacidad — YaEntre',
+  title: 'Aviso de privacidad',
+  alternates: { canonical: '/legal/privacidad' },
   robots: { index: false, follow: true },
 };
 

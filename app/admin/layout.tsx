@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { AdminNav } from '@/components/admin/AdminNav';
 import { AuthError } from '@/lib/auth/errors';
 import { requireRole } from '@/lib/auth/guards';
+
+export const metadata: Metadata = {
+  title: 'Admin',
+  robots: { index: false, follow: false },
+};
 
 /**
  * Guard del panel admin (CC-06). El proxy (proxy.ts) ya exige sesión en

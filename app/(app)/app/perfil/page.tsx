@@ -17,7 +17,7 @@ import { LinkedParentsCard } from '@/components/profile/LinkedParentsCard';
 import { loadLinkedParents } from '@/lib/db/parent';
 import { getAuthEmails } from '@/lib/db/auth-users';
 
-export const metadata = { title: 'Mi perfil · YaEntre' };
+export const metadata = { title: 'Mi perfil' };
 
 /**
  * Pantalla de perfil y ajustes (F17 tarea 2). Server Component: TODA la data

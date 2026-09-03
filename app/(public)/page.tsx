@@ -8,6 +8,11 @@ import { EarlyBirdBanner } from '@/components/marketing/EarlyBirdBanner';
 import { Faq } from '@/components/marketing/Faq';
 import { PixelPageView } from '@/components/marketing/PixelPageView';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { getSiteUrl } from '@/lib/auth/site-url';
+import { FAQ_ITEMS } from '@/lib/marketing/faq-data';
+import { JsonLd } from '@/lib/seo/JsonLd';
+import { openGraphFor } from '@/lib/seo/metadata';
+import { faqJsonLd, organizationJsonLd, websiteJsonLd } from '@/lib/seo/structured-data';
 
 // El conteo de licencias Early Bird (EarlyBirdBanner) debe reflejar compras
 // reales — sin esto, Next.js pre-renderiza la página como estática y el
@@ -15,22 +20,33 @@ import { LinkButton } from '@/components/ui/LinkButton';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'YaEntre — Tu entrenador de admisión con IA',
-  description:
-    'Prepárate para tu examen de admisión a UNAM, IPN, UAM o CENEVAL con un simulador fiel al examen real, un Entrómetro que predice tus aciertos y una ruta de estudio que se adapta a ti. Empieza gratis.',
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: 'YaEntre — Tu entrenador de admisión con IA',
-    description:
-      'No es otro curso con videos. Es un entrenador que sabe exactamente qué te falta para entrar.',
-    type: 'website',
-    locale: 'es_MX',
+  title: {
+    absolute:
+      'YaEntre — Prepárate para tu examen de admisión a la UNAM, el IPN, la UAM y el CENEVAL',
   },
+  description:
+    'Prepárate para el examen de admisión en línea de la UNAM, el IPN, la UAM o el CENEVAL (EXANI II) con un simulador fiel al examen real, un Entrómetro que predice tus aciertos y una ruta de estudio que se adapta a ti. Empieza gratis, sin tarjeta.',
+  alternates: { canonical: '/' },
+  openGraph: openGraphFor({
+    url: '/',
+    title: 'YaEntre — Tu entrenador de admisión con IA para la UNAM y el IPN',
+    description:
+      'No es otro curso con videos. Es un entrenador que sabe exactamente qué te falta para entrar — con simulador del examen real y predicción de aciertos.',
+  }),
 };
 
 export default function LandingPage() {
+  const site = getSiteUrl();
+
   return (
     <PublicPageShell>
+      <JsonLd
+        data={[
+          organizationJsonLd(site),
+          websiteJsonLd(site),
+          faqJsonLd(FAQ_ITEMS),
+        ]}
+      />
       <PixelPageView />
       <EarlyBirdBanner />
       <Hero />

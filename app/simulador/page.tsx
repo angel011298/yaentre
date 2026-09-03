@@ -12,7 +12,10 @@ import { getStreak } from '@/lib/db/streak';
 import { decodeCelebrationParam } from '@/lib/gamification/celebrations';
 import { noTargetChosen } from '@/lib/tino/copy';
 
-export const metadata = { title: 'Simulacro · YaEntre' };
+export const metadata = {
+  title: 'Simulacro',
+  robots: { index: false, follow: false },
+};
 
 /**
  * Ruta del simulador (F12). Vive FUERA del grupo (app) a propósito: sin la

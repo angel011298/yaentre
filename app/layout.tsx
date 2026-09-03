@@ -43,11 +43,83 @@ const jetbrainsMono = JetBrains_Mono({
   preload: false,
 });
 
+const SITE_URL = getSiteUrl();
+
+// G68: verificación de propiedad para Google Search Console y Bing Webmaster
+// Tools por meta tag. Se emiten SOLO si la variable de entorno tiene un valor
+// real — sin ellas, Next no agrega la etiqueta (el dueño también puede
+// verificar por DNS TXT y dejar estas sin configurar). Ver docs/SEO.md.
+const siteVerification: Metadata["verification"] = {};
+if (process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION) {
+  siteVerification.google = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+}
+if (process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION) {
+  siteVerification.other = {
+    "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+  };
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(getSiteUrl()),
-  title: "YaEntre — Tu entrenador de admisión con IA",
+  metadataBase: new URL(SITE_URL),
+  // `template` agrega " — YaEntre" a cada título de página; `default` es el de
+  // la raíz y el de cualquier ruta sin título propio.
+  title: {
+    default: "YaEntre — Prepárate para tu examen de admisión a la UNAM, el IPN, la UAM y el CENEVAL",
+    template: "%s — YaEntre",
+  },
   description:
-    "Prepárate para tu examen de admisión a UNAM, IPN, UAM o CENEVAL con un simulador fiel al examen real y un Entrómetro que predice tus aciertos.",
+    "Preparación con inteligencia artificial para el examen de admisión en línea de la UNAM, el IPN, la UAM y el CENEVAL (EXANI II): diagnóstico, ruta de estudio personalizada, simulador fiel del examen real y un Entrómetro que predice tus aciertos. Empieza gratis.",
+  applicationName: "YaEntre",
+  authors: [{ name: "YaEntre" }],
+  creator: "YaEntre",
+  publisher: "YaEntre",
+  category: "education",
+  keywords: [
+    "examen de admisión UNAM",
+    "examen de admisión IPN",
+    "simulador examen UNAM",
+    "simulador examen IPN",
+    "aciertos mínimos UNAM",
+    "guía examen IPN",
+    "cómo entrar a la UNAM",
+    "cómo entrar al IPN",
+    "preparación EXANI II CENEVAL",
+    "examen de admisión UAM",
+  ],
+  // `telephone: false` evita que iOS convierta en enlaces de llamada cualquier
+  // secuencia de dígitos del copy (precios, cantidades de reactivos).
+  formatDetection: { telephone: false, email: false, address: false },
+  openGraph: {
+    type: "website",
+    siteName: "YaEntre",
+    locale: "es_MX",
+    url: SITE_URL,
+    title: "YaEntre — Tu entrenador de admisión con IA para la UNAM y el IPN",
+    description:
+      "No es otro curso con videos. Es un entrenador que sabe exactamente qué te falta para entrar — con simulador del examen real y predicción de aciertos.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YaEntre — Tu entrenador de admisión con IA para la UNAM y el IPN",
+    description:
+      "Simulador fiel del examen de admisión en línea + Entrómetro que predice tus aciertos. Empieza gratis.",
+  },
+  // Por defecto todo el sitio es indexable; las rutas privadas lo desactivan
+  // en su propio layout/página (G68) y `app/robots.ts` las bloquea además a
+  // nivel de rastreo. `max-image-preview:large` habilita miniaturas grandes en
+  // resultados y vistas previas de redes.
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification: siteVerification,
   // PWA instalable (F17 tarea 1): `manifest.ts` ya se enlaza solo por
   // convención de archivo; esto cubre lo que el manifest no puede en iOS
   // (Safari ignora `display: standalone` del manifest — solo respeta estas

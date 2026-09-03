@@ -19,7 +19,7 @@ import {
   loadSubjectMastery,
 } from '@/lib/db/progress';
 
-export const metadata = { title: 'Mi progreso · YaEntre' };
+export const metadata = { title: 'Mi progreso' };
 
 /**
  * Pantalla de trayectoria a largo plazo (F18): evolución del Entrómetro,

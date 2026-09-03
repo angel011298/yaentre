@@ -3,18 +3,28 @@ import type { SubscriptionPlan } from '@prisma/client';
 import { PublicPageShell } from '@/components/marketing/PublicPageShell';
 import { PixelPageView } from '@/components/marketing/PixelPageView';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { getSiteUrl } from '@/lib/auth/site-url';
 import { resolveEffectiveSeasonSafe } from '@/lib/db/billing';
-import { getPlanPricing, type PlanPricing } from '@/lib/stripe/pricing';
+import { JsonLd } from '@/lib/seo/JsonLd';
+import { openGraphFor } from '@/lib/seo/metadata';
+import { productJsonLd, type ProductOffer } from '@/lib/seo/structured-data';
+import { getPlanPricing, planLabel, type PlanPricing } from '@/lib/stripe/pricing';
 
 // La temporada efectiva (Early Bird vs. regular) depende de compras reales —
 // sin esto, el precio quedaría congelado en el estado del momento del build.
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Precios — YaEntre',
+  title: 'Precios y planes',
   description:
-    'Free, Mensual, Pase de Temporada o Premium Garantía. Compara qué incluye cada plan de YaEntre para prepararte a tu examen de admisión.',
+    'Planes de YaEntre para prepararte al examen de admisión de la UNAM, el IPN, la UAM y el CENEVAL: Free (gratis para siempre), Mensual, Pase de Temporada y Premium Garantía. Compara qué incluye cada uno. Pago con tarjeta, OXXO o SPEI.',
   alternates: { canonical: '/precios' },
+  openGraph: openGraphFor({
+    url: '/precios',
+    title: 'Precios y planes — YaEntre',
+    description:
+      'Empieza gratis. Sube de plan cuando estés listo: Mensual, Pase de Temporada o Premium con garantía de reembolso si no ingresas.',
+  }),
 };
 
 const PAID_PLANS: SubscriptionPlan[] = ['MONTHLY', 'SEASON_PASS', 'PREMIUM'];
@@ -98,22 +108,37 @@ export default async function PreciosPage() {
       ) as Record<SubscriptionPlan, PlanPricing>)
     : null;
 
+  // Datos estructurados `Product` (G68): una oferta por plan con el precio de
+  // la temporada VIGENTE (el mismo que ve y paga el usuario), en pesos.
+  const offers: ProductOffer[] = [
+    { name: 'Free', price: '0.00', description: 'Diagnóstico y primer simulacro completo gratis, para siempre.' },
+    ...PAID_PLANS.map((plan) => ({
+      name: planLabel(plan),
+      price: (pricing[plan].amountMxn / 100).toFixed(2),
+      description: pricing[plan].isRecurring ? 'Suscripción mensual renovable.' : 'Pago único, acceso hasta el día de tu examen.',
+    })),
+  ];
+
   return (
     <PublicPageShell>
+      <JsonLd data={productJsonLd(getSiteUrl(), offers)} />
       <PixelPageView />
       <section className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20">
         <h1 className="font-display text-4xl font-bold text-text-primary">
-          Elige el plan que te lleve hasta el examen
+          Elige el plan que te lleve hasta el examen de admisión
         </h1>
         <p className="mt-3 text-lg text-text-secondary">
           Empieza gratis. Sube de plan cuando estés listo — sin compromiso.
         </p>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6" aria-labelledby="planes-heading">
+        <h2 id="planes-heading" className="sr-only">
+          Planes y precios
+        </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-lg border border-border-subtle bg-surface p-6">
-            <p className="font-display text-lg font-bold text-text-primary">Free</p>
+            <h3 className="font-display text-lg font-bold text-text-primary">Free</h3>
             <p className="mt-2 font-display text-2xl font-bold text-text-primary">$0</p>
             <p className="mt-1 text-sm text-text-muted">Siempre gratis</p>
             <LinkButton href="/registro" variant="secondary" className="mt-4 w-full">
@@ -130,7 +155,7 @@ export default async function PreciosPage() {
                   : 'border-border-subtle bg-surface'
               }`}
             >
-              <p className="font-display text-lg font-bold text-text-primary">{PLAN_LABEL[plan]}</p>
+              <h3 className="font-display text-lg font-bold text-text-primary">{PLAN_LABEL[plan]}</h3>
               <div className="mt-2">
                 <PriceTag pricing={pricing[plan]} regular={regularPricing?.[plan] ?? null} />
               </div>

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { VerificationBanner } from '@/components/ui/VerificationBanner';
@@ -12,6 +13,13 @@ import { AuthError } from '@/lib/auth/errors';
 import { requireUser } from '@/lib/auth/guards';
 import { getStreak } from '@/lib/db/streak';
 import { isOnboardingComplete } from '@/lib/onboarding/steps';
+
+// Toda la app del alumno (dashboard, práctica, diagnóstico, checkout, paywall)
+// es privada: nunca se indexa (G68). `app/robots.ts` además la bloquea al
+// rastreo.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
   // El middleware ya bloquea /app/* sin sesión; este guard es defensa en
