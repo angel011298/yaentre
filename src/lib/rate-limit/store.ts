@@ -64,6 +64,40 @@ export const RATE_LIMITS = {
   UNSUBSCRIBE: { limit: 30, windowSecs: 3600 },
   /** Endpoints del motor adaptativo: 60 por minuto y alumno. */
   ADAPTIVE: { limit: 60, windowSecs: 60 },
+  /**
+   * G67 — reactivos devueltos por `/api/adaptive/next-questions` en 24h, por
+   * alumno. Ese endpoint no crea sesión ni persiste nada (no es el camino que
+   * usa la UI real, F14 sigue pasando por `startDrillSession`), así que el
+   * candado de "10 reactivos diarios" del muro suave —basado en filas de
+   * `SessionAnswer`— no ve nada que contar aquí: se puede llamar sin límite y
+   * cada vez trae ids frescos del pool, sin tocar nunca el conteo de la capa
+   * DB. Se consume con PESO = cantidad de ids devueltos (`consumeRateLimit`
+   * con `weight`), para que el total del día cuadre con el mismo presupuesto
+   * de 10 que ve el resto del muro suave, aunque la cuenta viva aparte.
+   */
+  ADAPTIVE_CONTENT_DAILY: { limit: 10, windowSecs: 86_400 },
+  /**
+   * G67 — arranque de un simulacro completo: la exposición de contenido más
+   * grande de la app en una sola llamada (~120-140 reactivos con enunciado y
+   * opciones completos, de una vez). Por CUENTA: generoso (nadie legítimo
+   * arranca+abandona+reintenta un simulacro completo 20 veces en una hora).
+   * Por IP: el candado real contra una granja de cuentas gratuitas desde la
+   * misma salida — un laboratorio de cómputo o una familia compartiendo wifi
+   * cabe holgado en 8/día; un script creando cuentas desechables para cosechar
+   * el banco, no. Ver docs/AUDITORIA_SEGURIDAD.md §17.4 (riesgo residual: no
+   * cubre un atacante con muchas IPs distintas).
+   */
+  SIMULATION_START: { limit: 20, windowSecs: 3600 },
+  SIMULATION_START_IP: { limit: 8, windowSecs: 86_400 },
+  /** Arranque de práctica libre: defensa en profundidad — el candado real es
+   *  el conteo de reactivos SERVIDOS hoy (`countDrillQuestionsServedToday`),
+   *  esto solo evita machacar el endpoint con reintentos vacíos. */
+  DRILL_START: { limit: 20, windowSecs: 3600 },
+  /** Arranque del diagnóstico inicial: en el flujo normal corre UNA vez
+   *  (`profile.diagnosticDone` lo bloquea para siempre tras terminarlo); esto
+   *  acota el ciclo abandonar-y-esperar-24h a unos pocos intentos por día en
+   *  vez de dejarlo indefinido. */
+  DIAGNOSTIC_START: { limit: 5, windowSecs: 86_400 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;
@@ -83,10 +117,18 @@ const CLEANUP_SAMPLE = 50;
  * `scope` identifica el punto sensible; `subject` a quién se le cuenta (una
  * IP, un correo normalizado, un `userProfileId`). Nunca se guarda el valor
  * crudo del sujeto sin más contexto que la propia llave.
+ *
+ * `weight` (G67, default 1): cuántas unidades consume ESTA llamada. Sirve
+ * para presupuestos que no son "una llamada = un uso" — `/api/adaptive/
+ * next-questions` puede devolver hasta 10 reactivos en una sola respuesta, así
+ * que consume `weight = cantidad devuelta` contra `ADAPTIVE_CONTENT_DAILY`
+ * en vez de contar la llamada como una unidad sin importar cuánto contenido
+ * trajo.
  */
 export async function consumeRateLimit(
   scope: RateLimitName,
-  subject: string
+  subject: string,
+  weight = 1
 ): Promise<RateLimitVerdict> {
   const { limit, windowSecs } = RATE_LIMITS[scope];
   const key = `${scope}:${subject}`;
@@ -96,9 +138,9 @@ export async function consumeRateLimit(
     const rows = await prisma.$queryRaw<HitRow[]>`
       INSERT INTO app_security.rate_limit_hits AS r
         (bucket_key, hits, window_started_at, expires_at)
-      VALUES (${key}, 1, now(), now() + make_interval(secs => ${windowSecs}::double precision))
+      VALUES (${key}, ${weight}, now(), now() + make_interval(secs => ${windowSecs}::double precision))
       ON CONFLICT (bucket_key) DO UPDATE SET
-        hits = CASE WHEN r.expires_at <= now() THEN 1 ELSE r.hits + 1 END,
+        hits = CASE WHEN r.expires_at <= now() THEN ${weight} ELSE r.hits + ${weight} END,
         window_started_at = CASE WHEN r.expires_at <= now() THEN now() ELSE r.window_started_at END,
         expires_at = CASE
           WHEN r.expires_at <= now()

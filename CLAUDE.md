@@ -33,7 +33,7 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | `Backend_Schema_Acierta_v1.0.md` | **Schema de Prisma final, enums, índices, RLS, seeds** |
 | `Plan_Implementacion_Acierta_v1.0.md` | Sesiones CC, orden de construcción, dependencias |
 | `ESTADO.md` | **Estado vivo del proyecto — consultar SIEMPRE antes de cualquier tarea** |
-| `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad — G65: autorización, RLS, sesiones, secretos, límites de tasa, datos de menores. G66 (§16): dependencias, `pnpm audit`, cadena de suministro** |
+| `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad — G65: autorización, RLS, sesiones, secretos, límites de tasa, datos de menores. G66 (§16): dependencias, `pnpm audit`, cadena de suministro. G67 (§17): extracción del banco, integridad del simulador, abuso del plan gratuito** |
 
 ---
 
@@ -72,6 +72,8 @@ pnpm security:session         # caducidad, renovación y cierre de sesión
 pnpm security:ratelimit       # el contador distribuido, incluida la concurrencia
 pnpm security:headers         # cabeceras contra la URL pública real
 pnpm security:deps            # pnpm audit --audit-level=high (G66)
+pnpm security:abuse           # simulacro "1 gratis" / práctica "10/día" reales (G67)
+pnpm security:time-integrity  # el tiempo del examen se calcula en servidor (G67)
 pnpm prisma migrate dev       # migración en desarrollo
 pnpm prisma generate          # regenerar client tipado
 pnpm prisma db seed           # sembrar taxonomía (no reactivos)
@@ -182,6 +184,9 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - ❌ No devolver la cookie de sesión a `httpOnly: false`: `@supabase/ssr` lo trae así por defecto y hay que sobreescribirlo en el cliente de servidor **y** en el del middleware (`src/lib/auth/cookie-options.ts`). El refresh token vive 400 días (G65 §6).
 - ❌ No escribir un override de `pnpm-workspace.yaml` con `>=x.y.z` a secas: sin techo de mayor, pnpm puede saltar a la última versión publicada de CUALQUIER major — pasó en vivo con `nanoid` (ESM-only desde v4, revienta `require()`). Siempre `^x.y.z` (G66 §3).
 - ❌ No dejar `pnpm-lock.yaml` fuera de git: sin él, cada `pnpm install` —incluido el de cada deploy— resuelve las transitivas frescas contra npm ese día, sin fijar nada (G66 §4). Se versiona.
+- ❌ No contar solo lo TERMINADO/RESPONDIDO para un límite del muro suave si la acción entrega el contenido completo al ABRIR la sesión (el simulacro, la práctica libre): arrancar-y-no-terminar-nunca convertía el "1 simulacro gratis" y los "10 reactivos diarios" en ilimitados. El conteo tiene que reflejar cuánto contenido se SIRVIÓ, no cuánto se completó (G67 §1-2).
+- ❌ No usar `$queryRaw` con una función de Postgres que devuelve `void` (p. ej. `pg_advisory_xact_lock`) — Prisma no deserializa `void` y LANZA siempre. Usa `$executeRaw`. Esto tuvo rotos `startSimulation`/`startDiagnosticSession` al 100% desde el 31 de agosto sin que nadie lo notara (G67 §3).
+- ❌ No confiar en un cronómetro que el cliente calcula con su propio `Date.now()` para cerrar un examen cronometrado: congelar el reloj del sistema lo deja sin disparar nunca. El servidor debe rechazar la escritura (respuesta/sync) en cuanto SU reloj detecte que `timeLimitSecs` ya se superó, cerrando la sesión con el `finishSession` real (G67 §4).
 - ❌ Al componer un lote de reactivos, no dejar la respuesta correcta concentrada en una sola posición: distribuirla de forma pareja entre las cuatro opciones, y citar los distractores por su contenido, nunca por su letra — el simulador no baraja opciones para todas las instituciones (`shuffleOptions:false` en `src/lib/simulator/config.ts` para IPN/UAM/CENEVAL/CNBV). Todo lote debe pasar `scripts/lib/lot-validation.ts` (`content:validate-batch` / paso obligatorio de `content:insert`) antes de insertarse — ver G3b/G3c en `docs/ESTADO.md`.
 
 ---

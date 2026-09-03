@@ -1,7 +1,8 @@
 # AUDITORÍA DE SEGURIDAD — YaEntre
 
 Documento vivo de las fases de seguridad. **§0-15: G65** (aplicación).
-**§16: G66** (dependencias/cadena de suministro).
+**§16: G66** (dependencias/cadena de suministro). **§17: G67** (extracción
+masiva de contenido, integridad del simulador, abuso del plan gratuito).
 
 ## G65 — Auditoría de la aplicación (2026-09-01)
 
@@ -1096,3 +1097,408 @@ git check-ignore pnpm-lock.yaml → ya no aplica (rastreable)
 Corrido dos veces completo: una vez tras aplicar los `overrides`, otra tras
 fijar las 37 versiones y quitar `lucide-react`/`sonner` — para separar "el
 override no rompió nada" de "fijar y limpiar tampoco rompió nada".
+
+---
+
+## 17. Extracción masiva, integridad del simulador y abuso del plan gratuito (G67 — 2026-09-02)
+
+**Alcance de esta sección:** el banco de reactivos como activo del negocio —
+qué tan fácil es extraerlo sistemáticamente, si el simulador sigue siendo fiel
+al examen real, y si los límites del plan gratuito se pueden burlar. Modelo
+real: `claude-sonnet-5`. **No se tocó `prisma/schema.prisma`.**
+
+> Como en fases anteriores, todo se **probó ejecutándolo** contra la base de
+> datos real y, para la integridad del simulador, contra `https://yaentre.com`
+> en producción — no se dio nada por bueno solo por leer el código.
+
+### 17.0 Resumen
+
+| | Antes | Después |
+|---|---|---|
+| Simulacro completo del plan gratuito | Contaba solo lo TERMINADO — abandonar lo dejaba en 0 para siempre | Cuenta CUALQUIER intento — de verdad "1" |
+| Reactivos diarios de práctica gratis | Contaba solo lo RESPONDIDO — nunca contestar daba reactivos infinitos | Cuenta lo SERVIDO — de verdad "10" |
+| `startSimulation`/`startDiagnosticSession` en producción | 🔴 Rotos al 100 % desde el 31 de agosto (hallazgo de esta fase, no pedido) | Corregidos y verificados |
+| Tiempo del simulacro/diagnóstico entre respuestas | Solo el timer del NAVEGADOR lo vigilaba | El servidor lo cierra solo, con el reloj real |
+| Límite de tasa por arranque de sesión | Ninguno | `SIMULATION_START`/`DRILL_START`/`DIAGNOSTIC_START` |
+| Mitigación contra granjas de cuentas | Solo `SIGN_UP` por IP (G65) | + `SIMULATION_START_IP` (8/día/IP) |
+| Fuga de la clave de respuestas, verificada en vivo | — | 0 en 24 respuestas de red reales (producción) |
+
+### 17.1 🔴 El "1 simulacro gratis" no era 1 — el fondo del asunto de la extracción masiva
+
+El simulacro entrega TODO su contenido (~120-140 reactivos, enunciado y las 4
+opciones completas) al ABRIR la sesión — es la razón de ser del simulador, la
+réplica fiel del examen real. El muro de pago (`canStartFullSimulation`) solo
+contaba sesiones `COMPLETED`/`COMPLETED_BY_TIMEOUT` contra el límite de 1. Una
+sesión `ABANDONED` —o simplemente `IN_PROGRESS` sin terminar nunca— **no
+contaba**. Y "retomar" solo aplica mientras la sesión sigue viva Y dentro de su
+propio `timeLimitSecs` (unas horas, el de un examen real) — pasado ese tiempo,
+`startSimulation` deja de ofrecer retomar y, al no haber ninguna sesión
+`COMPLETED*`, trata al alumno como si nunca hubiera usado su simulacro gratis.
+
+El ciclo de extracción: **arrancar → no terminar nunca → esperar a que pase el
+tiempo límite del examen (no las 24 h de sesión "stale", solo unas horas) →
+arrancar de nuevo → contenido completo, fresco, gratis.** Sin límite de
+repeticiones. Verificado en vivo (`pnpm security:abuse`), reproduciendo el
+ciclo completo sobre un perfil gratuito desechable — antes de corregir:
+
+```
+segundo intento tras abandonar el primero: creó OTRA sesión con 120
+reactivos nuevos — el "1 gratis" no se respetaba
+```
+
+**Corregido:** `countFullSimulationAttempts` (nueva, `src/lib/db/paywall.ts`)
+cuenta sesiones `FULL_SIMULATION` de **cualquier estado**. Se usa tanto en el
+chequeo previo (`evaluateSimulatorAccess`) como en la comprobación ATÓMICA
+real dentro del `pg_advisory_xact_lock` de G60 (`src/lib/db/simulator.ts`).
+`countCompletedFullSimulations` se conserva intacta para su otro uso legítimo
+—la estadística "cuántos simulacros ha completado" del dashboard, donde SÍ
+debe contar solo lo terminado—: son dos preguntas distintas ("¿ya gastó su
+cupo?" vs. "¿cuántos ha logrado terminar?") que compartían por accidente la
+misma función.
+
+Verificado tras el arreglo, mismo ciclo exacto:
+
+```
+✅ S1-primer-simulacro         sesión creada, 120 reactivos con contenido completo
+✅ S2-segundo-tras-abandonar   bloqueado: {"ok":false,"code":"PAYWALL","trigger":"FULL_SIMULATION_LIMIT"}
+✅ S3-un-solo-intento-total    1 sesión(es) FULL_SIMULATION creada(s) (se esperaba exactamente 1)
+```
+
+### 17.2 🔴 El "10 reactivos diarios" tampoco era 10 — misma familia de bug
+
+`countDrillAnswersToday` (el contador detrás del muro de práctica libre)
+filtraba `selectedOption: { not: null }` — solo contaba lo **respondido**.
+Pero `startDrillSession` entrega el enunciado y las 4 opciones completas de
+los 10 reactivos al ABRIR la sesión, antes de que el alumno conteste ninguno.
+Un alumno (o un script) que nunca contestaba veía `answeredToday` fijo en 0
+para siempre, y la exclusión de 72 h (`loadRecentlyAnsweredIds`, ya cuenta
+sesiones en curso — es real, no el bug) hacía que cada tanda de 10 fuera
+**distinta** a la anterior: el "10 al día" no frenaba nada, solo garantizaba
+variedad en la fuga.
+
+**Corregido:** `countDrillQuestionsServedToday` (renombrada, misma consulta
+menos el filtro de `selectedOption`) cuenta reactivos **servidos**, se
+respondan o no. Un alumno que abre 10 y no contesta ninguno ya gastó su cupo
+del día — es, de hecho, la lectura más natural de "10 reactivos diarios de
+práctica" (el producto los sirvió, el conteo no depende de si el alumno se
+distrajo). Verificado abriendo sesiones en bucle sin responder jamás:
+
+```
+✅ D1-tope-10-sin-responder   servidos sin responder ninguno: 10 (tope 10); bloqueado en la llamada 2
+```
+
+### 17.3 🟠 El diagnóstico y un endpoint sin usar, cerrados por consistencia
+
+**Diagnóstico.** `startDiagnosticSession` no tenía ningún límite de
+repeticiones — una vez `COMPLETED`, `loadDiagnosticState` lo bloquea para
+siempre (eso ya funcionaba bien), pero el ciclo
+abandonar→esperar 24 h (el umbral de sesión "stale", el único que aplica
+aquí)→repetir daba 30 reactivos nuevos cada vez, indefinidamente. Más lento
+que el del simulacro (un ciclo por día, no por hora), pero sin tope de por
+vida. Se añadió `DIAGNOSTIC_START` (5/día), consumido solo al crear una
+sesión NUEVA — nunca al retomar una existente, para no penalizar a quien
+simplemente cierra y reabre la pestaña el mismo día.
+
+**`/api/adaptive/next-questions`.** Endpoint autenticado, del motor
+adaptativo (F6), **sin ningún llamador en el código actual** — confirmado con
+una búsqueda exhaustiva de `fetch`/rutas en toda la app. No crea sesión ni
+escribe `SessionAnswer`, así que el arreglo de §17.2 no lo alcanza: seguía
+pudiendo devolver ids frescos del pool sin que el muro suave lo notara nunca
+(devuelve solo IDs, no el contenido — menor valor para un atacante que los
+otros dos, pero seguía siendo reconocimiento gratis del banco). Se cerró con
+un presupuesto propio (`ADAPTIVE_CONTENT_DAILY`, 10/día) consumido por PESO —
+la cantidad de ids que la llamada realmente devuelve, no 1 por llamada—, para
+que el total combinado con la práctica real siga siendo "10 al día" y no
+"10 + lo que sea que traiga este endpoint aparte". Se cerró en vez de
+eliminarse porque, sin usuarios hoy, podría ser la base de una función futura
+(app móvil, integración) y ya queda protegido de fábrica.
+
+### 17.4 Límites de tasa por arranque de sesión — defensa en profundidad
+
+Los arreglos de §17.1/17.2 son el candado REAL (basado en estado real de la
+base, no burlable con reintentos). Se añadió además, en el mismo espíritu que
+G65, un límite de tasa en el ARRANQUE de cada tipo de sesión —para que ni
+siquiera machacar el endpoint tenga sentido—, y uno nuevo por **IP** dirigido
+específicamente al riesgo de cuentas múltiples (§17.7):
+
+```
+SIMULATION_START:      20 / hora  · por cuenta
+SIMULATION_START_IP:    8 / día   · por IP   ← nuevo, mitigación de §17.7
+DRILL_START:           20 / hora  · por cuenta
+DIAGNOSTIC_START:       5 / día   · por cuenta
+ADAPTIVE_CONTENT_DAILY: 10 / día  · por cuenta, consumido por peso
+```
+
+Verificado (`pnpm security:abuse`):
+
+```
+✅ R1-simulation-start-corta   20 permitidos de 22 intentos (presupuesto 20/hora)
+✅ R2-drill-start-corta        20 permitidos de 22 intentos (presupuesto 20/hora)
+✅ R3-diagnostic-start-corta   5 permitidos de 7 intentos (presupuesto 5/día)
+✅ R4-adaptive-content-peso    1ª llamada pide 7 (hits=7); 2ª pide 7 más (hits=14, permitido=false)
+                               — presupuesto 10/día TOTAL, no 10 por llamada
+```
+
+### 17.5 🔴 Hallazgo no buscado: `startSimulation`/`startDiagnosticSession` llevaban ROTOS desde el 31 de agosto
+
+Al construir la sonda de §17.1, la primera llamada a `startSimulation` **no
+creaba nada — lanzaba**:
+
+```
+PrismaClientKnownRequestError: Failed to deserialize column of type 'void'.
+```
+
+Causa: `withUserAdvisoryLock` (`src/lib/db/locks.ts`, el candado de G60 contra
+el doble simulacro/diagnóstico por dos pestañas) tomaba el lock con
+`tx.$queryRaw` sobre `SELECT pg_advisory_xact_lock(...)` — y
+`pg_advisory_xact_lock` devuelve `void` en Postgres. Prisma no sabe
+deserializar una columna `void` y **lanza en el 100 % de las llamadas**, sin
+ninguna condición especial. Reproducido de forma aislada, sin nada del resto
+del código de por medio, contra la base real: la misma sentencia, sola,
+siempre truena con ese mensaje.
+
+`startSimulation` y `startDiagnosticSession` son los ÚNICOS dos llamadores de
+esta función. **Alcance real: desde que G60 se desplegó (31 de agosto),
+ninguna sesión nueva de simulacro o diagnóstico se pudo abrir en
+producción** — confirmado con la propia base: la sesión `FULL_SIMULATION` más
+reciente antes de esta fase era del 25 de julio, y no existe ni una sola fila
+`DIAGNOSTIC` en toda la tabla. No era una condición de carrera sin cerrar del
+todo (que era el riesgo que G60 documentó y creyó haber cerrado) — era el
+flujo completo caído, y nadie lo había notado porque ninguna fase posterior
+(G61-G66) ejercitó un arranque nuevo de estas dos funciones contra la base
+real.
+
+**Corregido:** `$queryRaw` → `$executeRaw`. Este último no intenta
+deserializar columnas —solo informa cuántas filas tocó la sentencia—, así que
+esquiva el problema sin cambiar la sentencia SQL ni la semántica del candado.
+Verificado, no asumido:
+
+1. **Ya no lanza** — confirmado de forma aislada, como arriba pero con
+   `$executeRaw`.
+2. **El candado SÍ serializa de verdad.** Prueba de concurrencia con tiempos
+   exactos (no orden de impresión, que resultó no confiable por la latencia
+   real de red): una transacción A toma el lock y lo retiene 2 s; una
+   transacción B, arrancada 50 ms después, pide el mismo lock.
+
+   ```
+   [ 1020 ms] A: BEGIN listo, pidiendo lock
+   [ 1238 ms] A: lock adquirido
+   [ 1791 ms] B: BEGIN listo, pidiendo lock
+   [ 3242 ms] A: a punto de hacer commit
+   [ 3351 ms] A: commit hecho
+   [ 3351 ms] B: lock adquirido (esperó 1560 ms en el propio pg_advisory_xact_lock)
+   ```
+
+   B pidió el lock en el milisegundo 1791 y no lo obtuvo hasta el 3351 —
+   justo cuando A liberó. El mecanismo de G60 es correcto; estaba envuelto en
+   una llamada que no dejaba llegar a probarlo.
+
+Con el arreglo, `pnpm security:abuse` pudo ejecutarse de principio a fin
+(sección 17.1) y el flujo real de simulacro/diagnóstico volvió a funcionar.
+
+### 17.6 🔴 Integridad del simulador, verificada en vivo contra producción
+
+**Sin fuga de la clave.** Con una cuenta real (plan pagado, para no rozar el
+límite de §17.1), se inició un simulacro NUEVO contra `https://yaentre.com` y
+se respondieron 5 reactivos reales, vigilando el CUERPO de cada respuesta de
+red durante todo el tramo (no solo el código de estado):
+
+```
+✅ I1-sin-fuga-mientras-responde
+   5 reactivos respondidos, 24 respuestas de red inspeccionadas, 0 con la clave
+```
+
+**El tiempo solo lo vigilaba el navegador — corregido.** `SimTimer.tsx` fija
+un `deadline = Date.now() + remainingSecs*1000` una sola vez al montar (con el
+reloj del NAVEGADOR) y cada segundo recalcula `deadline - Date.now()`; cuando
+llega a 0, dispara `onExpire()` → cierra el examen. Comprobado adelantando el
+reloj del navegador de prueba 1 hora a mitad del examen:
+
+```
+✅ I2-cronometro-no-salta-con-reloj-manipulado
+   antes: "02:59:56" · después de adelantar el reloj 1h: "01:59:54"
+```
+
+El número EN PANTALLA se movió exactamente la hora inyectada — confirma que
+el cronómetro visible depende del reloj del cliente. Eso por sí solo es un
+detalle de UI, pero la pregunta real es la que importa: **¿puede alguien con
+el reloj de su equipo congelado o atrasado seguir usando el examen más allá
+del tiempo real?** Antes, SÍ: entre una respuesta y la siguiente, nada del
+lado servidor comprobaba el tiempo real de FULL_SIMULATION/DIAGNOSTIC — solo
+la inactividad de 24 h (`assertActionable`), veinte veces más laxa que las 3 h
+reales de un examen UNAM/IPN. `SimulatorRunner` persiste las respuestas
+exclusivamente vía `/api/simulator/sync` (el destino del `sendBeacon`
+periódico/`pagehide`) — **nunca** llama a `submitAnswer` — así que ese camino
+también estaba desprotegido.
+
+Sin poder esperar 3 horas reales, se probó el equivalente exacto de un reloj
+de sistema manipulado: atrasar el `startedAt` guardado en la base (el ancla
+real del servidor) hacia el pasado, y confirmar que la siguiente escritura lo
+detecta y cierra sola:
+
+```
+✅ T1-diagnostico-rechaza-respuesta-tardia
+   con 50 min reales "transcurridos" (límite 45), submitAnswer RECHAZA la respuesta
+   ↳ rechazado: Se acabó el tiempo de este examen.
+✅ T2-diagnostico-se-autocierra          status final: COMPLETED_BY_TIMEOUT
+✅ T3-simulacro-rechaza-sync-tardio
+   con el tiempo del examen ya agotado, recordSimulatorSync (el camino REAL del beacon) RECHAZA el lote
+   ↳ resultado: {"ok":false,"code":"NOT_IN_PROGRESS"}
+✅ T4-simulacro-se-autocierra            status final: COMPLETED_BY_TIMEOUT
+```
+
+**Corregido en los dos caminos reales** (`pnpm security:time-integrity`):
+
+- `submitAnswer` (usa DIAGNOSTIC y TOPIC_DRILL/AREA_PRACTICE) gana
+  `closeIfTimeExceeded`, que compara el tiempo real transcurrido
+  (`computeElapsedSecs(session.startedAt, now)` — funciones YA existentes en
+  `src/lib/sessions/scoring.ts`, reusadas sin duplicar lógica) contra
+  `timeLimitSecs`, **solo para `TIMED_EVALUATION_MODES`** (`FULL_SIMULATION`,
+  `DIAGNOSTIC` — nunca TOPIC_DRILL/AREA_PRACTICE, cuyo límite de 4h existe
+  solo porque la columna es NOT NULL, sin intención de cronometrar nada real).
+- `recordSimulatorSync` (el camino que de verdad usa el simulador) gana la
+  misma comprobación.
+
+Ambos, al detectar el tiempo agotado, **no se limitan a cambiar el
+`status`** — llaman al `finishSession` real, con su cascada completa de
+efectos (puntaje con lo que sí se alcanzó a responder, temas débiles,
+Entrómetro, racha, evento `simulation_completed`) y el reclamo atómico de G60
+(`updateMany` condicionado), la misma ruta que seguiría un cierre normal.
+Después, rechazan la escritura que los disparó — el examen ya terminó, esa
+respuesta llegó tarde.
+
+### 17.7 Cuentas múltiples — riesgo real, ahora mucho más caro
+
+**Antes de esta fase**, una sola cuenta gratuita bastaba: el ciclo de §17.1
+daba simulacros completos ilimitados sin crear ninguna cuenta adicional. El
+riesgo de "muchas cuentas" era, en la práctica, irrelevante — no hacía falta.
+
+**Después de los arreglos de §17.1/17.2**, cada cuenta gratuita da como
+máximo, de por vida: **1** simulacro completo (~120-140 reactivos) + **~30**
+del diagnóstico (una vez, con el ciclo de abandono ahora acotado a 5
+intentos/día) + **10/día** de práctica (recurrente pero lento y de bajo
+valor unitario para un extractor). Extraer el banco completo (1 147
+reactivos, 1 143 servibles) por esta vía exige **muchas cuentas distintas** —
+con traslape aleatorio entre cuentas (cada una muestrea al azar, sin
+coordinación), la aritmética del "problema del coleccionista de cupones"
+sugiere que se necesitarían **varias decenas** de cuentas para acercarse a
+cobertura completa, no un puñado.
+
+**Qué tan fácil es crear esas cuentas hoy:** el registro no pide verificar
+nada más que un correo con formato válido (`REGISTERED_UNVERIFIED` da acceso
+inmediato — por diseño, para no friccionar el alta de un alumno real); no hay
+CAPTCHA ni verificación telefónica. El único freno YA EXISTENTE es
+`SIGN_UP` (G65): 5 cuentas por IP y hora. Sin más IPs, un atacante desde una
+sola salida tarda ~2 horas en tener 10 cuentas — molesto pero no prohibitivo
+para quien esté dispuesto a esperar o a rotar de proxy.
+
+**Mitigación nueva, ya en producción:** `SIMULATION_START_IP` (§17.4, 8 por
+IP y día) — apunta directo a la acción de mayor valor (~120-140 reactivos de
+una vez). Con esto, una granja de cuentas detrás de UNA SOLA IP queda acotada
+a 8 simulacros completos por día sin importar cuántas cuentas tenga detrás —
+un límite generoso para un hogar o un laboratorio escolar real (varios
+alumnos, cada uno con su propio simulacro gratis el mismo día), pero que
+convierte "crear 30 cuentas" en "crear 30 cuentas Y esperar ~4 días O
+conseguir varias IPs distintas" para agotarlas todas.
+
+**Riesgo residual, no cerrado por ninguna medida del lado servidor:** un
+atacante con acceso a MUCHAS IPs distintas (una red de proxies, o
+simplemente paciencia repartida en varios días) sigue pudiendo montar la
+extracción completa. Ningún límite de tasa del lado servidor cierra esto del
+todo — es una limitación estructural de cualquier producto con registro
+abierto y sin fricción. Opciones NO implementadas en esta fase, deliberado,
+porque cada una tiene un costo real de conversión que le toca decidir al
+dueño (mismo criterio que la decisión de consentimiento parental de G65 §11.3
+— no se fuerza unilateralmente un cambio de embudo de registro):
+
+1. **Exigir correo verificado antes del primer simulacro/práctica gratis**
+   (hoy solo se exige para COMPRAR, `requireVerifiedForPurchase`). Sube el
+   costo de cada cuenta falsa (necesita un correo real y revisable), a costa
+   de fricción para cada alumno legítimo nuevo.
+2. **CAPTCHA en el registro.** Encarece la automatización sin tocar el
+   embudo humano, a costa de una dependencia externa nueva y una molestia
+   real para el usuario.
+3. **Verificación telefónica (SMS).** La más cara de evadir en volumen; la
+   más cara de implementar y la que más fricción añade — probablemente
+   desproporcionada para el riesgo actual.
+
+**Recomendación, sin implementar:** monitorear (PostHog/Sentry ya capturan
+`signup_completed` y `simulation_completed`, F20/F24) cuántos simulacros
+completos por IP se están agotando realmente contra el tope de 8/día; si
+empieza a saturarse con patrones sospechosos (muchas cuentas nuevas, mismo
+IP, simulacros iniciados y nunca respondidos más allá de la primera pantalla),
+ESO sería la señal concreta para justificar la opción 1.
+
+### 17.8 Reportes abusivos — reverificado, sin cambios de código
+
+Confirmado, sin necesidad de tocar nada (ya cerrado en G60/G65):
+
+- **Idempotente por (reactivo, quien reporta)** desde G60
+  (`reportQuestion`, `src/lib/db/drill.ts`) — un mismo usuario no puede
+  acumular reportes del mismo reactivo.
+- **Límite de tasa** desde G65: `QUESTION_REPORT`, 20 por hora y cuenta
+  (`reportQuestionAction`) — no se puede recorrer el banco reportando un
+  reactivo distinto cada segundo.
+- **El umbral de revisión exige 3 REPORTES DISTINTOS, no 3 reportes** —
+  `REPORT_THRESHOLD = 3` (`src/lib/db/admin-questions.ts`) cuenta filas
+  `QuestionReport` sin resolver, y como cada (reactivo, reportero) es único,
+  llegar a 3 exige necesariamente 3 CUENTAS distintas. Ninguna cuenta sola
+  —ni siquiera evadiendo el límite de tasa— puede forzar un reactivo a la
+  cola de revisión por sí sola.
+
+**Nota de alcance, ligada a §17.7:** la única forma de saturar la cola de
+revisión con reportes falsos sigue siendo la MISMA vía que la extracción de
+contenido — varias cuentas distintas — y por tanto queda mitigada por las
+mismas defensas (`SIGN_UP` por IP). El daño de este vector específico es bajo
+de todas formas: un reactivo señalado por error solo entra a una cola de
+revisión humana, nunca se despublica ni se altera solo — un admin sigue
+decidiendo.
+
+### 17.9 Verificación final
+
+```
+pnpm typecheck                 → verde
+pnpm lint                      → verde
+pnpm test:unit                 → 526/526
+pnpm security:abuse            → 8/8  (extracción/límites del plan gratuito)
+pnpm security:time-integrity   → 4/4  (tiempo servidor, ambos caminos reales)
+node scripts/security/simulator-integrity-probe.mjs (contra producción) → 2/2
+```
+
+La base de datos de prueba quedó exactamente donde empezó (5 perfiles, 5
+sesiones, 480 respuestas): los perfiles desechables de las sondas
+(`g67_probe_free`, `g67_probe_time`) se crean y se borran solos en cada
+corrida. La verificación en navegador real contra `e2e.sim@` sí dejó una
+sesión `FULL_SIMULATION` a medias en producción (era el punto de la
+prueba) — se borró a mano al terminar, y la contraseña temporal de esa cuenta
+se restauró desde el respaldo, igual que en G65/G66.
+
+### 17.10 Cambios de esta fase
+
+**Nuevo**
+
+- `src/lib/rate-limit/store.ts` — 5 presupuestos nuevos
+  (`SIMULATION_START(_IP)`, `DRILL_START`, `DIAGNOSTIC_START`,
+  `ADAPTIVE_CONTENT_DAILY`).
+- `scripts/security/abuse-probe.ts`, `time-integrity-probe.ts`,
+  `simulator-integrity-probe.mjs` (`pnpm security:abuse`,
+  `security:time-integrity`).
+
+**Modificado**
+
+- `src/lib/db/locks.ts` — 🔴 `$queryRaw` → `$executeRaw` (`startSimulation`/
+  `startDiagnosticSession` estaban rotos al 100 % desde G60/31-ago).
+- `src/lib/db/paywall.ts` — `countFullSimulationAttempts` (cualquier estado,
+  nueva); `countDrillQuestionsServedToday` (renombrada, cuenta servidos no
+  respondidos); retirado el `evaluateSimulationGate` muerto (0 llamadores).
+- `src/lib/db/simulator.ts` — usa el conteo de intentos; el chequeo atómico
+  dentro del lock ya no filtra por estado; `recordSimulatorSync` cierra la
+  sesión sola si el tiempo real ya se agotó.
+- `src/lib/db/sessions.ts` — `closeIfTimeExceeded` en `submitAnswer` para
+  FULL_SIMULATION/DIAGNOSTIC.
+- `src/lib/db/diagnostic.ts` — `DIAGNOSTIC_START` solo al crear sesión nueva,
+  nunca al retomar.
+- `src/lib/tino/copy.ts` — mensaje para el nuevo código `RATE_LIMIT`.
+- `app/actions/simulator.ts`, `app/actions/drill.ts` — límites de tasa por
+  arranque de sesión.
+- `app/api/adaptive/next-questions/route.ts` — presupuesto diario por peso.

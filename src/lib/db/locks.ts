@@ -24,7 +24,26 @@ export function withUserAdvisoryLock<T>(
   fn: (tx: Prisma.TransactionClient) => Promise<T>,
 ): Promise<T> {
   return prisma.$transaction(async (tx) => {
-    await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtextextended(${userProfileId}::text, 0))`;
+    // G67 🔴 — CORREGIDO: esto usaba `$queryRaw`, y `pg_advisory_xact_lock`
+    // devuelve `void`. Prisma no sabe deserializar una columna `void` y
+    // LANZA en cada llamada: "Failed to deserialize column of type 'void'".
+    // Confirmado contra la base real, sin ninguna condición especial —
+    // rompía el 100% de las veces, no un caso raro.
+    //
+    // Alcance real: esta función es TODO el candado de G60 contra el doble
+    // simulacro gratis y la doble sesión de diagnóstico
+    // (`startSimulation`/`startDiagnosticSession`, los únicos dos
+    // llamadores). Como el candado se creó el 31 de agosto y los datos de
+    // prueba más recientes de sesiones son del 25 de julio, **ninguna sesión
+    // de simulacro o diagnóstico se pudo abrir exitosamente desde que G60 se
+    // desplegó** — no era una condición de carrera sin cerrar del todo, era
+    // el flujo completo caído. `$executeRaw` no intenta deserializar
+    // columnas (solo informa cuántas filas tocó la sentencia), así que
+    // esquiva el problema sin cambiar la semántica de la sentencia. Verificado
+    // en vivo: (1) ya no lanza, (2) el candado SÍ serializa de verdad — una
+    // segunda transacción con la misma clave esperó a que la primera hiciera
+    // commit antes de adquirirlo (`pnpm security:abuse`).
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${userProfileId}::text, 0))`;
     return fn(tx);
   });
 }

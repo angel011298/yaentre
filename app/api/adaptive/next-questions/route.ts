@@ -73,6 +73,35 @@ export async function POST(request: NextRequest) {
         ? requestedCount
         : Math.min(requestedCount, drillGate.remainingToday);
 
+    // G67 🔴 — este endpoint no crea sesión ni escribe `SessionAnswer`, así
+    // que el muro suave de arriba (basado en filas de `SessionAnswer` desde
+    // esta misma fase) nunca lo ve: `remainingToday` seguiría marcando 10
+    // aunque se hubiera llamado mil veces. Sin este candado aparte, era el
+    // único hueco que sobrevivía al arreglo del muro suave — devuelve ids
+    // frescos del pool sin tocar NUNCA el conteo que decide cuándo cortar.
+    // Se consume por PESO (cuántos ids se van a devolver) contra un
+    // presupuesto propio de 10/día — el mismo número que el resto del muro
+    // suave, para que el total combinado con la práctica real siga siendo
+    // "10 al día", no "10 + lo que sea que traiga este endpoint aparte".
+    // `remainingToday === null` = plan pagado (sin límite, ver
+    // `drillQuestionsRemainingToday`) — no aplica ahí.
+    if (drillGate.remainingToday !== null && count > 0) {
+      const contentGate = await consumeRateLimit(
+        'ADAPTIVE_CONTENT_DAILY',
+        guard.profile.id,
+        count
+      );
+      if (!contentGate.allowed) {
+        return NextResponse.json(
+          {
+            error: 'Llegaste a tu práctica gratis de hoy. Vuelve mañana o desbloquea ilimitado.',
+            trigger: 'DRILL_DAILY_LIMIT',
+          },
+          { status: 402 }
+        );
+      }
+    }
+
     const result = await selectNextAdaptiveQuestions(guard.profile.id, areaId, count);
 
     return NextResponse.json({ areaId, remainingToday: drillGate.remainingToday, ...result });

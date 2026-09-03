@@ -38,6 +38,20 @@ export async function startDrillAction(
 ): Promise<ActionResult<DrillPayload>> {
   try {
     const { profile } = await requireUser();
+
+    // G67: defensa en profundidad — el candado real contra la extracción es
+    // el conteo de reactivos SERVIDOS hoy (`countDrillQuestionsServedToday`,
+    // que ahora sí cuenta aunque nunca se responda). Esto solo evita que un
+    // script machaque el arranque de sesión mismo.
+    const gate = await consumeRateLimit('DRILL_START', profile.id);
+    if (!gate.allowed) {
+      return {
+        ok: false,
+        code: 'RATE_LIMIT',
+        message: 'Demasiados intentos seguidos. Espera unos minutos.',
+      };
+    }
+
     const scope = scopeSchema.parse(input);
     const result = await drillDb.startDrillSession(profile.id, scope);
     if (result.ok) return { ok: true, data: result.payload };

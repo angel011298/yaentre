@@ -13,12 +13,18 @@ import {
   getCorrectOptionId,
   isAnswerCorrect,
   isSessionStale,
+  isTimeExceeded,
   parseQuestionOptions,
   resolveFinishStatus,
   STALE_SESSION_HOURS,
   type FinishReason,
   type SubmitResponse,
 } from '@/lib/sessions/scoring';
+
+/** Modos con un límite de tiempo REAL que replica un examen cronometrado —
+ *  a diferencia de TOPIC_DRILL/AREA_PRACTICE, cuyo `timeLimitSecs` (4h) solo
+ *  existe porque la columna es NOT NULL, sin intención de cronometrar nada. */
+const TIMED_EVALUATION_MODES: SessionMode[] = ['FULL_SIMULATION', 'DIAGNOSTIC'];
 
 /**
  * Capa de acceso a datos del motor de sesiones. Recibe SIEMPRE el
@@ -86,6 +92,12 @@ async function loadOwnedSession(
  * Exige que la sesión esté abierta y accionable. Si lleva más de 24h abierta,
  * la cierra como ABANDONED (no afecta stats) y rechaza la operación. Si ya
  * terminó, rechaza con NOT_IN_PROGRESS.
+ *
+ * El límite de tiempo REAL de FULL_SIMULATION/DIAGNOSTIC (a diferencia de
+ * esta comprobación de inactividad de 24h) se exige en `submitAnswer`
+ * (ver `closeIfTimeExceeded` ahí) y no aquí — necesita disparar el cierre
+ * COMPLETO de la sesión (`finishSession`, con su cascada de efectos:
+ * puntaje, temas débiles, Entrómetro, racha), no solo cambiar el `status`.
  */
 async function assertActionable(session: ExamSession, now: Date): Promise<void> {
   if (session.status === 'IN_PROGRESS' && isSessionStale(session.startedAt, now)) {
@@ -98,6 +110,50 @@ async function assertActionable(session: ExamSession, now: Date): Promise<void> 
   if (session.status !== 'IN_PROGRESS') {
     throw new SessionError('NOT_IN_PROGRESS', 'Este examen ya terminó. Empieza uno nuevo.');
   }
+}
+
+/**
+ * G67 🔴 — El tiempo se calcula en el servidor, de verdad, en cada respuesta.
+ *
+ * Antes, nada entre una respuesta y la siguiente comprobaba el tiempo real de
+ * FULL_SIMULATION/DIAGNOSTIC: el cronómetro en pantalla (`SimTimer`) fija su
+ * `deadline` una sola vez al montar con el `Date.now()` DEL NAVEGADOR y cada
+ * segundo recalcula `deadline - Date.now()` — así que congelar o atrasar el
+ * reloj del sistema (una consola de devtools, o el reloj real del equipo)
+ * evita que el número en pantalla llegue jamás a cero, y con él, que
+ * `onExpire()` dispare el cierre automático. Comprobado en vivo contra
+ * producción (`pnpm security:simulator-integrity`): adelantar el reloj del
+ * navegador 1 hora mueve el número en pantalla esa hora exacta, sin que nada
+ * del lado servidor lo notara — `assertActionable` solo rechazaba tras 24h
+ * de INACTIVIDAD, veinte veces más que las 3h reales del examen. Sin este
+ * candado, ese truco daba hasta 24h para responder un examen de 3 —tiempo de
+ * sobra para consultarlo con alguien más o buscar las respuestas— y la app
+ * nunca se enteraba hasta que el propio alumno decidiera terminar.
+ *
+ * Se cierra llamando al `finishSession` de verdad (no solo cambiando el
+ * `status` a mano) para que corra la MISMA cascada de efectos que un cierre
+ * normal: puntaje, temas débiles, Entrómetro, racha, `simulation_completed`.
+ * `finishSession` internamente vuelve a llamar `loadOwnedSession`+
+ * `assertActionable` (ese SÍ solo ve la comprobación de 24h — la sesión sigue
+ * IN_PROGRESS en este punto) y su reclamo atómico (`updateMany` condicionado,
+ * G60) es lo que hace esto seguro ante una respuesta concurrente.
+ *
+ * El límite generoso de TOPIC_DRILL/AREA_PRACTICE (4h, solo para satisfacer
+ * la columna NOT NULL, sin intención de cronometrar nada) se deja intacto —
+ * por eso `TIMED_EVALUATION_MODES` solo cubre los dos modos donde la app
+ * promete un examen cronometrado de verdad.
+ */
+async function closeIfTimeExceeded(session: ExamSession, now: Date): Promise<void> {
+  if (!TIMED_EVALUATION_MODES.includes(session.mode)) return;
+  if (!isTimeExceeded(computeElapsedSecs(session.startedAt, now), session.timeLimitSecs)) return;
+
+  await finishSession({
+    userProfileId: session.userProfileId,
+    sessionId: session.id,
+    reason: 'TIMEOUT',
+    now,
+  });
+  throw new SessionError('NOT_IN_PROGRESS', 'Se acabó el tiempo de este examen.');
 }
 
 export async function startSession(params: {
@@ -191,6 +247,7 @@ export async function submitAnswer(params: {
 
   const session = await loadOwnedSession(sessionId, userProfileId);
   await assertActionable(session, now);
+  await closeIfTimeExceeded(session, now);
 
   // ── G65 🔴 EL REACTIVO DEBE PERTENECER A ESTA SESIÓN ─────────────────────
   //

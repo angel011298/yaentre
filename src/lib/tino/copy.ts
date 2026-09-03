@@ -43,7 +43,13 @@ export function noTargetChosen(context: 'practicar' | 'simulacro'): TinoLine {
   };
 }
 
-export function diagnosticNotReady(code: 'NO_TARGET' | 'NO_CONTENT'): TinoLine {
+export function diagnosticNotReady(code: 'NO_TARGET' | 'NO_CONTENT' | 'RATE_LIMIT'): TinoLine {
+  if (code === 'RATE_LIMIT') {
+    return {
+      state: 'sleepy',
+      message: 'Demasiados intentos seguidos. Espera unos minutos y vuelve a intentar.',
+    };
+  }
   return {
     state: 'sleepy',
     message:

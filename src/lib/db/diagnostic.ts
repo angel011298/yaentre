@@ -6,6 +6,7 @@ import { computeCareerStrategy, type CareerStrategyResponse } from './adaptive';
 import { loadAreaSharedContent } from './shared-content';
 import { allocateDiagnosticQuestions, type SubjectAvailability } from '@/lib/diagnostic/distribution';
 import { isSessionStale, parseQuestionOptions } from '@/lib/sessions/scoring';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
 
 /**
  * Orquestación del diagnóstico inicial (F7): arma el set de 30 reactivos
@@ -113,7 +114,7 @@ export async function buildDiagnosticQuestionSet(
   return { questionIds: shuffle([...selected]), subjectsCovered };
 }
 
-export type DiagnosticStartError = 'NO_TARGET' | 'NO_CONTENT';
+export type DiagnosticStartError = 'NO_TARGET' | 'NO_CONTENT' | 'RATE_LIMIT';
 export type DiagnosticStartResult =
   | { ok: true; session: ExamSession }
   | { ok: false; code: DiagnosticStartError };
@@ -158,14 +159,29 @@ export async function startDiagnosticSession(
   // G60 — bajo el lock del usuario: si dos cargas de /diagnostico entran a la
   // vez (dos pestañas, doble navegación), la segunda RETOMA la sesión que abrió
   // la primera en vez de crear una segunda sesión diagnóstica huérfana.
-  const session = await withUserAdvisoryLock(userProfileId, async (tx) => {
+  //
+  // G67: RETOMAR nunca gasta el presupuesto de `DIAGNOSTIC_START` — solo
+  // CREAR una sesión nueva lo hace, y eso solo pasa aquí dentro del lock,
+  // después de confirmar que no hay ninguna retomable. Sin este candado, el
+  // ciclo "abandonar → esperar a que pasen 24h (el umbral de sesión `stale`,
+  // el único que aplica aquí — a diferencia del simulacro, no hay un límite de
+  // tiempo más corto que lo acote) → repetir" daba 30 reactivos nuevos del
+  // diagnóstico cada vez, sin tope alguno de por vida.
+  const outcome = await withUserAdvisoryLock(userProfileId, async (tx): Promise<
+    { kind: 'session'; session: ExamSession } | { kind: 'rate_limited' }
+  > => {
     const open = await tx.examSession.findFirst({
       where: { userProfileId, mode: 'DIAGNOSTIC', status: 'IN_PROGRESS' },
       orderBy: { startedAt: 'desc' },
     });
-    if (open && !isSessionStale(open.startedAt, now)) return open;
+    if (open && !isSessionStale(open.startedAt, now)) {
+      return { kind: 'session', session: open };
+    }
 
-    return startSessionWithQuestions({
+    const gate = await consumeRateLimit('DIAGNOSTIC_START', userProfileId);
+    if (!gate.allowed) return { kind: 'rate_limited' };
+
+    const created = await startSessionWithQuestions({
       userProfileId,
       examId,
       mode: 'DIAGNOSTIC',
@@ -173,9 +189,14 @@ export async function startDiagnosticSession(
       questionIds,
       client: tx,
     });
+    return { kind: 'session', session: created };
   });
 
-  return { ok: true, session };
+  if (outcome.kind === 'rate_limited') {
+    return { ok: false, code: 'RATE_LIMIT' };
+  }
+
+  return { ok: true, session: outcome.session };
 }
 
 const questionInclude = {

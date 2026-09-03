@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-02 · Última fase ejecutada: **G67 (COMPLETADA — protección de contenido y prevención de abuso)**. Modelo real `claude-sonnet-5`. **Reporte en `docs/AUDITORIA_SEGURIDAD.md` §17.** **🔴 el simulacro "1 gratis" no era 1**: `canStartFullSimulation` contaba solo sesiones `COMPLETED`/`COMPLETED_BY_TIMEOUT` — una `ABANDONED` (o `IN_PROGRESS` sin terminar nunca) no contaba, y "retomar" solo aplica dentro del `timeLimitSecs` del examen (unas horas) — pasado ese tiempo, arrancar-y-nunca-terminar daba un simulacro COMPLETO nuevo (~120-140 reactivos con contenido íntegro) cada vez, gratis, sin tope. Reproducido en vivo antes de corregir. Arreglo: `countFullSimulationAttempts` (nueva) cuenta CUALQUIER intento, no solo los terminados; `countCompletedFullSimulations` se conserva para su otro uso (la estadística del dashboard). **🔴 el "10 reactivos diarios" tampoco era 10**: `countDrillAnswersToday` contaba solo lo RESPONDIDO (`selectedOption != null`), pero `startDrillSession` entrega el contenido completo de los 10 al ABRIR la sesión, antes de contestar — nunca responder daba reactivos infinitos, y la exclusión de 72h garantizaba que cada tanda fuera contenido NUEVO. Renombrada a `countDrillQuestionsServedToday`, cuenta lo SERVIDO. **🔴 hallazgo no buscado: `startSimulation`/`startDiagnosticSession` llevaban ROTOS AL 100% desde el 31 de agosto** — `withUserAdvisoryLock` (el candado de G60) tomaba el lock con `$queryRaw` sobre `pg_advisory_xact_lock`, que devuelve `void`; Prisma no deserializa `void` y LANZA siempre, sin excepción. Confirmado con la propia base: la sesión `FULL_SIMULATION` más reciente antes de esta fase era del 25 de julio, cero filas `DIAGNOSTIC` en toda la tabla. `$queryRaw` → `$executeRaw` (no deserializa columnas); verificado que ya no lanza Y que el candado serializa de verdad con una prueba de concurrencia por tiempos exactos. **🔴 integridad del tiempo, verificada en vivo contra `https://yaentre.com`**: `SimTimer` fija su `deadline` con el `Date.now()` DEL NAVEGADOR y lo recalcula cada segundo — congelar el reloj del sistema evita que el cronómetro visible llegue a cero, y nada del servidor comprobaba el tiempo real entre respuestas (solo 24h de inactividad, 20x más laxo que las 3h de un examen real); `SimulatorRunner` persiste vía `/api/simulator/sync` (el beacon), NUNCA vía `submitAnswer`. Comprobado adelantando el reloj del navegador de prueba 1h a mitad de un simulacro real: el número en pantalla se movió esa hora exacta. Corregido en los DOS caminos reales: `submitAnswer` (`closeIfTimeExceeded`, DIAGNOSTIC) y `recordSimulatorSync` (FULL_SIMULATION) cierran la sesión con `finishSession` de verdad (cascada completa: puntaje, temas débiles, Entrómetro, racha) en cuanto el tiempo REAL transcurrido supera el límite — verificado atrasando `startedAt` en la base (equivalente exacto a un reloj de sistema manipulado). **Cuentas múltiples: riesgo real, documentado** — antes irrelevante (una cuenta bastaba); ahora que el simulacro/práctica están genuinamente acotados, extraer el banco completo (1147/1143 servibles) exige decenas de cuentas distintas; nueva `SIMULATION_START_IP` (8/día/IP) acota la acción de mayor valor por salida de red sin tocar el registro; opciones más agresivas (correo verificado antes de usar, CAPTCHA, SMS) documentadas y NO implementadas — decisión del dueño, mismo criterio que el consentimiento parental de G65. **Reportes abusivos: reverificado sin cambios** — idempotente por (reactivo, reportero) desde G60, límite de tasa desde G65, y el umbral de revisión (`>=3`) exige 3 CUENTAS distintas, no 3 reportes. Nuevos límites de tasa por arranque de sesión (`SIMULATION_START`, `DRILL_START`, `DIAGNOSTIC_START`) y presupuesto diario por peso para `/api/adaptive/next-questions` (endpoint sin usar hoy, cerrado por consistencia). 5 sondas nuevas verifican todo esto contra la base real y, la del simulador, contra producción. `pnpm typecheck`/`lint`/`test:unit` (526/526) en verde. **No se tocó `prisma/schema.prisma`.**
+
+<details><summary>Historial: G66 (2026-09-02)</summary>
+
 Última actualización: 2026-09-02 · Última fase ejecutada: **G66 (COMPLETADA — seguridad de dependencias)**. Modelo real `claude-sonnet-5`. **Reporte en `docs/AUDITORIA_SEGURIDAD.md` §16.** `pnpm audit`: **14 vulnerabilidades (0 crítica, 9 alta, 5 media) → 0**, ninguna en una dependencia directa (todas transitivas de `eslint`/`vitest`/`@sentry/nextjs`/`posthog-js`/`next`). Corregidas extendiendo el override de `pnpm-workspace.yaml` que ya existía desde F22 — pero auditar el propio mecanismo encontró que estaba roto **dos veces**: (1) los overrides de F22 para `fast-uri`/`dompurify` (`>=3.1.4`, `>=3.4.12`) seguían resueltos a versión VULNERABLE, porque un `>=` sin techo lo satisface cualquier CVE publicado después; (2) al escribir los overrides nuevos con el mismo patrón `>=`, tres saltaron de MAYOR sin avisar — comprobado en `node_modules`: `nanoid` (override `>=3.3.18`) resolvió a `6.0.1` (¡ESM-only, revienta `require()` de webpack/postcss/next!), `undici` a `8.10.1`, `js-yaml` a `5.4.1`. Se corrigieron los 10 overrides (4 viejos + 6 nuevos) a `^x.y.z` con techo de mayor. `brace-expansion` tiene DOS majors legítimas coexistiendo (`minimatch@3.1.5`→`^1.1.7` dentro de `eslint`, `minimatch@10.2.5`→`^5.0.5` dentro de `@typescript-eslint`, el propio `eslint@9.39.4` no migró del todo) — resuelto con el selector oficial de pnpm `padre@versión>hijo`. **🔴 hallazgo mayor: `pnpm-lock.yaml` nunca se había versionado** — estaba en `.gitignore` desde el origen del repo (0 commits en 117), así que CADA `pnpm install` —incluido el que corre `vercel --prod` en cada deploy, sin integración de git— resolvía el árbol completo de transitivas fresco contra lo publicado ESE día; es la causa raíz real de las 14 vulnerabilidades. Corregido: fuera de `.gitignore`, commiteado — ahora `pnpm install --frozen-lockfile` (el modo que usa CI/Vercel con un lockfile presente) falla en vez de derivar en silencio. **Las 37 dependencias declaradas pasan de rangos abiertos (`^9.39.4`, o peor, `^9` sin techo real) a versión EXACTA** ya resuelta y probada; `.npmrc` gana `save-exact=true` para que un `pnpm add` futuro no vuelva a aflojarlo. **2 dependencias sin uso eliminadas** (`lucide-react`, `sonner` — cero referencias en todo el repo, confirmado con grep exhaustivo); `react-dom` se revisó y se CONSERVA pese a 0 imports explícitos (dependencia de plataforma de Next.js, no de la app). **Aviso a futuro:** `.github/dependabot.yml` + `.github/workflows/security-audit.yml` (`pnpm install --frozen-lockfile` + `pnpm audit --audit-level=high`, falla en high/critical, cron semanal) — ambos DORMIDOS hasta que el repo tenga remoto de git (hoy no lo tiene); mientras tanto `pnpm security:deps` corre lo mismo a mano, mismo namespace que las sondas de G65. Deliberadamente NO se tocaron los bumps de mayor disponibles sin CVE asociado (`@prisma/client`/`prisma` 5→7, `typescript` 5→7, `eslint` 9→10, `framer-motion` 12→13, `jsdom` 29→30) — mezclar eso con la cadena de suministro habría combinado dos riesgos distintos en un solo diff; quedan para una fase dedicada. `pnpm typecheck`/`lint`/`test:unit` (526/526)/`build` en verde, corridos dos veces completos. **No se tocó `prisma/schema.prisma`.**
+
+</details>
 
 <details><summary>Historial: G65 (2026-09-01)</summary>
 
@@ -217,6 +223,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G67 | Protección de contenido y prevención de abuso | **COMPLETADA — el simulacro "1 gratis" y la práctica "10/día" NO eran reales (contaban terminado/respondido, no intentado/servido); `startSimulation`/`startDiagnosticSession` estaban ROTOS AL 100% desde el 31 de agosto (hallazgo no buscado); tiempo del simulacro ahora vigilado en servidor, no solo en el navegador. Reporte: `docs/AUDITORIA_SEGURIDAD.md` §17** | (G67) | Modelo real `claude-sonnet-5`. **🔴 `canStartFullSimulation` contaba solo sesiones COMPLETED/COMPLETED_BY_TIMEOUT** — abandonar sin terminar y esperar el `timeLimitSecs` del examen (unas horas, no las 24h de "stale") daba un simulacro COMPLETO nuevo (~120-140 reactivos) cada vez, gratis, sin tope; reproducido en vivo. `countFullSimulationAttempts` (nueva) cuenta CUALQUIER intento; `countCompletedFullSimulations` se conserva para la estadística del dashboard. **🔴 `countDrillAnswersToday` contaba solo lo RESPONDIDO** — `startDrillSession` entrega el contenido completo al abrir, antes de responder; nunca contestar daba reactivos infinitos. Renombrada `countDrillQuestionsServedToday`, cuenta lo SERVIDO. **🔴 hallazgo no buscado: `startSimulation`/`startDiagnosticSession` rotos al 100% desde G60 (31-ago)** — `withUserAdvisoryLock` tomaba el lock con `$queryRaw` sobre `pg_advisory_xact_lock` (devuelve `void`; Prisma no lo deserializa y LANZA siempre); confirmado con la base real (última `FULL_SIMULATION` antes de esta fase: 25 de julio; 0 filas `DIAGNOSTIC` en toda la tabla). `$queryRaw`→`$executeRaw`; verificado que ya no lanza Y que el candado serializa de verdad (prueba de concurrencia por tiempos exactos). **🔴 integridad del tiempo verificada en vivo contra `https://yaentre.com`**: `SimTimer` recalcula `deadline - Date.now()` CADA segundo con el reloj del NAVEGADOR — congelarlo evita el auto-cierre; nada del servidor comprobaba el tiempo real entre respuestas (solo 24h de inactividad, 20x más laxo que las 3h reales); `SimulatorRunner` persiste vía `/api/simulator/sync`, NUNCA vía `submitAnswer`. Comprobado adelantando el reloj del navegador 1h a mitad de un simulacro real: el número en pantalla saltó esa hora exacta. Corregido en los DOS caminos reales (`submitAnswer` vía `closeIfTimeExceeded` para DIAGNOSTIC, `recordSimulatorSync` para FULL_SIMULATION): cierran con `finishSession` de verdad (cascada completa) en cuanto el tiempo REAL supera el límite — verificado atrasando `startedAt` en la base. **Cuentas múltiples: riesgo real y documentado** — antes irrelevante (una cuenta bastaba), ahora exige decenas de cuentas para extraer el banco completo; nueva `SIMULATION_START_IP` (8/día/IP) acota la acción de mayor valor sin tocar el registro; correo verificado antes de usar / CAPTCHA / SMS documentados y NO implementados, decisión del dueño. **Reportes abusivos: reverificado sin cambios** — idempotente desde G60, límite de tasa desde G65, umbral de revisión exige 3 cuentas distintas. Nuevos límites `SIMULATION_START`/`DRILL_START`/`DIAGNOSTIC_START`/`ADAPTIVE_CONTENT_DAILY`. 3 sondas nuevas (`security:abuse`, `security:time-integrity`, y una contra producción real). `typecheck`/`lint`/`test:unit` (526/526) en verde. **No se tocó `prisma/schema.prisma`.** |
 | G66 | Seguridad de dependencias | **COMPLETADA — `pnpm audit`: 14 vulnerabilidades (0 crítica, 9 alta, 5 media) → 0, ninguna en dependencia directa. Lockfile versionado por primera vez (0 commits en 117). 37/37 versiones fijadas. 2 dependencias sin uso eliminadas. Reporte: `docs/AUDITORIA_SEGURIDAD.md` §16** | (G66) | Modelo real `claude-sonnet-5`. Las 14 entraban por transitivas de `eslint`/`vitest`(`jsdom`)/`@sentry/nextjs`/`posthog-js`/`next`(`postcss`,`@babel/core`) — corregidas extendiendo el `overrides` de `pnpm-workspace.yaml` que ya existía desde F22. **🟠 auditando el propio mecanismo se encontró que estaba roto DOS VECES**: (1) los overrides de F22 para `fast-uri`/`dompurify` (`>=3.1.4`/`>=3.4.12`) seguían resueltos a versión VULNERABLE — un `>=` sin techo lo satisface cualquier CVE publicado después de F22, no es "parcheado para siempre"; (2) al escribir los 6 overrides nuevos con el mismo patrón `>=`, TRES saltaron de MAYOR sin avisar — verificado en `node_modules`, no asumido: `nanoid` (`>=3.3.18`) resolvió a `6.0.1` (¡ESM-only, `ERR_REQUIRE_ESM` a cualquier `require()` de webpack/postcss/next!), `undici` a `8.10.1`, `js-yaml` a `5.4.1` — casi se introduce la actualización-sin-revisar que la fase debía evitar, por el propio arreglo. Los 10 overrides pasan a `^x.y.z` con techo. `brace-expansion` con DOS majors legítimas a la vez (`minimatch@3.1.5`→`^1.1.7` en `eslint`, `minimatch@10.2.5`→`^5.0.5` en `@typescript-eslint`) resuelto con el selector oficial `padre@versión>hijo`. **🔴 el hallazgo con más alcance: `pnpm-lock.yaml` NUNCA se había versionado** (`.gitignore` desde el origen, 0 commits) — cada `pnpm install`, incluido el de `vercel --prod` en cada deploy (sin integración de git), resolvía las transitivas frescas contra npm ese día; causa raíz real de las 14. Corregido: fuera de `.gitignore`, commiteado — `pnpm install --frozen-lockfile` ahora falla en vez de derivar en silencio. **37/37 dependencias declaradas pasan de rangos abiertos (`^9.39.4`, o `^9` sin techo real) a versión EXACTA**; `.npmrc` gana `save-exact=true`. **`lucide-react`/`sonner` eliminados** (0 referencias en todo el repo, grep exhaustivo); `react-dom` revisado y CONSERVADO (dependencia de plataforma de Next.js pese a 0 imports explícitos). **Aviso a futuro:** `.github/dependabot.yml` + `.github/workflows/security-audit.yml` (`--frozen-lockfile` + `audit --audit-level=high`, cron semanal, falla en high/critical) — dormidos hasta que el repo tenga remoto; `pnpm security:deps` corre lo mismo a mano ya hoy, mismo namespace que las sondas de G65. Deliberadamente sin tocar bumps de mayor sin CVE asociado (Prisma 5→7, TypeScript 5→7, eslint 9→10, framer-motion 12→13, jsdom 29→30) — fase dedicada aparte. `typecheck`/`lint`/`test:unit` (526/526)/`build` en verde, corridos dos veces completos. **No se tocó `prisma/schema.prisma`.** |
 | G65 | Auditoría de seguridad de la aplicación | **COMPLETADA — 37 Server Actions + 8 Route Handlers auditados (100 %). 14 hallazgos (3 🔴 · 5 🟠 · 4 🟡 · 2 🔵): 12 corregidos, 2 del dueño. Aislamiento PROBADO: 22/22 bloqueados por RLS con JWT reales, 10/10 en la capa de aplicación. Reporte: `docs/AUDITORIA_SEGURIDAD.md`** | (G65) | Modelo real `claude-opus-5`. **🔴 Fuga de la clave de respuestas durante el simulacro** (`submitAnswer` aceptaba reactivos de otra sesión y la política de revelado se decide por el MODO ⇒ práctica libre en otra pestaña + `questionId` del simulacro = `{isCorrect, correctOption}`; reproducido en vivo) → el par (sesión, reactivo) debe existir ya como `SessionAnswer`; mismo filtro en `recordSimulatorSync`. **🟠 Misma fuga por la explicación** (capa 1 es gratis y dice la correcta) → exige haber respondido el reactivo en una sesión que revela; `NOT_ANSWERED` antes del muro de pago. **🔴 Cero protección contra fuerza bruta**: login/registro/recuperación/canje parental son Server Actions y el limitador de F20 solo mira `/api`, donde además **no funciona** (medido en prod: 70 peticiones sin un 429 — contador en memoria por instancia Edge); Supabase Auth tampoco (25 logins fallidos sin 429) → contador DISTRIBUIDO en Postgres (`app_security.rate_limit_hits`, migración 0013, `INSERT … ON CONFLICT` atómico, 30 concurrentes → 1..30 sin colisiones), 11 presupuestos, doble cubo cuenta+IP donde importa. Esquema `app_security` ⇒ invisible al diff de Prisma, **cero deriva** sin tocar `schema.prisma`. **🔴 Código de vinculación parental forzable** (6 dígitos, 10 min, canjes ilimitados, `Math.random()`) → `crypto.randomInt` + 6/tutor y 20/IP por ventana (≈1 entre 166 667); **y no existía DESVINCULACIÓN** pese a que el aviso de privacidad la promete → añadida para los dos lados. **🟠 Cookie de sesión sin `httpOnly`** (default de `@supabase/ssr`; el comentario del código decía lo contrario) ⇒ XSS = refresh token de 400 días → avatar movido al servidor, `supabase-browser.ts` eliminado, cookies `httpOnly`+`Lax`+`secure` en servidor Y middleware; verificado en navegador (`document.cookie` vacío, login OK). **🟠 Políticas RLS `FOR ALL`** (solo el GRANT impedía auto-ascenderse a ADMIN, fabricar `parent_links` a un menor, regalarse PREMIUM o falsear el score) → 11 políticas a `FOR SELECT`, fuera `profile_insert/update/delete`. **Cabeceras contra `https://yaentre.com`**: faltaba `frame-ancestors`, sobraba `X-Powered-By` → corregidas (11/12 local; **prod requiere deploy**). **Secretos: 0** en bundle y en los 117 commits; retirada la `ANTHROPIC_API_KEY` vencida de `.env`/`.env.local`. **Inyección: limpia** (15 plantillas etiquetadas; `*Unsafe` solo offline). **Menores: minimización correcta**; brecha legal abierta y documentada (el aviso promete consentimiento del tutor y el producto no pregunta la edad) — decisión del dueño. `changePasswordAction` exige la contraseña actual (con cliente efímero: hacerlo sobre el de la petición lanzaba `AuthRefreshDiscardedError`); cotas de contraseña 72 (bcrypt) y correo 254; IP vía `x-vercel-forwarded-for`; **retirada** `startSession` (escritura sin uso). 5 sondas repetibles `pnpm security:*`. **No se tocó `prisma/schema.prisma`.** `typecheck`/`lint`/`build` y 526 tests en verde. |
 | G64 | Experiencia móvil y PWA | **COMPLETADA — barrido responsivo 360/768/1280 (0 desbordamientos en 21 rutas × 3 anchos), PWA (`manifest id` + `apple-mobile-web-app-capable`), offline (tablero sí / simulador no, verificado), zonas seguras en 9 contenedores sin chrome. Reporte: `docs/AUDITORIA_FRONTEND.md` §G64** | (G64) | Modelo real `claude-sonnet-5`. Método: build de producción + Playwright/Chromium (sesión real por cuenta de prueba, `scrollWidth−clientWidth` por ruta×ancho, zonas seguras con CDP `Emulation.setSafeAreaInsetsOverride`, offline con `context.setOffline`). **Bug mayor:** `CookiesConsentBanner` (`bottom:0`, z-50) tapaba por completo la `BottomNav` en móvil en rutas `(app)` → se eleva por encima (`data-over-nav` + `.yaentre-cookie-banner`); `InstallPrompt` no aparece hasta resolver el consentimiento (un aviso a la vez). Zonas seguras: solo `TopBar`/`BottomNav` absorbían `env(safe-area-inset-*)` → añadidas a `CookiesConsentBanner`, `InstallPrompt`, `AppFooter`, `SimulatorPreflight/Result/Review/Runner`, `ParentShell` header, `onboarding`, `AuthShell` (clases manuales en `globals.css` con `@media lg` — nunca la sintaxis arbitraria de Tailwind con `env()`, F11/F18). PWA: `manifest` gana `id:"/"`; `<meta name="apple-mobile-web-app-capable">` a mano (Next 16 dejó de emitir la variante `apple-`). Offline (SW `public/sw.js`): `/app` visitada → 200 desde caché + `OfflineBanner`; `/simulador` → 503 "necesita conexión", nunca cacheado. Panel del tutor verificado en WebView bajo (390×560), Server Component puro. Aviso "requiere computadora" del simulador (`lg:hidden`) visible en móvil/tablet. Vínculo `parent_links` temporal creado y **borrado**; hashes de contraseñas de prueba **restaurados**. **No se tocó `prisma/schema.prisma`.** `pnpm typecheck`, `pnpm lint`, `pnpm build` en verde. |
@@ -2557,6 +2564,158 @@ alcance — mismo criterio que ya usa `notification-jobs.ts`).
 1. El grant de `auth.users` de §4 (desbloquea los 3 jobs de correo).
 2. Idempotencia real de los correos programados → tabla nueva → instrucción
    explícita.
+
+
+## G67 — Protección de contenido y prevención de abuso (2026-09-02)
+
+**Reporte completo: `docs/AUDITORIA_SEGURIDAD.md` §17.** Aquí lo que hay que
+recordar sin abrir el reporte. Modelo real: `claude-sonnet-5`. **No se tocó
+`prisma/schema.prisma`.**
+
+### 1. 🔴 El "1 simulacro gratis" no era 1
+
+El simulacro entrega TODO su contenido (~120-140 reactivos completos) al ABRIR
+la sesión. `canStartFullSimulation` solo contaba sesiones
+`COMPLETED`/`COMPLETED_BY_TIMEOUT`. Ciclo de extracción: arrancar → no
+terminar nunca → esperar a que pase el `timeLimitSecs` del examen (unas
+horas, NO las 24h de sesión "stale") → arrancar de nuevo → contenido
+completo, fresco, gratis, sin tope. Reproducido en vivo antes de corregir.
+
+Arreglo: `countFullSimulationAttempts` (nueva, `src/lib/db/paywall.ts`)
+cuenta sesiones `FULL_SIMULATION` de CUALQUIER estado. Usada tanto en el
+chequeo previo (`evaluateSimulatorAccess`) como en la comprobación atómica
+real dentro del `pg_advisory_xact_lock` de G60. `countCompletedFullSimulations`
+se conserva intacta — la usa el dashboard para su propia estadística
+("cuántos ha completado"), una pregunta distinta que compartía por accidente
+la misma función.
+
+### 2. 🔴 El "10 reactivos diarios" tampoco era 10
+
+`countDrillAnswersToday` contaba solo `selectedOption != null` — lo
+RESPONDIDO. Pero `startDrillSession` entrega el contenido completo de los 10
+al abrir, antes de contestar. Nunca responder dejaba `answeredToday` en 0
+para siempre, y la exclusión de 72h garantizaba que cada tanda de 10 fuera
+contenido NUEVO — el límite no frenaba nada.
+
+Arreglo: renombrada `countDrillQuestionsServedToday`, cuenta lo SERVIDO
+(quita el filtro de `selectedOption`). Un alumno que abre 10 y no contesta
+ninguno ya gastó su cupo del día — es la lectura correcta de "10 diarios".
+
+### 3. 🔴 Hallazgo no buscado: `startSimulation`/`startDiagnosticSession` rotos al 100% desde el 31 de agosto
+
+Al construir la sonda del punto 1, la primera llamada a `startSimulation`
+**lanzaba** en vez de crear la sesión:
+
+```
+PrismaClientKnownRequestError: Failed to deserialize column of type 'void'.
+```
+
+Causa: `withUserAdvisoryLock` (el candado de G60) toma el lock con
+`tx.$queryRaw` sobre `SELECT pg_advisory_xact_lock(...)` — y esa función
+devuelve `void` en Postgres. Prisma no sabe deserializar una columna `void` y
+lanza SIEMPRE, confirmado de forma aislada sin nada más del código de por
+medio. `startSimulation`/`startDiagnosticSession` son los ÚNICOS dos
+llamadores. **Alcance real: ninguna sesión nueva de simulacro o diagnóstico
+se pudo abrir en producción desde que G60 se desplegó** — la `FULL_SIMULATION`
+más reciente antes de esta fase era del 25 de julio, y no existe ni una fila
+`DIAGNOSTIC` en toda la tabla. No era una condición de carrera sin cerrar del
+todo — era el flujo completo caído, sin que ninguna fase G61-G66 lo notara
+porque ninguna ejercitó un arranque nuevo contra la base real.
+
+Arreglo: `$queryRaw` → `$executeRaw` (no intenta deserializar columnas).
+Verificado que ya no lanza Y que el candado SÍ serializa de verdad con una
+prueba de concurrencia por TIEMPOS EXACTOS (el orden de impresión resultó no
+confiable por la latencia real de red México↔us-east-1): una transacción B
+pidió el lock en el ms 1791 y no lo obtuvo hasta el 3351, justo cuando la
+transacción A —que lo sostenía— hizo commit. El mecanismo de G60 siempre fue
+correcto; estaba envuelto en una llamada que no dejaba llegar a probarlo.
+
+### 4. 🔴 Integridad del tiempo, verificada en vivo contra producción
+
+Con una cuenta real se inició un simulacro NUEVO contra `https://yaentre.com`
+y se respondieron 5 reactivos vigilando el CUERPO de cada respuesta de red:
+**0 fugas en 24 respuestas inspeccionadas.**
+
+El tiempo: `SimTimer.tsx` fija `deadline = Date.now() + remainingSecs*1000`
+una vez al montar (reloj del NAVEGADOR) y recalcula `deadline - Date.now()`
+cada segundo — congelar/atrasar el reloj del sistema evita que el cronómetro
+visible llegue a cero y con él, que `onExpire()` cierre el examen. Comprobado
+adelantando el reloj del navegador de prueba 1 hora a mitad de un simulacro
+real: el número en pantalla saltó exactamente esa hora. Y entre una respuesta
+y la siguiente, NADA del servidor comprobaba el tiempo real de
+FULL_SIMULATION/DIAGNOSTIC — solo la inactividad de 24h, veinte veces más
+laxa que las 3h reales de un examen. `SimulatorRunner` persiste únicamente
+vía `/api/simulator/sync` (el beacon) — nunca llama a `submitAnswer` — así
+que ese camino, el que de verdad usa el simulador, también estaba
+desprotegido.
+
+Sin poder esperar 3 horas reales, se probó el equivalente exacto de un reloj
+manipulado: atrasar `startedAt` en la base (el ancla real del servidor).
+Confirmado en los dos caminos: `submitAnswer` (DIAGNOSTIC) y
+`recordSimulatorSync` (FULL_SIMULATION, el camino real) ahora cierran la
+sesión sola con `finishSession` de VERDAD (cascada completa: puntaje, temas
+débiles, Entrómetro, racha, `simulation_completed`) en cuanto el tiempo real
+supera el límite, y rechazan la escritura tardía. Solo aplica a
+`TIMED_EVALUATION_MODES` (FULL_SIMULATION, DIAGNOSTIC) — TOPIC_DRILL/
+AREA_PRACTICE conservan su límite de 4h sin cronometrar nada real, por diseño.
+
+### 5. Cuentas múltiples — riesgo real, documentado, ahora mucho más caro
+
+Antes de esta fase, una sola cuenta bastaba (punto 1) — el riesgo de "muchas
+cuentas" era irrelevante. Con los arreglos de 1-2, cada cuenta gratuita da
+como máximo de por vida: 1 simulacro (~120-140 reactivos) + ~30 del
+diagnóstico + 10/día de práctica. Extraer el banco completo (1147/1143
+servibles) exige ahora **decenas de cuentas distintas** (aritmética del
+coleccionista de cupones sobre muestreo aleatorio sin coordinación entre
+cuentas).
+
+Nueva `SIMULATION_START_IP` (8/día/IP) acota la acción de mayor valor por
+salida de red, sin tocar el embudo de registro. Riesgo residual explícito: un
+atacante con muchas IPs distintas (proxies, o paciencia repartida en días)
+sigue pudiendo montar la extracción — ninguna medida del lado servidor cierra
+esto del todo. Documentadas y NO implementadas (decisión del dueño, mismo
+criterio que el consentimiento parental de G65 §11.3): exigir correo
+verificado antes del primer uso gratis, CAPTCHA en registro, verificación
+telefónica — cada una con un costo real de conversión.
+
+### 6. Reportes abusivos — reverificado, sin cambios de código
+
+Ya cerrado en G60 (idempotente por reactivo+reportero) y G65 (límite de tasa
+20/hora). Confirmado además: el umbral de revisión (`REPORT_THRESHOLD = 3`)
+cuenta filas `QuestionReport` sin resolver, y como cada (reactivo, reportero)
+es único, forzar un reactivo a revisión exige 3 CUENTAS distintas — ninguna
+cuenta sola puede hacerlo, ni evadiendo el límite de tasa.
+
+### 7. Verificación
+
+```
+pnpm typecheck                 → verde
+pnpm lint                      → verde
+pnpm test:unit                 → 526/526
+pnpm security:abuse            → 8/8
+pnpm security:time-integrity   → 4/4
+simulator-integrity-probe.mjs (producción) → 2/2
+```
+
+Base de datos de prueba restaurada exactamente a su estado inicial (5
+perfiles, 5 sesiones, 480 respuestas); la verificación en navegador real dejó
+una sesión a medias en `e2e.sim@` (era el punto de la prueba) — borrada a
+mano, contraseña temporal restaurada.
+
+### 8. Advertencia para el que siga
+
+- Los nuevos límites de tasa por arranque de sesión
+  (`SIMULATION_START`/`DRILL_START`/`DIAGNOSTIC_START`) son defensa en
+  profundidad — el candado REAL es el conteo corregido de intentos/servidos.
+  No los relajes pensando que son redundantes.
+- `/api/adaptive/next-questions` sigue sin ningún llamador real en el código.
+  Si alguna vez se conecta a una UI, revisar que el presupuesto
+  `ADAPTIVE_CONTENT_DAILY` siga sumando correctamente contra el mismo total
+  diario que el resto del muro suave.
+- El riesgo de cuentas múltiples (§5) queda con una mitigación parcial a
+  propósito. Si telemetría real (PostHog) muestra abuso por IP contra el tope
+  de `SIMULATION_START_IP`, esa es la señal para escalar a exigir correo
+  verificado antes del primer uso gratis — no antes.
 
 
 ## G66 — Seguridad de dependencias (2026-09-02)

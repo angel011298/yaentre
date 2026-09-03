@@ -37,6 +37,7 @@
     "security:session": "tsx scripts/security/session-probe.ts",
     "security:ratelimit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/rate-limit-probe.ts",
     "security:headers": "tsx scripts/security/headers-probe.ts",
+    "security:abuse": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/abuse-probe.ts",
     "security:deps": "pnpm audit --audit-level=high",
     "perf:audit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-audit.ts",
     "perf:pool": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-pool-probe.ts"

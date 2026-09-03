@@ -6,6 +6,8 @@ import { requireUser } from '@/lib/auth/guards';
 import * as simulatorDb from '@/lib/db/simulator';
 import * as sessionsDb from '@/lib/db/sessions';
 import { SessionError } from '@/lib/db/sessions';
+import { consumeAll } from '@/lib/rate-limit/store';
+import { currentClientIp } from '@/lib/rate-limit/request';
 import type { ActionResult } from '@/lib/sessions/schemas';
 import type { SimulatorPayload } from '@/lib/db/simulator';
 import type { Celebration } from '@/lib/gamification/celebrations';
@@ -35,6 +37,26 @@ const START_MESSAGES: Record<simulatorDb.SimulatorStartError, string> = {
 export async function startSimulationAction(): Promise<ActionResult<SimulatorPayload>> {
   try {
     const { profile } = await requireUser();
+
+    // G67: arrancar un simulacro es la exposición de contenido más grande de
+    // la app en una sola llamada (~120-140 reactivos completos). Por CUENTA
+    // es defensa en profundidad (el candado real es que ahora CUALQUIER
+    // intento gasta el "1 gratis", ver `countFullSimulationAttempts`); por IP
+    // es la mitigación real contra una granja de cuentas gratuitas desde la
+    // misma salida — ver docs/AUDITORIA_SEGURIDAD.md §17.4.
+    const gate = await consumeAll([
+      ['SIMULATION_START', profile.id],
+      ['SIMULATION_START_IP', `ip:${await currentClientIp()}`],
+    ]);
+    if (!gate.allowed) {
+      const minutos = Math.max(1, Math.ceil(gate.retryAfterSecs / 60));
+      return {
+        ok: false,
+        code: 'RATE_LIMIT',
+        message: `Demasiados intentos de simulacro seguidos. Espera ${minutos} minuto${minutos === 1 ? '' : 's'} y vuelve a intentar.`,
+      };
+    }
+
     const result = await simulatorDb.startSimulation(profile.id);
     if (result.ok) return { ok: true, data: result.payload };
     return {

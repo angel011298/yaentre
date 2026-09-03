@@ -1,10 +1,10 @@
 import { Prisma, type InstitutionCode, type SessionStatus } from '@prisma/client';
 import { prisma } from './prisma';
-import { startSessionWithQuestions } from './sessions';
+import { finishSession, startSessionWithQuestions } from './sessions';
 import { withUserAdvisoryLock } from './locks';
 import { buildDiagnosticQuestionSet, toRunnerQuestion, type RunnerQuestion } from './diagnostic';
 import {
-  countCompletedFullSimulations,
+  countFullSimulationAttempts,
   isUserPaid,
 } from './paywall';
 import {
@@ -32,6 +32,7 @@ import {
   computeElapsedSecs,
   isAnswerCorrect,
   isSessionStale,
+  isTimeExceeded,
   parseQuestionOptions,
 } from '@/lib/sessions/scoring';
 
@@ -105,15 +106,17 @@ export interface SimulatorAccess {
 }
 
 export async function evaluateSimulatorAccess(userProfileId: string): Promise<SimulatorAccess> {
-  const [isPaid, completedCount] = await Promise.all([
+  const [isPaid, attemptsCount] = await Promise.all([
     isUserPaid(userProfileId),
-    countCompletedFullSimulations(userProfileId),
+    // G67: CUALQUIER intento (no solo los terminados) — ver el porqué en
+    // `countFullSimulationAttempts`.
+    countFullSimulationAttempts(userProfileId),
   ]);
-  const decision = canStartFullSimulation({ isPaid, completedCount });
+  const decision = canStartFullSimulation({ isPaid, completedCount: attemptsCount });
   return {
     decision,
     isPaid,
-    isFreeFirstTime: !isPaid && completedCount === 0,
+    isFreeFirstTime: !isPaid && attemptsCount === 0,
   };
 }
 
@@ -289,14 +292,19 @@ export async function startSimulation(
     }
 
     if (!access.isPaid) {
-      const completed = await tx.examSession.count({
-        where: {
-          userProfileId,
-          mode: 'FULL_SIMULATION',
-          status: { in: FINISHED_STATUSES },
-        },
+      // G67 🔴 — CUALQUIER intento cuenta, no solo los terminados. Llegados
+      // aquí ya se descartó que haya uno RETOMABLE (arriba); cualquier fila
+      // FULL_SIMULATION que quede —abandonada, agotada por tiempo, o
+      // terminada— significa que a este alumno YA se le sirvió el contenido
+      // completo una vez. Antes solo `COMPLETED`/`COMPLETED_BY_TIMEOUT`
+      // contaban, así que arrancar-y-nunca-terminar daba un simulacro
+      // completo gratis cada vez que pasaba el tiempo límite (unas horas,
+      // no hay que esperar el umbral de 24h de sesión "stale") — ver
+      // `countFullSimulationAttempts` para el detalle completo.
+      const attempts = await tx.examSession.count({
+        where: { userProfileId, mode: 'FULL_SIMULATION' },
       });
-      if (completed >= FREE_FULL_SIMULATION_LIMIT) return { kind: 'paywall' };
+      if (attempts >= FREE_FULL_SIMULATION_LIMIT) return { kind: 'paywall' };
     }
 
     const created = await startSessionWithQuestions({
@@ -469,6 +477,8 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
       id: true,
       userProfileId: true,
       status: true,
+      startedAt: true,
+      timeLimitSecs: true,
       tabBlurCount: true,
       rightClickAttempts: true,
       keyboardShortcutAttempts: true,
@@ -479,6 +489,25 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
   if (!session) return { ok: false, code: 'NOT_FOUND' };
   if (session.userProfileId !== input.userProfileId) return { ok: false, code: 'FORBIDDEN' };
   if (session.status !== 'IN_PROGRESS') return { ok: false, code: 'NOT_IN_PROGRESS' };
+
+  // G67 🔴 — el tiempo real, no solo el del `SimTimer` del cliente. Este
+  // endpoint (destino del `sendBeacon` periódico/`pagehide`) es el ÚNICO
+  // camino por el que el simulador persiste respuestas — `SimulatorRunner`
+  // nunca llama a `submitAnswer` — así que el candado de tiempo real
+  // agregado ahí (`closeIfTimeExceeded`, `sessions.ts`) no cubre este flujo:
+  // sin esto, alguien que congelara su reloj de sistema podía seguir
+  // sincronizando respuestas del simulacro mucho después de las 3h reales del
+  // examen, con el servidor sin enterarse hasta que decidiera terminar a
+  // mano. Se cierra con `finishSession` de verdad (puntaje, temas débiles,
+  // Entrómetro, racha) en vez de solo cambiar el `status`.
+  if (isTimeExceeded(computeElapsedSecs(session.startedAt, new Date()), session.timeLimitSecs)) {
+    await finishSession({
+      userProfileId: session.userProfileId,
+      sessionId: session.id,
+      reason: 'TIMEOUT',
+    });
+    return { ok: false, code: 'NOT_IN_PROGRESS' };
+  }
 
   // G59: el lote se resuelve con un número FIJO de consultas.
   //

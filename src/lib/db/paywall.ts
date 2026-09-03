@@ -4,7 +4,6 @@ import { startOfMexicoDay } from '@/lib/paywall/mexico-time';
 import {
   canAccessParentDashboard,
   canAnswerDrillQuestion,
-  canStartFullSimulation,
   canViewExplanationLayer,
   drillQuestionsRemainingToday,
   type GateDecision,
@@ -39,8 +38,10 @@ export async function isUserPaid(userProfileId: string): Promise<boolean> {
   return (await getActiveSubscription(userProfileId)) !== null;
 }
 
-/** Simulacros completos históricos (F9: solo el conteo de terminados cuenta —
- *  ver resultados después, o abandonar uno, no gasta el gratuito). */
+/** Simulacros completos TERMINADOS (para estadística/progreso — "cuántos ha
+ *  COMPLETADO", `src/lib/db/dashboard.ts`). NO es el conteo que decide el
+ *  muro de pago: ver `countFullSimulationAttempts` para eso, y por qué son
+ *  dos funciones distintas a propósito (G67). */
 export async function countCompletedFullSimulations(userProfileId: string): Promise<number> {
   return prisma.examSession.count({
     where: {
@@ -52,19 +53,51 @@ export async function countCompletedFullSimulations(userProfileId: string): Prom
 }
 
 /**
- * Reactivos de práctica libre (TOPIC_DRILL/AREA_PRACTICE) respondidos "hoy"
- * en huso horario de México. `SessionAnswer` no tiene timestamp propio —
- * se usa `session.startedAt` como proxy, la misma convención ya establecida
- * en el motor adaptativo (F6, `loadRecentlyAnsweredIds`).
+ * G67 🔴 — Intentos de simulacro completo, de CUALQUIER estado.
+ *
+ * El muro de pago debe contar esto, no `countCompletedFullSimulations`. La
+ * diferencia importaba en la práctica: como el simulacro entrega TODO su
+ * contenido (~120-140 reactivos con enunciado y las 4 opciones) al abrir la
+ * sesión —igual que un examen real, es la razón de ser del simulador—, un
+ * alumno gratuito podía arrancar uno, no terminarlo nunca (o dejar pasar el
+ * tiempo límite), y como solo `COMPLETED`/`COMPLETED_BY_TIMEOUT` contaban
+ * contra el "1 gratis", el muro nunca se activaba: cada ciclo
+ * arrancar→abandonar→esperar a que `startSimulation` deje de poder RETOMARLo
+ * (pasado `timeLimitSecs`, unas pocas horas — no hay que esperar el umbral de
+ * 24h de sesión "stale") entregaba un simulacro COMPLETO nuevo, gratis, sin
+ * límite. Contando cualquier intento —sin importar si se terminó— el "1
+ * gratis" es real: una vez que se te sirvió el contenido, se usó tu cupo.
  */
-export async function countDrillAnswersToday(
+export async function countFullSimulationAttempts(userProfileId: string): Promise<number> {
+  return prisma.examSession.count({
+    where: { userProfileId, mode: 'FULL_SIMULATION' },
+  });
+}
+
+/**
+ * G67 — Reactivos de práctica libre (TOPIC_DRILL/AREA_PRACTICE) SERVIDOS
+ * "hoy" en huso horario de México — antes solo contaba los RESPONDIDOS
+ * (`selectedOption IS NOT NULL`), y esa era la fuga: `startDrillSession`
+ * entrega el enunciado y las opciones completas de los 10 reactivos al
+ * ABRIR la sesión, antes de que el alumno responda ninguno. Como nada
+ * marcaba "ya te enseñé estos 10" hasta que de verdad los contestaras, un
+ * alumno (o un script) que nunca contestaba veía `answeredToday` fijo en 0
+ * para siempre, y cada llamada a `startDrillSession` traía 10 reactivos
+ * NUEVOS (la exclusión de 72h de `loadRecentlyAnsweredIds` sí cuenta
+ * sesiones en curso, así que cada tanda era distinta a la anterior) — el
+ * "10 reactivos diarios" no frenaba nada.
+ *
+ * `SessionAnswer` no tiene timestamp propio — se usa `session.startedAt`
+ * como proxy, la misma convención ya establecida en el motor adaptativo
+ * (F6, `loadRecentlyAnsweredIds`).
+ */
+export async function countDrillQuestionsServedToday(
   userProfileId: string,
   now: Date = new Date()
 ): Promise<number> {
   const dayStart = startOfMexicoDay(now);
   return prisma.sessionAnswer.count({
     where: {
-      selectedOption: { not: null },
       session: {
         userProfileId,
         mode: { in: ['TOPIC_DRILL', 'AREA_PRACTICE'] },
@@ -72,14 +105,6 @@ export async function countDrillAnswersToday(
       },
     },
   });
-}
-
-export async function evaluateSimulationGate(userProfileId: string): Promise<GateDecision> {
-  const [isPaid, completedCount] = await Promise.all([
-    isUserPaid(userProfileId),
-    countCompletedFullSimulations(userProfileId),
-  ]);
-  return canStartFullSimulation({ isPaid, completedCount });
 }
 
 export interface DrillGateResult {
@@ -93,7 +118,7 @@ export async function evaluateDrillGate(
 ): Promise<DrillGateResult> {
   const [isPaid, answeredToday] = await Promise.all([
     isUserPaid(userProfileId),
-    countDrillAnswersToday(userProfileId, now),
+    countDrillQuestionsServedToday(userProfileId, now),
   ]);
   return {
     decision: canAnswerDrillQuestion({ isPaid, answeredToday }),
