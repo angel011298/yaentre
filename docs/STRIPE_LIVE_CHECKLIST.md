@@ -39,12 +39,21 @@ Lo que G70 cargó / creó / corrigió:
   explícito para los pagos únicos (pase/premium) y se pasa `customer` en vez
   de `customer_email`. Sin esto, **cualquier compra de pase o premium falla**.
 
-**Pendiente de G70 (acción del dueño):**
+**Pendiente de G70 — CERRADO en G70b (2026-09-06):**
 
-1. **Borrar la cuenta de prueba** `yaentreg701788677536@uberip.com` de la
-   base real (tiene un Pase `ACTIVE` que consumió 1 de las 500 licencias
-   Early Bird) y **reembolsar** el pago de prueba en
-   [dashboard.stripe.com/test/payments](https://dashboard.stripe.com/test/payments).
+1. ~~Borrar la cuenta de prueba y reembolsar el pago.~~ **HECHO.**
+   - **Reembolso:** `re_3UCa5HEtRO7AKqHV1kfAeU8k` · `succeeded` · 49 900 MXN
+     sobre `pi_3UCa5HEtRO7AKqHV1HAD0r4w`; verificado en la API:
+     `charge.refunded = true`, `amount_refunded = 49900`. Ejecutado con
+     `scripts/g70b-stripe-refund.ts`, que **se niega a correr con una llave
+     que no sea `sk_test_`** y es idempotente (si ya está reembolsado, no
+     hace nada).
+   - **Base de datos:** borrada la cuenta `yaentreg701788677536@uberip.com`
+     con su `user_profile`, su `subscription`, su `payment` y su
+     `processed_stripe_event`. **Contador Early Bird de vuelta en 500/500.**
+   - **NO se borró** el `Customer` de Stripe `cus_VD04yqIo776yUE`: en modo
+     prueba no ensucia contabilidad y borrarlo destruiría la trazabilidad
+     del reembolso. Si molesta, se borra a mano desde el dashboard.
 2. La sección 2 de abajo (modo **live**) sigue igual — nada de G70 la
    adelanta. Cuando actives live, `pnpm stripe:setup-prices` con la
    `sk_live_` recrea los 9 Price, y el webhook live se crea a mano con los

@@ -14,14 +14,15 @@ contra la API real de cada servicio y las cargó en Vercel producción**.
 | Servicio | Estado | Notas de G70 |
 |---|---|---|
 | **Resend** | ✅ EN PRODUCCIÓN | `RESEND_API_KEY` cargada. Dominio `yaentre.com` **verificado** en Resend, sending enabled. Correo de verificación real **entregado** (`last_event: delivered`, from `notificaciones@yaentre.com`). **`src/lib/email/client.ts` NO necesita el parche a `resend.dev`** — el dominio propio ya funciona. |
-| **Supabase Auth SMTP** | ✅ funciona · 🟠 2 ajustes de dashboard | El SMTP de Resend entrega el correo. **PERO:** (1) **Site URL** de Supabase Auth sigue en `http://localhost:3000` → el enlace de verificación manda al usuario a una página muerta (su cuenta SÍ se confirma). Corrige en **Authentication → URL Configuration → Site URL = `https://yaentre.com`** y agrega `https://yaentre.com/**` a **Redirect URLs**. (2) La plantilla del correo está en **inglés** («Confirm your email address») — tradúcela en **Authentication → Emails → Templates** (Confirm signup, Magic Link, Reset password, Invite). |
+| **Supabase Auth SMTP** | ✅ EN PRODUCCIÓN (G70b cerró los 2 ajustes) | El SMTP de Resend entrega el correo. **G70b:** (1) **Site URL = `https://yaentre.com`** y **Redirect URLs** = `https://yaentre.com/**` + `https://www.yaentre.com/**`. (2) **Las 6 plantillas de la sección Authentication están en español mexicano** con la identidad visual de `src/lib/email/templates.ts`, y su enlace cambió al patrón `token_hash` que espera `app/auth/confirm/route.ts` — copia versionada en `docs/CORREOS_AUTH.md`. Verificado con 4 correos reales entregados (registro, recuperación, magic link, cambio de correo). Las 7 plantillas del grupo **Security** siguen en inglés pero están **DESHABILITADAS** (ninguna se envía). |
 | **Sentry** | ✅ EN PRODUCCIÓN | `NEXT_PUBLIC_SENTRY_DSN` cargado. Envelope de prueba → HTTP 200; sonda en producción → `Sentry.flush()` = `true` con `eventId` real. `SENTRY_ORG`/`SENTRY_PROJECT`/`SENTRY_AUTH_TOKEN` **NO se cargaron** (no estaban entre las 7) → los sourcemaps del build de prod salen minificados hasta que el dueño los agregue (opcional, no bloquea). **Confirmar el evento en el dashboard de Sentry: acción del dueño** (no hay token de lectura). |
 | **PostHog** | ✅ EN PRODUCCIÓN | `NEXT_PUBLIC_POSTHOG_KEY` + `NEXT_PUBLIC_POSTHOG_HOST` (`https://us.i.posthog.com`) cargados. Capture de prueba → `{"status":"Ok"}`; server (`trackServerEvent` + `flush()`) y cliente (`posthog-js`, round-trip de feature-flags visto en `localStorage`) funcionan. **Confirmar los eventos en el dashboard de PostHog: acción del dueño.** |
 | **`SUPABASE_SERVICE_ROLE_KEY`** | ❌ SIGUE PENDIENTE | No estaba entre las 7 de G70. No bloquea registro ni pago; solo `getSupabaseAdmin()` en `src/lib/auth/supabase-admin.ts` (borrado de la identidad de Auth cuando un usuario elimina su cuenta, F17). Sección 4 abajo sigue vigente. |
 
-Las 4 acciones de dashboard/opcionales de arriba (Site URL, plantillas de
-correo, sourcemaps de Sentry, service role key) son lo único que queda del
-lado de credenciales/observabilidad.
+Tras G70b quedan **2** acciones del lado de credenciales/observabilidad, las
+dos opcionales y ninguna bloqueante: los **sourcemaps de Sentry**
+(`SENTRY_ORG`/`SENTRY_PROJECT`/`SENTRY_AUTH_TOKEN`) y el
+**`SUPABASE_SERVICE_ROLE_KEY`**.
 
 ## Por qué quedaron pendientes
 

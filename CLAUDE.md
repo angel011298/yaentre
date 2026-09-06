@@ -34,6 +34,7 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | `Plan_Implementacion_Acierta_v1.0.md` | Sesiones CC, orden de construcción, dependencias |
 | `ESTADO.md` | **Estado vivo del proyecto — consultar SIEMPRE antes de cualquier tarea** |
 | `ESCALA.md` | **Límites reales de cada servicio, consumo medido por recorrido, punto de quiebre, prueba de carga y proyección de costos para 500/1 000/5 000 alumnos (G69)** |
+| `CORREOS_AUTH.md` | **Plantillas de correo de Supabase Auth (copia versionada), configuración de URLs y por qué el enlace NO usa `{{ .ConfirmationURL }}` (G70b)** |
 | `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad — G65: autorización, RLS, sesiones, secretos, límites de tasa, datos de menores. G66 (§16): dependencias, `pnpm audit`, cadena de suministro. G67 (§17): extracción del banco, integridad del simulador, abuso del plan gratuito** |
 
 ---
@@ -195,6 +196,7 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - ❌ No introducir un TERCER rol de base de datos para la app. Supavisor abre un pool de servidor **por rol** —medido: 17 conexiones— contra `max_connections=60` (57 útiles). Con `acierta_ci` y `acierta_prod` ya van 34; un tercero deja sin margen a Auth, PostgREST y `pg_cron` (G69 §5).
 - ❌ No escribir en el camino caliente algo que no cambió. El `UPDATE` de contadores de integridad del simulador salía ~120 veces por simulacro reescribiendo los mismos valores; `integrityNeedsWrite` compara contra lo persistido y se lo salta. Mismo criterio para cualquier escritura por respuesta (G69 §8.3).
 - ❌ Una sonda de seguridad no puede depender del azar. `security:authz` reportaba una fuga FALSA una de cada varias corridas porque tomaba `answers[0]` del simulacro de la víctima y el selector adaptativo baraja con `Math.random()`: a veces ese reactivo caía también en la práctica del atacante, donde responderlo es legítimo. Un rojo intermitente enseña a ignorar la prueba (G69 §8.4).
+- ❌ No usar `{{ .ConfirmationURL }}` en una plantilla de correo de Supabase Auth: ese enlace lo resuelve GoTrue y redirige al destino **sin parámetros**, pero `app/auth/confirm/route.ts` exige `token_hash` + `type` y sin ellos manda a `/login?error=verification_failed`. Las plantillas construyen el enlace a mano contra `/auth/confirm` — copia versionada y razones en `docs/CORREOS_AUTH.md` (G70b).
 - ❌ Al componer un lote de reactivos, no dejar la respuesta correcta concentrada en una sola posición: distribuirla de forma pareja entre las cuatro opciones, y citar los distractores por su contenido, nunca por su letra — el simulador no baraja opciones para todas las instituciones (`shuffleOptions:false` en `src/lib/simulator/config.ts` para IPN/UAM/CENEVAL/CNBV). Todo lote debe pasar `scripts/lib/lot-validation.ts` (`content:validate-batch` / paso obligatorio de `content:insert`) antes de insertarse — ver G3b/G3c en `docs/ESTADO.md`.
 
 ---
