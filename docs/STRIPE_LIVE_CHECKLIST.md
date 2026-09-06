@@ -8,6 +8,50 @@
 
 ---
 
+## Estado tras G70 (2026-09-06) — modo PRUEBA activo y verificado
+
+El **modo de prueba ya funciona de punta a punta en producción**. Verificado
+con una compra real de Pase de Temporada ($499, tarjeta `4242 4242 4242
+4242`) en `https://yaentre.com`: Checkout hospedado → `checkout.session.completed`
+→ webhook → `subscriptions` fila `ACTIVE` en la base real, `payments`
+`SUCCEEDED`, `processed_stripe_events` con el `evt_…` (idempotencia + firma OK).
+
+Lo que G70 cargó / creó / corrigió:
+
+- **En Vercel producción:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`,
+  `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (todas `sk_test_`/`pk_test_`/`whsec_`)
+  y los **9 `STRIPE_PRICE_*`**.
+- **9 Price en Stripe** (`pnpm stripe:setup-prices`), idempotentes por
+  `lookup_key`, producto por Price con nombre `YaEntre — {plan} ({temporada})`,
+  montos PRD §9. La cuenta estaba vacía — no había productos «Acierta» que
+  renombrar.
+- **Webhook `we_1UC7dtEtRO7AKqHVNqAA6eMU`** (`https://yaentre.com/api/webhooks/stripe`):
+  el dueño lo creó con 3 eventos; G70 agregó por API el 4º que enruta
+  `src/lib/stripe/webhook.ts` → **`checkout.session.async_payment_failed`**
+  (OXXO/SPEI que expira sin pago). Los 4 ahora: `checkout.session.completed`,
+  `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`,
+  `customer.subscription.deleted`.
+- **🔴 Bug de código corregido — `app/actions/checkout.ts`:** el primer
+  checkout real lanzó `The payment method 'customer_balance' requires
+  'customer' to be set`. `customer_creation: 'always'` NO basta para SPEI
+  (`customer_balance`): en `mode: 'payment'` ese Customer se materializa al
+  completarse el pago y Stripe lo exige antes. Ahora se crea el `Customer`
+  explícito para los pagos únicos (pase/premium) y se pasa `customer` en vez
+  de `customer_email`. Sin esto, **cualquier compra de pase o premium falla**.
+
+**Pendiente de G70 (acción del dueño):**
+
+1. **Borrar la cuenta de prueba** `yaentreg701788677536@uberip.com` de la
+   base real (tiene un Pase `ACTIVE` que consumió 1 de las 500 licencias
+   Early Bird) y **reembolsar** el pago de prueba en
+   [dashboard.stripe.com/test/payments](https://dashboard.stripe.com/test/payments).
+2. La sección 2 de abajo (modo **live**) sigue igual — nada de G70 la
+   adelanta. Cuando actives live, `pnpm stripe:setup-prices` con la
+   `sk_live_` recrea los 9 Price, y el webhook live se crea a mano con los
+   **4** eventos de arriba.
+
+---
+
 ## 0. Decisión de cuenta (G6)
 
 **Cuenta de Stripe separada y dedicada a YaEntre**, no la cuenta existente

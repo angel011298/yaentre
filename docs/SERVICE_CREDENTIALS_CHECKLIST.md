@@ -4,6 +4,25 @@
 > (+ SMTP de Supabase Auth), Sentry, PostHog, y el `SUPABASE_SERVICE_ROLE_KEY`.
 > Stripe tiene su propio documento — ver `docs/STRIPE_LIVE_CHECKLIST.md`.
 
+---
+
+## Estado tras G70 (2026-09-06)
+
+El dueño consiguió las cuentas y credenciales a mano; G70 las **validó
+contra la API real de cada servicio y las cargó en Vercel producción**.
+
+| Servicio | Estado | Notas de G70 |
+|---|---|---|
+| **Resend** | ✅ EN PRODUCCIÓN | `RESEND_API_KEY` cargada. Dominio `yaentre.com` **verificado** en Resend, sending enabled. Correo de verificación real **entregado** (`last_event: delivered`, from `notificaciones@yaentre.com`). **`src/lib/email/client.ts` NO necesita el parche a `resend.dev`** — el dominio propio ya funciona. |
+| **Supabase Auth SMTP** | ✅ funciona · 🟠 2 ajustes de dashboard | El SMTP de Resend entrega el correo. **PERO:** (1) **Site URL** de Supabase Auth sigue en `http://localhost:3000` → el enlace de verificación manda al usuario a una página muerta (su cuenta SÍ se confirma). Corrige en **Authentication → URL Configuration → Site URL = `https://yaentre.com`** y agrega `https://yaentre.com/**` a **Redirect URLs**. (2) La plantilla del correo está en **inglés** («Confirm your email address») — tradúcela en **Authentication → Emails → Templates** (Confirm signup, Magic Link, Reset password, Invite). |
+| **Sentry** | ✅ EN PRODUCCIÓN | `NEXT_PUBLIC_SENTRY_DSN` cargado. Envelope de prueba → HTTP 200; sonda en producción → `Sentry.flush()` = `true` con `eventId` real. `SENTRY_ORG`/`SENTRY_PROJECT`/`SENTRY_AUTH_TOKEN` **NO se cargaron** (no estaban entre las 7) → los sourcemaps del build de prod salen minificados hasta que el dueño los agregue (opcional, no bloquea). **Confirmar el evento en el dashboard de Sentry: acción del dueño** (no hay token de lectura). |
+| **PostHog** | ✅ EN PRODUCCIÓN | `NEXT_PUBLIC_POSTHOG_KEY` + `NEXT_PUBLIC_POSTHOG_HOST` (`https://us.i.posthog.com`) cargados. Capture de prueba → `{"status":"Ok"}`; server (`trackServerEvent` + `flush()`) y cliente (`posthog-js`, round-trip de feature-flags visto en `localStorage`) funcionan. **Confirmar los eventos en el dashboard de PostHog: acción del dueño.** |
+| **`SUPABASE_SERVICE_ROLE_KEY`** | ❌ SIGUE PENDIENTE | No estaba entre las 7 de G70. No bloquea registro ni pago; solo `getSupabaseAdmin()` en `src/lib/auth/supabase-admin.ts` (borrado de la identidad de Auth cuando un usuario elimina su cuenta, F17). Sección 4 abajo sigue vigente. |
+
+Las 4 acciones de dashboard/opcionales de arriba (Site URL, plantillas de
+correo, sourcemaps de Sentry, service role key) son lo único que queda del
+lado de credenciales/observabilidad.
+
 ## Por qué quedaron pendientes
 
 G9 pidió explícitamente usar "las cuentas ya abiertas en el navegador". Se

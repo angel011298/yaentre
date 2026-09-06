@@ -72,6 +72,25 @@ export async function startCheckoutAction(
   // dashboard de Stripe configurado). Nunca coexisten ambos en el mismo line item.
   const configuredPriceId = process.env[stripePriceEnvVar(plan, season)];
 
+  // customer_balance (SPEI) EXIGE un Customer real ya presente al crear la
+  // sesión — `customer_creation: 'always'` no basta: en `mode: 'payment'` ese
+  // Customer se materializa al COMPLETARSE el pago, y Stripe valida la
+  // presencia del Customer antes. Para los pagos únicos (pase/premium, los
+  // únicos que ofrecen SPEI) creamos el Customer explícitamente aquí.
+  let stripeCustomerId: string | undefined;
+  if (!pricing.isRecurring) {
+    try {
+      const customer = await getStripe().customers.create({
+        ...(email ? { email } : {}),
+        metadata: { userProfileId: profileId },
+      });
+      stripeCustomerId = customer.id;
+    } catch (err) {
+      console.error('[checkout] No se pudo crear el Customer de Stripe', err);
+      return { ok: false, code: 'STRIPE', message: 'No pudimos iniciar el pago. Intenta de nuevo.' };
+    }
+  }
+
   const params: Stripe.Checkout.SessionCreateParams = {
     mode: pricing.mode,
     payment_method_types: paymentMethodTypes,
@@ -92,13 +111,15 @@ export async function startCheckoutAction(
     // webhook actualiza), nunca por el hecho de aterrizar en esta URL.
     success_url: `${site}/checkout/resultado?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${site}/checkout/resultado?session_id={CHECKOUT_SESSION_ID}&canceled=1`,
-    customer_email: email,
+    // `customer` y `customer_email` son mutuamente excluyentes para Stripe:
+    // pago único → Customer explícito (arriba); suscripción → Stripe crea el
+    // Customer solo y basta con el correo.
+    ...(stripeCustomerId ? { customer: stripeCustomerId } : { customer_email: email }),
     // Trazabilidad para el webhook y para un futuro job de reconciliación.
     metadata: { userProfileId: profileId, plan, season },
     ...(pricing.isRecurring
       ? {}
       : {
-          customer_creation: 'always', // customer_balance (SPEI) requiere Customer
           payment_method_options: {
             oxxo: { expires_after_days: 3 },
             customer_balance: {
