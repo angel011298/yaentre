@@ -1,5 +1,12 @@
 # LAUNCH_CHECKLIST — YaEntre
 
+> ⚠️ **Snapshot histórico del 27 de julio de 2026 (F24).** El veredicto
+> vigente es **`docs/VEREDICTO_LANZAMIENTO.md`** (G72, 7 de septiembre de
+> 2026) — este archivo se conserva sin editar como registro de dónde estaba
+> el proyecto entonces (309/1,500 reactivos, Stripe con llaves placeholder,
+> dominio sin confirmar). Casi nada de lo que sigue describe el estado real
+> de hoy. Consulta el documento nuevo para la verificación al día.
+
 > Veredicto formal de lanzamiento (F24). Recorre **todos** los criterios de
 > `PRD_Acierta_v1.0.md §14 "Criterios de lanzamiento (Definition of Done)"`
 > más las métricas de negocio de §3 y los requerimientos no funcionales de §12

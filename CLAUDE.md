@@ -36,6 +36,7 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | `ESCALA.md` | **Límites reales de cada servicio, consumo medido por recorrido, punto de quiebre, prueba de carga y proyección de costos para 500/1 000/5 000 alumnos (G69)** |
 | `CORREOS_AUTH.md` | **Plantillas de correo de Supabase Auth (copia versionada), configuración de URLs y por qué el enlace NO usa `{{ .ConfirmationURL }}` (G70b)** |
 | `VERIFICACION_FINAL.md` | **Recorrido completo del producto en producción real en los tres roles (G71): evidencia de red del guardrail de no-filtración, del tiempo server-side, de la activación por webhook y de la privacidad del tutor; los 7 defectos encontrados** |
+| `VEREDICTO_LANZAMIENTO.md` | **Veredicto formal de Go/No-Go contra los 3 gates del PRD §14 (G72) — vigente; supera a `LAUNCH_CHECKLIST.md` (snapshot de F24). Stripe en modo PRUEBA (bloqueador absoluto), Vercel Hobby/Supabase free (prohíben/no soportan uso comercial), banco 1 143/1 500 (76%), y los bloqueadores ordenados por urgencia con responsable** |
 | `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad — G65: autorización, RLS, sesiones, secretos, límites de tasa, datos de menores. G66 (§16): dependencias, `pnpm audit`, cadena de suministro. G67 (§17): extracción del banco, integridad del simulador, abuso del plan gratuito** |
 
 ---
