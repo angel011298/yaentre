@@ -28,6 +28,8 @@ function parseTrigger(raw: string | string[] | undefined): PaywallTrigger | null
  * servidor antes de renderizar — el cliente solo interactúa al elegir un plan
  * (Server Action de F8) o al volver con "Ahora no".
  */
+export const metadata = { title: 'Planes y precios' };
+
 export default async function PaywallPage({
   searchParams,
 }: {

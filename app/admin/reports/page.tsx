@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { listUnresolvedReportedQuestions, REPORT_THRESHOLD } from '@/lib/db/admin-questions';
 
+export const metadata = { title: 'Reportes de reactivos' };
+
 export default async function ReportsPage() {
   const questions = await listUnresolvedReportedQuestions();
 

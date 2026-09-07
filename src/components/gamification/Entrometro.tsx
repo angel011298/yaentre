@@ -88,7 +88,9 @@ export function Entrometro({
           </p>
           {gap !== null && (
             <p className={`text-sm font-semibold ${gap > 0 ? 'text-warning' : 'text-success'}`}>
-              {gap > 0 ? `Te faltan ~${gap} aciertos` : 'Vas por buen camino'}
+              {gap > 0
+                ? `Te falta${gap === 1 ? '' : 'n'} ~${gap} acierto${gap === 1 ? '' : 's'}`
+                : 'Vas por buen camino'}
             </p>
           )}
         </div>

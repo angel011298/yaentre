@@ -163,6 +163,18 @@ export default function RootLayout({
       lang="es-MX"
       className={`${outfit.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
       data-theme="dark"
+      // G71: el script en línea de abajo le pone `data-cookie-consent` a este
+      // mismo <html> ANTES de que React hidrate, y el servidor no puede
+      // renderizarlo (la decisión vive en localStorage). Sin esto, React 19
+      // encuentra un atributo que no puso y lanza el error de hidratación
+      // #418 —«This won't be patched up»— en CADA carga completa de página de
+      // cualquier visitante que ya eligió, es decir, de casi todos. No rompía
+      // nada visible, pero llenaba la consola y, peor, se iba a Sentry
+      // (`__sentry_captured__`), gastando cuota y tapando los errores reales.
+      // `suppressHydrationWarning` aplica solo a los atributos de ESTE
+      // elemento, no a su subárbol: es la salida documentada para el patrón
+      // "atributo escrito antes del primer paint".
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-base text-text-primary">
         {/* G62: antes de pintar, oculta el banner de cookies para quien ya

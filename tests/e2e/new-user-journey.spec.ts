@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { answerCurrentQuestion, hasCredentials, login } from './helpers';
+import {
+  answerCurrentQuestion,
+  esperarEnlaceDeConfirmacion,
+  hasCredentials,
+  login,
+} from './helpers';
 
 /**
  * E2E del recorrido completo de un usuario nuevo (F19 tarea 2):
@@ -18,32 +23,60 @@ test.describe('Recorrido del usuario nuevo', () => {
       process.env.E2E_SIGNUP !== '1',
       'Define E2E_SIGNUP=1 para ejercer el registro real (consume cupo de correos de Supabase).'
     );
+    // G71: el correo de confirmación tarda segundos en salir y la sonda lo
+    // reintenta hasta un minuto; con los 30 s por defecto de Playwright esta
+    // prueba no podía terminar aunque todo funcionara.
+    test.setTimeout(240_000);
 
-    const email = `e2e.journey.${Date.now()}@yaentre-test.mx`;
+    const email = `e2e.journey.${Date.now()}@mailinator.com`;
     const password = 'YaEntre!2027';
 
     // ── 1. Registro ──
+    //
+    // G71: esta prueba llevaba rota desde antes de G65 sin que nadie lo viera,
+    // porque su `skip` por defecto la dejaba fuera de toda corrida. Tres cosas
+    // habían cambiado en el producto y ninguna se reflejó aquí:
+    //   · el formulario exige marcar términos y condiciones (si no, el envío
+    //     no procede),
+    //   · el registro NO aterriza en `/onboarding`: manda a `/login` a esperar
+    //     la confirmación del correo — se confirma siguiendo el enlace real,
+    //   · el onboarding no rotula «Paso 1/2/3/4» en texto (lleva una barra de
+    //     progreso), y el navegador de preguntas del diagnóstico dejó de ser
+    //     un `tablist` en G63 (era un patrón de pestañas roto) para ser un
+    //     `group`.
     await page.goto('/registro');
     await page.getByLabel(/correo/i).fill(email);
     await page.getByLabel(/contraseña/i).fill(password);
+    await page.getByRole('checkbox').check();
     await page.getByRole('button', { name: /crear cuenta/i }).click();
 
-    // Un usuario nuevo aterriza en el onboarding, no en el tablero.
+    // El registro pide confirmar el correo antes de entrar.
+    await page.waitForURL(/\/login/, { timeout: 60_000 });
+    await expect(page.getByText(/revisa tu correo/i)).toBeVisible({ timeout: 20_000 });
+
+    // ── 1b. Confirmación del correo REAL, sin buzón ──
+    // La API de Resend devuelve el HTML ya renderizado de lo que salió por su
+    // SMTP, incluido lo que origina Supabase Auth (patrón de G70b,
+    // docs/CORREOS_AUTH.md §6). El enlace se sigue en el navegador, que es lo
+    // que hace un usuario de verdad.
+    const enlace = await esperarEnlaceDeConfirmacion(email);
+    await page.goto(enlace);
+
+    // Ya confirmado y con sesión: aterriza en el onboarding.
     await page.waitForURL(/\/onboarding/, { timeout: 60_000 });
 
     // ── 2. Onboarding: examen → área → carrera → intro del diagnóstico ──
-    await expect(page.getByText(/paso 1/i)).toBeVisible();
-    await page.getByRole('button', { name: /UNAM|Concurso de Selección/i }).first().click();
+    await expect(page.getByText(/qué examen vas a presentar/i)).toBeVisible({ timeout: 20_000 });
+    await page.getByRole('button', { name: /UNAM|Universidad Nacional/i }).first().click();
 
-    await expect(page.getByText(/paso 2/i)).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByText(/área o rama/i)).toBeVisible({ timeout: 20_000 });
     await page.getByRole('button', { name: /Físico-Matemáticas|Ingenierías/i }).first().click();
 
-    await expect(page.getByText(/paso 3/i)).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByText(/carrera meta/i)).toBeVisible({ timeout: 20_000 });
     await page.getByRole('button', { name: /Ingeniería|Arquitectura|Física/i }).first().click();
 
-    // Paso 4: Tino explica el diagnóstico.
-    await expect(page.getByText(/paso 4/i)).toBeVisible({ timeout: 20_000 });
-    await page.getByRole('button', { name: /empezar/i }).first().click();
+    // Último paso: Tino explica el diagnóstico.
+    await page.getByRole('button', { name: /empezar diagnóstico/i }).first().click();
 
     // ── 3. Diagnóstico: responder y terminar ──
     await page.waitForURL(/\/diagnostico/, { timeout: 60_000 });
@@ -51,7 +84,8 @@ test.describe('Recorrido del usuario nuevo', () => {
 
     // A diferencia del simulador, el diagnóstico SÍ permite navegar entre
     // preguntas (F7) — se comprueba que el navegador de preguntas existe.
-    await expect(page.getByRole('tablist')).toBeVisible();
+    // Es un `role="group"` desde G63; antes era un `tablist` mal formado.
+    await expect(page.getByRole('group', { name: /navegación entre preguntas/i })).toBeVisible();
 
     for (let i = 0; i < 3; i++) {
       await answerCurrentQuestion(page);
@@ -105,13 +139,27 @@ test.describe('Recorrido del usuario nuevo', () => {
   });
 
   test('el checkout llega hasta la pasarela sin completar ningún pago real', async ({ page }) => {
-    test.skip(!hasCredentials, 'Define E2E_EMAIL y E2E_PASSWORD.');
+    // G71: esta prueba usa la cuenta GRATUITA, no `E2E_EMAIL`.
+    //
+    // Su afirmación final —«el acceso sigue sin activarse»— solo significa algo
+    // en una cuenta sin plan. Corría con `E2E_EMAIL`, que el spec del simulador
+    // necesita PAGADA para poder abrir simulacros de sobra: la misma variable
+    // tenía que ser gratuita aquí y de pago allá. Con las dos cuentas fixture
+    // configuradas fallaba siempre («plan gratuito» no aparece en un perfil con
+    // Pase activo), y sin credenciales se saltaba entera — así que el fallo
+    // llevaba escondido desde F19 detrás de un `skip`.
+    const freeEmail = process.env.E2E_FREE_USED_EMAIL;
+    const freePassword = process.env.E2E_FREE_USED_PASSWORD;
+    test.skip(
+      !freeEmail || !freePassword,
+      'Define E2E_FREE_USED_EMAIL/PASSWORD (una cuenta SIN plan: la aserción final es que sigue sin acceso).'
+    );
     test.skip(
       !process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_'),
       'Requiere una llave de PRUEBA de Stripe (sk_test_...).'
     );
 
-    await login(page);
+    await login(page, freeEmail!, freePassword!);
     await page.goto('/paywall');
 
     const cta = page.getByRole('button', { name: /pase de temporada|elegir|desbloquear/i }).first();

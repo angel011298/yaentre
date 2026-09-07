@@ -16,6 +16,8 @@ function rateLabel(autoApproved: number, unpublished: number): string {
   return `${pct(autoApproved, resolved)}% auto-aprob.`;
 }
 
+export const metadata = { title: 'Cobertura del banco' };
+
 export default async function CoveragePage() {
   const report = await buildCoverageReport();
   const grandTotal = report.totalVerified + report.totalPending;

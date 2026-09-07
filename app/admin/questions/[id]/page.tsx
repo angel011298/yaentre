@@ -12,6 +12,8 @@ import { AdminError } from '@/lib/admin/errors';
 import { parseAdminOptions, parseVerificationRecord } from '@/lib/admin/verification';
 import { getQuestionDetail } from '@/lib/db/admin-questions';
 
+export const metadata = { title: 'Detalle del reactivo' };
+
 export default async function QuestionDetailPage({
   params,
 }: {

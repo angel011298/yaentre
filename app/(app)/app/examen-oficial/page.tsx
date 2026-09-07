@@ -8,6 +8,8 @@ import { listOfficialSampleSources } from '@/lib/db/content-sources';
  * visible. NUNCA recaptura las preguntas oficiales como contenido
  * interactivo de la app — ver TODO-LEGAL en [externalRef]/page.tsx.
  */
+export const metadata = { title: 'Exámenes muestra oficiales' };
+
 export default async function OfficialSampleIndexPage() {
   const sources = await listOfficialSampleSources();
 

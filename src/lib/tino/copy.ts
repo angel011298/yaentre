@@ -144,7 +144,10 @@ export function paywallTriggerCopy(trigger: PaywallTrigger | null): PaywallCopy 
 // ─────────────────────────────── Entrómetro ───────────────────────────────
 
 export function predictionUp(delta: number): TinoLine {
-  return { state: 'celebrating', message: `Tu predicción subió ${delta} aciertos esta semana 🚀` };
+  return {
+    state: 'celebrating',
+    message: `Tu predicción subió ${delta} ${delta === 1 ? 'acierto' : 'aciertos'} esta semana 🚀`,
+  };
 }
 
 // ─────────────────────────────── Diagnóstico ───────────────────────────────

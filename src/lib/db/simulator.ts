@@ -22,7 +22,10 @@ import { simulatorConfigFor } from '@/lib/simulator/config';
 import { orderQuestionOptions } from '@/lib/simulator/shuffle';
 import { computeRemainingSecs, isTimeUp } from '@/lib/simulator/time';
 import { percentileRankFromCounts } from '@/lib/simulator/percentile';
-import { subjectColorFor } from '@/lib/simulator/subjectColors';
+import {
+  aggregateSubjectBreakdown,
+  type SubjectBreakdownRow,
+} from '@/lib/simulator/subject-breakdown';
 import {
   integrityNeedsWrite,
   mergeIntegrityCounters,
@@ -172,7 +175,16 @@ const questionInclude = {
       options: true,
       format: true,
       passage: { select: { id: true, title: true, content: true, sourceRef: true } },
-      topic: { select: { id: true, name: true, subject: { select: { id: true, name: true } } } },
+      topic: {
+        select: {
+          id: true,
+          name: true,
+          // `sharedContentKey` (G26) es lo que permite colapsar en un solo
+          // renglón las filas `Subject` que son la misma materia — ver
+          // `src/lib/simulator/subject-breakdown.ts` (G71).
+          subject: { select: { id: true, name: true, sharedContentKey: true } },
+        },
+      },
     },
   },
 } satisfies Prisma.SessionAnswerInclude;
@@ -645,14 +657,8 @@ async function loadOwnedFinishedSession(
   return session;
 }
 
-export interface SubjectResult {
-  subjectId: string;
-  subjectName: string;
-  correct: number;
-  total: number;
-  /** Color determinista para el desglose (F13 tarea 3) — ver subjectColors.ts. */
-  colorHex: string;
-}
+/** Renglón del desglose por materia — ver `simulator/subject-breakdown.ts`. */
+export type SubjectResult = SubjectBreakdownRow;
 
 export interface SimulatorResultData {
   sessionId: string;
@@ -729,16 +735,9 @@ export async function loadSimulatorResult(
     countPercentilePeers(session.examId, sessionId, score),
   ]);
 
-  const bySubject = new Map<string, { subjectName: string; correct: number; total: number }>();
-  for (const a of session.answers) {
-    const subject = a.question.topic.subject;
-    const prev = bySubject.get(subject.id) ?? { subjectName: subject.name, correct: 0, total: 0 };
-    bySubject.set(subject.id, {
-      ...prev,
-      correct: prev.correct + (a.isCorrect ? 1 : 0),
-      total: prev.total + 1,
-    });
-  }
+  const subjects = aggregateSubjectBreakdown(
+    session.answers.map((a) => ({ isCorrect: a.isCorrect, subject: a.question.topic.subject }))
+  );
 
   const elapsedSecs = session.finishedAt
     ? computeElapsedSecs(session.startedAt, session.finishedAt)
@@ -757,9 +756,7 @@ export async function loadSimulatorResult(
     timeLimitSecs: session.timeLimitSecs,
     status: session.status,
     avgSecsPerQuestion: servedCount > 0 ? Math.round(elapsedSecs / servedCount) : 0,
-    subjects: [...bySubject.entries()]
-      .map(([subjectId, s]) => ({ subjectId, colorHex: subjectColorFor(subjectId), ...s }))
-      .sort((a, b) => a.subjectName.localeCompare(b.subjectName)),
+    subjects,
     integrity: readIntegrity(session),
     suspicionEvents: readSuspicionEvents(session.suspicionEvents),
     strategy,

@@ -19,6 +19,8 @@ import { getOfficialSampleSource } from '@/lib/db/content-sources';
  * bueno explícito. Ver docs/FUENTES_ADICIONALES.md y docs/EXTRACCION_*.md
  * para el estado de licencia de cada fuente.
  */
+export const metadata = { title: 'Examen muestra oficial' };
+
 export default async function OfficialSampleDetailPage({
   params,
 }: {

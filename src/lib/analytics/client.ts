@@ -1,6 +1,7 @@
 'use client';
 
 import type { PostHog } from 'posthog-js';
+import { posthogApiHost } from './posthog-hosts';
 
 /**
  * Carga perezosa de `posthog-js` (F20 tarea 3): la librería (~70KB) se pidió
@@ -41,7 +42,10 @@ export function loadPostHog(): Promise<PostHog> | null {
       if (!initialized) {
         initialized = true;
         posthog.init(apiKey, {
-          api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
+          // Misma fuente que la CSP de `next.config.ts` (G71): si estos dos
+          // dejaran de coincidir, PostHog quedaría bloqueado en producción sin
+          // más señal que un error de consola.
+          api_host: posthogApiHost(process.env.NEXT_PUBLIC_POSTHOG_HOST),
           capture_pageview: true,
           autocapture: false,
           disable_session_recording: true,

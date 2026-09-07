@@ -28,6 +28,8 @@ export const fetchCache = 'force-no-store';
  * es una página de bajo tráfico por usuario (se visita una vez), así que se
  * prioriza simplicidad y corrección sobre cacheo.
  */
+export const metadata = { title: 'Configura tu preparación' };
+
 export default async function OnboardingPage({
   searchParams,
 }: {

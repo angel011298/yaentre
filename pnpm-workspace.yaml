@@ -45,6 +45,16 @@ overrides:
   js-yaml: '^4.3.1'
   nanoid: '^3.3.18'
   browserslist: '^4.28.7'
+  # G71: dos avisos MODERADOS aparecidos después de G66. Quedan por debajo del
+  # umbral de `pnpm security:deps` (`--audit-level=high`), así que la sonda
+  # seguía en verde — se corrigen igual, con el mismo techo de mayor.
+  #   · @xmldom/xmldom (vía mammoth, solo scripts offline de ingesta):
+  #     inyección de fragmento XML, GHSA-6gmq-8vp8-gcm6, parcheado en 0.8.15.
+  #   · fflate (vía posthog-js, sí llega al navegador): `unzipSync` puede
+  #     entrar en bucle infinito con un ZIP64 malformado,
+  #     GHSA-px8p-9vwx-vf98, parcheado en 0.4.9.
+  '@xmldom/xmldom': '^0.8.15'
+  fflate: '^0.4.9'
 allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true

@@ -35,6 +35,7 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | `ESTADO.md` | **Estado vivo del proyecto — consultar SIEMPRE antes de cualquier tarea** |
 | `ESCALA.md` | **Límites reales de cada servicio, consumo medido por recorrido, punto de quiebre, prueba de carga y proyección de costos para 500/1 000/5 000 alumnos (G69)** |
 | `CORREOS_AUTH.md` | **Plantillas de correo de Supabase Auth (copia versionada), configuración de URLs y por qué el enlace NO usa `{{ .ConfirmationURL }}` (G70b)** |
+| `VERIFICACION_FINAL.md` | **Recorrido completo del producto en producción real en los tres roles (G71): evidencia de red del guardrail de no-filtración, del tiempo server-side, de la activación por webhook y de la privacidad del tutor; los 7 defectos encontrados** |
 | `AUDITORIA_SEGURIDAD.md` | **Auditoría de seguridad — G65: autorización, RLS, sesiones, secretos, límites de tasa, datos de menores. G66 (§16): dependencias, `pnpm audit`, cadena de suministro. G67 (§17): extracción del banco, integridad del simulador, abuso del plan gratuito** |
 
 ---
@@ -74,6 +75,10 @@ pnpm security:session         # caducidad, renovación y cierre de sesión
 pnpm security:ratelimit       # el contador distribuido, incluida la concurrencia
 pnpm security:headers         # cabeceras contra la URL pública real
 pnpm security:deps            # pnpm audit --audit-level=high (G66)
+pnpm security:simulator       # navegador real: fuga de la clave y tiempo del servidor (G67/G71)
+pnpm verify:tutor-privacy     # el panel del tutor, por el CUERPO de la red, no por la interfaz (G71)
+pnpm verify:baseline          # foto de la base antes/después de un recorrido de verificación (G71)
+pnpm verify:cleanup           # borra lo que un recorrido de verificación creó; --apply (G71)
 pnpm security:abuse           # simulacro "1 gratis" / práctica "10/día" reales (G67)
 pnpm security:time-integrity  # el tiempo del examen se calcula en servidor (G67)
 pnpm scale:audit              # ops de Prisma y peticiones por recorrido, escrituras incluidas (G69)
@@ -197,6 +202,10 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - ❌ No escribir en el camino caliente algo que no cambió. El `UPDATE` de contadores de integridad del simulador salía ~120 veces por simulacro reescribiendo los mismos valores; `integrityNeedsWrite` compara contra lo persistido y se lo salta. Mismo criterio para cualquier escritura por respuesta (G69 §8.3).
 - ❌ Una sonda de seguridad no puede depender del azar. `security:authz` reportaba una fuga FALSA una de cada varias corridas porque tomaba `answers[0]` del simulacro de la víctima y el selector adaptativo baraja con `Math.random()`: a veces ese reactivo caía también en la práctica del atacante, donde responderlo es legítimo. Un rojo intermitente enseña a ignorar la prueba (G69 §8.4).
 - ❌ No usar `{{ .ConfirmationURL }}` en una plantilla de correo de Supabase Auth: ese enlace lo resuelve GoTrue y redirige al destino **sin parámetros**, pero `app/auth/confirm/route.ts` exige `token_hash` + `type` y sin ellos manda a `/login?error=verification_failed`. Las plantillas construyen el enlace a mano contra `/auth/confirm` — copia versionada y razones en `docs/CORREOS_AUTH.md` (G70b).
+- ❌ No agrupar por `Subject.id` nada que el ALUMNO vaya a leer como «una materia». La reutilización de contenido de G26 sirve el mismo pool desde filas `Subject` distintas, así que un simulacro real de UNAM Área 1 traía 11 reactivos de Química de una fila y 12 de otra, y el desglose pintaba **dos renglones «Química»** con números distintos. La clave canónica es `sharedContentKey ?? subjectId` — la que `progress.ts` ya usaba para el Entrómetro — y también manda para el color, que si no cambia de un simulacro a otro (G71 §6 D1).
+- ❌ No dar por hecho que un servicio de terceros vive en UN solo origen. PostHog usa dos: el de ingesta (`us.i.posthog.com`) y el de assets (`us-assets.i.posthog.com`, de donde `posthog-js` carga `config.js`, banderas y encuestas). La CSP solo permitía el primero y bloqueaba al segundo en CADA carga de página; **los eventos seguían llegando, así que ninguna métrica lo delataba** — solo la consola. La CSP y el cliente leen la misma fuente (`src/lib/analytics/posthog-hosts.ts`) justo para que no puedan volver a separarse (G71 §6 D2).
+- ❌ No escribir un atributo sobre el `<html>` desde un script en línea sin `suppressHydrationWarning` en ese elemento: React 19 lo ve como una discrepancia de hidratación, lanza el error #418 en cada carga completa de todo visitante que ya eligió cookies, y **Sentry se lo lleva**, gastando cuota y tapando los errores reales (G71 §6 D3).
+- ❌ Una prueba que pasa sin comprobar nada es peor que no tenerla. En G71 aparecieron tres: un ✅ cuyo veredicto era `Boolean(antes && despues)` y cuyo nombre afirmaba lo contrario de lo que pasa; una sonda que **no cerraba la sesión que abría** en producción (buscaba «Terminar examen» en el reactivo 6 de 120) y dejaba basura; y una suite E2E que se saltaba **entera** con código de salida 0 y escondía dos specs que no podían pasar. Antes de creerle a un verde, comprobar que el rojo es alcanzable (G71 §6 D6).
 - ❌ Al componer un lote de reactivos, no dejar la respuesta correcta concentrada en una sola posición: distribuirla de forma pareja entre las cuatro opciones, y citar los distractores por su contenido, nunca por su letra — el simulador no baraja opciones para todas las instituciones (`shuffleOptions:false` en `src/lib/simulator/config.ts` para IPN/UAM/CENEVAL/CNBV). Todo lote debe pasar `scripts/lib/lot-validation.ts` (`content:validate-batch` / paso obligatorio de `content:insert`) antes de insertarse — ver G3b/G3c en `docs/ESTADO.md`.
 
 ---

@@ -131,7 +131,7 @@ export function SimulatorResult({
           <ul className="space-y-2">
             {data.subjects.map((s) => (
               <li
-                key={s.subjectId}
+                key={s.subjectKey}
                 className="flex items-center justify-between gap-3 rounded-md border border-border-subtle bg-elevated p-3 text-sm"
               >
                 <span className="flex items-center gap-2 text-text-primary">

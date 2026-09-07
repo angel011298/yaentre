@@ -33,6 +33,8 @@ function parseKind(raw: string | undefined): ReviewQueueKind {
   return REVIEW_QUEUE_ORDER.includes(raw as ReviewQueueKind) ? (raw as ReviewQueueKind) : 'discrepancy';
 }
 
+export const metadata = { title: 'Cola de verificación' };
+
 export default async function QueuePage({
   searchParams,
 }: {

@@ -22,6 +22,8 @@ import { getHostedVoucherUrl } from '@/lib/stripe/voucher';
  */
 export const dynamic = 'force-dynamic';
 
+export const metadata = { title: 'Resultado de tu compra' };
+
 export default async function CheckoutResultadoPage({
   searchParams,
 }: {

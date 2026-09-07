@@ -13,6 +13,8 @@ import { noTargetChosen } from '@/lib/tino/copy';
  * selector con las materias/temas reales del área del alumno y su cupo
  * gratuito restante del día (F9).
  */
+export const metadata = { title: 'Practicar' };
+
 export default async function PracticarPage({
   searchParams,
 }: {

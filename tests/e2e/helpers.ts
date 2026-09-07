@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type BrowserContext, type Page } from '@playwright/test';
 
 /**
  * Utilidades compartidas por la suite E2E (F19).
@@ -13,12 +13,61 @@ export const E2E_EMAIL = process.env.E2E_EMAIL;
 export const E2E_PASSWORD = process.env.E2E_PASSWORD;
 export const hasCredentials = Boolean(E2E_EMAIL && E2E_PASSWORD);
 
+/**
+ * Sesiones ya abiertas, reutilizadas dentro del mismo proceso de worker (G71).
+ *
+ * `loginAction` gasta DOS presupuestos del limitador distribuido de G65 en cada
+ * intento —`SIGN_IN` por cuenta y `SIGN_IN` por IP, 8 cada 10 minutos— y la
+ * suite entraba con usuario y contraseña en CADA prueba. Con `fullyParallel`
+ * eso agotaba el cubo por IP a media corrida: dos specs morían con un timeout
+ * en `waitForURL` que parecía un fallo del producto y era el control de
+ * seguridad haciendo exactamente su trabajo. Reutilizar las cookies baja el
+ * gasto a un login por cuenta y por worker.
+ */
+type CookiesGuardadas = Awaited<ReturnType<BrowserContext['cookies']>>;
+const sesionesAbiertas = new Map<string, CookiesGuardadas>();
+
 export async function login(page: Page, email = E2E_EMAIL!, password = E2E_PASSWORD!) {
+  const guardadas = sesionesAbiertas.get(email);
+  if (guardadas) {
+    await page.context().addCookies(guardadas);
+    await page.goto('/app');
+    // Si la sesión guardada seguía viva, el guard ya no manda a /login.
+    if (!/\/login/.test(page.url())) return;
+    sesionesAbiertas.delete(email);
+  }
+
   await page.goto('/login');
   await page.getByLabel(/correo/i).fill(email);
   await page.getByLabel(/contraseña/i).fill(password);
   await page.getByRole('button', { name: /iniciar sesión/i }).click();
-  await page.waitForURL(/\/app|\/onboarding|\/diagnostico|\/tutor/, { timeout: 30_000 });
+
+  // Si el limitador corta, la página se queda quieta y `waitForURL` moría por
+  // timeout — un fallo mudo que se lee como si el producto estuviera roto.
+  // Se gana la carrera contra el `alert` del formulario para poder decir qué
+  // pasó de verdad (G71).
+  const alerta = page.getByRole('alert');
+  const destino = page
+    .waitForURL(/\/app|\/onboarding|\/diagnostico|\/tutor/, { timeout: 30_000 })
+    .then(() => 'ok' as const);
+  const rechazo = alerta
+    .filter({ hasText: /demasiad|intenta de nuevo|no coinciden|incorrect/i })
+    .first()
+    .waitFor({ state: 'visible', timeout: 30_000 })
+    .then(() => 'rechazo' as const);
+
+  const cual = await Promise.race([destino, rechazo]).catch(() => 'timeout' as const);
+  if (cual !== 'ok') {
+    const motivo = (await alerta.first().textContent().catch(() => null))?.trim();
+    throw new Error(
+      `El login de ${email} no llegó a ninguna ruta de la app. ` +
+        (motivo
+          ? `La app respondió: "${motivo}". Si es el límite de intentos, es el control de G65 ` +
+            '(SIGN_IN: 8 cada 10 min, por cuenta y por IP) — espera la ventana o corre menos specs a la vez.'
+          : 'Sin mensaje en pantalla: revisa que el servidor de pruebas esté arriba.')
+    );
+  }
+  sesionesAbiertas.set(email, await page.context().cookies());
 }
 
 /**
@@ -136,4 +185,68 @@ export async function readTimerSeconds(page: Page): Promise<number> {
   if (!match) throw new Error(`No se pudo leer el temporizador: "${text}"`);
   const [, h, m, s] = match;
   return Number(h) * 3600 + Number(m) * 60 + Number(s);
+}
+
+/**
+ * Enlace de confirmación de correo de un registro REAL, sin buzón (G71).
+ *
+ * La API de Resend devuelve el HTML ya renderizado de cada correo que salió
+ * por su SMTP — incluidos los que origina Supabase Auth, porque el proyecto
+ * usa Resend como SMTP (patrón de G70b, `docs/CORREOS_AUTH.md` §6). Sin esto
+ * el recorrido del usuario NUEVO no se puede probar de punta a punta: el
+ * registro exige confirmar el correo antes de dejar entrar.
+ *
+ * LANZA con un motivo concreto en vez de devolver `null` a secas: sin llave,
+ * correo que no llega, o correo que llega sin el enlace esperado son tres
+ * fallos distintos y el que lo lea tiene que poder distinguirlos sin abrir el
+ * panel de Resend.
+ *
+ * El filtro es por DESTINATARIO, no por fecha: la dirección lleva un
+ * `Date.now()` incrustado, así que ya es única por corrida. Un filtro temporal
+ * añadía una ventana frágil (la lista de Resend tarda en reflejar el envío) sin
+ * descartar nada que el destinatario no descarte ya.
+ */
+export async function esperarEnlaceDeConfirmacion(
+  email: string,
+  { intentos = 18, esperaMs = 5000 }: { intentos?: number; esperaMs?: number } = {}
+): Promise<string> {
+  const key = process.env.RESEND_API_KEY;
+  if (!key || key.includes('placeholder')) {
+    throw new Error('RESEND_API_KEY ausente o placeholder: sin ella no se puede leer el correo real.');
+  }
+
+  let ultimoAsunto: string | null = null;
+  for (let i = 0; i < intentos; i++) {
+    await new Promise((r) => setTimeout(r, esperaMs));
+    const lista = await fetch('https://api.resend.com/emails?limit=25', {
+      headers: { Authorization: `Bearer ${key}` },
+    })
+      .then((r) => r.json() as Promise<{ data?: Array<Record<string, unknown>> }>)
+      .catch(() => ({ data: [] }));
+
+    const correo = (lista.data ?? []).find((e) => String(e.to).includes(email));
+    if (!correo) continue;
+    ultimoAsunto = String(correo.subject ?? '');
+
+    const detalle: { text?: string } = await fetch(`https://api.resend.com/emails/${correo.id}`, {
+      headers: { Authorization: `Bearer ${key}` },
+    })
+      .then((r) => r.json() as Promise<{ text?: string }>)
+      .catch(() => ({}) as { text?: string });
+
+    const enlace = /https:\/\/\S*\/auth\/confirm\?\S*token_hash=[^\s\]]+/.exec(detalle.text ?? '');
+    if (enlace) return enlace[0];
+  }
+
+  throw new Error(
+    ultimoAsunto === null
+      ? `Resend no reporta ningún correo para ${email} tras ${(intentos * esperaMs) / 1000}s (¿tope de altas por hora de Supabase Auth?).`
+      : `Llegó un correo a ${email} ("${ultimoAsunto}") pero sin un enlace a /auth/confirm con token_hash.\n` +
+        'Causa típica al correr fuera de producción: el `emailRedirectTo` que manda la app ' +
+        '(`http://localhost:3000/auth/confirm?next=…`) no está en la lista de Redirect URLs de ' +
+        'Supabase Auth, así que GoTrue degrada `{{ .RedirectTo }}` al Site URL PELADO y la plantilla ' +
+        'produce `https://yaentre.com&token_hash=…`, que ni siquiera es una URL válida. ' +
+        'Remedio: añadir el origen desde el que se corre a Authentication → URL Configuration → ' +
+        'Redirect URLs (ver docs/CORREOS_AUTH.md §7).'
+  );
 }

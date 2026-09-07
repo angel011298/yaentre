@@ -13,6 +13,8 @@ import { diagnosticNotReady } from '@/lib/tino/copy';
  * una sesión nueva si no hay ninguna vigente (primera vez, o la anterior
  * expiró por inactividad >24h).
  */
+export const metadata = { title: 'Diagnóstico' };
+
 export default async function DiagnosticoPage() {
   const { profile } = await requireOnboarding();
 

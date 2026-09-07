@@ -1,10 +1,15 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import { posthogCspHosts } from "./src/lib/analytics/posthog-hosts";
 
 const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
   ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin
   : "";
-const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
+// G71: PostHog usa DOS orígenes — el de ingesta y el de assets, desde el que
+// `posthog-js` carga `config.js`. Permitir solo el primero (F22) dejaba la
+// configuración remota bloqueada por CSP en producción, en silencio salvo por
+// el error de consola. Ver src/lib/analytics/posthog-hosts.ts.
+const posthogHosts = posthogCspHosts(process.env.NEXT_PUBLIC_POSTHOG_HOST);
 
 function isConfigured(id: string | undefined): boolean {
   return Boolean(id) && !id!.startsWith("your-") && !id!.includes("placeholder");
@@ -31,19 +36,23 @@ const tiktokPixelEnabled = isConfigured(process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID)
  * Sentry usa `tunnelRoute: "/monitoring"` (mismo origen) — por eso no
  * necesita su dominio de ingesta en connect-src. PostHog y Supabase SÍ
  * llaman a su host directo desde el navegador, así que se permiten
- * explícitamente. Stripe Checkout es una navegación completa
+ * explícitamente — PostHog con sus DOS orígenes (ingesta y assets), ver
+ * G71 en src/lib/analytics/posthog-hosts.ts. Stripe Checkout es una navegación completa
  * (`window.location`), no un iframe/fetch — no requiere entrada en la CSP.
  */
 function buildCsp(): string {
   const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
+    // Solo el host de ASSETS: de ahí sale `config.js`. El de ingesta nunca
+    // sirve scripts, así que no tiene por qué estar en `script-src`.
+    ...posthogHosts.slice(1),
     ...(metaPixelEnabled ? ["https://connect.facebook.net"] : []),
     ...(tiktokPixelEnabled ? ["https://analytics.tiktok.com"] : []),
   ];
   const connectSrc = [
     "'self'",
-    posthogHost,
+    ...posthogHosts,
     ...(supabaseHost ? [supabaseHost] : []),
     ...(metaPixelEnabled ? ["https://www.facebook.com"] : []),
     ...(tiktokPixelEnabled ? ["https://analytics.tiktok.com"] : []),

@@ -51,6 +51,8 @@ function countdownCopy(daysRemaining: number): string {
  * contenido real (disciplina heredada del `loading.tsx` de F20 t4) para que
  * el relleno no provoque saltos (CLS).
  */
+export const metadata = { title: 'Mi tablero' };
+
 export default async function DashboardPage() {
   const { authUser, profile } = await requireOnboarding();
   const displayName = greetingName(profile.displayName, authUser.email);

@@ -1,4 +1,5 @@
 import '../lib/env';
+import { posthogCspHosts } from '../../src/lib/analytics/posthog-hosts';
 
 /**
  * G65 — Verificación de cabeceras de seguridad contra la URL PÚBLICA REAL.
@@ -21,6 +22,12 @@ interface Check {
 }
 
 const checks: Check[] = [];
+
+/** Mismo criterio que el cliente: una llave placeholder no inicializa PostHog. */
+function isPostHogConfigured(): boolean {
+  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  return Boolean(key) && !key!.startsWith('your-') && !key!.includes('placeholder');
+}
 
 function must(headers: Headers, name: string, predicado: (v: string) => boolean, esperado: string): void {
   const value = headers.get(name);
@@ -61,6 +68,31 @@ async function main(): Promise<void> {
       ok: csp.includes(esperado),
       detalle: csp.includes(esperado) ? esperado : `falta "${esperado}"`,
     });
+  }
+
+  // G71: la CSP tiene que permitir los DOS orígenes de PostHog. Permitir solo
+  // el de ingesta dejaba `config.js` bloqueado en cada carga de página, sin
+  // más señal que un error de consola — los eventos seguían llegando, así que
+  // ninguna métrica lo delataba.
+  if (isPostHogConfigured()) {
+    const [apiHost, assetsHost] = posthogCspHosts(process.env.NEXT_PUBLIC_POSTHOG_HOST);
+    const scriptSrc = /(?:^|;)\s*script-src\s([^;]*)/.exec(csp)?.[1] ?? '';
+    const connectSrc = /(?:^|;)\s*connect-src\s([^;]*)/.exec(csp)?.[1] ?? '';
+    checks.push({
+      cabecera: 'CSP connect-src PostHog',
+      ok: connectSrc.includes(apiHost),
+      detalle: connectSrc.includes(apiHost) ? apiHost : `falta ${apiHost} en connect-src`,
+    });
+    if (assetsHost && assetsHost !== apiHost) {
+      const ok = scriptSrc.includes(assetsHost) && connectSrc.includes(assetsHost);
+      checks.push({
+        cabecera: 'CSP assets de PostHog',
+        ok,
+        detalle: ok
+          ? `${assetsHost} permitido en script-src y connect-src`
+          : `falta ${assetsHost} (script-src: ${scriptSrc.includes(assetsHost)}, connect-src: ${connectSrc.includes(assetsHost)}) — config.js queda bloqueado`,
+      });
+    }
   }
 
   // Lo que NO debe estar.

@@ -230,3 +230,45 @@ curl -s -X PUT "$NEXT_PUBLIC_SUPABASE_URL/auth/v1/user" -H "apikey: $NEXT_PUBLIC
 
 **Ojo con el gasto de correos:** el proyecto está en el plan gratuito de
 Resend (100 correos/día, ver `docs/ESCALA.md`). Cada verificación consume uno.
+
+---
+
+## 7. 🟠 La trampa de `{{ .RedirectTo }}` fuera de producción (G71)
+
+Encontrado corriendo el E2E de registro contra `http://localhost:3000`.
+
+**Qué pasa.** `app/actions/auth.ts` manda
+`emailRedirectTo: ${getSiteUrl()}/auth/confirm?next=…`. Si ese origen **no
+está en la lista de Redirect URLs** de Supabase Auth, GoTrue no lo usa: degrada
+`{{ .RedirectTo }}` al **Site URL pelado**, sin ruta y sin query. La plantilla,
+que concatena `{{ .RedirectTo }}&amp;token_hash=…`, produce entonces:
+
+```
+https://yaentre.com&token_hash=pkce_8fc2c70c…&type=signup
+```
+
+Eso **no es una URL**: `yaentre.com&token_hash=…` se lee como nombre de host. El
+enlace no aterriza en una página equivocada — está muerto. Es el mismo tipo de
+fallo que G70b vino a arreglar, por otra puerta.
+
+**Alcance real hoy.** En producción `NEXT_PUBLIC_SITE_URL` es
+`https://yaentre.com`, que sí está permitido, así que **ningún usuario real está
+afectado** (verificado en G71 con un registro real de punta a punta: el enlace
+llegó bien formado y confirmó la cuenta). Lo que rompe es todo lo que no sea
+producción: desarrollo local, despliegues de vista previa de Vercel y la prueba
+E2E `registro → onboarding → diagnóstico → tablero`, que por eso no puede
+correr en local.
+
+**Remedio (acción del dueño, una línea).** Authentication → URL Configuration →
+**Redirect URLs**, agregar el origen desde el que se vaya a correr:
+
+| Para qué | Entrada |
+|---|---|
+| Desarrollo local y E2E | `http://localhost:3000/**` |
+| Vistas previa de Vercel | `https://*-angel011298s-projects.vercel.app/**` |
+
+**Regla general:** la lista de Redirect URLs tiene que contener **todos** los
+orígenes desde los que la app llegue a mandar correos de autenticación. La
+plantilla da por hecho que `{{ .RedirectTo }}` ya trae `?next=…` para que su
+`&` continúe la query; en cuanto GoTrue la degrada, ese `&` la rompe. No hay
+forma de blindar la plantilla desde el repositorio: el arreglo es la lista.
