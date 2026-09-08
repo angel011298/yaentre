@@ -315,7 +315,7 @@ huérfanos, contador Early Bird en 500/500 real.
 |---|---|---|---|
 | 1 | **Activar Stripe en modo live** (identidad, CLABE, llaves, Price IDs, webhook) | Ángel | Sin esto, cero pesos reales pueden cobrarse — bloquea Early Bird y Public Launch por igual. `docs/STRIPE_LIVE_CHECKLIST.md` §2. |
 | 2 | **Subir a Vercel Pro ($20/mes)** | Ángel | El plan Hobby prohíbe el uso comercial explícitamente; la sanción es pausar el despliegue. Bloqueador legal/contractual, no técnico. |
-| 3 | **Subir a Supabase Pro ($25/mes)** | Ángel | Sin respaldos restaurables hoy (G61); techo de 500 MB; 2 proyectos gratuitos ya en uso. |
+| 3 | **Subir a Supabase Pro ($25/mes)** | Ángel | Sin respaldos restaurables hoy (G61); techo de 500 MB; 2 proyectos gratuitos ya en uso. **G73 añade un motivo de seguridad:** "Leaked Password Protection" es exclusiva de Pro — el intento de activarla devuelve **HTTP 402** (era el item 10). |
 | 4 | **Completar los datos legales de la empresa** (razón social, domicilio fiscal, teléfono) en `app/(public)/legal/privacidad` y `/terminos` | Ángel | El aviso de privacidad hoy no identifica al responsable real de los datos — legalmente incompleto bajo LFPDPPP. |
 | 5 | **Producir ~350-360 reactivos más** (brecha efectiva 333), priorizando **Inglés UNAM (las 4 áreas)** y **las 4 materias vacías de IPN SOCADM** antes que engordar materias que ya están cómodas | Pipeline de contenido | Bloquea 5.1 (Public Launch) directamente y 4.2 (Beta) parcialmente; los dos huecos priorizados son experiencia de producto rota hoy mismo para esos alumnos, no solo un número por debajo de la meta. |
 
@@ -331,12 +331,41 @@ huérfanos, contador Early Bird en 500/500 real.
 
 | # | Acción | Responsable |
 |---|---|---|
-| 9 | `GRANT USAGE ON SCHEMA auth TO acierta_ci; GRANT SELECT (id, email) ON auth.users TO acierta_ci;` — desbloquea los 3 correos programados (resumen semanal parental, racha en riesgo, countdown de examen) | Ángel (SQL en el dashboard de Supabase) |
-| 10 | Habilitar "Leaked Password Protection" en Supabase Auth | Ángel (un toggle) |
-| 11 | Configurar `SENTRY_ORG`/`SENTRY_PROJECT`/`SENTRY_AUTH_TOKEN` para sourcemaps legibles | Ángel |
-| 12 | Corregir la lista de Redirect URLs de Supabase Auth para permitir verificar el registro fuera de producción (`docs/CORREOS_AUTH.md` §7, D7 de G71) | Ángel |
+| ~~9~~ | ✅ **RESUELTO EN G73.** Los 3 correos programados envían de verdad — verificado con el cron real de producción y los 3 mensajes `delivered` en Resend. El SQL que este documento proponía era **inejecutable y además apuntaba al rol equivocado**; ver la nota bajo la tabla. | — |
+| ~~10~~ | 🔴 **NO ES UN TOGGLE: ES EL PLAN.** Intentado en G73; el `PATCH` a la API de Supabase devuelve **HTTP 402 Payment Required** — "Leaked Password Protection" solo existe en Pro. **Deja de ser un item propio y se absorbe en el bloqueador 3** (Supabase Pro). | Ángel (vía bloqueador 3) |
+| 11 | Configurar `SENTRY_ORG`/`SENTRY_PROJECT`/`SENTRY_AUTH_TOKEN` para sourcemaps legibles. **Intentado en G73 y bloqueado**: no hay sesión abierta en sentry.io ni sesión de Google viva, y generar el token exige autenticarse con la contraseña del dueño. `next.config.ts` ya está cableado; del DSN se leyeron los ids numéricos (org `4512036691312640`, proyecto `4512036709203968`). Pasos exactos abajo. | Ángel |
+| ~~12~~ | ✅ **RESUELTO EN G73.** Redirect URLs corregidas con `supabase config push` declarando solo esa propiedad (las otras 17 intactas, comprobado con `config diff`): se conservan `https://yaentre.com/**` y `https://www.yaentre.com/**`, se añaden `https://*-angel011298s-projects.vercel.app/**`, `http://localhost:3000/**` y `http://127.0.0.1:3000/**`. | — |
 | 13 | Re-medir Lighthouse contra `https://yaentre.com` directamente, no solo contra el build local de G62 | Próxima sesión de código |
 | 14 | Filtrar en el onboarding las áreas sin cobertura de contenido suficiente (o priorizar su contenido) — hoy `loadAreasForExam` ofrece IPN SOCADM igual que FISMAT/MEDBIO pese a tener 4 de 7 materias en cero | Próxima sesión de código |
+
+
+> **Nota de G73 sobre el item 9 — por qué el remedio que este documento daba por bueno no habría servido.**
+> El `GRANT USAGE ON SCHEMA auth …` estaba mal por tres razones independientes, y **cualquiera de ellas por sí sola** dejaba los correos
+> exactamente igual de rotos:
+>
+> 1. **Rol equivocado.** El `DATABASE_URL` de producción conecta como **`acierta_prod`**, no `acierta_ci`. Aplicarlo tal cual habría
+>    arreglado CI y dejado producción idéntica — con la satisfacción de haber "cerrado" el item.
+> 2. **Grant inejecutable.** El esquema `auth` lo posee `supabase_admin`; el rol `postgres` (el máximo al que llega el dueño, sea por el
+>    editor SQL del panel o por la API) tiene `U` **sin opción de concesión**. Postgres acepta el GRANT como **no-op sin error**:
+>    `has_schema_privilege` sigue en `false` después de ejecutarlo. G59 §7 ya lo había dicho; el item 9 lo restató igualmente.
+> 3. **Un segundo defecto escondido detrás del primero.** El JOIN comparaba `auth.users.id` (`uuid`) con `user_profiles."userId"` (`text`)
+>    sin cast → `42883 operator does not exist: uuid = text`. Con el privilegio concedido, los correos habrían seguido en cero.
+>
+> La solución real es la migración `0014`: una función `SECURITY DEFINER` propiedad de `postgres` en `app_security`, que expone solo el par
+> (perfil, correo). Detalle en `docs/ESTADO.md` §G73 y en `src/lib/db/auth-users.ts`.
+>
+> **Pasos que quedan para el item 11 (Sentry), ya reducidos a lo mecánico:**
+> `sentry.io → Settings → Account → API → Auth Tokens → Create New Token`, con los scopes `project:releases` y `org:read`. Luego:
+>
+> ```bash
+> npx vercel env add SENTRY_ORG production
+> npx vercel env add SENTRY_PROJECT production
+> npx vercel env add SENTRY_AUTH_TOKEN production
+> npx vercel --prod
+> ```
+>
+> Los slugs de org y proyecto se leen en la URL del dashboard de Sentry (`sentry.io/organizations/<org>/projects/<project>/`); los ids
+> numéricos equivalentes, extraídos del DSN de producción, son org `4512036691312640` y proyecto `4512036709203968`.
 
 ### ⚪ Solo verificable en su momento
 
@@ -363,10 +392,15 @@ hallazgo verificado en esta sesión:
    alumno de UNAM que estudie Inglés, o cualquier alumno que elija la rama
    IPN SOCADM, encuentra hoy un diagnóstico/práctica vacíos en la mayoría de
    sus materias — sin ningún aviso que lo explique.
-5. **Riesgo de comunicación parental silenciosamente rota:** el padre que
-   se vincule hoy nunca recibirá el resumen semanal por correo que el
-   producto le promete (F-06) — sin que nadie, ni el padre ni el equipo,
-   reciba un error que lo delate.
+5. ~~**Riesgo de comunicación parental silenciosamente rota**~~ — **eliminado
+   en G73.** Los 3 correos programados envían de verdad, verificado con el
+   cron real de producción y los mensajes `delivered` en Resend. En su lugar,
+   G73 destapó y corrigió un riesgo peor del mismo tipo: **el limitador de
+   tasa distribuido de G65 nunca funcionó en producción** (grant concedido a
+   `acierta_ci` y no a `acierta_prod`, con fallo abierto por diseño), así que
+   el freno de fuerza bruta sobre el login, la recuperación de contraseña y
+   el canje del código de vinculación de un menor llevaba meses inerte sin
+   que ninguna sonda lo delatara.
 6. **Riesgo de decidir a ciegas:** sin NPS de beta cerrada ni retención de
    licencias Early Bird reales, cualquier decisión de "estamos listos" se
    basaría en que el código pasa pruebas, no en que usuarios reales

@@ -259,13 +259,31 @@ producción: desarrollo local, despliegues de vista previa de Vercel y la prueba
 E2E `registro → onboarding → diagnóstico → tablero`, que por eso no puede
 correr en local.
 
-**Remedio (acción del dueño, una línea).** Authentication → URL Configuration →
-**Redirect URLs**, agregar el origen desde el que se vaya a correr:
+**Remedio — ✅ APLICADO EN G73 (8-sep-2026).** La lista de Redirect URLs del
+proyecto es hoy:
 
 | Para qué | Entrada |
 |---|---|
-| Desarrollo local y E2E | `http://localhost:3000/**` |
+| Producción | `https://yaentre.com/**` |
+| Producción (www) | `https://www.yaentre.com/**` |
 | Vistas previa de Vercel | `https://*-angel011298s-projects.vercel.app/**` |
+| Desarrollo local y E2E | `http://localhost:3000/**` |
+| Desarrollo local (loopback) | `http://127.0.0.1:3000/**` |
+
+Se aplicó con el CLI, no por el panel, para no tocar nada más por accidente:
+
+```bash
+# supabase/config.toml del directorio de trabajo declara SOLO auth.additional_redirect_urls
+npx supabase config diff --project-ref fumluvvzskhdxcyljbmx   # revisar antes
+npx supabase config push --project-ref fumluvvzskhdxcyljbmx
+```
+
+`config push` deja intactas las propiedades que el archivo no declara (lo
+confirmó el propio comando: «17 remote properties … left unchanged»), así que
+el Site URL, el SMTP de Resend y los límites de tasa no se movieron. **Correr
+`config diff` primero no es opcional**: un `config.toml` generado por
+`supabase init` trae valores de plantilla —un `site_url` de localhost, por
+ejemplo— que un push no interactivo escribiría encima del ajuste real.
 
 **Regla general:** la lista de Redirect URLs tiene que contener **todos** los
 orígenes desde los que la app llegue a mandar correos de autenticación. La
