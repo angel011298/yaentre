@@ -9,7 +9,10 @@
 > sesión, no por lo que dicen los documentos de fases anteriores.
 >
 > Fecha de este veredicto: **7 de septiembre de 2026**. Última fase de
-> código: **G71**. Este documento **supera y reemplaza** a
+> código: **G71**. **Actualizado el 8 de septiembre de 2026 con los
+> resultados de G73 y G73b** — los puntos afectados están marcados en su
+> propia fila; el veredicto global (NO-GO en las tres puertas, por decisiones
+> de negocio y no por código) no cambia. Este documento **supera y reemplaza** a
 > `docs/LAUNCH_CHECKLIST.md` (snapshot del 27 de julio de 2026, F24) como la
 > fuente vigente — ese archivo se conserva sin tocar como registro histórico
 > de dónde estaba el proyecto entonces.
@@ -400,7 +403,17 @@ hallazgo verificado en esta sesión:
    `acierta_ci` y no a `acierta_prod`, con fallo abierto por diseño), así que
    el freno de fuerza bruta sobre el login, la recuperación de contraseña y
    el canje del código de vinculación de un menor llevaba meses inerte sin
-   que ninguna sonda lo delatara.
+   que ninguna sonda lo delatara. **G73b cerró ese riesgo y su clase**
+   (`docs/AUDITORIA_SEGURIDAD.md §18`): los tres limitadores están
+   **verificados bloqueando de verdad contra `https://yaentre.com`** con un
+   navegador real, todo control que falla abierto produce ahora un evento en
+   Sentry, y los privilegios dejaron de colgar de listas de roles escritas a
+   mano. En el camino apareció un riesgo **mayor** del mismo tipo, también
+   corregido: **toda tabla futura de `public` nacía escribible por `anon`**
+   —la llave pública que viaja en el bundle del navegador— porque el `REVOKE`
+   de F22 solo alcanzó a las tablas que existían aquel día y los privilegios
+   por defecto de Supabase nunca se tocaron. Medido en producción sobre una
+   tabla real antes y después de la migración `0015`.
 6. **Riesgo de decidir a ciegas:** sin NPS de beta cerrada ni retención de
    licencias Early Bird reales, cualquier decisión de "estamos listos" se
    basaría en que el código pasa pruebas, no en que usuarios reales
@@ -433,7 +446,9 @@ producción, y no tiene pendientes de código:
   un bloqueo de CSP real encontrado y corregido esta misma semana.
 - Contenido: 1,143 reactivos verificados, 99.7% de tasa de auto-aprobación
   del pipeline adversarial, 100% con explicación de 3 capas.
-- 556 pruebas unitarias, 5/6 E2E, 8 sondas de seguridad, todo en verde.
+- 569 pruebas unitarias, 5/6 E2E, 11 sondas de seguridad, todo en verde —
+  y, desde G73b, los controles de fuerza bruta y de aislamiento verificados
+  por su EFECTO contra producción real, no por lectura de código.
 
 **El código no es el bloqueador. Lo es el calendario de decisiones de
 negocio que el propio dueño tiene que tomar — y, mientras tanto, ~350
@@ -449,6 +464,21 @@ pnpm security:authz && pnpm security:isolation && pnpm security:abuse
 pnpm security:time-integrity && pnpm security:headers && pnpm security:deps
 pnpm content:coverage      # conteo real de reactivos por institución/área/materia
 ```
+
+Y, desde G73b, las dos sondas que verifican por EFECTO en vez de por código.
+Ambas exigen el `DATABASE_URL` **de producción** (`vercel env pull`), porque un
+verde con el rol local `acierta_ci` es exactamente el que tuvieron G65-G72
+mientras el limitador estaba muerto:
+
+```bash
+DATABASE_URL=<produccion> pnpm security:grants
+DATABASE_URL=<produccion> G73B_PROBE_PASSWORD=<temporal> pnpm security:live
+```
+
+`security:live` ataca `https://yaentre.com` con un navegador real y exige ver
+el bloqueo en pantalla en login, recuperación de contraseña y canje del código
+parental. Requiere fijar temporalmente la contraseña de las cuentas
+`rlsprobe.*@acierta-test.mx` y **restaurar el hash original al terminar**.
 
 Y repetir la lectura de `docs/PRD_Acierta_v1.0.md §14` punto por punto
 contra lo que realmente exista en ese momento — no contra este documento,

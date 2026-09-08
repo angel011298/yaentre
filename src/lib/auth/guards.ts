@@ -4,6 +4,7 @@ import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db/prisma';
 import { isOnboardingComplete } from '@/lib/onboarding/steps';
+import { reportControlFailure } from '@/lib/observability/report';
 import { AuthError } from './errors';
 import { createSupabaseServerClient } from './supabase-server';
 
@@ -33,8 +34,13 @@ export const requireUser = cache(async function requireUser(): Promise<RequireUs
       data: { user },
     } = await supabase.auth.getUser();
     authUser = user;
-  } catch {
-    // Proveedor de auth inalcanzable: se trata igual que "sin sesión".
+  } catch (err) {
+    // Proveedor de auth inalcanzable: se trata igual que "sin sesión" — fallar
+    // CERRADO es lo correcto aquí y no se toca. Pero un Auth caído se ve desde
+    // dentro exactamente igual que "nadie tenía sesión": sin este reporte, una
+    // caída del proveedor sale a producción como un cierre de sesión masivo
+    // sin una sola alerta (G73b).
+    reportControlFailure('auth_session', 'fail-closed', err);
     authUser = null;
   }
 

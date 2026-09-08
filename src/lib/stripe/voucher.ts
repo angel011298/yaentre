@@ -1,5 +1,6 @@
 import 'server-only';
 import { getStripe } from './client';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 /**
  * URL del comprobante hospedado por Stripe para un pago asíncrono pendiente:
@@ -30,7 +31,7 @@ export async function getHostedVoucherUrl(checkoutSessionId: string): Promise<st
     }
     return null;
   } catch (err) {
-    console.warn('[stripe/voucher] No se pudo obtener el comprobante', checkoutSessionId, err);
+    reportSilentDegradation('billing_voucher', err, { checkoutSessionId });
     return null;
   }
 }

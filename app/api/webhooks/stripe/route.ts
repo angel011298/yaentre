@@ -5,6 +5,7 @@ import { handleStripeEvent, type HandleResult } from '@/lib/stripe/webhook';
 import { billingStore } from '@/lib/db/billing';
 import { sendEmail } from '@/lib/email/client';
 import { paymentConfirmationEmail } from '@/lib/email/templates';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 /**
  * Webhook de Stripe (F8) — el ÚNICO punto donde se activa el acceso de pago.
@@ -53,7 +54,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // acceso ya se activó/registró — un fallo de correo nunca debe volver
     // este 200 en 500 (Stripe reintentaría una activación que ya aplicó).
     await sendPaymentConfirmationIfApplicable(event, result).catch((err) => {
-      console.error('[stripe/webhook] Falló el correo de confirmación (no bloqueante)', err);
+      // No bloqueante a propósito (el acceso ya se activó), pero un comprador
+      // que pagó y no recibe confirmación abre un ticket: que se sepa antes.
+      reportSilentDegradation('email', err, { stage: 'stripe-confirmation', eventId: event.id });
     });
     return NextResponse.json({ received: true, ...result }, { status: 200 });
   } catch (err) {

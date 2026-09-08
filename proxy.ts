@@ -17,6 +17,7 @@ import {
   matchesPrefix,
   shouldResolveUser,
 } from '@/lib/auth/middleware-policy';
+import { reportControlFailure } from '@/lib/observability/report';
 
 // F20 tarea 5: límite básico de tasa en las rutas de API. Se excluyen los
 // webhooks (autenticados por firma HMAC de Stripe, no por volumen — un
@@ -152,8 +153,13 @@ export async function proxy(request: NextRequest) {
       data: { user: fetchedUser },
     } = await supabase.auth.getUser();
     user = fetchedUser;
-  } catch {
-    // Supabase inalcanzable: se trata como "sin sesión" en vez de tumbar el sitio.
+  } catch (err) {
+    // Supabase inalcanzable: se trata como "sin sesión" en vez de tumbar el
+    // sitio — fallar CERRADO es lo correcto y no se toca. G73b: pero una caída
+    // del proveedor de Auth se ve desde dentro EXACTAMENTE igual que "nadie
+    // tenía sesión", así que sin este reporte saldría a producción como un
+    // cierre de sesión masivo sin una sola alerta.
+    reportControlFailure('auth_session', 'fail-closed', err, { pathname, capa: 'middleware' });
     user = null;
   }
 

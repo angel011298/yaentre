@@ -20,6 +20,7 @@ import {
   type FinishReason,
   type SubmitResponse,
 } from '@/lib/sessions/scoring';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 /** Modos con un límite de tiempo REAL que replica un examen cronometrado —
  *  a diferencia de TOPIC_DRILL/AREA_PRACTICE, cuyo `timeLimitSecs` (4h) solo
@@ -531,7 +532,7 @@ export async function finishSession(params: {
       currentStreak,
     });
   } catch (err) {
-    console.error('[gamification] computeSessionCelebration falló', { userProfileId: session.userProfileId, err });
+    reportSilentDegradation('gamification', err, { userProfileId: session.userProfileId });
   }
 
   // F20 tarea 2: el fin de un simulacro es "el indicador más importante del

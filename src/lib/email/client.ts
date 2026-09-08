@@ -1,5 +1,6 @@
 import 'server-only';
 import { Resend } from 'resend';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 /**
  * Cliente de correo — SOLO servidor (F16 tarea 8). `import 'server-only'`
@@ -37,17 +38,47 @@ export interface SendEmailInput {
   html: string;
 }
 
-export type SendEmailMode = 'sent' | 'logged';
+/**
+ * `sent`   — Resend lo aceptó (hay id de mensaje).
+ * `logged` — no hay credencial: modo desarrollo, se registra en consola. Es un
+ *            resultado legítimo, no un fallo.
+ * `failed` — HABÍA credencial y el envío falló. G73b: antes esto se devolvía
+ *            como `logged` con `ok: true`, indistinguible de lo anterior.
+ */
+export type SendEmailMode = 'sent' | 'logged' | 'failed';
 
 export interface SendEmailResult {
+  /** `false` SOLO cuando había credencial y el envío realmente falló. */
   ok: boolean;
   mode: SendEmailMode;
 }
 
+/**
+ * ── G73b: por qué esta función dejó de mentir ───────────────────────────────
+ *
+ * Hasta G73 los tres caminos —enviado, sin credencial y reventado— devolvían
+ * `{ ok: true }`. Sumado a que el runner del cron aísla cada job con
+ * `Promise.allSettled`, la consecuencia era que `{"streakRisk":0,…}` significa
+ * EXACTAMENTE lo mismo si no había destinatarios que si Resend devolvió 401
+ * todo el día. Ese es el mismo patrón que mantuvo el limitador de tasa inerte
+ * durante meses: un fallo que devuelve éxito no se puede detectar desde fuera.
+ *
+ * Lo que NO cambia: sigue sin lanzar NUNCA. Ningún flujo de negocio (activar
+ * un pago, cerrar una sesión, correr el cron) puede depender de que el
+ * proveedor de correo esté arriba. Lo que cambia es que el fallo ahora viaja
+ * en el resultado Y produce un evento en Sentry.
+ */
 export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult> {
   const client = getResendClient();
   if (!client) {
     console.log('[email:logged]', { to: input.to, subject: input.subject });
+    // En producción, "no hay credencial" no es modo desarrollo: es correo que
+    // nadie va a recibir. Se reporta como degradación, no como normalidad.
+    if (process.env.VERCEL_ENV === 'production') {
+      reportSilentDegradation('email', new Error('RESEND_API_KEY ausente en producción'), {
+        subject: input.subject,
+      });
+    }
     return { ok: true, mode: 'logged' };
   }
 
@@ -59,14 +90,12 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
       html: input.html,
     });
     if (error) {
-      console.error('[email] Resend devolvió un error, se registra en log en su lugar', error);
-      console.log('[email:logged]', { to: input.to, subject: input.subject });
-      return { ok: true, mode: 'logged' };
+      reportSilentDegradation('email', error, { subject: input.subject, stage: 'resend-error' });
+      return { ok: false, mode: 'failed' };
     }
     return { ok: true, mode: 'sent' };
   } catch (err) {
-    console.error('[email] Falló el envío, se registra en log en su lugar', err);
-    console.log('[email:logged]', { to: input.to, subject: input.subject });
-    return { ok: true, mode: 'logged' };
+    reportSilentDegradation('email', err, { subject: input.subject, stage: 'throw' });
+    return { ok: false, mode: 'failed' };
   }
 }

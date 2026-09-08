@@ -1,5 +1,6 @@
 import 'server-only';
 import { prisma } from '@/lib/db/prisma';
+import { reportControlFailure } from '@/lib/observability/report';
 
 /**
  * Límite de tasa DISTRIBUIDO (G65). Sustituye —para los puntos sensibles— al
@@ -151,13 +152,31 @@ export async function consumeRateLimit(
     `;
     row = rows[0];
   } catch (err) {
-    // La base caída no debe convertir un login legítimo en un 500. Se registra
-    // y se deja pasar: el límite es una capa de defensa, no el guard de auth.
-    console.error('[rate-limit] No se pudo reclamar el intento', { scope, err });
+    // ── G73b: SIGUE FALLANDO ABIERTO, PERO YA NO EN SILENCIO ────────────────
+    //
+    // La decisión de fallar abierto se conserva a propósito: una base caída no
+    // debe convertir el login de un alumno legítimo en un 500 la víspera de su
+    // examen. El límite es una capa de defensa, no el guard de autenticación.
+    //
+    // Lo que cambia es que ahora el fallo GRITA. Durante meses este mismo
+    // `catch` se tragó un `42501 permission denied` en CADA intento de login,
+    // recuperación y canje de código parental en producción —el rol real es
+    // `acierta_prod` y la migración 0013 solo concedió a `acierta_ci`— y el
+    // único testigo era un `console.error` en una función que respondía 200.
+    // Un solo evento en Sentry lo habría delatado el primer día.
+    reportControlFailure('rate_limit', 'fail-open', err, { scope, limit, weight });
     return { allowed: true, hits: 0, retryAfterSecs: 0 };
   }
 
-  if (!row) return { allowed: true, hits: 0, retryAfterSecs: 0 };
+  if (!row) {
+    // `RETURNING` sin filas sobre un `INSERT … ON CONFLICT DO UPDATE` no puede
+    // pasar: si pasa, el contador no contó y el intento quedó sin cobrar.
+    reportControlFailure('rate_limit', 'fail-open', new Error('RETURNING sin filas'), {
+      scope,
+      limit,
+    });
+    return { allowed: true, hits: 0, retryAfterSecs: 0 };
+  }
 
   if (Math.floor(Math.random() * CLEANUP_SAMPLE) === 0) {
     void sweepExpired();
@@ -190,8 +209,11 @@ async function sweepExpired(): Promise<void> {
       DELETE FROM app_security.rate_limit_hits
        WHERE expires_at < now() - interval '1 hour'
     `;
-  } catch {
-    // Barrido oportunista: si falla, la siguiente llamada lo reintenta.
+  } catch (err) {
+    // Barrido oportunista: si falla, la siguiente llamada lo reintenta — pero
+    // un fallo PERSISTENTE aquí significa que la tabla del limitador crece sin
+    // límite, así que tampoco se calla (G73b).
+    reportControlFailure('rate_limit_sweep', 'degraded', err);
   }
 }
 

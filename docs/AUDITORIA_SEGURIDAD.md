@@ -1502,3 +1502,202 @@ se restauró desde el respaldo, igual que en G65/G66.
 - `app/actions/simulator.ts`, `app/actions/drill.ts` — límites de tasa por
   arranque de sesión.
 - `app/api/adaptive/next-questions/route.ts` — presupuesto diario por peso.
+
+---
+
+## 18. Fallos silenciosos y re-verificación por efecto (G73b — 2026-09-08)
+
+> **Encargo:** G73 encontró, tirando de otro hilo, que el limitador de tasa
+> distribuido de G65 **nunca funcionó en producción**. Esta fase no fue a
+> arreglar ese bug —ya estaba arreglado— sino a buscar **la clase de defecto**
+> que lo hizo posible, y a re-verificar cada control que las auditorías
+> anteriores declararon vivo, mirando su EFECTO contra `https://yaentre.com`
+> en vez de leer su código.
+>
+> Todo lo de abajo se midió contra producción real (proyecto Supabase
+> `fumluvvzskhdxcyljbmx`, despliegue del 8 de septiembre de 2026), con el rol
+> de base de datos **`acierta_prod`** — no con `acierta_ci`, que es
+> precisamente cómo el defecto de G65 sobrevivió a cinco fases.
+
+### 18.1 La firma común
+
+Los tres defectos de G73 y los cuatro que encontró G73b comparten una sola
+firma, y no es "un GRANT mal escrito":
+
+> **Algo se rompe, el producto sigue respondiendo HTTP 200, y no existe
+> ninguna señal que lo delate.**
+
+Fallar abierto suele ser la decisión correcta —una base caída no debe
+convertir el login de un alumno en un 500 la víspera de su examen—. Fallar en
+**silencio** no lo es nunca. La diferencia entre las dos cosas es el aparato
+que se introduce en esta fase: `src/lib/observability/report.ts`.
+
+| | Antes de G73b | Después |
+|---|---|---|
+| Control que falla abierto | `console.error` en una función que responde 200 | `reportControlFailure(control, outcome, err, ctx)` → evento en Sentry, etiquetado y con huella propia |
+| Función que degrada | devuelve éxito indistinguible | `reportSilentDegradation(area, err, ctx)` → aviso en Sentry |
+| `sendEmail` reventado | `{ok:true, mode:'logged'}` | `{ok:false, mode:'failed'}` + reporte (sigue sin lanzar) |
+| Conteo de un job de correo | cuenta destinatarios | cuenta **lo que Resend aceptó** |
+
+`outcome` es obligatorio (`'fail-open' | 'fail-closed' | 'degraded'`): obliga a
+quien escribe el `catch` a decir en voz alta si el control quedó abierto o
+cerrado, en vez de dejarlo implícito.
+
+**Sitios instrumentados (17):** limitador de tasa y su barrido, resolución de
+IP de cliente, validación de sesión (guard *y* middleware), borrado de la
+identidad en Auth, puntuación del simulador, coherencia Stripe↔Subscription,
+firma del enlace de baja, escritura de la preferencia de baja, `sendEmail`,
+resolución de destinatarios, selección adaptativa y sus recálculos, temporada
+de precios, cupo Early Bird, estado de suscripción, comprobante OXXO/SPEI,
+gamificación, PostHog y los jobs del cron.
+
+### 18.2 Hallazgo A — listas de roles codificadas (corregido, migración 0015)
+
+La migración 0013 (G65) concedió el limitador a `['acierta_ci','postgres']`.
+Producción conecta como **`acierta_prod`**. G73 lo parcheó añadiendo el rol a
+la lista; G73b quitó **la lista**:
+
+- Rol de grupo **`acierta_app`** (NOLOGIN — no abre pool de Supavisor, así que
+  no toca el límite de G69 §5) que concentra todos los privilegios de la app.
+- La pertenencia se **deriva de `pg_roles`** (convención `acierta_*`), no de un
+  `ARRAY[...]`: un `acierta_staging` futuro nace correcto.
+- Los privilegios por defecto ya no nombran roles de conexión: apuntan al grupo.
+
+**Verificado por efecto:** `pnpm security:grants` con `acierta_prod` →
+`G6-todo-rol-de-la-app-en-el-grupo` verde; `G5-la-app-hereda-lo-nuevo-por-grupo`
+confirma que los `pg_default_acl` mencionan `acierta_app` y no `acierta_ci`.
+
+### 18.3 Hallazgo B — toda tabla futura de `public` nacía escribible por `anon`
+
+**El hallazgo más grave de esta fase, y de la misma familia.**
+
+La migración 0009 (F22) hizo `REVOKE INSERT, UPDATE, DELETE, TRUNCATE ON ALL
+TABLES IN SCHEMA public FROM anon, authenticated`. Correcto — y de alcance
+**único**: `ON ALL TABLES` solo toca las tablas que existen ese día. Los
+**privilegios por defecto** nunca se cambiaron, y en un proyecto Supabase
+conceden `arwdDxtm` a `anon` y `authenticated` sobre cada tabla nueva.
+
+Medido antes de la corrección, creando una tabla como `postgres` (que es como
+se aplicaron 0012, 0013 y 0014):
+
+```
+momento          | anon_insert | anon_update | anon_delete | anon_truncate | rls
+ANTES DE 0015    | true        | true        | true        | true          | false
+DESPUES DE 0015  | false       | false       | false       | false         | false
+```
+
+`anon` es el rol de la llave pública que viaja en el bundle del navegador.
+Cualquier tabla añadida después del lanzamiento habría nacido escribible por
+cualquiera, y el `REVOKE` de F22 ya no estaría ahí para taparlo. Las 28 tablas
+actuales están limpias **por casualidad histórica**: no se ha creado ninguna
+desde F22.
+
+Corregido en 0015 con `ALTER DEFAULT PRIVILEGES` para todos los creadores
+alcanzables. **Residual documentado:** los privilegios por defecto de
+`supabase_admin` sí siguen dando escritura a `anon`, y **no son alterables**
+desde este proyecto (`postgres` no es miembro suyo — el mismo muro que el
+`GRANT ... ON SCHEMA auth` de G73). Ese rol no crea tablas de la aplicación;
+`security:grants` lo informa como aviso y **no** lo pinta en rojo, para no
+fabricar un rojo incorregible que enseñe a ignorar la sonda (G69 §8.4).
+
+> ⚠️ RLS sigue siendo responsabilidad de cada migración: la tabla de prueba
+> nació con `relrowsecurity = false`. Los privilegios ya no la abren, pero una
+> tabla nueva sin su `ENABLE ROW LEVEL SECURITY` sigue siendo un descuido
+> posible.
+
+### 18.4 Hallazgo C — el secreto de respaldo del enlace de baja
+
+`unsubscribeSecret()` era `process.env.CRON_SECRET || 'dev-only-insecure-...'`.
+Esa cadena de respaldo **está escrita en el repositorio**: si `CRON_SECRET`
+faltara en producción, cualquiera podría firmar un enlace de baja para el
+`userProfileId` que quisiera y apagar las notificaciones de otro usuario — y
+todo respondería 200. Hoy `CRON_SECRET` sí está configurado en producción
+(comprobado en las variables reales), así que no fue explotable; el patrón sí
+era idéntico al de G65. El respaldo se conserva (rompería el desarrollo local)
+pero usarlo en producción dispara `reportControlFailure`.
+
+### 18.5 Hallazgo D — un comando documentado que no existía
+
+`pnpm security:time-integrity` llevaba desde G67 documentado en `CLAUDE.md`
+**sin entrada en `package.json`**. Una verificación que no se puede ejecutar
+nunca da rojo. Añadida y ejecutada: 4/4 en verde contra producción.
+
+### 18.6 Re-verificación de los controles de G65-G67, por su efecto
+
+Sondas nuevas: `pnpm security:grants` (privilegios por comportamiento, con el
+rol real) y `pnpm security:live` (ataque con navegador real contra
+`https://yaentre.com`).
+
+| Control | Evidencia observada en producción |
+|---|---|
+| Fuerza bruta en **login** | intentos con contraseña incorrecta → error genérico; al agotar el presupuesto de 8 aparece *«Demasiados intentos de inicio de sesión. Espera 10 minutos»* |
+| Fuerza bruta en **recuperación de contraseña** | solicitudes 1-4 → respuesta genérica que no filtra si el correo existe; la 5.ª bloqueada (presupuesto 4) |
+| Fuerza bruta en el **canje del código parental** | canjes 1-6 → *«Código inválido o expirado»*; el 7.º → *«Demasiados intentos con códigos inválidos. Espera 10 minutos»* |
+| **Aislamiento entre cuentas** | alumno A pide `/rest/v1/user_profiles` con su JWT real → **1 fila, la suya**; `PATCH` del perfil ajeno → **HTTP 403 `42501`**; alumno B ve **0** `session_answers` ajenas |
+| RLS / PostgREST (G65) | `security:isolation`: **22/22** intentos ilegítimos bloqueados |
+| Autorización de la app (G65) | `security:authz`: **10/10** bloqueados, incluida la fuga de clave entre sesiones |
+| Sesiones y tokens (G65) | `security:session`: S1-S5 verdes. **S6 sigue en ámbar**: Supabase Auth acepta 25 fallos seguidos sin 429 — que es *por qué* existe nuestro limitador, ahora verificado vivo |
+| Cabeceras (G65) | `security:headers`: **12/12** contra la URL pública |
+| Contador distribuido (G65) | `security:ratelimit`: 6/6, incluida atomicidad con 30 llamadas concurrentes |
+| Abuso del plan gratuito (G67) | `security:abuse`: **8/8** |
+| Tiempo del examen server-side (G67) | `security:time-integrity`: **4/4** |
+| Integridad del simulador (G67) | `security:simulator`: 0 fugas de clave en 24 respuestas de red; reloj del cliente manipulado 3 600 s → el servidor consumió 8 s contra 9 s reales |
+| Correos programados (G73) | `verify:emails`: 5/5 destinatarios resueltos con `acierta_prod` |
+
+### 18.7 Prueba de que las pruebas detectan
+
+Un verde solo vale si el rojo es alcanzable. Se comprobó en cuatro niveles:
+
+1. **Base de datos.** `REVOKE USAGE ON SCHEMA app_security FROM acierta_app,
+   acierta_prod, acierta_ci` → `security:grants` pinta `G1` (`hits [0,0,0]`),
+   `G2` (*«el intento 9 de 8 SIGUIÓ PERMITIDO»*) y `G3` en rojo. Restaurado.
+2. **Producción, de punta a punta.** Con ese mismo `REVOKE` puesto, se
+   reprodujo **el estado exacto en que estuvo el producto de G65 a G73**:
+   9 logins fallidos sin bloqueo, 7 canjes de código parental sin bloqueo,
+   5 recuperaciones sin bloqueo — mientras el aislamiento seguía verde.
+   Restaurado y re-verificado en verde.
+3. **La nueva instrumentación.** Durante esa ventana, los logs de la función
+   de producción registraron el evento estructurado que antes no existía:
+
+   ```
+   POST /login 200
+     [control_failure] rate_limit { outcome: 'fail-open', scope: 'SIGN_IN',
+       limit: 8, weight: 1, err: ... 42501 permission denied for schema app_security }
+   ```
+
+   Con `scope: 'PASSWORD_RESET'` y `PARENT_LINK_REDEEM` en sus rutas. Ese es
+   el evento que llega a Sentry con `tag: control_failure` y huella propia —
+   y el que habría delatado el defecto de G65 **el primer día**. Nótese el
+   `200`: por eso nadie lo vio nunca.
+4. **Unit tests.** `tests/security/silent-failures.test.ts` (13 casos).
+   Mutación comprobada: devolviendo `sendEmail` a su comportamiento anterior
+   (`ok:true` ante un fallo de Resend), 2 casos pasan a rojo. Restaurado.
+
+También se corrigió un **falso rojo** propio: la primera versión de
+`security:live` esperaba a `[role="alert"]`, y Next.js inyecta en cada página
+un `<div id="__next-route-announcer__" role="alert">` con el título de la ruta.
+Ese elemento está siempre presente y visible, así que la espera se satisfacía
+antes de que la Server Action respondiera y la sonda reportó los tres
+limitadores rotos **estando los tres vivos**. Un falso rojo es tan inservible
+como un falso verde: la sonda ahora espera por el TEXTO concreto que el
+control debe producir, cubriendo tanto el desenlace normal como el bloqueo.
+
+### 18.8 Higiene
+
+Las contraseñas temporales de las cuentas sonda (`rlsprobe.*`, `e2e.sim@`) se
+restauraron **hash a hash, byte a byte**, verificado por consulta posterior.
+Los cubos del limitador que las sondas consumieron se borraron por clave
+exacta. `verify:cleanup --apply` dejó la base en su estado esperado
+(5 perfiles, 1 suscripción, 0 pagos, 0 vínculos, 0 licencias Early Bird
+consumidas). La tabla canario de la prueba de privilegios se creó y se borró
+dentro de la misma comprobación.
+
+### 18.9 Lo que esta fase NO cierra
+
+- El **rol `supabase_admin`** conserva privilegios por defecto que abrirían una
+  tabla nueva a `anon` (§18.3). No es alterable desde este proyecto.
+- **RLS en tablas futuras** sigue dependiendo de que cada migración lo active.
+- **S6** (Supabase Auth sin 429 propio) sigue en ámbar por diseño del
+  proveedor; nuestro limitador es la mitigación, y ahora está verificado vivo.
+- El **muro suave de cuentas múltiples** (G67 §17.4) sigue con su riesgo
+  residual: un atacante con muchas IPs distintas.

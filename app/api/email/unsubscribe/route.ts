@@ -5,6 +5,7 @@ import { unsubscribeSecret } from '@/lib/email/links';
 import { setNotificationPreference } from '@/lib/db/notifications';
 import { consumeRateLimit } from '@/lib/rate-limit/store';
 import { resolveClientIp } from '@/lib/rate-limit/client-ip';
+import { reportControlFailure } from '@/lib/observability/report';
 
 /**
  * Enlace de baja (F16 tarea 9). Ruta PÚBLICA a propósito — quien la abre
@@ -60,7 +61,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     await setNotificationPreference(userProfileId, type as NotificationType, false);
   } catch (err) {
-    console.error('[email/unsubscribe] No se pudo guardar la preferencia', { userProfileId, type, err });
+    // El usuario ejerció su derecho a no recibir el correo y no se guardó.
+    // Repetirlo sin registrar significa seguir mandándole correo que pidió no
+    // recibir, sin que nadie lo sepa (G73b).
+    reportControlFailure('unsubscribe_write', 'degraded', err, { userProfileId, type });
     return page('No pudimos procesar tu baja ahora. Intenta abrir el enlace de nuevo en un momento.');
   }
   return page('Listo — ya no recibirás este tipo de correo.');

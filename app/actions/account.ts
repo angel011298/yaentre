@@ -7,6 +7,7 @@ import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import { getSupabaseAdmin } from '@/lib/auth/supabase-admin';
 import { anonymizeAndDeletePersonalData } from '@/lib/db/account';
 import type { ActionState } from '@/lib/auth/types';
+import { reportControlFailure } from '@/lib/observability/report';
 
 /**
  * Eliminar cuenta (F17 tarea 3). Confirmación FUERTE: escribir el correo
@@ -48,7 +49,12 @@ export async function deleteAccountAction(
   try {
     await getSupabaseAdmin().auth.admin.deleteUser(authUser.id);
   } catch (err) {
-    console.error('[account] No se pudo eliminar la identidad de Auth', err);
+    // G73b: la anonimización local ya corrió, pero la identidad en Auth sigue
+    // viva. Eso es un borrado de datos INCOMPLETO —un derecho ARCO ejercido a
+    // medias, con datos de un menor de por medio— y hasta ahora su único
+    // rastro era un `console.error` mientras el usuario veía "cuenta
+    // eliminada". Se sigue sin bloquear al usuario, pero ya no es invisible.
+    reportControlFailure('account_deletion', 'degraded', err, { profileId });
   }
 
   const supabase = await createSupabaseServerClient();

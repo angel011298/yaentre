@@ -2,6 +2,7 @@ import type { ThemePref } from '@/lib/profile/theme';
 import { prisma } from './prisma';
 import { getActiveSubscription } from './paywall';
 import { getStripe } from '@/lib/stripe/client';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 /**
  * Orquestación de la pantalla de perfil (F17): lecturas/escrituras chicas y
@@ -140,7 +141,7 @@ export async function loadPlanStatus(userProfileId: string): Promise<PlanStatus>
       const stripeSub = await getStripe().subscriptions.retrieve(sub.stripeSubscriptionId);
       cancelAtPeriodEnd = stripeSub.cancel_at_period_end;
     } catch (err) {
-      console.error('[profile] No se pudo leer el estado de la suscripción en Stripe', err);
+      reportSilentDegradation('billing_status', err);
     }
   }
 

@@ -1,5 +1,6 @@
 import 'server-only';
 import { headers } from 'next/headers';
+import { reportControlFailure } from '@/lib/observability/report';
 import { resolveClientIp, UNKNOWN_IP } from './client-ip';
 
 /**
@@ -14,7 +15,12 @@ export async function currentClientIp(): Promise<string> {
   try {
     const h = await headers();
     return resolveClientIp((name) => h.get(name));
-  } catch {
+  } catch (err) {
+    // Fallar hacia el cubo compartido es lo SEGURO (más restrictivo, nunca
+    // menos), pero no es gratis: si esto ocurriera de forma sostenida, TODOS
+    // los usuarios compartirían un solo presupuesto por IP y unos bloquearían
+    // a otros. Se reporta para que esa degradación sea visible (G73b).
+    reportControlFailure('client_ip', 'fail-closed', err);
     return UNKNOWN_IP;
   }
 }

@@ -39,6 +39,7 @@ import {
   isTimeExceeded,
   parseQuestionOptions,
 } from '@/lib/sessions/scoring';
+import { reportControlFailure } from '@/lib/observability/report';
 
 /**
  * Orquestación del simulador de examen en línea (F12). Reusa TODO el motor de
@@ -619,10 +620,12 @@ export async function recordSimulatorSync(input: SimulatorSyncInput): Promise<Si
       // Correctitud SIEMPRE server-side (guardrail CLAUDE.md).
       scored.push({ ...answer, isCorrect: isAnswerCorrect(options, answer.selectedOption) });
     } catch (err) {
-      console.error('[simulator/sync] Reactivo no puntuable, se omite del lote', {
+      // G73b: omitir un reactivo del lote cambia el RESULTADO del examen del
+      // alumno sin avisarle ni a él ni a nadie. Es un fallo de puntuación, no
+      // ruido de sincronización.
+      reportControlFailure('simulator_scoring', 'degraded', err, {
         sessionId: session.id,
         questionId: answer.questionId,
-        err,
       });
     }
   }

@@ -6,6 +6,7 @@ import { isStreakAtRisk } from '@/lib/gamification/streak-signals';
 import { isMondayInMexico } from '@/lib/notifications/schedule';
 import { sendEmail } from '@/lib/email/client';
 import { buildUnsubscribeUrl } from '@/lib/email/links';
+import { reportSilentDegradation } from '@/lib/observability/report';
 import {
   examCountdownEmail,
   parentWeeklySummaryEmail,
@@ -27,6 +28,23 @@ import {
 const EXAM_COUNTDOWN_MILESTONES = [30, 15, 7, 1] as const;
 const ONE_DAY_MS = 24 * 3600 * 1000;
 
+/**
+ * G73b — el modo de fallo exacto de F-06: `getAuthEmails` devolviendo MENOS
+ * correos de los que se le pidieron. Cuando reventaba por privilegios lanzaba
+ * (y el `allSettled` lo aplanaba a 0); cuando simplemente no resuelve a nadie,
+ * el bucle hace `continue` en cada destinatario y el job termina en verde con
+ * `sent = 0`. Un correo programado que no encuentra a quién escribirle no es
+ * un día tranquilo: es una avería.
+ */
+function reportUnresolvedRecipients(job: string, expected: number, resolved: number): void {
+  if (resolved >= expected) return;
+  reportSilentDegradation(
+    'email_recipients',
+    new Error(`${expected - resolved} de ${expected} destinatarios sin correo resoluble`),
+    { job, expected, resolved }
+  );
+}
+
 export async function runStreakRiskJob(now: Date = new Date()): Promise<number> {
   const streaks = await prisma.streakRecord.findMany({
     where: { currentStreak: { gt: 0 } },
@@ -44,6 +62,7 @@ export async function runStreakRiskJob(now: Date = new Date()): Promise<number> 
   if (targets.length === 0) return 0;
 
   const emails = await getAuthEmails(targets.map((t) => t.userProfileId));
+  reportUnresolvedRecipients('streakRisk', targets.length, emails.size);
 
   let sent = 0;
   for (const t of targets) {
@@ -53,8 +72,9 @@ export async function runStreakRiskJob(now: Date = new Date()): Promise<number> 
       days: t.currentStreak,
       unsubscribeUrl: buildUnsubscribeUrl(t.userProfileId, 'STREAK_RISK'),
     });
-    await sendEmail({ to, subject, html });
-    sent++;
+    // G73b: solo cuenta lo que Resend ACEPTÓ. Antes se incrementaba pase lo
+    // que pase, así que el conteo del cron no distinguía un envío de un fallo.
+    if ((await sendEmail({ to, subject, html })).ok) sent++;
   }
   return sent;
 }
@@ -84,6 +104,7 @@ export async function runExamCountdownJob(now: Date = new Date()): Promise<numbe
   if (targets.length === 0) return 0;
 
   const emails = await getAuthEmails(targets.map((t) => t.userProfileId));
+  reportUnresolvedRecipients('examCountdown', targets.length, emails.size);
 
   let sent = 0;
   for (const t of targets) {
@@ -94,8 +115,9 @@ export async function runExamCountdownJob(now: Date = new Date()): Promise<numbe
       examName: t.examName,
       unsubscribeUrl: buildUnsubscribeUrl(t.userProfileId, 'EXAM_COUNTDOWN'),
     });
-    await sendEmail({ to, subject, html });
-    sent++;
+    // G73b: solo cuenta lo que Resend ACEPTÓ. Antes se incrementaba pase lo
+    // que pase, así que el conteo del cron no distinguía un envío de un fallo.
+    if ((await sendEmail({ to, subject, html })).ok) sent++;
   }
   return sent;
 }
@@ -116,6 +138,7 @@ export async function runParentWeeklySummaryJob(now: Date = new Date()): Promise
   if (targets.length === 0) return 0;
 
   const emails = await getAuthEmails(targets.map((t) => t.parentProfileId));
+  reportUnresolvedRecipients('parentWeeklySummary', targets.length, emails.size);
 
   let sent = 0;
   for (const t of targets) {
@@ -135,8 +158,9 @@ export async function runParentWeeklySummaryJob(now: Date = new Date()): Promise
       recentSimulations: result.data.recentSimulations,
       unsubscribeUrl: buildUnsubscribeUrl(t.parentProfileId, 'PARENT_WEEKLY'),
     });
-    await sendEmail({ to, subject, html });
-    sent++;
+    // G73b: solo cuenta lo que Resend ACEPTÓ. Antes se incrementaba pase lo
+    // que pase, así que el conteo del cron no distinguía un envío de un fallo.
+    if ((await sendEmail({ to, subject, html })).ok) sent++;
   }
   return sent;
 }
@@ -156,9 +180,13 @@ export async function runDailyNotificationJobs(
     runParentWeeklySummaryJob(now),
   ]);
 
+  // G73b — `Promise.allSettled` es correcto (un job caído no debe tumbar a los
+  // otros dos), pero convertía un rechazo en un `0` idéntico al de "hoy no
+  // tocaba mandar nada". Ese aplanamiento es lo que dejó a F-06 rota en
+  // silencio desde G59 hasta G73. El job sigue aislado; el rechazo ya no.
   const value = (r: PromiseSettledResult<number>, label: string): number => {
     if (r.status === 'fulfilled') return r.value;
-    console.error(`[notifications] job "${label}" falló`, r.reason);
+    reportSilentDegradation('scheduled_job', r.reason, { job: label });
     return 0;
   };
 

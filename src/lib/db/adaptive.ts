@@ -1,6 +1,7 @@
 import type { ConfidenceLevel } from '@prisma/client';
 import { unstable_cache } from 'next/cache';
 import { prisma } from './prisma';
+import { reportSilentDegradation } from '@/lib/observability/report';
 import {
   loadAnswerHistory,
   loadRecentlyAnsweredQuestionIds,
@@ -276,26 +277,23 @@ export async function onSessionFinished(userProfileId: string): Promise<void> {
   try {
     history = await loadAnswerHistory(userProfileId);
   } catch (err) {
-    console.error('[adaptive] no se pudo leer el historial; cada paso lo pedirá aparte', {
-      userProfileId,
-      err,
-    });
+    reportSilentDegradation('adaptive_recompute', err, { userProfileId, stage: 'historial' });
   }
 
   try {
     await recomputeWeakTopics(userProfileId, history);
   } catch (err) {
-    console.error('[adaptive] recomputeWeakTopics falló', { userProfileId, err });
+    reportSilentDegradation('adaptive_recompute', err, { userProfileId, stage: 'weakTopics' });
   }
   try {
     await recomputeLearningProfile(userProfileId, history);
   } catch (err) {
-    console.error('[adaptive] recomputeLearningProfile falló', { userProfileId, err });
+    reportSilentDegradation('adaptive_recompute', err, { userProfileId, stage: 'learningProfile' });
   }
   try {
     await recomputeStreak(userProfileId);
   } catch (err) {
-    console.error('[adaptive] recomputeStreak falló', { userProfileId, err });
+    reportSilentDegradation('adaptive_recompute', err, { userProfileId, stage: 'streak' });
   }
 }
 
@@ -390,11 +388,10 @@ export async function selectNextAdaptiveQuestions(
     });
     return { questionIds, fallbackUsed: false };
   } catch (err) {
-    console.error('[adaptive] selección adaptativa falló, usando respaldo aleatorio', {
-      userProfileId,
-      areaId,
-      err,
-    });
+    // G73b: el motor adaptativo ES el producto. Caer al respaldo ALEATORIO y
+    // no decírselo a nadie convierte la ruta personalizada en un sorteo sin
+    // que ninguna métrica lo note — el alumno solo ve reactivos.
+    reportSilentDegradation('adaptive_selection', err, { userProfileId, areaId, fallback: 'random' });
     const questionIds = selectRandomFallback(pool, excludeQuestionIds, count);
     return { questionIds, fallbackUsed: true };
   }
@@ -439,11 +436,7 @@ export async function selectSubjectAdaptiveQuestions(
     const questionIds = selectAdaptiveQuestions({ questions: pool, topicTier, excludeQuestionIds, count });
     return { questionIds, fallbackUsed: false };
   } catch (err) {
-    console.error('[adaptive] selección por materia falló, usando respaldo aleatorio', {
-      userProfileId,
-      subjectId,
-      err,
-    });
+    reportSilentDegradation('adaptive_selection', err, { userProfileId, subjectId, fallback: 'random' });
     const questionIds = selectRandomFallback(pool, excludeQuestionIds, count);
     return { questionIds, fallbackUsed: true };
   }

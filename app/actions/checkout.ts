@@ -10,6 +10,7 @@ import { getPlanPricing, stripePriceEnvVar } from '@/lib/stripe/pricing';
 import { createPendingSubscription, resolveEffectiveSeason } from '@/lib/db/billing';
 import type { ActionResult } from '@/lib/sessions/schemas';
 import { trackServerEvent } from '@/lib/analytics/server';
+import { reportControlFailure } from '@/lib/observability/report';
 
 /**
  * Inicio de checkout (F8). Reglas críticas:
@@ -159,10 +160,13 @@ export async function startCheckoutAction(
         typeof session.customer === 'string' ? session.customer : session.customer?.id,
     });
   } catch (err) {
-    console.error('[checkout] Sesión de Stripe creada sin Subscription local', {
+    // G73b: el usuario puede estar a un clic de PAGAR una sesión de Stripe que
+    // no tiene fila local que activar. El webhook la rechazará y el job de
+    // reconciliación no la verá (solo mira PENDING): dinero cobrado sin acceso.
+    // Merece una alerta, no una línea de log.
+    reportControlFailure('payment_consistency', 'degraded', err, {
       checkoutSessionId: session.id,
       userProfileId: profileId,
-      err,
     });
     return {
       ok: false,

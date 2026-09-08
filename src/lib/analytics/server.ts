@@ -1,6 +1,7 @@
 import 'server-only';
 import { PostHog } from 'posthog-node';
 import type { AnalyticsEventName, AnalyticsEvents } from './events';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 /**
  * Analítica de producto — lado SERVIDOR (F20 tarea 2). Los eventos de negocio
@@ -55,6 +56,6 @@ export async function trackServerEvent<E extends AnalyticsEventName>(
     ph.capture({ distinctId: userProfileId, event, properties });
     await ph.flush();
   } catch (err) {
-    console.error('[analytics] No se pudo enviar el evento a PostHog', { event, err });
+    reportSilentDegradation('analytics', err, { event });
   }
 }

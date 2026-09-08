@@ -16,6 +16,7 @@ import { ParentLinkCard } from '@/components/dashboard/ParentLinkCard';
 import { LinkedParentsCard } from '@/components/profile/LinkedParentsCard';
 import { loadLinkedParents } from '@/lib/db/parent';
 import { getAuthEmails } from '@/lib/db/auth-users';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 export const metadata = { title: 'Mi perfil' };
 
@@ -50,12 +51,19 @@ export default async function PerfilPage() {
 
   // G65: el alumno tiene que poder identificar a quién le está quitando el
   // acceso. El correo del tutor es lo único que lo distingue (el onboarding de
-  // tutor no pide nombre). `getAuthEmails` puede fallar mientras siga
-  // pendiente el grant de `auth.users` (G59 §5) — en ese caso la tarjeta
-  // muestra "Tu tutor" y la desvinculación sigue funcionando igual.
+  // tutor no pide nombre). Si `getAuthEmails` falla, la tarjeta muestra "Tu
+  // tutor" y la desvinculación sigue funcionando igual.
+  //
+  // G73b — este `.catch(() => new Map())` era el otro sitio donde el defecto de
+  // privilegios de F-06 se veía y se tapaba: la página renderizaba perfecta y
+  // el fallo no dejaba rastro en ningún lado. La degradación se conserva; el
+  // silencio no.
   const parentEmails =
     linkedParents.length > 0
-      ? await getAuthEmails(linkedParents.map((p) => p.parentProfileId)).catch(() => new Map<string, string>())
+      ? await getAuthEmails(linkedParents.map((p) => p.parentProfileId)).catch((err: unknown) => {
+          reportSilentDegradation('email_recipients', err, { surface: 'perfil/tutores' });
+          return new Map<string, string>();
+        })
       : new Map<string, string>();
   const parentNames = Object.fromEntries(parentEmails);
 

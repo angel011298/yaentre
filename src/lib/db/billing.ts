@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { Prisma, type PricingSeason, type SubscriptionPlan } from '@prisma/client';
 import { prisma } from './prisma';
+import { reportSilentDegradation } from '@/lib/observability/report';
 import { computeExpiresAt } from '@/lib/stripe/expiry';
 import {
   currentSeason,
@@ -452,7 +453,10 @@ export async function resolveEffectiveSeasonSafe(now: Date): Promise<PricingSeas
   try {
     return await resolveEffectiveSeason(now);
   } catch (err) {
-    console.error('[billing] resolveEffectiveSeason falló, degradando a HIGH_SEASON:', err);
+    // G73b: degradar a temporada alta es la decisión conservadora (nunca
+    // regala un descuento), pero es una decisión sobre CUÁNTO se le cobra a
+    // una persona tomada por un error de base. Eso no puede quedar en un log.
+    reportSilentDegradation('pricing_season', err, { fallback: 'HIGH_SEASON' });
     return 'HIGH_SEASON';
   }
 }
@@ -467,7 +471,9 @@ export async function earlyBirdLicensesRemainingSafe(): Promise<number | null> {
   try {
     return await earlyBirdLicensesRemaining();
   } catch (err) {
-    console.error('[billing] earlyBirdLicensesRemaining falló:', err);
+    // `null` = "no sabemos cuántas quedan"; la UI lo trata como si no hubiera
+    // contador. Indistinguible de un cupo agotado si no se reporta (G73b).
+    reportSilentDegradation('pricing_early_bird', err);
     return null;
   }
 }
