@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-09-13 · Última fase ejecutada: **G79 (COMPLETADA — verificación ciega de los 40 reactivos de Historia de México que compuso G78: **40/40 auto-aprobados**, IPN SOCADM sube de 32% a 56% y el banco a 1 223 servibles)**. Modelo real `claude-opus-5`. Ver §G79 abajo.
+Última actualización: 2026-09-13 · Última fase ejecutada: **G80 (COMPLETADA — 40 reactivos de Geografía, IPN SOCADM: física, humana, política, de México y cartografía)**. Modelo real `claude-sonnet-5`. Ver §G80 abajo.
+
+<details><summary>Historial: G79 (2026-09-13)</summary>
+
+Última actualización: 2026-09-13 · Última fase ejecutada: **G79 (COMPLETADA — verificación ciega de los 40 reactivos de Historia de México que compuso G78: 40/40 auto-aprobados, IPN SOCADM sube de 32% a 56% y el banco a 1 223 servibles)**. Modelo real `claude-opus-5`.
+
+</details>
 
 <details><summary>Historial: G77 (2026-09-13)</summary>
 
@@ -385,6 +391,158 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G80 — Lote de reactivos: Geografía, IPN SOCADM (2026-09-13)
+
+> Segunda materia en cero que cierra esta rama, tras Historia de México
+> (G78/G79). Modelo real `claude-sonnet-5`. **40 reactivos insertados con
+> `isVerified=false`** en los 5 temas sembrados de Geografía, IPN SOCADM —
+> la materia que, una vez verificada, deja sola al área a las puertas del
+> umbral de 70% (ver §6).
+
+### 1. Por qué esta materia
+
+G79 dejó anotado que, de las tres materias en cero que mantenían a IPN
+SOCADM en `COMING_SOON` (Historia Universal 4, Geografía 4, Civismo/Derecho
+3), cubrir **cualquiera de las dos de peso 4** movía más el porcentaje que
+la de peso 3. Esta fase toma Geografía.
+
+### 2. Temario y anclaje: sin `SourceChunk`, TEMARIO_ONLY explícito
+
+Se consultaron los 5 temas sembrados de la materia
+(`prisma/seed/ipn.ts::generateTopicsSocadm`) contra la DB, confirmado por
+consulta directa: los 5 tienen **0 `SourceChunk`** y 0 reactivos previos.
+El temario real difiere del que describía el encargo («física, humana,
+económica y de México») — el seed no tiene un tema de «económica» aparte,
+sino **Geografía política** y **Cartografía**; el contenido de geografía
+económica (sectores productivos, comercio, globalización) se ubicó dentro
+de Geografía humana, que es donde ese contenido corresponde en la
+bibliografía estándar. Sin material fuente que citar, los 40 reactivos se
+compusieron desde el temario oficial y se insertaron con `sourceChunks: []`
+→ `groundingStatus = TEMARIO_ONLY` en los 40.
+
+| Tema | Reactivos | topicId |
+|---|---|---|
+| Geografía física | 9 | `cmrr1ptz400ez11qdq5i6xd6e` |
+| Geografía humana | 9 | `cmrr1pueg00f111qde5yui70o` |
+| Geografía política | 7 | `cmrr1putv00f311qdvdm1gamr` |
+| Geografía de México | 10 | `cmrr1pv9400f511qdv4jlnxjz` |
+| Cartografía | 5 | `cmrr1pvod00f711qdcg5129wz` |
+
+La distribución no es uniforme a propósito: Geografía de México lleva más
+reactivos por su peso en el examen real y por ser el tema con más
+subtemas verificables (relieve, hidrografía, población, minería,
+petróleo, biodiversidad, fronteras); Cartografía, con solo 5 conceptos
+núcleo (escala, proyecciones, coordenadas, curvas de nivel, GPS), lleva
+menos sin perder profundidad por tema.
+
+### 3. Aplicando G77 de verdad — medido con `analyzeLot`, no a ojo
+
+Mismo proceso documentado por G78: contenido y opciones (identificadas por
+CONTENIDO, no por letra) en `build-data.mjs`; un script separado
+(`docs/content-batches/g80-ipn-socadm-geografia/build.mjs`) baraja las 4
+opciones de cada reactivo con Fisher-Yates usando `crypto.randomInt`, de
+forma independiente por reactivo.
+
+**La primera corrida de `build.mjs` SÍ falló la validación de lote** — no
+por el contenido, sino por el azar de la muestra: la letra "D" cayó como
+correcta en solo 10.0% de los 40 reactivos, por debajo del piso de 15% que
+exige `POSITION_SKEW` para una muestra de este tamaño. Es exactamente el
+comportamiento que el chequeo existe para atrapar (una muestra de 40 tiradas
+independientes puede, por azar, desviarse de la banda 15-40% en alguna
+letra) y no un patrón de redacción: se volvió a correr `build.mjs` —que
+solo re-aleatoriza las posiciones, el contenido de `build-data.mjs` no
+cambia— y la segunda tirada dio A9/B12/C9/D10 (22.5%-30%), dentro de banda.
+Ninguna posición se decidió a mano; ambas tiradas usaron `crypto.randomInt`
+igual, la primera simplemente no pasó el chequeo estadístico y se
+descartó, como corresponde.
+
+Longitud de las 4 opciones, medida desde la primera redacción (no hubo que
+reescribir por sesgo esta vez): `longestShare=32.5%`, `shortestShare=22.5%`
+(n=40), `meanRatio=0.99` — sano y por debajo del umbral de advertencia
+(40%) sin necesitar una segunda pasada de ajuste como en G78.
+
+### 4. Validación de lote — cero violaciones tras la segunda tirada
+
+```
+Total de reactivos: 40
+Distribución de posición: {"A":9,"C":9,"B":12,"D":10}   (22.5%-30%, dentro de 15-40%)
+Sesgo de longitud: clave=más-larga 32.5%, clave=más-corta 22.5% (n=40), razón media 0.99
+Patrones de orden detectados: 0
+✅ Sin violaciones.
+```
+
+`content:insert` corrió con `--lot-dir` apuntando a los 5 archivos del lote
+(el chequeo de sesgo de posición y de longitud necesita ver el conjunto
+completo). 0 rechazados por formato/Zod/KaTeX en los 40; 0 duplicados de
+enunciado.
+
+### 5. Exactitud factual
+
+Los 40 reactivos se verificaron uno por uno contra datos geográficos
+consolidados (INEGI, censo 2020, cifras de producción minera y petrolera):
+altitud del Pico de Orizaba (>5,600 m, el más alto del país, no el
+Popocatépetl); 32 entidades federativas incluida la Ciudad de México desde
+la reforma de 2016 (no «31 estados y un DF»); población de México según el
+censo 2020 (poco más de 126 millones); México como primer productor
+mundial de plata; extracción petrolera concentrada en la Sonda de Campeche
+y otras plataformas del Golfo; el Bravo como río más largo del país frente
+al Usumacinta como el de mayor caudal (dos datos distintos, a menudo
+confundidos); fronteras terrestres solo con Estados Unidos, Guatemala y
+Belice; y la Sierra Madre Occidental/Oriental como los dos sistemas
+montañosos que enmarcan la Altiplanicie. Ningún reactivo de esta fase
+depende de `SourceChunk` (TEMARIO_ONLY), así que la exactitud recae
+enteramente en esta verificación previa a la inserción — la verificación
+ciega (`content:blind-batch`, próxima fase) es la segunda pasada
+adversarial independiente que exige el PRD §8.
+
+### 6. `content:guard`: antes y después — el mismo patrón de G75/G78
+
+| Métrica | Antes (G79) | Después (G80) |
+|---|---|---|
+| IPN SOCADM — peso cubierto | 14/25 (56%) ⛔ | **14/25 (56%) ⛔ — sin cambio todavía** |
+| Geografía — sirve | 0 | 0 (40 insertados, `isVerified=false`) |
+
+`content:guard` cuenta el pool **servible** (`isVerified=true`); estos 40
+reactivos están en la cola de verificación adversarial, así que el
+porcentaje del área no se mueve todavía. En cuanto la verificación ciega
+apruebe el lote, Geografía pasa de `sirve=0` a `sirve=40` contra una cuota
+de solo 4 (`necesita=4`) — la satisface de sobra, y **el área sube de 56%
+a 72% (18+/25), cruzando por sí sola el umbral de 70%** y pasando de
+`COMING_SOON` a `READY` sin necesitar Historia Universal ni Civismo/Derecho
+— exactamente el cálculo que G79 dejó anotado en su «Siguiente». Las 4
+aserciones de `content:guard` (P1-P4) siguieron en verde antes y después.
+
+### 7. Banco de contenido
+
+| Métrica | Antes (G79) | Después (G80) |
+|---|---|---|
+| Filas `Question` totales | 1 227 | **1 267** |
+| Servibles (`isVerified=true`) | 1 223 | 1 223 (sin cambio — cola de verificación) |
+| Pendientes de verificación | 0 | **44** (los 40 nuevos + 4 discrepancias históricas) |
+
+`pnpm backup:export` corrido tras la inserción (6 172 filas, 4.23 MB) —
+`backups/content-bank.json` va en este mismo commit (G61).
+
+### 8. Verificación de la fase
+
+| Comando | Resultado |
+|---|---|
+| `content:validate-batch --dir` | ❌ primera tirada (POSITION_SKEW en "D", 10%) → re-generada → ✅ segunda tirada, sin violaciones |
+| `content:insert` ×5 (uno por tema, `--lot-dir` al conjunto) | ✅ 40/40 insertados, lote aprobado sin violaciones |
+| `pnpm content:guard` (antes) | IPN SOCADM 56% ⛔, Geografía `sirve=0` |
+| `pnpm content:guard` (después) | IPN SOCADM 56% ⛔ (sin cambio hasta verificación); ver §6 |
+| `pnpm typecheck` | ✅ |
+| `pnpm lint` | ✅ |
+
+### Siguiente
+
+`pnpm content:blind-batch --topic <cada uno de los 5 topicId>` (o `--all`)
+para la verificación ciega de los 40 — segunda pasada adversarial
+independiente (PRD §8). Solo tras eso `content:guard` reflejará el 72% real
+de IPN SOCADM y el área pasaría a `READY`, sin depender de Historia
+Universal ni de Civismo/Derecho (aunque cerrarlas después sigue sumando
+valor de contenido, ya no es lo que abre el área).
 
 ## G79 — Verificación ciega: Historia de México, IPN SOCADM (lote de G78) (2026-09-13)
 

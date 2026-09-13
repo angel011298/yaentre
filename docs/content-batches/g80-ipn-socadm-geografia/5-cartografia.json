@@ -1,0 +1,227 @@
+[
+  {
+    "stem": "¿Qué indica la escala de un mapa, expresada por ejemplo como 1:50,000?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Que el mapa fue elaborado utilizando 50,000 puntos de referencia satelital distintos.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Que el mapa tiene una antigüedad de 50,000 días desde su fecha de elaboración.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Que una unidad de medida en el mapa equivale a 50,000 de esas unidades en la realidad.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Que el mapa representa exactamente 50,000 kilómetros cuadrados de superficie total.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La escala numérica de un mapa es una razón: 1:50,000 significa que 1 centímetro (o cualquier unidad) medido en el mapa corresponde a 50,000 de esas mismas unidades en el terreno real."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Entre más pequeño el segundo número de esa razón, mayor es el nivel de detalle del mapa pero menor la superficie que puede representar en una misma hoja; por eso un mapa de una ciudad usa una escala mucho más \"grande\" que un mapa de un país entero."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La escala no fija la superficie total representada en kilómetros cuadrados, ni depende del número de puntos de referencia satelital usados, ni tiene relación con la antigüedad del mapa — es una relación de proporción entre distancias."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué distorsión característica presenta la proyección de Mercator en las zonas cercanas a los polos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reduce el tamaño real de las superficies alejadas del ecuador respecto al resto del mapa.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Exagera el tamaño real de las superficies alejadas del ecuador, como Groenlandia.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Distorsiona únicamente los colores del mapa, sin alterar el tamaño de los territorios.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Elimina por completo la posibilidad de trazar rutas de navegación en línea recta.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La proyección de Mercator conserva los ángulos (por eso fue tan útil para la navegación), pero a cambio agranda mucho el área de los territorios alejados del ecuador; Groenlandia se ve casi tan grande como África, cuando en realidad es catorce veces más pequeña."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Este efecto ocurre porque las líneas de longitud, que en la realidad convergen en los polos, se dibujan paralelas entre sí en esta proyección, estirando artificialmente el territorio conforme se acerca a las latitudes altas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El efecto real es que AGRANDA, no reduce, esas superficies; la proyección precisamente permitió trazar rutas de navegación en línea recta con ángulo constante, no las eliminó; y la distorsión afecta el tamaño de los territorios, no solo los colores del mapa."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué mide la longitud geográfica de un punto sobre la superficie terrestre?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Su altura sobre el nivel del mar, medida en metros desde la costa más cercana.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Su distancia angular al ecuador, medida hacia el norte o hacia el sur del planeta.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Su distancia en kilómetros hasta el polo norte geográfico más próximo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Su distancia angular al meridiano de Greenwich, medida al este o al oeste.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La longitud geográfica se mide en grados hacia el este o hacia el oeste tomando como referencia el meridiano de Greenwich (0°), y llega hasta 180° en cada dirección."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Junto con la latitud, que mide la distancia angular al ecuador hacia el norte o el sur, la longitud permite ubicar cualquier punto de la Tierra con un par de coordenadas únicas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La distancia angular al ecuador describe la latitud, no la longitud; la altura sobre el nivel del mar es la altitud, un dato distinto a la ubicación horizontal; y la distancia en kilómetros al polo no es cómo se define ninguna de las dos coordenadas geográficas."
+      }
+    ]
+  },
+  {
+    "stem": "En un mapa topográfico, ¿qué indica que las curvas de nivel aparezcan muy juntas entre sí?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Que el terreno tiene una pendiente pronunciada en esa zona del mapa.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Que el mapa fue elaborado con una escala demasiado pequeña para ese terreno.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Que el terreno es completamente plano en toda esa zona representada.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Que esa zona del mapa corresponde a un cuerpo de agua permanente.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Cada curva de nivel une puntos de igual altitud; cuando varias curvas aparecen muy próximas entre sí, significa que la altura cambia mucho en poca distancia horizontal, es decir, que la pendiente del terreno es pronunciada."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Por el contrario, curvas de nivel muy separadas indican un terreno de pendiente suave o casi plano; leer ese espaciamiento es la forma principal de \"ver\" el relieve en un mapa topográfico sin necesidad de una imagen en tres dimensiones."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Un terreno plano se representa con curvas muy separadas, justo lo contrario de lo descrito; un cuerpo de agua no se identifica por el espaciamiento de curvas de nivel sino por un símbolo propio; y ese espaciamiento depende del relieve real, no de si la escala elegida es pequeña o grande."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué principio se basa un receptor GPS para calcular su ubicación exacta en la superficie terrestre?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En recibir una sola señal satelital que ya contiene la ubicación exacta calculada.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En comparar la temperatura ambiente local con una base de datos climática global.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En medir la intensidad del campo magnético terrestre en el punto donde se ubica.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En triangular su posición a partir de señales de varios satélites simultáneamente.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Un receptor GPS calcula su posición midiendo el tiempo que tarda en llegarle la señal de varios satélites (al menos cuatro) y, a partir de esas distancias, triangula el punto exacto donde se encuentra."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Cuantos más satélites capte el receptor con buena señal, más precisa resulta la ubicación calculada; por eso el GPS funciona peor dentro de edificios o cañones profundos, donde varias señales quedan bloqueadas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El GPS no usa temperatura ambiente ni campo magnético para ubicarse, esos son principios de otros instrumentos (termómetro, brújula); y necesita señales de VARIOS satélites para triangular, no basta con recibir una sola señal."
+      }
+    ]
+  }
+]

@@ -1,0 +1,452 @@
+[
+  {
+    "stem": "¿Qué dos grandes sistemas montañosos recorren México de norte a sur, uno cerca del Pacífico y otro cerca del Golfo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La Sierra Madre Occidental y la Sierra Madre Oriental.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La Sierra Tarahumara y la Sierra de Oaxaca, unidas por el Eje Volcánico Transversal.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La Sierra de San Pedro Mártir y la Sierra de la Laguna, ambas dentro de Baja California.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La Sierra Madre del Sur y la Sierra de Chiapas, paralelas entre el Pacífico y Guatemala.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La Sierra Madre Occidental corre paralela a la costa del Pacífico y la Sierra Madre Oriental paralela al Golfo de México; ambas nacen cerca de la frontera norte y convergen hacia el centro del país con el Eje Volcánico Transversal."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Estas dos sierras determinan buena parte del clima y del relieve del centro-norte de México: entre ambas se extiende la Altiplanicie Mexicana, una región elevada y en su mayoría árida o semiárida."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Sierra Madre del Sur y la de Chiapas están en el sur del país, no recorren todo México de norte a sur; la Sierra Tarahumara es parte de la Occidental, no un sistema aparte; y las sierras de Baja California son locales de esa península, no las dos grandes cadenas nacionales."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es el volcán más alto de México, con una altitud superior a los 5,600 metros?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El Nevado de Toluca, en el centro del Estado de México.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El volcán de Colima, uno de los más activos de todo el país.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El Popocatépetl, en el límite entre el Estado de México, Puebla y Morelos.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El Pico de Orizaba o Citlaltépetl, en el límite entre Veracruz y Puebla.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "El Pico de Orizaba (Citlaltépetl) es la montaña más alta de México y el tercer pico más alto de Norteamérica, con una altitud que supera los 5,600 metros sobre el nivel del mar."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "A diferencia del Popocatépetl o el volcán de Colima, el Citlaltépetl es un volcán inactivo desde hace siglos, por lo que su relevancia geográfica actual es sobre todo su altura, no su actividad eruptiva."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Popocatépetl es más bajo (poco más de 5,400 metros) y es uno de los volcanes activos más vigilados del país; el Nevado de Toluca y el volcán de Colima tienen altitudes bastante menores a la del Pico de Orizaba."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué tipo de clima predomina en la mayor parte del territorio del norte y centro-norte de México?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Climas cálido-húmedos, con lluvias abundantes durante todo el año.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Climas secos y semisecos, propios de zonas áridas y semiáridas.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Climas fríos de alta montaña, con nieve permanente en la mayoría de sus sierras.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Climas templados subhúmedos, similares en todo el territorio nacional.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Cerca de la mitad del territorio mexicano, concentrado sobre todo en el norte y el centro-norte, tiene clima seco o semiseco, resultado de su posición entre dos sierras que bloquean la humedad del mar y de su latitud subtropical."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Esto contrasta con el sur y las costas del país, donde predominan climas cálido-húmedos y tropicales gracias a la mayor cercanía al ecuador y a la exposición directa a masas de aire húmedo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El clima cálido-húmedo con lluvia todo el año es más propio del sureste, no del norte árido; la nieve permanente solo se da en las cumbres más altas, no en la mayoría de las sierras; y el territorio nacional no tiene un clima \"similar\" en todas sus regiones."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué característica distingue al río Usumacinta dentro de la hidrografía mexicana?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Es el río de mayor caudal del país, aunque no el más largo.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Es el río más largo del país, al recorrer casi toda la frontera con Estados Unidos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Es el único río mexicano que no forma parte de ninguna cuenca hidrográfica reconocida.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Es el único río de México que nace y desemboca por completo fuera del territorio nacional.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "El Usumacinta, que nace en Guatemala y recorre el sureste mexicano hasta el Golfo de México, transporta el mayor volumen de agua de cualquier río del país, gracias a las abundantes lluvias de la región donde se ubica."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "El río más largo de México es en realidad el Bravo, que recorre buena parte de la frontera con Estados Unidos; longitud y caudal son dos medidas distintas, y en México no coinciden en el mismo río."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Usumacinta sí desemboca en México, no fuera de su territorio; no es el más largo, ese lugar corresponde al Bravo; y como cualquier río, forma parte de una cuenca hidrográfica reconocida, la del Usumacinta-Grijalva."
+      }
+    ]
+  },
+  {
+    "stem": "¿En cuántas entidades federativas está dividido el territorio de México en la actualidad?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En 31 estados y un Distrito Federal con un estatus jurídico distinto al de los estados.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En 24 entidades federativas, agrupadas en ocho grandes regiones económicas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En 36 entidades federativas, tras la más reciente reforma constitucional del país.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "32 entidades federativas, incluida la Ciudad de México.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "México está dividido en 32 entidades federativas: 31 estados más la Ciudad de México, que desde la reforma constitucional de 2016 tiene el mismo estatus de entidad federativa que los demás estados."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Antes de esa reforma, la capital del país era el Distrito Federal, con un régimen jurídico distinto (dependiente directamente de los poderes federales); ese esquema ya no está vigente."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El esquema de \"31 estados y un Distrito Federal\" describe la situación anterior a 2016, ya no la actual; 24 entidades no corresponde a ninguna división vigente del país; y no ha habido una reforma reciente que eleve el número a 36."
+      }
+    ]
+  },
+  {
+    "stem": "De acuerdo con el censo de población de 2020, ¿aproximadamente cuántos habitantes tiene México?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Poco más de 126 millones de habitantes.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Poco más de 90 millones de habitantes.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Alrededor de 150 millones de habitantes.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Cerca de 200 millones de habitantes.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "El Censo de Población y Vivienda 2020 del INEGI registró poco más de 126 millones de personas viviendo en México, cifra que lo ubica entre los diez países más poblados del mundo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "La población mexicana ha crecido de forma sostenida durante décadas, aunque a un ritmo cada vez más lento por la caída de la tasa de natalidad respecto a la de mediados del siglo XX."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Noventa millones fue aproximadamente la población de México varias décadas atrás, no en 2020; y tanto 150 como 200 millones sobreestiman considerablemente la cifra real registrada por el censo más reciente."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué lugar se ubica México dentro de la producción mundial de plata?",
+    "options": [
+      {
+        "id": "A",
+        "text": "No figura entre los diez principales productores mundiales de ese metal.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Es el primer productor mundial de plata desde hace varios años consecutivos.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Es el segundo productor mundial, detrás de un país sudamericano vecino.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Ocupa un lugar secundario, muy por detrás de los principales productores mundiales.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "México ha sido, de forma consistente en los últimos años, el mayor productor mundial de plata, gracias a yacimientos importantes en estados como Zacatecas, Chihuahua y Durango."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "La minería de plata es una actividad económica histórica del país, que se remonta a la época colonial, y sigue siendo hoy un componente relevante de las exportaciones mineras mexicanas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "México no ocupa un lugar secundario ni queda fuera del top mundial en este metal; y tampoco es el segundo lugar, un puesto que suelen ocupar otros países, mientras México se mantiene consistentemente en el primer sitio."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué región se concentra la mayor parte de la extracción petrolera de México?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En las cuencas sedimentarias de la Sierra Madre Occidental.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En la Sonda de Campeche y otras plataformas marinas del Golfo de México.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "En los yacimientos terrestres de la península de Baja California.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En los campos petroleros ubicados dentro de la meseta central del país.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La mayor parte del petróleo mexicano se extrae de yacimientos marinos en el Golfo de México, particularmente en la Sonda de Campeche, la región petrolera más productiva del país desde hace décadas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Esto ha hecho que buena parte de la infraestructura petrolera nacional (plataformas, terminales de exportación, refinerías costeras) se concentre en los estados del Golfo, como Campeche, Tabasco y Veracruz."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Baja California no concentra la producción petrolera nacional; la Sierra Madre Occidental es una zona montañosa sin explotación petrolera relevante; y la meseta central del país tampoco es una región petrolera significativa."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué se clasifica a México entre los llamados países 'megadiversos' del mundo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque tiene la mayor superficie de selva tropical continua de todo el continente.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Porque concentra un porcentaje muy alto de las especies conocidas del planeta.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Porque su territorio abarca una mayor extensión que la de cualquier otro país megadiverso.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Porque es el único país megadiverso ubicado por completo en el hemisferio norte.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "México se ubica entre los países con mayor riqueza biológica del planeta porque, pese a no ser de los más extensos, alberga un porcentaje muy alto de las especies conocidas de plantas y animales, incluidas muchas endémicas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Esta diversidad se explica por su compleja variedad de climas y relieves —desde desiertos hasta selvas tropicales— que crean muchos ambientes distintos en un mismo territorio."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La mayor selva continua de América es la amazónica, no la mexicana; la extensión territorial de México es menor a la de otros países megadiversos como Brasil; y no todo su territorio está en el hemisferio norte de forma exclusiva respecto a otros países megadiversos, además de que ese no es el criterio que define la categoría."
+      }
+    ]
+  },
+  {
+    "stem": "¿Con qué países comparte México sus fronteras terrestres?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Con Estados Unidos, Guatemala, Belice y Cuba, esta última por su cercanía marítima.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Con Estados Unidos al norte, y con Honduras y El Salvador al sureste.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Únicamente con Estados Unidos, ya que el resto de sus límites son costas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Con Estados Unidos al norte, y con Guatemala y Belice al sureste.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "México limita al norte con Estados Unidos y al sureste con Guatemala y Belice; el resto de su perímetro está bordeado por el Golfo de México, el mar Caribe y el océano Pacífico."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "La frontera con Estados Unidos es la más extensa y la más transitada del país, mientras que las fronteras sur son más cortas pero igualmente relevantes para el comercio y la migración regional."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Honduras y El Salvador no comparten frontera terrestre con México; el país sí tiene otras fronteras terrestres además de la estadounidense; y Cuba, al ser una isla, no comparte frontera terrestre con ningún país, incluido México."
+      }
+    ]
+  }
+]

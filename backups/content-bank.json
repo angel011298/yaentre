@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-13T21:32:03.616Z",
+    "exportedAt": "2026-09-13T21:51:45.769Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -31,11 +31,11 @@
       "Topic": 217,
       "Passage": 16,
       "SourceChunk": 380,
-      "Question": 1227,
+      "Question": 1267,
       "QuestionSourceChunk": 387,
-      "ExplanationLayer": 3681
+      "ExplanationLayer": 3801
     },
-    "totalRows": 6012
+    "totalRows": 6172
   },
   "Institution": [
     {
@@ -97739,6 +97739,2086 @@
       "updatedAt": {
         "$d": "2026-09-13T21:29:15.207Z"
       }
+    },
+    {
+      "id": "cmu0ckejx0001iyxuq78virdz",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "¿Cuál es la capa más externa y delgada de la estructura interna de la Tierra?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La corteza, la capa sólida más delgada sobre la que se asientan continentes y océanos.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El núcleo interno, la esfera sólida más caliente en el centro del planeta.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El núcleo externo, la capa líquida rica en hierro y níquel fundidos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El manto superior, la capa más gruesa y de mayor volumen de todo el planeta.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:47.565Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:47.565Z"
+      }
+    },
+    {
+      "id": "cmu0ckfc90006iyxuity4stu0",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "¿Qué tipo de límite de placas tectónicas se produce cuando dos placas se deslizan lateralmente una respecto a la otra, sin crear ni destruir corteza?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Un límite convergente, donde una placa se hunde bajo la otra en subducción.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un límite de colisión continental, donde ambas placas se pliegan y elevan cordilleras.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Un límite transformante, como el que sigue la falla de San Andrés en California.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Un límite divergente, donde el magma asciende y forma nueva corteza oceánica.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:48.585Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:48.585Z"
+      }
+    },
+    {
+      "id": "cmu0ckg40000biyxuqz7if2pq",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "¿Cómo se forman las montañas de plegamiento como los Andes o el Himalaya?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Por la compresión de capas rocosas entre dos placas que convergen y las pliegan.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Por la acumulación de lava y ceniza expulsadas repetidamente por un mismo volcán.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Por el levantamiento de bloques de corteza entre fallas paralelas verticales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Por la erosión selectiva del viento sobre rocas de distinta dureza durante milenios.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:49.584Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:49.584Z"
+      }
+    },
+    {
+      "id": "cmu0ckgvm000giyxue0gy63vh",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "Además de la latitud, ¿qué otro factor explica que una ciudad situada en la montaña tenga temperaturas más bajas que una ciudad costera a la misma latitud?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La cercanía a una falla geológica activa, que libera calor adicional del subsuelo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La altitud, porque la temperatura del aire desciende conforme aumenta la altura.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La longitud, porque determina cuántas horas de luz solar recibe cada punto del planeta.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La dirección de los vientos dominantes, que enfría siempre las zonas de montaña.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:50.578Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:50.578Z"
+      }
+    },
+    {
+      "id": "cmu0ckhn7000liyxued8ol8hd",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "¿Qué es una cuenca hidrográfica?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La zona costera donde un río se une al mar y forma un delta o un estuario.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El conjunto de presas construidas a lo largo del curso de un río navegable.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El acuífero subterráneo que alimenta los manantiales de una región montañosa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El territorio cuyas aguas de lluvia y deshielo drenan hacia un mismo río o lago.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:51.571Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:51.571Z"
+      }
+    },
+    {
+      "id": "cmu0ckiev000qiyxuszqvrbkc",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "¿Qué caracteriza principalmente a un bioma de selva tropical frente a uno de desierto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Una altitud elevada que reduce la presión atmosférica y la humedad ambiental.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una alternancia marcada entre estaciones muy frías y veranos muy secos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Una combinación de altas temperaturas y lluvias abundantes durante todo el año.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Una vegetación escasa adaptada a suelos volcánicos ricos en minerales.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:52.568Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:52.568Z"
+      }
+    },
+    {
+      "id": "cmu0ckj6v000viyxu8ethf8uj",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "¿Por qué la corriente fría de Humboldt influye en el clima árido de la costa del Perú y el norte de Chile?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque bloquea el paso de los vientos alisios que normalmente traen lluvia del Atlántico.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque desvía hacia el océano abierto toda la humedad que viene desde la cordillera.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque enfría el aire costero y dificulta la formación de lluvias sobre esa franja.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Porque calienta la superficie del mar y provoca evaporación excesiva hacia el interior.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:53.576Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:53.576Z"
+      }
+    },
+    {
+      "id": "cmu0ckjyl0010iyxularqwjqg",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "¿Qué condición es indispensable para que se forme un huracán sobre el océano?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Una plataforma continental poco profunda cercana a la costa donde se forma la tormenta.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una zona de alta presión atmosférica estable que impida el ascenso del aire húmedo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Una superficie oceánica cálida, por encima de los 26 grados centígrados aproximadamente.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Una corriente marina fría que enfríe rápidamente el aire cercano a la superficie.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:54.573Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:54.573Z"
+      }
+    },
+    {
+      "id": "cmu0ckkq80015iyxur3kqdppo",
+      "topicId": "cmrr1ptz400ez11qdq5i6xd6e",
+      "stem": "Según los factores clásicos de formación del suelo, ¿qué papel cumple el clima en ese proceso?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Sustituye a la roca madre como el material a partir del cual se forma todo el suelo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Define únicamente qué cultivos pueden sembrarse, sin intervenir en la formación del suelo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Controla la velocidad de meteorización de la roca madre mediante temperatura y humedad.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Determina de forma exclusiva el color final del suelo, sin influir en su composición.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:49:55.569Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:49:55.569Z"
+      }
+    },
+    {
+      "id": "cmu0ckspa000111jzqfzqq2b4",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿Qué caracteriza a la primera etapa del modelo de transición demográfica?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Tasas de natalidad y mortalidad bajas, con una población estable y envejecida.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Tasas de mortalidad baja y natalidad muy alta, con el mayor crecimiento del modelo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Tasas de natalidad baja y mortalidad alta, con la población en descenso constante.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Tasas de natalidad y mortalidad altas, con un crecimiento poblacional lento.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:05.902Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:05.902Z"
+      }
+    },
+    {
+      "id": "cmu0cktgv000611jz8es4a8cs",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿Qué indica una pirámide de población con base ancha y cúspide angosta?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Una población en declive por una migración masiva de personas en edad fértil.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una población joven con natalidad alta y expectativa de crecimiento futuro.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Una población envejecida donde predominan los adultos mayores sobre los jóvenes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una población estable donde cada grupo de edad tiene un tamaño casi idéntico.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:06.895Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:06.895Z"
+      }
+    },
+    {
+      "id": "cmu0cku8b000b11jzc6wegxbe",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "En el estudio de la migración, ¿qué son los llamados factores de 'expulsión'?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Las condiciones del lugar de origen que empujan a alguien a abandonarlo, como el desempleo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Las políticas migratorias que un gobierno aplica para frenar la entrada de personas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Las condiciones del lugar de destino que atraen a un migrante, como mejores salarios.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los lazos familiares que motivan a alguien a reunirse con parientes en otro país.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:07.883Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:07.883Z"
+      }
+    },
+    {
+      "id": "cmu0ckuzu000g11jzrqau9fxe",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿Qué proceso describe mejor el crecimiento acelerado de las ciudades en países en desarrollo durante el siglo XX?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Una redistribución planificada de la población desde las ciudades hacia el campo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un crecimiento natural exclusivamente por el aumento de nacimientos urbanos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Una política de descentralización que trasladó industrias fuera de las capitales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una migración masiva del campo a la ciudad en busca de empleo e infraestructura.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:08.874Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:08.874Z"
+      }
+    },
+    {
+      "id": "cmu0ckvrf000l11jzbkdjjxun",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿A qué sector económico pertenece la actividad de transformar madera en muebles dentro de una fábrica?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Al sector secundario, porque transforma una materia prima en un producto elaborado.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Al sector terciario, porque el mueble terminado se vende después en una tienda.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Al sector cuaternario, porque requiere diseño especializado y conocimiento técnico.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Al sector primario, porque parte de un recurso natural extraído directamente del bosque.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:09.867Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:09.867Z"
+      }
+    },
+    {
+      "id": "cmu0ckwix000q11jz293oowe7",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿Cuál es un efecto característico de la globalización económica sobre la producción de bienes?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El regreso generalizado a economías cerradas que no dependen de insumos externos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La fragmentación de la producción en distintos países según ventajas de costo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La concentración total de la manufactura mundial en un único país productor.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La eliminación completa del comercio entre países con distinto nivel de desarrollo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:10.858Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:10.858Z"
+      }
+    },
+    {
+      "id": "cmu0ckxau000v11jzlzxjcpnh",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿Cuál es el propósito principal de un tratado de libre comercio entre varios países?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Unificar la moneda oficial que circula en cada uno de los países participantes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Reducir aranceles y otras barreras para facilitar el intercambio de bienes entre ellos.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Prohibir la inversión extranjera dentro del territorio de los países miembros.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Fusionar los gobiernos de los países firmantes en una sola autoridad central.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:11.862Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:11.862Z"
+      }
+    },
+    {
+      "id": "cmu0cky2g001011jzksaoz7lq",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿Qué dimensiones combina el Índice de Desarrollo Humano (IDH) de la ONU para medir el bienestar de un país?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Número de ciudades grandes, densidad poblacional y extensión de la red carretera.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Producto interno bruto total, superficie territorial y tamaño de las fuerzas armadas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Ingreso per cápita, esperanza de vida al nacer y nivel educativo de la población.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Tasa de inflación anual, deuda pública total y volumen de exportaciones petroleras.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:12.856Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:12.856Z"
+      }
+    },
+    {
+      "id": "cmu0ckyu3001511jz5h781v2j",
+      "topicId": "cmrr1pueg00f111qde5yui70o",
+      "stem": "¿Qué distingue a la agricultura de subsistencia de la agricultura comercial?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La de subsistencia se practica solo en grandes extensiones de monocultivo de exportación.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La de subsistencia produce sobre todo para alimentar a la propia familia campesina.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La de subsistencia utiliza exclusivamente maquinaria pesada y semillas modificadas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La de subsistencia depende por completo de sistemas de riego artificial a gran escala.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:13.852Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:13.852Z"
+      }
+    },
+    {
+      "id": "cmu0cl5p400019lzjfw9mxse6",
+      "topicId": "cmrr1putv00f311qdvdm1gamr",
+      "stem": "¿Cuáles son los cuatro elementos que la geografía política reconoce como constitutivos de un Estado?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Población numerosa, recursos naturales abundantes, capital histórica y bandera nacional.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Territorio extenso, ejército numeroso, moneda propia y una sola lengua oficial.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Frontera natural, religión oficial, sistema educativo único y una sola etnia dominante.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Territorio definido, población permanente, gobierno organizado y soberanía reconocida.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:22.744Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:22.744Z"
+      }
+    },
+    {
+      "id": "cmu0cl6gt00069lzjf7h0wpq4",
+      "topicId": "cmrr1putv00f311qdvdm1gamr",
+      "stem": "¿Con qué propósito principal se organiza un país en entidades político-administrativas como estados o provincias?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Para asignar un idioma exclusivo y distinto a cada una de esas divisiones internas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Para distribuir el gobierno y la administración pública en niveles más manejables.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Para separar a la población según su origen étnico dentro del mismo territorio.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Para fijar de forma permanente los límites naturales entre distintos climas del país.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:23.741Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:23.741Z"
+      }
+    },
+    {
+      "id": "cmu0cl78i000b9lzjuy32e8xf",
+      "topicId": "cmrr1putv00f311qdvdm1gamr",
+      "stem": "¿Qué diferencia a una frontera natural de una frontera artificial entre dos países?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La natural es más antigua que la artificial en absolutamente todos los casos conocidos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La natural la establece un tratado internacional, y la artificial la fija un solo país.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La natural siempre coincide con un límite histórico colonial, y la artificial nunca.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La natural sigue un accidente geográfico, como un río o una cordillera, y la artificial no.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:24.738Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:24.738Z"
+      }
+    },
+    {
+      "id": "cmu0cl80a000g9lzj0i6pl6sc",
+      "topicId": "cmrr1putv00f311qdvdm1gamr",
+      "stem": "¿Qué derechos otorga a un país la Zona Económica Exclusiva (ZEE) sobre el mar adyacente a su costa?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La propiedad automática de cualquier isla que se descubra dentro de esa misma franja.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La soberanía plena e ilimitada sobre esas aguas, igual que sobre su territorio terrestre.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El aprovechamiento preferente de los recursos pesqueros y minerales hasta 200 millas náuticas.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El derecho exclusivo a que ningún otro barco navegue jamás por esa franja de océano.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:25.738Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:25.738Z"
+      }
+    },
+    {
+      "id": "cmu0cl8ry000l9lzj0dng8uuu",
+      "topicId": "cmrr1putv00f311qdvdm1gamr",
+      "stem": "¿Por qué un estrecho como el de Ormuz o el de Malaca tiene tanta importancia geopolítica?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque concentra una parte enorme del tránsito marítimo mundial de mercancías o petróleo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Porque ahí se concentra la mayor reserva mundial de agua dulce apta para consumo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Porque en sus orillas se ubican las capitales políticas de las principales potencias.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque ningún país costero ha logrado nunca ejercer soberanía sobre esas aguas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:26.734Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:26.734Z"
+      }
+    },
+    {
+      "id": "cmu0cl9jl000q9lzjk5g44lyi",
+      "topicId": "cmrr1putv00f311qdvdm1gamr",
+      "stem": "¿Cuál es una de las funciones principales de la Organización de las Naciones Unidas?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Fijar de manera obligatoria las fronteras territoriales de todos sus países miembros.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Sustituir a los gobiernos nacionales en la toma de decisiones internas de cada país.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Mediar en conflictos internacionales y promover la cooperación entre los países miembros.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Administrar directamente la economía interna de los países que solicitan su ayuda.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:27.729Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:27.729Z"
+      }
+    },
+    {
+      "id": "cmu0clab8000v9lzjkdfawgje",
+      "topicId": "cmrr1putv00f311qdvdm1gamr",
+      "stem": "¿Cuál es una causa frecuente de disputas territoriales entre países vecinos?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El uso de un alfabeto distinto para escribir la lengua oficial de cada país vecino.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El control sobre recursos naturales o rutas estratégicas ubicadas en la zona en conflicto.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La existencia de un mismo huso horario compartido entre los países involucrados.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La coincidencia en el nombre oficial que ambos países dieron a su moneda nacional.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:28.724Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:28.724Z"
+      }
+    },
+    {
+      "id": "cmu0clh5j0001420krxa3zlix",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿Qué dos grandes sistemas montañosos recorren México de norte a sur, uno cerca del Pacífico y otro cerca del Golfo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La Sierra Madre Occidental y la Sierra Madre Oriental.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La Sierra Tarahumara y la Sierra de Oaxaca, unidas por el Eje Volcánico Transversal.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La Sierra de San Pedro Mártir y la Sierra de la Laguna, ambas dentro de Baja California.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La Sierra Madre del Sur y la Sierra de Chiapas, paralelas entre el Pacífico y Guatemala.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:37.592Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:37.592Z"
+      }
+    },
+    {
+      "id": "cmu0clhxf0006420kqvcttlyl",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿Cuál es el volcán más alto de México, con una altitud superior a los 5,600 metros?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El Nevado de Toluca, en el centro del Estado de México.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El volcán de Colima, uno de los más activos de todo el país.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El Popocatépetl, en el límite entre el Estado de México, Puebla y Morelos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El Pico de Orizaba o Citlaltépetl, en el límite entre Veracruz y Puebla.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:38.595Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:38.595Z"
+      }
+    },
+    {
+      "id": "cmu0clip3000b420kbq4hxr98",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿Qué tipo de clima predomina en la mayor parte del territorio del norte y centro-norte de México?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Climas cálido-húmedos, con lluvias abundantes durante todo el año.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Climas secos y semisecos, propios de zonas áridas y semiáridas.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Climas fríos de alta montaña, con nieve permanente en la mayoría de sus sierras.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Climas templados subhúmedos, similares en todo el territorio nacional.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:39.591Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:39.591Z"
+      }
+    },
+    {
+      "id": "cmu0cljlh000g420k4cp8utun",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿Qué característica distingue al río Usumacinta dentro de la hidrografía mexicana?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Es el río de mayor caudal del país, aunque no el más largo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Es el río más largo del país, al recorrer casi toda la frontera con Estados Unidos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Es el único río mexicano que no forma parte de ninguna cuenca hidrográfica reconocida.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Es el único río de México que nace y desemboca por completo fuera del territorio nacional.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:40.757Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:40.757Z"
+      }
+    },
+    {
+      "id": "cmu0clkd5000l420kaimca1o9",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿En cuántas entidades federativas está dividido el territorio de México en la actualidad?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En 31 estados y un Distrito Federal con un estatus jurídico distinto al de los estados.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En 24 entidades federativas, agrupadas en ocho grandes regiones económicas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En 36 entidades federativas, tras la más reciente reforma constitucional del país.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "32 entidades federativas, incluida la Ciudad de México.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:41.753Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:41.753Z"
+      }
+    },
+    {
+      "id": "cmu0cll4w000q420knjiuz1sg",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "De acuerdo con el censo de población de 2020, ¿aproximadamente cuántos habitantes tiene México?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Poco más de 126 millones de habitantes.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Poco más de 90 millones de habitantes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Alrededor de 150 millones de habitantes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cerca de 200 millones de habitantes.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:42.753Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:42.753Z"
+      }
+    },
+    {
+      "id": "cmu0cllwp000v420kdtk21baq",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿En qué lugar se ubica México dentro de la producción mundial de plata?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "No figura entre los diez principales productores mundiales de ese metal.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Es el primer productor mundial de plata desde hace varios años consecutivos.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Es el segundo productor mundial, detrás de un país sudamericano vecino.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Ocupa un lugar secundario, muy por detrás de los principales productores mundiales.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:43.753Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:43.753Z"
+      }
+    },
+    {
+      "id": "cmu0clmof0010420ketcy0dxz",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿En qué región se concentra la mayor parte de la extracción petrolera de México?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En las cuencas sedimentarias de la Sierra Madre Occidental.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En la Sonda de Campeche y otras plataformas marinas del Golfo de México.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "En los yacimientos terrestres de la península de Baja California.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En los campos petroleros ubicados dentro de la meseta central del país.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:44.751Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:44.751Z"
+      }
+    },
+    {
+      "id": "cmu0clng50015420k6g7p6z8y",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿Por qué se clasifica a México entre los llamados países 'megadiversos' del mundo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque tiene la mayor superficie de selva tropical continua de todo el continente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque concentra un porcentaje muy alto de las especies conocidas del planeta.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Porque su territorio abarca una mayor extensión que la de cualquier otro país megadiverso.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque es el único país megadiverso ubicado por completo en el hemisferio norte.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:45.749Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:45.749Z"
+      }
+    },
+    {
+      "id": "cmu0clo7v001a420ka4m730u3",
+      "topicId": "cmrr1pv9400f511qdv4jlnxjz",
+      "stem": "¿Con qué países comparte México sus fronteras terrestres?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Con Estados Unidos, Guatemala, Belice y Cuba, esta última por su cercanía marítima.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Con Estados Unidos al norte, y con Honduras y El Salvador al sureste.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Únicamente con Estados Unidos, ya que el resto de sus límites son costas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Con Estados Unidos al norte, y con Guatemala y Belice al sureste.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:46.747Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:46.747Z"
+      }
+    },
+    {
+      "id": "cmu0clv7n00011r391aiedx2y",
+      "topicId": "cmrr1pvod00f711qdcg5129wz",
+      "stem": "¿Qué indica la escala de un mapa, expresada por ejemplo como 1:50,000?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Que el mapa fue elaborado utilizando 50,000 puntos de referencia satelital distintos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Que el mapa tiene una antigüedad de 50,000 días desde su fecha de elaboración.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Que una unidad de medida en el mapa equivale a 50,000 de esas unidades en la realidad.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Que el mapa representa exactamente 50,000 kilómetros cuadrados de superficie total.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:55.811Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:55.811Z"
+      }
+    },
+    {
+      "id": "cmu0clvzj00061r39hu6yzdw5",
+      "topicId": "cmrr1pvod00f711qdcg5129wz",
+      "stem": "¿Qué distorsión característica presenta la proyección de Mercator en las zonas cercanas a los polos?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Reduce el tamaño real de las superficies alejadas del ecuador respecto al resto del mapa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Exagera el tamaño real de las superficies alejadas del ecuador, como Groenlandia.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Distorsiona únicamente los colores del mapa, sin alterar el tamaño de los territorios.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Elimina por completo la posibilidad de trazar rutas de navegación en línea recta.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:56.816Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:56.816Z"
+      }
+    },
+    {
+      "id": "cmu0clwr0000b1r39930lji0z",
+      "topicId": "cmrr1pvod00f711qdcg5129wz",
+      "stem": "¿Qué mide la longitud geográfica de un punto sobre la superficie terrestre?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Su altura sobre el nivel del mar, medida en metros desde la costa más cercana.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Su distancia angular al ecuador, medida hacia el norte o hacia el sur del planeta.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Su distancia en kilómetros hasta el polo norte geográfico más próximo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Su distancia angular al meridiano de Greenwich, medida al este o al oeste.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:57.804Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:57.804Z"
+      }
+    },
+    {
+      "id": "cmu0clxih000g1r392p15nq67",
+      "topicId": "cmrr1pvod00f711qdcg5129wz",
+      "stem": "En un mapa topográfico, ¿qué indica que las curvas de nivel aparezcan muy juntas entre sí?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Que el terreno tiene una pendiente pronunciada en esa zona del mapa.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Que el mapa fue elaborado con una escala demasiado pequeña para ese terreno.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Que el terreno es completamente plano en toda esa zona representada.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Que esa zona del mapa corresponde a un cuerpo de agua permanente.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:58.794Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:58.794Z"
+      }
+    },
+    {
+      "id": "cmu0cly9z000l1r399obc3gzr",
+      "topicId": "cmrr1pvod00f711qdcg5129wz",
+      "stem": "¿En qué principio se basa un receptor GPS para calcular su ubicación exacta en la superficie terrestre?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En recibir una sola señal satelital que ya contiene la ubicación exacta calculada.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En comparar la temperatura ambiente local con una base de datos climática global.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En medir la intensidad del campo magnético terrestre en el punto donde se ubica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En triangular su posición a partir de señales de varios satélites simultáneamente.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T21:50:59.783Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T21:50:59.783Z"
+      }
     }
   ],
   "QuestionSourceChunk": [
@@ -129899,6 +131979,966 @@
       "layer": 3,
       "title": "Por qué no las otras opciones",
       "content": "La alternancia significó justo lo contrario a un partido único permanente; las elecciones posteriores continuaron celebrándose con normalidad; y en ningún momento se instauró un gobierno militar transitorio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckejx0002iyxuqsessih9",
+      "questionId": "cmu0ckejx0001iyxuq78virdz",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La corteza es la capa sólida y más delgada de las cuatro capas terrestres, y sobre ella se asientan los continentes (corteza continental, más gruesa) y el fondo oceánico (corteza oceánica, más delgada).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckejx0003iyxuw6r95342",
+      "questionId": "cmu0ckejx0001iyxuq78virdz",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Debajo de la corteza está el manto, la capa de mayor volumen del planeta; más al centro, el núcleo externo líquido genera el campo magnético terrestre, y en el centro mismo está el núcleo interno sólido pese a sus altísimas temperaturas, por la enorme presión que soporta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckejx0004iyxubzog4olv",
+      "questionId": "cmu0ckejx0001iyxuq78virdz",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El manto es mucho más grueso que la corteza, no más delgado; el núcleo externo es líquido, no sólido; y el núcleo interno está en el centro del planeta, no en la superficie — ninguna de las tres es la capa MÁS EXTERNA.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckfc90007iyxuwkex1awf",
+      "questionId": "cmu0ckfc90006iyxuity4stu0",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "En un límite transformante las placas se rozan lateralmente en direcciones opuestas o a distinta velocidad, sin que se genere corteza nueva (como en un límite divergente) ni se destruya corteza vieja (como en uno convergente) — la falla de San Andrés es el ejemplo más citado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckfc90008iyxu9o4l9ey9",
+      "questionId": "cmu0ckfc90006iyxuity4stu0",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Este roce lateral acumula tensión que se libera de forma súbita en sismos, por eso las zonas de falla transformante son sísmicamente muy activas aunque no tengan volcanes asociados, a diferencia de las zonas de subducción.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckfc90009iyxu1j7u5toh",
+      "questionId": "cmu0ckfc90006iyxuity4stu0",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El convergente sí involucra hundimiento de una placa (subducción) y suele producir volcanes; el divergente crea corteza nueva en dorsales oceánicas; y la colisión continental pliega y eleva montañas — ninguno de los tres describe un simple deslizamiento lateral.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckg40000ciyxu6v0oz1xd",
+      "questionId": "cmu0ckg40000biyxuqz7if2pq",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Cuando dos placas convergen, las capas de roca sedimentaria entre ellas se comprimen y se pliegan hacia arriba en lugar de fracturarse, formando cadenas montañosas alargadas como el Himalaya (India-Asia) o los Andes (Nazca-Sudamericana).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckg40000diyxuavliv88a",
+      "questionId": "cmu0ckg40000biyxuqz7if2pq",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "El proceso es lento (millones de años) y sigue activo hoy: el Himalaya crece unos milímetros al año porque la placa india continúa empujando contra la euroasiática.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckg40000eiyxu12r5yx9x",
+      "questionId": "cmu0ckg40000biyxuqz7if2pq",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La acumulación de lava describe un volcán, no una cordillera plegada; el levantamiento entre fallas describe montañas de bloque (horst); y la erosión selectiva esculpe el relieve existente, pero no lo origina.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckgvm000hiyxu2shfj4k4",
+      "questionId": "cmu0ckgvm000giyxue0gy63vh",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "A mayor altitud, la atmósfera es menos densa y retiene menos calor, por lo que la temperatura desciende de forma bastante constante conforme se sube (gradiente térmico vertical), independientemente de la latitud.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckgvm000iiyxuz2g64fib",
+      "questionId": "cmu0ckgvm000giyxue0gy63vh",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Por eso puede haber nieve permanente en montañas cercanas al ecuador (como en los Andes o el Kilimanjaro) mientras la costa, a la misma latitud pero a nivel del mar, tiene clima cálido.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckgvm000jiyxucf0xzi9d",
+      "questionId": "cmu0ckgvm000giyxue0gy63vh",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La longitud no influye en la temperatura, solo en la hora local; una falla activa no calienta el clima de una región entera; y el viento puede enfriar o calentar según de dónde venga, no \"siempre\" hacia el frío.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckhn7000miyxu93x7ccxw",
+      "questionId": "cmu0ckhn7000liyxued8ol8hd",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Una cuenca hidrográfica es el área delimitada por la línea divisoria de aguas (parteaguas) dentro de la cual toda el agua superficial converge hacia un mismo cauce principal, río o lago.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckhn7000niyxutyvrsh2r",
+      "questionId": "cmu0ckhn7000liyxued8ol8hd",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "El concepto es clave para la gestión del agua: lo que ocurre en cualquier punto de una cuenca (deforestación, contaminación) afecta al río que la drena, aunque ese punto esté lejos del cauce principal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckhn7000oiyxu8ubc10bb",
+      "questionId": "cmu0ckhn7000liyxued8ol8hd",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las presas son obras de infraestructura dentro de una cuenca, no la cuenca misma; el delta o estuario es solo la desembocadura; y el acuífero es agua subterránea, distinta del drenaje superficial que define a la cuenca.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckiew000riyxuz5pv3z7g",
+      "questionId": "cmu0ckiev000qiyxuszqvrbkc",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La selva tropical se define por temperaturas altas y estables todo el año junto con precipitaciones abundantes y constantes, condición que sostiene su enorme biodiversidad vegetal y animal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckiew000siyxu32vktg8m",
+      "questionId": "cmu0ckiev000qiyxuszqvrbkc",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "El desierto, en cambio, se define por la escasez de lluvia (menos de 250 mm anuales en la mayoría de las clasificaciones), sin importar si es cálido como el Sahara o frío como el desierto de Atacama en altura.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckiew000tiyxui3qcg15i",
+      "questionId": "cmu0ckiev000qiyxuszqvrbkc",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La vegetación escasa sobre suelo volcánico no es un rasgo distintivo de la selva; la alternancia fría-seca describe más bien un clima de estepa o mediterráneo; y la altitud elevada no es propia de la selva, que suele estar a baja altitud.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckj6v000wiyxun7wz6use",
+      "questionId": "cmu0ckj6v000viyxu8ethf8uj",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La corriente de Humboldt trae agua fría desde el sur, lo que enfría el aire sobre esa franja costera; el aire frío se satura menos de humedad y forma nubes bajas (neblina) en vez de lluvia, dejando la costa muy seca pese a estar junto al mar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckj6v000xiyxuk1i922kf",
+      "questionId": "cmu0ckj6v000viyxu8ethf8uj",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Este efecto, sumado a la sombra orográfica de los Andes, explica que el desierto de Atacama, junto a la costa, sea uno de los lugares más secos del planeta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckj6v000yiyxud78vvodo",
+      "questionId": "cmu0ckj6v000viyxu8ethf8uj",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Una corriente fría no desvía la humedad de la cordillera ni bloquea vientos del Atlántico (esa costa mira al Pacífico); y por definición una corriente FRÍA no calienta el mar ni aumenta la evaporación — es justo el efecto contrario.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckjyl0011iyxums4s4apg",
+      "questionId": "cmu0ckjyl0010iyxularqwjqg",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Un huracán necesita agua oceánica cálida (por lo general arriba de 26°C) que evapore grandes cantidades de humedad; ese aire cálido y húmedo asciende, libera calor al condensarse y alimenta el sistema de baja presión que gira por efecto de la rotación terrestre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckjyl0012iyxuouu3q1ay",
+      "questionId": "cmu0ckjyl0010iyxularqwjqg",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Por eso los huracanes se debilitan rápidamente al tocar tierra o al pasar sobre aguas frías: pierden la fuente de calor y humedad que los mantiene activos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckjyl0013iyxu4r45u0ab",
+      "questionId": "cmu0ckjyl0010iyxularqwjqg",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Una corriente fría o una zona de alta presión estable inhiben, no favorecen, la formación de un huracán; y la profundidad de la plataforma continental no es la condición determinante, que depende de la temperatura superficial del mar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckkq90016iyxueybvey1a",
+      "questionId": "cmu0ckkq80015iyxur3kqdppo",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "El clima (temperatura y precipitación) regula la velocidad con la que la roca madre se rompe física y químicamente en partículas más finas, junto con otros factores como el relieve, los organismos vivos y el tiempo transcurrido.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckkq90017iyxuwpr4clip",
+      "questionId": "cmu0ckkq80015iyxur3kqdppo",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Un clima cálido y húmedo acelera la meteorización química y la actividad biológica, formando suelos más profundos en menos tiempo que un clima frío y seco, donde ese mismo proceso es mucho más lento.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckkq90018iyxuxrrou3vn",
+      "questionId": "cmu0ckkq80015iyxur3kqdppo",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El clima influye en el color y la composición del suelo, pero no los determina \"de forma exclusiva\"; su efecto en qué se puede sembrar es una consecuencia posterior, no su función en la formación del suelo; y la roca madre sigue siendo el material base, el clima solo acelera o frena su transformación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckspa000211jzftj8gq6z",
+      "questionId": "cmu0ckspa000111jzqfzqq2b4",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "En la primera etapa, tanto la natalidad como la mortalidad son altas (por enfermedades, hambrunas, falta de medicina) y se compensan casi entre sí, dejando un crecimiento poblacional lento pese a que nacen muchos niños.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckspa000311jz0okc7ok9",
+      "questionId": "cmu0ckspa000111jzqfzqq2b4",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Este patrón describió a la mayoría de las sociedades preindustriales; el modelo pasa después a una segunda etapa donde la mortalidad cae por mejoras en salud pero la natalidad sigue alta, produciendo el mayor crecimiento poblacional del ciclo completo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckspa000411jz3aopnvvd",
+      "questionId": "cmu0ckspa000111jzqfzqq2b4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Natalidad baja con mortalidad alta describiría una población en franco declive, no la etapa inicial; natalidad y mortalidad bajas describen la última etapa, la más envejecida; y mortalidad baja con natalidad muy alta corresponde a la segunda etapa, no a la primera.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cktgv000711jzqyakmsig",
+      "questionId": "cmu0cktgv000611jz8es4a8cs",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La base de la pirámide representa a los grupos de menor edad; si es ancha, significa que nacen muchos niños cada año, mientras la cúspide angosta indica pocos adultos mayores — el perfil típico de un país con crecimiento demográfico expansivo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cktgv000811jzwypbmcuj",
+      "questionId": "cmu0cktgv000611jz8es4a8cs",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Este tipo de pirámide es común en países en vías de desarrollo con alta fecundidad; a medida que un país envejece, la pirámide tiende a volverse más rectangular o incluso invertida (base angosta, cúspide ancha).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cktgv000911jzbkqjcs2g",
+      "questionId": "cmu0cktgv000611jz8es4a8cs",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Una población envejecida produciría el patrón contrario (base angosta); una pirámide de forma rectangular es la que tiene grupos de tamaño similar; y la emigración masiva de jóvenes adelgazaría la base y los tramos intermedios, no los ensancharía.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cku8b000c11jzcudkl2sb",
+      "questionId": "cmu0cku8b000b11jzc6wegxbe",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Los factores de expulsión (push) son las condiciones negativas del lugar de origen —desempleo, violencia, desastres, falta de servicios— que impulsan a una persona a emigrar de ahí.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cku8b000d11jz8aqbeekk",
+      "questionId": "cmu0cku8b000b11jzc6wegxbe",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Se contrastan con los factores de atracción (pull) del lugar de destino, como mejores salarios, seguridad o educación; casi toda decisión migratoria combina ambos tipos de factores, no solo uno.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cku8b000e11jzrthrpfr2",
+      "questionId": "cmu0cku8b000b11jzc6wegxbe",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las condiciones del destino describen factores de atracción, no de expulsión; las políticas migratorias de un gobierno receptor son una barrera externa, no un factor de expulsión del origen; y los lazos familiares en el destino son también un factor de atracción.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckuzu000h11jzhf7mn5yr",
+      "questionId": "cmu0ckuzu000g11jzrqau9fxe",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La urbanización acelerada del siglo XX en países en desarrollo se explica sobre todo por la migración rural-urbana: la mecanización del campo redujo la necesidad de mano de obra agrícola mientras las ciudades ofrecían empleo industrial y servicios.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckuzu000i11jzyx9qci72",
+      "questionId": "cmu0ckuzu000g11jzrqau9fxe",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Esta migración, sumada al crecimiento natural de la propia población urbana, produjo ciudades que crecieron mucho más rápido que su capacidad de infraestructura, generando asentamientos irregulares en muchas metrópolis.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckuzu000j11jzo67hdxn3",
+      "questionId": "cmu0ckuzu000g11jzrqau9fxe",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El proceso real fue del campo HACIA la ciudad, no al revés; el crecimiento natural urbano existió pero no explica por sí solo el ritmo del proceso; y la descentralización industrial fue una política posterior y parcial, no la causa del crecimiento urbano inicial.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckvrf000m11jzfc9v1ze3",
+      "questionId": "cmu0ckvrf000l11jzbkdjjxun",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "El sector secundario agrupa las actividades de transformación industrial de materias primas en productos terminados; fabricar muebles a partir de madera es un ejemplo clásico de manufactura.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckvrf000n11jzmjxk0zb9",
+      "questionId": "cmu0ckvrf000l11jzbkdjjxun",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "La cadena completa suele cruzar varios sectores: la tala del árbol pertenece al sector primario (extracción), la fabricación del mueble al secundario, y su venta final al terciario — cada eslabón se clasifica por lo que hace, no por el producto final.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckvrf000o11jzzi352c04",
+      "questionId": "cmu0ckvrf000l11jzbkdjjxun",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Extraer la madera del bosque sí sería primario, pero transformarla en mueble ya no lo es; vender el mueble en tienda es una actividad terciaria distinta a fabricarlo; y el diseño especializado no convierte por sí solo una manufactura en actividad cuaternaria.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckwix000r11jzyunbpwmz",
+      "questionId": "cmu0ckwix000q11jz293oowe7",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La globalización permitió fragmentar la producción en \"cadenas globales de valor\": un mismo producto puede diseñarse en un país, fabricar sus componentes en varios más y ensamblarse en otro distinto, según dónde resulte más barato cada paso.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckwix000s11jzmstk6ro1",
+      "questionId": "cmu0ckwix000q11jz293oowe7",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Esto explica por qué un mismo artículo electrónico o automóvil suele llevar la leyenda de estar \"ensamblado\" en un país con partes de otros varios, un patrón prácticamente inexistente antes de la globalización económica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckwix000t11jz8srswrg6",
+      "questionId": "cmu0ckwix000q11jz293oowe7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La globalización no concentra la manufactura en un solo país, sino que la dispersa; tampoco elimina el comercio entre países desiguales, lo intensifica; y aleja a las economías de un modelo cerrado, no las acerca a él.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckxau000w11jzqloamdo7",
+      "questionId": "cmu0ckxau000v11jzlzxjcpnh",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Un tratado de libre comercio busca eliminar o reducir aranceles, cuotas y otras barreras para que los bienes y servicios circulen con más facilidad entre los países firmantes, aumentando el comercio entre ellos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckxau000x11jz8ugzfyvg",
+      "questionId": "cmu0ckxau000v11jzlzxjcpnh",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Es un acuerdo de tipo comercial, no político: los países conservan su propia moneda, su propio gobierno y sus propias leyes; solo acuerdan reglas específicas para el intercambio económico entre ellos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckxau000y11jzwx5njmy5",
+      "questionId": "cmu0ckxau000v11jzlzxjcpnh",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Unificar la moneda corresponde a una unión monetaria, un acuerdo distinto y mucho más profundo; fusionar gobiernos no ocurre en un tratado comercial; y estos tratados suelen fomentar la inversión extranjera entre los firmantes, no prohibirla.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cky2g001111jzsrafghfb",
+      "questionId": "cmu0cky2g001011jzksaoz7lq",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "El IDH combina tres dimensiones del desarrollo humano: una vida larga y saludable (esperanza de vida), acceso a educación (años de escolaridad) y un nivel de vida digno (ingreso per cápita ajustado).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cky2g001211jztepcx56e",
+      "questionId": "cmu0cky2g001011jzksaoz7lq",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Se diseñó justamente para ir más allá de medir solo la riqueza total de un país (como el PIB), reconociendo que dos países con ingresos similares pueden tener niveles de bienestar muy distintos según su salud y educación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cky2g001311jztqt3i5zs",
+      "questionId": "cmu0cky2g001011jzksaoz7lq",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El PIB total, la superficie territorial y el tamaño militar no forman parte del IDH; tampoco la inflación, la deuda pública o las exportaciones petroleras; ni el número de ciudades, la densidad o la red carretera — ninguno de esos indicadores mide bienestar humano directamente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckyu3001611jzgn9obfne",
+      "questionId": "cmu0ckyu3001511jz5h781v2j",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La agricultura de subsistencia tiene como fin principal alimentar a quienes la trabajan y a sus familias, con poco o ningún excedente destinado a la venta; la agricultura comercial, en cambio, se orienta a producir para el mercado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckyu4001711jz1fjcj4dc",
+      "questionId": "cmu0ckyu3001511jz5h781v2j",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Por eso la de subsistencia suele practicarse en parcelas pequeñas con técnicas tradicionales, mientras la comercial tiende a usar mayor extensión, tecnología e insumos para maximizar el rendimiento vendible.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ckyu4001811jzxibm0mzb",
+      "questionId": "cmu0ckyu3001511jz5h781v2j",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La maquinaria pesada y las semillas modificadas son más propias de la agricultura comercial tecnificada; el monocultivo de exportación en grandes extensiones también describe a la comercial; y el riego artificial a gran escala es una inversión típica de sistemas comerciales, no de subsistencia.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl5p400029lzj3ve04qwn",
+      "questionId": "cmu0cl5p400019lzjfw9mxse6",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Un Estado, en el sentido político-jurídico, requiere cuatro elementos: un territorio con límites definidos, una población que habite en él de forma permanente, un gobierno que lo organice y soberanía, es decir, capacidad de autogobernarse sin depender de otro Estado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl5p400039lzjq6stgehw",
+      "questionId": "cmu0cl5p400019lzjfw9mxse6",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Ninguno de esos cuatro elementos exige un tamaño mínimo de territorio o población, ni una sola lengua, religión o etnia: existen Estados pequeños, multilingües y multiétnicos que cumplen igualmente con las cuatro condiciones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl5p400049lzj5x7ib059",
+      "questionId": "cmu0cl5p400019lzjfw9mxse6",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Un ejército, una moneda o una lengua única no son condición para ser Estado, solo atributos comunes; una capital histórica o una bandera son símbolos, no elementos constitutivos; y una frontera natural, una religión oficial o una etnia dominante tampoco son requisitos jurídicos del Estado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl6gt00079lzjv4n6yk2l",
+      "questionId": "cmu0cl6gt00069lzjf7h0wpq4",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La división en estados, provincias o municipios permite descentralizar funciones de gobierno (educación, seguridad, servicios públicos) que serían muy difíciles de administrar de forma centralizada en países extensos o muy poblados.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl6gt00089lzjr7b7ptby",
+      "questionId": "cmu0cl6gt00069lzjf7h0wpq4",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Estas divisiones suelen combinar criterios históricos, geográficos y de gobernabilidad, no un solo factor; su límite no necesariamente coincide con accidentes geográficos ni con fronteras climáticas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl6gt00099lzjbtv7kyyj",
+      "questionId": "cmu0cl6gt00069lzjf7h0wpq4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Separar a la población por etnia no es el propósito de esta división administrativa; los límites entre climas son un fenómeno físico, no una decisión político-administrativa; y ninguna división interna moderna asigna un idioma exclusivo distinto por región como criterio de organización.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl78i000c9lzj9syxqlhu",
+      "questionId": "cmu0cl78i000b9lzjuy32e8xf",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Una frontera natural aprovecha un elemento del relieve o la hidrografía (un río, una cadena montañosa) como límite entre países, mientras una frontera artificial se traza sin seguir un accidente geográfico, muchas veces como una línea recta sobre un paralelo o meridiano.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl78i000d9lzjgvxal02s",
+      "questionId": "cmu0cl78i000b9lzjuy32e8xf",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Ambos tipos de frontera pueden establecerse por tratado internacional y pueden tener origen colonial o no: lo que distingue a una de otra es únicamente si sigue o no un accidente geográfico visible.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl78i000e9lzj7rl4s4hz",
+      "questionId": "cmu0cl78i000b9lzjuy32e8xf",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El origen colonial puede darse en fronteras naturales y en artificiales por igual; ambas requieren normalmente un tratado o acuerdo entre los países, y ninguna se fija unilateralmente por un solo país; y la antigüedad no es lo que las distingue, sino su trazo respecto al relieve.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl80a000h9lzjrzj4kknt",
+      "questionId": "cmu0cl80a000g9lzj0i6pl6sc",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La Convención de las Naciones Unidas sobre el Derecho del Mar reconoce a cada país costero una Zona Económica Exclusiva de hasta 200 millas náuticas desde su costa, dentro de la cual tiene derechos preferentes para explotar recursos pesqueros, petroleros y minerales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl80a000i9lzjuskd86ko",
+      "questionId": "cmu0cl80a000g9lzj0i6pl6sc",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Este derecho es económico, no de soberanía plena: otros países conservan libertad de navegación y de sobrevuelo dentro de esa misma franja, a diferencia de lo que ocurre en el mar territorial (las primeras 12 millas náuticas), donde sí hay soberanía casi total.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl80a000j9lzjuubrxcer",
+      "questionId": "cmu0cl80a000g9lzj0i6pl6sc",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La ZEE no da soberanía ilimitada como en tierra firme, ni impide la navegación de otros países; y no otorga automáticamente la propiedad de cualquier isla dentro de la franja, cuya soberanía se determina por reglas propias del derecho internacional.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl8ry000m9lzje3vsvail",
+      "questionId": "cmu0cl8ry000l9lzj0dng8uuu",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Estos estrechos son pasos marítimos angostos por los que debe transitar obligatoriamente una parte muy grande del comercio mundial (petróleo en el caso de Ormuz, mercancías de Asia en el caso de Malaca), lo que los vuelve puntos estratégicos de control económico y militar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl8ry000n9lzjzhezzvxv",
+      "questionId": "cmu0cl8ry000l9lzj0dng8uuu",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Cualquier interrupción o conflicto en uno de estos pasos afecta de inmediato el precio y la disponibilidad de bienes a escala global, por eso las potencias vigilan tan de cerca su seguridad y libre tránsito.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl8ry000o9lzjmbdcvtng",
+      "questionId": "cmu0cl8ry000l9lzj0dng8uuu",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Ninguno de esos estrechos concentra capitales políticas ni reservas de agua dulce; y los países costeros sí ejercen soberanía sobre parte de esas aguas conforme al derecho marítimo internacional, aunque garanticen el paso inocente de otros barcos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl9jl000r9lzjhtt9o2f7",
+      "questionId": "cmu0cl9jl000q9lzjk5g44lyi",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La ONU se creó para mantener la paz y la seguridad internacionales, mediar en conflictos entre Estados y fomentar la cooperación en temas económicos, sociales y humanitarios entre sus países miembros.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl9jl000s9lzjnkmchaao",
+      "questionId": "cmu0cl9jl000q9lzjk5g44lyi",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Sus resoluciones y mediaciones dependen en gran medida de la voluntad de cooperación de los países involucrados, ya que la organización no tiene un gobierno mundial ni fuerza propia para imponer decisiones sobre Estados soberanos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cl9jl000t9lzjl4kityiw",
+      "questionId": "cmu0cl9jl000q9lzjk5g44lyi",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La ONU no fija por sí sola las fronteras de sus países miembros, eso corresponde a acuerdos entre los Estados involucrados; tampoco administra la economía interna de ningún país, ni sustituye a sus gobiernos nacionales en decisiones internas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clab8000w9lzjj3v87ukj",
+      "questionId": "cmu0clab8000v9lzjkdfawgje",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Muchas disputas territoriales se originan por el interés en controlar recursos naturales valiosos (agua, minerales, petróleo) o rutas de paso estratégicas (pasos de montaña, salidas al mar) ubicadas en la zona disputada.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clab8000x9lzj9ecg1uv9",
+      "questionId": "cmu0clab8000v9lzjkdfawgje",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "A estas causas económicas suelen sumarse reclamos históricos, culturales o étnicos sobre el mismo territorio, lo que hace que estos conflictos sean frecuentemente difíciles de resolver solo con criterios geográficos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clab8000y9lzj7h8axd7k",
+      "questionId": "cmu0clab8000v9lzjkdfawgje",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Compartir huso horario, tener nombres de moneda parecidos o usar alfabetos distintos no generan por sí mismos disputas territoriales — ninguno de esos factores tiene relación directa con el control de un territorio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clh5k0002420kx1jgnac3",
+      "questionId": "cmu0clh5j0001420krxa3zlix",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La Sierra Madre Occidental corre paralela a la costa del Pacífico y la Sierra Madre Oriental paralela al Golfo de México; ambas nacen cerca de la frontera norte y convergen hacia el centro del país con el Eje Volcánico Transversal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clh5k0003420kfg82a9gz",
+      "questionId": "cmu0clh5j0001420krxa3zlix",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Estas dos sierras determinan buena parte del clima y del relieve del centro-norte de México: entre ambas se extiende la Altiplanicie Mexicana, una región elevada y en su mayoría árida o semiárida.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clh5k0004420kvk8qa94j",
+      "questionId": "cmu0clh5j0001420krxa3zlix",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La Sierra Madre del Sur y la de Chiapas están en el sur del país, no recorren todo México de norte a sur; la Sierra Tarahumara es parte de la Occidental, no un sistema aparte; y las sierras de Baja California son locales de esa península, no las dos grandes cadenas nacionales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clhxf0007420krunq4qnv",
+      "questionId": "cmu0clhxf0006420kqvcttlyl",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "El Pico de Orizaba (Citlaltépetl) es la montaña más alta de México y el tercer pico más alto de Norteamérica, con una altitud que supera los 5,600 metros sobre el nivel del mar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clhxf0008420klt8mdrf9",
+      "questionId": "cmu0clhxf0006420kqvcttlyl",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "A diferencia del Popocatépetl o el volcán de Colima, el Citlaltépetl es un volcán inactivo desde hace siglos, por lo que su relevancia geográfica actual es sobre todo su altura, no su actividad eruptiva.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clhxf0009420kpsiez79r",
+      "questionId": "cmu0clhxf0006420kqvcttlyl",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El Popocatépetl es más bajo (poco más de 5,400 metros) y es uno de los volcanes activos más vigilados del país; el Nevado de Toluca y el volcán de Colima tienen altitudes bastante menores a la del Pico de Orizaba.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clip3000c420k9xlfvv6g",
+      "questionId": "cmu0clip3000b420kbq4hxr98",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Cerca de la mitad del territorio mexicano, concentrado sobre todo en el norte y el centro-norte, tiene clima seco o semiseco, resultado de su posición entre dos sierras que bloquean la humedad del mar y de su latitud subtropical.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clip3000d420kmvwmhvcu",
+      "questionId": "cmu0clip3000b420kbq4hxr98",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Esto contrasta con el sur y las costas del país, donde predominan climas cálido-húmedos y tropicales gracias a la mayor cercanía al ecuador y a la exposición directa a masas de aire húmedo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clip3000e420k1mbdwl6x",
+      "questionId": "cmu0clip3000b420kbq4hxr98",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El clima cálido-húmedo con lluvia todo el año es más propio del sureste, no del norte árido; la nieve permanente solo se da en las cumbres más altas, no en la mayoría de las sierras; y el territorio nacional no tiene un clima \"similar\" en todas sus regiones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cljlh000h420kprvtevef",
+      "questionId": "cmu0cljlh000g420k4cp8utun",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "El Usumacinta, que nace en Guatemala y recorre el sureste mexicano hasta el Golfo de México, transporta el mayor volumen de agua de cualquier río del país, gracias a las abundantes lluvias de la región donde se ubica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cljlh000i420kl112t1r0",
+      "questionId": "cmu0cljlh000g420k4cp8utun",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "El río más largo de México es en realidad el Bravo, que recorre buena parte de la frontera con Estados Unidos; longitud y caudal son dos medidas distintas, y en México no coinciden en el mismo río.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cljlh000j420kfyergox4",
+      "questionId": "cmu0cljlh000g420k4cp8utun",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El Usumacinta sí desemboca en México, no fuera de su territorio; no es el más largo, ese lugar corresponde al Bravo; y como cualquier río, forma parte de una cuenca hidrográfica reconocida, la del Usumacinta-Grijalva.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clkd5000m420kg98dibq9",
+      "questionId": "cmu0clkd5000l420kaimca1o9",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "México está dividido en 32 entidades federativas: 31 estados más la Ciudad de México, que desde la reforma constitucional de 2016 tiene el mismo estatus de entidad federativa que los demás estados.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clkd5000n420kb3xu9n08",
+      "questionId": "cmu0clkd5000l420kaimca1o9",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Antes de esa reforma, la capital del país era el Distrito Federal, con un régimen jurídico distinto (dependiente directamente de los poderes federales); ese esquema ya no está vigente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clkd5000o420ks8m2h36m",
+      "questionId": "cmu0clkd5000l420kaimca1o9",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El esquema de \"31 estados y un Distrito Federal\" describe la situación anterior a 2016, ya no la actual; 24 entidades no corresponde a ninguna división vigente del país; y no ha habido una reforma reciente que eleve el número a 36.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cll4x000r420kvhnwstc4",
+      "questionId": "cmu0cll4w000q420knjiuz1sg",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "El Censo de Población y Vivienda 2020 del INEGI registró poco más de 126 millones de personas viviendo en México, cifra que lo ubica entre los diez países más poblados del mundo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cll4x000s420kqyn79lj0",
+      "questionId": "cmu0cll4w000q420knjiuz1sg",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "La población mexicana ha crecido de forma sostenida durante décadas, aunque a un ritmo cada vez más lento por la caída de la tasa de natalidad respecto a la de mediados del siglo XX.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cll4x000t420ke936i2il",
+      "questionId": "cmu0cll4w000q420knjiuz1sg",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Noventa millones fue aproximadamente la población de México varias décadas atrás, no en 2020; y tanto 150 como 200 millones sobreestiman considerablemente la cifra real registrada por el censo más reciente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cllwp000w420k13w0k3fj",
+      "questionId": "cmu0cllwp000v420kdtk21baq",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "México ha sido, de forma consistente en los últimos años, el mayor productor mundial de plata, gracias a yacimientos importantes en estados como Zacatecas, Chihuahua y Durango.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cllwp000x420kz1e5evv5",
+      "questionId": "cmu0cllwp000v420kdtk21baq",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "La minería de plata es una actividad económica histórica del país, que se remonta a la época colonial, y sigue siendo hoy un componente relevante de las exportaciones mineras mexicanas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cllwp000y420kj1algf2s",
+      "questionId": "cmu0cllwp000v420kdtk21baq",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "México no ocupa un lugar secundario ni queda fuera del top mundial en este metal; y tampoco es el segundo lugar, un puesto que suelen ocupar otros países, mientras México se mantiene consistentemente en el primer sitio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clmof0011420kp195l67x",
+      "questionId": "cmu0clmof0010420ketcy0dxz",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La mayor parte del petróleo mexicano se extrae de yacimientos marinos en el Golfo de México, particularmente en la Sonda de Campeche, la región petrolera más productiva del país desde hace décadas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clmof0012420khryg13ze",
+      "questionId": "cmu0clmof0010420ketcy0dxz",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Esto ha hecho que buena parte de la infraestructura petrolera nacional (plataformas, terminales de exportación, refinerías costeras) se concentre en los estados del Golfo, como Campeche, Tabasco y Veracruz.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clmof0013420kyouoijzo",
+      "questionId": "cmu0clmof0010420ketcy0dxz",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Baja California no concentra la producción petrolera nacional; la Sierra Madre Occidental es una zona montañosa sin explotación petrolera relevante; y la meseta central del país tampoco es una región petrolera significativa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clng50016420kvz343pez",
+      "questionId": "cmu0clng50015420k6g7p6z8y",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "México se ubica entre los países con mayor riqueza biológica del planeta porque, pese a no ser de los más extensos, alberga un porcentaje muy alto de las especies conocidas de plantas y animales, incluidas muchas endémicas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clng50017420kvd4jdvfl",
+      "questionId": "cmu0clng50015420k6g7p6z8y",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Esta diversidad se explica por su compleja variedad de climas y relieves —desde desiertos hasta selvas tropicales— que crean muchos ambientes distintos en un mismo territorio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clng50018420k2mx7jjv0",
+      "questionId": "cmu0clng50015420k6g7p6z8y",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La mayor selva continua de América es la amazónica, no la mexicana; la extensión territorial de México es menor a la de otros países megadiversos como Brasil; y no todo su territorio está en el hemisferio norte de forma exclusiva respecto a otros países megadiversos, además de que ese no es el criterio que define la categoría.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clo7v001b420kxs99nrak",
+      "questionId": "cmu0clo7v001a420ka4m730u3",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "México limita al norte con Estados Unidos y al sureste con Guatemala y Belice; el resto de su perímetro está bordeado por el Golfo de México, el mar Caribe y el océano Pacífico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clo7v001c420kg2guzcl1",
+      "questionId": "cmu0clo7v001a420ka4m730u3",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "La frontera con Estados Unidos es la más extensa y la más transitada del país, mientras que las fronteras sur son más cortas pero igualmente relevantes para el comercio y la migración regional.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clo7v001d420k087y6hy9",
+      "questionId": "cmu0clo7v001a420ka4m730u3",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Honduras y El Salvador no comparten frontera terrestre con México; el país sí tiene otras fronteras terrestres además de la estadounidense; y Cuba, al ser una isla, no comparte frontera terrestre con ningún país, incluido México.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clv7n00021r397yvsph17",
+      "questionId": "cmu0clv7n00011r391aiedx2y",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La escala numérica de un mapa es una razón: 1:50,000 significa que 1 centímetro (o cualquier unidad) medido en el mapa corresponde a 50,000 de esas mismas unidades en el terreno real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clv7n00031r39pw1znjav",
+      "questionId": "cmu0clv7n00011r391aiedx2y",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Entre más pequeño el segundo número de esa razón, mayor es el nivel de detalle del mapa pero menor la superficie que puede representar en una misma hoja; por eso un mapa de una ciudad usa una escala mucho más \"grande\" que un mapa de un país entero.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clv7n00041r39lnio62em",
+      "questionId": "cmu0clv7n00011r391aiedx2y",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La escala no fija la superficie total representada en kilómetros cuadrados, ni depende del número de puntos de referencia satelital usados, ni tiene relación con la antigüedad del mapa — es una relación de proporción entre distancias.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clvzj00071r392mzarhn1",
+      "questionId": "cmu0clvzj00061r39hu6yzdw5",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La proyección de Mercator conserva los ángulos (por eso fue tan útil para la navegación), pero a cambio agranda mucho el área de los territorios alejados del ecuador; Groenlandia se ve casi tan grande como África, cuando en realidad es catorce veces más pequeña.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clvzk00081r39ufibqlra",
+      "questionId": "cmu0clvzj00061r39hu6yzdw5",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Este efecto ocurre porque las líneas de longitud, que en la realidad convergen en los polos, se dibujan paralelas entre sí en esta proyección, estirando artificialmente el territorio conforme se acerca a las latitudes altas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clvzk00091r39bv9nx05n",
+      "questionId": "cmu0clvzj00061r39hu6yzdw5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El efecto real es que AGRANDA, no reduce, esas superficies; la proyección precisamente permitió trazar rutas de navegación en línea recta con ángulo constante, no las eliminó; y la distorsión afecta el tamaño de los territorios, no solo los colores del mapa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clwr0000c1r39azk4qg9d",
+      "questionId": "cmu0clwr0000b1r39930lji0z",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "La longitud geográfica se mide en grados hacia el este o hacia el oeste tomando como referencia el meridiano de Greenwich (0°), y llega hasta 180° en cada dirección.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clwr0000d1r39wx39dvnl",
+      "questionId": "cmu0clwr0000b1r39930lji0z",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Junto con la latitud, que mide la distancia angular al ecuador hacia el norte o el sur, la longitud permite ubicar cualquier punto de la Tierra con un par de coordenadas únicas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clwr0000e1r3960d5610z",
+      "questionId": "cmu0clwr0000b1r39930lji0z",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La distancia angular al ecuador describe la latitud, no la longitud; la altura sobre el nivel del mar es la altitud, un dato distinto a la ubicación horizontal; y la distancia en kilómetros al polo no es cómo se define ninguna de las dos coordenadas geográficas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clxih000h1r39s9n7gm5c",
+      "questionId": "cmu0clxih000g1r392p15nq67",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Cada curva de nivel une puntos de igual altitud; cuando varias curvas aparecen muy próximas entre sí, significa que la altura cambia mucho en poca distancia horizontal, es decir, que la pendiente del terreno es pronunciada.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clxii000i1r39i3hfn0c2",
+      "questionId": "cmu0clxih000g1r392p15nq67",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Por el contrario, curvas de nivel muy separadas indican un terreno de pendiente suave o casi plano; leer ese espaciamiento es la forma principal de \"ver\" el relieve en un mapa topográfico sin necesidad de una imagen en tres dimensiones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0clxii000j1r3969otpeyr",
+      "questionId": "cmu0clxih000g1r392p15nq67",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Un terreno plano se representa con curvas muy separadas, justo lo contrario de lo descrito; un cuerpo de agua no se identifica por el espaciamiento de curvas de nivel sino por un símbolo propio; y ese espaciamiento depende del relieve real, no de si la escala elegida es pequeña o grande.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cly9z000m1r39alkjulrd",
+      "questionId": "cmu0cly9z000l1r399obc3gzr",
+      "layer": 1,
+      "title": "La idea clave",
+      "content": "Un receptor GPS calcula su posición midiendo el tiempo que tarda en llegarle la señal de varios satélites (al menos cuatro) y, a partir de esas distancias, triangula el punto exacto donde se encuentra.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cly9z000n1r3932jqnw0s",
+      "questionId": "cmu0cly9z000l1r399obc3gzr",
+      "layer": 2,
+      "title": "Contexto geográfico",
+      "content": "Cuantos más satélites capte el receptor con buena señal, más precisa resulta la ubicación calculada; por eso el GPS funciona peor dentro de edificios o cañones profundos, donde varias señales quedan bloqueadas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0cly9z000o1r39ctbtl41p",
+      "questionId": "cmu0cly9z000l1r399obc3gzr",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El GPS no usa temperatura ambiente ni campo magnético para ubicarse, esos son principios de otros instrumentos (termómetro, brújula); y necesita señales de VARIOS satélites para triangular, no basta con recibir una sola señal.",
       "latexContent": null
     }
   ]

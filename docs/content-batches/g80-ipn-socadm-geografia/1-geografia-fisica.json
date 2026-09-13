@@ -1,0 +1,407 @@
+[
+  {
+    "stem": "¿Cuál es la capa más externa y delgada de la estructura interna de la Tierra?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La corteza, la capa sólida más delgada sobre la que se asientan continentes y océanos.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El núcleo interno, la esfera sólida más caliente en el centro del planeta.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El núcleo externo, la capa líquida rica en hierro y níquel fundidos.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El manto superior, la capa más gruesa y de mayor volumen de todo el planeta.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La corteza es la capa sólida y más delgada de las cuatro capas terrestres, y sobre ella se asientan los continentes (corteza continental, más gruesa) y el fondo oceánico (corteza oceánica, más delgada)."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Debajo de la corteza está el manto, la capa de mayor volumen del planeta; más al centro, el núcleo externo líquido genera el campo magnético terrestre, y en el centro mismo está el núcleo interno sólido pese a sus altísimas temperaturas, por la enorme presión que soporta."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El manto es mucho más grueso que la corteza, no más delgado; el núcleo externo es líquido, no sólido; y el núcleo interno está en el centro del planeta, no en la superficie — ninguna de las tres es la capa MÁS EXTERNA."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué tipo de límite de placas tectónicas se produce cuando dos placas se deslizan lateralmente una respecto a la otra, sin crear ni destruir corteza?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Un límite convergente, donde una placa se hunde bajo la otra en subducción.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Un límite de colisión continental, donde ambas placas se pliegan y elevan cordilleras.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Un límite transformante, como el que sigue la falla de San Andrés en California.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Un límite divergente, donde el magma asciende y forma nueva corteza oceánica.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "En un límite transformante las placas se rozan lateralmente en direcciones opuestas o a distinta velocidad, sin que se genere corteza nueva (como en un límite divergente) ni se destruya corteza vieja (como en uno convergente) — la falla de San Andrés es el ejemplo más citado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Este roce lateral acumula tensión que se libera de forma súbita en sismos, por eso las zonas de falla transformante son sísmicamente muy activas aunque no tengan volcanes asociados, a diferencia de las zonas de subducción."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El convergente sí involucra hundimiento de una placa (subducción) y suele producir volcanes; el divergente crea corteza nueva en dorsales oceánicas; y la colisión continental pliega y eleva montañas — ninguno de los tres describe un simple deslizamiento lateral."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cómo se forman las montañas de plegamiento como los Andes o el Himalaya?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Por la compresión de capas rocosas entre dos placas que convergen y las pliegan.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Por la acumulación de lava y ceniza expulsadas repetidamente por un mismo volcán.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Por el levantamiento de bloques de corteza entre fallas paralelas verticales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Por la erosión selectiva del viento sobre rocas de distinta dureza durante milenios.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Cuando dos placas convergen, las capas de roca sedimentaria entre ellas se comprimen y se pliegan hacia arriba en lugar de fracturarse, formando cadenas montañosas alargadas como el Himalaya (India-Asia) o los Andes (Nazca-Sudamericana)."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "El proceso es lento (millones de años) y sigue activo hoy: el Himalaya crece unos milímetros al año porque la placa india continúa empujando contra la euroasiática."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La acumulación de lava describe un volcán, no una cordillera plegada; el levantamiento entre fallas describe montañas de bloque (horst); y la erosión selectiva esculpe el relieve existente, pero no lo origina."
+      }
+    ]
+  },
+  {
+    "stem": "Además de la latitud, ¿qué otro factor explica que una ciudad situada en la montaña tenga temperaturas más bajas que una ciudad costera a la misma latitud?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La cercanía a una falla geológica activa, que libera calor adicional del subsuelo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La altitud, porque la temperatura del aire desciende conforme aumenta la altura.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La longitud, porque determina cuántas horas de luz solar recibe cada punto del planeta.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La dirección de los vientos dominantes, que enfría siempre las zonas de montaña.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "A mayor altitud, la atmósfera es menos densa y retiene menos calor, por lo que la temperatura desciende de forma bastante constante conforme se sube (gradiente térmico vertical), independientemente de la latitud."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Por eso puede haber nieve permanente en montañas cercanas al ecuador (como en los Andes o el Kilimanjaro) mientras la costa, a la misma latitud pero a nivel del mar, tiene clima cálido."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La longitud no influye en la temperatura, solo en la hora local; una falla activa no calienta el clima de una región entera; y el viento puede enfriar o calentar según de dónde venga, no \"siempre\" hacia el frío."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué es una cuenca hidrográfica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La zona costera donde un río se une al mar y forma un delta o un estuario.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El conjunto de presas construidas a lo largo del curso de un río navegable.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El acuífero subterráneo que alimenta los manantiales de una región montañosa.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El territorio cuyas aguas de lluvia y deshielo drenan hacia un mismo río o lago.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Una cuenca hidrográfica es el área delimitada por la línea divisoria de aguas (parteaguas) dentro de la cual toda el agua superficial converge hacia un mismo cauce principal, río o lago."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "El concepto es clave para la gestión del agua: lo que ocurre en cualquier punto de una cuenca (deforestación, contaminación) afecta al río que la drena, aunque ese punto esté lejos del cauce principal."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las presas son obras de infraestructura dentro de una cuenca, no la cuenca misma; el delta o estuario es solo la desembocadura; y el acuífero es agua subterránea, distinta del drenaje superficial que define a la cuenca."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué caracteriza principalmente a un bioma de selva tropical frente a uno de desierto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una altitud elevada que reduce la presión atmosférica y la humedad ambiental.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una alternancia marcada entre estaciones muy frías y veranos muy secos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Una combinación de altas temperaturas y lluvias abundantes durante todo el año.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Una vegetación escasa adaptada a suelos volcánicos ricos en minerales.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La selva tropical se define por temperaturas altas y estables todo el año junto con precipitaciones abundantes y constantes, condición que sostiene su enorme biodiversidad vegetal y animal."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "El desierto, en cambio, se define por la escasez de lluvia (menos de 250 mm anuales en la mayoría de las clasificaciones), sin importar si es cálido como el Sahara o frío como el desierto de Atacama en altura."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La vegetación escasa sobre suelo volcánico no es un rasgo distintivo de la selva; la alternancia fría-seca describe más bien un clima de estepa o mediterráneo; y la altitud elevada no es propia de la selva, que suele estar a baja altitud."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué la corriente fría de Humboldt influye en el clima árido de la costa del Perú y el norte de Chile?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque bloquea el paso de los vientos alisios que normalmente traen lluvia del Atlántico.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Porque desvía hacia el océano abierto toda la humedad que viene desde la cordillera.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Porque enfría el aire costero y dificulta la formación de lluvias sobre esa franja.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Porque calienta la superficie del mar y provoca evaporación excesiva hacia el interior.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La corriente de Humboldt trae agua fría desde el sur, lo que enfría el aire sobre esa franja costera; el aire frío se satura menos de humedad y forma nubes bajas (neblina) en vez de lluvia, dejando la costa muy seca pese a estar junto al mar."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Este efecto, sumado a la sombra orográfica de los Andes, explica que el desierto de Atacama, junto a la costa, sea uno de los lugares más secos del planeta."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Una corriente fría no desvía la humedad de la cordillera ni bloquea vientos del Atlántico (esa costa mira al Pacífico); y por definición una corriente FRÍA no calienta el mar ni aumenta la evaporación — es justo el efecto contrario."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué condición es indispensable para que se forme un huracán sobre el océano?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una plataforma continental poco profunda cercana a la costa donde se forma la tormenta.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una zona de alta presión atmosférica estable que impida el ascenso del aire húmedo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Una superficie oceánica cálida, por encima de los 26 grados centígrados aproximadamente.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Una corriente marina fría que enfríe rápidamente el aire cercano a la superficie.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Un huracán necesita agua oceánica cálida (por lo general arriba de 26°C) que evapore grandes cantidades de humedad; ese aire cálido y húmedo asciende, libera calor al condensarse y alimenta el sistema de baja presión que gira por efecto de la rotación terrestre."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Por eso los huracanes se debilitan rápidamente al tocar tierra o al pasar sobre aguas frías: pierden la fuente de calor y humedad que los mantiene activos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Una corriente fría o una zona de alta presión estable inhiben, no favorecen, la formación de un huracán; y la profundidad de la plataforma continental no es la condición determinante, que depende de la temperatura superficial del mar."
+      }
+    ]
+  },
+  {
+    "stem": "Según los factores clásicos de formación del suelo, ¿qué papel cumple el clima en ese proceso?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sustituye a la roca madre como el material a partir del cual se forma todo el suelo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Define únicamente qué cultivos pueden sembrarse, sin intervenir en la formación del suelo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Controla la velocidad de meteorización de la roca madre mediante temperatura y humedad.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Determina de forma exclusiva el color final del suelo, sin influir en su composición.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "El clima (temperatura y precipitación) regula la velocidad con la que la roca madre se rompe física y químicamente en partículas más finas, junto con otros factores como el relieve, los organismos vivos y el tiempo transcurrido."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Un clima cálido y húmedo acelera la meteorización química y la actividad biológica, formando suelos más profundos en menos tiempo que un clima frío y seco, donde ese mismo proceso es mucho más lento."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El clima influye en el color y la composición del suelo, pero no los determina \"de forma exclusiva\"; su efecto en qué se puede sembrar es una consecuencia posterior, no su función en la formación del suelo; y la roca madre sigue siendo el material base, el clima solo acelera o frena su transformación."
+      }
+    ]
+  }
+]

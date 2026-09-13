@@ -1,0 +1,407 @@
+[
+  {
+    "stem": "¿Qué caracteriza a la primera etapa del modelo de transición demográfica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tasas de natalidad y mortalidad bajas, con una población estable y envejecida.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Tasas de mortalidad baja y natalidad muy alta, con el mayor crecimiento del modelo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Tasas de natalidad baja y mortalidad alta, con la población en descenso constante.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Tasas de natalidad y mortalidad altas, con un crecimiento poblacional lento.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "En la primera etapa, tanto la natalidad como la mortalidad son altas (por enfermedades, hambrunas, falta de medicina) y se compensan casi entre sí, dejando un crecimiento poblacional lento pese a que nacen muchos niños."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Este patrón describió a la mayoría de las sociedades preindustriales; el modelo pasa después a una segunda etapa donde la mortalidad cae por mejoras en salud pero la natalidad sigue alta, produciendo el mayor crecimiento poblacional del ciclo completo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Natalidad baja con mortalidad alta describiría una población en franco declive, no la etapa inicial; natalidad y mortalidad bajas describen la última etapa, la más envejecida; y mortalidad baja con natalidad muy alta corresponde a la segunda etapa, no a la primera."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué indica una pirámide de población con base ancha y cúspide angosta?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una población en declive por una migración masiva de personas en edad fértil.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una población joven con natalidad alta y expectativa de crecimiento futuro.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Una población envejecida donde predominan los adultos mayores sobre los jóvenes.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Una población estable donde cada grupo de edad tiene un tamaño casi idéntico.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La base de la pirámide representa a los grupos de menor edad; si es ancha, significa que nacen muchos niños cada año, mientras la cúspide angosta indica pocos adultos mayores — el perfil típico de un país con crecimiento demográfico expansivo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Este tipo de pirámide es común en países en vías de desarrollo con alta fecundidad; a medida que un país envejece, la pirámide tiende a volverse más rectangular o incluso invertida (base angosta, cúspide ancha)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Una población envejecida produciría el patrón contrario (base angosta); una pirámide de forma rectangular es la que tiene grupos de tamaño similar; y la emigración masiva de jóvenes adelgazaría la base y los tramos intermedios, no los ensancharía."
+      }
+    ]
+  },
+  {
+    "stem": "En el estudio de la migración, ¿qué son los llamados factores de 'expulsión'?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Las condiciones del lugar de origen que empujan a alguien a abandonarlo, como el desempleo.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Las políticas migratorias que un gobierno aplica para frenar la entrada de personas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Las condiciones del lugar de destino que atraen a un migrante, como mejores salarios.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los lazos familiares que motivan a alguien a reunirse con parientes en otro país.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Los factores de expulsión (push) son las condiciones negativas del lugar de origen —desempleo, violencia, desastres, falta de servicios— que impulsan a una persona a emigrar de ahí."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Se contrastan con los factores de atracción (pull) del lugar de destino, como mejores salarios, seguridad o educación; casi toda decisión migratoria combina ambos tipos de factores, no solo uno."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las condiciones del destino describen factores de atracción, no de expulsión; las políticas migratorias de un gobierno receptor son una barrera externa, no un factor de expulsión del origen; y los lazos familiares en el destino son también un factor de atracción."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué proceso describe mejor el crecimiento acelerado de las ciudades en países en desarrollo durante el siglo XX?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una redistribución planificada de la población desde las ciudades hacia el campo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Un crecimiento natural exclusivamente por el aumento de nacimientos urbanos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Una política de descentralización que trasladó industrias fuera de las capitales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Una migración masiva del campo a la ciudad en busca de empleo e infraestructura.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La urbanización acelerada del siglo XX en países en desarrollo se explica sobre todo por la migración rural-urbana: la mecanización del campo redujo la necesidad de mano de obra agrícola mientras las ciudades ofrecían empleo industrial y servicios."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Esta migración, sumada al crecimiento natural de la propia población urbana, produjo ciudades que crecieron mucho más rápido que su capacidad de infraestructura, generando asentamientos irregulares en muchas metrópolis."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El proceso real fue del campo HACIA la ciudad, no al revés; el crecimiento natural urbano existió pero no explica por sí solo el ritmo del proceso; y la descentralización industrial fue una política posterior y parcial, no la causa del crecimiento urbano inicial."
+      }
+    ]
+  },
+  {
+    "stem": "¿A qué sector económico pertenece la actividad de transformar madera en muebles dentro de una fábrica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Al sector secundario, porque transforma una materia prima en un producto elaborado.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Al sector terciario, porque el mueble terminado se vende después en una tienda.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Al sector cuaternario, porque requiere diseño especializado y conocimiento técnico.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Al sector primario, porque parte de un recurso natural extraído directamente del bosque.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "El sector secundario agrupa las actividades de transformación industrial de materias primas en productos terminados; fabricar muebles a partir de madera es un ejemplo clásico de manufactura."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "La cadena completa suele cruzar varios sectores: la tala del árbol pertenece al sector primario (extracción), la fabricación del mueble al secundario, y su venta final al terciario — cada eslabón se clasifica por lo que hace, no por el producto final."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Extraer la madera del bosque sí sería primario, pero transformarla en mueble ya no lo es; vender el mueble en tienda es una actividad terciaria distinta a fabricarlo; y el diseño especializado no convierte por sí solo una manufactura en actividad cuaternaria."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es un efecto característico de la globalización económica sobre la producción de bienes?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El regreso generalizado a economías cerradas que no dependen de insumos externos.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La fragmentación de la producción en distintos países según ventajas de costo.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La concentración total de la manufactura mundial en un único país productor.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La eliminación completa del comercio entre países con distinto nivel de desarrollo.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La globalización permitió fragmentar la producción en \"cadenas globales de valor\": un mismo producto puede diseñarse en un país, fabricar sus componentes en varios más y ensamblarse en otro distinto, según dónde resulte más barato cada paso."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Esto explica por qué un mismo artículo electrónico o automóvil suele llevar la leyenda de estar \"ensamblado\" en un país con partes de otros varios, un patrón prácticamente inexistente antes de la globalización económica."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La globalización no concentra la manufactura en un solo país, sino que la dispersa; tampoco elimina el comercio entre países desiguales, lo intensifica; y aleja a las economías de un modelo cerrado, no las acerca a él."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es el propósito principal de un tratado de libre comercio entre varios países?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Unificar la moneda oficial que circula en cada uno de los países participantes.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Reducir aranceles y otras barreras para facilitar el intercambio de bienes entre ellos.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Prohibir la inversión extranjera dentro del territorio de los países miembros.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Fusionar los gobiernos de los países firmantes en una sola autoridad central.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Un tratado de libre comercio busca eliminar o reducir aranceles, cuotas y otras barreras para que los bienes y servicios circulen con más facilidad entre los países firmantes, aumentando el comercio entre ellos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Es un acuerdo de tipo comercial, no político: los países conservan su propia moneda, su propio gobierno y sus propias leyes; solo acuerdan reglas específicas para el intercambio económico entre ellos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Unificar la moneda corresponde a una unión monetaria, un acuerdo distinto y mucho más profundo; fusionar gobiernos no ocurre en un tratado comercial; y estos tratados suelen fomentar la inversión extranjera entre los firmantes, no prohibirla."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué dimensiones combina el Índice de Desarrollo Humano (IDH) de la ONU para medir el bienestar de un país?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Número de ciudades grandes, densidad poblacional y extensión de la red carretera.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Producto interno bruto total, superficie territorial y tamaño de las fuerzas armadas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Ingreso per cápita, esperanza de vida al nacer y nivel educativo de la población.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Tasa de inflación anual, deuda pública total y volumen de exportaciones petroleras.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "El IDH combina tres dimensiones del desarrollo humano: una vida larga y saludable (esperanza de vida), acceso a educación (años de escolaridad) y un nivel de vida digno (ingreso per cápita ajustado)."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Se diseñó justamente para ir más allá de medir solo la riqueza total de un país (como el PIB), reconociendo que dos países con ingresos similares pueden tener niveles de bienestar muy distintos según su salud y educación."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El PIB total, la superficie territorial y el tamaño militar no forman parte del IDH; tampoco la inflación, la deuda pública o las exportaciones petroleras; ni el número de ciudades, la densidad o la red carretera — ninguno de esos indicadores mide bienestar humano directamente."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué distingue a la agricultura de subsistencia de la agricultura comercial?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La de subsistencia se practica solo en grandes extensiones de monocultivo de exportación.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La de subsistencia produce sobre todo para alimentar a la propia familia campesina.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La de subsistencia utiliza exclusivamente maquinaria pesada y semillas modificadas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La de subsistencia depende por completo de sistemas de riego artificial a gran escala.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La agricultura de subsistencia tiene como fin principal alimentar a quienes la trabajan y a sus familias, con poco o ningún excedente destinado a la venta; la agricultura comercial, en cambio, se orienta a producir para el mercado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Por eso la de subsistencia suele practicarse en parcelas pequeñas con técnicas tradicionales, mientras la comercial tiende a usar mayor extensión, tecnología e insumos para maximizar el rendimiento vendible."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La maquinaria pesada y las semillas modificadas son más propias de la agricultura comercial tecnificada; el monocultivo de exportación en grandes extensiones también describe a la comercial; y el riego artificial a gran escala es una inversión típica de sistemas comerciales, no de subsistencia."
+      }
+    ]
+  }
+]

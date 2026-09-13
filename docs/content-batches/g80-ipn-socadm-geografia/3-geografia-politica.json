@@ -1,0 +1,317 @@
+[
+  {
+    "stem": "¿Cuáles son los cuatro elementos que la geografía política reconoce como constitutivos de un Estado?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Población numerosa, recursos naturales abundantes, capital histórica y bandera nacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Territorio extenso, ejército numeroso, moneda propia y una sola lengua oficial.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Frontera natural, religión oficial, sistema educativo único y una sola etnia dominante.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Territorio definido, población permanente, gobierno organizado y soberanía reconocida.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Un Estado, en el sentido político-jurídico, requiere cuatro elementos: un territorio con límites definidos, una población que habite en él de forma permanente, un gobierno que lo organice y soberanía, es decir, capacidad de autogobernarse sin depender de otro Estado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Ninguno de esos cuatro elementos exige un tamaño mínimo de territorio o población, ni una sola lengua, religión o etnia: existen Estados pequeños, multilingües y multiétnicos que cumplen igualmente con las cuatro condiciones."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Un ejército, una moneda o una lengua única no son condición para ser Estado, solo atributos comunes; una capital histórica o una bandera son símbolos, no elementos constitutivos; y una frontera natural, una religión oficial o una etnia dominante tampoco son requisitos jurídicos del Estado."
+      }
+    ]
+  },
+  {
+    "stem": "¿Con qué propósito principal se organiza un país en entidades político-administrativas como estados o provincias?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Para asignar un idioma exclusivo y distinto a cada una de esas divisiones internas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Para distribuir el gobierno y la administración pública en niveles más manejables.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Para separar a la población según su origen étnico dentro del mismo territorio.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Para fijar de forma permanente los límites naturales entre distintos climas del país.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La división en estados, provincias o municipios permite descentralizar funciones de gobierno (educación, seguridad, servicios públicos) que serían muy difíciles de administrar de forma centralizada en países extensos o muy poblados."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Estas divisiones suelen combinar criterios históricos, geográficos y de gobernabilidad, no un solo factor; su límite no necesariamente coincide con accidentes geográficos ni con fronteras climáticas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Separar a la población por etnia no es el propósito de esta división administrativa; los límites entre climas son un fenómeno físico, no una decisión político-administrativa; y ninguna división interna moderna asigna un idioma exclusivo distinto por región como criterio de organización."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué diferencia a una frontera natural de una frontera artificial entre dos países?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La natural es más antigua que la artificial en absolutamente todos los casos conocidos.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La natural la establece un tratado internacional, y la artificial la fija un solo país.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La natural siempre coincide con un límite histórico colonial, y la artificial nunca.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La natural sigue un accidente geográfico, como un río o una cordillera, y la artificial no.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Una frontera natural aprovecha un elemento del relieve o la hidrografía (un río, una cadena montañosa) como límite entre países, mientras una frontera artificial se traza sin seguir un accidente geográfico, muchas veces como una línea recta sobre un paralelo o meridiano."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Ambos tipos de frontera pueden establecerse por tratado internacional y pueden tener origen colonial o no: lo que distingue a una de otra es únicamente si sigue o no un accidente geográfico visible."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El origen colonial puede darse en fronteras naturales y en artificiales por igual; ambas requieren normalmente un tratado o acuerdo entre los países, y ninguna se fija unilateralmente por un solo país; y la antigüedad no es lo que las distingue, sino su trazo respecto al relieve."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué derechos otorga a un país la Zona Económica Exclusiva (ZEE) sobre el mar adyacente a su costa?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La propiedad automática de cualquier isla que se descubra dentro de esa misma franja.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La soberanía plena e ilimitada sobre esas aguas, igual que sobre su territorio terrestre.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El aprovechamiento preferente de los recursos pesqueros y minerales hasta 200 millas náuticas.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El derecho exclusivo a que ningún otro barco navegue jamás por esa franja de océano.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La Convención de las Naciones Unidas sobre el Derecho del Mar reconoce a cada país costero una Zona Económica Exclusiva de hasta 200 millas náuticas desde su costa, dentro de la cual tiene derechos preferentes para explotar recursos pesqueros, petroleros y minerales."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Este derecho es económico, no de soberanía plena: otros países conservan libertad de navegación y de sobrevuelo dentro de esa misma franja, a diferencia de lo que ocurre en el mar territorial (las primeras 12 millas náuticas), donde sí hay soberanía casi total."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La ZEE no da soberanía ilimitada como en tierra firme, ni impide la navegación de otros países; y no otorga automáticamente la propiedad de cualquier isla dentro de la franja, cuya soberanía se determina por reglas propias del derecho internacional."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué un estrecho como el de Ormuz o el de Malaca tiene tanta importancia geopolítica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque concentra una parte enorme del tránsito marítimo mundial de mercancías o petróleo.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Porque ahí se concentra la mayor reserva mundial de agua dulce apta para consumo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Porque en sus orillas se ubican las capitales políticas de las principales potencias.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Porque ningún país costero ha logrado nunca ejercer soberanía sobre esas aguas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Estos estrechos son pasos marítimos angostos por los que debe transitar obligatoriamente una parte muy grande del comercio mundial (petróleo en el caso de Ormuz, mercancías de Asia en el caso de Malaca), lo que los vuelve puntos estratégicos de control económico y militar."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Cualquier interrupción o conflicto en uno de estos pasos afecta de inmediato el precio y la disponibilidad de bienes a escala global, por eso las potencias vigilan tan de cerca su seguridad y libre tránsito."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Ninguno de esos estrechos concentra capitales políticas ni reservas de agua dulce; y los países costeros sí ejercen soberanía sobre parte de esas aguas conforme al derecho marítimo internacional, aunque garanticen el paso inocente de otros barcos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es una de las funciones principales de la Organización de las Naciones Unidas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Fijar de manera obligatoria las fronteras territoriales de todos sus países miembros.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Sustituir a los gobiernos nacionales en la toma de decisiones internas de cada país.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Mediar en conflictos internacionales y promover la cooperación entre los países miembros.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Administrar directamente la economía interna de los países que solicitan su ayuda.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "La ONU se creó para mantener la paz y la seguridad internacionales, mediar en conflictos entre Estados y fomentar la cooperación en temas económicos, sociales y humanitarios entre sus países miembros."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "Sus resoluciones y mediaciones dependen en gran medida de la voluntad de cooperación de los países involucrados, ya que la organización no tiene un gobierno mundial ni fuerza propia para imponer decisiones sobre Estados soberanos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La ONU no fija por sí sola las fronteras de sus países miembros, eso corresponde a acuerdos entre los Estados involucrados; tampoco administra la economía interna de ningún país, ni sustituye a sus gobiernos nacionales en decisiones internas."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es una causa frecuente de disputas territoriales entre países vecinos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El uso de un alfabeto distinto para escribir la lengua oficial de cada país vecino.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El control sobre recursos naturales o rutas estratégicas ubicadas en la zona en conflicto.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La existencia de un mismo huso horario compartido entre los países involucrados.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La coincidencia en el nombre oficial que ambos países dieron a su moneda nacional.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La idea clave",
+        "content": "Muchas disputas territoriales se originan por el interés en controlar recursos naturales valiosos (agua, minerales, petróleo) o rutas de paso estratégicas (pasos de montaña, salidas al mar) ubicadas en la zona disputada."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto geográfico",
+        "content": "A estas causas económicas suelen sumarse reclamos históricos, culturales o étnicos sobre el mismo territorio, lo que hace que estos conflictos sean frecuentemente difíciles de resolver solo con criterios geográficos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Compartir huso horario, tener nombres de moneda parecidos o usar alfabetos distintos no generan por sí mismos disputas territoriales — ninguno de esos factores tiene relación directa con el control de un territorio."
+      }
+    ]
+  }
+]
