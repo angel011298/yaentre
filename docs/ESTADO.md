@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-13 · Última fase ejecutada: **G77 (COMPLETADA — `lot-validation.ts` detecta ahora los dos patrones de MÉTODO que G76 encontró y que ninguna regla anterior atrapaba: señuelo de longitud y orden predecible)**. Modelo real `claude-sonnet-5`. **① El hueco, dicho sin adornos:** G76 encontró que la clave del lote de Inglés UNAM (G75) fue la opción más larga en 24/40 (60% contra 25% del azar) y que su posición siguió el ciclo EXACTO A,B,C,D,... en gramática y vocabulario — ninguno de los dos es un defecto de DISTRIBUCIÓN pareja (lo único que `POSITION_SKEW` medía): un ciclo perfecto ES la distribución más pareja que existe, así que pasaba sin una sola advertencia. **② `LENGTH_BIAS` (nuevo):** compara, reactivo por reactivo, la longitud de la clave contra las 3 incorrectas (empates no cuentan en ninguna dirección). A diferencia de `POSITION_SKEW`, **no** hay banda inferior simétrica — que la clave rara vez sea la más larga/corta no es un defecto, es el efecto DESEADO de igualar longitudes (confirmado contra el lote real de G49: 8.6%/8.6%, sano). Solo un EXCESO por encima del 25% esperado filtra información: banda de advertencia >40% (mismo corte que `MAX_LETTER_SHARE`, no concluyente con lote pequeño), rechazo >45% (z≈2.9 para N=40, muy poco probable por azar). Exige lote ≥20 (`LENGTH_BIAS_MIN_LOT_SIZE`), misma razón que `POSITION_SKEW`. **③ `ORDER_PATTERN` (nuevo):** busca, en la secuencia de letras-correctas EN ORDEN DE INSERCIÓN, la racha máxima con periodicidad exacta 2/3/4 y la marca si cubre ≥3 ciclos completos — el mismo umbral que ya se usaba A MANO en G49 ("sin racha cíclica A→B→C→D de longitud ≥3", nunca antes codificado) generalizado a períodos más cortos (alternante = período 2, igual de aprendible). Períodos 2-3-4 nada más: con solo 4 letras posibles, un período mayor no es un patrón estructural nuevo. **④ Confirmado contra los dos lotes reales, no solo contra sintéticos:** reconstruido el lote real de G75/G76 desde `backups/content-bank.json` (orden real por `createdAt`) — `longestShare=50%` (definición estricta, sin empates) **y** una racha período-4 de 24 ítems (#17-#40, gramática+vocabulario concatenados) — ambos por encima de sus cortes de rechazo; corrido contra `docs/content-batches/g49-unam-a1-fisica.json` (35 reactivos, "profundizado" y ya sano según el barrido de G3c/G74) — `longestShare=8.6%`, `shortestShare=8.6%`, sin ninguna racha periódica: **0 falsos positivos**. **⑤ El lote de Inglés UNAM (G75/G76) NO se reprocesa** — ya está publicado, los 40 reactivos son correctos, y el hallazgo es del MÉTODO, no del lote; corregir hacia atrás violaría el criterio explícito de la fase. **⑥ CLAUDE.md actualizado** con la lección para el generador: igualar el largo de las 4 opciones (recortar la clave antes que alargar los distractores) y decidir la posición de cada reactivo de forma independiente, nunca con una regla mental repetible ("voy ciclando A,B,C,D"). **⑦ 11 tests nuevos** (2 con datos reales extraídos de G49/G76, además de los sintéticos) — rojo demostrado con sesgo/ciclo sintético, verde con longitudes parejas/orden no-periódico; 18 tests preexistentes sin cambios. `pnpm typecheck`/`pnpm lint`/`pnpm test:unit` en verde, dos corridas. **No se tocó `prisma/schema.prisma`.**
+
+<details><summary>Historial: G76 (2026-09-13)</summary>
+
 Última actualización: 2026-09-13 · Última fase ejecutada: **G76 (COMPLETADA — verificación ciega de los 40 reactivos de Inglés UNAM que compuso G75: **40/40 auto-aprobados**, el pool `UNAM:INGLES` queda publicado y las 3 áreas de la UNAM que evalúan Inglés pasan de `PARTIAL` a `READY`)**. Modelo real `claude-opus-5`. **① El aislamiento se comprobó, no se asumió.** La sesión no leyó el commit de G75 ni el lote generado; su único insumo fue `pnpm content:blind-batch`. Antes de resolver se verificó el archivo por su CONTENIDO y no por la promesa del tipo: `isCorrect` y `explanation` ausentes del texto crudo (grep sobre el JCN, 0 coincidencias), 40 ítems, claves de opción reducidas a `label`/`text`/`imageUrl`, y los 16 de lectura con su pasaje completo (necesario para responderlos) pero sin la clave. **② 40/40 auto-aprobados (100%), y el 100% se repite en los tres tipos**: comprensión de lectura 16/16, gramática 12/12, vocabulario 12/12. Confianza mínima 0.90, media 0.966; cero problemas marcados; cero discrepancias, así que la cola de F3 no creció. **③ Ninguna ambigüedad genuina que marcar, y tres distractores que merecen su nombre** — en gramática, `cooked` frente a `was cooking` (*While Ana ___ dinner…*), `has searched` frente a `has been searching`, y `in` frente a `into` son defendibles en inglés real pero NO equivalentes: en los tres la opción de la clave es la única que satisface la regla que el reactivo pone a prueba (aspecto progresivo interrumpido, duración inconclusa, movimiento con cruce de umbral). Se documentó el descarte en vez de inflar el problema, que es lo que pedía el criterio de no forzar. **④ `pnpm content:guard` sí cambió, y cambió exactamente como G75 predijo**: las 3 áreas pasan de `PARTIAL` (con «falta Inglés») a `READY` al 100% del peso — A1 64/70→**70/70**, A2 27/30→**30/30**, A3 19/20→**20/20** — y las cuotas por materia que el censo exigía (3, 4 y 2) son las que G75 había anotado a mano. Áreas listas: **2 de 7 → 5 de 7**. Queda 1 `PARTIAL` (UNAM A4, falta Artes) y 1 `COMING_SOON` (IPN SOCADM, 32%), ambas sin tocar. Las 4 aserciones P1-P4 en verde. **⑤ Banco: 1 143 → 1 183 servibles** (1 187 filas: 1 183 publicados, 3 discrepancias históricas, 1 retirado). Meta efectiva de G26 (1 222) al **75%**, brecha **300**. Tasa de auto-aprobación global del pipeline: 99.7% (1 184/1 187). **⑥ Un hallazgo del generador que ninguna corrida anterior había medido: pista de longitud.** La opción correcta era la más larga de las cuatro en **24 de 40** (60%, contra el 25% que daría el azar), con razón de longitud media clave/distractores de 1.17 en lectura, 1.24 en vocabulario y 1.26 en gramática. En gramática es en parte intrínseco (un tiempo compuesto es más largo que uno simple), pero en lectura y vocabulario las opciones son glosas en español y la longitud la decide quien redacta: un sustentante astuto puede acertar sin leer. **Y una segunda pista: la clave es ESTRICTAMENTE cíclica** en gramática y vocabulario (A,B,C,D,A,B,C,D,A,B,C,D en ambos). `content:validate-batch` solo exige que la distribución sea PAREJA (15-40% por letra) y un ciclo perfecto es lo más parejo que existe, así que pasa sin ruido. Aquí es inocuo porque `shuffleOptions:true` para la UNAM, pero el mismo hábito aplicado a IPN/UAM/CENEVAL/CNBV —donde es `false`— regala el patrón. Ambas son notas para el generador de G77, no defectos del lote: los 40 son correctos y ninguno se bloqueó por esto. **⑦ Tres comentarios que esta fase volvió falsos, corregidos** (`PracticeSelector.tsx`, `db/drill.ts`, `tino/copy.ts`): afirmaban que el pool `UNAM:INGLES` «está vacío», dos de ellos repitiendo además el «cuatro áreas» que G75 ya había corregido a tres. Se confirmó antes que el bloqueo de `/practicar` es del CENSO y no de una lista en código —los 3 únicos aciertos de `grep` sobre `src/` eran comentarios— así que el botón de Inglés se abrió solo, sin desplegar nada. **⑧ Respaldo regenerado** (`pnpm backup:export`, 5 852 filas) para capturar los 40 `isVerified=true` y sus 40 registros `Question.verification`; verificado contra el propio archivo. `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.**
+
+</details>
 
 <details><summary>Historial: G75 (2026-09-13)</summary>
 
@@ -373,6 +379,195 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G77 — Validador de lote: señuelo de longitud y orden predecible (2026-09-13)
+
+> G76 verificó a ciegas los 40 reactivos de Inglés UNAM (G75) y encontró dos
+> patrones del MÉTODO de composición que `lot-validation.ts` no atrapaba —
+> ninguno invalida el lote ya publicado, ambos son notas para el generador.
+> Modelo real `claude-sonnet-5`. Esta fase los codifica.
+
+### 1. El hueco: distribución pareja no es lo mismo que impredecible
+
+`POSITION_SKEW` (G3c) exige que ninguna letra sea la correcta en <15% o >40%
+de los reactivos de un lote. Es una condición NECESARIA pero no suficiente:
+la secuencia A,B,C,D,A,B,C,D,A,B,C,D,... tiene una distribución perfectamente
+pareja (25.0%/25.0%/25.0%/25.0% exacto) y a la vez es el patrón MÁS
+predecible que existe. G76 encontró exactamente esa secuencia en gramática y
+en vocabulario del lote de Inglés — 12/12 en cada una — y pasó sin una sola
+advertencia porque nadie medía periodicidad, solo reparto.
+
+El segundo hallazgo de G76 —la clave como opción más larga en 24/40— es de
+otra naturaleza (no es de ORDEN, es de CONTENIDO de la opción), pero
+comparte el síntoma: un rasgo que correlaciona con "ser la respuesta
+correcta" sin que el sustentante necesite dominar el tema.
+
+### 2. `LENGTH_BIAS` — diseño y umbrales
+
+**Qué mide:** por reactivo, compara la longitud en caracteres de la opción
+correcta contra las 3 incorrectas. `longestShare` = fracción de reactivos
+donde la clave es ESTRICTAMENTE la más larga de las 4; `shortestShare`, el
+espejo. Empates no cuentan en ninguna dirección (criterio simple y
+conservador: solo cuenta la señal inequívoca).
+
+**Por qué NO hay banda inferior simétrica, a diferencia de `POSITION_SKEW`.**
+Con las letras, un letra que sea RARA VEZ la correcta es tan sospechoso como
+una que lo sea SIEMPRE — no hay razón legítima para que una posición
+estructural se use menos de lo esperado. Con la longitud es al revés: que la
+clave rara vez sea la extrema (ni la más larga ni la más corta) es
+exactamente el resultado de **igualar el largo de las 4 opciones**, que es
+la corrección que este mismo hallazgo le pide al generador. Confirmado
+contra el lote real de G49 (Física, UNAM Área 1 — hand-compuesto con
+objetivo explícito de longitud pareja, documentado en su propio
+`qualityChecks.lengthCue`): `longestShare=8.6%`, `shortestShare=8.6%`, sano
+y sin ninguna advertencia. Poner ahí un piso de 15% habría marcado como
+sospechoso el resultado CORRECTO de seguir la instrucción.
+
+**Umbrales** (`LENGTH_BIAS_MIN_LOT_SIZE=20`, `LENGTH_SHARE_WARN_MAX=0.40`,
+`LENGTH_SHARE_REJECT_MAX=0.45`):
+- Muestra mínima 20, misma razón que `POSITION_SKEW_MIN_LOT_SIZE`: con menos
+  reactivos el ruido de un lote pequeño puede producir un share alto sin que
+  haya un patrón real de redacción detrás.
+- **Advertencia (no bloquea) por encima de 40%** — mismo corte numérico que
+  `MAX_LETTER_SHARE`, elegido porque a esta distancia del 25% esperado
+  (N=20 → z≈1.55) el resultado todavía puede ser azar; se reporta para que
+  quien inserta lo revise, no se rechaza solo.
+- **Rechazo por encima de 45%** — para N=40 (el tamaño real del lote de
+  Inglés) un share de 45% es z≈2.9 (p<0.004): estadísticamente muy poco
+  probable como azar. El lote real de G76 midió **50%** con esta definición
+  estricta (sin contar empates), cómodamente por encima del corte.
+
+### 3. `ORDER_PATTERN` — diseño y umbrales
+
+**Qué mide:** sobre la secuencia de letras-correctas EN EL ORDEN DE
+INSERCIÓN del lote (el mismo orden que ve `positionDistribution`), busca la
+racha máxima de comparaciones `letra[i] === letra[i-p]` para cada período
+`p` entre 2 y 4. Una racha de `runLen` comparaciones consecutivas cubre
+`runLen + p` ítems — el bloque que se repite con ese período. Solo se
+reporta si ese bloque alcanza `ORDER_PATTERN_MIN_CYCLES=3` ciclos completos
+(`runLen + p >= p * 3`). Ítems con opciones mal formadas se excluyen de la
+secuencia (no cuentan como hueco ni rompen artificialmente una racha real).
+
+**Por qué períodos 2-4 nada más.** Con solo 4 letras posibles, un período
+mayor no describe un patrón estructural nuevo — o se reduce a uno más corto,
+o necesita tanta muestra que el ruido lo vuelve indistinguible del azar.
+Período 2 (alternante A,B,A,B,...) se incluye a propósito aunque G76 no lo
+haya encontrado: es igual de aprendible que el período 4 que sí encontró.
+
+**Por qué exactamente 3 ciclos, no 2 ni 4.** Este umbral YA estaba en uso —
+a mano, nunca codificado — desde G49 (Física, UNAM Área 1): su
+`qualityChecks.positionSkew` documenta textualmente *"sin racha cíclica
+A→B→C→D de longitud >=3... Ondas se insertó W2,W4,W1,W3 y Electrostática
+E1,E3,E2 para romper rachas que aparecían al fijar la letra de los
+numéricos por rango"* — es decir, la sesión de G49 ya sabía que 3 ciclos
+period-4 era el límite a evitar, y lo verificó a mano porque la herramienta
+automática no existía. G77 generaliza ese mismo número a otros períodos en
+vez de inventar uno nuevo: 2 repeticiones de un período corto ocurren por
+azar con más frecuencia de la que parece (con 4 letras, un período de 2
+tiene ~25% de probabilidad de repetirse una vez nada más por coincidencia),
+pero 3 ciclos seguidos deja de ser explicable así. El caso real de G76 fue
+de **6 ciclos consecutivos** (24 ítems, gramática+vocabulario concatenados),
+muy por encima del mínimo.
+
+### 4. Confirmado contra los dos lotes reales, no solo contra sintéticos
+
+Antes de escribir un solo test, se corrió el `analyzeLot` nuevo contra datos
+REALES reconstruidos de dos fuentes, para no calibrar umbrales contra casos
+inventados que podrían no representar la variación real de un lote:
+
+**Lote de Inglés UNAM (G75/G76)**, reconstruido desde
+`backups/content-bank.json` — las 40 filas `Question` reales bajo
+`sharedContentKey='UNAM:INGLES'`, ordenadas por su `createdAt` real (el
+mismo orden de inserción que vio la sesión de G75):
+
+```
+longestShare = 50.0%  (por encima de LENGTH_SHARE_REJECT_MAX=45%)
+shortestShare = 12.5%
+razón media clave/distractores = 1.22
+Racha detectada: período 4, ítems #17-#40 (24 ítems, 6 ciclos) —
+  gramática (12) + vocabulario (12) concatenados, misma fase A,B,C,D
+  en ambos, así que la racha cruza el límite entre las dos materias
+  como un solo bloque continuo.
+```
+
+Ambos chequeos lo habrían rechazado — confirma el criterio de aceptación.
+
+**Lote de Física, UNAM Área 1 (G49)** — `docs/content-batches/g49-unam-a1-fisica.json`,
+un lote "profundizado" ya barrido y sano según G3c/G74, con objetivo
+EXPLÍCITO de longitud pareja documentado en su propio `qualityChecks`:
+
+```
+longestShare = 8.6%   shortestShare = 8.6%   razón media = 0.99
+0 rachas de orden detectadas (períodos 2, 3 y 4)
+✅ Sin violaciones.
+```
+
+**0 falsos positivos** contra un lote real hand-compuesto con cuidado.
+
+### 5. El lote de Inglés UNAM NO se reprocesa
+
+El hallazgo es del MÉTODO de composición, no del lote: los 40 reactivos de
+G75/G76 son correctos, están publicados (`isVerified=true`) y sirven a 3
+áreas de la UNAM que dependían de ellos para pasar de `PARTIAL` a `READY`
+(G76 §4). Revertir la asignación de posiciones o reescribir las opciones
+para "arreglar" el sesgo de longitud:
+- Requeriría re-verificación adversarial completa (dos sesiones ciegas
+  independientes, PRD §8) — el criterio de aceptación de esta fase la
+  prohíbe explícitamente.
+- No corrige ningún error real: los 40 reactivos evalúan correctamente lo
+  que dicen evaluar. El patrón es aprendible, no incorrecto.
+- Sería exactamente el tipo de "reparación cosmética retroactiva" que
+  `docs/ESTADO.md` (G3c) ya rechazó una vez por la misma razón, cuando se
+  decidió NO reordenar G3a para no desincronizar sus explicaciones.
+
+El guardrail mira hacia ADELANTE: todo lote nuevo pasa por `analyzeLot` con
+los dos chequeos activos antes de tocar la DB (mismo paso obligatorio de
+`content-insert-drafts.ts` que ya existía para `POSITION_SKEW`).
+
+### 6. Severidad graduada: `warn` vs `reject`
+
+`LotViolation` gana un campo `severity: 'reject' | 'warn'`. Todas las reglas
+preexistentes (`MALFORMED_OPTIONS`, `POSITION_SKEW`, `LETTER_CITATION`,
+`PASSAGE_LINK`) siguen siendo `'reject'` — ya venían de un defecto
+confirmado, sin zona gris. `ORDER_PATTERN` también es `'reject'`: al ser una
+racha EXACTA con 3 ciclos de margen ya descontado, no hay ambigüedad
+estadística que justifique una advertencia. Solo `LENGTH_BIAS` usa `'warn'`
+en su banda 40-45%, porque ahí sí existe una zona donde el share puede
+deberse a una muestra chica sin patrón real detrás — exactamente lo que
+pedían las tareas de esta fase ("advertencia o rechazo, según qué tan
+severo"). `report.ok` ahora es `violations.every(v => v.severity !== 'reject')`
+— una advertencia sola no bloquea la inserción, pero queda en el reporte.
+
+### 7. `CLAUDE.md`: la instrucción para el generador
+
+Nuevo guardrail en la sección "Guardrails críticos": igualar el largo de
+las 4 opciones (recortar la clave antes que alargar los distractores) y
+decidir la posición de la clave de forma **independiente** por reactivo —
+nunca con una regla mental repetible ("voy ciclando A, B, C, D", "toca la
+siguiente letra"). El chequeo automático es una red de seguridad de
+CONJUNTO, no un sustituto de redactar bien desde el origen.
+
+### 8. Pruebas
+
+11 tests nuevos en `tests/scripts/lot-validation.test.ts` (18 preexistentes
+sin cambios, total 29): 5 de `LENGTH_BIAS` (rechazo por más-larga, rechazo
+por más-corta, sano con longitudes parejas, muestra insuficiente no
+bloquea, y el caso real de G76 reconstruido) y 6 de `ORDER_PATTERN` (ciclo
+de 3 repeticiones period-4 rechaza, 2 repeticiones NO alcanza el mínimo,
+alternante period-2 rechaza, el caso real concatenado gramática+vocabulario
+de G76, secuencia real sana de G49 sin falsos positivos, y un ítem
+malformado fuera de la racha no la diluye). Los datos "reales" de las
+pruebas (secuencias de G49 y del lote de Inglés) se congelaron como
+constantes a partir de la reconstrucción de la sección 4, no inventados.
+
+### 9. Verificación de la fase
+
+| Comando | Resultado |
+|---|---|
+| `pnpm vitest run tests/scripts/lot-validation.test.ts` | 29/29 (18 preexistentes + 11 nuevos) |
+| `npx tsx scripts/validate-batch.ts` contra el lote real de Inglés reconstruido | ❌ rechazado — `LENGTH_BIAS` (50.0%) y `ORDER_PATTERN` (período 4, #17-#40) |
+| `npx tsx scripts/validate-batch.ts` contra `docs/content-batches/g49-unam-a1-fisica.json` | ✅ sin violaciones |
+| `pnpm typecheck` · `pnpm lint` · `pnpm test:unit` | ✅ ✅ ✅ (corrido dos veces, sin intermitencia) |
 
 ## G76 — Verificación ciega: Inglés UNAM (lote de G75) (2026-09-13)
 

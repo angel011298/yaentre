@@ -2,6 +2,10 @@ import { describe, it, expect } from 'vitest';
 import {
   analyzeLot,
   POSITION_SKEW_MIN_LOT_SIZE,
+  LENGTH_BIAS_MIN_LOT_SIZE,
+  LENGTH_SHARE_WARN_MAX,
+  LENGTH_SHARE_REJECT_MAX,
+  ORDER_PATTERN_MIN_CYCLES,
   type LotItem,
 } from '../../scripts/lib/lot-validation';
 
@@ -228,6 +232,194 @@ describe('analyzeLot — vínculo pasaje ↔ formato (G22)', () => {
     const report = analyzeLot([makeItem('A'), makeItem('B')]);
     expect(report.passageGroups).toEqual({});
     expect(report.violations.filter((v) => v.code === 'PASSAGE_LINK')).toHaveLength(0);
+  });
+});
+
+/**
+ * Secuencia REAL de posiciones-correctas de G49 (Física, UNAM Área 1 — un
+ * lote "profundizado" ya sano según el barrido de G3c/G74): balanceada
+ * (A9/B9/C9/D8, dentro de 15-40%) y SIN periodicidad — verificado a mano
+ * contra `analyzeLot` antes de escribir estos tests. Se reutiliza aquí como
+ * la secuencia de letras "de control" para los dos chequeos nuevos de G77,
+ * en vez de inventar una secuencia sintética que accidentalmente resulte
+ * periódica.
+ */
+const G49_SANE_SEQUENCE: Array<'A' | 'B' | 'C' | 'D'> = [
+  'A', 'A', 'C', 'C', 'D', 'B', 'A', 'C', 'D', 'C',
+  'A', 'B', 'D', 'C', 'B', 'D', 'B', 'D', 'A', 'C',
+  'B', 'D', 'B', 'A', 'A', 'C', 'B', 'D', 'C', 'B',
+  'B', 'A', 'D', 'A', 'C',
+];
+
+function makeItemWithOptionTexts(
+  correctId: 'A' | 'B' | 'C' | 'D',
+  texts: Record<'A' | 'B' | 'C' | 'D', string>,
+): LotItem {
+  return makeItem(correctId, {
+    options: (['A', 'B', 'C', 'D'] as const).map((id) => ({
+      id,
+      text: texts[id],
+      isCorrect: id === correctId,
+    })),
+  });
+}
+
+describe('analyzeLot — sesgo de longitud (G77)', () => {
+  it('clave sistemáticamente más larga que los distractores -> LENGTH_BIAS de rechazo', () => {
+    // Reusa la secuencia balanceada y no-periódica de G49 (35 items, >= LENGTH_BIAS_MIN_LOT_SIZE)
+    // pero hace que la opción correcta sea siempre mucho más larga que las 3 incorrectas.
+    const items = G49_SANE_SEQUENCE.map((correctId) => {
+      const texts = { A: 'corta', B: 'corta', C: 'corta', D: 'corta' } as Record<'A' | 'B' | 'C' | 'D', string>;
+      texts[correctId] = 'esta es la opción correcta, mucho más larga que las demás';
+      return makeItemWithOptionTexts(correctId, texts);
+    });
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    const hit = report.violations.find((v) => v.code === 'LENGTH_BIAS');
+    expect(hit).toBeDefined();
+    expect(hit?.severity).toBe('reject');
+    expect(report.lengthBias.longestShare).toBeGreaterThan(LENGTH_SHARE_REJECT_MAX);
+  });
+
+  it('clave sistemáticamente más corta -> también LENGTH_BIAS de rechazo (ambas direcciones)', () => {
+    const items = G49_SANE_SEQUENCE.map((correctId) => {
+      const texts = {
+        A: 'una opción incorrecta bastante larga y elaborada',
+        B: 'una opción incorrecta bastante larga y elaborada',
+        C: 'una opción incorrecta bastante larga y elaborada',
+        D: 'una opción incorrecta bastante larga y elaborada',
+      } as Record<'A' | 'B' | 'C' | 'D', string>;
+      texts[correctId] = 'corta';
+      return makeItemWithOptionTexts(correctId, texts);
+    });
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    expect(report.violations.some((v) => v.code === 'LENGTH_BIAS')).toBe(true);
+    expect(report.lengthBias.shortestShare).toBeGreaterThan(LENGTH_SHARE_REJECT_MAX);
+  });
+
+  it('longitudes parejas entre clave y distractores -> sin LENGTH_BIAS (caso sano, G49)', () => {
+    // Mismas letras (balanceadas, no periódicas) y las 4 opciones con
+    // longitud EXACTAMENTE igual (difieren solo en el último carácter) para
+    // que no haya correlación accidental entre la letra y su longitud fija
+    // -- el caso real de G49, que sí pasó sin advertencia.
+    const items = G49_SANE_SEQUENCE.map((correctId) =>
+      makeItemWithOptionTexts(correctId, {
+        A: 'una opción de longitud pareja A',
+        B: 'una opción de longitud pareja B',
+        C: 'una opción de longitud pareja C',
+        D: 'una opción de longitud pareja D',
+      }),
+    );
+    const report = analyzeLot(items);
+    expect(report.violations.filter((v) => v.code === 'LENGTH_BIAS')).toHaveLength(0);
+    expect(report.lengthBias.longestShare).toBeLessThanOrEqual(LENGTH_SHARE_WARN_MAX);
+    expect(report.lengthBias.shortestShare).toBeLessThanOrEqual(LENGTH_SHARE_WARN_MAX);
+  });
+
+  it('lote pequeño (< 20) con sesgo total de longitud NO dispara LENGTH_BIAS (muestra insuficiente)', () => {
+    const items = Array.from({ length: 4 }, (_, i) =>
+      makeItemWithOptionTexts((['A', 'B', 'C', 'D'] as const)[i], {
+        A: i === 0 ? 'la opción correcta es mucho más larga que el resto' : 'corta',
+        B: i === 1 ? 'la opción correcta es mucho más larga que el resto' : 'corta',
+        C: i === 2 ? 'la opción correcta es mucho más larga que el resto' : 'corta',
+        D: i === 3 ? 'la opción correcta es mucho más larga que el resto' : 'corta',
+      }),
+    );
+    const report = analyzeLot(items);
+    expect(report.violations.filter((v) => v.code === 'LENGTH_BIAS')).toHaveLength(0);
+    expect(items.length).toBeLessThan(LENGTH_BIAS_MIN_LOT_SIZE);
+  });
+
+  it('reproduce el hallazgo real de G76: lote de Inglés UNAM (40 ítems, orden real de inserción)', () => {
+    // Secuencia y longitudes reconstruidas de backups/content-bank.json (createdAt real
+    // de inserción) para el pool UNAM:INGLES de G75/G76 — ver docs/ESTADO.md §G76.6.
+    // longestShare medido aquí: 50% (estrictamente "más larga que las 3", empates aparte)
+    // — por encima de LENGTH_SHARE_REJECT_MAX incluso con la definición estricta.
+    const englishCorrectSequence = 'ABCDBCDABCDAABCBABCDABCDABCDABCDABCDABCD'.split('') as Array<
+      'A' | 'B' | 'C' | 'D'
+    >;
+    // Longitudes representativas del patrón real: en lectura/vocabulario la clave trae
+    // los matices completos ("...aunque todavía tiene limitaciones") y los distractores
+    // se despachan en media línea (docs/ESTADO.md §G76.6a).
+    const items = englishCorrectSequence.map((correctId) => {
+      const texts = { A: 'distractor breve', B: 'distractor breve', C: 'distractor breve', D: 'distractor breve' } as Record<
+        'A' | 'B' | 'C' | 'D',
+        string
+      >;
+      texts[correctId] = 'la clave con todos los matices necesarios para ser inequívocamente correcta';
+      return makeItemWithOptionTexts(correctId, texts);
+    });
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    expect(report.violations.some((v) => v.code === 'LENGTH_BIAS')).toBe(true);
+  });
+});
+
+describe('analyzeLot — patrón de orden predecible (G77)', () => {
+  it('ciclo exacto A,B,C,D repetido 3 veces (12 ítems) -> ORDER_PATTERN de rechazo (caso real G76)', () => {
+    const cycle: Array<'A' | 'B' | 'C' | 'D'> = ['A', 'B', 'C', 'D'];
+    const items = Array.from({ length: 12 }, (_, i) => makeItem(cycle[i % 4]));
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    const hit = report.violations.find((v) => v.code === 'ORDER_PATTERN');
+    expect(hit).toBeDefined();
+    expect(hit?.severity).toBe('reject');
+    expect(report.orderPatterns.some((p) => p.period === 4)).toBe(true);
+  });
+
+  it('2 ciclos completos (8 ítems) NO alcanzan ORDER_PATTERN_MIN_CYCLES=3 -> sin violación', () => {
+    const cycle: Array<'A' | 'B' | 'C' | 'D'> = ['A', 'B', 'C', 'D'];
+    expect(ORDER_PATTERN_MIN_CYCLES).toBe(3);
+    const items = Array.from({ length: 8 }, (_, i) => makeItem(cycle[i % 4]));
+    const report = analyzeLot(items);
+    expect(report.violations.filter((v) => v.code === 'ORDER_PATTERN')).toHaveLength(0);
+  });
+
+  it('patrón alternante A,B,A,B,... (período 2, 6 ítems) -> ORDER_PATTERN de rechazo', () => {
+    const pattern: Array<'A' | 'B' | 'C' | 'D'> = ['A', 'B', 'A', 'B', 'A', 'B'];
+    const items = pattern.map((id) => makeItem(id));
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    expect(report.orderPatterns.some((p) => p.period === 2)).toBe(true);
+  });
+
+  it('reproduce el hallazgo real de G76: gramática + vocabulario concatenados (24 ítems) marca un solo bloque período-4', () => {
+    // Orden real de inserción (createdAt) de docs/ESTADO.md §G76.6b: gramática
+    // (ítems 17-28 del lote completo) seguida de vocabulario (29-40), ambos
+    // A,B,C,D,A,B,C,D,A,B,C,D — el mismo ciclo, así que la racha detectada
+    // abarca los 24 ítems como un bloque continuo.
+    const grammarAndVocab = 'ABCDABCDABCDABCDABCDABCD'.split('') as Array<'A' | 'B' | 'C' | 'D'>;
+    const items = grammarAndVocab.map((id) => makeItem(id));
+    const report = analyzeLot(items);
+    expect(report.ok).toBe(false);
+    const hit = report.orderPatterns.find((p) => p.period === 4);
+    expect(hit).toBeDefined();
+    expect(hit?.startItem).toBe(1);
+    expect(hit?.endItem).toBe(24);
+  });
+
+  it('secuencia balanceada y no-periódica (G49, 35 ítems reales) -> sin ORDER_PATTERN (sin falsos positivos)', () => {
+    const items = G49_SANE_SEQUENCE.map((id) => makeItem(id));
+    const report = analyzeLot(items);
+    expect(report.orderPatterns).toHaveLength(0);
+    expect(report.violations.filter((v) => v.code === 'ORDER_PATTERN')).toHaveLength(0);
+  });
+
+  it('un ítem malformado FUERA de la racha no impide detectarla (se excluye de la secuencia, no aporta hueco)', () => {
+    const cycle: Array<'A' | 'B' | 'C' | 'D'> = ['A', 'B', 'C', 'D'];
+    const items: LotItem[] = Array.from({ length: 12 }, (_, i) => makeItem(cycle[i % 4]));
+    // Un 13er ítem malformado (2 correctas) al final: no debe "diluir" la
+    // racha cíclica real de los 12 primeros ni contarse en su secuencia.
+    const malformed = makeItem('A');
+    malformed.options[1].isCorrect = true;
+    items.push(malformed);
+    const report = analyzeLot(items);
+    expect(report.violations.some((v) => v.code === 'MALFORMED_OPTIONS')).toBe(true);
+    const hit = report.orderPatterns.find((p) => p.period === 4);
+    expect(hit).toBeDefined();
+    expect(hit?.startItem).toBe(1);
+    expect(hit?.endItem).toBe(12);
   });
 });
 
