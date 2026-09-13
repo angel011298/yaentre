@@ -70,10 +70,11 @@ export interface PracticeOptions {
  *
  * G74: cada materia y cada tema vienen con su censo REAL de reactivos
  * servibles. Antes no: la pantalla ofrecía «Inglés» a un alumno de la UNAM
- * igual que «Matemáticas», y el pool de `UNAM:INGLES` está vacío en las cuatro
- * áreas — clic, `NO_CONTENT`, una línea roja de error, y ninguna explicación
- * de por qué. El censo se calcula aquí para que la UI no tenga que adivinarlo
- * ni descubrirlo fallando.
+ * igual que «Matemáticas» con el pool de `UNAM:INGLES` vacío — clic,
+ * `NO_CONTENT`, una línea roja de error, y ninguna explicación de por qué. El
+ * censo se calcula aquí para que la UI no tenga que adivinarlo ni descubrirlo
+ * fallando. (Ese pool ya tiene contenido desde G75/G76 y el censo lo reflejó
+ * sin cambiar una línea de código — que era exactamente el punto.)
  */
 export async function loadPracticeOptions(userProfileId: string): Promise<PracticeOptions | null> {
   const profile = await prisma.userProfile.findUnique({

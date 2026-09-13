@@ -91,9 +91,12 @@ export function PracticeSelector({
         <div className="space-y-2">
           {options.subjects.map((subject) => {
             // G74: una materia sin reactivos no se ofrece como botón que va a
-            // fallar — se explica. Es el caso de Inglés en la UNAM hoy: el pool
-            // `UNAM:INGLES` está vacío en las cuatro áreas, y hasta ahora el
-            // alumno solo veía una línea roja de error tras dar clic.
+            // fallar — se explica. El caso que lo motivó fue Inglés de la UNAM:
+            // el pool `UNAM:INGLES` estaba vacío en las 3 áreas que lo evalúan
+            // (el Área 4 no lleva Inglés) y el alumno solo veía una línea roja
+            // de error tras dar clic. G75 lo llenó y G76 lo verificó, así que
+            // hoy ese botón ya está activo — lo abrió el censo, sin tocar este
+            // archivo, que es justo lo que se buscaba.
             const ready = subject.servable > 0;
             const topicsWithContent = subject.topics.filter((t) => t.servable > 0);
 

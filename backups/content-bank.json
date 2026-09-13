@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-13T08:33:38.339Z",
+    "exportedAt": "2026-09-13T09:05:37.598Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -92013,7 +92013,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92021,7 +92021,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1gxj00001zrvv3ilosm5",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Idea principal del pasaje solar. El texto traza un arco completo: la tecnologia fue cara por decadas -> los costos de fabricacion cayeron mas del 80% desde 2010 -> hoy es una de las fuentes mas baratas -> PERO siguen dependiendo de baterias o red tras el atardecer -> se prueban materiales mas eficientes. Eso es exactamente 'mas accesible y eficiente con el tiempo, aunque todavia tiene limitaciones'. Descarte: la opcion que afirma que ya almacenan electricidad sin bateria contradice literalmente 'they cannot store the energy they generate on their own'; la que dice que las celdas de silicio se inventaron en 2010 y siguen siendo la energia mas cara invierte el dato (2010 es el ano base de la CAIDA de costos, no de invencion); la que dice que ya existen paneles que funcionan de noche sin red confunde 'engineers are currently testing new materials' (mas delgados, ligeros y eficientes) con un producto terminado que ademas resolveria un problema distinto.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:01:54.377Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92029,7 +92049,7 @@
         "$d": "2026-09-13T08:31:18.920Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:18.920Z"
+        "$d": "2026-09-13T09:01:54.409Z"
       }
     },
     {
@@ -92065,7 +92085,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92073,7 +92093,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1gxj00001zrvv3ilosm5",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Dato literal: 'Manufacturing costs have dropped by more than eighty percent since 2010'. Descarte: 'exactamente el cincuenta por ciento' inventa una cifra que no aparece; 'ha aumentado por la demanda global' invierte la direccion del cambio; 'se ha mantenido sin cambios' contradice el verbo 'have dropped'. El matiz decisivo es 'more than' -> 'mas del ochenta', que es justo lo que dice la opcion elegida.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:01:55.533Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92081,7 +92121,7 @@
         "$d": "2026-09-13T08:31:20.262Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:20.262Z"
+        "$d": "2026-09-13T09:01:55.537Z"
       }
     },
     {
@@ -92117,7 +92157,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92125,7 +92165,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1gxj00001zrvv3ilosm5",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Referencia anaforica. 'That situation has changed' apunta a la oracion inmediatamente anterior: 'For decades the technology remained expensive, so only a few countries invested heavily in it'. Una 'situacion que cambio' solo puede ser ese estado de cosas. Descarte: la dependencia de bateria o red aparece DESPUES y el texto la presenta como algo que NO ha cambiado (la marca es 'Even so'); el efecto fotovoltaico es un mecanismo fisico, no una situacion que cambie; la prueba de nuevos materiales es el cambio en curso, no la situacion previa.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:01:56.635Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92133,7 +92193,7 @@
         "$d": "2026-09-13T08:31:21.475Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:21.475Z"
+        "$d": "2026-09-13T09:01:56.639Z"
       }
     },
     {
@@ -92169,7 +92229,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92177,7 +92237,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1gxj00001zrvv3ilosm5",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'considerably more efficient than the ones sold today': 'considerably' es un intensificador de grado sobre el comparativo, o sea un grado notable/significativo de mejora. Descarte: no expresa duda (eso lo aporta el modal 'could', no el adverbio); no es temporal, no hay ningun sentido de 'proximamente'; no introduce comparacion economica entre paises — lo que se compara son las celdas nuevas contra las que se venden hoy.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T09:01:57.743Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92185,7 +92265,7 @@
         "$d": "2026-09-13T08:31:22.688Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:22.688Z"
+        "$d": "2026-09-13T09:01:57.748Z"
       }
     },
     {
@@ -92221,7 +92301,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92229,7 +92309,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1hur00011zrvd63thqjd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Idea principal del pasaje del cafe: origen probable en las tierras altas de Etiopia -> difusion del cultivo a la Peninsula Arabiga en el siglo XV -> Yemen -> Imperio Otomano -> Europa -> cafeterias de Londres y Paris en el XVII. Es una trayectoria de origen y difusion. Descarte: los efectos de la cafeina en animales son solo la anecdota de Kaldi, un detalle subordinado, y ademas el texto los describe como energizantes, no negativos; las diferencias actuales Brasil/Colombia solo se mencionan para CONTRASTAR con el origen real; las tecnicas modernas de tostado no aparecen (el tostado se menciona historicamente, en Arabia).",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:01:58.841Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92237,7 +92337,7 @@
         "$d": "2026-09-13T08:31:23.898Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:23.898Z"
+        "$d": "2026-09-13T09:01:58.845Z"
       }
     },
     {
@@ -92273,7 +92373,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92281,7 +92381,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1hur00011zrvd63thqjd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'the plant most likely originated in the highlands of Ethiopia' y despues 'coffee cultivation spread FROM East Africa to the Arabian Peninsula', o sea que el cultivo parte de Africa Oriental = las tierras altas de Etiopia. Descarte: la Peninsula Arabiga es donde primero se TOSTO y PREPARO ('first roasted and brewed'), no donde se cultivo primero — es el distractor fuerte y se descarta atendiendo al verbo; Londres y Paris son cafeterias del siglo XVII, consumo y no cultivo; el Imperio Otomano es una etapa de difusion del consumo.",
+          "confidence": 0.93,
+          "verifiedAt": "2026-09-13T09:02:00.135Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92289,7 +92409,7 @@
         "$d": "2026-09-13T08:31:25.114Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:25.114Z"
+        "$d": "2026-09-13T09:02:00.139Z"
       }
     },
     {
@@ -92325,7 +92445,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92333,7 +92453,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1hur00011zrvd63thqjd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'From Yemen, the practice of drinking coffee moved into the Ottoman Empire': la costumbre en cuestion es la que la oracion anterior acaba de describir, 'where it was first roasted and brewed the way we recognize today'. La opcion elegida es la unica que retoma ese contenido. Descarte: el comercio Brasil-Colombia no existe en el texto como practica que se difunda (Brasil y Colombia solo aparecen en la primera linea, como asociacion equivocada); la leyenda de Kaldi es un relato, no una practica que viaje desde Yemen; las reuniones politicas en cafeterias europeas son la CONSECUENCIA posterior de esa difusion, no su antecedente.",
+          "confidence": 0.9,
+          "verifiedAt": "2026-09-13T09:02:01.847Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92341,7 +92481,7 @@
         "$d": "2026-09-13T08:31:26.336Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:26.336Z"
+        "$d": "2026-09-13T09:02:01.852Z"
       }
     },
     {
@@ -92377,7 +92517,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92385,7 +92525,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1hur00011zrvd63thqjd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'his goats became unusually energetic': 'unusually' = de una manera poco comun, fuera de lo normal (un-usual). Descarte: 'lenta y calmada' es lo contrario de 'energetic'; 'peligrosa o danina' anade una valoracion que el adverbio no tiene y que el texto contradice, pues por eso mismo Kaldi las prueba el mismo; 'repetitiva y aburrida' no guarda relacion semantica con el adverbio.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:02.947Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92393,7 +92553,7 @@
         "$d": "2026-09-13T08:31:27.662Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:27.662Z"
+        "$d": "2026-09-13T09:02:02.951Z"
       }
     },
     {
@@ -92429,7 +92589,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92437,7 +92597,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1iq700021zrvcm6njdqd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El texto es un aviso con estructura de tarifario: dos precios (individual 450, familiar 980), una lista de beneficios, las reglas de uso de la tarjeta y las exclusiones. Su proposito es informar precios y beneficios de la membresia anual. Descarte: no hay ningun descuento para maestros de ciencias; no explica como se fabrican las exhibiciones; no anuncia cierre por mantenimiento — nada de eso aparece en el texto.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:04.047Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92445,7 +92625,7 @@
         "$d": "2026-09-13T08:31:28.873Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:28.873Z"
+        "$d": "2026-09-13T09:02:04.051Z"
       }
     },
     {
@@ -92481,7 +92661,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92489,7 +92669,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1iq700021zrvcm6njdqd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Pregunta negativa. Literal: 'Membership does not include parking or access to the IMAX theater, which always requires a separate ticket'. Descarte: el descuento del 20% en exhibiciones temporales, el boletin trimestral con acceso anticipado y la entrada ilimitada a las permanentes estan los tres enumerados explicitamente tras 'Benefits include', asi que si estan incluidos.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:05.147Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92497,7 +92697,7 @@
         "$d": "2026-09-13T08:31:30.088Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:30.088Z"
+        "$d": "2026-09-13T09:02:05.151Z"
       }
     },
     {
@@ -92533,7 +92733,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92541,7 +92741,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1iq700021zrvcm6njdqd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Literal: 'Guests accompanying a member pay the regular ticket price, except during Member Appreciation Week, held every March, when each member may bring one guest for free'. Descarte: 'cualquier dia del ano' contradice la regla general de pago; la edad del invitado no se menciona en ninguna parte; los talleres especiales son un beneficio distinto (dos gratis al ano para el miembro), no la ventana del invitado sin costo.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:06.248Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92549,7 +92769,7 @@
         "$d": "2026-09-13T08:31:31.304Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:31.304Z"
+        "$d": "2026-09-13T09:02:06.252Z"
       }
     },
     {
@@ -92585,7 +92805,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92593,7 +92813,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1iq700021zrvcm6njdqd",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'the card is not transferable to another person': 'transferable' es la posibilidad de transferir o ceder la tarjeta a otra persona, y la propia frase del texto ('to another person') lo confirma. Descarte: la renovacion automatica no se menciona; el uso en varios museos de la ciudad no se menciona; pagar en distintas fechas es una idea de plazos de pago, ajena al termino.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:07.349Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92601,7 +92841,7 @@
         "$d": "2026-09-13T08:31:32.518Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:32.518Z"
+        "$d": "2026-09-13T09:02:07.353Z"
       }
     },
     {
@@ -92637,7 +92877,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92645,7 +92885,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1jkw00031zrvtpeintu3",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Literal: 'she stayed late to finish a chemistry project and met another student, Diego, who was struggling with the same assignment' — se conocieron una tarde (un viernes lluvioso) trabajando tarde en el proyecto de quimica. Descarte: ningun maestro los presenta (el texto solo dice que ella hablaba cuando un maestro la nombraba); no fue en la cafeteria, ahi precisamente comia SOLA; no eran vecinos, el texto no dice nada de eso y ademas ella no conocia a nadie.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:08.444Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92653,7 +92913,7 @@
         "$d": "2026-09-13T08:31:33.728Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:33.728Z"
+        "$d": "2026-09-13T09:02:08.448Z"
       }
     },
     {
@@ -92689,7 +92949,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92697,7 +92957,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1jkw00031zrvtpeintu3",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'Diego, who was struggling with the same assignment': 'the same' remite al 'chemistry project' que Mariana se quedo a terminar en la oracion anterior. Descarte: el primer dia de clases no es una tarea; la mudanza de la familia tampoco; el grupo de estudio aparece DESPUES en el tiempo (el lunes siguiente), asi que no puede ser el antecedente de una anafora previa.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:09.648Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92705,7 +92985,7 @@
         "$d": "2026-09-13T08:31:34.938Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:34.938Z"
+        "$d": "2026-09-13T09:02:09.652Z"
       }
     },
     {
@@ -92741,7 +93021,7 @@
       ],
       "difficulty": "EXPERT",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92749,7 +93029,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1jkw00031zrvtpeintu3",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'the school no longer felt like a strange place she had been forced into' — por contraste, al principio si lo sentia asi: 'strange' = ajeno, poco familiar, y 'forced into' = no lo eligio, la mudanza fue decision de la familia. Descarte: 'aburrido por falta de actividades' no se desprende del texto; 'demasiado pequeno' contradice 'the new school seemed twice as large as her old one'; 'peligroso donde temia por su seguridad' sobreinterpreta — el texto describe soledad, nunca miedo fisico.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T09:02:10.746Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92757,7 +93057,7 @@
         "$d": "2026-09-13T08:31:36.150Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:31:36.150Z"
+        "$d": "2026-09-13T09:02:10.750Z"
       }
     },
     {
@@ -92793,7 +93093,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92801,7 +93101,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmtzk1jkw00031zrvtpeintu3",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Arco narrativo completo: certeza de que el ultimo ano seria miserable -> comia sola -> encuentro casual con Diego -> trabajo conjunto -> invitacion al grupo de estudio -> la escuela deja de sentirse ajena. Eso es una estudiante sola que empieza a sentirse parte gracias a una amistad nueva. Descarte: no hay competencia por la mejor calificacion, trabajan JUNTOS y se rien de sus errores; no se cambia de escuela, es el desenlace opuesto; no es una maestra la que la ayuda — los maestros solo la nombran en clase, la ayuda viene de un compañero.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:11.843Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92809,7 +93129,7 @@
         "$d": "2026-09-13T08:32:15.309Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:15.309Z"
+        "$d": "2026-09-13T09:02:11.847Z"
       }
     },
     {
@@ -92845,7 +93165,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92853,7 +93173,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla: 'since' + punto de inicio, con el periodo abierto hasta el presente, exige present perfect. 'She has written three novels since she started writing five years ago': el conteo sigue vivo. Descarte: 'wrote' (past simple) es incompatible con un periodo que llega al presente introducido por 'since'; 'had written' (past perfect) necesita un punto de referencia pasado posterior, que la oracion no ofrece; 'is writing' (present continuous) no admite un resultado contable de obras terminadas ni el marco 'since ... ago'.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:12.944Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92861,7 +93201,7 @@
         "$d": "2026-09-13T08:32:24.754Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:24.754Z"
+        "$d": "2026-09-13T09:02:12.948Z"
       }
     },
     {
@@ -92897,7 +93237,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92905,7 +93245,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla de preposiciones de lugar: 'at' para un establecimiento concebido como punto o sede ('at the head office') e 'in' para ciudades ('in Guadalajara'). Descarte: 'on' no aplica ni a un edificio ni a una ciudad (es para superficies y calles), lo que tumba las dos combinaciones que lo incluyen; la combinacion 'in / at' falla en el segundo hueco, porque una ciudad no lleva 'at' salvo como punto de itinerario, y aqui es el lugar donde esta la oficina.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-13T09:02:14.043Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92913,7 +93273,7 @@
         "$d": "2026-09-13T08:32:25.970Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:25.970Z"
+        "$d": "2026-09-13T09:02:14.047Z"
       }
     },
     {
@@ -92949,7 +93309,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -92957,7 +93317,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla de conectores: tras punto y coma se pide un adverbio conjuntivo seguido de coma y de una oracion completa. La relacion es de CONTRASTE (examen dificilisimo frente a que la mayoria aprobo), asi que 'however'. Descarte: 'so' expresa consecuencia, y aprobar no es consecuencia de que el examen fuera dificil; 'because' es conjuncion subordinante, no admite la puntuacion '; ___ ,' y ademas invierte la logica; 'although' tambien es subordinante y no encaja en esa puntuacion.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:15.141Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -92965,7 +93345,7 @@
         "$d": "2026-09-13T08:32:27.182Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:27.182Z"
+        "$d": "2026-09-13T09:02:15.145Z"
       }
     },
     {
@@ -93001,7 +93381,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93009,7 +93389,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla: present continuous para un arreglo futuro ya concertado, con complemento de hora ('at eight') y justificando un rechazo presente. 'I am meeting my grandmother at the airport at eight'. Descarte: 'have met' es present perfect y coloca el encuentro en el pasado, lo que no explicaria por que no puede ir esta noche; 'meet to' es agramatical, 'meet' es transitivo directo; 'meet' en presente simple serviria para un horario institucional o un itinerario, no para una cita personal concertada.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-13T09:02:16.238Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93017,7 +93417,7 @@
         "$d": "2026-09-13T08:32:28.402Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:28.402Z"
+        "$d": "2026-09-13T09:02:16.242Z"
       }
     },
     {
@@ -93053,7 +93453,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93061,7 +93461,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla: 'for' + DURACION ('for almost two hours'); 'since' + punto de inicio. El complemento es una cantidad de tiempo, no un momento. Descarte: 'since almost two hours' es el error clasico de hispanohablante, calco de 'desde hace'; 'during' exige un sustantivo de evento o periodo definido ('during the meeting'), no una duracion cuantificada; 'from' necesita su 'to' correlativo o un punto de partida explicito.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:17.336Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93069,7 +93489,7 @@
         "$d": "2026-09-13T08:32:29.618Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:29.618Z"
+        "$d": "2026-09-13T09:02:17.340Z"
       }
     },
     {
@@ -93105,7 +93525,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93113,7 +93533,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla de conectores: hace falta un adverbio concesivo ('a pesar de eso') que enlace dos oraciones completas tras punto y coma — lo explico dos veces; aun asi, varios seguian confundidos. Eso es 'even so'. Descarte: 'because of' es locucion prepositiva y pide un sustantivo, no la oracion que sigue; 'in addition' es aditivo y aqui no se suma informacion, se contrasta; 'so that' expresa finalidad y produciria un sinsentido (nadie explica para que los alumnos sigan confundidos).",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T09:02:18.432Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93121,7 +93561,7 @@
         "$d": "2026-09-13T08:32:30.835Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:30.835Z"
+        "$d": "2026-09-13T09:02:18.436Z"
       }
     },
     {
@@ -93157,7 +93597,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93165,7 +93605,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla: past continuous para la accion en curso que sirve de marco, interrumpida por un evento puntual en past simple; el adverbio 'suddenly' marca justamente esa interrupcion. 'While Ana was cooking dinner, the electricity suddenly went out'. Descarte: 'cooks' (presente) choca con 'went out' en pasado; 'has cooked' (present perfect) no convive con una clausula temporal de pasado definido; 'cooked' en past simple es el distractor fuerte — en ingles real se oye — pero con un evento subito que interrumpe, la forma progresiva es la requerida y la unica que marca la simultaneidad en curso.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-13T09:02:19.532Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93173,7 +93633,7 @@
         "$d": "2026-09-13T08:32:32.052Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:32.052Z"
+        "$d": "2026-09-13T09:02:19.536Z"
       }
     },
     {
@@ -93209,7 +93669,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93217,7 +93677,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla: preposicion de MOVIMIENTO con verbo de desplazamiento -> 'into' (entrar en). La finalidad 'to see the mural on the ceiling' exige haber entrado. Descarte: 'in' expresa ubicacion estatica, caminar dentro del edificio estando ya adentro, y no el cruce del umbral; 'to' deja a los turistas llegando HASTA el edificio sin entrar, de modo que no podrian ver un mural en el techo; 'at' no marca desplazamiento en absoluto.",
+          "confidence": 0.92,
+          "verifiedAt": "2026-09-13T09:02:20.633Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93225,7 +93705,7 @@
         "$d": "2026-09-13T08:32:33.269Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:33.269Z"
+        "$d": "2026-09-13T09:02:20.637Z"
       }
     },
     {
@@ -93261,7 +93741,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93269,7 +93749,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla sintactica decisiva: lo que sigue al hueco es un GRUPO NOMINAL ('the storm that hit the coast that morning'), no una oracion con verbo conjugado propio; por eso toca la locucion prepositiva 'because of'. Descarte: 'because' es conjuncion y exige sujeto + verbo ('because a storm hit the coast'); 'although' introduciria concesion, contraria a la relacion causal; 'so' expresa consecuencia e invertiria el orden causa-efecto.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:21.732Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93277,7 +93777,7 @@
         "$d": "2026-09-13T08:32:34.489Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:34.489Z"
+        "$d": "2026-09-13T09:02:21.736Z"
       }
     },
     {
@@ -93313,7 +93813,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93321,7 +93821,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla: present perfect continuous para una actividad que empezo en el pasado, DURA ('for six months') y sigue en curso — lo confirma 'but he hasn't had any luck YET'. 'He has been searching'. Descarte: 'searched' (past simple) cerraria el periodo, incompatible con 'yet'; 'searches' (presente simple) describiria un habito, no una busqueda en curso con duracion; 'has searched' es el distractor fuerte y es gramatical, pero el present perfect simple enfoca el resultado o el conteo y choca con una busqueda explicitamente inconclusa, donde la forma continua es la esperada.",
+          "confidence": 0.92,
+          "verifiedAt": "2026-09-13T09:02:22.832Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93329,7 +93849,7 @@
         "$d": "2026-09-13T08:32:35.704Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:35.704Z"
+        "$d": "2026-09-13T09:02:22.836Z"
       }
     },
     {
@@ -93365,7 +93885,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93373,7 +93893,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla: 'by' + fecha limite para una accion puntual ('submit'); 'until' marca el final de una situacion continua. La segunda clausula ('after that, it will not be accepted') confirma que se trata de un plazo. Descarte: 'until Friday' con un verbo puntual es el error tipico, diria que hay que seguir entregando hasta el viernes; 'for' introduce duracion, no plazo; 'since' marca inicio en el pasado.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:23.928Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93381,7 +93921,7 @@
         "$d": "2026-09-13T08:32:36.917Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:36.917Z"
+        "$d": "2026-09-13T09:02:23.932Z"
       }
     },
     {
@@ -93417,7 +93957,7 @@
       ],
       "difficulty": "EXPERT",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93425,7 +93965,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Regla sintactica: el hueco precede a un GRUPO NOMINAL ('the low temperatures') y la relacion es concesiva, asi que toca la preposicion 'Despite'. Descarte: 'Although' es conjuncion y exigiria una oracion ('Although the temperatures were low'); 'Because' tambien pide oracion y ademas da causa, no concesion; 'So that' expresa finalidad y es incoherente con el sentido.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:25.132Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93433,7 +93993,7 @@
         "$d": "2026-09-13T08:32:38.243Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:38.243Z"
+        "$d": "2026-09-13T09:02:25.136Z"
       }
     },
     {
@@ -93469,7 +94029,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93477,7 +94037,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'hit one's stride' = alcanzar el ritmo propio, un nivel de desempeno comodo y eficaz; el contexto lo apoya con 'after weeks of practice ... finally', que marca una mejora lograda. Descarte: 'discutio entre ellos' seria 'fell out'; 'dejo de practicar' contradice ese 'finally' que celebra un logro; 'se lesiono' se dispara por leer 'hit' literalmente, que es justo la trampa del modismo.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:26.229Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93485,7 +94065,7 @@
         "$d": "2026-09-13T08:32:48.127Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:48.127Z"
+        "$d": "2026-09-13T09:02:26.233Z"
       }
     },
     {
@@ -93521,7 +94101,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93529,7 +94109,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'reluctant' = poco dispuesto, renuente; 'unwilling' es su sinonimo directo, y el contexto lo confirma: 'reluctant to change his opinion even after seeing the new evidence' describe resistencia. Descarte: 'grateful' (agradecido) no tiene relacion; 'confident' (seguro) podria describir su actitud pero no es el significado del adjetivo; 'curious' seria lo contrario de resistirse ante evidencia nueva.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:27.325Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93537,7 +94137,7 @@
         "$d": "2026-09-13T08:32:49.133Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:49.133Z"
+        "$d": "2026-09-13T09:02:27.329Z"
       }
     },
     {
@@ -93573,7 +94173,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93581,7 +94181,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La glosa que el propio reactivo incluye, 'without thinking it through', define el adjetivo: 'hasty decision' = decision precipitada. Descarte: 'wealthy' (adinerado) no se predica de una decision; 'loud' (ruidoso) es incompatible semanticamente con 'decision'; 'distant' (lejano o distante) no describe falta de reflexion.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:28.425Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93589,7 +94209,7 @@
         "$d": "2026-09-13T08:32:50.140Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:50.140Z"
+        "$d": "2026-09-13T09:02:28.430Z"
       }
     },
     {
@@ -93625,7 +94245,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93633,7 +94253,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'bite the bullet' = armarse de valor y enfrentar algo desagradable que se venia evitando; el contexto ('finally see the dentist') encaja con ese 'finally' tras la evitacion. Descarte: 'quejarse en voz alta' no es el sentido; 'pedirle a alguien mas que lo haga' es lo contrario, el modismo implica asumirlo uno mismo; 'posponer' tambien es lo contrario y choca con 'finally'.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:29.521Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93641,7 +94281,7 @@
         "$d": "2026-09-13T08:32:51.145Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:51.145Z"
+        "$d": "2026-09-13T09:02:29.525Z"
       }
     },
     {
@@ -93677,7 +94317,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93685,7 +94325,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'profits declined sharply' = las ganancias DISMINUYERON de forma pronunciada; 'decline' como verbo intransitivo sobre una magnitud significa bajar. Descarte: 'remained stable' contradice el cambio que 'sharply' intensifica; 'increased' invierte la direccion; 'were announced' confunde 'decline' con su otro sentido ('rehusar'), que no admite un sujeto como 'profits' ni el adverbio 'sharply'.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:30.620Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93693,7 +94353,7 @@
         "$d": "2026-09-13T08:32:52.152Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:52.152Z"
+        "$d": "2026-09-13T09:02:30.624Z"
       }
     },
     {
@@ -93729,7 +94389,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93737,7 +94397,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'look into' = investigar, indagar algo con cuidado; el contexto lo confirma, porque hay que hacerlo ANTES de responder al cliente, o sea averiguar primero. Descarte: 'posponer indefinidamente' seria 'put off'; 'ignorar por completo' seria 'overlook' y contradice 'before responding'; 'aprobar de inmediato' seria 'sign off on' y choca con la secuencia de investigar antes de contestar.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:31.719Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93745,7 +94425,7 @@
         "$d": "2026-09-13T08:32:53.164Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:53.164Z"
+        "$d": "2026-09-13T09:02:31.723Z"
       }
     },
     {
@@ -93781,7 +94461,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93789,7 +94469,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Colocacion fija: 'pay attention to'. Descarte: 'take attention' no existe en ingles; 'do attention' no es colocacion posible ('do' no se combina con 'attention'); 'make attention' tampoco — 'make' va con 'an effort' o 'a decision', nunca con 'attention'.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:32.817Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93797,7 +94497,7 @@
         "$d": "2026-09-13T08:32:54.173Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:54.173Z"
+        "$d": "2026-09-13T09:02:32.821Z"
       }
     },
     {
@@ -93833,7 +94533,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93841,7 +94541,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'on the same page' = de acuerdo, con el mismo entendimiento; el contexto lo apoya ('about selling the old car', una decision compartida). Descarte: 'leyendo el mismo libro' es la lectura literal, la trampa del modismo; 'trabajaban en la misma oficina' no tiene relacion; 'discutian sobre el precio' es justo lo contrario de estar de acuerdo.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:33.913Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93849,7 +94569,7 @@
         "$d": "2026-09-13T08:32:55.186Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:55.186Z"
+        "$d": "2026-09-13T09:02:33.917Z"
       }
     },
     {
@@ -93885,7 +94605,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93893,7 +94613,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'ambiguous' = poco claro, susceptible de mas de una interpretacion; la consecuencia en el contexto lo confirma: 'nobody knew which form to fill out' — no sabian CUAL, o sea que cabian varias lecturas. Descarte: 'en idioma extranjero' es otra razon posible de no entender, pero no es el significado del adjetivo; 'extremadamente detalladas y especificas' es el antonimo; 'impresas en letras muy pequenas' desplaza el problema a lo material y no al sentido.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:35.014Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93901,7 +94641,7 @@
         "$d": "2026-09-13T08:32:56.190Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:56.190Z"
+        "$d": "2026-09-13T09:02:35.018Z"
       }
     },
     {
@@ -93937,7 +94677,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93945,7 +94685,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'put off' = posponer, retrasar. Descarte: 'terminar antes de lo previsto' no tiene relacion con el phrasal; 'anunciar publicamente' seria 'announce' o 'put out'; 'cancelar de manera permanente' es el distractor fuerte, pero 'put off' implica aplazamiento y no cancelacion — para eso el ingles usa 'call off', que es precisamente el contraste que el reactivo pone a prueba.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:36.114Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -93953,7 +94713,7 @@
         "$d": "2026-09-13T08:32:57.211Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:57.211Z"
+        "$d": "2026-09-13T09:02:36.118Z"
       }
     },
     {
@@ -93989,7 +94749,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -93997,7 +94757,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Colocacion: 'reach a decision' (tambien existe 'make a decision', pero no esta entre las opciones). Descarte: 'do a decision' no es colocacion valida en ingles; 'hold a decision' no existe, aunque si 'hold a meeting'; 'say a decision' tampoco — se dice 'announce a decision'.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T09:02:37.215Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -94005,7 +94785,7 @@
         "$d": "2026-09-13T08:32:58.234Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:58.234Z"
+        "$d": "2026-09-13T09:02:37.219Z"
       }
     },
     {
@@ -94041,7 +94821,7 @@
       ],
       "difficulty": "EXPERT",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -94049,7 +94829,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "'get bogged down (in)' = quedarse atorado o atascado, perder avance por enfrascarse en algo; la metafora es el lodazal ('bog'), y el contexto lo confirma con 'in details right now'. Descarte: 'terminar antes de lo planeado' es lo contrario; 'emocionarse por una idea nueva' no tiene relacion; 'perder un documento importante' se apoya en una lectura vaga de 'down' y no en el modismo.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T09:02:38.311Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -94057,7 +94857,7 @@
         "$d": "2026-09-13T08:32:59.253Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T08:32:59.253Z"
+        "$d": "2026-09-13T09:02:38.315Z"
       }
     }
   ],

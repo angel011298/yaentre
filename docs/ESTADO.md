@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-13 · Última fase ejecutada: **G76 (COMPLETADA — verificación ciega de los 40 reactivos de Inglés UNAM que compuso G75: **40/40 auto-aprobados**, el pool `UNAM:INGLES` queda publicado y las 3 áreas de la UNAM que evalúan Inglés pasan de `PARTIAL` a `READY`)**. Modelo real `claude-opus-5`. **① El aislamiento se comprobó, no se asumió.** La sesión no leyó el commit de G75 ni el lote generado; su único insumo fue `pnpm content:blind-batch`. Antes de resolver se verificó el archivo por su CONTENIDO y no por la promesa del tipo: `isCorrect` y `explanation` ausentes del texto crudo (grep sobre el JCN, 0 coincidencias), 40 ítems, claves de opción reducidas a `label`/`text`/`imageUrl`, y los 16 de lectura con su pasaje completo (necesario para responderlos) pero sin la clave. **② 40/40 auto-aprobados (100%), y el 100% se repite en los tres tipos**: comprensión de lectura 16/16, gramática 12/12, vocabulario 12/12. Confianza mínima 0.90, media 0.966; cero problemas marcados; cero discrepancias, así que la cola de F3 no creció. **③ Ninguna ambigüedad genuina que marcar, y tres distractores que merecen su nombre** — en gramática, `cooked` frente a `was cooking` (*While Ana ___ dinner…*), `has searched` frente a `has been searching`, y `in` frente a `into` son defendibles en inglés real pero NO equivalentes: en los tres la opción de la clave es la única que satisface la regla que el reactivo pone a prueba (aspecto progresivo interrumpido, duración inconclusa, movimiento con cruce de umbral). Se documentó el descarte en vez de inflar el problema, que es lo que pedía el criterio de no forzar. **④ `pnpm content:guard` sí cambió, y cambió exactamente como G75 predijo**: las 3 áreas pasan de `PARTIAL` (con «falta Inglés») a `READY` al 100% del peso — A1 64/70→**70/70**, A2 27/30→**30/30**, A3 19/20→**20/20** — y las cuotas por materia que el censo exigía (3, 4 y 2) son las que G75 había anotado a mano. Áreas listas: **2 de 7 → 5 de 7**. Queda 1 `PARTIAL` (UNAM A4, falta Artes) y 1 `COMING_SOON` (IPN SOCADM, 32%), ambas sin tocar. Las 4 aserciones P1-P4 en verde. **⑤ Banco: 1 143 → 1 183 servibles** (1 187 filas: 1 183 publicados, 3 discrepancias históricas, 1 retirado). Meta efectiva de G26 (1 222) al **75%**, brecha **300**. Tasa de auto-aprobación global del pipeline: 99.7% (1 184/1 187). **⑥ Un hallazgo del generador que ninguna corrida anterior había medido: pista de longitud.** La opción correcta era la más larga de las cuatro en **24 de 40** (60%, contra el 25% que daría el azar), con razón de longitud media clave/distractores de 1.17 en lectura, 1.24 en vocabulario y 1.26 en gramática. En gramática es en parte intrínseco (un tiempo compuesto es más largo que uno simple), pero en lectura y vocabulario las opciones son glosas en español y la longitud la decide quien redacta: un sustentante astuto puede acertar sin leer. **Y una segunda pista: la clave es ESTRICTAMENTE cíclica** en gramática y vocabulario (A,B,C,D,A,B,C,D,A,B,C,D en ambos). `content:validate-batch` solo exige que la distribución sea PAREJA (15-40% por letra) y un ciclo perfecto es lo más parejo que existe, así que pasa sin ruido. Aquí es inocuo porque `shuffleOptions:true` para la UNAM, pero el mismo hábito aplicado a IPN/UAM/CENEVAL/CNBV —donde es `false`— regala el patrón. Ambas son notas para el generador de G77, no defectos del lote: los 40 son correctos y ninguno se bloqueó por esto. **⑦ Tres comentarios que esta fase volvió falsos, corregidos** (`PracticeSelector.tsx`, `db/drill.ts`, `tino/copy.ts`): afirmaban que el pool `UNAM:INGLES` «está vacío», dos de ellos repitiendo además el «cuatro áreas» que G75 ya había corregido a tres. Se confirmó antes que el bloqueo de `/practicar` es del CENSO y no de una lista en código —los 3 únicos aciertos de `grep` sobre `src/` eran comentarios— así que el botón de Inglés se abrió solo, sin desplegar nada. **⑧ Respaldo regenerado** (`pnpm backup:export`, 5 852 filas) para capturar los 40 `isVerified=true` y sus 40 registros `Question.verification`; verificado contra el propio archivo. `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.**
+
+<details><summary>Historial: G75 (2026-09-13)</summary>
+
 Última actualización: 2026-09-13 · Última fase ejecutada: **G75 (COMPLETADA — 40 reactivos de Inglés UNAM, primer contenido real del pool `UNAM:INGLES`)**. Modelo real `claude-sonnet-5`. Cierra, del lado del contenido, el hueco que G72 marcó y que G74 solo pudo tapar con un aviso de Tino en `/practicar` en vez de contenido real. **① La reutilización de G26 ya estaba activa — no había que activarla, solo elegir bien dónde insertar.** `Subject.sharedContentKey='UNAM:INGLES'` ya vincula las 3 materias `Inglés` que UNAM evalúa con el mismo temario oficial (Área 1 Físico-Matemáticas peso 6, Área 2 Biológicas peso 3, Área 3 Sociales peso 1 — **Área 4 Humanidades NO tiene Inglés en el seed**, dato que el propio veredicto de G72 redondeaba a «las 4 áreas»; son 3). Se generó UNA sola vez y se insertó contra la materia con más peso y el temario más granular (Área 1: *Grammar: present and past tenses*, *Vocabulary and idioms*, *Reading comprehension*); `loadAreaSharedContent`/`expandToSharedSubjectIds` sirven el mismo pool a las otras 2 áreas sin generar de nuevo. **② 40 reactivos originales, isVerified=false, source=GENERATED**: 16 de comprensión de lectura (4 pasajes ORIGINALES de ~120-150 palabras — informativo/científico, histórico, folleto práctico con precios y condiciones, narrativo — 4 preguntas cada uno: idea principal, detalle explícito, referencia pronominal, vocabulario en contexto), 12 de gramática (tiempos verbales / preposiciones / conectores, 4 de cada uno) y 12 de vocabulario e idioms (phrasal verbs, collocations, expresiones idiomáticas) — instrucción en español, contenido evaluado en inglés. **③ SourceChunks existentes (guías CENEVAL EXANI, de OTRA institución, con derechos de autor) se usaron como ancla de FORMATO, nunca de texto**: los temas de gramática y lectura ya tenían fragmentos clasificados de una fase de ingesta anterior; se citaron (`sourceChunks`, obligatorio por `resolveCitations` cuando hay fragmentos disponibles) como referencia del TIPO de ítem que ejemplifican (un blanco que combina preposición + tiempo verbal, una pregunta de referente sobre un pasaje, un texto práctico con precios y condiciones), pero cada pasaje y cada oración se redactó desde cero. El tema de vocabulario no tenía fragmentos → `TEMARIO_ONLY`. **④ Lote aprobado en cero violaciones** por `pnpm content:validate-batch` y por el paso obligatorio dentro de `content:insert` (opciones bien formadas, ninguna explicación cita por letra, los 4 pasajes con exactamente 4 preguntas cada uno, distribución de la letra correcta A10/B11/C10/D9 — dentro del 15-40 % exigido). Un descuido real durante la redacción quedó atrapado por el guardrail existente: dos preguntas de «idea principal» en pasajes distintos compartían el MISMO enunciado literal, y el chequeo de duplicados de `content-insert-drafts.ts` (por `stem` normalizado) rechazó la segunda; se reformuló el enunciado y se reinsertó sin tocar los otros 39. **⑤ `pnpm content:guard` sin cambio antes/después — esperado, no un defecto**: el guardián de G74 cuenta reactivos con `isVerified=true`, y los 40 quedan en la cola de verificación adversarial (dos sesiones independientes que ni esta fase ni ninguna sesión sola puede ejecutar por sí misma, PRD §8) — las 3 áreas UNAM afectadas siguen en `PARTIAL` con `Inglés: sirve 0 · necesita 3/4/2` hasta que `content:blind-batch`/`content:resolve` publiquen el lote. **⑥ Backup de contenido regenerado** (`pnpm backup:export`, 5 852 filas, incluye los 40 reactivos + 4 `Passage` nuevos). `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.**
+
+</details>
 
 <details><summary>Historial: G74 (2026-09-12)</summary>
 
@@ -367,6 +373,174 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G76 — Verificación ciega: Inglés UNAM (lote de G75) (2026-09-13)
+
+> Segunda pasada adversarial del pipeline de contenido (PRD §8) sobre los 40
+> reactivos que G75 compuso para el pool compartido `UNAM:INGLES`. Modelo real
+> `claude-opus-5`. Resultado: **40/40 auto-aprobados**, y con ellos las 3 áreas
+> de la UNAM que evalúan Inglés cruzan a `READY`.
+
+### 1. El aislamiento, comprobado por contenido
+
+La garantía del pipeline es de SESIÓN, no de código: quien resuelve no puede
+haber visto la clave. Esta sesión no leyó el commit `aea423a` ni ningún archivo
+del lote; su único insumo fue la salida de `pnpm content:blind-batch --all`.
+
+Pero «el tipo `BlindBatchItem` no tiene `isCorrect`» es una garantía de código, y
+G71 §6 D6 dejó dicho que un verde que no comprueba nada es peor que no tenerlo.
+Así que antes de responder se auditó el archivo EXPORTADO, por su texto crudo:
+
+| Comprobación | Resultado |
+|---|---|
+| `isCorrect` en el JSON (grep sobre el texto, no sobre el tipo) | **0 coincidencias** |
+| `explanation` en el JSON | **0 coincidencias** |
+| Claves presentes en cada opción | `label`, `text`, `imageUrl` — y nada más |
+| Ítems exportados | 40 (16 lectura · 12 gramática · 12 vocabulario) |
+| Los 16 de lectura traen su pasaje completo | **sí** — 16/16 con `passage` no vacío |
+
+Lo último importaba de verdad: sin el pasaje, un reactivo de comprensión de
+lectura no se puede resolver, solo adivinar. El lote los trae completos (4
+pasajes, 4 preguntas cada uno) y sin la clave, que es exactamente la condición
+que la fase necesitaba.
+
+### 2. Resultado: 40/40, y el 100% se repite en los tres tipos
+
+```
+✅ Auto-aprobados: 40   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+| Tipo | Reactivos | Auto-aprobados | Tasa |
+|---|---|---|---|
+| Comprensión de lectura (con pasaje) | 16 | 16 | **100%** |
+| Gramática (tiempos, preposiciones, conectores) | 12 | 12 | **100%** |
+| Vocabulario e idioms | 12 | 12 | **100%** |
+| **Total** | **40** | **40** | **100%** |
+
+Confianza mínima **0.90**, media **0.966** — cómodamente por encima del corte de
+0.85 que `resolveVerdict` exige. Cero problemas marcados, cero discrepancias: la
+cola del panel de F3 no creció.
+
+### 3. Lo que NO se marcó como problema, y por qué
+
+El criterio de la fase era marcar la ambigüedad genuina en vez de forzar una
+elección — más frecuente en idiomas que en ciencias exactas. Tres reactivos de
+gramática tienen un distractor defendible en inglés real, y en los tres se
+resolvió sin marcar, porque *defendible* no es *equivalente*:
+
+| Reactivo | Distractor fuerte | Por qué la clave gana igual |
+|---|---|---|
+| *While Ana ___ dinner, the electricity suddenly went out* | `cooked` | El past simple en una cláusula con *while* existe, pero `suddenly` marca una interrupción y solo el past continuous pone la acción EN CURSO como marco. |
+| *He ___ for a new job for six months, but he hasn't had any luck yet* | `has searched` | Gramatical, pero el present perfect simple enfoca resultado o conteo y choca con `yet`, que declara la búsqueda inconclusa. |
+| *The tourists walked ___ the old building to see the mural on the ceiling* | `in` | Coloquialmente se oye, pero la finalidad exige haber ENTRADO, y el cruce de umbral lo marca `into`; `in` es ubicación. |
+
+Que existan es una virtud del lote, no un defecto: un distractor que nadie
+consideraría no mide nada. Lo que se documentó en cada caso fue el descarte
+explícito, que es el registro que queda en `Question.verification`.
+
+### 4. `content:guard`: el cambio que G75 predijo, cumplido
+
+G75 cerró anotando que `content:guard` no se movería hasta la verificación, y
+dejó por escrito qué debía pasar después. Pasó, con las cifras exactas:
+
+| Área | G74 (antes) | G76 (ahora) | Faltaba |
+|---|---|---|---|
+| UNAM A1 — Físico-Matemáticas e Ingenierías | 64/70 (91%) 🟡 `PARTIAL` | **70/70 (100%) ✅ `READY`** | Inglés |
+| UNAM A2 — Biológicas, Químicas y de la Salud | 27/30 (90%) 🟡 `PARTIAL` | **30/30 (100%) ✅ `READY`** | Inglés |
+| UNAM A3 — Sociales | 19/20 (95%) 🟡 `PARTIAL` | **20/20 (100%) ✅ `READY`** | Inglés |
+| UNAM A4 — Humanidades y Artes | 8/10 (80%) 🟡 `PARTIAL` | 8/10 (80%) 🟡 `PARTIAL` | Artes |
+| IPN FISMAT · IPN MEDBIO | 100% ✅ | 100% ✅ | — |
+| IPN SOCADM | 8/25 (32%) ⛔ `COMING_SOON` | 8/25 (32%) ⛔ `COMING_SOON` | Historia de México, Geografía, Historia Universal, Civismo/Derecho |
+
+**Áreas listas: 2 de 7 → 5 de 7.** Las cuotas por materia que el censo exigía
+para Inglés —3 en A1, 4 en A2, 2 en A3— coinciden con las que G75 había anotado,
+y el pool de 40 las cubre las tres desde una sola fila `Subject` gracias a la
+reutilización de G26. Las 4 aserciones del probe (P1-P4, incluida la que
+contrasta la función real de la app contra un recuento SQL independiente) en
+verde.
+
+Detalle que vale registrar: **`content:coverage` y `content:guard` NO dicen lo
+mismo, por diseño.** El primero cuenta por celda `Subject` y sigue mostrando
+«Inglés 0» en A2 y A3; el segundo cuenta el pool SERVIBLE, que es lo que el
+alumno recibe. Quien lea solo el primero concluirá que el hueco sigue abierto.
+
+### 5. Banco, después de la resolución
+
+| Métrica | Antes (G72/G75) | Ahora |
+|---|---|---|
+| Servibles (`isVerified=true`) | 1 143 | **1 183** |
+| Filas `Question` totales | 1 147 | 1 187 |
+| No publicados | 3 discrepancias + 1 retirado | 3 discrepancias + 1 retirado (sin cambio) |
+| Meta efectiva G26 (1 222) | 94% pendiente de verificar | **75% · brecha 300** |
+| Tasa de auto-aprobación global del pipeline | 99.7% | **99.7% (1 184/1 187)** |
+
+Los 40 de Inglés son el delta completo: 1 143 + 40 = 1 183. Se confirmó contra el
+propio respaldo, no contra el conteo del script: los 40 del pool
+`sharedContentKey='UNAM:INGLES'` salen `isVerified=true` **y** con
+`Question.verification` no nulo, 40/40.
+
+### 6. Dos pistas que el generador regala — para G77
+
+Ninguna invalida el lote (los 40 son correctos y ninguno se bloqueó), pero las
+dos permiten acertar sin dominar el contenido, que es justo lo que un examen no
+debe permitir.
+
+**(a) Pista de longitud.** La opción correcta era la más larga de las cuatro en
+**24 de 40** reactivos — 60%, contra el 25% que daría el azar:
+
+| Tipo | Clave = la más larga | Razón media de longitud clave/distractores |
+|---|---|---|
+| Comprensión de lectura | 10/16 | 1.17 |
+| Gramática | 7/12 | 1.26 |
+| Vocabulario e idioms | 7/12 | 1.24 |
+
+En gramática es en parte intrínseco: `has been searching` es inevitablemente más
+largo que `searched`. En lectura y vocabulario NO — ahí las opciones son glosas
+en español y su longitud la decide quien redacta, casi siempre porque la correcta
+se escribe con todos los matices («…aunque todavía tiene limitaciones») y los
+distractores se despachan en media línea. Corrección para el generador: igualar
+el largo de las cuatro opciones, recortando la correcta antes que alargando las
+falsas.
+
+**(b) Clave estrictamente cíclica.** El orden real de la clave, por tema y en
+orden de inserción, fue **A,B,C,D,A,B,C,D,A,B,C,D** en gramática y otra vez
+**A,B,C,D,A,B,C,D,A,B,C,D** en vocabulario (lectura sí es irregular: A4/B5/C4/D3).
+`scripts/lib/lot-validation.ts` exige que la distribución sea PAREJA —15-40% por
+letra— y un ciclo perfecto es lo más parejo que existe, así que pasa sin una sola
+advertencia. **Aquí es inocuo** porque `src/lib/simulator/config.ts` tiene
+`shuffleOptions:true` para la UNAM y el alumno nunca ve ese orden. Pero el mismo
+hábito de redacción aplicado a IPN, UAM, CENEVAL o CNBV —los cuatro con
+`shuffleOptions:false`— le entrega el patrón al sustentante. Lo barato es
+arreglarlo en el generador (barajar la posición al redactar, no confiar en el
+simulador) o, mejor, que la validación de lote rechace también una secuencia
+cíclica, no solo una distribución sesgada.
+
+### 7. Tres comentarios que esta fase volvió falsos
+
+La lección de G73 es que una lista de hechos escrita en el código se
+desincroniza. Estos eran comentarios, no lógica — pero afirmaban en presente que
+el pool `UNAM:INGLES` «está vacío», y dos repetían el «cuatro áreas» que G75 ya
+había corregido a tres (el Área 4 no lleva Inglés en el seed).
+
+Antes de tocarlos se comprobó lo que importaba: que el bloqueo de `/practicar`
+saliera del CENSO y no de una lista en código. `grep` sobre `src/` devolvió 3
+aciertos y **los 3 eran comentarios** — `loadPracticeOptions` decide por
+`subject.servable > 0`. Es decir: el botón de Inglés se abrió solo al publicarse
+el lote, sin desplegar ni editar nada. Actualizados
+`src/components/drill/PracticeSelector.tsx`, `src/lib/db/drill.ts` y
+`src/lib/tino/copy.ts` para que el ejemplo quede en pasado y la razón de ser del
+censo, que no cambió, siga explicada.
+
+### 8. Verificación de la fase
+
+| Comando | Resultado |
+|---|---|
+| `pnpm content:blind-batch --all` | 40 ítems, sin clave (auditado por contenido) |
+| `pnpm content:resolve --file scripts/content-exports/g76-answers.json` | 40 aprobados · 0 sin publicar · 0 omitidos |
+| `pnpm content:guard` | 5 `READY` · 1 `PARTIAL` · 1 `COMING_SOON` · P1-P4 ✅ |
+| `pnpm content:coverage` | 1 183 servibles · 99.7% global |
+| `pnpm backup:export` | 5 852 filas → `backups/content-bank.json` |
+| `pnpm typecheck` · `pnpm lint` | ✅ ✅ |
 
 ## G74 — Guarda de cobertura de contenido y Lighthouse en producción (2026-09-12)
 

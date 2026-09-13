@@ -258,7 +258,8 @@ export function areaWaitlistJoined(areaName: string): TinoLine {
   };
 }
 
-/** Materia sin reactivos suficientes en la pantalla de práctica (Inglés UNAM, hoy). */
+/** Materia sin reactivos suficientes en la pantalla de práctica (caso que lo
+ *  motivó: Inglés UNAM, en cero hasta G75/G76). */
 export function subjectNotReady(subjectName: string): TinoLine {
   return {
     state: 'sleepy',
