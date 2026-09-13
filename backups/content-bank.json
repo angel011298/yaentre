@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-01T06:04:46.619Z",
+    "exportedAt": "2026-09-13T08:33:38.339Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -29,13 +29,13 @@
       "Career": 47,
       "Subject": 35,
       "Topic": 217,
-      "Passage": 12,
+      "Passage": 16,
       "SourceChunk": 380,
-      "Question": 1147,
-      "QuestionSourceChunk": 357,
-      "ExplanationLayer": 3441
+      "Question": 1187,
+      "QuestionSourceChunk": 387,
+      "ExplanationLayer": 3561
     },
-    "totalRows": 5658
+    "totalRows": 5852
   },
   "Institution": [
     {
@@ -2825,6 +2825,46 @@
       "contentSourceId": null,
       "createdAt": {
         "$d": "2026-08-29T06:44:27.570Z"
+      }
+    },
+    {
+      "id": "cmtzk1gxj00001zrvv3ilosm5",
+      "title": "The Silent Power of the Sun",
+      "content": "Solar panels convert sunlight directly into electricity through a process called the photovoltaic effect. When photons from the sun strike a silicon cell, they knock electrons loose, creating an electric current. For decades the technology remained expensive, so only a few countries invested heavily in it. That situation has changed. Manufacturing costs have dropped by more than eighty percent since 2010, and solar energy is now one of the cheapest sources of electricity in many regions of the world. Even so, panels still depend on batteries or a connected grid to supply power after sunset, since they cannot store the energy they generate on their own. Engineers are currently testing new materials that could make the cells thinner, lighter, and considerably more efficient than the ones sold today.",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:14.935Z"
+      }
+    },
+    {
+      "id": "cmtzk1hur00011zrvd63thqjd",
+      "title": "Where Coffee Began",
+      "content": "Coffee is often associated with Brazil or Colombia, but the plant most likely originated in the highlands of Ethiopia. According to popular legend, a goat herder named Kaldi noticed that his goats became unusually energetic after eating berries from a certain shrub, so he tried them himself. Whether or not the story is accurate, historians agree that coffee cultivation spread from East Africa to the Arabian Peninsula by the fifteenth century, where it was first roasted and brewed the way we recognize today. From Yemen, the practice of drinking coffee moved into the Ottoman Empire and, eventually, into Europe through trade routes and travelling merchants. By the seventeenth century, coffeehouses had become popular meeting places in cities such as London and Paris, where people gathered to discuss business, politics, and ideas over a hot cup.",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:16.132Z"
+      }
+    },
+    {
+      "id": "cmtzk1iq700021zrvcm6njdqd",
+      "title": "City Science Museum — Annual Membership",
+      "content": "CITY SCIENCE MUSEUM — ANNUAL MEMBERSHIP. Individual: $450 MXN per year. Family (up to 4 people): $980 MXN per year. Benefits include: unlimited entry to permanent exhibitions, a 20% discount on temporary exhibitions, free entry to two special workshops per year, and a quarterly newsletter with early access to new galleries. Members must present their digital card at the entrance; the card is not transferable to another person. Guests accompanying a member pay the regular ticket price, except during Member Appreciation Week, held every March, when each member may bring one guest for free. Membership does not include parking or access to the IMAX theater, which always requires a separate ticket regardless of membership status.",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:17.263Z"
+      }
+    },
+    {
+      "id": "cmtzk1jkw00031zrvtpeintu3",
+      "title": "The New School",
+      "content": "When Mariana's family moved to a new city, she was sure that her last year of high school would be miserable. She didn't know anyone, and the new school seemed twice as large as her old one. During the first week, she ate lunch alone and spoke only when a teacher called her name. Everything changed on a rainy Friday afternoon, when she stayed late to finish a chemistry project and met another student, Diego, who was struggling with the same assignment. They worked together for two hours, comparing notes and laughing at their mistakes. By the following Monday, Mariana had been invited to join Diego's study group, and for the first time since the move, the school no longer felt like a strange place she had been forced into.",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:18.369Z"
       }
     }
   ],
@@ -91939,6 +91979,2086 @@
       "updatedAt": {
         "$d": "2026-09-01T01:02:27.131Z"
       }
+    },
+    {
+      "id": "cmtzk1k0800051zrvnwpsh1in",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿Cuál es la idea principal del texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La tecnología solar se ha vuelto más accesible y eficiente con el tiempo, aunque todavía tiene limitaciones.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Los paneles solares ya pueden almacenar la electricidad que producen sin necesitar una batería.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Las celdas de silicio se inventaron en 2010 y siguen siendo la forma de energía más cara.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los ingenieros ya crearon paneles solares que funcionan de noche sin conexión a la red.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1gxj00001zrvv3ilosm5",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:18.920Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:18.920Z"
+      }
+    },
+    {
+      "id": "cmtzk1l1i000a1zrvyjdezmdi",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "Según el texto, ¿qué ha pasado con el costo de fabricación de los paneles solares desde 2010?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Se ha mantenido sin cambios significativos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Ha bajado más del ochenta por ciento.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Ha bajado exactamente el cincuenta por ciento.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Ha aumentado debido a la demanda global.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1gxj00001zrvv3ilosm5",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:20.262Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:20.262Z"
+      }
+    },
+    {
+      "id": "cmtzk1lz7000f1zrvx4w7p639",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "En el texto, la frase 'That situation' se refiere a…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "el proceso por el cual los fotones liberan electrones en una celda de silicio.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la dependencia de los paneles de una batería o una red eléctrica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "el hecho de que la tecnología fuera costosa y solo unos cuantos países invirtieran en ella.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "la prueba de nuevos materiales más eficientes por parte de los ingenieros.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1gxj00001zrvv3ilosm5",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:21.475Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:21.475Z"
+      }
+    },
+    {
+      "id": "cmtzk1mww000k1zrvatgicopv",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "En el texto, la palabra 'considerably' se usa para indicar…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "una comparación económica entre dos países.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "una duda sobre si el material funcionará.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "un periodo de tiempo específico en el futuro.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "un grado notable o significativo de mejora.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1gxj00001zrvv3ilosm5",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:22.688Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:22.688Z"
+      }
+    },
+    {
+      "id": "cmtzk1nuh000p1zrvubpq5xg6",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿De qué trata principalmente el texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "De las técnicas modernas para tostar granos de café.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Del origen del café y de cómo su consumo se extendió por distintas regiones del mundo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "De las diferencias actuales entre el café de Brasil y el de Colombia.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "De los efectos negativos de la cafeína en los animales.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1hur00011zrvd63thqjd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:23.898Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:23.898Z"
+      }
+    },
+    {
+      "id": "cmtzk1osa000u1zrvtn0ufgh9",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿Dónde se cultivó el café por primera vez, según el texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En el Imperio Otomano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En la Península Arábiga.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En las tierras altas de Etiopía.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "En ciudades como Londres y París.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1hur00011zrvd63thqjd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:25.114Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:25.114Z"
+      }
+    },
+    {
+      "id": "cmtzk1ptb000z1zrvwqvj9mxx",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "En el texto, 'the practice' se refiere a…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "la leyenda del pastor de cabras llamado Kaldi.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el comercio de café entre Brasil y Colombia.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "las reuniones políticas en los cafés europeos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la costumbre de tostar y preparar el café tal como se conoce hoy.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1hur00011zrvd63thqjd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:26.336Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:26.336Z"
+      }
+    },
+    {
+      "id": "cmtzk1qr200141zrvfna5mjto",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "En el texto, la palabra 'unusually' significa más cercanamente…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "de una manera poco común o fuera de lo normal.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "de una manera peligrosa o dañina.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "de una manera lenta y calmada.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "de una manera repetitiva y aburrida.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1hur00011zrvd63thqjd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:27.662Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:27.662Z"
+      }
+    },
+    {
+      "id": "cmtzk1roo00191zrvltwwi6za",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿Cuál es el propósito principal de este texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Anunciar el cierre temporal del museo por mantenimiento.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Informar los precios y beneficios de la membresía anual del museo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Explicar cómo se fabrican las exhibiciones del museo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Promocionar un descuento exclusivo para maestros de ciencias.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1iq700021zrvcm6njdqd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:28.873Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:28.873Z"
+      }
+    },
+    {
+      "id": "cmtzk1smg001e1zrvniaw6lqc",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿Qué NO incluye la membresía, según el texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La entrada ilimitada a las exhibiciones permanentes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El descuento del 20% en exhibiciones temporales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El acceso al teatro IMAX.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El boletín trimestral con acceso anticipado a nuevas salas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1iq700021zrvcm6njdqd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:30.088Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:30.088Z"
+      }
+    },
+    {
+      "id": "cmtzk1tk8001j1zrvx9h8e6mh",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿Cuándo puede un miembro llevar a un invitado sin costo, según el texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Cualquier día del año, sin restricción.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Solo durante los talleres especiales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Únicamente si el invitado es menor de edad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Durante la Semana de Apreciación al Miembro, en marzo.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1iq700021zrvcm6njdqd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:31.304Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:31.304Z"
+      }
+    },
+    {
+      "id": "cmtzk1uhy001o1zrv3txxuej2",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "En el texto, la palabra 'transferable' se refiere a la posibilidad de…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "pasar o ceder la tarjeta de membresía a otra persona.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "renovar la membresía de manera automática cada año.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "usar la tarjeta en más de un museo de la ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "pagar la membresía en distintas fechas del año.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1iq700021zrvcm6njdqd",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:32.518Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:32.518Z"
+      }
+    },
+    {
+      "id": "cmtzk1vfk001t1zrvx2vrjhoz",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿Cómo se conocieron Mariana y Diego, según el texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Coincidieron una tarde trabajando tarde en un proyecto de química.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Fueron presentados por un maestro en la primera semana de clases.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Se conocieron durante el almuerzo en la cafetería.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Eran vecinos desde antes de que Mariana se mudara de ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1jkw00031zrvtpeintu3",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:33.728Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:33.728Z"
+      }
+    },
+    {
+      "id": "cmtzk1wd5001y1zrv2hrspez2",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "En el texto, 'the same assignment' se refiere a…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "la mudanza de la familia de Mariana a la nueva ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el proyecto de química que ambos debían terminar.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "el grupo de estudio al que Mariana fue invitada.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el primer día de clases de Mariana en la escuela nueva.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1jkw00031zrvtpeintu3",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:34.938Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:34.938Z"
+      }
+    },
+    {
+      "id": "cmtzk1xau00231zrvw6yrq21l",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "En el texto, la frase 'a strange place she had been forced into' sugiere que, al principio, Mariana sentía la escuela como…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "un lugar peligroso donde temía por su seguridad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "un lugar aburrido donde no había suficientes actividades.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "un lugar ajeno y poco acogedor al que no eligió llegar.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "un lugar demasiado pequeño para tantos estudiantes.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "EXPERT",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1jkw00031zrvtpeintu3",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:31:36.150Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:31:36.150Z"
+      }
+    },
+    {
+      "id": "cmtzk2ril00015vywgmmc8u0e",
+      "topicId": "cmrr1jilw0030hi3nr0slusjl",
+      "stem": "¿Cuál es la idea principal de este texto narrativo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Una estudiante decide cambiarse de escuela porque no logra hacer amigos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una estudiante que se sentía sola en una escuela nueva comienza a sentirse parte de ella gracias a una nueva amistad.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Dos estudiantes compiten por la mejor calificación en un proyecto de química.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Una maestra ayuda a una estudiante nueva a adaptarse a la escuela.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmtzk1jkw00031zrvtpeintu3",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:15.309Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:15.309Z"
+      }
+    },
+    {
+      "id": "cmtzk2ysy0001167cbbwn3hk6",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'She ____ three novels since she started writing five years ago.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "has written",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "wrote",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "is writing",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "had written",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:24.754Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:24.754Z"
+      }
+    },
+    {
+      "id": "cmtzk2zqq0006167cb9zcd3mi",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'The meeting will take place ____ the head office ____ Guadalajara.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "in / at",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "at / in",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "on / at",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "in / on",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:25.970Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:25.970Z"
+      }
+    },
+    {
+      "id": "cmtzk30od000b167cqnivdcxd",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'The exam was extremely difficult; ____, most students passed it.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "because",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "so",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "however",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "although",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:27.182Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:27.182Z"
+      }
+    },
+    {
+      "id": "cmtzk31ma000g167clej2xqqg",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'I can't go to the party tonight — I ____ my grandmother at the airport at eight.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "meet",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "have met",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "meet to",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "am meeting",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:28.402Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:28.402Z"
+      }
+    },
+    {
+      "id": "cmtzk32k1000l167crxlexx90",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'They have been waiting for the results ____ almost two hours.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "for",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "during",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "since",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "from",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:29.618Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:29.618Z"
+      }
+    },
+    {
+      "id": "cmtzk33hv000q167c9o6wd6gs",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'The professor explained the topic twice; ____, several students were still confused.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "in addition",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "even so",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "so that",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "because of",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:30.835Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:30.835Z"
+      }
+    },
+    {
+      "id": "cmtzk34fn000v167cm8ddep9g",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'While Ana ____ dinner, the electricity suddenly went out.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "cooked",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "has cooked",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "was cooking",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "cooks",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:32.052Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:32.052Z"
+      }
+    },
+    {
+      "id": "cmtzk35dh0010167ci5ofi0li",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'The tourists walked ____ the old building to see the mural on the ceiling.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "to",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "at",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "in",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "into",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:33.269Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:33.269Z"
+      }
+    },
+    {
+      "id": "cmtzk36bd0015167cve90bt5c",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'The flight was cancelled ____ the storm that hit the coast that morning.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "because of",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "because",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "so",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "although",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:34.489Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:34.489Z"
+      }
+    },
+    {
+      "id": "cmtzk3794001a167cfgtk5j58",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'He ____ for a new job for six months, but he hasn't had any luck yet.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "has searched",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "has been searching",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "searches",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "searched",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:35.704Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:35.704Z"
+      }
+    },
+    {
+      "id": "cmtzk389w001f167c56g4ux7q",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: 'You must submit the application ____ Friday; after that, it will not be accepted.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "until",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "since",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "by",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "for",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:36.917Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:36.917Z"
+      }
+    },
+    {
+      "id": "cmtzk397n001k167ct9dcak92",
+      "topicId": "cmrr1jhnp002whi3nfoul2nok",
+      "stem": "Elige la opción que completa correctamente la oración: '____ the low temperatures, hundreds of runners finished the marathon.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Although",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Because",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "So that",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Despite",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "EXPERT",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:38.243Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:38.243Z"
+      }
+    },
+    {
+      "id": "cmtzk3gu7000112txd5ik6l5w",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En la oración 'After weeks of practice, the whole team finally hit their stride,' la expresión 'hit their stride' significa que el equipo…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "alcanzó un nivel de desempeño cómodo y efectivo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "discutió entre ellos durante la práctica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "decidió dejar de practicar por completo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "se lesionó durante un ejercicio difícil.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:48.127Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:48.127Z"
+      }
+    },
+    {
+      "id": "cmtzk3hm5000612tx3fp7x3gx",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "Elige la palabra más cercana en significado a 'reluctant' en: 'He was reluctant to change his opinion even after seeing the new evidence.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "curious",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "unwilling",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "confident",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "grateful",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:49.133Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:49.133Z"
+      }
+    },
+    {
+      "id": "cmtzk3ie4000b12txp81sgx17",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "Elige la palabra que completa correctamente la expresión: 'to make a ____ decision, without thinking it through.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "wealthy",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "loud",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "hasty",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "distant",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:50.140Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:50.140Z"
+      }
+    },
+    {
+      "id": "cmtzk3j61000g12txo841uhj4",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En 'She decided to bite the bullet and finally see the dentist,' la expresión 'bite the bullet' significa…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "posponer algo tantas veces como sea posible.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "pedirle a alguien más que haga algo difícil.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "quejarse en voz alta de un problema.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "enfrentar algo desagradable con valentía, aunque preferirías evitarlo.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:51.145Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:51.145Z"
+      }
+    },
+    {
+      "id": "cmtzk3jxz000l12txeid7y4r2",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En la oración 'The company's profits declined sharply last quarter,' la palabra 'declined' significa…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "decreased",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "increased",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "remained stable",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "were announced",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:52.152Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:52.152Z"
+      }
+    },
+    {
+      "id": "cmtzk3kq4000q12txyzpx8ckx",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En 'The manager asked the team to look into the complaint before responding to the client,' el verbo compuesto 'look into' significa…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "ignorar algo por completo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "investigar algo con cuidado.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "aprobar algo de inmediato.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "posponer algo indefinidamente.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:53.164Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:53.164Z"
+      }
+    },
+    {
+      "id": "cmtzk3li5000v12txyrwhvtlf",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "Elige la palabra que completa correctamente la oración: 'It is important to ____ attention to the instructions before starting the exam.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "do",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "make",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "pay",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "take",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:54.173Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:54.173Z"
+      }
+    },
+    {
+      "id": "cmtzk3maa001012txkytereac",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En 'After the accident, the twins were on the same page about selling the old car,' la expresión 'on the same page' significa que los gemelos…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "estaban leyendo el mismo libro.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "discutían sobre el precio del auto.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "trabajaban en la misma oficina.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "estaban de acuerdo sobre qué hacer.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:55.186Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:55.186Z"
+      }
+    },
+    {
+      "id": "cmtzk3n26001512tx4o9ojve1",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En la oración 'The instructions were so ambiguous that nobody knew which form to fill out,' la palabra 'ambiguous' significa…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "poco claras o que se pueden interpretar de más de una forma.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "extremadamente detalladas y específicas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "escritas en un idioma extranjero.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "impresas en letras muy pequeñas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:56.190Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:56.190Z"
+      }
+    },
+    {
+      "id": "cmtzk3nuj001a12tx58bywu2g",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En 'The team had to put off the launch because of a technical problem,' el verbo compuesto 'put off' significa…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "cancelar algo de manera permanente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "posponer o retrasar algo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "anunciar algo públicamente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "terminar algo antes de lo previsto.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:57.211Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:57.211Z"
+      }
+    },
+    {
+      "id": "cmtzk3omx001f12txa00jvspi",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "Elige la palabra que completa correctamente la oración: 'The committee will ____ a final decision by Friday.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "do",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "say",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "reach",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "hold",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:58.234Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:58.234Z"
+      }
+    },
+    {
+      "id": "cmtzk3pf8001k12txhcl42ajq",
+      "topicId": "cmrr1ji6f002yhi3n7cdwplbi",
+      "stem": "En 'I know the schedule seems confusing, but let's not get bogged down in details right now,' la expresión 'get bogged down' significa…",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "emocionarse por una nueva idea.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "perder un documento importante.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "terminar una tarea antes de lo planeado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "quedarse atorado o retrasado por enfocarse demasiado en pequeños detalles.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "EXPERT",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-13T08:32:59.253Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-13T08:32:59.253Z"
+      }
     }
   ],
   "QuestionSourceChunk": [
@@ -94439,6 +96559,216 @@
       "sourceChunkId": "cmrsrolez006s13b3octu4yb0",
       "createdAt": {
         "$d": "2026-09-01T00:26:27.571Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1k0800051zrvnwpsh1in",
+      "sourceChunkId": "cmrsroeyc000m13b37wia9bpw",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:18.920Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1l1i000a1zrvyjdezmdi",
+      "sourceChunkId": "cmrsroeyc000m13b37wia9bpw",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:20.262Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1lz7000f1zrvx4w7p639",
+      "sourceChunkId": "cmrsroeyd000n13b3gyk5jlfd",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:21.475Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1lz7000f1zrvx4w7p639",
+      "sourceChunkId": "cmrsroeyd000o13b3xa5u0uos",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:21.475Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1mww000k1zrvatgicopv",
+      "sourceChunkId": "cmrsroeyc000m13b37wia9bpw",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:22.688Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1nuh000p1zrvubpq5xg6",
+      "sourceChunkId": "cmrsroeyc000m13b37wia9bpw",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:23.898Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1osa000u1zrvtn0ufgh9",
+      "sourceChunkId": "cmrsroeyc000m13b37wia9bpw",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:25.114Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1ptb000z1zrvwqvj9mxx",
+      "sourceChunkId": "cmrsroeyd000o13b3xa5u0uos",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:26.336Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1qr200141zrvfna5mjto",
+      "sourceChunkId": "cmrsroeyc000m13b37wia9bpw",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:27.662Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1roo00191zrvltwwi6za",
+      "sourceChunkId": "cmrsrog05001b13b33gzulc6q",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:28.873Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1smg001e1zrvniaw6lqc",
+      "sourceChunkId": "cmrsrog05001b13b33gzulc6q",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:30.088Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1smg001e1zrvniaw6lqc",
+      "sourceChunkId": "cmrsrog05001c13b36ueo6h6y",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:30.088Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1tk8001j1zrvx9h8e6mh",
+      "sourceChunkId": "cmrsrog05001c13b36ueo6h6y",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:31.304Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1uhy001o1zrv3txxuej2",
+      "sourceChunkId": "cmrsrog05001b13b33gzulc6q",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:32.518Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1vfk001t1zrvx2vrjhoz",
+      "sourceChunkId": "cmrsroeyd000n13b3gyk5jlfd",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:33.728Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1wd5001y1zrv2hrspez2",
+      "sourceChunkId": "cmrsroeyd000n13b3gyk5jlfd",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:34.938Z"
+      }
+    },
+    {
+      "questionId": "cmtzk1xau00231zrvw6yrq21l",
+      "sourceChunkId": "cmrsroeyd000n13b3gyk5jlfd",
+      "createdAt": {
+        "$d": "2026-09-13T08:31:36.150Z"
+      }
+    },
+    {
+      "questionId": "cmtzk2ril00015vywgmmc8u0e",
+      "sourceChunkId": "cmrsroeyd000n13b3gyk5jlfd",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:15.309Z"
+      }
+    },
+    {
+      "questionId": "cmtzk2ysy0001167cbbwn3hk6",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:24.754Z"
+      }
+    },
+    {
+      "questionId": "cmtzk2zqq0006167cb9zcd3mi",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:25.970Z"
+      }
+    },
+    {
+      "questionId": "cmtzk30od000b167cqnivdcxd",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:27.182Z"
+      }
+    },
+    {
+      "questionId": "cmtzk31ma000g167clej2xqqg",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:28.402Z"
+      }
+    },
+    {
+      "questionId": "cmtzk32k1000l167crxlexx90",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:29.618Z"
+      }
+    },
+    {
+      "questionId": "cmtzk33hv000q167c9o6wd6gs",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:30.835Z"
+      }
+    },
+    {
+      "questionId": "cmtzk34fn000v167cm8ddep9g",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:32.052Z"
+      }
+    },
+    {
+      "questionId": "cmtzk35dh0010167ci5ofi0li",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:33.269Z"
+      }
+    },
+    {
+      "questionId": "cmtzk36bd0015167cve90bt5c",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:34.489Z"
+      }
+    },
+    {
+      "questionId": "cmtzk3794001a167cfgtk5j58",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:35.704Z"
+      }
+    },
+    {
+      "questionId": "cmtzk389w001f167c56g4ux7q",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:36.917Z"
+      }
+    },
+    {
+      "questionId": "cmtzk397n001k167ct9dcak92",
+      "sourceChunkId": "cmrsroeyd000p13b38ztpc682",
+      "createdAt": {
+        "$d": "2026-09-13T08:32:38.243Z"
       }
     }
   ],
@@ -121969,6 +124299,966 @@
       "layer": 3,
       "title": "Biomoléculas y sus unidades",
       "content": "Las macromoléculas biológicas son polímeros formados por condensación de monómeros (se pierde agua en cada enlace) y se rompen por hidrólisis. Repasa: clasificación de biomoléculas, monómeros y enlaces (glucosídico, peptídico, éster, fosfodiéster).",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1k0800061zrv8ov3dlny",
+      "questionId": "cmtzk1k0800051zrvnwpsh1in",
+      "layer": 1,
+      "title": "El texto narra una evolución, no un logro final",
+      "content": "El pasaje describe cómo la energía solar pasó de ser costosa a ser una de las fuentes más baratas, pero cierra señalando que los paneles todavía dependen de baterías o de la red después del atardecer. Esa combinación —mejora real + limitación vigente— es la idea principal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1k0800071zrv3slqes6r",
+      "questionId": "cmtzk1k0800051zrvnwpsh1in",
+      "layer": 2,
+      "title": "Cómo distinguir la idea principal de un detalle",
+      "content": "Primero identifica qué oración resume el texto completo, no solo un párrafo: aquí es el contraste entre \"la tecnología remained expensive\" y \"that situation has changed\". Quien responde que los paneles ya almacenan energía por su cuenta invirtió el sentido de la oración \"they cannot store the energy they generate on their own\" — es justo lo contrario. Quien ubica la invención en 2010 confunde una fecha de referencia de costos con el origen de la tecnología, que el texto no menciona.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1k0800081zrv6v1h1cw1",
+      "questionId": "cmtzk1k0800051zrvnwpsh1in",
+      "layer": 3,
+      "title": "Idea principal vs. detalle de apoyo",
+      "content": "En comprensión de lectura, la idea principal cubre TODO el texto; un detalle de apoyo (una cifra, un dato) solo ilustra una parte de ella. Practica separando primero el tema general del texto antes de mirar las opciones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1l1i000b1zrvim7vfsh7",
+      "questionId": "cmtzk1l1i000a1zrvyjdezmdi",
+      "layer": 1,
+      "title": "El dato exacto está en el texto",
+      "content": "El pasaje dice explícitamente \"manufacturing costs have dropped by more than eighty percent since 2010\". Es una pregunta de dato explícito: la respuesta está casi literal en el texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1l1i000c1zrvcg7krd3v",
+      "questionId": "cmtzk1l1i000a1zrvyjdezmdi",
+      "layer": 2,
+      "title": "Localizar el detalle antes de comparar cifras",
+      "content": "Busca en el texto la palabra clave de la pregunta (\"costo\", \"2010\") y lee la oración completa. Aquí dice \"more than eighty percent\", no \"cincuenta por ciento\" ni \"sin cambios\": quien elige esas alternativas probablemente leyó la cifra de forma apresurada o confundió el porcentaje con otro dato del texto. \"Ha aumentado\" contradice directamente la oración, que usa el verbo \"dropped\" (bajó).",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1l1i000d1zrv6q7esr25",
+      "questionId": "cmtzk1l1i000a1zrvyjdezmdi",
+      "layer": 3,
+      "title": "Preguntas de detalle explícito",
+      "content": "Este tipo de pregunta no requiere inferencia: requiere localizar la oración exacta y leerla con cuidado, sin dejarse llevar por cifras parecidas que aparecen en otras opciones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1lz7000g1zrv5k4ce4r3",
+      "questionId": "cmtzk1lz7000f1zrvx4w7p639",
+      "layer": 1,
+      "title": "Un pronombre siempre apunta hacia atrás",
+      "content": "\"That situation\" retoma la oración inmediatamente anterior: \"For decades the technology remained expensive, so only a few countries invested heavily in it\". Ese es el referente correcto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1lz7000h1zrvzfwf6aqw",
+      "questionId": "cmtzk1lz7000f1zrvx4w7p639",
+      "layer": 2,
+      "title": "Cómo resolver preguntas de referencia",
+      "content": "Localiza la frase señalada en el texto y lee la oración justo antes de ella: casi siempre ahí está el referente. Quien elige el proceso fotovoltaico o la dependencia de la batería está describiendo ideas que aparecen ANTES o DESPUÉS en el texto, pero no en la oración inmediata anterior a \"That situation\" — un error común es asumir que el pronombre apunta al tema general del párrafo en vez de a la oración más cercana.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1lz7000i1zrv5497quxe",
+      "questionId": "cmtzk1lz7000f1zrvx4w7p639",
+      "layer": 3,
+      "title": "Cohesión textual: pronombres y frases anafóricas",
+      "content": "En inglés, expresiones como \"that situation\", \"this issue\" o \"such a case\" son anafóricas: retoman una idea completa (no una sola palabra) mencionada justo antes. Identificar el alcance exacto de esa idea es clave para responder bien.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1mww000l1zrvc52mjxfl",
+      "questionId": "cmtzk1mww000k1zrvatgicopv",
+      "layer": 1,
+      "title": "Un adverbio de grado, no de tiempo ni de duda",
+      "content": "\"Considerably more efficient\" describe CUÁNTO mejora algo (un grado alto), no cuándo ocurre ni si es incierto. Por eso la opción correcta es la que habla de un grado notable de mejora.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1mww000m1zrv1kh93i2y",
+      "questionId": "cmtzk1mww000k1zrvatgicopv",
+      "layer": 2,
+      "title": "Vocabulario en contexto: adverbios de grado",
+      "content": "Cuando una palabra desconocida acompaña a un adjetivo comparativo (\"more efficient\"), suele modificar la INTENSIDAD de esa comparación. Aquí \"considerably\" indica que la mejora es grande, no leve. Confundirla con incertidumbre (\"duda\") o con tiempo son errores típicos de quien traduce la palabra de forma literal sin mirar su función en la oración.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1mww000n1zrv1v9ptji7",
+      "questionId": "cmtzk1mww000k1zrvatgicopv",
+      "layer": 3,
+      "title": "Inferir significado por la función gramatical",
+      "content": "Cuando no conoces una palabra, identifica primero su categoría gramatical (aquí, adverbio) y qué modifica (un comparativo). Esa pista estructural casi siempre acota el significado posible, incluso sin conocer la palabra exacta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1nui000q1zrvmqqbezs8",
+      "questionId": "cmtzk1nuh000p1zrvubpq5xg6",
+      "layer": 1,
+      "title": "El texto sigue una ruta geográfica e histórica",
+      "content": "El pasaje traza el camino del café desde Etiopía hasta la Península Arábiga, el Imperio Otomano y Europa. Esa trayectoria completa —origen y expansión— es el tema principal, no un dato aislado como el tostado o Brasil.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1nui000r1zrvtfatlhwl",
+      "questionId": "cmtzk1nuh000p1zrvubpq5xg6",
+      "layer": 2,
+      "title": "Separar el tema general de los datos de apoyo",
+      "content": "Brasil y Colombia aparecen solo en la primera línea, como aclaración de lo que la gente CREE, no como tema del texto. La leyenda de Kaldi y las goats son un detalle narrativo, no el asunto central. Confundir un dato mencionado al pasar con la idea principal es el error más común en este tipo de pregunta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1nui000s1zrv9j5ok3i9",
+      "questionId": "cmtzk1nuh000p1zrvubpq5xg6",
+      "layer": 3,
+      "title": "Idea principal en textos históricos/informativos",
+      "content": "En textos que narran un proceso a lo largo del tiempo, la idea principal casi siempre es el proceso completo (de dónde a dónde), no un punto intermedio de la historia.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1osa000v1zrvkylgpdws",
+      "questionId": "cmtzk1osa000u1zrvtn0ufgh9",
+      "layer": 1,
+      "title": "El origen aparece en la primera oración",
+      "content": "El texto dice que la planta \"most likely originated in the highlands of Ethiopia\". Es el origen del cultivo, no las etapas posteriores de su expansión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1osa000w1zrvot3woci7",
+      "questionId": "cmtzk1osa000u1zrvtn0ufgh9",
+      "layer": 2,
+      "title": "No confundir origen con expansión",
+      "content": "La Península Arábiga y el Imperio Otomano son lugares por donde el café SE EXTENDIÓ después, según el texto — no donde se cultivó por primera vez. Londres y París son ciudades donde el café ya se consumía como bebida social siglos después, mucho más adelante en la cronología del texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1osa000x1zrv1jvqhtrb",
+      "questionId": "cmtzk1osa000u1zrvtn0ufgh9",
+      "layer": 3,
+      "title": "Cronología en textos históricos",
+      "content": "Cuando un texto narra una secuencia de lugares o eventos, subraya mentalmente el orden (primero, después, finalmente) para no responder con un paso posterior cuando se pregunta por el primero.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1ptc00101zrv5u0j7y9u",
+      "questionId": "cmtzk1ptb000z1zrvwqvj9mxx",
+      "layer": 1,
+      "title": "La oración anterior define la costumbre",
+      "content": "'The practice' retoma directamente 'it was first roasted and brewed the way we recognize today' — es decir, la costumbre de tostar y preparar el café como hoy la conocemos, que luego 'moved into the Ottoman Empire'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1ptc00111zrv67ncdb2t",
+      "questionId": "cmtzk1ptb000z1zrvwqvj9mxx",
+      "layer": 2,
+      "title": "Rastrear el referente en textos largos",
+      "content": "Cuando el pronombre aparece varias oraciones después de haberse introducido el tema, hay que revisar el párrafo completo, no solo la oración inmediata. Kaldi y sus cabras son parte de una leyenda mencionada antes, pero no es \"la práctica\" de la que habla esa oración; el comercio entre Brasil y Colombia no aparece en absoluto en el texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1ptc00121zrvqke13iw7",
+      "questionId": "cmtzk1ptb000z1zrvwqvj9mxx",
+      "layer": 3,
+      "title": "Referencia a distancia",
+      "content": "No todo pronombre se resuelve en la oración inmediata anterior: a veces retoma una idea introducida varias líneas atrás. Practica leyendo el párrafo completo antes de decidir.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1qr200151zrv0o5hmaie",
+      "questionId": "cmtzk1qr200141zrvfna5mjto",
+      "layer": 1,
+      "title": "La raíz de la palabra da la pista",
+      "content": "'Unusually' comparte raíz con 'unusual' (poco común). En 'his goats became unusually energetic', describe un nivel de energía que se sale de lo normal para esas cabras.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1qr200161zrv7u0bw5zg",
+      "questionId": "cmtzk1qr200141zrvfna5mjto",
+      "layer": 2,
+      "title": "Usar la raíz para inferir el significado",
+      "content": "Reconocer 'usual' dentro de 'unusually' evita caer en distractores que describen cualidades opuestas o no relacionadas (peligroso, lento, aburrido) — ninguna tiene relación con la idea de 'salirse de lo común'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1qr200171zrvhxljujo4",
+      "questionId": "cmtzk1qr200141zrvfna5mjto",
+      "layer": 3,
+      "title": "Morfología: prefijos y sufijos en inglés",
+      "content": "El prefijo \"un-\" niega el significado de la raíz. Identificar raíces conocidas dentro de palabras nuevas es una estrategia rápida para vocabulario en contexto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1rop001a1zrvdi8tiqtr",
+      "questionId": "cmtzk1roo00191zrvltwwi6za",
+      "layer": 1,
+      "title": "Un texto práctico tiene un propósito práctico",
+      "content": "El texto detalla precios, beneficios y condiciones de una membresía. Su función es informativa/comercial: dar a conocer una oferta, no anunciar un cierre ni explicar un proceso.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1rop001b1zrvgchgk40d",
+      "questionId": "cmtzk1roo00191zrvltwwi6za",
+      "layer": 2,
+      "title": "Identificar el propósito por la estructura del texto",
+      "content": "Textos con precios, listas de beneficios y condiciones (\"must present\", \"does not include\") son típicamente folletos o anuncios de servicio. Ninguna oración menciona un cierre, un proceso de fabricación ni un descuento exclusivo para un gremio: son alternativas inventadas que no aparecen en el texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1rop001c1zrvo62so0aj",
+      "questionId": "cmtzk1roo00191zrvltwwi6za",
+      "layer": 3,
+      "title": "Textos prácticos en el examen (brochures, folletos)",
+      "content": "Este tipo de comprensión de lectura evalúa si puedes extraer información funcional de un documento cotidiano (folleto, aviso, itinerario), no solo de un texto narrativo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1smg001f1zrvemphx7fj",
+      "questionId": "cmtzk1smg001e1zrvniaw6lqc",
+      "layer": 1,
+      "title": "La última oración lo dice explícitamente",
+      "content": "El texto cierra con: 'Membership does not include parking or access to the IMAX theater'. Es una pregunta de exclusión explícita.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1smg001g1zrvqtns16wg",
+      "questionId": "cmtzk1smg001e1zrvniaw6lqc",
+      "layer": 2,
+      "title": "Preguntas de exclusión: cuidado con la negación",
+      "content": "Las otras tres opciones SÍ aparecen listadas como beneficios incluidos (\"unlimited entry\", \"20% discount\", \"quarterly newsletter\"). Quien elige alguna de ellas probablemente no notó que la pregunta pide lo que NO está incluido, un error frecuente cuando se lee rápido y solo se busca el nombre del beneficio sin fijarse en la negación de la pregunta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1smg001h1zrvhg2rx8de",
+      "questionId": "cmtzk1smg001e1zrvniaw6lqc",
+      "layer": 3,
+      "title": "Leer la pregunta completa antes de buscar en el texto",
+      "content": "Antes de escanear el texto, subraya mentalmente si la pregunta pide algo incluido o excluido — cambia por completo qué buscar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1tk8001k1zrv1d8urvhi",
+      "questionId": "cmtzk1tk8001j1zrvx9h8e6mh",
+      "layer": 1,
+      "title": "La condición temporal está explícita",
+      "content": "El texto especifica: 'except during Member Appreciation Week, held every March, when each member may bring one guest for free'. Fuera de esa semana, los invitados pagan el precio regular.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1tk8001l1zrv4uzufi9b",
+      "questionId": "cmtzk1tk8001j1zrvx9h8e6mh",
+      "layer": 2,
+      "title": "Detectar excepciones dentro de una regla general",
+      "content": "La regla general es que los invitados pagan; la excepción aparece después de la palabra 'except'. Elegir 'cualquier día del año' ignora esa excepción y solo lee la regla general; la edad del invitado no se menciona en ningún punto del texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1tk8001m1zrv7qn78lmm",
+      "questionId": "cmtzk1tk8001j1zrvx9h8e6mh",
+      "layer": 3,
+      "title": "Palabras que marcan excepciones en inglés",
+      "content": "'Except', 'unless' y 'apart from' introducen condiciones especiales dentro de una regla. Detectarlas es clave para no perder matices importantes en textos con reglamentos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1uhy001p1zrv4a6kgldg",
+      "questionId": "cmtzk1uhy001o1zrv3txxuej2",
+      "layer": 1,
+      "title": "El contexto inmediato aclara el significado",
+      "content": "'The card is not transferable to another person' — la palabra describe si algo puede pasarse de una persona a otra, no si se renueva, se usa en varios lugares o se paga en plazos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1uhy001q1zrvdezzxa3b",
+      "questionId": "cmtzk1uhy001o1zrv3txxuej2",
+      "layer": 2,
+      "title": "Vocabulario en contexto: sufijo -able",
+      "content": "El sufijo '-able' indica capacidad o posibilidad ('transfer' + '-able' = poder transferirse). Las otras opciones inventan significados (renovación, uso en varios lugares, plazos de pago) que no tienen relación con la raíz 'transfer'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1uhy001r1zrvpw6opgdx",
+      "questionId": "cmtzk1uhy001o1zrv3txxuej2",
+      "layer": 3,
+      "title": "Sufijos productivos del inglés",
+      "content": "Reconocer sufijos comunes como '-able', '-tion' o '-ful' ayuda a deducir el significado de palabras derivadas incluso sin haberlas visto antes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1vfk001u1zrv76zonph5",
+      "questionId": "cmtzk1vfk001t1zrvx2vrjhoz",
+      "layer": 1,
+      "title": "El detalle está explícito en el texto",
+      "content": "El texto dice: 'she stayed late to finish a chemistry project and met another student, Diego, who was struggling with the same assignment'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1vfk001v1zrvnsiuhe4b",
+      "questionId": "cmtzk1vfk001t1zrvx2vrjhoz",
+      "layer": 2,
+      "title": "Distinguir el detalle real de posibilidades plausibles",
+      "content": "Durante el almuerzo, el texto dice explícitamente que Mariana comía sola — así que no fue ahí donde conoció a Diego. Ningún maestro los presenta y no hay ninguna mención de que fueran vecinos: son inferencias razonables pero no confirmadas por el texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1vfk001w1zrvou8cvvh3",
+      "questionId": "cmtzk1vfk001t1zrvx2vrjhoz",
+      "layer": 3,
+      "title": "No inventar información no presente en el texto",
+      "content": "Una opción puede sonar lógica y aun así ser incorrecta si el texto no la confirma explícitamente. Responde solo con lo que el pasaje realmente dice.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1wd5001z1zrvuq9vcv6o",
+      "questionId": "cmtzk1wd5001y1zrv2hrspez2",
+      "layer": 1,
+      "title": "El referente aparece en la misma oración",
+      "content": "'Diego, who was struggling with the same assignment' — 'assignment' retoma directamente el 'chemistry project' mencionado segundos antes en la misma oración.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1wd500201zrvjhue7ijl",
+      "questionId": "cmtzk1wd5001y1zrv2hrspez2",
+      "layer": 2,
+      "title": "Referentes dentro de una sola oración",
+      "content": "Cuando el pronombre o la frase de referencia aparece en la misma oración que su antecedente, no hay que buscar más lejos. La mudanza, el grupo de estudio y el primer día son eventos de OTRAS partes del texto, no lo que \"assignment\" retoma aquí.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1wd500211zrvvsackq06",
+      "questionId": "cmtzk1wd5001y1zrv2hrspez2",
+      "layer": 3,
+      "title": "Nivel de dificultad de las preguntas de referencia",
+      "content": "Las preguntas de referencia más sencillas resuelven el pronombre en la misma oración; las más difíciles requieren mirar varias oraciones atrás, como en el pasaje del café.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1xau00241zrv7tip1wf7",
+      "questionId": "cmtzk1xau00231zrvw6yrq21l",
+      "layer": 1,
+      "title": "La frase describe sentimiento, no un hecho físico",
+      "content": "'Strange' (ajeno/extraño) y 'forced into' (obligada a entrar) describen cómo SE SENTÍA Mariana respecto a la escuela — un lugar que no eligió y donde no se sentía cómoda — no el tamaño ni la seguridad del edificio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1xau00251zrvc7a9bkfp",
+      "questionId": "cmtzk1xau00231zrvw6yrq21l",
+      "layer": 2,
+      "title": "Inferir emociones a partir del lenguaje del texto",
+      "content": "El texto sí menciona que la escuela 'seemed twice as large', pero esa frase específica ('a strange place she had been forced into') no habla de tamaño, sino del sentimiento de no pertenecer. Elegir peligro o aburrimiento inventa emociones que el texto nunca describe.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk1xau00261zrvixt28l13",
+      "questionId": "cmtzk1xau00231zrvw6yrq21l",
+      "layer": 3,
+      "title": "Inferencia emocional en narrativa",
+      "content": "Las preguntas de nivel más alto piden inferir el ESTADO DE ÁNIMO de un personaje a partir de las palabras exactas del texto, no solo repetir un hecho mencionado explícitamente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2ril00025vyw5b2nl17f",
+      "questionId": "cmtzk2ril00015vywgmmc8u0e",
+      "layer": 1,
+      "title": "El arco narrativo completo es la idea principal",
+      "content": "El texto va de \"ate lunch alone\" a \"no longer felt like a strange place\" gracias al encuentro con Diego. Ese cambio —de la soledad a sentirse incluida— es el eje de toda la historia.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2ril00035vywqadkm0xh",
+      "questionId": "cmtzk2ril00015vywgmmc8u0e",
+      "layer": 2,
+      "title": "No confundir un evento puntual con el tema completo",
+      "content": "El proyecto de química es el MEDIO por el que se conocen, no una competencia (nunca se mencionan calificaciones). Ninguna maestra aparece ayudando a Mariana; y el texto no dice que ella considere cambiarse de escuela, solo que temía que el año fuera difícil.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2ril00045vywc964hoku",
+      "questionId": "cmtzk2ril00015vywgmmc8u0e",
+      "layer": 3,
+      "title": "Idea principal en textos narrativos",
+      "content": "En una narración corta, la idea principal suele ser el cambio que vive el personaje (de un estado a otro), no un incidente aislado dentro de la historia.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2ysy0002167ciemxmg2i",
+      "questionId": "cmtzk2ysy0001167cbbwn3hk6",
+      "layer": 1,
+      "title": "Presente perfecto para una acción que sigue vigente",
+      "content": "'Since... started... five years ago' marca un periodo que comenzó en el pasado y sigue relevante ahora: eso exige el presente perfecto ('has written'), no el pasado simple.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2ysy0003167cv1wf9qsz",
+      "questionId": "cmtzk2ysy0001167cbbwn3hk6",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Busca la pista temporal: 'since' + un punto en el pasado indica un periodo que llega hasta el presente. 2) Esa pista requiere presente perfecto, no pasado simple. Quien responde con el pasado simple probablemente tradujo la oración al español mentalmente, donde el pretérito suena natural, sin notar la señal gramatical de 'since'. 3) El presente continuo ('is writing') describiría una acción en curso ahora mismo, no una acumulada en un periodo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2ysy0004167c2hzx9xe9",
+      "questionId": "cmtzk2ysy0001167cbbwn3hk6",
+      "layer": 3,
+      "title": "Marcadores del presente perfecto",
+      "content": "'Since + punto en el pasado', 'for + duración' y 'already/yet' son las señales más comunes para elegir presente perfecto sobre pasado simple.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2zqq0007167cbazpq8ad",
+      "questionId": "cmtzk2zqq0006167cb9zcd3mi",
+      "layer": 1,
+      "title": "\"At\" para un punto específico, \"in\" para una ciudad",
+      "content": "'At the head office' señala un punto concreto (un edificio); 'in Guadalajara' señala una ciudad, un área más amplia. Esa es exactamente la distinción entre 'at' y 'in' para expresar lugar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2zqq0008167ccjgh9ghb",
+      "questionId": "cmtzk2zqq0006167cb9zcd3mi",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Identifica qué tan específico es cada lugar: 'the head office' es un punto (edificio), 'Guadalajara' es una ciudad. 2) Los puntos específicos usan 'at'; ciudades, países y regiones usan 'in'. 3) 'On' se usa para superficies o calles ('on Reforma Avenue'), no para oficinas o ciudades — por eso las opciones con 'on' son incorrectas aquí.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk2zqq0009167cw0932tbq",
+      "questionId": "cmtzk2zqq0006167cb9zcd3mi",
+      "layer": 3,
+      "title": "Preposiciones de lugar: at / in / on",
+      "content": "'At' = punto específico; 'in' = área más grande (ciudad, país); 'on' = superficie o vía. Practicar con ejemplos reales (at the door, in Mexico, on the table) fija la diferencia mejor que memorizar la regla.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk30oe000c167c0imz516m",
+      "questionId": "cmtzk30od000b167cqnivdcxd",
+      "layer": 1,
+      "title": "Contraste entre dos ideas independientes",
+      "content": "Después de un punto y coma, 'however' introduce un contraste entre dos oraciones completas: el examen fue difícil, PERO la mayoría aprobó. Es el conector que mejor expresa esa oposición en este punto exacto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk30oe000d167c55ae4a23",
+      "questionId": "cmtzk30od000b167cqnivdcxd",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Identifica la relación lógica entre las dos partes: contraste, no causa ni consecuencia. 2) 'Because' y 'so' expresarían causa o consecuencia, que no encaja aquí (el examen difícil no CAUSA que aprueben). 3) 'Although' también marca contraste, pero necesita ir al inicio de una cláusula subordinada ('Although the exam was difficult, most students passed'), no después de un punto y coma con una oración ya completa antes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk30oe000e167cuv5c2o6z",
+      "questionId": "cmtzk30od000b167cqnivdcxd",
+      "layer": 3,
+      "title": "Conectores de contraste: however vs. although",
+      "content": "'However' conecta dos oraciones independientes (con punto y coma o punto); 'although' introduce una cláusula subordinada dentro de UNA sola oración. Confundir su posición gramatical es un error común.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk31ma000h167cqz9a7ukh",
+      "questionId": "cmtzk31ma000g167clej2xqqg",
+      "layer": 1,
+      "title": "Presente continuo para un plan futuro ya fijado",
+      "content": "Cuando algo ya está organizado para un momento futuro específico ('at eight'), el inglés usa el presente continuo ('am meeting'), no el presente simple.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk31ma000i167c55yy20ew",
+      "questionId": "cmtzk31ma000g167clej2xqqg",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Nota la hora específica futura ('at eight'): es un arreglo ya decidido, no un hábito. 2) Los hábitos y verdades generales usan presente simple ('meet'), por eso esa opción es incorrecta aquí. 3) 'Have met' (presente perfecto) describiría algo ya ocurrido, no un plan futuro; 'meet to' no es una estructura gramatical válida en este contexto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk31ma000j167camyqslwa",
+      "questionId": "cmtzk31ma000g167clej2xqqg",
+      "layer": 3,
+      "title": "Presente continuo con valor de futuro",
+      "content": "En inglés, el presente continuo también describe planes futuros ya organizados, especialmente con una hora o fecha específica — un uso distinto de su función habitual (acción en curso ahora).",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk32k2000m167c95i979nv",
+      "questionId": "cmtzk32k1000l167crxlexx90",
+      "layer": 1,
+      "title": "\"For\" con duraciones, \"since\" con puntos de inicio",
+      "content": "'Almost two hours' es una DURACIÓN, no un punto de partida. Las duraciones se expresan con 'for' ('for two hours', 'for a week'), mientras que 'since' se usa con un momento específico ('since Monday', 'since 2020').",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk32k2000n167c1aqhad2e",
+      "questionId": "cmtzk32k1000l167crxlexx90",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Pregúntate: ¿la palabra que sigue es una CANTIDAD de tiempo o un PUNTO en el tiempo? 2) 'Almost two hours' es cantidad → 'for'. 3) 'During' se usa con un evento o periodo nombrado ('during the meeting'), no con una cantidad numérica de tiempo; 'from' indica un punto de origen, no una duración.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk32k2000o167cyir4uu6x",
+      "questionId": "cmtzk32k1000l167crxlexx90",
+      "layer": 3,
+      "title": "For vs. since vs. during",
+      "content": "'For' + duración, 'since' + punto de inicio, 'during' + evento o periodo nombrado. Practicar identificando si la frase siguiente es un número de tiempo o un momento concreto resuelve la mayoría de estos casos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk33hv000r167czsk2v8bz",
+      "questionId": "cmtzk33hv000q167c9o6wd6gs",
+      "layer": 1,
+      "title": "Un resultado inesperado, a pesar de un esfuerzo",
+      "content": "'Even so' significa 'a pesar de eso' — encaja perfectamente porque, a pesar de explicar dos veces, algunos alumnos siguieron confundidos. Es un contraste con un matiz de resultado inesperado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk33hv000s167cgtvsrm8k",
+      "questionId": "cmtzk33hv000q167c9o6wd6gs",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Identifica la relación: explicar dos veces DEBERÍA reducir la confusión, pero no fue así → contraste. 2) 'In addition' añade información nueva, no contrasta; no encaja. 3) 'So that' introduce un propósito y necesita una cláusula distinta ('so that students understood'), no una oración independiente después de punto y coma; 'because of' requiere un sustantivo, no una oración completa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk33hv000t167co405220w",
+      "questionId": "cmtzk33hv000q167c9o6wd6gs",
+      "layer": 3,
+      "title": "Conectores de contraste con matiz de resultado inesperado",
+      "content": "'Even so' y 'nevertheless' señalan que, a pesar de una acción o condición, el resultado esperado no ocurrió. Son más específicos que 'however' en ese matiz de expectativa fallida.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk34fn000w167cjbo2km3v",
+      "questionId": "cmtzk34fn000v167cm8ddep9g",
+      "layer": 1,
+      "title": "Acción en curso interrumpida por otra",
+      "content": "'While' + pasado continuo ('was cooking') describe una acción que ESTABA en curso cuando otra acción puntual la interrumpió ('went out' en pasado simple). Es la estructura clásica de interrupción.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk34fn000x167cjtze3w36",
+      "questionId": "cmtzk34fn000v167cm8ddep9g",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Detecta la estructura 'while + acción larga, otra acción corta la interrumpe'. 2) La acción larga va en pasado continuo ('was cooking'); la interrupción, en pasado simple ('went out'). 3) 'Cooked' (pasado simple) sugeriría dos acciones consecutivas, no una interrumpiendo a la otra; 'has cooked' y 'cooks' no encajan con un evento puntual narrado en pasado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk34fn000y167cvmmwjhle",
+      "questionId": "cmtzk34fn000v167cm8ddep9g",
+      "layer": 3,
+      "title": "Pasado continuo + pasado simple (interrupción)",
+      "content": "Esta combinación es una de las estructuras más evaluadas en exámenes de inglés: acción de fondo en pasado continuo, evento puntual en pasado simple, unidos por 'while' o 'when'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk35dh0011167cu46dq8hn",
+      "questionId": "cmtzk35dh0010167ci5ofi0li",
+      "layer": 1,
+      "title": "Movimiento que termina dentro de un espacio",
+      "content": "'Into' combina movimiento + el resultado de quedar adentro: los turistas caminaron y terminaron DENTRO del edificio para ver el mural en el techo. 'To' solo indicaría dirección hacia el edificio, sin confirmar que entraron.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk35dh0012167cmmnnm63y",
+      "questionId": "cmtzk35dh0010167ci5ofi0li",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Pregúntate si la acción implica solo dirección o también entrar a un espacio. 2) Ver un mural EN EL TECHO exige estar adentro del edificio, así que se necesita 'into', no solo 'to'. 3) 'At' y 'in' no expresan movimiento hacia un lugar, solo posición estática — no encajan con el verbo 'walked' seguido de un destino.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk35dh0013167cqxswtmms",
+      "questionId": "cmtzk35dh0010167ci5ofi0li",
+      "layer": 3,
+      "title": "To vs. into: dirección vs. movimiento + resultado",
+      "content": "'To' indica dirección hacia un lugar; 'into' indica movimiento que termina dentro de ese lugar. El contexto (qué hace la persona una vez que llega) suele confirmar cuál se necesita.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk36bd0016167c5mjdgd93",
+      "questionId": "cmtzk36bd0015167cve90bt5c",
+      "layer": 1,
+      "title": "\"Because of\" + sustantivo, \"because\" + oración",
+      "content": "'The storm' es un sustantivo (con su propia cláusula descriptiva), no una oración completa con sujeto y verbo conjugado propios en este punto. Por eso se necesita 'because of', que se combina con sustantivos, y no 'because', que necesita una cláusula completa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk36bd0017167cwg1mrm6u",
+      "questionId": "cmtzk36bd0015167cve90bt5c",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Identifica qué sigue al espacio en blanco: un sustantivo ('the storm...') o una cláusula completa. 2) Un sustantivo requiere 'because of'. 3) 'So' expresaría consecuencia en el orden opuesto ('there was a storm, so the flight was cancelled'), y 'although' introduciría un contraste que no aplica: aquí la tormenta es la CAUSA directa de la cancelación, no un contraste con ella.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk36bd0018167c87pwijws",
+      "questionId": "cmtzk36bd0015167cve90bt5c",
+      "layer": 3,
+      "title": "Because vs. because of",
+      "content": "'Because' + sujeto + verbo (cláusula completa); 'because of' + sustantivo o frase nominal. Es uno de los errores más comunes de estudiantes de español, porque 'porque' en español no distingue esta diferencia estructural.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3794001b167cx5htbj0w",
+      "questionId": "cmtzk3794001a167cfgtk5j58",
+      "layer": 1,
+      "title": "Presente perfecto continuo: énfasis en la duración",
+      "content": "'For six months' + una acción que sigue sin resultado ('hasn't had any luck yet') pide presente perfecto continuo ('has been searching'), que enfatiza cuánto tiempo lleva ocurriendo algo, más que presente perfecto simple.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3794001c167cdoxw0scm",
+      "questionId": "cmtzk3794001a167cfgtk5j58",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Nota la duración ('for six months') combinada con una acción que continúa sin concluir. 2) El presente perfecto continuo resalta esa continuidad mejor que el presente perfecto simple ('has searched'), que suena más a un hecho terminado o repetido. 3) 'Searches' (presente simple) describiría un hábito general, no una búsqueda activa en curso; 'searched' (pasado simple) implicaría que la búsqueda ya terminó, lo cual contradice 'but he hasn't had any luck yet'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3794001d167csnjjblrq",
+      "questionId": "cmtzk3794001a167cfgtk5j58",
+      "layer": 3,
+      "title": "Presente perfecto simple vs. continuo",
+      "content": "El continuo enfatiza el PROCESO y su duración; el simple enfatiza el RESULTADO o la cantidad de veces que algo ocurrió. Cuando el resultado es \"todavía nada\", el continuo suele ser la opción más natural.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk389w001g167cn8hm1n6f",
+      "questionId": "cmtzk389w001f167c56g4ux7q",
+      "layer": 1,
+      "title": "\"By\" marca una fecha límite",
+      "content": "'By Friday' significa 'a más tardar el viernes' — una fecha límite, no una continuación. La segunda parte de la oración ('after that, it will not be accepted') confirma que se trata de un límite, no de un periodo continuo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk389w001h167c5o9tqy76",
+      "questionId": "cmtzk389w001f167c56g4ux7q",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Busca la pista de la segunda cláusula: 'after that, it will not be accepted' indica un corte, un límite. 2) 'By' expresa justo eso: no después de cierta fecha. 3) 'Until' implica que algo continúa HASTA ese momento y luego se detiene o cambia (por ejemplo, 'open until Friday'), pero no transmite la idea de fecha límite para una entrega puntual; 'since' y 'for' no tienen sentido de límite en absoluto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk389w001i167cp8ex9h82",
+      "questionId": "cmtzk389w001f167c56g4ux7q",
+      "layer": 3,
+      "title": "By vs. until: límite vs. continuidad",
+      "content": "'By' + fecha = fecha límite para que algo ocurra una vez. 'Until' + fecha = una situación o estado continúa hasta ese momento. Distinguir si la oración describe un límite puntual o una continuación resuelve la mayoría de estos casos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk397n001l167c0sorvsy7",
+      "questionId": "cmtzk397n001k167ct9dcak92",
+      "layer": 1,
+      "title": "\"Despite\" + sustantivo (sin verbo conjugado)",
+      "content": "'The low temperatures' es una frase nominal, sin sujeto ni verbo propios. 'Despite' se combina directamente con sustantivos o frases nominales para expresar contraste; 'although' necesitaría una cláusula completa ('Although the temperatures were low...').",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk397n001m167c2dmwfawt",
+      "questionId": "cmtzk397n001k167ct9dcak92",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Revisa si lo que sigue es una cláusula completa (sujeto + verbo) o solo una frase nominal. 2) 'The low temperatures' es solo un sustantivo con un adjetivo: pide 'despite' (o 'in spite of'), no 'although'. 3) 'Because' expresaría causa, no contraste, y el frío no CAUSA que terminen el maratón; 'so that' introduce un propósito, que no aplica aquí.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk397n001n167cok3v5mj0",
+      "questionId": "cmtzk397n001k167ct9dcak92",
+      "layer": 3,
+      "title": "Despite/in spite of + sustantivo vs. although + cláusula",
+      "content": "Aunque 'despite' y 'although' expresan la misma idea de contraste, su estructura gramatical es distinta: 'despite' + sustantivo/gerundio, 'although' + cláusula completa. Confundirlos es un error muy frecuente incluso en niveles avanzados.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3gu7000212txq0y4do3t",
+      "questionId": "cmtzk3gu7000112txd5ik6l5w",
+      "layer": 1,
+      "title": "Un idiom sobre alcanzar tu mejor ritmo",
+      "content": "'Hit your stride' describe el momento en que alguien empieza a desempeñarse bien y con naturalidad, después de un periodo de ajuste. Aquí, después de 'weeks of practice', el equipo llegó a ese punto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3gu7000312txs8t5sjsd",
+      "questionId": "cmtzk3gu7000112txd5ik6l5w",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Nota el contexto positivo: 'after weeks of practice... finally'. 2) Eso descarta interpretaciones negativas (discutir, lesionarse, abandonar). 3) 'Stride' se refiere literalmente al paso al caminar/correr; en sentido figurado, 'hit your stride' es encontrar tu ritmo óptimo — de ahí la opción correcta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3gu7000412tx4m8ojn8j",
+      "questionId": "cmtzk3gu7000112txd5ik6l5w",
+      "layer": 3,
+      "title": "Idioms deportivos comunes en inglés",
+      "content": "Muchos idioms en inglés provienen del deporte ('hit your stride', 'the ball is in your court'). Reconocer el campo semántico de origen ayuda a inferir su significado figurado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3hm5000712tx7lgynym7",
+      "questionId": "cmtzk3hm5000612tx3fp7x3gx",
+      "layer": 1,
+      "title": "Resistencia a hacer algo",
+      "content": "'Reluctant' describe a alguien que no quiere hacer algo o que duda en hacerlo. 'Unwilling' (poco dispuesto) captura exactamente ese matiz de resistencia.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3hm5000812tx6iurpcwu",
+      "questionId": "cmtzk3hm5000612tx3fp7x3gx",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Observa el contraste: 'even after seeing the new evidence' sugiere que, a pesar de tener razones para cambiar, la persona se resiste. 2) Eso indica resistencia, no curiosidad, confianza ni gratitud. 3) 'Curious' y 'grateful' describen emociones completamente distintas; 'confident' incluso sugeriría lo opuesto (seguridad en su postura, no resistencia a cambiarla).",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3hm5000912txl6g4qzd6",
+      "questionId": "cmtzk3hm5000612tx3fp7x3gx",
+      "layer": 3,
+      "title": "Vocabulario emocional matizado",
+      "content": "Distinguir entre palabras de significado cercano (reluctant/unwilling vs. confident/curious) requiere fijarse en el contexto completo de la oración, no solo en una traducción aislada.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3ie4000c12txao7lot64",
+      "questionId": "cmtzk3ie4000b12txp81sgx17",
+      "layer": 1,
+      "title": "Una colocación fija: \"hasty decision\"",
+      "content": "'Hasty decision' es una expresión fija en inglés que significa una decisión tomada muy rápido, sin suficiente reflexión — justo lo que confirma 'without thinking it through'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3ie4000d12tx0qqwfl50",
+      "questionId": "cmtzk3ie4000b12txp81sgx17",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Lee la aclaración al final de la oración: 'without thinking it through' describe prisa, no riqueza, volumen ni distancia. 2) 'Wealthy' (adinerado), 'loud' (ruidoso) y 'distant' (lejano) no tienen ninguna relación semántica con tomar decisiones apresuradas. 3) Solo 'hasty' encaja con el significado de actuar sin pensar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3ie4000e12txehirpohi",
+      "questionId": "cmtzk3ie4000b12txp81sgx17",
+      "layer": 3,
+      "title": "Colocaciones (collocations)",
+      "content": "Ciertas combinaciones de palabras se usan fijas en inglés aunque otras combinaciones sean gramaticalmente posibles (\"hasty decision\" es natural; \"wealthy decision\" no lo es). Memorizar colocaciones comunes mejora mucho la fluidez.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3j61000h12txc6hbflhy",
+      "questionId": "cmtzk3j61000g12txo841uhj4",
+      "layer": 1,
+      "title": "Enfrentar lo inevitable con valor",
+      "content": "'Bite the bullet' significa aceptar y enfrentar algo difícil o incómodo que has estado evitando. Aquí, la persona finalmente decide ir al dentista a pesar de no querer.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3j61000i12txrqrqgppv",
+      "questionId": "cmtzk3j61000g12txo841uhj4",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Nota la palabra 'finally' — indica que algo se estaba evitando y por fin se enfrenta. 2) Eso es lo opuesto a posponer, así que la opción sobre posponer describe justo lo contrario. 3) No hay ninguna mención de pedirle ayuda a otra persona ni de quejarse; la idea central es la decisión personal de afrontar algo incómodo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3j61000j12txnslxs96v",
+      "questionId": "cmtzk3j61000g12txo841uhj4",
+      "layer": 3,
+      "title": "Idioms sobre afrontar dificultades",
+      "content": "'Bite the bullet' es uno de los idioms más comunes para describir el acto de aceptar algo inevitable con determinación, sin quejarse ni posponerlo más.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3jxz000m12txhfjx6640",
+      "questionId": "cmtzk3jxz000l12txeid7y4r2",
+      "layer": 1,
+      "title": "Un sinónimo directo de \"bajar\"",
+      "content": "'Declined' significa que algo bajó o se redujo. 'Decreased' es el sinónimo más cercano en este contexto financiero.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3jxz000n12txkopr6m92",
+      "questionId": "cmtzk3jxz000l12txeid7y4r2",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) El adverbio 'sharply' (bruscamente) confirma un cambio marcado, no estabilidad. 2) 'Increased' sería el significado opuesto; 'remained stable' contradice directamente la idea de un cambio brusco. 3) 'Were announced' cambia por completo el significado: no se trata de comunicar una cifra, sino de que la cifra misma bajó.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3jy0000o12txqo2hsq3j",
+      "questionId": "cmtzk3jxz000l12txeid7y4r2",
+      "layer": 3,
+      "title": "Vocabulario financiero básico",
+      "content": "'Decline', 'drop' y 'fall' son sinónimos comunes para describir una baja en cifras (ventas, precios, ganancias) en textos de negocios y noticias económicas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3kq4000r12txu24sb5z9",
+      "questionId": "cmtzk3kq4000q12txyzpx8ckx",
+      "layer": 1,
+      "title": "Investigar antes de responder",
+      "content": "'Look into' significa examinar o investigar un asunto con detenimiento. Aquí, el gerente pide investigar la queja ANTES de responder al cliente — justo lo contrario de ignorarla.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3kq4000s12tx8wypbw89",
+      "questionId": "cmtzk3kq4000q12txyzpx8ckx",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Nota la secuencia lógica: investigar PRIMERO, responder DESPUÉS. 2) Eso descarta 'ignorar' (no habría necesidad de investigar algo que se ignora) y 'posponer indefinidamente' (contradice 'before responding', que implica una acción con un siguiente paso definido). 3) 'Aprobar de inmediato' tampoco encaja: aprobar no es lo mismo que investigar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3kq4000t12txe347ytpj",
+      "questionId": "cmtzk3kq4000q12txyzpx8ckx",
+      "layer": 3,
+      "title": "Verbos compuestos (phrasal verbs) de investigación",
+      "content": "'Look into', 'check out' e 'investigate' son formas de referirse a examinar un asunto con cuidado. 'Look into' es especialmente común en contextos laborales y de atención al cliente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3li5000w12txinsgku0y",
+      "questionId": "cmtzk3li5000v12txyrwhvtlf",
+      "layer": 1,
+      "title": "Una colocación fija: \"pay attention\"",
+      "content": "'Pay attention' es la combinación fija en inglés para expresar que alguien presta atención a algo. Ningún otro verbo funciona en este contexto exacto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3li5000x12txk5eoks4v",
+      "questionId": "cmtzk3li5000v12txyrwhvtlf",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) 'Attention' se combina de forma fija con 'pay', no con 'do', 'make' ni 'take' en este sentido. 2) Un error común entre hablantes de español es usar 'take attention' o 'make attention' por influencia de otras lenguas, pero en inglés ninguna de las dos es correcta. 3) Memorizar la colocación completa ('pay attention to') evita este error.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3li5000y12txn92sgvpq",
+      "questionId": "cmtzk3li5000v12txyrwhvtlf",
+      "layer": 3,
+      "title": "Verbos que se combinan con sustantivos abstractos",
+      "content": "Muchos sustantivos abstractos en inglés exigen un verbo específico (\"pay attention\", \"make a decision\", \"take a break\"). No siempre hay una regla lógica: se aprenden como bloques fijos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3maa001112txl0qp3sx2",
+      "questionId": "cmtzk3maa001012txkytereac",
+      "layer": 1,
+      "title": "Estar de acuerdo, no leer lo mismo",
+      "content": "'On the same page' es un idiom que significa que dos o más personas están de acuerdo o entienden algo de la misma manera — no tiene relación literal con libros ni lectura.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3maa001212txhjcjui47",
+      "questionId": "cmtzk3maa001012txkytereac",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) El contexto ('about selling the old car') indica una decisión conjunta, no una actividad de lectura. 2) Interpretar la expresión de forma literal (leer el mismo libro) es el error más común con este idiom. 3) Tampoco hay mención de discusión ni de un lugar de trabajo compartido: la idea central es el acuerdo mutuo sobre una decisión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3maa001312txi6q7tq8a",
+      "questionId": "cmtzk3maa001012txkytereac",
+      "layer": 3,
+      "title": "Idioms que no deben traducirse literalmente",
+      "content": "'On the same page' es un ejemplo clásico de idiom cuyo significado figurado es completamente distinto de su traducción literal ('en la misma página'). Reconocer que una expresión es un idiom (y no tomarla al pie de la letra) es clave para no perder el sentido real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3n26001612txgpfqghny",
+      "questionId": "cmtzk3n26001512tx4o9ojve1",
+      "layer": 1,
+      "title": "Falta de claridad, no de detalle",
+      "content": "'Ambiguous' significa que algo puede interpretarse de más de una manera, lo cual causa confusión. La consecuencia descrita ('nobody knew which form to fill out') confirma que el problema era la falta de claridad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3n26001712tx8i5jzl4r",
+      "questionId": "cmtzk3n26001512tx4o9ojve1",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) Observa la consecuencia: la gente no sabía qué formulario llenar, es decir, hubo confusión. 2) Eso es justo lo opuesto de 'extremadamente detalladas y específicas', que sería una causa de MÁS claridad, no de confusión. 3) El idioma en que están escritas o el tamaño de la letra no se mencionan en ningún punto del texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3n26001812tx8ur98ayn",
+      "questionId": "cmtzk3n26001512tx4o9ojve1",
+      "layer": 3,
+      "title": "Vocabulario académico común (ambiguous, vague, unclear)",
+      "content": "'Ambiguous', 'vague' y 'unclear' son sinónimos frecuentes en textos formales para describir instrucciones o afirmaciones que generan confusión por falta de precisión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3nuj001b12tx87nk6qk1",
+      "questionId": "cmtzk3nuj001a12tx58bywu2g",
+      "layer": 1,
+      "title": "Retrasar, no cancelar",
+      "content": "'Put off' significa posponer algo para más tarde, no cancelarlo de forma definitiva. El problema técnico retrasa el lanzamiento, pero no implica que se cancele para siempre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3nuj001c12txp9b6jl5o",
+      "questionId": "cmtzk3nuj001a12tx58bywu2g",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) 'Because of a technical problem' sugiere una causa temporal, típica de un retraso, no de una cancelación definitiva. 2) Confundir 'put off' con 'cancel' es un error común, pero son conceptos distintos: uno implica una nueva fecha posible, el otro no. 3) 'Anunciar' y 'terminar antes de lo previsto' no tienen relación con el significado de 'put off'.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3nuj001d12tx16h1o8tc",
+      "questionId": "cmtzk3nuj001a12tx58bywu2g",
+      "layer": 3,
+      "title": "Postpone vs. cancel",
+      "content": "'Put off' y 'postpone' implican que algo ocurrirá más tarde; 'cancel' implica que no ocurrirá en absoluto. Distinguir estos matices es frecuente en textos de negocios y noticias.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3omy001g12txzxcf9i68",
+      "questionId": "cmtzk3omx001f12txa00jvspi",
+      "layer": 1,
+      "title": "Una colocación fija: \"reach a decision\"",
+      "content": "'Reach a decision' es la combinación estándar en inglés para expresar que un grupo llega a una conclusión después de deliberar. Ningún otro verbo de la lista forma esa colocación natural.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3omy001h12txvzmy8knx",
+      "questionId": "cmtzk3omx001f12txa00jvspi",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) 'Decision' se combina de forma fija con 'reach' (o 'make'), no con 'do', 'say' ni 'hold' en este sentido. 2) 'Hold a meeting' sí es una colocación válida, pero con 'meeting', no con 'decision' — un distractor diseñado para confundir por asociación con otro sustantivo. 3) 'Say a decision' y 'do a decision' no son expresiones naturales en inglés.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3omy001i12txn1jh02yz",
+      "questionId": "cmtzk3omx001f12txa00jvspi",
+      "layer": 3,
+      "title": "Colocaciones con \"decision\"",
+      "content": "\"Reach a decision\" y \"make a decision\" son las colocaciones correctas en inglés; memorizarlas evita errores frecuentes de traducción directa del español (\"tomar una decisión\").",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3pf9001l12txpp157fnj",
+      "questionId": "cmtzk3pf8001k12txhcl42ajq",
+      "layer": 1,
+      "title": "Quedarse atascado en lo pequeño",
+      "content": "'Get bogged down' significa avanzar con dificultad o quedarse atorado, generalmente por prestar demasiada atención a detalles pequeños en vez del panorama general. Aquí se usa justo para advertir que no conviene enfocarse demasiado en los detalles del horario.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3pf9001m12tx5488kufn",
+      "questionId": "cmtzk3pf8001k12txhcl42ajq",
+      "layer": 2,
+      "title": "Paso a paso",
+      "content": "1) La frase 'let's not' indica una advertencia para EVITAR algo — algo que normalmente ralentiza o complica. 2) Eso descarta emocionarse o terminar antes de lo planeado, que son ideas positivas o neutrales, no algo que se busca evitar. 3) Perder un documento no tiene relación con 'details' en el sentido de enfocarse demasiado en algo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmtzk3pf9001n12txkp6fu1kh",
+      "questionId": "cmtzk3pf8001k12txhcl42ajq",
+      "layer": 3,
+      "title": "Idioms sobre quedarse atorado en un proceso",
+      "content": "'Get bogged down' proviene de la imagen de quedar atascado en un pantano (bog). Se usa en contextos de trabajo para describir cuando un proyecto se ralentiza por exceso de detalle o discusión.",
       "latexContent": null
     }
   ]
