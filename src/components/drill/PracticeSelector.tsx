@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Tino } from '@/components/mascot/Tino';
 import type { PracticeOptions, PracticeScope } from '@/lib/db/drill';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
-import { drillLimitReached } from '@/lib/tino/copy';
+import { drillLimitReached, subjectNotReady } from '@/lib/tino/copy';
 
 /**
  * Selector de práctica (F14 tarea 1): reforzar temas débiles (default, usa el
@@ -89,50 +89,78 @@ export function PracticeSelector({
       <div>
         <p className="mb-2 text-sm font-semibold text-text-primary">Por materia</p>
         <div className="space-y-2">
-          {options.subjects.map((subject) => (
-            <Card key={subject.subjectId} className="p-4">
-              <div className="flex items-center justify-between gap-3">
-                <button
-                  type="button"
-                  disabled={starting || limitReached}
-                  onClick={() => onStart({ kind: 'subject', subjectId: subject.subjectId })}
-                  className="flex min-h-touch flex-1 items-center text-left text-sm font-semibold text-text-primary hover:text-brand-soft disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {subject.subjectName}
-                </button>
-                {subject.topics.length > 0 && (
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setExpandedSubject((prev) =>
-                        prev === subject.subjectId ? null : subject.subjectId
-                      )
-                    }
-                    className="flex min-h-touch shrink-0 items-center text-xs text-text-muted hover:text-text-secondary"
-                  >
-                    {expandedSubject === subject.subjectId ? 'Ocultar temas ▲' : 'Ver temas ▾'}
-                  </button>
-                )}
-              </div>
+          {options.subjects.map((subject) => {
+            // G74: una materia sin reactivos no se ofrece como botón que va a
+            // fallar — se explica. Es el caso de Inglés en la UNAM hoy: el pool
+            // `UNAM:INGLES` está vacío en las cuatro áreas, y hasta ahora el
+            // alumno solo veía una línea roja de error tras dar clic.
+            const ready = subject.servable > 0;
+            const topicsWithContent = subject.topics.filter((t) => t.servable > 0);
 
-              {expandedSubject === subject.subjectId && (
-                <ul className="mt-3 space-y-1 border-t border-border-subtle pt-3">
-                  {subject.topics.map((topic) => (
-                    <li key={topic.topicId}>
-                      <button
-                        type="button"
-                        disabled={starting || limitReached}
-                        onClick={() => onStart({ kind: 'topic', topicId: topic.topicId })}
-                        className="w-full min-h-touch rounded-md px-2 py-1.5 text-left text-sm text-text-secondary hover:bg-elevated hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        {topic.topicName}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </Card>
-          ))}
+            return (
+              <Card key={subject.subjectId} className="p-4">
+                <div className="flex items-center justify-between gap-3">
+                  {ready ? (
+                    <button
+                      type="button"
+                      disabled={starting || limitReached}
+                      onClick={() => onStart({ kind: 'subject', subjectId: subject.subjectId })}
+                      className="flex min-h-touch flex-1 items-center text-left text-sm font-semibold text-text-primary hover:text-brand-soft disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      {subject.subjectName}
+                    </button>
+                  ) : (
+                    <div className="flex min-h-touch flex-1 flex-col justify-center gap-1 py-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-sm font-semibold text-text-muted">
+                          {subject.subjectName}
+                        </span>
+                        <span className="rounded-full bg-elevated px-2 py-0.5 text-xs font-semibold text-text-muted">
+                          En camino
+                        </span>
+                      </div>
+                      <p className="text-xs text-text-secondary">
+                        {subjectNotReady(subject.subjectName).message}
+                      </p>
+                    </div>
+                  )}
+                  {ready && topicsWithContent.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedSubject((prev) =>
+                          prev === subject.subjectId ? null : subject.subjectId
+                        )
+                      }
+                      className="flex min-h-touch shrink-0 items-center text-xs text-text-muted hover:text-text-secondary"
+                    >
+                      {expandedSubject === subject.subjectId ? 'Ocultar temas ▲' : 'Ver temas ▾'}
+                    </button>
+                  )}
+                </div>
+
+                {expandedSubject === subject.subjectId && (
+                  <ul className="mt-3 space-y-1 border-t border-border-subtle pt-3">
+                    {/* Solo temas con reactivos propios: la práctica por tema no
+                        expande el pool compartido de G26, así que un tema vacío
+                        de una materia "llena por préstamo" no tiene nada que dar. */}
+                    {topicsWithContent.map((topic) => (
+                      <li key={topic.topicId}>
+                        <button
+                          type="button"
+                          disabled={starting || limitReached}
+                          onClick={() => onStart({ kind: 'topic', topicId: topic.topicId })}
+                          className="w-full min-h-touch rounded-md px-2 py-1.5 text-left text-sm text-text-secondary hover:bg-elevated hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          {topic.topicName}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </Card>
+            );
+          })}
         </div>
       </div>
 

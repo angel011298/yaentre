@@ -1,8 +1,19 @@
 import type { Area, Career } from '@prisma/client';
 import { selectCareerAction } from '@/app/actions/onboarding';
 import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
+import type { AreaCoverage } from '@/lib/content/coverage';
+import { areaPartialCoverage } from '@/lib/tino/copy';
 
-export function CareerStep({ area, careers }: { area: Area; careers: Career[] }) {
+export function CareerStep({
+  area,
+  careers,
+  coverage,
+}: {
+  area: Area;
+  careers: Career[];
+  /** G74 — cobertura del área ya elegida; sólo se muestra si es PARTIAL. */
+  coverage?: AreaCoverage;
+}) {
   return (
     <div className="space-y-5">
       <header className="space-y-1">
@@ -12,6 +23,15 @@ export function CareerStep({ area, careers }: { area: Area; careers: Career[] })
           Usamos esto para calcular tu Entrómetro contra una meta de referencia.
         </p>
       </header>
+
+      {/* G74: se dice UNA vez y sin alarma. El área es utilizable; lo honesto
+          es que el alumno sepa el hueco antes de invertir su tiempo, no que lo
+          descubra cuando abra esa materia en práctica. */}
+      {coverage?.status === 'PARTIAL' && (
+        <p className="rounded-lg border border-border-subtle bg-surface p-3 text-sm text-text-muted">
+          {areaPartialCoverage(coverage.pendingSubjectNames)}
+        </p>
+      )}
 
       {careers.length === 0 ? (
         <p className="rounded-lg border border-border-subtle bg-surface p-4 text-sm text-text-secondary">

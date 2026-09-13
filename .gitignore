@@ -73,3 +73,4 @@ docs/guias/*.pdf
 /playwright/.cache/
 
 .vercel
+.lighthouse-g74/

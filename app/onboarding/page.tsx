@@ -64,22 +64,31 @@ export default async function OnboardingPage({
   // Pasos 2 y 3: área (efímera, por URL) y carrera meta.
   if (profile.onboardingStep === OnboardingStep.AREA_CAREER) {
     if (areaId) {
-      const area = await onboardingDb.loadAreaWithExam(areaId);
-      if (area && area.examId === profile.targetExamId) {
-        const careers = await onboardingDb.loadCareersForArea(area.id);
+      // G74: `loadSelectableAreaForExam` exige las tres cosas a la vez — que
+      // el área exista, que sea del examen del perfil, y que tenga cobertura
+      // de contenido suficiente. Un deep link a un área «Próximamente» cae al
+      // Paso 2 con el aviso, igual que un `?area=` manipulado.
+      const selectable = await onboardingDb.loadSelectableAreaForExam(
+        areaId,
+        profile.targetExamId
+      );
+      if (selectable) {
+        const careers = await onboardingDb.loadCareersForArea(selectable.area.id);
         return (
           <Wizard current={3}>
-            <CareerStep area={area} careers={careers} />
+            <CareerStep area={selectable.area} careers={careers} coverage={selectable.coverage} />
           </Wizard>
         );
       }
-      // ?area= manipulado o de otro examen: se ignora y se cae al Paso 2.
     }
 
     const areas = await onboardingDb.loadAreasForExam(profile.targetExamId);
     return (
       <Wizard current={2}>
-        <AreaStep areas={areas} />
+        <AreaStep
+          areas={areas}
+          showUnavailableNotice={unavailable === '1' || Boolean(areaId)}
+        />
       </Wizard>
     );
   }

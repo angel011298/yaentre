@@ -99,6 +99,9 @@ export const RATE_LIMITS = {
    *  acota el ciclo abandonar-y-esperar-24h a unos pocos intentos por día en
    *  vez de dejarlo indefinido. */
   DIAGNOSTIC_START: { limit: 5, windowSecs: 86_400 },
+  /** G74 — «avísame cuando abra esta área»: un puñado por hora y alumno basta
+   *  para un onboarding real; evita que un clic repetido infle la lista. */
+  AREA_WAITLIST: { limit: 10, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

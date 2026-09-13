@@ -15,6 +15,21 @@ export interface AnalyticsEvents {
   signup_completed: { role: 'STUDENT' | 'PARENT' };
   onboarding_completed: Record<string, never>;
 
+  /**
+   * G74 — un alumno pidió aviso para un área que todavía no se puede ofrecer
+   * (`AreaCoverage.status = COMING_SOON`). Es la LISTA DE ESPERA real de esa
+   * rama: `distinctId` es el `UserProfile.id`, así que el correo se resuelve
+   * después con `app_security.auth_emails_for_profiles` (G73) sin que ningún
+   * dato personal viaje en el evento. Ver docs/ESTADO.md §G74 para por qué
+   * vive aquí y no en una tabla propia.
+   */
+  area_waitlist_joined: {
+    areaCode: string;
+    examLabel: string;
+    coveredPct: number;
+    pendingSubjects: number;
+  };
+
   // ── Núcleo de estudio (finishSession, un solo dispatcher por modo) ──
   diagnostic_completed: { score: number; totalQuestions: number; durationSecs: number };
   practice_completed: {

@@ -12,7 +12,9 @@
 > código: **G71**. **Actualizado el 8 de septiembre de 2026 con los
 > resultados de G73 y G73b** — los puntos afectados están marcados en su
 > propia fila; el veredicto global (NO-GO en las tres puertas, por decisiones
-> de negocio y no por código) no cambia. Este documento **supera y reemplaza** a
+> de negocio y no por código) no cambia. **Actualizado el 12 de septiembre de
+> 2026 con G74**, que cierra los items 13 y 14 de §11 y la parte de producto
+> del riesgo 4 de §12 — el criterio 5.6 pasa de 🟡 a ✅. Este documento **supera y reemplaza** a
 > `docs/LAUNCH_CHECKLIST.md` (snapshot del 27 de julio de 2026, F24) como la
 > fuente vigente — ese archivo se conserva sin tocar como registro histórico
 > de dónde estaba el proyecto entonces.
@@ -163,7 +165,7 @@ intentarlo ni se le debe pedir que lo intente.
 | 5.3 | Gamificación completa (streak, MateriaDominada, PerfectRound) | ✅ **CUMPLIDO** | Construido y probado (G15, G63/G64 lo verificaron visualmente incluyendo un bug de contraste real corregido). No se retriggeró en vivo en G71 porque los scores del recorrido fueron bajos a propósito — es esperado, no una falla. |
 | 5.4 | PWA instalable en Android e iOS (manifest + service worker) | ✅ **CUMPLIDO** | G64: manifest con `id`, íconos 192/512/maskable, service worker con caché offline de `/app` y exclusión deliberada de `/simulador`, verificado con Playwright y emulación de zonas seguras de iOS. |
 | 5.5 | NPS de beta cerrada ≥ 7.5/10 en al menos 30 respuestas | 🔴 **PENDIENTE** | Depende directamente de 4.5 (nunca reclutada la beta). Cero respuestas. |
-| 5.6 | Lighthouse Performance mobile ≥ 85 | 🟡 **PARCIAL — sin re-verificar contra el dominio real** | G62 midió **las 5 pantallas críticas ≥ 85** (landing 96, registro 98, dashboard 87, práctica 90, simulador 94) contra un build de producción local (`next build && next start`), no contra `https://yaentre.com` directamente — esta sesión no volvió a correr Lighthouse. Vercel + Supabase co-ubicados en `us-east-1`/`iad1` deberían igualar o mejorar esos números, no empeorarlos, pero **"debería" no es "confirmado"**. 🔧 Recomendado: correr Lighthouse contra el dominio real antes de la ventana de 7 días previa al lanzamiento. |
+| 5.6 | Lighthouse Performance mobile ≥ 85 | ✅ **CUMPLIDO desde G74 — medido contra el dominio real** | G62 midió **las 5 pantallas críticas ≥ 85** (landing 96, registro 98, dashboard 87, práctica 90, simulador 94) contra un build de producción local (`next build && next start`), no contra `https://yaentre.com` directamente — esta sesión no volvió a correr Lighthouse. Vercel + Supabase co-ubicados en `us-east-1`/`iad1` deberían igualar o mejorar esos números, no empeorarlos, pero **"debería" no es "confirmado"**. **G74 lo hizo**: mediana de 7 corridas contra `https://yaentre.com`, perfil móvil, con sesión real en las privadas — **landing 95 · registro 96 · dashboard 89 · práctica 95 · simulador 98**. La primera medición encontró el dashboard en **83** (por debajo del criterio) y hubo que optimizar; las cifras de arriba son las de después. Reproducible con `pnpm perf:lighthouse-prod`. |
 | 5.7 | 0 bugs críticos en los 7 días previos al lanzamiento | 🔧 **NO VERIFICABLE AÚN** | La ventana de 7 días no ha empezado (faltan ~4 meses). Estado de hoy: **0 bugs críticos de código conocidos sin resolver** — el único hallazgo abierto de G71 (D7) es una línea de configuración del panel de Supabase, no un bug de código, y no afecta a ningún usuario real en producción. |
 | 5.8 | Stripe webhooks probados end-to-end: tarjeta, OXXO, SPEI | 🟡 **PARCIAL** | Mismo estado que 2.6: tarjeta probada con dinero de prueba real de punta a punta; OXXO/SPEI solo con payloads sintéticos firmados. Los 4 eventos que enruta `src/lib/stripe/webhook.ts` (`checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `customer.subscription.deleted`) están configurados en el webhook de prueba. |
 | 5.9 | ≥ 200 licencias Early Bird vendidas | 🔴 **PENDIENTE** | **0 reales**, verificado por consulta directa (`subscriptions` con `season='EARLY_BIRD' AND status='ACTIVE'` → 0 filas). Depende 100% de negocio, y de que 2.2/3 (Stripe live) se resuelva primero — no se puede vender lo que no se puede cobrar. |
@@ -338,8 +340,8 @@ huérfanos, contador Early Bird en 500/500 real.
 | ~~10~~ | 🔴 **NO ES UN TOGGLE: ES EL PLAN.** Intentado en G73; el `PATCH` a la API de Supabase devuelve **HTTP 402 Payment Required** — "Leaked Password Protection" solo existe en Pro. **Deja de ser un item propio y se absorbe en el bloqueador 3** (Supabase Pro). | Ángel (vía bloqueador 3) |
 | 11 | Configurar `SENTRY_ORG`/`SENTRY_PROJECT`/`SENTRY_AUTH_TOKEN` para sourcemaps legibles. **Intentado en G73 y bloqueado**: no hay sesión abierta en sentry.io ni sesión de Google viva, y generar el token exige autenticarse con la contraseña del dueño. `next.config.ts` ya está cableado; del DSN se leyeron los ids numéricos (org `4512036691312640`, proyecto `4512036709203968`). Pasos exactos abajo. | Ángel |
 | ~~12~~ | ✅ **RESUELTO EN G73.** Redirect URLs corregidas con `supabase config push` declarando solo esa propiedad (las otras 17 intactas, comprobado con `config diff`): se conservan `https://yaentre.com/**` y `https://www.yaentre.com/**`, se añaden `https://*-angel011298s-projects.vercel.app/**`, `http://localhost:3000/**` y `http://127.0.0.1:3000/**`. | — |
-| 13 | Re-medir Lighthouse contra `https://yaentre.com` directamente, no solo contra el build local de G62 | Próxima sesión de código |
-| 14 | Filtrar en el onboarding las áreas sin cobertura de contenido suficiente (o priorizar su contenido) — hoy `loadAreasForExam` ofrece IPN SOCADM igual que FISMAT/MEDBIO pese a tener 4 de 7 materias en cero | Próxima sesión de código |
+| ~~13~~ | ✅ **RESUELTO EN G74.** Medido contra `https://yaentre.com` en perfil móvil, mediana de 7 corridas, con sesión real en las 3 pantallas privadas (`pnpm perf:lighthouse-prod`): **landing 95 · registro 96 · dashboard 89 · práctica 95 · simulador 98 — las 5 ≥ 85**. La primera medición encontró el dashboard en **83** y dos pantallas más al filo; tres optimizaciones medidas lo corrigieron (Sentry fuera del camino crítico pero con vigilancia de errores tempranos, `getStreak` en `<Suspense>`, y el elemento LCP del dashboard en la cáscara). Residuo conocido y apuntado: el dashboard sigue siendo bimodal por la carrera entre el pintado y el chunk de framework. Detalle en `docs/ESTADO.md §G74.7`. | — |
+| ~~14~~ | ✅ **RESUELTO EN G74.** Guarda de cobertura **dinámica, leída de la base** (`src/lib/content/coverage.ts` puro + `src/lib/db/area-coverage.ts`), sin ninguna lista en código: cuando el contenido llegue, el área se habilita sola. Mide **peso de examen cubierto** (`Subject.questionWeight`), y una materia solo cuenta si alcanza **su cuota del diagnóstico**, calculada con la misma `apportionByWeight` que el diagnóstico usa de verdad. Tres estados: READY (100 %) · PARTIAL (≥70 %, se ofrece nombrando lo que falta) · COMING_SOON (<70 %, **no elegible**). Hoy solo IPN SOCADM (32 %) queda fuera; las 4 áreas de la UNAM siguen disponibles con su aviso. Se **marca**, no se esconde: tarjeta «Próximamente» con el motivo y un «avísame». Revalidado en el servidor (deep link `?area=` incluido) y **verificado en producción**. `pnpm content:guard` lo comprueba por efecto. Detalle en `docs/ESTADO.md §G74`. | — |
 
 
 > **Nota de G73 sobre el item 9 — por qué el remedio que este documento daba por bueno no habría servido.**
@@ -391,10 +393,19 @@ hallazgo verificado en esta sesión:
    base de datos no tiene respaldo restaurable — la única "copia" hoy es el
    backup manual de contenido en git (`backups/content-bank.json`), que no
    cubre usuarios, pagos ni progreso.
-4. **Riesgo de producto roto para un segmento real de usuarios:** cualquier
-   alumno de UNAM que estudie Inglés, o cualquier alumno que elija la rama
-   IPN SOCADM, encuentra hoy un diagnóstico/práctica vacíos en la mayoría de
-   sus materias — sin ningún aviso que lo explique.
+4. ~~**Riesgo de producto roto para un segmento real de usuarios**~~ — **el
+   "sin ningún aviso" quedó cerrado en G74; el hueco de contenido sigue
+   abierto.** La rama IPN SOCADM (8 de 25 de peso, 32 %) **ya no se puede
+   elegir**: aparece como «Próximamente», diciendo por su nombre qué cuatro
+   materias faltan y ofreciendo tanto otra área disponible como un «avísame
+   en cuanto abra». Inglés de la UNAM tampoco es ya un botón que falla en
+   `/practicar`: se explica en la voz de la marca y no se deja pulsar. La
+   guarda es dinámica —lee el banco, no una lista— así que el día que el
+   pipeline llene esas materias, todo se reabre solo. **Lo que NO cambió:**
+   ese contenido sigue sin existir (bloqueador 5), y por tanto un aspirante
+   de SOCADM sigue sin poder prepararse con YaEntre — la diferencia es que
+   ahora se entera antes de invertir su tiempo, en vez de a mitad de su
+   diagnóstico. Ver `docs/ESTADO.md §G74`.
 5. ~~**Riesgo de comunicación parental silenciosamente rota**~~ — **eliminado
    en G73.** Los 3 correos programados envían de verdad, verificado con el
    cron real de producción y los mensajes `delivered` en Resend. En su lugar,

@@ -110,12 +110,22 @@ export default async function DashboardPage() {
         <EntrometroCard profileId={pid} />
       </Suspense>
 
-      {/* `h-[123px]` = alto real de `TinoRecommendation` (Tino 48px + 3 líneas
-          de texto en `p-4`); antes el esqueleto era más bajo y el contenido
-          real empujaba lo de abajo al llegar. */}
-      <Suspense fallback={<Skeleton className="h-[123px] w-full rounded-lg" />}>
-        <TinoRecommendationSection profileId={pid} />
-      </Suspense>
+      {/* G74 (rendimiento): ESTA sección NO va en `<Suspense>`, al revés que
+          las demás — y es una reversión deliberada y medida de una decisión de
+          G62, no un descuido.
+          Lighthouse contra producción identificó su `<p>` como el elemento LCP
+          del dashboard: es el bloque de texto más grande de la pantalla. Al
+          llegar en un fragmento posterior del stream, el modelo de red de
+          Lighthouse lo situaba ~1,2 s después del resto y el LCP simulado se
+          iba a 3 940 ms — con el dashboard en 83, la única de las cinco
+          pantallas por debajo del 85 que exige el PRD §14.
+          Se resuelve con la cáscara, así que el LCP colapsa sobre el FCP. El
+          costo es UNA consulta antes del primer byte (`loadWeakestTopics`, ya
+          cacheada por request con `cache()` — «Reforzar hoy» la reusa sin
+          pagarla otra vez); lo que G62 quitó del camino crítico fue un
+          `Promise.all` de NUEVE loaders, no una. Las otras ocho islas siguen
+          llegando por stream exactamente igual. */}
+      <TinoRecommendationSection profileId={pid} />
 
       <section>
         <h2 className="mb-3 font-display text-lg font-bold text-text-primary">Tu semana</h2>

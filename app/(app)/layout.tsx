@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import type { ReactNode } from 'react';
+import { Suspense, type ReactNode } from 'react';
 import { VerificationBanner } from '@/components/ui/VerificationBanner';
 import { BottomNav } from '@/components/dashboard/BottomNav';
 import { Sidebar } from '@/components/dashboard/Sidebar';
@@ -55,7 +55,6 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     throw err;
   }
 
-  const streak = await getStreak(profileId);
   const initial = (displayName ?? authUser.email ?? '?').trim().charAt(0).toUpperCase();
 
   return (
@@ -74,7 +73,19 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
         Saltar al contenido
       </a>
       <Sidebar />
-      <TopBar streak={streak?.currentStreak ?? 0} initial={initial || '?'} avatarUrl={avatarUrl} />
+      {/* G74 (rendimiento): `getStreak` era un `await` del LAYOUT, así que
+          bloqueaba el primer byte del cuerpo de TODA página autenticada —
+          dashboard, práctica, progreso y perfil por igual — solo para pintar
+          un número en la esquina. Medido con Lighthouse contra producción, el
+          primer pintado con contenido del dashboard llegaba a irse a 1 469 ms
+          con el fondo ya pintado desde los 339 ms: el `<h1>` existía, pero sus
+          bytes todavía no habían salido del servidor. Dentro de su propio
+          `<Suspense>`, la cáscara sale de inmediato y la racha entra en cuanto
+          su consulta resuelve, sin mover nada de sitio (`StreakFlame` reserva
+          su alto). Mismo criterio que G62 aplicó dentro del dashboard. */}
+      <Suspense fallback={<TopBar streak={0} initial={initial || '?'} avatarUrl={avatarUrl} />}>
+        <TopBarWithStreak profileId={profileId} initial={initial || '?'} avatarUrl={avatarUrl} />
+      </Suspense>
       {!authUser.email_confirmed_at && <VerificationBanner />}
       <OfflineBanner />
       {/* G64: la reserva de espacio para la BottomNav vive ahora en el
@@ -94,4 +105,17 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       <InstallPrompt />
     </div>
   );
+}
+
+async function TopBarWithStreak({
+  profileId,
+  initial,
+  avatarUrl,
+}: {
+  profileId: string;
+  initial: string;
+  avatarUrl: string | null;
+}) {
+  const streak = await getStreak(profileId);
+  return <TopBar streak={streak?.currentStreak ?? 0} initial={initial} avatarUrl={avatarUrl} />;
 }

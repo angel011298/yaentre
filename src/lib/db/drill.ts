@@ -7,6 +7,7 @@ import {
   selectTopicQuestions,
 } from './adaptive';
 import { loadWeakestTopics, type WeakTopicSummary } from './dashboard';
+import { loadAreaCoverage } from './area-coverage';
 import { evaluateDrillGate, evaluateExplanationLayerGate } from './paywall';
 import { toRunnerQuestion, type RunnerQuestion } from './diagnostic';
 import { isSessionStale } from '@/lib/sessions/scoring';
@@ -33,12 +34,26 @@ export const DRILL_TIME_LIMIT_SECS = 4 * 3600;
 export interface PracticeTopic {
   topicId: string;
   topicName: string;
+  /**
+   * G74 — reactivos servibles de ESTE tema. La práctica por tema
+   * (`selectTopicQuestions`) no expande el pool compartido de G26 —es la única
+   * selección que no lo hace, a propósito: «practicar Ortografía» significa
+   * ese tema y no su equivalente de otra área—, así que aquí la cuenta es la
+   * propia, no la efectiva de la materia.
+   */
+  servable: number;
 }
 
 export interface PracticeSubject {
   subjectId: string;
   subjectName: string;
   topics: PracticeTopic[];
+  /**
+   * G74 — reactivos servibles que el alumno puede recibir de esta materia,
+   * incluido el pool compartido (`selectSubjectAdaptiveQuestions` sí lo
+   * expande). 0 ⇒ la materia no se ofrece como botón: se explica.
+   */
+  servable: number;
 }
 
 export interface PracticeOptions {
@@ -50,7 +65,16 @@ export interface PracticeOptions {
   weakTopics: WeakTopicSummary[];
 }
 
-/** Materias/temas del área del alumno + sus temas más débiles reales (Task 1). */
+/**
+ * Materias/temas del área del alumno + sus temas más débiles reales (Task 1).
+ *
+ * G74: cada materia y cada tema vienen con su censo REAL de reactivos
+ * servibles. Antes no: la pantalla ofrecía «Inglés» a un alumno de la UNAM
+ * igual que «Matemáticas», y el pool de `UNAM:INGLES` está vacío en las cuatro
+ * áreas — clic, `NO_CONTENT`, una línea roja de error, y ninguna explicación
+ * de por qué. El censo se calcula aquí para que la UI no tenga que adivinarlo
+ * ni descubrirlo fallando.
+ */
 export async function loadPracticeOptions(userProfileId: string): Promise<PracticeOptions | null> {
   const profile = await prisma.userProfile.findUnique({
     where: { id: userProfileId },
@@ -63,7 +87,7 @@ export async function loadPracticeOptions(userProfileId: string): Promise<Practi
   const areaId = profile?.targetCareer?.areaId;
   if (!profile?.targetExamId || !areaId) return null;
 
-  const [subjects, weakTopics] = await Promise.all([
+  const [subjects, weakTopics, coverage, topicCounts] = await Promise.all([
     prisma.subject.findMany({
       where: { areaId },
       orderBy: { position: 'asc' },
@@ -74,7 +98,20 @@ export async function loadPracticeOptions(userProfileId: string): Promise<Practi
       },
     }),
     loadWeakestTopics(userProfileId, 3),
+    loadAreaCoverage(areaId),
+    prisma.question.groupBy({
+      by: ['topicId'],
+      where: { usage: 'SERVABLE', isVerified: true, topic: { subject: { areaId } } },
+      _count: { _all: true },
+    }),
   ]);
+
+  // Pool EFECTIVO por materia (incluye el compartido de G26), tal como lo verá
+  // `selectSubjectAdaptiveQuestions`.
+  const servableBySubject = new Map(
+    (coverage?.subjects ?? []).map((s) => [s.subjectId, s.servable])
+  );
+  const servableByTopic = new Map(topicCounts.map((t) => [t.topicId, t._count._all]));
 
   return {
     examId: profile.targetExamId,
@@ -83,7 +120,12 @@ export async function loadPracticeOptions(userProfileId: string): Promise<Practi
     subjects: subjects.map((s) => ({
       subjectId: s.id,
       subjectName: s.name,
-      topics: s.topics.map((t) => ({ topicId: t.id, topicName: t.name })),
+      servable: servableBySubject.get(s.id) ?? 0,
+      topics: s.topics.map((t) => ({
+        topicId: t.id,
+        topicName: t.name,
+        servable: servableByTopic.get(t.id) ?? 0,
+      })),
     })),
     weakTopics,
   };
@@ -168,14 +210,17 @@ export async function startDrillSession(
   let scopeLabel: string;
   let selection: { questionIds: string[] };
 
+  // G74: `servable === 0` se rechaza ANTES de tocar el selector. El resultado
+  // para el alumno es el mismo `NO_CONTENT`, pero así la razón queda dicha en
+  // un solo sitio y la pantalla puede explicarla sin haber hecho el viaje.
   if (scope.kind === 'topic') {
     const topic = options.subjects.flatMap((s) => s.topics).find((t) => t.topicId === scope.topicId);
-    if (!topic) return { ok: false, code: 'NO_CONTENT' };
+    if (!topic || topic.servable === 0) return { ok: false, code: 'NO_CONTENT' };
     scopeLabel = topic.topicName;
     selection = await selectTopicQuestions(userProfileId, scope.topicId, count);
   } else if (scope.kind === 'subject') {
     const subject = options.subjects.find((s) => s.subjectId === scope.subjectId);
-    if (!subject) return { ok: false, code: 'NO_CONTENT' };
+    if (!subject || subject.servable === 0) return { ok: false, code: 'NO_CONTENT' };
     scopeLabel = subject.subjectName;
     selection = await selectSubjectAdaptiveQuestions(userProfileId, scope.subjectId, count);
   } else {

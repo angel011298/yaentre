@@ -33,6 +33,7 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | `Backend_Schema_Acierta_v1.0.md` | **Schema de Prisma final, enums, índices, RLS, seeds** |
 | `Plan_Implementacion_Acierta_v1.0.md` | Sesiones CC, orden de construcción, dependencias |
 | `ESTADO.md` | **Estado vivo del proyecto — consultar SIEMPRE antes de cualquier tarea** |
+| `ESTADO.md` §G74 | **Guarda de cobertura de contenido (qué área se puede ofrecer y por qué ese umbral) + Lighthouse medido contra el dominio real, pantalla por pantalla** |
 | `ESCALA.md` | **Límites reales de cada servicio, consumo medido por recorrido, punto de quiebre, prueba de carga y proyección de costos para 500/1 000/5 000 alumnos (G69)** |
 | `CORREOS_AUTH.md` | **Plantillas de correo de Supabase Auth (copia versionada), configuración de URLs y por qué el enlace NO usa `{{ .ConfirmationURL }}` (G70b)** |
 | `VERIFICACION_FINAL.md` | **Recorrido completo del producto en producción real en los tres roles (G71): evidencia de red del guardrail de no-filtración, del tiempo server-side, de la activación por webhook y de la privacidad del tutor; los 7 defectos encontrados** |
@@ -85,6 +86,8 @@ pnpm verify:baseline          # foto de la base antes/después de un recorrido d
 pnpm verify:cleanup           # borra lo que un recorrido de verificación creó; --apply (G71)
 pnpm security:abuse           # simulacro "1 gratis" / práctica "10/día" reales (G67)
 pnpm security:time-integrity  # el tiempo del examen se calcula en servidor (G67)
+pnpm content:guard            # cobertura por área: qué se puede ofrecer y qué no (G74)
+pnpm perf:lighthouse-prod     # Lighthouse móvil contra https://yaentre.com, no contra el build local (G74)
 pnpm scale:audit              # ops de Prisma y peticiones por recorrido, escrituras incluidas (G69)
 pnpm scale:pool               # techo real del pool de servidor de Supavisor (G69)
 pnpm scale:load               # carga controlada contra producción; --db para la capa de base (G69)
@@ -214,6 +217,8 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - ❌ No dar por aplicado un `GRANT` sobre el esquema `auth`: **no se puede**. Lo posee `supabase_admin` y `postgres` —el máximo al que llega el dueño, por panel o por API— solo tiene `U` sin opción de concesión, así que Postgres acepta el GRANT como **no-op sin error** y `has_schema_privilege` sigue en `false`. Para leer `auth.users` desde la app: función `SECURITY DEFINER` propiedad de `postgres` en `app_security`, con `search_path` fijo y `EXECUTE` revocado a `PUBLIC`/`anon`/`authenticated` (`app_security.auth_emails_for_profiles`, migración 0014). Y verificar el privilegio DESPUÉS, nunca asumirlo (G73).
 - ❌ No creer el conteo que devuelve un job de correo. `sendEmail` degrada a log y nunca lanza, y el runner aísla cada job con `Promise.allSettled`: `{"streakRisk":0,…}` significa lo mismo si no había destinatarios que si la consulta reventó. La evidencia de que un correo salió son **los logs de Resend** (`GET https://api.resend.com/emails`, campo `last_event`), nunca el cuerpo de la respuesta del cron (G73).
 - ❌ Al componer un lote de reactivos, no dejar la respuesta correcta concentrada en una sola posición: distribuirla de forma pareja entre las cuatro opciones, y citar los distractores por su contenido, nunca por su letra — el simulador no baraja opciones para todas las instituciones (`shuffleOptions:false` en `src/lib/simulator/config.ts` para IPN/UAM/CENEVAL/CNBV). Todo lote debe pasar `scripts/lib/lot-validation.ts` (`content:validate-batch` / paso obligatorio de `content:insert`) antes de insertarse — ver G3b/G3c en `docs/ESTADO.md`.
+
+- ❌ No ofrecer un área/rama sin comprobar que su contenido alcanza. El onboarding ofrecía IPN SOCADM igual que FISMAT teniendo 4 de 7 materias en CERO: el alumno elegía, el motor recortaba con gracia, y recibía un diagnóstico sobre el 32 % de su temario sin un solo aviso. La guarda vive en `src/lib/content/coverage.ts` (puro) + `src/lib/db/area-coverage.ts` (censo). Tres reglas al tocarla: **(a)** se mide **peso de examen** (`Subject.questionWeight`), no número de reactivos — una materia de peso 3 con 35 reactivos está cubierta y una de peso 26 con 40 no; **(b)** el umbral por materia es **su cuota del diagnóstico**, calculada con `apportionByWeight`, la MISMA función que el diagnóstico usa — nunca una constante paralela, que se desincronizaría; **(c)** el filtro de servible y la suma de pools compartidos de G26 tienen que ser idénticos a los de `loadAreaSubjectPools`, o la guarda dirá «lista» y el diagnóstico servirá otra cosa. **Y jamás una lista de áreas/materias en código** (lección de G73): todo sale del censo, para que un lote de contenido habilite el área solo. `pnpm content:guard` lo verifica por EFECTO contra un recuento SQL independiente (G74).
 
 ### Fallos silenciosos (G73b) — la clase de defecto, no sus instancias
 

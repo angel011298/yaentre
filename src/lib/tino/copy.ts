@@ -213,3 +213,55 @@ export function drillSummary(fraction: number): TinoLine {
     ? { state: 'celebrating', message: '¡Buena práctica! Se nota que le sigues entendiendo. 🎉' }
     : { state: 'encouraging', message: 'Ya actualizamos tus temas débiles y tu racha del día. 🔥' };
 }
+
+// ──────────────────── Cobertura de contenido (G74) ────────────────────
+
+/**
+ * Lista en español natural: «A», «A y B», «A, B y C». Se usa para nombrar las
+ * materias que faltan — decirlas por su nombre es la diferencia entre un aviso
+ * honesto y un «no disponible» que no explica nada.
+ */
+export function joinSubjectNames(names: readonly string[]): string {
+  if (names.length === 0) return '';
+  if (names.length === 1) return names[0];
+  return `${names.slice(0, -1).join(', ')} y ${names[names.length - 1]}`;
+}
+
+/**
+ * Área que todavía no se puede ofrecer. Tres reglas de esta línea:
+ * dice el MOTIVO concreto (qué materias faltan), no culpa al alumno ni se
+ * disculpa de más, y promete algo que sí se puede cumplir.
+ */
+export function areaComingSoon(pendingSubjectNames: readonly string[]): TinoLine {
+  const list = joinSubjectNames(pendingSubjectNames);
+  return {
+    state: 'sleepy',
+    message: list
+      ? `Todavía nos faltan los reactivos de ${list}. Prefiero decírtelo ahora y no dejarte a medias en tu diagnóstico.`
+      : 'Todavía estamos armando el contenido de esta rama. Prefiero decírtelo ahora y no dejarte a medias en tu diagnóstico.',
+  };
+}
+
+/** Área utilizable con un hueco conocido: se puede empezar hoy, y se dice cuál falta. */
+export function areaPartialCoverage(pendingSubjectNames: readonly string[]): string {
+  const list = joinSubjectNames(pendingSubjectNames);
+  return list
+    ? `Ya puedes empezar. Solo ${list} sigue en camino — el resto de tus materias está completo.`
+    : 'Ya puedes empezar con esta área.';
+}
+
+/** Confirmación de «avísame»: concreta, sin pedir nada más. */
+export function areaWaitlistJoined(areaName: string): TinoLine {
+  return {
+    state: 'celebrating',
+    message: `¡Listo! Te escribimos a tu correo en cuanto ${areaName} esté completa. 🦉`,
+  };
+}
+
+/** Materia sin reactivos suficientes en la pantalla de práctica (Inglés UNAM, hoy). */
+export function subjectNotReady(subjectName: string): TinoLine {
+  return {
+    state: 'sleepy',
+    message: `Todavía no tengo reactivos de ${subjectName} — estamos en eso. Mientras tanto, tu práctica adaptativa se arma con las materias que ya están listas.`,
+  };
+}

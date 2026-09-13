@@ -1,10 +1,14 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { z } from 'zod';
 import * as onboardingDb from '@/lib/db/onboarding';
 import { requireUser } from '@/lib/auth/guards';
 import { isExamOptionEnabled } from '@/lib/onboarding/feature-flags';
 import { OnboardingStep } from '@/lib/onboarding/steps';
+import { trackServerEvent } from '@/lib/analytics/server';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
+import type { ActionResult } from '@/lib/sessions/schemas';
 
 /**
  * Server Actions del asistente de onboarding (F5). Cada una revalida contra
@@ -49,13 +53,78 @@ export async function selectAreaAction(formData: FormData): Promise<void> {
   const areaId = String(formData.get('areaId') ?? '');
 
   if (profile.onboardingStep === OnboardingStep.AREA_CAREER && profile.targetExamId && areaId) {
-    const area = await onboardingDb.loadAreaWithExam(areaId);
-    if (area && area.examId === profile.targetExamId) {
-      redirect(`/onboarding?area=${area.id}`);
+    // G74: la cobertura se revalida AQUÍ, contra la base, no se confía en que
+    // la lista renderizada estuviera filtrada. El botón de un área
+    // «Próximamente» ni siquiera se pinta, así que llegar con su `areaId`
+    // implica un request manipulado — o una lista que se quedó tibia en un
+    // caché mientras el contenido cambiaba.
+    const selectable = await onboardingDb.loadSelectableAreaForExam(areaId, profile.targetExamId);
+    if (selectable) {
+      redirect(`/onboarding?area=${selectable.area.id}`);
     }
+    // Mismo criterio que `selectExamAction`: no fallar en silencio. El alumno
+    // vuelve al Paso 2 con el aviso visible en vez de un rebote sin explicar.
+    redirect('/onboarding?unavailable=1');
   }
 
   redirect('/onboarding');
+}
+
+const waitlistSchema = z.object({ areaId: z.string().min(1).max(64) });
+
+/**
+ * G74 — «avísame cuando abra esta área». El alumno ya está registrado y con
+ * correo verificado, así que no se le pide que escriba nada: lo que falta no
+ * es su correo, es su intención, y eso es lo que se registra.
+ *
+ * El sistema de registro es un evento de producto (`area_waitlist_joined`) con
+ * el `UserProfile.id` como `distinctId`. No se añade tabla porque tocar
+ * `prisma/schema.prisma` exige instrucción explícita (CLAUDE.md) — la lista se
+ * reconstruye cruzando el evento con `app_security.auth_emails_for_profiles`
+ * (G73). Queda apuntado como deuda consciente en docs/ESTADO.md §G74: el día
+ * que esto deba disparar un correo automático, necesita su tabla.
+ */
+export async function requestAreaNotificationAction(
+  input: z.input<typeof waitlistSchema>
+): Promise<ActionResult<{ areaName: string }>> {
+  try {
+    const { profile } = await requireUser();
+    if (!profile.targetExamId) {
+      return { ok: false, code: 'NO_TARGET', message: 'Primero elige tu examen.' };
+    }
+
+    const gate = await consumeRateLimit('AREA_WAITLIST', profile.id);
+    if (!gate.allowed) {
+      return {
+        ok: false,
+        code: 'RATE_LIMIT',
+        message: 'Ya te apuntamos. Espera un momento antes de volver a intentar.',
+      };
+    }
+
+    const { areaId } = waitlistSchema.parse(input);
+    const target = await onboardingDb.loadAreaForWaitlist(areaId, profile.targetExamId);
+    // `null` incluye el caso «esa área ya está disponible»: apuntarse a esperar
+    // algo que ya se puede elegir sería una promesa que nunca se cumpliría.
+    if (!target) {
+      return {
+        ok: false,
+        code: 'NOT_PENDING',
+        message: 'Esa área ya está disponible — elígela en la lista.',
+      };
+    }
+
+    await trackServerEvent(profile.id, 'area_waitlist_joined', {
+      areaCode: target.areaCode,
+      examLabel: target.examLabel,
+      coveredPct: Math.round(target.coverage.coveredRatio * 100),
+      pendingSubjects: target.coverage.pendingSubjectNames.length,
+    });
+
+    return { ok: true, data: { areaName: target.areaName } };
+  } catch {
+    return { ok: false, code: 'UNKNOWN', message: 'Algo salió mal. Intenta de nuevo.' };
+  }
 }
 
 export async function selectCareerAction(formData: FormData): Promise<void> {

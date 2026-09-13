@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-12 · Última fase ejecutada: **G74 (COMPLETADA — guarda de cobertura de contenido y Lighthouse contra producción real)**. Modelo real `claude-opus-5`. Cierra los items 13 y 14 de `docs/VEREDICTO_LANZAMIENTO.md §11` y el **riesgo 4 de su §12**. **① El defecto:** el onboarding ofrecía la rama IPN «Ciencias Sociales y Administrativas» exactamente igual que FISMAT o MEDBIO teniendo **4 de sus 7 materias en cero reactivos** — un aspirante real podía elegirla y recibir un diagnóstico armado sobre el 32 % de su temario, sin un solo aviso. El motor no reventaba (`capToAvailability` recorta con gracia) y ESE era el problema: la misma firma de fallo silencioso de G73b, ahora del lado del contenido. **② La guarda** vive en dos piezas: `src/lib/content/coverage.ts` (PURA, testeable, sin Prisma) y `src/lib/db/area-coverage.ts` (el censo, una sola consulta cacheada 5 min como el banco de reactivos). **Mide PESO, no reactivos**: `Subject.questionWeight` es por definición cuántos reactivos de esa materia trae el examen real, así que la fracción de peso cubierta es literalmente «qué parte de tu examen podemos prepararte». Una materia cuenta como cubierta solo si su pool efectivo (incluido el compartido de G26) alcanza **su cuota del diagnóstico**, calculada con `apportionByWeight`, la MISMA función que el diagnóstico usa de verdad — si el diagnóstico cambia de 30 a 40 reactivos o el seed cambia un peso, el umbral se mueve solo. **③ Tres estados: READY (100 %) · PARTIAL (≥70 %, se ofrece y se dice qué falta) · COMING_SOON (<70 %, no elegible)**. El 70 % es donde la promesa del producto deja de sostenerse: el Entrómetro pondera por peso y una materia sin contenido entra con el default pesimista, así que por debajo de ese corte la MAYORÍA ponderada de la predicción es relleno, no medición. **④ Se MARCA, no se esconde** — un aspirante que no ve su rama concluye que no cubrimos su examen y se va; uno que la ve en «Próximamente» con el motivo y un «avísame» sigue siendo usuario, y además el hueco queda visible para nosotros. **⑤ Cero listas en código**: todo sale del censo. `pnpm content:guard` verifica **por efecto** (corre la función real de la app contra la base y la contrasta con un recuento SQL independiente); rojo comprobado alcanzable. **⑥ Inglés de la UNAM** (cero en las 4 áreas) ya no es un botón que falla: `/practicar` lo explica con la voz de Tino y no deja darle clic. **⑦ Lighthouse móvil contra `https://yaentre.com` de verdad**, mediana de 7 corridas: landing **95** · registro **96** · dashboard **89** · práctica **95** · simulador **98** — todas ≥ 85 tras tres optimizaciones medidas (Sentry fuera del camino crítico con vigilancia de errores tempranos, `getStreak` en `<Suspense>`, y el elemento LCP del dashboard en la cáscara). Detalle completo en la sección **G74** de este documento.
+
+<details><summary>Historial: G73b (2026-09-08)</summary>
+
 Última actualización: 2026-09-08 · Última fase ejecutada: **G73b (COMPLETADA — auditoría de fallos silenciosos y re-verificación de controles)**. Modelo real `claude-opus-5`. **No fue a arreglar el bug de G73 —ya estaba arreglado— sino a buscar la CLASE de defecto que lo hizo posible**, y a re-verificar cada control que G65-G67 declararon vivo mirando su EFECTO contra `https://yaentre.com`, no su código. Reporte completo en `docs/AUDITORIA_SEGURIDAD.md §18`. **La firma común de los tres defectos de G73 y los cuatro de G73b no es "un GRANT mal escrito": es que algo se rompe, el producto sigue respondiendo HTTP 200, y no existe ninguna señal que lo delate.** **① Aparato nuevo `src/lib/observability/report.ts`** — `reportControlFailure(control, outcome, err, ctx)` para todo control de seguridad que falle sin detener la operación, y `reportSilentDegradation(area, err, ctx)` para toda función que degrade devolviendo éxito aparente. `outcome` (`fail-open`/`fail-closed`/`degraded`) es **obligatorio**: obliga a quien escribe el `catch` a decir en voz alta si el control quedó abierto o cerrado. **17 sitios instrumentados**; antes del cambio Sentry no recibía **ni un solo** `captureException` explícito en todo el repositorio (`grep` = 0 coincidencias). El limitador **sigue fallando abierto a propósito** (una base caída no debe convertir el login de un alumno en un 500 la víspera de su examen) — lo que cambia es que ahora grita. **② 🔴 Hallazgo más grave, de la misma familia: TODA tabla futura de `public` nacía escribible por `anon`.** El `REVOKE … ON ALL TABLES` de la migración 0009 (F22) solo alcanzó a las tablas que existían aquel día; los **privilegios por defecto** nunca se tocaron y en un proyecto Supabase conceden `arwdDxtm` —escritura incluida— a `anon` y `authenticated` sobre cada tabla nueva. **Medido creando una tabla real como `postgres` (que es como se aplicaron 0012/0013/0014): `anon_insert=true`, `anon_update=true`, `anon_delete=true`, `anon_truncate=true`.** `anon` es la llave pública que viaja en el bundle del navegador. Las 28 tablas de hoy están limpias **por casualidad histórica** (no se ha creado ninguna desde F22); la primera tabla post-lanzamiento habría nacido abierta. Corregido con `ALTER DEFAULT PRIVILEGES` en la migración `0015` y **verificado por efecto**: la misma prueba después da los cuatro en `false`. Residual documentado: los defaults de `supabase_admin` no son alterables desde este proyecto. **③ Se eliminó LA LISTA de roles, no solo su instancia.** G73 parcheó `['acierta_ci','postgres']` añadiendo `acierta_prod`; `0015` introduce el rol de grupo **`acierta_app`** (NOLOGIN, así que no abre pool de Supavisor ni toca el límite de G69 §5), le cuelga todos los privilegios de la app, y **deriva la pertenencia de `pg_roles`** (convención `acierta_*`) en vez de un `ARRAY[...]`: un `acierta_staging` futuro nace correcto sin que nadie recuerde editar una migración. **④ Dos hallazgos menores de la misma clase:** `unsubscribeSecret()` caía silenciosamente a una constante **escrita en el repositorio** (`'dev-only-insecure-…'`) — sin `CRON_SECRET` en producción, cualquiera podría firmar enlaces de baja para el `userProfileId` que quisiera, respondiendo 200; y **`pnpm security:time-integrity` llevaba desde G67 documentado en `CLAUDE.md` sin entrada en `package.json`** — una verificación que no se puede ejecutar nunca da rojo (añadida: 4/4 en verde). **⑤ `sendEmail` dejó de mentir:** un fallo real ahora es `{ok:false, mode:'failed'}` (sigue sin lanzar nunca) y los 3 jobs de correo **cuentan solo lo que Resend aceptó** — antes `{"streakRisk":0}` significaba lo mismo si no había destinatarios que si el proveedor estuvo caído todo el día. **⑥ Re-verificación por EFECTO contra producción real, con el rol `acierta_prod`** (dos sondas nuevas: `pnpm security:grants`, privilegios por comportamiento; `pnpm security:live`, ataque con navegador real): login bloquea al agotar los 8 intentos (*«Demasiados intentos de inicio de sesión. Espera 10 minutos»*); recuperación bloquea en la 5.ª solicitud (presupuesto 4); **canje del código parental bloquea en el 7.º intento** (presupuesto 6) tras seis *«Código inválido o expirado»*; aislamiento comprobado por el CUERPO de la red (alumno A recibe **1 fila, la suya**; `PATCH` del perfil ajeno → **HTTP 403 `42501`**; alumno B ve **0** respuestas ajenas). Más `isolation` 22/22, `authz` 10/10, `headers` 12/12, `ratelimit` 6/6, `abuse` 8/8, `time-integrity` 4/4, `simulator` 0 fugas con el reloj del cliente manipulado 3 600 s (el servidor consumió 8 s contra 9 s reales), `verify:emails` 5/5. **⑦ El rojo se comprobó alcanzable en cuatro niveles**, no solo declarado: revocando el `USAGE` sobre `app_security` se **reprodujo el estado exacto en que estuvo el producto de G65 a G73** —9 logins fallidos sin bloqueo, 7 canjes de código parental sin bloqueo, 5 recuperaciones sin bloqueo, con el aislamiento intacto— y, sobre todo, **los logs de la función de producción registraron el evento que antes no existía**: `POST /login 200 → [control_failure] rate_limit { outcome: 'fail-open', scope: 'SIGN_IN', limit: 8, err: 42501 permission denied }`, con sus variantes `PASSWORD_RESET` y `PARENT_LINK_REDEEM`. Nótese el `200`: por eso nadie lo vio nunca. Restaurado y re-verificado en verde. Además, mutación de `sendEmail` a su comportamiento anterior → 2 casos de `tests/security/silent-failures.test.ts` (13 nuevos) en rojo; restaurado. **⑨ Addendum (re-auditoría posterior del propio G73b): la suite quedó con un ROJO INTERMITENTE que el commit no detectó.** Al reejecutar `pnpm test:unit` con la caché de transformación de vite fría, `tests/regressions/g10-bugs.test.ts` falla su primer caso por **timeout** (`Test timed out in 5000ms`, duración registrada **23 409 ms**); en aislamiento pasa en 2.5 s y la siguiente corrida completa da 569/569. Causa medida, no supuesta: ese archivo hacía su `await import('@/lib/auth/guards')` **dentro del `it`**, así que el presupuesto de 5 s de Vitest cubría la carga del grafo de módulos y no la conducta — y G73b, al instrumentar `guards.ts` con `reportControlFailure`, metió `@sentry/nextjs` en ese grafo (**672 ms medidos** con caché tibia y sin contención, que con 61 archivos en paralelo y caché fría escalan hasta los 23 s observados). Es la misma familia de defecto que la fase persigue, en su variante de verificación: un rojo que aparece una de cada dos corridas enseña a reintentar hasta que pase, igual que G69 §8.4. **Corregido en la causa, no en el número**: el import subió a ámbito de módulo (patrón que `tests/stripe/webhook-route.test.ts` ya usaba bien) y el test mockea `@sentry/nextjs` en vez de inicializar el SDK real — el primer caso pasó de **23 409 ms a 9 ms** sin tocar una sola aserción. **Rojo comprobado alcanzable después de la corrección**: reintroducido el bug original de G10-1 en `requireOnboarding` (chequeo de onboarding antes que el de rol) la prueba falla por aserción sustantiva (`expected 'REDIRECT:/tutor' but got 'REDIRECT:/onboarding'`), no por timeout; restaurado y confirmado por `git diff` vacío sobre `src/lib/auth/guards.ts`. Guardrail nuevo en `CLAUDE.md`. `typecheck`/`lint`/`test:unit` (569) en verde tras el cambio. **⑧ Falso rojo propio, corregido y documentado:** la primera versión de `security:live` esperaba a `[role="alert"]` y Next.js inyecta `<div id="__next-route-announcer__" role="alert">` con el título de la ruta en cada página — siempre presente y visible, así que la espera se satisfacía antes de que la Server Action respondiera y la sonda reportó **los tres limitadores rotos estando los tres vivos**. Un falso rojo es tan inservible como un falso verde. **Higiene:** contraseñas de las cuentas sonda restauradas **hash a hash, byte a byte** (verificado por consulta posterior), cubos del limitador borrados por clave exacta, tabla canario creada y borrada dentro de la propia comprobación, `verify:cleanup --apply` con la base en su estado esperado (5 perfiles, 1 suscripción, 0 pagos, 0 vínculos, 0 licencias Early Bird). `typecheck`/`lint`/`test:unit` (**569**) y `build` en verde. **No se tocó `prisma/schema.prisma`.** Siguiente **G74, modelo Opus 4.8**.
+
+</details>
 
 <details><summary>Historial: G73 (2026-09-08)</summary>
 
@@ -355,6 +361,286 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G74 — Guarda de cobertura de contenido y Lighthouse en producción (2026-09-12)
+
+> Cierra los items **13** y **14** de `docs/VEREDICTO_LANZAMIENTO.md §11` y el
+> **riesgo 4 de su §12**. Modelo real `claude-opus-5`.
+
+### 1. El defecto, dicho sin adornos
+
+El veredicto lo dejó escrito: «el onboarding **no filtra** las áreas por
+cobertura de contenido — `loadAreasForExam` ofrece las 3 ramas de IPN por
+igual — así que un alumno real puede elegir SOCADM hoy mismo y tener un
+diagnóstico roto en la mayoría de sus materias».
+
+Medido de nuevo en esta sesión contra la base real, la rama IPN «Ciencias
+Sociales y Administrativas» tiene **8 de 25 de peso de examen cubierto
+(32 %)**: Historia de México, Historia Universal, Geografía y Civismo/Derecho
+están en CERO y no tienen pool compartido que las cubra. Un aspirante elegía esa
+rama sin ningún aviso, hacía su diagnóstico sobre un tercio de su temario y
+recibía un Entrómetro construido casi entero sobre el default pesimista del
+predictor.
+
+**Y nada fallaba.** `capToAvailability` recorta con gracia, el motor no revienta,
+el producto responde HTTP 200. Es exactamente la firma que G73b fue a buscar
+—algo se rompe, el producto sigue funcionando, nadie se entera—, solo que del
+lado del contenido en vez del de los privilegios.
+
+### 2. El criterio, y por qué es ese
+
+**La unidad es el PESO, no el número de reactivos.** `Subject.questionWeight`
+es, por definición del schema, cuántos reactivos de esa materia trae el examen
+real; la fracción del peso del área que sí tiene contenido es, literalmente,
+«qué parte del examen que vas a presentar podemos prepararte». Contar reactivos
+crudos mentiría en las dos direcciones: 300 reactivos repartidos en 2 de 7
+materias no preparan a nadie, y 35 reactivos en una materia de peso 3 la cubren
+de sobra.
+
+**Una materia cuenta como cubierta solo si alcanza su cuota del diagnóstico.**
+No basta «≥1 reactivo». El umbral por materia se calcula con
+`apportionByWeight` — **la misma función que el diagnóstico usa de verdad**, no
+una constante paralela. Si una materia no puede llenar ni su parte del
+diagnóstico inicial, el alumno no queda MEDIDO en ella: entra al predictor con 0
+intentos y cae al default pesimista. Reusar la función real es deliberado: si
+mañana el diagnóstico pasa de 30 a 40 reactivos, o el seed cambia un peso, el
+umbral se mueve solo.
+
+| Estado | Criterio | Qué ve el alumno |
+|---|---|---|
+| `READY` | 100 % del peso cubierto | Nada distinto. Se elige como siempre. |
+| `PARTIAL` | ≥ 70 % del peso cubierto | Se elige igual, con una línea que **nombra** la materia que falta. |
+| `COMING_SOON` | < 70 % del peso cubierto | No es elegible. Tarjeta «Próximamente» con el motivo y un «avísame». |
+
+**Por qué el corte está en 70 %.** No es un número redondo elegido al azar: es
+el punto donde la promesa central del producto deja de sostenerse. El Entrómetro
+predice aciertos sumando el desempeño medido de cada materia ponderado por su
+peso; una materia sin contenido nunca se mide y entra con el default pesimista.
+Con más del 30 % del peso sin cubrir, la **mayoría ponderada** de la predicción
+deja de ser medición y pasa a ser relleno — y una predicción de relleno es peor
+que ninguna, porque el alumno la va a creer. Por debajo de ese corte tampoco hay
+diagnóstico proporcional posible: `capToAvailability` reparte el sobrante entre
+las materias que sí tienen pool, así que el alumno recibe 30 reactivos de un
+tercio de su temario y una «ruta personalizada» que apunta a material que no
+existe.
+
+**Por qué MARCAR y no ESCONDER.** Un aspirante de IPN SOCADM que no ve su rama
+en la lista concluye que YaEntre no cubre su examen y se va para siempre; uno
+que la ve marcada como «Próximamente», con el motivo dicho de frente y un «te
+avisamos», sigue siendo un usuario. Esconderla además haría el hueco invisible
+para nosotros: nadie puede reportar lo que no aparece.
+
+### 3. Cómo quedó, y por qué es dinámica
+
+```
+src/lib/content/coverage.ts    <- PURO: evaluateAreaCoverage, resolveEffectiveServable,
+                                  isAreaSelectable, MIN_COVERED_WEIGHT_RATIO
+src/lib/db/area-coverage.ts    <- el censo real: UNA consulta, cacheada 5 min
+                                  (misma ventana que el banco de reactivos)
+```
+
+**Aquí no hay ninguna lista de áreas, materias ni instituciones.** Todo sale del
+censo que la capa DB calcula contra la base. Cuando un lote de contenido llene
+Civismo/Derecho, IPN SOCADM se habilita sola, sin tocar una línea de código —
+exactamente la lección de G73: las listas escritas a mano se desincronizan de la
+realidad y nadie se entera.
+
+Tres cuidados que valen la pena señalar:
+
+1. **El filtro de «servible» es el mismo** que usa `loadAreaSubjectPools` para
+   armar el diagnóstico de verdad (`usage = SERVABLE AND isVerified = true`). Si
+   los dos se separaran, la guarda diría «lista» y el diagnóstico serviría otra
+   cosa: un fallo silencioso de manual.
+2. **El pool compartido de G26 cuenta.** Sin eso, tres áreas de la UNAM que
+   funcionan perfectamente se marcarían como rotas (su fila `Subject` de Español
+   tiene 0 reactivos propios; el contenido vive en la del Área 1), y el error se
+   leería como «el producto es más honesto», no como un bug.
+3. **La cobertura se revalida en el servidor**, no solo al pintar la lista.
+   `loadSelectableAreaForExam` exige a la vez que el área exista, sea del examen
+   del perfil y tenga cobertura; el Server Action y el deep link `?area=` pasan
+   los dos por ahí. **Verificado en producción**: `/onboarding?area=<SOCADM>` cae
+   al Paso 2 con el aviso visible, no al Paso 3.
+
+### 4. Veredicto real del banco hoy (`pnpm content:guard`)
+
+| Área | Peso cubierto | Estado | Falta |
+|---|---:|---|---|
+| UNAM A1 — Físico-Matemáticas e Ingenierías | 64/70 (91 %) | 🟡 PARTIAL | Inglés |
+| UNAM A2 — Biológicas, Químicas y de la Salud | 27/30 (90 %) | 🟡 PARTIAL | Inglés |
+| UNAM A3 — Sociales | 19/20 (95 %) | 🟡 PARTIAL | Inglés |
+| UNAM A4 — Humanidades y Artes | 8/10 (80 %) | 🟡 PARTIAL | Artes |
+| IPN — Ingeniería y Ciencias Físico-Matemáticas | 60/60 (100 %) | ✅ READY | — |
+| IPN — Ciencias Médico-Biológicas | 55/55 (100 %) | ✅ READY | — |
+| **IPN — Ciencias Sociales y Administrativas** | **8/25 (32 %)** | **⛔ COMING_SOON** | Historia de México, Geografía, Historia Universal, Civismo/Derecho |
+
+Es decir: **una sola rama deja de ofrecerse**, y las cuatro áreas de la UNAM
+siguen disponibles diciendo lo que les falta. La guarda no esconde producto que
+funciona.
+
+### 5. Inglés de la UNAM y la práctica vacía (tarea 4)
+
+`UNAM:INGLES` está en cero en las cuatro áreas. Hasta esta fase, `/practicar`
+ofrecía «Inglés» exactamente igual que «Matemáticas»; el clic devolvía
+`NO_CONTENT` y el alumno veía una línea roja de error sin explicación.
+
+Ahora `loadPracticeOptions` trae el censo real por materia (pool efectivo,
+incluido el compartido) **y por tema** (pool propio — la práctica por tema es la
+única selección que a propósito NO expande el pool de G26: «practicar
+Ortografía» significa ese tema). La materia sin contenido deja de ser botón y
+pasa a ser explicación, con la voz de Tino:
+
+> **Inglés** · En camino
+> «Todavía no tengo reactivos de Inglés — estamos en eso. Mientras tanto, tu
+> práctica adaptativa se arma con las materias que ya están listas.»
+
+**Verificado en producción** con la cuenta `e2e.sim@` (UNAM Área 1): los botones
+de materia clicables son `["Matemáticas","Física","Química","Español"]` — Inglés
+ya no está entre ellos. Y el efecto secundario útil: los temas de una materia
+«llena por préstamo» (Español del Área 3, cuyo pool viene del Área 1) tampoco se
+ofrecen uno a uno, porque ahí la práctica por tema sí habría devuelto vacío.
+
+`startDrillSession` rechaza `servable === 0` **antes** de tocar el selector, y
+`/practicar?subjectId=` / `?topicId=` descartan el deep link a una materia o
+tema sin reactivos en vez de auto-arrancar hacia un error.
+
+### 6. La lista de espera — y la deuda que deja apuntada
+
+El alumno que ve «Próximamente» ya está registrado y con correo verificado, así
+que no se le pide el correo otra vez: se le pide su **intención**, con un botón.
+Lo que falta se le dice por su nombre, y la alternativa útil va primero («si tu
+carrera cabe en otra de las áreas de arriba, puedes empezar hoy mismo con esa»).
+
+El sistema de registro es el evento de producto `area_waitlist_joined`
+(`distinctId` = `UserProfile.id`, nunca el correo; el correo se resuelve después
+con `app_security.auth_emails_for_profiles`, la función de G73). **No se añadió
+tabla** porque tocar `prisma/schema.prisma` exige instrucción explícita
+(CLAUDE.md).
+
+> **Deuda consciente, escrita aquí para que no se pierda:** el día que esto deba
+> **disparar un correo automático** cuando el área abra, necesita su tabla — un
+> evento de analítica es un registro, no una cola de trabajo. Mientras tanto la
+> promesa se cumple a mano, exportando la cohorte de PostHog.
+
+### 7. Lighthouse contra producción REAL (item 13)
+
+G62 midió contra `next build && next start` en la máquina de desarrollo y el
+veredicto marcó ese número 🟡 con razón: un build local no mide el arranque en
+frío de una función de Vercel, ni el TLS real, ni la latencia a `us-east-1`, ni
+el JS que el deploy real acabó emitiendo.
+
+`pnpm perf:lighthouse-prod` mide **`https://yaentre.com`**, perfil móvil,
+mediana de 7 corridas, con sesión real para las tres pantallas privadas.
+
+| Pantalla | Antes (medido al abrir G74) | **Después** | LCP | TBT | CLS | TTFB |
+|---|---:|---:|---:|---:|---:|---:|
+| Landing | 87 | **95** | 2 629 ms | 191 ms | 0 | 61 ms |
+| Registro | 86 | **96** | 2 471 ms | 169 ms | 0 | 60 ms |
+| Dashboard | **83** ❌ | **89** | 2 986 ms | 236 ms | 0 | 63 ms |
+| Práctica | 87 | **95** | 2 404 ms | 210 ms | 0 | 63 ms |
+| Simulador | 98 | **98** | 1 569 ms | 147 ms | 0 | 60 ms |
+
+**Las 5 ≥ 85.** Lo interesante no es la tabla, es el diagnóstico.
+
+**El síntoma era un LCP bimodal**: la misma pantalla daba 95 o 83 según la
+corrida, con TTFB constante en ~61 ms y CLS en 0. Las corridas «lentas» tenían
+el documento **más rápido** (378 ms contra 786 ms) y el primer pintado con
+contenido **más tarde** (1 470 ms contra 604 ms). Un cuello de botella que
+mejora al empeorar la red es, casi siempre, JS en el camino crítico: cuando el
+navegador recibía el JS pronto, lo ejecutaba antes de alcanzar a pintar.
+
+Tres correcciones, cada una medida:
+
+1. **Sentry fuera del camino crítico.** G62 lo hizo import dinámico, pero G70
+   cargó el DSN real y desde entonces `loadSentry()` corría en la evaluación del
+   módulo: 172 KB transferidos (132 KB sin usar) y 227 ms de CPU justo antes del
+   primer pintado. Ahora carga en `requestIdleCallback`. **Y la ventana que eso
+   abre no queda sin vigilancia**: se instalan de inmediato escuchas de `error` y
+   `unhandledrejection` que guardan lo que ocurra (tope de 10), fuerzan la carga
+   si hay un error real, y lo reenvían etiquetado `antes_de_sentry`. Perder
+   errores tempranos a cambio de 200 ms sería justo el trueque que G73b prohíbe.
+2. **`getStreak` dentro de `<Suspense>` en `app/(app)/layout.tsx`.** Era un
+   `await` del layout, así que bloqueaba el primer byte del cuerpo de **toda**
+   página autenticada solo para pintar un número en la esquina.
+3. **El elemento LCP del dashboard, en la cáscara.** Lighthouse identificó el
+   `<p>` de `TinoRecommendation` como el LCP: al llegar en un fragmento posterior
+   del stream, el modelo de red lo situaba ~1,2 s después del resto. Es una
+   **reversión deliberada y medida** de una decisión de G62 para ESE elemento y
+   solo ese: lo que G62 quitó del camino crítico fue un `Promise.all` de NUEVE
+   loaders, no uno — y `loadWeakestTopics` ya está cacheada por request, así que
+   «Reforzar hoy» la reusa sin pagarla otra vez. Las otras ocho islas siguen
+   llegando por stream. Dashboard: 83 → **89**.
+
+**Lo que NO se arregló, dicho en voz alta:** el dashboard sigue siendo bimodal
+(corridas de 95-96 y corridas de 81-83). El residuo es la carrera entre el
+pintado y la ejecución del chunk de framework (233 KB de React/Next); cuando el
+navegador pierde esa carrera, el primer pintado se va de 606 ms a 1 520 ms.
+Bajar eso no es una optimización puntual sino una fase de reducción de bundle. La
+mediana cumple el criterio del PRD; la varianza queda apuntada aquí.
+
+**Cómo no mentir con esta medición** (`scripts/g74/lighthouse-prod.mjs`):
+mediana de N corridas y no la mejor; se imprime el `finalUrl` de **cada** corrida
+y se marca en rojo si **alguna** redirigió (mirar solo la primera escondería una
+sesión caída a mitad de tanda — el defecto D6 de G71 en miniatura: de hecho pasó,
+una corrida del simulador aterrizó en `/login` y la sonda lo dijo, se repitió la
+tanda limpia); y el proceso sale con código distinto de cero si alguna pantalla
+queda bajo 85, para no tener que leer la tabla con cuidado para saber si pasó.
+
+### 8. Pruebas — y el rojo comprobado alcanzable
+
+`tests/content/coverage.test.ts`, **19 pruebas**, con los pesos reales del seed y
+los conteos reales del banco (no casos de laboratorio). Cubren el caso del
+veredicto, los bordes del umbral, y el requisito central de la fase: **que un
+lote de contenido habilite el área sola**.
+
+Lo que dice G73b sobre no creerle a un verde, aplicado aquí:
+
+* **Rojo demostrado, no supuesto.** Con `MIN_COVERED_WEIGHT_RATIO` bajado a 0,3
+  fallan 6 pruebas; subido a 0,95 fallan 4 — distintas, y por la aserción
+  correcta (un estado o un peso concreto), nunca por timeout ni por fallo de
+  carga. Se restauró el 0,7 y las 19 vuelven a verde.
+* **Cada mitad se afirma por separado.** El test del «antes y después» comprueba
+  `antes.status === 'COMING_SOON'` **y** `despues.status === 'READY'` en dos
+  aserciones: un `Boolean(antes && despues)` habría sido verde con una de las dos
+  mal (defecto D6 de G71).
+* **La guarda no es de un solo sentido**: hay un test que vacía dos materias de
+  un área READY y exige que vuelva a `COMING_SOON`.
+* **Ningún import dentro de un `it`.** Todos son de ámbito de módulo, y el módulo
+  puro no arrastra Prisma (por eso `resolveEffectiveServable` vive en
+  `content/coverage.ts` y no junto a la consulta): el archivo entero corre en
+  ~20 ms, así que el presupuesto de tiempo mide aserciones, no carga de grafo
+  (la lección de los 23,4 s de G73b).
+* **`pnpm content:guard` verifica por EFECTO**, no por código: corre
+  `loadExamAreaCoverage` —la función real de la app— contra la base real y la
+  contrasta contra un recuento SQL escrito aparte, materia por materia. Rojo
+  comprobado: cambiando el filtro `usage = 'SERVABLE'` por `TRUE` en la consulta
+  de la app, P3 falla nombrando las áreas donde discrepa y el proceso sale con 1.
+
+### 9. Comandos nuevos
+
+```bash
+pnpm content:guard            # veredicto de cobertura por área, verificado por efecto (G74)
+pnpm content:guard --json     # el mismo veredicto, para pegar en un documento
+pnpm perf:lighthouse-prod     # Lighthouse móvil contra https://yaentre.com (G74)
+pnpm perf:lighthouse-prod 5 landing,registro   # N corridas, subconjunto de pantallas
+```
+
+`perf:lighthouse-prod` necesita `G74_EMAIL`/`G74_PASSWORD` de una cuenta de
+prueba con onboarding hecho. **La contraseña se fija temporalmente y se restaura
+el hash original al terminar** (mismo protocolo que `pnpm security:live` de
+G73b): en esta fase se hizo con `e2e.sim@` y `e2e.free@`, y se comprobó al final
+que la contraseña temporal vuelve a ser rechazada.
+
+### 10. Lo que esta fase NO tocó
+
+* **El contenido.** La guarda hace visible el hueco; no lo llena. El bloqueador 5
+  del veredicto (≈333 reactivos, priorizando Inglés UNAM y las 4 materias de
+  SOCADM) sigue exactamente igual de abierto — y ahora, además, es lo único que
+  separa a IPN SOCADM de volver a ofrecerse sola.
+* **`prisma/schema.prisma`.** Sin instrucción explícita no se toca (ver §6).
+* **Los alumnos que YA eligieron un área.** La guarda actúa al elegir; no migra
+  perfiles existentes hacia atrás. Hoy no hay ninguno real en SOCADM (las 5
+  cuentas de la base son fixtures), así que no había nada que migrar.
+
 
 ## Notas F4 — producción "capital cero" (2026-07-21)
 

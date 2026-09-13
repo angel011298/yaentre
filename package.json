@@ -25,6 +25,7 @@
     "content:audit-sample": "tsx scripts/content-audit-sample.ts",
     "content:audit-resolve": "tsx scripts/content-audit-resolve.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",
+    "content:guard": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g74/coverage-probe.ts",
     "content:ingest": "tsx scripts/ingest-source.ts",
     "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",
     "stripe:setup-webhook": "tsx scripts/setup-stripe-webhook.ts",
@@ -51,7 +52,8 @@
     "scale:pool": "tsx scripts/scale-pool-probe.ts",
     "scale:load": "tsx --tsconfig scripts/tsconfig.perf.json scripts/scale-load-probe.ts",
     "perf:audit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-audit.ts",
-    "perf:pool": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-pool-probe.ts"
+    "perf:pool": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-pool-probe.ts",
+    "perf:lighthouse-prod": "node scripts/g74/lighthouse-prod.mjs"
   },
   "dependencies": {
     "@number-flow/react": "0.6.1",

@@ -43,14 +43,19 @@ export default async function PracticarPage({
   // directo esa práctica sin pasar por el selector. `subjectId` es el mismo
   // patrón para el CTA "Practicar" de la pantalla de progreso (F18).
   const sp = await searchParams;
+  // G74: un deep link a una materia/tema sin reactivos arrancaría solo y
+  // moriría en `NO_CONTENT` con una línea roja. Se descarta aquí y el alumno
+  // cae en el selector, donde la razón sí está escrita.
   const topicId = typeof sp.topicId === 'string' ? sp.topicId : undefined;
-  const validTopicId = topicId && options.subjects.some((s) => s.topics.some((t) => t.topicId === topicId))
-    ? topicId
-    : undefined;
+  const validTopicId =
+    topicId && options.subjects.some((s) => s.topics.some((t) => t.topicId === topicId && t.servable > 0))
+      ? topicId
+      : undefined;
   const subjectId = typeof sp.subjectId === 'string' ? sp.subjectId : undefined;
-  const validSubjectId = subjectId && options.subjects.some((s) => s.subjectId === subjectId)
-    ? subjectId
-    : undefined;
+  const validSubjectId =
+    subjectId && options.subjects.some((s) => s.subjectId === subjectId && s.servable > 0)
+      ? subjectId
+      : undefined;
 
   const autoStartScope = validTopicId
     ? { kind: 'topic' as const, topicId: validTopicId }
