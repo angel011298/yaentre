@@ -43,8 +43,28 @@ vi.mock('@/lib/auth/supabase-server', () => ({
   createSupabaseServerClient: async () => ({ auth: { getUser: () => getUserMock() } }),
 }));
 
+// G73b: `guards.ts` importa `@/lib/observability/report`, que a su vez hace
+// `import * as Sentry from '@sentry/nextjs'`. Un test unitario del guard no
+// tiene por qué inicializar el SDK real —medido: 672 ms de carga de grafo con
+// caché tibia y sin contención— así que se sustituye por un doble inerte.
+vi.mock('@sentry/nextjs', () => ({
+  captureException: vi.fn(),
+  withScope: vi.fn(),
+}));
+
+// El módulo se carga UNA vez, en ámbito de módulo, no dentro de un `it`.
+//
+// Antes estaba dentro de la prueba, y eso le cobraba la carga del grafo al
+// presupuesto de 5 s del PRIMER test del archivo. Con la caché de
+// transformación fría y los 61 archivos de la suite compitiendo en paralelo,
+// esa carga llegó a 23.4 s y solo esa prueba se caía — verde al correrla en
+// aislamiento y verde en la siguiente corrida con la caché ya tibia. Un rojo
+// intermitente enseña a ignorar la prueba (CLAUDE.md, G69 §8.4), así que se
+// corrige la causa —medir la conducta, no al cargador— en vez de subir el
+// número. Mismo patrón que `tests/stripe/webhook-route.test.ts`.
+const { requireOnboarding } = await import('@/lib/auth/guards');
+
 async function callRequireOnboarding() {
-  const { requireOnboarding } = await import('@/lib/auth/guards');
   return requireOnboarding();
 }
 

@@ -449,6 +449,14 @@ producción, y no tiene pendientes de código:
 - 569 pruebas unitarias, 5/6 E2E, 11 sondas de seguridad, todo en verde —
   y, desde G73b, los controles de fuerza bruta y de aislamiento verificados
   por su EFECTO contra producción real, no por lectura de código.
+  Matiz honesto sobre ese verde: una re-auditoría posterior encontró que la
+  suite tenía un **rojo intermitente** —`tests/regressions/g10-bugs.test.ts`
+  agotaba su timeout con la caché de vite fría, porque cargaba el grafo de
+  módulos dentro del presupuesto de la prueba, grafo que el propio G73b
+  engordó al instrumentar `guards.ts` con Sentry. Corregido en la causa y con
+  el rojo comprobado alcanzable. Lo que esto dice del veredicto: **"todo en
+  verde" solo vale si se dice en qué condiciones**, y una corrida única con la
+  caché tibia no es esa condición.
 
 **El código no es el bloqueador. Lo es el calendario de decisiones de
 negocio que el propio dueño tiene que tomar — y, mientras tanto, ~350
