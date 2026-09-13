@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-13T21:12:51.778Z",
+    "exportedAt": "2026-09-13T21:32:03.616Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -94893,7 +94893,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -94901,7 +94901,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La sedentarizacion mesoamericana hacia 2500 a.C. se explica por la domesticacion del maiz y el excedente que permitio aldeas fijas. A es falsa: Mesoamerica no tuvo animales de tiro. B es anacronica: no hubo comercio antillano que introdujera terrazas en esa fecha. D invierte la causalidad: la obsidiana genero rutas de intercambio, no la sedentarizacion.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:32.404Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -94909,7 +94929,7 @@
         "$d": "2026-09-13T21:09:47.432Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:09:47.432Z"
+        "$d": "2026-09-13T21:28:32.448Z"
       }
     },
     {
@@ -94945,7 +94965,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -94953,7 +94973,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Excan Tlatoloyan (1428) fue un pacto militar y tributario con reparto desigual del tributo (dos quintos Tenochtitlan, dos quintos Texcoco, un quinto Tlacopan). A es falsa: los purepechas fueron enemigos nunca sometidos. B es falsa: el nahuatl fue lengua franca, no impuesta como unica obligatoria. C es falsa: los mexicas incorporaban los cultos locales en vez de sustituirlos.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:28:33.548Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -94961,7 +95001,7 @@
         "$d": "2026-09-13T21:09:48.546Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:09:48.546Z"
+        "$d": "2026-09-13T21:28:33.563Z"
       }
     },
     {
@@ -94997,7 +95037,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95005,7 +95045,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La pregunta es por el vinculo entre expansion y tributo: cada conquista sumaba una provincia tributaria cuyos bienes sostenian a la capital, como registra la Matricula de Tributos. A describe un efecto secundario real pero no responde al vinculo tributario. B es falsa: el destino principal de los cautivos era el sacrificio, no un comercio de esclavos. D reduce el sistema a un solo bien.",
+          "confidence": 0.93,
+          "verifiedAt": "2026-09-13T21:28:34.644Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95013,7 +95073,7 @@
         "$d": "2026-09-13T21:09:49.554Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:09:49.554Z"
+        "$d": "2026-09-13T21:28:34.660Z"
       }
     },
     {
@@ -95049,7 +95109,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95057,7 +95117,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Tonalpohualli (260 dias, ritual y adivinatorio) y el Xiuhpohualli (365 dias, solar y agricola) engranaban y coincidian cada 52 anos. Las cifras del enunciado son correctas. A es falsa: no existia un calendario militar separado. B es falsa: no servian para predecir eclipses. D es falsa: los linajes se registraban en codices genealogicos, no en el calendario.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:35.739Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95065,7 +95145,7 @@
         "$d": "2026-09-13T21:09:50.561Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:09:50.561Z"
+        "$d": "2026-09-13T21:28:35.755Z"
       }
     },
     {
@@ -95101,7 +95181,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95109,7 +95189,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Los pochteca, y en particular los naualoztomeca, operaban como informantes y espias del Estado mexica en territorios por conquistar; Sahagun lo documenta. A, B y C atribuyen a los pochteca funciones de otros cuerpos: obras publicas, sacerdocio provincial y reclutamiento militar respectivamente.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-13T21:28:36.829Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95117,7 +95217,7 @@
         "$d": "2026-09-13T21:09:51.567Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:09:51.567Z"
+        "$d": "2026-09-13T21:28:36.845Z"
       }
     },
     {
@@ -95153,7 +95253,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95161,7 +95261,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El tlacotli mexica llegaba a esa condicion por deuda, venta voluntaria o pena judicial, y la condicion no era hereditaria: los hijos nacian libres. A confunde tlacotin con cautivos de guerra, categoria distinta. B es falsa: nacer fuera de matrimonio no generaba servidumbre. D contradice el rasgo definitorio de no ser hereditaria.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-13T21:28:37.922Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95169,7 +95289,7 @@
         "$d": "2026-09-13T21:09:52.574Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:09:52.574Z"
+        "$d": "2026-09-13T21:28:37.938Z"
       }
     },
     {
@@ -95205,7 +95325,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95213,7 +95333,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las alianzas indigenas, sobre todo la tlaxcalteca, aportaron decenas de miles de guerreros y fueron determinantes en 1521. A es falsa: los espanoles llevaban muy pocas armas de fuego y no fueron decisivas. B es falsa: la expedicion se financio con Velazquez y el propio Cortes, que ademas actuo al margen de esa autoridad. C es falsa: los espanoles eran ampliamente inferiores en numero.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T21:28:39.016Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95221,7 +95361,7 @@
         "$d": "2026-09-13T21:09:59.306Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:09:59.306Z"
+        "$d": "2026-09-13T21:28:39.032Z"
       }
     },
     {
@@ -95257,7 +95397,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95265,7 +95405,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La poblacion americana carecia de inmunidad previa frente a viruela, sarampion y tifo del Viejo Mundo; la viruela llego en 1520. B es falsa: no hay evidencia de envenenamiento deliberado de aguas. C invierte el orden causal y no explica el colapso demografico. D es falsa: el altiplano no es humedo y los patogenos no discriminan por clima de ese modo.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:40.107Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95273,7 +95433,7 @@
         "$d": "2026-09-13T21:10:00.315Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:00.315Z"
+        "$d": "2026-09-13T21:28:40.123Z"
       }
     },
     {
@@ -95309,7 +95469,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95317,7 +95477,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La encomienda asignaba un grupo de indigenas a un espanol, que recibia tributo y trabajo a cambio de proteccion y evangelizacion, sin transferir la tierra. A es falsa: no habia contrato salarial voluntario. B describe una merced de tierra, no la encomienda. C es falsa: el encomendero era precisamente el intermediario entre el indigena y la Corona.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:28:41.202Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95325,7 +95505,7 @@
         "$d": "2026-09-13T21:10:01.325Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:01.325Z"
+        "$d": "2026-09-13T21:28:41.218Z"
       }
     },
     {
@@ -95361,7 +95541,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95369,7 +95549,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Franciscanos, dominicos y agustinos aprendieron nahuatl, purepecha y otras lenguas y reutilizaron sitios y simbolos previos, produciendo sincretismo. B es falsa: los traslados a la peninsula fueron casos aislados, no una estrategia. C es falsa: las universidades fueron posteriores y no laicas. D es falsa: los frailes usaron y escribieron las lenguas indigenas; la castellanizacion forzada es politica borbonica del siglo XVIII.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:42.293Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95377,7 +95577,7 @@
         "$d": "2026-09-13T21:10:02.360Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:02.360Z"
+        "$d": "2026-09-13T21:28:42.309Z"
       }
     },
     {
@@ -95413,7 +95613,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95421,7 +95621,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El sistema de castas clasificaba por origen etnico, y de esa clasificacion dependian obligaciones fiscales, acceso a cargos y fueros. A es falsa: el reparto de tierras a las ordenes no se regia por castas. B recoge solo el eje peninsular y criollo, y deja fuera lo esencial del sistema. C es falsa: el trabajo minero forzado recayo sobre la poblacion indigena, no por igual sobre todos.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-13T21:28:43.385Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95429,7 +95649,7 @@
         "$d": "2026-09-13T21:10:03.367Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:03.367Z"
+        "$d": "2026-09-13T21:28:43.400Z"
       }
     },
     {
@@ -95465,7 +95685,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95473,7 +95693,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La plata de Zacatecas, Guanajuato y Taxco sostuvo el galeon de Manila y el comercio atlantico, y financio a la Corona por el quinto real. A es falsa: la plata salia masivamente al exterior. B es falsa: la mineria nunca sustituyo a la agricultura como fuente de alimento. D es incoherente: un mineral no es un producto cultivable.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:28:44.478Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95481,7 +95721,7 @@
         "$d": "2026-09-13T21:10:04.379Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:04.379Z"
+        "$d": "2026-09-13T21:28:44.494Z"
       }
     },
     {
@@ -95517,7 +95757,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95525,7 +95765,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las reformas borbonicas buscaron recentralizar el poder real con las intendencias, elevar la recaudacion y desplazar a los criollos de los cargos en favor de peninsulares. A es falsa: la presion fiscal subio. B es falsa: se debilito a las ordenes, con la expulsion de los jesuitas en 1767 y la consolidacion de vales reales en 1804. C es falsa: los cabildos criollos perdieron margen, no lo ganaron.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:28:45.568Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95533,7 +95793,7 @@
         "$d": "2026-09-13T21:10:05.389Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:05.389Z"
+        "$d": "2026-09-13T21:28:45.584Z"
       }
     },
     {
@@ -95569,7 +95829,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95577,7 +95837,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La invasion napoleonica de 1808 y las abdicaciones de Bayona abrieron la crisis de legitimidad que detono 1810. A es falsa: no hubo tal tratado. B es falsa como causa. D es falsa: las Cortes de Cadiz se instalaron en septiembre de 1810 y no decretaron la abolicion de la esclavitud; en Mexico la decreto Hidalgo en diciembre de 1810.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:46.661Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95585,7 +95865,7 @@
         "$d": "2026-09-13T21:10:12.045Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:12.045Z"
+        "$d": "2026-09-13T21:28:46.676Z"
       }
     },
     {
@@ -95621,7 +95901,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95629,7 +95909,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Grito marca el inicio del levantamiento armado encabezado por Hidalgo en Dolores. A es falsa: el primer congreso insurgente fue el de Chilpancingo en 1813. C es falsa: no hubo tratado de paz. D es falsa: la independencia no se proclamo ni fue reconocida en 1810.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T21:28:47.859Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95637,7 +95937,7 @@
         "$d": "2026-09-13T21:10:13.025Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:13.025Z"
+        "$d": "2026-09-13T21:28:47.875Z"
       }
     },
     {
@@ -95673,7 +95973,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95681,7 +95981,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Morelos dio programa politico al movimiento con los Sentimientos de la Nacion en Chilpancingo, 1813, base del Decreto Constitucional de Apatzingan de 1814. A es falsa: Morelos no negocio con la Corona. C es falsa: la sede insurgente fue Chilpancingo y luego Apatzingan, no Veracruz. D describe lo ocurrido en 1821 con Iturbide, no con Morelos.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:48.949Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95689,7 +96009,7 @@
         "$d": "2026-09-13T21:10:14.022Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:14.022Z"
+        "$d": "2026-09-13T21:28:48.964Z"
       }
     },
     {
@@ -95725,7 +96045,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95733,7 +96053,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Plan de Iguala, del 24 de febrero de 1821, unio a realistas e insurgentes bajo religion, independencia y union, sellado en el abrazo de Acatempan entre Iturbide y Guerrero. B es falsa: Guerrero se sumo. C es falsa: el plan garantizaba los derechos de los espanoles; las leyes de expulsion son de 1827 a 1829. D es falsa: establecia una monarquia constitucional.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:50.036Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95741,7 +96081,7 @@
         "$d": "2026-09-13T21:10:15.010Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:15.010Z"
+        "$d": "2026-09-13T21:28:50.051Z"
       }
     },
     {
@@ -95777,7 +96117,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95785,7 +96125,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La restauracion de la Constitucion de Cadiz de 1812 tras el pronunciamiento de Riego en 1820 alarmo a criollos ricos y al alto clero, que temieron por sus fueros y privilegios: de ahi la Conspiracion de La Profesa. A es falsa: no hubo imposicion eclesiastica. B es falsa: no hubo financiamiento estadounidense. D es falsa: el proyecto de 1821 fue monarquico, no republicano radical.",
+          "confidence": 0.92,
+          "verifiedAt": "2026-09-13T21:28:51.120Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95793,7 +96153,7 @@
         "$d": "2026-09-13T21:10:15.995Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:15.995Z"
+        "$d": "2026-09-13T21:28:51.135Z"
       }
     },
     {
@@ -95829,7 +96189,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95837,7 +96197,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La insurgencia carecio de mando unico y de continuidad tras las muertes de Hidalgo en 1811 y Morelos en 1815, frente a un ejercito realista bien organizado. A es falsa: no hubo tropas francesas del lado insurgente. B es falsa: hubo apoyo popular amplio, sobre todo en el Bajio. C es falsa: Estados Unidos reconocio la independencia hasta 1822.",
+          "confidence": 0.9,
+          "verifiedAt": "2026-09-13T21:28:52.202Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95845,7 +96225,7 @@
         "$d": "2026-09-13T21:10:16.977Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:16.977Z"
+        "$d": "2026-09-13T21:28:52.218Z"
       }
     },
     {
@@ -95881,7 +96261,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95889,7 +96269,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El programa liberal suprimio los fueros eclesiastico y militar con la Ley Juarez, desamortizo bienes corporativos con la Ley Lerdo y separo Iglesia y Estado con la nacionalizacion, el registro civil, el matrimonio civil y la libertad de cultos. A es falsa: las castas se abolieron desde la independencia. B es exactamente lo contrario. C es falsa: con Espana hubo ruptura, no acercamiento.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:28:53.289Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95897,7 +96297,7 @@
         "$d": "2026-09-13T21:10:23.744Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:23.744Z"
+        "$d": "2026-09-13T21:28:53.305Z"
       }
     },
     {
@@ -95933,7 +96333,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95941,7 +96341,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Constitucion de 1857 instauro una republica representativa y federal con derechos del hombre y supremacia del poder civil. A es falsa: suprimio esos fueros. B es ajena al texto. D es falsa: no establecio monarquia alguna.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:28:54.381Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -95949,7 +96369,7 @@
         "$d": "2026-09-13T21:10:24.742Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:24.742Z"
+        "$d": "2026-09-13T21:28:54.396Z"
       }
     },
     {
@@ -95985,7 +96405,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -95993,7 +96413,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Guerra de Tres Anos enfrento el proyecto liberal, de Estado laico y federal sin fueros, contra el conservador, centralista y con fueros del clero y el ejercito. A es falsa: los puertos fueron recurso financiero, no la causa. C es falsa: el diferendo limitrofe con Guatemala se resolvio en 1882. D es falsa: la desamortizacion afecto tierras comunales, pero no fue el eje del conflicto.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-13T21:28:55.474Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96001,7 +96441,7 @@
         "$d": "2026-09-13T21:10:25.733Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:25.733Z"
+        "$d": "2026-09-13T21:28:55.490Z"
       }
     },
     {
@@ -96037,7 +96477,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96045,7 +96485,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Juarez decreto en julio de 1861 la suspension de pagos de la deuda por dos anos, y Francia, Espana e Inglaterra firmaron la Convencion de Londres en octubre de 1861. A es falsa: no hubo negativa a comerciar. C es falsa: no hubo expulsion de europeos. D es falsa: no existio tal tratado.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:56.569Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96053,7 +96513,7 @@
         "$d": "2026-09-13T21:10:26.720Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:26.720Z"
+        "$d": "2026-09-13T21:28:56.584Z"
       }
     },
     {
@@ -96089,7 +96549,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96097,7 +96557,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Napoleon III buscaba una monarquia latina y catolica afin a Francia que frenara la expansion estadounidense, aprovechando que Estados Unidos estaba en su guerra civil. B es falsa: nunca se planteo una sola estructura de gobierno. C es falsa: Espana se retiro en 1862 y no recupero soberania. D reduce el proyecto a una obra de infraestructura.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-13T21:28:57.661Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96105,7 +96585,7 @@
         "$d": "2026-09-13T21:10:27.704Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:27.704Z"
+        "$d": "2026-09-13T21:28:57.677Z"
       }
     },
     {
@@ -96141,7 +96621,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96149,7 +96629,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El triunfo de 1867 y el fusilamiento de Maximiliano en el Cerro de las Campanas liquidaron la opcion monarquica y consolidaron la Republica Restaurada, laica y federal. A es falsa: las aduanas nunca fueron eclesiasticas. B es falsa: no hubo protectorado frances. D es falsa: los fueros no se restablecieron.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-13T21:28:58.750Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96157,7 +96657,7 @@
         "$d": "2026-09-13T21:10:28.688Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:28.688Z"
+        "$d": "2026-09-13T21:28:58.765Z"
       }
     },
     {
@@ -96193,7 +96693,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96201,7 +96701,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El porfiriato atrajo capital britanico, estadounidense y frances, tendio ferrocarriles y puertos, y concentro la riqueza en pocas manos. A es falsa: la apertura al capital externo fue su rasgo central. B es falsa: petroleo y mineria se nacionalizaron en 1938 y 1961. D es falsa: la ley de deslinde de terrenos baldios concentro la tierra, no la repartio.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:28:59.837Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96209,7 +96729,7 @@
         "$d": "2026-09-13T21:10:35.348Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:35.348Z"
+        "$d": "2026-09-13T21:28:59.852Z"
       }
     },
     {
@@ -96245,7 +96765,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96253,7 +96773,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El descontento se explica por el latifundio, el despojo de tierras comunales y la ausencia de libertades politicas bajo la reeleccion indefinida. A es falsa: las huelgas de Cananea en 1906 y Rio Blanco en 1907 fueron reprimidas. B es falsa: las jornadas eran de doce a catorce horas. D es falsa: no hubo reparto equitativo de tierra.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:29:00.927Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96261,7 +96801,7 @@
         "$d": "2026-09-13T21:10:36.343Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:36.343Z"
+        "$d": "2026-09-13T21:29:00.942Z"
       }
     },
     {
@@ -96297,7 +96837,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96305,7 +96845,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Plan de San Luis declaro nulas las elecciones de 1910, desconocio la reeleccion de Diaz y convoco al levantamiento el 20 de noviembre de 1910. A es falsa: Madero no pidio mediacion estadounidense. C contradice el plan, que declaro nulas esas elecciones. D es falsa: el articulo tercero preveia restitucion de tierras, pero el plan convocaba expresamente a las armas.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:29:02.018Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96313,7 +96873,7 @@
         "$d": "2026-09-13T21:10:37.336Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:37.336Z"
+        "$d": "2026-09-13T21:29:02.033Z"
       }
     },
     {
@@ -96349,7 +96909,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96357,7 +96917,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Plan de Ayala, del 28 de noviembre de 1911, exigio la restitucion inmediata de tierras, montes y aguas usurpadas, ademas de expropiar un tercio de los latifundios. B es falsa: no pedia supervision extranjera. C es ajena al zapatismo. D es falsa: el zapatismo no reclamaba fueros militares.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-13T21:29:03.217Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96365,7 +96945,7 @@
         "$d": "2026-09-13T21:10:38.330Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:38.330Z"
+        "$d": "2026-09-13T21:29:03.233Z"
       }
     },
     {
@@ -96401,7 +96981,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96409,7 +96989,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Decena Tragica, del 9 al 19 de febrero de 1913, desemboco en el Pacto de la Embajada, la renuncia forzada y el asesinato de Madero y Pino Suarez el 22 de febrero, con Huerta usurpando la presidencia. B es falsa. C es falsa: el desenlace abrio el constitucionalismo, no un armisticio. D es falsa: el Constituyente de Queretaro se reunio en 1916 y 1917.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:29:04.308Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96417,7 +97017,7 @@
         "$d": "2026-09-13T21:10:39.319Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:39.319Z"
+        "$d": "2026-09-13T21:29:04.323Z"
       }
     },
     {
@@ -96453,7 +97053,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96461,7 +97061,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "En la Convencion de Aguascalientes de 1914 la ruptura fue por el alcance del reparto agrario y por quien conduciria el proceso posrevolucionario. A es falsa: no se discutia una religion oficial. B es falsa: ningun bando propuso monarquia. C es falsa: ninguno busco la anexion a Estados Unidos.",
+          "confidence": 0.93,
+          "verifiedAt": "2026-09-13T21:29:05.399Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96469,7 +97089,7 @@
         "$d": "2026-09-13T21:10:40.308Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:40.308Z"
+        "$d": "2026-09-13T21:29:05.415Z"
       }
     },
     {
@@ -96505,7 +97125,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96513,7 +97133,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Constitucion de 1917 fue la primera del mundo en elevar a rango constitucional los derechos sociales: articulo 27 sobre tierra y recursos del subsuelo y articulo 123 sobre derechos laborales. A es falsa: instituyo una republica. C es falsa: conservo la division de poderes. D es falsa: reconocio la propiedad privada subordinada al interes publico.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-13T21:29:06.489Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96521,7 +97161,7 @@
         "$d": "2026-09-13T21:10:41.297Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:41.297Z"
+        "$d": "2026-09-13T21:29:06.505Z"
       }
     },
     {
@@ -96557,7 +97197,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96565,7 +97205,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El PNR, fundado por Calles en 1929 tras el asesinato de Obregon, encauzo la sucesion por via partidaria y redujo las rebeliones armadas. A es falsa: la no reeleccion quedo como principio. C es falsa: el proceso fue de centralizacion, no de traslado del legislativo a los estados. D es falsa: el ejercito se profesionalizo y subordino, no se disolvio.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-13T21:29:07.575Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96573,7 +97233,7 @@
         "$d": "2026-09-13T21:10:42.288Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:42.288Z"
+        "$d": "2026-09-13T21:29:07.591Z"
       }
     },
     {
@@ -96609,7 +97269,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96617,7 +97277,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El detonante fue la negativa de las companias a acatar el laudo laboral, confirmado por la Suprema Corte el 1 de marzo de 1938; la expropiacion se decreto el 18 de marzo. A es falsa: los yacimientos no estaban agotados. B es falsa: Estados Unidos protesto por la expropiacion. C es falsa: los ferrocarriles se nacionalizaron aparte, en 1937.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-13T21:29:08.661Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96625,7 +97305,7 @@
         "$d": "2026-09-13T21:10:48.882Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:48.882Z"
+        "$d": "2026-09-13T21:29:08.676Z"
       }
     },
     {
@@ -96661,7 +97341,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96669,7 +97349,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cardenas repartio cerca de 18 millones de hectareas y privilegio el ejido colectivo en zonas de alta productividad como La Laguna, Yucatan y el valle de Mexicali. A es falsa: el reparto fue rural. B es falsa: no hubo devolucion a los hacendados. D es falsa: la pequena propiedad agricola se conservo con limites legales.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-13T21:29:09.750Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96677,7 +97377,7 @@
         "$d": "2026-09-13T21:10:49.865Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:49.865Z"
+        "$d": "2026-09-13T21:29:09.766Z"
       }
     },
     {
@@ -96713,7 +97413,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96721,7 +97421,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Milagro Mexicano combino industrializacion por sustitucion de importaciones, proteccion arancelaria y estabilidad cambiaria, con crecimiento sostenido cercano al 6 por ciento anual. B es falsa: el peso agricola cedio ante el industrial. C es falsa: fue crecimiento, no estancamiento. D es falsa: la apertura comercial llego hasta 1986 con el ingreso al GATT.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:29:10.833Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96729,7 +97449,7 @@
         "$d": "2026-09-13T21:10:50.852Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:50.852Z"
+        "$d": "2026-09-13T21:29:10.849Z"
       }
     },
     {
@@ -96765,7 +97485,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96773,7 +97493,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El pliego petitorio exigia libertad de los presos politicos, derogacion del articulo 145 sobre disolucion social, disolucion del cuerpo de granaderos, destitucion de jefes policiacos, indemnizacion a victimas y deslinde de responsabilidades: demandas de libertades democraticas. A y B son ajenas al movimiento. D es falsa: la banca se nacionalizo en 1982, sin relacion con el pliego de 1968.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:29:11.924Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96781,7 +97521,7 @@
         "$d": "2026-09-13T21:10:51.841Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:51.841Z"
+        "$d": "2026-09-13T21:29:11.940Z"
       }
     },
     {
@@ -96817,7 +97557,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96825,7 +97565,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La crisis de 1982 se detono por el desplome del precio del petroleo y el alza de las tasas de interes internacionales sobre una deuda contratada a tasa variable, con fuga de capitales y devaluacion. B, C y D describen hechos que no ocurrieron.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:29:13.014Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96833,7 +97593,7 @@
         "$d": "2026-09-13T21:10:52.825Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:52.825Z"
+        "$d": "2026-09-13T21:29:13.030Z"
       }
     },
     {
@@ -96869,7 +97629,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96877,7 +97637,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El TLCAN consolido el viraje del modelo proteccionista de sustitucion de importaciones hacia la integracion comercial abierta con Estados Unidos y Canada. A es falsa: hubo apertura al capital externo, no nacionalizacion. B invierte el sentido del tratado. D es falsa: no hubo ruptura diplomatica con Canada.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-13T21:29:14.102Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96885,7 +97665,7 @@
         "$d": "2026-09-13T21:10:53.808Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:53.808Z"
+        "$d": "2026-09-13T21:29:14.118Z"
       }
     },
     {
@@ -96921,7 +97701,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -96929,7 +97709,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La eleccion del 2 de julio de 2000 y el triunfo de Vicente Fox terminaron con setenta y un anos de gobiernos del PNR, el PRM y el PRI, de 1929 a 2000, y consumaron la alternancia. A es falsa: no hubo regimen militar. C es falsa: las elecciones continuaron. D es falsa: el resultado fue el fin del partido hegemonico, no su instauracion.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-13T21:29:15.191Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -96937,7 +97737,7 @@
         "$d": "2026-09-13T21:10:54.792Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:10:54.792Z"
+        "$d": "2026-09-13T21:29:15.207Z"
       }
     }
   ],

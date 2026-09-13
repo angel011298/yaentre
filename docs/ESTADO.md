@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-13 · Última fase ejecutada: **G79 (COMPLETADA — verificación ciega de los 40 reactivos de Historia de México que compuso G78: **40/40 auto-aprobados**, IPN SOCADM sube de 32% a 56% y el banco a 1 223 servibles)**. Modelo real `claude-opus-5`. Ver §G79 abajo.
+
+<details><summary>Historial: G77 (2026-09-13)</summary>
+
 Última actualización: 2026-09-13 · Última fase ejecutada: **G77 (COMPLETADA — `lot-validation.ts` detecta ahora los dos patrones de MÉTODO que G76 encontró y que ninguna regla anterior atrapaba: señuelo de longitud y orden predecible)**. Modelo real `claude-sonnet-5`. **① El hueco, dicho sin adornos:** G76 encontró que la clave del lote de Inglés UNAM (G75) fue la opción más larga en 24/40 (60% contra 25% del azar) y que su posición siguió el ciclo EXACTO A,B,C,D,... en gramática y vocabulario — ninguno de los dos es un defecto de DISTRIBUCIÓN pareja (lo único que `POSITION_SKEW` medía): un ciclo perfecto ES la distribución más pareja que existe, así que pasaba sin una sola advertencia. **② `LENGTH_BIAS` (nuevo):** compara, reactivo por reactivo, la longitud de la clave contra las 3 incorrectas (empates no cuentan en ninguna dirección). A diferencia de `POSITION_SKEW`, **no** hay banda inferior simétrica — que la clave rara vez sea la más larga/corta no es un defecto, es el efecto DESEADO de igualar longitudes (confirmado contra el lote real de G49: 8.6%/8.6%, sano). Solo un EXCESO por encima del 25% esperado filtra información: banda de advertencia >40% (mismo corte que `MAX_LETTER_SHARE`, no concluyente con lote pequeño), rechazo >45% (z≈2.9 para N=40, muy poco probable por azar). Exige lote ≥20 (`LENGTH_BIAS_MIN_LOT_SIZE`), misma razón que `POSITION_SKEW`. **③ `ORDER_PATTERN` (nuevo):** busca, en la secuencia de letras-correctas EN ORDEN DE INSERCIÓN, la racha máxima con periodicidad exacta 2/3/4 y la marca si cubre ≥3 ciclos completos — el mismo umbral que ya se usaba A MANO en G49 ("sin racha cíclica A→B→C→D de longitud ≥3", nunca antes codificado) generalizado a períodos más cortos (alternante = período 2, igual de aprendible). Períodos 2-3-4 nada más: con solo 4 letras posibles, un período mayor no es un patrón estructural nuevo. **④ Confirmado contra los dos lotes reales, no solo contra sintéticos:** reconstruido el lote real de G75/G76 desde `backups/content-bank.json` (orden real por `createdAt`) — `longestShare=50%` (definición estricta, sin empates) **y** una racha período-4 de 24 ítems (#17-#40, gramática+vocabulario concatenados) — ambos por encima de sus cortes de rechazo; corrido contra `docs/content-batches/g49-unam-a1-fisica.json` (35 reactivos, "profundizado" y ya sano según el barrido de G3c/G74) — `longestShare=8.6%`, `shortestShare=8.6%`, sin ninguna racha periódica: **0 falsos positivos**. **⑤ El lote de Inglés UNAM (G75/G76) NO se reprocesa** — ya está publicado, los 40 reactivos son correctos, y el hallazgo es del MÉTODO, no del lote; corregir hacia atrás violaría el criterio explícito de la fase. **⑥ CLAUDE.md actualizado** con la lección para el generador: igualar el largo de las 4 opciones (recortar la clave antes que alargar los distractores) y decidir la posición de cada reactivo de forma independiente, nunca con una regla mental repetible ("voy ciclando A,B,C,D"). **⑦ 11 tests nuevos** (2 con datos reales extraídos de G49/G76, además de los sintéticos) — rojo demostrado con sesgo/ciclo sintético, verde con longitudes parejas/orden no-periódico; 18 tests preexistentes sin cambios. `pnpm typecheck`/`pnpm lint`/`pnpm test:unit` en verde, dos corridas. **No se tocó `prisma/schema.prisma`.**
+
+</details>
 
 <details><summary>Historial: G76 (2026-09-13)</summary>
 
@@ -379,6 +385,196 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G79 — Verificación ciega: Historia de México, IPN SOCADM (lote de G78) (2026-09-13)
+
+> Segunda pasada adversarial sobre el lote de G78. Sesión nueva e
+> independiente, modelo real `claude-opus-5`. **40/40 auto-aprobados (100%)**;
+> el pool de Historia de México queda publicado y el área IPN Ciencias
+> Sociales y Administrativas pasa de **32% a 56%** de peso cubierto — sigue
+> por debajo del umbral, así que sigue en `COMING_SOON`.
+
+### 1. El aislamiento se comprobó por el CONTENIDO, no por la promesa del tipo
+
+Misma disciplina que G76. La sesión no leyó el commit `3b44b29`, ni el
+`build.mjs` del lote, ni ningún JSON asociado. Su único insumo fue
+`pnpm content:blind-batch --all --limit 60`, que exportó exactamente **40
+pendientes** (los mismos 40 que G78 insertó con `isVerified=false`; no había
+ningún otro reactivo en cola).
+
+Antes de resolver se recorrió el JSON crudo enumerando **todas** sus llaves:
+
+```
+questionId, institution, subject, topic, format, passage,
+requiresCalculation, stem, options, label, text, imageUrl
+```
+
+Ni `isCorrect` ni `explanations` aparecen en ninguna parte del árbol — la
+garantía estructural de `buildBlindItem` se verificó por efecto sobre el
+archivo real, no se dio por hecha. Las opciones vienen barajadas con semilla
+determinista por `questionId`, así que las letras que la sesión eligió **no
+son** las letras originales: `content-resolve-verification.ts` las traduce de
+vuelta.
+
+### 2. Los 40, resueltos desde cero con verificación factual explícita
+
+Cada reactivo se resolvió razonando por qué **cada distractor** no
+corresponde, no solo por qué la clave sí — nombres, fechas y atribución de
+cada hecho a su actor. Confianza **mínima 0.90**, media **0.956**. Ninguno
+por debajo del corte de 0.85, así que ninguno se fue a la cola de
+discrepancias por confianza baja.
+
+Cobertura por tema, que es la que G78 declaró: Época prehispánica 6,
+Conquista y Colonia 7, Independencia 6, Reforma y Guerra de Intervención 6,
+Revolución Mexicana 8, México Moderno 7. Los 6 temas oficiales, del periodo
+prehispánico al contemporáneo.
+
+### 3. Cero problemas marcados, y el criterio con el que se decidió marcar cero
+
+El campo `problems` bloquea la publicación aunque la respuesta coincida, así
+que marcarlo de más es tan dañino como marcarlo de menos. El criterio
+aplicado: **un distractor falso no es un defecto — es el diseño**. Se marca
+un problema cuando el ENUNCIADO trae un dato erróneo, cuando un distractor es
+en realidad VERDADERO (y hay entonces dos opciones defendibles), o cuando
+ninguna opción corresponde.
+
+Ninguno de los tres casos apareció. Los datos verificables del enunciado
+resistieron uno por uno: `2500 a.C.` para la sedentarización, `260`/`365`
+días para Tonalpohualli/Xiuhpohualli, `1521` para la caída de Tenochtitlan,
+`1810`/`1821` para el inicio y la consumación, `1858-1861` para la Guerra de
+Reforma, `1861` para la intervención tripartita, `1876-1911` para el
+Porfiriato, `febrero de 1913` para la Decena Trágica, `1938` para la
+expropiación petrolera, `1994` para el TLCAN, `2000` para la alternancia.
+
+Cuatro casos que se examinaron con cuidado y se descartaron, documentados
+para que no haya que rehacer el análisis:
+
+- **Tributo mexica**: el distractor «las conquistas garantizaban nuevas
+  tierras de cultivo para la nobleza guerrera» es *parcialmente cierto* —
+  sí se asignaban tierras de conquista a nobles. Pero el reactivo pregunta
+  por qué la expansión **dependía del sistema de TRIBUTOS**, y solo la clave
+  responde a eso. No es ambigüedad: es un distractor bien construido sobre un
+  hecho real que no contesta la pregunta.
+- **Leyes de Reforma «entre 1855 y 1861»**: en sentido estricto las Leyes de
+  Reforma son las de Veracruz (1859-1860) más las de 1863; el rango del
+  enunciado engloba además las prerreformistas (Juárez 1855, Lerdo 1856,
+  Iglesias 1857) y los decretos de febrero de 1861. Es el encuadre de los
+  libros de texto mexicanos de bachillerato y no altera cuál es la respuesta.
+- **Expropiación petrolera «el fallo laboral de la Corte»**: el laudo lo
+  emitió la Junta Federal de Conciliación y Arbitraje (dic. 1937) y la
+  Suprema Corte lo confirmó el 1 de marzo de 1938 al negar el amparo. Decir
+  que las compañías incumplieron «el fallo laboral de la Corte» es exacto.
+- **Cortes de Cádiz y la esclavitud** (distractor de la pregunta de 1810):
+  las Cortes debatieron la abolición en 1811 pero **no la decretaron**, y
+  además se instalaron en septiembre de 1810, después del Grito. El
+  distractor es falso, como debe ser.
+
+### 4. Resolución: 40/40 auto-aprobados
+
+```
+✅ Auto-aprobados: 40   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+**Tasa de auto-aprobación del lote: 100%.** Cero discrepancias, así que la
+cola de F3 no creció. Los 40 pasan a `isVerified=true` con su registro
+`Question.verification` completo (modelo declarado `claude-opus-5`,
+`usedCalculation:false` — Historia no es materia de cálculo).
+
+### 5. El blindaje de G77 funcionó, y una diferencia de medición que hay que entender
+
+Medido contra la base **después** de resolver (ya sin riesgo de contaminar el
+aislamiento):
+
+| Métrica | Valor | Referencia |
+|---|---|---|
+| Distribución de la clave | A 11 · B 7 · C 13 · D 9 | banda 15-40%: **dentro** (17.5%-32.5%) |
+| Transiciones «+1» del ciclo A→B→C→D | 11 de 39 (**28%**) | azar ~25%: **sin patrón** |
+| Clave estrictamente más larga | 13 de 40 (**32.5%**) | warn >40%, reject >45%: **limpio** |
+| Clave estrictamente más corta | 0 de 40 (0%) | sin banda inferior, por diseño |
+| Razón media clave/distractores | 1.060 | 1.0 = sin sesgo |
+
+`crypto.randomInt` por reactivo hizo su trabajo: la secuencia real es
+`CAABBDCADAACDAAAACCCDCBCADBCBDBCBCDCADCD`, sin la periodicidad que G76
+encontró en el lote de Inglés.
+
+**La diferencia de medición, por si vuelve a aparecer.** La primera medición
+de esta sesión, hecha a ciegas sobre el lote barajado, dio **45%** de «clave
+= la opción más larga» y pareció contradecir el 32.5% que G78 declaró. No lo
+contradice: `LengthBiasStats` cuenta solo lo **estrictamente** más largo, y
+los empates no cuentan en ninguna dirección (está escrito en su docstring).
+Hay 5 reactivos donde la clave **empata** en longitud con otra opción; la
+medición laxa los suma y la estricta no. La estricta es la correcta, porque
+**un empate no da ninguna pista**: si la clave no es únicamente la más larga,
+el sustentante no puede distinguirla por el largo. Al medir sesgo de longitud
+en el futuro, usar la definición del validador (`> `, no `>=`) o el número no
+será comparable con nada del historial.
+
+Importa más aquí que en G76: **IPN tiene `shuffleOptions:false`**
+(`src/lib/simulator/config.ts`), así que el orden y las longitudes que quedan
+en la base son los que ve el sustentante, sin barajar.
+
+### 6. `content:guard` sí se movió, y exactamente lo que G78 predijo
+
+Corrido **después** de la resolución, que es cuando los 40 cuentan
+(`content:guard` mide `isVerified=true`):
+
+```
+⛔ IPN SUPERIOR — Ciencias Sociales y Administrativas  14/25 de peso (56%) → COMING_SOON
+     · Historia de México       peso  6 · sirve  40 · necesita  6
+     ✗ Historia Universal       peso  4 · sirve   0 · necesita  5
+     ✗ Geografía                peso  4 · sirve   0 · necesita  4
+     · Matemáticas Aplicadas    peso  3 · sirve  35 · necesita  4
+     · Español/Lectura          peso  3 · sirve  70 · necesita  4
+     · Inglés                   peso  2 · sirve  35 · necesita  3
+     ✗ Civismo/Derecho          peso  3 · sirve   0 · necesita  4
+     ↳ falta: Geografía, Historia Universal, Civismo/Derecho
+```
+
+**32% → 56%**, exactamente el salto que G78 anotó. Historia de México pasa de
+`✗ sirve 0` a cubierta con holgura (40 contra los 6 que exige su cuota del
+diagnóstico). El área **sigue en `COMING_SOON`**: faltan 11 puntos de peso en
+tres materias que siguen en cero (Historia Universal 4, Geografía 4,
+Civismo/Derecho 3), y el umbral de oferta es 70%. Cubrir Historia Universal y
+Geografía llevaría al área a 88% y la abriría; solo una de las dos la deja en
+72%, apenas arriba.
+
+Resto del censo sin tocar: **5 de 7 áreas `READY`**, 1 `PARTIAL` (UNAM
+Humanidades y Artes, 80%, falta Artes), 1 `COMING_SOON`. Las cuatro
+aserciones **P1-P4 en verde**, incluida P3, que compara la función de la app
+contra un recuento SQL independiente en las 7 áreas.
+
+### 7. Acumulado real del banco, consultado y no estimado
+
+```
+TOTAL: 1223 servibles · 0 pendientes de resolución · 1 retirados · 1224 en banco
+TASA DE AUTO-APROBACIÓN GLOBAL: 99.8% (1224/1227)  ✅ pipeline sano
+META 1222 (efectiva, G26): 78%  · brecha 267 (~8 lotes)
+```
+
+**1 183 → 1 223 servibles.** Cero pendientes de resolución: la cola quedó
+vacía. La tasa global del pipeline sube de 99.7% a **99.8%**. Meta efectiva de
+G26 al **78%**, brecha **267**.
+
+`pnpm backup:export` regenerado (6 012 filas, 4.14 MB) y verificado contra el
+propio archivo: los 40 aparecen con `isVerified=true` y con su registro
+`verification`; el respaldo cuenta 1 223 servibles de 1 227 filas de
+`Question`, igual que la base.
+
+### 8. Una omisión de G78 que esta fase cierra
+
+G78 añadió sus 156 líneas de sección a `docs/ESTADO.md` pero **no actualizó
+el encabezado del archivo**, que siguió diciendo «Última fase ejecutada:
+G77». Quien consultara el estado vivo —lo primero que CLAUDE.md pide hacer—
+no se enteraba de que existía un lote de 40 reactivos en cola de
+verificación. Corregido aquí, con G77 movido a su `<details>` de historial.
+
+### Siguiente (G80)
+
+Las tres materias en cero de IPN SOCADM son lo único que separa al área de
+poder ofrecerse. Por peso, el orden que más mueve el porcentaje es Historia
+Universal (4) o Geografía (4), y cualquiera de las dos junto con la otra
+abre el área.
+
 
 ## G78 — Lote de reactivos: Historia de México, IPN SOCADM (2026-09-13)
 
