@@ -1,0 +1,272 @@
+[
+  {
+    "stem": "¿Cuál fue una causa externa que detonó el movimiento de independencia en 1810?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La invasión napoleónica a España debilitó la autoridad de la Corona en América.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La abolición de la esclavitud decretada por las Cortes de Cádiz.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La firma de un tratado comercial entre Nueva España e Inglaterra.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El reconocimiento inmediato de la independencia estadounidense.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "En 1808 Napoleón invadió España y forzó la abdicación de Fernando VII, dejando un vacío de legitimidad que reabrió la pregunta de quién gobernaba en nombre del rey en las colonias."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ese vacío alimentó tanto juntas autonomistas leales al rey cautivo como, poco después, movimientos abiertamente independentistas como el de Hidalgo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No existió tal tratado comercial con Inglaterra en esos años; las Cortes de Cádiz no abolieron la esclavitud; y la independencia estadounidense (1776) fue anterior y no fue la causa inmediata de 1810."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué representó el llamado \"Grito de Dolores\" del 16 de septiembre de 1810?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El inicio armado del movimiento insurgente encabezado por Miguel Hidalgo.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La proclamación oficial de independencia reconocida por la Corona.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La firma del primer tratado de paz entre insurgentes y realistas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La convocatoria al primer congreso constituyente novohispano.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Hidalgo llamó a las armas a la población del Bajío contra el mal gobierno, marcando el arranque de una guerra que duraría once años."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La independencia no se logró ni se reconoció ese día; fue apenas el detonante de una lucha larga y con múltiples fases."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo reconocimiento de la Corona en 1810, ni un tratado de paz en esa fecha, ni un congreso constituyente novohispano formal; ese tipo de organización política llegaría después, con Morelos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué aportó José María Morelos al movimiento insurgente tras la muerte de Hidalgo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Le dio un proyecto político al movimiento con los Sentimientos de la Nación.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Unificó al ejército insurgente con las tropas realistas bajo un solo mando.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Negoció con la Corona española el reconocimiento de la independencia.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Trasladó de forma permanente la capital insurgente a la ciudad de Veracruz.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Morelos convocó el Congreso de Chilpancingo (1813) y presentó un ideario que iba más allá de las armas: igualdad legal, fin de la esclavitud y soberanía popular."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ese documento sentó bases que después influyeron en constituciones posteriores, dándole al movimiento un proyecto de nación, no solo una campaña militar."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo negociación de independencia con la Corona en esos años, ni un traslado permanente de capital a Veracruz, ni mucho menos una fusión con el ejército realista, que siguió siendo el enemigo a vencer."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué papel jugó el Plan de Iguala en la consumación de la independencia en 1821?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Unió a insurgentes y realistas bajo las Tres Garantías, con Iturbide y Guerrero.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Estableció de inmediato una república federal como forma de gobierno.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Fue rechazado de inmediato por los antiguos jefes insurgentes, que siguieron la guerra.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Decretó la expulsión total de los españoles peninsulares del país.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "El abrazo de Acatempan simbolizó la alianza entre Agustín de Iturbide (antes realista) y Vicente Guerrero (insurgente), que permitió una salida negociada tras años de guerra."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El plan proponía una monarquía constitucional y garantizaba la religión católica y la unión de todos los grupos, lo que le dio un respaldo amplio y rápido."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se estableció una república en 1821 (llegaría hasta 1824); no hubo una expulsión masiva inmediata de peninsulares; y el plan fue precisamente lo contrario a un rechazo insurgente: unificó a las facciones en vez de dividirlas."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué muchos criollos, inicialmente leales a la Corona, terminaron apoyando la independencia hacia 1820?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Buscaban imponer de inmediato un sistema republicano de corte radical.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Recibieron financiamiento de Estados Unidos para separarse de España.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Temieron que el liberalismo gaditano de 1812 afectara sus privilegios locales.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Fueron obligados por la Iglesia novohispana a romper con la Corona.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "El regreso del liberalismo gaditano en 1820 amenazaba fueros y propiedades de criollos y del clero, lo que los empujó a buscar la independencia como forma de conservar el orden social existente."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este giro explica por qué la independencia se consumó de forma relativamente conservadora en 1821, con una alianza entre antiguos realistas e insurgentes, y no como una ruptura radical."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo financiamiento estadounidense documentado para este viraje; los criollos que impulsaron el Plan de Iguala buscaban preservar privilegios, no un republicanismo radical; y la decisión no fue una orden institucional de la Iglesia, sino una convergencia de intereses."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué factor explica que la guerra de independencia se prolongara durante once años (1810-1821)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tropas francesas intervinieron de forma directa a favor de los insurgentes.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Estados Unidos reconoció la independencia mexicana desde 1811.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Faltó un mando insurgente unificado frente a un ejército realista fuerte.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Hubo una ausencia casi total de apoyo popular durante toda la década.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Tras la muerte de Hidalgo y Morelos, el movimiento se fragmentó en guerrillas regionales (como la de Guerrero en el sur), incapaces por sí solas de derrotar al ejército realista."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La guerra se sostuvo gracias a ese hostigamiento prolongado, hasta que el cambio político en España (1820) abrió la puerta a una salida negociada."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El movimiento sí tuvo apoyo popular importante, sobre todo en sus inicios; Francia no intervino a favor de los insurgentes; y Estados Unidos no reconoció la independencia mexicana en 1811, sino hasta después de consumada en los años 1820."
+      }
+    ]
+  }
+]

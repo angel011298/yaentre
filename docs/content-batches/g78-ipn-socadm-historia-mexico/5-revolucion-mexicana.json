@@ -1,0 +1,362 @@
+[
+  {
+    "stem": "¿Qué caracterizó al modelo económico impulsado durante el Porfiriato (1876-1911)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Nacionalizó de inmediato la industria petrolera y minera del país.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Cerró la economía mexicana a cualquier inversión proveniente del exterior.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Repartió tierra de forma extendida entre comunidades campesinas del país.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Atrajo inversión extranjera y modernizó infraestructura, con riqueza concentrada.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Porfirio Díaz impulsó ferrocarriles, minería y exportaciones con capital extranjero, logrando crecimiento económico pero excluyendo a la mayoría campesina y obrera de sus beneficios."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esa concentración de tierra y riqueza, junto con la falta de libertades políticas, alimentó el descontento que estallaría en la Revolución de 1910."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Porfiriato no repartió tierra a los campesinos —más bien las concentró en haciendas—; tampoco cerró la economía al capital extranjero, que fue central en su modelo; y la nacionalización petrolera ocurriría hasta 1938, con Cárdenas."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué explica el creciente descontento social hacia el final del Porfiriato?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La distribución equitativa de tierra entre campesinos sin acceso previo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La tierra concentrada en haciendas y la falta de libertades políticas.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El reconocimiento amplio de sindicatos independientes por el gobierno.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La reducción sostenida de la jornada laboral en fábricas e industrias.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Millones de campesinos quedaron sin tierra propia, trabajando en haciendas bajo condiciones precarias, mientras el régimen reprimía cualquier oposición política."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ese contraste entre modernización visible (ferrocarriles, edificios) y precariedad social explica por qué el llamado maderista de 1910 encontró tanto eco popular."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo una distribución equitativa de tierra —el problema era justo lo contrario—; la jornada laboral no se redujo de forma generalizada; y el régimen reprimió, no favoreció, a los sindicatos independientes, como se vio en Cananea y Río Blanco."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué proponía Francisco I. Madero en el Plan de San Luis (1910)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Solicitar la intervención de Estados Unidos para mediar el conflicto.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Proponer una reforma agraria inmediata sin necesidad de movilización.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Desconocer la reelección de Díaz y llamar a las armas el 20 de noviembre.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Reconocer la plena validez de las elecciones de 1910 bajo ciertas condiciones.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Tras ser encarcelado y huir a Estados Unidos, Madero declaró nulas las elecciones que reeligieron a Díaz y convocó a las armas, dando inicio formal a la Revolución."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El plan tuvo eco en distintas regiones del país, sobre todo en el norte, donde figuras como Pascual Orozco y Francisco Villa se sumaron al llamado."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El plan rechazaba, no reconocía, las elecciones de 1910; sí contemplaba la vía armada, no solo reformas pacíficas; y no pedía mediación de Estados Unidos, sino movilización interna."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál era la demanda central del Plan de Ayala, promovido por Emiliano Zapata en 1911?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La creación de un banco nacional para financiar la industria textil.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La restitución inmediata de tierras comunales despojadas en el Porfiriato.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El establecimiento de fueros especiales y permanentes para el ejército revolucionario.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La convocatoria a nuevas elecciones bajo supervisión extranjera.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Zapata rompió con Madero al considerar que este no cumplía su promesa de devolver la tierra a los pueblos, y exigió su restitución bajo el lema \"Tierra y Libertad\"."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este plan mantuvo al zapatismo como una fuerza autónoma con un programa social propio durante toda la década revolucionaria, influyendo después en el artículo 27 de la Constitución de 1917."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El plan no giraba en torno a elecciones supervisadas por potencias extranjeras, ni proponía un banco textil, ni buscaba fueros especiales para el ejército: su eje era estrictamente agrario."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué consecuencia tuvo la llamada Decena Trágica de febrero de 1913?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La convocatoria inmediata a un congreso constituyente en Querétaro.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La firma de un armisticio definitivo entre todas las facciones.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El reconocimiento internacional del gobierno maderista por Alemania.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El asesinato de Madero y Pino Suárez, y la usurpación de Huerta.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Durante esos combates en la capital, el general Huerta traicionó a Madero, lo obligó a renunciar y poco después ordenó su asesinato junto con el vicepresidente Pino Suárez."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La usurpación de Huerta reavivó la lucha armada, pues Venustiano Carranza desconoció su gobierno mediante el Plan de Guadalupe, iniciando la fase constitucionalista de la Revolución."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo tal armisticio general en 1913; el Congreso Constituyente de Querétaro se reunió hasta 1916-1917; y no existió un reconocimiento alemán al gobierno de Madero en ese episodio."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué diferencia de fondo dividió a constitucionalistas (Carranza, Obregón) de convencionistas (Villa, Zapata) tras la caída de Huerta?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La forma de gobierno futura, pues un bando proponía monarquía y otro república.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El alcance del reparto agrario y el control del proceso posrevolucionario.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La postura ante Estados Unidos, pues un bando buscaba la anexión total.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La religión oficial que debía adoptar el nuevo Estado mexicano.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "La Convención de Aguascalientes (1914) intentó unir a las facciones, pero Carranza se negó a acatar sus acuerdos, y villistas y zapatistas exigían una reforma agraria más profunda que la que él estaba dispuesto a conceder."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esa ruptura llevó a una nueva guerra civil dentro de la Revolución, resuelta militarmente a favor de los constitucionalistas hacia 1915-1916, lo que les permitió convocar el Congreso Constituyente."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Ningún bando proponía una monarquía; ninguno buscaba la anexión del país a Estados Unidos; y la disputa no era de carácter religioso, sino sobre el ritmo y la profundidad de las reformas sociales."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué hizo innovadora a la Constitución de 1917 frente a otras constituciones de su época?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Estableció una monarquía parlamentaria inspirada en el modelo británico.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Eliminó cualquier mención a la propiedad privada en el territorio nacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Incorporó derechos sociales, como la reforma agraria y los laborales.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Suprimió por completo la división de poderes en favor del Ejecutivo.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "A diferencia del liberalismo clásico de 1857, centrado en libertades individuales, la de 1917 reconoció derechos colectivos como la jornada de ocho horas, el salario mínimo y la propiedad originaria de la nación sobre tierra y subsuelo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Por esto se le considera pionera a nivel mundial en constitucionalismo social, anterior incluso a la Constitución de Weimar de 1919."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "México siguió siendo una república, no una monarquía; la Constitución mantuvo la división de poderes, aunque con un Ejecutivo fuerte; y no eliminó la propiedad privada, sino que la subordinó al interés público en ciertos casos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué papel cumplió la fundación del Partido Nacional Revolucionario (PNR) en 1929?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Transfirió el poder legislativo completo a los gobiernos estatales.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Institucionalizó la lucha por el poder y redujo los alzamientos armados.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Disolvió al ejército revolucionario para sustituirlo por fuerzas extranjeras.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Restauró el sistema de reelección indefinida vigente en el Porfiriato.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Impulsado por Plutarco Elías Calles tras el asesinato de Álvaro Obregón, el PNR agrupó a caudillos y organizaciones regionales bajo una sola estructura para negociar el poder sin recurrir a las armas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ese partido, con sus posteriores transformaciones (PRM, PRI), se convirtió en el eje del sistema político mexicano durante más de setenta años."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El PNR no restauró la reelección indefinida —la sucesión pasó a negociarse dentro del partido, no por permanencia de una sola persona—; no disolvió al ejército a favor de fuerzas extranjeras; y no transfirió el poder legislativo a los estados, sino que reforzó el control central."
+      }
+    ]
+  }
+]

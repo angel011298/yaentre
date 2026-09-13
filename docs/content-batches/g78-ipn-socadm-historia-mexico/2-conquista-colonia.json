@@ -1,0 +1,317 @@
+[
+  {
+    "stem": "¿Qué factor fue determinante para que Hernán Cortés lograra vencer al imperio mexica en 1521?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El uso exclusivo de armas de fuego, del todo desconocidas en Mesoamérica.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La superioridad numérica de las tropas españolas sobre los ejércitos mexicas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Las alianzas con pueblos como los tlaxcaltecas, rivales históricos de Tenochtitlan.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El respaldo económico inmediato de la Corona española a la expedición.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Los tlaxcaltecas y otros pueblos resentidos por el dominio tributario mexica aportaron la mayoría de los combatientes que sitiaron Tenochtitlan."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Sin esos miles de guerreros aliados, la reducida tropa española no habría podido sostener un sitio prolongado contra una ciudad de cientos de miles de habitantes."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los españoles eran una minoría numérica, no una mayoría; usaban pólvora pero en cantidades limitadas, y la expedición de Cortés fue financiada de forma privada, sin respaldo económico inicial de la Corona."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué las epidemias como la viruela tuvieron un impacto demográfico tan devastador en la población indígena tras 1520?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La falta de inmunidad previa a enfermedades traídas de Europa y África.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La prohibición colonial del uso de remedios medicinales indígenas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Un clima húmedo del altiplano que solo favorecía a los patógenos europeos.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La contaminación deliberada de las fuentes de agua por los conquistadores.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Al no haber existido contacto previo con virus como el de la viruela, la población americana no había desarrollado defensas inmunológicas frente a ellos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este fenómeno, junto con el trabajo forzado y la desarticulación de la producción agrícola local, provocó un colapso demográfico de hasta el 80-90% en un siglo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo un plan deliberado de contaminación de agua; la medicina indígena siguió practicándose y en muchos casos se integró a la colonial; y el clima no determinaba la susceptibilidad a estos virus, que afectaban por igual distintas regiones."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué consistía el sistema de encomienda durante la Colonia temprana?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una repartición de tierra baldía entre los colonos sin ninguna obligación con la Corona.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Un impuesto que la Corona cobraba de forma directa, sin intermediarios.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Un contrato salarial voluntario entre trabajadores indígenas y hacendados.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Un grupo indígena quedaba asignado a un español a cambio de tributo y trabajo.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "La encomienda no otorgaba tierra ni propiedad sobre las personas, sino el derecho a cobrar tributo y exigir trabajo de una comunidad indígena determinada."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "A cambio, el encomendero debía costear la evangelización y, en teoría, el bienestar de los encomendados, aunque en la práctica el abuso fue generalizado y motivó denuncias como las de Bartolomé de las Casas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No era una simple repartición de tierra vacía, ni un cobro directo de la Corona sin intermediarios, ni una relación salarial voluntaria: el indígena encomendado no elegía ni podía negarse a la relación."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál fue una estrategia común de las órdenes religiosas para evangelizar a la población indígena en el siglo XVI?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Aprender lenguas indígenas y adaptar símbolos previos al culto católico.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Sustituir de inmediato los templos indígenas por universidades laicas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Trasladar a la población indígena a territorios peninsulares para instruirla.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Prohibir por completo cualquier lengua distinta al español en los conventos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Frailes como los franciscanos elaboraron gramáticas y catecismos en náhuatl y otras lenguas, y aprovecharon similitudes entre símbolos indígenas y cristianos (cruces, ritos de purificación) para facilitar la conversión."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta adaptación explica fenómenos como el sincretismo religioso, visible por ejemplo en la construcción de templos católicos sobre antiguos centros ceremoniales."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se prohibió el uso de lenguas indígenas en los conventos —al contrario, se estudiaron—; no hubo traslados masivos a la península; y los templos se sustituyeron por iglesias, no por universidades."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué función cumplía el sistema de castas en la sociedad novohispana?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Clasificaba a la población por origen étnico para fijar derechos e impuestos.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Organizaba a la población solamente según su lugar de nacimiento en Nueva España.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Determinaba el reparto de tierra entre las distintas órdenes religiosas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Fijaba turnos de trabajo minero obligatorio por igual para todos los grupos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Categorías como español, criollo, mestizo, mulato o indio definían el acceso a cargos públicos, la carga tributaria y hasta el tipo de vestimenta permitida."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El sistema buscaba mantener a los españoles peninsulares en la cúspide social y económica, limitando la movilidad de castas mixtas aunque tuvieran recursos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El lugar de nacimiento (criollo vs. peninsular) era solo un eje de la clasificación, no el único; el reparto de tierras entre órdenes religiosas era un asunto distinto; y el trabajo minero forzado recaía sobre todo en la población indígena, no de forma pareja entre castas."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué la minería de plata se convirtió en el eje de la economía novohispana durante el virreinato?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sustituía por completo a la agricultura como fuente de alimento colonial.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Servía únicamente para acuñar moneda de uso interno en Nueva España.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La plata alimentaba el comercio con Asia y Europa y financiaba a la Corona.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Era el único producto cultivable en las zonas áridas del norte novohispano.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Yacimientos como Zacatecas y Guanajuato produjeron enormes volúmenes de plata que salían por Veracruz y Acapulco hacia España y, vía la Nao de China, hacia Asia."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ese flujo de metal precioso fue clave para el comercio global de la época y para sostener el gasto militar y administrativo del imperio español."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La plata no se \"cultiva\" (es un mineral); la agricultura siguió siendo esencial para alimentar a la población; y buena parte de la plata acuñada circulaba fuera de Nueva España, no solo internamente."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué buscaban las reformas borbónicas de la segunda mitad del siglo XVIII en Nueva España?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Fortalecer el poder económico de las órdenes religiosas sobre el comercio.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Reducir de forma permanente los impuestos a la producción minera novohispana.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Dar mayor autonomía política a los cabildos criollos frente al virrey.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Centralizar el poder real, subir la recaudación y frenar a los criollos en cargos.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Los Borbones reorganizaron la administración (intendencias), reforzaron el cobro de impuestos y favorecieron a peninsulares sobre criollos en puestos de gobierno."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este descontento criollo por el desplazamiento político, sumado a la crisis de 1808 en España, es considerado una causa de fondo del movimiento de independencia iniciado en 1810."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las reformas restaron autonomía a los cabildos en vez de ampliarla; aumentaron, no redujeron, la presión fiscal sobre la minería; y buscaron reducir, no fortalecer, el poder económico de la Iglesia (expulsión de los jesuitas en 1767)."
+      }
+    ]
+  }
+]

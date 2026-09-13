@@ -380,6 +380,162 @@ nunca actualizó la línea 3 de este documento.)*
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
 
+## G78 — Lote de reactivos: Historia de México, IPN SOCADM (2026-09-13)
+
+> Primera fase de contenido que corre con el generador ya blindado por G77
+> (`LENGTH_BIAS` y `ORDER_PATTERN` en `scripts/lib/lot-validation.ts`). Modelo
+> real `claude-sonnet-5`. **40 reactivos insertados con `isVerified=false`**
+> en los 6 temas de Historia de México, IPN Ciencias Sociales y
+> Administrativas (SOCADM) — la materia de mayor peso (6) entre las cuatro
+> que mantenían a esa área en `COMING_SOON` desde G27.
+
+### 1. Por qué esta materia
+
+`pnpm content:guard` marcaba IPN SOCADM en **8/25 de peso (32%) ⛔ COMING_SOON**,
+con Historia de México, Historia Universal, Geografía y Civismo/Derecho en
+**cero** reactivos. De las cuatro, Historia de México es la de mayor peso
+(6, contra 4/4/3 de las otras) — cerrarla es el paso que más mueve el
+porcentaje del área por unidad de esfuerzo.
+
+### 2. Temario y anclaje: sin `SourceChunk`, TEMARIO_ONLY explícito
+
+Se consultaron los 6 temas sembrados de la materia
+(`prisma/seed/ipn.ts::generateTopicsSocadm`) contra la DB: los 6 tienen
+**0 `SourceChunk`** y 0 reactivos previos. Sin material fuente que citar, los
+40 reactivos se compusieron desde el temario oficial y se insertaron con
+`sourceChunks: []` → `groundingStatus = TEMARIO_ONLY` en los 40, tal como
+exige CLAUDE.md cuando no hay fragmentos disponibles.
+
+| Tema | Reactivos | topicId |
+|---|---|---|
+| Época prehispánica | 6 | `cmrr1m4yj00e5hi3n4yntho8j` |
+| Conquista y Colonia | 7 | `cmrr1m5je00e7hi3no7bd2uta` |
+| Independencia | 6 | `cmrr1m65x00e9hi3ntzmrsbni` |
+| Reforma y Guerra de Intervención | 6 | `cmrr1m6sm00ebhi3nqy8msmtx` |
+| Revolución Mexicana (incluye Porfiriato como antecedente causal) | 8 | `cmrr1m7ae00edhi3ndvipzn8h` |
+| México Moderno (siglo XX-XXI) | 7 | `cmrr1m7pt00efhi3nzqvt35wv` |
+
+El temario sembrado no tiene un tema propio de "Porfiriato": sus causas
+económicas y sociales (inversión extranjera, concentración de tierra,
+descontento previo a 1910) se trataron como antecedente dentro de
+"Revolución Mexicana", que por eso lleva 8 reactivos en vez de 6-7. El
+criterio de composición priorizó procesos y causas (por qué pasó algo) sobre
+fechas aisladas, como pide el examen real y el encargo de esta fase.
+
+### 3. Aplicando G77 de verdad, no solo pasando la validación
+
+El encargo pedía explícitamente que el blindaje de G77 se reflejara en
+**cómo se redacta**, no solo en que el validador diera verde por casualidad.
+Dos decisiones de proceso, no de contenido:
+
+**(a) Posición de la clave: `crypto.randomInt`, no criterio humano.** Cada
+reactivo se compuso con la opción correcta identificada por CONTENIDO (no
+por letra) y un script (`docs/content-batches/g78-ipn-socadm-historia-mexico/build.mjs`)
+barajó las 4 opciones con Fisher-Yates usando `crypto.randomInt` por
+reactivo, de forma independiente — exactamente lo que CLAUDE.md pide tras
+G77: nunca "voy ciclando A,B,C,D" ni "toca la siguiente letra". El archivo
+`build-data.mjs` en la misma carpeta es el contenido fuente (con la opción
+correcta marcada); `build.mjs` es reproducible (`node build.mjs` desde esa
+carpeta) y documenta el método para que quede auditable, no solo el
+resultado.
+
+**(b) Longitud de las 4 opciones: igualada por diseño, no por suerte —
+y la primera redacción SÍ tenía el sesgo.** La primera versión de los 40
+reactivos midió `longestShare=97.5%` (39 de 40 con la clave como la opción
+más larga) contra `analyzeLot` — el mismo síntoma que G76 encontró en el
+lote de Inglés, aquí mucho más severo porque cada distractor se redactó
+inicialmente como una frase corta y la clave con matices completos. Se
+reescribieron las 4 opciones de los 40 reactivos acortando la clave a su
+núcleo factual (no alargando los distractores con relleno), lo que bajó el
+share a 55% — todavía por encima del rechazo (45%). Una segunda pasada
+extendió 10 distractores en 2-4 palabras para deshacer los empates más
+cerrados, dejando `longestShare=32.5%`, `shortestShare=0.0%`,
+`meanRatio=1.06` — sano y por debajo incluso del umbral de advertencia
+(40%). Este proceso (medir con `analyzeLot`, no solo "a ojo") es la prueba
+de que el blindaje se aplicó al MÉTODO, no solo al resultado final.
+
+### 4. Validación de lote — cero violaciones, no por casualidad
+
+```
+Total de reactivos: 40
+Distribución de posición: {"C":13,"A":11,"B":7,"D":9}   (17.5%-32.5%, dentro de 15-40%)
+Sesgo de longitud: clave=más-larga 32.5%, clave=más-corta 0.0% (n=40), razón media 1.06
+Patrones de orden detectados: 0
+✅ Sin violaciones.
+```
+
+`content:insert` corrió con `--lot-dir` apuntando a los 6 archivos del lote
+(el chequeo de sesgo de posición y de longitud necesita ver el conjunto
+completo, no un tema de 6-8 reactivos por separado) y aprobó antes de
+insertar — igual que G3c exige. 0 rechazados por formato/Zod/KaTeX en los
+40; 0 duplicados de enunciado.
+
+### 5. Exactitud factual
+
+Los 40 reactivos se verificaron uno por uno contra hechos consolidados de
+historiografía mexicana estándar (actores, fechas y atribuciones de
+eventos): domesticación del maíz y sedentarismo mesoamericano, función
+tributario-militar de la Triple Alianza, alianzas indígenas y epidemias en
+la Conquista, encomienda y reformas borbónicas, causas externas e internas
+de 1810-1821 (invasión napoleónica, Sentimientos de la Nación, Plan de
+Iguala), Leyes de Reforma / Constitución de 1857 / intervención francesa /
+Segundo Imperio, Porfiriato / Plan de San Luis / Plan de Ayala / Decena
+Trágica / Constitución de 1917 / fundación del PNR, y del Cardenismo a la
+alternancia del año 2000. Ningún reactivo de esta fase depende de
+`SourceChunk` (TEMARIO_ONLY), así que la exactitud recae enteramente en
+esta verificación previa a la inserción — la verificación ciega
+(`content:blind-batch`, próxima fase) es la segunda pasada adversarial
+independiente que exige el PRD §8.
+
+### 6. `content:guard`: antes y después — el movimiento es de PESO cubierto, no de "sirve" todavía
+
+| Métrica | Antes (G77) | Después (G78) |
+|---|---|---|
+| IPN SOCADM — peso cubierto | 8/25 (32%) ⛔ | **8/25 (32%) ⛔ — sin cambio numérico todavía** |
+| Historia de México — sirve | 0 | 0 (40 insertados, `isVerified=false`) |
+
+`content:guard` cuenta el pool **servible** (`isVerified=true`); estos 40
+reactivos están en la cola de verificación adversarial, así que el
+porcentaje del área NO se mueve todavía — mismo patrón ya documentado en
+G75 (Inglés UNAM insertado) → G76 (verificado, ahí sí subió `content:guard`).
+Lo que SÍ cambió, y es lo que hace a esta fase relevante para el hueco: en
+cuanto la verificación ciega apruebe el lote, Historia de México pasa de
+`sirve=0` a `sirve=40` contra una cuota de solo 6 (`necesita=6`,
+`apportionByWeight` sobre el peso de la materia) — la satisface de sobra, y
+el área sube de **32% a 56%** (8+6 de 25). Sigue por debajo del umbral de
+70%: faltarían todavía Historia Universal (peso 4), Geografía (peso 4) y
+Civismo/Derecho (peso 3) para llegar a `READY`. Las 4 aserciones de
+`content:guard` (P1-P4) siguieron en verde antes y después.
+
+### 7. Banco de contenido
+
+| Métrica | Antes (G77) | Después (G78) |
+|---|---|---|
+| Filas `Question` totales | 1 187 | **1 227** |
+| Servibles (`isVerified=true`) | 1 183 | 1 183 (sin cambio — cola de verificación) |
+| Pendientes de verificación | 4 | **44** (los 40 nuevos + 4 previas) |
+
+`pnpm backup:export` corrido tras la inserción — `backups/content-bank.json`
+va en este mismo commit (G61).
+
+### 8. Verificación de la fase
+
+| Comando | Resultado |
+|---|---|
+| `content:insert` ×6 (uno por tema, `--lot-dir` al conjunto) | ✅ 40/40 insertados, lote aprobado sin violaciones |
+| `pnpm content:guard` (antes) | IPN SOCADM 32% ⛔, Historia de México `sirve=0` |
+| `pnpm content:guard` (después) | IPN SOCADM 32% ⛔ (sin cambio hasta verificación); ver §6 |
+| `pnpm typecheck` | ✅ |
+| `pnpm lint` | ✅ |
+
+### Siguiente
+
+`pnpm content:blind-batch --topic <cada uno de los 6 topicId>` (o `--all`)
+para la verificación ciega de los 40 — segunda pasada adversarial
+independiente (PRD §8). Solo tras eso `content:guard` reflejará el 56% real
+de IPN SOCADM. Después seguiría cerrar Historia Universal, Geografía y
+Civismo/Derecho (pesos 4/4/3) para llevar el área completa a `READY`.
+
 ## G77 — Validador de lote: señuelo de longitud y orden predecible (2026-09-13)
 
 > G76 verificó a ciegas los 40 reactivos de Inglés UNAM (G75) y encontró dos

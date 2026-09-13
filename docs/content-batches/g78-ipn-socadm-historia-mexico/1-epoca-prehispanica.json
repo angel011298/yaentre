@@ -1,0 +1,272 @@
+[
+  {
+    "stem": "¿Qué factor explica principalmente el paso de grupos nómadas a aldeas permanentes en Mesoamérica hacia el 2500 a.C.?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los animales de tiro permitieron transportar cosechas entre distintos valles.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El comercio antillano introdujo el cultivo en terrazas hacia el año 2500 a.C.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El maíz domesticado dio un excedente alimentario capaz de sostener aldeas fijas.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Los yacimientos cercanos de obsidiana atrajeron población hacia las riberas de los ríos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "La agricultura del maíz, ya domesticado hacia esa fecha, producía suficiente alimento almacenable como para que un grupo dejara de depender de la caza-recolección itinerante."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El excedente agrícola liberó tiempo y mano de obra para otras actividades (cerámica, construcción, organización religiosa), sentando las bases de las aldeas y después de las ciudades mesoamericanas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Mesoamérica no tuvo animales de tiro (caballo, buey) antes de la Colonia, así que esa opción es anacrónica; la obsidiana y el comercio antillano fueron relevantes en otros procesos, pero no explican el sedentarismo temprano."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál era la función principal de la Triple Alianza formada por Tenochtitlan, Texcoco y Tlacopan?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Repartirse el control militar y el tributo de los pueblos sometidos del valle.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Reservarse el comercio exclusivo con los reinos purépechas del occidente.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Sustituir los cultos locales por uno único dedicado a Huitzilopochtli.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Imponer el náhuatl como única lengua obligatoria en todo el territorio mexica.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "La alianza de 1428 entre las tres ciudades-Estado organizó campañas conjuntas de conquista y repartió el tributo obtenido, con Tenochtitlan como socio dominante."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Cada pueblo conquistado seguía gobernado por su propia nobleza, pero pagaba tributo en bienes y servicio militar a la Triple Alianza; no hubo imposición lingüística ni religiosa uniforme."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El náhuatl se difundió como lengua de prestigio, pero nunca fue obligatorio; los cultos locales convivieron con el de Huitzilopochtli; y con los purépechas la relación fue de conflicto armado, no de comercio exclusivo."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué la expansión militar mexica dependía estrechamente de su sistema de tributos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Las conquistas sumaban pueblos tributarios que sostenían con bienes a la capital.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Las conquistas buscaban sobre todo prisioneros para el comercio de esclavos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Las conquistas perseguían ante todo el control de las rutas de sal del golfo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Las conquistas garantizaban nuevas tierras de cultivo directo para la nobleza guerrera.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Cada pueblo vencido quedaba obligado a entregar tributo periódico (alimentos, textiles, materiales, mano de obra), que era la base económica del poder mexica."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este mecanismo permitía a Tenochtitlan sostener a su población, su ejército y su clase gobernante sin depender solo de la agricultura del Valle de México."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los prisioneros de guerra se destinaban sobre todo al sacrificio ritual, no a un mercado de esclavos organizado; el reparto de tierra a guerreros existía pero no era el motor de la expansión; la sal era un tributo más, no el objetivo central."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué propósito cumplía el uso simultáneo del Tonalpohualli (260 días) y el Xiuhpohualli (365 días) en Mesoamérica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Registrar por separado los linajes de la nobleza y los del pueblo común.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Unir el ciclo ritual de 260 días con el ciclo agrícola-solar de 365 días.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Fijar un calendario militar independiente del calendario del comercio.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Anunciar con precisión los eclipses solares que marcaban el fin de una era.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "El Tonalpohualli marcaba los días propicios para ritos y decisiones, mientras el Xiuhpohualli seguía el ciclo solar de siembra y cosecha; juntos formaban la \"rueda calendárica\" de 52 años."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ambos calendarios corrían en paralelo y su coincidencia cada 52 años era motivo de una ceremonia mayor (el Fuego Nuevo), central en la cosmovisión mesoamericana."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No existía un calendario separado para linajes, ni uno exclusivamente militar o comercial; la predicción de eclipses era una habilidad astronómica asociada, pero no el propósito de tener dos calendarios."
+      }
+    ]
+  },
+  {
+    "stem": "Además de comerciar, ¿qué función adicional cumplían los pochteca en la sociedad mexica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Dirigían el reclutamiento de soldados para las campañas de conquista.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Servían como informantes y espías del Estado en los territorios donde comerciaban.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Supervisaban la construcción de los caminos hacia las costas del imperio.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Administraban los templos principales de las provincias tributarias.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Su movilidad por territorios lejanos les daba acceso a información política y militar valiosa, que reportaban al gobierno mexica."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Por esa doble función, los pochteca gozaban de privilegios especiales (su propio dios patrono, tribunales propios) y en ocasiones sus agravios en tierra extranjera justificaban una guerra."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La administración de templos correspondía al sacerdocio, el reclutamiento militar a los propios señores guerreros, y la construcción de caminos a la mano de obra tributaria, no a los comerciantes."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué explica la existencia de los tlacotin (personas en servidumbre) dentro de la sociedad mexica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Se reservaba únicamente a los prisioneros de guerra destinados al sacrificio.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Era una condición hereditaria impuesta solo a los pueblos recién conquistados.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Surgía por haber nacido fuera del matrimonio dentro del calpulli.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Se llegaba a esa condición por deudas o delitos, y no era hereditaria.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "A diferencia de la esclavitud colonial o de otras sociedades antiguas, el tlacotin mexica podía comprar su libertad y sus hijos nacían libres."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta condición funcionaba como una forma de servidumbre temporal y contractual, ligada a circunstancias económicas o penales concretas, no a un origen étnico o de nacimiento."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No dependía de ser de un pueblo conquistado, ni del nacimiento fuera del matrimonio; los prisioneros de guerra tenían un destino ritual distinto, separado del sistema de servidumbre interno."
+      }
+    ]
+  }
+]

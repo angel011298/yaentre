@@ -1,0 +1,317 @@
+[
+  {
+    "stem": "¿Qué motivó al presidente Lázaro Cárdenas a expropiar la industria petrolera en 1938?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una exigencia directa de Estados Unidos para regular los precios.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La necesidad de financiar la construcción de la red ferroviaria nacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Las compañías extranjeras incumplieron el fallo laboral de la Corte.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El agotamiento de los yacimientos administrados por extranjeros.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Cuando las compañías petroleras se negaron a acatar la sentencia que las obligaba a mejorar condiciones laborales, Cárdenas decretó la expropiación el 18 de marzo de 1938."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La medida, respaldada por una amplia movilización popular que ayudó a pagar la indemnización, dio origen a Petróleos Mexicanos (Pemex) como empresa estatal."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La expropiación no buscaba financiar ferrocarriles; Estados Unidos, de hecho, se opuso inicialmente a la medida; y los yacimientos no estaban agotados, sino en plena explotación por las compañías extranjeras."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué se diferenció el reparto agrario de Cárdenas del de gobiernos anteriores?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Devolvió toda la tierra repartida a los antiguos hacendados porfiristas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Concentró el reparto solo en las zonas urbanas del centro del país.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Eliminó por completo la propiedad privada agrícola en todo el país.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Impulsó el ejido colectivo a gran escala como forma dominante de tierra.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Cárdenas repartió más tierra que todos sus antecesores juntos, favoreciendo el ejido colectivo, especialmente en zonas como La Laguna y el Yaqui, ligado a la organización productiva comunitaria."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este modelo buscaba dar viabilidad económica al campesinado organizado, a diferencia del reparto más limitado y disperso de gobiernos previos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo una devolución de tierras a los antiguos hacendados —fue lo contrario—; la propiedad privada agrícola continuó existiendo junto al ejido; y el reparto se concentró en zonas rurales, no urbanas."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué caracterizó al periodo conocido como el \"Milagro Mexicano\" (décadas de 1940 a 1960)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Un estancamiento económico prolongado por el aislamiento internacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una apertura comercial total y la eliminación de aranceles externos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Un crecimiento industrial sostenido por sustitución de importaciones.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Una dependencia casi exclusiva de las exportaciones agrícolas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "El Estado protegió a la industria nacional con aranceles y subsidios, impulsando manufactura destinada al mercado interno en lugar de importar esos bienes."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El resultado fue un crecimiento económico sostenido de varias décadas, aunque con una industria poco competitiva a nivel internacional y creciente desigualdad social."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El periodo se caracterizó por proteger, no abrir, el mercado interno; hubo crecimiento, no estancamiento; y la industria manufacturera, no solo la exportación agrícola, fue el motor de la economía."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué exigía principalmente el movimiento estudiantil de 1968 en México?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Exigía libertades democráticas y la liberación de los presos políticos.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Exigía la nacionalización inmediata de la banca y las telecomunicaciones.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Exigía la anexión de territorios centroamericanos al país mexicano.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Exigía reducir el salario mínimo para frenar la inflación del país.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "El pliego petitorio estudiantil pedía, entre otras cosas, la derogación del delito de disolución social y la libertad de presos políticos, en un contexto de autoritarismo gubernamental."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El movimiento fue reprimido violentamente el 2 de octubre en Tlatelolco, un hecho que marcó profundamente la relación entre el Estado y la sociedad civil en las décadas siguientes."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El movimiento no giraba en torno a la nacionalización bancaria (que ocurriría hasta 1982), ni pedía reducir salarios, ni tenía ninguna demanda territorial centroamericana."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué provocó la crisis de la deuda externa de 1982 en México?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una sequía prolongada que eliminó por completo la producción agrícola.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El cierre total de la frontera norte al comercio exterior del país.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La cancelación unilateral de los tratados comerciales con Estados Unidos.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La caída del precio del petróleo y el alza de tasas de interés externas.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Durante los años setenta México se endeudó fuertemente confiando en los altos precios del petróleo; cuando estos cayeron y las tasas de interés subieron, el país no pudo cubrir sus pagos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La crisis obligó a una devaluación severa, a la nacionalización de la banca en 1982 y marcó el fin del modelo de sustitución de importaciones, abriendo paso a reformas de apertura económica en la década siguiente."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo cancelación de tratados comerciales con Estados Unidos en ese momento; la crisis fue financiera, no derivada de una sequía agrícola; y la frontera norte no se cerró al comercio."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué cambio estructural representó la entrada en vigor del Tratado de Libre Comercio de América del Norte (TLCAN) en 1994?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El regreso a un modelo de sustitución de importaciones más estricto.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La suspensión temporal de relaciones diplomáticas con Canadá.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El paso de un modelo proteccionista a uno de integración comercial abierta.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La nacionalización de las industrias automotriz y electrónica del país.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "El tratado eliminó gradualmente aranceles entre los tres países, consolidando el giro hacia la apertura comercial que México había iniciado desde su ingreso al GATT en 1986."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esto transformó la estructura productiva mexicana, orientándola cada vez más hacia la exportación de manufacturas, en particular hacia Estados Unidos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El TLCAN significó lo opuesto a un regreso proteccionista; no hubo suspensión de relaciones con Canadá, socio del propio tratado; y no implicó nacionalizar industrias, sino integrarlas al mercado privado regional."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué significó la elección presidencial del año 2000 para el sistema político mexicano?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La suspensión indefinida de las elecciones presidenciales posteriores.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El establecimiento definitivo de un sistema de partido único en el país.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El regreso a un régimen militar transitorio de cinco años en el país.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El fin de más de setenta años de gobierno del mismo partido en el poder.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "La victoria de Vicente Fox, de un partido distinto al que había gobernado desde 1929, marcó el fin de la hegemonía del PRI y una transición democrática pactada por vías electorales."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este cambio fue posible gracias a reformas electorales previas que fortalecieron la autonomía de las instituciones encargadas de organizar y vigilar los comicios."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La alternancia significó justo lo contrario a un partido único permanente; las elecciones posteriores continuaron celebrándose con normalidad; y en ningún momento se instauró un gobierno militar transitorio."
+      }
+    ]
+  }
+]

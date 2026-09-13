@@ -1,0 +1,272 @@
+[
+  {
+    "stem": "¿Qué buscaban los liberales mexicanos con las Leyes de Reforma promulgadas entre 1855 y 1861?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Restaurar los privilegios coloniales que la independencia había suprimido.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Fortalecer los lazos diplomáticos con España para recuperar territorio.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Reducir el poder de la Iglesia y el ejército, y separar al Estado de la religión.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Restablecer el sistema de castas para ordenar de nuevo a la población.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Leyes como la Ley Juárez, la Ley Lerdo y la Ley Iglesias limitaron los fueros del clero y del ejército y obligaron a desamortizar bienes eclesiásticos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El objetivo de fondo era construir un Estado laico y moderno donde la ley civil, no los fueros corporativos, rigiera para todos por igual."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Estas leyes no restauraban privilegios coloniales —los eliminaban—; no buscaban reincorporar territorio a España; y el sistema de castas, abolido desde la independencia, no se reinstauró."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué principio central estableció la Constitución de 1857?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una monarquía constitucional como forma definitiva de gobierno.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La anexión voluntaria de México a la Confederación americana.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La reinstauración de los fueros eclesiástico y militar.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Un Estado liberal con garantías individuales y supremacía del poder civil.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "La Constitución consagró derechos individuales y consolidó el proyecto liberal iniciado con las Leyes de Reforma, generando fuerte oposición conservadora."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ese rechazo conservador fue tan intenso que desembocó, casi de inmediato, en la Guerra de Reforma entre 1858 y 1861."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Constitución era republicana, no monárquica; eliminaba, no reinstauraba, los fueros; y no propuso ninguna anexión a un país extranjero."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué enfrentó a liberales y conservadores en la Guerra de Reforma (1858-1861)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El reparto de tierras comunales entre las distintas etnias indígenas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La definición de los límites territoriales con Guatemala.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La disputa entre un Estado laico y federal y uno centralista con fueros clericales.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El control exclusivo de los puertos comerciales del golfo de México.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Liberales, con Juárez a la cabeza, defendían la Constitución de 1857; los conservadores buscaban un régimen centralista, apoyado en el clero y el ejército, y llegaron a proponer una monarquía."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La guerra terminó con la victoria liberal, pero dejó al país exhausto y con una deuda que detonaría después la intervención extranjera."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El conflicto no giraba en torno al control portuario del golfo, ni a límites con Guatemala, ni al reparto de tierras indígenas; esos eran temas distintos al eje ideológico central de la guerra."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué llevó a Francia, España e Inglaterra a intervenir militarmente en México en 1861?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La expulsión de todos los ciudadanos europeos residentes en el país.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La suspensión del pago de la deuda externa que Juárez decretó por la crisis.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Un tratado previo que cedía territorio mexicano a cambio de armas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La negativa mexicana a comerciar con las potencias europeas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Tras años de guerra civil, el gobierno juarista no tenía recursos para pagar la deuda contraída con esas potencias y decretó una moratoria de dos años."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "España e Inglaterra negociaron y se retiraron al poco tiempo (Convenios de La Soledad), pero Francia aprovechó el pretexto para avanzar hacia la Ciudad de México, con miras a un proyecto imperial más ambicioso."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "México no cerró su comercio con Europa; no existió tal tratado de territorio por armas; y no hubo una expulsión masiva de europeos que motivara la intervención."
+      }
+    ]
+  },
+  {
+    "stem": "¿Con qué propósito Napoleón III impulsó el establecimiento de Maximiliano de Habsburgo como emperador de México?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Financiar solo la construcción de vías férreas en el centro del país.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Devolver el territorio mexicano a la Corona española bajo un nuevo acuerdo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Crear un imperio afín a Francia como contrapeso a Estados Unidos.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Unificar a México y Francia bajo una sola estructura de gobierno.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "Con Estados Unidos debilitado por su Guerra Civil (1861-1865), Francia vio la oportunidad de instalar un régimen monárquico aliado que ampliara su influencia en el continente."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El proyecto contó con apoyo de conservadores mexicanos, pero fracasó al fortalecerse la resistencia liberal y al retirar Napoleón III su respaldo militar en 1866-1867."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se trataba de devolver el territorio a España, ni el proyecto se limitaba a obras ferroviarias; y el imperio buscaba ser un Estado mexicano gobernado por un europeo, no una fusión política con Francia."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué la victoria republicana de 1867 fortaleció la figura de Benito Juárez y el proyecto liberal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Consolidó el triunfo del Estado laico y federal sobre el conservadurismo.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Permitió restablecer de inmediato los fueros militares abolidos antes.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Obligó a México a aceptar un protectorado francés temporal en el sureste.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Devolvió el control de las aduanas a las autoridades eclesiásticas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La causa clave",
+        "content": "El fusilamiento de Maximiliano en Querétaro y la restauración de la República en 1867 cerraron el ciclo de la Reforma con la victoria definitiva del proyecto liberal."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Juárez encabezó después la reconstrucción del país bajo los principios de la Constitución de 1857, sentando bases institucionales que perdurarían hasta el Porfiriato."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La restauración no reinstauró fueros militares —al contrario, reafirmó su abolición—; no se estableció ningún protectorado francés; y el control aduanero permaneció en manos del Estado civil, no de la Iglesia."
+      }
+    ]
+  }
+]
