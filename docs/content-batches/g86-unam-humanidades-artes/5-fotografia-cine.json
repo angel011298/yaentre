@@ -1,0 +1,362 @@
+[
+  {
+    "stem": "El primer procedimiento fotográfico de uso práctico, presentado públicamente en 1839 y que producía una imagen única sobre una placa de metal plateado, se conoce como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Calotipo, desarrollado por William Henry Fox Talbot.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Fotograma, técnica que no requiere cámara ni lente.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Daguerrotipo, desarrollado por Louis Daguerre.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Heliografía, desarrollada por Nicéphore Niépce en la década de 1820.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El daguerrotipo, presentado en 1839 ante la Academia de Ciencias de Francia, producía una única imagen positiva directamente sobre una placa metálica sensibilizada, con gran nitidez de detalle pero sin posibilidad de hacer copias múltiples a partir de un negativo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Su presentación pública en 1839 se considera convencionalmente el año de \"nacimiento\" oficial de la fotografía como técnica disponible más allá de experimentos individuales, aunque procesos anteriores —como la heliografía de Niépce en los años 1820— ya habían logrado fijar imágenes."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El calotipo de Talbot, desarrollado casi al mismo tiempo, sí permitía obtener copias múltiples a partir de un negativo de papel, una diferencia técnica importante frente al daguerrotipo; la heliografía de Niépce es anterior y de calidad más limitada; y el fotograma es una técnica sin cámara, distinta del proceso descrito."
+      }
+    ]
+  },
+  {
+    "stem": "Este fotógrafo mexicano, considerado el más influyente de su país en el siglo XX, es autor de imágenes como \"Obrero en huelga, asesinado\" (1934) y \"La buena fama durmiendo\" (1938), cercanas en ocasiones a la sensibilidad surrealista:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Manuel Álvarez Bravo.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Lola Álvarez Bravo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Héctor García.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Nacho López.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Manuel Álvarez Bravo desarrolló, desde los años treinta, una fotografía que combina un fuerte interés documental por la vida cotidiana y popular mexicana con una composición cuidada y, en algunas series, una atmósfera onírica que atrajo el interés de artistas surrealistas como André Breton."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "\"Obrero en huelga, asesinado\" documenta el cuerpo de un trabajador muerto durante un conflicto laboral, mientras que \"La buena fama durmiendo\" es una imagen más enigmática y construida, ejemplo de su lado más cercano al surrealismo; ambas se cuentan entre sus obras más reproducidas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Nacho López y Héctor García son fotógrafos mexicanos posteriores, reconocidos sobre todo por el fotoperiodismo de mediados del siglo XX; Lola Álvarez Bravo, su esposa durante un tiempo, fue también una fotógrafa notable por derecho propio, pero no es la autora de estas dos imágenes en particular."
+      }
+    ]
+  },
+  {
+    "stem": "Esta fotógrafa de origen italiano, activa en México durante los años veinte y vinculada al círculo de los muralistas y al Partido Comunista Mexicano, es reconocida por fotografías de composición geométrica como sus estudios de rosas y por imágenes de trabajadores y manifestaciones obreras:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Kati Horna.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Tina Modotti.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Lola Álvarez Bravo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Graciela Iturbide.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Tina Modotti llegó a México en 1923 y desarrolló, en poco más de una década, una obra fotográfica que combina un interés formal por la composición —muy influido por su pareja de entonces, el fotógrafo Edward Weston— con un fuerte compromiso político expresado en imágenes de obreros, campesinos y símbolos revolucionarios."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Su cercanía con muralistas como Diego Rivera y con movimientos políticos de izquierda de la época la convirtió en una figura central para entender el cruce entre fotografía, arte y política en el México posrevolucionario de los años veinte."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Kati Horna, fotógrafa húngara, llegó a México más tarde, tras la Guerra Civil española; Graciela Iturbide es una fotógrafa mexicana de generaciones posteriores, célebre por series como \"Juchitán\"; y Lola Álvarez Bravo, aunque contemporánea y también vinculada al ambiente artístico, desarrolló una obra y una trayectoria distintas a la de Modotti."
+      }
+    ]
+  },
+  {
+    "stem": "El periodo del cine mexicano comprendido aproximadamente entre finales de los años treinta y los años cincuenta del siglo XX, caracterizado por una producción cinematográfica de gran popularidad y proyección internacional, con géneros como el melodrama rural y la comedia ranchera, se conoce como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "La Época de Oro del cine mexicano.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El Cine de Ficheras, subgénero asociado más bien a las décadas de 1970 y 1980.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El Cine Mudo Nacional, periodo anterior a la llegada del sonido al cine mexicano.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El Nuevo Cine Mexicano, etiqueta que corresponde en realidad a un movimiento posterior de finales del siglo XX.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Durante la Época de Oro, la industria cinematográfica mexicana se benefició, entre otros factores, de la disminución de la producción hollywoodense de habla hispana y de las dificultades de otras industrias cinematográficas durante y después de la Segunda Guerra Mundial, lo que le permitió consolidar un mercado amplio en México y América Latina."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Figuras como Emilio \"El Indio\" Fernández en la dirección, Gabriel Figueroa en la fotografía, y actores como María Félix, Pedro Infante y Dolores del Río se volvieron referentes de este periodo, con películas que combinaban melodrama, folclor rural y una fuerte construcción de identidad nacional."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Nuevo Cine Mexicano es una etiqueta usada para un movimiento de renovación posterior, ya en las últimas décadas del siglo XX; el cine de ficheras es un subgénero de comedia urbana de décadas posteriores; y el cine mudo nacional corresponde al periodo anterior, previo a la llegada del sonido a finales de los años veinte."
+      }
+    ]
+  },
+  {
+    "stem": "Este director de fotografía mexicano, célebre por sus composiciones de cielos cargados de nubes y su manejo dramático de la luz y la sombra, colaboró frecuentemente con el director Emilio \"El Indio\" Fernández en películas como \"María Candelaria\" (1943), y más tarde trabajó también con cineastas como Luis Buñuel y John Ford:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Alex Phillips.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Rosalío Solano.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Gabriel Figueroa.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Jack Draper.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Gabriel Figueroa desarrolló un estilo fotográfico muy reconocible, con fuerte contraste de luces y sombras y encuadres que a menudo colocan cielos monumentales de nubes en la parte superior del cuadro, un recurso influido en parte por su acercamiento previo a fotógrafos y muralistas mexicanos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Su colaboración con Emilio Fernández produjo algunas de las películas más representativas de la Época de Oro, y su prestigio técnico le permitió trabajar también con cineastas extranjeros de renombre, como el español Luis Buñuel durante su etapa mexicana y el estadounidense John Ford."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Alex Phillips, Jack Draper y Rosalío Solano fueron también directores de fotografía activos en el cine mexicano de esa época, con trabajo reconocido, pero ninguno de ellos es el autor de la fotografía de \"María Candelaria\" ni el colaborador más asociado a Emilio Fernández."
+      }
+    ]
+  },
+  {
+    "stem": "El cineasta soviético, pionero de la teoría del montaje cinematográfico, que viajó a México a principios de los años treinta para filmar un proyecto —quedado inconcluso en su forma original— sobre la historia y la cultura del país, titulado \"¡Que viva México!\", fue:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Luis Buñuel.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Dziga Vertov.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Serguéi Eisenstein.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Vsévolod Pudovkin.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Eisenstein filmó en México, entre 1930 y 1932, una gran cantidad de material pensado para retratar distintos episodios y regiones del país, desde el mundo prehispánico hasta la Revolución; problemas de financiamiento con su productor interrumpieron el proyecto antes de que Eisenstein pudiera editarlo él mismo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "El material filmado se editó después, sin su supervisión directa, en distintas versiones armadas por otras personas; aun así, el proyecto influyó en la manera en que el cine —mexicano e internacional— representaría después el paisaje y la cultura popular del país, incluyendo la fotografía posterior de Gabriel Figueroa."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Dziga Vertov y Vsévolod Pudovkin fueron también cineastas soviéticos y teóricos del montaje de la misma época, pero ninguno de los dos viajó a filmar este proyecto en México; y Luis Buñuel, aunque trabajó varios años en el cine mexicano, lo hizo más tarde y con una filmografía distinta, centrada en producciones de ficción como \"Los olvidados\"."
+      }
+    ]
+  },
+  {
+    "stem": "En el lenguaje cinematográfico, el proceso mediante el cual se seleccionan y ordenan los distintos planos filmados para construir el ritmo, el sentido y la narración de una película se conoce como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Guion técnico, documento escrito previo al rodaje que planea las tomas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Montaje.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Doblaje, proceso de sustitución del audio original por otro grabado posteriormente.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Encuadre, término que se refiere a lo que queda contenido dentro de los límites de la imagen.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El montaje decide, entre otras cosas, la duración de cada plano, el orden en que se presentan los sucesos y las relaciones de sentido que surgen al yuxtaponer una imagen con otra; teóricos como Eisenstein defendieron que el choque entre dos planos podía generar una idea que ninguno de los dos contenía por separado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Es una de las herramientas más estudiadas en la apreciación cinematográfica porque, a diferencia de otras artes, el cine puede alterar radicalmente el significado de una escena solo cambiando el orden o la duración de sus planos, sin modificar el material filmado en sí."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El encuadre se refiere a la composición dentro de un solo plano, no a la relación entre varios planos; el doblaje es un proceso de posproducción de sonido ajeno a la edición de imagen; y el guion técnico es un documento de planeación previo al rodaje, no el proceso de edición posterior."
+      }
+    ]
+  },
+  {
+    "stem": "En el vocabulario técnico del cine, la toma que muestra el rostro de un personaje ocupando la mayor parte del encuadre, usada frecuentemente para resaltar una emoción o una reacción, se llama:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Plano americano, que encuadra a los personajes aproximadamente de la rodilla hacia arriba.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Plano general, que muestra a los personajes dentro de un espacio amplio que los contextualiza.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Primer plano.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Plano detalle, que aísla un objeto o una parte muy pequeña de la escena, no el rostro completo.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El primer plano concentra la atención del espectador en el rostro del personaje, dejando fuera casi todo el entorno, y es uno de los recursos más usados para comunicar estados emocionales sin necesidad de diálogo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Junto con el plano general (que muestra el entorno completo) y el plano americano (de uso frecuente en el cine de acción, para ver el cuerpo y las manos), forma parte de una escala de planos que el lenguaje cinematográfico usa de manera convencional para variar la distancia narrativa entre el espectador y la escena."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El plano general hace justamente lo contrario, mostrar el contexto amplio; el plano americano encuadra un fragmento mayor del cuerpo, no solo el rostro; y el plano detalle aísla un objeto pequeño o una parte del cuerpo distinta al rostro completo, como una mano o un ojo."
+      }
+    ]
+  }
+]

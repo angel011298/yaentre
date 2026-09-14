@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-09-14 · Última fase ejecutada: **G85 (COMPLETADA — verificación ciega de los 40 reactivos de Civismo/Derecho que compuso G84: **40/40 auto-aprobados**, y con ellos IPN «Ciencias Sociales y Administrativas» cierra su última materia en cero y pasa de **88% a 100% del peso del examen, `READY` con sus 7 materias completas** — la sexta de las 7 áreas en llegar al 100%, y la única que faltaba fuera de UNAM Humanidades; banco **1 343 servibles**, cola de verificación en cero, brecha contra la meta de 1 500 = **157**)**. Modelo real `claude-opus-5`. Ver §G85 abajo.
+Última actualización: 2026-09-14 · Última fase ejecutada: **G86 (COMPLETADA — 40 reactivos de Artes, UNAM «Humanidades y Artes»: las 5 materias del temario cubiertas (Artes visuales prehispánicas, Pintura colonial y moderna, Escultura mexicana, Arquitectura, Fotografía y cine), insertados con `isVerified=false`; 3 de los 5 temas SOURCED contra fragmentos reales de una guía de OTRA área de examen — usados solo como ancla de nombres/obras/conceptos que el temario confirma, nunca de texto, mismo criterio que G75; sesgo de longitud sano desde la composición (37.5%/32.5%, razón media 0.91) tras una segunda tirada de `crypto.randomInt` — la primera violó `POSITION_SKEW`/`ORDER_PATTERN` por puro azar, mismo patrón que G80; UNAM «Humanidades y Artes» se mantiene en 80% `PARTIAL` hasta que la verificación ciega publique el lote — mismo patrón que G75→G76, G78→G79, G80→G81, G82→G83 y G84→G85; banco **1 387 filas, 1 343 servibles sin cambio**, brecha contra la meta de 1 500 = **157**)**. Modelo real `claude-sonnet-5`. Ver §G86 abajo.
+
+<details><summary>Historial: G85 (2026-09-14)</summary>
+
+Última actualización: 2026-09-14 · Última fase ejecutada: **G85 (COMPLETADA — verificación ciega de los 40 reactivos de Civismo/Derecho que compuso G84: 40/40 auto-aprobados, y con ellos IPN «Ciencias Sociales y Administrativas» cierra su última materia en cero y pasa de 88% a 100% del peso del examen, `READY` con sus 7 materias completas — la sexta de las 7 áreas en llegar al 100%, y la única que faltaba fuera de UNAM Humanidades; banco 1 343 servibles, cola de verificación en cero, brecha contra la meta de 1 500 = 157)**. Modelo real `claude-opus-5`. Ver §G85 abajo.
+
+</details>
 
 <details><summary>Historial: G84 (2026-09-14)</summary>
 
@@ -421,6 +427,175 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G86 — Lote de reactivos: Artes, UNAM Humanidades y Artes (2026-09-14)
+
+> Modelo real `claude-sonnet-5`. **40 reactivos insertados con
+> `isVerified=false`** en las 5 materias del temario de Artes, UNAM
+> «Humanidades y Artes» (Área 4) — la última materia con cero reactivos que
+> quedaba en el catálogo completo de instituciones y áreas activas, tras el
+> cierre de Civismo/Derecho en G85.
+
+### 1. Por qué esta materia — y por qué la premisa del encargo era parcialmente falsa
+
+`pnpm content:guard` marcaba UNAM «Humanidades y Artes» en **8/10 de peso
+(80%) 🟡 PARTIAL**, con Artes (peso 2) como única materia en **cero**
+reactivos (Literatura, Filosofía y Español, compartida vía
+`sharedContentKey`, ya estaban cubiertas). El encargo la describía como el
+único hueco del catálogo — cierto en el sentido de "última materia en cero
+en las 7 áreas activas", pero el área en sí **ya era `PARTIAL` y elegible**
+desde antes (no estaba en «Próximamente»): cerrar Artes no cambia si UNAM
+Humanidades se ofrece, cambia si se ofrece **completa**.
+
+### 2. Temario y anclaje: 3 de 5 temas SOURCED, con una fuente delicada
+
+Los 5 temas de Artes (`prisma/seed/unam.ts`, función `generateTopicsArea4`)
+se consultaron contra la DB (`prisma.subject.findFirst` + `topics` +
+`sourceChunk.findMany` por tema):
+
+| Tema | Reactivos | topicId | SourceChunk |
+|---|---|---|---|
+| Artes visuales prehispánicas | 8 | `cmrr1kkcp0076hi3niiqepvuy` | 1 → SOURCED |
+| Pintura colonial y moderna | 8 | `cmrr1kkw60078hi3nej9jigbs` | 3 → SOURCED |
+| Escultura mexicana | 8 | `cmrr1klcr007ahi3n55ojo30e` | 0 → TEMARIO_ONLY |
+| Arquitectura | 8 | `cmrr1klzq007chi3nqwo1jj60` | 1 → SOURCED |
+| Fotografía y cine | 8 | `cmrr1kmka007ehi3n7pd7lvqe` | 0 → TEMARIO_ONLY |
+
+Los 5 `SourceChunk` disponibles (`locationRef` p. 48-52) resultaron ser,
+al leerlos completos, reactivos de opción múltiple YA REDACTADOS de una
+guía de preparación de OTRA área de examen ("Ciencias y Artes para el
+Diseño") — con derechos de autor de un tercero, exactamente la misma
+situación que G75 documentó para Inglés UNAM. Se aplicó el mismo criterio:
+**ancla de nombres/obras/conceptos que el temario confirma, nunca de
+texto.** Ningún enunciado, ninguna opción y ninguna explicación de los 40
+reactivos copia una pregunta o una opción de esa guía; lo que se tomó de
+los fragmentos fue la CONFIRMACIÓN de que el examen real espera, por
+ejemplo, distinguir entre culturas olmeca/teotihuacana/maya/zapoteca/
+totonaca, saber quién pintó "Madre campesina", dónde está el Partenón, o
+quién proyectó el mosaico de la Biblioteca Central de Ciudad Universitaria
+— datos verificados de forma independiente antes de redactar, nunca
+copiados de la respuesta marcada en la guía (que de hecho no las marca: el
+texto extraído son solo enunciados y opciones, sin clave visible).
+Escultura mexicana y Fotografía y cine no tienen `SourceChunk` → los 16
+reactivos de esos dos temas son 100% TEMARIO_ONLY.
+
+### 3. Derechos de autor — qué se verificó y cómo se evitó reproducir la fuente
+
+Ninguno de los 40 reactivos reproduce un poema, letra de canción o
+fragmento de texto protegido: el único tema con posible cruce literario
+(Fotografía y cine, por su vecindad con narrativa de guion) se mantuvo en
+hechos de producción y vocabulario técnico (montaje, planos, fotografía de
+Gabriel Figueroa), sin citar diálogo ni texto de ninguna obra. Las
+atribuciones (obra-autor-movimiento) se verificaron una por una contra
+conocimiento general de historia del arte antes de insertar — entre las
+más señaladas: "Madre campesina" (1926) de Diego Rivera; el esfumado de
+Leonardo da Vinci en La Gioconda; José Guadalupe Posada como autor de la
+calavera luego rebautizada "La Catrina" (y popularizada por Rivera en su
+mural de la Alameda); Coatlicue y la Piedra del Sol halladas ambas en 1790
+en la Plaza Mayor; la Tumba 7 de Monte Albán (orfebrería mixteca en una
+tumba zapoteca reutilizada) descubierta por Alfonso Caso en 1932; la tumba
+de Pakal en Palenque descubierta por Alberto Ruz Lhuillier en 1952; Manuel
+Tolsá como autor de "El Caballito" y de la culminación neoclásica de la
+Catedral Metropolitana; Luis Barragán, único mexicano con el Pritzker
+(1980); Juan O'Gorman como autor tanto del mosaico de la Biblioteca Central
+como de la casa-taller Rivera-Kahlo en San Ángel; Mathias Goeritz y las
+Torres de Satélite (con Barragán); y "Guernica" (1937) de Picasso. Donde el
+grado de certeza era menor (por ejemplo, fechas exactas de periodización
+estilística de la guía-fuente, como "1811-1876" para el Neoclásico
+mexicano), se redactó en términos más generales ("durante buena parte del
+siglo XIX") en vez de citar una cifra no verificable de forma independiente
+— mismo criterio de prudencia que G84 aplicó a la vigencia legal.
+
+### 4. Aplicando G77 de verdad: segunda tirada tras una violación por azar
+
+**(a) Posición de la clave: `crypto.randomInt`**, barajado Fisher-Yates
+independiente por reactivo (`build.mjs`), igual que G78/G80/G82/G84.
+
+**(b) La primera tirada REVENTÓ el validador de lote** (mismo escenario que
+G80 §"la primera tirada de `crypto.randomInt` violó `POSITION_SKEW` por
+azar"): con 40 reactivos la varianza de una asignación verdaderamente
+aleatoria puede caer fuera de la banda 15%-40% por pura casualidad, y esta
+vez además coincidió una racha periódica de período 2 en los últimos 6
+reactivos del lote (`A,C,A,C,A,C`, ítems #35-#40) — el mismo patrón
+`ORDER_PATTERN` que G77 diseñó para detectar. Ninguna de las dos violaciones
+se debe al CONTENIDO (que no se tocó): se volvió a correr `node build.mjs`
+sin editar `build-data.mjs`, y la segunda tirada aprobó limpio.
+
+**(c) Longitud de las 4 opciones: sana desde la primera redacción**, sin
+necesidad de una segunda pasada correctiva como en G84 — las 4 opciones de
+cada reactivo se escribieron con longitud comparable desde el origen
+(distractores con una cláusula descriptiva real cuando hacía falta para
+igualar, nunca relleno vacío).
+
+### 5. Validación de lote — cero violaciones tras la segunda tirada
+
+```
+Total de reactivos: 40
+Distribución de posición: {"A":9,"B":12,"C":12,"D":7}   (22.5%-30.0%, dentro de 15-40%)
+Distribución de dificultad: {"BASIC":18,"INTERMEDIATE":18,"ADVANCED":4}
+Sesgo de longitud: clave=más-larga 37.5%, clave=más-corta 32.5% (n=40), razón media 0.91
+Patrones de orden detectados: 0
+✅ Sin violaciones.
+```
+
+`pnpm content:insert` corrido 5 veces (una por tema, `--lot-dir` al
+conjunto de los 5 archivos) repitió la misma validación de CONJUNTO en cada
+corrida. 0 rechazados por formato/Zod/KaTeX en los 40; 0 duplicados de
+enunciado; 0 citas por letra en las explicaciones (todas citan a los
+distractores por su contenido, como exige CLAUDE.md).
+
+### 6. `content:guard`: antes y después — el mismo patrón de G75/G78/G80/G82/G84
+
+| Métrica | Antes (G86) | Después (G86) |
+|---|---|---|
+| UNAM Humanidades y Artes — peso cubierto | 8/10 (80%) 🟡 PARTIAL | **8/10 (80%) 🟡 PARTIAL — sin cambio numérico todavía** |
+| Artes — sirve | 0 | 0 (40 insertados, `isVerified=false`) |
+
+`content:guard` cuenta el pool **servible** (`isVerified=true`); estos 40
+reactivos están en la cola de verificación adversarial, así que el
+porcentaje del área NO se mueve todavía. Lo que sí cambia para la siguiente
+fase: en cuanto la verificación ciega apruebe el lote, Artes pasa de
+`sirve=0` a `sirve=40` contra una cuota de solo 6 (`necesita=6`), la
+satisface de sobra, y **UNAM Humanidades y Artes sube de 80% a 100%
+(10/10) → READY** — con ella, **las 7 áreas activas quedarían READY al
+100%, sin un solo hueco declarado en todo el catálogo**, algo que ninguna
+fase anterior de este proyecto ha reportado. Las 4 aserciones de
+`content:guard` (P1-P4) siguieron en verde antes y después.
+
+### 7. Banco de contenido
+
+| Métrica | Antes (G86) | Después (G86) |
+|---|---|---|
+| Filas `Question` totales | 1 347 | **1 387** |
+| Servibles (`isVerified=true`) | 1 343 | 1 343 (sin cambio — cola de verificación) |
+| Pendientes de verificación (cola ciega) | 0 | **40** |
+
+`pnpm backup:export` corrido tras la inserción — **6 686 filas**, 4.57 MB —
+`backups/content-bank.json` va en este mismo commit (G61).
+
+### 8. Verificación de la fase
+
+| Comando | Resultado |
+|---|---|
+| `content:insert` ×5 (uno por tema, `--lot-dir` al conjunto) | ✅ 40/40 insertados, lote aprobado sin violaciones (tras la segunda tirada de posiciones) |
+| `pnpm content:guard` (antes) | UNAM Humanidades y Artes 80% 🟡, Artes `sirve=0` |
+| `pnpm content:guard` (después) | UNAM Humanidades y Artes 80% 🟡 (sin cambio hasta verificación); ver §6 |
+| `pnpm typecheck` | ✅ |
+| `pnpm lint` | ✅ |
+
+### Siguiente
+
+`pnpm content:blind-batch --topic <cada uno de los 5 topicId>` (o `--all`)
+para la verificación ciega de los 40 — segunda pasada adversarial
+independiente (PRD §8), con atención particular a los 3 temas SOURCED
+(verificar que la cita a la guía "Ciencias y Artes para el Diseño" sea
+fidedigna en cuanto a nombres/obras/conceptos y que ningún reactivo se
+acerque a reproducir texto de esa fuente) y a la exactitud de las
+atribuciones obra-autor-movimiento del §3. Solo tras eso `content:guard`
+reflejará el 100% real de UNAM Humanidades y Artes — y, si se confirma, las
+7 áreas activas quedarían simultáneamente `READY` por primera vez.
+
+---
 
 ## G85 — Verificación ciega: Civismo/Derecho, IPN SOCADM (lote de G84) (2026-09-14)
 

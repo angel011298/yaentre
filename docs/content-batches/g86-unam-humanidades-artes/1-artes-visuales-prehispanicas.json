@@ -1,0 +1,378 @@
+[
+  {
+    "stem": "Las gigantescas cabezas talladas en bloques de basalto, que representan el rostro de gobernantes con cascos protectores, son una de las manifestaciones escultóricas más conocidas de esta cultura, considerada la civilización \"madre\" de Mesoamérica:",
+    "options": [
+      {
+        "id": "A",
+        "text": "La cultura totonaca, asentada en la región central y costera de Veracruz.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La cultura teotihuacana, asentada en el altiplano central mexicano.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La cultura olmeca, asentada principalmente en las zonas de Veracruz y Tabasco.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La cultura zapoteca, asentada en el valle de Oaxaca alrededor de Monte Albán.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Las cabezas colosales olmecas, algunas de más de dos metros de altura y varias toneladas de peso, se tallaron en basalto trasladado desde canteras distantes y representan retratos individualizados de gobernantes, identificables por el tocado o casco que portan."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "La cultura olmeca (aprox. 1200-400 a.C.) es considerada la civilización \"madre\" de Mesoamérica porque varios de sus rasgos —el juego de pelota, el culto a deidades felinas, el uso del jade— reaparecen después en culturas posteriores como la maya y la zapoteca."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La escultura zapoteca de Monte Albán se asocia más con relieves de piedra (\"danzantes\") que con cabezas colosales; la totonaca es célebre por sus figuras cerámicas de rostro sonriente; y la teotihuacana destaca sobre todo en pintura mural y arquitectura piramidal, no en cabezas monumentales talladas."
+      }
+    ]
+  },
+  {
+    "stem": "La pintura mural teotihuacana, como la que decora conjuntos habitacionales del sitio, se caracteriza principalmente por:",
+    "options": [
+      {
+        "id": "A",
+        "text": "El empleo del esfumado y el claroscuro para dar volumen realista a las figuras humanas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La representación de escenas de batalla con perspectiva narrativa continua, como en Bonampak.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El uso de colores planos y contornos delineados en negro para representar deidades y escenas rituales, como el llamado \"Tlalocan\".",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El uso exclusivo de relieves tallados en piedra en lugar de pintura sobre estuco.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Los murales de Teotihuacan (como los del conjunto de Tepantitla) se pintaron al fresco sobre estuco, con figuras de perfil, colores planos —rojos, verdes y azules obtenidos de minerales— y contornos negros bien definidos; una de sus escenas más citadas se ha interpretado como una representación del paraíso de Tláloc."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Este estilo plano y simbólico, sin intención de crear volumen realista, es característico del arte mesoamericano en general y distingue a la pintura prehispánica de convenciones posteriores como el esfumado renacentista europeo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El esfumado y el claroscuro son técnicas de la pintura europea posterior (por ejemplo, renacentista), no mesoamericana; la perspectiva narrativa continua con escenas de batalla es propia de los murales mayas de Bonampak, no de Teotihuacan; y aunque Teotihuacan también tiene relieves, su pintura mural sí es abundante y central en su arte."
+      }
+    ]
+  },
+  {
+    "stem": "Las estelas mayas —monumentos de piedra verticales, tallados en relieve y erigidos frente a templos y plazas— servían principalmente para:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Marcar exclusivamente los límites territoriales entre distintas ciudades-estado mayas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Servir como instrumentos astronómicos para calcular directamente los eclipses solares.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Funcionar como ofrendas funerarias colocadas siempre dentro de las tumbas reales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Conmemorar a un gobernante en fechas específicas del calendario, registrando su nombre, linaje y hazañas mediante glifos jeroglíficos.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Las estelas mayas combinan la imagen del gobernante —a menudo con atributos de poder y ricos atavíos— con textos jeroglíficos que registran fechas del calendario de cuenta larga y eventos como su entronización, victorias militares o rituales de sangre."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Son una de las principales fuentes para reconstruir la historia dinástica de las ciudades mayas, porque a diferencia de otras culturas mesoamericanas, los mayas desarrollaron un sistema de escritura jeroglífica capaz de registrar nombres propios y fechas exactas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No son marcadores territoriales ni instrumentos astronómicos de cálculo directo (aunque sí registran fechas, no \"calculan\" eclipses por sí mismas), y tampoco se colocaban típicamente dentro de tumbas: se erigían en espacios públicos, a la vista de la comunidad."
+      }
+    ]
+  },
+  {
+    "stem": "El sitio maya de Bonampak, en Chiapas, es célebre en la historia del arte prehispánico principalmente por:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ser el primer sitio maya en el que se identificaron códices pintados sobre papel amate.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Conservar murales polícromos casi completos que representan escenas de guerra, sacrificio y una corte real, descubiertos en 1946.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Concentrar la mayor colección de máscaras funerarias de jade de toda el área maya.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Conservar el registro escultórico más completo de cabezas colosales de gobernantes mayas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Los murales de Bonampak, distribuidos en tres cuartos de un mismo edificio, muestran con gran detalle una secuencia narrativa: preparativos, una batalla, la presentación de prisioneros y una ceremonia con danzantes, pintada con pigmentos que conservaron su color de forma excepcional."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Su hallazgo en 1946 fue relevante porque, a diferencia de la imagen entonces dominante de los mayas como una civilización pacífica dedicada solo a la astronomía, los murales documentaron con crudeza la guerra y el sacrificio como parte central de la vida política maya."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las cabezas colosales son un rasgo olmeca, no maya; los códices sobre papel amate mayas que sobreviven (como el Dresde) no provienen de Bonampak; y aunque la máscara de Pakal en Palenque es célebre, Bonampak no se distingue por máscaras funerarias sino por su pintura mural."
+      }
+    ]
+  },
+  {
+    "stem": "Los relieves de piedra conocidos como \"los danzantes\", tallados en las paredes de un edificio de Monte Albán, muestran figuras humanas en posturas contorsionadas que hoy se interpretan principalmente como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Gobernantes zapotecos retratados en el momento exacto de su entronización oficial.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Comerciantes representados durante el intercambio de productos en el mercado de la ciudad.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Cautivos o enemigos derrotados, posiblemente sacrificados, y no bailarines en sentido literal.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Sacerdotes en trance ritual realizando una danza ceremonial para propiciar la lluvia.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Aunque el nombre \"danzantes\" proviene de la impresión inicial de los arqueólogos que los descubrieron, las posturas —cuerpos desnudos, ojos cerrados, algunas figuras con genitales mutilados— llevaron a reinterpretarlos como representaciones de prisioneros de guerra o víctimas de sacrificio, posiblemente vinculadas a la expansión militar zapoteca."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Monte Albán, capital zapoteca en el valle de Oaxaca activa desde aproximadamente el 500 a.C., usó este tipo de relieves como un mensaje público de poder político y militar hacia otras ciudades-estado rivales."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La lectura como danza ritual de lluvia es la interpretación antigua ya superada por la investigación posterior; no representan una entronización (que tendría atavíos de poder, no cuerpos desnudos y sometidos); y no hay evidencia de que representen una escena de mercado."
+      }
+    ]
+  },
+  {
+    "stem": "Las llamadas \"caritas sonrientes\", figurillas de cerámica con el rostro en expresión de alegría, son una de las manifestaciones más distintivas de esta cultura del centro de Veracruz, asociada también al sitio arqueológico de El Tajín:",
+    "options": [
+      {
+        "id": "A",
+        "text": "La cultura olmeca, asentada en la costa del golfo de México.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La cultura mixteca, asentada principalmente en la Mixteca de Oaxaca y Puebla.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La cultura maya, asentada en el sureste mexicano y Centroamérica.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La cultura totonaca.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Las \"caritas sonrientes\" son figurillas de barro, generalmente huecas, producidas en el centro de Veracruz durante el llamado Clásico Tardío; su expresión facial de sonrisa abierta las distingue de la mayoría de la figurilla mesoamericana, que suele mostrar rostros serios o hieráticos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Se asocian a la cultura totonaca y a la región donde se ubica El Tajín, ciudad famosa por su Pirámide de los Nichos y por los relieves del juego de pelota que narran escenas de sacrificio ritual."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La mixteca es célebre sobre todo por su orfebrería y sus códices pictográficos; la maya por sus estelas y pintura mural narrativa; y la olmeca por sus cabezas colosales y figurillas de rasgos \"baby-face\", no por rostros sonrientes."
+      }
+    ]
+  },
+  {
+    "stem": "El hallazgo arqueológico conocido como \"Tumba 7\" de Monte Albán, descubierto por Alfonso Caso en 1932, es especialmente relevante para la historia del arte prehispánico porque:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Contenía el primer ejemplo conocido de escritura jeroglífica maya sobre estuco.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Fue la primera evidencia arqueológica de pintura mural en el área maya.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Reveló un excepcional ajuar de orfebrería en oro, plata y piedras finas elaborado por artesanos mixtecos, quienes reutilizaron una tumba zapoteca anterior.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Confirmó el uso exclusivo de la técnica del mosaico de turquesa entre los zapotecos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Alfonso Caso encontró en la Tumba 7 de Monte Albán un conjunto de piezas de orfebrería —pectorales, anillos, una máscara de oro— de manufactura mixteca extraordinariamente fina, colocadas ahí cuando el pueblo mixteco reutilizó, siglos después, una tumba zapoteca construida originalmente para otro fin."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "El hallazgo es clave porque demuestra el altísimo nivel técnico de la orfebrería mixteca (fundición a la cera perdida, filigrana) y porque documenta cómo distintos pueblos mesoamericanos reocuparon y resignificaron espacios sagrados de culturas anteriores."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se trata de escritura jeroglífica maya ni de pintura mural del área maya —ambas ajenas a este hallazgo oaxaqueño—, y aunque el mosaico de turquesa sí existió en Mesoamérica (por ejemplo entre los mixtecos), la Tumba 7 se conoce sobre todo por su orfebrería, no por un uso exclusivo zapoteca de esa técnica."
+      }
+    ]
+  },
+  {
+    "stem": "En la historia del arte novohispano, el concepto que designa la fusión de elementos visuales y simbólicos de las culturas prehispánicas con las formas artísticas traídas de Europa durante el Virreinato se conoce como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sincretismo.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Fusión estilística tardía, expresión sin uso establecido en la historiografía del arte novohispano.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Anacronismo, término que designa un error al ubicar algo fuera de su época.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Sincronicidad, término asociado a la coincidencia significativa de eventos, no al arte.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El sincretismo describe cómo artesanos y artistas indígenas, trabajando bajo la dirección de frailes y maestros europeos, incorporaron motivos, técnicas y significados propios de su tradición visual prehispánica dentro de los formatos religiosos católicos que se les encargaban, dando lugar a un arte novohispano con rasgos únicos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Ejemplos citados con frecuencia son los atrios de conventos del siglo XVI decorados con motivos vegetales de raíz indígena, o el llamado \"arte tequitqui\", en el que canteros indígenas tallaban relieves religiosos cristianos con una sensibilidad visual heredada de la escultura prehispánica."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El anacronismo es un error de ubicación temporal, no un fenómeno artístico de fusión cultural; la sincronicidad es un concepto de otro campo, sin relación con la historia del arte; y \"fusión estilística tardía\" no es un término reconocido para este fenómeno específico."
+      }
+    ]
+  }
+]

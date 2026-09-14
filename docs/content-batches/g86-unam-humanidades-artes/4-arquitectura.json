@@ -1,0 +1,378 @@
+[
+  {
+    "stem": "Este arquitecto mexicano, célebre por su uso expresivo del color, la luz, el agua y los muros macizos en obras como la Casa Luis Barragán o la Cuadra San Cristóbal, fue en 1980 el primer y hasta ahora único mexicano en recibir el Premio Pritzker de Arquitectura:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Juan O'Gorman.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Enrique del Moral.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Mario Pani.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Luis Barragán.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Luis Barragán desarrolló, a partir de los años cuarenta, una arquitectura que combina la tradición constructiva mexicana —muros gruesos, patios, fuentes— con una sensibilidad muy personal por el color saturado, la luz filtrada y los planos de agua en reposo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "El Premio Pritzker, considerado el reconocimiento más importante de la disciplina a nivel mundial, distinguió en 1980 a Barragán por una obra que, aunque de escala mayoritariamente doméstica, tuvo una influencia internacional muy amplia en la arquitectura posterior."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Mario Pani y Enrique del Moral son conocidos sobre todo por el urbanismo y la arquitectura funcionalista de gran escala, como el plan maestro de Ciudad Universitaria, un lenguaje distinto al de Barragán; y Juan O'Gorman es conocido tanto por la arquitectura funcionalista temprana como por el muralismo en mosaico, tampoco el autor de estas obras."
+      }
+    ]
+  },
+  {
+    "stem": "Esta ciudad amurallada maya, construida sobre un acantilado frente al mar Caribe en el actual estado de Quintana Roo, funcionó como un importante centro comercial costero durante el Posclásico:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Palenque.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Uxmal.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Tulum.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Chichén Itzá.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Tulum se distingue de otras ciudades mayas por su ubicación sobre un acantilado costero y por estar rodeada de una muralla defensiva en tres de sus lados; su edificio principal, conocido como \"El Castillo\", pudo haber funcionado también como faro para orientar a las embarcaciones."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Su actividad como puerto y centro de intercambio —de productos como sal, obsidiana, cacao y textiles— fue especialmente intensa durante el Posclásico tardío, cuando otras grandes ciudades mayas del periodo Clásico, como Palenque, ya habían sido abandonadas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Palenque se ubica tierra adentro, en Chiapas, y no tiene esta condición costera; Chichén Itzá, en el interior de Yucatán, es célebre por la pirámide de Kukulcán y su observatorio, no por ser un puerto amurallado; y Uxmal, también yucateca e interior, destaca por el estilo arquitectónico Puuc, distinto del contexto costero de Tulum."
+      }
+    ]
+  },
+  {
+    "stem": "En esta ciudad maya de Chiapas, el arqueólogo Alberto Ruz Lhuillier descubrió en 1952, dentro del Templo de las Inscripciones, la tumba del gobernante Pakal, cubierta por una lápida con un relieve hoy célebre en la iconografía maya:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Teotihuacan.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Palenque.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Monte Albán.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Tulum.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El hallazgo de la cámara funeraria de K'inich Janaab' Pakal bajo el Templo de las Inscripciones fue clave para confirmar que las pirámides mayas, además de basamentos de templos, también podían funcionar como monumentos funerarios para sus gobernantes, algo que hasta entonces se dudaba."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Palenque es además reconocida por la finura de sus relieves en estuco y por edificios como el Palacio, con su torre de varios niveles, considerados entre los logros arquitectónicos más refinados del periodo Clásico maya."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Tulum es una ciudad costera posclásica sin este hallazgo funerario; Monte Albán es un sitio zapoteca en Oaxaca, no maya; y Teotihuacan, en el altiplano central, corresponde a una cultura y una cronología distintas a la maya de Palenque."
+      }
+    ]
+  },
+  {
+    "stem": "La \"Calzada de los Muertos\", eje principal que atraviesa el sitio arqueológico de Teotihuacan y conecta sus dos pirámides más monumentales —la del Sol y la de la Luna—, es un ejemplo del urbanismo planificado de esta ciudad:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Monte Albán.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Tenochtitlan.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Teotihuacan.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Tula.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Teotihuacan, una de las ciudades más grandes de la Mesoamérica antigua, se organizó a partir de un trazo urbano relativamente regular, con la Calzada de los Muertos como columna vertebral que articula sus principales conjuntos religiosos y habitacionales."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "La Pirámide del Sol es una de las estructuras prehispánicas más grandes por volumen en Mesoamérica, y junto con la Pirámide de la Luna define visualmente el perfil monumental del sitio, cuya influencia cultural y comercial se extendió por buena parte de Mesoamérica durante el Clásico."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Tenochtitlan, la capital mexica, se organizó en torno a un recinto ceremonial distinto y sobre una isla lacustre, con un trazo diferente; Tula, capital tolteca, es célebre por sus atlantes, no por esta calzada; y Monte Albán, capital zapoteca, se asienta sobre una montaña nivelada artificialmente, con una configuración urbana distinta."
+      }
+    ]
+  },
+  {
+    "stem": "La Catedral Metropolitana de la Ciudad de México, construida a lo largo de más de dos siglos, combina en un mismo edificio elementos de distintos estilos arquitectónicos sucesivos —desde rasgos barrocos hasta el remate neoclásico de sus torres y cúpula—. Este tipo de edificio, que refleja los cambios de gusto ocurridos durante su larga construcción, se describe como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Un edificio estrictamente funcionalista, proyectado en una sola etapa del siglo XX.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Un edificio puramente plateresco, sin ninguna intervención posterior a su diseño original.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Un edificio exclusivamente churrigueresco en la totalidad de su fachada y su estructura.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Un edificio de estilo arquitectónico mixto o eclético, resultado de una obra prolongada en el tiempo.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "La construcción de la Catedral Metropolitana se extendió aproximadamente de 1573 a 1813, un periodo lo bastante largo para que distintas generaciones de arquitectos —entre ellos, hacia el final, Manuel Tolsá— intervinieran con el lenguaje arquitectónico dominante de su propia época."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Por eso conviven en el mismo edificio portadas de gusto más barroco, incluso con detalles churriguerescos en su interior (como el Altar de los Reyes, obra de Jerónimo de Balbás), junto con las torres y la cúpula de remate neoclásico diseñadas por Tolsá a principios del siglo XIX."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No es un edificio \"puramente\" plateresco ni \"exclusivamente\" churrigueresco, porque ambos son solo algunos de los estilos presentes, no la totalidad del edificio; y tampoco es funcionalista, un movimiento del siglo XX muy posterior a su construcción."
+      }
+    ]
+  },
+  {
+    "stem": "Esta pintura de gran formato, realizada en tonos de blanco, negro y gris, representa el sufrimiento causado por el bombardeo de una localidad vasca durante la Guerra Civil española de 1937, y es obra de:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Salvador Dalí.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Pablo Picasso.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Marc Chagall.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Diego Rivera.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "\"Guernica\" responde al bombardeo de la localidad de Guernica por la aviación alemana e italiana en apoyo al bando franquista, en abril de 1937; Picasso, usando un lenguaje cercano al cubismo pero con una paleta reducida a blancos, negros y grises, transformó el hecho en una denuncia visual del horror de la guerra."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "La obra se exhibió primero en el pabellón español de la Exposición Internacional de París de 1937 y hoy se conserva en el Museo Reina Sofía de Madrid; es una de las imágenes más reproducidas del arte del siglo XX como símbolo antibélico."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Salvador Dalí, aunque también español y activo en la misma época, desarrolló un lenguaje surrealista distinto y no es el autor de esta obra; Diego Rivera fue el gran muralista mexicano, ajeno a este episodio europeo; y Marc Chagall desarrolló una obra de raíz onírica y folclórica muy distinta a la denuncia directa de \"Guernica\"."
+      }
+    ]
+  },
+  {
+    "stem": "La Biblioteca Central de Ciudad Universitaria (UNAM), cuyas cuatro fachadas están cubiertas casi por completo con un mosaico hecho de piedras de colores naturales que narra episodios de la historia de México, fue decorada por:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Diego Rivera.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Juan O'Gorman.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Mathias Goeritz.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "David Alfaro Siqueiros.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Juan O'Gorman diseñó el mosaico de la Biblioteca Central utilizando piedras de distintas regiones de México seleccionadas por su color natural, sin pintura añadida, para representar de forma simbólica el pasado prehispánico, la época colonial y el México moderno en cada una de las caras del edificio."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "El proyecto es uno de los ejemplos más citados de \"integración plástica\" en Ciudad Universitaria: el mosaico no se añadió después como decoración, sino que fue concebido como parte estructural de la fachada, cubriendo también el volumen ciego que protege el acervo bibliográfico del sol."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Diego Rivera y David Alfaro Siqueiros también participaron con obra mural en otros edificios de Ciudad Universitaria, pero no son los autores de este mosaico en particular; y Mathias Goeritz trabajó sobre todo en escultura monumental abstracta, no en este mosaico narrativo."
+      }
+    ]
+  },
+  {
+    "stem": "La casa-estudio construida en San Ángel, Ciudad de México (1931-1932), formada por dos volúmenes independientes unidos por un puente y pensada para que trabajaran por separado Diego Rivera y Frida Kahlo, se considera uno de los primeros ejemplos de arquitectura funcionalista en América Latina, y fue proyectada por:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Carlos Obregón Santacilia.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Juan O'Gorman.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Mario Pani.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Luis Barragán.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Antes de dedicarse también al muralismo en mosaico, Juan O'Gorman trabajó como arquitecto bajo la influencia directa del funcionalismo europeo —estructuras sencillas, sin ornamento, con la función determinando la forma— y proyectó esta casa-estudio a pedido de Diego Rivera."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "El conjunto, hoy convertido en museo, se compone de dos edificios de distinto tamaño y color, conectados por un puente elevado, y refleja tanto los principios funcionalistas como la vida personal y de trabajo separada de la pareja de artistas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Luis Barragán desarrolló más adelante un lenguaje muy distinto, alejado del funcionalismo estricto; Mario Pani es conocido sobre todo por conjuntos habitacionales y el plan de Ciudad Universitaria, no por esta casa en particular; y Carlos Obregón Santacilia, aunque arquitecto mexicano activo en una época cercana, no es el autor de esta obra."
+      }
+    ]
+  }
+]

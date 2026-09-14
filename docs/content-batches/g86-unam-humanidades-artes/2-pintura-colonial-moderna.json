@@ -1,0 +1,378 @@
+[
+  {
+    "stem": "El óleo titulado \"Madre campesina\" (1926), que retrata a una mujer indígena amamantando a su hijo con volúmenes depurados y una composición serena, es obra de:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Diego Rivera.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "José Clemente Orozco.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Carlos Mérida.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "David Alfaro Siqueiros.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "\"Madre campesina\" pertenece a un periodo de la obra de Diego Rivera posterior a su etapa cubista en París, marcado por un \"retorno al orden\" de formas clásicas y volúmenes sólidos, poco antes de dedicarse de lleno al muralismo monumental."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Rivera es, junto con Siqueiros y Orozco, uno de \"los tres grandes\" del muralismo mexicano, movimiento impulsado tras la Revolución para llevar un arte público de contenido social e histórico a espacios institucionales."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Siqueiros y Orozco comparten con Rivera el proyecto muralista pero tienen estilos personales distintos —Siqueiros más dinámico y experimental con materiales industriales, Orozco más expresionista y trágico—; Carlos Mérida desarrolló un lenguaje más cercano a la abstracción geométrica de raíz maya, ajeno a esta obra."
+      }
+    ]
+  },
+  {
+    "stem": "La técnica pictórica conocida como \"esfumado\", que consiste en difuminar los contornos y las transiciones de luz y sombra para lograr un efecto de suavidad casi sin líneas duras, se asocia de manera emblemática con esta pintura renacentista:",
+    "options": [
+      {
+        "id": "A",
+        "text": "El nacimiento de Venus, de Sandro Botticelli.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La creación de Adán, de Miguel Ángel.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La Escuela de Atenas, de Rafael.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La Gioconda (o Mona Lisa), de Leonardo da Vinci.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Leonardo da Vinci perfeccionó el esfumado (del italiano \"sfumato\", \"como el humo\") aplicando capas muy delgadas de pintura al óleo para que los bordes de las formas —como el contorno de la boca o los ojos de La Gioconda— se disuelvan gradualmente en la sombra, sin una línea que los delimite."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Esta técnica fue una de las grandes innovaciones del Renacimiento italiano para lograr una sensación de volumen y atmósfera más natural que la de la pintura medieval anterior, de contornos más definidos y planos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Escuela de Atenas de Rafael es célebre más bien por su dominio de la perspectiva arquitectónica y la composición de figuras; El nacimiento de Venus de Botticelli antecede al esfumado maduro y usa contornos lineales más definidos; y La creación de Adán de Miguel Ángel es un fresco que destaca por el dibujo anatómico, no por el esfumado."
+      }
+    ]
+  },
+  {
+    "stem": "En la teoría tradicional del color aplicada a la pintura (mezcla de pigmentos), los colores que no pueden obtenerse mezclando ningún otro color, y a partir de los cuales se derivan todos los demás, se llaman:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Colores complementarios.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Colores análogos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Colores neutros.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Colores primarios.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      2
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "En el modelo pigmentario tradicional (rojo, amarillo y azul), los colores primarios son la base a partir de la cual se construyen los colores secundarios y terciarios mediante mezclas; ningún primario puede producirse combinando otros colores del círculo cromático."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Comprender esta jerarquía es una base elemental de la apreciación pictórica, porque permite reconocer cómo un artista construye armonías o contrastes de color a partir de un número reducido de pigmentos base."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los complementarios son pares de colores opuestos en el círculo cromático (como rojo y verde) que se intensifican visualmente entre sí; los neutros son el blanco, el negro y los grises; y los análogos son colores vecinos en el círculo cromático — ninguno de los tres describe a los colores \"base\" de la mezcla."
+      }
+    ]
+  },
+  {
+    "stem": "Al mezclar dos colores primarios en partes iguales dentro del modelo pigmentario tradicional (rojo, amarillo, azul), se obtiene un color secundario. ¿Cuál de las siguientes combinaciones corresponde correctamente a los tres colores secundarios?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Café (rojo + azul), rosado (rojo + blanco) y gris (blanco + negro).",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Turquesa (azul + verde), magenta (rojo + violeta) y ocre (amarillo + café).",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Naranja (rojo + amarillo), verde (amarillo + azul) y violeta (azul + rojo).",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Blanco (mezcla de los tres primarios) y sus dos variantes de tono más claro y más oscuro.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      2
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Naranja, verde y violeta son los tres colores secundarios del modelo pigmentario tradicional, cada uno resultado de mezclar dos primarios adyacentes en el círculo cromático."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Esta relación es la base para construir el círculo cromático completo (con los terciarios, mezcla de un primario y un secundario vecino) y para explicar por qué ciertos colores \"combinan\" o \"contrastan\" visualmente entre sí en una composición pictórica."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El café, el rosado y el gris no son secundarios en sentido estricto: son mezclas que involucran blanco, negro u otros colores además de dos primarios puros; el turquesa, el magenta y el ocre corresponden más bien a matices o colores terciarios; y mezclar los primarios en pigmento no produce blanco, sino un tono oscuro cercano al café o al gris."
+      }
+    ]
+  },
+  {
+    "stem": "En el dibujo y la pintura, la técnica llamada \"perspectiva\" tiene como propósito principal:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Eliminar cualquier punto de fuga para lograr una composición completamente simétrica.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Representar sobre una superficie plana la sensación de profundidad y volumen con que el ojo humano percibe el espacio tridimensional.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Registrar las medidas exactas y a escala real de los objetos representados.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Sustituir el uso del color por el manejo exclusivo de líneas y contornos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      2
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "La perspectiva usa convenciones visuales —como líneas que convergen en uno o varios puntos de fuga, o la reducción del tamaño de los objetos conforme se alejan— para simular en una imagen bidimensional la profundidad que percibimos en el mundo real."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Su sistematización más influyente ocurrió durante el Renacimiento italiano (por ejemplo, en los estudios de Filippo Brunelleschi y Leon Battista Alberti), y desde entonces es una herramienta central de la apreciación y el análisis de la pintura occidental."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La perspectiva no busca medidas exactas a escala real, sino una ilusión convincente de profundidad; no implica renunciar al color; y lejos de eliminar los puntos de fuga, suele depender precisamente de ellos para construir esa ilusión."
+      }
+    ]
+  },
+  {
+    "stem": "Este grabador mexicano de finales del siglo XIX y principios del XX es reconocido por sus calaveras satíricas, entre ellas la imagen que con el tiempo se popularizaría bajo el nombre de \"La Catrina\":",
+    "options": [
+      {
+        "id": "A",
+        "text": "José Guadalupe Posada.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Leopoldo Méndez.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Manuel Manilla.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Gerardo Murillo, conocido como \"Dr. Atl\".",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      2
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "José Guadalupe Posada trabajó como grabador para publicaciones populares e ilustró hojas volantes con calaveras que satirizaban a distintos sectores de la sociedad porfiriana, usando el esqueleto como recurso para igualar simbólicamente a todas las clases sociales ante la muerte."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "La calavera que Posada llamó \"la calavera garbancera\" —burlándose de quienes renegaban de su origen indígena imitando modas europeas— fue rebautizada años después como \"La Catrina\" y popularizada por Diego Rivera al incluirla en su mural \"Sueño de una tarde dominical en la Alameda Central\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Leopoldo Méndez fue un grabador posterior, activo sobre todo en el Taller de Gráfica Popular del siglo XX; Manuel Manilla fue grabador contemporáneo de Posada pero no es a quien se atribuye esta calavera en particular; y \"Dr. Atl\" fue pintor y promotor cultural, no grabador de calaveras satíricas."
+      }
+    ]
+  },
+  {
+    "stem": "El estilo artístico derivado del Renacimiento, caracterizado por la ornamentación abundante y el manejo dramático de luces y sombras, que en la Nueva España alcanzó una versión particularmente recargada conocida como \"churrigueresco\", se llama:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Barroco.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Mudéjar, estilo que combina elementos góticos con la tradición decorativa islámica.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Plateresco, estilo previo de transición entre el gótico tardío y el Renacimiento.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neoclásico, estilo posterior caracterizado por la sobriedad y la imitación de lo grecolatino.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      3
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El Barroco surgió en Europa a finales del siglo XVI y se caracteriza por el dinamismo compositivo, el contraste intenso de luces y sombras y una ornamentación abundante; en la Nueva España se enriqueció con motivos vegetales y decorativos de raíz indígena, dando lugar a variantes como el churrigueresco, de ornamentación aún más densa."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Ejemplos de esta corriente en México son el Altar de los Reyes de la Catedral Metropolitana o el Sagrario Metropolitano, con fachadas cubiertas casi por completo de relieves ornamentales."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El plateresco es anterior y combina rasgos góticos con los primeros elementos renacentistas; el neoclásico es la reacción posterior contra el exceso ornamental barroco, buscando líneas sobrias inspiradas en Grecia y Roma; y el mudéjar es un estilo español anterior que combina tradición gótica con decoración de raíz islámica, sin relación directa con el churrigueresco novohispano."
+      }
+    ]
+  },
+  {
+    "stem": "El conjunto arquitectónico de Ciudad Universitaria (UNAM), proyectado bajo los principios del funcionalismo y con un plan de conjunto a cargo de los arquitectos Mario Pani y Enrique del Moral, integra murales de artistas como Diego Rivera, Juan O'Gorman y David Alfaro Siqueiros en sus fachadas. A este principio de unir arquitectura y mural en una sola obra se le conoce como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sincretismo arquitectónico, término sin uso establecido para describir este fenómeno del siglo XX.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Integración plástica.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Muralismo funcional, expresión que invierte el orden real del concepto reconocido.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Neoclasicismo mural, corriente que en realidad corresponde al siglo XIX mexicano.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      3
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "La \"integración plástica\" es el principio, impulsado especialmente por Diego Rivera, de concebir el edificio y su decoración mural como una sola obra desde el proyecto arquitectónico, en lugar de añadir la pintura después como un elemento decorativo separado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Ciudad Universitaria, construida a mediados del siglo XX y declarada Patrimonio de la Humanidad por la UNESCO en 2007, es uno de los ejemplos más citados de este principio: el mosaico de piedras naturales de Juan O'Gorman en la Biblioteca Central es parte estructural de la fachada, no un añadido posterior."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"Sincretismo arquitectónico\" no es el término establecido para este fenómeno (el sincretismo se usa más bien para la fusión prehispánico-europea del arte virreinal); el neoclasicismo mural mexicano corresponde a otro siglo y contexto; y \"muralismo funcional\" invierte la relación real entre ambos conceptos."
+      }
+    ]
+  }
+]

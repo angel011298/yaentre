@@ -1,0 +1,362 @@
+[
+  {
+    "stem": "Esta escultura monumental mexica, tallada en piedra volcánica y que representa a una deidad con falda de serpientes entrelazadas y un collar de manos y corazones, fue hallada en 1790 durante obras de repavimentación en la Plaza Mayor de la Ciudad de México:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Coatlicue.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El Chac Mool del Templo Mayor.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La Piedra del Sol o Calendario Azteca.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La Piedra de Tízoc.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Coatlicue (\"la de la falda de serpientes\") es una escultura monolítica que combina símbolos de muerte y fertilidad —cráneos, manos, corazones, serpientes— para representar a una deidad terrestre mexica asociada al nacimiento y la muerte."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Fue descubierta el mismo año, 1790, en que también apareció la Piedra del Sol, ambas durante trabajos de nivelación del Zócalo capitalino ordenados por el virrey Revillagigedo; hoy se exhibe en el Museo Nacional de Antropología."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Piedra del Sol es un disco calendárico, no una figura antropomorfa de pie; la Piedra de Tízoc es un monumento cilíndrico dedicado a conquistas militares de ese gobernante mexica; y el Chac Mool es una figura reclinada con un recipiente sobre el vientre, de tipo distinto al de Coatlicue."
+      }
+    ]
+  },
+  {
+    "stem": "El gran disco de piedra basáltica, tallado con el rostro del sol al centro y símbolos calendáricos alrededor, hallado también en 1790 en la Plaza Mayor de la Ciudad de México, se conoce popularmente como:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Piedra del Sol o Calendario Azteca.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La Piedra de los Sacrificios.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Coatlicue.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El Teocalli de la Guerra Sagrada.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "La Piedra del Sol es un monumento circular de varias toneladas cuyo relieve central se interpreta como el rostro del sol o de la deidad Tonatiuh, rodeado de glifos que registran los cinco \"soles\" o eras cosmogónicas mexicas y otros elementos calendáricos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "A pesar de su nombre popular, los especialistas discuten si funcionó como calendario de uso práctico o más bien como un monumento cosmogónico y ritual de carácter simbólico; en cualquier caso es hoy una de las piezas más reconocidas del Museo Nacional de Antropología."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Coatlicue es una escultura antropomorfa vertical, no un disco calendárico; \"la Piedra de los Sacrificios\" no es el nombre reconocido de este monumento; y el Teocalli de la Guerra Sagrada es una escultura distinta, en forma de templo miniatura, asociada al gobernante Moctezuma II."
+      }
+    ]
+  },
+  {
+    "stem": "En la escultura religiosa novohispana en madera policromada, la técnica que consiste en aplicar una capa de oro bajo la pintura y luego raspar el color siguiendo un patrón para que el oro asome, imitando el brocado de una tela rica, se llama:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Estofado.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Fundición a la cera perdida, técnica propia de la escultura en metal, no en madera.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Talla directa, técnica que se refiere solo al tallado de la madera sin ningún acabado posterior.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Encarnación, técnica dedicada específicamente a pintar las zonas de piel de la figura.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El estofado permitía simular telas bordadas en oro sobre las vestimentas de santos y vírgenes tallados en madera: primero se doraba la superficie, después se cubría con pintura de color, y finalmente se raspaba siguiendo un dibujo para que el brillo del oro emergiera en el patrón deseado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Esta técnica, junto con la encarnación —el pulido y pintura minuciosa de rostros y manos para imitar el tono de la piel—, era típica del taller de imaginería novohispana, donde distintos artesanos especializados intervenían en una misma escultura religiosa."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La encarnación es precisamente la técnica dedicada a la piel, no a las telas, por lo que no describe lo planteado; la fundición a la cera perdida es una técnica metalúrgica ajena a la madera; y la talla directa se refiere solo al proceso de esculpir la forma, sin el acabado decorativo descrito."
+      }
+    ]
+  },
+  {
+    "stem": "La escultura ecuestre en bronce conocida popularmente como \"El Caballito\", que representa al rey Carlos IV de España y hoy se exhibe en una plaza cercana al Palacio de Minería en la Ciudad de México, es obra de:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Antonio González Velázquez.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Francisco Eduardo Tresguerras.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Jerónimo de Balbás.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Manuel Tolsá.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Manuel Tolsá, escultor y arquitecto valenciano activo en Nueva España, fundió esta estatua ecuestre en bronce a principios del siglo XIX; es considerada una de las obras cumbre de la escultura neoclásica novohispana por el dominio técnico que exigió su fundición en una sola pieza."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Tolsá también proyectó el Palacio de Minería y trabajó en la culminación neoclásica de las torres y la cúpula de la Catedral Metropolitana, por lo que es una figura central para entender el tránsito del barroco al neoclasicismo en el arte novohispano tardío."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Tresguerras fue un arquitecto y artista guanajuatense de la misma época pero no el autor de esta escultura; González Velázquez fue pintor, no escultor de esta obra; y Jerónimo de Balbás es más bien recordado como autor de retablos barrocos (como el Altar de los Reyes), un estilo y una técnica distintos a los de esta estatua neoclásica."
+      }
+    ]
+  },
+  {
+    "stem": "Este escultor y pintor jalisciense (1920-2006), asociado a la llamada generación de \"la Ruptura\" que se distanció del muralismo, es reconocido por sus voluminosas esculturas en bronce de aves y figuras estilizadas exhibidas en espacios públicos:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Mathias Goeritz.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Juan Soriano.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Rufino Tamayo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Francisco Zúñiga.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Juan Soriano desarrolló, sobre todo en la segunda mitad de su carrera, una obra escultórica de formas redondeadas y simplificadas —palomas, gatos y figuras humanas estilizadas— fundida en bronce a gran escala para plazas y jardines públicos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Su trabajo se asocia a la generación de artistas que, desde mediados del siglo XX, buscó alejarse del contenido histórico y social del muralismo para explorar un lenguaje más personal, cercano en ocasiones a la abstracción y al humor visual."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Mathias Goeritz es reconocido más bien por la escultura monumental abstracta y su cercanía con la arquitectura (como las Torres de Satélite); Francisco Zúñiga se especializó en figuras femeninas indígenas de gran volumen, de estilo distinto al de Soriano; y Rufino Tamayo es conocido principalmente como pintor, no como escultor."
+      }
+    ]
+  },
+  {
+    "stem": "Las \"Torres de Satélite\", un conjunto de prismas triangulares de concreto pintados de colores que marcan la entrada a Ciudad Satélite, en el Estado de México, se realizaron en colaboración entre el arquitecto Luis Barragán y este escultor de origen alemán naturalizado mexicano:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Juan Soriano.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Mathias Goeritz.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Francisco Zúñiga.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Sebastián (Enrique Carbajal).",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Las Torres de Satélite (1957-1958) son cinco prismas de concreto de distintas alturas, sin función utilitaria más allá de señalar y embellecer el acceso a un desarrollo urbano; se consideran un ejemplo temprano de lo que Goeritz llamó \"arquitectura emocional\", pensada para provocar una experiencia estética y no solo práctica."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Mathias Goeritz, llegado a México en 1949, impulsó una escultura monumental y abstracta pensada en diálogo directo con el espacio urbano y arquitectónico, en contraste con la escultura figurativa de raíz indígena o histórica más común hasta entonces."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Ni Soriano ni Zúñiga participaron en este proyecto en particular, aunque ambos son escultores mexicanos relevantes del siglo XX; y Sebastián (Enrique Carbajal), conocido por esculturas geométricas monumentales como \"La Puerta de México\", pertenece a una generación posterior y tampoco intervino en esta obra."
+      }
+    ]
+  },
+  {
+    "stem": "Este escultor de origen costarricense, naturalizado mexicano, es reconocido por sus figuras monumentales de mujeres indígenas y mestizas, talladas o modeladas con volúmenes amplios y una presencia serena y monumental:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Juan Soriano.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Francisco Zúñiga.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Manuel Tolsá.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Mathias Goeritz.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "Francisco Zúñiga desarrolló, desde mediados del siglo XX, un estilo escultórico figurativo centrado en la representación de mujeres del campo y de comunidades indígenas mexicanas, con cuerpos de volúmenes amplios y actitudes de reposo o introspección."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "A diferencia de la escultura abstracta y monumental que impulsó Mathias Goeritz en la misma época, la obra de Zúñiga se mantuvo dentro de una tradición figurativa, heredera en parte de la atención al tipo humano popular que ya estaba presente en el muralismo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Goeritz es más bien representante de la escultura abstracta y monumental urbana; Soriano trabajó formas simplificadas de animales y figuras estilizadas, de espíritu distinto al realismo de Zúñiga; y Tolsá pertenece a un periodo anterior, el de la escultura neoclásica novohispana."
+      }
+    ]
+  },
+  {
+    "stem": "En la escultura, la técnica llamada \"talla\" consiste en ir retirando material —de un bloque de piedra o madera— hasta lograr la forma deseada. Esto la distingue de otro procedimiento escultórico básico, el \"modelado\", que en cambio consiste en:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Grabar líneas y texturas sobre una superficie plana, sin generar verdadero volumen.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Verter un material fundido, como el bronce, dentro de un molde previamente preparado.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Ir agregando y dando forma a un material blando y maleable, como el barro o la cera, hasta construir la figura.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Ensamblar piezas ya elaboradas de distintos materiales para formar una sola obra tridimensional.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "La obra, el autor o el concepto",
+        "content": "El modelado es un procedimiento \"aditivo\": el escultor agrega y manipula un material blando —barro, cera, plastilina— construyendo la forma poco a poco, al contrario de la talla, que es \"sustractiva\" porque retira material de un bloque más grande."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto e importancia",
+        "content": "Estos dos procedimientos, junto con la fundición (verter metal líquido en un molde) y el ensamblaje (unir piezas ya hechas), son las cuatro técnicas básicas que suele distinguir la apreciación escultórica para clasificar cómo se construyó una obra tridimensional."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Verter un material fundido en un molde describe la fundición, no el modelado; ensamblar piezas ya elaboradas describe el ensamblaje; y grabar líneas sobre una superficie plana no genera una obra tridimensional, por lo que corresponde más bien al grabado, una técnica de artes gráficas."
+      }
+    ]
+  }
+]

@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-14T06:58:03.514Z",
+    "exportedAt": "2026-09-14T07:59:23.667Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -31,11 +31,11 @@
       "Topic": 217,
       "Passage": 16,
       "SourceChunk": 380,
-      "Question": 1347,
-      "QuestionSourceChunk": 397,
-      "ExplanationLayer": 4041
+      "Question": 1387,
+      "QuestionSourceChunk": 421,
+      "ExplanationLayer": 4161
     },
-    "totalRows": 6502
+    "totalRows": 6686
   },
   "Institution": [
     {
@@ -106379,6 +106379,2086 @@
       "updatedAt": {
         "$d": "2026-09-14T06:57:04.676Z"
       }
+    },
+    {
+      "id": "cmu0y8ync0001mvee758e5eoi",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "Las gigantescas cabezas talladas en bloques de basalto, que representan el rostro de gobernantes con cascos protectores, son una de las manifestaciones escultóricas más conocidas de esta cultura, considerada la civilización \"madre\" de Mesoamérica:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La cultura totonaca, asentada en la región central y costera de Veracruz.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La cultura teotihuacana, asentada en el altiplano central mexicano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La cultura olmeca, asentada principalmente en las zonas de Veracruz y Tabasco.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La cultura zapoteca, asentada en el valle de Oaxaca alrededor de Monte Albán.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:45.288Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:45.288Z"
+      }
+    },
+    {
+      "id": "cmu0y8zmw0006mveebavkq9n5",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "La pintura mural teotihuacana, como la que decora conjuntos habitacionales del sitio, se caracteriza principalmente por:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El empleo del esfumado y el claroscuro para dar volumen realista a las figuras humanas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La representación de escenas de batalla con perspectiva narrativa continua, como en Bonampak.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El uso de colores planos y contornos delineados en negro para representar deidades y escenas rituales, como el llamado \"Tlalocan\".",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El uso exclusivo de relieves tallados en piedra en lugar de pintura sobre estuco.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:46.568Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:46.568Z"
+      }
+    },
+    {
+      "id": "cmu0y90kt000bmveei3s4wwbl",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "Las estelas mayas —monumentos de piedra verticales, tallados en relieve y erigidos frente a templos y plazas— servían principalmente para:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Marcar exclusivamente los límites territoriales entre distintas ciudades-estado mayas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Servir como instrumentos astronómicos para calcular directamente los eclipses solares.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Funcionar como ofrendas funerarias colocadas siempre dentro de las tumbas reales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Conmemorar a un gobernante en fechas específicas del calendario, registrando su nombre, linaje y hazañas mediante glifos jeroglíficos.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:47.789Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:47.789Z"
+      }
+    },
+    {
+      "id": "cmu0y91ip000gmvee07gyscjo",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "El sitio maya de Bonampak, en Chiapas, es célebre en la historia del arte prehispánico principalmente por:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Ser el primer sitio maya en el que se identificaron códices pintados sobre papel amate.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Conservar murales polícromos casi completos que representan escenas de guerra, sacrificio y una corte real, descubiertos en 1946.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Concentrar la mayor colección de máscaras funerarias de jade de toda el área maya.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Conservar el registro escultórico más completo de cabezas colosales de gobernantes mayas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:49.009Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:49.009Z"
+      }
+    },
+    {
+      "id": "cmu0y92gk000lmveeawxg7oej",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "Los relieves de piedra conocidos como \"los danzantes\", tallados en las paredes de un edificio de Monte Albán, muestran figuras humanas en posturas contorsionadas que hoy se interpretan principalmente como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Gobernantes zapotecos retratados en el momento exacto de su entronización oficial.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Comerciantes representados durante el intercambio de productos en el mercado de la ciudad.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Cautivos o enemigos derrotados, posiblemente sacrificados, y no bailarines en sentido literal.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Sacerdotes en trance ritual realizando una danza ceremonial para propiciar la lluvia.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:50.228Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:50.228Z"
+      }
+    },
+    {
+      "id": "cmu0y93es000qmveextpni5op",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "Las llamadas \"caritas sonrientes\", figurillas de cerámica con el rostro en expresión de alegría, son una de las manifestaciones más distintivas de esta cultura del centro de Veracruz, asociada también al sitio arqueológico de El Tajín:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La cultura olmeca, asentada en la costa del golfo de México.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La cultura mixteca, asentada principalmente en la Mixteca de Oaxaca y Puebla.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La cultura maya, asentada en el sureste mexicano y Centroamérica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La cultura totonaca.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:51.460Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:51.460Z"
+      }
+    },
+    {
+      "id": "cmu0y94co000vmveezz21d3vk",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "El hallazgo arqueológico conocido como \"Tumba 7\" de Monte Albán, descubierto por Alfonso Caso en 1932, es especialmente relevante para la historia del arte prehispánico porque:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Contenía el primer ejemplo conocido de escritura jeroglífica maya sobre estuco.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Fue la primera evidencia arqueológica de pintura mural en el área maya.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Reveló un excepcional ajuar de orfebrería en oro, plata y piedras finas elaborado por artesanos mixtecos, quienes reutilizaron una tumba zapoteca anterior.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Confirmó el uso exclusivo de la técnica del mosaico de turquesa entre los zapotecos.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:52.680Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:52.680Z"
+      }
+    },
+    {
+      "id": "cmu0y95ar0010mveeq3e828st",
+      "topicId": "cmrr1kkcp0076hi3niiqepvuy",
+      "stem": "En la historia del arte novohispano, el concepto que designa la fusión de elementos visuales y simbólicos de las culturas prehispánicas con las formas artísticas traídas de Europa durante el Virreinato se conoce como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Sincretismo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Fusión estilística tardía, expresión sin uso establecido en la historiografía del arte novohispano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Anacronismo, término que designa un error al ubicar algo fuera de su época.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Sincronicidad, término asociado a la coincidencia significativa de eventos, no al arte.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:56:53.907Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:56:53.907Z"
+      }
+    },
+    {
+      "id": "cmu0y9da50001amzn3jja98x6",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "El óleo titulado \"Madre campesina\" (1926), que retrata a una mujer indígena amamantando a su hijo con volúmenes depurados y una composición serena, es obra de:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Diego Rivera.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "José Clemente Orozco.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Carlos Mérida.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "David Alfaro Siqueiros.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:04.254Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:04.254Z"
+      }
+    },
+    {
+      "id": "cmu0y9e7z0006amznagwswiqe",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "La técnica pictórica conocida como \"esfumado\", que consiste en difuminar los contornos y las transiciones de luz y sombra para lograr un efecto de suavidad casi sin líneas duras, se asocia de manera emblemática con esta pintura renacentista:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El nacimiento de Venus, de Sandro Botticelli.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La creación de Adán, de Miguel Ángel.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La Escuela de Atenas, de Rafael.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La Gioconda (o Mona Lisa), de Leonardo da Vinci.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:05.472Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:05.472Z"
+      }
+    },
+    {
+      "id": "cmu0y9f5o000bamznur7evria",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "En la teoría tradicional del color aplicada a la pintura (mezcla de pigmentos), los colores que no pueden obtenerse mezclando ningún otro color, y a partir de los cuales se derivan todos los demás, se llaman:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Colores complementarios.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Colores análogos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Colores neutros.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Colores primarios.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:06.684Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:06.684Z"
+      }
+    },
+    {
+      "id": "cmu0y9g3f000gamznsylr3adt",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "Al mezclar dos colores primarios en partes iguales dentro del modelo pigmentario tradicional (rojo, amarillo, azul), se obtiene un color secundario. ¿Cuál de las siguientes combinaciones corresponde correctamente a los tres colores secundarios?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Café (rojo + azul), rosado (rojo + blanco) y gris (blanco + negro).",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Turquesa (azul + verde), magenta (rojo + violeta) y ocre (amarillo + café).",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Naranja (rojo + amarillo), verde (amarillo + azul) y violeta (azul + rojo).",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Blanco (mezcla de los tres primarios) y sus dos variantes de tono más claro y más oscuro.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:07.899Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:07.899Z"
+      }
+    },
+    {
+      "id": "cmu0y9h18000lamznq5ytpx01",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "En el dibujo y la pintura, la técnica llamada \"perspectiva\" tiene como propósito principal:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Eliminar cualquier punto de fuga para lograr una composición completamente simétrica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Representar sobre una superficie plana la sensación de profundidad y volumen con que el ojo humano percibe el espacio tridimensional.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Registrar las medidas exactas y a escala real de los objetos representados.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Sustituir el uso del color por el manejo exclusivo de líneas y contornos.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:09.116Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:09.116Z"
+      }
+    },
+    {
+      "id": "cmu0y9hz0000qamznhuj0ja88",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "Este grabador mexicano de finales del siglo XIX y principios del XX es reconocido por sus calaveras satíricas, entre ellas la imagen que con el tiempo se popularizaría bajo el nombre de \"La Catrina\":",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "José Guadalupe Posada.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Leopoldo Méndez.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Manuel Manilla.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Gerardo Murillo, conocido como \"Dr. Atl\".",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:10.332Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:10.332Z"
+      }
+    },
+    {
+      "id": "cmu0y9iwu000vamzndq2n3145",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "El estilo artístico derivado del Renacimiento, caracterizado por la ornamentación abundante y el manejo dramático de luces y sombras, que en la Nueva España alcanzó una versión particularmente recargada conocida como \"churrigueresco\", se llama:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Barroco.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Mudéjar, estilo que combina elementos góticos con la tradición decorativa islámica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Plateresco, estilo previo de transición entre el gótico tardío y el Renacimiento.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Neoclásico, estilo posterior caracterizado por la sobriedad y la imitación de lo grecolatino.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:11.550Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:11.550Z"
+      }
+    },
+    {
+      "id": "cmu0y9jum0010amzn4qctgq6m",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
+      "stem": "El conjunto arquitectónico de Ciudad Universitaria (UNAM), proyectado bajo los principios del funcionalismo y con un plan de conjunto a cargo de los arquitectos Mario Pani y Enrique del Moral, integra murales de artistas como Diego Rivera, Juan O'Gorman y David Alfaro Siqueiros en sus fachadas. A este principio de unir arquitectura y mural en una sola obra se le conoce como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Sincretismo arquitectónico, término sin uso establecido para describir este fenómeno del siglo XX.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Integración plástica.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Muralismo funcional, expresión que invierte el orden real del concepto reconocido.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Neoclasicismo mural, corriente que en realidad corresponde al siglo XIX mexicano.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:12.766Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:12.766Z"
+      }
+    },
+    {
+      "id": "cmu0y9rav000145am4zacyz41",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "Esta escultura monumental mexica, tallada en piedra volcánica y que representa a una deidad con falda de serpientes entrelazadas y un collar de manos y corazones, fue hallada en 1790 durante obras de repavimentación en la Plaza Mayor de la Ciudad de México:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Coatlicue.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El Chac Mool del Templo Mayor.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La Piedra del Sol o Calendario Azteca.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La Piedra de Tízoc.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:22.424Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:22.424Z"
+      }
+    },
+    {
+      "id": "cmu0y9s2j000645amkyzk4zeh",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "El gran disco de piedra basáltica, tallado con el rostro del sol al centro y símbolos calendáricos alrededor, hallado también en 1790 en la Plaza Mayor de la Ciudad de México, se conoce popularmente como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Piedra del Sol o Calendario Azteca.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La Piedra de los Sacrificios.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Coatlicue.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El Teocalli de la Guerra Sagrada.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:23.420Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:23.420Z"
+      }
+    },
+    {
+      "id": "cmu0y9su6000b45amahnhsdat",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "En la escultura religiosa novohispana en madera policromada, la técnica que consiste en aplicar una capa de oro bajo la pintura y luego raspar el color siguiendo un patrón para que el oro asome, imitando el brocado de una tela rica, se llama:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Estofado.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Fundición a la cera perdida, técnica propia de la escultura en metal, no en madera.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Talla directa, técnica que se refiere solo al tallado de la madera sin ningún acabado posterior.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Encarnación, técnica dedicada específicamente a pintar las zonas de piel de la figura.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:24.414Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:24.414Z"
+      }
+    },
+    {
+      "id": "cmu0y9tlv000g45amn9flheax",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "La escultura ecuestre en bronce conocida popularmente como \"El Caballito\", que representa al rey Carlos IV de España y hoy se exhibe en una plaza cercana al Palacio de Minería en la Ciudad de México, es obra de:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Antonio González Velázquez.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Francisco Eduardo Tresguerras.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Jerónimo de Balbás.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Manuel Tolsá.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:25.411Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:25.411Z"
+      }
+    },
+    {
+      "id": "cmu0y9udg000l45amwskorgzp",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "Este escultor y pintor jalisciense (1920-2006), asociado a la llamada generación de \"la Ruptura\" que se distanció del muralismo, es reconocido por sus voluminosas esculturas en bronce de aves y figuras estilizadas exhibidas en espacios públicos:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Mathias Goeritz.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Juan Soriano.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Rufino Tamayo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Francisco Zúñiga.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:26.405Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:26.405Z"
+      }
+    },
+    {
+      "id": "cmu0y9v5a000q45amwpy6u560",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "Las \"Torres de Satélite\", un conjunto de prismas triangulares de concreto pintados de colores que marcan la entrada a Ciudad Satélite, en el Estado de México, se realizaron en colaboración entre el arquitecto Luis Barragán y este escultor de origen alemán naturalizado mexicano:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Juan Soriano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Mathias Goeritz.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Francisco Zúñiga.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Sebastián (Enrique Carbajal).",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:27.406Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:27.406Z"
+      }
+    },
+    {
+      "id": "cmu0y9vx2000v45ambs2cy0tc",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "Este escultor de origen costarricense, naturalizado mexicano, es reconocido por sus figuras monumentales de mujeres indígenas y mestizas, talladas o modeladas con volúmenes amplios y una presencia serena y monumental:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Juan Soriano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Francisco Zúñiga.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Manuel Tolsá.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Mathias Goeritz.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:28.406Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:28.406Z"
+      }
+    },
+    {
+      "id": "cmu0y9wop001045ampfu6p7v1",
+      "topicId": "cmrr1klcr007ahi3n55ojo30e",
+      "stem": "En la escultura, la técnica llamada \"talla\" consiste en ir retirando material —de un bloque de piedra o madera— hasta lograr la forma deseada. Esto la distingue de otro procedimiento escultórico básico, el \"modelado\", que en cambio consiste en:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Grabar líneas y texturas sobre una superficie plana, sin generar verdadero volumen.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Verter un material fundido, como el bronce, dentro de un molde previamente preparado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Ir agregando y dando forma a un material blando y maleable, como el barro o la cera, hasta construir la figura.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Ensamblar piezas ya elaboradas de distintos materiales para formar una sola obra tridimensional.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:29.401Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:29.401Z"
+      }
+    },
+    {
+      "id": "cmu0ya3zb00012biqwaf6hwqs",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "Este arquitecto mexicano, célebre por su uso expresivo del color, la luz, el agua y los muros macizos en obras como la Casa Luis Barragán o la Cuadra San Cristóbal, fue en 1980 el primer y hasta ahora único mexicano en recibir el Premio Pritzker de Arquitectura:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Juan O'Gorman.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Enrique del Moral.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Mario Pani.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Luis Barragán.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:38.855Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:38.855Z"
+      }
+    },
+    {
+      "id": "cmu0ya4x300062biq4lubdaq5",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "Esta ciudad amurallada maya, construida sobre un acantilado frente al mar Caribe en el actual estado de Quintana Roo, funcionó como un importante centro comercial costero durante el Posclásico:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Palenque.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Uxmal.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Tulum.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Chichén Itzá.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:40.071Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:40.071Z"
+      }
+    },
+    {
+      "id": "cmu0ya5us000b2biqhhvmyjfv",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "En esta ciudad maya de Chiapas, el arqueólogo Alberto Ruz Lhuillier descubrió en 1952, dentro del Templo de las Inscripciones, la tumba del gobernante Pakal, cubierta por una lápida con un relieve hoy célebre en la iconografía maya:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Teotihuacan.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Palenque.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Monte Albán.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Tulum.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:41.285Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:41.285Z"
+      }
+    },
+    {
+      "id": "cmu0ya6sm000g2biqg36os5u7",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "La \"Calzada de los Muertos\", eje principal que atraviesa el sitio arqueológico de Teotihuacan y conecta sus dos pirámides más monumentales —la del Sol y la de la Luna—, es un ejemplo del urbanismo planificado de esta ciudad:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Monte Albán.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Tenochtitlan.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Teotihuacan.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Tula.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:42.503Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:42.503Z"
+      }
+    },
+    {
+      "id": "cmu0ya7qe000l2biqq16u0ff5",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "La Catedral Metropolitana de la Ciudad de México, construida a lo largo de más de dos siglos, combina en un mismo edificio elementos de distintos estilos arquitectónicos sucesivos —desde rasgos barrocos hasta el remate neoclásico de sus torres y cúpula—. Este tipo de edificio, que refleja los cambios de gusto ocurridos durante su larga construcción, se describe como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Un edificio estrictamente funcionalista, proyectado en una sola etapa del siglo XX.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un edificio puramente plateresco, sin ninguna intervención posterior a su diseño original.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Un edificio exclusivamente churrigueresco en la totalidad de su fachada y su estructura.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Un edificio de estilo arquitectónico mixto o eclético, resultado de una obra prolongada en el tiempo.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:43.719Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:43.719Z"
+      }
+    },
+    {
+      "id": "cmu0ya8o4000q2biq7o4a8bzx",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "Esta pintura de gran formato, realizada en tonos de blanco, negro y gris, representa el sufrimiento causado por el bombardeo de una localidad vasca durante la Guerra Civil española de 1937, y es obra de:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Salvador Dalí.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Pablo Picasso.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Marc Chagall.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Diego Rivera.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:44.933Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:44.933Z"
+      }
+    },
+    {
+      "id": "cmu0ya9lu000v2biqkgywot2g",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "La Biblioteca Central de Ciudad Universitaria (UNAM), cuyas cuatro fachadas están cubiertas casi por completo con un mosaico hecho de piedras de colores naturales que narra episodios de la historia de México, fue decorada por:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Diego Rivera.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Juan O'Gorman.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Mathias Goeritz.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "David Alfaro Siqueiros.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:46.147Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:46.147Z"
+      }
+    },
+    {
+      "id": "cmu0yaajo00102biqd0t9k9aa",
+      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "stem": "La casa-estudio construida en San Ángel, Ciudad de México (1931-1932), formada por dos volúmenes independientes unidos por un puente y pensada para que trabajaran por separado Diego Rivera y Frida Kahlo, se considera uno de los primeros ejemplos de arquitectura funcionalista en América Latina, y fue proyectada por:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Carlos Obregón Santacilia.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Juan O'Gorman.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Mario Pani.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Luis Barragán.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:47.365Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:47.365Z"
+      }
+    },
+    {
+      "id": "cmu0yai1t0001pb9hnwjtyauk",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "El primer procedimiento fotográfico de uso práctico, presentado públicamente en 1839 y que producía una imagen única sobre una placa de metal plateado, se conoce como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Calotipo, desarrollado por William Henry Fox Talbot.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Fotograma, técnica que no requiere cámara ni lente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Daguerrotipo, desarrollado por Louis Daguerre.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Heliografía, desarrollada por Nicéphore Niépce en la década de 1820.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:57.089Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:57.089Z"
+      }
+    },
+    {
+      "id": "cmu0yaitk0006pb9hawegetmi",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "Este fotógrafo mexicano, considerado el más influyente de su país en el siglo XX, es autor de imágenes como \"Obrero en huelga, asesinado\" (1934) y \"La buena fama durmiendo\" (1938), cercanas en ocasiones a la sensibilidad surrealista:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Manuel Álvarez Bravo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Lola Álvarez Bravo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Héctor García.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Nacho López.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:58.088Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:58.088Z"
+      }
+    },
+    {
+      "id": "cmu0yajlc000bpb9h656gj4to",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "Esta fotógrafa de origen italiano, activa en México durante los años veinte y vinculada al círculo de los muralistas y al Partido Comunista Mexicano, es reconocida por fotografías de composición geométrica como sus estudios de rosas y por imágenes de trabajadores y manifestaciones obreras:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Kati Horna.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Tina Modotti.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Lola Álvarez Bravo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Graciela Iturbide.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:57:59.088Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:57:59.088Z"
+      }
+    },
+    {
+      "id": "cmu0yakd9000gpb9h3d7f6e32",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "El periodo del cine mexicano comprendido aproximadamente entre finales de los años treinta y los años cincuenta del siglo XX, caracterizado por una producción cinematográfica de gran popularidad y proyección internacional, con géneros como el melodrama rural y la comedia ranchera, se conoce como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La Época de Oro del cine mexicano.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El Cine de Ficheras, subgénero asociado más bien a las décadas de 1970 y 1980.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El Cine Mudo Nacional, periodo anterior a la llegada del sonido al cine mexicano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El Nuevo Cine Mexicano, etiqueta que corresponde en realidad a un movimiento posterior de finales del siglo XX.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:58:00.093Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:58:00.093Z"
+      }
+    },
+    {
+      "id": "cmu0yal4x000lpb9ht8c0em2d",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "Este director de fotografía mexicano, célebre por sus composiciones de cielos cargados de nubes y su manejo dramático de la luz y la sombra, colaboró frecuentemente con el director Emilio \"El Indio\" Fernández en películas como \"María Candelaria\" (1943), y más tarde trabajó también con cineastas como Luis Buñuel y John Ford:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Alex Phillips.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Rosalío Solano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Gabriel Figueroa.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Jack Draper.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:58:01.089Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:58:01.089Z"
+      }
+    },
+    {
+      "id": "cmu0yalwm000qpb9hj59brueo",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "El cineasta soviético, pionero de la teoría del montaje cinematográfico, que viajó a México a principios de los años treinta para filmar un proyecto —quedado inconcluso en su forma original— sobre la historia y la cultura del país, titulado \"¡Que viva México!\", fue:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Luis Buñuel.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Dziga Vertov.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Serguéi Eisenstein.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Vsévolod Pudovkin.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:58:02.086Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:58:02.086Z"
+      }
+    },
+    {
+      "id": "cmu0yamoj000vpb9hbv2vndhv",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "En el lenguaje cinematográfico, el proceso mediante el cual se seleccionan y ordenan los distintos planos filmados para construir el ritmo, el sentido y la narración de una película se conoce como:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Guion técnico, documento escrito previo al rodaje que planea las tomas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Montaje.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Doblaje, proceso de sustitución del audio original por otro grabado posteriormente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Encuadre, término que se refiere a lo que queda contenido dentro de los límites de la imagen.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:58:03.090Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:58:03.090Z"
+      }
+    },
+    {
+      "id": "cmu0yang50010pb9hqm4pokrh",
+      "topicId": "cmrr1kmka007ehi3n7pd7lvqe",
+      "stem": "En el vocabulario técnico del cine, la toma que muestra el rostro de un personaje ocupando la mayor parte del encuadre, usada frecuentemente para resaltar una emoción o una reacción, se llama:",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Plano americano, que encuadra a los personajes aproximadamente de la rodilla hacia arriba.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Plano general, que muestra a los personajes dentro de un espacio amplio que los contextualiza.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Primer plano.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Plano detalle, que aísla un objeto o una parte muy pequeña de la escena, no el rostro completo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T07:58:04.086Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T07:58:04.086Z"
+      }
     }
   ],
   "QuestionSourceChunk": [
@@ -109159,6 +111239,174 @@
       "sourceChunkId": "cmrsrohh8001u13b37qsh5b1g",
       "createdAt": {
         "$d": "2026-09-14T06:33:35.077Z"
+      }
+    },
+    {
+      "questionId": "cmu0y8ync0001mvee758e5eoi",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:45.288Z"
+      }
+    },
+    {
+      "questionId": "cmu0y8zmw0006mveebavkq9n5",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:46.568Z"
+      }
+    },
+    {
+      "questionId": "cmu0y90kt000bmveei3s4wwbl",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:47.789Z"
+      }
+    },
+    {
+      "questionId": "cmu0y91ip000gmvee07gyscjo",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:49.009Z"
+      }
+    },
+    {
+      "questionId": "cmu0y92gk000lmveeawxg7oej",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:50.228Z"
+      }
+    },
+    {
+      "questionId": "cmu0y93es000qmveextpni5op",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:51.460Z"
+      }
+    },
+    {
+      "questionId": "cmu0y94co000vmveezz21d3vk",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:52.680Z"
+      }
+    },
+    {
+      "questionId": "cmu0y95ar0010mveeq3e828st",
+      "sourceChunkId": "cmrsroinh002y13b344sp1usk",
+      "createdAt": {
+        "$d": "2026-09-14T07:56:53.907Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9da50001amzn3jja98x6",
+      "sourceChunkId": "cmrsroinh003113b3li1p4p4d",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:04.254Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9e7z0006amznagwswiqe",
+      "sourceChunkId": "cmrsroinh003113b3li1p4p4d",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:05.472Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9f5o000bamznur7evria",
+      "sourceChunkId": "cmrsroinh003213b3tkibf85x",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:06.684Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9g3f000gamznsylr3adt",
+      "sourceChunkId": "cmrsroinh003213b3tkibf85x",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:07.899Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9h18000lamznq5ytpx01",
+      "sourceChunkId": "cmrsroinh003213b3tkibf85x",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:09.116Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9hz0000qamznhuj0ja88",
+      "sourceChunkId": "cmrsroinh003213b3tkibf85x",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:10.332Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9iwu000vamzndq2n3145",
+      "sourceChunkId": "cmrsroinh002z13b36g3wjojg",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:11.550Z"
+      }
+    },
+    {
+      "questionId": "cmu0y9jum0010amzn4qctgq6m",
+      "sourceChunkId": "cmrsroinh002z13b36g3wjojg",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:12.766Z"
+      }
+    },
+    {
+      "questionId": "cmu0ya3zb00012biqwaf6hwqs",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:38.855Z"
+      }
+    },
+    {
+      "questionId": "cmu0ya4x300062biq4lubdaq5",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:40.071Z"
+      }
+    },
+    {
+      "questionId": "cmu0ya5us000b2biqhhvmyjfv",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:41.285Z"
+      }
+    },
+    {
+      "questionId": "cmu0ya6sm000g2biqg36os5u7",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:42.503Z"
+      }
+    },
+    {
+      "questionId": "cmu0ya7qe000l2biqq16u0ff5",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:43.719Z"
+      }
+    },
+    {
+      "questionId": "cmu0ya8o4000q2biq7o4a8bzx",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:44.933Z"
+      }
+    },
+    {
+      "questionId": "cmu0ya9lu000v2biqkgywot2g",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:46.147Z"
+      }
+    },
+    {
+      "questionId": "cmu0yaajo00102biqd0t9k9aa",
+      "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
+      "createdAt": {
+        "$d": "2026-09-14T07:57:47.365Z"
       }
     }
   ],
@@ -141489,6 +143737,966 @@
       "layer": 3,
       "title": "Por qué no las otras opciones",
       "content": "La meta no es la uniformidad de pensamiento; una democracia no se reduce a la voluntad de la mayoría numérica sin más, también protege a las minorías; y la diversidad no es un obstáculo a minimizar, es una condición de la convivencia democrática.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y8ync0002mvee0hyd8l8t",
+      "questionId": "cmu0y8ync0001mvee758e5eoi",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Las cabezas colosales olmecas, algunas de más de dos metros de altura y varias toneladas de peso, se tallaron en basalto trasladado desde canteras distantes y representan retratos individualizados de gobernantes, identificables por el tocado o casco que portan.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y8ync0003mveelsoxqkm9",
+      "questionId": "cmu0y8ync0001mvee758e5eoi",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "La cultura olmeca (aprox. 1200-400 a.C.) es considerada la civilización \"madre\" de Mesoamérica porque varios de sus rasgos —el juego de pelota, el culto a deidades felinas, el uso del jade— reaparecen después en culturas posteriores como la maya y la zapoteca.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y8ync0004mveeafaq6und",
+      "questionId": "cmu0y8ync0001mvee758e5eoi",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La escultura zapoteca de Monte Albán se asocia más con relieves de piedra (\"danzantes\") que con cabezas colosales; la totonaca es célebre por sus figuras cerámicas de rostro sonriente; y la teotihuacana destaca sobre todo en pintura mural y arquitectura piramidal, no en cabezas monumentales talladas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y8zmw0007mveeotwwme10",
+      "questionId": "cmu0y8zmw0006mveebavkq9n5",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Los murales de Teotihuacan (como los del conjunto de Tepantitla) se pintaron al fresco sobre estuco, con figuras de perfil, colores planos —rojos, verdes y azules obtenidos de minerales— y contornos negros bien definidos; una de sus escenas más citadas se ha interpretado como una representación del paraíso de Tláloc.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y8zmw0008mveefur7013a",
+      "questionId": "cmu0y8zmw0006mveebavkq9n5",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Este estilo plano y simbólico, sin intención de crear volumen realista, es característico del arte mesoamericano en general y distingue a la pintura prehispánica de convenciones posteriores como el esfumado renacentista europeo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y8zmw0009mvee9vjknukr",
+      "questionId": "cmu0y8zmw0006mveebavkq9n5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El esfumado y el claroscuro son técnicas de la pintura europea posterior (por ejemplo, renacentista), no mesoamericana; la perspectiva narrativa continua con escenas de batalla es propia de los murales mayas de Bonampak, no de Teotihuacan; y aunque Teotihuacan también tiene relieves, su pintura mural sí es abundante y central en su arte.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y90kt000cmveeum1z0pyy",
+      "questionId": "cmu0y90kt000bmveei3s4wwbl",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Las estelas mayas combinan la imagen del gobernante —a menudo con atributos de poder y ricos atavíos— con textos jeroglíficos que registran fechas del calendario de cuenta larga y eventos como su entronización, victorias militares o rituales de sangre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y90kt000dmveehr5p1u9x",
+      "questionId": "cmu0y90kt000bmveei3s4wwbl",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Son una de las principales fuentes para reconstruir la historia dinástica de las ciudades mayas, porque a diferencia de otras culturas mesoamericanas, los mayas desarrollaron un sistema de escritura jeroglífica capaz de registrar nombres propios y fechas exactas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y90kt000emvee6i8v12jg",
+      "questionId": "cmu0y90kt000bmveei3s4wwbl",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No son marcadores territoriales ni instrumentos astronómicos de cálculo directo (aunque sí registran fechas, no \"calculan\" eclipses por sí mismas), y tampoco se colocaban típicamente dentro de tumbas: se erigían en espacios públicos, a la vista de la comunidad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y91ip000hmvee4u2zzo7m",
+      "questionId": "cmu0y91ip000gmvee07gyscjo",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Los murales de Bonampak, distribuidos en tres cuartos de un mismo edificio, muestran con gran detalle una secuencia narrativa: preparativos, una batalla, la presentación de prisioneros y una ceremonia con danzantes, pintada con pigmentos que conservaron su color de forma excepcional.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y91ip000imveepjqh531s",
+      "questionId": "cmu0y91ip000gmvee07gyscjo",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Su hallazgo en 1946 fue relevante porque, a diferencia de la imagen entonces dominante de los mayas como una civilización pacífica dedicada solo a la astronomía, los murales documentaron con crudeza la guerra y el sacrificio como parte central de la vida política maya.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y91ip000jmveephpgnbc2",
+      "questionId": "cmu0y91ip000gmvee07gyscjo",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las cabezas colosales son un rasgo olmeca, no maya; los códices sobre papel amate mayas que sobreviven (como el Dresde) no provienen de Bonampak; y aunque la máscara de Pakal en Palenque es célebre, Bonampak no se distingue por máscaras funerarias sino por su pintura mural.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y92gk000mmveet5ggt20j",
+      "questionId": "cmu0y92gk000lmveeawxg7oej",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Aunque el nombre \"danzantes\" proviene de la impresión inicial de los arqueólogos que los descubrieron, las posturas —cuerpos desnudos, ojos cerrados, algunas figuras con genitales mutilados— llevaron a reinterpretarlos como representaciones de prisioneros de guerra o víctimas de sacrificio, posiblemente vinculadas a la expansión militar zapoteca.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y92gk000nmveeb39stmm7",
+      "questionId": "cmu0y92gk000lmveeawxg7oej",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Monte Albán, capital zapoteca en el valle de Oaxaca activa desde aproximadamente el 500 a.C., usó este tipo de relieves como un mensaje público de poder político y militar hacia otras ciudades-estado rivales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y92gk000omveeu9jdjixt",
+      "questionId": "cmu0y92gk000lmveeawxg7oej",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La lectura como danza ritual de lluvia es la interpretación antigua ya superada por la investigación posterior; no representan una entronización (que tendría atavíos de poder, no cuerpos desnudos y sometidos); y no hay evidencia de que representen una escena de mercado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y93es000rmveegje1fp1t",
+      "questionId": "cmu0y93es000qmveextpni5op",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Las \"caritas sonrientes\" son figurillas de barro, generalmente huecas, producidas en el centro de Veracruz durante el llamado Clásico Tardío; su expresión facial de sonrisa abierta las distingue de la mayoría de la figurilla mesoamericana, que suele mostrar rostros serios o hieráticos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y93es000smveeqx2pmsqs",
+      "questionId": "cmu0y93es000qmveextpni5op",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Se asocian a la cultura totonaca y a la región donde se ubica El Tajín, ciudad famosa por su Pirámide de los Nichos y por los relieves del juego de pelota que narran escenas de sacrificio ritual.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y93es000tmveenqr52aga",
+      "questionId": "cmu0y93es000qmveextpni5op",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La mixteca es célebre sobre todo por su orfebrería y sus códices pictográficos; la maya por sus estelas y pintura mural narrativa; y la olmeca por sus cabezas colosales y figurillas de rasgos \"baby-face\", no por rostros sonrientes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y94co000wmvee8i64y7fb",
+      "questionId": "cmu0y94co000vmveezz21d3vk",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Alfonso Caso encontró en la Tumba 7 de Monte Albán un conjunto de piezas de orfebrería —pectorales, anillos, una máscara de oro— de manufactura mixteca extraordinariamente fina, colocadas ahí cuando el pueblo mixteco reutilizó, siglos después, una tumba zapoteca construida originalmente para otro fin.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y94co000xmveei73ohz1w",
+      "questionId": "cmu0y94co000vmveezz21d3vk",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "El hallazgo es clave porque demuestra el altísimo nivel técnico de la orfebrería mixteca (fundición a la cera perdida, filigrana) y porque documenta cómo distintos pueblos mesoamericanos reocuparon y resignificaron espacios sagrados de culturas anteriores.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y94co000ymveea2m57wun",
+      "questionId": "cmu0y94co000vmveezz21d3vk",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No se trata de escritura jeroglífica maya ni de pintura mural del área maya —ambas ajenas a este hallazgo oaxaqueño—, y aunque el mosaico de turquesa sí existió en Mesoamérica (por ejemplo entre los mixtecos), la Tumba 7 se conoce sobre todo por su orfebrería, no por un uso exclusivo zapoteca de esa técnica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y95ar0011mveea8wv0ctr",
+      "questionId": "cmu0y95ar0010mveeq3e828st",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El sincretismo describe cómo artesanos y artistas indígenas, trabajando bajo la dirección de frailes y maestros europeos, incorporaron motivos, técnicas y significados propios de su tradición visual prehispánica dentro de los formatos religiosos católicos que se les encargaban, dando lugar a un arte novohispano con rasgos únicos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y95ar0012mveezp0wj7t2",
+      "questionId": "cmu0y95ar0010mveeq3e828st",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Ejemplos citados con frecuencia son los atrios de conventos del siglo XVI decorados con motivos vegetales de raíz indígena, o el llamado \"arte tequitqui\", en el que canteros indígenas tallaban relieves religiosos cristianos con una sensibilidad visual heredada de la escultura prehispánica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y95ar0013mveeo2jnbixi",
+      "questionId": "cmu0y95ar0010mveeq3e828st",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El anacronismo es un error de ubicación temporal, no un fenómeno artístico de fusión cultural; la sincronicidad es un concepto de otro campo, sin relación con la historia del arte; y \"fusión estilística tardía\" no es un término reconocido para este fenómeno específico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9da60002amznjxqnsw4h",
+      "questionId": "cmu0y9da50001amzn3jja98x6",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "\"Madre campesina\" pertenece a un periodo de la obra de Diego Rivera posterior a su etapa cubista en París, marcado por un \"retorno al orden\" de formas clásicas y volúmenes sólidos, poco antes de dedicarse de lleno al muralismo monumental.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9da60003amznbe3m8ni8",
+      "questionId": "cmu0y9da50001amzn3jja98x6",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Rivera es, junto con Siqueiros y Orozco, uno de \"los tres grandes\" del muralismo mexicano, movimiento impulsado tras la Revolución para llevar un arte público de contenido social e histórico a espacios institucionales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9da60004amzngmbv3knm",
+      "questionId": "cmu0y9da50001amzn3jja98x6",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Siqueiros y Orozco comparten con Rivera el proyecto muralista pero tienen estilos personales distintos —Siqueiros más dinámico y experimental con materiales industriales, Orozco más expresionista y trágico—; Carlos Mérida desarrolló un lenguaje más cercano a la abstracción geométrica de raíz maya, ajeno a esta obra.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9e7z0007amznlf00sr35",
+      "questionId": "cmu0y9e7z0006amznagwswiqe",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Leonardo da Vinci perfeccionó el esfumado (del italiano \"sfumato\", \"como el humo\") aplicando capas muy delgadas de pintura al óleo para que los bordes de las formas —como el contorno de la boca o los ojos de La Gioconda— se disuelvan gradualmente en la sombra, sin una línea que los delimite.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9e7z0008amznt03a16cn",
+      "questionId": "cmu0y9e7z0006amznagwswiqe",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Esta técnica fue una de las grandes innovaciones del Renacimiento italiano para lograr una sensación de volumen y atmósfera más natural que la de la pintura medieval anterior, de contornos más definidos y planos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9e7z0009amzn2pmzj6zp",
+      "questionId": "cmu0y9e7z0006amznagwswiqe",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La Escuela de Atenas de Rafael es célebre más bien por su dominio de la perspectiva arquitectónica y la composición de figuras; El nacimiento de Venus de Botticelli antecede al esfumado maduro y usa contornos lineales más definidos; y La creación de Adán de Miguel Ángel es un fresco que destaca por el dibujo anatómico, no por el esfumado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9f5o000camzncjtlg7kl",
+      "questionId": "cmu0y9f5o000bamznur7evria",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "En el modelo pigmentario tradicional (rojo, amarillo y azul), los colores primarios son la base a partir de la cual se construyen los colores secundarios y terciarios mediante mezclas; ningún primario puede producirse combinando otros colores del círculo cromático.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9f5o000damzn5lo6pxj0",
+      "questionId": "cmu0y9f5o000bamznur7evria",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Comprender esta jerarquía es una base elemental de la apreciación pictórica, porque permite reconocer cómo un artista construye armonías o contrastes de color a partir de un número reducido de pigmentos base.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9f5o000eamznrp083dh3",
+      "questionId": "cmu0y9f5o000bamznur7evria",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Los complementarios son pares de colores opuestos en el círculo cromático (como rojo y verde) que se intensifican visualmente entre sí; los neutros son el blanco, el negro y los grises; y los análogos son colores vecinos en el círculo cromático — ninguno de los tres describe a los colores \"base\" de la mezcla.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9g3f000hamznnaila2u1",
+      "questionId": "cmu0y9g3f000gamznsylr3adt",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Naranja, verde y violeta son los tres colores secundarios del modelo pigmentario tradicional, cada uno resultado de mezclar dos primarios adyacentes en el círculo cromático.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9g3f000iamzn7mvijykp",
+      "questionId": "cmu0y9g3f000gamznsylr3adt",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Esta relación es la base para construir el círculo cromático completo (con los terciarios, mezcla de un primario y un secundario vecino) y para explicar por qué ciertos colores \"combinan\" o \"contrastan\" visualmente entre sí en una composición pictórica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9g3f000jamznci2yn767",
+      "questionId": "cmu0y9g3f000gamznsylr3adt",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El café, el rosado y el gris no son secundarios en sentido estricto: son mezclas que involucran blanco, negro u otros colores además de dos primarios puros; el turquesa, el magenta y el ocre corresponden más bien a matices o colores terciarios; y mezclar los primarios en pigmento no produce blanco, sino un tono oscuro cercano al café o al gris.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9h18000mamznu9zg6v0t",
+      "questionId": "cmu0y9h18000lamznq5ytpx01",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "La perspectiva usa convenciones visuales —como líneas que convergen en uno o varios puntos de fuga, o la reducción del tamaño de los objetos conforme se alejan— para simular en una imagen bidimensional la profundidad que percibimos en el mundo real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9h18000namznwhyl6okp",
+      "questionId": "cmu0y9h18000lamznq5ytpx01",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Su sistematización más influyente ocurrió durante el Renacimiento italiano (por ejemplo, en los estudios de Filippo Brunelleschi y Leon Battista Alberti), y desde entonces es una herramienta central de la apreciación y el análisis de la pintura occidental.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9h18000oamznujunf3ow",
+      "questionId": "cmu0y9h18000lamznq5ytpx01",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La perspectiva no busca medidas exactas a escala real, sino una ilusión convincente de profundidad; no implica renunciar al color; y lejos de eliminar los puntos de fuga, suele depender precisamente de ellos para construir esa ilusión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9hz0000ramznw8mb80kd",
+      "questionId": "cmu0y9hz0000qamznhuj0ja88",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "José Guadalupe Posada trabajó como grabador para publicaciones populares e ilustró hojas volantes con calaveras que satirizaban a distintos sectores de la sociedad porfiriana, usando el esqueleto como recurso para igualar simbólicamente a todas las clases sociales ante la muerte.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9hz0000samznyhzrttii",
+      "questionId": "cmu0y9hz0000qamznhuj0ja88",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "La calavera que Posada llamó \"la calavera garbancera\" —burlándose de quienes renegaban de su origen indígena imitando modas europeas— fue rebautizada años después como \"La Catrina\" y popularizada por Diego Rivera al incluirla en su mural \"Sueño de una tarde dominical en la Alameda Central\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9hz0000tamzno1p7d2ei",
+      "questionId": "cmu0y9hz0000qamznhuj0ja88",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Leopoldo Méndez fue un grabador posterior, activo sobre todo en el Taller de Gráfica Popular del siglo XX; Manuel Manilla fue grabador contemporáneo de Posada pero no es a quien se atribuye esta calavera en particular; y \"Dr. Atl\" fue pintor y promotor cultural, no grabador de calaveras satíricas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9iwu000wamzndbjzye3k",
+      "questionId": "cmu0y9iwu000vamzndq2n3145",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El Barroco surgió en Europa a finales del siglo XVI y se caracteriza por el dinamismo compositivo, el contraste intenso de luces y sombras y una ornamentación abundante; en la Nueva España se enriqueció con motivos vegetales y decorativos de raíz indígena, dando lugar a variantes como el churrigueresco, de ornamentación aún más densa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9iwu000xamzn0bi4rf6x",
+      "questionId": "cmu0y9iwu000vamzndq2n3145",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Ejemplos de esta corriente en México son el Altar de los Reyes de la Catedral Metropolitana o el Sagrario Metropolitano, con fachadas cubiertas casi por completo de relieves ornamentales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9iwu000yamzn0i96k44a",
+      "questionId": "cmu0y9iwu000vamzndq2n3145",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El plateresco es anterior y combina rasgos góticos con los primeros elementos renacentistas; el neoclásico es la reacción posterior contra el exceso ornamental barroco, buscando líneas sobrias inspiradas en Grecia y Roma; y el mudéjar es un estilo español anterior que combina tradición gótica con decoración de raíz islámica, sin relación directa con el churrigueresco novohispano.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9jum0011amznq8jawk5y",
+      "questionId": "cmu0y9jum0010amzn4qctgq6m",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "La \"integración plástica\" es el principio, impulsado especialmente por Diego Rivera, de concebir el edificio y su decoración mural como una sola obra desde el proyecto arquitectónico, en lugar de añadir la pintura después como un elemento decorativo separado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9jum0012amzno4njhv1s",
+      "questionId": "cmu0y9jum0010amzn4qctgq6m",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Ciudad Universitaria, construida a mediados del siglo XX y declarada Patrimonio de la Humanidad por la UNESCO en 2007, es uno de los ejemplos más citados de este principio: el mosaico de piedras naturales de Juan O'Gorman en la Biblioteca Central es parte estructural de la fachada, no un añadido posterior.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9jum0013amznn5s9v0bd",
+      "questionId": "cmu0y9jum0010amzn4qctgq6m",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"Sincretismo arquitectónico\" no es el término establecido para este fenómeno (el sincretismo se usa más bien para la fusión prehispánico-europea del arte virreinal); el neoclasicismo mural mexicano corresponde a otro siglo y contexto; y \"muralismo funcional\" invierte la relación real entre ambos conceptos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9rav000245amd4068jgd",
+      "questionId": "cmu0y9rav000145am4zacyz41",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Coatlicue (\"la de la falda de serpientes\") es una escultura monolítica que combina símbolos de muerte y fertilidad —cráneos, manos, corazones, serpientes— para representar a una deidad terrestre mexica asociada al nacimiento y la muerte.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9rav000345amu2jvqv55",
+      "questionId": "cmu0y9rav000145am4zacyz41",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Fue descubierta el mismo año, 1790, en que también apareció la Piedra del Sol, ambas durante trabajos de nivelación del Zócalo capitalino ordenados por el virrey Revillagigedo; hoy se exhibe en el Museo Nacional de Antropología.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9rav000445ammlcxxyfw",
+      "questionId": "cmu0y9rav000145am4zacyz41",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La Piedra del Sol es un disco calendárico, no una figura antropomorfa de pie; la Piedra de Tízoc es un monumento cilíndrico dedicado a conquistas militares de ese gobernante mexica; y el Chac Mool es una figura reclinada con un recipiente sobre el vientre, de tipo distinto al de Coatlicue.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9s2j000745amit8aote6",
+      "questionId": "cmu0y9s2j000645amkyzk4zeh",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "La Piedra del Sol es un monumento circular de varias toneladas cuyo relieve central se interpreta como el rostro del sol o de la deidad Tonatiuh, rodeado de glifos que registran los cinco \"soles\" o eras cosmogónicas mexicas y otros elementos calendáricos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9s2j000845amz9603zat",
+      "questionId": "cmu0y9s2j000645amkyzk4zeh",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "A pesar de su nombre popular, los especialistas discuten si funcionó como calendario de uso práctico o más bien como un monumento cosmogónico y ritual de carácter simbólico; en cualquier caso es hoy una de las piezas más reconocidas del Museo Nacional de Antropología.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9s2k000945amlxyqu9u3",
+      "questionId": "cmu0y9s2j000645amkyzk4zeh",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Coatlicue es una escultura antropomorfa vertical, no un disco calendárico; \"la Piedra de los Sacrificios\" no es el nombre reconocido de este monumento; y el Teocalli de la Guerra Sagrada es una escultura distinta, en forma de templo miniatura, asociada al gobernante Moctezuma II.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9su6000c45amrg6fuxea",
+      "questionId": "cmu0y9su6000b45amahnhsdat",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El estofado permitía simular telas bordadas en oro sobre las vestimentas de santos y vírgenes tallados en madera: primero se doraba la superficie, después se cubría con pintura de color, y finalmente se raspaba siguiendo un dibujo para que el brillo del oro emergiera en el patrón deseado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9su6000d45amcs4gjdax",
+      "questionId": "cmu0y9su6000b45amahnhsdat",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Esta técnica, junto con la encarnación —el pulido y pintura minuciosa de rostros y manos para imitar el tono de la piel—, era típica del taller de imaginería novohispana, donde distintos artesanos especializados intervenían en una misma escultura religiosa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9su6000e45amovcr9iyl",
+      "questionId": "cmu0y9su6000b45amahnhsdat",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La encarnación es precisamente la técnica dedicada a la piel, no a las telas, por lo que no describe lo planteado; la fundición a la cera perdida es una técnica metalúrgica ajena a la madera; y la talla directa se refiere solo al proceso de esculpir la forma, sin el acabado decorativo descrito.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9tlv000h45amytz980kl",
+      "questionId": "cmu0y9tlv000g45amn9flheax",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Manuel Tolsá, escultor y arquitecto valenciano activo en Nueva España, fundió esta estatua ecuestre en bronce a principios del siglo XIX; es considerada una de las obras cumbre de la escultura neoclásica novohispana por el dominio técnico que exigió su fundición en una sola pieza.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9tlv000i45amibpwudqw",
+      "questionId": "cmu0y9tlv000g45amn9flheax",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Tolsá también proyectó el Palacio de Minería y trabajó en la culminación neoclásica de las torres y la cúpula de la Catedral Metropolitana, por lo que es una figura central para entender el tránsito del barroco al neoclasicismo en el arte novohispano tardío.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9tlv000j45ampakmnlbm",
+      "questionId": "cmu0y9tlv000g45amn9flheax",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Tresguerras fue un arquitecto y artista guanajuatense de la misma época pero no el autor de esta escultura; González Velázquez fue pintor, no escultor de esta obra; y Jerónimo de Balbás es más bien recordado como autor de retablos barrocos (como el Altar de los Reyes), un estilo y una técnica distintos a los de esta estatua neoclásica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9udg000m45am68cd3092",
+      "questionId": "cmu0y9udg000l45amwskorgzp",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Juan Soriano desarrolló, sobre todo en la segunda mitad de su carrera, una obra escultórica de formas redondeadas y simplificadas —palomas, gatos y figuras humanas estilizadas— fundida en bronce a gran escala para plazas y jardines públicos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9udg000n45amd610q2ev",
+      "questionId": "cmu0y9udg000l45amwskorgzp",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Su trabajo se asocia a la generación de artistas que, desde mediados del siglo XX, buscó alejarse del contenido histórico y social del muralismo para explorar un lenguaje más personal, cercano en ocasiones a la abstracción y al humor visual.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9udg000o45ammk3ujqqg",
+      "questionId": "cmu0y9udg000l45amwskorgzp",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Mathias Goeritz es reconocido más bien por la escultura monumental abstracta y su cercanía con la arquitectura (como las Torres de Satélite); Francisco Zúñiga se especializó en figuras femeninas indígenas de gran volumen, de estilo distinto al de Soriano; y Rufino Tamayo es conocido principalmente como pintor, no como escultor.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9v5a000r45amgr3fzh64",
+      "questionId": "cmu0y9v5a000q45amwpy6u560",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Las Torres de Satélite (1957-1958) son cinco prismas de concreto de distintas alturas, sin función utilitaria más allá de señalar y embellecer el acceso a un desarrollo urbano; se consideran un ejemplo temprano de lo que Goeritz llamó \"arquitectura emocional\", pensada para provocar una experiencia estética y no solo práctica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9v5a000s45am5sj1ku44",
+      "questionId": "cmu0y9v5a000q45amwpy6u560",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Mathias Goeritz, llegado a México en 1949, impulsó una escultura monumental y abstracta pensada en diálogo directo con el espacio urbano y arquitectónico, en contraste con la escultura figurativa de raíz indígena o histórica más común hasta entonces.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9v5a000t45ams8wfanwy",
+      "questionId": "cmu0y9v5a000q45amwpy6u560",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Ni Soriano ni Zúñiga participaron en este proyecto en particular, aunque ambos son escultores mexicanos relevantes del siglo XX; y Sebastián (Enrique Carbajal), conocido por esculturas geométricas monumentales como \"La Puerta de México\", pertenece a una generación posterior y tampoco intervino en esta obra.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9vx2000w45amsnkan1ta",
+      "questionId": "cmu0y9vx2000v45ambs2cy0tc",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Francisco Zúñiga desarrolló, desde mediados del siglo XX, un estilo escultórico figurativo centrado en la representación de mujeres del campo y de comunidades indígenas mexicanas, con cuerpos de volúmenes amplios y actitudes de reposo o introspección.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9vx2000x45amvpsa4sc9",
+      "questionId": "cmu0y9vx2000v45ambs2cy0tc",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "A diferencia de la escultura abstracta y monumental que impulsó Mathias Goeritz en la misma época, la obra de Zúñiga se mantuvo dentro de una tradición figurativa, heredera en parte de la atención al tipo humano popular que ya estaba presente en el muralismo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9vx2000y45am1q8t1n4j",
+      "questionId": "cmu0y9vx2000v45ambs2cy0tc",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Goeritz es más bien representante de la escultura abstracta y monumental urbana; Soriano trabajó formas simplificadas de animales y figuras estilizadas, de espíritu distinto al realismo de Zúñiga; y Tolsá pertenece a un periodo anterior, el de la escultura neoclásica novohispana.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9wop001145am1xo8qzqb",
+      "questionId": "cmu0y9wop001045ampfu6p7v1",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El modelado es un procedimiento \"aditivo\": el escultor agrega y manipula un material blando —barro, cera, plastilina— construyendo la forma poco a poco, al contrario de la talla, que es \"sustractiva\" porque retira material de un bloque más grande.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9wop001245amgnhd4rxj",
+      "questionId": "cmu0y9wop001045ampfu6p7v1",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Estos dos procedimientos, junto con la fundición (verter metal líquido en un molde) y el ensamblaje (unir piezas ya hechas), son las cuatro técnicas básicas que suele distinguir la apreciación escultórica para clasificar cómo se construyó una obra tridimensional.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0y9wop001345amcd8a7z8l",
+      "questionId": "cmu0y9wop001045ampfu6p7v1",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Verter un material fundido en un molde describe la fundición, no el modelado; ensamblar piezas ya elaboradas describe el ensamblaje; y grabar líneas sobre una superficie plana no genera una obra tridimensional, por lo que corresponde más bien al grabado, una técnica de artes gráficas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya3zb00022biqo91qcjsk",
+      "questionId": "cmu0ya3zb00012biqwaf6hwqs",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Luis Barragán desarrolló, a partir de los años cuarenta, una arquitectura que combina la tradición constructiva mexicana —muros gruesos, patios, fuentes— con una sensibilidad muy personal por el color saturado, la luz filtrada y los planos de agua en reposo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya3zb00032biqhud6mafl",
+      "questionId": "cmu0ya3zb00012biqwaf6hwqs",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "El Premio Pritzker, considerado el reconocimiento más importante de la disciplina a nivel mundial, distinguió en 1980 a Barragán por una obra que, aunque de escala mayoritariamente doméstica, tuvo una influencia internacional muy amplia en la arquitectura posterior.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya3zb00042biqfndo38yl",
+      "questionId": "cmu0ya3zb00012biqwaf6hwqs",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Mario Pani y Enrique del Moral son conocidos sobre todo por el urbanismo y la arquitectura funcionalista de gran escala, como el plan maestro de Ciudad Universitaria, un lenguaje distinto al de Barragán; y Juan O'Gorman es conocido tanto por la arquitectura funcionalista temprana como por el muralismo en mosaico, tampoco el autor de estas obras.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya4x300072biqd8vqrm7k",
+      "questionId": "cmu0ya4x300062biq4lubdaq5",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Tulum se distingue de otras ciudades mayas por su ubicación sobre un acantilado costero y por estar rodeada de una muralla defensiva en tres de sus lados; su edificio principal, conocido como \"El Castillo\", pudo haber funcionado también como faro para orientar a las embarcaciones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya4x300082biq0p0pr2xr",
+      "questionId": "cmu0ya4x300062biq4lubdaq5",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Su actividad como puerto y centro de intercambio —de productos como sal, obsidiana, cacao y textiles— fue especialmente intensa durante el Posclásico tardío, cuando otras grandes ciudades mayas del periodo Clásico, como Palenque, ya habían sido abandonadas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya4x300092biq6zqlgxox",
+      "questionId": "cmu0ya4x300062biq4lubdaq5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Palenque se ubica tierra adentro, en Chiapas, y no tiene esta condición costera; Chichén Itzá, en el interior de Yucatán, es célebre por la pirámide de Kukulcán y su observatorio, no por ser un puerto amurallado; y Uxmal, también yucateca e interior, destaca por el estilo arquitectónico Puuc, distinto del contexto costero de Tulum.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya5ut000c2biqsy0tmuyo",
+      "questionId": "cmu0ya5us000b2biqhhvmyjfv",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El hallazgo de la cámara funeraria de K'inich Janaab' Pakal bajo el Templo de las Inscripciones fue clave para confirmar que las pirámides mayas, además de basamentos de templos, también podían funcionar como monumentos funerarios para sus gobernantes, algo que hasta entonces se dudaba.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya5ut000d2biqt3fhcn21",
+      "questionId": "cmu0ya5us000b2biqhhvmyjfv",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Palenque es además reconocida por la finura de sus relieves en estuco y por edificios como el Palacio, con su torre de varios niveles, considerados entre los logros arquitectónicos más refinados del periodo Clásico maya.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya5ut000e2biqmna02eci",
+      "questionId": "cmu0ya5us000b2biqhhvmyjfv",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Tulum es una ciudad costera posclásica sin este hallazgo funerario; Monte Albán es un sitio zapoteca en Oaxaca, no maya; y Teotihuacan, en el altiplano central, corresponde a una cultura y una cronología distintas a la maya de Palenque.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya6sm000h2biqcidxpjvg",
+      "questionId": "cmu0ya6sm000g2biqg36os5u7",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Teotihuacan, una de las ciudades más grandes de la Mesoamérica antigua, se organizó a partir de un trazo urbano relativamente regular, con la Calzada de los Muertos como columna vertebral que articula sus principales conjuntos religiosos y habitacionales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya6sm000i2biqxg0ypd21",
+      "questionId": "cmu0ya6sm000g2biqg36os5u7",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "La Pirámide del Sol es una de las estructuras prehispánicas más grandes por volumen en Mesoamérica, y junto con la Pirámide de la Luna define visualmente el perfil monumental del sitio, cuya influencia cultural y comercial se extendió por buena parte de Mesoamérica durante el Clásico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya6sm000j2biqgdpy3pxx",
+      "questionId": "cmu0ya6sm000g2biqg36os5u7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Tenochtitlan, la capital mexica, se organizó en torno a un recinto ceremonial distinto y sobre una isla lacustre, con un trazo diferente; Tula, capital tolteca, es célebre por sus atlantes, no por esta calzada; y Monte Albán, capital zapoteca, se asienta sobre una montaña nivelada artificialmente, con una configuración urbana distinta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya7qe000m2biq8f9ni1vd",
+      "questionId": "cmu0ya7qe000l2biqq16u0ff5",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "La construcción de la Catedral Metropolitana se extendió aproximadamente de 1573 a 1813, un periodo lo bastante largo para que distintas generaciones de arquitectos —entre ellos, hacia el final, Manuel Tolsá— intervinieran con el lenguaje arquitectónico dominante de su propia época.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya7qf000n2biqffayawiu",
+      "questionId": "cmu0ya7qe000l2biqq16u0ff5",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Por eso conviven en el mismo edificio portadas de gusto más barroco, incluso con detalles churriguerescos en su interior (como el Altar de los Reyes, obra de Jerónimo de Balbás), junto con las torres y la cúpula de remate neoclásico diseñadas por Tolsá a principios del siglo XIX.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya7qf000o2biq2rpooemb",
+      "questionId": "cmu0ya7qe000l2biqq16u0ff5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No es un edificio \"puramente\" plateresco ni \"exclusivamente\" churrigueresco, porque ambos son solo algunos de los estilos presentes, no la totalidad del edificio; y tampoco es funcionalista, un movimiento del siglo XX muy posterior a su construcción.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya8o5000r2biqv476iv4y",
+      "questionId": "cmu0ya8o4000q2biq7o4a8bzx",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "\"Guernica\" responde al bombardeo de la localidad de Guernica por la aviación alemana e italiana en apoyo al bando franquista, en abril de 1937; Picasso, usando un lenguaje cercano al cubismo pero con una paleta reducida a blancos, negros y grises, transformó el hecho en una denuncia visual del horror de la guerra.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya8o5000s2biqho64gglt",
+      "questionId": "cmu0ya8o4000q2biq7o4a8bzx",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "La obra se exhibió primero en el pabellón español de la Exposición Internacional de París de 1937 y hoy se conserva en el Museo Reina Sofía de Madrid; es una de las imágenes más reproducidas del arte del siglo XX como símbolo antibélico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya8o5000t2biqxjvoviqs",
+      "questionId": "cmu0ya8o4000q2biq7o4a8bzx",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Salvador Dalí, aunque también español y activo en la misma época, desarrolló un lenguaje surrealista distinto y no es el autor de esta obra; Diego Rivera fue el gran muralista mexicano, ajeno a este episodio europeo; y Marc Chagall desarrolló una obra de raíz onírica y folclórica muy distinta a la denuncia directa de \"Guernica\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya9lu000w2biq1lhv6cq9",
+      "questionId": "cmu0ya9lu000v2biqkgywot2g",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Juan O'Gorman diseñó el mosaico de la Biblioteca Central utilizando piedras de distintas regiones de México seleccionadas por su color natural, sin pintura añadida, para representar de forma simbólica el pasado prehispánico, la época colonial y el México moderno en cada una de las caras del edificio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya9lu000x2biqq0vz9fod",
+      "questionId": "cmu0ya9lu000v2biqkgywot2g",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "El proyecto es uno de los ejemplos más citados de \"integración plástica\" en Ciudad Universitaria: el mosaico no se añadió después como decoración, sino que fue concebido como parte estructural de la fachada, cubriendo también el volumen ciego que protege el acervo bibliográfico del sol.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ya9lu000y2biq1cbqqk55",
+      "questionId": "cmu0ya9lu000v2biqkgywot2g",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Diego Rivera y David Alfaro Siqueiros también participaron con obra mural en otros edificios de Ciudad Universitaria, pero no son los autores de este mosaico en particular; y Mathias Goeritz trabajó sobre todo en escultura monumental abstracta, no en este mosaico narrativo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yaajp00112biqambpd22f",
+      "questionId": "cmu0yaajo00102biqd0t9k9aa",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Antes de dedicarse también al muralismo en mosaico, Juan O'Gorman trabajó como arquitecto bajo la influencia directa del funcionalismo europeo —estructuras sencillas, sin ornamento, con la función determinando la forma— y proyectó esta casa-estudio a pedido de Diego Rivera.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yaajp00122biqnswh98gb",
+      "questionId": "cmu0yaajo00102biqd0t9k9aa",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "El conjunto, hoy convertido en museo, se compone de dos edificios de distinto tamaño y color, conectados por un puente elevado, y refleja tanto los principios funcionalistas como la vida personal y de trabajo separada de la pareja de artistas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yaajp00132biqrhbus052",
+      "questionId": "cmu0yaajo00102biqd0t9k9aa",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Luis Barragán desarrolló más adelante un lenguaje muy distinto, alejado del funcionalismo estricto; Mario Pani es conocido sobre todo por conjuntos habitacionales y el plan de Ciudad Universitaria, no por esta casa en particular; y Carlos Obregón Santacilia, aunque arquitecto mexicano activo en una época cercana, no es el autor de esta obra.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yai1t0002pb9hcoq8ax85",
+      "questionId": "cmu0yai1t0001pb9hnwjtyauk",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El daguerrotipo, presentado en 1839 ante la Academia de Ciencias de Francia, producía una única imagen positiva directamente sobre una placa metálica sensibilizada, con gran nitidez de detalle pero sin posibilidad de hacer copias múltiples a partir de un negativo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yai1t0003pb9hthblepwz",
+      "questionId": "cmu0yai1t0001pb9hnwjtyauk",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Su presentación pública en 1839 se considera convencionalmente el año de \"nacimiento\" oficial de la fotografía como técnica disponible más allá de experimentos individuales, aunque procesos anteriores —como la heliografía de Niépce en los años 1820— ya habían logrado fijar imágenes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yai1t0004pb9hxjnn32d4",
+      "questionId": "cmu0yai1t0001pb9hnwjtyauk",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El calotipo de Talbot, desarrollado casi al mismo tiempo, sí permitía obtener copias múltiples a partir de un negativo de papel, una diferencia técnica importante frente al daguerrotipo; la heliografía de Niépce es anterior y de calidad más limitada; y el fotograma es una técnica sin cámara, distinta del proceso descrito.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yaitk0007pb9hm5j8krm0",
+      "questionId": "cmu0yaitk0006pb9hawegetmi",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Manuel Álvarez Bravo desarrolló, desde los años treinta, una fotografía que combina un fuerte interés documental por la vida cotidiana y popular mexicana con una composición cuidada y, en algunas series, una atmósfera onírica que atrajo el interés de artistas surrealistas como André Breton.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yaitk0008pb9hbghhu9k6",
+      "questionId": "cmu0yaitk0006pb9hawegetmi",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "\"Obrero en huelga, asesinado\" documenta el cuerpo de un trabajador muerto durante un conflicto laboral, mientras que \"La buena fama durmiendo\" es una imagen más enigmática y construida, ejemplo de su lado más cercano al surrealismo; ambas se cuentan entre sus obras más reproducidas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yaitk0009pb9ho1c50to6",
+      "questionId": "cmu0yaitk0006pb9hawegetmi",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Nacho López y Héctor García son fotógrafos mexicanos posteriores, reconocidos sobre todo por el fotoperiodismo de mediados del siglo XX; Lola Álvarez Bravo, su esposa durante un tiempo, fue también una fotógrafa notable por derecho propio, pero no es la autora de estas dos imágenes en particular.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yajlc000cpb9h64ug2zh3",
+      "questionId": "cmu0yajlc000bpb9h656gj4to",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Tina Modotti llegó a México en 1923 y desarrolló, en poco más de una década, una obra fotográfica que combina un interés formal por la composición —muy influido por su pareja de entonces, el fotógrafo Edward Weston— con un fuerte compromiso político expresado en imágenes de obreros, campesinos y símbolos revolucionarios.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yajlc000dpb9hb4el8p41",
+      "questionId": "cmu0yajlc000bpb9h656gj4to",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Su cercanía con muralistas como Diego Rivera y con movimientos políticos de izquierda de la época la convirtió en una figura central para entender el cruce entre fotografía, arte y política en el México posrevolucionario de los años veinte.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yajlc000epb9h26wi73de",
+      "questionId": "cmu0yajlc000bpb9h656gj4to",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Kati Horna, fotógrafa húngara, llegó a México más tarde, tras la Guerra Civil española; Graciela Iturbide es una fotógrafa mexicana de generaciones posteriores, célebre por series como \"Juchitán\"; y Lola Álvarez Bravo, aunque contemporánea y también vinculada al ambiente artístico, desarrolló una obra y una trayectoria distintas a la de Modotti.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yakd9000hpb9hqfh0rlx0",
+      "questionId": "cmu0yakd9000gpb9h3d7f6e32",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Durante la Época de Oro, la industria cinematográfica mexicana se benefició, entre otros factores, de la disminución de la producción hollywoodense de habla hispana y de las dificultades de otras industrias cinematográficas durante y después de la Segunda Guerra Mundial, lo que le permitió consolidar un mercado amplio en México y América Latina.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yakd9000ipb9hzabbnbfy",
+      "questionId": "cmu0yakd9000gpb9h3d7f6e32",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Figuras como Emilio \"El Indio\" Fernández en la dirección, Gabriel Figueroa en la fotografía, y actores como María Félix, Pedro Infante y Dolores del Río se volvieron referentes de este periodo, con películas que combinaban melodrama, folclor rural y una fuerte construcción de identidad nacional.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yakd9000jpb9hh6d6bu38",
+      "questionId": "cmu0yakd9000gpb9h3d7f6e32",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El Nuevo Cine Mexicano es una etiqueta usada para un movimiento de renovación posterior, ya en las últimas décadas del siglo XX; el cine de ficheras es un subgénero de comedia urbana de décadas posteriores; y el cine mudo nacional corresponde al periodo anterior, previo a la llegada del sonido a finales de los años veinte.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yal4y000mpb9hr219o3d8",
+      "questionId": "cmu0yal4x000lpb9ht8c0em2d",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Gabriel Figueroa desarrolló un estilo fotográfico muy reconocible, con fuerte contraste de luces y sombras y encuadres que a menudo colocan cielos monumentales de nubes en la parte superior del cuadro, un recurso influido en parte por su acercamiento previo a fotógrafos y muralistas mexicanos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yal4y000npb9hi48msbmz",
+      "questionId": "cmu0yal4x000lpb9ht8c0em2d",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Su colaboración con Emilio Fernández produjo algunas de las películas más representativas de la Época de Oro, y su prestigio técnico le permitió trabajar también con cineastas extranjeros de renombre, como el español Luis Buñuel durante su etapa mexicana y el estadounidense John Ford.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yal4y000opb9h5qsojg1g",
+      "questionId": "cmu0yal4x000lpb9ht8c0em2d",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Alex Phillips, Jack Draper y Rosalío Solano fueron también directores de fotografía activos en el cine mexicano de esa época, con trabajo reconocido, pero ninguno de ellos es el autor de la fotografía de \"María Candelaria\" ni el colaborador más asociado a Emilio Fernández.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yalwm000rpb9h998c7rh7",
+      "questionId": "cmu0yalwm000qpb9hj59brueo",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "Eisenstein filmó en México, entre 1930 y 1932, una gran cantidad de material pensado para retratar distintos episodios y regiones del país, desde el mundo prehispánico hasta la Revolución; problemas de financiamiento con su productor interrumpieron el proyecto antes de que Eisenstein pudiera editarlo él mismo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yalwm000spb9hhn4aoow0",
+      "questionId": "cmu0yalwm000qpb9hj59brueo",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "El material filmado se editó después, sin su supervisión directa, en distintas versiones armadas por otras personas; aun así, el proyecto influyó en la manera en que el cine —mexicano e internacional— representaría después el paisaje y la cultura popular del país, incluyendo la fotografía posterior de Gabriel Figueroa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yalwm000tpb9hmuikoqwc",
+      "questionId": "cmu0yalwm000qpb9hj59brueo",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Dziga Vertov y Vsévolod Pudovkin fueron también cineastas soviéticos y teóricos del montaje de la misma época, pero ninguno de los dos viajó a filmar este proyecto en México; y Luis Buñuel, aunque trabajó varios años en el cine mexicano, lo hizo más tarde y con una filmografía distinta, centrada en producciones de ficción como \"Los olvidados\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yamoj000wpb9hu8h6y85m",
+      "questionId": "cmu0yamoj000vpb9hbv2vndhv",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El montaje decide, entre otras cosas, la duración de cada plano, el orden en que se presentan los sucesos y las relaciones de sentido que surgen al yuxtaponer una imagen con otra; teóricos como Eisenstein defendieron que el choque entre dos planos podía generar una idea que ninguno de los dos contenía por separado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yamoj000xpb9h8j1200ik",
+      "questionId": "cmu0yamoj000vpb9hbv2vndhv",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Es una de las herramientas más estudiadas en la apreciación cinematográfica porque, a diferencia de otras artes, el cine puede alterar radicalmente el significado de una escena solo cambiando el orden o la duración de sus planos, sin modificar el material filmado en sí.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yamoj000ypb9hitp4y7d7",
+      "questionId": "cmu0yamoj000vpb9hbv2vndhv",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El encuadre se refiere a la composición dentro de un solo plano, no a la relación entre varios planos; el doblaje es un proceso de posproducción de sonido ajeno a la edición de imagen; y el guion técnico es un documento de planeación previo al rodaje, no el proceso de edición posterior.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yang60011pb9h97wddvj3",
+      "questionId": "cmu0yang50010pb9hqm4pokrh",
+      "layer": 1,
+      "title": "La obra, el autor o el concepto",
+      "content": "El primer plano concentra la atención del espectador en el rostro del personaje, dejando fuera casi todo el entorno, y es uno de los recursos más usados para comunicar estados emocionales sin necesidad de diálogo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yang60012pb9hmztnmmc3",
+      "questionId": "cmu0yang50010pb9hqm4pokrh",
+      "layer": 2,
+      "title": "Contexto e importancia",
+      "content": "Junto con el plano general (que muestra el entorno completo) y el plano americano (de uso frecuente en el cine de acción, para ver el cuerpo y las manos), forma parte de una escala de planos que el lenguaje cinematográfico usa de manera convencional para variar la distancia narrativa entre el espectador y la escena.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0yang60013pb9hxfxp7ise",
+      "questionId": "cmu0yang50010pb9hqm4pokrh",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El plano general hace justamente lo contrario, mostrar el contexto amplio; el plano americano encuadra un fragmento mayor del cuerpo, no solo el rostro; y el plano detalle aísla un objeto pequeño o una parte del cuerpo distinta al rostro completo, como una mano o un ojo.",
       "latexContent": null
     }
   ]
