@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-13 · Última fase ejecutada: **G81 (COMPLETADA — verificación ciega de los 40 reactivos de Geografía que compuso G80: 40/40 auto-aprobados, y con ellos IPN «Ciencias Sociales y Administrativas» cruza el umbral de cobertura — 56% → 72%, `COMING_SOON` → `PARTIAL`, es decir LA RAMA YA ES ELEGIBLE para aspirantes reales; banco 1 263 servibles y cola de verificación en cero)**. Modelo real `claude-opus-5`. Ver §G81 abajo.
+
+<details><summary>Historial: G80 (2026-09-13)</summary>
+
 Última actualización: 2026-09-13 · Última fase ejecutada: **G80 (COMPLETADA — 40 reactivos de Geografía, IPN SOCADM: física, humana, política, de México y cartografía)**. Modelo real `claude-sonnet-5`. Ver §G80 abajo.
+
+</details>
 
 <details><summary>Historial: G79 (2026-09-13)</summary>
 
@@ -391,6 +397,124 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G81 — Verificación ciega: Geografía, IPN SOCADM (lote de G80) (2026-09-13)
+
+> **La fase que abre una rama.** Modelo real `claude-opus-5`. Los 40 reactivos
+> de Geografía que compuso G80 quedaron **40/40 auto-aprobados**, y con ellos
+> IPN «Ciencias Sociales y Administrativas» pasa de **56% a 72%** del peso del
+> examen: **`COMING_SOON` → `PARTIAL`**, que en la guarda de G74 significa
+> **elegible**. Es el primer cambio de esta serie que altera lo que un
+> aspirante real puede hacer en el producto, no solo un número del reporte.
+
+**① El aislamiento se comprobó por el contenido, no por la promesa del tipo.**
+La sesión no leyó el commit `02c1502`, ni `build.mjs`, ni el JSON del lote, ni
+ninguna opción con su clave marcada. Su único insumo fue
+`pnpm content:blind-batch --all --limit 60`, que devolvió **exactamente 40
+pendientes** (los de G80; las 3 discrepancias históricas y el reactivo retirado
+no entran en `loadPendingQuestionsWithContext`). El archivo exportado se
+inspeccionó antes de resolver: 40 ítems, cada opción reducida a
+`label`/`text`/`imageUrl`, **sin una sola aparición de `isCorrect` ni de
+`explanation`** — la garantía estructural de `buildBlindItem` (selección
+explícita de campos) más el mezclado determinista sembrado por `questionId`, así
+que ni la posición original de la clave viajó al archivo.
+
+**② 40/40 auto-aprobados (100%), y el 100% se repite en los cinco temas:**
+Geografía física 9/9, Geografía humana 9/9, Geografía política 7/7, Geografía de
+México 10/10, Cartografía 5/5. Confianza mínima **0.95**, media **0.983**; cero
+problemas marcados, cero discrepancias — **la cola de F3 no creció y queda en
+cero pendientes de resolución**. Ningún reactivo requería cálculo ejecutado
+(`requiresCalculation=false` en los 40, correcto: Geografía no es materia de
+cálculo según `isCalcSubject`).
+
+**③ Los datos duros se verificaron uno por uno antes de elegir, no se dieron por
+buenos.** Los que tenían cifra o topónimo comprobable: **Pico de Orizaba /
+Citlaltépetl 5,636 m** en el límite Veracruz-Puebla (contra Popocatépetl 5,426,
+Nevado de Toluca 4,680 y Volcán de Colima 3,820 — los tres distractores son
+volcanes reales con su altitud real, que es exactamente como debe construirse un
+distractor); **Censo INEGI 2020 = 126,014,024 habitantes**, que descarta los 90
+millones (inicio de los noventa), los 150 y los 200 (proyecciones lejanas);
+**ZEE de 200 millas náuticas** por CONVEMAR, con los dos distractores que
+confunden derechos de soberanía sobre recursos con soberanía plena y con
+prohibición de navegar (la navegación en la ZEE sigue siendo libre); **32
+entidades federativas** incluida la CDMX, donde el distractor «31 estados y un
+Distrito Federal» es el estatus **real hasta la reforma de 2016** — un
+distractor históricamente correcto y hoy falso, el tipo más útil que existe;
+**México primer productor mundial de plata**, con Perú segundo; **Sierra Madre
+Occidental y Oriental** como los dos sistemas norte-sur, frente a la Sierra
+Madre del Sur y la Tarahumara (que es parte de la Occidental); **fronteras
+terrestres solo con EUA, Guatemala y Belice** — Honduras y El Salvador no
+colindan y Cuba es vecino marítimo. Ningún dato del enunciado ni de ningún
+distractor resultó incorrecto, desactualizado o ambiguo.
+
+**④ Dos casos donde valía la pena no forzar un problema.** El del **Usumacinta**
+(«el río de mayor caudal del país, aunque no el más largo») es correcto y es
+justo la distinción que el reactivo pone a prueba: el más largo es el Bravo, y
+el distractor que habla del más largo mezcla las dos propiedades — se resolvió
+con confianza 0.95, la más baja del lote, no porque haya ambigüedad sino porque
+la afirmación descansa en una cifra de caudal que los textos reportan en rangos.
+El del **GPS** («triangular su posición a partir de señales de varios
+satélites») usa *triangular* donde el mecanismo estricto es **trilateración**
+por tiempo de vuelo; es la formulación estándar del bachillerato mexicano, la
+opción es la única defendible de las cuatro, y marcar un problema por eso habría
+bloqueado un reactivo correcto. Se documenta el descarte en vez de inflar el
+conteo — mismo criterio que G76: cualquier entrada en `problems` manda el
+reactivo a `UNPUBLISHED`, así que esa lista es para defectos reales.
+
+**⑤ 🟢 EL CAMBIO DE ESTADO, dicho sin rodeos: la rama se habilitó.**
+`pnpm content:guard` corrido **después** de la resolución:
+
+| | antes de G81 | después de G81 |
+|---|---|---|
+| Peso cubierto | 14/25 | **18/25** |
+| Porcentaje | 56% | **72%** |
+| Estado | `COMING_SOON` | **`PARTIAL`** |
+| ¿Elegible? | **no** | **sí** |
+
+`isOfferable()` es `status !== COMING_SOON`, así que **IPN «Ciencias Sociales y
+Administrativas» ya se puede elegir en el onboarding**, marcada con qué falta,
+en vez de aparecer en «Próximamente». Geografía sola movió el área 16 puntos
+porcentuales (peso 4 de 25) y **cruzó el umbral de 70% por 2 puntos**.
+Historia Universal (peso 4) y Civismo/Derecho (peso 3) siguen en cero y así se
+le dice al aspirante — eso es precisamente lo que `PARTIAL` significa y por qué
+G74 decidió medir **peso ponderado** y no «todas las materias completas»: con el
+72% del examen cubierto la preparación ya es honesta, y esconder la rama habría
+costado al usuario más que mostrarla con su hueco. **Ya no queda ningún área en
+«Próximamente»: 0 de 7.** El reparto final: 5 `READY`, 2 `PARTIAL` (UNAM
+Humanidades y Artes 80%, falta Artes; IPN SOCADM 72%, faltan Historia Universal
+y Civismo/Derecho). Las 4 aserciones **P1-P4 en verde**, incluida **P3** (la
+función real de la app y un recuento SQL independiente coinciden en las 7 áreas)
+y **P2** (ningún área por encima del umbral queda bloqueada) — que es la que
+confirma por efecto, no por lectura de código, que la habilitación ocurrió de
+verdad.
+
+**⑥ Acumulado real del banco: 1 223 → 1 263 servibles.** 1 264 filas contadas
+por el censo (1 263 publicados + 1 retirado); 1 267 `Question` en total en la
+base, contando las 3 discrepancias históricas que siguen sin publicar desde
+fases anteriores. **Pendientes de resolución: 0** — la cola quedó vacía. Tasa de
+auto-aprobación global del pipeline: **99.8% (1 264/1 267)**. Meta efectiva de
+G26 (1 222) **superada**; meta por celda de 1 500 al **84%**, brecha 245
+(~7 lotes). Anclaje en fuentes: 323 `SOURCED` (25%), 944 `TEMARIO_ONLY`.
+
+**⑦ La lección de G77 se sostuvo en este lote, medida y no supuesta.** La señal
+de longitud —invariante bajo el mezclado, así que se puede medir desde el propio
+lote ciego— dio **13/40 (32.5%)** con la clave estrictamente más larga y
+**9/40 (22.5%)** estrictamente más corta, ambas dentro de la banda sana (el
+corte de advertencia de `LENGTH_BIAS` es 40%, el de rechazo 45%) y muy lejos del
+**60%** que G76 encontró en el lote de Inglés. Se confirma lo que G79 ya había
+anotado: la medición **estricta** (los empates no cuentan en ninguna dirección)
+es la que corresponde al validador. Importa aquí más que en la UNAM porque IPN
+tiene **`shuffleOptions:false`**: cualquier pista de composición llega intacta
+al sustentante.
+
+**⑧ Higiene.** `pnpm backup:export` regenerado (**6 172 filas**, 4.25 MB) para
+capturar los 40 `isVerified=true` y sus 40 registros `Question.verification`;
+se commitea junto con este documento, que es la retención real (G61).
+`pnpm typecheck` y `pnpm lint` en verde. **No se tocó `prisma/schema.prisma`**
+ni ningún archivo de `src/`: esta fase solo escribe veredictos en la base, el
+respaldo y este documento.
+
+---
 
 ## G80 — Lote de reactivos: Geografía, IPN SOCADM (2026-09-13)
 

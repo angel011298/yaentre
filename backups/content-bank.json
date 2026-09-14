@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-13T21:51:45.769Z",
+    "exportedAt": "2026-09-14T01:46:13.974Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -97773,7 +97773,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -97781,7 +97781,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Capa mas externa y delgada = corteza (5-70 km). Nucleo externo e interno estan en el centro; el manto superior no es la capa mas externa ni la mas delgada.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:25.060Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -97789,7 +97809,7 @@
         "$d": "2026-09-13T21:49:47.565Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:47.565Z"
+        "$d": "2026-09-14T01:44:25.091Z"
       }
     },
     {
@@ -97825,7 +97845,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -97833,7 +97853,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Deslizamiento lateral sin crear ni destruir corteza = limite transformante; San Andres es el ejemplo canonico. Divergente crea corteza, convergente la destruye, colision continental pliega.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:26.248Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -97841,7 +97881,7 @@
         "$d": "2026-09-13T21:49:48.585Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:48.585Z"
+        "$d": "2026-09-14T01:44:26.250Z"
       }
     },
     {
@@ -97877,7 +97917,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -97885,7 +97925,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Montanas de plegamiento se forman por compresion en un limite convergente. A describe un volcan, C describe montanas de bloque (horst/graben), D describe relieve de erosion diferencial.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:27.354Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -97893,7 +97953,7 @@
         "$d": "2026-09-13T21:49:49.584Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:49.584Z"
+        "$d": "2026-09-14T01:44:27.356Z"
       }
     },
     {
@@ -97929,7 +97989,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -97937,7 +97997,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La altitud: el gradiente termico vertical hace descender la temperatura unos 6.5 C por km. La longitud no determina insolacion (eso es latitud/estacion); fallas y vientos no explican el patron general.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:44:28.489Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -97945,7 +98025,7 @@
         "$d": "2026-09-13T21:49:50.578Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:50.578Z"
+        "$d": "2026-09-14T01:44:28.491Z"
       }
     },
     {
@@ -97981,7 +98061,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -97989,7 +98069,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cuenca hidrografica = territorio cuyo escurrimiento drena a un mismo colector. A describe la desembocadura, C un sistema de presas, D un acuifero.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:29.593Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -97997,7 +98097,7 @@
         "$d": "2026-09-13T21:49:51.571Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:51.571Z"
+        "$d": "2026-09-14T01:44:29.595Z"
       }
     },
     {
@@ -98033,7 +98133,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98041,7 +98141,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Selva tropical: alta temperatura mas precipitacion abundante repartida todo el ano, lo opuesto al desierto. B describe suelo volcanico, C un clima continental, D altura.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:30.699Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98049,7 +98169,7 @@
         "$d": "2026-09-13T21:49:52.568Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:52.568Z"
+        "$d": "2026-09-14T01:44:30.701Z"
       }
     },
     {
@@ -98085,7 +98205,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98093,7 +98213,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Humboldt enfria el aire costero, genera inversion termica y estabilidad, inhibiendo la conveccion y la lluvia (desierto de Atacama). A afirma lo contrario; la humedad atlantica la bloquean los Andes, no la corriente.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:44:31.832Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98101,7 +98241,7 @@
         "$d": "2026-09-13T21:49:53.576Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:53.576Z"
+        "$d": "2026-09-14T01:44:31.833Z"
       }
     },
     {
@@ -98137,7 +98277,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98145,7 +98285,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Un ciclon tropical requiere agua superficial de al menos 26-27 C con capa calida suficiente. C es lo contrario (se necesita baja presion); A y D no son condiciones de formacion.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:33.349Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98153,7 +98313,7 @@
         "$d": "2026-09-13T21:49:54.573Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:54.573Z"
+        "$d": "2026-09-14T01:44:33.351Z"
       }
     },
     {
@@ -98189,7 +98349,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98197,7 +98357,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El clima controla la intensidad y velocidad de la meteorizacion de la roca madre via temperatura y humedad. A confunde clima con material parental; C y D reducen falsamente su papel.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:44:34.704Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98205,7 +98385,7 @@
         "$d": "2026-09-13T21:49:55.569Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:49:55.569Z"
+        "$d": "2026-09-14T01:44:34.706Z"
       }
     },
     {
@@ -98241,7 +98421,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98249,7 +98429,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Etapa 1 del modelo de transicion demografica: natalidad ALTA y mortalidad ALTA, crecimiento muy lento. B corresponde a la etapa 2 y D a la etapa 4.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:35.838Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98257,7 +98457,7 @@
         "$d": "2026-09-13T21:50:05.902Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:05.902Z"
+        "$d": "2026-09-14T01:44:35.840Z"
       }
     },
     {
@@ -98293,7 +98493,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98301,7 +98501,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Base ancha = muchos ninos, natalidad alta; cuspide angosta = pocos ancianos. Poblacion joven y en crecimiento. B seria base estrecha con cuspide ancha.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:36.938Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98309,7 +98529,7 @@
         "$d": "2026-09-13T21:50:06.895Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:06.895Z"
+        "$d": "2026-09-14T01:44:36.940Z"
       }
     },
     {
@@ -98345,7 +98565,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98353,7 +98573,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Factores de expulsion (push) = condiciones adversas del lugar de ORIGEN. A describe los factores de atraccion (pull); B es reunificacion familiar y C politica migratoria.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:38.034Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98361,7 +98601,7 @@
         "$d": "2026-09-13T21:50:07.883Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:07.883Z"
+        "$d": "2026-09-14T01:44:38.036Z"
       }
     },
     {
@@ -98397,7 +98637,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98405,7 +98645,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El crecimiento urbano acelerado del siglo XX en paises en desarrollo se explica por la migracion campo-ciudad. A y B describen el fenomeno inverso; C ignora el componente migratorio dominante.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:44:39.132Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98413,7 +98673,7 @@
         "$d": "2026-09-13T21:50:08.874Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:08.874Z"
+        "$d": "2026-09-14T01:44:39.134Z"
       }
     },
     {
@@ -98449,7 +98709,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98457,7 +98717,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Transformar materia prima (madera) en producto elaborado (mueble) = sector secundario. El primario extrae, el terciario comercia, el cuaternario es investigacion y conocimiento.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:40.338Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98465,7 +98745,7 @@
         "$d": "2026-09-13T21:50:09.867Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:09.867Z"
+        "$d": "2026-09-14T01:44:40.340Z"
       }
     },
     {
@@ -98501,7 +98781,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98509,7 +98789,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La globalizacion fragmenta la produccion en cadenas globales de valor segun ventajas de costo. A, C y D describen lo contrario del fenomeno.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:44:41.438Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98517,7 +98817,7 @@
         "$d": "2026-09-13T21:50:10.858Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:10.858Z"
+        "$d": "2026-09-14T01:44:41.440Z"
       }
     },
     {
@@ -98553,7 +98853,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98561,7 +98861,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Un TLC reduce aranceles y barreras no arancelarias. Unificar moneda es union monetaria, fusionar gobiernos union politica, y prohibir inversion extranjera es lo opuesto.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:42.534Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98569,7 +98889,7 @@
         "$d": "2026-09-13T21:50:11.862Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:11.862Z"
+        "$d": "2026-09-14T01:44:42.536Z"
       }
     },
     {
@@ -98605,7 +98925,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98613,7 +98933,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El IDH combina ingreso (INB per capita), salud (esperanza de vida al nacer) y educacion (anos de escolaridad). Las demas listas mezclan indicadores ajenos al indice.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:43.673Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98621,7 +98961,7 @@
         "$d": "2026-09-13T21:50:12.856Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:12.856Z"
+        "$d": "2026-09-14T01:44:43.675Z"
       }
     },
     {
@@ -98657,7 +98997,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98665,7 +99005,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La agricultura de subsistencia produce para el autoconsumo familiar, con poca tecnificacion. B, C y D describen rasgos de la agricultura comercial.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:44.786Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98673,7 +99033,7 @@
         "$d": "2026-09-13T21:50:13.852Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:13.852Z"
+        "$d": "2026-09-14T01:44:44.788Z"
       }
     },
     {
@@ -98709,7 +99069,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98717,7 +99077,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Elementos constitutivos del Estado: territorio, poblacion, gobierno y soberania. Religion, etnia unica, lengua unica o ejercito no son constitutivos.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:45.886Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98725,7 +99105,7 @@
         "$d": "2026-09-13T21:50:22.744Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:22.744Z"
+        "$d": "2026-09-14T01:44:45.888Z"
       }
     },
     {
@@ -98761,7 +99141,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98769,7 +99149,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La division politico-administrativa descentraliza el gobierno en escalas manejables. A, C y D no son propositos de la division territorial.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:44:46.987Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98777,7 +99177,7 @@
         "$d": "2026-09-13T21:50:23.741Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:23.741Z"
+        "$d": "2026-09-14T01:44:46.989Z"
       }
     },
     {
@@ -98813,7 +99213,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98821,7 +99221,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La frontera natural sigue un accidente geografico (rio, cordillera); la artificial usa lineas convencionales como paralelos o meridianos. A, B y C son generalizaciones falsas.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:48.081Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98829,7 +99249,7 @@
         "$d": "2026-09-13T21:50:24.738Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:24.738Z"
+        "$d": "2026-09-14T01:44:48.083Z"
       }
     },
     {
@@ -98865,7 +99285,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98873,7 +99293,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La ZEE (CONVEMAR) otorga derechos de soberania sobre los recursos hasta 200 millas nauticas, no soberania plena (C) ni prohibicion de navegar (D), que sigue siendo libre.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:49.176Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98881,7 +99321,7 @@
         "$d": "2026-09-13T21:50:25.738Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:25.738Z"
+        "$d": "2026-09-14T01:44:49.178Z"
       }
     },
     {
@@ -98917,7 +99357,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98925,7 +99365,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Ormuz y Malaca son cuellos de botella por los que pasa una fraccion enorme del petroleo y del comercio maritimo mundial. Las demas afirmaciones son falsas.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:50.275Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98933,7 +99393,7 @@
         "$d": "2026-09-13T21:50:26.734Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:26.734Z"
+        "$d": "2026-09-14T01:44:50.277Z"
       }
     },
     {
@@ -98969,7 +99429,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -98977,7 +99437,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La ONU media conflictos y promueve la cooperacion internacional; respeta la soberania interna, no administra economias ni fija fronteras de forma obligatoria.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:51.369Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -98985,7 +99465,7 @@
         "$d": "2026-09-13T21:50:27.729Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:27.729Z"
+        "$d": "2026-09-14T01:44:51.371Z"
       }
     },
     {
@@ -99021,7 +99501,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99029,7 +99509,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las disputas territoriales suelen originarse en recursos (petroleo, agua, pesca) o rutas estrategicas. Huso horario, nombre de la moneda y alfabeto no generan disputas territoriales.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:52.465Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99037,7 +99537,7 @@
         "$d": "2026-09-13T21:50:28.724Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:28.724Z"
+        "$d": "2026-09-14T01:44:52.467Z"
       }
     },
     {
@@ -99073,7 +99573,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99081,7 +99581,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Sierra Madre Occidental (vertiente del Pacifico) y Sierra Madre Oriental (vertiente del Golfo). La Sierra Madre del Sur corre al sur, la Tarahumara es parte de la Occidental y las de Baja California son locales.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:53.595Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99089,7 +99609,7 @@
         "$d": "2026-09-13T21:50:37.592Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:37.592Z"
+        "$d": "2026-09-14T01:44:53.597Z"
       }
     },
     {
@@ -99125,7 +99645,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99133,7 +99653,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Pico de Orizaba o Citlaltepetl, 5,636 m, en el limite Veracruz-Puebla. Popocatepetl 5,426 m, Nevado de Toluca 4,680 m, Volcan de Colima 3,820 m.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:54.695Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99141,7 +99681,7 @@
         "$d": "2026-09-13T21:50:38.595Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:38.595Z"
+        "$d": "2026-09-14T01:44:54.697Z"
       }
     },
     {
@@ -99177,7 +99717,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99185,7 +99725,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Mas de la mitad del territorio, concentrado en el norte y centro-norte, tiene climas secos (BW) y semisecos (BS). Los calido-humedos estan en el sureste.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:44:55.898Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99193,7 +99753,7 @@
         "$d": "2026-09-13T21:50:39.591Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:39.591Z"
+        "$d": "2026-09-14T01:44:55.900Z"
       }
     },
     {
@@ -99229,7 +99789,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99237,7 +99797,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Usumacinta es el rio de mayor caudal de Mexico; el mas largo es el Bravo. B es falso (desemboca en territorio mexicano), C confunde con el Bravo y D es absurdo.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T01:44:56.992Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99245,7 +99825,7 @@
         "$d": "2026-09-13T21:50:40.757Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:40.757Z"
+        "$d": "2026-09-14T01:44:56.994Z"
       }
     },
     {
@@ -99281,7 +99861,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99289,7 +99869,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "32 entidades federativas: 31 estados mas la Ciudad de Mexico, entidad desde la reforma de 2016. A describe el estatus anterior del DF; 24 y 36 son falsos.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:58.090Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99297,7 +99897,7 @@
         "$d": "2026-09-13T21:50:41.753Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:41.753Z"
+        "$d": "2026-09-14T01:44:58.092Z"
       }
     },
     {
@@ -99333,7 +99933,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99341,7 +99941,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Censo de Poblacion y Vivienda 2020 del INEGI: 126,014,024 habitantes. Los 90 millones corresponden a inicios de los noventa; 150 y 200 millones son proyecciones lejanas.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:44:59.187Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99349,7 +99969,7 @@
         "$d": "2026-09-13T21:50:42.753Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:42.753Z"
+        "$d": "2026-09-14T01:44:59.189Z"
       }
     },
     {
@@ -99385,7 +100005,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99393,7 +100013,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Mexico es el primer productor mundial de plata desde hace varios anos (Fresnillo, Zacatecas, Chihuahua, Durango). Peru es el segundo, no Mexico.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:45:00.327Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99401,7 +100041,7 @@
         "$d": "2026-09-13T21:50:43.753Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:43.753Z"
+        "$d": "2026-09-14T01:45:00.329Z"
       }
     },
     {
@@ -99437,7 +100077,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99445,7 +100085,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Sonda de Campeche (Cantarell, Ku-Maloob-Zaap) concentra la mayor parte de la produccion y es zona marina del Golfo. Baja California, la meseta central y la Sierra Madre Occidental no son petroleras.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:45:01.426Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99453,7 +100113,7 @@
         "$d": "2026-09-13T21:50:44.751Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:44.751Z"
+        "$d": "2026-09-14T01:45:01.428Z"
       }
     },
     {
@@ -99489,7 +100149,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99497,7 +100157,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Megadiverso = alberga un porcentaje muy alto de las especies conocidas (Mexico ronda el 10-12 por ciento). No es el mas extenso (lo es Brasil) ni esta solo en el hemisferio norte.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T01:45:02.521Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99505,7 +100185,7 @@
         "$d": "2026-09-13T21:50:45.749Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:45.749Z"
+        "$d": "2026-09-14T01:45:02.523Z"
       }
     },
     {
@@ -99541,7 +100221,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99549,7 +100229,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Fronteras terrestres unicamente con Estados Unidos al norte y Guatemala y Belice al sureste. Honduras y El Salvador no colindan; Cuba es vecino maritimo, no terrestre.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:45:03.643Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99557,7 +100257,7 @@
         "$d": "2026-09-13T21:50:46.747Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:46.747Z"
+        "$d": "2026-09-14T01:45:03.645Z"
       }
     },
     {
@@ -99593,7 +100293,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99601,7 +100301,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Escala 1:50,000 = 1 unidad en el mapa equivale a 50,000 unidades en el terreno. Las demas opciones no describen una escala.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:45:04.794Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99609,7 +100329,7 @@
         "$d": "2026-09-13T21:50:55.811Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:55.811Z"
+        "$d": "2026-09-14T01:45:04.795Z"
       }
     },
     {
@@ -99645,7 +100365,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99653,7 +100373,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Mercator es conforme pero infla las areas al alejarse del ecuador: Groenlandia aparenta el tamano de Africa. D afirma lo contrario y B es falso, pues su virtud es la loxodroma recta.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:45:05.909Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99661,7 +100401,7 @@
         "$d": "2026-09-13T21:50:56.816Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:56.816Z"
+        "$d": "2026-09-14T01:45:05.911Z"
       }
     },
     {
@@ -99697,7 +100437,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99705,7 +100445,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La longitud es la distancia angular al meridiano de Greenwich medida al este u oeste, de 0 a 180 grados. B describe la latitud y A la altitud.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:45:07.007Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99713,7 +100473,7 @@
         "$d": "2026-09-13T21:50:57.804Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:57.804Z"
+        "$d": "2026-09-14T01:45:07.009Z"
       }
     },
     {
@@ -99749,7 +100509,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99757,7 +100517,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Curvas de nivel juntas = poco recorrido horizontal para el mismo desnivel = pendiente fuerte. Separadas indican terreno plano.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T01:45:08.106Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99765,7 +100545,7 @@
         "$d": "2026-09-13T21:50:58.794Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:58.794Z"
+        "$d": "2026-09-14T01:45:08.108Z"
       }
     },
     {
@@ -99801,7 +100581,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -99809,7 +100589,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El GPS calcula su posicion con el tiempo de viaje de senales de varios satelites simultaneos (al menos cuatro). Una sola senal no basta; no usa magnetismo ni temperatura.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T01:45:09.205Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -99817,7 +100617,7 @@
         "$d": "2026-09-13T21:50:59.783Z"
       },
       "updatedAt": {
-        "$d": "2026-09-13T21:50:59.783Z"
+        "$d": "2026-09-14T01:45:09.207Z"
       }
     }
   ],
