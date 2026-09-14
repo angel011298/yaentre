@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "¿Qué idea central distinguió al humanismo renacentista de la mentalidad teocéntrica medieval predominante?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sostuvo que el destino humano dependía solo de la voluntad divina, sin agencia propia.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Se limitó a copiar sin comentario alguno los textos religiosos medievales.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Puso al ser humano y su razón en el centro, sin abandonar necesariamente la fe.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Rechazó por completo cualquier forma de religiosidad cristiana entre los intelectuales.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "El humanismo revivió el estudio de textos clásicos griegos y romanos y puso el acento en la razón y el potencial humano (\"studia humanitatis\"), un giro antropocéntrico frente al teocentrismo medieval."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La mayoría de los humanistas, como Erasmo, siguieron siendo profundamente religiosos: el giro fue de énfasis, no de rechazo total de la fe."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo un rechazo generalizado del cristianismo; la idea central era la agencia humana, opuesta al determinismo divino absoluto; y los humanistas comentaron y editaron los textos de forma crítica, no se limitaron a copiarlos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál fue el efecto más significativo de la imprenta de tipos móviles, desarrollada por Gutenberg hacia 1450, en la difusión de ideas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Redujo de forma drástica el costo y el tiempo de reproducir textos escritos.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Restringió la producción de textos de forma exclusiva a las órdenes monásticas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Sirvió solo para imprimir documentos oficiales de las cortes reales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Mantuvo el costo de los libros igual al de los manuscritos copiados a mano.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La reproducción mecánica abarató y aceleró enormemente la producción de textos frente al copiado manual, permitiendo difundir obras clásicas, humanistas y, más tarde, panfletos de la Reforma y biblias en lenguas vernáculas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Fue un habilitador clave tanto de la circulación del humanismo renacentista como de la rapidez con la que se propagó la Reforma protestante décadas después."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El costo no se mantuvo igual, cayó de forma drástica; la producción no quedó restringida a monasterios, se descentralizó y comercializó; y no se limitó a documentos oficiales, abarcó una enorme variedad de textos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué factor institucional contribuyó a desencadenar la Reforma protestante iniciada por Martín Lutero en 1517?",
+    "options": [
+      {
+        "id": "A",
+        "text": "No existía ninguna crítica previa a la Iglesia antes de las 95 tesis.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La Iglesia había eliminado por completo el cobro de cualquier tributo a los fieles.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La venta de indulgencias para financiar San Pedro alimentó la crítica a la corrupción.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El papado había renunciado antes de 1517 a toda su autoridad doctrinal.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La venta de indulgencias, en parte para financiar la basílica de San Pedro, impulsó las 95 tesis de Lutero (1517) contra esa práctica y la corrupción que denunciaba."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Hubo también factores políticos previos (intereses de los príncipes alemanes frente a la autoridad papal e imperial) y críticas anteriores a la Iglesia, como las de Wycliffe y Hus, que prepararon el terreno."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Iglesia no eliminó los tributos, la venta de indulgencias era justamente uno de ellos; el papado no había renunciado a su autoridad, esa autoridad era precisamente lo cuestionado; y sí existían críticas previas a la Iglesia antes de 1517."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué combinación de factores impulsó la expansión marítima ibérica hacia nuevas rutas oceánicas a finales del siglo XV?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Un acuerdo previo con los otomanos para compartir las rutas terrestres.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El desinterés total de Portugal y Castilla por el comercio con Asia.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La búsqueda de rutas a las especias, el bloqueo otomano y avances náuticos.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La ausencia de cualquier avance en la navegación europea del siglo XV.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La caída de Constantinopla (1453) y el control otomano sobre las rutas terrestres a Asia encarecieron el comercio de especias; a la vez, avances como la carabela y el astrolabio hicieron viables las travesías oceánicas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La corona portuguesa y los Reyes Católicos financiaron estas expediciones buscando precisamente evitar ese control terrestre otomano-veneciano del comercio asiático."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo desinterés, el motivo económico fue central; los avances náuticos fueron justo el factor habilitador, no su ausencia; y la relación con los otomanos era de bloqueo y rivalidad, no de un acuerdo de reparto."
+      }
+    ]
+  }
+]

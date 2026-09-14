@@ -1,0 +1,272 @@
+[
+  {
+    "stem": "¿Qué diferencia hay entre la caída del Muro de Berlín (1989) y la disolución de la URSS (1991)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Son el mismo acontecimiento, ocurrido de forma simultánea en 1989.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La caída del Muro cerró la división europea; la URSS se disolvió dos años después.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La disolución de la URSS ocurrió antes que la caída del Muro de Berlín.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Ambos hechos se refieren solo a la reunificación de Alemania.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La caída del Muro (noviembre de 1989) marcó el fin simbólico de la división de Alemania y de Europa; la disolución formal de la URSS (diciembre de 1991), con la renuncia de Gorbachov, puso fin al propio Estado soviético dos años después, un hito distinto y posterior."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ambos son frecuentemente confundidos como un solo evento, cuando en realidad marcan etapas separadas del fin de la bipolaridad de la Guerra Fría."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No son el mismo evento, ocurrieron con dos años de diferencia; la caída del Muro ocurrió primero, no la disolución soviética; y la disolución de la URSS concierne a todo el bloque soviético, no solo a la reunificación alemana."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué caracteriza a la globalización económica como proceso del mundo contemporáneo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La producción de bienes limitada solo al mercado interno de cada país.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La interconexión creciente de mercados, capitales, producción y comunicaciones.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La desaparición completa del comercio internacional entre regiones.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El cierre progresivo de fronteras comerciales entre los países del mundo.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La globalización se acelera tras el fin de la Guerra Fría y con la revolución digital, integrando cadenas de producción, mercados financieros y comunicaciones a nivel mundial."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Es un fenómeno con efectos debatidos (crecimiento económico frente a desigualdad y homogeneización cultural), pero su rasgo definitorio es la interconexión, no el aislamiento."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se trata de cerrar fronteras, sino de abrirlas e interconectarlas; el comercio internacional no desapareció, se expandió de forma notable; y las cadenas de producción globales, no la producción puramente doméstica, son su rasgo característico."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué distingue a la Unión Europea de una alianza tradicional entre Estados soberanos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sus miembros ceden parte de su soberanía a instituciones supranacionales comunes.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Sus miembros mantienen intacta, sin ninguna cesión, toda su soberanía nacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Se trata de un tratado militar de carácter exclusivamente defensivo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Solo coordina políticas culturales, sin institución política o económica común.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Con el Tratado de Maastricht (1993) y sus desarrollos posteriores, la UE creó instituciones con autoridad real sobre sus miembros (mercado común, moneda única para la eurozona, Parlamento, Tribunal de Justicia), a diferencia de una simple alianza intergubernamental."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta cesión parcial de soberanía es el ejemplo más citado de \"integración supranacional\" en el mundo contemporáneo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hay soberanía intacta, la cesión parcial es su rasgo definitorio; no es un tratado militar defensivo (ese es el papel de la OTAN, una organización distinta); y va mucho más allá de la coordinación cultural, con instituciones económicas y políticas propias."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué se dice que desafíos como el cambio climático son \"transnacionales\" en el mundo contemporáneo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Pueden resolverse por completo con la acción de un único gobierno nacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Afectan de forma exclusiva a un solo país, sin consecuencia externa alguna.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Sus causas y efectos cruzan las fronteras y exigen cooperación entre países.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Solo los países más pobres del mundo contribuyen a generarlos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Las emisiones y sus efectos no respetan fronteras, por lo que su atención requiere marcos multilaterales como el Acuerdo de París, y no solo decisiones aisladas de un país."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este rasgo transnacional distingue a los desafíos contemporáneos (cambio climático, pandemias, ciberseguridad) de problemas que sí pueden resolverse dentro de las fronteras de un solo Estado."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No son problemas exclusivos de un país, por definición cruzan fronteras; no pueden resolverse con la acción de un solo gobierno, requieren cooperación; y las naciones industrializadas, no las más pobres, han contribuido históricamente de forma desproporcionada a las emisiones."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué tendencia geopolítica ejemplifica el ascenso económico de China desde finales del siglo XX?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El regreso a un mundo bipolar idéntico a la Guerra Fría, ahora como aliados militares.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El aislamiento comercial total de China respecto del resto del mundo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El desplazamiento gradual hacia un orden más multipolar, fuera de Europa y EE. UU.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La consolidación de un solo poder económico mundial, sin competidor relevante.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Las reformas económicas iniciadas hacia finales de la década de 1970 y la integración de China al comercio mundial la convirtieron, junto con otras economías emergentes, en un polo de peso económico creciente fuera del eje tradicional Europa-Estados Unidos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta tendencia hacia la multipolaridad contrasta tanto con la bipolaridad de la Guerra Fría como con la idea de un mundo unipolar dominado por una sola potencia tras 1991."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "China y Estados Unidos no son aliados militares, la relación es de competencia, no una bipolaridad tipo Guerra Fría; no hay un solo poder económico sin competidores, justo lo contrario; y el ascenso de China se dio a través de una integración profunda al comercio mundial, no del aislamiento."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué impacto tuvo la expansión de internet y las tecnologías digitales a partir de la década de 1990 en la sociedad contemporánea?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Provocó el aislamiento total de las economías nacionales del comercio mundial.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Se mantuvo limitada al ámbito académico, sin aplicación comercial alguna.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Aceleró el acceso a la información y transformó la economía, la política y lo social.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Redujo de forma drástica la velocidad de comunicación entre regiones del mundo.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Desde la difusión de la World Wide Web y, después, la banda ancha y las redes sociales, internet transformó la velocidad y el alcance de la comunicación, habilitó nuevos modelos económicos (comercio electrónico, servicios digitales) y modificó las formas de participación política y social."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Es un componente tecnológico central de la globalización contemporánea, junto con la interconexión de mercados descrita en el tema."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No redujo la velocidad de comunicación, la aumentó de forma drástica; no se mantuvo limitada al ámbito académico, se comercializó y masificó con rapidez; y no aisló a las economías, profundizó su integración global."
+      }
+    ]
+  }
+]

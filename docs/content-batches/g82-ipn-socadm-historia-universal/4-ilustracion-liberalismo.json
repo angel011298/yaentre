@@ -1,0 +1,272 @@
+[
+  {
+    "stem": "¿Cuál era la idea central que compartían los pensadores de la Ilustración en el siglo XVIII?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La razón humana, y no la tradición o la autoridad, debía guiar la sociedad.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Las decisiones de gobierno debían basarse solo en la costumbre heredada.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La fe religiosa debía sustituir por completo a la razón en los asuntos de Estado.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El origen divino del poder de los monarcas debía fortalecerse frente a la crítica.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Pensadores como Locke, Voltaire, Montesquieu y Rousseau situaron a la razón y la observación empírica como criterio para juzgar instituciones, leyes y creencias, cuestionando la autoridad basada solo en la tradición o el derecho divino."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta primacía de la razón alimentó después demandas concretas de reforma política: constituciones escritas, división de poderes, límites al poder absoluto."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No buscaban fortalecer el derecho divino de los reyes, lo cuestionaban; no defendían la costumbre como única guía, la sometían a crítica racional; y no proponían sustituir la razón por la fe, sino lo contrario."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué aportó la independencia de Estados Unidos (1776) al pensamiento político liberal de la época?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Demostró que era posible fundar una república sin monarca, con constitución escrita.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Mantuvo sin cambios el mismo sistema político colonial que tenía con Gran Bretaña.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Confirmó que solo una monarquía absoluta podía dar orden a un territorio extenso.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Fue el primer país en abolir toda forma de esclavitud al independizarse.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La Constitución de 1787 estableció una república federal con división de poderes, sin monarca, aplicando en la práctica ideas que hasta entonces eran sobre todo teóricas en Europa."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta experiencia influyó de forma directa en el ciclo de revoluciones atlánticas que siguió, incluida la francesa."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No confirmó la necesidad de una monarquía absoluta, sino lo contrario; la esclavitud persistió en Estados Unidos hasta 1865, no se abolió con la independencia; y el sistema político cambió radicalmente, de colonia a república constitucional."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué combinación de causas explica el estallido de la Revolución francesa en 1789?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El hecho de que la nobleza y el clero pagaban la mayor parte de los impuestos.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una prosperidad económica sostenida que generó demandas de participación.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Una crisis fiscal, la desigualdad estamental y una crisis de subsistencias.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La convocatoria de los Estados Generales por Luis XVI para ceder el trono.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Una deuda estatal agravada por guerras (incluido el apoyo a la independencia estadounidense), un sistema fiscal que eximía en gran medida a la nobleza y el clero, y malas cosechas que encarecieron el pan en 1788-1789 confluyeron en el estallido revolucionario."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La convocatoria de los Estados Generales en 1789 buscaba resolver la crisis fiscal, no ceder el trono; el proceso escaló hacia la Revolución a partir de ese punto."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo prosperidad sostenida, sino crisis; Luis XVI no convocó los Estados Generales para abdicar, sino para atender las finanzas del reino; y la nobleza y el clero pagaban proporcionalmente menos impuestos, no más, lo cual era parte central de la desigualdad."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué elemento distinguió a las revoluciones de 1848 en Europa de los movimientos liberales anteriores?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Lograron de inmediato y de forma duradera todas sus demandas en cada país.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Fueron movimientos organizados solo por la aristocracia para restaurar el absolutismo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La aparición de la 'cuestión social': demandas obreras además de las políticas.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Se limitaron a reclamos religiosos, sin demanda política o económica alguna.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "A las demandas liberales tradicionales (constituciones, sufragio) se sumó, por primera vez con fuerza, la exigencia de mejores condiciones económicas de los trabajadores urbanos surgidos de la industrialización temprana."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Pese a su extensión (Francia, los estados alemanes, el Imperio austriaco, los estados italianos), la mayoría de estos levantamientos fueron sofocados en uno o dos años y el orden de la Restauración se reimpuso en el corto plazo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No fueron movimientos aristocráticos a favor del absolutismo, sino en su contra; las demandas eran centralmente políticas y económicas, no religiosas; y no triunfaron de forma inmediata y duradera, la mayoría fue derrotada en el corto plazo."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué tuvieron en común los procesos de unificación de Italia y Alemania en el siglo XIX?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ambos fueron impulsados por el Imperio austriaco como potencia unificadora.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Ambos culminaron antes de las revoluciones liberales de 1848.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Ambos fueron liderados desde arriba por un Estado dominante, no por una revuelta popular.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Ambos se lograron solo mediante plebiscitos pacíficos, sin ningún conflicto armado.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Piamonte-Cerdeña (con Cavour, apoyado por las expediciones de Garibaldi) condujo la unificación italiana (1859-1870) y Prusia (con Bismarck) la alemana mediante una serie de guerras que culminaron en 1871 — ambas conducidas por un Estado dominante, no por una revuelta popular generalizada."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Contrastan con los fallidos levantamientos nacionalistas de 1848, que fueron populares pero no lograron la unificación."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Ambos procesos incluyeron guerras significativas, no fueron solo plebiscitos pacíficos; Austria fue justamente la potencia rival, derrotada y excluida en ambos procesos, no su impulsora; y ambos culminaron décadas después de 1848 (1861 y 1871), no antes."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué papel jugó la invasión napoleónica a España en 1808 en el proceso de independencia de las colonias hispanoamericanas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Unificó a España y sus colonias bajo un solo gobierno republicano permanente.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Fue un hecho aislado, sin relación alguna con el independentismo americano.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Provocó una crisis de legitimidad que las colonias usaron para formar juntas propias.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Fortaleció de inmediato la autoridad del rey español sobre sus colonias.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Al forzar la abdicación de Fernando VII e imponer a José Bonaparte, Napoleón dejó sin un rey legítimo reconocido al imperio español; ciudades americanas formaron juntas que decían gobernar en su nombre, un proceso que en la década siguiente derivó en movimientos de independencia plena (San Martín, Bolívar, entre otros)."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este episodio se inscribe en el ciclo más amplio de las revoluciones atlánticas que conecta procesos europeos y americanos de la época."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No fortaleció la autoridad real, la debilitó gravemente; no fue un hecho aislado, fue el detonante directo de las juntas americanas; y España y sus colonias no se unificaron bajo una república, las colonias terminaron separándose como repúblicas independientes."
+      }
+    ]
+  }
+]

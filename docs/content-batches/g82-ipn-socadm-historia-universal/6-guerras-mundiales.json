@@ -1,0 +1,362 @@
+[
+  {
+    "stem": "¿Por qué el asesinato del archiduque Francisco Fernando en Sarajevo (junio de 1914) desencadenó una guerra continental y no solo un conflicto entre Austria-Hungría y Serbia?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Un tratado obligaba a todas las potencias a intervenir solo en asesinatos de la realeza.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "No existía ninguna tensión previa entre las potencias antes de 1914.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El archiduque era el heredero designado de todas las coronas de Europa.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El sistema de alianzas y la rivalidad imperialista arrastraron a las demás potencias.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "El asesinato fue el detonante, no la causa profunda: el sistema de alianzas (Triple Alianza y Triple Entente), la carrera armamentista y las rivalidades coloniales e imperialistas acumuladas hicieron que la movilización de un país arrastrara, por obligación de alianza, a los demás."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Los historiadores distinguen justamente entre esta \"causa inmediata\" (el detonante) y las \"causas estructurales\" de fondo (alianzas, imperialismo, militarismo, nacionalismo)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No existía un tratado limitado a asesinatos de la realeza, las alianzas eran pactos generales de defensa mutua; el archiduque era heredero solo de Austria-Hungría, no de otras coronas; y las tensiones previas (guerras balcánicas, rivalidad colonial) llevaban décadas acumulándose."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué condición creada por la Primera Guerra Mundial aprovecharon los bolcheviques para tomar el poder en Rusia en octubre de 1917?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La prosperidad económica generada por el esfuerzo bélico ruso durante la guerra.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La victoria militar rusa sobre Alemania, que fortaleció al gobierno provisional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El agotamiento militar, el hambre y el descrédito del gobierno provisional.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El apoyo unánime del ejército y el campesinado al zar hasta 1917.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Las bajas masivas, la escasez de alimentos y el fracaso del gobierno provisional en salir de la guerra tras la caída del zar (febrero de 1917) generaron un descontento que los bolcheviques capitalizaron con la consigna de \"paz, tierra y pan\"."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La crisis provocada por la guerra, más que solo la organización bolchevique, es la condición estructural que explica la toma del poder de octubre de 1917."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Rusia no obtuvo una victoria militar, sufrió derrotas y bajas severas; no hubo prosperidad económica, la crisis era profunda; y para 1917 el zar ya había perdido el apoyo suficiente como para ser depuesto en febrero de ese mismo año."
+      }
+    ]
+  },
+  {
+    "stem": "¿De qué manera las condiciones impuestas a Alemania por el Tratado de Versalles (1919) contribuyeron, años después, al ascenso del nazismo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Las reparaciones y la pérdida territorial alimentaron un resentimiento nacionalista.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El ascenso del nazismo no tuvo relación alguna con las condiciones del tratado.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El tratado eximió a Alemania de cualquier pago o responsabilidad por la guerra.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El tratado devolvió a Alemania todas las colonias que tenía antes de 1914.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Las reparaciones económicas, la pérdida de territorios y colonias, y la cláusula de \"culpa de guerra\" (artículo 231) alimentaron un resentimiento nacionalista que la propaganda nazi explotó, junto con la crisis económica de 1929 y la debilidad institucional de la República de Weimar."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Los historiadores tratan Versalles como un factor contribuyente entre varios, no como la causa única del nazismo, para no simplificar en exceso un fenómeno con múltiples raíces."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El tratado no eximió a Alemania, le impuso reparaciones cuantiosas; no le devolvió sus colonias, las perdió bajo mandatos de las potencias aliadas; y la relación entre Versalles y el ascenso nazi está ampliamente documentada, aunque no sea la única causa."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué papel jugó la política de apaciguamiento de Francia y Gran Bretaña en la escalada hacia la Segunda Guerra Mundial?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Al ceder ante las anexiones alemanas sin resistencia, envalentonó su expansión.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Detuvo por completo cualquier intento posterior de expansión territorial alemana.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Fue una política diseñada por Alemania para frenar a Francia y Gran Bretaña.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Consistió en una declaración de guerra inmediata contra Alemania desde 1935.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "El Acuerdo de Múnich (1938), que cedió los Sudetes a Alemania para evitar la guerra, no satisfizo las ambiciones de Hitler: siguió la ocupación del resto de Checoslovaquia y, en septiembre de 1939, la invasión de Polonia que dio inicio formal a la guerra."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Es un caso ampliamente estudiado de cómo una política de concesiones diseñada para evitar el conflicto terminó facilitando su escalada."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No detuvo la expansión alemana, la escalada continuó tras cada concesión; no hubo declaración de guerra inmediata en 1935, el apaciguamiento consistió precisamente en evitar la confrontación durante años; y fue una política francobritánica, no alemana."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué distingue al Holocausto de otros episodios de violencia antisemita anteriores en la historia europea?",
+    "options": [
+      {
+        "id": "A",
+        "text": "No involucró ninguna estructura estatal ni institucional del régimen nazi.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Se trató de actos aislados y espontáneos, sin planeación del gobierno alemán.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Fue un exterminio sistemático, organizado por el Estado con maquinaria industrial.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Fue una política aplicada solo fuera del territorio controlado por Alemania.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "A diferencia de pogromos anteriores, el Holocausto implicó una planeación estatal coordinada (como la conferencia de Wannsee, 1942) con ministerios, ferrocarriles y campos diseñados específicamente para el exterminio masivo."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ese carácter sistemático e industrializado, junto con la escala (cerca de seis millones de víctimas judías, además de otros grupos perseguidos), es lo que los historiadores destacan como distintivo del fenómeno."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No fueron actos espontáneos, hubo una planeación estatal explícita; ocurrió ampliamente dentro del territorio controlado por Alemania, incluidos los campos en la Polonia ocupada; y estuvo profundamente integrado en el aparato del Estado nazi."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué llevó a la rendición de Japón en agosto de 1945, poniendo fin a la Segunda Guerra Mundial?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una invasión terrestre aliada exitosa del territorio japonés antes de agosto.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Un tratado de paz firmado de forma voluntaria antes de cualquier ataque aliado.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La retirada unilateral de todas las tropas japonesas sin condición alguna.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los bombardeos atómicos y la declaración de guerra soviética contra Japón.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Los bombardeos atómicos de Hiroshima (6 de agosto) y Nagasaki (9 de agosto de 1945), junto con la entrada soviética en la guerra contra Japón esos mismos días, llevaron al anuncio de rendición japonesa el 15 de agosto."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La rendición se firmó de forma definitiva el 2 de septiembre de 1945, sin que llegara a producirse la invasión terrestre que los Aliados tenían planeada (Operación Downfall)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo una invasión terrestre exitosa previa, nunca llegó a ejecutarse; Japón no firmó un tratado voluntario antes de los ataques, la rendición vino después de ellos; y no fue una retirada unilateral sin condiciones, sino una rendición formal tras esos hechos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué transformación geopolítica global se derivó del fin de la Segunda Guerra Mundial en 1945?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La disolución inmediata de todos los imperios coloniales europeos en 1945.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Un orden bipolar entre Estados Unidos y la URSS, y el inicio de la descolonización.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El fortalecimiento de Alemania y Japón como las principales potencias militares.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El regreso de Europa occidental a su posición de potencia dominante única.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La guerra dejó a Europa devastada y debilitada, mientras Estados Unidos y la URSS emergieron como las dos superpotencias dominantes; al mismo tiempo, el debilitamiento de las potencias coloniales europeas aceleró los movimientos de independencia en Asia y África en las décadas siguientes."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este doble proceso —bipolaridad y descolonización— es la transformación geopolítica más citada del periodo de posguerra inmediato."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Europa occidental no recuperó una posición de potencia dominante única, su peso relativo disminuyó; la descolonización fue un proceso gradual de décadas, no una disolución inmediata en 1945; y Alemania y Japón salieron derrotados y ocupados, no fortalecidos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué marcó el anuncio de la Doctrina Truman en 1947 dentro de la política exterior estadounidense de posguerra?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El compromiso de contener al comunismo mediante ayuda económica y militar.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Una alianza militar formal entre Estados Unidos y la URSS para gobernar Europa.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El reconocimiento estadounidense de la URSS como aliado permanente de posguerra.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La decisión de Estados Unidos de retirarse por completo de Europa.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "En marzo de 1947, Truman prometió apoyo económico y militar (inicialmente a Grecia y Turquía) para contener la expansión comunista, formalizando la política de \"contención\" que definiría buena parte de la Guerra Fría."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "El inicio exacto de la Guerra Fría se sitúa de forma distinta según el historiador (las tensiones de 1945, el discurso de Churchill de 1946, o esta doctrina de 1947); por eso este reactivo se ancla en un hito documentado y no disputado —la Doctrina Truman— en vez de pedir un único \"año de inicio\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo retiro de los asuntos europeos, la doctrina implicó justamente mayor involucramiento; no fue una alianza con la URSS, sino una política explícitamente dirigida a contenerla; y Estados Unidos trató a la URSS como rival a contener, no como aliado permanente."
+      }
+    ]
+  }
+]

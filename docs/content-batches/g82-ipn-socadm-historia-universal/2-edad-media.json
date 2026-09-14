@@ -1,0 +1,227 @@
+[
+  {
+    "stem": "¿Qué relación definía el vínculo feudal entre un señor y su vasallo en la Europa medieval?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El vasallo era propietario legal pleno y pagaba un impuesto fijo en moneda.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El señor y el vasallo tenían obligaciones idénticas e intercambiables.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El vínculo era solo un contrato comercial, sin ningún componente militar.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El señor daba tierra y protección a cambio de fidelidad y servicio militar.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Mediante el homenaje y el juramento de fidelidad, el señor entregaba un feudo (tierra con siervos) a cambio del servicio militar y el consejo del vasallo — el núcleo del sistema tras la fragmentación carolingia de los siglos IX-X."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este vínculo personal y jerárquico organizó la política local en ausencia de una autoridad central fuerte."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El vasallo no era propietario pleno, sino tenedor del feudo bajo el señor; los roles no eran intercambiables, la jerarquía era fija; y el componente militar, no el comercial, era el eje del vínculo."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué papel desempeñó la Iglesia católica como institución en la Europa feudal, políticamente fragmentada?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Perdió toda influencia justo después de la caída de Roma de Occidente.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Conservó el conocimiento, impartió educación y legitimó a los monarcas.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Compitió como un reino territorial más, sin función religiosa o cultural.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Se mantuvo al margen de la política y la educación durante toda la época.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Los monasterios copiaron y conservaron manuscritos, el derecho canónico operó por encima de las fronteras de los reinos, y ceremonias como la coronación de Carlomagno (800) legitimaron el poder político con autoridad religiosa."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Fue la única institución que atravesó de forma coherente la fragmentación política feudal."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Iglesia estuvo lejos de ser apolítica (piénsese en las luchas de investiduras); su influencia creció, no desapareció, tras la caída de Roma; y su función religiosa y cultural la distinguía de un simple reino territorial."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál fue una consecuencia comercial y cultural importante de las Cruzadas (siglos XI-XIII) para Europa occidental?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Impuso el feudalismo europeo como sistema político en Oriente Próximo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Fortaleció las rutas comerciales italianas y trajo productos y saberes orientales.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Hizo desaparecer por completo el comercio mediterráneo durante los dos siglos siguientes.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Cerró de forma definitiva todo contacto comercial con el mundo islámico.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Repúblicas marítimas como Venecia, Génova y Pisa ampliaron sus rutas comerciales con Oriente durante y después de las Cruzadas, y con ellas circularon productos, técnicas y textos orientales hacia Europa."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este efecto comercial y cultural perduró incluso después de que los estados cruzados en Tierra Santa desaparecieran."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El contacto comercial no se cerró, se intensificó; el comercio mediterráneo no desapareció, creció; y los reinos cruzados en Oriente fueron limitados y temporales, no una imposición duradera del feudalismo europeo en la región."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué el resurgimiento de las ciudades a partir del siglo XI favoreció el fortalecimiento del poder real frente a la nobleza feudal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los reyes prohibieron por completo el comercio dentro de las ciudades.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La burguesía buscó protección y privilegios del rey a cambio de apoyo.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La nobleza feudal financió la construcción de las nuevas ciudades comerciales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Las ciudades se aliaron con la nobleza feudal para debilitar a la monarquía.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Los mercaderes urbanos obtenían cartas forales que les daban autonomía frente a los señores locales, a menudo otorgadas directamente por el rey a cambio de impuestos y respaldo político — un intercambio que fortalecía a la corona frente a la nobleza feudal."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este proceso es un antecedente del camino hacia monarquías más centralizadas en los siglos siguientes."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las ciudades no se aliaron con la nobleza contra el rey, sino con el rey contra el poder señorial local; los reyes no prohibieron el comercio urbano, lo fomentaron; y la nobleza feudal no financió estas ciudades, más bien las veía como un contrapeso a su propio poder."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué papel cumplió la Escuela de Traductores de Toledo en la Europa medieval?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tradujo al latín obras griegas y árabes de filosofía, matemáticas y medicina.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Prohibió la circulación de cualquier texto no escrito originalmente en latín.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Funcionó como un tribunal eclesiástico para juzgar herejías filosóficas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Se dedicó solo a copiar textos religiosos cristianos, sin contenido científico.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Tras la reconquista cristiana de Toledo, eruditos tradujeron al latín textos árabes que incluían tanto obras griegas clásicas (Aristóteles, Ptolomeo) conservadas y comentadas en el mundo islámico como aportaciones originales (Avicena, Al-Juarismi)."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Junto con Sicilia, fue uno de los canales principales por los que el pensamiento clásico y la ciencia islámica regresaron a la Europa latina, alimentando después la escolástica."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No prohibió textos no latinos, precisamente tradujo DESDE el árabe; su contenido no era solo religioso, sino sobre todo científico y filosófico; y no era un tribunal de herejías, sino un centro de traducción académica."
+      }
+    ]
+  }
+]

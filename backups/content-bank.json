@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-14T01:46:13.974Z",
+    "exportedAt": "2026-09-14T04:43:22.214Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -31,11 +31,11 @@
       "Topic": 217,
       "Passage": 16,
       "SourceChunk": 380,
-      "Question": 1267,
+      "Question": 1307,
       "QuestionSourceChunk": 387,
-      "ExplanationLayer": 3801
+      "ExplanationLayer": 3921
     },
-    "totalRows": 6172
+    "totalRows": 6332
   },
   "Institution": [
     {
@@ -100619,6 +100619,2086 @@
       "updatedAt": {
         "$d": "2026-09-14T01:45:09.207Z"
       }
+    },
+    {
+      "id": "cmu0r93zm0001v76wwn6jrv6h",
+      "topicId": "cmrr1m8ge00ejhi3nobxqixy6",
+      "stem": "¿Cuál era una característica central de la democracia directa en la Atenas clásica del siglo V a.C.?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Un consejo hereditario de nobles decidía, sin consulta popular alguna.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Excluía del voto a mujeres, esclavos y metecos (extranjeros residentes).",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Todo habitante de la polis podía votar, sin distinción de origen o sexo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El voto se ejercía solo por representantes electos, nunca de forma directa.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:40:54.896Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:40:54.896Z"
+      }
+    },
+    {
+      "id": "cmu0r94t00006v76w2k207y5o",
+      "topicId": "cmrr1m8ge00ejhi3nobxqixy6",
+      "stem": "¿En qué se convirtió la Liga de Delos, fundada en 478 a.C. contra el peligro persa, bajo la conducción ateniense?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En una alianza militar con liderazgo rotativo entre las ciudades miembro.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En un tratado comercial exclusivo entre Atenas y Esparta por el Egeo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En un instrumento de dominio imperial: Atenas controló el tesoro común.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "En una confederación igualitaria que se disolvió tras vencer a Persia.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:40:55.956Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:40:55.956Z"
+      }
+    },
+    {
+      "id": "cmu0r95l4000bv76w2a884cm2",
+      "topicId": "cmrr1m8ge00ejhi3nobxqixy6",
+      "stem": "¿Qué caracterizó al periodo helenístico que siguió a las conquistas de Alejandro Magno?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El regreso de las polis griegas a un aislamiento cultural frente a Oriente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La desaparición del griego como lengua de la administración y el comercio.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La imposición del politeísmo egipcio como única religión oficial en todo el imperio.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La fusión de elementos griegos con tradiciones orientales en los reinos sucesores.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:40:56.968Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:40:56.968Z"
+      }
+    },
+    {
+      "id": "cmu0r96dl000gv76wkbmv2o0h",
+      "topicId": "cmrr1m8ge00ejhi3nobxqixy6",
+      "stem": "¿Qué problema estructural de la República romana tardía explica en buena medida su transformación en el Principado de Augusto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La convivencia pacífica entre patricios y plebeyos eliminó la tensión política.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El Senado había concentrado todo el mando militar, sin dejar tropas a los generales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La ausencia de expansión territorial dejó sin ingresos al tesoro público.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Ejércitos leales a su general, no al Senado, provocaron guerras civiles recurrentes.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:40:57.994Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:40:57.994Z"
+      }
+    },
+    {
+      "id": "cmu0r975o000lv76wq2bd7vqg",
+      "topicId": "cmrr1m8ge00ejhi3nobxqixy6",
+      "stem": "¿Por qué la historiografía actual describe la caída del Imperio Romano de Occidente, fechada de forma convencional en 476 d.C., como un proceso y no como un hecho aislado?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Roma nunca perdió el control efectivo de sus provincias occidentales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La fecha de 476 se propuso apenas en el siglo XX, sin ninguna base en fuentes antiguas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Combinó crisis económica, migraciones y pérdida gradual de control administrativo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El cristianismo fue la única causa documentada, sin factores económicos.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:40:59.004Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:40:59.004Z"
+      }
+    },
+    {
+      "id": "cmu0r9ce2000158qyu4fyzamj",
+      "topicId": "cmrr1m91l00elhi3nzjp96x5q",
+      "stem": "¿Qué relación definía el vínculo feudal entre un señor y su vasallo en la Europa medieval?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El vasallo era propietario legal pleno y pagaba un impuesto fijo en moneda.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El señor y el vasallo tenían obligaciones idénticas e intercambiables.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El vínculo era solo un contrato comercial, sin ningún componente militar.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El señor daba tierra y protección a cambio de fidelidad y servicio militar.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:05.786Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:05.786Z"
+      }
+    },
+    {
+      "id": "cmu0r9d62000658qyq4dleydt",
+      "topicId": "cmrr1m91l00elhi3nzjp96x5q",
+      "stem": "¿Qué papel desempeñó la Iglesia católica como institución en la Europa feudal, políticamente fragmentada?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Perdió toda influencia justo después de la caída de Roma de Occidente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Conservó el conocimiento, impartió educación y legitimó a los monarcas.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Compitió como un reino territorial más, sin función religiosa o cultural.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Se mantuvo al margen de la política y la educación durante toda la época.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:06.794Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:06.794Z"
+      }
+    },
+    {
+      "id": "cmu0r9dy8000b58qy2flvebj1",
+      "topicId": "cmrr1m91l00elhi3nzjp96x5q",
+      "stem": "¿Cuál fue una consecuencia comercial y cultural importante de las Cruzadas (siglos XI-XIII) para Europa occidental?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Impuso el feudalismo europeo como sistema político en Oriente Próximo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Fortaleció las rutas comerciales italianas y trajo productos y saberes orientales.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Hizo desaparecer por completo el comercio mediterráneo durante los dos siglos siguientes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cerró de forma definitiva todo contacto comercial con el mundo islámico.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:07.808Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:07.808Z"
+      }
+    },
+    {
+      "id": "cmu0r9eq8000g58qyrmryrlye",
+      "topicId": "cmrr1m91l00elhi3nzjp96x5q",
+      "stem": "¿Por qué el resurgimiento de las ciudades a partir del siglo XI favoreció el fortalecimiento del poder real frente a la nobleza feudal?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Los reyes prohibieron por completo el comercio dentro de las ciudades.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La burguesía buscó protección y privilegios del rey a cambio de apoyo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La nobleza feudal financió la construcción de las nuevas ciudades comerciales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Las ciudades se aliaron con la nobleza feudal para debilitar a la monarquía.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:08.816Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:08.816Z"
+      }
+    },
+    {
+      "id": "cmu0r9fi8000l58qycnhiaam7",
+      "topicId": "cmrr1m91l00elhi3nzjp96x5q",
+      "stem": "¿Qué papel cumplió la Escuela de Traductores de Toledo en la Europa medieval?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Tradujo al latín obras griegas y árabes de filosofía, matemáticas y medicina.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Prohibió la circulación de cualquier texto no escrito originalmente en latín.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Funcionó como un tribunal eclesiástico para juzgar herejías filosóficas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Se dedicó solo a copiar textos religiosos cristianos, sin contenido científico.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:09.824Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:09.824Z"
+      }
+    },
+    {
+      "id": "cmu0r9ksd0001ngvt35rlia0k",
+      "topicId": "cmrr1m9mw00enhi3niofgzcbf",
+      "stem": "¿Qué idea central distinguió al humanismo renacentista de la mentalidad teocéntrica medieval predominante?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Sostuvo que el destino humano dependía solo de la voluntad divina, sin agencia propia.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Se limitó a copiar sin comentario alguno los textos religiosos medievales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Puso al ser humano y su razón en el centro, sin abandonar necesariamente la fe.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Rechazó por completo cualquier forma de religiosidad cristiana entre los intelectuales.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:16.669Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:16.669Z"
+      }
+    },
+    {
+      "id": "cmu0r9lku0006ngvtwet02r47",
+      "topicId": "cmrr1m9mw00enhi3niofgzcbf",
+      "stem": "¿Cuál fue el efecto más significativo de la imprenta de tipos móviles, desarrollada por Gutenberg hacia 1450, en la difusión de ideas?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Redujo de forma drástica el costo y el tiempo de reproducir textos escritos.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Restringió la producción de textos de forma exclusiva a las órdenes monásticas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Sirvió solo para imprimir documentos oficiales de las cortes reales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Mantuvo el costo de los libros igual al de los manuscritos copiados a mano.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:17.694Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:17.694Z"
+      }
+    },
+    {
+      "id": "cmu0r9mdd000bngvtqy9buyx0",
+      "topicId": "cmrr1m9mw00enhi3niofgzcbf",
+      "stem": "¿Qué factor institucional contribuyó a desencadenar la Reforma protestante iniciada por Martín Lutero en 1517?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "No existía ninguna crítica previa a la Iglesia antes de las 95 tesis.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La Iglesia había eliminado por completo el cobro de cualquier tributo a los fieles.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La venta de indulgencias para financiar San Pedro alimentó la crítica a la corrupción.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El papado había renunciado antes de 1517 a toda su autoridad doctrinal.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:18.721Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:18.721Z"
+      }
+    },
+    {
+      "id": "cmu0r9n5t000gngvt16a6ztzt",
+      "topicId": "cmrr1m9mw00enhi3niofgzcbf",
+      "stem": "¿Qué combinación de factores impulsó la expansión marítima ibérica hacia nuevas rutas oceánicas a finales del siglo XV?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Un acuerdo previo con los otomanos para compartir las rutas terrestres.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El desinterés total de Portugal y Castilla por el comercio con Asia.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La búsqueda de rutas a las especias, el bloqueo otomano y avances náuticos.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La ausencia de cualquier avance en la navegación europea del siglo XV.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:19.745Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:19.745Z"
+      }
+    },
+    {
+      "id": "cmu0r9sd500018w8ymg4p87c6",
+      "topicId": "cmrr1ma9u00ephi3nnwe565si",
+      "stem": "¿Cuál era la idea central que compartían los pensadores de la Ilustración en el siglo XVIII?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La razón humana, y no la tradición o la autoridad, debía guiar la sociedad.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Las decisiones de gobierno debían basarse solo en la costumbre heredada.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La fe religiosa debía sustituir por completo a la razón en los asuntos de Estado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El origen divino del poder de los monarcas debía fortalecerse frente a la crítica.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:26.489Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:26.489Z"
+      }
+    },
+    {
+      "id": "cmu0r9tgm00068w8yfxquxbbh",
+      "topicId": "cmrr1ma9u00ephi3nnwe565si",
+      "stem": "¿Qué aportó la independencia de Estados Unidos (1776) al pensamiento político liberal de la época?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Demostró que era posible fundar una república sin monarca, con constitución escrita.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Mantuvo sin cambios el mismo sistema político colonial que tenía con Gran Bretaña.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Confirmó que solo una monarquía absoluta podía dar orden a un territorio extenso.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Fue el primer país en abolir toda forma de esclavitud al independizarse.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:27.910Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:27.910Z"
+      }
+    },
+    {
+      "id": "cmu0r9u8f000b8w8yio1dsev9",
+      "topicId": "cmrr1ma9u00ephi3nnwe565si",
+      "stem": "¿Qué combinación de causas explica el estallido de la Revolución francesa en 1789?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El hecho de que la nobleza y el clero pagaban la mayor parte de los impuestos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una prosperidad económica sostenida que generó demandas de participación.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Una crisis fiscal, la desigualdad estamental y una crisis de subsistencias.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La convocatoria de los Estados Generales por Luis XVI para ceder el trono.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:28.911Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:28.911Z"
+      }
+    },
+    {
+      "id": "cmu0r9v0a000g8w8yzskgilxl",
+      "topicId": "cmrr1ma9u00ephi3nnwe565si",
+      "stem": "¿Qué elemento distinguió a las revoluciones de 1848 en Europa de los movimientos liberales anteriores?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Lograron de inmediato y de forma duradera todas sus demandas en cada país.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Fueron movimientos organizados solo por la aristocracia para restaurar el absolutismo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La aparición de la 'cuestión social': demandas obreras además de las políticas.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Se limitaron a reclamos religiosos, sin demanda política o económica alguna.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:29.914Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:29.914Z"
+      }
+    },
+    {
+      "id": "cmu0r9vs7000l8w8yozlg0jxt",
+      "topicId": "cmrr1ma9u00ephi3nnwe565si",
+      "stem": "¿Qué tuvieron en común los procesos de unificación de Italia y Alemania en el siglo XIX?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Ambos fueron impulsados por el Imperio austriaco como potencia unificadora.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Ambos culminaron antes de las revoluciones liberales de 1848.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Ambos fueron liderados desde arriba por un Estado dominante, no por una revuelta popular.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Ambos se lograron solo mediante plebiscitos pacíficos, sin ningún conflicto armado.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:30.919Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:30.919Z"
+      }
+    },
+    {
+      "id": "cmu0r9wk1000q8w8ydfd0w8q4",
+      "topicId": "cmrr1ma9u00ephi3nnwe565si",
+      "stem": "¿Qué papel jugó la invasión napoleónica a España en 1808 en el proceso de independencia de las colonias hispanoamericanas?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Unificó a España y sus colonias bajo un solo gobierno republicano permanente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Fue un hecho aislado, sin relación alguna con el independentismo americano.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Provocó una crisis de legitimidad que las colonias usaron para formar juntas propias.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Fortaleció de inmediato la autoridad del rey español sobre sus colonias.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:31.921Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:31.921Z"
+      }
+    },
+    {
+      "id": "cmu0ra1t900016l6ceda9edyg",
+      "topicId": "cmrr1mawl00erhi3ng0vnf1vn",
+      "stem": "¿Por qué la Revolución Industrial se originó primero en Gran Bretaña hacia finales del siglo XVIII?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La confluencia de capital, yacimientos de carbón e hierro, y mano de obra libre.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Fue el único país europeo que mantenía vigente la servidumbre feudal.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Gran Bretaña carecía por completo de recursos minerales y dependía de importarlos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El gobierno británico prohibió cualquier comercio exterior para proteger la industria.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:38.734Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:38.734Z"
+      }
+    },
+    {
+      "id": "cmu0ra2ll00066l6cija48c3d",
+      "topicId": "cmrr1mawl00erhi3ng0vnf1vn",
+      "stem": "¿Qué cambio social produjo la industrialización en la estructura de la sociedad europea del siglo XIX?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La eliminación total del trabajo asalariado en las nuevas fábricas urbanas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La desaparición completa de cualquier desigualdad económica entre los grupos.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El regreso a una sociedad organizada solo por linajes nobiliarios hereditarios.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El paso de estamentos jurídicos a clases sociales según la relación con la propiedad.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:39.753Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:39.753Z"
+      }
+    },
+    {
+      "id": "cmu0ra3dw000b6l6cpia3l81x",
+      "topicId": "cmrr1mawl00erhi3ng0vnf1vn",
+      "stem": "¿Qué motivación económica impulsó el imperialismo europeo de finales del siglo XIX?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Materias primas baratas, nuevos mercados e inversión de capitales excedentes.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El deseo de las potencias europeas de reducir por completo su producción industrial.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La necesidad de importar mano de obra calificada desde las colonias a Europa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El interés exclusivo en territorios sin ningún valor económico real.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:40.772Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:40.772Z"
+      }
+    },
+    {
+      "id": "cmu0ra46d000g6l6cw7zhx092",
+      "topicId": "cmrr1mawl00erhi3ng0vnf1vn",
+      "stem": "¿Qué acordaron las potencias europeas en la Conferencia de Berlín (1884-1885)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La prohibición total de cualquier nueva ocupación colonial en el continente.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una alianza militar africana para resistir juntos la colonización europea.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Las reglas para repartirse África entre ellas, sin consultar a sus pueblos.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La independencia inmediata de todos los territorios coloniales en África.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:41.797Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:41.797Z"
+      }
+    },
+    {
+      "id": "cmu0ra4ys000l6l6c03k7sk77",
+      "topicId": "cmrr1mawl00erhi3ng0vnf1vn",
+      "stem": "¿Qué función cumplió la idea de la \"misión civilizadora\" en el discurso imperialista europeo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Justificó la dominación colonial presentándola como progreso y tutela.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Sirvió para que las potencias europeas renunciaran voluntariamente a sus colonias.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Reconoció la igualdad jurídica plena entre europeos y pueblos colonizados.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Fue una crítica interna europea que rechazaba por completo la expansión colonial.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:42.820Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:42.820Z"
+      }
+    },
+    {
+      "id": "cmu0ra5r3000q6l6cmufis97n",
+      "topicId": "cmrr1mawl00erhi3ng0vnf1vn",
+      "stem": "¿Qué respuesta organizada surgió entre los trabajadores urbanos frente a las condiciones de las fábricas durante la industrialización del siglo XIX?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La formación de sindicatos y partidos obreros que exigieron mejoras laborales.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La abolición inmediata del trabajo asalariado por decisión de los empresarios.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La desaparición total de cualquier protesta obrera durante todo el siglo XIX.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El regreso masivo y voluntario de los obreros urbanos al trabajo agrícola.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:43.839Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:43.839Z"
+      }
+    },
+    {
+      "id": "cmu0raazm0001h2gdr6ohobv0",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿Por qué el asesinato del archiduque Francisco Fernando en Sarajevo (junio de 1914) desencadenó una guerra continental y no solo un conflicto entre Austria-Hungría y Serbia?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Un tratado obligaba a todas las potencias a intervenir solo en asesinatos de la realeza.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "No existía ninguna tensión previa entre las potencias antes de 1914.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El archiduque era el heredero designado de todas las coronas de Europa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El sistema de alianzas y la rivalidad imperialista arrastraron a las demás potencias.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:50.626Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:50.626Z"
+      }
+    },
+    {
+      "id": "cmu0rabrk0006h2gd2x1q98py",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿Qué condición creada por la Primera Guerra Mundial aprovecharon los bolcheviques para tomar el poder en Rusia en octubre de 1917?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La prosperidad económica generada por el esfuerzo bélico ruso durante la guerra.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La victoria militar rusa sobre Alemania, que fortaleció al gobierno provisional.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El agotamiento militar, el hambre y el descrédito del gobierno provisional.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El apoyo unánime del ejército y el campesinado al zar hasta 1917.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:51.632Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:51.632Z"
+      }
+    },
+    {
+      "id": "cmu0racje000bh2gdbqs2ryfn",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿De qué manera las condiciones impuestas a Alemania por el Tratado de Versalles (1919) contribuyeron, años después, al ascenso del nazismo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Las reparaciones y la pérdida territorial alimentaron un resentimiento nacionalista.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El ascenso del nazismo no tuvo relación alguna con las condiciones del tratado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El tratado eximió a Alemania de cualquier pago o responsabilidad por la guerra.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El tratado devolvió a Alemania todas las colonias que tenía antes de 1914.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:52.634Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:52.634Z"
+      }
+    },
+    {
+      "id": "cmu0radbf000gh2gdkh9celwr",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿Qué papel jugó la política de apaciguamiento de Francia y Gran Bretaña en la escalada hacia la Segunda Guerra Mundial?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Al ceder ante las anexiones alemanas sin resistencia, envalentonó su expansión.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Detuvo por completo cualquier intento posterior de expansión territorial alemana.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Fue una política diseñada por Alemania para frenar a Francia y Gran Bretaña.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Consistió en una declaración de guerra inmediata contra Alemania desde 1935.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:53.644Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:53.644Z"
+      }
+    },
+    {
+      "id": "cmu0rae3i000lh2gdgmukifzx",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿Qué distingue al Holocausto de otros episodios de violencia antisemita anteriores en la historia europea?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "No involucró ninguna estructura estatal ni institucional del régimen nazi.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Se trató de actos aislados y espontáneos, sin planeación del gobierno alemán.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Fue un exterminio sistemático, organizado por el Estado con maquinaria industrial.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Fue una política aplicada solo fuera del territorio controlado por Alemania.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:54.654Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:54.654Z"
+      }
+    },
+    {
+      "id": "cmu0raevb000qh2gd09osfhs1",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿Qué llevó a la rendición de Japón en agosto de 1945, poniendo fin a la Segunda Guerra Mundial?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Una invasión terrestre aliada exitosa del territorio japonés antes de agosto.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un tratado de paz firmado de forma voluntaria antes de cualquier ataque aliado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La retirada unilateral de todas las tropas japonesas sin condición alguna.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los bombardeos atómicos y la declaración de guerra soviética contra Japón.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:55.656Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:55.656Z"
+      }
+    },
+    {
+      "id": "cmu0rafna000vh2gditjsups5",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿Qué transformación geopolítica global se derivó del fin de la Segunda Guerra Mundial en 1945?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La disolución inmediata de todos los imperios coloniales europeos en 1945.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un orden bipolar entre Estados Unidos y la URSS, y el inicio de la descolonización.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El fortalecimiento de Alemania y Japón como las principales potencias militares.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El regreso de Europa occidental a su posición de potencia dominante única.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:56.663Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:56.663Z"
+      }
+    },
+    {
+      "id": "cmu0ragf60010h2gdk9azb69e",
+      "topicId": "cmrr1mbjt00ethi3nm7qjb3ji",
+      "stem": "¿Qué marcó el anuncio de la Doctrina Truman en 1947 dentro de la política exterior estadounidense de posguerra?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El compromiso de contener al comunismo mediante ayuda económica y militar.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Una alianza militar formal entre Estados Unidos y la URSS para gobernar Europa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El reconocimiento estadounidense de la URSS como aliado permanente de posguerra.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La decisión de Estados Unidos de retirarse por completo de Europa.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:41:57.666Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:41:57.666Z"
+      }
+    },
+    {
+      "id": "cmu0raln00001qgatigdxk9u6",
+      "topicId": "cmrr1ptdl00ev11qdtqra33sc",
+      "stem": "¿Qué diferencia hay entre la caída del Muro de Berlín (1989) y la disolución de la URSS (1991)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Son el mismo acontecimiento, ocurrido de forma simultánea en 1989.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La caída del Muro cerró la división europea; la URSS se disolvió dos años después.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La disolución de la URSS ocurrió antes que la caída del Muro de Berlín.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Ambos hechos se refieren solo a la reunificación de Alemania.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:42:04.428Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:42:04.428Z"
+      }
+    },
+    {
+      "id": "cmu0ramf70006qgatvvm3cigc",
+      "topicId": "cmrr1ptdl00ev11qdtqra33sc",
+      "stem": "¿Qué caracteriza a la globalización económica como proceso del mundo contemporáneo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La producción de bienes limitada solo al mercado interno de cada país.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La interconexión creciente de mercados, capitales, producción y comunicaciones.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La desaparición completa del comercio internacional entre regiones.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El cierre progresivo de fronteras comerciales entre los países del mundo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:42:05.443Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:42:05.443Z"
+      }
+    },
+    {
+      "id": "cmu0ran7e000bqgatpcdauv7j",
+      "topicId": "cmrr1ptdl00ev11qdtqra33sc",
+      "stem": "¿Qué distingue a la Unión Europea de una alianza tradicional entre Estados soberanos?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Sus miembros ceden parte de su soberanía a instituciones supranacionales comunes.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Sus miembros mantienen intacta, sin ninguna cesión, toda su soberanía nacional.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Se trata de un tratado militar de carácter exclusivamente defensivo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Solo coordina políticas culturales, sin institución política o económica común.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:42:06.458Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:42:06.458Z"
+      }
+    },
+    {
+      "id": "cmu0ranzo000gqgat6cx6a30y",
+      "topicId": "cmrr1ptdl00ev11qdtqra33sc",
+      "stem": "¿Por qué se dice que desafíos como el cambio climático son \"transnacionales\" en el mundo contemporáneo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Pueden resolverse por completo con la acción de un único gobierno nacional.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Afectan de forma exclusiva a un solo país, sin consecuencia externa alguna.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Sus causas y efectos cruzan las fronteras y exigen cooperación entre países.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Solo los países más pobres del mundo contribuyen a generarlos.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:42:07.476Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:42:07.476Z"
+      }
+    },
+    {
+      "id": "cmu0raorv000lqgatxjiyjqqm",
+      "topicId": "cmrr1ptdl00ev11qdtqra33sc",
+      "stem": "¿Qué tendencia geopolítica ejemplifica el ascenso económico de China desde finales del siglo XX?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El regreso a un mundo bipolar idéntico a la Guerra Fría, ahora como aliados militares.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El aislamiento comercial total de China respecto del resto del mundo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El desplazamiento gradual hacia un orden más multipolar, fuera de Europa y EE. UU.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La consolidación de un solo poder económico mundial, sin competidor relevante.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:42:08.491Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:42:08.491Z"
+      }
+    },
+    {
+      "id": "cmu0rapk0000qqgatwmr698dg",
+      "topicId": "cmrr1ptdl00ev11qdtqra33sc",
+      "stem": "¿Qué impacto tuvo la expansión de internet y las tecnologías digitales a partir de la década de 1990 en la sociedad contemporánea?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Provocó el aislamiento total de las economías nacionales del comercio mundial.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Se mantuvo limitada al ámbito académico, sin aplicación comercial alguna.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Aceleró el acceso a la información y transformó la economía, la política y lo social.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Redujo de forma drástica la velocidad de comunicación entre regiones del mundo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-14T04:42:09.504Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-14T04:42:09.504Z"
+      }
     }
   ],
   "QuestionSourceChunk": [
@@ -133739,6 +135819,966 @@
       "layer": 3,
       "title": "Por qué no las otras opciones",
       "content": "El GPS no usa temperatura ambiente ni campo magnético para ubicarse, esos son principios de otros instrumentos (termómetro, brújula); y necesita señales de VARIOS satélites para triangular, no basta con recibir una sola señal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r93zm0002v76whmmtoao7",
+      "questionId": "cmu0r93zm0001v76wwn6jrv6h",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La Asamblea (Ekklesía) decidía por voto directo de los ciudadanos, pero la ciudadanía plena se reservaba a hombres libres, adultos, nacidos de padre y madre atenienses.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r93zm0003v76wmhpqvmyp",
+      "questionId": "cmu0r93zm0001v76wwn6jrv6h",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Tras las reformas de Clístenes y en la Atenas de Pericles, esta exclusión (mujeres, esclavos, metecos) es precisamente lo que los historiadores subrayan al describir el alcance real de la \"democracia\" ateniense.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r93zm0004v76w3mpr7xp6",
+      "questionId": "cmu0r93zm0001v76wwn6jrv6h",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo sufragio universal sin distinción; un consejo hereditario sin consulta popular describe una oligarquía, no una democracia; y el rasgo distintivo de Atenas fue el voto directo, no representativo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r94t00007v76whjp9f36w",
+      "questionId": "cmu0r94t00006v76w2k207y5o",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "El traslado del tesoro de Delos a Atenas (454 a.C.) y el uso del tributo aliado para fines propios convirtieron la alianza en un imperio (arjé) bajo control ateniense.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r94t00008v76wl04peqzv",
+      "questionId": "cmu0r94t00006v76w2k207y5o",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Esta transformación es central para explicar las tensiones que desembocaron en la Guerra del Peloponeso contra Esparta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r94t00009v76wnvwuuv7e",
+      "questionId": "cmu0r94t00006v76w2k207y5o",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La liga no se disolvió tras la victoria persa, sino que continuó como instrumento de dominio; el voto no era igualitario, Atenas decidía; y el liderazgo no era rotativo, Atenas lo retuvo de forma permanente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r95l4000cv76wsptqofxg",
+      "questionId": "cmu0r95l4000bv76w2a884cm2",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Tras la muerte de Alejandro (323 a.C.), su imperio se dividió en reinos sucesores (ptolemaico, seléucida, antigónida) donde el arte, la religión y el pensamiento griegos se mezclaron con tradiciones locales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r95l4000dv76whys9z04n",
+      "questionId": "cmu0r95l4000bv76w2a884cm2",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Centros como Alejandría, con su Biblioteca y Museion, ejemplifican esa fusión cultural que define lo \"helenístico\" frente a lo estrictamente \"helénico\" (griego clásico).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r95l4000ev76w75xly6s1",
+      "questionId": "cmu0r95l4000bv76w2a884cm2",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo un repliegue aislacionista; ninguna religión única se impuso de forma oficial, sino un sincretismo; y el griego koiné, lejos de desaparecer, se difundió como lengua franca de la región.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r96dm000hv76w9zpd0ay9",
+      "questionId": "cmu0r96dl000gv76wkbmv2o0h",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Las reformas militares de Mario profesionalizaron el ejército y ligaron la lealtad del soldado a su general (que le prometía tierra y botín), no al Estado; de ahí las guerras civiles entre Mario y Sila, César y Pompeyo, y finalmente Octavio y Marco Antonio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r96dm000iv76wg945gpgw",
+      "questionId": "cmu0r96dl000gv76wkbmv2o0h",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Augusto puso fin a ese ciclo en el 27 a.C. concentrando el poder político y militar en su persona, conservando de manera formal las instituciones republicanas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r96dm000jv76w6o1yf00d",
+      "questionId": "cmu0r96dl000gv76wkbmv2o0h",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La expansión territorial romana no se detuvo, fue la base de su riqueza; la relación patricio-plebeyo siguió siendo tensa (recuérdense los Gracos); y el problema fue justo lo opuesto: los generales sí controlaban ejércitos propios.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r975o000mv76wvygawwnb",
+      "questionId": "cmu0r975o000lv76wq2bd7vqg",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La deposición de Rómulo Augústulo por Odoacro en 476 es un marcador simbólico dentro de un proceso mucho más largo: la crisis del siglo III, la división administrativa Oriente-Occidente de 395, el deterioro fiscal y militar, y los asentamientos de pueblos migrantes durante generaciones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r975o000nv76wj19y7a2s",
+      "questionId": "cmu0r975o000lv76wq2bd7vqg",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "La historiografía, desde Gibbon hasta los estudios contemporáneos, revisa constantemente el peso relativo de cada factor, pero coincide en tratarlo como un declive acumulativo, no un colapso súbito.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r975o000ov76w6tiacqt4",
+      "questionId": "cmu0r975o000lv76wq2bd7vqg",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Es falso que Roma conservara el control efectivo de Occidente hasta el final; el cristianismo es un factor debatido (tesis de Gibbon) pero no el único documentado; y la fecha de 476 se usó ya en fuentes medievales y modernas, no fue \"inventada\" en el siglo XX.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9ce2000258qy4p62yoci",
+      "questionId": "cmu0r9ce2000158qyu4fyzamj",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Mediante el homenaje y el juramento de fidelidad, el señor entregaba un feudo (tierra con siervos) a cambio del servicio militar y el consejo del vasallo — el núcleo del sistema tras la fragmentación carolingia de los siglos IX-X.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9ce3000358qyuk705p7p",
+      "questionId": "cmu0r9ce2000158qyu4fyzamj",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Este vínculo personal y jerárquico organizó la política local en ausencia de una autoridad central fuerte.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9ce3000458qymxb4i88f",
+      "questionId": "cmu0r9ce2000158qyu4fyzamj",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El vasallo no era propietario pleno, sino tenedor del feudo bajo el señor; los roles no eran intercambiables, la jerarquía era fija; y el componente militar, no el comercial, era el eje del vínculo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9d62000758qy0f9v0iyz",
+      "questionId": "cmu0r9d62000658qyq4dleydt",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Los monasterios copiaron y conservaron manuscritos, el derecho canónico operó por encima de las fronteras de los reinos, y ceremonias como la coronación de Carlomagno (800) legitimaron el poder político con autoridad religiosa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9d62000858qyr9q90huc",
+      "questionId": "cmu0r9d62000658qyq4dleydt",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Fue la única institución que atravesó de forma coherente la fragmentación política feudal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9d62000958qyuifs1bpz",
+      "questionId": "cmu0r9d62000658qyq4dleydt",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La Iglesia estuvo lejos de ser apolítica (piénsese en las luchas de investiduras); su influencia creció, no desapareció, tras la caída de Roma; y su función religiosa y cultural la distinguía de un simple reino territorial.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9dy8000c58qy9bqvhqp6",
+      "questionId": "cmu0r9dy8000b58qy2flvebj1",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Repúblicas marítimas como Venecia, Génova y Pisa ampliaron sus rutas comerciales con Oriente durante y después de las Cruzadas, y con ellas circularon productos, técnicas y textos orientales hacia Europa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9dy8000d58qyeyjqy5h3",
+      "questionId": "cmu0r9dy8000b58qy2flvebj1",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Este efecto comercial y cultural perduró incluso después de que los estados cruzados en Tierra Santa desaparecieran.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9dy8000e58qy02m1cf4w",
+      "questionId": "cmu0r9dy8000b58qy2flvebj1",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El contacto comercial no se cerró, se intensificó; el comercio mediterráneo no desapareció, creció; y los reinos cruzados en Oriente fueron limitados y temporales, no una imposición duradera del feudalismo europeo en la región.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9eq8000h58qybr5ddwc4",
+      "questionId": "cmu0r9eq8000g58qyrmryrlye",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Los mercaderes urbanos obtenían cartas forales que les daban autonomía frente a los señores locales, a menudo otorgadas directamente por el rey a cambio de impuestos y respaldo político — un intercambio que fortalecía a la corona frente a la nobleza feudal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9eq8000i58qyo7qv72ux",
+      "questionId": "cmu0r9eq8000g58qyrmryrlye",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Este proceso es un antecedente del camino hacia monarquías más centralizadas en los siglos siguientes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9eq8000j58qyzh96mcqw",
+      "questionId": "cmu0r9eq8000g58qyrmryrlye",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las ciudades no se aliaron con la nobleza contra el rey, sino con el rey contra el poder señorial local; los reyes no prohibieron el comercio urbano, lo fomentaron; y la nobleza feudal no financió estas ciudades, más bien las veía como un contrapeso a su propio poder.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9fi8000m58qy7vih8p4q",
+      "questionId": "cmu0r9fi8000l58qycnhiaam7",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Tras la reconquista cristiana de Toledo, eruditos tradujeron al latín textos árabes que incluían tanto obras griegas clásicas (Aristóteles, Ptolomeo) conservadas y comentadas en el mundo islámico como aportaciones originales (Avicena, Al-Juarismi).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9fi8000n58qyvg8150uf",
+      "questionId": "cmu0r9fi8000l58qycnhiaam7",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Junto con Sicilia, fue uno de los canales principales por los que el pensamiento clásico y la ciencia islámica regresaron a la Europa latina, alimentando después la escolástica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9fi8000o58qyiwv27ttr",
+      "questionId": "cmu0r9fi8000l58qycnhiaam7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No prohibió textos no latinos, precisamente tradujo DESDE el árabe; su contenido no era solo religioso, sino sobre todo científico y filosófico; y no era un tribunal de herejías, sino un centro de traducción académica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9ksd0002ngvtk0j7x9eh",
+      "questionId": "cmu0r9ksd0001ngvt35rlia0k",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "El humanismo revivió el estudio de textos clásicos griegos y romanos y puso el acento en la razón y el potencial humano (\"studia humanitatis\"), un giro antropocéntrico frente al teocentrismo medieval.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9ksd0003ngvtw3siuava",
+      "questionId": "cmu0r9ksd0001ngvt35rlia0k",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "La mayoría de los humanistas, como Erasmo, siguieron siendo profundamente religiosos: el giro fue de énfasis, no de rechazo total de la fe.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9ksd0004ngvtg9ok5vkm",
+      "questionId": "cmu0r9ksd0001ngvt35rlia0k",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo un rechazo generalizado del cristianismo; la idea central era la agencia humana, opuesta al determinismo divino absoluto; y los humanistas comentaron y editaron los textos de forma crítica, no se limitaron a copiarlos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9lku0007ngvtw9n7u3id",
+      "questionId": "cmu0r9lku0006ngvtwet02r47",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La reproducción mecánica abarató y aceleró enormemente la producción de textos frente al copiado manual, permitiendo difundir obras clásicas, humanistas y, más tarde, panfletos de la Reforma y biblias en lenguas vernáculas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9lku0008ngvts4gxwdj9",
+      "questionId": "cmu0r9lku0006ngvtwet02r47",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Fue un habilitador clave tanto de la circulación del humanismo renacentista como de la rapidez con la que se propagó la Reforma protestante décadas después.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9lku0009ngvt9rmyyrx2",
+      "questionId": "cmu0r9lku0006ngvtwet02r47",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El costo no se mantuvo igual, cayó de forma drástica; la producción no quedó restringida a monasterios, se descentralizó y comercializó; y no se limitó a documentos oficiales, abarcó una enorme variedad de textos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9mdd000cngvt3yc1uyp8",
+      "questionId": "cmu0r9mdd000bngvtqy9buyx0",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La venta de indulgencias, en parte para financiar la basílica de San Pedro, impulsó las 95 tesis de Lutero (1517) contra esa práctica y la corrupción que denunciaba.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9mdd000dngvt045rb6gn",
+      "questionId": "cmu0r9mdd000bngvtqy9buyx0",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Hubo también factores políticos previos (intereses de los príncipes alemanes frente a la autoridad papal e imperial) y críticas anteriores a la Iglesia, como las de Wycliffe y Hus, que prepararon el terreno.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9mdd000engvte42x788k",
+      "questionId": "cmu0r9mdd000bngvtqy9buyx0",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La Iglesia no eliminó los tributos, la venta de indulgencias era justamente uno de ellos; el papado no había renunciado a su autoridad, esa autoridad era precisamente lo cuestionado; y sí existían críticas previas a la Iglesia antes de 1517.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9n5t000hngvtogtxtfcq",
+      "questionId": "cmu0r9n5t000gngvt16a6ztzt",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La caída de Constantinopla (1453) y el control otomano sobre las rutas terrestres a Asia encarecieron el comercio de especias; a la vez, avances como la carabela y el astrolabio hicieron viables las travesías oceánicas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9n5t000ingvt4fio7k8e",
+      "questionId": "cmu0r9n5t000gngvt16a6ztzt",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "La corona portuguesa y los Reyes Católicos financiaron estas expediciones buscando precisamente evitar ese control terrestre otomano-veneciano del comercio asiático.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9n5t000jngvtll20j2z0",
+      "questionId": "cmu0r9n5t000gngvt16a6ztzt",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo desinterés, el motivo económico fue central; los avances náuticos fueron justo el factor habilitador, no su ausencia; y la relación con los otomanos era de bloqueo y rivalidad, no de un acuerdo de reparto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9sd500028w8yy6t1v0rg",
+      "questionId": "cmu0r9sd500018w8ymg4p87c6",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Pensadores como Locke, Voltaire, Montesquieu y Rousseau situaron a la razón y la observación empírica como criterio para juzgar instituciones, leyes y creencias, cuestionando la autoridad basada solo en la tradición o el derecho divino.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9sd500038w8ybxuw3ibj",
+      "questionId": "cmu0r9sd500018w8ymg4p87c6",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Esta primacía de la razón alimentó después demandas concretas de reforma política: constituciones escritas, división de poderes, límites al poder absoluto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9sd500048w8ywzx4v2e4",
+      "questionId": "cmu0r9sd500018w8ymg4p87c6",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No buscaban fortalecer el derecho divino de los reyes, lo cuestionaban; no defendían la costumbre como única guía, la sometían a crítica racional; y no proponían sustituir la razón por la fe, sino lo contrario.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9tgm00078w8yi32hiu7f",
+      "questionId": "cmu0r9tgm00068w8yfxquxbbh",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La Constitución de 1787 estableció una república federal con división de poderes, sin monarca, aplicando en la práctica ideas que hasta entonces eran sobre todo teóricas en Europa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9tgm00088w8y049n383k",
+      "questionId": "cmu0r9tgm00068w8yfxquxbbh",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Esta experiencia influyó de forma directa en el ciclo de revoluciones atlánticas que siguió, incluida la francesa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9tgm00098w8y4bcmjl0f",
+      "questionId": "cmu0r9tgm00068w8yfxquxbbh",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No confirmó la necesidad de una monarquía absoluta, sino lo contrario; la esclavitud persistió en Estados Unidos hasta 1865, no se abolió con la independencia; y el sistema político cambió radicalmente, de colonia a república constitucional.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9u8f000c8w8ybwfat25e",
+      "questionId": "cmu0r9u8f000b8w8yio1dsev9",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Una deuda estatal agravada por guerras (incluido el apoyo a la independencia estadounidense), un sistema fiscal que eximía en gran medida a la nobleza y el clero, y malas cosechas que encarecieron el pan en 1788-1789 confluyeron en el estallido revolucionario.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9u8f000d8w8yj2ysp8up",
+      "questionId": "cmu0r9u8f000b8w8yio1dsev9",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "La convocatoria de los Estados Generales en 1789 buscaba resolver la crisis fiscal, no ceder el trono; el proceso escaló hacia la Revolución a partir de ese punto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9u8f000e8w8yrjsnmo1a",
+      "questionId": "cmu0r9u8f000b8w8yio1dsev9",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo prosperidad sostenida, sino crisis; Luis XVI no convocó los Estados Generales para abdicar, sino para atender las finanzas del reino; y la nobleza y el clero pagaban proporcionalmente menos impuestos, no más, lo cual era parte central de la desigualdad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9v0a000h8w8ybv2zegxh",
+      "questionId": "cmu0r9v0a000g8w8yzskgilxl",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "A las demandas liberales tradicionales (constituciones, sufragio) se sumó, por primera vez con fuerza, la exigencia de mejores condiciones económicas de los trabajadores urbanos surgidos de la industrialización temprana.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9v0a000i8w8y3ven7mox",
+      "questionId": "cmu0r9v0a000g8w8yzskgilxl",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Pese a su extensión (Francia, los estados alemanes, el Imperio austriaco, los estados italianos), la mayoría de estos levantamientos fueron sofocados en uno o dos años y el orden de la Restauración se reimpuso en el corto plazo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9v0a000j8w8yq4wpplsp",
+      "questionId": "cmu0r9v0a000g8w8yzskgilxl",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No fueron movimientos aristocráticos a favor del absolutismo, sino en su contra; las demandas eran centralmente políticas y económicas, no religiosas; y no triunfaron de forma inmediata y duradera, la mayoría fue derrotada en el corto plazo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9vs7000m8w8y21fznz2l",
+      "questionId": "cmu0r9vs7000l8w8yozlg0jxt",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Piamonte-Cerdeña (con Cavour, apoyado por las expediciones de Garibaldi) condujo la unificación italiana (1859-1870) y Prusia (con Bismarck) la alemana mediante una serie de guerras que culminaron en 1871 — ambas conducidas por un Estado dominante, no por una revuelta popular generalizada.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9vs7000n8w8yysvcy4af",
+      "questionId": "cmu0r9vs7000l8w8yozlg0jxt",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Contrastan con los fallidos levantamientos nacionalistas de 1848, que fueron populares pero no lograron la unificación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9vs7000o8w8yk3zcd09u",
+      "questionId": "cmu0r9vs7000l8w8yozlg0jxt",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Ambos procesos incluyeron guerras significativas, no fueron solo plebiscitos pacíficos; Austria fue justamente la potencia rival, derrotada y excluida en ambos procesos, no su impulsora; y ambos culminaron décadas después de 1848 (1861 y 1871), no antes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9wk1000r8w8yvus8bu55",
+      "questionId": "cmu0r9wk1000q8w8ydfd0w8q4",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Al forzar la abdicación de Fernando VII e imponer a José Bonaparte, Napoleón dejó sin un rey legítimo reconocido al imperio español; ciudades americanas formaron juntas que decían gobernar en su nombre, un proceso que en la década siguiente derivó en movimientos de independencia plena (San Martín, Bolívar, entre otros).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9wk1000s8w8y09kaimnq",
+      "questionId": "cmu0r9wk1000q8w8ydfd0w8q4",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Este episodio se inscribe en el ciclo más amplio de las revoluciones atlánticas que conecta procesos europeos y americanos de la época.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0r9wk1000t8w8y11yt14gx",
+      "questionId": "cmu0r9wk1000q8w8ydfd0w8q4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No fortaleció la autoridad real, la debilitó gravemente; no fue un hecho aislado, fue el detonante directo de las juntas americanas; y España y sus colonias no se unificaron bajo una república, las colonias terminaron separándose como repúblicas independientes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra1ta00026l6cge4qgx1v",
+      "questionId": "cmu0ra1t900016l6ceda9edyg",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Capital acumulado del comercio, yacimientos propios de carbón e hierro, una agricultura ya transformada que liberó mano de obra, y mercados coloniales existentes se combinaron con innovaciones técnicas como la máquina de vapor.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra1ta00036l6ci6t5mdsp",
+      "questionId": "cmu0ra1t900016l6ceda9edyg",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Ningún otro país europeo reunía en ese momento esa combinación completa de factores.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra1ta00046l6cvvvcrk8p",
+      "questionId": "cmu0ra1t900016l6ceda9edyg",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Gran Bretaña era un país comercialmente muy abierto, no cerrado al exterior; poseía yacimientos minerales propios, no dependía de importarlos; y había dejado atrás la servidumbre feudal antes que buena parte de Europa continental, lo que facilitó una mano de obra más móvil.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra2ll00076l6cvcf18z86",
+      "questionId": "cmu0ra2ll00066l6cija48c3d",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "De una sociedad de estamentos (nobleza, clero, común) definidos por ley, se pasó a una sociedad de clases (burguesía industrial, proletariado) definidas por su relación con la propiedad de los medios de producción.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra2ll00086l6cz16tp4nk",
+      "questionId": "cmu0ra2ll00066l6cija48c3d",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Esta nueva estructura de clases es la base de los conflictos y movimientos sociales que documentaron observadores contemporáneos de la época.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra2ll00096l6cuwgfn9yv",
+      "questionId": "cmu0ra2ll00066l6cija48c3d",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No desapareció la desigualdad, cambió de forma; no hubo un regreso a la nobleza hereditaria, el movimiento fue en sentido contrario; y el trabajo asalariado en fábrica es justamente el rasgo definitorio de la nueva clase obrera, no algo que desapareciera.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra3dw000c6l6cz2k75xkc",
+      "questionId": "cmu0ra3dw000b6l6cpia3l81x",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Las economías industriales necesitaban materias primas (caucho, algodón, minerales), mercados donde colocar sus manufacturas y destinos para capitales acumulados — motivaciones económicas que se sumaron a las de prestigio nacional y estrategia militar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra3dw000d6l6c6krl23iv",
+      "questionId": "cmu0ra3dw000b6l6cpia3l81x",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Esta lógica económica explica en buena medida la intensidad y el momento del llamado \"nuevo imperialismo\" (1870-1914).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra3dw000e6l6c45zs9vfr",
+      "questionId": "cmu0ra3dw000b6l6cpia3l81x",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El imperialismo buscaba sostener y expandir la producción industrial, no reducirla; la mano de obra colonial se explotaba sobre todo en el lugar, no se importaba como fuerza calificada a Europa; y los territorios se buscaban precisamente por su valor económico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra46d000h6l6czwie102o",
+      "questionId": "cmu0ra46d000g6l6cw7zhx092",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La conferencia estableció principios como el de \"ocupación efectiva\" para que las potencias europeas se repartieran África, trazando fronteras sin ninguna representación de los pueblos africanos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra46d000i6l6cb7g5mpbn",
+      "questionId": "cmu0ra46d000g6l6cw7zhx092",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "En las dos décadas siguientes, casi todo el continente quedó bajo control colonial europeo, con fronteras que a menudo ignoraban las divisiones étnicas y políticas existentes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra46d000j6l6clvqk8q5z",
+      "questionId": "cmu0ra46d000g6l6cw7zhx092",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No se acordó ninguna independencia, sino lo contrario; no fue una alianza africana, sino una reunión exclusiva de potencias europeas; y no se prohibió la ocupación, se establecieron precisamente las reglas para acelerarla.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra4ys000m6l6clsoatyjn",
+      "questionId": "cmu0ra4ys000l6l6c03k7sk77",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La \"mission civilisatrice\" presentaba la dominación colonial como una tutela benevolente hacia pueblos considerados inferiores, apoyada en jerarquías raciales de la época, y servía para legitimar la explotación económica y política real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra4ys000n6l6cptuv6jn3",
+      "questionId": "cmu0ra4ys000l6l6c03k7sk77",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Este discurso se usó de forma sistemática para justificar el imperialismo ante la opinión pública europea, dentro del aparato ideológico del \"nuevo imperialismo\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra4ys000o6l6cf24ssftl",
+      "questionId": "cmu0ra4ys000l6l6c03k7sk77",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No planteaba igualdad jurídica, se basaba en una jerarquía asumida; no llevó a renunciar a las colonias, sirvió para justificar conservarlas y ampliarlas; y no era una crítica anticolonial, era propaganda a favor del colonialismo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra5r3000r6l6cip0820v7",
+      "questionId": "cmu0ra5r3000q6l6cmufis97n",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Ante jornadas extenuantes, salarios bajos y condiciones inseguras, los trabajadores se organizaron en sindicatos y movimientos políticos (como el cartismo británico y después partidos socialistas) que exigieron reformas laborales concretas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra5r3000s6l6cxwnui9vv",
+      "questionId": "cmu0ra5r3000q6l6cmufis97n",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Estas organizaciones lograron, de manera gradual, límites legales a la jornada, regulaciones de seguridad y la extensión del sufragio a lo largo de las décadas siguientes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ra5r3000t6l6cicicpbaa",
+      "questionId": "cmu0ra5r3000q6l6cmufis97n",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo un regreso masivo al campo, la población obrera urbana creció; los empresarios no abolieron el trabajo asalariado, era la base de su beneficio; y la protesta obrera no desapareció, creció de forma organizada durante todo el siglo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raazm0002h2gd2xcpq3mw",
+      "questionId": "cmu0raazm0001h2gdr6ohobv0",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "El asesinato fue el detonante, no la causa profunda: el sistema de alianzas (Triple Alianza y Triple Entente), la carrera armamentista y las rivalidades coloniales e imperialistas acumuladas hicieron que la movilización de un país arrastrara, por obligación de alianza, a los demás.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raazm0003h2gd52zv2d3l",
+      "questionId": "cmu0raazm0001h2gdr6ohobv0",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Los historiadores distinguen justamente entre esta \"causa inmediata\" (el detonante) y las \"causas estructurales\" de fondo (alianzas, imperialismo, militarismo, nacionalismo).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raazm0004h2gd8lxpm2a3",
+      "questionId": "cmu0raazm0001h2gdr6ohobv0",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No existía un tratado limitado a asesinatos de la realeza, las alianzas eran pactos generales de defensa mutua; el archiduque era heredero solo de Austria-Hungría, no de otras coronas; y las tensiones previas (guerras balcánicas, rivalidad colonial) llevaban décadas acumulándose.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rabrk0007h2gdxmyvaz7c",
+      "questionId": "cmu0rabrk0006h2gd2x1q98py",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Las bajas masivas, la escasez de alimentos y el fracaso del gobierno provisional en salir de la guerra tras la caída del zar (febrero de 1917) generaron un descontento que los bolcheviques capitalizaron con la consigna de \"paz, tierra y pan\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rabrk0008h2gdn4k66f5g",
+      "questionId": "cmu0rabrk0006h2gd2x1q98py",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "La crisis provocada por la guerra, más que solo la organización bolchevique, es la condición estructural que explica la toma del poder de octubre de 1917.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rabrk0009h2gdccfj0l1p",
+      "questionId": "cmu0rabrk0006h2gd2x1q98py",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Rusia no obtuvo una victoria militar, sufrió derrotas y bajas severas; no hubo prosperidad económica, la crisis era profunda; y para 1917 el zar ya había perdido el apoyo suficiente como para ser depuesto en febrero de ese mismo año.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0racje000ch2gdof2css4q",
+      "questionId": "cmu0racje000bh2gdbqs2ryfn",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Las reparaciones económicas, la pérdida de territorios y colonias, y la cláusula de \"culpa de guerra\" (artículo 231) alimentaron un resentimiento nacionalista que la propaganda nazi explotó, junto con la crisis económica de 1929 y la debilidad institucional de la República de Weimar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0racje000dh2gdbnzfr0oo",
+      "questionId": "cmu0racje000bh2gdbqs2ryfn",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Los historiadores tratan Versalles como un factor contribuyente entre varios, no como la causa única del nazismo, para no simplificar en exceso un fenómeno con múltiples raíces.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0racje000eh2gd4lpafmmf",
+      "questionId": "cmu0racje000bh2gdbqs2ryfn",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El tratado no eximió a Alemania, le impuso reparaciones cuantiosas; no le devolvió sus colonias, las perdió bajo mandatos de las potencias aliadas; y la relación entre Versalles y el ascenso nazi está ampliamente documentada, aunque no sea la única causa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0radbf000hh2gdtiuqzd95",
+      "questionId": "cmu0radbf000gh2gdkh9celwr",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "El Acuerdo de Múnich (1938), que cedió los Sudetes a Alemania para evitar la guerra, no satisfizo las ambiciones de Hitler: siguió la ocupación del resto de Checoslovaquia y, en septiembre de 1939, la invasión de Polonia que dio inicio formal a la guerra.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0radbf000ih2gdfcuks7a9",
+      "questionId": "cmu0radbf000gh2gdkh9celwr",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Es un caso ampliamente estudiado de cómo una política de concesiones diseñada para evitar el conflicto terminó facilitando su escalada.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0radbf000jh2gdim87e401",
+      "questionId": "cmu0radbf000gh2gdkh9celwr",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No detuvo la expansión alemana, la escalada continuó tras cada concesión; no hubo declaración de guerra inmediata en 1935, el apaciguamiento consistió precisamente en evitar la confrontación durante años; y fue una política francobritánica, no alemana.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rae3i000mh2gd4i3vxk05",
+      "questionId": "cmu0rae3i000lh2gdgmukifzx",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "A diferencia de pogromos anteriores, el Holocausto implicó una planeación estatal coordinada (como la conferencia de Wannsee, 1942) con ministerios, ferrocarriles y campos diseñados específicamente para el exterminio masivo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rae3i000nh2gd19x64nni",
+      "questionId": "cmu0rae3i000lh2gdgmukifzx",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Ese carácter sistemático e industrializado, junto con la escala (cerca de seis millones de víctimas judías, además de otros grupos perseguidos), es lo que los historiadores destacan como distintivo del fenómeno.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rae3i000oh2gdsqxqunj6",
+      "questionId": "cmu0rae3i000lh2gdgmukifzx",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No fueron actos espontáneos, hubo una planeación estatal explícita; ocurrió ampliamente dentro del territorio controlado por Alemania, incluidos los campos en la Polonia ocupada; y estuvo profundamente integrado en el aparato del Estado nazi.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raevb000rh2gdon6x3rie",
+      "questionId": "cmu0raevb000qh2gd09osfhs1",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Los bombardeos atómicos de Hiroshima (6 de agosto) y Nagasaki (9 de agosto de 1945), junto con la entrada soviética en la guerra contra Japón esos mismos días, llevaron al anuncio de rendición japonesa el 15 de agosto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raevb000sh2gd6acbycyl",
+      "questionId": "cmu0raevb000qh2gd09osfhs1",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "La rendición se firmó de forma definitiva el 2 de septiembre de 1945, sin que llegara a producirse la invasión terrestre que los Aliados tenían planeada (Operación Downfall).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raevb000th2gduev63dn0",
+      "questionId": "cmu0raevb000qh2gd09osfhs1",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo una invasión terrestre exitosa previa, nunca llegó a ejecutarse; Japón no firmó un tratado voluntario antes de los ataques, la rendición vino después de ellos; y no fue una retirada unilateral sin condiciones, sino una rendición formal tras esos hechos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rafna000wh2gdba2u1pqh",
+      "questionId": "cmu0rafna000vh2gditjsups5",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La guerra dejó a Europa devastada y debilitada, mientras Estados Unidos y la URSS emergieron como las dos superpotencias dominantes; al mismo tiempo, el debilitamiento de las potencias coloniales europeas aceleró los movimientos de independencia en Asia y África en las décadas siguientes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rafna000xh2gd70pmjf8s",
+      "questionId": "cmu0rafna000vh2gditjsups5",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Este doble proceso —bipolaridad y descolonización— es la transformación geopolítica más citada del periodo de posguerra inmediato.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rafna000yh2gdhohs0t5i",
+      "questionId": "cmu0rafna000vh2gditjsups5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Europa occidental no recuperó una posición de potencia dominante única, su peso relativo disminuyó; la descolonización fue un proceso gradual de décadas, no una disolución inmediata en 1945; y Alemania y Japón salieron derrotados y ocupados, no fortalecidos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ragf60011h2gdlahod3c3",
+      "questionId": "cmu0ragf60010h2gdk9azb69e",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "En marzo de 1947, Truman prometió apoyo económico y militar (inicialmente a Grecia y Turquía) para contener la expansión comunista, formalizando la política de \"contención\" que definiría buena parte de la Guerra Fría.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ragf60012h2gdumq05h82",
+      "questionId": "cmu0ragf60010h2gdk9azb69e",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "El inicio exacto de la Guerra Fría se sitúa de forma distinta según el historiador (las tensiones de 1945, el discurso de Churchill de 1946, o esta doctrina de 1947); por eso este reactivo se ancla en un hito documentado y no disputado —la Doctrina Truman— en vez de pedir un único \"año de inicio\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ragf60013h2gdbz34qcjb",
+      "questionId": "cmu0ragf60010h2gdk9azb69e",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hubo retiro de los asuntos europeos, la doctrina implicó justamente mayor involucramiento; no fue una alianza con la URSS, sino una política explícitamente dirigida a contenerla; y Estados Unidos trató a la URSS como rival a contener, no como aliado permanente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raln00002qgatsi2tb492",
+      "questionId": "cmu0raln00001qgatigdxk9u6",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La caída del Muro (noviembre de 1989) marcó el fin simbólico de la división de Alemania y de Europa; la disolución formal de la URSS (diciembre de 1991), con la renuncia de Gorbachov, puso fin al propio Estado soviético dos años después, un hito distinto y posterior.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raln00003qgatvdjakr0v",
+      "questionId": "cmu0raln00001qgatigdxk9u6",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Ambos son frecuentemente confundidos como un solo evento, cuando en realidad marcan etapas separadas del fin de la bipolaridad de la Guerra Fría.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raln00004qgate6at9shk",
+      "questionId": "cmu0raln00001qgatigdxk9u6",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No son el mismo evento, ocurrieron con dos años de diferencia; la caída del Muro ocurrió primero, no la disolución soviética; y la disolución de la URSS concierne a todo el bloque soviético, no solo a la reunificación alemana.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ramf70007qgaterq80mm9",
+      "questionId": "cmu0ramf70006qgatvvm3cigc",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "La globalización se acelera tras el fin de la Guerra Fría y con la revolución digital, integrando cadenas de producción, mercados financieros y comunicaciones a nivel mundial.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ramf70008qgatfb34uumu",
+      "questionId": "cmu0ramf70006qgatvvm3cigc",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Es un fenómeno con efectos debatidos (crecimiento económico frente a desigualdad y homogeneización cultural), pero su rasgo definitorio es la interconexión, no el aislamiento.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ramf70009qgat6an3spag",
+      "questionId": "cmu0ramf70006qgatvvm3cigc",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No se trata de cerrar fronteras, sino de abrirlas e interconectarlas; el comercio internacional no desapareció, se expandió de forma notable; y las cadenas de producción globales, no la producción puramente doméstica, son su rasgo característico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ran7e000cqgatnl8m5qao",
+      "questionId": "cmu0ran7e000bqgatpcdauv7j",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Con el Tratado de Maastricht (1993) y sus desarrollos posteriores, la UE creó instituciones con autoridad real sobre sus miembros (mercado común, moneda única para la eurozona, Parlamento, Tribunal de Justicia), a diferencia de una simple alianza intergubernamental.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ran7e000dqgat099lvt04",
+      "questionId": "cmu0ran7e000bqgatpcdauv7j",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Esta cesión parcial de soberanía es el ejemplo más citado de \"integración supranacional\" en el mundo contemporáneo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ran7e000eqgat80arwr81",
+      "questionId": "cmu0ran7e000bqgatpcdauv7j",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hay soberanía intacta, la cesión parcial es su rasgo definitorio; no es un tratado militar defensivo (ese es el papel de la OTAN, una organización distinta); y va mucho más allá de la coordinación cultural, con instituciones económicas y políticas propias.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ranzo000hqgatal4u1r86",
+      "questionId": "cmu0ranzo000gqgat6cx6a30y",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Las emisiones y sus efectos no respetan fronteras, por lo que su atención requiere marcos multilaterales como el Acuerdo de París, y no solo decisiones aisladas de un país.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ranzo000iqgat050pxf9j",
+      "questionId": "cmu0ranzo000gqgat6cx6a30y",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Este rasgo transnacional distingue a los desafíos contemporáneos (cambio climático, pandemias, ciberseguridad) de problemas que sí pueden resolverse dentro de las fronteras de un solo Estado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0ranzo000jqgatiqhdal5o",
+      "questionId": "cmu0ranzo000gqgat6cx6a30y",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No son problemas exclusivos de un país, por definición cruzan fronteras; no pueden resolverse con la acción de un solo gobierno, requieren cooperación; y las naciones industrializadas, no las más pobres, han contribuido históricamente de forma desproporcionada a las emisiones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raorv000mqgatg2mmul83",
+      "questionId": "cmu0raorv000lqgatxjiyjqqm",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Las reformas económicas iniciadas hacia finales de la década de 1970 y la integración de China al comercio mundial la convirtieron, junto con otras economías emergentes, en un polo de peso económico creciente fuera del eje tradicional Europa-Estados Unidos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raorv000nqgat7ty4c2jp",
+      "questionId": "cmu0raorv000lqgatxjiyjqqm",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Esta tendencia hacia la multipolaridad contrasta tanto con la bipolaridad de la Guerra Fría como con la idea de un mundo unipolar dominado por una sola potencia tras 1991.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0raorv000oqgatvwc5xhao",
+      "questionId": "cmu0raorv000lqgatxjiyjqqm",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "China y Estados Unidos no son aliados militares, la relación es de competencia, no una bipolaridad tipo Guerra Fría; no hay un solo poder económico sin competidores, justo lo contrario; y el ascenso de China se dio a través de una integración profunda al comercio mundial, no del aislamiento.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rapk0000rqgat69oq0zl2",
+      "questionId": "cmu0rapk0000qqgatwmr698dg",
+      "layer": 1,
+      "title": "El proceso o la causa",
+      "content": "Desde la difusión de la World Wide Web y, después, la banda ancha y las redes sociales, internet transformó la velocidad y el alcance de la comunicación, habilitó nuevos modelos económicos (comercio electrónico, servicios digitales) y modificó las formas de participación política y social.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rapk1000sqgatg9j1o09j",
+      "questionId": "cmu0rapk0000qqgatwmr698dg",
+      "layer": 2,
+      "title": "Contexto histórico",
+      "content": "Es un componente tecnológico central de la globalización contemporánea, junto con la interconexión de mercados descrita en el tema.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu0rapk1000tqgat895bmgys",
+      "questionId": "cmu0rapk0000qqgatwmr698dg",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No redujo la velocidad de comunicación, la aumentó de forma drástica; no se mantuvo limitada al ámbito académico, se comercializó y masificó con rapidez; y no aisló a las economías, profundizó su integración global.",
       "latexContent": null
     }
   ]

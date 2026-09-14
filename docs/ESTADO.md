@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-09-13 · Última fase ejecutada: **G81 (COMPLETADA — verificación ciega de los 40 reactivos de Geografía que compuso G80: 40/40 auto-aprobados, y con ellos IPN «Ciencias Sociales y Administrativas» cruza el umbral de cobertura — 56% → 72%, `COMING_SOON` → `PARTIAL`, es decir LA RAMA YA ES ELEGIBLE para aspirantes reales; banco 1 263 servibles y cola de verificación en cero)**. Modelo real `claude-opus-5`. Ver §G81 abajo.
+Última actualización: 2026-09-13 · Última fase ejecutada: **G82 (COMPLETADA — 40 reactivos de Historia Universal, IPN SOCADM: los 7 temas del temario, 100% TEMARIO_ONLY, insertados con `isVerified=false`; sesgo de longitud medido y corregido desde la composición hasta 35% (sano, bajo el umbral de advertencia); IPN SOCADM se mantiene en 72% `PARTIAL` hasta que la verificación ciega publique el lote — la cuenta de `content:guard` no se mueve todavía, mismo patrón que G75→G76 y G78→G79; banco 1 307 filas, 1 263 servibles sin cambio)**. Modelo real `claude-sonnet-5`. Ver §G82 abajo.
+
+<details><summary>Historial: G81 (2026-09-13)</summary>
+
+Última actualización: 2026-09-13 · Última fase ejecutada: **G81 (COMPLETADA — verificación ciega de los 40 reactivos de Geografía que compuso G80: 40/40 auto-aprobados, y con ellos IPN «Ciencias Sociales y Administrativas» cruza el umbral de cobertura — 56% → 72%, `COMING_SOON` → `PARTIAL`, es decir LA RAMA YA ES ELEGIBLE para aspirantes reales; banco 1 263 servibles y cola de verificación en cero)**. Modelo real `claude-opus-5`.
+
+</details>
 
 <details><summary>Historial: G80 (2026-09-13)</summary>
 
@@ -397,6 +403,189 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G82 — Lote de reactivos: Historia Universal, IPN SOCADM (2026-09-13)
+
+> Modelo real `claude-sonnet-5`. **40 reactivos insertados con
+> `isVerified=false`** en los 7 temas de Historia Universal, IPN Ciencias
+> Sociales y Administrativas (SOCADM) — la penúltima de las dos materias que
+> siguen en cero en esa rama. IPN SOCADM ya cruzó el umbral de 70% desde G81
+> (56%→72%, `COMING_SOON`→`PARTIAL`) y es elegible hoy; esta fase no
+> desbloquea el área (ya lo está), pero la acerca a `READY` y suma al banco
+> hacia la meta de 1 500.
+
+### 1. Por qué esta materia
+
+`pnpm content:guard` marcaba IPN SOCADM en **18/25 de peso (72%) 🟡
+PARTIAL**, con Historia Universal (peso 4) y Civismo/Derecho (peso 3) en
+**cero** reactivos — las dos materias que el aviso `↳ falta:` sigue
+mostrando al aspirante. De las dos, Historia Universal es la de mayor peso;
+cerrarla es el paso que más mueve el porcentaje del área por unidad de
+esfuerzo y deja Civismo/Derecho como el único hueco restante.
+
+### 2. Temario y anclaje: sin `SourceChunk`, TEMARIO_ONLY explícito
+
+Se consultaron los 7 temas sembrados de la materia
+(`prisma/seed/ipn.ts::generateTopicsSocadm`) contra la DB con una consulta
+directa (`prisma.topic.findMany` filtrando por `subject.name` e incluyendo
+`area`/`institution`): los 7 tienen **0 `SourceChunk`** y 0 reactivos
+previos. Sin material fuente que citar, los 40 reactivos se compusieron
+desde el temario oficial y se insertaron con `sourceChunks: []` →
+`groundingStatus = TEMARIO_ONLY` en los 40, tal como exige CLAUDE.md cuando
+no hay fragmentos disponibles.
+
+| Tema | Reactivos | topicId |
+|---|---|---|
+| Antigüedad clásica | 5 | `cmrr1m8ge00ejhi3nobxqixy6` |
+| Edad Media | 5 | `cmrr1m91l00elhi3nzjp96x5q` |
+| Renacimiento | 4 | `cmrr1m9mw00enhi3niofgzcbf` |
+| Ilustración y Liberalismo | 6 | `cmrr1ma9u00ephi3nnwe565si` |
+| Industrialización | 6 | `cmrr1mawl00erhi3ng0vnf1vn` |
+| Guerras Mundiales | 8 | `cmrr1mbjt00ethi3nm7qjb3ji` |
+| Siglo XXI | 6 | `cmrr1ptdl00ev11qdtqra33sc` |
+
+El temario sembrado no separa "Revoluciones de 1848" ni "Imperialismo" como
+temas propios (a diferencia del temario de Historia Universal de la UNAM,
+que sí los tiene sueltos): esos procesos se ubicaron dentro de "Ilustración
+y Liberalismo" (nacionalismo, unificaciones de Italia/Alemania, oleada
+liberal de 1848) y de "Industrialización" (componente económico del
+imperialismo, Conferencia de Berlín), respectivamente — de ahí que ambos
+temas lleven 6 reactivos en vez de 4-5. "Guerras Mundiales" concentra el
+mayor peso (8) porque el encargo pedía priorizar explícitamente el siglo XX
+y el mundo contemporáneo sobre las fechas aisladas de la antigüedad.
+
+### 3. Aplicando G77 de verdad: la primera redacción SÍ tenía el sesgo, otra vez
+
+**(a) Posición de la clave: `crypto.randomInt`, no criterio humano.** Cada
+reactivo se compuso con la opción correcta identificada por CONTENIDO y un
+script (`docs/content-batches/g82-ipn-socadm-historia-universal/build.mjs`,
+calcado del de G78) barajó las 4 opciones con Fisher-Yates usando
+`crypto.randomInt` por reactivo, de forma independiente.
+
+**(b) Longitud de las 4 opciones: la primera redacción midió
+`longestShare=97.5%`** (39 de 40 con la clave como la opción más larga) —
+prácticamente el mismo número que G78 encontró en su primera redacción antes
+de corregirla, pese a que CLAUDE.md ya documentaba la lección desde G77/G78:
+el hábito de redactar la clave con matices completos y los distractores como
+frases cortas se repitió aquí de origen. Se aplicó el mismo proceso medido
+(no "a ojo"): una primera pasada acortó las 40 claves a su núcleo factual,
+bajando el share a **47.5%** — todavía por encima del rechazo (45%); una
+segunda pasada, dirigida por `analyzeLot` y no por intuición, alargó 6
+distractores en 2-4 palabras para deshacer los empates más cerrados
+(items de Antigüedad clásica #3-#5, Edad Media #8, Industrialización #22 y
+Guerras Mundiales #27), dejando `longestShare=35.0%`, `shortestShare=2.5%`,
+`meanRatio=1.05` — sano y por debajo del umbral de advertencia (40%), en
+línea con el 32.5% que G78 dejó como referencia.
+
+### 4. Validación de lote — cero violaciones, no por casualidad
+
+```
+Total de reactivos: 40
+Distribución de posición: {"A":12,"B":7,"C":15,"D":6}   (15.0%-37.5%, dentro de 15-40%)
+Sesgo de longitud: clave=más-larga 35.0%, clave=más-corta 2.5% (n=40), razón media 1.05
+Patrones de orden detectados: 0
+✅ Sin violaciones.
+```
+
+El barajado con `crypto.randomInt` es genuinamente aleatorio por reactivo,
+así que una primera corrida de `build.mjs` cayó fuera de banda en
+`POSITION_SKEW` (la letra "B" salió correcta en solo 12.5% de los 40, por
+debajo del piso de 15%) con el sesgo de longitud ya sano — se volvió a
+correr el script (mismo contenido, nuevo barajado) hasta que ambos chequeos
+pasaran a la vez, sin tocar el texto de ningún reactivo. `content:insert`
+corrió con `--lot-dir` apuntando a los 7 archivos del lote y aprobó antes de
+insertar — igual que G3c/G78 exigen. 0 rechazados por formato/Zod/KaTeX en
+los 40; 0 duplicados de enunciado.
+
+### 5. Exactitud factual, incluidos los casos de fecha ambigua
+
+Los 40 reactivos se verificaron uno por uno contra hechos consolidados de
+historiografía universal estándar: democracia ateniense y sus exclusiones,
+Liga de Delos como instrumento imperial, helenismo, crisis militar de la
+República romana, feudalismo y la Iglesia como institución unificadora,
+consecuencias comerciales de las Cruzadas, Escuela de Traductores de Toledo,
+humanismo e imprenta, causas de la Reforma protestante, expansión ibérica,
+Ilustración e independencia de EE. UU., causas convergentes de la
+Revolución francesa, la "cuestión social" de 1848, unificación de
+Italia/Alemania "desde arriba", independencias hispanoamericanas en el
+ciclo atlántico, arranque británico de la Revolución Industrial, paso de
+estamentos a clases, imperialismo económico y la Conferencia de Berlín,
+causas estructurales frente al detonante de la Primera Guerra Mundial,
+Revolución rusa, Versalles y el ascenso nazi, apaciguamiento, el Holocausto
+como exterminio sistemático, la rendición de Japón y el orden bipolar de
+posguerra, hasta la disolución de la URSS, la globalización y el ascenso
+económico de China. Tres casos de fecha/hito ambiguo se resolvieron con
+criterio explícito, no se evitaron:
+
+- **Caída del Imperio Romano de Occidente:** el reactivo #5 trata 476 d.C.
+  (deposición de Rómulo Augústulo) como el marcador convencional dentro de
+  un PROCESO multicausal de siglos (crisis del siglo III, división 395,
+  deterioro fiscal/militar, asentamientos migrantes) — la pregunta pide
+  identificar por qué se describe como proceso, no un dato aislado.
+- **Doctrina Truman (1947):** el inicio exacto de la Guerra Fría se fecha de
+  forma distinta según el historiador (tensiones de 1945, discurso de
+  Churchill de 1946, o esta doctrina de 1947). El reactivo #34 se ancla
+  deliberadamente en un hito documentado e indiscutido — el anuncio de marzo
+  de 1947 — en vez de pedir un único "año de inicio" que no existe como
+  consenso.
+- **Caída del Muro de Berlín (1989) frente a disolución de la URSS (1991):**
+  el reactivo #35 pregunta explícitamente por la diferencia entre ambos
+  hitos, que suelen confundirse como un solo evento — la caída del Muro
+  cerró la división europea; la disolución formal de la URSS, dos años
+  después, puso fin al Estado soviético mismo.
+
+Ningún reactivo de esta fase depende de `SourceChunk` (TEMARIO_ONLY), así
+que la exactitud recae enteramente en esta verificación previa a la
+inserción — la verificación ciega (`content:blind-batch`, próxima fase) es
+la segunda pasada adversarial independiente que exige el PRD §8.
+
+### 6. `content:guard`: antes y después — el mismo patrón de G75/G78
+
+| Métrica | Antes (G82) | Después (G82) |
+|---|---|---|
+| IPN SOCADM — peso cubierto | 18/25 (72%) 🟡 PARTIAL | **18/25 (72%) 🟡 PARTIAL — sin cambio numérico todavía** |
+| Historia Universal — sirve | 0 | 0 (40 insertados, `isVerified=false`) |
+
+`content:guard` cuenta el pool **servible** (`isVerified=true`); estos 40
+reactivos están en la cola de verificación adversarial, así que el
+porcentaje del área NO se mueve todavía — mismo patrón ya documentado en
+G75→G76 y G78→G79. Lo que sí cambia para la siguiente fase: en cuanto la
+verificación ciega apruebe el lote, Historia Universal pasa de `sirve=0` a
+`sirve=40` contra una cuota de solo 5 (`necesita=5`), la satisface de sobra,
+y el área sube de **72% a 88%** (22 de 25) — quedaría un único hueco,
+Civismo/Derecho (peso 3), para llegar a `READY`. Las 4 aserciones de
+`content:guard` (P1-P4) siguieron en verde antes y después.
+
+### 7. Banco de contenido
+
+| Métrica | Antes (G82) | Después (G82) |
+|---|---|---|
+| Filas `Question` totales | 1 267 | **1 307** |
+| Servibles (`isVerified=true`) | 1 263 | 1 263 (sin cambio — cola de verificación) |
+| Pendientes de verificación (cola ciega) | 0 | **40** |
+
+`pnpm backup:export` corrido tras la inserción — **6 332 filas**, 4.33 MB —
+`backups/content-bank.json` va en este mismo commit (G61).
+
+### 8. Verificación de la fase
+
+| Comando | Resultado |
+|---|---|
+| `content:insert` ×7 (uno por tema, `--lot-dir` al conjunto) | ✅ 40/40 insertados, lote aprobado sin violaciones |
+| `pnpm content:guard` (antes) | IPN SOCADM 72% 🟡, Historia Universal `sirve=0` |
+| `pnpm content:guard` (después) | IPN SOCADM 72% 🟡 (sin cambio hasta verificación); ver §6 |
+| `pnpm typecheck` | ✅ |
+| `pnpm lint` | ✅ |
+
+### Siguiente
+
+`pnpm content:blind-batch --topic <cada uno de los 7 topicId>` (o `--all`)
+para la verificación ciega de los 40 — segunda pasada adversarial
+independiente (PRD §8). Solo tras eso `content:guard` reflejará el 88% real
+de IPN SOCADM. Después seguiría cerrar Civismo/Derecho (peso 3, el único
+hueco restante) para llevar el área completa a `READY`.
+
+---
 
 ## G81 — Verificación ciega: Geografía, IPN SOCADM (lote de G80) (2026-09-13)
 

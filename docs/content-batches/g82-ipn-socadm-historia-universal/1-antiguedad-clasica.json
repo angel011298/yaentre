@@ -1,0 +1,227 @@
+[
+  {
+    "stem": "¿Cuál era una característica central de la democracia directa en la Atenas clásica del siglo V a.C.?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Un consejo hereditario de nobles decidía, sin consulta popular alguna.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Excluía del voto a mujeres, esclavos y metecos (extranjeros residentes).",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Todo habitante de la polis podía votar, sin distinción de origen o sexo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El voto se ejercía solo por representantes electos, nunca de forma directa.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La Asamblea (Ekklesía) decidía por voto directo de los ciudadanos, pero la ciudadanía plena se reservaba a hombres libres, adultos, nacidos de padre y madre atenienses."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Tras las reformas de Clístenes y en la Atenas de Pericles, esta exclusión (mujeres, esclavos, metecos) es precisamente lo que los historiadores subrayan al describir el alcance real de la \"democracia\" ateniense."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo sufragio universal sin distinción; un consejo hereditario sin consulta popular describe una oligarquía, no una democracia; y el rasgo distintivo de Atenas fue el voto directo, no representativo."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué se convirtió la Liga de Delos, fundada en 478 a.C. contra el peligro persa, bajo la conducción ateniense?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En una alianza militar con liderazgo rotativo entre las ciudades miembro.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En un tratado comercial exclusivo entre Atenas y Esparta por el Egeo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En un instrumento de dominio imperial: Atenas controló el tesoro común.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "En una confederación igualitaria que se disolvió tras vencer a Persia.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "El traslado del tesoro de Delos a Atenas (454 a.C.) y el uso del tributo aliado para fines propios convirtieron la alianza en un imperio (arjé) bajo control ateniense."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta transformación es central para explicar las tensiones que desembocaron en la Guerra del Peloponeso contra Esparta."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La liga no se disolvió tras la victoria persa, sino que continuó como instrumento de dominio; el voto no era igualitario, Atenas decidía; y el liderazgo no era rotativo, Atenas lo retuvo de forma permanente."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué caracterizó al periodo helenístico que siguió a las conquistas de Alejandro Magno?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El regreso de las polis griegas a un aislamiento cultural frente a Oriente.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La desaparición del griego como lengua de la administración y el comercio.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La imposición del politeísmo egipcio como única religión oficial en todo el imperio.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La fusión de elementos griegos con tradiciones orientales en los reinos sucesores.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Tras la muerte de Alejandro (323 a.C.), su imperio se dividió en reinos sucesores (ptolemaico, seléucida, antigónida) donde el arte, la religión y el pensamiento griegos se mezclaron con tradiciones locales."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Centros como Alejandría, con su Biblioteca y Museion, ejemplifican esa fusión cultural que define lo \"helenístico\" frente a lo estrictamente \"helénico\" (griego clásico)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo un repliegue aislacionista; ninguna religión única se impuso de forma oficial, sino un sincretismo; y el griego koiné, lejos de desaparecer, se difundió como lengua franca de la región."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué problema estructural de la República romana tardía explica en buena medida su transformación en el Principado de Augusto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La convivencia pacífica entre patricios y plebeyos eliminó la tensión política.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El Senado había concentrado todo el mando militar, sin dejar tropas a los generales.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La ausencia de expansión territorial dejó sin ingresos al tesoro público.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Ejércitos leales a su general, no al Senado, provocaron guerras civiles recurrentes.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Las reformas militares de Mario profesionalizaron el ejército y ligaron la lealtad del soldado a su general (que le prometía tierra y botín), no al Estado; de ahí las guerras civiles entre Mario y Sila, César y Pompeyo, y finalmente Octavio y Marco Antonio."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Augusto puso fin a ese ciclo en el 27 a.C. concentrando el poder político y militar en su persona, conservando de manera formal las instituciones republicanas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La expansión territorial romana no se detuvo, fue la base de su riqueza; la relación patricio-plebeyo siguió siendo tensa (recuérdense los Gracos); y el problema fue justo lo opuesto: los generales sí controlaban ejércitos propios."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué la historiografía actual describe la caída del Imperio Romano de Occidente, fechada de forma convencional en 476 d.C., como un proceso y no como un hecho aislado?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Roma nunca perdió el control efectivo de sus provincias occidentales.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La fecha de 476 se propuso apenas en el siglo XX, sin ninguna base en fuentes antiguas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Combinó crisis económica, migraciones y pérdida gradual de control administrativo.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El cristianismo fue la única causa documentada, sin factores económicos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La deposición de Rómulo Augústulo por Odoacro en 476 es un marcador simbólico dentro de un proceso mucho más largo: la crisis del siglo III, la división administrativa Oriente-Occidente de 395, el deterioro fiscal y militar, y los asentamientos de pueblos migrantes durante generaciones."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "La historiografía, desde Gibbon hasta los estudios contemporáneos, revisa constantemente el peso relativo de cada factor, pero coincide en tratarlo como un declive acumulativo, no un colapso súbito."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Es falso que Roma conservara el control efectivo de Occidente hasta el final; el cristianismo es un factor debatido (tesis de Gibbon) pero no el único documentado; y la fecha de 476 se usó ya en fuentes medievales y modernas, no fue \"inventada\" en el siglo XX."
+      }
+    ]
+  }
+]

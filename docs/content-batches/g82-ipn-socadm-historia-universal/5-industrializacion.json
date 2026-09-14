@@ -1,0 +1,272 @@
+[
+  {
+    "stem": "¿Por qué la Revolución Industrial se originó primero en Gran Bretaña hacia finales del siglo XVIII?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La confluencia de capital, yacimientos de carbón e hierro, y mano de obra libre.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Fue el único país europeo que mantenía vigente la servidumbre feudal.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Gran Bretaña carecía por completo de recursos minerales y dependía de importarlos.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El gobierno británico prohibió cualquier comercio exterior para proteger la industria.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Capital acumulado del comercio, yacimientos propios de carbón e hierro, una agricultura ya transformada que liberó mano de obra, y mercados coloniales existentes se combinaron con innovaciones técnicas como la máquina de vapor."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Ningún otro país europeo reunía en ese momento esa combinación completa de factores."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Gran Bretaña era un país comercialmente muy abierto, no cerrado al exterior; poseía yacimientos minerales propios, no dependía de importarlos; y había dejado atrás la servidumbre feudal antes que buena parte de Europa continental, lo que facilitó una mano de obra más móvil."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué cambio social produjo la industrialización en la estructura de la sociedad europea del siglo XIX?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La eliminación total del trabajo asalariado en las nuevas fábricas urbanas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La desaparición completa de cualquier desigualdad económica entre los grupos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El regreso a una sociedad organizada solo por linajes nobiliarios hereditarios.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El paso de estamentos jurídicos a clases sociales según la relación con la propiedad.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "De una sociedad de estamentos (nobleza, clero, común) definidos por ley, se pasó a una sociedad de clases (burguesía industrial, proletariado) definidas por su relación con la propiedad de los medios de producción."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta nueva estructura de clases es la base de los conflictos y movimientos sociales que documentaron observadores contemporáneos de la época."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No desapareció la desigualdad, cambió de forma; no hubo un regreso a la nobleza hereditaria, el movimiento fue en sentido contrario; y el trabajo asalariado en fábrica es justamente el rasgo definitorio de la nueva clase obrera, no algo que desapareciera."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué motivación económica impulsó el imperialismo europeo de finales del siglo XIX?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Materias primas baratas, nuevos mercados e inversión de capitales excedentes.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El deseo de las potencias europeas de reducir por completo su producción industrial.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La necesidad de importar mano de obra calificada desde las colonias a Europa.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El interés exclusivo en territorios sin ningún valor económico real.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Las economías industriales necesitaban materias primas (caucho, algodón, minerales), mercados donde colocar sus manufacturas y destinos para capitales acumulados — motivaciones económicas que se sumaron a las de prestigio nacional y estrategia militar."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Esta lógica económica explica en buena medida la intensidad y el momento del llamado \"nuevo imperialismo\" (1870-1914)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El imperialismo buscaba sostener y expandir la producción industrial, no reducirla; la mano de obra colonial se explotaba sobre todo en el lugar, no se importaba como fuerza calificada a Europa; y los territorios se buscaban precisamente por su valor económico."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué acordaron las potencias europeas en la Conferencia de Berlín (1884-1885)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La prohibición total de cualquier nueva ocupación colonial en el continente.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una alianza militar africana para resistir juntos la colonización europea.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Las reglas para repartirse África entre ellas, sin consultar a sus pueblos.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La independencia inmediata de todos los territorios coloniales en África.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La conferencia estableció principios como el de \"ocupación efectiva\" para que las potencias europeas se repartieran África, trazando fronteras sin ninguna representación de los pueblos africanos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "En las dos décadas siguientes, casi todo el continente quedó bajo control colonial europeo, con fronteras que a menudo ignoraban las divisiones étnicas y políticas existentes."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se acordó ninguna independencia, sino lo contrario; no fue una alianza africana, sino una reunión exclusiva de potencias europeas; y no se prohibió la ocupación, se establecieron precisamente las reglas para acelerarla."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué función cumplió la idea de la \"misión civilizadora\" en el discurso imperialista europeo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Justificó la dominación colonial presentándola como progreso y tutela.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Sirvió para que las potencias europeas renunciaran voluntariamente a sus colonias.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Reconoció la igualdad jurídica plena entre europeos y pueblos colonizados.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Fue una crítica interna europea que rechazaba por completo la expansión colonial.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "La \"mission civilisatrice\" presentaba la dominación colonial como una tutela benevolente hacia pueblos considerados inferiores, apoyada en jerarquías raciales de la época, y servía para legitimar la explotación económica y política real."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Este discurso se usó de forma sistemática para justificar el imperialismo ante la opinión pública europea, dentro del aparato ideológico del \"nuevo imperialismo\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No planteaba igualdad jurídica, se basaba en una jerarquía asumida; no llevó a renunciar a las colonias, sirvió para justificar conservarlas y ampliarlas; y no era una crítica anticolonial, era propaganda a favor del colonialismo."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué respuesta organizada surgió entre los trabajadores urbanos frente a las condiciones de las fábricas durante la industrialización del siglo XIX?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La formación de sindicatos y partidos obreros que exigieron mejoras laborales.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La abolición inmediata del trabajo asalariado por decisión de los empresarios.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La desaparición total de cualquier protesta obrera durante todo el siglo XIX.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El regreso masivo y voluntario de los obreros urbanos al trabajo agrícola.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El proceso o la causa",
+        "content": "Ante jornadas extenuantes, salarios bajos y condiciones inseguras, los trabajadores se organizaron en sindicatos y movimientos políticos (como el cartismo británico y después partidos socialistas) que exigieron reformas laborales concretas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto histórico",
+        "content": "Estas organizaciones lograron, de manera gradual, límites legales a la jornada, regulaciones de seguridad y la extensión del sufragio a lo largo de las décadas siguientes."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hubo un regreso masivo al campo, la población obrera urbana creció; los empresarios no abolieron el trabajo asalariado, era la base de su beneficio; y la protesta obrera no desapareció, creció de forma organizada durante todo el siglo."
+      }
+    ]
+  }
+]
