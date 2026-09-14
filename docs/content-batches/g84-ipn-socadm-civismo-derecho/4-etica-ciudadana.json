@@ -1,0 +1,452 @@
+[
+  {
+    "stem": "¿Qué distingue a la ética de la moral, aunque ambos conceptos suelen usarse de forma cercana en la formación cívica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La moral es universal y fija; la ética cambia de un país a otro sin ningún principio en común.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Son exactamente lo mismo, sin ninguna diferencia conceptual real entre ambos términos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La ética reflexiona sobre lo bueno y lo correcto; la moral son las normas de conducta que una sociedad practica.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La ética regula solamente el comportamiento religioso; la moral regula exclusivamente el comportamiento legal vigente.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La ética es la disciplina que reflexiona críticamente sobre los principios y valores que orientan la conducta humana; la moral se refiere al conjunto de normas y costumbres concretas que efectivamente rigen la conducta de una persona o comunidad."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta distinción permite evaluar si una norma moral vigente, por ejemplo una costumbre social, es o no éticamente justificable, es decir, si realmente promueve el bien y la dignidad de las personas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No son idénticas; ninguna de las dos se limita a lo religioso o a lo legal de forma exclusiva; y es más bien la moral la que varía entre sociedades, mientras la reflexión ética busca principios que puedan justificarse más allá de una costumbre particular."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué implica la responsabilidad ciudadana frente a las leyes y las instituciones de un Estado de derecho?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Ignorar las leyes que resulten inconvenientes para los intereses personales de cada quien.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Delegar por completo en el gobierno cualquier responsabilidad sobre el cumplimiento de las normas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Obedecer cualquier orden de una autoridad, sin ninguna posibilidad de cuestionarla por vía legal.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Conocer y cumplir las normas vigentes, y exigir su cumplimiento también a las autoridades.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La responsabilidad ciudadana en un Estado de derecho supone conocer las normas, cumplirlas, y también usar los mecanismos legales disponibles —quejas, amparos, denuncias— para exigir que las autoridades actúen conforme a la ley."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta responsabilidad es recíproca: no solo el ciudadano debe cumplir la ley, también tiene el derecho, y en cierto sentido el deber cívico, de vigilar que la autoridad la cumpla."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Un Estado de derecho no exige obediencia ciega a cualquier orden, las órdenes ilegales pueden impugnarse; las leyes no pueden ignorarse por conveniencia personal; y la responsabilidad de cumplir las normas no se delega enteramente en el gobierno."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué caracteriza a la \"cultura de la legalidad\" como valor cívico?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La suposición de que la legalidad solo aplica a las personas con menos recursos económicos.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La creencia de que las leyes solo deben respetarse cuando existe una vigilancia policial visible de por medio.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La idea de que cumplir la ley es opcional, si la persona considera que una norma es injusta.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La convicción de que las normas deben respetarse por ser base de la convivencia justa, no por temor a una sanción.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La cultura de la legalidad implica que las normas se cumplen porque se reconoce su valor para la convivencia social, no únicamente por miedo al castigo, y que existen cauces legítimos —no el incumplimiento unilateral— para cambiar una norma considerada injusta."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta cultura se contrapone a prácticas como la corrupción o la \"letra muerta\" de la ley, donde las normas existen formalmente pero no se aplican ni se respetan en la práctica."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Cumplir la ley no debe depender de la vigilancia presente; considerar injusta una norma no autoriza a incumplirla unilateralmente, existen vías legales para cambiarla; y la legalidad, como principio, aplica a todas las personas por igual, sin importar su condición económica."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué se entiende por ética en el servicio público o ética pública?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Las reglas de etiqueta y protocolo que todo funcionario debe seguir en los eventos y actos oficiales de gobierno.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El conjunto de principios que orientan a quienes ejercen un cargo público a actuar con honestidad e imparcialidad.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Un conjunto de privilegios exclusivos que corresponden a quienes ocupan un cargo público.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Un código opcional que cada funcionario puede decidir seguir o ignorar de forma libre.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La ética pública orienta la actuación de servidoras y servidores públicos hacia el interés general, con principios como honestidad, imparcialidad, transparencia y rendición de cuentas, por encima de intereses particulares."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este principio es la base de figuras como el servicio profesional de carrera y los sistemas de responsabilidades administrativas, que buscan que el ejercicio del poder público no se use en beneficio propio."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se trata solo de protocolo o etiqueta; no es un código opcional, su incumplimiento puede tener consecuencias legales; y no es un conjunto de privilegios, es precisamente una limitación al ejercicio discrecional del poder."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué la corrupción se considera un problema ético y cívico, más allá de ser un delito?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque es un fenómeno exclusivo del sector privado, ajeno por completo al ámbito gubernamental.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Porque afecta exclusivamente a quien paga o recibe el soborno, sin efecto alguno en el resto de la sociedad.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Porque representa solamente una pérdida económica, sin ninguna dimensión ética involucrada.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Porque rompe la confianza en las instituciones y distribuye de forma injusta los recursos comunes.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La corrupción no solo viola normas legales; erosiona la confianza social en las instituciones y desvía recursos públicos que deberían destinarse al bien común, afectando de forma desproporcionada a quienes menos tienen."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Por eso la formación cívica la aborda como un problema ético, de valores compartidos, y no únicamente como un problema jurídico o administrativo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La corrupción tiene efectos que van más allá de quienes participan directamente en el acto; ocurre tanto en el sector público como en el privado; y su impacto no es solo económico, también daña la confianza y la cohesión social."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué implica el valor cívico de la tolerancia en una sociedad plural?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Evitar por completo cualquier tipo de debate o desacuerdo público sobre temas sociales.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Adoptar como propias las creencias de la mayoría, dejando de lado las convicciones personales.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Respetar las creencias y formas de vida distintas a las propias, sin renunciar a los propios principios.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Aceptar sin ninguna crítica cualquier conducta, incluidas las que vulneran los derechos de otras personas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La tolerancia cívica es el respeto activo a la diversidad de creencias, opiniones y formas de vida, como condición para la convivencia en una sociedad plural, sin que ese respeto implique aceptar cualquier conducta sin límite."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "La tolerancia tiene un límite claro: no exige aceptar conductas que vulneren la dignidad o los derechos de otras personas, distinción central en la formación de una ciudadanía ética."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Tolerar no equivale a aceptar sin crítica cualquier conducta dañina; tampoco implica evitar el debate público, el desacuerdo respetuoso es parte de la convivencia democrática; y no exige abandonar las convicciones propias para adoptar las de la mayoría."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué relación existe entre los derechos y las obligaciones de las personas dentro de la ética ciudadana, de acuerdo con el artículo 31 constitucional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Las personas tienen también obligaciones, como contribuir al gasto público y respetar las instituciones.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Solo el gobierno tiene obligaciones; las personas únicamente tienen derechos, sin ningún deber correlativo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Las obligaciones ciudadanas se limitan de forma exclusiva a votar en las elecciones correspondientes.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los derechos y las obligaciones son conceptos completamente independientes, sin ninguna relación entre sí.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 31 constitucional establece obligaciones de las y los mexicanos, como contribuir a los gastos públicos de manera proporcional y equitativa; junto con los derechos reconocidos en el resto de la Constitución, conforman una relación de reciprocidad entre las personas y el Estado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "La ética ciudadana subraya esta reciprocidad: ejercer derechos plenamente también implica asumir responsabilidades hacia la comunidad, no una relación unilateral en un solo sentido."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Derechos y obligaciones no son independientes entre sí; no son solo el gobierno quien tiene deberes, también las personas los tienen; y las obligaciones ciudadanas van más allá de votar, incluyen, por ejemplo, contribuir al gasto público y cumplir la ley."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué se entiende por \"resolución pacífica de conflictos\" como valor de la ética ciudadana?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Buscar acuerdos mediante el diálogo o la mediación, en lugar de recurrir a la violencia o la imposición.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Delegar toda solución de conflictos de forma exclusiva en tribunales, sin ninguna vía informal posible.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Dejar que la parte con más poder decida siempre el resultado del conflicto, sin ninguna negociación previa.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Evitar cualquier conflicto sin jamás expresar un desacuerdo, aunque exista una injusticia de por medio.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La resolución pacífica de conflictos privilegia mecanismos como el diálogo, la negociación y la mediación para llegar a acuerdos aceptables para las partes, en contraste con la violencia o la imposición unilateral."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este valor se practica en distintos ámbitos —familiar, escolar, comunitario— y es la base de una cultura de paz, que la ética ciudadana busca fomentar desde etapas tempranas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Buscar la paz no significa callar ante una injusticia; no consiste en dejar que decida quien tiene más poder; y no excluye vías informales de solución, el diálogo y la mediación son precisamente alternativas a acudir siempre a un tribunal."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué la transparencia y la rendición de cuentas se consideran valores cívicos fundamentales en la relación entre gobierno y ciudadanía?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque sustituyen por completo la necesidad de leyes y de instituciones de control ciudadano.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Porque permiten a la ciudadanía conocer cómo se ejerce el poder público y exigir responsabilidad cuando corresponde.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Porque son valores exclusivos del sector privado, sin ninguna aplicación posible al gobierno.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Porque garantizan que ningún acto del gobierno pueda ser cuestionado ni revisado jamás por la ciudadanía en general.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La transparencia —acceso a la información sobre la actuación gubernamental— y la rendición de cuentas —la obligación de las autoridades de explicar y justificar sus decisiones— permiten a la ciudadanía vigilar el ejercicio del poder público y de los recursos comunes."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Estos valores fortalecen la confianza social en las instituciones y son condición para que la participación ciudadana informada, otro valor cívico central, tenga sentido práctico."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Lejos de blindar los actos de gobierno, la transparencia y la rendición de cuentas los abren al escrutinio ciudadano; no son valores exclusivos del sector privado; y no sustituyen a las leyes ni a las instituciones de control, las complementan."
+      }
+    ]
+  },
+  {
+    "stem": "Desde la ética ciudadana, ¿qué papel juega la diversidad y el pluralismo en la construcción de una sociedad democrática?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reconocer que la sociedad reúne identidades e intereses distintos, y que la democracia debe incluir esa diversidad.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Tratar la diversidad como un obstáculo que debe minimizarse para lograr una mayor estabilidad social y política.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Considerar que solo las opiniones de la mayoría numérica merecen tomarse en cuenta de verdad.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Buscar que, con el tiempo, todas las personas terminen pensando y viviendo exactamente igual.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El pluralismo reconoce que una sociedad democrática está formada por personas y grupos con identidades, creencias e intereses distintos, y que las instituciones deben dar cabida a esa diversidad, no buscar eliminarla ni homogeneizarla."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este reconocimiento sustenta, por ejemplo, la protección de derechos de minorías y la existencia de mecanismos, como el sistema de partidos o medios de comunicación plurales, que permiten que distintas voces se expresen dentro del sistema político."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La meta no es la uniformidad de pensamiento; una democracia no se reduce a la voluntad de la mayoría numérica sin más, también protege a las minorías; y la diversidad no es un obstáculo a minimizar, es una condición de la convivencia democrática."
+      }
+    ]
+  }
+]

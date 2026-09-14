@@ -1,0 +1,452 @@
+[
+  {
+    "stem": "¿Qué cambio central introdujo la reforma constitucional de 2011 en materia de derechos humanos al artículo 1?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Trasladó la protección de los derechos humanos únicamente al ámbito de las leyes locales.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Restringió los derechos humanos de forma exclusiva a los ciudadanos mexicanos por nacimiento.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Reconoció que todas las personas gozan de los derechos humanos de la Constitución y los tratados internacionales.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Eliminó la posibilidad de que los tratados internacionales tuvieran algún efecto jurídico dentro del territorio mexicano.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La reforma de junio de 2011 modificó el artículo 1 para reconocer expresamente que todas las personas gozan de los derechos humanos reconocidos en la Constitución y en los tratados internacionales, ampliando el catálogo más allá de las \"garantías individuales\" tradicionales."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este cambio de paradigma sitúa a México dentro de lo que la doctrina llama \"bloque de constitucionalidad\": normas internas e internacionales que juntas definen el estándar de protección."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los tratados sí producen efectos jurídicos internos tras la reforma; los derechos se reconocen a \"toda persona\", no solo a ciudadanos mexicanos; y la protección no se limitó a leyes locales, se elevó a rango constitucional y convencional."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué exige el \"principio pro persona\", incorporado al artículo 1 constitucional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Que cada juez decida con total libertad qué derechos reconoce, sin sujetarse a ninguna norma.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Que los tratados internacionales se apliquen solo si el Congreso los aprueba de forma expresa caso por caso.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Que las autoridades apliquen siempre la norma jurídica más reciente, sin importar el nivel de protección que ofrezca.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Que, ante varias interpretaciones posibles de una norma, se elija la que ofrezca mayor protección a la persona.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El principio pro persona (o pro homine) obliga a interpretar las normas de derechos humanos favoreciendo en todo tiempo la protección más amplia a las personas, provenga esa protección de la Constitución o de un tratado."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Se combina con la \"interpretación conforme\": las normas relativas a derechos humanos se interpretan de conformidad con la Constitución y los tratados, no de forma aislada."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No se trata de aplicar la norma más reciente sin más, podría ofrecer menos protección; los tratados de derechos humanos ratificados obligan sin necesidad de aprobación caso por caso; y los jueces están sujetos a este principio, no deciden con total libertad."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué característica de los derechos humanos establece que su nivel de protección debe ampliarse con el tiempo, y nunca reducirse, según el artículo 1?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La territorialidad, que limita los derechos humanos a un grupo social determinado por cada gobierno.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La progresividad: junto con universalidad, interdependencia e indivisibilidad, rige la actuación de las autoridades.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La jerarquía interna, que hace valer más los derechos civiles que los económicos, sociales y culturales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La discrecionalidad, que permite a la autoridad suspender un derecho libremente cuando convenga a una política pública.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El párrafo tercero del artículo 1 obliga a todas las autoridades a promover, respetar, proteger y garantizar los derechos humanos de conformidad con los principios de universalidad, interdependencia, indivisibilidad y progresividad."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "La progresividad implica que el Estado no puede retroceder en el nivel de protección alcanzado —el llamado principio de no regresividad—, salvo justificación excepcional y estrictamente motivada."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los derechos humanos no son exclusivos de un grupo social; no pueden suspenderse a discreción de una política pública, salvo los casos excepcionales que la propia Constitución regula; y no existe jerarquía entre derechos civiles y económicos-sociales-culturales, son indivisibles."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué garantiza el artículo 1 constitucional en su párrafo relativo a la no discriminación?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Que queda prohibida la discriminación por origen étnico, género, condición social o religión que atente contra la dignidad.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Que la igualdad solo aplica a las relaciones laborales, sin extenderse a otros ámbitos de la vida social.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Que las empresas privadas pueden establecer de forma libre cualquier criterio de exclusión, sin ninguna consecuencia legal.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Que la discriminación solo está prohibida entre particulares, nunca cuando la practica una autoridad.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El último párrafo del artículo 1 prohíbe toda discriminación que atente contra la dignidad humana y tenga por objeto anular o menoscabar los derechos y libertades de las personas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta prohibición vincula tanto a las autoridades como, en principio, a los particulares en sus relaciones, y se complementa con leyes secundarias como la Ley Federal para Prevenir y Eliminar la Discriminación."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La prohibición no se limita a las autoridades, también alcanza relaciones entre particulares; las empresas no están exentas de ella; y el principio de igualdad no se agota en lo laboral, cubre toda la vida social."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué establece el artículo 3 constitucional respecto al derecho a la educación en México?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Que la educación pública es opcional y depende de forma exclusiva de la disponibilidad presupuestal de cada ejercicio fiscal.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Que solo el nivel universitario queda garantizado como derecho a cargo del Estado mexicano.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Que toda persona tiene derecho a la educación, y el Estado debe impartirla de manera gratuita, laica y democrática.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Que la educación en México debe impartirse con la orientación religiosa que decida cada entidad.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 3 reconoce el derecho de toda persona a la educación, obliga al Estado a impartir e incrementar la educación en todos sus tipos y modalidades, y establece que será laica, gratuita y con criterio democrático."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "El carácter laico significa que la educación pública se mantiene ajena a cualquier doctrina religiosa, en congruencia con el artículo 40, que define a México como república laica."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El derecho a la educación no es discrecional del presupuesto; se extiende más allá del nivel universitario; y no puede tener orientación religiosa alguna, precisamente por el carácter laico del Estado."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué protege el derecho al debido proceso, reconocido de forma conjunta en los artículos 14, 16 y 20 constitucionales?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Que las autoridades pueden actuar sin orden judicial siempre que invoquen razones de seguridad pública.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Que nadie puede ser privado de la libertad o de sus derechos sin un juicio ante autoridad competente.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Que toda persona detenida puede exigir su liberación inmediata, sin necesidad de ningún proceso judicial.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Que solo los delitos graves requieren de un juicio; los demás se resuelven por decisión administrativa.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 14 exige juicio previo ante autoridad competente y formalidades esenciales del procedimiento para privar a alguien de la libertad, propiedades, posesiones o derechos; el 16 exige mandamiento escrito de autoridad competente que funde y motive la causa legal del procedimiento; el 20 detalla las garantías del proceso penal."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Estas disposiciones conforman lo que la doctrina llama debido proceso legal, un conjunto de garantías mínimas frente al poder del Estado, aplicable tanto en materia penal como civil, administrativa y laboral."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El debido proceso no permite una liberación automática sin proceso; aplica a todo tipo de asuntos, no solo a delitos graves; y las autoridades sí requieren, salvo excepciones expresas y limitadas, orden judicial para actuar."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la función principal de la Comisión Nacional de los Derechos Humanos dentro del sistema de protección no jurisdiccional previsto en el artículo 102, apartado B?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Recibir quejas, investigar violaciones a derechos humanos cometidas por autoridades y emitir recomendaciones públicas.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Sustituir por completo al Poder Judicial en todos los juicios relacionados con violaciones a los derechos humanos fundamentales.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Legislar de forma autónoma sobre los derechos humanos reconocidos en los tratados internacionales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Dictar sentencias con efectos obligatorios que anulan de forma directa los actos de cualquier autoridad.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 102, apartado B, crea organismos de protección de los derechos humanos (la CNDH a nivel federal y comisiones estatales) que conocen de quejas contra actos u omisiones de naturaleza administrativa de cualquier autoridad, y emiten recomendaciones públicas no vinculantes."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Al no tener carácter jurisdiccional, la CNDH no sustituye a los tribunales; su fuerza es principalmente de exhibición pública y presión política e institucional sobre la autoridad señalada."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La CNDH no dicta sentencias obligatorias ni anula actos de autoridad de forma directa; no reemplaza al Poder Judicial; y no legisla, solo puede promover acciones de inconstitucionalidad en su ámbito de competencia."
+      }
+    ]
+  },
+  {
+    "stem": "¿A qué instrumento internacional se le conoce comúnmente como \"Pacto de San José\" y qué relación tiene con el sistema mexicano de derechos humanos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A un tratado exclusivamente comercial entre México y Costa Rica, sin relación con derechos humanos.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "A un acuerdo bilateral entre México y Estados Unidos en materia de migración.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "A la Convención Americana sobre Derechos Humanos, tratado internacional ratificado por México.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "A una ley federal mexicana aprobada por el Congreso, sin vínculo con ningún organismo internacional.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El Pacto de San José (Convención Americana sobre Derechos Humanos, de 1969) es un tratado del sistema interamericano, ratificado por México, que reconoce derechos civiles y políticos y da origen a la Comisión y a la Corte Interamericanas de Derechos Humanos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Tras la reforma de 2011, tratados como este se interpretan junto con la Constitución para definir el estándar de protección más amplio disponible, conforme al principio pro persona."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No es un tratado comercial, ni una ley federal doméstica, ni un acuerdo bilateral migratorio con Estados Unidos; es un tratado multilateral del sistema interamericano de derechos humanos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué principio rige la actuación del Estado mexicano respecto a niñas, niños y adolescentes, según el artículo 4 constitucional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El interés superior de la niñez, que obliga a garantizar sus derechos y a priorizar su bienestar en toda decisión.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La subordinación de sus derechos al interés económico de la familia o del propio Estado.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La patria potestad absoluta de los padres, sin ninguna posibilidad de intervención del Estado.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La igualdad estricta con las personas adultas en todos los procedimientos legales, sin consideración especial alguna.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 4 establece que en todas las decisiones y actuaciones del Estado se velará y cumplirá con el principio del interés superior de la niñez, garantizando de manera plena sus derechos."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este principio orienta políticas públicas de educación, salud y protección, y exige que niñas, niños y adolescentes participen y sean escuchados en los asuntos que les afectan, según su edad y madurez."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El interés superior de la niñez no anula la intervención del Estado en casos de riesgo, aun ante la patria potestad; reconoce condiciones especiales de protección, no una igualdad estricta sin matices; y no subordina sus derechos a fines económicos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué garantiza el artículo 123 constitucional en materia de derechos laborales?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El derecho al trabajo digno, con condiciones mínimas como jornada máxima, salario remunerador y seguridad social.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Que el salario mínimo puede fijarse de forma completamente libre por cada empleador, sin ningún límite legal establecido.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Que las jornadas de trabajo no tienen ningún límite establecido a nivel constitucional.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Que la seguridad social es un beneficio opcional que cada empresa decide otorgar o no.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 123 reconoce el derecho al trabajo digno y socialmente útil y establece un catálogo de derechos mínimos —jornada máxima, descansos, salario remunerador, seguridad social, entre otros— aplicables tanto al apartado A (trabajadores en general) como al B (trabajadores al servicio del Estado)."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este artículo es uno de los pilares del constitucionalismo social mexicano de 1917, pionero a nivel mundial en elevar los derechos laborales a rango constitucional."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El salario mínimo no se fija libremente por cada empleador, existen mecanismos institucionales para determinarlo; la jornada laboral sí tiene límites constitucionales; y la seguridad social es un derecho, no una prestación opcional."
+      }
+    ]
+  }
+]

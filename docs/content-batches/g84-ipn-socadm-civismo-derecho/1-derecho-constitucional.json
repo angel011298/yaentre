@@ -1,0 +1,452 @@
+[
+  {
+    "stem": "¿Qué principio establece que la Constitución es la norma jurídica de mayor jerarquía en México, y las leyes que la contradigan carecen de validez?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Jerarquía municipal: los reglamentos locales prevalecen siempre sobre las leyes federales.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Supremacía constitucional: ninguna ley puede contradecir lo dispuesto en la Constitución.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Legalidad estricta: solo el Poder Judicial puede crear normas jurídicas válidas en todo el país.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Reserva de ley: cada materia jurídica requiere una ley exclusiva, sin ninguna excepción posible.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 133 constitucional establece que la Constitución, las leyes que de ella emanen y los tratados internacionales que estén de acuerdo con ella son la Ley Suprema de toda la Unión."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este principio permite el control constitucional: jueces y tribunales pueden inaplicar o declarar inválida una norma que contradiga la Constitución."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La legalidad estricta describe solo la actuación de las autoridades, no la jerarquía normativa; la reserva de ley es una técnica legislativa distinta; y los reglamentos municipales están subordinados, no por encima, de las leyes federales."
+      }
+    ]
+  },
+  {
+    "stem": "Según el artículo 39 constitucional, ¿en quién reside originariamente la soberanía nacional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En el pueblo, quien tiene en todo tiempo el derecho de alterar su forma de gobierno.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "En la Suprema Corte, como intérprete final y definitivo de la Constitución.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En el presidente de la República, como jefe de Estado y de gobierno de la nación.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En el Congreso de la Unión, como representante permanente y exclusivo de la voluntad popular.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 39 dice textualmente que la soberanía nacional reside esencial y originariamente en el pueblo, y que todo poder público dimana de él y se instituye para su beneficio."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "De este principio se desprende que los poderes públicos son solo depositarios temporales de una soberanía que nunca dejan de deber al pueblo que los instituyó."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Congreso, el presidente y la Corte son órganos que ejercen poder derivado de esa soberanía, no su titular original."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué forma de gobierno adopta México según el artículo 40 constitucional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Estado unitario centralizado, sin ningún reparto territorial de competencias internas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Monarquía constitucional con un jefe de Estado vitalicio y un parlamento meramente consultivo y simbólico.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "República representativa, democrática, laica y federal, compuesta por estados libres y soberanos.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Confederación de estados plenamente independientes, unidos solamente por un tratado.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 40 define a México como una república representativa, democrática, laica, federal, compuesta por Estados libres y soberanos en todo lo concerniente a su régimen interior."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "El carácter federal implica un reparto constitucional de competencias entre la Federación, las entidades federativas y los municipios (artículo 124 y concordantes)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "México no es monarquía ni confederación (los estados no son independientes entre sí, están unidos en una federación); tampoco es unitario, pues conserva ámbitos de competencia estatal y municipal propios."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué establece el principio de división de poderes consagrado en el artículo 49 constitucional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El poder se concentra por completo en el Ejecutivo federal, que delega funciones a los otros dos poderes.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El Poder Judicial supervisa y puede revocar libremente las decisiones de los otros dos poderes.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El Supremo Poder de la Federación se divide, para su ejercicio, en Legislativo, Ejecutivo y Judicial.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Cada estado de la federación ejerce de forma aislada los tres poderes, sin relación con la Federación.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 49 dispone que el Supremo Poder de la Federación se divide, para su ejercicio, en Legislativo, Ejecutivo y Judicial, prohibiendo que se reúnan dos o más en una persona o corporación, salvo las excepciones expresas que la propia Constitución señala."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este reparto busca un sistema de pesos y contrapesos: cada poder controla y limita a los otros, evitando la concentración del poder público en un solo órgano."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El poder no se concentra en el Ejecutivo; los estados replican la división de poderes pero dentro del pacto federal, no de forma aislada; y el Judicial no \"revoca libremente\" a los otros poderes, ejerce control constitucional dentro de procesos jurídicos específicos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cómo está integrado el Congreso de la Unión, el Poder Legislativo federal mexicano?",
+    "options": [
+      {
+        "id": "A",
+        "text": "De forma bicameral: una Cámara de Diputados y una Cámara de Senadores.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "De forma unicameral: solo una Cámara de Diputados, electa por representación proporcional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "De tres cámaras: Diputados, Senadores y una Cámara adicional de Gobernadores estatales.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "De forma bicameral, pero con ambas cámaras integradas exclusivamente por representantes de los estados.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 50 constitucional establece que el poder legislativo de los Estados Unidos Mexicanos se deposita en un Congreso General, dividido en dos cámaras: una de diputados y otra de senadores."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "La Cámara de Diputados representa a la población por distrito, mientras el Senado representa de forma más igualitaria a las entidades federativas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Congreso mexicano no es unicameral; no existe una \"Cámara de Gobernadores\"; y la Cámara de Diputados no se integra exclusivamente por representación proporcional, combina mayoría relativa y representación proporcional."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la duración del cargo del presidente de la República y su régimen de reelección, conforme a la Constitución?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Seis años, sin posibilidad de reelección bajo ninguna circunstancia.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Cuatro años, con posibilidad de una reelección inmediata por un periodo adicional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Seis años, con posibilidad de reelección tras dejar pasar un periodo intermedio completo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Ocho años, renovable de forma indefinida mediante una consulta popular específica.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 83 constitucional fija el periodo presidencial en seis años y prohíbe de manera absoluta la reelección, incluso para quien lo desempeñe con carácter interino, provisional o sustituto."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "La no reelección presidencial es uno de los principios históricos más arraigados del constitucionalismo mexicano posrevolucionario, ligado al lema \"Sufragio Efectivo, No Reelección\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No son cuatro ni ocho años; y la prohibición de reelección es absoluta, no admite excepción por periodo intermedio ni por consulta popular alguna."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué procedimiento exige la Constitución para ser reformada o adicionada, según el artículo 135?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Aprobación de dos terceras partes del Congreso y de la mayoría de las legislaturas estatales.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Mayoría simple de una sola cámara del Congreso, sin ninguna participación de los estados.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Decreto del Ejecutivo federal, ratificado únicamente por la Suprema Corte de Justicia.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Aprobación directa mediante un referéndum nacional obligatorio, sin intervención del Congreso.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 135 exige que las reformas constitucionales sean aprobadas por el voto de las dos terceras partes de los individuos presentes del Congreso, y por la mayoría de las legislaturas de los estados y de la Ciudad de México."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este procedimiento agravado, más exigente que el de una ley ordinaria, es lo que distingue a una Constitución \"rígida\" de una \"flexible\", y busca dar estabilidad al pacto fundamental."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hay referéndum nacional obligatorio para reformar la Constitución por esta vía; no basta la mayoría simple de una cámara; y la Suprema Corte no interviene en la ratificación de reformas, esa es una facultad de las legislaturas locales."
+      }
+    ]
+  },
+  {
+    "stem": "En la estructura constitucional mexicana, ¿qué distingue a la llamada \"parte dogmática\" de la \"parte orgánica\" de la Constitución?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La parte dogmática es de aplicación optativa; solo la orgánica tiene fuerza jurídica obligatoria.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La parte dogmática se refiere a tratados internacionales; la orgánica, exclusivamente a leyes locales.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La parte dogmática regula los derechos humanos; la orgánica distribuye las competencias de los poderes públicos.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La parte dogmática regula solo la religión oficial del Estado; la orgánica regula únicamente la economía nacional.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La doctrina constitucional distingue una parte dogmática (derechos humanos, sus garantías y principios rectores) de una parte orgánica (organización, integración y facultades de los poderes de la Unión, así como de estados y municipios)."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta distinción, aunque no aparece con ese nombre en el texto constitucional, ayuda a entender por qué el artículo 1 (derechos humanos) y el artículo 49 (división de poderes) cumplen funciones distintas dentro del mismo documento."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "México no tiene religión oficial, es un Estado laico (artículo 40); ambas partes son igualmente obligatorias; y ninguna de las dos se limita a tratados o a leyes locales de forma exclusiva."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué es el \"municipio libre\" como base de la división territorial y de la organización política de los estados, conforme al artículo 115?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una figura exclusiva de las zonas rurales, inexistente por completo dentro de las capitales estatales.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La célula básica de gobierno local, administrada por un ayuntamiento de elección popular directa.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Un órgano meramente consultivo, sin facultades reales de gobierno ni presupuesto propio.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Una dependencia administrativa nombrada de forma directa por el gobernador del estado.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El artículo 115 establece que los estados adoptarán, para su régimen interior, la forma de gobierno republicano, representativo y popular, teniendo como base de su división territorial y de su organización política y administrativa el municipio libre, gobernado por un ayuntamiento de elección popular directa."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "El municipio tiene personalidad jurídica propia y maneja su patrimonio, y no existe autoridad intermedia entre él y el gobierno del estado al que pertenece."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El ayuntamiento no lo designa el gobernador, se elige popularmente; el municipio existe también en zonas urbanas, incluidas las capitales; y sí tiene facultades de gobierno y hacienda propia, como recaudar el predial."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué diferencia principal existe entre una \"controversia constitucional\" y una \"acción de inconstitucionalidad\", medios de control previstos en el artículo 105?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La controversia resuelve conflictos de competencia entre órganos; la acción revisa si una norma contradice la Constitución.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Ambas son exactamente el mismo procedimiento, y solo cambia el nombre según quién lo promueva.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La controversia solo puede promoverla un particular; la acción de inconstitucionalidad, únicamente el presidente.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La controversia revisa leyes; la acción de inconstitucionalidad siempre resuelve conflictos entre los poderes públicos federales.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La controversia constitucional (fracción I del artículo 105) dirime conflictos entre la Federación, los estados, los municipios u otros órganos de gobierno sobre el ejercicio de sus competencias; la acción de inconstitucionalidad (fracción II) permite impugnar de manera abstracta que una norma general contradice la Constitución."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Ambas las resuelve la Suprema Corte de Justicia, pero responden a lógicas distintas: una protege el reparto de competencias, la otra la supremacía constitucional frente a cualquier norma."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No son el mismo procedimiento; los particulares no promueven controversias constitucionales, están reservadas a órganos de gobierno, ni la acción de inconstitucionalidad es exclusiva del presidente, también la promueven minorías legislativas y la CNDH; y la distinción \"leyes vs. poderes\" está invertida respecto a la real."
+      }
+    ]
+  }
+]

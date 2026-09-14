@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-14 · Última fase ejecutada: **G84 (COMPLETADA — 40 reactivos de Civismo/Derecho, IPN SOCADM: las 4 materias del temario cubiertas (Derecho constitucional, Derechos humanos, Sistemas políticos —única SOURCED, con el SourceChunk real de `guia_ECOEM.pdf`—, Ética ciudadana), insertados con `isVerified=false`; sesgo de longitud corregido en dos pasadas, de 95% a 7.5% (sano); vigencia legal verificada citando solo artículos y principios estables, evitando a propósito lo tocado por las reformas de 2024 (Poder Judicial, organismos autónomos); IPN SOCADM se mantiene en 88% `PARTIAL` hasta que la verificación ciega publique el lote — mismo patrón que G75→G76, G78→G79, G80→G81 y G82→G83; banco **1 347 filas, 1 303 servibles sin cambio**)**. Modelo real `claude-sonnet-5`. Ver §G84 abajo.
+
+<details><summary>Historial: G83 (2026-09-13)</summary>
+
 Última actualización: 2026-09-13 · Última fase ejecutada: **G83 (COMPLETADA — verificación ciega de los 40 reactivos de Historia Universal que compuso G82: 40/40 auto-aprobados, y con ellos IPN «Ciencias Sociales y Administrativas» sube de **72% a 88%** del peso del examen, con **6 de sus 7 materias completas** — solo queda Civismo/Derecho en cero; banco **1 303 servibles** de 1 307 filas, cola de verificación en cero, brecha contra la meta de 1 500 = **197**)**. Modelo real `claude-opus-5`. Ver §G83 abajo.
+
+</details>
 
 <details><summary>Historial: G82 (2026-09-13)</summary>
 
@@ -551,6 +557,161 @@ Los artefactos intermedios (`scripts/content-exports/g83-blind.json`,
 siempre; el registro que sí queda en git es el `Question.verification` de cada
 reactivo dentro de `backups/content-bank.json`, con su respuesta elegida, su
 confianza, su razonamiento y el modelo real que la produjo.
+
+## G84 — Lote de reactivos: Civismo/Derecho, IPN SOCADM (2026-09-14)
+
+> Modelo real `claude-sonnet-5`. **40 reactivos insertados con
+> `isVerified=false`** en las 4 materias del temario de Civismo/Derecho, IPN
+> Ciencias Sociales y Administrativas (SOCADM) — la última de las 7 materias
+> de la rama que seguía en cero. A diferencia de G78/G80/G82 (historia,
+> geografía), esta materia SÍ tiene un `SourceChunk` real para uno de sus 4
+> temas (Sistemas políticos) y exige verificación de VIGENCIA legal, no solo
+> de exactitud histórica — el derecho cambia, la historia no.
+
+### 1. Por qué esta materia
+
+`pnpm content:guard` marcaba IPN SOCADM en **22/25 de peso (88%) 🟡
+PARTIAL**, con Civismo/Derecho (peso 3) como la única materia en **cero**
+reactivos — el único hueco restante tras G83. Cerrar esta materia sola lleva
+la rama a 25/25 (100%), la primera de las 7 áreas en llegar ahí con sus 7
+materias completas.
+
+### 2. Temario y anclaje: 3 de 4 temas TEMARIO_ONLY, 1 SOURCED de verdad
+
+Se consultaron los 4 temas sembrados de la materia
+(`prisma/seed/ipn.ts`: Derecho constitucional, Derechos humanos, Sistemas
+políticos, Ética ciudadana) contra la DB con una consulta directa
+(`prisma.topic.findMany` + `prisma.sourceChunk.findMany`):
+
+| Tema | Reactivos | topicId | SourceChunk |
+|---|---|---|---|
+| Derecho constitucional | 10 | `cmrr1pzvo00fx11qdkm7m1bfv` | 0 → TEMARIO_ONLY |
+| Derechos humanos | 10 | `cmrr1q0e000fz11qd7xkm5str` | 0 → TEMARIO_ONLY |
+| Sistemas políticos | 10 | `cmrr1q0tg00g111qd0ggs8mka` | **1 → SOURCED** |
+| Ética ciudadana | 10 | `cmrr1q18s00g311qdhn5mt4ul` | 0 → TEMARIO_ONLY |
+
+El único fragmento disponible en toda la materia (`guia_ECOEM.pdf`, p. 20 —
+el temario oficial IPN-UNAM aportado por el propietario del proyecto) cubre
+los puntos 6.3-9.1 del programa: derechos fundamentales de los ciudadanos y
+su relación con los DDHH, mecanismos de representación (partidos políticos),
+obligaciones gubernamentales en los tres niveles, retos de la democracia
+contemporánea, participación ciudadana, la función social de los medios de
+comunicación, el compromiso con el entorno natural y social, y la
+negociación como recurso para resolver conflictos sin violencia. Como es el
+ÚNICO fragmento del tema, `scripts/lib/grounding.ts` exige que los 10
+reactivos de "Sistemas políticos" citen `sourceChunks:[1]` — los 10 lo
+hacen, cada uno derivado de un punto concreto del fragmento (no todos del
+mismo subtema, para no saturar un solo punto del temario). Los otros 30
+reactivos (3 materias) se compusieron desde el temario oficial sembrado y se
+insertaron con `sourceChunks: []` → `groundingStatus = TEMARIO_ONLY`.
+
+### 3. Vigencia legal — la diferencia real frente a G78/G80/G82
+
+El encargo advertía: a diferencia de historia o geografía, el derecho
+cambia. Antes de redactar cualquier artículo constitucional se decidió un
+criterio explícito: citar solo principios y estructura ESTABLES del texto
+constitucional (soberanía, forma de gobierno, división de poderes,
+integración bicameral del Congreso, periodo presidencial y no reelección,
+municipio libre, supremacía constitucional, procedimiento de reforma
+constitucional, controversia constitucional/acción de inconstitucionalidad,
+derechos humanos desde la reforma de 2011, principio pro persona, debido
+proceso, educación, trabajo, CNDH, tratados internacionales) —
+deliberadamente **ninguno** de los 40 reactivos cita la composición exacta
+de la SCJN, el Consejo de la Judicatura, el INAI ni la estructura de la
+Guardia Nacional: son objeto de las reformas de 2024 (Poder Judicial,
+simplificación de organismos autónomos) cuya redacción vigente exacta esta
+sesión no puede verificar con certeza, y CLAUDE.md pide priorizar principios
+sobre el número/detalle exacto cuando hay duda genuina de vigencia. Los
+artículos citados (1, 3, 4, 14, 16, 20, 31, 39, 40, 49, 50, 83, 102-B, 105,
+115, 123, 133, 135) son todos anteriores a esas reformas y no fueron
+tocados por ellas.
+
+### 4. Aplicando G77 de verdad: el sesgo de longitud salió severo en la primera redacción
+
+**(a) Posición de la clave: `crypto.randomInt`**, igual que G78/G80/G82,
+barajado Fisher-Yates independiente por reactivo (`build.mjs`).
+
+**(b) Longitud de las 4 opciones: la primera redacción midió
+`longestShare=95.0%`** (38 de 40 con la clave como la opción más larga) —
+peor que cualquier lote anterior de esta serie, porque el estilo jurídico
+tiende a que la respuesta correcta lleve la cita normativa completa y los
+distractores queden como negaciones cortas. Se corrigió en dos pasadas
+medidas (no a ojo): una primera pasada acortó las 40 claves a su núcleo
+factual (quitando la cláusula justificativa sobrante), bajando el share a
+**65.0%** — todavía sobre el umbral de rechazo (45%); una segunda pasada,
+dirigida por `measure.mjs` (script de medición ad hoc, borrado tras usarlo)
+sobre los 26 ítems que seguían siendo "más larga", alargó el distractor más
+corto de cada uno con una cláusula natural (nunca relleno vacío), dejando
+`longestShare=7.5%`, `shortestShare=10.0%`, `meanRatio=1.05` — sano y muy
+por debajo del umbral de advertencia (40%), mejor incluso que la referencia
+de G82 (35.0%).
+
+### 5. Validación de lote — cero violaciones tras la corrección
+
+```
+Total de reactivos: 40
+Distribución de posición: {"B":7,"A":14,"C":12,"D":7}   (17.5%-35.0%, dentro de 15-40%)
+Sesgo de longitud: clave=más-larga 7.5%, clave=más-corta 10.0% (n=40), razón media 1.05
+Patrones de orden detectados: 0
+✅ Sin violaciones.
+```
+
+`pnpm content:validate-batch --dir docs/content-batches/g84-ipn-socadm-civismo-derecho`
+aprobó antes de insertar, y cada llamada a `content:insert` (una por tema,
+`--lot-dir` al conjunto de los 4 archivos) repitió la misma validación. 0
+rechazados por formato/Zod/KaTeX en los 40; 0 duplicados de enunciado; 0
+citas por letra en las explicaciones.
+
+### 6. `content:guard`: antes y después — el mismo patrón de G75/G78/G80/G82
+
+| Métrica | Antes (G84) | Después (G84) |
+|---|---|---|
+| IPN SOCADM — peso cubierto | 22/25 (88%) 🟡 PARTIAL | **22/25 (88%) 🟡 PARTIAL — sin cambio numérico todavía** |
+| Civismo/Derecho — sirve | 0 | 0 (40 insertados, `isVerified=false`) |
+
+`content:guard` cuenta el pool **servible** (`isVerified=true`); estos 40
+reactivos están en la cola de verificación adversarial, así que el
+porcentaje del área NO se mueve todavía — mismo patrón ya documentado en
+G75→G76, G78→G79, G80→G81 y G82→G83. Lo que sí cambia para la siguiente
+fase: en cuanto la verificación ciega apruebe el lote, Civismo/Derecho pasa
+de `sirve=0` a `sirve=40` contra una cuota de solo 4 (`necesita=4`), la
+satisface de sobra, y **IPN SOCADM sube de 88% a 100% (25/25) → READY** —
+sería la primera de las 7 áreas en llegar a READY con sus 7 materias
+completas, sin ningún hueco declarado. Las 4 aserciones de `content:guard`
+(P1-P4) siguieron en verde antes y después.
+
+### 7. Banco de contenido
+
+| Métrica | Antes (G84) | Después (G84) |
+|---|---|---|
+| Filas `Question` totales | 1 307 | **1 347** |
+| Servibles (`isVerified=true`) | 1 303 | 1 303 (sin cambio — cola de verificación) |
+| Pendientes de verificación (cola ciega) | 0 | **40** |
+
+`pnpm backup:export` corrido tras la inserción — **6 502 filas**, 4.45 MB —
+`backups/content-bank.json` va en este mismo commit (G61).
+
+### 8. Verificación de la fase
+
+| Comando | Resultado |
+|---|---|
+| `content:insert` ×4 (uno por tema, `--lot-dir` al conjunto) | ✅ 40/40 insertados, lote aprobado sin violaciones |
+| `pnpm content:guard` (antes) | IPN SOCADM 88% 🟡, Civismo/Derecho `sirve=0` |
+| `pnpm content:guard` (después) | IPN SOCADM 88% 🟡 (sin cambio hasta verificación); ver §6 |
+| `pnpm typecheck` | ✅ |
+| `pnpm lint` | ✅ |
+
+### Siguiente
+
+`pnpm content:blind-batch --topic <cada uno de los 4 topicId>` (o `--all`)
+para la verificación ciega de los 40 — segunda pasada adversarial
+independiente (PRD §8), con atención particular a los 10 reactivos SOURCED
+de "Sistemas políticos" (verificar que la cita a `guia_ECOEM.pdf` p. 20 sea
+fiel al fragmento) y a la vigencia legal de los 30 TEMARIO_ONLY. Solo tras
+eso `content:guard` reflejará el 100% real de IPN SOCADM — la primera área
+de las 7 en llegar ahí con las 7 materias completas.
+
+---
 
 ## G82 — Lote de reactivos: Historia Universal, IPN SOCADM (2026-09-13)
 

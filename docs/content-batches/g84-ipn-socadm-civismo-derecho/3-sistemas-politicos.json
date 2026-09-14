@@ -1,0 +1,472 @@
+[
+  {
+    "stem": "Según el temario cívico, ¿qué relación guardan los derechos fundamentales de los ciudadanos reconocidos en la Constitución con los derechos humanos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los derechos fundamentales constitucionales y los derechos humanos internacionales se complementan para proteger a la persona.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Son conceptos sin ninguna relación entre sí, regulados por sistemas jurídicos completamente independientes y sin ningún vínculo.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Solo los derechos humanos de fuente internacional tienen validez; los derechos constitucionales quedaron derogados.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los derechos fundamentales constitucionales anulan cualquier derecho humano reconocido en un tratado internacional.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario de Civismo y Derecho vincula explícitamente los \"derechos fundamentales de los ciudadanos en la Constitución\" con \"su relación con los Derechos Humanos\": ambos conjuntos de normas se interpretan de forma armónica para dar la protección más amplia a la persona."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta complementariedad es coherente con el principio pro persona: ante varias fuentes de derechos disponibles, se aplica la que más proteja al individuo, no la que las anule entre sí."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Ninguno de los dos sistemas anula ni deroga al otro; y no son independientes entre sí, se articulan como un mismo estándar de protección de la persona."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué papel cumplen los partidos políticos como mecanismo de representación ciudadana en un gobierno democrático?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Agrupan a ciudadanos con ideas afines para postular candidatos y canalizar la participación política.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Son dependencias del gobierno federal encargadas de administrar la seguridad pública nacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Son órganos de gobierno con facultades para emitir leyes de forma directa, sin pasar por el Congreso.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Son asociaciones exclusivamente empresariales, sin ninguna función de carácter electoral.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario identifica a los partidos políticos como parte de los \"mecanismos de representación de los ciudadanos en el gobierno democrático\": son intermediarios entre la ciudadanía y el poder público que compiten por cargos de elección popular."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "A través de plataformas y candidaturas, los partidos organizan la pluralidad de ideas presentes en la sociedad para que puedan expresarse dentro del sistema representativo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los partidos no emiten leyes de forma directa, eso corresponde al Congreso, donde sí participan sus legisladores; no son asociaciones empresariales; ni dependencias de seguridad pública."
+      }
+    ]
+  },
+  {
+    "stem": "Dentro de los mecanismos de representación ciudadana, ¿qué distingue a la democracia representativa de la democracia directa?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En la representativa, decide un solo gobernante vitalicio y sin límite de tiempo, sin ningún proceso electoral de por medio.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En la directa, decide de forma exclusiva el Poder Judicial en representación del pueblo entero.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En la representativa, los ciudadanos eligen representantes que deciden en su nombre; en la directa, deciden ellos mismos.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "No existe ninguna diferencia real entre ambos modelos, son sinónimos en la práctica política.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "La democracia representativa —el modelo predominante en México, vía elección de diputados, senadores, gobernadores y presidente— delega la toma de decisiones en representantes electos; la democracia directa (referéndum, consulta popular, plebiscito) somete la decisión directamente a la ciudadanía."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Ambos mecanismos pueden coexistir: un sistema mayoritariamente representativo puede incorporar herramientas de participación directa, como la consulta popular reconocida en el artículo 35 constitucional."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Sí hay una diferencia real entre ambos modelos; la democracia representativa no significa un gobernante vitalicio sin elecciones; y la democracia directa no la ejerce el Poder Judicial, la ejerce directamente la ciudadanía."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué tipo de obligaciones tiene el gobierno con los ciudadanos en los niveles federal, estatal y municipal, conforme al temario cívico?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Las obligaciones gubernamentales son opcionales y dependen de la voluntad de cada funcionario en turno.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Proveer servicios públicos, garantizar derechos y rendir cuentas, cada nivel dentro de sus competencias.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Solo el gobierno federal tiene obligaciones con los ciudadanos; los estados y municipios están exentos.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Únicamente el nivel municipal está obligado a rendir cuentas ante la ciudadanía; los otros dos niveles no lo están.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario agrupa \"las obligaciones gubernamentales con los ciudadanos en los niveles federal, estatal y municipal\": cada orden de gobierno, dentro de su competencia, debe proveer servicios como educación, salud, seguridad e infraestructura, y responder ante la ciudadanía."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este reparto de obligaciones por nivel de gobierno refleja la estructura federal de México, donde ni la Federación concentra todas las funciones, ni los estados o municipios quedan sin responsabilidades propias."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Estados y municipios sí tienen obligaciones propias con la ciudadanía; las obligaciones no son opcionales, están fijadas por ley; y la rendición de cuentas no es exclusiva del municipio, aplica a los tres niveles."
+      }
+    ]
+  },
+  {
+    "stem": "Entre los retos de la democracia en las sociedades contemporáneas que identifica el temario, ¿cuál describe mejor un problema para la participación ciudadana informada?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El exceso de transparencia gubernamental, que \"confunde\" a la ciudadanía con demasiada información verificada.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La existencia de más de un partido político compitiendo de forma simultánea en las elecciones.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La celebración periódica de elecciones libres, que \"debilita\" la estabilidad de las instituciones públicas.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La desinformación y la polarización, que dificultan que la ciudadanía delibere con datos confiables.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario incluye los \"retos de la democracia en las sociedades contemporáneas\": la desinformación, incluida la que circula en redes sociales, y la polarización social dificultan el debate público informado, uno de los pilares de una ciudadanía participativa."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Enfrentar este reto requiere, entre otras cosas, medios de comunicación responsables y una ciudadanía con pensamiento crítico capaz de contrastar fuentes, en vínculo directo con la \"función social de los medios de comunicación\" del mismo temario."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La transparencia gubernamental no es un problema, es una herramienta de rendición de cuentas; el pluripartidismo es una característica sana de la democracia, no un reto negativo; y las elecciones periódicas fortalecen, no debilitan, la estabilidad democrática."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué se entiende por \"participación ciudadana\" dentro del funcionamiento de un sistema democrático?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Una actividad reservada únicamente a quienes ocupan un cargo público de elección popular.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una práctica que queda prohibida fuera de los periodos electorales formales establecidos.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La obligación exclusiva de votar en las elecciones formales, sin ninguna otra forma posible de intervención ciudadana.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El conjunto de acciones mediante las cuales las personas influyen en las decisiones públicas, más allá de votar.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario dedica un punto específico a la \"participación ciudadana\": comprende votar, pero también organizarse, proponer, vigilar la actuación del gobierno, participar en consultas y ejercer el derecho de petición, entre otras formas."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Una ciudadanía participativa fortalece la legitimidad democrática porque las decisiones públicas responden mejor a las necesidades reales de la población, no solo a la voluntad de quienes gobiernan."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La participación ciudadana no se agota en el voto; no está reservada a los funcionarios electos, es un derecho de toda persona; y no está prohibida fuera de los procesos electorales, puede ejercerse en todo momento."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué caracteriza a una \"ciudadanía informada, comprometida y participativa\", según lo plantea el temario?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Personas cuya única responsabilidad cívica es pagar impuestos, sin ningún otro compromiso adicional.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Personas que evitan cualquier tipo de involucramiento en los asuntos públicos que no las afecten de forma inmediata.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Personas que se informan de los asuntos públicos, asumen responsabilidades cívicas y se involucran en su comunidad.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Personas que dependen por completo de que el gobierno les indique qué pensar sobre cada tema.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario dedica un apartado a impulsar \"una ciudadanía informada, comprometida y participativa\": el conocimiento de los asuntos públicos, el sentido de responsabilidad y la disposición a involucrarse activamente van de la mano."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta ciudadanía activa se conecta con el papel de los medios de comunicación, como fuente de información, y con la participación ciudadana, como canal de involucramiento, ambos temas contiguos en el mismo programa."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Una ciudadanía informada no depende de que el gobierno le indique qué pensar, precisamente busca criterio propio; el desinterés por lo que no afecta de forma inmediata es lo opuesto al compromiso cívico; y las responsabilidades cívicas van más allá de pagar impuestos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la función social de los medios de comunicación que destaca el temario cívico?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sustituir a las autoridades electas en la toma de las decisiones propias del gobierno.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Garantizar que toda la población termine pensando exactamente lo mismo sobre cada tema de interés público nacional.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Informar a la ciudadanía de manera veraz sobre los asuntos públicos, para que forme su propio criterio y participe.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Limitarse por completo al entretenimiento, sin ninguna relación con la vida cívica o política.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario ubica \"la función social de los medios de comunicación\" justo después del tema de la ciudadanía informada: los medios son una de las principales fuentes por las que la población conoce los asuntos públicos y forma su opinión."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Esta función social convive con la responsabilidad de verificar la información, frente al reto de la desinformación, y con el derecho a la libertad de expresión e información reconocido constitucionalmente."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los medios no sustituyen a las autoridades electas; su función no es homogeneizar el pensamiento de la población, sino informar para que cada quien forme su propio criterio; y su papel cívico va más allá del entretenimiento."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué el temario cívico incluye el \"compromiso con el entorno natural y social\" como parte de la formación ciudadana?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque reemplaza por completo a los temas de participación política dentro de la formación cívica.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Porque solo compete a las autoridades ambientales del país, sin ninguna participación posible de la ciudadanía.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Porque la relación responsable con el entorno natural y social es también una forma de ejercicio ciudadano.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Porque es un tema exclusivamente técnico, ajeno por completo a cualquier responsabilidad ciudadana.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario dedica un apartado a \"la importancia de la relación del ser humano con su entorno natural y social\": el cuidado del entorno y la convivencia social se entienden como parte de una ciudadanía responsable, no como un asunto aislado de lo cívico."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este enfoque conecta lo ambiental con lo social: el bienestar colectivo depende tanto de las relaciones entre personas como del entorno natural que comparten."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No es un tema exclusivamente técnico ni ajeno a la ciudadanía; no compete solo a las autoridades ambientales, involucra a toda la sociedad; y no sustituye a la participación política, la complementa."
+      }
+    ]
+  },
+  {
+    "stem": "Según el temario, ¿qué papel juega la negociación entre los recursos disponibles para la solución de conflictos sin violencia?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Es una técnica que impone la voluntad de una sola de las partes sobre la otra, sin ningún diálogo previo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Es un procedimiento que solo pueden usar las autoridades judiciales, nunca las personas ciudadanas comunes.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Es un recurso exclusivo para conflictos internacionales entre gobiernos, sin aplicación en la vida cotidiana.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Es un mecanismo mediante el cual las partes en conflicto dialogan y buscan acuerdos mutuamente aceptables.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la norma aplicable",
+        "content": "El temario sitúa \"la negociación\" dentro del apartado de \"recursos y condiciones para la solución de conflictos sin violencia\": negociar implica que las partes dialoguen y construyan acuerdos, en lugar de recurrir a la fuerza."
+      },
+      {
+        "layer": 2,
+        "title": "Contexto y alcance",
+        "content": "Este contenido conecta con la formación de una cultura de paz y con habilidades cívicas prácticas —escuchar, argumentar, ceder— aplicables tanto en la vida escolar y familiar como en la comunitaria."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La negociación no está reservada a autoridades judiciales, cualquier persona puede emplearla; no consiste en imponer la voluntad de una parte sin diálogo, eso sería lo opuesto a negociar; y no se limita a conflictos internacionales, aplica también a la vida cotidiana."
+      }
+    ]
+  }
+]
