@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-14 · Última fase ejecutada: **G85 (COMPLETADA — verificación ciega de los 40 reactivos de Civismo/Derecho que compuso G84: **40/40 auto-aprobados**, y con ellos IPN «Ciencias Sociales y Administrativas» cierra su última materia en cero y pasa de **88% a 100% del peso del examen, `READY` con sus 7 materias completas** — la sexta de las 7 áreas en llegar al 100%, y la única que faltaba fuera de UNAM Humanidades; banco **1 343 servibles**, cola de verificación en cero, brecha contra la meta de 1 500 = **157**)**. Modelo real `claude-opus-5`. Ver §G85 abajo.
+
+<details><summary>Historial: G84 (2026-09-14)</summary>
+
 Última actualización: 2026-09-14 · Última fase ejecutada: **G84 (COMPLETADA — 40 reactivos de Civismo/Derecho, IPN SOCADM: las 4 materias del temario cubiertas (Derecho constitucional, Derechos humanos, Sistemas políticos —única SOURCED, con el SourceChunk real de `guia_ECOEM.pdf`—, Ética ciudadana), insertados con `isVerified=false`; sesgo de longitud corregido en dos pasadas, de 95% a 7.5% (sano); vigencia legal verificada citando solo artículos y principios estables, evitando a propósito lo tocado por las reformas de 2024 (Poder Judicial, organismos autónomos); IPN SOCADM se mantiene en 88% `PARTIAL` hasta que la verificación ciega publique el lote — mismo patrón que G75→G76, G78→G79, G80→G81 y G82→G83; banco **1 347 filas, 1 303 servibles sin cambio**)**. Modelo real `claude-sonnet-5`. Ver §G84 abajo.
+
+</details>
 
 <details><summary>Historial: G83 (2026-09-13)</summary>
 
@@ -415,6 +421,138 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G85 — Verificación ciega: Civismo/Derecho, IPN SOCADM (lote de G84) (2026-09-14)
+
+> Modelo real `claude-opus-5`. Los 40 reactivos de Civismo y Derecho que
+> compuso G84 quedaron **40/40 auto-aprobados**, y con ellos IPN «Ciencias
+> Sociales y Administrativas» cierra su última materia en cero: **88% → 100%
+> del peso del examen, `READY` con sus 7 materias completas**. Es la **sexta
+> de las 7 áreas** en llegar al 100% (no la primera: UNAM A1/A2/A3 e IPN
+> FISMAT/MEDBIO ya estaban ahí), pero sí **la última que tenía una materia en
+> cero** fuera de UNAM Humanidades, cuyo único hueco —Artes— queda como el
+> único de todo el catálogo.
+
+**① El aislamiento se comprobó por contenido, no por promesa.** El único
+insumo de la sesión fue `pnpm content:blind-batch --all --limit 50`; no se
+leyó el commit `04f5911` de G84, ni el JSON del lote, ni ninguna opción con su
+clave marcada. Antes de resolver se verificó el archivo crudo: `grep -c -iE
+'"isCorrect"|"explanation"|"explanations"|"correct"'` → **0 coincidencias**, 40
+ítems, opciones reducidas a `label`/`text`/`imageUrl`, sin pasajes (ninguno de
+los 40 los usa). El lote ciego salió limpio con `--all` porque la cola global de
+verificación traía exactamente estos 40 y nada más.
+
+**② 40/40 auto-aprobados (100%), y el 100% se repite en los 4 temas** —
+Derecho constitucional 10/10, Derechos humanos 10/10, Sistemas políticos 10/10,
+Ética ciudadana 10/10. Confianza media 0.969 (mín. 0.93, máx. 0.99); por tema:
+constitucional 0.974, derechos humanos 0.976, sistemas políticos 0.964, ética
+0.965. Cero problemas marcados, cero discrepancias: **la cola de F3 sigue en
+cero**.
+
+**③ La pregunta que la fase venía a contestar: el tema SOURCED no se distingue
+del resto.** G84 marcó Sistemas políticos como el único tema con fuente real
+citada (`guia_ECOEM.pdf` p.20, el temario oficial); los otros tres son
+`TEMARIO_ONLY`. Si el anclaje en fuente mejorara la calidad del reactivo, ese
+tema debería resolverse mejor. **No lo hace**: 10/10 igual que los demás, y su
+confianza media (0.964) es la **más baja** de los cuatro, marginalmente. La
+lectura honesta es que con lotes de 10 y una tasa de 100% en todos lados no hay
+poder estadístico para distinguir nada — el resultado no dice que la fuente no
+sirva, dice que **en este lote no se nota**, y que la diferencia de anclaje no
+se traduce en diferencia de resolubilidad. Lo que sí se nota es de otro tipo:
+los 10 de Sistemas políticos son los únicos cuyo enunciado dice «según el
+temario cívico», una muletilla que ata el reactivo a un documento que el
+sustentante no tiene enfrente (ver ⑥).
+
+**④ Vigencia legal verificada artículo por artículo, que era el criterio
+específico de esta materia.** Se comprobó contra el texto vigente cada
+referencia normativa de enunciados y distractores: arts. 1 (reforma del 10 de
+junio de 2011, pro persona, progresividad, catálogo de no discriminación), 3
+(redacción posterior a 2019 y 2024: universal, inclusiva, pública, gratuita y
+laica, criterio democrático), 4 (interés superior de la niñez, medio ambiente
+sano), 14/16/20 (debido proceso; sistema acusatorio pleno desde junio de 2016),
+31 fr. I y IV, 39, 40 («laica» incorporada en 2012), 49, 50, 83/88 (no
+reelección presidencial absoluta — la reforma de 2014 abrió la reeleccción
+legislativa y municipal, **nunca** la presidencial), 102 apartado B
+(recomendaciones públicas **no vinculatorias**), 105 fr. I y II, 115, 123
+apartado A, 133 y 135; más la Convención Americana sobre Derechos Humanos
+(ratificada por México en 1981, competencia contenciosa de la Corte IDH aceptada
+en 1998) y la Ley General de Responsabilidades Administrativas (vigente desde
+julio de 2017). **Ningún dato incorrecto y ninguna referencia derogada.**
+
+**⑤ Los dos puntos donde la reforma de 2024 sí roza el temario, revisados y NO
+marcados, con la razón escrita.** El criterio de la fase era que en derecho la
+duda de vigencia sí amerita marcar; se revisaron los dos únicos candidatos y
+ninguno resultó ser una duda genuina: **(a)** el reactivo de controversia
+constitucional vs. acción de inconstitucionalidad (art. 105) — la reforma
+judicial de 2024 cambió la integración de la SCJN y la mayoría para la
+declaratoria general de invalidez, pero **no la naturaleza de ninguno de los dos
+medios de control**, que es lo único que el reactivo evalúa, y el texto no
+menciona número de ministros ni forma de designación; **(b)** el reactivo de
+transparencia y rendición de cuentas — la reforma de diciembre de 2024 extinguió
+al organismo garante federal y reasignó sus funciones, pero el reactivo **no
+nombra ningún órgano** y el derecho de acceso a la información (art. 6) y el
+principio de rendición de cuentas (arts. 108-113) siguen en el texto
+constitucional. Es decir: **G84 acertó al evitar deliberadamente lo tocado por
+2024**, y esta verificación lo confirma por lectura, no por confianza. Marcar
+cualquiera de los dos habría bloqueado un reactivo correcto, que es el error que
+G81 ya había advertido.
+
+**⑥ Tres imprecisiones reales que se documentaron en vez de inflarlas a
+`problems`** — ninguna hace falsa la opción correcta ni verdadera a ningún
+distractor, y marcar habría costado un reactivo bueno: **(a)** el art. 40
+vigente dice «compuesta por Estados libres y soberanos… **y por la Ciudad de
+México**» (añadido en 2016) y la clave omite a la CDMX; es incompleta, no
+incorrecta, y las otras tres describen formas de Estado que México no adopta.
+**(b)** Lo mismo en el art. 135: la clave dice «la mayoría de las legislaturas
+estatales» y el texto vigente agrega «y de la Ciudad de México»; el doble
+requisito —que es lo que distingue al órgano reformador— está bien recogido.
+**(c)** El reactivo del art. 31 añade «respetar las instituciones», que no
+aparece en ese artículo; lo que sí aparece, y es el núcleo de la respuesta, es
+contribuir al gasto público (fr. IV). Confianza registrada 0.95, 0.96 y 0.93
+respectivamente — por debajo de la media, que es donde debía quedar la duda.
+Nota aparte, no bloqueante y dirigida al generador: los 10 reactivos de Sistemas
+políticos abren con «según el temario cívico», una referencia a un documento que
+el sustentante no ve; el examen real no formula así, y conviene evitarla en lotes
+futuros.
+
+**⑦ `pnpm content:guard` después de la resolución — IPN SOCADM al 100%,
+confirmado por efecto.** `25/25` de peso → `READY`, con las **7 materias**
+cubiertas y ninguna `✗`: Historia de México (peso 6 · sirve 40 · necesita 6),
+Historia Universal (4 · 40 · 5), Geografía (4 · 40 · 4), Matemáticas Aplicadas
+(3 · 35 · 4), Español/Lectura (3 · 70 · 4), Inglés (2 · 35 · 3) y **Civismo/
+Derecho (peso 3 · sirve 40 · necesita 4)**, la que esta fase publicó. Las 4
+aserciones P1-P4 en verde, incluida P3 (la función real de la app y un recuento
+SQL independiente coinciden en las 7 áreas). **Estado del catálogo: 6 áreas
+`READY` al 100%, 1 `PARTIAL` (UNAM Humanidades y Artes, 8/10 = 80%, falta
+Artes), 0 en «Próximamente».** La premisa de que ésta sería «la primera área con
+sus materias completas» no se sostiene contra el censo y se corrige aquí: es la
+**sexta**; lo que sí es cierto y es el hito real es que **ya no queda ninguna
+materia en cero en ninguna área del IPN, y el catálogo entero tiene un solo
+hueco**.
+
+**⑧ Banco: 1 303 → 1 343 servibles** (1 344 en banco: 1 343 publicados y 1
+retirado; 1 347 filas `Question` contando las 3 discrepancias históricas).
+**Brecha contra la meta de 1 500: 157 reactivos** (90% de la meta por celda). La
+meta efectiva de G26 —la que descuenta lo que la reutilización de pools
+compartidos ahorra— marca 83% con brecha 206. Tasa de auto-aprobación global del
+pipeline: **99.8% (1 344/1 347)**; cola de resolución en **0**.
+
+**⑨ Señal de longitud medida desde el propio lote ciego** (invariante bajo el
+mezclado, como en G79/G81): la opción elegida fue estrictamente la más larga en
+**3 de 40 (7.5%)**, con 4 empates — muy por debajo del 25% del azar y del 40% de
+advertencia de `LENGTH_BIAS`. Coincide exacto con el 7.5% que G84 reportó tras
+corregir su primera pasada, así que la corrección del generador se sostiene
+medida desde el otro lado del muro.
+
+**⑩ Respaldo regenerado** (`pnpm backup:export`, 6 502 filas) para capturar los
+40 `isVerified=true` y sus 40 registros `Question.verification` con respuesta
+elegida, confianza, razonamiento y modelo real. `pnpm typecheck` y `pnpm lint`
+en verde. **No se tocó `prisma/schema.prisma`.** Los artefactos intermedios
+(`blind-batch-*.json`, `g85-respuestas-civismo.json`) no se versionan —
+`scripts/content-exports/` está en `.gitignore`; el registro que sí queda en git
+es el `Question.verification` de cada reactivo dentro de
+`backups/content-bank.json`.
+
 
 ## G83 — Verificación ciega: Historia Universal, IPN SOCADM (lote de G82) (2026-09-13)
 
