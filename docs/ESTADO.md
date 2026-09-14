@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-14 · Última fase ejecutada: **G87 (COMPLETADA — verificación ciega de los 40 reactivos de Artes que compuso G86: **39/40 auto-aprobados (97.5%)**, y con ellos UNAM «Humanidades y Artes» cierra la ÚLTIMA materia en cero de todo el catálogo y pasa de 80% a **100%** del peso del examen, `READY` con sus 4 materias completas. **HITO: las 7 áreas activas quedan simultáneamente en `READY` por primera vez en el proyecto** — `content:guard` reporta *7 áreas · 7 listas · 0 con hueco conocido · 0 en «Próximamente»*, con sus 4 aserciones en verde contra un recuento SQL independiente. La única pérdida es una discrepancia REAL de atribución (autoría de «Madre campesina», 1926: el generador marcó Rivera, esta sesión respondió Siqueiros con la confianza más baja del lote, 0.92) que queda SIN PUBLICAR y **reabre la cola de F3, en cero desde G81** — 4 pendientes históricos → 5; Artes sirve 39 contra una cuota de 6, así que el hito no dependía de ese reactivo. Reportados y NO corregidos: 2 reactivos archivados bajo un tema que no les corresponde (el Guernica bajo «Arquitectura»). Banco **1 382 servibles** de 1 387 filas, brecha contra la meta de 1 500 = **118**)**. Modelo real `claude-opus-5`. Ver §G87 abajo.
+
+<details><summary>Historial: G86 (2026-09-14)</summary>
+
 Última actualización: 2026-09-14 · Última fase ejecutada: **G86 (COMPLETADA — 40 reactivos de Artes, UNAM «Humanidades y Artes»: las 5 materias del temario cubiertas (Artes visuales prehispánicas, Pintura colonial y moderna, Escultura mexicana, Arquitectura, Fotografía y cine), insertados con `isVerified=false`; 3 de los 5 temas SOURCED contra fragmentos reales de una guía de OTRA área de examen — usados solo como ancla de nombres/obras/conceptos que el temario confirma, nunca de texto, mismo criterio que G75; sesgo de longitud sano desde la composición (37.5%/32.5%, razón media 0.91) tras una segunda tirada de `crypto.randomInt` — la primera violó `POSITION_SKEW`/`ORDER_PATTERN` por puro azar, mismo patrón que G80; UNAM «Humanidades y Artes» se mantiene en 80% `PARTIAL` hasta que la verificación ciega publique el lote — mismo patrón que G75→G76, G78→G79, G80→G81, G82→G83 y G84→G85; banco **1 387 filas, 1 343 servibles sin cambio**, brecha contra la meta de 1 500 = **157**)**. Modelo real `claude-sonnet-5`. Ver §G86 abajo.
+
+</details>
 
 <details><summary>Historial: G85 (2026-09-14)</summary>
 
@@ -427,6 +433,129 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G87 — Verificación ciega: Artes, UNAM Humanidades y Artes (lote de G86) (2026-09-14)
+
+> Modelo real `claude-opus-5`. Los 40 reactivos de Artes que compuso G86
+> quedaron **39/40 auto-aprobados (97.5%)**, y con ellos UNAM «Humanidades y
+> Artes» cierra la **última materia en cero de todo el catálogo**: 80% → **100%
+> del peso del examen, `READY` con sus 4 materias completas**.
+>
+> **Hito del proyecto: las 7 áreas activas quedan simultáneamente en `READY`
+> por primera vez.** `content:guard` reporta *7 áreas · 7 listas · 0 con hueco
+> conocido · 0 en «Próximamente»*, con sus 4 aserciones en verde contra un
+> recuento SQL independiente. No queda una sola área del catálogo activo que el
+> onboarding tenga que ofrecer con reservas, ni una sola materia servida por
+> debajo de su cuota de diagnóstico.
+
+**① El aislamiento se comprobó por contenido, no por promesa.** El único insumo
+de la sesión fue `pnpm content:blind-batch --all --limit 60`; no se leyó el
+commit `e975bea` de G86, ni el JSON del lote, ni ninguna opción con su clave
+marcada. Antes de resolver se auditó el archivo crudo en memoria: **cero**
+apariciones de la cadena `isCorrect` y **cero** de `explanation`; las opciones
+quedan reducidas a `label`/`text`/`imageUrl`; 40 ítems, ninguno con pasaje y
+ninguno con `requiresCalculation`. La única coincidencia de la subcadena
+`orrect` estaba dentro del texto en español de los enunciados («correctamente»),
+no en una llave estructural. El lote salió limpio con `--all` porque la cola
+global de verificación traía exactamente estos 40: los 4 pendientes históricos
+de F3 ya llevan `verification` adjunta y el cargador de pendientes no los
+reincorpora.
+
+**② 39/40 auto-aprobados (97.5%), con el desglose por los 5 temas:**
+
+| Tema | Aprobados | Confianza media | Mín. |
+|---|---|---|---|
+| Artes visuales prehispánicas | 8/8 (100%) | 0.961 | 0.92 |
+| Pintura colonial y moderna | **7/8 (87.5%)** | 0.969 | 0.92 |
+| Escultura mexicana | 8/8 (100%) | 0.972 | 0.95 |
+| Arquitectura | 8/8 (100%) | 0.980 | 0.95 |
+| Fotografía y cine | 8/8 (100%) | 0.980 | 0.96 |
+| **TOTAL** | **39/40 (97.5%)** | **0.972** | **0.92** |
+
+Cero problemas marcados. La única pérdida es una **discrepancia real de
+atribución**, no una confianza baja ni un defecto de forma.
+
+**③ La discrepancia, y por qué se deja sin publicar en vez de arbitrarla.**
+`cmu0y9da50001amzn3jja98x6` pregunta por el autor del óleo «Madre campesina»
+(1926), descrito como una mujer indígena amamantando, «con volúmenes depurados y
+una composición serena». El generador marcó **Diego Rivera**; esta sesión
+respondió **David Alfaro Siqueiros** con confianza 0.92 —la más baja que asignó
+en todo el lote, y precisamente por este reactivo—, razonando que la pieza
+canónica con ese título es la de caballete de la etapa jalisciense de Siqueiros,
+resuelta en volúmenes escultóricos. Hay además una duda de datación
+independiente: la obra de Siqueiros suele ficharse hacia 1929, no 1926.
+
+Que la fase pueda ahora *ver* la clave no la habilita para arbitrar: el valor de
+la verificación adversarial está en que dos sesiones independientes coincidan, y
+aquí no coincidieron. El reactivo queda con `isVerified=false` y su veredicto
+completo adjunto en `Question.verification`, que es exactamente para lo que
+existe el panel de discrepancias de F3. **Consecuencia de estado: la cola de F3
+deja de estar en cero por primera vez desde G81** — pasa de 4 pendientes
+históricos a 5.
+
+**④ El hito de cobertura, verificado por efecto y no por la cuenta propia de la
+app.** Tras la resolución, `pnpm content:guard`:
+
+```
+✅ UNAM SUPERIOR — Humanidades y Artes  10/10 de peso (100%) → READY
+     · Literatura   peso 4 · sirve 35 · necesita 11
+     · Filosofía    peso 3 · sirve 35 · necesita  9
+     · Artes        peso 2 · sirve 39 · necesita  6
+     · Español      peso 1 · sirve 35 · necesita  4
+...
+  ✅ P1 — ningún área READY tiene materias pendientes (0 incumplen)
+  ✅ P2 — ningún área por encima del umbral queda bloqueada (0 incumplen)
+  ✅ P3 — la función de la app y el recuento independiente coinciden en las 7 áreas
+  ✅ P4 — ningún área por debajo del umbral se ofrece (0 incumplen)
+
+7 áreas · 7 listas · 0 con hueco conocido · 0 en «Próximamente»
+```
+
+Artes sirve **39** contra una cuota de diagnóstico de **6**: el margen es amplio
+incluso descontando el reactivo no publicado, así que la discrepancia de ③ **no
+pone en riesgo el hito** — el área cruzaría igual con 38. Las 7 áreas en `READY`
+son UNAM A1/A2/A3/A4 e IPN FISMAT/MEDBIO/SOCADM. Es la primera vez que el
+catálogo activo no tiene ni un hueco, cerrado en la secuencia
+G75→G76 (Inglés UNAM), G78→G79, G80→G81, G82→G83, G84→G85 (IPN SOCADM) y
+G86→G87 (Artes).
+
+**⑤ Dos reactivos están archivados bajo un tema que no les corresponde —
+reportado, no corregido.** Ambos aprobaron por contenido y son correctos, pero
+su `topicId` no coincide con lo que evalúan:
+
+- `cmu0ya8o4000q2biq7o4a8bzx` — pregunta por el **Guernica** de Picasso y está
+  bajo el tema **«Arquitectura»**. Es pintura, y ni siquiera mexicana.
+- `cmu0y9jum0010amzn4qctgq6m` — pregunta por la **integración plástica** en
+  Ciudad Universitaria y está bajo **«Pintura colonial y moderna»**. Es
+  arquitectura y muralismo del siglo XX; el desajuste aquí es defendible, el
+  anterior no.
+
+Al sustentante de un simulacro esto le es invisible (el tema no se muestra),
+pero a quien haga un drill dirigido por tema sí: pedir «Arquitectura» y recibir
+el Guernica es un fallo de pertinencia. **No se tocó**: mover el `topicId` de un
+reactivo ya publicado es una edición de contenido fuera del encargo de una fase
+de verificación, y hacerlo en silencio sería justo el tipo de cambio no
+declarado que este proyecto evita. Queda anotado con ids exactos para que una
+fase de contenido lo reubique.
+
+**⑥ La señal de longitud, medida desde el lote ciego.** En 16 de los 40
+reactivos (**40%**) la opción elegida era la más larga en sentido estricto
+(sin contar empates). Está por encima del 25% del azar y algo arriba del
+37.5%/32.5% que G86 midió al componer, pero dentro de la misma banda y sin
+disparar `LENGTH_BIAS`. El punto de G77 sigue vigente: es un chequeo de
+conjunto, no un sustituto de redactar las cuatro opciones con el mismo nivel de
+matiz. Para UNAM el riesgo es menor de todos modos —`shuffleOptions:true`—,
+pero la materia es nueva y conviene que el próximo lote de Artes apunte más
+bajo.
+
+**⑦ Estado del banco.** **1 382 reactivos servibles** de **1 387 filas**
+(5 sin publicar: 4 discrepancias históricas + la de ③). Brecha contra la meta de
+1 500 del PRD: **118**. Respaldo regenerado con `pnpm backup:export` y
+commiteado en este mismo commit, según la regla de G61.
+
+**⑧ Verde.** `pnpm typecheck` y `pnpm lint` sin salida (limpios). La fase no
+tocó código de la aplicación: sus cambios son datos en la DB, el respaldo y esta
+documentación.
 
 ## G86 — Lote de reactivos: Artes, UNAM Humanidades y Artes (2026-09-14)
 

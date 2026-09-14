@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-14T07:59:23.667Z",
+    "exportedAt": "2026-09-14T23:41:01.747Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -106413,7 +106413,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106421,7 +106421,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cabezas colosales de basalto con casco = olmeca (San Lorenzo, La Venta, Tres Zapotes), en Veracruz y Tabasco; es la cultura llamada madre. Totonaca corresponde a El Tajin y a las caritas sonrientes; teotihuacana al altiplano, sin escultura colosal de retrato; zapoteca a Monte Alban (danzantes y urnas).",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:14.723Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106429,7 +106449,7 @@
         "$d": "2026-09-14T07:56:45.288Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:45.288Z"
+        "$d": "2026-09-14T23:37:14.750Z"
       }
     },
     {
@@ -106465,7 +106485,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106473,7 +106493,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El mural teotihuacano sobre estuco usa color plano acotado por linea negra, con deidades y ritual; el Tlalocan de Tepantitla es el ejemplo canonico. El esfumado y el claroscuro son recursos del Renacimiento europeo, no de Teotihuacan; el sitio si tiene pintura, no solo relieve; y la narrativa belica continua es de Bonampak, que es maya.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T23:37:15.912Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106481,7 +106521,7 @@
         "$d": "2026-09-14T07:56:46.568Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:46.568Z"
+        "$d": "2026-09-14T23:37:15.927Z"
       }
     },
     {
@@ -106517,7 +106557,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106525,7 +106565,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La estela maya es monumento conmemorativo dinastico: fija una fecha de Cuenta Larga y registra nombre, linaje y hazanas del gobernante en glifos. No era mojon territorial, ni instrumento astronomico de calculo, ni ofrenda intramuros: se erigia a la vista, en plazas y frente a templos.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T23:37:17.011Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106533,7 +106593,7 @@
         "$d": "2026-09-14T07:56:47.789Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:47.789Z"
+        "$d": "2026-09-14T23:37:17.026Z"
       }
     },
     {
@@ -106569,7 +106629,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106577,7 +106637,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Bonampak (muros pintados) conserva los murales mayas policromos mas completos, en tres cuartos con corte real, batalla y sacrificio; se dieron a conocer en 1946. Las mascaras funerarias de jade se asocian a Palenque y Calakmul; las cabezas colosales son olmecas, no mayas; y los codices en amate no se identificaron ahi.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T23:37:18.108Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106585,7 +106665,7 @@
         "$d": "2026-09-14T07:56:49.009Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:49.009Z"
+        "$d": "2026-09-14T23:37:18.123Z"
       }
     },
     {
@@ -106621,7 +106701,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106629,7 +106709,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La lectura vigente de los danzantes de Monte Alban es de cautivos o enemigos abatidos, con mutilacion y ojos cerrados; el nombre de danzantes es una interpretacion decimononica ya superada. No representan comerciantes, ni sacerdotes en trance, ni entronizaciones.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T23:37:19.209Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106637,7 +106737,7 @@
         "$d": "2026-09-14T07:56:50.228Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:50.228Z"
+        "$d": "2026-09-14T23:37:19.224Z"
       }
     },
     {
@@ -106673,7 +106773,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106681,7 +106781,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las caritas sonrientes son ceramica del centro de Veracruz y se adscriben a la tradicion totonaca, cultura ligada a El Tajin, como precisa el enunciado. Maya corresponde al sureste; olmeca es anterior y su plastica no es sonriente; mixteca es de Oaxaca y Puebla, con codices y orfebreria.",
+          "confidence": 0.92,
+          "verifiedAt": "2026-09-14T23:37:20.309Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106689,7 +106809,7 @@
         "$d": "2026-09-14T07:56:51.460Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:51.460Z"
+        "$d": "2026-09-14T23:37:20.324Z"
       }
     },
     {
@@ -106725,7 +106845,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106733,7 +106853,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Tumba 7 que excavo Alfonso Caso en 1932 es zapoteca de origen y fue reutilizada por los mixtecos, que depositaron un ajuar de orfebreria en oro, plata, jade y hueso labrado: el hallazgo de metalisteria prehispanica mas rico de Mesoamerica. El mosaico de turquesa no es exclusivo zapoteco, la escritura maya sobre estuco no aparece ahi, y el mural maya se conocia desde antes.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T23:37:21.408Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106741,7 +106881,7 @@
         "$d": "2026-09-14T07:56:52.680Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:52.680Z"
+        "$d": "2026-09-14T23:37:21.423Z"
       }
     },
     {
@@ -106777,7 +106917,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106785,7 +106925,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Sincretismo es el termino historiografico para la fusion de formas y simbolos indigenas con los europeos en el arte novohispano. Sincronicidad es un concepto junguiano; anacronismo es un error de datacion; y fusion estilistica tardia no existe como categoria.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:22.518Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106793,7 +106953,7 @@
         "$d": "2026-09-14T07:56:53.907Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:56:53.907Z"
+        "$d": "2026-09-14T23:37:22.533Z"
       }
     },
     {
@@ -106837,7 +106997,29 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [
+          "DISCREPANCIA: el verificador eligió D, el generador marcó A"
+        ],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Madre campesina es obra de caballete de David Alfaro Siqueiros de su etapa jalisciense: indigena descalza con el hijo, resuelta en volumenes escultoricos depurados y gama terrosa. Rivera trata la maternidad en otras piezas (La molendera), Orozco trabaja un expresionismo angustiado ajeno a esa serenidad, y Merida ya derivaba a la abstraccion geometrica.",
+          "confidence": 0.92,
+          "verifiedAt": "2026-09-14T23:37:23.628Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "UNPUBLISHED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106845,7 +107027,7 @@
         "$d": "2026-09-14T07:57:04.254Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:04.254Z"
+        "$d": "2026-09-14T23:37:23.644Z"
       }
     },
     {
@@ -106881,7 +107063,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106889,7 +107071,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El sfumato es la marca de Leonardo y La Gioconda es su ejemplo emblematico. Botticelli define por contorno lineal nitido; Rafael destaca por la perspectiva y la composicion de La Escuela de Atenas; Miguel Angel por el dibujo escultorico al fresco.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:24.729Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106897,7 +107099,7 @@
         "$d": "2026-09-14T07:57:05.472Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:05.472Z"
+        "$d": "2026-09-14T23:37:24.744Z"
       }
     },
     {
@@ -106933,7 +107135,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106941,7 +107143,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Primarios son los irreducibles de los que derivan los demas. Complementarios son los opuestos en el circulo cromatico; neutros son grises y pardos; analogos son los vecinos en el circulo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:25.832Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -106949,7 +107171,7 @@
         "$d": "2026-09-14T07:57:06.684Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:06.684Z"
+        "$d": "2026-09-14T23:37:25.847Z"
       }
     },
     {
@@ -106985,7 +107207,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -106993,7 +107215,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "En el modelo pigmentario tradicional los secundarios son naranja (rojo+amarillo), verde (amarillo+azul) y violeta (azul+rojo). Las otras combinaciones mezclan secundarios con terciarios, o recurren a blanco y negro, que no producen secundarios.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:26.928Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107001,7 +107243,7 @@
         "$d": "2026-09-14T07:57:07.899Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:07.899Z"
+        "$d": "2026-09-14T23:37:26.943Z"
       }
     },
     {
@@ -107037,7 +107279,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107045,7 +107287,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La perspectiva busca la ilusion de profundidad y volumen sobre el plano. Registrar medidas a escala es el dibujo tecnico; el color no se sustituye por la perspectiva; y suprimir los puntos de fuga seria justo lo contrario de la perspectiva lineal.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:28.028Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107053,7 +107315,7 @@
         "$d": "2026-09-14T07:57:09.116Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:09.116Z"
+        "$d": "2026-09-14T23:37:28.043Z"
       }
     },
     {
@@ -107089,7 +107351,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107097,7 +107359,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La calavera garbancera que Rivera bautizo despues como La Catrina es grabado de Jose Guadalupe Posada. Manuel Manilla fue su antecesor en el taller de Vanegas Arroyo y grabo calaveras, pero no esa; Leopoldo Mendez pertenece al TGP, ya en el siglo XX; el Dr. Atl fue pintor de paisaje y volcanes.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T23:37:29.136Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107105,7 +107387,7 @@
         "$d": "2026-09-14T07:57:10.332Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:10.332Z"
+        "$d": "2026-09-14T23:37:29.151Z"
       }
     },
     {
@@ -107141,7 +107423,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107149,7 +107431,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Barroco es el estilo posrenacentista de ornamento profuso y claroscuro dramatico, y su variante novohispana exacerbada es el churrigueresco, por el estipite de Churriguera. El plateresco es anterior y de ornato plano; el neoclasico es posterior y sobrio; el mudejar es de raiz islamica.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T23:37:30.344Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107157,7 +107459,7 @@
         "$d": "2026-09-14T07:57:11.550Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:11.550Z"
+        "$d": "2026-09-14T23:37:30.359Z"
       }
     },
     {
@@ -107193,7 +107495,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107201,7 +107503,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Integracion plastica es el concepto con que se designa la fusion de arquitectura, escultura y pintura en Ciudad Universitaria. Las otras tres son etiquetas inventadas o desplazadas de epoca: el neoclasicismo mexicano es del siglo XIX y nada tiene que ver con el mural moderno.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T23:37:31.444Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107209,7 +107531,7 @@
         "$d": "2026-09-14T07:57:12.766Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:12.766Z"
+        "$d": "2026-09-14T23:37:31.459Z"
       }
     },
     {
@@ -107245,7 +107567,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107253,7 +107575,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La falda de serpientes entrelazadas y el collar de manos y corazones identifican a Coatlicue, hallada en agosto de 1790 en la Plaza Mayor. El Chac Mool es figura reclinada; la Piedra del Sol es el disco calendarico hallado meses despues; la Piedra de Tizoc es un cuauhxicalli cilindrico con escenas de conquista.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T23:37:32.546Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107261,7 +107603,7 @@
         "$d": "2026-09-14T07:57:22.424Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:22.424Z"
+        "$d": "2026-09-14T23:37:32.561Z"
       }
     },
     {
@@ -107297,7 +107639,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107305,7 +107647,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El disco basaltico con el rostro solar al centro y los anillos de simbolos calendaricos, hallado en diciembre de 1790, es la Piedra del Sol o Calendario Azteca. Coatlicue es la escultura antropomorfa exenta; el Teocalli de la Guerra Sagrada es un monumento en forma de templo; Piedra de los Sacrificios no es la denominacion de esa pieza.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:33.645Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107313,7 +107675,7 @@
         "$d": "2026-09-14T07:57:23.420Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:23.420Z"
+        "$d": "2026-09-14T23:37:33.660Z"
       }
     },
     {
@@ -107349,7 +107711,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107357,7 +107719,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El estofado es exactamente eso: bol y oro bruñido bajo el temple, y esgrafiado del color para que el oro aflore imitando brocado. La encarnacion es el acabado de las carnaciones; la cera perdida es fundicion en metal; la talla directa es el labrado previo, sin policromia.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T23:37:34.745Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107365,7 +107747,7 @@
         "$d": "2026-09-14T07:57:24.414Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:24.414Z"
+        "$d": "2026-09-14T23:37:34.760Z"
       }
     },
     {
@@ -107401,7 +107783,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107409,7 +107791,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Caballito de Carlos IV es de Manuel Tolsa, autor tambien del Palacio de Mineria junto al que hoy se ubica. Tresguerras fue arquitecto neoclasico de Celaya; Balbas hizo el retablo de los Reyes de la Catedral; Gonzalez Velazquez fue pintor y director de la Academia de San Carlos.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:35.845Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107417,7 +107819,7 @@
         "$d": "2026-09-14T07:57:25.411Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:25.411Z"
+        "$d": "2026-09-14T23:37:35.860Z"
       }
     },
     {
@@ -107453,7 +107855,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107461,7 +107863,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Juan Soriano nacio en Guadalajara en 1920 y murio en 2006, y sus bronces monumentales de aves (Paloma, Luna) estan en plazas publicas. Goeritz fue aleman (1915-1990); Tamayo, oaxaqueno (1899-1991) y sobre todo pintor; Zuniga, costarricense (1912-1998), y su tema son las figuras femeninas, no las aves.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T23:37:36.946Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107469,7 +107891,7 @@
         "$d": "2026-09-14T07:57:26.405Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:26.405Z"
+        "$d": "2026-09-14T23:37:36.960Z"
       }
     },
     {
@@ -107505,7 +107927,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107513,7 +107935,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las Torres de Satelite son de Mathias Goeritz, aleman naturalizado mexicano, en colaboracion con Luis Barragan. Zuniga y Soriano son escultores figurativos ajenos a la abstraccion urbana; Sebastian es mexicano y de una generacion posterior.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T23:37:38.048Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107521,7 +107963,7 @@
         "$d": "2026-09-14T07:57:27.406Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:27.406Z"
+        "$d": "2026-09-14T23:37:38.063Z"
       }
     },
     {
@@ -107557,7 +107999,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107565,7 +108007,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Francisco Zuniga nacio en San Jose, Costa Rica, y se naturalizo mexicano; su tema constante es la mujer indigena y mestiza en volumenes amplios y quietud monumental. Goeritz es aleman y abstracto; Soriano es jalisciense; Tolsa es novohispano del siglo XVIII.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:39.144Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107573,7 +108035,7 @@
         "$d": "2026-09-14T07:57:28.406Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:28.406Z"
+        "$d": "2026-09-14T23:37:39.159Z"
       }
     },
     {
@@ -107609,7 +108071,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107617,7 +108079,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El modelado es adicion sobre materia blanda (barro, cera), opuesto a la talla, que es sustraccion. Verter metal en molde es fundicion o vaciado; ensamblar piezas es construccion o ensamblaje; grabar sobre plano es grabado, sin volumen real.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:40.246Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107625,7 +108107,7 @@
         "$d": "2026-09-14T07:57:29.401Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:29.401Z"
+        "$d": "2026-09-14T23:37:40.260Z"
       }
     },
     {
@@ -107661,7 +108143,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107669,7 +108151,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Luis Barragan recibio el Pritzker en 1980 y sigue siendo el unico mexicano premiado; la Casa Barragan y la Cuadra San Cristobal son suyas. Del Moral y Pani son sus contemporaneos en CU y el multifamiliar, sin Pritzker; O'Gorman es el funcionalista y muralista de la Biblioteca Central.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:41.343Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107677,7 +108179,7 @@
         "$d": "2026-09-14T07:57:38.855Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:38.855Z"
+        "$d": "2026-09-14T23:37:41.358Z"
       }
     },
     {
@@ -107713,7 +108215,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107721,7 +108223,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Tulum es la unica ciudad maya amurallada sobre acantilado frente al Caribe, puerto del Posclasico en Quintana Roo. Uxmal es Puuc y esta tierra adentro en Yucatan; Palenque es del Clasico en Chiapas; Chichen Itza esta en el interior peninsular y no es costera.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:42.445Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107729,7 +108251,7 @@
         "$d": "2026-09-14T07:57:40.071Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:40.071Z"
+        "$d": "2026-09-14T23:37:42.460Z"
       }
     },
     {
@@ -107765,7 +108287,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107773,7 +108295,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Alberto Ruz Lhuillier llego en 1952 a la camara funeraria de Pakal bajo el Templo de las Inscripciones, en Palenque, Chiapas, con la lapida de relieve celebre. Teotihuacan no es maya ni chiapaneco; Monte Alban es zapoteco en Oaxaca; Tulum es del Posclasico en la costa caribena.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:43.553Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107781,7 +108323,7 @@
         "$d": "2026-09-14T07:57:41.285Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:41.285Z"
+        "$d": "2026-09-14T23:37:43.568Z"
       }
     },
     {
@@ -107817,7 +108359,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107825,7 +108367,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Calzada de los Muertos es el eje norte-sur de Teotihuacan entre la Piramide de la Luna y la del Sol. Monte Alban se organiza en torno a una gran plaza, no a una calzada asi; Tenochtitlan tuvo calzadas sobre el lago con otros nombres; Tula es tolteca y de trazo distinto.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:44.656Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107833,7 +108395,7 @@
         "$d": "2026-09-14T07:57:42.503Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:42.503Z"
+        "$d": "2026-09-14T23:37:44.671Z"
       }
     },
     {
@@ -107869,7 +108431,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107877,7 +108439,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Mas de dos siglos de obra dejaron en la Catedral Metropolitana capas sucesivas, del barroco al remate neoclasico de Tolsa: es un edificio de estilo mixto. No es solo churrigueresco (eso describe al Sagrario contiguo y al retablo de los Reyes), ni puramente plateresco, ni funcionalista del siglo XX.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T23:37:45.866Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107885,7 +108467,7 @@
         "$d": "2026-09-14T07:57:43.719Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:43.719Z"
+        "$d": "2026-09-14T23:37:45.881Z"
       }
     },
     {
@@ -107921,7 +108503,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107929,7 +108511,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El bombardeo de Guernica en 1937 y la gran tela en blancos, negros y grises corresponden al Guernica de Pablo Picasso. Rivera es muralista mexicano ajeno al tema; Dali trabaja el surrealismo onirico y a color; Chagall, un imaginario lirico y cromatico.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:46.962Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107937,7 +108539,7 @@
         "$d": "2026-09-14T07:57:44.933Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:44.933Z"
+        "$d": "2026-09-14T23:37:46.976Z"
       }
     },
     {
@@ -107973,7 +108575,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -107981,7 +108583,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las cuatro fachadas de la Biblioteca Central son el mosaico de piedra natural de Juan O'Gorman, que ademas coproyecto el edificio. En CU, Rivera intervino el Estadio Olimpico y Siqueiros la Torre de Rectoria; Goeritz no participo en ese conjunto.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:48.063Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -107989,7 +108611,7 @@
         "$d": "2026-09-14T07:57:46.147Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:46.147Z"
+        "$d": "2026-09-14T23:37:48.078Z"
       }
     },
     {
@@ -108025,7 +108647,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108033,7 +108655,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las casas gemelas de San Angel unidas por el puente son de Juan O'Gorman, funcionalismo temprano de 1931-1932. Barragan llegaria despues con un lenguaje emocional opuesto; Pani hizo multifamiliares desde los cuarenta; Obregon Santacilia es de la misma epoca pero su obra insignia es el Monumento a la Revolucion.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:49.160Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108041,7 +108683,7 @@
         "$d": "2026-09-14T07:57:47.365Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:47.365Z"
+        "$d": "2026-09-14T23:37:49.175Z"
       }
     },
     {
@@ -108077,7 +108719,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108085,7 +108727,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El daguerrotipo, anunciado en 1839, da una imagen unica y directa sobre placa de cobre plateada: es el primer procedimiento de uso practico. La heliografia de Niepce es anterior pero inviable por las horas de exposicion; el calotipo de Talbot es negativo en papel y permite copias; el fotograma es contacto sin camara.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:50.267Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108093,7 +108755,7 @@
         "$d": "2026-09-14T07:57:57.089Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:57.089Z"
+        "$d": "2026-09-14T23:37:50.282Z"
       }
     },
     {
@@ -108129,7 +108791,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108137,7 +108799,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Obrero en huelga, asesinado y La buena fama durmiendo son de Manuel Alvarez Bravo, a quien Breton acerco al surrealismo. Lola Alvarez Bravo tiene obra propia pero no esas imagenes; Hector Garcia y Nacho Lopez son fotoperiodistas de las decadas de 1950 y 1960.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T23:37:51.372Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108145,7 +108827,7 @@
         "$d": "2026-09-14T07:57:58.088Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:58.088Z"
+        "$d": "2026-09-14T23:37:51.387Z"
       }
     },
     {
@@ -108181,7 +108863,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108189,7 +108871,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Tina Modotti, italiana, fotografio en el Mexico de los anos veinte junto a Weston y al circulo muralista, milito en el PCM y dejo las rosas y los obreros. Kati Horna llego en 1939 tras la guerra espanola; Iturbide es mexicana y posterior; Lola Alvarez Bravo es mexicana, no italiana.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T23:37:52.471Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108197,7 +108899,7 @@
         "$d": "2026-09-14T07:57:59.088Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:57:59.088Z"
+        "$d": "2026-09-14T23:37:52.486Z"
       }
     },
     {
@@ -108233,7 +108935,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108241,7 +108943,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Epoca de Oro cubre de finales de los treinta a los cincuenta, con el melodrama y la comedia ranchera en su apogeo. El cine de ficheras es de los setenta y ochenta; el Nuevo Cine Mexicano es de fin de siglo; el cine mudo es anterior al sonoro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:53.575Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108249,7 +108971,7 @@
         "$d": "2026-09-14T07:58:00.093Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:58:00.093Z"
+        "$d": "2026-09-14T23:37:53.590Z"
       }
     },
     {
@@ -108285,7 +109007,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108293,7 +109015,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Gabriel Figueroa fotografio Maria Candelaria con Emilio Fernandez y luego trabajo con Bunuel y con John Ford en El fugitivo; los cielos nublados y el contraste son su firma. Phillips, Draper y Solano fueron fotografos reales de la epoca, pero ninguno define esa colaboracion ni ese estilo.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:54.698Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108301,7 +109043,7 @@
         "$d": "2026-09-14T07:58:01.089Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:58:01.089Z"
+        "$d": "2026-09-14T23:37:54.713Z"
       }
     },
     {
@@ -108337,7 +109079,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108345,7 +109087,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Que viva Mexico quedo inconcluso al retirarse el financiamiento a Serguei Eisenstein, teorico del montaje, que rodo en Mexico en 1931-1932. Bunuel llego hasta 1946 y es espanol; Vertov y Pudovkin, tambien sovieticos, nunca filmaron en Mexico.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:55.799Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108353,7 +109115,7 @@
         "$d": "2026-09-14T07:58:02.086Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:58:02.086Z"
+        "$d": "2026-09-14T23:37:55.814Z"
       }
     },
     {
@@ -108389,7 +109151,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108397,7 +109159,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Seleccionar y ordenar los planos para construir ritmo y sentido es el montaje o edicion. El guion tecnico es planeacion previa al rodaje; el doblaje sustituye audio; el encuadre es lo que cabe dentro de los limites de la imagen.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-14T23:37:56.898Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108405,7 +109187,7 @@
         "$d": "2026-09-14T07:58:03.090Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:58:03.090Z"
+        "$d": "2026-09-14T23:37:56.913Z"
       }
     },
     {
@@ -108441,7 +109223,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -108449,7 +109231,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El rostro llenando el encuadre es el primer plano, usado para la emocion. El plano detalle aisla un objeto o fragmento; el americano corta a la altura de la rodilla; el general situa a la figura en un espacio amplio.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-14T23:37:57.994Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -108457,7 +109259,7 @@
         "$d": "2026-09-14T07:58:04.086Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T07:58:04.086Z"
+        "$d": "2026-09-14T23:37:58.009Z"
       }
     }
   ],
