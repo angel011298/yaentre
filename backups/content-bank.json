@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-14T04:43:22.214Z",
+    "exportedAt": "2026-09-14T05:12:54.263Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -100653,7 +100653,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -100661,7 +100661,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La ciudadanía ateniense del s. V a.C. se restringía a varones adultos hijos de padres atenienses (ley de Pericles, 451 a.C.): mujeres, esclavos y metecos quedaban fuera de la Ekklesía. B invierte el concepto (era directa, no representativa); C describe el Areópago aristocrático previo a Clístenes; D es factualmente falsa.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:37.255Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -100669,7 +100689,7 @@
         "$d": "2026-09-14T04:40:54.896Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:40:54.896Z"
+        "$d": "2026-09-14T05:07:37.270Z"
       }
     },
     {
@@ -100705,7 +100725,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -100713,7 +100733,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Liga de Delos derivó en imperio ateniense: en 454 a.C. el tesoro común se trasladó de Delos a Atenas y las aportaciones se volvieron tributo (phóros); Naxos y Tasos fueron sometidas al intentar salir. B es anacrónica (Esparta encabezaba la Liga del Peloponeso); C y D contradicen la hegemonía ateniense documentada.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:38.384Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -100721,7 +100761,7 @@
         "$d": "2026-09-14T04:40:55.956Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:40:55.956Z"
+        "$d": "2026-09-14T05:07:38.396Z"
       }
     },
     {
@@ -100757,7 +100797,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -100765,7 +100805,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El helenismo se define por la síntesis greco-oriental en los reinos sucesores (ptolemaico, seléucida, antigónida): Alejandría y Pérgamo, el culto a Serapis, el arte grecobúdico. A es falsa (no hubo religión única impuesta); B contradice el koiné como lengua franca administrativa; C niega la apertura cultural del periodo.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:39.485Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -100773,7 +100833,7 @@
         "$d": "2026-09-14T04:40:56.968Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:40:56.968Z"
+        "$d": "2026-09-14T05:07:39.498Z"
       }
     },
     {
@@ -100809,7 +100869,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -100817,7 +100877,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Tras las reformas de Mario (107 a.C.) el reclutamiento de proletarii ligó la recompensa del soldado a su general y no al Senado: de ahí Sila, César y Pompeyo, y las guerras civiles que desembocan en el Principado. A es falsa (la expansión fue enorme); B invierte el problema (el mando efectivo estaba en los generales); D niega el conflicto social real.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:40.586Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -100825,7 +100905,7 @@
         "$d": "2026-09-14T04:40:57.994Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:40:57.994Z"
+        "$d": "2026-09-14T05:07:40.599Z"
       }
     },
     {
@@ -100861,7 +100941,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -100869,7 +100949,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La lectura procesual combina la crisis fiscal y monetaria del s. III, la presión y el asentamiento de pueblos germánicos, y la pérdida gradual de control administrativo en Occidente. A es falsa; B es falsa (la deposición de Rómulo Augústulo consta en fuentes antiguas y la periodización se consolidó mucho antes del s. XX); C reduce a una sola causa lo que ninguna historiografía actual sostiene.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:41.689Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -100877,7 +100977,7 @@
         "$d": "2026-09-14T04:40:59.004Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:40:59.004Z"
+        "$d": "2026-09-14T05:07:41.702Z"
       }
     },
     {
@@ -100913,7 +101013,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -100921,7 +101021,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El contrato feudo-vasallático es recíproco y asimétrico: el señor entrega el beneficio o feudo y protección; el vasallo presta homenaje, fidelidad y auxilium militar más consilium. A niega el núcleo militar; B niega la asimetría; C confunde al vasallo con un arrendatario en moneda.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:42.795Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -100929,7 +101049,7 @@
         "$d": "2026-09-14T04:41:05.786Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:05.786Z"
+        "$d": "2026-09-14T05:07:42.808Z"
       }
     },
     {
@@ -100965,7 +101085,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -100973,7 +101093,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "En la fragmentación política medieval la Iglesia fue la única institución de alcance continental: scriptoria y monasterios conservaron el saber, las escuelas catedralicias y luego las universidades educaron, y la unción y coronación legitimaron a los monarcas. A, B y C son contrafactuales.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:43.898Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -100981,7 +101121,7 @@
         "$d": "2026-09-14T04:41:06.794Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:06.794Z"
+        "$d": "2026-09-14T05:07:43.911Z"
       }
     },
     {
@@ -101017,7 +101157,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101025,7 +101165,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las Cruzadas reactivaron el Mediterráneo oriental en beneficio de Venecia, Génova y Pisa, y trajeron especias, azúcar, seda, papel y textos científicos árabes y griegos. A invierte el sentido (los Estados latinos fueron efímeros); B y C afirman una desaparición del comercio que es lo contrario de lo ocurrido.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:45.007Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101033,7 +101193,7 @@
         "$d": "2026-09-14T04:41:07.808Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:07.808Z"
+        "$d": "2026-09-14T05:07:45.019Z"
       }
     },
     {
@@ -101069,7 +101229,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101077,7 +101237,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las cartas de franquicia y los fueros muestran la alianza monarquía-burguesía: la ciudad obtiene privilegios y protección frente al señor feudal, y el rey obtiene ingresos fiscales en moneda y apoyo político (después, su presencia en Cortes y Estados Generales). A invierte el actor que financia; C y D contradicen el hecho histórico.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T05:07:46.113Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101085,7 +101265,7 @@
         "$d": "2026-09-14T04:41:08.816Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:08.816Z"
+        "$d": "2026-09-14T05:07:46.126Z"
       }
     },
     {
@@ -101121,7 +101301,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101129,7 +101309,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Toledo fue el gran canal de transmisión: en el s. XII se vertieron al latín Aristóteles, Ptolomeo, Euclides, Avicena, Averroes y al-Juarismi (Gerardo de Cremona, Domingo Gundisalvo). Que bajo Alfonso X se tradujera además al castellano no invalida la opción. B contradice el propósito mismo de la escuela; C la confunde con un tribunal inquisitorial; D niega su contenido científico documentado.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:47.214Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101137,7 +101337,7 @@
         "$d": "2026-09-14T04:41:09.824Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:09.824Z"
+        "$d": "2026-09-14T05:07:47.226Z"
       }
     },
     {
@@ -101173,7 +101373,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101181,7 +101381,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El antropocentrismo humanista desplaza el eje al hombre y su razón sin ruptura con la fe: Erasmo, Tomás Moro, Pico della Mirandola y Ficino eran cristianos. B enuncia la postura teocéntrica que el humanismo matiza; C niega la crítica filológica que lo define; D le atribuye un ateísmo ajeno al periodo.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:48.315Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101189,7 +101409,7 @@
         "$d": "2026-09-14T04:41:16.669Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:16.669Z"
+        "$d": "2026-09-14T05:07:48.327Z"
       }
     },
     {
@@ -101225,7 +101445,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101233,7 +101453,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Los tipos móviles permitieron tirajes de cientos de ejemplares con una sola composición: el costo unitario y el tiempo cayeron órdenes de magnitud frente a la copia manuscrita, base material de la difusión de la Reforma. A y B restringen falsamente el uso; D niega justo el efecto económico que es el núcleo de la pregunta.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:49.418Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101241,7 +101481,7 @@
         "$d": "2026-09-14T04:41:17.694Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:17.694Z"
+        "$d": "2026-09-14T05:07:49.431Z"
       }
     },
     {
@@ -101277,7 +101517,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101285,7 +101525,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La indulgencia predicada por Johann Tetzel financiaba la basílica de San Pedro y la deuda de Alberto de Brandeburgo con los Fugger: es el detonante directo de las 95 tesis de 1517. B es falsa (Wyclif, Hus y los conciliaristas ya criticaban); C y D niegan hechos institucionales verificables.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:50.520Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101293,7 +101553,7 @@
         "$d": "2026-09-14T04:41:18.721Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:18.721Z"
+        "$d": "2026-09-14T05:07:50.533Z"
       }
     },
     {
@@ -101329,7 +101589,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101337,7 +101597,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Convergen los tres factores: demanda de especias, encarecimiento y control otomano de las rutas levantinas tras 1453, y la carabela, la brújula, el astrolabio y las cartas portulanas. Criterio propio: la historiografía reciente matiza que los otomanos no interrumpieron el flujo de especias vía Venecia y Egipto, pero la opción lo enuncia como factor concurrente, no como causa única, y es la única sostenible: B, C y D son contrafactuales. No lo marco como problema.",
+          "confidence": 0.92,
+          "verifiedAt": "2026-09-14T05:07:51.621Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101345,7 +101625,7 @@
         "$d": "2026-09-14T04:41:19.745Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:19.745Z"
+        "$d": "2026-09-14T05:07:51.633Z"
       }
     },
     {
@@ -101381,7 +101661,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101389,7 +101669,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El núcleo común de la Ilustración es la confianza en la razón como criterio para ordenar la sociedad, frente a la tradición y la autoridad revelada (Kant, «¿Qué es la Ilustración?»; la Enciclopedia). A, B y C enuncian exactamente las posiciones que los ilustrados combatían.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:52.830Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101397,7 +101697,7 @@
         "$d": "2026-09-14T04:41:26.489Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:26.489Z"
+        "$d": "2026-09-14T05:07:52.843Z"
       }
     },
     {
@@ -101433,7 +101733,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101441,7 +101741,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La república federal con Constitución escrita (1787), división de poderes y Bill of Rights probó en la práctica el ideario liberal y sirvió de modelo a Hispanoamérica. B es falsa: la esclavitud persistió hasta 1865; C y D contradicen la ruptura de 1776.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:53.933Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101449,7 +101769,7 @@
         "$d": "2026-09-14T04:41:27.910Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:27.910Z"
+        "$d": "2026-09-14T05:07:53.946Z"
       }
     },
     {
@@ -101485,7 +101805,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101493,7 +101813,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Coinciden la bancarrota del Estado tras la guerra de América, la rigidez estamental con privilegios fiscales de nobleza y clero, y la carestía del pan tras las malas cosechas de 1788. A tergiversa la convocatoria de los Estados Generales (fue para resolver la crisis fiscal); B invierte quién pagaba impuestos; C contradice la crisis económica documentada.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:55.034Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101501,7 +101841,7 @@
         "$d": "2026-09-14T04:41:28.911Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:28.911Z"
+        "$d": "2026-09-14T05:07:55.046Z"
       }
     },
     {
@@ -101537,7 +101877,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101545,7 +101885,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La novedad de 1848 es la irrupción de la cuestión social: talleres nacionales en París, jornadas de junio, sufragio universal masculino y el Manifiesto comunista ese mismo año; ya no solo demandas constitucionales burguesas. A invierte los protagonistas; B niega el contenido político; D contradice el desenlace restaurador.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-14T05:07:56.137Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101553,7 +101913,7 @@
         "$d": "2026-09-14T04:41:29.914Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:29.914Z"
+        "$d": "2026-09-14T05:07:56.150Z"
       }
     },
     {
@@ -101589,7 +101949,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101597,7 +101957,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Ambas unificaciones fueron conducidas desde arriba por un Estado motor —el Piamonte-Cerdeña de Cavour y la Prusia de Bismarck— con su ejército y su diplomacia, no por una revolución popular. A es falsa (hubo guerras: 1859, 1866, 1870-71); B es falsa cronológicamente (1861 y 1871, posteriores a 1848); D invierte el papel de Austria, que fue el obstáculo en ambos casos.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T05:07:57.239Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101605,7 +101985,7 @@
         "$d": "2026-09-14T04:41:30.919Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:30.919Z"
+        "$d": "2026-09-14T05:07:57.252Z"
       }
     },
     {
@@ -101641,7 +102021,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101649,7 +102029,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las abdicaciones de Bayona y la imposición de José Bonaparte abrieron un vacío de legitimidad: en América se formaron juntas que decían gobernar en nombre de Fernando VII y que derivaron en independencia. A, B y D contradicen el hecho histórico.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:07:58.342Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101657,7 +102057,7 @@
         "$d": "2026-09-14T04:41:31.921Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:31.921Z"
+        "$d": "2026-09-14T05:07:58.354Z"
       }
     },
     {
@@ -101693,7 +102093,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101701,7 +102101,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Gran Bretaña reunió capital acumulado del comercio colonial, carbón e hierro abundantes y próximos, y mano de obra libre liberada por los cercamientos, más un marco institucional de patentes. A es falsa (fue la potencia comercial dominante); B es falsa (la servidumbre pervivía en Europa oriental, no en Inglaterra); D contradice sus yacimientos.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:07:59.440Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101709,7 +102129,7 @@
         "$d": "2026-09-14T04:41:38.734Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:38.734Z"
+        "$d": "2026-09-14T05:07:59.453Z"
       }
     },
     {
@@ -101745,7 +102165,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101753,7 +102173,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La industrialización sustituyó los estamentos jurídicos del Antiguo Régimen por clases definidas por la relación con los medios de producción: burguesía industrial y proletariado. A, B y C afirman desapariciones o retrocesos que contradicen el proceso documentado.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T05:08:00.543Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101761,7 +102201,7 @@
         "$d": "2026-09-14T04:41:39.753Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:39.753Z"
+        "$d": "2026-09-14T05:08:00.555Z"
       }
     },
     {
@@ -101797,7 +102237,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101805,7 +102245,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La explicación económica estándar (Hobson, y la historiografía posterior) combina acceso a materias primas baratas, mercados para la producción industrial y colocación de capitales excedentes. A, C y D invierten la lógica del imperialismo.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:01.643Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101813,7 +102273,7 @@
         "$d": "2026-09-14T04:41:40.772Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:40.772Z"
+        "$d": "2026-09-14T05:08:01.656Z"
       }
     },
     {
@@ -101849,7 +102309,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101857,7 +102317,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Berlín (1884-1885) fijó las reglas del reparto —libertad de navegación en el Congo y el Níger y principio de ocupación efectiva para reconocer una anexión— sin un solo representante africano. A, B y C son lo contrario de lo acordado.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T05:08:02.744Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101865,7 +102345,7 @@
         "$d": "2026-09-14T04:41:41.797Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:41.797Z"
+        "$d": "2026-09-14T05:08:02.757Z"
       }
     },
     {
@@ -101901,7 +102381,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101909,7 +102389,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La «misión civilizadora» y la «carga del hombre blanco» fueron coartada ideológica: presentaron la dominación como progreso y tutela de pueblos supuestamente incapaces. B contradice el estatuto colonial de indígena; C confunde la justificación con su crítica; D es contrafactual.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:03.849Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101917,7 +102417,7 @@
         "$d": "2026-09-14T04:41:42.820Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:42.820Z"
+        "$d": "2026-09-14T05:08:03.862Z"
       }
     },
     {
@@ -101953,7 +102453,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -101961,7 +102461,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La respuesta organizada fueron las trade unions y los partidos obreros (SPD alemán, laborismo británico), con huelga y negociación colectiva para acortar la jornada y regular el trabajo infantil. A, B y D describen hechos que no ocurrieron.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:04.957Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -101969,7 +102489,7 @@
         "$d": "2026-09-14T04:41:43.839Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:43.839Z"
+        "$d": "2026-09-14T05:08:04.970Z"
       }
     },
     {
@@ -102005,7 +102525,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102013,7 +102533,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El sistema de alianzas (Triple Alianza y Triple Entente), sumado a la rivalidad imperialista, la carrera naval y los planes de movilización, convirtió una crisis balcánica local en guerra continental. A es una invención; B es falsa; D niega las tensiones previas documentadas.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:06.059Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102021,7 +102561,7 @@
         "$d": "2026-09-14T04:41:50.626Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:50.626Z"
+        "$d": "2026-09-14T05:08:06.072Z"
       }
     },
     {
@@ -102057,7 +102597,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102065,7 +102605,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "En octubre de 1917 pesaron el desgaste militar, la escasez de pan y combustible y el desprestigio del gobierno provisional por sostener la guerra: de ahí «paz, pan y tierra» y los sóviets. A, B y C contradicen la derrota rusa y el colapso del zarismo en febrero.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:07.161Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102073,7 +102633,7 @@
         "$d": "2026-09-14T04:41:51.632Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:51.632Z"
+        "$d": "2026-09-14T05:08:07.174Z"
       }
     },
     {
@@ -102109,7 +102669,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102117,7 +102677,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La cláusula de culpabilidad, las reparaciones y las pérdidas territoriales alimentaron el «Diktat» y la leyenda de la puñalada por la espalda, capital político que el nazismo explotó. A niega un nexo ampliamente documentado; B y C son factualmente falsas (Alemania perdió sus colonias y sí pagó reparaciones).",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:08.372Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102125,7 +102705,7 @@
         "$d": "2026-09-14T04:41:52.634Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:52.634Z"
+        "$d": "2026-09-14T05:08:08.385Z"
       }
     },
     {
@@ -102161,7 +102741,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102169,7 +102749,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Ceder ante la remilitarización de Renania, el Anschluss y los Sudetes en Múnich (1938) sin resistencia convenció a Hitler de que no habría respuesta: en marzo de 1939 ocupó el resto de Checoslovaquia. B, C y D contradicen la cronología.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:08:09.474Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102177,7 +102777,7 @@
         "$d": "2026-09-14T04:41:53.644Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:53.644Z"
+        "$d": "2026-09-14T05:08:09.486Z"
       }
     },
     {
@@ -102213,7 +102813,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102221,7 +102821,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Lo que distingue al Holocausto de pogromos y expulsiones previas es su carácter de exterminio sistemático planificado por el Estado, con burocracia, censo, ferrocarriles y campos de exterminio. B, C y D niegan la organización estatal documentada en Wannsee y en el propio aparato de las SS.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:10.578Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102229,7 +102849,7 @@
         "$d": "2026-09-14T04:41:54.654Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:54.654Z"
+        "$d": "2026-09-14T05:08:10.591Z"
       }
     },
     {
@@ -102265,7 +102885,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102273,7 +102893,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Hiroshima (6 de agosto), la declaración de guerra soviética y la invasión de Manchuria (8-9 de agosto) y Nagasaki (9 de agosto) preceden al anuncio del 15 de agosto. Criterio propio: la historiografía discute el peso relativo de la bomba frente a la entrada soviética, pero la opción incluye ambos factores, que es la formulación más defendible; no procede marcarla como problema. C es falsa (no hubo invasión terrestre) y A y D son contrafactuales.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-14T05:08:11.679Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102281,7 +102921,7 @@
         "$d": "2026-09-14T04:41:55.656Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:55.656Z"
+        "$d": "2026-09-14T05:08:11.692Z"
       }
     },
     {
@@ -102317,7 +102957,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102325,7 +102965,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "1945 inaugura el orden bipolar Estados Unidos-URSS y abre el ciclo descolonizador en Asia y África (India 1947, Indonesia, luego África). A y C contradicen el desplazamiento del poder fuera de Europa; B es falsa por la palabra «inmediata»: la descolonización tomó décadas.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-14T05:08:12.782Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102333,7 +102993,7 @@
         "$d": "2026-09-14T04:41:56.663Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:56.663Z"
+        "$d": "2026-09-14T05:08:12.795Z"
       }
     },
     {
@@ -102369,7 +103029,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102377,7 +103037,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Doctrina Truman (marzo de 1947), con la ayuda a Grecia y Turquía, formalizó la contención mediante apoyo económico y militar a países amenazados por el comunismo, antecedente del Plan Marshall y la OTAN. A, C y D contradicen la ruptura con la URSS.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:13.881Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102385,7 +103065,7 @@
         "$d": "2026-09-14T04:41:57.666Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:41:57.666Z"
+        "$d": "2026-09-14T05:08:13.893Z"
       }
     },
     {
@@ -102421,7 +103101,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102429,7 +103109,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Son hechos distintos y sucesivos: el Muro cae el 9 de noviembre de 1989 y la URSS se disuelve el 26 de diciembre de 1991, dos años después. Criterio propio: «cerró la división europea» es una formulación simbólica —el cierre jurídico llega con la reunificación de 1990 y la disolución del Pacto de Varsovia—, pero el eje de la pregunta es la cronología y solo A la tiene bien: B las funde, C reduce ambas a Alemania y D invierte el orden. No hay dos respuestas igual de defendibles.",
+          "confidence": 0.9,
+          "verifiedAt": "2026-09-14T05:08:14.983Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102437,7 +103137,7 @@
         "$d": "2026-09-14T04:42:04.428Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:42:04.428Z"
+        "$d": "2026-09-14T05:08:14.996Z"
       }
     },
     {
@@ -102473,7 +103173,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102481,7 +103181,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La globalización se define por la interdependencia creciente de mercados, flujos de capital, cadenas de producción y telecomunicaciones. A, C y D describen justo lo contrario del proceso.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:16.091Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102489,7 +103209,7 @@
         "$d": "2026-09-14T04:42:05.443Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:42:05.443Z"
+        "$d": "2026-09-14T05:08:16.104Z"
       }
     },
     {
@@ -102525,7 +103245,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102533,7 +103253,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La UE es supranacional: Comisión, Parlamento, Tribunal de Justicia y Banco Central ejercen competencias cedidas, y su derecho tiene primacía y efecto directo sobre el nacional. A la confunde con la OTAN; C y D niegan la cesión de soberanía que la define.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:17.195Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102541,7 +103281,7 @@
         "$d": "2026-09-14T04:42:06.458Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:42:06.458Z"
+        "$d": "2026-09-14T05:08:17.208Z"
       }
     },
     {
@@ -102577,7 +103317,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102585,7 +103325,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las emisiones de un país alteran el sistema climático global, así que causas y efectos cruzan fronteras y exigen cooperación (Kioto, París). B, C y D contradicen tanto la escala física del fenómeno como el reparto histórico de emisiones.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:18.297Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102593,7 +103353,7 @@
         "$d": "2026-09-14T04:42:07.476Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:42:07.476Z"
+        "$d": "2026-09-14T05:08:18.309Z"
       }
     },
     {
@@ -102629,7 +103389,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102637,7 +103397,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El ascenso chino, junto con India, Brasil y otros, desplaza el eje hacia un orden multipolar y hacia Asia-Pacífico. B es falsa (China entró a la OMC en 2001 y es la mayor exportadora); C se descarta por la cláusula «ahora como aliados militares», factualmente falsa; D contradice la propia existencia de la competencia con Estados Unidos.",
+          "confidence": 0.94,
+          "verifiedAt": "2026-09-14T05:08:19.401Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102645,7 +103425,7 @@
         "$d": "2026-09-14T04:42:08.491Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:42:08.491Z"
+        "$d": "2026-09-14T05:08:19.414Z"
       }
     },
     {
@@ -102681,7 +103461,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -102689,7 +103469,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Internet abarató y aceleró el acceso a la información y reconfiguró comercio, trabajo, participación política y sociabilidad desde los años noventa. A, C y D afirman efectos contrarios a los observados.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-14T05:08:20.503Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -102697,7 +103497,7 @@
         "$d": "2026-09-14T04:42:09.504Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T04:42:09.504Z"
+        "$d": "2026-09-14T05:08:20.516Z"
       }
     }
   ],

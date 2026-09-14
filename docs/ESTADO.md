@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-09-13 · Última fase ejecutada: **G82 (COMPLETADA — 40 reactivos de Historia Universal, IPN SOCADM: los 7 temas del temario, 100% TEMARIO_ONLY, insertados con `isVerified=false`; sesgo de longitud medido y corregido desde la composición hasta 35% (sano, bajo el umbral de advertencia); IPN SOCADM se mantiene en 72% `PARTIAL` hasta que la verificación ciega publique el lote — la cuenta de `content:guard` no se mueve todavía, mismo patrón que G75→G76 y G78→G79; banco 1 307 filas, 1 263 servibles sin cambio)**. Modelo real `claude-sonnet-5`. Ver §G82 abajo.
+Última actualización: 2026-09-13 · Última fase ejecutada: **G83 (COMPLETADA — verificación ciega de los 40 reactivos de Historia Universal que compuso G82: 40/40 auto-aprobados, y con ellos IPN «Ciencias Sociales y Administrativas» sube de **72% a 88%** del peso del examen, con **6 de sus 7 materias completas** — solo queda Civismo/Derecho en cero; banco **1 303 servibles** de 1 307 filas, cola de verificación en cero, brecha contra la meta de 1 500 = **197**)**. Modelo real `claude-opus-5`. Ver §G83 abajo.
+
+<details><summary>Historial: G82 (2026-09-13)</summary>
+
+Última actualización: 2026-09-13 · Última fase ejecutada: **G82 (COMPLETADA — 40 reactivos de Historia Universal, IPN SOCADM: los 7 temas del temario, 100% TEMARIO_ONLY, insertados con `isVerified=false`; sesgo de longitud medido y corregido desde la composición hasta 35% (sano, bajo el umbral de advertencia); IPN SOCADM se mantiene en 72% `PARTIAL` hasta que la verificación ciega publique el lote — la cuenta de `content:guard` no se mueve todavía, mismo patrón que G75→G76 y G78→G79; banco 1 307 filas, 1 263 servibles sin cambio)**. Modelo real `claude-sonnet-5`.
+
+</details>
 
 <details><summary>Historial: G81 (2026-09-13)</summary>
 
@@ -403,6 +409,148 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G83 — Verificación ciega: Historia Universal, IPN SOCADM (lote de G82) (2026-09-13)
+
+> Modelo real `claude-opus-5`. Los 40 reactivos de Historia Universal que
+> compuso G82 quedaron **40/40 auto-aprobados**, y con ellos IPN «Ciencias
+> Sociales y Administrativas» pasa de **72% a 88%** del peso del examen.
+> A diferencia de G81, esta fase **no** cambia el estado de elegibilidad — la
+> rama ya era `PARTIAL` y ofrecible desde entonces — pero deja **6 de sus 7
+> materias completas**: el único hueco que queda en toda la rama es
+> Civismo/Derecho.
+
+**① El aislamiento se comprobó por el contenido, no por la promesa del tipo.**
+La sesión no leyó el commit `180f553`, ni `build.mjs`, ni el JSON del lote, ni
+ninguna opción con su clave marcada. Su único insumo fue
+`pnpm content:blind-batch --all --limit 60`, que devolvió **exactamente 40
+pendientes** (los de G82; las 4 filas sin publicar de fases anteriores no entran
+en `loadPendingQuestionsWithContext`). El archivo exportado se inspeccionó antes
+de resolver: 40 ítems, cada opción reducida a `label`/`text`/`imageUrl`, **sin
+`isCorrect` ni `explanation`** — la garantía estructural de `buildBlindItem`
+(selección explícita de campos) más el mezclado determinista sembrado por
+`questionId`, así que ni la posición original de la clave viajó al archivo.
+
+**② 40/40 auto-aprobados (100%), y el 100% se repite en los siete temas:**
+Antigüedad clásica 5/5, Edad Media 5/5, Renacimiento 4/4, Ilustración y
+Liberalismo 6/6, Industrialización 6/6, Guerras Mundiales 8/8, Siglo XXI 6/6 —
+el reparto con más peso hacia el siglo XX que G82 se propuso, confirmado desde
+el lote ciego. Confianza mínima **0.90**, media **0.960**; cero problemas
+marcados, cero discrepancias — **la cola de F3 no creció y sigue en cero
+pendientes de resolución**. Ningún reactivo requería cálculo ejecutado
+(`requiresCalculation=false` en los 40, correcto: Historia no es materia de
+cálculo según `isCalcSubject`).
+
+**③ Cada dato con fecha, cifra o nombre propio se verificó antes de elegir, en
+el enunciado Y en los tres distractores.** Los comprobables: traslado del tesoro
+de la Liga de Delos **de Delos a Atenas en 454 a.C.** y conversión de las
+aportaciones en *phóros* (frente a la confederación igualitaria que el
+distractor propone); la **ley de ciudadanía de Pericles de 451 a.C.** que
+excluye a metecos, con el Areópago aristocrático previo a Clístenes como
+distractor históricamente real pero de otra época; las **reformas de Mario de
+107 a.C.** como origen del ejército clientelar; la **imprenta de Gutenberg hacia
+1450**; las **95 tesis de 1517** contra la indulgencia de **Johann Tetzel**,
+que financiaba San Pedro y la deuda de **Alberto de Brandeburgo con los
+Fugger**; la **Constitución de 1787** y el hecho de que la independencia de
+EE. UU. **no** abolió la esclavitud (persiste hasta 1865, que es justo lo que
+vuelve falso al distractor B); las **malas cosechas de 1788** y los privilegios
+fiscales de nobleza y clero antes de 1789; las fechas de unificación
+(**Italia 1861, Alemania 1871**, ambas posteriores a 1848, que descarta un
+distractor por cronología); las **abdicaciones de Bayona de 1808**;
+**Berlín 1884-1885** con la libertad de navegación en el Congo y el Níger y el
+principio de ocupación efectiva; **Múnich 1938** y la ocupación del resto de
+Checoslovaquia en **marzo de 1939**; **Hiroshima 6 de agosto, entrada soviética
+y Manchuria 8-9 de agosto, Nagasaki 9 de agosto, anuncio 15 de agosto de 1945**;
+la **Doctrina Truman de marzo de 1947** con la ayuda a Grecia y Turquía; y
+**Muro 9 de noviembre de 1989 / disolución de la URSS 26 de diciembre de 1991**.
+Ningún dato del enunciado ni de ningún distractor resultó incorrecto.
+
+**④ Tres casos de fecha o proceso con matiz historiográfico, resueltos con
+criterio propio y NO marcados como problema.** El criterio explícito de la fase
+era ese: marcar solo si hay dos respuestas igual de defendibles o un dato
+objetivamente falso.
+(a) **Expansión ibérica y «bloqueo otomano»** (#14): la historiografía reciente
+matiza que los otomanos no interrumpieron el flujo de especias vía Venecia y
+Egipto, sino que lo encarecieron. La opción lo enuncia como **factor
+concurrente** junto a la demanda de especias y los avances náuticos, no como
+causa única, y las otras tres son contrafactuales — resuelta con confianza
+**0.92**.
+(b) **Rendición de Japón** (#32): hay debate real sobre el peso relativo de la
+bomba atómica frente a la entrada soviética (Hasegawa), pero la opción **incluye
+ambos factores**, que es precisamente la formulación más defendible de las
+cuatro; la alternativa que habla de invasión terrestre aliada es falsa. 0.95.
+(c) **Muro de Berlín vs. disolución de la URSS** (#35): «cerró la división
+europea» es una formulación simbólica —el cierre jurídico llega con la
+reunificación de 1990 y la disolución del Pacto de Varsovia en 1991— pero el eje
+del reactivo es la **cronología**, y solo esa opción la tiene bien: una funde
+ambos hechos, otra los reduce a Alemania y otra invierte el orden. Confianza
+**0.90**, la más baja del lote, por la imprecisión retórica; no hay dos
+respuestas igual de defendibles, así que un `problems` habría bloqueado un
+reactivo correcto (misma lección que G76 §③ y G81 §④: cualquier entrada en
+`problems` manda el reactivo a `UNPUBLISHED`).
+
+**⑤ `pnpm content:guard` corrido DESPUÉS de la resolución.** IPN «Ciencias
+Sociales y Administrativas»:
+
+| | antes de G83 | después de G83 |
+|---|---|---|
+| Peso cubierto | 18/25 | **22/25** |
+| Porcentaje | 72% | **88%** |
+| Estado | `PARTIAL` | `PARTIAL` |
+| Materias servibles | 5/7 | **6/7** |
+| ¿Elegible? | sí | sí |
+
+Historia Universal (peso 4) movió el área **16 puntos porcentuales**. El estado
+no cambia porque la rama ya estaba por encima del umbral de 70% desde G81 — esta
+fase no abre nada, **cierra un hueco**. Detalle por materia después de G83:
+Historia de México peso 6 · sirve 40, Historia Universal peso 4 · sirve 40,
+Geografía peso 4 · sirve 40, Matemáticas Aplicadas peso 3 · sirve 35,
+Español/Lectura peso 3 · sirve 70 (por reutilización G26), Inglés peso 2 ·
+sirve 35 (íd.), y **✗ Civismo/Derecho peso 3 · sirve 0 · necesita 4**.
+
+**⑥ Lo que falta para las 7 materias completas: un solo lote.**
+Civismo/Derecho es la única materia en cero de la rama. Su cuota del diagnóstico
+—calculada por `apportionByWeight`, no por una constante paralela— es de **4
+reactivos**; el tamaño de lote que estas fases vienen usando (35-40) la cubre
+con margen y llevaría el área de **88% a 100% → `READY`**. Tiene además
+**1 de sus 4 temas con fragmentos fuente** clasificados, así que parte de ese
+lote podría salir `SOURCED` en vez de `TEMARIO_ONLY`. Estado global de la
+guarda: **7 áreas · 5 `READY` · 2 `PARTIAL` · 0 en «Próximamente»**; los dos
+huecos vivos en todo el producto son **Artes** (UNAM Humanidades y Artes, 80%) y
+**Civismo/Derecho** (IPN SOCADM, 88%). Las 4 aserciones **P1-P4 en verde**,
+incluida **P3** (la función real de la app y un recuento SQL independiente
+coinciden en las 7 áreas).
+
+**⑦ Acumulado real del banco: 1 263 → 1 303 servibles.** Contados por consulta
+directa a la base, no por el reporte: **1 307 `Question` en total, 1 303 con
+`isVerified=true`, 4 sin publicar** (las discrepancias históricas de fases
+anteriores, que esta fase no tocó). **Brecha contra la meta de 1 500 del PRD:
+197 reactivos (~5-6 lotes), banco al 87%.** La meta efectiva de G26 (1 222, que
+descuenta la reutilización de pools compartidos) sigue **superada**. Pendientes
+de resolución: **0** — la cola quedó vacía. Tasa de auto-aprobación global del
+pipeline: **99.8% (1 304/1 307)**. Anclaje en fuentes: 323 `SOURCED` (25%),
+984 `TEMARIO_ONLY`.
+
+**⑧ La lección de G77 se sostuvo, medida desde el propio lote ciego.** La señal
+de longitud es invariante bajo el mezclado, así que se puede medir sin ver la
+base: la clave fue **estrictamente la más larga en 14/40 (35.0%)** y
+estrictamente la más corta en **1/40 (2.5%)**. El 35% está dentro de la banda
+sana (advertencia de `LENGTH_BIAS` >40%, rechazo >45%) y coincide **exactamente**
+con lo que G82 reportó haber medido desde la composición — la medición estricta
+(los empates no cuentan en ninguna dirección) es la que corresponde al
+validador, como ya había anotado G79. Importa aquí más que en la UNAM porque IPN
+tiene **`shuffleOptions:false`**: cualquier pista de composición llega intacta al
+sustentante. El 2.5% de «más corta» no es un defecto: `LENGTH_BIAS` no tiene
+banda inferior a propósito (G77 §②).
+
+**⑨ Higiene.** `pnpm backup:export` regenerado (**6 332 filas**, 4.36 MB) para
+capturar los 40 `isVerified=true` y sus 40 registros `Question.verification`.
+`pnpm typecheck` y `pnpm lint` en verde. **No se tocó `prisma/schema.prisma`.**
+Los artefactos intermedios (`scripts/content-exports/g83-blind.json`,
+`g83-answers.json`) NO se versionan — esa ruta está en `.gitignore` desde
+siempre; el registro que sí queda en git es el `Question.verification` de cada
+reactivo dentro de `backups/content-bank.json`, con su respuesta elegida, su
+confianza, su razonamiento y el modelo real que la produjo.
 
 ## G82 — Lote de reactivos: Historia Universal, IPN SOCADM (2026-09-13)
 
