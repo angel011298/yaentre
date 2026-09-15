@@ -1,0 +1,92 @@
+[
+  {
+    "stem": "Al final de la meiosis, ¿cuántas células hijas se producen a partir de una célula diploide (2n), y en qué condición cromosómica quedan?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Cuatro células diploides (2n)",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Dos células haploides (n)",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Cuatro células haploides (n)",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Dos células diploides (2n)",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La meiosis incluye dos divisiones sucesivas (meiosis I y II) a partir de una sola replicación del ADN, así que el número de cromosomas se reduce a la mitad y el número de células se duplica dos veces."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Una célula 2n replica su ADN una vez. 2) Meiosis I separa homólogos, dando 2 células n. 3) Meiosis II separa cromátidas hermanas, dando 4 células n en total."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Dos células diploides describiría el resultado de la mitosis, no de la meiosis; cuatro células diploides ignoraría la reducción cromosómica; dos células haploides se queda a la mitad del proceso, tras solo la primera división."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué fase de la mitosis se separan las cromátidas hermanas y migran hacia polos opuestos de la célula?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En la telofase",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En la metafase",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En la profase",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En la anafase",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "En la anafase las proteínas del cinetocoro se desprenden y las fibras del huso tiran de cada cromátida hermana hacia el polo celular correspondiente, separándolas físicamente."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) En metafase los cromosomas se alinean en el ecuador. 2) En anafase el centrómero se divide y cada cromátida es jalada a un polo. 3) En telofase se forman los nuevos núcleos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "En la metafase los cromosomas solo se alinean, sin separarse todavía; en la profase apenas se condensa la cromatina y se forma el huso; en la telofase las cromátidas ya llegaron a los polos y se están formando los núcleos hijos."
+      }
+    ]
+  }
+]

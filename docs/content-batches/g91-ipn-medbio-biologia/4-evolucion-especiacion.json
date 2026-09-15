@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "¿Cuál de los siguientes es un requisito indispensable para que opere la selección natural en una población?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Que exista variación heredable entre los individuos",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Que la reproducción sea exclusivamente asexual",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Que todos los individuos compartan el mismo genotipo",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Que el ambiente permanezca completamente sin cambios",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Sin variación heredable no hay rasgos distintos sobre los cuales el ambiente pueda favorecer a unos individuos sobre otros, y sin herencia esa ventaja no pasaría a la siguiente generación."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Debe existir variación entre individuos. 2) Esa variación debe ser heredable. 3) Debe afectar la supervivencia o reproducción diferencial, para que la frecuencia de los rasgos favorables aumente con las generaciones."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Un genotipo idéntico en todos los individuos eliminaría la variación necesaria; un ambiente sin cambios no impide la selección, solo la hace menos evidente; y la selección natural también opera en poblaciones con reproducción sexual, que de hecho es la más común en la naturaleza."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cómo se llama el proceso de formación de nuevas especies cuando una población se divide por una barrera geográfica que impide el flujo génico entre sus partes?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Deriva génica",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Especiación simpátrica",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Convergencia evolutiva",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Especiación alopátrica",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "\"Alo-\" significa \"otro/distinto lugar\": las dos poblaciones quedan geográficamente separadas, acumulan diferencias genéticas por su cuenta y con el tiempo dejan de poder reproducirse entre sí."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Una barrera física (un río, una cordillera, un océano) divide a la población. 2) Cada grupo evoluciona por separado, sin flujo génico. 3) Con suficiente tiempo, las diferencias impiden la reproducción cruzada."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La especiación simpátrica ocurre SIN separación geográfica, dentro de la misma zona; la deriva génica es un mecanismo de cambio de frecuencias alélicas por azar, no un tipo de especiación; la convergencia evolutiva describe especies no emparentadas que desarrollan rasgos similares, lo opuesto a divergir de un ancestro común."
+      }
+    ]
+  },
+  {
+    "stem": "Las extremidades anteriores de un humano y las aletas de una ballena comparten el mismo origen embrionario y el mismo esquema óseo, aunque cumplan funciones distintas. ¿Cómo se llama este tipo de estructuras?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Estructuras vestigiales",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Estructuras convergentes",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Estructuras análogas",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Estructuras homólogas",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Las estructuras homólogas comparten origen evolutivo (un ancestro común) aunque su función actual haya divergido; el mismo patrón óseo del brazo humano y la aleta de la ballena delata ese parentesco."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Se comparan estructuras de dos especies. 2) Si el origen embrionario y la disposición ósea coinciden, hay homología, sin importar la función actual. 3) Brazo humano y aleta de ballena cumplen esa condición."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las estructuras análogas cumplen la MISMA función pero tienen origen distinto (como el ala de un ave y la de un insecto); las estructuras vestigiales son remanentes sin función actual (como el apéndice); \"estructuras convergentes\" describe el resultado de la convergencia evolutiva, el fenómeno opuesto a la homología."
+      }
+    ]
+  },
+  {
+    "stem": "El efecto de cuello de botella describe una pérdida abrupta de variabilidad genética en una población. ¿En qué tipo de poblaciones es más pronunciado este efecto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En poblaciones muy grandes y estables",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En poblaciones pequeñas",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "En poblaciones sin mutación alguna",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En poblaciones con apareamiento completamente al azar",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La deriva génica, el mecanismo detrás del cuello de botella, actúa por azar de muestreo entre generaciones; ese azar pesa mucho más cuando la muestra de individuos sobrevivientes es pequeña."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Un evento drástico reduce el tamaño de la población. 2) Los pocos sobrevivientes portan solo una fracción de los alelos originales. 3) Mientras más pequeña la población resultante, mayor la pérdida proporcional de variabilidad."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "En poblaciones muy grandes el azar de muestreo pesa poco, así que la variabilidad se conserva mejor; el apareamiento al azar por sí solo no reduce el tamaño poblacional, que es la causa del efecto; y la ausencia de mutación no provoca un cuello de botella, solo limita la fuente de variación nueva."
+      }
+    ]
+  }
+]

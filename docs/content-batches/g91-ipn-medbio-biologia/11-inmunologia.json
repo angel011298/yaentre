@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "¿Cuál es una característica distintiva de la inmunidad adaptativa (específica) que la inmunidad innata NO tiene?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Actúa de forma inmediata ante cualquier patógeno, sin distinguir su tipo",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Genera memoria inmunológica ante un patógeno específico",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Está presente desde el nacimiento como primera línea de defensa",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Incluye barreras físicas como la piel y las mucosas",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Solo la inmunidad adaptativa \"recuerda\" a un patógeno particular mediante linfocitos de memoria, lo que permite una respuesta más rápida y fuerte si ese mismo patógeno vuelve a presentarse."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Un patógeno específico activa a linfocitos B y T especializados. 2) Algunos de esos linfocitos quedan como células de memoria. 3) Un segundo contacto con el mismo patógeno dispara una respuesta mucho más veloz."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Actuar de inmediato sin distinguir el tipo de patógeno, incluir barreras físicas y estar presente desde el nacimiento son justo los rasgos que definen a la inmunidad INNATA, la que no genera memoria específica."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué tipo de célula del sistema inmunitario se diferencia en célula plasmática y produce anticuerpos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El linfocito T citotóxico",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El macrófago",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El neutrófilo",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El linfocito B",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Cuando un linfocito B reconoce su antígeno específico, se diferencia en célula plasmática, una fábrica especializada que secreta grandes cantidades de anticuerpos contra ese antígeno."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El linfocito B reconoce un antígeno específico. 2) Con ayuda de linfocitos T colaboradores, se activa y prolifera. 3) Algunas de esas células se diferencian en células plasmáticas que secretan anticuerpos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El linfocito T citotóxico destruye directamente a las células infectadas, sin producir anticuerpos; el macrófago fagocita patógenos y presenta antígenos, pero tampoco los produce; el neutrófilo es un fagocito de respuesta rápida, especializado en engullir patógenos, no en fabricar anticuerpos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es el principio biológico detrás de la vacunación?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sustituir de forma permanente la sangre del paciente por plasma con anticuerpos",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Exponer al sistema inmunitario a un antígeno debilitado para generar memoria sin causar la enfermedad",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Elevar la temperatura corporal para destruir al patógeno antes de que se replique",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Eliminar directamente al patógeno con antibióticos administrados por vía oral",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La vacuna contiene una versión debilitada, inactivada o solo un fragmento del patógeno; eso basta para que el sistema inmunitario genere células de memoria específicas, sin que la persona desarrolle la enfermedad real."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Se inyecta el antígeno debilitado o inactivo. 2) El sistema inmunitario lo reconoce y monta una respuesta adaptativa. 3) Quedan linfocitos de memoria, listos para responder rápido ante el patógeno real en el futuro."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los antibióticos combaten bacterias directamente y no funcionan contra virus ni generan memoria inmunológica; la fiebre es una respuesta del cuerpo, no un mecanismo que las vacunas induzcan a propósito; y ninguna vacuna reemplaza la sangre del paciente, solo estimula su propio sistema inmunitario."
+      }
+    ]
+  },
+  {
+    "stem": "El enrojecimiento, el calor, la hinchazón y el dolor en una herida infectada son señales clásicas de, ¿qué proceso inmunitario?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La necrosis",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La anafilaxia",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La autoinmunidad",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La inflamación",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La inflamación es la respuesta inicial del cuerpo ante una infección o lesión: los vasos sanguíneos se dilatan y se vuelven más permeables, lo que produce enrojecimiento, calor, hinchazón y dolor mientras llegan células inmunitarias a combatir al patógeno."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El tejido dañado o infectado libera señales químicas de alarma. 2) Los vasos sanguíneos cercanos se dilatan y permiten el paso de células inmunitarias. 3) Ese aumento de flujo y de células produce los cuatro signos clásicos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La necrosis es la muerte del tejido por daño, una consecuencia posible, no la respuesta inmune activa en sí; la anafilaxia es una reacción alérgica grave y generalizada, no la respuesta local a una herida; la autoinmunidad ocurre cuando el sistema ataca tejido propio sano, algo distinto a defenderse de una infección real."
+      }
+    ]
+  }
+]

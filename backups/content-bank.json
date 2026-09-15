@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-15T00:50:05.669Z",
+    "exportedAt": "2026-09-15T01:11:55.998Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -31,11 +31,11 @@
       "Topic": 217,
       "Passage": 16,
       "SourceChunk": 380,
-      "Question": 1427,
+      "Question": 1467,
       "QuestionSourceChunk": 441,
-      "ExplanationLayer": 4281
+      "ExplanationLayer": 4401
     },
-    "totalRows": 6866
+    "totalRows": 7026
   },
   "Institution": [
     {
@@ -112141,6 +112141,2086 @@
       "updatedAt": {
         "$d": "2026-09-15T00:44:46.539Z"
       }
+    },
+    {
+      "id": "cmu1z4lwj0001wmanfvilves3",
+      "topicId": "cmrr1llci00c1hi3nt6n3ladi",
+      "stem": "¿Cuál organelo celular es responsable de sintetizar ATP mediante la respiración celular aeróbica?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La mitocondria",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El lisosoma",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El aparato de Golgi",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El retículo endoplásmico liso",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:07.939Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:07.939Z"
+      }
+    },
+    {
+      "id": "cmu1z4mp10006wmaneohn147u",
+      "topicId": "cmrr1llci00c1hi3nt6n3ladi",
+      "stem": "¿Cuál de las siguientes estructuras está presente en una célula vegetal típica pero ausente en una célula animal?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El cloroplasto",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La mitocondria",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El núcleo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El ribosoma",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:08.965Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:08.965Z"
+      }
+    },
+    {
+      "id": "cmu1z4rxq0001ql4f2x8fxb26",
+      "topicId": "cmrr1llxy00c3hi3n48gs3bc3",
+      "stem": "Al final de la meiosis, ¿cuántas células hijas se producen a partir de una célula diploide (2n), y en qué condición cromosómica quedan?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Cuatro células diploides (2n)",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Dos células haploides (n)",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Cuatro células haploides (n)",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Dos células diploides (2n)",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:15.758Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:15.758Z"
+      }
+    },
+    {
+      "id": "cmu1z4spx0006ql4f1p6zznt7",
+      "topicId": "cmrr1llxy00c3hi3n48gs3bc3",
+      "stem": "¿En qué fase de la mitosis se separan las cromátidas hermanas y migran hacia polos opuestos de la célula?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En la telofase",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En la metafase",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En la profase",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En la anafase",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:16.773Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:16.773Z"
+      }
+    },
+    {
+      "id": "cmu1z4xx60001sr33t7x61mv7",
+      "topicId": "cmrr1lmki00c5hi3nh1nfudgz",
+      "stem": "Se cruzan dos plantas heterocigotas para un carácter con dominancia completa (Aa x Aa). ¿Qué proporción fenotípica se espera en la descendencia?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "9 dominante : 3 : 3 : 1 recesivo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "1 dominante : 2 intermedio : 1 recesivo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "3 dominante : 1 recesivo",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "1 dominante : 1 recesivo",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:23.514Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:23.514Z"
+      }
+    },
+    {
+      "id": "cmu1z4yow0006sr33hus0zenx",
+      "topicId": "cmrr1lmki00c5hi3nh1nfudgz",
+      "stem": "En una cruza dihíbrida AaBb x AaBb, con los dos genes en cromosomas distintos y dominancia completa en ambos, ¿cuál es la proporción fenotípica esperada en la descendencia?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "1 : 1 : 1 : 1",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "9 : 3 : 3 : 1",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "1 : 2 : 1",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "3 : 1",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:24.512Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:24.512Z"
+      }
+    },
+    {
+      "id": "cmu1z4zhg000bsr332zl0ecms",
+      "topicId": "cmrr1lmki00c5hi3nh1nfudgz",
+      "stem": "¿Cuál es el propósito de una cruza de prueba (testcross), en la que un individuo de fenotipo dominante se cruza con uno homocigoto recesivo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Producir descendencia con dominancia incompleta",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Determinar si el individuo dominante es homocigoto o heterocigoto",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Aumentar la variabilidad genética de la población",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Determinar el sexo de la descendencia resultante",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:25.540Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:25.540Z"
+      }
+    },
+    {
+      "id": "cmu1z54r600019th3hqtr9f6f",
+      "topicId": "cmrr1lna200c7hi3ng99a01mt",
+      "stem": "¿Cuál de los siguientes es un requisito indispensable para que opere la selección natural en una población?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Que exista variación heredable entre los individuos",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Que la reproducción sea exclusivamente asexual",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Que todos los individuos compartan el mismo genotipo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Que el ambiente permanezca completamente sin cambios",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:32.370Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:32.370Z"
+      }
+    },
+    {
+      "id": "cmu1z55iu00069th3pc2owrj5",
+      "topicId": "cmrr1lna200c7hi3ng99a01mt",
+      "stem": "¿Cómo se llama el proceso de formación de nuevas especies cuando una población se divide por una barrera geográfica que impide el flujo génico entre sus partes?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Deriva génica",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Especiación simpátrica",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Convergencia evolutiva",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Especiación alopátrica",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:33.367Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:33.367Z"
+      }
+    },
+    {
+      "id": "cmu1z56an000b9th34s0y6o9s",
+      "topicId": "cmrr1lna200c7hi3ng99a01mt",
+      "stem": "Las extremidades anteriores de un humano y las aletas de una ballena comparten el mismo origen embrionario y el mismo esquema óseo, aunque cumplan funciones distintas. ¿Cómo se llama este tipo de estructuras?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Estructuras vestigiales",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Estructuras convergentes",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Estructuras análogas",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Estructuras homólogas",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:34.367Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:34.367Z"
+      }
+    },
+    {
+      "id": "cmu1z572d000g9th3pjctpjyp",
+      "topicId": "cmrr1lna200c7hi3ng99a01mt",
+      "stem": "El efecto de cuello de botella describe una pérdida abrupta de variabilidad genética en una población. ¿En qué tipo de poblaciones es más pronunciado este efecto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En poblaciones muy grandes y estables",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En poblaciones pequeñas",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "En poblaciones sin mutación alguna",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En poblaciones con apareamiento completamente al azar",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:35.365Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:35.365Z"
+      }
+    },
+    {
+      "id": "cmu1z5c850001jmlpvprxbmin",
+      "topicId": "cmrr1lnwu00c9hi3n65dklvcg",
+      "stem": "De acuerdo con la regla del 10%, si el nivel de los productores de un ecosistema contiene 10,000 kcal de energía disponible, ¿cuánta energía aproximadamente pasará al siguiente nivel trófico (herbívoros)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "1,000 kcal",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "100 kcal",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "10,000 kcal",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "5,000 kcal",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:42.053Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:42.053Z"
+      }
+    },
+    {
+      "id": "cmu1z5d050006jmlp8dr3fhmj",
+      "topicId": "cmrr1lnwu00c9hi3n65dklvcg",
+      "stem": "En la relación entre las abejas y las flores que polinizan, ambas especies obtienen un beneficio (alimento y reproducción, respectivamente). ¿Qué tipo de relación ecológica es esta?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Parasitismo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Comensalismo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Depredación",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Mutualismo",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:43.061Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:43.061Z"
+      }
+    },
+    {
+      "id": "cmu1z5dry000bjmlp23zpnvgy",
+      "topicId": "cmrr1lnwu00c9hi3n65dklvcg",
+      "stem": "¿Cuál es la diferencia principal entre la sucesión ecológica primaria y la secundaria?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La primaria inicia en un sustrato sin suelo previo, la secundaria donde ya existía suelo",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La secundaria culmina en un ecosistema distinto al original, la primaria regresa al mismo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La primaria ocurre solo en ecosistemas acuáticos, la secundaria solo en terrestres",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La primaria es más rápida porque no requiere especies colonizadoras pioneras",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:44.062Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:44.062Z"
+      }
+    },
+    {
+      "id": "cmu1z5iyc0001y7k8ru1chkq9",
+      "topicId": "cmrr1loic00cbhi3n5pmdjy4s",
+      "stem": "¿Cuántas cavidades tiene el corazón humano y cómo se llaman en conjunto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Tres: dos aurículas y un ventrículo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Cuatro: cuatro ventrículos, sin aurículas",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Dos: una aurícula y un ventrículo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Cuatro: dos aurículas y dos ventrículos",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:50.772Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:50.772Z"
+      }
+    },
+    {
+      "id": "cmu1z5jq80006y7k8cnpj3hgd",
+      "topicId": "cmrr1loic00cbhi3n5pmdjy4s",
+      "stem": "¿En qué estructura del sistema respiratorio ocurre el intercambio gaseoso entre el aire inhalado y la sangre?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En la tráquea",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En los bronquios",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En la laringe",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "En los alvéolos pulmonares",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:51.776Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:51.776Z"
+      }
+    },
+    {
+      "id": "cmu1z5khw000by7k89txpfupi",
+      "topicId": "cmrr1loic00cbhi3n5pmdjy4s",
+      "stem": "¿Qué enzima gástrica, activa en un medio ácido, inicia la digestión de las proteínas en el estómago?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La lipasa pancreática",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La amilasa salival",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La pepsina",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "La tripsina",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:52.772Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:52.772Z"
+      }
+    },
+    {
+      "id": "cmu1z5l9l000gy7k87ifmk35m",
+      "topicId": "cmrr1loic00cbhi3n5pmdjy4s",
+      "stem": "¿Qué tejido conectivo fibroso une un músculo esquelético al hueso, transmitiendo la fuerza de la contracción para producir movimiento?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La fascia",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El ligamento",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El tendón",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El cartílago",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:09:53.770Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:09:53.770Z"
+      }
+    },
+    {
+      "id": "cmu1z5qhz0001bbisfpexvl4t",
+      "topicId": "cmrr1lp0o00cdhi3ndgljb0oq",
+      "stem": "Durante la glucólisis, una molécula de glucosa se degrada hasta dos moléculas de piruvato. ¿Cuál es la ganancia NETA de ATP en este proceso?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "4 ATP netos",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "0 ATP netos",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "36 ATP netos",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "2 ATP netos",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:00.551Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:00.551Z"
+      }
+    },
+    {
+      "id": "cmu1z5r9l0006bbismtq6itlh",
+      "topicId": "cmrr1lp0o00cdhi3ndgljb0oq",
+      "stem": "¿Cuál de las siguientes vitaminas es liposoluble y puede almacenarse en el tejido adiposo y el hígado del cuerpo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Vitamina A",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Vitamina C",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Vitamina B1",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Vitamina B12",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:01.545Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:01.545Z"
+      }
+    },
+    {
+      "id": "cmu1z5s15000bbbis3rr99dp9",
+      "topicId": "cmrr1lp0o00cdhi3ndgljb0oq",
+      "stem": "¿Qué se entiende por tasa metabólica basal (TMB)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La energía total que una persona gasta al realizar ejercicio intenso",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La cantidad de calorías que se pierden únicamente por respirar",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El total de proteínas que el cuerpo sintetiza a lo largo de un día",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La energía mínima que el cuerpo requiere en reposo para sus funciones vitales",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:02.537Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:02.537Z"
+      }
+    },
+    {
+      "id": "cmu1z5x6z0001vna2ihn85c9e",
+      "topicId": "cmrr1lpnf00cfhi3nhjt742fa",
+      "stem": "¿Cómo se define la homeostasis en un organismo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La eliminación completa de desechos metabólicos del cuerpo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La capacidad de mantener un ambiente interno estable pese a cambios externos",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La producción exclusiva de hormonas por las glándulas endocrinas",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El proceso de crecimiento acelerado de un organismo durante la pubertad",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:09.228Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:09.228Z"
+      }
+    },
+    {
+      "id": "cmu1z5xyh0006vna2p54y0z51",
+      "topicId": "cmrr1lpnf00cfhi3nhjt742fa",
+      "stem": "Cuando la glucosa en sangre sube después de una comida, el páncreas libera insulina, lo que hace que la glucosa vuelva a bajar. ¿Qué tipo de mecanismo de control representa este ejemplo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Reflejo somático",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Inhibición competitiva",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Retroalimentación negativa",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Retroalimentación positiva",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:10.217Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:10.217Z"
+      }
+    },
+    {
+      "id": "cmu1z5ypv000bvna2hfh4hqs6",
+      "topicId": "cmrr1lpnf00cfhi3nhjt742fa",
+      "stem": "¿Qué mecanismo fisiológico ayuda a un humano a disminuir su temperatura corporal cuando hace mucho calor?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La vasoconstricción de los vasos sanguíneos periféricos",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El escalofrío, que genera calor mediante contracción muscular",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La sudoración, que enfría la piel al evaporarse",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El aumento del metabolismo basal para generar más calor",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:11.203Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:11.203Z"
+      }
+    },
+    {
+      "id": "cmu1z5zh7000gvna29ijcs6s4",
+      "topicId": "cmrr1lpnf00cfhi3nhjt742fa",
+      "stem": "¿Cuál es el rango normal aproximado del pH de la sangre humana, que el cuerpo mantiene mediante amortiguadores y la acción de riñones y pulmones?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "6.0 a 6.5",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "7.35 a 7.45",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "8.0 a 8.5",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "5.0 a 5.5",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:12.187Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:12.187Z"
+      }
+    },
+    {
+      "id": "cmu1z64nl000110tyyxww7exp",
+      "topicId": "cmrr1lqap00chhi3ny40hb0kj",
+      "stem": "¿Qué parte de la neurona se especializa en recibir señales de otras neuronas y transmitirlas hacia el cuerpo celular?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El axón",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La vaina de mielina",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Las dendritas",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El botón sináptico",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:18.897Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:18.897Z"
+      }
+    },
+    {
+      "id": "cmu1z65fh000610tyhr7p0yz4",
+      "topicId": "cmrr1lqap00chhi3ny40hb0kj",
+      "stem": "¿Qué estructuras conforman el sistema nervioso central (SNC)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Los receptores sensoriales de la piel",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El encéfalo y la médula espinal",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Los nervios craneales y espinales",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los ganglios simpáticos y parasimpáticos",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:19.901Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:19.901Z"
+      }
+    },
+    {
+      "id": "cmu1z6677000b10tys6zomj1t",
+      "topicId": "cmrr1lqap00chhi3ny40hb0kj",
+      "stem": "En una sinapsis química, ¿qué sustancia libera la neurona presináptica hacia el espacio sináptico para comunicarse con la siguiente neurona?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Neurotransmisores",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Iones de calcio",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Hormonas",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Enzimas digestivas",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:20.899Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:20.899Z"
+      }
+    },
+    {
+      "id": "cmu1z66yx000g10tye5qhzd87",
+      "topicId": "cmrr1lqap00chhi3ny40hb0kj",
+      "stem": "Al tocar accidentalmente una superficie muy caliente, retiras la mano antes de sentir el dolor conscientemente. ¿Qué estructura coordina esta respuesta refleja tan rápida?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La médula espinal",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El hipotálamo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El cerebelo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La corteza cerebral",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:21.897Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:21.897Z"
+      }
+    },
+    {
+      "id": "cmu1z6c780001lgj3cncsiz6u",
+      "topicId": "cmrr1lqux00cjhi3nkigfso9u",
+      "stem": "¿Qué glándula produce la insulina, la hormona que permite a las células captar la glucosa de la sangre?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El páncreas",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La glándula tiroides",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La hipófisis",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Las glándulas suprarrenales",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:28.677Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:28.677Z"
+      }
+    },
+    {
+      "id": "cmu1z6cz90006lgj3xyi92eqx",
+      "topicId": "cmrr1lqux00cjhi3nkigfso9u",
+      "stem": "¿Qué efecto tiene un exceso de hormona tiroidea (hipertiroidismo) sobre el metabolismo del cuerpo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Lo acelera, aumentando el consumo de energía y la frecuencia cardiaca",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "No produce ningún efecto sobre el metabolismo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Lo desacelera, provocando fatiga y aumento de peso",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Detiene por completo la producción de insulina",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:29.685Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:29.685Z"
+      }
+    },
+    {
+      "id": "cmu1z6dra000blgj3p2e7qjup",
+      "topicId": "cmrr1lqux00cjhi3nkigfso9u",
+      "stem": "¿Cuál es la diferencia principal entre una glándula endocrina y una glándula exocrina?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La endocrina vierte su secreción a la sangre sin conductos; la exocrina usa conductos",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La endocrina produce enzimas digestivas; la exocrina produce hormonas",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La endocrina solo funciona durante la niñez; la exocrina, toda la vida",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La endocrina se localiza solo en el cerebro; la exocrina, en el resto del cuerpo",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:30.694Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:30.694Z"
+      }
+    },
+    {
+      "id": "cmu1z6iy60001mjr97l3gxhmq",
+      "topicId": "cmrr1lre900clhi3n7hblv5ld",
+      "stem": "¿Cuál es una característica distintiva de la inmunidad adaptativa (específica) que la inmunidad innata NO tiene?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Actúa de forma inmediata ante cualquier patógeno, sin distinguir su tipo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Genera memoria inmunológica ante un patógeno específico",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Está presente desde el nacimiento como primera línea de defensa",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Incluye barreras físicas como la piel y las mucosas",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:37.422Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:37.422Z"
+      }
+    },
+    {
+      "id": "cmu1z6jq70006mjr9j7x1u66l",
+      "topicId": "cmrr1lre900clhi3n7hblv5ld",
+      "stem": "¿Qué tipo de célula del sistema inmunitario se diferencia en célula plasmática y produce anticuerpos?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El linfocito T citotóxico",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El macrófago",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El neutrófilo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El linfocito B",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:38.431Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:38.431Z"
+      }
+    },
+    {
+      "id": "cmu1z6ki6000bmjr9w7myfb2y",
+      "topicId": "cmrr1lre900clhi3n7hblv5ld",
+      "stem": "¿Cuál es el principio biológico detrás de la vacunación?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Sustituir de forma permanente la sangre del paciente por plasma con anticuerpos",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Exponer al sistema inmunitario a un antígeno debilitado para generar memoria sin causar la enfermedad",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Elevar la temperatura corporal para destruir al patógeno antes de que se replique",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Eliminar directamente al patógeno con antibióticos administrados por vía oral",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:39.438Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:39.438Z"
+      }
+    },
+    {
+      "id": "cmu1z6la0000gmjr9i79luy5t",
+      "topicId": "cmrr1lre900clhi3n7hblv5ld",
+      "stem": "El enrojecimiento, el calor, la hinchazón y el dolor en una herida infectada son señales clásicas de, ¿qué proceso inmunitario?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La necrosis",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La anafilaxia",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La autoinmunidad",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La inflamación",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:40.440Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:40.440Z"
+      }
+    },
+    {
+      "id": "cmu1z6qia00012ql8a0ziqy2u",
+      "topicId": "cmrr1lrzg00cnhi3noybre7vu",
+      "stem": "¿Cuántos cromosomas aporta cada gameto humano (óvulo y espermatozoide) a la fecundación, y cuántos resultan en el cigoto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "46 cada gameto, 92 en el cigoto",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "23 cada gameto, 46 en el cigoto",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "23 cada gameto, 23 en el cigoto",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "46 cada gameto, 46 en el cigoto",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:47.218Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:47.218Z"
+      }
+    },
+    {
+      "id": "cmu1z6rah00062ql89gvq81mo",
+      "topicId": "cmrr1lrzg00cnhi3noybre7vu",
+      "stem": "¿En qué parte del sistema reproductor femenino ocurre normalmente la fecundación?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "En el útero",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "En la vagina",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "En las trompas de Falopio",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "En el ovario",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:48.233Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:48.233Z"
+      }
+    },
+    {
+      "id": "cmu1z6s2l000b2ql8u9myrw02",
+      "topicId": "cmrr1lrzg00cnhi3noybre7vu",
+      "stem": "¿Cuál es la función principal de la placenta durante el embarazo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Sustituir a los pulmones del feto justo después de nacer",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Permitir el intercambio de nutrientes, gases y desechos entre madre y feto",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Servir como el único sitio posible de fecundación del óvulo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Producir los óvulos que después serán fecundados",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:49.245Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:49.245Z"
+      }
+    },
+    {
+      "id": "cmu1z6svd000g2ql8272b66u4",
+      "topicId": "cmrr1lrzg00cnhi3noybre7vu",
+      "stem": "¿Qué evento hormonal desencadena la ovulación durante el ciclo menstrual?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La ausencia total de FSH durante la fase lútea",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Una caída sostenida de estrógeno durante toda la fase folicular",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Un pico repentino de la hormona luteinizante (LH)",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Un aumento gradual de progesterona desde el primer día del ciclo",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T01:10:50.281Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T01:10:50.281Z"
+      }
     }
   ],
   "QuestionSourceChunk": [
@@ -149479,6 +151559,966 @@
       "layer": 3,
       "title": "Por qué no las otras opciones",
       "content": "$400\\,\\text{m/s}$ es el valor de $v^2$ sin sacar la raíz cuadrada; $14.1\\,\\text{m/s}$ olvida el factor 2 en $v^2=2gh$, calculando $\\sqrt{gh}=\\sqrt{200}\\approx14.1$; $40\\,\\text{m/s}$ duplica el resultado correcto sin justificación física.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4lwj0002wmansi0dygb5",
+      "questionId": "cmu1z4lwj0001wmanfvilves3",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La mitocondria posee su propia doble membrana y las enzimas de la cadena respiratoria; ahí ocurren el ciclo de Krebs y la fosforilación oxidativa que producen la mayor parte del ATP celular.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4lwj0003wmannao2fipw",
+      "questionId": "cmu1z4lwj0001wmanfvilves3",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La glucólisis en el citosol produce piruvato. 2) El piruvato entra a la mitocondria. 3) Ahí el ciclo de Krebs y la cadena de transporte de electrones generan la mayoría del ATP mediante O2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4lwj0004wman0buwsy20",
+      "questionId": "cmu1z4lwj0001wmanfvilves3",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El aparato de Golgi empaca y modifica proteínas para su transporte, no produce ATP; el retículo liso sintetiza lípidos y participa en la desintoxicación; el lisosoma digiere macromoléculas con enzimas, sin generar energía.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4mp10007wmanxkg59dch",
+      "questionId": "cmu1z4mp10006wmaneohn147u",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El cloroplasto es el organelo fotosintético que capta luz para producir glucosa; solo aparece en células con capacidad fotosintética, como las de plantas y algas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4mp10008wman1j0b8ps5",
+      "questionId": "cmu1z4mp10006wmaneohn147u",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Ambas células, animal y vegetal, son eucariontes. 2) Comparten núcleo, mitocondrias y ribosomas. 3) Solo la vegetal añade cloroplastos, pared celular y una vacuola central grande.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4mp10009wman3v7tr2nd",
+      "questionId": "cmu1z4mp10006wmaneohn147u",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La mitocondria, el núcleo y el ribosoma son organelos comunes a toda célula eucarionte, animal o vegetal, así que ninguno distingue a la célula vegetal por sí solo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4rxq0002ql4fh27p2qtu",
+      "questionId": "cmu1z4rxq0001ql4f2x8fxb26",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La meiosis incluye dos divisiones sucesivas (meiosis I y II) a partir de una sola replicación del ADN, así que el número de cromosomas se reduce a la mitad y el número de células se duplica dos veces.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4rxq0003ql4fhennt4b0",
+      "questionId": "cmu1z4rxq0001ql4f2x8fxb26",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Una célula 2n replica su ADN una vez. 2) Meiosis I separa homólogos, dando 2 células n. 3) Meiosis II separa cromátidas hermanas, dando 4 células n en total.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4rxq0004ql4f533geouh",
+      "questionId": "cmu1z4rxq0001ql4f2x8fxb26",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Dos células diploides describiría el resultado de la mitosis, no de la meiosis; cuatro células diploides ignoraría la reducción cromosómica; dos células haploides se queda a la mitad del proceso, tras solo la primera división.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4spx0007ql4ff93fua7h",
+      "questionId": "cmu1z4spx0006ql4f1p6zznt7",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "En la anafase las proteínas del cinetocoro se desprenden y las fibras del huso tiran de cada cromátida hermana hacia el polo celular correspondiente, separándolas físicamente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4spx0008ql4fwfyrw6s3",
+      "questionId": "cmu1z4spx0006ql4f1p6zznt7",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) En metafase los cromosomas se alinean en el ecuador. 2) En anafase el centrómero se divide y cada cromátida es jalada a un polo. 3) En telofase se forman los nuevos núcleos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4spx0009ql4f5h5ovalz",
+      "questionId": "cmu1z4spx0006ql4f1p6zznt7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "En la metafase los cromosomas solo se alinean, sin separarse todavía; en la profase apenas se condensa la cromatina y se forma el huso; en la telofase las cromátidas ya llegaron a los polos y se están formando los núcleos hijos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4xx60002sr33wf081pqm",
+      "questionId": "cmu1z4xx60001sr33t7x61mv7",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El cuadro de Punnett para Aa x Aa da los genotipos AA, Aa, Aa y aa (1:2:1). Como A es dominante completo, AA y Aa comparten el mismo fenotipo, así que fenotípicamente queda 3:1.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4xx60003sr337dz9l2q9",
+      "questionId": "cmu1z4xx60001sr33t7x61mv7",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Gametos posibles de cada progenitor: A, a. 2) Combinaciones: AA, Aa, aA, aa. 3) Fenotipos: 3 muestran el rasgo dominante (AA, Aa, aA) y 1 el recesivo (aa).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4xx60004sr33umpzhr1a",
+      "questionId": "cmu1z4xx60001sr33t7x61mv7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "1:2:1 es la proporción GENOTÍPICA, no la fenotípica, y solo aplica si hubiera dominancia incompleta; 1:1 correspondería a una cruza de prueba (Aa x aa); 9:3:3:1 es la proporción de una cruza DIHÍBRIDA con dos genes, no de una sola.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4yow0007sr33xw76iw40",
+      "questionId": "cmu1z4yow0006sr33hus0zenx",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Con segregación independiente, cada gen se hereda por separado; el cuadro de Punnett de 16 combinaciones agrupa los fenotipos en 9 con ambos dominantes, 3 y 3 con uno dominante y uno recesivo, y 1 con ambos recesivos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4yow0008sr3355bw1wym",
+      "questionId": "cmu1z4yow0006sr33hus0zenx",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Gametos posibles de cada progenitor: AB, Ab, aB, ab. 2) Las 16 combinaciones del cuadro se agrupan por fenotipo. 3) El resultado es 9 (A_B_) : 3 (A_bb) : 3 (aaB_) : 1 (aabb).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4yow0009sr33knhb5d9s",
+      "questionId": "cmu1z4yow0006sr33hus0zenx",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "3:1 es el resultado de una cruza MONOhíbrida con un solo gen, no de dos; 1:2:1 describe genotipos con dominancia incompleta en un solo gen; 1:1:1:1 sería el resultado de una cruza de prueba dihíbrida (AaBb x aabb), no de AaBb x AaBb.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4zhg000csr33p1n7oklf",
+      "questionId": "cmu1z4zhg000bsr332zl0ecms",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Un homocigoto recesivo solo aporta alelos recesivos, así que el fenotipo de la descendencia revela directamente qué gametos produjo el progenitor de fenotipo dominante, sin que su otro alelo quede oculto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4zhg000dsr33n5iey815",
+      "questionId": "cmu1z4zhg000bsr332zl0ecms",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Se cruza el individuo de fenotipo dominante (genotipo desconocido) con aa. 2) Si es AA, toda la descendencia es Aa (dominante). 3) Si es Aa, la mitad de la descendencia es aa (recesivo).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z4zhg000esr33n7m48aml",
+      "questionId": "cmu1z4zhg000bsr332zl0ecms",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El sexo de la descendencia se define por los cromosomas sexuales, no por esta cruza; la dominancia incompleta es una propiedad del gen en cuestión, no algo que la cruza \"produzca\"; y una sola cruza dirigida no aumenta la variabilidad genética de una población.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z54r600029th33ou3aswd",
+      "questionId": "cmu1z54r600019th3hqtr9f6f",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Sin variación heredable no hay rasgos distintos sobre los cuales el ambiente pueda favorecer a unos individuos sobre otros, y sin herencia esa ventaja no pasaría a la siguiente generación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z54r600039th3kon1vxxo",
+      "questionId": "cmu1z54r600019th3hqtr9f6f",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Debe existir variación entre individuos. 2) Esa variación debe ser heredable. 3) Debe afectar la supervivencia o reproducción diferencial, para que la frecuencia de los rasgos favorables aumente con las generaciones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z54r600049th3hjijbq7g",
+      "questionId": "cmu1z54r600019th3hqtr9f6f",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Un genotipo idéntico en todos los individuos eliminaría la variación necesaria; un ambiente sin cambios no impide la selección, solo la hace menos evidente; y la selección natural también opera en poblaciones con reproducción sexual, que de hecho es la más común en la naturaleza.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z55iv00079th3lrsmjilv",
+      "questionId": "cmu1z55iu00069th3pc2owrj5",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "\"Alo-\" significa \"otro/distinto lugar\": las dos poblaciones quedan geográficamente separadas, acumulan diferencias genéticas por su cuenta y con el tiempo dejan de poder reproducirse entre sí.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z55iv00089th3aeqyfhln",
+      "questionId": "cmu1z55iu00069th3pc2owrj5",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Una barrera física (un río, una cordillera, un océano) divide a la población. 2) Cada grupo evoluciona por separado, sin flujo génico. 3) Con suficiente tiempo, las diferencias impiden la reproducción cruzada.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z55iv00099th31t1rfwf6",
+      "questionId": "cmu1z55iu00069th3pc2owrj5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La especiación simpátrica ocurre SIN separación geográfica, dentro de la misma zona; la deriva génica es un mecanismo de cambio de frecuencias alélicas por azar, no un tipo de especiación; la convergencia evolutiva describe especies no emparentadas que desarrollan rasgos similares, lo opuesto a divergir de un ancestro común.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z56an000c9th3h27n6luz",
+      "questionId": "cmu1z56an000b9th34s0y6o9s",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Las estructuras homólogas comparten origen evolutivo (un ancestro común) aunque su función actual haya divergido; el mismo patrón óseo del brazo humano y la aleta de la ballena delata ese parentesco.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z56an000d9th3oycyuh5g",
+      "questionId": "cmu1z56an000b9th34s0y6o9s",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Se comparan estructuras de dos especies. 2) Si el origen embrionario y la disposición ósea coinciden, hay homología, sin importar la función actual. 3) Brazo humano y aleta de ballena cumplen esa condición.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z56an000e9th3gcxg33zh",
+      "questionId": "cmu1z56an000b9th34s0y6o9s",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las estructuras análogas cumplen la MISMA función pero tienen origen distinto (como el ala de un ave y la de un insecto); las estructuras vestigiales son remanentes sin función actual (como el apéndice); \"estructuras convergentes\" describe el resultado de la convergencia evolutiva, el fenómeno opuesto a la homología.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z572d000h9th34n5dqb40",
+      "questionId": "cmu1z572d000g9th3pjctpjyp",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La deriva génica, el mecanismo detrás del cuello de botella, actúa por azar de muestreo entre generaciones; ese azar pesa mucho más cuando la muestra de individuos sobrevivientes es pequeña.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z572e000i9th3kc2qsgss",
+      "questionId": "cmu1z572d000g9th3pjctpjyp",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Un evento drástico reduce el tamaño de la población. 2) Los pocos sobrevivientes portan solo una fracción de los alelos originales. 3) Mientras más pequeña la población resultante, mayor la pérdida proporcional de variabilidad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z572e000j9th3ievp7gcc",
+      "questionId": "cmu1z572d000g9th3pjctpjyp",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "En poblaciones muy grandes el azar de muestreo pesa poco, así que la variabilidad se conserva mejor; el apareamiento al azar por sí solo no reduce el tamaño poblacional, que es la causa del efecto; y la ausencia de mutación no provoca un cuello de botella, solo limita la fuente de variación nueva.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5c850002jmlpv85d6e64",
+      "questionId": "cmu1z5c850001jmlpvprxbmin",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La regla del 10% describe que, en promedio, solo el 10% de la energía de un nivel trófico se transfiere al siguiente; el resto se pierde como calor metabólico o no es consumido ni digerido.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5c850003jmlpwagrttf3",
+      "questionId": "cmu1z5c850001jmlpvprxbmin",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Energía disponible en productores: 10,000 kcal. 2) Se transfiere el 10%: 10,000 x 0.10. 3) Resultado: 1,000 kcal disponibles para los herbívoros.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5c850004jmlpdfkpj4gg",
+      "questionId": "cmu1z5c850001jmlpvprxbmin",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "10,000 kcal ignoraría por completo la pérdida de energía entre niveles; 100 kcal correspondería a aplicar la regla del 10% dos veces seguidas, saltándose un nivel trófico; 5,000 kcal supondría una transferencia del 50%, muy por encima de lo que ocurre realmente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5d050007jmlp2k3gcgks",
+      "questionId": "cmu1z5d050006jmlp8dr3fhmj",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El mutualismo es la interacción en la que las dos especies involucradas se benefician: la abeja obtiene néctar y la planta logra que su polen se transporte hacia otra flor.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5d050008jmlpkvlr5j0l",
+      "questionId": "cmu1z5d050006jmlp8dr3fhmj",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La abeja visita la flor por su néctar. 2) Al hacerlo, transporta polen entre flores. 3) La planta se poliniza y la abeja se alimenta: ambas ganan.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5d050009jmlp1bgplckl",
+      "questionId": "cmu1z5d050006jmlp8dr3fhmj",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "En el parasitismo una especie se beneficia y la otra resulta perjudicada; en el comensalismo una especie se beneficia sin afectar a la otra, positiva ni negativamente; en la depredación un organismo consume directamente a otro, sin el beneficio mutuo que hay entre abeja y flor.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5dry000cjmlp67powbj9",
+      "questionId": "cmu1z5dry000bjmlp23zpnvgy",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La sucesión primaria arranca desde cero, sobre roca desnuda o sedimento sin suelo (como tras una erupción volcánica); la secundaria ocurre donde el suelo sobrevivió a una perturbación (como un incendio o un campo abandonado), así que avanza más rápido.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5dry000djmlp0acuhrld",
+      "questionId": "cmu1z5dry000bjmlp23zpnvgy",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La primaria empieza sin suelo: primero llegan líquenes y musgos que lo van formando. 2) La secundaria ya cuenta con suelo y semillas latentes. 3) Por eso la secundaria alcanza más rápido un ecosistema maduro.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5dry000ejmlpyxi0cm2u",
+      "questionId": "cmu1z5dry000bjmlp23zpnvgy",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Ambos tipos de sucesión ocurren tanto en ambientes terrestres como acuáticos, no están restringidos a uno; la primaria es la MÁS LENTA de las dos, precisamente porque depende de especies pioneras que formen suelo desde cero; y ninguna de las dos garantiza regresar exactamente al ecosistema original, eso depende de las condiciones locales.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5iyc0002y7k88vedlya3",
+      "questionId": "cmu1z5iyc0001y7k8ru1chkq9",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El corazón humano es tetracameral: dos aurículas reciben la sangre que llega y dos ventrículos la bombean hacia fuera, separados en un lado derecho (circuito pulmonar) y uno izquierdo (circuito sistémico).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5iyc0003y7k8o3zcbvg1",
+      "questionId": "cmu1z5iyc0001y7k8ru1chkq9",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La sangre entra a las aurículas. 2) Pasa a los ventrículos correspondientes. 3) Los ventrículos la bombean: el derecho a los pulmones, el izquierdo al resto del cuerpo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5iyc0004y7k8mm06a7d3",
+      "questionId": "cmu1z5iyc0001y7k8ru1chkq9",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Tres cavidades con un solo ventrículo describe más bien un corazón de anfibio; dos cavidades corresponde al corazón de un pez; y \"cuatro ventrículos sin aurículas\" no existe en ningún vertebrado, porque siempre hace falta una cámara receptora antes de bombear.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5jq80007y7k89g02yp4l",
+      "questionId": "cmu1z5jq80006y7k8cnpj3hgd",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Los alvéolos son diminutos sacos de pared muy delgada, rodeados de capilares sanguíneos; esa combinación de gran superficie y poca distancia permite que el oxígeno y el dióxido de carbono se difundan entre el aire y la sangre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5jq80008y7k8760xsads",
+      "questionId": "cmu1z5jq80006y7k8cnpj3hgd",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El aire viaja por tráquea y bronquios hasta los bronquiolos. 2) Llega a los alvéolos, donde la pared es de una sola célula de grosor. 3) Ahí el O2 pasa a la sangre y el CO2 sale hacia el aire.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5jq80009y7k84o1zmpgp",
+      "questionId": "cmu1z5jq80006y7k8cnpj3hgd",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La tráquea y los bronquios solo conducen el aire, con paredes gruesas que no permiten el intercambio; la laringe participa en la fonación y protege la vía respiratoria durante la deglución, tampoco es sitio de intercambio gaseoso.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5khw000cy7k8iea0ts0f",
+      "questionId": "cmu1z5khw000by7k89txpfupi",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La pepsina se secreta como pepsinógeno inactivo y el ácido clorhídrico del estómago la activa; a diferencia de la mayoría de las enzimas, funciona mejor en un pH muy ácido, cercano a 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5khw000dy7k8lglo0lmb",
+      "questionId": "cmu1z5khw000by7k89txpfupi",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Las células gástricas secretan pepsinógeno y HCl. 2) El HCl activa al pepsinógeno en pepsina. 3) La pepsina rompe las proteínas de los alimentos en fragmentos más pequeños.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5khw000ey7k8w7ue4saz",
+      "questionId": "cmu1z5khw000by7k89txpfupi",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La amilasa salival digiere almidón y actúa en la boca, no en el estómago; la lipasa pancreática digiere lípidos, en el intestino delgado; la tripsina también digiere proteínas, pero se activa en el intestino delgado, en un medio básico, no en el ácido gástrico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5l9l000hy7k81gs27z1s",
+      "questionId": "cmu1z5l9l000gy7k87ifmk35m",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El tendón está formado por fibras de colágeno muy resistentes, dispuestas en paralelo, especializadas en transmitir la fuerza de tracción del músculo hacia el hueso al que se ancla.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5l9m000iy7k805aslsw9",
+      "questionId": "cmu1z5l9l000gy7k87ifmk35m",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El músculo se contrae y genera fuerza. 2) Esa fuerza se transmite a través del tendón. 3) El tendón tira del hueso, produciendo el movimiento articular.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5l9m000jy7k8sdbmsocs",
+      "questionId": "cmu1z5l9l000gy7k87ifmk35m",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El ligamento une hueso con hueso, estabilizando la articulación, no transmite fuerza muscular; el cartílago recubre las superficies articulares y amortigua, no ancla músculos; la fascia envuelve y separa a los músculos entre sí, sin fijarlos directamente al hueso.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5qhz0002bbisj4qxw8hi",
+      "questionId": "cmu1z5qhz0001bbisfpexvl4t",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La glucólisis produce 4 ATP por fosforilación a nivel de sustrato, pero primero invierte 2 ATP para activar la glucosa; la ganancia neta es la resta de ambos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5qhz0003bbisd1742l68",
+      "questionId": "cmu1z5qhz0001bbisfpexvl4t",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Se invierten 2 ATP para fosforilar la glucosa al inicio. 2) Se generan 4 ATP en los pasos posteriores. 3) Ganancia neta: 4 ATP producidos menos 2 ATP invertidos = 2 ATP.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5qhz0004bbisg53rdmhv",
+      "questionId": "cmu1z5qhz0001bbisfpexvl4t",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "4 ATP netos ignora la inversión inicial de 2 ATP; 36 ATP netos corresponde aproximadamente al total de la respiración aeróbica COMPLETA (glucólisis + ciclo de Krebs + cadena respiratoria), no solo a la glucólisis; 0 ATP netos supondría que la inversión y la producción se cancelan por completo, lo cual no ocurre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5r9l0007bbisvadep5v6",
+      "questionId": "cmu1z5r9l0006bbismtq6itlh",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Las vitaminas liposolubles (A, D, E, K) se disuelven en grasas y pueden acumularse en tejidos grasos y en el hígado; la vitamina A, esencial para la visión y la piel, es una de ellas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5r9l0008bbis62o5g7v4",
+      "questionId": "cmu1z5r9l0006bbismtq6itlh",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Una vitamina liposoluble se disuelve en lípidos, no en agua. 2) Por eso el cuerpo puede almacenarla en grasa. 3) La vitamina A cumple esa condición; se obtiene de alimentos como el hígado y la zanahoria.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5r9l0009bbis2qfhzvm6",
+      "questionId": "cmu1z5r9l0006bbismtq6itlh",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La vitamina C, la B12 y la B1 son hidrosolubles: se disuelven en agua, no se acumulan en tejido graso y el exceso que el cuerpo no usa se elimina por la orina en vez de almacenarse.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5s15000cbbisyts4guif",
+      "questionId": "cmu1z5s15000bbbis3rr99dp9",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La TMB mide la energía que el cuerpo consume solo para mantener funciones esenciales en reposo absoluto (respiración, circulación, temperatura corporal), sin incluir actividad física ni digestión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5s15000dbbisf41m7hpf",
+      "questionId": "cmu1z5s15000bbbis3rr99dp9",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Se mide en condiciones de reposo total, en ayuno, a temperatura ambiente confortable. 2) Refleja el gasto energético de órganos vitales funcionando. 3) Es la base sobre la que se suma la energía del ejercicio y la digestión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5s15000ebbisgehdrcb1",
+      "questionId": "cmu1z5s15000bbbis3rr99dp9",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El gasto de ejercicio intenso es energía ADICIONAL a la basal, no la basal en sí; reducirlo solo a la respiración deja fuera al resto de los órganos vitales; y la síntesis de proteínas es apenas una parte del gasto metabólico total, no su definición.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5x700002vna2drqa5qy8",
+      "questionId": "cmu1z5x6z0001vna2ihn85c9e",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La homeostasis es el conjunto de mecanismos que mantienen constantes variables internas (temperatura, pH, glucosa) aunque el entorno externo cambie, gracias a sistemas de retroalimentación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5x700003vna26ratqkoo",
+      "questionId": "cmu1z5x6z0001vna2ihn85c9e",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Un sensor detecta un cambio en una variable interna. 2) Un centro de control compara ese valor con el punto normal. 3) Un efector corrige la desviación, devolviendo la variable a su rango estable.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5x700004vna2yg57lvx3",
+      "questionId": "cmu1z5x6z0001vna2ihn85c9e",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El crecimiento en la pubertad es un proceso del desarrollo, no la definición general de homeostasis; producir hormonas es solo una herramienta que el cuerpo usa PARA lograr homeostasis, no la homeostasis misma; y ningún organismo elimina el 100% de sus desechos de forma instantánea.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5xyh0007vna2tuebttyk",
+      "questionId": "cmu1z5xyh0006vna2p54y0z51",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "En la retroalimentación negativa, la respuesta del cuerpo se opone al cambio inicial: la glucosa sube y la insulina actúa para bajarla, devolviendo el sistema a su punto de equilibrio.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5xyh0008vna2jvctzzbx",
+      "questionId": "cmu1z5xyh0006vna2p54y0z51",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La glucosa sube tras comer. 2) El páncreas detecta el cambio y libera insulina. 3) La insulina hace que las células capten glucosa, y el nivel en sangre desciende de nuevo: el efecto revierte la causa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5xyh0009vna2u2hdth0q",
+      "questionId": "cmu1z5xyh0006vna2p54y0z51",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La retroalimentación positiva AMPLIFICARÍA el cambio inicial en vez de revertirlo (como ocurre en el parto); la inhibición competitiva es un fenómeno de la cinética enzimática, no un mecanismo de control corporal; un reflejo somático controla músculo esquelético voluntario, no la regulación hormonal de la glucosa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5ypv000cvna2oiznp1po",
+      "questionId": "cmu1z5ypv000bvna2hfh4hqs6",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Al evaporarse, el sudor absorbe calor de la piel y lo disipa al ambiente, lo que enfría el cuerpo de forma directa cuando hace calor.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5ypv000dvna2t9v1ewx7",
+      "questionId": "cmu1z5ypv000bvna2hfh4hqs6",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Sube la temperatura corporal. 2) Las glándulas sudoríparas liberan sudor a la piel. 3) El sudor se evapora, absorbiendo calor y enfriando la superficie corporal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5ypv000evna246dqz795",
+      "questionId": "cmu1z5ypv000bvna2hfh4hqs6",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La vasoconstricción periférica CONSERVA calor y ocurre en frío, no en calor; el escalofrío genera calor mediante contracciones musculares rápidas, también una respuesta al frío; y aumentar el metabolismo basal generaría todavía más calor, lo opuesto de lo que el cuerpo necesita ante el calor ambiental.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5zh7000hvna20rn9150j",
+      "questionId": "cmu1z5zh7000gvna29ijcs6s4",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La sangre humana se mantiene ligeramente básica, entre 7.35 y 7.45, gracias al amortiguador bicarbonato y a que los pulmones ajustan el CO2 exhalado mientras los riñones regulan la excreción de iones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5zh7000ivna2xyteu2vr",
+      "questionId": "cmu1z5zh7000gvna29ijcs6s4",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El metabolismo genera constantemente CO2 y ácidos. 2) El sistema amortiguador bicarbonato neutraliza esos cambios de inmediato. 3) Pulmones y riñones ajustan a mediano plazo, manteniendo el pH en 7.35-7.45.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z5zh7000jvna2694oqxx4",
+      "questionId": "cmu1z5zh7000gvna29ijcs6s4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Un pH de 6.0-6.5 sería francamente ácido y correspondería a una acidosis grave, incompatible con la vida sostenida; 8.0-8.5 sería una alcalosis igual de peligrosa; y 5.0-5.5 es un pH muy ácido, propio de fluidos como el jugo gástrico, no de la sangre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z64nl000210tyuo6k057g",
+      "questionId": "cmu1z64nl000110tyyxww7exp",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Las dendritas son prolongaciones cortas y ramificadas que reciben los estímulos de otras neuronas y los conducen hacia el cuerpo celular, en dirección opuesta a la del axón.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z64nl000310ty1imagkgz",
+      "questionId": "cmu1z64nl000110tyyxww7exp",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Otra neurona libera neurotransmisor cerca de la dendrita. 2) La dendrita recibe la señal y genera un impulso eléctrico. 3) El impulso viaja hacia el cuerpo celular y de ahí hacia el axón.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z64nl000410tysszvabga",
+      "questionId": "cmu1z64nl000110tyyxww7exp",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El axón transmite la señal LEJOS del cuerpo celular, hacia la siguiente neurona; la vaina de mielina solo aísla al axón y acelera la conducción, sin recibir señales; el botón sináptico libera neurotransmisores al final del axón, en el otro extremo de la neurona.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z65fh000710tyk3054cmk",
+      "questionId": "cmu1z65fh000610tyhr7p0yz4",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El SNC es el centro de procesamiento e integración: encéfalo y médula espinal reciben la información sensorial, la procesan y generan las órdenes que viajan hacia el resto del cuerpo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z65fh000810tykqgvawpj",
+      "questionId": "cmu1z65fh000610tyhr7p0yz4",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La información sensorial entra por nervios periféricos. 2) Llega al SNC (médula espinal y encéfalo) para procesarse. 3) El SNC envía una respuesta de vuelta por los nervios periféricos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z65fh000910tyyqx34azu",
+      "questionId": "cmu1z65fh000610tyhr7p0yz4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Los nervios craneales y espinales, los ganglios autónomos y los receptores de la piel forman parte del sistema nervioso PERIFÉRICO, encargado de conducir información hacia y desde el SNC, no de procesarla como centro de integración.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6677000c10tyx3yxmlr2",
+      "questionId": "cmu1z6677000b10tys6zomj1t",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Los neurotransmisores (como acetilcolina o dopamina) se almacenan en vesículas de la neurona presináptica y se liberan hacia la hendidura sináptica, donde se unen a receptores de la neurona siguiente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6677000d10tyby4r2798",
+      "questionId": "cmu1z6677000b10tys6zomj1t",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Un impulso eléctrico llega a la terminal del axón. 2) Eso provoca que las vesículas liberen neurotransmisor al espacio sináptico. 3) El neurotransmisor se une a receptores de la neurona postsináptica, generando una nueva señal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6677000e10tyojryvpc1",
+      "questionId": "cmu1z6677000b10tys6zomj1t",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las hormonas viajan por el torrente sanguíneo hacia órganos distantes, no cruzan directamente una sinapsis; las enzimas digestivas actúan en el tubo digestivo, sin relación con la transmisión nerviosa; los iones de calcio SÍ participan, pero disparando la liberación de neurotransmisor desde dentro de la neurona, no como la sustancia que cruza el espacio sináptico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z66yx000h10tyou7wvhu0",
+      "questionId": "cmu1z66yx000g10tye5qhzd87",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "En un arco reflejo simple, la señal sensorial entra a la médula espinal y de ahí sale directamente la orden motora, sin subir primero al cerebro; eso ahorra el tiempo que tomaría la percepción consciente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z66yx000i10tyu374qy5x",
+      "questionId": "cmu1z66yx000g10tye5qhzd87",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El receptor de dolor en la piel envía la señal por una neurona sensorial hacia la médula. 2) En la médula, una neurona intermedia conecta directamente con una motora. 3) La orden de retirar la mano sale de inmediato, antes de que el dolor se perciba en el cerebro.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z66yx000j10tyawkubw9d",
+      "questionId": "cmu1z66yx000g10tye5qhzd87",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La corteza cerebral sí participa, pero después, cuando ya percibes el dolor conscientemente, no en el reflejo inmediato; el cerebelo coordina el equilibrio y la precisión de movimientos voluntarios, no este tipo de reflejo; el hipotálamo regula funciones autónomas y hormonales, ajeno a este arco reflejo motor.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6c790002lgj3b865ytpf",
+      "questionId": "cmu1z6c780001lgj3cncsiz6u",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Las células beta de los islotes de Langerhans, dentro del páncreas, sintetizan y liberan insulina en respuesta al aumento de glucosa en sangre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6c790003lgj3g89nwmgo",
+      "questionId": "cmu1z6c780001lgj3cncsiz6u",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La glucosa sube tras una comida. 2) Las células beta del páncreas lo detectan. 3) Liberan insulina, que permite a las células del cuerpo captar esa glucosa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6c790004lgj3y23ypfon",
+      "questionId": "cmu1z6c780001lgj3cncsiz6u",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La tiroides regula el metabolismo general mediante T3 y T4, no la glucosa directamente; las suprarrenales producen cortisol y adrenalina, entre otras hormonas, pero no insulina; la hipófisis regula a otras glándulas mediante hormonas tróficas, sin producir insulina ella misma.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6cz90007lgj3lxtk41vm",
+      "questionId": "cmu1z6cz90006lgj3xyi92eqx",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La hormona tiroidea regula la tasa metabólica de casi todas las células; en exceso, acelera el consumo de oxígeno y energía, elevando también la frecuencia cardiaca y la temperatura corporal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6cz90008lgj33alstouo",
+      "questionId": "cmu1z6cz90006lgj3xyi92eqx",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La tiroides libera T3 y T4 en exceso. 2) Estas hormonas aumentan la actividad metabólica celular. 3) El resultado clínico es pérdida de peso, taquicardia, y sensación de calor e inquietud.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6cz90009lgj3suf2csgf",
+      "questionId": "cmu1z6cz90006lgj3xyi92eqx",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La fatiga y el aumento de peso describen justo lo contrario, un hipoTIROIDISMO por falta de hormona tiroidea; decir que no hay efecto alguno contradice el papel central de esta hormona en el metabolismo; y la insulina la produce el páncreas, un órgano distinto, no directamente afectado por el exceso de hormona tiroidea.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6dra000clgj3xpgrzvo7",
+      "questionId": "cmu1z6dra000blgj3p2e7qjup",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Las glándulas endocrinas (como la tiroides) carecen de conductos y liberan hormonas directamente al torrente sanguíneo; las exocrinas (como las salivales o sudoríparas) usan conductos para verter su secreción a una superficie o cavidad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6dra000dlgj33hpz4aov",
+      "questionId": "cmu1z6dra000blgj3p2e7qjup",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Una célula glandular sintetiza su producto. 2) Si la glándula es endocrina, lo libera directo a capilares sanguíneos cercanos. 3) Si es exocrina, lo transporta por un conducto hasta la piel o una cavidad, como la boca o el intestino.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6dra000elgj3extpr8az",
+      "questionId": "cmu1z6dra000blgj3p2e7qjup",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Ambos tipos de glándula funcionan durante toda la vida, no solo en la niñez; es justo al revés: las exocrinas producen enzimas y otras secreciones (como saliva o sudor), y las endocrinas producen hormonas; y hay glándulas endocrinas y exocrinas repartidas por todo el cuerpo, no solo en el cerebro.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6iy60002mjr9qte8u4l3",
+      "questionId": "cmu1z6iy60001mjr97l3gxhmq",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Solo la inmunidad adaptativa \"recuerda\" a un patógeno particular mediante linfocitos de memoria, lo que permite una respuesta más rápida y fuerte si ese mismo patógeno vuelve a presentarse.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6iy60003mjr9rl7r2rs2",
+      "questionId": "cmu1z6iy60001mjr97l3gxhmq",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Un patógeno específico activa a linfocitos B y T especializados. 2) Algunos de esos linfocitos quedan como células de memoria. 3) Un segundo contacto con el mismo patógeno dispara una respuesta mucho más veloz.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6iy60004mjr92om2lb2p",
+      "questionId": "cmu1z6iy60001mjr97l3gxhmq",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Actuar de inmediato sin distinguir el tipo de patógeno, incluir barreras físicas y estar presente desde el nacimiento son justo los rasgos que definen a la inmunidad INNATA, la que no genera memoria específica.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6jq70007mjr9dwvye4um",
+      "questionId": "cmu1z6jq70006mjr9j7x1u66l",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Cuando un linfocito B reconoce su antígeno específico, se diferencia en célula plasmática, una fábrica especializada que secreta grandes cantidades de anticuerpos contra ese antígeno.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6jq70008mjr9zwf2g80y",
+      "questionId": "cmu1z6jq70006mjr9j7x1u66l",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El linfocito B reconoce un antígeno específico. 2) Con ayuda de linfocitos T colaboradores, se activa y prolifera. 3) Algunas de esas células se diferencian en células plasmáticas que secretan anticuerpos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6jq70009mjr9p2xvg3e8",
+      "questionId": "cmu1z6jq70006mjr9j7x1u66l",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El linfocito T citotóxico destruye directamente a las células infectadas, sin producir anticuerpos; el macrófago fagocita patógenos y presenta antígenos, pero tampoco los produce; el neutrófilo es un fagocito de respuesta rápida, especializado en engullir patógenos, no en fabricar anticuerpos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6ki6000cmjr9baplblbs",
+      "questionId": "cmu1z6ki6000bmjr9w7myfb2y",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La vacuna contiene una versión debilitada, inactivada o solo un fragmento del patógeno; eso basta para que el sistema inmunitario genere células de memoria específicas, sin que la persona desarrolle la enfermedad real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6ki6000dmjr95y7qtydv",
+      "questionId": "cmu1z6ki6000bmjr9w7myfb2y",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Se inyecta el antígeno debilitado o inactivo. 2) El sistema inmunitario lo reconoce y monta una respuesta adaptativa. 3) Quedan linfocitos de memoria, listos para responder rápido ante el patógeno real en el futuro.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6ki6000emjr9gs48yan0",
+      "questionId": "cmu1z6ki6000bmjr9w7myfb2y",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Los antibióticos combaten bacterias directamente y no funcionan contra virus ni generan memoria inmunológica; la fiebre es una respuesta del cuerpo, no un mecanismo que las vacunas induzcan a propósito; y ninguna vacuna reemplaza la sangre del paciente, solo estimula su propio sistema inmunitario.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6la0000hmjr9xvxp5c0u",
+      "questionId": "cmu1z6la0000gmjr9i79luy5t",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La inflamación es la respuesta inicial del cuerpo ante una infección o lesión: los vasos sanguíneos se dilatan y se vuelven más permeables, lo que produce enrojecimiento, calor, hinchazón y dolor mientras llegan células inmunitarias a combatir al patógeno.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6la0000imjr9cti1j6rf",
+      "questionId": "cmu1z6la0000gmjr9i79luy5t",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El tejido dañado o infectado libera señales químicas de alarma. 2) Los vasos sanguíneos cercanos se dilatan y permiten el paso de células inmunitarias. 3) Ese aumento de flujo y de células produce los cuatro signos clásicos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6la0000jmjr945y39gp6",
+      "questionId": "cmu1z6la0000gmjr9i79luy5t",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La necrosis es la muerte del tejido por daño, una consecuencia posible, no la respuesta inmune activa en sí; la anafilaxia es una reacción alérgica grave y generalizada, no la respuesta local a una herida; la autoinmunidad ocurre cuando el sistema ataca tejido propio sano, algo distinto a defenderse de una infección real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6qia00022ql8kpl646yn",
+      "questionId": "cmu1z6qia00012ql8a0ziqy2u",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Los gametos son haploides (n=23), producto de la meiosis; al unirse óvulo y espermatozoide en la fecundación, se restaura el número diploide (2n=46) propio de las células somáticas humanas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6qia00032ql8aorsolnf",
+      "questionId": "cmu1z6qia00012ql8a0ziqy2u",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Cada gameto aporta n=23 cromosomas. 2) El óvulo (23) se une al espermatozoide (23) en la fecundación. 3) El cigoto resultante queda con 2n=46 cromosomas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6qia00042ql8p66fv70h",
+      "questionId": "cmu1z6qia00012ql8a0ziqy2u",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "46 cromosomas por gameto correspondería a células diploides, no a gametos; 23 en el cigoto ignoraría que ambos gametos se combinan; y \"46 cada gameto, 46 en el cigoto\" no tiene sentido aritmético con la fusión de dos células.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6rah00072ql8melx09ng",
+      "questionId": "cmu1z6rah00062ql89gvq81mo",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El óvulo liberado por el ovario viaja hacia la trompa de Falopio, donde suele encontrarse con los espermatozoides que ascendieron desde la vagina; ahí, en el tercio externo de la trompa, ocurre normalmente la unión de ambos gametos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6rah00082ql8k4eqrn3b",
+      "questionId": "cmu1z6rah00062ql89gvq81mo",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El ovario libera el óvulo en la ovulación. 2) El óvulo entra a la trompa de Falopio. 3) Los espermatozoides, tras ascender por el aparato reproductor, se encuentran ahí con el óvulo y ocurre la fecundación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6rah00092ql80w24bhz1",
+      "questionId": "cmu1z6rah00062ql89gvq81mo",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El útero es el sitio donde el embrión ya fecundado se implanta y se desarrolla, no donde ocurre la unión de los gametos; el ovario es de donde SALE el óvulo, antes de llegar a la trompa; la vagina es solo la vía de entrada de los espermatozoides, muy lejos todavía del óvulo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6s2l000c2ql8ur5t0utx",
+      "questionId": "cmu1z6s2l000b2ql8u9myrw02",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La placenta conecta la circulación materna y fetal sin mezclarlas directamente: a través de ella difunden oxígeno, nutrientes y anticuerpos hacia el feto, y dióxido de carbono y desechos hacia la madre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6s2l000d2ql89v9vwcab",
+      "questionId": "cmu1z6s2l000b2ql8u9myrw02",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Vasos sanguíneos maternos y fetales se acercan mucho en la placenta, sin fusionarse. 2) Oxígeno y nutrientes cruzan hacia el feto por difusión. 3) CO2 y desechos metabólicos cruzan en sentido contrario, hacia la madre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6s2l000e2ql8nrfxes5l",
+      "questionId": "cmu1z6s2l000b2ql8u9myrw02",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Los óvulos se producen en los ovarios desde antes del embarazo, no en la placenta; la fecundación ocurre en la trompa de Falopio, mucho antes de que exista placenta; y la placenta funciona SOLO durante el embarazo, dejando de existir tras el parto, cuando los pulmones del recién nacido empiezan a funcionar por sí solos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6svd000h2ql873d4naec",
+      "questionId": "cmu1z6svd000g2ql8272b66u4",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Hacia la mitad del ciclo, el estrógeno alcanza un nivel alto que provoca, por retroalimentación positiva, un pico súbito de LH; ese pico de LH es la señal directa que hace que el folículo libere al óvulo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6svd000i2ql8zoyhfxht",
+      "questionId": "cmu1z6svd000g2ql8272b66u4",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El folículo en maduración eleva el estrógeno durante la fase folicular. 2) El estrógeno alto dispara un pico de LH en la hipófisis. 3) El pico de LH provoca la ruptura del folículo y la liberación del óvulo: la ovulación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1z6svd000j2ql86ri8yv3y",
+      "questionId": "cmu1z6svd000g2ql8272b66u4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Durante la fase folicular el estrógeno en realidad SUBE, no cae, conforme el folículo madura; la progesterona se eleva DESPUÉS de la ovulación, en la fase lútea, no desde el primer día del ciclo; y la FSH sí está presente en la fase lútea, en niveles bajos, pero su ausencia no es lo que dispara la ovulación.",
       "latexContent": null
     }
   ]

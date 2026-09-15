@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "¿Cuántos cromosomas aporta cada gameto humano (óvulo y espermatozoide) a la fecundación, y cuántos resultan en el cigoto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "46 cada gameto, 92 en el cigoto",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "23 cada gameto, 46 en el cigoto",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "23 cada gameto, 23 en el cigoto",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "46 cada gameto, 46 en el cigoto",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Los gametos son haploides (n=23), producto de la meiosis; al unirse óvulo y espermatozoide en la fecundación, se restaura el número diploide (2n=46) propio de las células somáticas humanas."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Cada gameto aporta n=23 cromosomas. 2) El óvulo (23) se une al espermatozoide (23) en la fecundación. 3) El cigoto resultante queda con 2n=46 cromosomas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "46 cromosomas por gameto correspondería a células diploides, no a gametos; 23 en el cigoto ignoraría que ambos gametos se combinan; y \"46 cada gameto, 46 en el cigoto\" no tiene sentido aritmético con la fusión de dos células."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué parte del sistema reproductor femenino ocurre normalmente la fecundación?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En el útero",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En la vagina",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En las trompas de Falopio",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "En el ovario",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El óvulo liberado por el ovario viaja hacia la trompa de Falopio, donde suele encontrarse con los espermatozoides que ascendieron desde la vagina; ahí, en el tercio externo de la trompa, ocurre normalmente la unión de ambos gametos."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El ovario libera el óvulo en la ovulación. 2) El óvulo entra a la trompa de Falopio. 3) Los espermatozoides, tras ascender por el aparato reproductor, se encuentran ahí con el óvulo y ocurre la fecundación."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El útero es el sitio donde el embrión ya fecundado se implanta y se desarrolla, no donde ocurre la unión de los gametos; el ovario es de donde SALE el óvulo, antes de llegar a la trompa; la vagina es solo la vía de entrada de los espermatozoides, muy lejos todavía del óvulo."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la función principal de la placenta durante el embarazo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Sustituir a los pulmones del feto justo después de nacer",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Permitir el intercambio de nutrientes, gases y desechos entre madre y feto",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Servir como el único sitio posible de fecundación del óvulo",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Producir los óvulos que después serán fecundados",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La placenta conecta la circulación materna y fetal sin mezclarlas directamente: a través de ella difunden oxígeno, nutrientes y anticuerpos hacia el feto, y dióxido de carbono y desechos hacia la madre."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Vasos sanguíneos maternos y fetales se acercan mucho en la placenta, sin fusionarse. 2) Oxígeno y nutrientes cruzan hacia el feto por difusión. 3) CO2 y desechos metabólicos cruzan en sentido contrario, hacia la madre."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los óvulos se producen en los ovarios desde antes del embarazo, no en la placenta; la fecundación ocurre en la trompa de Falopio, mucho antes de que exista placenta; y la placenta funciona SOLO durante el embarazo, dejando de existir tras el parto, cuando los pulmones del recién nacido empiezan a funcionar por sí solos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué evento hormonal desencadena la ovulación durante el ciclo menstrual?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La ausencia total de FSH durante la fase lútea",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Una caída sostenida de estrógeno durante toda la fase folicular",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Un pico repentino de la hormona luteinizante (LH)",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Un aumento gradual de progesterona desde el primer día del ciclo",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Hacia la mitad del ciclo, el estrógeno alcanza un nivel alto que provoca, por retroalimentación positiva, un pico súbito de LH; ese pico de LH es la señal directa que hace que el folículo libere al óvulo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El folículo en maduración eleva el estrógeno durante la fase folicular. 2) El estrógeno alto dispara un pico de LH en la hipófisis. 3) El pico de LH provoca la ruptura del folículo y la liberación del óvulo: la ovulación."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Durante la fase folicular el estrógeno en realidad SUBE, no cae, conforme el folículo madura; la progesterona se eleva DESPUÉS de la ovulación, en la fase lútea, no desde el primer día del ciclo; y la FSH sí está presente en la fase lútea, en niveles bajos, pero su ausencia no es lo que dispara la ovulación."
+      }
+    ]
+  }
+]

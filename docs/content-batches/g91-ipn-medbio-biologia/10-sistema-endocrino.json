@@ -1,0 +1,137 @@
+[
+  {
+    "stem": "¿Qué glándula produce la insulina, la hormona que permite a las células captar la glucosa de la sangre?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El páncreas",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La glándula tiroides",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La hipófisis",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Las glándulas suprarrenales",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Las células beta de los islotes de Langerhans, dentro del páncreas, sintetizan y liberan insulina en respuesta al aumento de glucosa en sangre."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La glucosa sube tras una comida. 2) Las células beta del páncreas lo detectan. 3) Liberan insulina, que permite a las células del cuerpo captar esa glucosa."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La tiroides regula el metabolismo general mediante T3 y T4, no la glucosa directamente; las suprarrenales producen cortisol y adrenalina, entre otras hormonas, pero no insulina; la hipófisis regula a otras glándulas mediante hormonas tróficas, sin producir insulina ella misma."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué efecto tiene un exceso de hormona tiroidea (hipertiroidismo) sobre el metabolismo del cuerpo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Lo acelera, aumentando el consumo de energía y la frecuencia cardiaca",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "No produce ningún efecto sobre el metabolismo",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Lo desacelera, provocando fatiga y aumento de peso",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Detiene por completo la producción de insulina",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La hormona tiroidea regula la tasa metabólica de casi todas las células; en exceso, acelera el consumo de oxígeno y energía, elevando también la frecuencia cardiaca y la temperatura corporal."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La tiroides libera T3 y T4 en exceso. 2) Estas hormonas aumentan la actividad metabólica celular. 3) El resultado clínico es pérdida de peso, taquicardia, y sensación de calor e inquietud."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La fatiga y el aumento de peso describen justo lo contrario, un hipoTIROIDISMO por falta de hormona tiroidea; decir que no hay efecto alguno contradice el papel central de esta hormona en el metabolismo; y la insulina la produce el páncreas, un órgano distinto, no directamente afectado por el exceso de hormona tiroidea."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la diferencia principal entre una glándula endocrina y una glándula exocrina?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La endocrina vierte su secreción a la sangre sin conductos; la exocrina usa conductos",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La endocrina produce enzimas digestivas; la exocrina produce hormonas",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La endocrina solo funciona durante la niñez; la exocrina, toda la vida",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La endocrina se localiza solo en el cerebro; la exocrina, en el resto del cuerpo",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Las glándulas endocrinas (como la tiroides) carecen de conductos y liberan hormonas directamente al torrente sanguíneo; las exocrinas (como las salivales o sudoríparas) usan conductos para verter su secreción a una superficie o cavidad."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Una célula glandular sintetiza su producto. 2) Si la glándula es endocrina, lo libera directo a capilares sanguíneos cercanos. 3) Si es exocrina, lo transporta por un conducto hasta la piel o una cavidad, como la boca o el intestino."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Ambos tipos de glándula funcionan durante toda la vida, no solo en la niñez; es justo al revés: las exocrinas producen enzimas y otras secreciones (como saliva o sudor), y las endocrinas producen hormonas; y hay glándulas endocrinas y exocrinas repartidas por todo el cuerpo, no solo en el cerebro."
+      }
+    ]
+  }
+]

@@ -1,0 +1,137 @@
+[
+  {
+    "stem": "Se cruzan dos plantas heterocigotas para un carácter con dominancia completa (Aa x Aa). ¿Qué proporción fenotípica se espera en la descendencia?",
+    "options": [
+      {
+        "id": "A",
+        "text": "9 dominante : 3 : 3 : 1 recesivo",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "1 dominante : 2 intermedio : 1 recesivo",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "3 dominante : 1 recesivo",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "1 dominante : 1 recesivo",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El cuadro de Punnett para Aa x Aa da los genotipos AA, Aa, Aa y aa (1:2:1). Como A es dominante completo, AA y Aa comparten el mismo fenotipo, así que fenotípicamente queda 3:1."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Gametos posibles de cada progenitor: A, a. 2) Combinaciones: AA, Aa, aA, aa. 3) Fenotipos: 3 muestran el rasgo dominante (AA, Aa, aA) y 1 el recesivo (aa)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "1:2:1 es la proporción GENOTÍPICA, no la fenotípica, y solo aplica si hubiera dominancia incompleta; 1:1 correspondería a una cruza de prueba (Aa x aa); 9:3:3:1 es la proporción de una cruza DIHÍBRIDA con dos genes, no de una sola."
+      }
+    ]
+  },
+  {
+    "stem": "En una cruza dihíbrida AaBb x AaBb, con los dos genes en cromosomas distintos y dominancia completa en ambos, ¿cuál es la proporción fenotípica esperada en la descendencia?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1 : 1 : 1 : 1",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "9 : 3 : 3 : 1",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "1 : 2 : 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "3 : 1",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Con segregación independiente, cada gen se hereda por separado; el cuadro de Punnett de 16 combinaciones agrupa los fenotipos en 9 con ambos dominantes, 3 y 3 con uno dominante y uno recesivo, y 1 con ambos recesivos."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Gametos posibles de cada progenitor: AB, Ab, aB, ab. 2) Las 16 combinaciones del cuadro se agrupan por fenotipo. 3) El resultado es 9 (A_B_) : 3 (A_bb) : 3 (aaB_) : 1 (aabb)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "3:1 es el resultado de una cruza MONOhíbrida con un solo gen, no de dos; 1:2:1 describe genotipos con dominancia incompleta en un solo gen; 1:1:1:1 sería el resultado de una cruza de prueba dihíbrida (AaBb x aabb), no de AaBb x AaBb."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es el propósito de una cruza de prueba (testcross), en la que un individuo de fenotipo dominante se cruza con uno homocigoto recesivo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Producir descendencia con dominancia incompleta",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Determinar si el individuo dominante es homocigoto o heterocigoto",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Aumentar la variabilidad genética de la población",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Determinar el sexo de la descendencia resultante",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Un homocigoto recesivo solo aporta alelos recesivos, así que el fenotipo de la descendencia revela directamente qué gametos produjo el progenitor de fenotipo dominante, sin que su otro alelo quede oculto."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Se cruza el individuo de fenotipo dominante (genotipo desconocido) con aa. 2) Si es AA, toda la descendencia es Aa (dominante). 3) Si es Aa, la mitad de la descendencia es aa (recesivo)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El sexo de la descendencia se define por los cromosomas sexuales, no por esta cruza; la dominancia incompleta es una propiedad del gen en cuestión, no algo que la cruza \"produzca\"; y una sola cruza dirigida no aumenta la variabilidad genética de una población."
+      }
+    ]
+  }
+]

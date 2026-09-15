@@ -1,0 +1,92 @@
+[
+  {
+    "stem": "¿Cuál organelo celular es responsable de sintetizar ATP mediante la respiración celular aeróbica?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La mitocondria",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El lisosoma",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El aparato de Golgi",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El retículo endoplásmico liso",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La mitocondria posee su propia doble membrana y las enzimas de la cadena respiratoria; ahí ocurren el ciclo de Krebs y la fosforilación oxidativa que producen la mayor parte del ATP celular."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La glucólisis en el citosol produce piruvato. 2) El piruvato entra a la mitocondria. 3) Ahí el ciclo de Krebs y la cadena de transporte de electrones generan la mayoría del ATP mediante O2."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El aparato de Golgi empaca y modifica proteínas para su transporte, no produce ATP; el retículo liso sintetiza lípidos y participa en la desintoxicación; el lisosoma digiere macromoléculas con enzimas, sin generar energía."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál de las siguientes estructuras está presente en una célula vegetal típica pero ausente en una célula animal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El cloroplasto",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La mitocondria",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El núcleo",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El ribosoma",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El cloroplasto es el organelo fotosintético que capta luz para producir glucosa; solo aparece en células con capacidad fotosintética, como las de plantas y algas."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Ambas células, animal y vegetal, son eucariontes. 2) Comparten núcleo, mitocondrias y ribosomas. 3) Solo la vegetal añade cloroplastos, pared celular y una vacuola central grande."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La mitocondria, el núcleo y el ribosoma son organelos comunes a toda célula eucarionte, animal o vegetal, así que ninguno distingue a la célula vegetal por sí solo."
+      }
+    ]
+  }
+]

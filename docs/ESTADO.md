@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-14 · Última fase ejecutada: **G91 (COMPLETADA — 40 reactivos de Biología, IPN «Ciencias Médico-Biológicas», la materia con la MENOR densidad ponderada real de las **35 filas `Subject`** del catálogo activo (UNAM SUPERIOR + IPN SUPERIOR, únicas instituciones con flag encendido): peso 22, servía 70 → **3.18 reactivos por punto de peso**, por debajo de la siguiente más baja (IPN Física, 3.5, empatada con el pool `UNAM:ESPANOL`, también 3.5) — recuento hecho con la MISMA unidad que usa `content:guard` (`servable/questionWeight`), sobre las 7 áreas activas por igual, incluidos tanto materias exclusivas como pools compartidos de G26. Biología es **EXCLUSIVA** del área (no figura en la lista de `sharedContentKey` de `shared-subjects.ts`: UNAM comparte Español/Inglés/Química; IPN comparte Español/Inglés/Química/Matemáticas — Biología no). Sus 12 temas tienen **0 `SourceChunk`** → el lote completo es **TEMARIO_ONLY**. Reparto: refuerzo más fuerte (+4) en los 2 temas más delgados de la materia (Evolución y especiación, Homeostasis: 5→9 cada uno, el mínimo antes del lote) y +2/+3/+4 en los 10 restantes, para profundidad general sin dejar ningún tema atrás. **Cálculos verificados de forma independiente** en `verify-calcs.mjs` (recalcula, no lee la clave declarada): cruza monohíbrida Aa×Aa → 3:1, dihíbrida AaBb×AaBb → 9:3:3:1, ATP neto de la glucólisis = 2, regla del 10% de la pirámide trófica (10,000→1,000 kcal), cigoto humano 2n=46 — **9/9 aserciones correctas**. `content:validate-batch`: la primera tirada de `crypto.randomInt` violó `POSITION_SKEW` por puro azar (letra "C" en 12.5%, bajo el mínimo 15%) — mismo patrón que G80/G86 — **regenerada sin tocar contenido**; segunda tirada limpia: posición A 27.5%/B 25%/D 25%/C 22.5% (dentro de 15-40%), sesgo de longitud **sano desde la composición** (clave=más-larga 25.0%, más-corta 15.0%, razón media 1.07), 0 citas por letra, 0 patrones de orden. Insertados con `isVerified=false`. `content:guard`/`content:margin` **sin cambio antes/después** — esperado, cuentan solo `isVerified=true` y Área 1 UNAM no incluye Biología de IPN: 7/7 áreas siguen `READY`, margen de Early Bird sigue en `+87`. `content:coverage`: Biología IPN Médico-Bio pasa de 70✓/0⧗ a **70✓/40⧗** en cola de verificación adversarial. Banco: **1 422 servibles sin cambio** de **1 467 filas** (antes 1 427), brecha contra la meta de 1 500 = **78** (sin cambio, esperado). `pnpm backup:export` corrido en el mismo commit (7 026 filas, 4.77 MB))**. Modelo real `claude-sonnet-5`. Ver §G91 abajo.
+
+<details><summary>Historial: G90 (2026-09-14)</summary>
+
 Última actualización: 2026-09-14 · Última fase ejecutada: **G90 (COMPLETADA — verificación ciega de los 40 reactivos de UNAM Área 1 que compuso G89: 28 de Matemáticas (Progresiones y combinatoria, Estadística descriptiva, Series y sucesiones, Matrices y sistemas de ecuaciones) y 12 de Física (Conservación de momento, Trabajo y energía). Único insumo el lote ciego de `content:blind-batch`, verificado en crudo sobre el archivo: **0 apariciones de `isCorrect`, 0 de `explanation`**, claves reducidas a `stem` + `options{label,text,imageUrl}` y opciones remezcladas con semilla = id del reactivo. Los 40 resueltos **ejecutando el cálculo en código**, no razonando: un script recalcula desde cero cada factorial/combinación, media/mediana/moda/rango/desviación media absoluta, suma de progresión aritmética y geométrica, serie infinita, Fibonacci, determinante y regla de Cramer, producto matriz-vector, choque inelástico y de retroceso, trabajo con `cos θ`, teorema trabajo-energía y conservación mecánica — y **exige que coincida exactamente UNA de las cuatro opciones**; los 2 ítems de patrón generan la sucesión desde la regla enunciada y comprueban que reproduce el prefijo impreso antes de extenderla (ambos `true`). **40/40 con coincidencia única: 0 `MULTIPLE_VALID`, 0 `NONE_VALID`, 0 errores aritméticos en enunciados o distractores → `problems: []` en los 40.** `content:resolve`: **40/40 auto-aprobados (100%)** — Matemáticas 28/28, Física 12/12 — confianza media **0.987**, mínima 0.96 (calibrada a la baja solo donde manda una convención: ítems de patrón, desviación media absoluta vs. estándar, índice `(2,1)` de matriz, unidades SI). Sesgo de longitud medido desde el lote ciego (invariante bajo el mezclado): la clave es la opción estrictamente más larga en **1 de 40 (2.5%)** contra el ~25% del azar — sin señal explotable. `content:guard` DESPUÉS de la resolución: **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**, 4 aserciones en verde contra recuento SQL independiente; Área 1 `READY` 70/70 de peso, con Matemáticas 114→**142** y Física 107→**119**. **Margen real de Área 1 sobre el mínimo de Early Bird (300): de +47 a `+87` (387 propios)**, exactamente lo proyectado por G89 §7, con el 100% del incremento en las 2 materias exclusivas del área — y ese número deja de recalcularse a mano: nueva sonda `scripts/g90/margin-probe.ts` (**`pnpm content:margin`**) lo mide con SQL crudo, sin pasar por `content-coverage.ts` ni por el guard, y **sale con código 1 si el área cae por debajo del mínimo**. Banco **1 422 servibles** de 1 427 filas (tasa de auto-aprobación global 99.7%), **cola de verificación adversarial VACÍA** por primera vez desde que arrancó el pipeline de lotes, brecha contra la meta de 1 500 = **78**)**. Modelo real `claude-opus-5`. Ver §G90 abajo.
+
+</details>
 
 <details><summary>Historial: G89 (2026-09-14)</summary>
 
@@ -451,6 +457,144 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G91 — Lote de reactivos: Biología, IPN «Ciencias Médico-Biológicas» (2026-09-14)
+
+> Modelo real `claude-sonnet-5`. **40 reactivos insertados con
+> `isVerified=false`** en Biología, IPN «Ciencias Médico-Biológicas» — la
+> materia con la MENOR densidad ponderada real de todo el catálogo activo,
+> elegida con datos de la base, no por instrucción directa.
+
+### 1. Selección de materia — densidad ponderada sobre las 35 filas `Subject` activas
+
+El catálogo (banco 1 422/1 500, sin huecos de cobertura desde G87) ya no
+tiene un área bloqueada; la instrucción pedía identificar la materia con
+mayor brecha ponderada REAL, considerando tanto materias exclusivas como
+pools compartidos de G26. Consulta directa a la DB (recuento de
+`isVerified=true AND usage=SERVABLE` por cada fila `Subject`, dividido
+entre `questionWeight`, sobre las 7 áreas de UNAM SUPERIOR + IPN SUPERIOR
+— únicas instituciones con `NEXT_PUBLIC_ENABLE_*` en `true`):
+
+| Materia | Institución·Área | Peso | Servía | Densidad | ¿Compartida? |
+|---|---|---|---|---|---|
+| **Biología** | IPN Médico-Biológicas | 22 | 70 | **3.18** — la más baja de las 35 | No |
+| Física | IPN Ing. y C. Físico-Matemáticas | 20 | 70 | 3.50 | No |
+| Español (pool) | UNAM, las 4 áreas | máx. 10 | 35 (pool) | 3.50 | Sí, `UNAM:ESPANOL` |
+| Química (pool) | IPN, 2 ramas | máx. 16 | 70 (pool) | 4.375 | Sí, `IPN:QUIMICA` |
+| Matemáticas (pool) | IPN, 2 ramas | máx. 24 | 105 (pool) | 4.375 | Sí, `IPN:MATEMATICAS` |
+
+Para los pools se usó el mismo criterio que `content-coverage.ts`
+(`computeSharedGoal`): el total servible del pool contra el peso MÁXIMO
+entre las áreas que lo comparten (la celda que de verdad exige más
+profundidad). Biología queda por debajo de las 34 filas restantes,
+incluidos los 4 pools compartidos del catálogo — y es **EXCLUSIVA**: no
+aparece en la lista de `sharedContentKey` de
+`src/lib/content/shared-subjects.ts` (UNAM comparte Español/Inglés/
+Química; IPN comparte Español/Inglés/Química/Matemáticas — Biología no).
+Se prefirió sobre Física (3.50, la siguiente más baja) por tener además el
+peso absoluto más alto de las dos (22 contra 20): reforzarla mueve más la
+aguja de la cuota real del diagnóstico de esa área.
+
+Los 12 temas del catálogo de Biología tienen **0 `SourceChunk`** →
+`content:scan-sources` no ha encontrado guías de Biología de ninguna
+institución todavía. El lote completo se genera desde el temario sembrado
+y se marca **TEMARIO_ONLY**, como exige el punto 2 del encargo.
+
+### 2. Reparto de los 40 reactivos
+
+Antes del lote los 12 temas tenían entre 5 y 6 reactivos cada uno
+(promedio 5.83); los 2 más delgados (Evolución y especiación, Homeostasis,
+con 5) reciben el refuerzo más fuerte y el resto profundidad general:
+
+| Tema | Antes | +Nuevos | Después (en cola) |
+|---|---|---|---|
+| Célula y organelos | 6 | +2 | 8 |
+| Mitosis y meiosis | 6 | +2 | 8 |
+| Genética básica | 6 | +3 | 9 |
+| Evolución y especiación | 5 | +4 | 9 |
+| Ecología y ecosistemas | 6 | +3 | 9 |
+| Sistemas del cuerpo humano | 6 | +4 | 10 |
+| Nutrición y metabolismo | 6 | +3 | 9 |
+| Homeostasis | 5 | +4 | 9 |
+| Sistema nervioso | 6 | +4 | 10 |
+| Sistema endocrino | 6 | +3 | 9 |
+| Inmunología | 6 | +4 | 10 |
+| Reproducción | 6 | +4 | 10 |
+
+### 3. Cálculos verificados de forma independiente
+
+Genética mendeliana, bioenergética y ecología de poblaciones sí admiten
+verificación numérica, así que `verify-calcs.mjs` recalcula cada resultado
+desde cero (sin leer la clave declarada en `build-data.mjs`):
+
+```
+✅ Monohíbrida Aa x Aa: fenotipo dominante (de 4): obtenido=3 esperado=3
+✅ Monohíbrida Aa x Aa: fenotipo recesivo (de 4): obtenido=1 esperado=1
+✅ Dihíbrida AaBb x AaBb: A_B_ (de 16): obtenido=9 esperado=9
+✅ Dihíbrida AaBb x AaBb: A_bb (de 16): obtenido=3 esperado=3
+✅ Dihíbrida AaBb x AaBb: aaB_ (de 16): obtenido=3 esperado=3
+✅ Dihíbrida AaBb x AaBb: aabb (de 16): obtenido=1 esperado=1
+✅ Glucólisis: ATP neto: obtenido=2 esperado=2
+✅ Regla del 10%: kcal en herbívoros: obtenido=1000 esperado=1000
+✅ Cigoto humano: 2n: obtenido=46 esperado=46
+```
+
+9/9 aserciones correctas (cuadros de Punnett mono/dihíbridos, ATP neto de
+la glucólisis, regla del 10% de la pirámide trófica, número cromosómico
+humano).
+
+### 4. Validación de lote — primera tirada rechazada por puro azar
+
+**(a) Posición de la clave: `crypto.randomInt`**, Fisher-Yates
+independiente por reactivo (`build.mjs`), igual que G78/G80/G82/G84/G86/G89.
+
+**(b) Primera corrida de `content:validate-batch`: RECHAZADA** —
+`POSITION_SKEW`, la letra "C" cayó en 12.5% de los 40 reactivos (5/40),
+bajo el mínimo de 15%. Ningún reactivo se tocó: se volvió a correr
+`build.mjs`, que re-aleatoriza solo el orden de las opciones — mismo
+patrón que la primera tirada de G80/G86.
+
+**(c) Segunda corrida: limpia.**
+
+```
+Total de reactivos: 40
+Distribución de posición: {"A":11,"B":10,"D":10,"C":9}   (22.5%-27.5%, dentro de 15-40%)
+Distribución de dificultad: {"BASIC":18,"INTERMEDIATE":19,"ADVANCED":3}
+Sesgo de longitud: clave=más-larga en 25.0%, clave=más-corta en 15.0% (n=40), razón media clave/distractores=1.07.
+✅ Sin violaciones.
+```
+
+Sesgo de longitud sano DESDE LA COMPOSICIÓN (sin necesidad de una segunda
+pasada editorial, a diferencia de G86/G89): las opciones se redactaron con
+longitudes comparables desde el primer borrador. 0 citas por letra (con
+atención especial a notación que podía confundirse — vitaminas A/B/C,
+grupos sanguíneos AB — ninguna quedó como "A)"/"B)" literal). 0 patrones
+de orden periódico.
+
+`pnpm content:insert` corrido 12 veces (una por tema, `--lot-dir` al
+conjunto de los 12 archivos) repitió la validación de CONJUNTO en cada
+corrida. 0 rechazados por formato/Zod/KaTeX; 0 duplicados de enunciado.
+
+### 5. `content:guard` / `content:coverage` / `content:margin` — antes y después
+
+| Sonda | Antes | Después |
+|---|---|---|
+| `content:guard` | 7/7 áreas `READY`, Biología IPN MedBio sirve 70 | Sin cambio — cuenta solo `isVerified=true` |
+| `content:coverage` — Biología IPN MedBio | 70✓ / 0⧗ | 70✓ / **40⧗** en cola de resolución |
+| `content:margin` (UNAM Área 1) | +87 sobre el mínimo de Early Bird | Sin cambio — Área 1 UNAM no incluye Biología de IPN |
+| Banco | 1 422 servibles / 1 427 filas | 1 422 servibles (sin cambio) / **1 467 filas** |
+| Brecha contra la meta de 1 500 | 78 | 78 (sin cambio, esperado) |
+
+Sin cambio esperado y no un defecto: los 40 quedan en la cola de
+verificación adversarial (dos sesiones independientes, PRD §8) — mismo
+patrón que G75→G76, G78→G79, G80→G81, G82→G83, G84→G85, G86→G87 y
+G89→G90.
+
+### 6. Respaldo y verde
+
+`pnpm backup:export` corrido en este mismo commit: **7 026 filas** →
+`backups/content-bank.json` (4.77 MB). `pnpm typecheck` sin salida.
+`pnpm lint` sin salida. **No se tocó `prisma/schema.prisma`.**
 
 ## G90 — Verificación ciega: UNAM Área 1, Matemáticas y Física (lote de G89) (2026-09-14)
 

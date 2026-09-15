@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "¿Qué parte de la neurona se especializa en recibir señales de otras neuronas y transmitirlas hacia el cuerpo celular?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El axón",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La vaina de mielina",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Las dendritas",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El botón sináptico",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Las dendritas son prolongaciones cortas y ramificadas que reciben los estímulos de otras neuronas y los conducen hacia el cuerpo celular, en dirección opuesta a la del axón."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Otra neurona libera neurotransmisor cerca de la dendrita. 2) La dendrita recibe la señal y genera un impulso eléctrico. 3) El impulso viaja hacia el cuerpo celular y de ahí hacia el axón."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El axón transmite la señal LEJOS del cuerpo celular, hacia la siguiente neurona; la vaina de mielina solo aísla al axón y acelera la conducción, sin recibir señales; el botón sináptico libera neurotransmisores al final del axón, en el otro extremo de la neurona."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué estructuras conforman el sistema nervioso central (SNC)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los receptores sensoriales de la piel",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El encéfalo y la médula espinal",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Los nervios craneales y espinales",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los ganglios simpáticos y parasimpáticos",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El SNC es el centro de procesamiento e integración: encéfalo y médula espinal reciben la información sensorial, la procesan y generan las órdenes que viajan hacia el resto del cuerpo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La información sensorial entra por nervios periféricos. 2) Llega al SNC (médula espinal y encéfalo) para procesarse. 3) El SNC envía una respuesta de vuelta por los nervios periféricos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los nervios craneales y espinales, los ganglios autónomos y los receptores de la piel forman parte del sistema nervioso PERIFÉRICO, encargado de conducir información hacia y desde el SNC, no de procesarla como centro de integración."
+      }
+    ]
+  },
+  {
+    "stem": "En una sinapsis química, ¿qué sustancia libera la neurona presináptica hacia el espacio sináptico para comunicarse con la siguiente neurona?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Neurotransmisores",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Iones de calcio",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Hormonas",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Enzimas digestivas",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Los neurotransmisores (como acetilcolina o dopamina) se almacenan en vesículas de la neurona presináptica y se liberan hacia la hendidura sináptica, donde se unen a receptores de la neurona siguiente."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Un impulso eléctrico llega a la terminal del axón. 2) Eso provoca que las vesículas liberen neurotransmisor al espacio sináptico. 3) El neurotransmisor se une a receptores de la neurona postsináptica, generando una nueva señal."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las hormonas viajan por el torrente sanguíneo hacia órganos distantes, no cruzan directamente una sinapsis; las enzimas digestivas actúan en el tubo digestivo, sin relación con la transmisión nerviosa; los iones de calcio SÍ participan, pero disparando la liberación de neurotransmisor desde dentro de la neurona, no como la sustancia que cruza el espacio sináptico."
+      }
+    ]
+  },
+  {
+    "stem": "Al tocar accidentalmente una superficie muy caliente, retiras la mano antes de sentir el dolor conscientemente. ¿Qué estructura coordina esta respuesta refleja tan rápida?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La médula espinal",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El hipotálamo",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El cerebelo",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La corteza cerebral",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "En un arco reflejo simple, la señal sensorial entra a la médula espinal y de ahí sale directamente la orden motora, sin subir primero al cerebro; eso ahorra el tiempo que tomaría la percepción consciente."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El receptor de dolor en la piel envía la señal por una neurona sensorial hacia la médula. 2) En la médula, una neurona intermedia conecta directamente con una motora. 3) La orden de retirar la mano sale de inmediato, antes de que el dolor se perciba en el cerebro."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La corteza cerebral sí participa, pero después, cuando ya percibes el dolor conscientemente, no en el reflejo inmediato; el cerebelo coordina el equilibrio y la precisión de movimientos voluntarios, no este tipo de reflejo; el hipotálamo regula funciones autónomas y hormonales, ajeno a este arco reflejo motor."
+      }
+    ]
+  }
+]

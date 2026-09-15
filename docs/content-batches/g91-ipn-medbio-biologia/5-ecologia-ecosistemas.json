@@ -1,0 +1,137 @@
+[
+  {
+    "stem": "De acuerdo con la regla del 10%, si el nivel de los productores de un ecosistema contiene 10,000 kcal de energía disponible, ¿cuánta energía aproximadamente pasará al siguiente nivel trófico (herbívoros)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1,000 kcal",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "100 kcal",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "10,000 kcal",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "5,000 kcal",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La regla del 10% describe que, en promedio, solo el 10% de la energía de un nivel trófico se transfiere al siguiente; el resto se pierde como calor metabólico o no es consumido ni digerido."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Energía disponible en productores: 10,000 kcal. 2) Se transfiere el 10%: 10,000 x 0.10. 3) Resultado: 1,000 kcal disponibles para los herbívoros."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "10,000 kcal ignoraría por completo la pérdida de energía entre niveles; 100 kcal correspondería a aplicar la regla del 10% dos veces seguidas, saltándose un nivel trófico; 5,000 kcal supondría una transferencia del 50%, muy por encima de lo que ocurre realmente."
+      }
+    ]
+  },
+  {
+    "stem": "En la relación entre las abejas y las flores que polinizan, ambas especies obtienen un beneficio (alimento y reproducción, respectivamente). ¿Qué tipo de relación ecológica es esta?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Parasitismo",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Comensalismo",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Depredación",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Mutualismo",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El mutualismo es la interacción en la que las dos especies involucradas se benefician: la abeja obtiene néctar y la planta logra que su polen se transporte hacia otra flor."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La abeja visita la flor por su néctar. 2) Al hacerlo, transporta polen entre flores. 3) La planta se poliniza y la abeja se alimenta: ambas ganan."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "En el parasitismo una especie se beneficia y la otra resulta perjudicada; en el comensalismo una especie se beneficia sin afectar a la otra, positiva ni negativamente; en la depredación un organismo consume directamente a otro, sin el beneficio mutuo que hay entre abeja y flor."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la diferencia principal entre la sucesión ecológica primaria y la secundaria?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La primaria inicia en un sustrato sin suelo previo, la secundaria donde ya existía suelo",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La secundaria culmina en un ecosistema distinto al original, la primaria regresa al mismo",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La primaria ocurre solo en ecosistemas acuáticos, la secundaria solo en terrestres",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La primaria es más rápida porque no requiere especies colonizadoras pioneras",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La sucesión primaria arranca desde cero, sobre roca desnuda o sedimento sin suelo (como tras una erupción volcánica); la secundaria ocurre donde el suelo sobrevivió a una perturbación (como un incendio o un campo abandonado), así que avanza más rápido."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La primaria empieza sin suelo: primero llegan líquenes y musgos que lo van formando. 2) La secundaria ya cuenta con suelo y semillas latentes. 3) Por eso la secundaria alcanza más rápido un ecosistema maduro."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Ambos tipos de sucesión ocurren tanto en ambientes terrestres como acuáticos, no están restringidos a uno; la primaria es la MÁS LENTA de las dos, precisamente porque depende de especies pioneras que formen suelo desde cero; y ninguna de las dos garantiza regresar exactamente al ecosistema original, eso depende de las condiciones locales."
+      }
+    ]
+  }
+]

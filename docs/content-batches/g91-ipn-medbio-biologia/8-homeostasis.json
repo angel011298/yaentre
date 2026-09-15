@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "¿Cómo se define la homeostasis en un organismo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La eliminación completa de desechos metabólicos del cuerpo",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La capacidad de mantener un ambiente interno estable pese a cambios externos",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La producción exclusiva de hormonas por las glándulas endocrinas",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El proceso de crecimiento acelerado de un organismo durante la pubertad",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La homeostasis es el conjunto de mecanismos que mantienen constantes variables internas (temperatura, pH, glucosa) aunque el entorno externo cambie, gracias a sistemas de retroalimentación."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Un sensor detecta un cambio en una variable interna. 2) Un centro de control compara ese valor con el punto normal. 3) Un efector corrige la desviación, devolviendo la variable a su rango estable."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El crecimiento en la pubertad es un proceso del desarrollo, no la definición general de homeostasis; producir hormonas es solo una herramienta que el cuerpo usa PARA lograr homeostasis, no la homeostasis misma; y ningún organismo elimina el 100% de sus desechos de forma instantánea."
+      }
+    ]
+  },
+  {
+    "stem": "Cuando la glucosa en sangre sube después de una comida, el páncreas libera insulina, lo que hace que la glucosa vuelva a bajar. ¿Qué tipo de mecanismo de control representa este ejemplo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reflejo somático",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Inhibición competitiva",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Retroalimentación negativa",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Retroalimentación positiva",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "En la retroalimentación negativa, la respuesta del cuerpo se opone al cambio inicial: la glucosa sube y la insulina actúa para bajarla, devolviendo el sistema a su punto de equilibrio."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La glucosa sube tras comer. 2) El páncreas detecta el cambio y libera insulina. 3) La insulina hace que las células capten glucosa, y el nivel en sangre desciende de nuevo: el efecto revierte la causa."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La retroalimentación positiva AMPLIFICARÍA el cambio inicial en vez de revertirlo (como ocurre en el parto); la inhibición competitiva es un fenómeno de la cinética enzimática, no un mecanismo de control corporal; un reflejo somático controla músculo esquelético voluntario, no la regulación hormonal de la glucosa."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué mecanismo fisiológico ayuda a un humano a disminuir su temperatura corporal cuando hace mucho calor?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La vasoconstricción de los vasos sanguíneos periféricos",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El escalofrío, que genera calor mediante contracción muscular",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La sudoración, que enfría la piel al evaporarse",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El aumento del metabolismo basal para generar más calor",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Al evaporarse, el sudor absorbe calor de la piel y lo disipa al ambiente, lo que enfría el cuerpo de forma directa cuando hace calor."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Sube la temperatura corporal. 2) Las glándulas sudoríparas liberan sudor a la piel. 3) El sudor se evapora, absorbiendo calor y enfriando la superficie corporal."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La vasoconstricción periférica CONSERVA calor y ocurre en frío, no en calor; el escalofrío genera calor mediante contracciones musculares rápidas, también una respuesta al frío; y aumentar el metabolismo basal generaría todavía más calor, lo opuesto de lo que el cuerpo necesita ante el calor ambiental."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es el rango normal aproximado del pH de la sangre humana, que el cuerpo mantiene mediante amortiguadores y la acción de riñones y pulmones?",
+    "options": [
+      {
+        "id": "A",
+        "text": "6.0 a 6.5",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "7.35 a 7.45",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "8.0 a 8.5",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "5.0 a 5.5",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La sangre humana se mantiene ligeramente básica, entre 7.35 y 7.45, gracias al amortiguador bicarbonato y a que los pulmones ajustan el CO2 exhalado mientras los riñones regulan la excreción de iones."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El metabolismo genera constantemente CO2 y ácidos. 2) El sistema amortiguador bicarbonato neutraliza esos cambios de inmediato. 3) Pulmones y riñones ajustan a mediano plazo, manteniendo el pH en 7.35-7.45."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Un pH de 6.0-6.5 sería francamente ácido y correspondería a una acidosis grave, incompatible con la vida sostenida; 8.0-8.5 sería una alcalosis igual de peligrosa; y 5.0-5.5 es un pH muy ácido, propio de fluidos como el jugo gástrico, no de la sangre."
+      }
+    ]
+  }
+]

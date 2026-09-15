@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "¿Cuántas cavidades tiene el corazón humano y cómo se llaman en conjunto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tres: dos aurículas y un ventrículo",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Cuatro: cuatro ventrículos, sin aurículas",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Dos: una aurícula y un ventrículo",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Cuatro: dos aurículas y dos ventrículos",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El corazón humano es tetracameral: dos aurículas reciben la sangre que llega y dos ventrículos la bombean hacia fuera, separados en un lado derecho (circuito pulmonar) y uno izquierdo (circuito sistémico)."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La sangre entra a las aurículas. 2) Pasa a los ventrículos correspondientes. 3) Los ventrículos la bombean: el derecho a los pulmones, el izquierdo al resto del cuerpo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Tres cavidades con un solo ventrículo describe más bien un corazón de anfibio; dos cavidades corresponde al corazón de un pez; y \"cuatro ventrículos sin aurículas\" no existe en ningún vertebrado, porque siempre hace falta una cámara receptora antes de bombear."
+      }
+    ]
+  },
+  {
+    "stem": "¿En qué estructura del sistema respiratorio ocurre el intercambio gaseoso entre el aire inhalado y la sangre?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En la tráquea",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En los bronquios",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "En la laringe",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En los alvéolos pulmonares",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Los alvéolos son diminutos sacos de pared muy delgada, rodeados de capilares sanguíneos; esa combinación de gran superficie y poca distancia permite que el oxígeno y el dióxido de carbono se difundan entre el aire y la sangre."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El aire viaja por tráquea y bronquios hasta los bronquiolos. 2) Llega a los alvéolos, donde la pared es de una sola célula de grosor. 3) Ahí el O2 pasa a la sangre y el CO2 sale hacia el aire."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La tráquea y los bronquios solo conducen el aire, con paredes gruesas que no permiten el intercambio; la laringe participa en la fonación y protege la vía respiratoria durante la deglución, tampoco es sitio de intercambio gaseoso."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué enzima gástrica, activa en un medio ácido, inicia la digestión de las proteínas en el estómago?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La lipasa pancreática",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La amilasa salival",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La pepsina",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "La tripsina",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La pepsina se secreta como pepsinógeno inactivo y el ácido clorhídrico del estómago la activa; a diferencia de la mayoría de las enzimas, funciona mejor en un pH muy ácido, cercano a 2."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Las células gástricas secretan pepsinógeno y HCl. 2) El HCl activa al pepsinógeno en pepsina. 3) La pepsina rompe las proteínas de los alimentos en fragmentos más pequeños."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La amilasa salival digiere almidón y actúa en la boca, no en el estómago; la lipasa pancreática digiere lípidos, en el intestino delgado; la tripsina también digiere proteínas, pero se activa en el intestino delgado, en un medio básico, no en el ácido gástrico."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué tejido conectivo fibroso une un músculo esquelético al hueso, transmitiendo la fuerza de la contracción para producir movimiento?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La fascia",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El ligamento",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El tendón",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El cartílago",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El tendón está formado por fibras de colágeno muy resistentes, dispuestas en paralelo, especializadas en transmitir la fuerza de tracción del músculo hacia el hueso al que se ancla."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El músculo se contrae y genera fuerza. 2) Esa fuerza se transmite a través del tendón. 3) El tendón tira del hueso, produciendo el movimiento articular."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El ligamento une hueso con hueso, estabilizando la articulación, no transmite fuerza muscular; el cartílago recubre las superficies articulares y amortigua, no ancla músculos; la fascia envuelve y separa a los músculos entre sí, sin fijarlos directamente al hueso."
+      }
+    ]
+  }
+]

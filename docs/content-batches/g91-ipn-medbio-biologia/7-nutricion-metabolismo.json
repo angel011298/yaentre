@@ -1,0 +1,137 @@
+[
+  {
+    "stem": "Durante la glucólisis, una molécula de glucosa se degrada hasta dos moléculas de piruvato. ¿Cuál es la ganancia NETA de ATP en este proceso?",
+    "options": [
+      {
+        "id": "A",
+        "text": "4 ATP netos",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "0 ATP netos",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "36 ATP netos",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "2 ATP netos",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La glucólisis produce 4 ATP por fosforilación a nivel de sustrato, pero primero invierte 2 ATP para activar la glucosa; la ganancia neta es la resta de ambos."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Se invierten 2 ATP para fosforilar la glucosa al inicio. 2) Se generan 4 ATP en los pasos posteriores. 3) Ganancia neta: 4 ATP producidos menos 2 ATP invertidos = 2 ATP."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "4 ATP netos ignora la inversión inicial de 2 ATP; 36 ATP netos corresponde aproximadamente al total de la respiración aeróbica COMPLETA (glucólisis + ciclo de Krebs + cadena respiratoria), no solo a la glucólisis; 0 ATP netos supondría que la inversión y la producción se cancelan por completo, lo cual no ocurre."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál de las siguientes vitaminas es liposoluble y puede almacenarse en el tejido adiposo y el hígado del cuerpo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Vitamina A",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Vitamina C",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Vitamina B1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Vitamina B12",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Las vitaminas liposolubles (A, D, E, K) se disuelven en grasas y pueden acumularse en tejidos grasos y en el hígado; la vitamina A, esencial para la visión y la piel, es una de ellas."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Una vitamina liposoluble se disuelve en lípidos, no en agua. 2) Por eso el cuerpo puede almacenarla en grasa. 3) La vitamina A cumple esa condición; se obtiene de alimentos como el hígado y la zanahoria."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La vitamina C, la B12 y la B1 son hidrosolubles: se disuelven en agua, no se acumulan en tejido graso y el exceso que el cuerpo no usa se elimina por la orina en vez de almacenarse."
+      }
+    ]
+  },
+  {
+    "stem": "¿Qué se entiende por tasa metabólica basal (TMB)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La energía total que una persona gasta al realizar ejercicio intenso",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La cantidad de calorías que se pierden únicamente por respirar",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El total de proteínas que el cuerpo sintetiza a lo largo de un día",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La energía mínima que el cuerpo requiere en reposo para sus funciones vitales",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La TMB mide la energía que el cuerpo consume solo para mantener funciones esenciales en reposo absoluto (respiración, circulación, temperatura corporal), sin incluir actividad física ni digestión."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Se mide en condiciones de reposo total, en ayuno, a temperatura ambiente confortable. 2) Refleja el gasto energético de órganos vitales funcionando. 3) Es la base sobre la que se suma la energía del ejercicio y la digestión."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El gasto de ejercicio intenso es energía ADICIONAL a la basal, no la basal en sí; reducirlo solo a la respiración deja fuera al resto de los órganos vitales; y la síntesis de proteínas es apenas una parte del gasto metabólico total, no su definición."
+      }
+    ]
+  }
+]
