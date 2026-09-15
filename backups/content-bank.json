@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-14T23:41:01.747Z",
+    "exportedAt": "2026-09-15T00:10:46.975Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -108472,7 +108472,7 @@
     },
     {
       "id": "cmu0ya8o4000q2biq7o4a8bzx",
-      "topicId": "cmrr1klzq007chi3nqwo1jj60",
+      "topicId": "cmrr1kkw60078hi3nej9jigbs",
       "stem": "Esta pintura de gran formato, realizada en tonos de blanco, negro y gris, representa el sufrimiento causado por el bombardeo de una localidad vasca durante la Guerra Civil española de 1937, y es obra de:",
       "imageUrl": null,
       "options": [
@@ -108539,7 +108539,7 @@
         "$d": "2026-09-14T07:57:44.933Z"
       },
       "updatedAt": {
-        "$d": "2026-09-14T23:37:46.976Z"
+        "$d": "2026-09-15T00:09:56.865Z"
       }
     },
     {

@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-14 · Última fase ejecutada: **G88 (COMPLETADA — reclasificación temática de contenido ya publicado, señalado por G87: el Guernica (`cmu0ya8o4000q2biq7o4a8bzx`) estaba archivado bajo «Arquitectura» siendo pintura pura — reclasificado a «Pintura colonial y moderna», el único tema de pintura del temario de Artes; la integración plástica en CU (`cmu0y9jum0010amzn4qctgq6m`) se evaluó con criterio propio y se DEJÓ sin tocar — el concepto es una extensión del muralismo mexicano hacia la arquitectura, convención est. de historia del arte, y ya vivía en «Pintura colonial y moderna». Barrido adicional por palabras clave sobre las 40 filas de Artes: 7 candidatos, los 6 restantes revisados uno por uno y descartados por buen ajuste (falsos positivos del propio barrido: "mexica" dentro de "mexicano", término prehispánico correctamente prehispánico, etc.) — ningún otro reactivo se tocó. `content:guard` confirma las 7 áreas activas siguen `READY` tras el cambio (la reclasificación es intra-materia, no mueve peso entre materias). Ningún enunciado/opción/explicación alterado; solo `Question.topicId`. Banco sin cambio de tamaño: **1 382 servibles** de 1 387 filas)**. Modelo real `claude-sonnet-5`. Ver §G88 abajo.
+
+<details><summary>Historial: G87 (2026-09-14)</summary>
+
 Última actualización: 2026-09-14 · Última fase ejecutada: **G87 (COMPLETADA — verificación ciega de los 40 reactivos de Artes que compuso G86: **39/40 auto-aprobados (97.5%)**, y con ellos UNAM «Humanidades y Artes» cierra la ÚLTIMA materia en cero de todo el catálogo y pasa de 80% a **100%** del peso del examen, `READY` con sus 4 materias completas. **HITO: las 7 áreas activas quedan simultáneamente en `READY` por primera vez en el proyecto** — `content:guard` reporta *7 áreas · 7 listas · 0 con hueco conocido · 0 en «Próximamente»*, con sus 4 aserciones en verde contra un recuento SQL independiente. La única pérdida es una discrepancia REAL de atribución (autoría de «Madre campesina», 1926: el generador marcó Rivera, esta sesión respondió Siqueiros con la confianza más baja del lote, 0.92) que queda SIN PUBLICAR y **reabre la cola de F3, en cero desde G81** — 4 pendientes históricos → 5; Artes sirve 39 contra una cuota de 6, así que el hito no dependía de ese reactivo. Reportados y NO corregidos: 2 reactivos archivados bajo un tema que no les corresponde (el Guernica bajo «Arquitectura»). Banco **1 382 servibles** de 1 387 filas, brecha contra la meta de 1 500 = **118**)**. Modelo real `claude-opus-5`. Ver §G87 abajo.
+
+</details>
 
 <details><summary>Historial: G86 (2026-09-14)</summary>
 
@@ -556,6 +562,89 @@ commiteado en este mismo commit, según la regla de G61.
 **⑧ Verde.** `pnpm typecheck` y `pnpm lint` sin salida (limpios). La fase no
 tocó código de la aplicación: sus cambios son datos en la DB, el respaldo y esta
 documentación.
+
+## G88 — Reclasificación temática: los 2 reactivos señalados por G87 (2026-09-14)
+
+> Modelo real `claude-sonnet-5`. Corrige el `topicId` de contenido **ya
+> publicado y servible** que G87 encontró archivado bajo un tema que no le
+> corresponde. Fase de reclasificación pura: cero cambios a `stem`, `options`
+> o `explanations` de cualquier reactivo.
+
+**① El Guernica — reclasificado.** `cmu0ya8o4000q2biq7o4a8bzx` pregunta por el
+autor de una pintura de gran formato en blanco/negro/gris sobre el bombardeo de
+una localidad vasca en 1937 (respuesta: Pablo Picasso). Vivía bajo
+**«Arquitectura»** (`cmrr1klzq007chi3nqwo1jj60`) sin una sola palabra de
+arquitectura en el enunciado ni en las opciones. Se movió a **«Pintura
+colonial y moderna»** (`cmrr1kkw60078hi3nej9jigbs`) — de los 5 temas
+sembrados para Artes (Artes visuales prehispánicas, Pintura colonial y
+moderna, Escultura mexicana, Arquitectura, Fotografía y cine) es el único que
+cubre pintura; ni "colonial" ni "mexicana" describen la obra, pero "moderna"
+sí, y no hay un tema más específico de pintura universal del siglo XX en el
+temario. Confirmado antes y después del cambio: mismo `stem`, mismas 4
+`options` (comparación por igualdad estricta de JSON), solo cambió
+`topicId`.
+
+**② La integración plástica en CU — evaluada y dejada como está.**
+`cmu0y9jum0010amzn4qctgq6m` pregunta por el nombre del principio que une
+arquitectura y mural en Ciudad Universitaria (respuesta: "Integración
+plástica"), y vive bajo **«Pintura colonial y moderna»**. El enunciado es
+genuinamente interdisciplinario: describe el conjunto arquitectónico
+(funcionalismo, Pani y del Moral) y pregunta por un concepto que
+históricamente se enseña como una **extensión del muralismo mexicano**
+(Rivera, O'Gorman, Siqueiros) aplicada a superficies arquitectónicas, no como
+una categoría propia de teoría arquitectónica — es la convención con la que
+la historia del arte mexicano suele situarlo, dentro del arco de la pintura
+mural moderna. Con solo 5 temas en el sembrado y sin un tema dedicado a
+"muralismo" o "integración plástica", **«Pintura colonial y moderna» es el
+mejor ajuste disponible**, no un descuido. Se deja sin tocar — no porque G87
+lo haya calificado de "defendible" sin más, sino porque el análisis propio de
+esta fase llega a la misma conclusión por una razón distinta (convención
+historiográfica, no solo "tiene componente pictórico").
+
+**③ Barrido adicional sobre las 40 filas de Artes.** Con las 5 materias del
+temario en 100% servible, se sospechó que el lote de G86 pudiera tener más
+casos como el Guernica. Se construyó una consulta de candidatos: para cada
+reactivo, buscar coincidencias de palabras clave fuertemente asociadas a cada
+uno de los 5 temas (p. ej. "arquitect", "fachada" → Arquitectura; "pintur",
+"óleo", "mural" → Pintura; "escultur", "relieve" → Escultura; "prehispánic",
+"maya", "mexica" → prehispánico; "fotografía", "cine" → Fotografía y cine), y
+marcar como candidato todo reactivo que coincidiera con un tema DISTINTO al
+asignado y con NINGUNO con el propio. La consulta es solo un generador de
+candidatos — nunca reclasifica sola. Salieron **7 candidatos** (incluido el
+Guernica, ya corregido); los 6 restantes se revisaron uno por uno con el
+enunciado completo:
+
+| id | tema actual | por qué se queda igual |
+|---|---|---|
+| `cmu0y92gk000lmveeawxg7oej` | Artes visuales prehispánicas | Los danzantes de Monte Albán: relieve prehispánico en sitio prehispánico — el ajuste es correcto, el barrido disparó por las palabras "edificio"/"relieve" |
+| `cmu0y9hz0000qamznhuj0ja88` | Pintura colonial y moderna | Grabador de La Catrina (Posada): grabado/artes gráficas modernas, no hay tema de "artes gráficas" en el sembrado — Pintura sigue siendo el mejor cajón; el barrido disparó por "mexica" dentro de "mexicano" |
+| `cmu0y9v5a000q45amwpy6u560` | Escultura mexicana | Torres de Satélite (Goeritz/Barragán): escultura urbana monumental, canónica como escultura en la historiografía — el barrido disparó por mencionar al arquitecto colaborador |
+| `cmu0y9vx2000v45ambs2cy0tc` | Escultura mexicana | Escultor costarricense-mexicano de figuras monumentales (Zúñiga): correctamente escultura — el barrido disparó por "mexica" dentro de "mexicano" |
+| `cmu0ya4x300062biq4lubdaq5` | Arquitectura | Tulum, ciudad amurallada maya: pregunta por el sitio como asentamiento/puerto, no por una obra visual puntual — arquitectura prehispánica es arquitectura |
+| `cmu0ya5us000b2biqhhvmyjfv` | Arquitectura | Palenque, Templo de las Inscripciones y tumba de Pakal: pregunta centrada en el templo como monumento arqueológico, el relieve de la lápida es un detalle secundario del enunciado — arquitectura sigue siendo el eje |
+
+Ninguno de los 6 se movió. El barrido no encontró ningún otro caso real como
+el Guernica.
+
+**④ Efecto en cobertura, confirmado por `pnpm content:guard`.** Las 7 áreas
+activas siguen `READY` tras el cambio — esperado, porque `area-coverage.ts`
+agrega por materia (JOIN de `topics` a `subjects`), no por tema individual:
+mover un reactivo entre dos temas de la MISMA materia no cambia ni el peso
+servido ni la cuota de ninguna materia. Verificado igual: `Artes peso 2 ·
+sirve 39 · necesita 6` sin cambio, las 4 aserciones (P1-P4) en verde.
+
+**⑤ Integridad de referencias.** El Guernica tiene `groundingStatus:SOURCED`
+con 1 `SourceChunk` vinculado vía `QuestionSourceChunk`; `SourceChunk.topicId`
+es metadata independiente del fragmento fuente (no una restricción de
+integridad contra `Question.topicId`), así que la reclasificación no rompe ni
+requiere tocar esa relación. Sin `Passage` compartido en ninguno de los dos
+reactivos evaluados.
+
+**⑥ Verde.** `pnpm typecheck` y `pnpm lint` sin salida. `pnpm backup:export`
+regenerado y commiteado en este mismo commit (6 686 filas, incluye el
+`topicId` corregido). Banco sin cambio de tamaño: **1 382 servibles** de
+1 387 filas, brecha contra la meta de 1 500 = **118** (sin cambio: la fase no
+agregó ni quitó reactivos servibles, solo corrigió su clasificación).
 
 ## G86 — Lote de reactivos: Artes, UNAM Humanidades y Artes (2026-09-14)
 
