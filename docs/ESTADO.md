@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-15 · Última fase ejecutada: **G92 (COMPLETADA — verificación ciega de los 40 reactivos de Biología que compuso G91, repartidos en los **12 temas** del temario de IPN «Ciencias Médico-Biológicas»: **40/40 auto-aprobados (100%)**, confianza media **0.988**, mínima 0.95, **0 discrepancias y 0 `problems`** — los 12 temas al 100%, sin un solo tema por debajo. Único insumo el lote ciego de `content:blind-batch --all`, que devolvió exactamente los 40 pendientes; verificado en crudo sobre el archivo y no sobre la promesa del tipo: **0 apariciones de `isCorrect`, 0 de `explanation`, 0 de la subcadena `correct`**, y el conjunto COMPLETO de claves presentes es `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options{label, text, imageUrl}`, con las opciones remezcladas con semilla = id del reactivo. No se leyó el commit de G91, ni su lote JSON, ni sus scripts. Los **6 reactivos cuantitativos** se resolvieron **EJECUTANDO el cálculo**, no de memoria —pese a que el lote los trae con `requiresCalculation:false` en los 40—: un script construye el cuadro de Punnett monohíbrido Aa×Aa enumerando sus 4 casillas (→ 3:1) y el dihíbrido AaBb×AaBb enumerando las 16 desde los cuatro gametos AB/Ab/aB/ab (→ 9:3:3:1), encadena meiosis I reduccional + II ecuacional desde una célula 2n (→ 4 células haploides), aplica la regla del 10% (10 000 × 0.10 = 1 000 kcal, y 100 kcal para el tercer nivel, que es justo el distractor), hace el balance de la glucólisis por separado (invertidos 2 en hexocinasa/PFK-1, producidos 4 por fosforilación a nivel de sustrato → **neto 2**) y el conteo cromosómico humano (2n=46 → gameto 23 → cigoto 46); un segundo script **exige que coincida exactamente UNA de las cuatro opciones** y las 6 dieron coincidencia única. Los 34 conceptuales se resolvieron con **descarte explícito de los tres distractores**, no por reconocimiento de la clave. **Señal de longitud medida de forma independiente** desde el lote ciego (invariante bajo el mezclado) ya con la clave confirmada: la clave es la opción estrictamente más larga en **10 de 40 (25.0%)**, exactamente el azar, más corta en 6 (15.0%), razón media 1.07 — **reproduce al decimal lo que G91 midió en composición**, cruce que confirma que `lot-validation.ts` mide lo que dice medir. Con este lote Biología IPN pasa de **70 a 110 servibles** contra un peso de examen de 22, es decir de **3.18 a 5.00 reactivos por punto de peso**: deja de ser **la celda más delgada de las 35 del catálogo activo** (puesto 1 → puesto 5), y el nuevo piso queda en 3.50, empatado entre IPN Física (70/20) y el pool `UNAM:ESPANOL` de Área 1 (35/10) — medido parseando el censo del propio `content:guard`, no a mano. `content:guard` DESPUÉS de la resolución: **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**, 4 aserciones en verde contra recuento SQL independiente, IPN Médico-Biológicas `READY` 55/55 de peso con Biología 110 contra una cuota de 11. `content:margin` sin cambio, como debe ser —Área 1 UNAM no incluye Biología de IPN—: 387 propios, **margen de Early Bird `+87`**. `content:coverage`: Biología IPN vuelve de 70✓/40⧗ a **110✓/0⧗** y la **cola de verificación adversarial queda de nuevo VACÍA**. Banco: **1 462 servibles** (1 422 → +40) de **1 467 filas**, tasa de auto-aprobación global 99.7%, brecha contra la meta de 1 500 = **38**)**. Modelo real `claude-opus-5`. Ver §G92 abajo.
+
+<details><summary>Historial: G91 (2026-09-14)</summary>
+
 Última actualización: 2026-09-14 · Última fase ejecutada: **G91 (COMPLETADA — 40 reactivos de Biología, IPN «Ciencias Médico-Biológicas», la materia con la MENOR densidad ponderada real de las **35 filas `Subject`** del catálogo activo (UNAM SUPERIOR + IPN SUPERIOR, únicas instituciones con flag encendido): peso 22, servía 70 → **3.18 reactivos por punto de peso**, por debajo de la siguiente más baja (IPN Física, 3.5, empatada con el pool `UNAM:ESPANOL`, también 3.5) — recuento hecho con la MISMA unidad que usa `content:guard` (`servable/questionWeight`), sobre las 7 áreas activas por igual, incluidos tanto materias exclusivas como pools compartidos de G26. Biología es **EXCLUSIVA** del área (no figura en la lista de `sharedContentKey` de `shared-subjects.ts`: UNAM comparte Español/Inglés/Química; IPN comparte Español/Inglés/Química/Matemáticas — Biología no). Sus 12 temas tienen **0 `SourceChunk`** → el lote completo es **TEMARIO_ONLY**. Reparto: refuerzo más fuerte (+4) en los 2 temas más delgados de la materia (Evolución y especiación, Homeostasis: 5→9 cada uno, el mínimo antes del lote) y +2/+3/+4 en los 10 restantes, para profundidad general sin dejar ningún tema atrás. **Cálculos verificados de forma independiente** en `verify-calcs.mjs` (recalcula, no lee la clave declarada): cruza monohíbrida Aa×Aa → 3:1, dihíbrida AaBb×AaBb → 9:3:3:1, ATP neto de la glucólisis = 2, regla del 10% de la pirámide trófica (10,000→1,000 kcal), cigoto humano 2n=46 — **9/9 aserciones correctas**. `content:validate-batch`: la primera tirada de `crypto.randomInt` violó `POSITION_SKEW` por puro azar (letra "C" en 12.5%, bajo el mínimo 15%) — mismo patrón que G80/G86 — **regenerada sin tocar contenido**; segunda tirada limpia: posición A 27.5%/B 25%/D 25%/C 22.5% (dentro de 15-40%), sesgo de longitud **sano desde la composición** (clave=más-larga 25.0%, más-corta 15.0%, razón media 1.07), 0 citas por letra, 0 patrones de orden. Insertados con `isVerified=false`. `content:guard`/`content:margin` **sin cambio antes/después** — esperado, cuentan solo `isVerified=true` y Área 1 UNAM no incluye Biología de IPN: 7/7 áreas siguen `READY`, margen de Early Bird sigue en `+87`. `content:coverage`: Biología IPN Médico-Bio pasa de 70✓/0⧗ a **70✓/40⧗** en cola de verificación adversarial. Banco: **1 422 servibles sin cambio** de **1 467 filas** (antes 1 427), brecha contra la meta de 1 500 = **78** (sin cambio, esperado). `pnpm backup:export` corrido en el mismo commit (7 026 filas, 4.77 MB))**. Modelo real `claude-sonnet-5`. Ver §G91 abajo.
+
+</details>
 
 <details><summary>Historial: G90 (2026-09-14)</summary>
 
@@ -457,6 +463,217 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G92 — Verificación ciega: Biología, IPN «Ciencias Médico-Biológicas» (lote de G91) (2026-09-15)
+
+> Modelo real `claude-opus-5`. Los 40 reactivos que compuso G91 quedaron
+> **40/40 auto-aprobados (100%)**, confianza media **0.988**, mínima 0.95,
+> **0 discrepancias y 0 `problems`**, con los **12 temas** del temario al
+> 100%. Con ellos Biología IPN deja de ser la celda más delgada del catálogo
+> —de **3.18 a 5.00** reactivos por punto de peso de examen— y el banco
+> llega a **1 462 servibles**: brecha de **38** contra la meta de 1 500.
+
+### 1. Aislamiento: qué vio esta sesión
+
+Único insumo: `pnpm content:blind-batch --all --limit 60`, que devolvió
+exactamente los 40 pendientes (`scripts/content-exports/g92-blind.json`).
+La garantía se comprobó **en crudo sobre el archivo**, no sobre la promesa
+del tipo:
+
+| Comprobación sobre el JSON del lote | Resultado |
+|---|---|
+| apariciones de `isCorrect` | **0** |
+| apariciones de `explanation` | **0** |
+| apariciones de la subcadena `correct` (cualquier caja) | **0** |
+| conjunto COMPLETO de claves presentes | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options{label, text, imageUrl}` |
+
+Las opciones llegan remezcladas con semilla determinista = id del reactivo,
+así que ni la posición original viaja. No se leyó el commit de G91, ni su
+lote JSON, ni sus scripts, ni ninguna opción con su respuesta marcada. Esta
+sesión nunca vio una respuesta correcta antes de emitir la suya.
+
+### 2. Los 6 cuantitativos, EJECUTADOS en código
+
+El lote trae `requiresCalculation: false` en los 40 —razonable: son
+reactivos de bachillerato que un sustentante resuelve de cabeza— pero el
+encargo exigía ejecutar el cálculo de todos modos, y se ejecutó. Un script
+(`calc.mjs`, en el scratchpad de la sesión) deriva cada resultado desde
+cero, sin constantes memorizadas:
+
+| # | Reactivo | Cómo se calculó | Resultado |
+|---|---|---|---|
+| 5 | Monohíbrida Aa × Aa, dominancia completa | Cuadro de Punnett enumerando las 4 casillas y agrupando por fenotipo | **3 : 1** |
+| 6 | Dihíbrida AaBb × AaBb, genes independientes | Cuadro de 16 casillas desde los gametos AB/Ab/aB/ab, agrupado en A-B-/A-bb/aaB-/aabb | **9 : 3 : 3 : 1** |
+| 3 | Meiosis desde una célula 2n | Meiosis I reduccional (1→2, 2n→n) encadenada con meiosis II ecuacional (2→4) | **4 células haploides** |
+| 12 | Regla del 10% | 10 000 × 0.10; y 10 000 × 0.10² para el nivel siguiente | **1 000 kcal** (y 100 kcal, que es el distractor) |
+| 19 | ATP neto de la glucólisis | Inversión (hexocinasa + PFK-1 = 2) restada del beneficio (2 × fosfoglicerato cinasa + 2 × piruvato cinasa = 4) | **2 ATP netos** |
+| 37 | Conteo cromosómico humano | 2n = 46 → gameto = 46/2 → cigoto = gameto × 2 | **23 y 46** |
+
+Un segundo script (`match.mjs`) toma cada resultado calculado y lo empareja
+contra las cuatro opciones del lote ciego **exigiendo coincidencia única**.
+Las 6 dieron exactamente una opción coincidente — **0 `MULTIPLE_VALID`, 0
+`NONE_VALID`**. El emparejamiento es por predicado numérico (extrae los
+números del texto de la opción y los compara contra el valor calculado), no
+por inspección visual.
+
+Dos distractores merecen nota porque son justamente el error que el reactivo
+persigue, y el cálculo lo confirmó: los **100 kcal** del #12 son el tercer
+nivel trófico (dos aplicaciones de la regla, no una), y los **4 ATP** del
+#19 son el bruto de la glucólisis sin restar la fase de inversión. Ambos
+están bien puestos.
+
+### 3. Los 34 conceptuales, por descarte explícito
+
+Cada uno se resolvió nombrando **por qué falla cada uno de los tres
+distractores**, no reconociendo la clave. El `reasoning` de los 40 queda
+persistido en `Question.verification`. Ejemplos del tipo de descarte que se
+exigió:
+
+- **#17 (enzima gástrica proteolítica)** — la tripsina es el distractor
+  fuerte: también es proteolítica, pero es **pancreática**, actúa en el
+  duodeno y a pH alcalino, no en el estómago ácido. La amilasa salival se
+  inactiva justamente con ese pH.
+- **#20 (vitamina liposoluble)** — la B12 tiene reserva hepática notable de
+  años, así que "se almacena en el hígado" no basta para descartarla; lo que
+  la descarta es que es **hidrosoluble** y no se deposita en tejido adiposo,
+  que es la otra mitad de la condición del enunciado.
+- **#28 (qué libera la sinapsis química)** — el calcio es el distractor
+  fino: **entra** a la terminal presináptica y dispara la exocitosis, pero
+  no es lo que se vierte a la hendidura para comunicar.
+- **#10 (estructuras homólogas)** — "análogas" y "convergentes" son casi
+  sinónimos entre sí, pero ambas describen el caso **inverso** (misma
+  función, origen distinto), así que no compiten con la clave.
+- **#35 (principio de la vacunación)** — el plasma con anticuerpos es
+  inmunización **pasiva** y, decisivo para el descarte, **no genera
+  memoria**, que es exactamente lo que el enunciado pide explicar.
+
+### 4. Resultado: 40/40, los 12 temas al 100%
+
+`pnpm content:resolve --file scripts/content-exports/g92-answers.json`:
+**✅ Auto-aprobados 40 · ✋ Sin publicar 0 · ⚠️ Omitidos 0.**
+
+| Tema | Auto-aprobados |
+|---|---|
+| Célula y organelos | 2/2 (100%) |
+| Mitosis y meiosis | 2/2 (100%) |
+| Genética básica | 3/3 (100%) |
+| Evolución y especiación | 4/4 (100%) |
+| Ecología y ecosistemas | 3/3 (100%) |
+| Sistemas del cuerpo humano | 4/4 (100%) |
+| Nutrición y metabolismo | 3/3 (100%) |
+| Homeostasis | 4/4 (100%) |
+| Sistema nervioso | 4/4 (100%) |
+| Sistema endocrino | 3/3 (100%) |
+| Inmunología | 4/4 (100%) |
+| Reproducción | 4/4 (100%) |
+| **TOTAL** | **40/40 (100%)** |
+
+Confianza media **0.988**, mínima **0.95** (el efecto de cuello de botella,
+donde "poblaciones pequeñas" es la respuesta correcta pero el enunciado
+describe el efecto y no el evento demográfico que lo causa). Ningún reactivo
+se marcó con `problems`: no se encontró error de cálculo, dato biológico
+incorrecto ni ambigüedad genuina.
+
+**Lo que se decidió NO marcar, y por qué** — siguiendo la lección de G81 (un
+`problems` por imprecisión de vocabulario bloquea un reactivo sano) y la de
+G85 (marcar solo si el reactivo NOMBRA lo que cambió):
+
+- **#19**, el distractor de **36 ATP**: la cifra moderna del rendimiento
+  aeróbico total es ~30–32, no 36–38. Pero es un **distractor**, la clave
+  (2 ATP netos de la glucólisis) es inequívoca por cálculo, y la cifra
+  antigua sigue siendo la que el sustentante de IPN ha visto en clase. No
+  invalida el reactivo.
+- **#35**, "antígeno **debilitado**": las vacunas de subunidad y de ARNm no
+  usan patógeno atenuado. Es la formulación estándar de bachillerato y las
+  otras tres opciones son abiertamente falsas, así que no hay ambigüedad
+  real sobre cuál marcar.
+
+### 5. Señal de longitud, medida de forma independiente
+
+Medida desde el lote **ciego** (la longitud de una opción es invariante bajo
+el mezclado) ya con la clave confirmada por la resolución:
+
+| Métrica | G92 (post-hoc, desde el lote ciego) | G91 (en composición, `lot-validation`) | Azar |
+|---|---|---|---|
+| clave estrictamente más larga | **10/40 = 25.0%** | 25.0% | ~25% |
+| clave estrictamente más corta | 6/40 = 15.0% | 15.0% | ~25% |
+| razón media clave/distractores | 1.07 | 1.07 | 1.00 |
+
+Coincide **al decimal** con lo que G91 midió al componer, por dos caminos
+distintos y desde archivos distintos. Es un cruce útil: confirma que
+`lot-validation.ts` mide lo que dice medir (el `LENGTH_BIAS` de G77), y que
+esta vez la clave no es la opción larga y matizada que G76 encontró en el
+lote de Inglés. **Sin señal explotable.** El patrón de orden (`ORDER_PATTERN`)
+no se puede re-medir desde aquí por diseño: el lote ciego mezcla las
+posiciones, así que esa comprobación queda donde corresponde, en composición.
+
+### 6. Efecto en el catálogo
+
+**Biología IPN Médico-Biológicas deja de ser la celda más delgada.** Medido
+parseando el censo del propio `content:guard` (peso y servibles por celda),
+no a mano:
+
+| | antes del lote | después |
+|---|---|---|
+| servibles | 70 | **110** |
+| peso de examen | 22 | 22 |
+| densidad ponderada | **3.18** | **5.00** |
+| puesto entre las 35 celdas activas | **1 (la más baja)** | **5** |
+
+El nuevo piso del catálogo queda en **3.50**, empatado entre IPN Física
+(70/20) y el pool `UNAM:ESPANOL` de Área 1 (35/10) — los dos candidatos
+naturales para el siguiente lote.
+
+`pnpm content:guard` **después** de la resolución: **7 áreas · 7 listas · 0
+con hueco conocido · 0 en «Próximamente»**, con sus 4 aserciones (P1–P4) en
+verde contra un recuento SQL independiente. IPN Médico-Biológicas sigue
+`READY` con 55/55 de peso, ahora con Biología sirviendo **110 contra una
+cuota de 11**.
+
+`pnpm content:margin` **sin cambio, como debe ser**: mide UNAM Área 1, que
+no incluye Biología de IPN. 387 reactivos propios, **margen de Early Bird
+`+87`** sobre el mínimo de 300. Que este número no se moviera es la
+confirmación de que la sonda cuenta solo filas `Subject` propias del área y
+no se contamina con otras instituciones.
+
+`pnpm content:coverage`: Biología IPN vuelve de `70✓/40⧗` a **`110✓/0⧗`** y
+la **cola de verificación adversarial queda de nuevo vacía**.
+
+### 7. Estado del banco
+
+| | |
+|---|---|
+| servibles (`isVerified=true`) | **1 462** (1 422 → **+40**) |
+| filas totales | **1 467** |
+| en cola de resolución | **0** |
+| con veredicto sin publicar | 5 (4 discrepancias F3 + 1 retirado de G40) |
+| tasa de auto-aprobación global | **99.7%** (1 463/1 467) |
+| **brecha contra la meta de 1 500** | **38** |
+| meta efectiva 1 222 (G26) | 90% · brecha 127 por celda |
+
+Anclaje en fuentes (F2b) sin cambio: 377 `SOURCED` (26%) · 1 090
+`TEMARIO_ONLY`. Este lote es TEMARIO_ONLY completo — los 12 temas de
+Biología IPN siguen con 0 `SourceChunk`.
+
+### 8. Lo que esta fase deja anotado
+
+- **`requiresCalculation:false` no significa "no hay nada que calcular".**
+  Los 40 reactivos venían marcados así y seis de ellos tienen aritmética
+  real (Punnett, regla del 10%, balance de ATP, conteo cromosómico). La
+  bandera describe si el sustentante necesita lápiz, no si el verificador
+  puede saltarse el cálculo. Ejecutarlo igual es barato y es lo único que
+  distingue "verifiqué" de "reconocí".
+- **El cruce de la señal de longitud vale como prueba de la prueba.** Medirla
+  post-hoc desde el lote ciego, por un camino distinto al de
+  `lot-validation.ts` y sobre un archivo distinto, y obtener el mismo 25.0%
+  / 15.0% / 1.07, es lo más cerca que se puede estar de comprobar que el
+  validador de G77 no está mintiendo. Repetirlo en cada verificación cuesta
+  cuatro líneas.
+- **Un distractor con una cifra de libro viejo no es un defecto del
+  reactivo.** Los 36 ATP del #19 son la cifra que el alumno ha visto en
+  clase; marcarla como `problem` habría bloqueado un reactivo cuya clave es
+  inequívoca por cálculo. El criterio de G81/G85 se sostiene.
+
 
 ## G91 — Lote de reactivos: Biología, IPN «Ciencias Médico-Biológicas» (2026-09-14)
 

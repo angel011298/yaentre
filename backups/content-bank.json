@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-15T01:11:55.998Z",
+    "exportedAt": "2026-09-15T21:54:59.181Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -112175,7 +112175,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112183,7 +112183,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La mitocondria alberga el ciclo de Krebs, la cadena respiratoria y la ATP sintasa. Descarte: el lisosoma solo hace digestion intracelular con hidrolasas acidas; el reticulo endoplasmico liso sintetiza lipidos, detoxifica y almacena calcio; el aparato de Golgi modifica y empaca proteinas. Ninguno sintetiza ATP por respiracion aerobica.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:24:51.166Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112191,7 +112211,7 @@
         "$d": "2026-09-15T01:09:07.939Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:07.939Z"
+        "$d": "2026-09-15T01:24:51.169Z"
       }
     },
     {
@@ -112227,7 +112247,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112235,7 +112255,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El cloroplasto es exclusivo de la celula vegetal y de otros organismos fotosinteticos. Descarte: ribosoma, mitocondria y nucleo existen en ambas celulas eucariotas, animal y vegetal, asi que ninguno las distingue.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:24:52.293Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112243,7 +112283,7 @@
         "$d": "2026-09-15T01:09:08.965Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:08.965Z"
+        "$d": "2026-09-15T01:24:52.295Z"
       }
     },
     {
@@ -112279,7 +112319,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112287,7 +112327,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Ejecutado en codigo: meiosis I reduccional (1 celula 2n a 2 celulas n) seguida de meiosis II ecuacional (2 a 4 celulas n) da 4 celulas haploides; el script confirmo una sola opcion coincidente. Descarte: dos celulas 2n es el resultado de la MITOSIS; dos haploides seria detenerse en meiosis I; cuatro diploides es imposible porque la meiosis I ya redujo el numero cromosomico.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:24:53.403Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112295,7 +112355,7 @@
         "$d": "2026-09-15T01:09:15.758Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:15.758Z"
+        "$d": "2026-09-15T01:24:53.405Z"
       }
     },
     {
@@ -112331,7 +112391,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112339,7 +112399,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "En la anafase se rompe la cohesion centromerica y las cromatidas hermanas migran a polos opuestos. Descarte: en profase los cromosomas se condensan y se forma el huso; en metafase se alinean en la placa ecuatorial sin separarse; en telofase ya llegaron a los polos y se reorganizan las envolturas nucleares.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:24:54.516Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112347,7 +112427,7 @@
         "$d": "2026-09-15T01:09:16.773Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:16.773Z"
+        "$d": "2026-09-15T01:24:54.518Z"
       }
     },
     {
@@ -112383,7 +112463,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112391,7 +112471,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cuadro de Punnett Aa x Aa construido en codigo: 4 casillas dan 1 AA, 2 Aa, 1 aa; con dominancia completa el fenotipo queda 3 dominante : 1 recesivo. Descarte: 9:3:3:1 es dihibrida; 1:1 corresponde a una cruza de prueba Aa x aa; 1:2:1 es la razon GENOTIPICA, o la fenotipica bajo dominancia incompleta, no bajo dominancia completa.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:24:55.627Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112399,7 +112499,7 @@
         "$d": "2026-09-15T01:09:23.514Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:23.514Z"
+        "$d": "2026-09-15T01:24:55.629Z"
       }
     },
     {
@@ -112435,7 +112535,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112443,7 +112543,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cuadro de 16 casillas AaBb x AaBb enumerado en codigo con los cuatro gametos AB, Ab, aB y ab: A-B- = 9, A-bb = 3, aaB- = 3, aabb = 1, es decir 9:3:3:1. Descarte: 3:1 es monohibrida; 1:2:1 es genotipica monohibrida; 1:1:1:1 es la cruza de prueba dihibrida AaBb x aabb.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:24:56.743Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112451,7 +112571,7 @@
         "$d": "2026-09-15T01:09:24.512Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:24.512Z"
+        "$d": "2026-09-15T01:24:56.745Z"
       }
     },
     {
@@ -112487,7 +112607,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112495,7 +112615,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cruzar con el homocigoto recesivo revela el genotipo oculto: si el dominante es AA toda la descendencia sale dominante, y si es Aa aparece una razon 1:1 con recesivos visibles. Descarte: el sexo de la descendencia no depende de este cruce; la dominancia incompleta es una propiedad de los alelos, no algo que un tipo de cruza produzca; y aumentar la variabilidad no es el proposito de un testcross, que es diagnostico.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-15T01:24:57.856Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112503,7 +112643,7 @@
         "$d": "2026-09-15T01:09:25.540Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:25.540Z"
+        "$d": "2026-09-15T01:24:57.858Z"
       }
     },
     {
@@ -112539,7 +112679,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112547,7 +112687,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Sin variacion heredable no hay sobre que seleccionar ni forma de transmitir la ventaja a la siguiente generacion. Descarte: la reproduccion asexual no es requisito y ademas limita la recombinacion; un ambiente inmovil no se exige, la seleccion opera igual y solo cambia de direccion; y genotipos identicos serian justamente la ausencia de variacion, que anula la seleccion.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:24:58.970Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112555,7 +112715,7 @@
         "$d": "2026-09-15T01:09:32.370Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:32.370Z"
+        "$d": "2026-09-15T01:24:58.972Z"
       }
     },
     {
@@ -112591,7 +112751,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112599,7 +112759,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Alopatrica significa separacion geografica que corta el flujo genico. Descarte: la simpatrica ocurre SIN barrera geografica, en el mismo territorio; la convergencia evolutiva produce parecidos entre linajes distintos, no especies nuevas por aislamiento; y la deriva genica es un cambio azaroso de frecuencias alelicas, un mecanismo, no el nombre del proceso descrito.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:00.080Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112607,7 +112787,7 @@
         "$d": "2026-09-15T01:09:33.367Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:33.367Z"
+        "$d": "2026-09-15T01:25:00.082Z"
       }
     },
     {
@@ -112643,7 +112823,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112651,7 +112831,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Mismo origen embrionario y mismo plan oseo con funciones distintas define la homologia. Descarte: analogas es el caso inverso, misma funcion con origen distinto, como el ala de un insecto frente a la de un ave; convergentes nombra el proceso que genera analogas, no este caso; y vestigiales son estructuras reducidas que perdieron su funcion, que no es el caso del brazo humano ni de la aleta.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:01.190Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112659,7 +112859,7 @@
         "$d": "2026-09-15T01:09:34.367Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:34.367Z"
+        "$d": "2026-09-15T01:25:01.192Z"
       }
     },
     {
@@ -112695,7 +112895,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112703,7 +112903,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El muestreo azaroso de alelos pesa mas cuanto menor es el numero de sobrevivientes, asi que la perdida de variabilidad es maxima en poblaciones pequenas. Descarte: en poblaciones grandes y estables la deriva es despreciable; la ausencia de mutacion frena la reposicion de variacion pero no es lo que hace pronunciado el cuello de botella; y el apareamiento al azar es un supuesto de Hardy-Weinberg que no amplifica la deriva.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-15T01:25:02.303Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112711,7 +112931,7 @@
         "$d": "2026-09-15T01:09:35.365Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:35.365Z"
+        "$d": "2026-09-15T01:25:02.305Z"
       }
     },
     {
@@ -112747,7 +112967,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112755,7 +112975,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Calculado en codigo: 10000 kcal por 0.10 da 1000 kcal en el nivel de herbivoros. Descarte: 100 kcal corresponde al TERCER nivel, dos aplicaciones de la regla, tambien calculado; 10000 kcal supondria una transferencia del 100 por ciento, imposible por la segunda ley; y 5000 kcal seria una regla del 50 por ciento, que no existe.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:03.415Z",
+          "chosenOption": "A",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112763,7 +113003,7 @@
         "$d": "2026-09-15T01:09:42.053Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:42.053Z"
+        "$d": "2026-09-15T01:25:03.417Z"
       }
     },
     {
@@ -112799,7 +113039,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112807,7 +113047,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Beneficio reciproco es la definicion de mutualismo. Descarte: en el parasitismo y en la depredacion una de las partes resulta danada o muerta; en el comensalismo una se beneficia y la otra queda indiferente, pero el enunciado dice explicitamente que ambas ganan.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:04.530Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112815,7 +113075,7 @@
         "$d": "2026-09-15T01:09:43.061Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:43.061Z"
+        "$d": "2026-09-15T01:25:04.532Z"
       }
     },
     {
@@ -112851,7 +113111,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112859,7 +113119,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El criterio que separa primaria de secundaria es la existencia previa de suelo: roca desnuda o lava frente a un campo abandonado o quemado. Descarte: ambas ocurren en medios acuaticos y terrestres; la primaria es mas LENTA y si requiere especies pioneras como liquenes y musgos, precisamente porque debe formar el suelo; y el ecosistema final no es lo que las distingue.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:05.639Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112867,7 +113147,7 @@
         "$d": "2026-09-15T01:09:44.062Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:44.062Z"
+        "$d": "2026-09-15T01:25:05.641Z"
       }
     },
     {
@@ -112903,7 +113183,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112911,7 +113191,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El corazon humano tiene cuatro camaras: dos auriculas que reciben y dos ventriculos que expulsan. Descarte: dos cavidades corresponde al corazon de los peces; tres al de los anfibios; y cuatro ventriculos sin auriculas no existe en ningun vertebrado.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:06.863Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112919,7 +113219,7 @@
         "$d": "2026-09-15T01:09:50.772Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:50.772Z"
+        "$d": "2026-09-15T01:25:06.865Z"
       }
     },
     {
@@ -112955,7 +113255,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -112963,7 +113263,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El intercambio ocurre en los alveolos, cuyo epitelio delgadisimo esta en contacto directo con los capilares. Descarte: laringe, traquea y bronquios forman la via conductora: transportan y acondicionan el aire, sin superficie de intercambio.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:07.981Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -112971,7 +113291,7 @@
         "$d": "2026-09-15T01:09:51.776Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:51.776Z"
+        "$d": "2026-09-15T01:25:07.983Z"
       }
     },
     {
@@ -113007,7 +113327,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113015,7 +113335,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La pepsina se activa desde pepsinogeno por el acido clorhidrico gastrico y corta proteinas en el estomago. Descarte: la amilasa salival digiere almidon y se inactiva con el pH acido; la lipasa pancreatica actua sobre lipidos en el intestino; y la tripsina tambien es proteolitica pero es PANCREATICA y trabaja en el duodeno a pH alcalino, no es gastrica.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:09.089Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113023,7 +113363,7 @@
         "$d": "2026-09-15T01:09:52.772Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:52.772Z"
+        "$d": "2026-09-15T01:25:09.091Z"
       }
     },
     {
@@ -113059,7 +113399,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113067,7 +113407,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El tendon une el musculo con el hueso y transmite la traccion de la contraccion. Descarte: el ligamento une hueso con hueso y estabiliza articulaciones; el cartilago recubre superficies articulares y da soporte flexible; y la fascia envuelve y separa musculos sin insertarse para transmitir fuerza al hueso.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:10.201Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113075,7 +113435,7 @@
         "$d": "2026-09-15T01:09:53.770Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:09:53.770Z"
+        "$d": "2026-09-15T01:25:10.204Z"
       }
     },
     {
@@ -113111,7 +113471,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113119,7 +113479,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Balance ejecutado en codigo: fase de inversion 2 ATP (hexocinasa y fosfofructocinasa-1) y fase de beneficio 4 ATP por fosforilacion a nivel de sustrato (2 de fosfoglicerato cinasa mas 2 de piruvato cinasa), de modo que 4 menos 2 da 2 ATP netos. Descarte: 4 ATP es el bruto sin restar la inversion; 0 ATP ignoraria la fase de beneficio; y 36 ATP es el rendimiento aproximado de la oxidacion aerobica COMPLETA, no de la glucolisis.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:11.315Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113127,7 +113507,7 @@
         "$d": "2026-09-15T01:10:00.551Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:00.551Z"
+        "$d": "2026-09-15T01:25:11.317Z"
       }
     },
     {
@@ -113163,7 +113543,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113171,7 +113551,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La vitamina A es liposoluble, del grupo A, D, E y K, y se almacena en higado y tejido adiposo. Descarte: B1, B12 y C son hidrosolubles y se excretan por orina; aunque la B12 tiene una reserva hepatica notable, no es liposoluble ni se deposita en tejido adiposo, asi que no cumple la condicion que pide el enunciado.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-15T01:25:12.428Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113179,7 +113579,7 @@
         "$d": "2026-09-15T01:10:01.545Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:01.545Z"
+        "$d": "2026-09-15T01:25:12.430Z"
       }
     },
     {
@@ -113215,7 +113615,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113223,7 +113623,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La tasa metabolica basal es el gasto energetico minimo en reposo para sostener las funciones vitales. Descarte: el gasto en ejercicio intenso es lo contrario del reposo; la sintesis de proteinas es un proceso anabolico, no una medida de energia; y limitarla a lo que se pierde por respirar deja fuera circulacion, funcion renal, tono muscular y termorregulacion.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-15T01:25:13.539Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113231,7 +113651,7 @@
         "$d": "2026-09-15T01:10:02.537Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:02.537Z"
+        "$d": "2026-09-15T01:25:13.541Z"
       }
     },
     {
@@ -113267,7 +113687,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113275,7 +113695,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Homeostasis es mantener constante el medio interno frente a variaciones externas. Descarte: el estiron puberal es crecimiento, no regulacion; la produccion hormonal es UN mecanismo entre varios, no la definicion; y la excrecion de desechos es una funcion parcial que ademas nunca es completa.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:14.653Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113283,7 +113723,7 @@
         "$d": "2026-09-15T01:10:09.228Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:09.228Z"
+        "$d": "2026-09-15T01:25:14.655Z"
       }
     },
     {
@@ -113319,7 +113759,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113327,7 +113767,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La respuesta, la insulina, contrarresta el estimulo, la glucosa alta, y lo devuelve al punto de ajuste: retroalimentacion negativa. Descarte: la positiva AMPLIFICA el estimulo, como en el parto o la coagulacion; el reflejo somatico es una via neuromuscular; y la inhibicion competitiva es un fenomeno enzimatico de sitio activo, no un circuito de control fisiologico.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:15.765Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113335,7 +113795,7 @@
         "$d": "2026-09-15T01:10:10.217Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:10.217Z"
+        "$d": "2026-09-15T01:25:15.767Z"
       }
     },
     {
@@ -113371,7 +113831,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113379,7 +113839,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La evaporacion del sudor absorbe calor latente de la piel y la enfria. Descarte: el escalofrio y el aumento del metabolismo basal GENERAN calor, son respuestas al frio; y la vasoconstriccion periferica conserva calor al alejar la sangre de la superficie, cuando para perderlo hace falta vasodilatacion.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:16.890Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113387,7 +113867,7 @@
         "$d": "2026-09-15T01:10:11.203Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:11.203Z"
+        "$d": "2026-09-15T01:25:16.892Z"
       }
     },
     {
@@ -113423,7 +113903,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113431,7 +113911,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El pH sanguineo normal es de 7.35 a 7.45, ligeramente alcalino. Descarte: los rangos de 5.0 a 5.5 y de 6.0 a 6.5 son acidosis incompatibles con la vida, cuyo limite clinico ronda 6.8; y de 8.0 a 8.5 seria una alcalosis igualmente letal, con limite cercano a 7.8.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:18.001Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113439,7 +113939,7 @@
         "$d": "2026-09-15T01:10:12.187Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:12.187Z"
+        "$d": "2026-09-15T01:25:18.003Z"
       }
     },
     {
@@ -113475,7 +113975,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113483,7 +113983,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las dendritas reciben la senal y la conducen hacia el soma. Descarte: el axon conduce el impulso ALEJANDOLO del cuerpo celular; la vaina de mielina aisla el axon y acelera la conduccion saltatoria sin recibir senales; y el boton sinaptico es el extremo presinaptico que LIBERA neurotransmisor.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:19.113Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113491,7 +114011,7 @@
         "$d": "2026-09-15T01:10:18.897Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:18.897Z"
+        "$d": "2026-09-15T01:25:19.115Z"
       }
     },
     {
@@ -113527,7 +114047,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113535,7 +114055,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El sistema nervioso central es el encefalo mas la medula espinal. Descarte: nervios craneales y espinales, ganglios simpaticos y parasimpaticos y receptores cutaneos pertenecen todos al sistema nervioso PERIFERICO.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:20.222Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113543,7 +114083,7 @@
         "$d": "2026-09-15T01:10:19.901Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:19.901Z"
+        "$d": "2026-09-15T01:25:20.224Z"
       }
     },
     {
@@ -113579,7 +114119,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113587,7 +114127,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La neurona presinaptica libera neurotransmisores por exocitosis de vesiculas hacia la hendidura sinaptica. Descarte: el calcio ENTRA a la terminal presinaptica y dispara esa exocitosis, no es lo que se vierte para comunicar; las hormonas viajan por la sangre a distancia, no por la hendidura; y las enzimas digestivas no tienen papel sinaptico alguno.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-15T01:25:21.442Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113595,7 +114155,7 @@
         "$d": "2026-09-15T01:10:20.899Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:20.899Z"
+        "$d": "2026-09-15T01:25:21.444Z"
       }
     },
     {
@@ -113631,7 +114191,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113639,7 +114199,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El arco reflejo se cierra en la medula espinal, por eso la retirada precede a la percepcion consciente. Descarte: la corteza cerebral es justamente donde llega despues el dolor consciente; el hipotalamo regula funciones autonomas y homeostaticas; y el cerebelo coordina y afina el movimiento, pero no cierra el arco reflejo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:22.557Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113647,7 +114227,7 @@
         "$d": "2026-09-15T01:10:21.897Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:21.897Z"
+        "$d": "2026-09-15T01:25:22.559Z"
       }
     },
     {
@@ -113683,7 +114263,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113691,7 +114271,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las celulas beta de los islotes pancreaticos secretan insulina. Descarte: las suprarrenales producen adrenalina, cortisol y aldosterona; la hipofisis produce hormona del crecimiento, ACTH, TSH, LH y FSH; y la tiroides produce T3 y T4. Ninguna produce insulina.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:23.673Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113699,7 +114299,7 @@
         "$d": "2026-09-15T01:10:28.677Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:28.677Z"
+        "$d": "2026-09-15T01:25:23.675Z"
       }
     },
     {
@@ -113735,7 +114335,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113743,7 +114343,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El exceso de T3 y T4 eleva el metabolismo basal: mas consumo de oxigeno, taquicardia, perdida de peso e intolerancia al calor. Descarte: desacelerar con fatiga y aumento de peso describe el HIPOtiroidismo; el exceso tiroideo no detiene la produccion de insulina; y decir que no produce efecto contradice la funcion central de la hormona tiroidea.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:24.798Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113751,7 +114371,7 @@
         "$d": "2026-09-15T01:10:29.685Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:29.685Z"
+        "$d": "2026-09-15T01:25:24.800Z"
       }
     },
     {
@@ -113787,7 +114407,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113795,7 +114415,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La glandula endocrina vierte hormonas directamente a la sangre sin conductos y la exocrina secreta por conductos hacia una superficie o cavidad. Descarte: asignar enzimas a la endocrina y hormonas a la exocrina invierte los terminos; la endocrina no se limita a la ninez; y las endocrinas estan repartidas por todo el cuerpo, como tiroides, pancreas, suprarrenales y gonadas, no solo en el cerebro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:25.908Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113803,7 +114443,7 @@
         "$d": "2026-09-15T01:10:30.694Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:30.694Z"
+        "$d": "2026-09-15T01:25:25.910Z"
       }
     },
     {
@@ -113839,7 +114479,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113847,7 +114487,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La memoria inmunologica especifica es lo propio de la inmunidad adaptativa y es lo que sustenta la vacunacion. Descarte: actuar de inmediato sin distinguir el patogeno, estar presente desde el nacimiento y las barreras fisicas como piel y mucosas son los tres rasgos de la inmunidad INNATA.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:27.019Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113855,7 +114515,7 @@
         "$d": "2026-09-15T01:10:37.422Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:37.422Z"
+        "$d": "2026-09-15T01:25:27.021Z"
       }
     },
     {
@@ -113891,7 +114551,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113899,7 +114559,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El linfocito B activado se diferencia en celula plasmatica secretora de anticuerpos. Descarte: el linfocito T citotoxico destruye celulas infectadas por contacto pero no produce anticuerpos; y macrofago y neutrofilo son fagocitos de la respuesta innata.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:28.132Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113907,7 +114587,7 @@
         "$d": "2026-09-15T01:10:38.431Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:38.431Z"
+        "$d": "2026-09-15T01:25:28.134Z"
       }
     },
     {
@@ -113943,7 +114623,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -113951,7 +114631,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La vacuna presenta un antigeno sin capacidad de causar la enfermedad para que el sistema inmunitario genere memoria. Descarte: los antibioticos no actuan sobre virus ni son el principio de una vacuna; elevar la temperatura corporal es una respuesta del huesped, no un mecanismo vacunal; y sustituir la sangre por plasma con anticuerpos no es vacunacion sino, a lo sumo, inmunizacion PASIVA, que ademas no genera memoria.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-15T01:25:29.246Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -113959,7 +114659,7 @@
         "$d": "2026-09-15T01:10:39.438Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:39.438Z"
+        "$d": "2026-09-15T01:25:29.248Z"
       }
     },
     {
@@ -113995,7 +114695,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -114003,7 +114703,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Rubor, calor, tumor y dolor son los cuatro signos cardinales clasicos de la inflamacion. Descarte: la anafilaxia es una reaccion alergica sistemica y grave; la autoinmunidad es un ataque a lo propio, un mecanismo y no este cuadro local; y la necrosis es muerte tisular, que puede acompanar pero no define estos cuatro signos.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:30.360Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -114011,7 +114731,7 @@
         "$d": "2026-09-15T01:10:40.440Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:40.440Z"
+        "$d": "2026-09-15T01:25:30.362Z"
       }
     },
     {
@@ -114047,7 +114767,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -114055,7 +114775,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Conteo ejecutado en codigo: celula somatica 2n = 46, gameto n = 46/2 = 23, cigoto = 23 + 23 = 46. Descarte: 46 por gameto con 92 en el cigoto omitiria la meiosis; 23 y 23 dejaria al cigoto haploide; y 46 y 46 implicaria gametos diploides con un cigoto que no duplica, ambas imposibles.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:31.478Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -114063,7 +114803,7 @@
         "$d": "2026-09-15T01:10:47.218Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:47.218Z"
+        "$d": "2026-09-15T01:25:31.480Z"
       }
     },
     {
@@ -114099,7 +114839,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -114107,7 +114847,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La fecundacion ocurre normalmente en el tercio externo, la ampolla, de la trompa de Falopio. Descarte: el ovario libera el ovocito pero no lo fecunda; el utero recibe al blastocisto ya formado para la implantacion; y la vagina es la via de deposito del semen, desde donde el espermatozoide aun debe ascender y capacitarse.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:32.589Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -114115,7 +114875,7 @@
         "$d": "2026-09-15T01:10:48.233Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:48.233Z"
+        "$d": "2026-09-15T01:25:32.591Z"
       }
     },
     {
@@ -114151,7 +114911,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -114159,7 +114919,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La placenta es la interfaz de intercambio materno-fetal de nutrientes, gases y desechos, y ademas produce hormonas. Descarte: no sustituye a los pulmones DESPUES de nacer sino que cumple esa funcion ANTES y se expulsa en el alumbramiento; no produce ovulos, eso corresponde al ovario; y la fecundacion ocurre en la trompa, antes de que exista placenta.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:33.700Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -114167,7 +114947,7 @@
         "$d": "2026-09-15T01:10:49.245Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:49.245Z"
+        "$d": "2026-09-15T01:25:33.702Z"
       }
     },
     {
@@ -114203,7 +114983,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -114211,7 +114991,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El pico subito de hormona luteinizante, disparado por el estrogeno alto mediante retroalimentacion positiva, rompe el foliculo maduro y libera el ovocito. Descarte: la FSH no desaparece y ademas la fase lutea es POSTERIOR a la ovulacion; el estrogeno SUBE durante la fase folicular en vez de caer de forma sostenida; y la progesterona se eleva DESPUES de la ovulacion, desde el cuerpo luteo, no desde el primer dia.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T01:25:34.824Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -114219,7 +115019,7 @@
         "$d": "2026-09-15T01:10:50.281Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T01:10:50.281Z"
+        "$d": "2026-09-15T01:25:34.826Z"
       }
     }
   ],
