@@ -1,0 +1,286 @@
+[
+  {
+    "stem": "Un objeto de masa 4 kg se mueve con una velocidad de 6 m/s. ¿Cuál es su momento lineal?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$10\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$48\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "$24\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "$1.5\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El momento lineal es $p = mv$: $p = (4\\,\\text{kg})(6\\,\\text{m/s}) = 24\\,\\text{kg}\\cdot\\text{m/s}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Identifica $m=4\\,\\text{kg}$, $v=6\\,\\text{m/s}$. 2) Multiplica: $p=mv=4\\times 6=24\\,\\text{kg}\\cdot\\text{m/s}$.",
+        "latexContent": "p = mv = (4\\,\\text{kg})(6\\,\\text{m/s}) = 24\\,\\text{kg}\\cdot\\text{m/s}"
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$10\\,\\text{kg}\\cdot\\text{m/s}$ resulta de sumar masa y velocidad en vez de multiplicarlas; $1.5\\,\\text{kg}\\cdot\\text{m/s}$ divide la velocidad entre la masa; $48\\,\\text{kg}\\cdot\\text{m/s}$ duplica el resultado correcto sin justificación física."
+      }
+    ]
+  },
+  {
+    "stem": "Un vagón de 6 kg se mueve a 5 m/s y choca con otro vagón de 4 kg en reposo. Si quedan unidos tras el choque, ¿con qué rapidez se mueven?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$1.2\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$3\\,\\text{m/s}$",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "$5\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$7.5\\,\\text{m/s}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El momento se conserva: $p_i = (6)(5)+(4)(0) = 30\\,\\text{kg}\\cdot\\text{m/s}$. La masa combinada es 10 kg, así que $v = 30/10 = 3\\,\\text{m/s}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Momento inicial: solo el primer vagón se mueve, $p=6\\times5=30$. 2) Masa total tras el choque: $6+4=10\\,\\text{kg}$. 3) $v=p/m_{total}=30/10=3\\,\\text{m/s}$.",
+        "latexContent": "p_i = m_1 v_1 = (6\\,\\text{kg})(5\\,\\text{m/s}) = 30\\,\\text{kg}\\cdot\\text{m/s} \\\\ v_f = \\frac{p_i}{m_1+m_2} = \\frac{30}{10} = 3\\,\\text{m/s}"
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$5\\,\\text{m/s}$ asume que el primer vagón no pierde rapidez, ignorando que ahora arrastra más masa; $7.5\\,\\text{m/s}$ divide el momento entre la masa del segundo vagón (4) en vez de la masa total (10); $1.2\\,\\text{m/s}$ invierte la división (6/5) sin relación con la conservación del momento."
+      }
+    ]
+  },
+  {
+    "stem": "Dos patinadores sobre hielo se empujan desde el reposo. El primero, de 50 kg, sale disparado a 2 m/s. Si el segundo tiene una masa de 40 kg, ¿con qué rapidez se mueve en sentido contrario?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$1.6\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$100\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "$2.5\\,\\text{m/s}$",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "$2\\,\\text{m/s}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El momento total antes de empujarse es 0, así que después también debe ser 0: $m_1 v_1 = m_2 v_2$ (magnitudes, sentidos opuestos). $(50)(2) = (40)(v_2) \\Rightarrow v_2 = 100/40 = 2.5\\,\\text{m/s}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Momento del primero: $50\\times2=100\\,\\text{kg}\\cdot\\text{m/s}$. 2) Como el sistema partió del reposo, el segundo debe tener el mismo momento en sentido opuesto: $40\\times v_2=100$. 3) $v_2=100/40=2.5\\,\\text{m/s}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$1.6\\,\\text{m/s}$ invierte la relación de masas ($40\\times2/50$ en vez de $50\\times2/40$); $2\\,\\text{m/s}$ asume erróneamente que ambos patinadores llevan la misma rapidez, ignorando que tienen masas distintas; $100\\,\\text{m/s}$ deja el momento sin dividir entre la masa del segundo patinador."
+      }
+    ]
+  },
+  {
+    "stem": "Una pelota de 2 kg se mueve a 3 m/s hacia la derecha y choca con otra de 1 kg que se mueve a 4 m/s hacia la izquierda. Tomando la derecha como positiva, ¿cuál es el momento total del sistema antes del choque?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$-2\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$10\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "$6\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$2\\,\\text{kg}\\cdot\\text{m/s}$",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Tomando la derecha como positiva: $p_1=(2)(3)=6\\,\\text{kg}\\cdot\\text{m/s}$, $p_2=(1)(-4)=-4\\,\\text{kg}\\cdot\\text{m/s}$. El momento total es la suma vectorial: $6+(-4)=2\\,\\text{kg}\\cdot\\text{m/s}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) $p_1=2\\times3=6\\,\\text{kg}\\cdot\\text{m/s}$ (positivo, va a la derecha). 2) $p_2=1\\times(-4)=-4\\,\\text{kg}\\cdot\\text{m/s}$ (negativo, va a la izquierda). 3) Suma: $6+(-4)=2\\,\\text{kg}\\cdot\\text{m/s}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$10\\,\\text{kg}\\cdot\\text{m/s}$ suma las magnitudes sin respetar que van en sentidos opuestos; $-2\\,\\text{kg}\\cdot\\text{m/s}$ invierte el signo del resultado correcto; $6\\,\\text{kg}\\cdot\\text{m/s}$ ignora por completo la contribución de la segunda pelota."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuáles son las unidades del momento lineal en el Sistema Internacional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "kg·m/s",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "m/s²",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "N·m",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "kg·m/s²",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El momento lineal se define como p=mv, así que sus unidades son (kg)(m/s) = kg·m/s."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La masa se mide en kg. 2) La velocidad en m/s. 3) Al multiplicarlas, las unidades del momento son kg·m/s."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "N·m es la unidad de trabajo o energía (joule), no de momento; m/s² es la unidad de aceleración, no de una cantidad que involucra masa; kg·m/s² es la unidad de fuerza (newton), no de momento lineal."
+      }
+    ]
+  },
+  {
+    "stem": "Un carrito de masa desconocida m se mueve a 8 m/s y choca de frente con otro de 3 kg en reposo, quedando ambos unidos y moviéndose a 2 m/s. ¿Cuál es la masa m del primer carrito?",
+    "options": [
+      {
+        "id": "A",
+        "text": "4 kg",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "3 kg",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "1 kg",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "0.5 kg",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Por conservación del momento: m(8) = (m+3)(2). Expandiendo: 8m = 2m+6 → 6m=6 → m=1 kg."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Plantea la conservación: p_i=p_f → 8m=(m+3)(2). 2) Expande: 8m=2m+6. 3) Despeja: 6m=6 → m=1 kg."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "3 kg confunde la incógnita con la masa ya conocida del segundo carrito; 0.5 kg surge de plantear mal la ecuación como 8m=2m+3 (sin multiplicar el 3 por la velocidad final); 4 kg resulta de un error al simplificar 6m=6, llegando a un cociente distinto de 1."
+      }
+    ]
+  }
+]

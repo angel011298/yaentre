@@ -1,0 +1,317 @@
+[
+  {
+    "stem": "Un estudiante obtuvo las siguientes calificaciones en 5 exámenes: 78, 85, 90, 82, 95. ¿Cuál es su calificación promedio?",
+    "options": [
+      {
+        "id": "A",
+        "text": "86",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "88",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "430",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "85",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La media aritmética es la suma de los datos entre el número de datos: (78+85+90+82+95)/5 = 430/5 = 86."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Suma: 78+85+90+82+95 = 430. 2) Divide entre el número de exámenes (5): 430/5 = 86."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "85 es la mediana de los datos ordenados, no la media; 430 es la suma sin dividir entre 5; 88 resulta de una suma incorrecta (440 en vez de 430) antes de dividir."
+      }
+    ]
+  },
+  {
+    "stem": "Un conjunto de datos es: 12, 7, 15, 9, 21, 7, 18. ¿Cuál es la mediana?",
+    "options": [
+      {
+        "id": "A",
+        "text": "9",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "18",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "15",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "12",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Para la mediana se ordenan los datos: 7,7,9,12,15,18,21 (7 datos). El valor central (posición 4) es 12."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Ordena: 7,7,9,12,15,18,21. 2) Con 7 datos (impar), la mediana es el dato en la posición (7+1)/2=4, que es 12."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "9 es el dato en la posición 3, un lugar antes del centro; 15 está en la posición 5, un lugar después; 18 corresponde a la posición 6, lejos del centro real."
+      }
+    ]
+  },
+  {
+    "stem": "En una encuesta sobre el número de hermanos, se registraron los datos: 2, 1, 3, 2, 2, 4, 1, 2, 3. ¿Cuál es la moda?",
+    "options": [
+      {
+        "id": "A",
+        "text": "4",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "1",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "3",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "2",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La moda es el valor que se repite con más frecuencia. Contando: 1 aparece 2 veces, 2 aparece 4 veces, 3 aparece 2 veces, 4 aparece 1 vez. La moda es 2."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Cuenta cada valor: {1:2, 2:4, 3:2, 4:1}. 2) El valor con mayor frecuencia (4) es 2."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "1 y 3 aparecen solo 2 veces cada uno, menos que el 2; 4 aparece una sola vez, la frecuencia más baja del conjunto."
+      }
+    ]
+  },
+  {
+    "stem": "Las temperaturas registradas durante una semana fueron (en °C): 18, 22, 15, 25, 20, 17, 23. ¿Cuál es el rango de estos datos?",
+    "options": [
+      {
+        "id": "A",
+        "text": "8",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "25",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "15",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "10",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El rango es la diferencia entre el valor máximo y el mínimo: 25−15 = 10."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Máximo = 25 °C. 2) Mínimo = 15 °C. 3) Rango = 25−15 = 10."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "25 es solo el valor máximo, sin restar el mínimo; 15 es solo el valor mínimo, sin restar nada; 8 surge de restar 25−17, usando un dato que no es el mínimo real."
+      }
+    ]
+  },
+  {
+    "stem": "En un curso, el examen parcial vale 30% de la calificación y el examen final vale 70%. Un alumno obtuvo 80 en el parcial y 90 en el final. ¿Cuál es su calificación final ponderada?",
+    "options": [
+      {
+        "id": "A",
+        "text": "83",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "90",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "87",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "85",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La calificación ponderada es la suma de cada nota multiplicada por su peso: 0.30(80) + 0.70(90) = 24 + 63 = 87."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Parcial: 0.30×80 = 24. 2) Final: 0.70×90 = 63. 3) Suma: 24+63 = 87."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "85 es el promedio simple (80+90)/2, que ignora los pesos distintos; 83 resulta de invertir los pesos (0.70 al parcial y 0.30 al final); 90 toma solo la calificación final, sin considerar el parcial."
+      }
+    ]
+  },
+  {
+    "stem": "En un grupo de 40 estudiantes, 25 aprobaron un examen. ¿Qué porcentaje del grupo NO aprobó?",
+    "options": [
+      {
+        "id": "A",
+        "text": "25%",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "62.5%",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "15%",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "37.5%",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "No aprobaron 40−25=15 estudiantes. El porcentaje es 15/40 = 0.375 = 37.5%."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Estudiantes que no aprobaron: 40−25=15. 2) Fracción del grupo: 15/40=0.375. 3) En porcentaje: 37.5%."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "62.5% es el porcentaje de los que SÍ aprobaron (25/40), la pregunta contraria; 15% usa el número de reprobados como si ya fuera un porcentaje, sin dividir entre 40; 25% confunde la cantidad de aprobados con un porcentaje."
+      }
+    ]
+  },
+  {
+    "stem": "Un conjunto de datos tiene media 10. Si los datos son 8, 9, 10, 11, 12, ¿cuál es la desviación media absoluta respecto de la media?",
+    "options": [
+      {
+        "id": "A",
+        "text": "1.5",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "1.2",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "0",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "6",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La desviación media absoluta es el promedio de las distancias absolutas de cada dato a la media: |8−10|+|9−10|+|10−10|+|11−10|+|12−10| = 2+1+0+1+2 = 6; dividido entre 5 datos: 6/5 = 1.2."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Calcula cada desviación absoluta: 2,1,0,1,2. 2) Súmalas: 6. 3) Divide entre n=5: 6/5=1.2."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "6 es la suma de las desviaciones absolutas sin dividir entre n; 0 aparece si se suman las desviaciones CON signo (positivas y negativas se cancelan); 1.5 resulta de dividir entre n−1=4 en vez de entre n=5."
+      }
+    ]
+  }
+]

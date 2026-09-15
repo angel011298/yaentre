@@ -1,0 +1,317 @@
+[
+  {
+    "stem": "Resuelve el sistema: x + y = 10, x − y = 4. ¿Cuál es el valor de x?",
+    "options": [
+      {
+        "id": "A",
+        "text": "10",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "7",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "3",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "14",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Sumando ambas ecuaciones se elimina y: (x+y)+(x−y)=10+4 → 2x=14 → x=7."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Suma las ecuaciones: 2x = 14. 2) Divide entre 2: x=7. 3) Verifica: y=10−7=3, y 7−3=4 ✓."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "3 es el valor de y, no de x; 14 es el resultado de sumar antes de dividir entre 2; 10 solo repite el valor del lado derecho de la primera ecuación sin resolver el sistema."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es el determinante de la matriz [[3, 5], [2, 4]]?",
+    "options": [
+      {
+        "id": "A",
+        "text": "-2",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "20",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "2",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "22",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El determinante de una matriz 2×2 [[a,b],[c,d]] es ad−bc: (3)(4)−(5)(2) = 12−10 = 2."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Multiplica la diagonal principal: 3×4=12. 2) Multiplica la diagonal secundaria: 5×2=10. 3) Resta: 12−10=2."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "22 suma las dos diagonales en vez de restarlas; −2 invierte el orden de la resta (bc−ad en vez de ad−bc); 20 solo multiplica los elementos de la diagonal secundaria (5×4), ignorando la diagonal principal."
+      }
+    ]
+  },
+  {
+    "stem": "Si A = [[1, 2], [3, 4]] y B = [[5, 0], [−1, 2]], ¿cuál es el elemento en la posición (2,1) de A + B?",
+    "options": [
+      {
+        "id": "A",
+        "text": "-1",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "3",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "6",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "2",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La suma de matrices se hace elemento a elemento. En la posición (2,1): A tiene 3, B tiene −1, así que la matriz suma tiene 3+(−1) = 2 en esa posición."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Localiza el elemento (2,1) en cada matriz: A=3, B=−1. 2) Súmalos: 3+(−1)=2."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "6 corresponde a otra posición de la matriz suma (la diagonal principal), no a (2,1); 3 es solo el valor de A en esa posición, sin sumar B; −1 es solo el valor de B, sin sumar A."
+      }
+    ]
+  },
+  {
+    "stem": "Usando la regla de Cramer, resuelve para y en el sistema: 2x + y = 8, x − y = 1.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "6",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "3",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "-2",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "D = (2)(−1)−(1)(1) = −3. Dy se obtiene sustituyendo la columna de y por los términos independientes: (2)(1)−(8)(1) = −6. Entonces y = Dy/D = −6/−3 = 2."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) D = 2(−1)−1(1) = −2−1 = −3. 2) Dy = 2(1)−8(1) = 2−8 = −6. 3) y = Dy/D = −6/−3 = 2."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "3 es el valor de x en este sistema, no de y; −2 resulta de un error de signo al calcular alguno de los determinantes; 6 es el numerador Dy sin dividir entre D."
+      }
+    ]
+  },
+  {
+    "stem": "Si A = [[2, 3], [1, 4]] y v = [[5], [2]], ¿cuál es el primer elemento (fila 1) del producto Av?",
+    "options": [
+      {
+        "id": "A",
+        "text": "10",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "16",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "13",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "7",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El producto de matrices se calcula fila por columna. Fila 1 de A por v: (2)(5)+(3)(2) = 10+6 = 16."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Toma la fila 1 de A: [2, 3]. 2) Multiplica término a término con v: 2×5=10, 3×2=6. 3) Suma: 10+6=16."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "13 usa la fila 2 de A [1,4] en vez de la fila 1: (1)(5)+(4)(2)=13; 10 solo calcula el primer producto (2×5) sin sumar el segundo; 7 suma directamente los elementos del vector (5+2) sin multiplicar por la matriz."
+      }
+    ]
+  },
+  {
+    "stem": "La suma de dos números es 15 y su diferencia es 3. ¿Cuál es el número mayor?",
+    "options": [
+      {
+        "id": "A",
+        "text": "6",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "9",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "18",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "7.5",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Sumando las dos ecuaciones (x+y=15, x−y=3) se elimina y: 2x=18, x=9 (el número mayor); el menor es y=15−9=6."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Suma: (x+y)+(x−y)=15+3 → 2x=18. 2) x=9. 3) y=15−9=6."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "6 es el número MENOR, no el mayor que pide la pregunta; 18 es la suma 2x sin dividir entre 2; 7.5 resulta de dividir solo la suma (15) entre 2, ignorando la diferencia entre los números."
+      }
+    ]
+  },
+  {
+    "stem": "¿Para qué valor de k la matriz [[k, 2], [4, 8]] NO tiene inversa (su determinante es 0)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "4",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "8",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "0",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "1",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Una matriz no tiene inversa si su determinante es 0. det = k(8)−2(4) = 8k−8. Igualando a 0: 8k−8=0 → k=1."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Determinante: 8k−8. 2) Iguala a cero: 8k−8=0. 3) Despeja: 8k=8 → k=1."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "4 y 8 son valores que ya aparecen en la matriz original, tomados por error como respuesta sin resolver la ecuación; 0 ignora el término independiente (−8) al igualar 8k a cero directamente."
+      }
+    ]
+  }
+]

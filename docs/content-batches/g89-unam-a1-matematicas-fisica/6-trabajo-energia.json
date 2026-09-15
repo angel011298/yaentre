@@ -1,0 +1,272 @@
+[
+  {
+    "stem": "¿Cuál es el trabajo realizado por una fuerza de 20 N que mueve un objeto 5 m en la misma dirección de la fuerza?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$200\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$100\\,\\text{J}$",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "$25\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$4\\,\\text{J}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "El trabajo es $W=Fd$ (cuando la fuerza y el desplazamiento son paralelos): $W=(20\\,\\text{N})(5\\,\\text{m})=100\\,\\text{J}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Identifica $F=20\\,\\text{N}$, $d=5\\,\\text{m}$. 2) Multiplica: $W=Fd=20\\times5=100\\,\\text{J}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$4\\,\\text{J}$ divide la fuerza entre la distancia en vez de multiplicarlas; $25\\,\\text{J}$ suma los valores (20+5) en vez de multiplicarlos; $200\\,\\text{J}$ duplica el resultado correcto sin ninguna base física."
+      }
+    ]
+  },
+  {
+    "stem": "Una persona jala una caja con una fuerza de 50 N formando un ángulo de 60° con el piso, desplazándola 4 m horizontalmente. Usa cos(60°)=0.5. ¿Cuál es el trabajo realizado?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$50\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$100\\,\\text{J}$",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "$173.2\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$200\\,\\text{J}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Cuando la fuerza no es paralela al desplazamiento, $W=Fd\\cos\\theta$: $W=(50)(4)(0.5)=100\\,\\text{J}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) $F=50\\,\\text{N}$, $d=4\\,\\text{m}$, $\\cos(60°)=0.5$. 2) $W=50\\times4\\times0.5=100\\,\\text{J}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$200\\,\\text{J}$ omite el factor $\\cos(60°)$, como si la fuerza fuera paralela al desplazamiento; $173.2\\,\\text{J}$ usa $\\sin(60°)\\approx0.866$ en lugar de $\\cos(60°)$; $50\\,\\text{J}$ multiplica $F$ por $\\cos(60°)$ pero olvida incluir la distancia recorrida."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la energía cinética de un objeto de 2 kg que se mueve a 10 m/s?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$50\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$100\\,\\text{J}$",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "$10\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$200\\,\\text{J}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La energía cinética es $E_c=\\frac{1}{2}mv^2$: $E_c=\\frac{1}{2}(2)(10^2)=\\frac{1}{2}(2)(100)=100\\,\\text{J}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) $v^2=10^2=100$. 2) $m v^2=2\\times100=200$. 3) Multiplica por $\\frac{1}{2}$: $200\\times\\frac{1}{2}=100\\,\\text{J}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$200\\,\\text{J}$ olvida el factor $\\frac{1}{2}$ de la fórmula; $10\\,\\text{J}$ usa $v$ en vez de $v^2$ (confunde con momento); $50\\,\\text{J}$ divide entre 4 en vez de entre 2, un error en la fracción de la fórmula."
+      }
+    ]
+  },
+  {
+    "stem": "Un objeto de 3 kg parte del reposo y una fuerza neta constante realiza sobre él un trabajo de 24 J. ¿Con qué rapidez final se mueve, según el teorema trabajo-energía?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$2.83\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$6\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "$16\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$4\\,\\text{m/s}$",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Por el teorema trabajo-energía, $W=\\Delta E_c$. Como parte del reposo: $24=\\frac{1}{2}(3)v^2 \\Rightarrow v^2=16 \\Rightarrow v=4\\,\\text{m/s}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) $24=\\frac{1}{2}(3)(v^2) \\Rightarrow 24=1.5v^2$. 2) $v^2=24/1.5=16$. 3) $v=\\sqrt{16}=4\\,\\text{m/s}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$2.83\\,\\text{m/s}$ resulta de olvidar el factor $\\frac{1}{2}$ en la fórmula ($v^2=24/3=8$, $\\sqrt{8}\\approx2.83$); $16\\,\\text{m/s}$ confunde $v^2$ (que sí vale 16) con $v$, sin sacar la raíz cuadrada; $6\\,\\text{m/s}$ surge de dividir 24 entre 4 en vez de resolver correctamente la ecuación cuadrática."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la energía potencial gravitacional de un objeto de 5 kg situado a 8 m de altura? Usa g=10 m/s².",
+    "options": [
+      {
+        "id": "A",
+        "text": "$4000\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$40\\,\\text{J}$",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "$400\\,\\text{J}$",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "$80\\,\\text{J}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La energía potencial gravitacional es $E_p=mgh$: $E_p=(5)(10)(8)=400\\,\\text{J}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) $m=5\\,\\text{kg}$, $g=10\\,\\text{m/s}^2$, $h=8\\,\\text{m}$. 2) Multiplica los tres: $5\\times10\\times8=400\\,\\text{J}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$40\\,\\text{J}$ solo calcula $mg$ (5×10), sin multiplicar por la altura; $80\\,\\text{J}$ solo calcula $mh$ (5×8), sin incluir $g$; $4000\\,\\text{J}$ multiplica el resultado correcto por 10 de más."
+      }
+    ]
+  },
+  {
+    "stem": "Un objeto se deja caer desde el reposo a una altura de 20 m. Usando conservación de la energía y g=10 m/s², ¿con qué rapidez llega al suelo (ignorando la fricción del aire)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$400\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$40\\,\\text{m/s}$",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "$20\\,\\text{m/s}$",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "$14.1\\,\\text{m/s}$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Por conservación de energía: $mgh=\\frac{1}{2}mv^2 \\Rightarrow v^2=2gh=2(10)(20)=400 \\Rightarrow v=\\sqrt{400}=20\\,\\text{m/s}$."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Iguala energía potencial inicial con cinética final: $mgh=\\frac{1}{2}mv^2$ (la masa se cancela). 2) $v^2=2gh=2\\times10\\times20=400$. 3) $v=\\sqrt{400}=20\\,\\text{m/s}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "$400\\,\\text{m/s}$ es el valor de $v^2$ sin sacar la raíz cuadrada; $14.1\\,\\text{m/s}$ olvida el factor 2 en $v^2=2gh$, calculando $\\sqrt{gh}=\\sqrt{200}\\approx14.1$; $40\\,\\text{m/s}$ duplica el resultado correcto sin justificación física."
+      }
+    ]
+  }
+]

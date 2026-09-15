@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-14 · Última fase ejecutada: **G89 (COMPLETADA — 40 reactivos de UNAM Área 1, Ciencias Físico-Matemáticas y las Ingenierías, retomando el refuerzo directo del área que tenía el margen más frágil sobre el mínimo de Early Bird. Priorización con la MISMA lógica ponderada de `content:guard` (peso del examen, no conteo bruto), aplicada a las 2 únicas materias EXCLUSIVAS de Área 1 —Matemáticas y Física; Química/Español/Inglés de Área1 son pools compartidos con otras áreas vía `sharedContentKey` (G26) y ya los reforzaron fases anteriores (G75 Inglés)—: Matemáticas (peso 26, densidad 114/26=4.38 reactivos por punto de peso, la más baja de las 2) recibió **28** reactivos en sus 4 temas más delgados (Progresiones y combinatoria 7→14, Estadística descriptiva 8→15, Series y sucesiones 8→15, Matrices y sistemas de ecuaciones 9→16); Física (peso 16, densidad 6.69) recibió **12** en sus 2 temas más delgados, ambos con el mínimo absoluto de la materia (Conservación de momento 7→13, Trabajo y energía 7→13). Insertados con `isVerified=false` tras validar el LOTE completo (`content:validate-batch`: posición de la clave 15%-40% por letra, sesgo de longitud 2.5%/2.5% —sano—, 0 citas por letra tras corregir 2 falsos positivos de "(A+B)"/"la A)" en las explicaciones de matrices/combinatoria) y verificar los 40 resultados numéricos de forma INDEPENDIENTE del texto de los reactivos (`verify-calcs.mjs`, recalcula cada operación desde cero: 40/40 correctos) — obligatorio por CLAUDE.md, Área 1 es intensiva en matemáticas y física. 21/40 SOURCED contra guías reales de OTRA institución (UAM: `uam_csh.pdf`, `uam_cbi.pdf`, `uam_cad.pdf`) usadas solo como ancla del TIPO de reactivo (sucesión con regla, arreglo combinatorio, choque con conservación de momento), nunca de texto — mismo criterio que G75/G84/G86; los 19 restantes TEMARIO_ONLY (0 SourceChunks en esos temas). `content:guard` sin cambio antes/después —esperado, cuenta solo `isVerified=true`, mismo patrón que G75→G76/G78→G79/G80→G81/G82→G83/G84→G85/G86→G87—: Área1 sigue `READY` 70/70 de peso. **Margen real sobre el mínimo de Early Bird (300)**, medido como Matemáticas+Física+Química_propia+Español_propio —el mismo cálculo que dio exactamente 307 antes de que G75 añadiera Inglés a esa área, confirmado recalculándolo hoy: 114+107+51+35=307—: hoy **347** (+47 sobre el mínimo, con Inglés ya sumado) y **proyectado a 387** (+87) en cuanto la verificación ciega publique este lote — casi el DOBLE del margen previo, y todo el incremento cae en las 2 materias exclusivas del área, no en las compartidas. Banco **1 423 filas, 1 382 servibles sin cambio** (40 en cola de verificación adversarial, PRD §8 — ni esta ni ninguna sesión sola puede resolverla), brecha contra la meta de 1 500 = **118**)**. Modelo real `claude-sonnet-5`. Ver §G89 abajo.
+
+<details><summary>Historial: G88 (2026-09-14)</summary>
+
 Última actualización: 2026-09-14 · Última fase ejecutada: **G88 (COMPLETADA — reclasificación temática de contenido ya publicado, señalado por G87: el Guernica (`cmu0ya8o4000q2biq7o4a8bzx`) estaba archivado bajo «Arquitectura» siendo pintura pura — reclasificado a «Pintura colonial y moderna», el único tema de pintura del temario de Artes; la integración plástica en CU (`cmu0y9jum0010amzn4qctgq6m`) se evaluó con criterio propio y se DEJÓ sin tocar — el concepto es una extensión del muralismo mexicano hacia la arquitectura, convención est. de historia del arte, y ya vivía en «Pintura colonial y moderna». Barrido adicional por palabras clave sobre las 40 filas de Artes: 7 candidatos, los 6 restantes revisados uno por uno y descartados por buen ajuste (falsos positivos del propio barrido: "mexica" dentro de "mexicano", término prehispánico correctamente prehispánico, etc.) — ningún otro reactivo se tocó. `content:guard` confirma las 7 áreas activas siguen `READY` tras el cambio (la reclasificación es intra-materia, no mueve peso entre materias). Ningún enunciado/opción/explicación alterado; solo `Question.topicId`. Banco sin cambio de tamaño: **1 382 servibles** de 1 387 filas)**. Modelo real `claude-sonnet-5`. Ver §G88 abajo.
+
+</details>
 
 <details><summary>Historial: G87 (2026-09-14)</summary>
 
@@ -439,6 +445,172 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G89 — Lote de reactivos: refuerzo de profundidad, UNAM Área 1 (2026-09-14)
+
+> Modelo real `claude-sonnet-5`. **40 reactivos insertados con
+> `isVerified=false`** en UNAM «Ciencias Físico-Matemáticas y las
+> Ingenierías» (Área 1) — no para cerrar un hueco de cobertura (el catálogo
+> ya llegó a 7/7 áreas `READY` en G87) sino para profundizar el margen del
+> área sobre el mínimo de Early Bird, señalado como frágil (307 contra 300)
+> desde `docs/VEREDICTO_LANZAMIENTO.md`.
+
+### 1. Selección de temas — cobertura PONDERADA, no conteo bruto
+
+`pnpm content:guard` reporta Área1 en 70/70 de peso (100%, `READY`) con
+las 5 materias ya cubriendo su cuota del diagnóstico — no hay un hueco que
+cerrar. La instrucción pedía priorizar los temas con menor cobertura
+REAL, así que la métrica no puede ser "¿está cubierto?" (todo lo está) sino
+densidad de reactivos por punto de peso del examen — la misma unidad que
+usa `content:guard`, `servable / questionWeight`. Consultado el censo real
+(`prisma.area.findFirst` + `subjects.topics`, con conteo de
+`isVerified=true` por tema):
+
+| Materia | Peso | Servía (antes) | Densidad (servía/peso) | ¿Compartida? |
+|---|---|---|---|---|
+| **Matemáticas** | 26 | 114 | **4.38** — la más baja de las 2 exclusivas | No |
+| **Física** | 16 | 107 | 6.69 | No |
+| Química | 12 | 157 | 13.08 | Sí, `UNAM:QUIMICA` (con Área2) |
+| Español | 10 | 35 | 3.50 | Sí, `UNAM:ESPANOL` (con las 4 áreas) |
+| Inglés | 6 | 40 | 6.67 | Sí, `UNAM:INGLES` (con Área2/Área3) |
+
+Español tiene la densidad más baja de las 5, pero es un pool COMPARTIDO
+por las 4 áreas de la UNAM (G26) — reforzarlo no es "refuerzo directo de
+Área 1", diluye el encargo entre 4 áreas a la vez, y G75 ya lo trabajó
+recientemente (Inglés). Restringido a las 2 materias EXCLUSIVAS de Área 1
+(sin reutilización, todo su pool es 100% propio), **Matemáticas es la más
+delgada** — con densidad casi igual a la referencia histórica de otra
+institución para la misma materia (IPN FISMAT Matemáticas: 105/24=4.375),
+consistente con cómo se sembraron los lotes originales, pero la más baja
+de las 2 disponibles hoy en Área1. Física la sigue.
+
+Dentro de cada materia, los temas con MENOS reactivos (censo por
+`topicId`, no por materia):
+
+- **Matemáticas** (12 temas, promedio 9.5): Progresiones y combinatoria
+  (7), Estadística descriptiva (8), Series y sucesiones (8), y el primero
+  del grupo empatado en 9 — Matrices y sistemas de ecuaciones (elegida
+  sobre Polinomios/Trigonometría, también en 9, por ser la única de las
+  tres sin ningún `SourceChunk` disponible, así que profundizarla no
+  dependía de encontrar fuente).
+- **Física** (12 temas, promedio 8.9): Conservación de momento (7) y
+  Trabajo y energía (7), el mínimo absoluto de la materia, empatadas.
+
+### 2. Reparto de los 40 reactivos
+
+| # | Tema | Materia | Antes | +Nuevos | Después (en cola) | Anclaje |
+|---|---|---|---|---|---|---|
+| 1 | Progresiones y combinatoria | Matemáticas | 7 | +7 | 14 | 4/7 SOURCED |
+| 2 | Estadística descriptiva | Matemáticas | 8 | +7 | 15 | TEMARIO_ONLY (0 chunks) |
+| 3 | Series y sucesiones | Matemáticas | 8 | +7 | 15 | 7/7 SOURCED |
+| 4 | Matrices y sistemas de ecuaciones | Matemáticas | 9 | +7 | 16 | TEMARIO_ONLY (0 chunks) |
+| 5 | Conservación de momento | Física | 7 | +6 | 13 | 6/6 SOURCED |
+| 6 | Trabajo y energía | Física | 7 | +6 | 13 | TEMARIO_ONLY (0 chunks) |
+
+### 3. Anclaje en fuentes reales — 21/40 SOURCED, de OTRA institución
+
+Los 3 temas con `SourceChunk` (Progresiones y combinatoria, Series y
+sucesiones, Conservación de momento) tienen fragmentos de guías de la
+**UAM** (`uam_csh.pdf`, `uam_cbi.pdf`, `uam_cad.pdf`) — otra institución,
+igual que G75/G84/G86. `resolveCitations` (`scripts/lib/grounding.ts`)
+exige que TODO reactivo de un tema con fragmentos disponibles cite al
+menos uno (rechazo si no), así que los 3 temas quedaron 100% SOURCED (21
+de 21 reactivos de esos temas), citando el fragmento como ancla del TIPO
+de problema que ejemplifica (arreglo combinatorio de personas/comités,
+sucesión con regla explícita, choque con conservación de momento) —
+ningún enunciado, número ni opción se copió de la fuente; los datos
+numéricos y el contexto de cada reactivo son originales de esta sesión.
+Los otros 3 temas (Estadística descriptiva, Matrices y sistemas de
+ecuaciones, Trabajo y energía) no tienen `SourceChunk` sembrado →
+TEMARIO_ONLY, sin cita.
+
+### 4. Cálculos verificados de forma independiente — obligatorio por CLAUDE.md
+
+Área 1 es intensiva en matemáticas y física, así que antes de insertar se
+corrió `verify-calcs.mjs` — un script que NO lee la clave declarada en
+`build-data.mjs` como fuente de verdad, sino que recalcula cada uno de los
+40 resultados desde cero a partir del enunciado (factorial/combinatoria a
+mano, suma directa de progresiones término a término, conservación de
+momento con signos, teorema trabajo-energía, etc.) y compara contra la
+clave declarada:
+
+```
+40 cálculos verificados, 40 correctos.
+✅ Todos los cálculos verifican correctamente.
+```
+
+Un desajuste real apareció en la primera corrida (bucle de la sucesión
+alternada 3.1 con un índice fuera por uno) — no en el contenido del
+reactivo, sino en el propio script de verificación; corregido antes de
+declarar el lote verificado.
+
+### 5. Validación de lote — 2 falsos positivos de `LETTER_CITATION` corregidos
+
+**(a) Posición de la clave: `crypto.randomInt`**, Fisher-Yates independiente
+por reactivo (`build.mjs`), igual que G78/G80/G82/G84/G86.
+
+**(b) Primera corrida de `content:validate-batch`: RECHAZADA** por
+`LETTER_CITATION` — pero ninguna de las 2 citas era una referencia real a
+una opción por su letra: `"(A+B)(2,1) = 3+(−1)"` (notación matricial
+estándar) y `"...de repeticiones de la A);"` activaron el patrón
+`[ABCD]\)` del validador por casualidad tipográfica (una letra de matriz
+pegada a un paréntesis de cierre, no una cita "opción B" / "inciso A").
+Reescritas ambas explicaciones para eliminar la coincidencia sin cambiar
+el contenido matemático (`"la matriz suma tiene 3+(−1)=2 en esa posición"`
+en vez de `"(A+B)(2,1)"`; `"la cantidad de repeticiones de la vocal"` en
+vez de `"de la A)"`). Segunda corrida: limpia.
+
+```
+Total de reactivos: 40
+Distribución de posición: {"A":6,"B":12,"C":11,"D":11}   (15.0%-30.0%, dentro de 15-40%)
+Distribución de dificultad: {"BASIC":16,"INTERMEDIATE":14,"ADVANCED":10}
+Sesgo de longitud: clave=más-larga 2.5%, clave=más-corta 2.5% (n=40), razón media 1.00
+Patrones de orden detectados: 0
+✅ Sin violaciones.
+```
+
+`pnpm content:insert` corrido 6 veces (una por tema, `--lot-dir` al
+conjunto de los 6 archivos) repitió la validación de CONJUNTO en cada
+corrida. 0 rechazados por formato/Zod/KaTeX; 0 duplicados de enunciado.
+
+### 6. `content:guard`: sin cambio antes/después — el mismo patrón de siempre
+
+| Métrica | Antes | Después |
+|---|---|---|
+| UNAM Área 1 | `READY` 70/70 de peso (100%) | `READY` 70/70 de peso (100%), sin cambio |
+| Matemáticas | sirve 114 · necesita 10 | sirve 114 · necesita 10 (28 en cola) |
+| Física | sirve 107 · necesita 7 | sirve 107 · necesita 7 (12 en cola) |
+| Áreas listas | 7/7 | 7/7, sin cambio |
+
+Esperado, no un defecto: `content:guard` cuenta solo `isVerified=true`, y
+los 40 quedan en la cola de verificación adversarial (dos sesiones
+independientes, PRD §8) — mismo patrón que G75→G76, G78→G79, G80→G81,
+G82→G83, G84→G85 y G86→G87.
+
+### 7. El margen real sobre el mínimo de Early Bird
+
+`docs/VEREDICTO_LANZAMIENTO.md` fijó el mínimo de Early Bird para Área 1 en
+**300** contra un real de **307** — un margen de solo 7, señalado como
+frágil. Recalculando esa misma métrica hoy contra la DB real (suma de
+reactivos servibles en las filas `Subject` PROPIAS de Área1, sin sumar el
+pool compartido completo con otras áreas): Matemáticas(114) +
+Física(107) + Química_propia(51) + Español_propio(35) = **307**, exacto —
+confirma que el "307" original se midió ANTES de que G75 añadiera Inglés a
+esa área (que sumaría 40 más). Con Inglés ya contado, el real de HOY es
+**347** (margen **+47** sobre 300). En cuanto la verificación ciega
+publique este lote (28 Matemáticas + 12 Física, históricamente ~97-100% de
+auto-aprobación en los lotes recientes de Área1-adyacentes), el real sube a
+**347+40 = 387** (margen **+87**) — casi el DOBLE del margen actual, y con
+el 100% del incremento concentrado en las 2 materias exclusivas del área
+(Matemáticas/Física), no en las compartidas con otras áreas.
+
+### 8. Verde
+
+`pnpm typecheck` sin salida. `pnpm lint` sin salida (1 warning de variable
+sin usar en `verify-calcs.mjs`, corregido en el mismo commit). Banco:
+**1 423 filas, 1 382 servibles sin cambio** (40 en cola de verificación,
+PRD §8 — ni esta ni ninguna sesión sola puede resolverla), brecha contra
+la meta de 1 500 = **118** (sin cambio, esperado).
 
 ## G87 — Verificación ciega: Artes, UNAM Humanidades y Artes (lote de G86) (2026-09-14)
 

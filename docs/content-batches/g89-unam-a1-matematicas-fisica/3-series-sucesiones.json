@@ -1,0 +1,331 @@
+[
+  {
+    "stem": "En la sucesión 2, 6, 3, 7, 3.5, 7.5, ..., se suma 4 y luego se divide entre 2 alternadamente. ¿Cuál es el siguiente término?",
+    "options": [
+      {
+        "id": "A",
+        "text": "15",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "11.5",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "3.5",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "3.75",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "La regla alterna: sumar 4, luego dividir entre 2. El último paso fue +4 (7.5), así que el siguiente es dividir entre 2: 7.5/2 = 3.75."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Verifica el patrón: 2+4=6, 6/2=3, 3+4=7, 7/2=3.5, 3.5+4=7.5. 2) Toca dividir: 7.5/2=3.75."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "11.5 aplica +4 en vez de dividir, rompiendo la alternancia; 3.5 repite el término anterior sin aplicar ninguna operación; 15 multiplica por 2 en vez de dividir entre 2."
+      }
+    ]
+  },
+  {
+    "stem": "En la sucesión 20, 26, 31, 37, ..., la diferencia entre términos alterna entre 6 y 5. ¿Cuáles son los dos números que siguen?",
+    "options": [
+      {
+        "id": "A",
+        "text": "42, 47",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "43, 49",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "44, 51",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "42, 48",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      2
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Las diferencias alternan 6, 5, 6, 5,...: 26−20=6, 31−26=5, 37−31=6. Como la última diferencia usada fue 6, sigue 5 y luego 6: 37+5=42, 42+6=48."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Verifica el patrón de diferencias: 6,5,6 (alternando). 2) El siguiente paso es +5: 37+5=42. 3) El siguiente es +6: 42+6=48."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "43,49 asume que la diferencia es siempre 6, ignorando la alternancia; 42,47 asume diferencia constante de 5, que tampoco coincide con las primeras diferencias observadas; 44,51 usa una diferencia de 7 que no aparece en ningún punto de la sucesión."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la suma de los primeros 5 términos de la serie geométrica 2, 6, 18, 54, ...?",
+    "options": [
+      {
+        "id": "A",
+        "text": "240",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "242",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "728",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "121",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      2
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Es una serie geométrica con a1=2, r=3. La suma de n términos es S_n = a1(r^n−1)/(r−1); con n=5: S_5 = 2(3^5−1)/(3−1) = 2(242)/2 = 242."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Términos: 2,6,18,54,162. 2) Suma directa: 2+6+18+54+162=242. 3) Con la fórmula: 2(243−1)/2=242, coincide."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "240 olvida sumar el primer término (2) en el total directo; 728 usa r^6 en vez de r^5 en la fórmula, un término de más; 121 aplica la fórmula sin multiplicar por a1=2."
+      }
+    ]
+  },
+  {
+    "stem": "Una sucesión se define como a₁=1, a₂=1, y cada término siguiente es la suma de los dos anteriores. ¿Cuál es el séptimo término?",
+    "options": [
+      {
+        "id": "A",
+        "text": "12",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "13",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "8",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "21",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      4
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Los términos son 1,1,2,3,5,8,13,... El séptimo término (contando desde a1=1) es 13, resultado de sumar a5=5 y a6=8."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) a1=1,a2=1. 2) a3=1+1=2, a4=1+2=3, a5=2+3=5, a6=3+5=8, a7=5+8=13."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "8 es el sexto término (a6), un lugar antes del que se pide; 21 es el octavo término (a8), un lugar después; 12 resulta de una suma aritmética incorrecta de 5+8."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la suma de la serie geométrica infinita 8, 4, 2, 1, 0.5, ...?",
+    "options": [
+      {
+        "id": "A",
+        "text": "16",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "4",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "15.5",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "8",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Para una serie geométrica infinita con |r|<1, la suma es S = a1/(1−r). Aquí a1=8, r=0.5, así que S = 8/(1−0.5) = 8/0.5 = 16."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Identifica a1=8 y r=0.5 (cada término es la mitad del anterior). 2) Aplica S=a1/(1−r) = 8/0.5 = 16."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "15.5 es solo la suma de los primeros 5 términos mostrados, no la serie infinita completa; 8 confunde la suma total con el primer término; 4 resulta de multiplicar a1 por r en vez de dividir entre (1−r)."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es el siguiente término de la sucesión de cuadrados 1, 4, 9, 16, 25, ...?",
+    "options": [
+      {
+        "id": "A",
+        "text": "35",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "49",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "36",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "34",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      4
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "Son los cuadrados de los números naturales: 1²,2²,3²,4²,5²,... El siguiente es 6² = 36."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Nota que cada término es n²: 1,4,9,16,25 corresponden a 1²,2²,3²,4²,5². 2) El siguiente es 6²=36."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "34 asume que la diferencia entre términos se mantiene constante en 9 (la última diferencia), pero las diferencias de una sucesión de cuadrados van creciendo; 49 salta un término y calcula 7² en vez de 6²; 35 usa una diferencia de 10, que no corresponde al patrón real."
+      }
+    ]
+  },
+  {
+    "stem": "Usando la fórmula S_n = n(n+1)/2, ¿cuál es la suma de los primeros 15 números naturales (1+2+3+...+15)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "105",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "225",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "120",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "136",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la fórmula aplicable",
+        "content": "S_n=n(n+1)/2 con n=15: S_15 = 15(16)/2 = 240/2 = 120."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Sustituye n=15: 15×16=240. 2) Divide entre 2: 240/2=120."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "105 usa n(n−1)/2 en vez de n(n+1)/2, un término de menos; 225 confunde la suma con el cuadrado de n (15²); 136 usa (n+1)(n+2)/2, un desplazamiento de índice hacia adelante."
+      }
+    ]
+  }
+]

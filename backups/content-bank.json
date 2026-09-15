@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-15T00:10:46.975Z",
+    "exportedAt": "2026-09-15T00:37:15.589Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -31,11 +31,11 @@
       "Topic": 217,
       "Passage": 16,
       "SourceChunk": 380,
-      "Question": 1387,
-      "QuestionSourceChunk": 421,
-      "ExplanationLayer": 4161
+      "Question": 1427,
+      "QuestionSourceChunk": 441,
+      "ExplanationLayer": 4281
     },
-    "totalRows": 6686
+    "totalRows": 6866
   },
   "Institution": [
     {
@@ -109261,6 +109261,2086 @@
       "updatedAt": {
         "$d": "2026-09-14T23:37:58.009Z"
       }
+    },
+    {
+      "id": "cmu1xsods0001hc0bqno62isr",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "stem": "En la sucesión aritmética 5, 11, 17, 23, ..., ¿cuál es el octavo término?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "47",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "41",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "35",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "53",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:31:51.664Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:31:51.664Z"
+      }
+    },
+    {
+      "id": "cmu1xspdo0006hc0bh1ae3wel",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "stem": "En la sucesión geométrica 3, 6, 12, 24, ..., ¿cuál es el sexto término?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "144",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "48",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "96",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "192",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:31:52.957Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:31:52.957Z"
+      }
+    },
+    {
+      "id": "cmu1xsqbm000bhc0bacm3uboz",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "stem": "¿De cuántas formas distintas se pueden acomodar 5 libros diferentes en un librero, uno junto al otro?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "20",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "120",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "60",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "25",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:31:54.178Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:31:54.178Z"
+      }
+    },
+    {
+      "id": "cmu1xsr9m000ghc0by1mmbdp2",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "stem": "De un grupo de 8 personas, ¿de cuántas formas se puede elegir un comité de 3 integrantes, sin importar el orden?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "56",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "24",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "168",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "336",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:31:55.402Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:31:55.402Z"
+      }
+    },
+    {
+      "id": "cmu1xss7j000lhc0b4pw2n5vj",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "stem": "¿Cuántos arreglos distintos se pueden formar con todas las letras de la palabra CASA?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "48",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "12",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "24",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "6",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:31:56.623Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:31:56.623Z"
+      }
+    },
+    {
+      "id": "cmu1xst5q000qhc0bmdbz2h1c",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "stem": "¿Cuál es la suma de los primeros 20 términos de la sucesión aritmética 2, 5, 8, 11, ...?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "1180",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "640",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "1220",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "610",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:31:57.854Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:31:57.854Z"
+      }
+    },
+    {
+      "id": "cmu1xsu3i000vhc0bqa0sooxd",
+      "topicId": "cmrr1j11q0010hi3ng2qnxizl",
+      "stem": "De un grupo de 6 candidatos, ¿de cuántas formas se puede elegir un presidente y un secretario (cargos distintos)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "36",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "720",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "30",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "15",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:31:59.070Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:31:59.070Z"
+      }
+    },
+    {
+      "id": "cmu1xt0tv000165mos47xxxv7",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "stem": "Un estudiante obtuvo las siguientes calificaciones en 5 exámenes: 78, 85, 90, 82, 95. ¿Cuál es su calificación promedio?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "86",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "88",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "430",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "85",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:07.796Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:07.796Z"
+      }
+    },
+    {
+      "id": "cmu1xt1ld000665moi307ef5d",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "stem": "Un conjunto de datos es: 12, 7, 15, 9, 21, 7, 18. ¿Cuál es la mediana?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "9",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "18",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "15",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "12",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:08.785Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:08.785Z"
+      }
+    },
+    {
+      "id": "cmu1xt2cz000b65mollk2nuy4",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "stem": "En una encuesta sobre el número de hermanos, se registraron los datos: 2, 1, 3, 2, 2, 4, 1, 2, 3. ¿Cuál es la moda?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "4",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "1",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "3",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "2",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:09.779Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:09.779Z"
+      }
+    },
+    {
+      "id": "cmu1xt34i000g65move8y3fl7",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "stem": "Las temperaturas registradas durante una semana fueron (en °C): 18, 22, 15, 25, 20, 17, 23. ¿Cuál es el rango de estos datos?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "8",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "25",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "15",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "10",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:10.771Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:10.771Z"
+      }
+    },
+    {
+      "id": "cmu1xt3w1000l65mojf8byngm",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "stem": "En un curso, el examen parcial vale 30% de la calificación y el examen final vale 70%. Un alumno obtuvo 80 en el parcial y 90 en el final. ¿Cuál es su calificación final ponderada?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "83",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "90",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "87",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "85",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:11.761Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:11.761Z"
+      }
+    },
+    {
+      "id": "cmu1xt4nh000q65mole3uk5x4",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "stem": "En un grupo de 40 estudiantes, 25 aprobaron un examen. ¿Qué porcentaje del grupo NO aprobó?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "25%",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "62.5%",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "15%",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "37.5%",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:12.749Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:12.749Z"
+      }
+    },
+    {
+      "id": "cmu1xt5ez000v65mowloho6oq",
+      "topicId": "cmrr1j1jk0012hi3nxhydykhq",
+      "stem": "Un conjunto de datos tiene media 10. Si los datos son 8, 9, 10, 11, 12, ¿cuál es la desviación media absoluta respecto de la media?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "1.5",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "1.2",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "0",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "6",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:13.739Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:13.739Z"
+      }
+    },
+    {
+      "id": "cmu1xtbxg0001a63kdxth87tl",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "stem": "En la sucesión 2, 6, 3, 7, 3.5, 7.5, ..., se suma 4 y luego se divide entre 2 alternadamente. ¿Cuál es el siguiente término?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "15",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "11.5",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "3.5",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "3.75",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:22.180Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:22.180Z"
+      }
+    },
+    {
+      "id": "cmu1xtcvu0006a63kopvtlq9k",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "stem": "En la sucesión 20, 26, 31, 37, ..., la diferencia entre términos alterna entre 6 y 5. ¿Cuáles son los dos números que siguen?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "42, 47",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "43, 49",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "44, 51",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "42, 48",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:23.418Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:23.418Z"
+      }
+    },
+    {
+      "id": "cmu1xtdtm000ba63k5esxcaxp",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "stem": "¿Cuál es la suma de los primeros 5 términos de la serie geométrica 2, 6, 18, 54, ...?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "240",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "242",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "728",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "121",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:24.635Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:24.635Z"
+      }
+    },
+    {
+      "id": "cmu1xter8000ga63ksxe52ouk",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "stem": "Una sucesión se define como a₁=1, a₂=1, y cada término siguiente es la suma de los dos anteriores. ¿Cuál es el séptimo término?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "12",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "13",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "8",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "21",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:25.845Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:25.845Z"
+      }
+    },
+    {
+      "id": "cmu1xtfp3000la63kp2s0iclr",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "stem": "¿Cuál es la suma de la serie geométrica infinita 8, 4, 2, 1, 0.5, ...?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "16",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "4",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "15.5",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "8",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:27.063Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:27.063Z"
+      }
+    },
+    {
+      "id": "cmu1xtgsb000qa63k6jildx5r",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "stem": "¿Cuál es el siguiente término de la sucesión de cuadrados 1, 4, 9, 16, 25, ...?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "35",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "49",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "36",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "34",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:28.475Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:28.475Z"
+      }
+    },
+    {
+      "id": "cmu1xti3h000va63kj0iho1yl",
+      "topicId": "cmrr1izx1000whi3n33e0c8t6",
+      "stem": "Usando la fórmula S_n = n(n+1)/2, ¿cuál es la suma de los primeros 15 números naturales (1+2+3+...+15)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "105",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "225",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "120",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "136",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:30.174Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:30.174Z"
+      }
+    },
+    {
+      "id": "cmu1xtoph0001jpssmu7k747r",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "stem": "Resuelve el sistema: x + y = 10, x − y = 4. ¿Cuál es el valor de x?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "10",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "7",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "3",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "14",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:38.741Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:38.741Z"
+      }
+    },
+    {
+      "id": "cmu1xtpgx0006jpssaxxdnbmt",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "stem": "¿Cuál es el determinante de la matriz [[3, 5], [2, 4]]?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "-2",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "20",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "2",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "22",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:39.729Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:39.729Z"
+      }
+    },
+    {
+      "id": "cmu1xtq8g000bjpss2a3ednxy",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "stem": "Si A = [[1, 2], [3, 4]] y B = [[5, 0], [−1, 2]], ¿cuál es el elemento en la posición (2,1) de A + B?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "-1",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "3",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "6",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "2",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:40.720Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:40.720Z"
+      }
+    },
+    {
+      "id": "cmu1xtr01000gjpss1mk92eyq",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "stem": "Usando la regla de Cramer, resuelve para y en el sistema: 2x + y = 8, x − y = 1.",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "2",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "6",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "3",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "-2",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:41.713Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:41.713Z"
+      }
+    },
+    {
+      "id": "cmu1xtrrl000ljpss3567ctpq",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "stem": "Si A = [[2, 3], [1, 4]] y v = [[5], [2]], ¿cuál es el primer elemento (fila 1) del producto Av?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "10",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "16",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "13",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "7",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:42.705Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:42.705Z"
+      }
+    },
+    {
+      "id": "cmu1xtsj7000qjpssok62e2tc",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "stem": "La suma de dos números es 15 y su diferencia es 3. ¿Cuál es el número mayor?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "6",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "9",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "18",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "7.5",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:43.699Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:43.699Z"
+      }
+    },
+    {
+      "id": "cmu1xttaq000vjpss49debh9d",
+      "topicId": "cmrr1j0gp000yhi3n7lrhfvm2",
+      "stem": "¿Para qué valor de k la matriz [[k, 2], [4, 8]] NO tiene inversa (su determinante es 0)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "4",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "8",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "0",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "1",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:44.690Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:44.690Z"
+      }
+    },
+    {
+      "id": "cmu1xu0390001utz5197kt15o",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "stem": "Un objeto de masa 4 kg se mueve con una velocidad de 6 m/s. ¿Cuál es su momento lineal?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$10\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$48\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$24\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$1.5\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:53.493Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:53.493Z"
+      }
+    },
+    {
+      "id": "cmu1xu10y0006utz5o6zwqxtc",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "stem": "Un vagón de 6 kg se mueve a 5 m/s y choca con otro vagón de 4 kg en reposo. Si quedan unidos tras el choque, ¿con qué rapidez se mueven?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$1.2\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$3\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$5\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$7.5\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:54.707Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:54.707Z"
+      }
+    },
+    {
+      "id": "cmu1xu1ym000butz5z4cqrne1",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "stem": "Dos patinadores sobre hielo se empujan desde el reposo. El primero, de 50 kg, sale disparado a 2 m/s. Si el segundo tiene una masa de 40 kg, ¿con qué rapidez se mueve en sentido contrario?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$1.6\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$100\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$2.5\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$2\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:55.918Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:55.918Z"
+      }
+    },
+    {
+      "id": "cmu1xu2wa000gutz5vwipxy9j",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "stem": "Una pelota de 2 kg se mueve a 3 m/s hacia la derecha y choca con otra de 1 kg que se mueve a 4 m/s hacia la izquierda. Tomando la derecha como positiva, ¿cuál es el momento total del sistema antes del choque?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$-2\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$10\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$6\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$2\\,\\text{kg}\\cdot\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:57.130Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:57.130Z"
+      }
+    },
+    {
+      "id": "cmu1xu3tv000lutz5yvneve9d",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "stem": "¿Cuáles son las unidades del momento lineal en el Sistema Internacional?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "kg·m/s",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "m/s²",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "N·m",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "kg·m/s²",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:58.340Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:58.340Z"
+      }
+    },
+    {
+      "id": "cmu1xu4ro000qutz5duypt7iv",
+      "topicId": "cmrr1j3h1001ahi3n67jt9c2w",
+      "stem": "Un carrito de masa desconocida m se mueve a 8 m/s y choca de frente con otro de 3 kg en reposo, quedando ambos unidos y moviéndose a 2 m/s. ¿Cuál es la masa m del primer carrito?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "4 kg",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "3 kg",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "1 kg",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "0.5 kg",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:32:59.557Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:32:59.557Z"
+      }
+    },
+    {
+      "id": "cmu1xubc30001ku2eiszx0cu5",
+      "topicId": "cmrr1j2u00018hi3nptjvy3rk",
+      "stem": "¿Cuál es el trabajo realizado por una fuerza de 20 N que mueve un objeto 5 m en la misma dirección de la fuerza?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$200\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$100\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$25\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$4\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:33:08.067Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:33:08.067Z"
+      }
+    },
+    {
+      "id": "cmu1xuc5c0006ku2emyizookh",
+      "topicId": "cmrr1j2u00018hi3nptjvy3rk",
+      "stem": "Una persona jala una caja con una fuerza de 50 N formando un ángulo de 60° con el piso, desplazándola 4 m horizontalmente. Usa cos(60°)=0.5. ¿Cuál es el trabajo realizado?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$50\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$100\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$173.2\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$200\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:33:09.120Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:33:09.120Z"
+      }
+    },
+    {
+      "id": "cmu1xucyq000bku2e9b0isgo7",
+      "topicId": "cmrr1j2u00018hi3nptjvy3rk",
+      "stem": "¿Cuál es la energía cinética de un objeto de 2 kg que se mueve a 10 m/s?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$50\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$100\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "$10\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$200\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:33:10.179Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:33:10.179Z"
+      }
+    },
+    {
+      "id": "cmu1xudr6000gku2eix9nrtm9",
+      "topicId": "cmrr1j2u00018hi3nptjvy3rk",
+      "stem": "Un objeto de 3 kg parte del reposo y una fuerza neta constante realiza sobre él un trabajo de 24 J. ¿Con qué rapidez final se mueve, según el teorema trabajo-energía?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$2.83\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$6\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$16\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "$4\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:33:11.202Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:33:11.202Z"
+      }
+    },
+    {
+      "id": "cmu1xueiw000lku2ecgigs15d",
+      "topicId": "cmrr1j2u00018hi3nptjvy3rk",
+      "stem": "¿Cuál es la energía potencial gravitacional de un objeto de 5 kg situado a 8 m de altura? Usa g=10 m/s².",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$4000\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$40\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$400\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$80\\,\\text{J}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:33:12.200Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:33:12.200Z"
+      }
+    },
+    {
+      "id": "cmu1xufam000qku2ety0xhfoz",
+      "topicId": "cmrr1j2u00018hi3nptjvy3rk",
+      "stem": "Un objeto se deja caer desde el reposo a una altura de 20 m. Usando conservación de la energía y g=10 m/s², ¿con qué rapidez llega al suelo (ignorando la fricción del aire)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "$400\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "$40\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "$20\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "$14.1\\,\\text{m/s}$",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-15T00:33:13.198Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-15T00:33:13.198Z"
+      }
     }
   ],
   "QuestionSourceChunk": [
@@ -112209,6 +114289,146 @@
       "sourceChunkId": "cmrsroinh003013b3i3ekxh88",
       "createdAt": {
         "$d": "2026-09-14T07:57:47.365Z"
+      }
+    },
+    {
+      "questionId": "cmu1xsods0001hc0bqno62isr",
+      "sourceChunkId": "cmrsrucnw000bkh2oskzabp8w",
+      "createdAt": {
+        "$d": "2026-09-15T00:31:51.664Z"
+      }
+    },
+    {
+      "questionId": "cmu1xspdo0006hc0bh1ae3wel",
+      "sourceChunkId": "cmrsrucnx0017kh2oroit1kqt",
+      "createdAt": {
+        "$d": "2026-09-15T00:31:52.957Z"
+      }
+    },
+    {
+      "questionId": "cmu1xsqbm000bhc0bacm3uboz",
+      "sourceChunkId": "cmrsromj5008013b3nq6pwvwi",
+      "createdAt": {
+        "$d": "2026-09-15T00:31:54.178Z"
+      }
+    },
+    {
+      "questionId": "cmu1xsr9m000ghc0by1mmbdp2",
+      "sourceChunkId": "cmrsromj5008013b3nq6pwvwi",
+      "createdAt": {
+        "$d": "2026-09-15T00:31:55.402Z"
+      }
+    },
+    {
+      "questionId": "cmu1xss7j000lhc0b4pw2n5vj",
+      "sourceChunkId": "cmrsromj5008013b3nq6pwvwi",
+      "createdAt": {
+        "$d": "2026-09-15T00:31:56.623Z"
+      }
+    },
+    {
+      "questionId": "cmu1xst5q000qhc0bmdbz2h1c",
+      "sourceChunkId": "cmrsrucnw000bkh2oskzabp8w",
+      "createdAt": {
+        "$d": "2026-09-15T00:31:57.854Z"
+      }
+    },
+    {
+      "questionId": "cmu1xsu3i000vhc0bqa0sooxd",
+      "sourceChunkId": "cmrsromj5008013b3nq6pwvwi",
+      "createdAt": {
+        "$d": "2026-09-15T00:31:59.070Z"
+      }
+    },
+    {
+      "questionId": "cmu1xtbxg0001a63kdxth87tl",
+      "sourceChunkId": "cmrsrolez006013b3ha8z9zk8",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:22.180Z"
+      }
+    },
+    {
+      "questionId": "cmu1xtcvu0006a63kopvtlq9k",
+      "sourceChunkId": "cmrsromj4007m13b3dvr2n6ah",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:23.418Z"
+      }
+    },
+    {
+      "questionId": "cmu1xtdtm000ba63k5esxcaxp",
+      "sourceChunkId": "cmrsromj4007m13b3dvr2n6ah",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:24.635Z"
+      }
+    },
+    {
+      "questionId": "cmu1xter8000ga63ksxe52ouk",
+      "sourceChunkId": "cmrsromj4007813b38t93owgb",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:25.845Z"
+      }
+    },
+    {
+      "questionId": "cmu1xtfp3000la63kp2s0iclr",
+      "sourceChunkId": "cmrsrolez006013b3ha8z9zk8",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:27.063Z"
+      }
+    },
+    {
+      "questionId": "cmu1xtgsb000qa63k6jildx5r",
+      "sourceChunkId": "cmrsromj4007813b38t93owgb",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:28.475Z"
+      }
+    },
+    {
+      "questionId": "cmu1xti3h000va63kj0iho1yl",
+      "sourceChunkId": "cmrsrolez006013b3ha8z9zk8",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:30.174Z"
+      }
+    },
+    {
+      "questionId": "cmu1xu0390001utz5197kt15o",
+      "sourceChunkId": "cmrsroinh002w13b34mq10hxk",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:53.493Z"
+      }
+    },
+    {
+      "questionId": "cmu1xu10y0006utz5o6zwqxtc",
+      "sourceChunkId": "cmrsroinh002w13b34mq10hxk",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:54.707Z"
+      }
+    },
+    {
+      "questionId": "cmu1xu1ym000butz5z4cqrne1",
+      "sourceChunkId": "cmrsroinh002w13b34mq10hxk",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:55.918Z"
+      }
+    },
+    {
+      "questionId": "cmu1xu2wa000gutz5vwipxy9j",
+      "sourceChunkId": "cmrsroinh002w13b34mq10hxk",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:57.130Z"
+      }
+    },
+    {
+      "questionId": "cmu1xu3tv000lutz5yvneve9d",
+      "sourceChunkId": "cmrsroinh002w13b34mq10hxk",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:58.340Z"
+      }
+    },
+    {
+      "questionId": "cmu1xu4ro000qutz5duypt7iv",
+      "sourceChunkId": "cmrsroinh002w13b34mq10hxk",
+      "createdAt": {
+        "$d": "2026-09-15T00:32:59.557Z"
       }
     }
   ],
@@ -145499,6 +147719,966 @@
       "layer": 3,
       "title": "Por qué no las otras opciones",
       "content": "El plano general hace justamente lo contrario, mostrar el contexto amplio; el plano americano encuadra un fragmento mayor del cuerpo, no solo el rostro; y el plano detalle aísla un objeto pequeño o una parte del cuerpo distinta al rostro completo, como una mano o un ojo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsodt0002hc0bpbl3o3nx",
+      "questionId": "cmu1xsods0001hc0bqno62isr",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La diferencia común es d=6 (11−5=6, 17−11=6...). El n-ésimo término es a_n = a1+(n−1)d, así que a_8 = 5+7(6) = 47.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsodt0003hc0bo89tn3b4",
+      "questionId": "cmu1xsods0001hc0bqno62isr",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identifica a1=5 y d=6. 2) Sustituye n=8: a_8 = 5+(8−1)(6) = 5+42 = 47.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsodt0004hc0bokqq0at6",
+      "questionId": "cmu1xsods0001hc0bqno62isr",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Sumar n·d en vez de (n−1)·d da 53, un término de más; usar d=5 en vez de 6 (mal calculada la diferencia) da 41; avanzar solo 5 pasos en vez de 7 da 35.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xspdo0007hc0bdo3f0bwf",
+      "questionId": "cmu1xspdo0006hc0bh1ae3wel",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La razón común es r=2 (6/3=2, 12/6=2...). El n-ésimo término es a_n=a1·r^(n−1), así que a_6=3·2^5=96.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xspdo0008hc0bsumit367",
+      "questionId": "cmu1xspdo0006hc0bh1ae3wel",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) a1=3, r=2. 2) El exponente es n−1=5. 3) a_6 = 3·2^5 = 3·32 = 96.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xspdo0009hc0bric9g7hq",
+      "questionId": "cmu1xspdo0006hc0bh1ae3wel",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Usar el exponente n en vez de n−1 da 3·2^6=192; calcular el quinto término (3·2^4=48) en vez del sexto lo deja corto; y multiplicar 3 por 48 en vez de por 32 da 144.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsqbm000chc0bz8ksfg4o",
+      "questionId": "cmu1xsqbm000bhc0bacm3uboz",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Es una permutación simple de 5 objetos distintos: 5! = 5×4×3×2×1 = 120.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsqbm000dhc0bc42xvld1",
+      "questionId": "cmu1xsqbm000bhc0bacm3uboz",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El primer lugar se puede llenar de 5 formas, el segundo de 4, el tercero de 3, el cuarto de 2 y el último de 1. 2) 5×4×3×2×1=120.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsqbm000ehc0bfq23iks8",
+      "questionId": "cmu1xsqbm000bhc0bacm3uboz",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Multiplicar solo los dos primeros factores (5×4=20) detiene el conteo antes de tiempo; dividir 5! entre 2 (60) asume que hay libros repetidos, que no es el caso; y elevar 5² confunde permutación con potencia.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsr9m000hhc0b5rnz21sw",
+      "questionId": "cmu1xsr9m000ghc0by1mmbdp2",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El orden no importa, así que se usa combinación: C(8,3) = 8!/(3!·5!) = 56.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsr9m000ihc0bzhwvca7v",
+      "questionId": "cmu1xsr9m000ghc0by1mmbdp2",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) 8×7×6 = 336 (esto cuenta arreglos ORDENADOS). 2) Como el orden no importa, se divide entre 3! = 6: 336/6 = 56.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsr9m000jhc0brgv6nnkl",
+      "questionId": "cmu1xsr9m000ghc0by1mmbdp2",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "336 es el resultado de contar con orden (permutación) sin dividir entre 3!; 168 surge de dividir solo entre 2 en vez de entre 6; 24 aparece si se multiplica 8×3 en vez de aplicar la fórmula de combinación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xss7j000mhc0bivcx1aov",
+      "questionId": "cmu1xss7j000lhc0b4pw2n5vj",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "CASA tiene 4 letras pero la A se repite 2 veces, así que los arreglos son 4!/2! = 24/2 = 12.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xss7j000nhc0bfydiv4tc",
+      "questionId": "cmu1xss7j000lhc0b4pw2n5vj",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Si las 4 letras fueran distintas habría 4! = 24 arreglos. 2) Como la A aparece 2 veces, cada arreglo se cuenta 2! = 2 veces de más, así que se divide: 24/2 = 12.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xss7j000ohc0bcre11shz",
+      "questionId": "cmu1xss7j000lhc0b4pw2n5vj",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "24 es el conteo sin corregir por la letra repetida; 6 divide entre 4, el total de letras, en vez de entre 2 factorial (la cantidad de repeticiones de la vocal); 48 multiplica en vez de dividir por la corrección de repetición.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xst5q000rhc0bdli5hi40",
+      "questionId": "cmu1xst5q000qhc0bmdbz2h1c",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "d=3, a20 = a1+19d = 2+57 = 59. La suma de una progresión aritmética es S_n = n/2·(a1+a_n), así que S_20 = 10·(2+59) = 610.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xst5q000shc0bcapnfzp1",
+      "questionId": "cmu1xst5q000qhc0bmdbz2h1c",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Calcula a20: 2+(20−1)(3)=2+57=59. 2) Aplica S_n=n/2(a1+an): S_20=20/2·(2+59)=10·61=610.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xst5q000thc0b60qgi065",
+      "questionId": "cmu1xst5q000qhc0bmdbz2h1c",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Usar a20=2+20(3)=62 (exponente/factor n en vez de n−1) lleva a 640; olvidar dividir entre 2 en la fórmula de la suma da 1220; y multiplicar a20 directamente por 20 sin sumar a1 primero da 1180.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsu3i000whc0bs5rawsvx",
+      "questionId": "cmu1xsu3i000vhc0bqa0sooxd",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Los cargos son distintos, así que importa el orden: es una permutación P(6,2) = 6×5 = 30.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsu3i000xhc0b4y40ip9u",
+      "questionId": "cmu1xsu3i000vhc0bqa0sooxd",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Para presidente hay 6 opciones. 2) Para secretario, una persona menos: 5 opciones. 3) 6×5=30.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xsu3i000yhc0b7os3io0u",
+      "questionId": "cmu1xsu3i000vhc0bqa0sooxd",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "15 es la combinación C(6,2), que ignora que los cargos son diferentes; 36 permite que la misma persona ocupe ambos cargos (6×6); 720 calcula 6! completo, como si hubiera 6 cargos distintos en vez de solo 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt0tw000265mo7ilh2381",
+      "questionId": "cmu1xt0tv000165mos47xxxv7",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La media aritmética es la suma de los datos entre el número de datos: (78+85+90+82+95)/5 = 430/5 = 86.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt0tw000365mo1rkcd1u4",
+      "questionId": "cmu1xt0tv000165mos47xxxv7",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Suma: 78+85+90+82+95 = 430. 2) Divide entre el número de exámenes (5): 430/5 = 86.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt0tw000465mov66n7lm9",
+      "questionId": "cmu1xt0tv000165mos47xxxv7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "85 es la mediana de los datos ordenados, no la media; 430 es la suma sin dividir entre 5; 88 resulta de una suma incorrecta (440 en vez de 430) antes de dividir.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt1ld000765mofsz9pjbh",
+      "questionId": "cmu1xt1ld000665moi307ef5d",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Para la mediana se ordenan los datos: 7,7,9,12,15,18,21 (7 datos). El valor central (posición 4) es 12.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt1ld000865mohk3xlg2p",
+      "questionId": "cmu1xt1ld000665moi307ef5d",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Ordena: 7,7,9,12,15,18,21. 2) Con 7 datos (impar), la mediana es el dato en la posición (7+1)/2=4, que es 12.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt1ld000965moa2n9mtck",
+      "questionId": "cmu1xt1ld000665moi307ef5d",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "9 es el dato en la posición 3, un lugar antes del centro; 15 está en la posición 5, un lugar después; 18 corresponde a la posición 6, lejos del centro real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt2cz000c65mogfin86y1",
+      "questionId": "cmu1xt2cz000b65mollk2nuy4",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La moda es el valor que se repite con más frecuencia. Contando: 1 aparece 2 veces, 2 aparece 4 veces, 3 aparece 2 veces, 4 aparece 1 vez. La moda es 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt2cz000d65mo7fcqv9r6",
+      "questionId": "cmu1xt2cz000b65mollk2nuy4",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Cuenta cada valor: {1:2, 2:4, 3:2, 4:1}. 2) El valor con mayor frecuencia (4) es 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt2cz000e65mo0yc4qmd2",
+      "questionId": "cmu1xt2cz000b65mollk2nuy4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "1 y 3 aparecen solo 2 veces cada uno, menos que el 2; 4 aparece una sola vez, la frecuencia más baja del conjunto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt34j000h65mons7ydifb",
+      "questionId": "cmu1xt34i000g65move8y3fl7",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El rango es la diferencia entre el valor máximo y el mínimo: 25−15 = 10.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt34j000i65mogpzhaj3g",
+      "questionId": "cmu1xt34i000g65move8y3fl7",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Máximo = 25 °C. 2) Mínimo = 15 °C. 3) Rango = 25−15 = 10.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt34j000j65mou7lxff8i",
+      "questionId": "cmu1xt34i000g65move8y3fl7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "25 es solo el valor máximo, sin restar el mínimo; 15 es solo el valor mínimo, sin restar nada; 8 surge de restar 25−17, usando un dato que no es el mínimo real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt3w1000m65moqpt9ozre",
+      "questionId": "cmu1xt3w1000l65mojf8byngm",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La calificación ponderada es la suma de cada nota multiplicada por su peso: 0.30(80) + 0.70(90) = 24 + 63 = 87.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt3w1000n65mo85zv2hvt",
+      "questionId": "cmu1xt3w1000l65mojf8byngm",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Parcial: 0.30×80 = 24. 2) Final: 0.70×90 = 63. 3) Suma: 24+63 = 87.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt3w1000o65moqgu6391p",
+      "questionId": "cmu1xt3w1000l65mojf8byngm",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "85 es el promedio simple (80+90)/2, que ignora los pesos distintos; 83 resulta de invertir los pesos (0.70 al parcial y 0.30 al final); 90 toma solo la calificación final, sin considerar el parcial.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt4nh000r65moa00p9vw8",
+      "questionId": "cmu1xt4nh000q65mole3uk5x4",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "No aprobaron 40−25=15 estudiantes. El porcentaje es 15/40 = 0.375 = 37.5%.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt4nh000s65momaj8rweu",
+      "questionId": "cmu1xt4nh000q65mole3uk5x4",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Estudiantes que no aprobaron: 40−25=15. 2) Fracción del grupo: 15/40=0.375. 3) En porcentaje: 37.5%.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt4nh000t65motag027hz",
+      "questionId": "cmu1xt4nh000q65mole3uk5x4",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "62.5% es el porcentaje de los que SÍ aprobaron (25/40), la pregunta contraria; 15% usa el número de reprobados como si ya fuera un porcentaje, sin dividir entre 40; 25% confunde la cantidad de aprobados con un porcentaje.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt5ez000w65mo8vd8czb4",
+      "questionId": "cmu1xt5ez000v65mowloho6oq",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La desviación media absoluta es el promedio de las distancias absolutas de cada dato a la media: |8−10|+|9−10|+|10−10|+|11−10|+|12−10| = 2+1+0+1+2 = 6; dividido entre 5 datos: 6/5 = 1.2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt5ez000x65mo2312g0ar",
+      "questionId": "cmu1xt5ez000v65mowloho6oq",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Calcula cada desviación absoluta: 2,1,0,1,2. 2) Súmalas: 6. 3) Divide entre n=5: 6/5=1.2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xt5ez000y65mochry6re9",
+      "questionId": "cmu1xt5ez000v65mowloho6oq",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "6 es la suma de las desviaciones absolutas sin dividir entre n; 0 aparece si se suman las desviaciones CON signo (positivas y negativas se cancelan); 1.5 resulta de dividir entre n−1=4 en vez de entre n=5.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtbxg0002a63ksobg7sn7",
+      "questionId": "cmu1xtbxg0001a63kdxth87tl",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La regla alterna: sumar 4, luego dividir entre 2. El último paso fue +4 (7.5), así que el siguiente es dividir entre 2: 7.5/2 = 3.75.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtbxg0003a63kfxyo2ffq",
+      "questionId": "cmu1xtbxg0001a63kdxth87tl",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Verifica el patrón: 2+4=6, 6/2=3, 3+4=7, 7/2=3.5, 3.5+4=7.5. 2) Toca dividir: 7.5/2=3.75.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtbxg0004a63k2xg3df4v",
+      "questionId": "cmu1xtbxg0001a63kdxth87tl",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "11.5 aplica +4 en vez de dividir, rompiendo la alternancia; 3.5 repite el término anterior sin aplicar ninguna operación; 15 multiplica por 2 en vez de dividir entre 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtcvu0007a63k9trqqsm5",
+      "questionId": "cmu1xtcvu0006a63kopvtlq9k",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Las diferencias alternan 6, 5, 6, 5,...: 26−20=6, 31−26=5, 37−31=6. Como la última diferencia usada fue 6, sigue 5 y luego 6: 37+5=42, 42+6=48.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtcvu0008a63kls1i6i24",
+      "questionId": "cmu1xtcvu0006a63kopvtlq9k",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Verifica el patrón de diferencias: 6,5,6 (alternando). 2) El siguiente paso es +5: 37+5=42. 3) El siguiente es +6: 42+6=48.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtcvu0009a63k5vlmk2g2",
+      "questionId": "cmu1xtcvu0006a63kopvtlq9k",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "43,49 asume que la diferencia es siempre 6, ignorando la alternancia; 42,47 asume diferencia constante de 5, que tampoco coincide con las primeras diferencias observadas; 44,51 usa una diferencia de 7 que no aparece en ningún punto de la sucesión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtdtn000ca63kbncn044k",
+      "questionId": "cmu1xtdtm000ba63k5esxcaxp",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Es una serie geométrica con a1=2, r=3. La suma de n términos es S_n = a1(r^n−1)/(r−1); con n=5: S_5 = 2(3^5−1)/(3−1) = 2(242)/2 = 242.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtdtn000da63kzwpf9bzw",
+      "questionId": "cmu1xtdtm000ba63k5esxcaxp",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Términos: 2,6,18,54,162. 2) Suma directa: 2+6+18+54+162=242. 3) Con la fórmula: 2(243−1)/2=242, coincide.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtdtn000ea63ki6e6a2hh",
+      "questionId": "cmu1xtdtm000ba63k5esxcaxp",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "240 olvida sumar el primer término (2) en el total directo; 728 usa r^6 en vez de r^5 en la fórmula, un término de más; 121 aplica la fórmula sin multiplicar por a1=2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xter9000ha63k33tc1v0l",
+      "questionId": "cmu1xter8000ga63ksxe52ouk",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Los términos son 1,1,2,3,5,8,13,... El séptimo término (contando desde a1=1) es 13, resultado de sumar a5=5 y a6=8.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xter9000ia63kh5yluuii",
+      "questionId": "cmu1xter8000ga63ksxe52ouk",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) a1=1,a2=1. 2) a3=1+1=2, a4=1+2=3, a5=2+3=5, a6=3+5=8, a7=5+8=13.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xter9000ja63km6qiicza",
+      "questionId": "cmu1xter8000ga63ksxe52ouk",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "8 es el sexto término (a6), un lugar antes del que se pide; 21 es el octavo término (a8), un lugar después; 12 resulta de una suma aritmética incorrecta de 5+8.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtfp3000ma63k8ahth0eu",
+      "questionId": "cmu1xtfp3000la63kp2s0iclr",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Para una serie geométrica infinita con |r|<1, la suma es S = a1/(1−r). Aquí a1=8, r=0.5, así que S = 8/(1−0.5) = 8/0.5 = 16.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtfp3000na63kqw6rfqa3",
+      "questionId": "cmu1xtfp3000la63kp2s0iclr",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identifica a1=8 y r=0.5 (cada término es la mitad del anterior). 2) Aplica S=a1/(1−r) = 8/0.5 = 16.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtfp3000oa63kw401c9uz",
+      "questionId": "cmu1xtfp3000la63kp2s0iclr",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "15.5 es solo la suma de los primeros 5 términos mostrados, no la serie infinita completa; 8 confunde la suma total con el primer término; 4 resulta de multiplicar a1 por r en vez de dividir entre (1−r).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtgsb000ra63keapz9blq",
+      "questionId": "cmu1xtgsb000qa63k6jildx5r",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Son los cuadrados de los números naturales: 1²,2²,3²,4²,5²,... El siguiente es 6² = 36.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtgsb000sa63k70q8pupi",
+      "questionId": "cmu1xtgsb000qa63k6jildx5r",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Nota que cada término es n²: 1,4,9,16,25 corresponden a 1²,2²,3²,4²,5². 2) El siguiente es 6²=36.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtgsb000ta63kcdvctdhd",
+      "questionId": "cmu1xtgsb000qa63k6jildx5r",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "34 asume que la diferencia entre términos se mantiene constante en 9 (la última diferencia), pero las diferencias de una sucesión de cuadrados van creciendo; 49 salta un término y calcula 7² en vez de 6²; 35 usa una diferencia de 10, que no corresponde al patrón real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xti3h000wa63ku7scqt60",
+      "questionId": "cmu1xti3h000va63kj0iho1yl",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "S_n=n(n+1)/2 con n=15: S_15 = 15(16)/2 = 240/2 = 120.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xti3h000xa63klrlbpm0c",
+      "questionId": "cmu1xti3h000va63kj0iho1yl",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Sustituye n=15: 15×16=240. 2) Divide entre 2: 240/2=120.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xti3i000ya63ku1gz4kc4",
+      "questionId": "cmu1xti3h000va63kj0iho1yl",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "105 usa n(n−1)/2 en vez de n(n+1)/2, un término de menos; 225 confunde la suma con el cuadrado de n (15²); 136 usa (n+1)(n+2)/2, un desplazamiento de índice hacia adelante.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtoph0002jpsse91slpqg",
+      "questionId": "cmu1xtoph0001jpssmu7k747r",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Sumando ambas ecuaciones se elimina y: (x+y)+(x−y)=10+4 → 2x=14 → x=7.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtoph0003jpssodjfn996",
+      "questionId": "cmu1xtoph0001jpssmu7k747r",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Suma las ecuaciones: 2x = 14. 2) Divide entre 2: x=7. 3) Verifica: y=10−7=3, y 7−3=4 ✓.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtoph0004jpssre9xaqfw",
+      "questionId": "cmu1xtoph0001jpssmu7k747r",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "3 es el valor de y, no de x; 14 es el resultado de sumar antes de dividir entre 2; 10 solo repite el valor del lado derecho de la primera ecuación sin resolver el sistema.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtpgx0007jpssy4372231",
+      "questionId": "cmu1xtpgx0006jpssaxxdnbmt",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El determinante de una matriz 2×2 [[a,b],[c,d]] es ad−bc: (3)(4)−(5)(2) = 12−10 = 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtpgx0008jpsse8r3z274",
+      "questionId": "cmu1xtpgx0006jpssaxxdnbmt",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Multiplica la diagonal principal: 3×4=12. 2) Multiplica la diagonal secundaria: 5×2=10. 3) Resta: 12−10=2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtpgx0009jpss7wbwrzh6",
+      "questionId": "cmu1xtpgx0006jpssaxxdnbmt",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "22 suma las dos diagonales en vez de restarlas; −2 invierte el orden de la resta (bc−ad en vez de ad−bc); 20 solo multiplica los elementos de la diagonal secundaria (5×4), ignorando la diagonal principal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtq8g000cjpsseu45t2vi",
+      "questionId": "cmu1xtq8g000bjpss2a3ednxy",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La suma de matrices se hace elemento a elemento. En la posición (2,1): A tiene 3, B tiene −1, así que la matriz suma tiene 3+(−1) = 2 en esa posición.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtq8g000djpssohklm9le",
+      "questionId": "cmu1xtq8g000bjpss2a3ednxy",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Localiza el elemento (2,1) en cada matriz: A=3, B=−1. 2) Súmalos: 3+(−1)=2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtq8g000ejpsswhbj93ml",
+      "questionId": "cmu1xtq8g000bjpss2a3ednxy",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "6 corresponde a otra posición de la matriz suma (la diagonal principal), no a (2,1); 3 es solo el valor de A en esa posición, sin sumar B; −1 es solo el valor de B, sin sumar A.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtr01000hjpssxn4q9mw0",
+      "questionId": "cmu1xtr01000gjpss1mk92eyq",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "D = (2)(−1)−(1)(1) = −3. Dy se obtiene sustituyendo la columna de y por los términos independientes: (2)(1)−(8)(1) = −6. Entonces y = Dy/D = −6/−3 = 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtr01000ijpssnqsicokx",
+      "questionId": "cmu1xtr01000gjpss1mk92eyq",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) D = 2(−1)−1(1) = −2−1 = −3. 2) Dy = 2(1)−8(1) = 2−8 = −6. 3) y = Dy/D = −6/−3 = 2.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtr01000jjpssznk3vbg3",
+      "questionId": "cmu1xtr01000gjpss1mk92eyq",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "3 es el valor de x en este sistema, no de y; −2 resulta de un error de signo al calcular alguno de los determinantes; 6 es el numerador Dy sin dividir entre D.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtrrl000mjpss2zzv4bxn",
+      "questionId": "cmu1xtrrl000ljpss3567ctpq",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El producto de matrices se calcula fila por columna. Fila 1 de A por v: (2)(5)+(3)(2) = 10+6 = 16.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtrrl000njpssp48vpgfn",
+      "questionId": "cmu1xtrrl000ljpss3567ctpq",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Toma la fila 1 de A: [2, 3]. 2) Multiplica término a término con v: 2×5=10, 3×2=6. 3) Suma: 10+6=16.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtrrl000ojpsse51yq3xm",
+      "questionId": "cmu1xtrrl000ljpss3567ctpq",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "13 usa la fila 2 de A [1,4] en vez de la fila 1: (1)(5)+(4)(2)=13; 10 solo calcula el primer producto (2×5) sin sumar el segundo; 7 suma directamente los elementos del vector (5+2) sin multiplicar por la matriz.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtsj7000rjpss1pocltu9",
+      "questionId": "cmu1xtsj7000qjpssok62e2tc",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Sumando las dos ecuaciones (x+y=15, x−y=3) se elimina y: 2x=18, x=9 (el número mayor); el menor es y=15−9=6.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtsj7000sjpssep3x3lso",
+      "questionId": "cmu1xtsj7000qjpssok62e2tc",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Suma: (x+y)+(x−y)=15+3 → 2x=18. 2) x=9. 3) y=15−9=6.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xtsj7000tjpssyfr0cbls",
+      "questionId": "cmu1xtsj7000qjpssok62e2tc",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "6 es el número MENOR, no el mayor que pide la pregunta; 18 es la suma 2x sin dividir entre 2; 7.5 resulta de dividir solo la suma (15) entre 2, ignorando la diferencia entre los números.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xttaq000wjpssnydcaw2r",
+      "questionId": "cmu1xttaq000vjpss49debh9d",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Una matriz no tiene inversa si su determinante es 0. det = k(8)−2(4) = 8k−8. Igualando a 0: 8k−8=0 → k=1.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xttaq000xjpss1lihentm",
+      "questionId": "cmu1xttaq000vjpss49debh9d",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Determinante: 8k−8. 2) Iguala a cero: 8k−8=0. 3) Despeja: 8k=8 → k=1.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xttaq000yjpsss653jw1f",
+      "questionId": "cmu1xttaq000vjpss49debh9d",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "4 y 8 son valores que ya aparecen en la matriz original, tomados por error como respuesta sin resolver la ecuación; 0 ignora el término independiente (−8) al igualar 8k a cero directamente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu0390002utz5be9q9h8d",
+      "questionId": "cmu1xu0390001utz5197kt15o",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El momento lineal es $p = mv$: $p = (4\\,\\text{kg})(6\\,\\text{m/s}) = 24\\,\\text{kg}\\cdot\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu0390003utz5g7giacep",
+      "questionId": "cmu1xu0390001utz5197kt15o",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identifica $m=4\\,\\text{kg}$, $v=6\\,\\text{m/s}$. 2) Multiplica: $p=mv=4\\times 6=24\\,\\text{kg}\\cdot\\text{m/s}$.",
+      "latexContent": "p = mv = (4\\,\\text{kg})(6\\,\\text{m/s}) = 24\\,\\text{kg}\\cdot\\text{m/s}"
+    },
+    {
+      "id": "cmu1xu0390004utz582nom21b",
+      "questionId": "cmu1xu0390001utz5197kt15o",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$10\\,\\text{kg}\\cdot\\text{m/s}$ resulta de sumar masa y velocidad en vez de multiplicarlas; $1.5\\,\\text{kg}\\cdot\\text{m/s}$ divide la velocidad entre la masa; $48\\,\\text{kg}\\cdot\\text{m/s}$ duplica el resultado correcto sin justificación física.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu10z0007utz5eoeyp2hg",
+      "questionId": "cmu1xu10y0006utz5o6zwqxtc",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El momento se conserva: $p_i = (6)(5)+(4)(0) = 30\\,\\text{kg}\\cdot\\text{m/s}$. La masa combinada es 10 kg, así que $v = 30/10 = 3\\,\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu10z0008utz5u7aj3cq9",
+      "questionId": "cmu1xu10y0006utz5o6zwqxtc",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Momento inicial: solo el primer vagón se mueve, $p=6\\times5=30$. 2) Masa total tras el choque: $6+4=10\\,\\text{kg}$. 3) $v=p/m_{total}=30/10=3\\,\\text{m/s}$.",
+      "latexContent": "p_i = m_1 v_1 = (6\\,\\text{kg})(5\\,\\text{m/s}) = 30\\,\\text{kg}\\cdot\\text{m/s} \\\\ v_f = \\frac{p_i}{m_1+m_2} = \\frac{30}{10} = 3\\,\\text{m/s}"
+    },
+    {
+      "id": "cmu1xu10z0009utz5fw5v17pe",
+      "questionId": "cmu1xu10y0006utz5o6zwqxtc",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$5\\,\\text{m/s}$ asume que el primer vagón no pierde rapidez, ignorando que ahora arrastra más masa; $7.5\\,\\text{m/s}$ divide el momento entre la masa del segundo vagón (4) en vez de la masa total (10); $1.2\\,\\text{m/s}$ invierte la división (6/5) sin relación con la conservación del momento.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu1ym000cutz52iu6bi0o",
+      "questionId": "cmu1xu1ym000butz5z4cqrne1",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El momento total antes de empujarse es 0, así que después también debe ser 0: $m_1 v_1 = m_2 v_2$ (magnitudes, sentidos opuestos). $(50)(2) = (40)(v_2) \\Rightarrow v_2 = 100/40 = 2.5\\,\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu1ym000dutz5d9gq8zii",
+      "questionId": "cmu1xu1ym000butz5z4cqrne1",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Momento del primero: $50\\times2=100\\,\\text{kg}\\cdot\\text{m/s}$. 2) Como el sistema partió del reposo, el segundo debe tener el mismo momento en sentido opuesto: $40\\times v_2=100$. 3) $v_2=100/40=2.5\\,\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu1ym000eutz5ulbt5zlr",
+      "questionId": "cmu1xu1ym000butz5z4cqrne1",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$1.6\\,\\text{m/s}$ invierte la relación de masas ($40\\times2/50$ en vez de $50\\times2/40$); $2\\,\\text{m/s}$ asume erróneamente que ambos patinadores llevan la misma rapidez, ignorando que tienen masas distintas; $100\\,\\text{m/s}$ deja el momento sin dividir entre la masa del segundo patinador.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu2wa000hutz5631x7dat",
+      "questionId": "cmu1xu2wa000gutz5vwipxy9j",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Tomando la derecha como positiva: $p_1=(2)(3)=6\\,\\text{kg}\\cdot\\text{m/s}$, $p_2=(1)(-4)=-4\\,\\text{kg}\\cdot\\text{m/s}$. El momento total es la suma vectorial: $6+(-4)=2\\,\\text{kg}\\cdot\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu2wa000iutz58lv8iuwo",
+      "questionId": "cmu1xu2wa000gutz5vwipxy9j",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) $p_1=2\\times3=6\\,\\text{kg}\\cdot\\text{m/s}$ (positivo, va a la derecha). 2) $p_2=1\\times(-4)=-4\\,\\text{kg}\\cdot\\text{m/s}$ (negativo, va a la izquierda). 3) Suma: $6+(-4)=2\\,\\text{kg}\\cdot\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu2wa000jutz5dmn3qq3y",
+      "questionId": "cmu1xu2wa000gutz5vwipxy9j",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$10\\,\\text{kg}\\cdot\\text{m/s}$ suma las magnitudes sin respetar que van en sentidos opuestos; $-2\\,\\text{kg}\\cdot\\text{m/s}$ invierte el signo del resultado correcto; $6\\,\\text{kg}\\cdot\\text{m/s}$ ignora por completo la contribución de la segunda pelota.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu3tw000mutz5qtj3m5cq",
+      "questionId": "cmu1xu3tv000lutz5yvneve9d",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El momento lineal se define como p=mv, así que sus unidades son (kg)(m/s) = kg·m/s.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu3tw000nutz5vuj5yhl6",
+      "questionId": "cmu1xu3tv000lutz5yvneve9d",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La masa se mide en kg. 2) La velocidad en m/s. 3) Al multiplicarlas, las unidades del momento son kg·m/s.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu3tw000outz56duz3gjq",
+      "questionId": "cmu1xu3tv000lutz5yvneve9d",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "N·m es la unidad de trabajo o energía (joule), no de momento; m/s² es la unidad de aceleración, no de una cantidad que involucra masa; kg·m/s² es la unidad de fuerza (newton), no de momento lineal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu4rp000rutz5jzd3sy15",
+      "questionId": "cmu1xu4ro000qutz5duypt7iv",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Por conservación del momento: m(8) = (m+3)(2). Expandiendo: 8m = 2m+6 → 6m=6 → m=1 kg.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu4rp000sutz5gsuofwod",
+      "questionId": "cmu1xu4ro000qutz5duypt7iv",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Plantea la conservación: p_i=p_f → 8m=(m+3)(2). 2) Expande: 8m=2m+6. 3) Despeja: 6m=6 → m=1 kg.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xu4rp000tutz5ptvl3l5g",
+      "questionId": "cmu1xu4ro000qutz5duypt7iv",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "3 kg confunde la incógnita con la masa ya conocida del segundo carrito; 0.5 kg surge de plantear mal la ecuación como 8m=2m+3 (sin multiplicar el 3 por la velocidad final); 4 kg resulta de un error al simplificar 6m=6, llegando a un cociente distinto de 1.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xubc30002ku2efkwrn11r",
+      "questionId": "cmu1xubc30001ku2eiszx0cu5",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "El trabajo es $W=Fd$ (cuando la fuerza y el desplazamiento son paralelos): $W=(20\\,\\text{N})(5\\,\\text{m})=100\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xubc30003ku2emoz63p6f",
+      "questionId": "cmu1xubc30001ku2eiszx0cu5",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identifica $F=20\\,\\text{N}$, $d=5\\,\\text{m}$. 2) Multiplica: $W=Fd=20\\times5=100\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xubc30004ku2e2a9b01z2",
+      "questionId": "cmu1xubc30001ku2eiszx0cu5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$4\\,\\text{J}$ divide la fuerza entre la distancia en vez de multiplicarlas; $25\\,\\text{J}$ suma los valores (20+5) en vez de multiplicarlos; $200\\,\\text{J}$ duplica el resultado correcto sin ninguna base física.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xuc5c0007ku2ep27n0jd4",
+      "questionId": "cmu1xuc5c0006ku2emyizookh",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Cuando la fuerza no es paralela al desplazamiento, $W=Fd\\cos\\theta$: $W=(50)(4)(0.5)=100\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xuc5c0008ku2emr9y9kp9",
+      "questionId": "cmu1xuc5c0006ku2emyizookh",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) $F=50\\,\\text{N}$, $d=4\\,\\text{m}$, $\\cos(60°)=0.5$. 2) $W=50\\times4\\times0.5=100\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xuc5c0009ku2eavwfl5xk",
+      "questionId": "cmu1xuc5c0006ku2emyizookh",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$200\\,\\text{J}$ omite el factor $\\cos(60°)$, como si la fuerza fuera paralela al desplazamiento; $173.2\\,\\text{J}$ usa $\\sin(60°)\\approx0.866$ en lugar de $\\cos(60°)$; $50\\,\\text{J}$ multiplica $F$ por $\\cos(60°)$ pero olvida incluir la distancia recorrida.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xucyr000cku2ecfvzejz1",
+      "questionId": "cmu1xucyq000bku2e9b0isgo7",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La energía cinética es $E_c=\\frac{1}{2}mv^2$: $E_c=\\frac{1}{2}(2)(10^2)=\\frac{1}{2}(2)(100)=100\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xucyr000dku2ezyu99ztd",
+      "questionId": "cmu1xucyq000bku2e9b0isgo7",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) $v^2=10^2=100$. 2) $m v^2=2\\times100=200$. 3) Multiplica por $\\frac{1}{2}$: $200\\times\\frac{1}{2}=100\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xucyr000eku2evo05vmht",
+      "questionId": "cmu1xucyq000bku2e9b0isgo7",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$200\\,\\text{J}$ olvida el factor $\\frac{1}{2}$ de la fórmula; $10\\,\\text{J}$ usa $v$ en vez de $v^2$ (confunde con momento); $50\\,\\text{J}$ divide entre 4 en vez de entre 2, un error en la fracción de la fórmula.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xudr6000hku2eomvmdxn9",
+      "questionId": "cmu1xudr6000gku2eix9nrtm9",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Por el teorema trabajo-energía, $W=\\Delta E_c$. Como parte del reposo: $24=\\frac{1}{2}(3)v^2 \\Rightarrow v^2=16 \\Rightarrow v=4\\,\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xudr6000iku2etznadb25",
+      "questionId": "cmu1xudr6000gku2eix9nrtm9",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) $24=\\frac{1}{2}(3)(v^2) \\Rightarrow 24=1.5v^2$. 2) $v^2=24/1.5=16$. 3) $v=\\sqrt{16}=4\\,\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xudr6000jku2eokf5f1wl",
+      "questionId": "cmu1xudr6000gku2eix9nrtm9",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$2.83\\,\\text{m/s}$ resulta de olvidar el factor $\\frac{1}{2}$ en la fórmula ($v^2=24/3=8$, $\\sqrt{8}\\approx2.83$); $16\\,\\text{m/s}$ confunde $v^2$ (que sí vale 16) con $v$, sin sacar la raíz cuadrada; $6\\,\\text{m/s}$ surge de dividir 24 entre 4 en vez de resolver correctamente la ecuación cuadrática.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xueiw000mku2e5na02f15",
+      "questionId": "cmu1xueiw000lku2ecgigs15d",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "La energía potencial gravitacional es $E_p=mgh$: $E_p=(5)(10)(8)=400\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xueiw000nku2eg6kswgwy",
+      "questionId": "cmu1xueiw000lku2ecgigs15d",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) $m=5\\,\\text{kg}$, $g=10\\,\\text{m/s}^2$, $h=8\\,\\text{m}$. 2) Multiplica los tres: $5\\times10\\times8=400\\,\\text{J}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xueiw000oku2evnbgxqky",
+      "questionId": "cmu1xueiw000lku2ecgigs15d",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$40\\,\\text{J}$ solo calcula $mg$ (5×10), sin multiplicar por la altura; $80\\,\\text{J}$ solo calcula $mh$ (5×8), sin incluir $g$; $4000\\,\\text{J}$ multiplica el resultado correcto por 10 de más.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xufam000rku2eic4ckbow",
+      "questionId": "cmu1xufam000qku2ety0xhfoz",
+      "layer": 1,
+      "title": "El principio o la fórmula aplicable",
+      "content": "Por conservación de energía: $mgh=\\frac{1}{2}mv^2 \\Rightarrow v^2=2gh=2(10)(20)=400 \\Rightarrow v=\\sqrt{400}=20\\,\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xufam000sku2eciursfpv",
+      "questionId": "cmu1xufam000qku2ety0xhfoz",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Iguala energía potencial inicial con cinética final: $mgh=\\frac{1}{2}mv^2$ (la masa se cancela). 2) $v^2=2gh=2\\times10\\times20=400$. 3) $v=\\sqrt{400}=20\\,\\text{m/s}$.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu1xufam000tku2er5kzwrvc",
+      "questionId": "cmu1xufam000qku2ety0xhfoz",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "$400\\,\\text{m/s}$ es el valor de $v^2$ sin sacar la raíz cuadrada; $14.1\\,\\text{m/s}$ olvida el factor 2 en $v^2=2gh$, calculando $\\sqrt{gh}=\\sqrt{200}\\approx14.1$; $40\\,\\text{m/s}$ duplica el resultado correcto sin justificación física.",
       "latexContent": null
     }
   ]
