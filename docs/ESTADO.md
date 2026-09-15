@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-14 · Última fase ejecutada: **G90 (COMPLETADA — verificación ciega de los 40 reactivos de UNAM Área 1 que compuso G89: 28 de Matemáticas (Progresiones y combinatoria, Estadística descriptiva, Series y sucesiones, Matrices y sistemas de ecuaciones) y 12 de Física (Conservación de momento, Trabajo y energía). Único insumo el lote ciego de `content:blind-batch`, verificado en crudo sobre el archivo: **0 apariciones de `isCorrect`, 0 de `explanation`**, claves reducidas a `stem` + `options{label,text,imageUrl}` y opciones remezcladas con semilla = id del reactivo. Los 40 resueltos **ejecutando el cálculo en código**, no razonando: un script recalcula desde cero cada factorial/combinación, media/mediana/moda/rango/desviación media absoluta, suma de progresión aritmética y geométrica, serie infinita, Fibonacci, determinante y regla de Cramer, producto matriz-vector, choque inelástico y de retroceso, trabajo con `cos θ`, teorema trabajo-energía y conservación mecánica — y **exige que coincida exactamente UNA de las cuatro opciones**; los 2 ítems de patrón generan la sucesión desde la regla enunciada y comprueban que reproduce el prefijo impreso antes de extenderla (ambos `true`). **40/40 con coincidencia única: 0 `MULTIPLE_VALID`, 0 `NONE_VALID`, 0 errores aritméticos en enunciados o distractores → `problems: []` en los 40.** `content:resolve`: **40/40 auto-aprobados (100%)** — Matemáticas 28/28, Física 12/12 — confianza media **0.987**, mínima 0.96 (calibrada a la baja solo donde manda una convención: ítems de patrón, desviación media absoluta vs. estándar, índice `(2,1)` de matriz, unidades SI). Sesgo de longitud medido desde el lote ciego (invariante bajo el mezclado): la clave es la opción estrictamente más larga en **1 de 40 (2.5%)** contra el ~25% del azar — sin señal explotable. `content:guard` DESPUÉS de la resolución: **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**, 4 aserciones en verde contra recuento SQL independiente; Área 1 `READY` 70/70 de peso, con Matemáticas 114→**142** y Física 107→**119**. **Margen real de Área 1 sobre el mínimo de Early Bird (300): de +47 a `+87` (387 propios)**, exactamente lo proyectado por G89 §7, con el 100% del incremento en las 2 materias exclusivas del área — y ese número deja de recalcularse a mano: nueva sonda `scripts/g90/margin-probe.ts` (**`pnpm content:margin`**) lo mide con SQL crudo, sin pasar por `content-coverage.ts` ni por el guard, y **sale con código 1 si el área cae por debajo del mínimo**. Banco **1 422 servibles** de 1 427 filas (tasa de auto-aprobación global 99.7%), **cola de verificación adversarial VACÍA** por primera vez desde que arrancó el pipeline de lotes, brecha contra la meta de 1 500 = **78**)**. Modelo real `claude-opus-5`. Ver §G90 abajo.
+
+<details><summary>Historial: G89 (2026-09-14)</summary>
+
 Última actualización: 2026-09-14 · Última fase ejecutada: **G89 (COMPLETADA — 40 reactivos de UNAM Área 1, Ciencias Físico-Matemáticas y las Ingenierías, retomando el refuerzo directo del área que tenía el margen más frágil sobre el mínimo de Early Bird. Priorización con la MISMA lógica ponderada de `content:guard` (peso del examen, no conteo bruto), aplicada a las 2 únicas materias EXCLUSIVAS de Área 1 —Matemáticas y Física; Química/Español/Inglés de Área1 son pools compartidos con otras áreas vía `sharedContentKey` (G26) y ya los reforzaron fases anteriores (G75 Inglés)—: Matemáticas (peso 26, densidad 114/26=4.38 reactivos por punto de peso, la más baja de las 2) recibió **28** reactivos en sus 4 temas más delgados (Progresiones y combinatoria 7→14, Estadística descriptiva 8→15, Series y sucesiones 8→15, Matrices y sistemas de ecuaciones 9→16); Física (peso 16, densidad 6.69) recibió **12** en sus 2 temas más delgados, ambos con el mínimo absoluto de la materia (Conservación de momento 7→13, Trabajo y energía 7→13). Insertados con `isVerified=false` tras validar el LOTE completo (`content:validate-batch`: posición de la clave 15%-40% por letra, sesgo de longitud 2.5%/2.5% —sano—, 0 citas por letra tras corregir 2 falsos positivos de "(A+B)"/"la A)" en las explicaciones de matrices/combinatoria) y verificar los 40 resultados numéricos de forma INDEPENDIENTE del texto de los reactivos (`verify-calcs.mjs`, recalcula cada operación desde cero: 40/40 correctos) — obligatorio por CLAUDE.md, Área 1 es intensiva en matemáticas y física. 21/40 SOURCED contra guías reales de OTRA institución (UAM: `uam_csh.pdf`, `uam_cbi.pdf`, `uam_cad.pdf`) usadas solo como ancla del TIPO de reactivo (sucesión con regla, arreglo combinatorio, choque con conservación de momento), nunca de texto — mismo criterio que G75/G84/G86; los 19 restantes TEMARIO_ONLY (0 SourceChunks en esos temas). `content:guard` sin cambio antes/después —esperado, cuenta solo `isVerified=true`, mismo patrón que G75→G76/G78→G79/G80→G81/G82→G83/G84→G85/G86→G87—: Área1 sigue `READY` 70/70 de peso. **Margen real sobre el mínimo de Early Bird (300)**, medido como Matemáticas+Física+Química_propia+Español_propio —el mismo cálculo que dio exactamente 307 antes de que G75 añadiera Inglés a esa área, confirmado recalculándolo hoy: 114+107+51+35=307—: hoy **347** (+47 sobre el mínimo, con Inglés ya sumado) y **proyectado a 387** (+87) en cuanto la verificación ciega publique este lote — casi el DOBLE del margen previo, y todo el incremento cae en las 2 materias exclusivas del área, no en las compartidas. Banco **1 423 filas, 1 382 servibles sin cambio** (40 en cola de verificación adversarial, PRD §8 — ni esta ni ninguna sesión sola puede resolverla), brecha contra la meta de 1 500 = **118**)**. Modelo real `claude-sonnet-5`. Ver §G89 abajo.
+
+</details>
 
 <details><summary>Historial: G88 (2026-09-14)</summary>
 
@@ -445,6 +451,164 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G90 — Verificación ciega: UNAM Área 1, Matemáticas y Física (lote de G89) (2026-09-14)
+
+> Modelo real `claude-opus-5`. Los 40 reactivos que compuso G89 quedaron
+> **40/40 auto-aprobados (100%)**, confianza media **0.987**, mínima 0.96.
+> Con ellos el margen de UNAM Área 1 sobre el mínimo de Early Bird pasa de
+> **+47 a +87**, exactamente lo que G89 §7 proyectó, y el banco llega a
+> **1 422 servibles** — brecha de **78** contra la meta de 1 500.
+
+### 1. Aislamiento: qué vio esta sesión
+
+Único insumo: `pnpm content:blind-batch --all --limit 100`, que devolvió
+exactamente los 40 pendientes (`scripts/content-exports/g90-blind.json`).
+Verificado en crudo sobre el archivo, no sobre la promesa del tipo:
+**0 apariciones de `isCorrect`, 0 de `explanation`**, y el conjunto completo
+de claves presentes es `questionId, institution, subject, topic, format,
+passage, requiresCalculation, stem, options{label, text, imageUrl}`. Las
+opciones llegan remezcladas con semilla determinista = id del reactivo, así
+que ni la posición original viaja. No se leyó el commit de G89, ni su lote
+JSON, ni sus scripts. Esta sesión nunca vio una respuesta marcada antes de
+emitir la suya.
+
+### 2. Cada reactivo resuelto EJECUTANDO el cálculo
+
+No "razonado y luego confirmado": un solo script
+(`solve.js`, en el scratchpad de la sesión) recalcula cada reactivo desde
+cero —factoriales y `C(n,k)`/`P(n,k)` propios, media/mediana/moda/rango/
+desviación media absoluta, sumas de progresión aritmética y geométrica,
+serie geométrica infinita, Fibonacci iterado, determinantes 2×2 y regla de
+Cramer, producto matriz-vector, conservación de momento en choques
+inelásticos y de retroceso, trabajo con componente `cos θ`, teorema
+trabajo-energía y conservación mecánica— y **compara el resultado contra las
+cuatro opciones**, exigiendo que coincida exactamente una.
+
+Los dos ítems de patrón (`2, 6, 3, 7, 3.5, 7.5, …` con regla «+4 y ÷2
+alternados»; `20, 26, 31, 37, …` con diferencias que alternan 6 y 5) no se
+resolvieron por inspección: el script **genera la sucesión desde la regla
+enunciada y comprueba que reproduce el prefijo impreso** antes de tomar el
+siguiente término. Ambos dieron `true`. El único reactivo conceptual del
+lote (unidades SI del momento lineal) se resolvió por análisis dimensional y
+se emparejó por comparación de texto ejecutada, no a ojo.
+
+**Resultado del emparejamiento: 40/40 con una y solo una opción válida.**
+Ninguna `MULTIPLE_VALID`, ninguna `NONE_VALID`, ningún error aritmético en
+un enunciado o en un distractor, ninguna ambigüedad de planteamiento →
+`problems: []` en los 40.
+
+> Detalle que vale registrar: la primera corrida usó una tolerancia relativa
+> del 2% y marcó dos ítems como "más de una opción válida" (media = 86 con un
+> distractor en 85; suma geométrica = 242 con un distractor en 240). No era
+> un defecto de los reactivos sino de la sonda — con comparación exacta los
+> 40 tienen coincidencia única. Una tolerancia laxa en el verificador
+> fabrica discrepancias que bloquean contenido sano, que es el mismo error de
+> forma que un verde que no comprueba nada (G71 §6 D6), en la otra dirección.
+
+### 3. Resultado por materia y por tema
+
+`pnpm content:resolve` — **40 auto-aprobados · 0 sin publicar · 0 omitidos**.
+
+| Materia | Tema | Aprobados | Confianza media |
+|---|---|---|---|
+| Matemáticas | Progresiones y combinatoria | 7/7 | 0.990 |
+| Matemáticas | Estadística descriptiva | 7/7 | 0.987 |
+| Matemáticas | Series y sucesiones | 7/7 | 0.981 |
+| Matemáticas | Matrices y sistemas de ecuaciones | 7/7 | 0.987 |
+| **Matemáticas (total)** | | **28/28 (100%)** | 0.986 |
+| Física | Conservación de momento | 6/6 | 0.988 |
+| Física | Trabajo y energía | 6/6 | 0.990 |
+| **Física (total)** | | **12/12 (100%)** | 0.989 |
+| **Lote** | | **40/40 (100%)** | **0.987** |
+
+La confianza se calibró a la baja donde la respuesta depende de una
+convención y no solo de la aritmética: 0.96 en los dos ítems de patrón
+(dependen de la regla que el propio enunciado declara), 0.97 en la
+desviación media absoluta (nombrarla mal la confundiría con la desviación
+estándar) y en el elemento `(2,1)` de una suma de matrices (convención
+fila-columna), 0.98 en el conceptual de unidades. Todas quedan holgadamente
+sobre `MIN_CONFIDENCE = 0.85`.
+
+### 4. Señal de longitud, medida desde el lote ciego
+
+La pista que G76 encontró y G77 convirtió en regla (`LENGTH_BIAS`) es
+invariante bajo el mezclado, así que se puede medir desde el lote ciego con
+las respuestas de esta sesión: la clave es la opción **estrictamente más
+larga en 1 de 40 (2.5%)**, contra el ~25% que daría el azar, y la más corta
+en otro 1. En 19 de 40 empata en longitud con la más larga — esperable en un
+lote casi enteramente numérico, donde las cuatro opciones son cifras de
+ancho parecido. No hay señal explotable. La distribución de la clave en el
+lote ya mezclado quedó en 11/11/10/8 (A/B/C/D).
+
+### 5. Cobertura después de la resolución
+
+`pnpm content:guard`: **7 áreas · 7 listas · 0 con hueco conocido · 0 en
+«Próximamente»**, con sus 4 aserciones en verde contra el recuento SQL
+independiente. Área 1 sigue `READY` con 70/70 de peso (100%); lo que cambió
+no es el veredicto sino el colchón: Matemáticas pasa de 114 a **142**
+servibles (peso 26) y Física de 107 a **119** (peso 16).
+
+`pnpm content:coverage`: **1 422 servibles**, 0 pendientes de resolución,
+tasa de auto-aprobación global **99.7%** (1 423/1 427), meta de 1 500 al
+**95%**.
+
+### 6. El margen de Early Bird, ahora medido por una sonda y no a mano
+
+G89 §7 recalculó el margen a mano contra la DB. Un número que cada fase
+recalcula a mano es un número que se desincroniza del documento que lo cita
+— la misma clase de problema que las listas de roles en código (G73). Esta
+fase lo convierte en `scripts/g90/margin-probe.ts` + **`pnpm content:margin`**,
+que lo mide con SQL crudo sin pasar por `content-coverage.ts` ni por el
+guard, y **sale con código 1 si Área 1 cae por debajo del mínimo**:
+
+```
+· Matemáticas       142
+· Física            119
+· Química            51
+· Inglés             40
+· Español            35
+TOTAL propio: 387  ·  mínimo Early Bird: 300  ·  MARGEN: +87
+```
+
+Cuenta solo las filas `Subject` **propias** del área (`areas.code =
+'AREA_1'`), nunca el pool compartido completo de G26: el mínimo se fijó
+sobre contenido propio, y sumar el pool entero inflaría Química/Español/
+Inglés con reactivos que también sostienen a las otras tres áreas UNAM
+(`content:guard` reporta, correctamente y para otro fin, 157 de Química —
+el pool compartido).
+
+El margen pasa de **+47 a +87**, casi el doble, y **el 100% del incremento
+cayó en las dos materias exclusivas del área**. Coincide exactamente con lo
+que G89 proyectó (387, +87), lo que confirma de paso que aquella proyección
+estaba bien construida.
+
+Las tres cubetas del banco de la sonda se alinearon a propósito con las de
+`content-coverage.ts` — servible / en cola de resolución / con veredicto sin
+publicar — después de que una primera versión definiera «retirado» por
+`usage` en vez de por el `verification.manualReview` de G40 y reportara
+`0 retirados` donde `content:coverage` decía 1. Dos cuentas del mismo hecho
+que no cuadran son una invitación a creerle a la equivocada.
+
+### 7. Banco y brecha
+
+| | Antes de G90 | Después |
+|---|---|---|
+| Servibles | 1 382 | **1 422** |
+| En cola de verificación | 40 | **0** |
+| Con veredicto sin publicar (discrepancias F3 + retirados G40) | 5 | 5 |
+| Filas totales | 1 427 | 1 427 |
+| Brecha contra 1 500 | 118 | **78** |
+
+La cola de verificación adversarial queda **vacía**. Las 5 filas sin
+publicar son las discrepancias históricas y el retiro de G40, ninguna nueva.
+Respaldo regenerado con `pnpm backup:export` y commiteado aquí (regla G61).
+
+### 8. Verde
+
+`pnpm typecheck` sin salida. `pnpm lint` sin salida. Cambios de código:
+solo el script nuevo de la sonda y su entrada en `package.json`; ninguna
+línea de la aplicación.
 
 ## G89 — Lote de reactivos: refuerzo de profundidad, UNAM Área 1 (2026-09-14)
 

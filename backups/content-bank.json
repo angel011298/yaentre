@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-15T00:37:15.589Z",
+    "exportedAt": "2026-09-15T00:50:05.669Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -109295,7 +109295,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109303,7 +109303,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: a8 = a1 + 7d = 5 + 7(6). Resultado 47; coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:02.704Z",
+          "chosenOption": "A",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109311,7 +109331,7 @@
         "$d": "2026-09-15T00:31:51.664Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:31:51.664Z"
+        "$d": "2026-09-15T00:44:02.715Z"
       }
     },
     {
@@ -109347,7 +109367,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109355,7 +109375,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: a6 = a1*r^5 = 3*2^5. Resultado 96; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:03.842Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109363,7 +109403,7 @@
         "$d": "2026-09-15T00:31:52.957Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:31:52.957Z"
+        "$d": "2026-09-15T00:44:03.851Z"
       }
     },
     {
@@ -109399,7 +109439,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109407,7 +109447,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: 5! permutaciones de 5 libros. Resultado 120; coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:04.954Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109415,7 +109475,7 @@
         "$d": "2026-09-15T00:31:54.178Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:31:54.178Z"
+        "$d": "2026-09-15T00:44:04.962Z"
       }
     },
     {
@@ -109451,7 +109511,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109459,7 +109519,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: C(8,3) comité sin orden. Resultado 56; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:06.068Z",
+          "chosenOption": "A",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109467,7 +109547,7 @@
         "$d": "2026-09-15T00:31:55.402Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:31:55.402Z"
+        "$d": "2026-09-15T00:44:06.076Z"
       }
     },
     {
@@ -109503,7 +109583,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109511,7 +109591,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: 4!/2! (CASA: dos A repetidas). Resultado 12; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:07.185Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109519,7 +109619,7 @@
         "$d": "2026-09-15T00:31:56.623Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:31:56.623Z"
+        "$d": "2026-09-15T00:44:07.194Z"
       }
     },
     {
@@ -109555,7 +109655,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109563,7 +109663,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: S20 = n/2*(2a+(n-1)d). Resultado 610; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:08.300Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109571,7 +109691,7 @@
         "$d": "2026-09-15T00:31:57.854Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:31:57.854Z"
+        "$d": "2026-09-15T00:44:08.308Z"
       }
     },
     {
@@ -109607,7 +109727,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109615,7 +109735,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: P(6,2) cargos distintos. Resultado 30; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:09.420Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109623,7 +109763,7 @@
         "$d": "2026-09-15T00:31:59.070Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:31:59.070Z"
+        "$d": "2026-09-15T00:44:09.429Z"
       }
     },
     {
@@ -109659,7 +109799,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109667,7 +109807,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: media de 5 calificaciones. Resultado 86; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:10.547Z",
+          "chosenOption": "A",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109675,7 +109835,7 @@
         "$d": "2026-09-15T00:32:07.796Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:07.796Z"
+        "$d": "2026-09-15T00:44:10.556Z"
       }
     },
     {
@@ -109711,7 +109871,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109719,7 +109879,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: mediana (ordenar, tomar el central). Resultado 12; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:11.666Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109727,7 +109907,7 @@
         "$d": "2026-09-15T00:32:08.785Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:08.785Z"
+        "$d": "2026-09-15T00:44:11.674Z"
       }
     },
     {
@@ -109763,7 +109943,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109771,7 +109951,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: moda (dato mas frecuente). Resultado 2; coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:12.785Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109779,7 +109979,7 @@
         "$d": "2026-09-15T00:32:09.779Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:09.779Z"
+        "$d": "2026-09-15T00:44:12.793Z"
       }
     },
     {
@@ -109815,7 +110015,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109823,7 +110023,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: rango = max - min. Resultado 10; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:13.899Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109831,7 +110051,7 @@
         "$d": "2026-09-15T00:32:10.771Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:10.771Z"
+        "$d": "2026-09-15T00:44:13.907Z"
       }
     },
     {
@@ -109867,7 +110087,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109875,7 +110095,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: ponderado 30/70. Resultado 87; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:15.015Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109883,7 +110123,7 @@
         "$d": "2026-09-15T00:32:11.761Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:11.761Z"
+        "$d": "2026-09-15T00:44:15.023Z"
       }
     },
     {
@@ -109919,7 +110159,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109927,7 +110167,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: (40-25)/40 *100. Resultado 37.5; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:16.133Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109935,7 +110195,7 @@
         "$d": "2026-09-15T00:32:12.749Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:12.749Z"
+        "$d": "2026-09-15T00:44:16.141Z"
       }
     },
     {
@@ -109971,7 +110231,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -109979,7 +110239,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: desviacion media absoluta. Resultado 1.2; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-15T00:44:17.249Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -109987,7 +110267,7 @@
         "$d": "2026-09-15T00:32:13.739Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:13.739Z"
+        "$d": "2026-09-15T00:44:17.257Z"
       }
     },
     {
@@ -110023,7 +110303,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110031,7 +110311,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: regla +4/÷2 reproduce el prefijo: true; siguiente = 7.5/2 = 3.75. Resultado 3.75; coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-15T00:44:18.479Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110039,7 +110339,7 @@
         "$d": "2026-09-15T00:32:22.180Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:22.180Z"
+        "$d": "2026-09-15T00:44:18.487Z"
       }
     },
     {
@@ -110075,7 +110375,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110083,7 +110383,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: diferencias 6/5 reproducen el prefijo: true -> 42, 48. Resultado 42, 48; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-15T00:44:19.594Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110091,7 +110411,7 @@
         "$d": "2026-09-15T00:32:23.418Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:23.418Z"
+        "$d": "2026-09-15T00:44:19.603Z"
       }
     },
     {
@@ -110127,7 +110447,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110135,7 +110455,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: S5 = a(r^5-1)/(r-1), a=2 r=3. Resultado 242; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:20.710Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110143,7 +110483,7 @@
         "$d": "2026-09-15T00:32:24.635Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:24.635Z"
+        "$d": "2026-09-15T00:44:20.718Z"
       }
     },
     {
@@ -110179,7 +110519,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110187,7 +110527,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: Fibonacci 1,1,2,3,5,8,13 -> a7. Resultado 13; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:21.846Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110195,7 +110555,7 @@
         "$d": "2026-09-15T00:32:25.845Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:25.845Z"
+        "$d": "2026-09-15T00:44:21.854Z"
       }
     },
     {
@@ -110231,7 +110591,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110239,7 +110599,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: S_inf = a/(1-r), a=8 r=0.5. Resultado 16; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:22.962Z",
+          "chosenOption": "A",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110247,7 +110627,7 @@
         "$d": "2026-09-15T00:32:27.063Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:27.063Z"
+        "$d": "2026-09-15T00:44:22.970Z"
       }
     },
     {
@@ -110283,7 +110663,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110291,7 +110671,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: cuadrados: 6^2 tras 5^2. Resultado 36; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:24.076Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110299,7 +110699,7 @@
         "$d": "2026-09-15T00:32:28.475Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:28.475Z"
+        "$d": "2026-09-15T00:44:24.084Z"
       }
     },
     {
@@ -110335,7 +110735,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110343,7 +110743,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: S15 = n(n+1)/2. Resultado 120; coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:25.190Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110351,7 +110771,7 @@
         "$d": "2026-09-15T00:32:30.174Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:30.174Z"
+        "$d": "2026-09-15T00:44:25.198Z"
       }
     },
     {
@@ -110387,7 +110807,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110395,7 +110815,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: suma/resta: x = (10+4)/2. Resultado 7; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:26.306Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110403,7 +110843,7 @@
         "$d": "2026-09-15T00:32:38.741Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:38.741Z"
+        "$d": "2026-09-15T00:44:26.314Z"
       }
     },
     {
@@ -110439,7 +110879,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110447,7 +110887,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: det = 3*4 - 5*2. Resultado 2; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:27.423Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110455,7 +110915,7 @@
         "$d": "2026-09-15T00:32:39.729Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:39.729Z"
+        "$d": "2026-09-15T00:44:27.431Z"
       }
     },
     {
@@ -110491,7 +110951,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110499,7 +110959,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: (A+B)[2][1] = 3 + (-1). Resultado 2; coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-15T00:44:28.540Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110507,7 +110987,7 @@
         "$d": "2026-09-15T00:32:40.720Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:40.720Z"
+        "$d": "2026-09-15T00:44:28.548Z"
       }
     },
     {
@@ -110543,7 +111023,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110551,7 +111031,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: Cramer: Dy/D = -6/-3. Resultado 2; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:29.651Z",
+          "chosenOption": "A",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110559,7 +111059,7 @@
         "$d": "2026-09-15T00:32:41.713Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:41.713Z"
+        "$d": "2026-09-15T00:44:29.660Z"
       }
     },
     {
@@ -110595,7 +111095,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110603,7 +111103,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: Av fila1 = 2(5)+3(2). Resultado 16; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:30.766Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110611,7 +111131,7 @@
         "$d": "2026-09-15T00:32:42.705Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:42.705Z"
+        "$d": "2026-09-15T00:44:30.775Z"
       }
     },
     {
@@ -110647,7 +111167,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110655,7 +111175,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: mayor = (suma+dif)/2. Resultado 9; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:31.883Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110663,7 +111203,7 @@
         "$d": "2026-09-15T00:32:43.699Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:43.699Z"
+        "$d": "2026-09-15T00:44:31.891Z"
       }
     },
     {
@@ -110699,7 +111239,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110707,7 +111247,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: det(k) = 8k-8 = 0 -> k = 1. Resultado 1; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:33.114Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110715,7 +111275,7 @@
         "$d": "2026-09-15T00:32:44.690Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:44.690Z"
+        "$d": "2026-09-15T00:44:33.122Z"
       }
     },
     {
@@ -110751,7 +111311,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110759,7 +111319,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: p = mv = 4*6 kg m/s. Resultado 24; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:34.231Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110767,7 +111347,7 @@
         "$d": "2026-09-15T00:32:53.493Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:53.493Z"
+        "$d": "2026-09-15T00:44:34.239Z"
       }
     },
     {
@@ -110803,7 +111383,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110811,7 +111391,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: inelastico: v = m1u1/(m1+m2). Resultado 3; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:35.345Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110819,7 +111419,7 @@
         "$d": "2026-09-15T00:32:54.707Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:54.707Z"
+        "$d": "2026-09-15T00:44:35.354Z"
       }
     },
     {
@@ -110855,7 +111455,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110863,7 +111463,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: p total 0: v2 = m1v1/m2. Resultado 2.5; coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:36.462Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110871,7 +111491,7 @@
         "$d": "2026-09-15T00:32:55.918Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:55.918Z"
+        "$d": "2026-09-15T00:44:36.470Z"
       }
     },
     {
@@ -110907,7 +111527,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110915,7 +111535,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: p = 2(+3) + 1(-4) kg m/s. Resultado 2; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:37.577Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110923,7 +111563,7 @@
         "$d": "2026-09-15T00:32:57.130Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:57.130Z"
+        "$d": "2026-09-15T00:44:37.586Z"
       }
     },
     {
@@ -110959,7 +111599,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -110967,7 +111607,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: unidades SI de p: kg·m/s (no N·m = J, no kg·m/s^2 = N). Resultado (texto); coincide con exactamente UNA opción (D) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-15T00:44:38.707Z",
+          "chosenOption": "A",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -110975,7 +111635,7 @@
         "$d": "2026-09-15T00:32:58.340Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:58.340Z"
+        "$d": "2026-09-15T00:44:38.715Z"
       }
     },
     {
@@ -111011,7 +111671,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -111019,7 +111679,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: 8m = 2(m+3) -> m = 1 kg. Resultado 1; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:39.823Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -111027,7 +111707,7 @@
         "$d": "2026-09-15T00:32:59.557Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:32:59.557Z"
+        "$d": "2026-09-15T00:44:39.832Z"
       }
     },
     {
@@ -111063,7 +111743,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -111071,7 +111751,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: W = Fd = 20*5 J. Resultado 100; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:40.941Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -111079,7 +111779,7 @@
         "$d": "2026-09-15T00:33:08.067Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:33:08.067Z"
+        "$d": "2026-09-15T00:44:40.949Z"
       }
     },
     {
@@ -111115,7 +111815,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -111123,7 +111823,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: W = Fd cos60 = 50*4*0.5 J. Resultado 100; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:42.057Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -111131,7 +111851,7 @@
         "$d": "2026-09-15T00:33:09.120Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:33:09.120Z"
+        "$d": "2026-09-15T00:44:42.065Z"
       }
     },
     {
@@ -111167,7 +111887,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -111175,7 +111895,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: K = 1/2 m v^2 = 0.5*2*100 J. Resultado 100; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:43.171Z",
+          "chosenOption": "B",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -111183,7 +111923,7 @@
         "$d": "2026-09-15T00:33:10.179Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:33:10.179Z"
+        "$d": "2026-09-15T00:44:43.179Z"
       }
     },
     {
@@ -111219,7 +111959,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -111227,7 +111967,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: W = 1/2 m v^2 -> v = sqrt(2W/m). Resultado 4; coincide con exactamente UNA opción (A) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:44.286Z",
+          "chosenOption": "D",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -111235,7 +111995,7 @@
         "$d": "2026-09-15T00:33:11.202Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:33:11.202Z"
+        "$d": "2026-09-15T00:44:44.295Z"
       }
     },
     {
@@ -111271,7 +112031,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -111279,7 +112039,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: U = mgh = 5*10*8 J. Resultado 400; coincide con exactamente UNA opción (C) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:45.405Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -111287,7 +112067,7 @@
         "$d": "2026-09-15T00:33:12.200Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:33:12.200Z"
+        "$d": "2026-09-15T00:44:45.414Z"
       }
     },
     {
@@ -111323,7 +112103,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -111331,7 +112111,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Resuelto desde cero ejecutando el cálculo en código: v = sqrt(2gh) = sqrt(400). Resultado 20; coincide con exactamente UNA opción (B) bajo comparación numérica exacta contra las cuatro.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-15T00:44:46.531Z",
+          "chosenOption": "C",
+          "usedCalculation": true
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -111339,7 +112139,7 @@
         "$d": "2026-09-15T00:33:13.198Z"
       },
       "updatedAt": {
-        "$d": "2026-09-15T00:33:13.198Z"
+        "$d": "2026-09-15T00:44:46.539Z"
       }
     }
   ],

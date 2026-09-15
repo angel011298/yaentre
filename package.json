@@ -25,6 +25,7 @@
     "content:audit-sample": "tsx scripts/content-audit-sample.ts",
     "content:audit-resolve": "tsx scripts/content-audit-resolve.ts",
     "content:coverage": "tsx scripts/content-coverage.ts",
+    "content:margin": "tsx scripts/g90/margin-probe.ts",
     "content:guard": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g74/coverage-probe.ts",
     "content:ingest": "tsx scripts/ingest-source.ts",
     "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",
