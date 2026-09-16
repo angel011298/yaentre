@@ -1,0 +1,242 @@
+[
+  {
+    "stem": "¿Cuál de las siguientes oraciones usa correctamente la tilde diacrítica en las palabras \"él/el\"?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Él llegó temprano a la reunión, pero el resto del equipo se retrasó.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Él llegó temprano a la reunión, pero él resto del equipo se retrasó.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El llegó temprano a la reunión, pero el resto del equipo se retrasó.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El llegó temprano a la reunión, pero él resto del equipo se retrasó.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      3
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La tilde diacrítica distingue palabras que se escriben igual pero cumplen funciones distintas: \"él\" es pronombre personal (sujeto) y lleva tilde; \"el\" es artículo determinante y nunca la lleva."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) \"Él llegó...\" — \"Él\" sustituye a una persona (sujeto de \"llegó\"): pronombre, requiere tilde. 2) \"...el resto del equipo...\" — \"el\" antecede al sustantivo \"resto\": artículo, sin tilde."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las otras tres oraciones invierten o duplican el error: una acentúa el artículo, otra acentúa ambas palabras y otra no acentúa ninguna, así que ninguna respeta la regla en las dos apariciones a la vez."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál de las siguientes oraciones usa correctamente la tilde diacrítica en las palabras \"tú/tu\"?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tú siempre olvidas tú mochila en el salón de clases.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Tu siempre olvidas tu mochila en el salón de clases.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Tu siempre olvidas tú mochila en el salón de clases.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Tú siempre olvidas tu mochila en el salón de clases.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      3
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "\"Tú\" es pronombre personal (sujeto) y lleva tilde; \"tu\" es adjetivo posesivo que antecede a un sustantivo (\"mochila\") y nunca la lleva."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) \"Tú siempre olvidas...\" — \"Tú\" es el sujeto de \"olvidas\": pronombre, tilde obligatoria. 2) \"...tu mochila...\" — \"tu\" indica posesión sobre \"mochila\": posesivo, sin tilde."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las otras oraciones invierten la tilde entre ambas palabras, acentúan las dos o no acentúan ninguna, así que ninguna cumple la regla en sus dos apariciones."
+      }
+    ]
+  },
+  {
+    "stem": "Solo UNA de las siguientes oraciones usa correctamente \"votar\" (emitir un voto) frente a \"botar\" (arrojar, lanzar, hacer rebotar). ¿Cuál es?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El ciudadano decidió votar por el candidato independiente en las elecciones locales.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "El portero decidió votar la pelota fuera del área para evitar el gol.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El niño aprendió a votar el balón de baloncesto con la mano derecha.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El reciclador ayudó a votar la basura orgánica en el contenedor correspondiente.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      4
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "\"Votar\" (con v) significa emitir un voto en una elección; \"botar\" (con b) significa arrojar, lanzar o hacer rebotar algo. Son homófonos que se distinguen únicamente por el contexto de significado, no por el sonido."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La única oración donde el sentido es \"emitir un voto\" es la del ciudadano en unas elecciones: ahí corresponde \"votar\". En las otras tres el sentido real es \"lanzar/arrojar\" (el balón fuera del área, la basura al contenedor, hacer rebotar el balón), así que en las tres debió escribirse \"botar\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El portero no emite un voto, hace rebotar o lanza la pelota; el reciclador arroja la basura al contenedor; el niño hace rebotar el balón al driblar. Las tres usan el verbo equivocado para el sentido que describen."
+      }
+    ]
+  },
+  {
+    "stem": "Solo UNA de las siguientes oraciones usa correctamente \"cocer\" (someter al fuego) frente a \"coser\" (unir con hilo y aguja). ¿Cuál es?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Mi abuela sabe cocer los frijoles a fuego lento durante dos horas.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La costurera aprendió a cocer un vestido completo para el desfile.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La costurera aprendió a cocer un botón en menos de un minuto.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Mi abuela sabe coser los frijoles a fuego lento durante dos horas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      4
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "\"Cocer\" (con c) significa preparar un alimento por acción del calor; \"coser\" (con s) significa unir tela o material con hilo y aguja. Ambas se pronuncian igual en el español de México, por lo que solo el significado del contexto permite distinguirlas."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Solo la oración de los frijoles a fuego lento describe una preparación con calor: ahí corresponde \"cocer\". En las otras tres el sentido real es \"unir con hilo y aguja\" (los frijoles no se cosen; el botón y el vestido se cosen, no se cuecen)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La segunda oración usa \"coser\" donde el sentido pide \"cocer\" (los frijoles se someten al fuego, no se cosen); la tercera y la cuarta usan \"cocer\" donde el sentido pide \"coser\" (un botón y un vestido se unen con hilo, no se someten al fuego)."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál de las siguientes palabras es ESDRÚJULA (su sílaba tónica es la antepenúltima) y por eso SIEMPRE lleva tilde, sin importar en qué letra termine?",
+    "options": [
+      {
+        "id": "A",
+        "text": "camión",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "camisa",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "reloj",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "matemáticas",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una palabra es esdrújula cuando su sílaba tónica es la antepenúltima (la tercera contando desde el final). A diferencia de las agudas y las graves, cuya tilde depende de en qué letra terminan, las esdrújulas llevan tilde SIEMPRE, sin excepción."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "\"ma-te-má-ti-cas\": contando desde el final, \"cas\" es la 1ª sílaba, \"ti\" la 2ª y \"má\" la 3ª (antepenúltima) — ahí cae el golpe de voz, así que es esdrújula y por eso se escribe con tilde en la \"á\", sin importar que termine en \"s\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"camisa\" es grave (el golpe cae en \"mi\", la penúltima) y termina en vocal, así que NO lleva tilde. \"camión\" es aguda (el golpe cae en \"mión\", la última) y termina en \"n\", así que SÍ lleva tilde — pero por ser aguda, no esdrújula. \"reloj\" es aguda y termina en \"j\" (ni vocal, ni n, ni s), así que NO lleva tilde. Ninguna de las tres es esdrújula."
+      }
+    ]
+  }
+]

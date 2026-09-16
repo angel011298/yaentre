@@ -1,0 +1,232 @@
+[
+  {
+    "stem": "¿Cuál es la obra literaria que se considera el poema épico medieval más antiguo conservado en lengua castellana, cuyo protagonista es el caballero Rodrigo Díaz de Vivar?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El Cantar de Mio Cid",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Los Milagros de Nuestra Señora",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La Tragicomedia de Calisto y Melibea",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El Libro de Buen Amor",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El Cantar de Mio Cid es un cantar de gesta anónimo, considerado el poema épico completo más antiguo conservado en castellano. Narra las hazañas del caballero Rodrigo Díaz de Vivar, \"El Cid Campeador\"."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La pista clave es \"poema épico\" y \"protagonista Rodrigo Díaz de Vivar\". 2) Esa combinación identifica de forma única al Cantar de Mio Cid, distinto de cualquier otra obra medieval castellana."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Libro de Buen Amor (Arcipreste de Hita) es una obra del siglo XIV sobre el amor, no un cantar de gesta. Los Milagros de Nuestra Señora (Gonzalo de Berceo) son relatos religiosos en verso, sin protagonista guerrero. La Tragicomedia de Calisto y Melibea (La Celestina) es una obra dialogada de finales del siglo XV sobre un amor trágico, no una epopeya."
+      }
+    ]
+  },
+  {
+    "stem": "Gonzalo de Berceo, considerado el primer poeta de nombre conocido en lengua castellana, escribió sus obras siguiendo la estructura del...",
+    "options": [
+      {
+        "id": "A",
+        "text": "mester de juglaría, con versos de transmisión oral recitados por juglares errantes.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "mester de clerecía, con estrofas de cuatro versos monorrimos llamadas cuaderna vía.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "cancionero petrarquista, con sonetos endecasílabos de tema amoroso.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "romancero viejo, con versos octosílabos de rima asonante en los versos pares.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El mester de clerecía era la escuela de poetas cultos (clérigos formados) que escribían con una técnica fija: la cuaderna vía, estrofas de cuatro versos alejandrinos con una sola rima. Gonzalo de Berceo es su representante más antiguo conocido por nombre."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Berceo era clérigo formado, no juglar popular. 2) Su técnica de composición es la cuaderna vía (cuatro versos, una sola rima). 3) Esa combinación define el mester de clerecía, distinto del mester de juglaría."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El mester de juglaría era oral y popular, propio de juglares, no de clérigos como Berceo. El romancero viejo usa versos octosílabos con rima asonante, una forma distinta y posterior en su difusión masiva. El cancionero petrarquista y el soneto endecasílabo son formas renacentistas, ajenas por completo al siglo XIII de Berceo."
+      }
+    ]
+  },
+  {
+    "stem": "El Arcipreste de Hita, Juan Ruiz, es el autor de una obra medieval que combina episodios cómicos, moralizantes y autobiográficos en torno al tema del amor. ¿Cómo se llama esa obra?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El Conde Lucanor",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El Cantar de Mio Cid",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La Celestina",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El Libro de Buen Amor",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El Libro de Buen Amor (siglo XIV) es la obra maestra del Arcipreste de Hita: mezcla relatos cómicos, enseñanzas morales y episodios narrados en primera persona sobre las aventuras amorosas del propio narrador."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Autor mencionado: Arcipreste de Hita (Juan Ruiz). 2) Rasgos descritos: cómico + moralizante + autobiográfico + tema del amor. 3) Esa combinación de rasgos identifica de forma única al Libro de Buen Amor entre las obras medievales castellanas."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Cantar de Mio Cid es anónimo y épico, sin ninguno de esos rasgos. El Conde Lucanor es una colección de cuentos moralizantes de Don Juan Manuel, sin el componente autobiográfico ni el tema central del amor. La Celestina es de Fernando de Rojas, un siglo después, y no es una obra del Arcipreste de Hita."
+      }
+    ]
+  },
+  {
+    "stem": "\"La Celestina\", de Fernando de Rojas, publicada a finales del siglo XV, se considera una obra de TRANSICIÓN entre la literatura medieval y la renacentista principalmente porque...",
+    "options": [
+      {
+        "id": "A",
+        "text": "combina el didactismo moral medieval con personajes de psicología más individual, ya renacentista.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "narra exclusivamente hazañas guerreras de un héroe medieval sin ningún rasgo renacentista.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "fue compuesta de forma anónima y transmitida oralmente durante varias generaciones.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "está escrita enteramente en verso, siguiendo la tradición del mester de clerecía medieval.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una obra de \"transición\" conserva rasgos de la época anterior mientras anuncia la siguiente. La Celestina mantiene una visión moral y pesimista típica medieval, pero retrata a sus personajes con una psicología individual y un realismo que anticipan el Renacimiento."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Rasgo medieval que conserva: el desenlace trágico como advertencia moral (didactismo). 2) Rasgo renacentista que anticipa: personajes con motivaciones y psicología individuales, no solo tipos morales. 3) La combinación de ambos es justo lo que define a una obra \"de transición\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Celestina no narra hazañas guerreras (es una historia de amor y engaño en un entorno urbano); no está escrita en verso, sino mayoritariamente en prosa dialogada (forma de \"comedia humanística\"); y tiene autor conocido y reconocido, Fernando de Rojas, no es anónima ni de transmisión oral."
+      }
+    ]
+  },
+  {
+    "stem": "El Romancero viejo, formado por composiciones populares y anónimas transmitidas oralmente durante la Edad Media, se caracteriza métricamente por...",
+    "options": [
+      {
+        "id": "A",
+        "text": "versos libres sin ningún patrón de rima ni de medida silábica.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "versos octosílabos con rima asonante en los versos pares.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "versos alejandrinos con rima consonante agrupados en cuaderna vía.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "versos endecasílabos organizados en catorce líneas a manera de soneto.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El romance es la forma métrica popular por excelencia de la lírica narrativa medieval castellana: series de versos octosílabos donde solo los versos pares comparten rima asonante, mientras los impares quedan sueltos."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Medida silábica del romance: ocho sílabas por verso (octosílabo). 2) Patrón de rima: asonante (coinciden solo las vocales), y únicamente en los versos pares. 3) Esa combinación es la firma métrica reconocible del Romancero."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Los versos alejandrinos con rima consonante en cuaderna vía corresponden al mester de clerecía, no al Romancero. El soneto de catorce versos endecasílabos es una forma renacentista italiana, muy posterior. Y el Romancero sí tiene un patrón fijo de rima asonante, así que no puede describirse como \"verso libre sin ningún patrón\"."
+      }
+    ]
+  }
+]

@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-15T21:54:59.181Z",
+    "exportedAt": "2026-09-16T01:58:57.736Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -29,13 +29,13 @@
       "Career": 47,
       "Subject": 35,
       "Topic": 217,
-      "Passage": 16,
+      "Passage": 18,
       "SourceChunk": 380,
-      "Question": 1467,
-      "QuestionSourceChunk": 441,
-      "ExplanationLayer": 4401
+      "Question": 1507,
+      "QuestionSourceChunk": 480,
+      "ExplanationLayer": 4521
     },
-    "totalRows": 7026
+    "totalRows": 7227
   },
   "Institution": [
     {
@@ -2865,6 +2865,26 @@
       "contentSourceId": null,
       "createdAt": {
         "$d": "2026-09-13T08:31:18.369Z"
+      }
+    },
+    {
+      "id": "cmu3g9b1u0000lgevv4gr72jp",
+      "title": "La migración de la mariposa monarca",
+      "content": "Cada otoño, millones de mariposas monarca emprenden un viaje de más de cuatro mil kilómetros desde el sur de Canadá y el norte de Estados Unidos hasta los bosques de oyamel en Michoacán y el Estado de México. Ninguna mariposa individual completa el recorrido de ida y vuelta: la travesía requiere hasta cuatro generaciones sucesivas, y solo la llamada \"generación matusalén\" —la que nace a finales del verano— vive lo suficiente, casi ocho meses, para llegar a México, hibernar y emprender el regreso hacia el norte. Los científicos todavía no comprenden del todo cómo estas mariposas, que jamás han estado antes en los bosques mexicanos, logran orientarse hacia el mismo sitio exacto donde hibernaron sus antepasados; se sospecha que combinan una brújula solar interna con sensibilidad al campo magnético terrestre. La deforestación en los sitios de hibernación y la pérdida de algodoncillo —su única planta huésped— a lo largo de la ruta han reducido drásticamente la población en las últimas décadas.",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:26.802Z"
+      }
+    },
+    {
+      "id": "cmu3g9bwi0001lgevkhm9jd1p",
+      "title": "La azotea",
+      "content": "Cuando Mariana subió por primera vez a la azotea del edificio, el viento casi le arrebata el cuaderno de las manos. Había subido para terminar un dibujo que llevaba semanas posponiendo, pero la ciudad se veía distinta desde allá arriba: los coches parecían insectos de colores deslizándose entre las calles, y el ruido del tráfico llegaba apagado, como si alguien hubiera bajado el volumen del mundo. Se sentó junto al tinaco, abrió el cuaderno sobre las rodillas y empezó a trazar el contorno de los edificios vecinos. A la mitad del dibujo se dio cuenta de algo: llevaba tanto tiempo mirando la ciudad desde la calle que había olvidado cómo se veía desde arriba, con los techos de lámina, las antenas torcidas y la ropa tendida meciéndose entre azotea y azotea. Guardó el lápiz un momento, no para descansar la mano, sino para quedarse un rato nada más mirando.",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:27.906Z"
       }
     }
   ],
@@ -115021,6 +115041,2086 @@
       "updatedAt": {
         "$d": "2026-09-15T01:25:34.826Z"
       }
+    },
+    {
+      "id": "cmu3g7dsa0001s5hja7cplv5z",
+      "topicId": "cmrr1jdtu002ghi3n7j7kc14q",
+      "stem": "¿Cuál de las siguientes oraciones usa correctamente la tilde diacrítica en las palabras \"él/el\"?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Él llegó temprano a la reunión, pero el resto del equipo se retrasó.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Él llegó temprano a la reunión, pero él resto del equipo se retrasó.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El llegó temprano a la reunión, pero el resto del equipo se retrasó.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El llegó temprano a la reunión, pero él resto del equipo se retrasó.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:54:57.029Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:54:57.029Z"
+      }
+    },
+    {
+      "id": "cmu3g7ett0006s5hj5s4v4l57",
+      "topicId": "cmrr1jdtu002ghi3n7j7kc14q",
+      "stem": "¿Cuál de las siguientes oraciones usa correctamente la tilde diacrítica en las palabras \"tú/tu\"?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Tú siempre olvidas tú mochila en el salón de clases.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Tu siempre olvidas tu mochila en el salón de clases.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Tu siempre olvidas tú mochila en el salón de clases.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Tú siempre olvidas tu mochila en el salón de clases.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:54:58.385Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:54:58.385Z"
+      }
+    },
+    {
+      "id": "cmu3g7frw000bs5hjiwcjro9l",
+      "topicId": "cmrr1jdtu002ghi3n7j7kc14q",
+      "stem": "Solo UNA de las siguientes oraciones usa correctamente \"votar\" (emitir un voto) frente a \"botar\" (arrojar, lanzar, hacer rebotar). ¿Cuál es?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El ciudadano decidió votar por el candidato independiente en las elecciones locales.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "El portero decidió votar la pelota fuera del área para evitar el gol.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "El niño aprendió a votar el balón de baloncesto con la mano derecha.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El reciclador ayudó a votar la basura orgánica en el contenedor correspondiente.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:54:59.612Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:54:59.612Z"
+      }
+    },
+    {
+      "id": "cmu3g7gqn000gs5hjngw5lo0y",
+      "topicId": "cmrr1jdtu002ghi3n7j7kc14q",
+      "stem": "Solo UNA de las siguientes oraciones usa correctamente \"cocer\" (someter al fuego) frente a \"coser\" (unir con hilo y aguja). ¿Cuál es?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Mi abuela sabe cocer los frijoles a fuego lento durante dos horas.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "La costurera aprendió a cocer un vestido completo para el desfile.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La costurera aprendió a cocer un botón en menos de un minuto.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Mi abuela sabe coser los frijoles a fuego lento durante dos horas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:00.863Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:00.863Z"
+      }
+    },
+    {
+      "id": "cmu3g7hom000ls5hjts0ljin3",
+      "topicId": "cmrr1jdtu002ghi3n7j7kc14q",
+      "stem": "¿Cuál de las siguientes palabras es ESDRÚJULA (su sílaba tónica es la antepenúltima) y por eso SIEMPRE lleva tilde, sin importar en qué letra termine?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "camión",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "camisa",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "reloj",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "matemáticas",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:02.087Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:02.087Z"
+      }
+    },
+    {
+      "id": "cmu3g7pn0000111yaefzy8gec",
+      "topicId": "cmrr1je98002ihi3ndr1xdv8t",
+      "stem": "\"Compré una computadora nueva y ___ instalé de inmediato.\" ¿Qué pronombre completa correctamente la oración, evitando repetir \"una computadora nueva\" y respetando su género y número?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "lo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "los",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "les",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:12.396Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:12.396Z"
+      }
+    },
+    {
+      "id": "cmu3g7qkj000611yawdhjqvz0",
+      "topicId": "cmrr1je98002ihi3ndr1xdv8t",
+      "stem": "¿Cuál de las siguientes oraciones tiene concordancia correcta entre sujeto y verbo?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Los libro que compré la semana pasada llegaron esta mañana a mi casa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Los libros que compré la semana pasada llegaron esta mañana a mi casa.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El libros que compré la semana pasada llegaron esta mañana a mi casa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Los libros que compré la semana pasada llegó esta mañana a mi casa.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:13.604Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:13.604Z"
+      }
+    },
+    {
+      "id": "cmu3g7ri5000b11yapij87rlg",
+      "topicId": "cmrr1je98002ihi3ndr1xdv8t",
+      "stem": "La palabra \"deshacer\" está formada por...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "un sufijo diminutivo (\"-hacer\") más el adjetivo \"des\".",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "un prefijo negativo (\"des-\") más el verbo \"hacer\".",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "una raíz (\"des-\") más un sufijo verbal (\"hacer\").",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "dos raíces distintas unidas sin ningún afijo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:14.814Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:14.814Z"
+      }
+    },
+    {
+      "id": "cmu3g7sgc000g11ya3h7chzb2",
+      "topicId": "cmrr1je98002ihi3ndr1xdv8t",
+      "stem": "\"Espero que tú ___ a tiempo a la ceremonia.\" ¿Qué forma verbal completa correctamente la oración?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "llegas",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "llegarás",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "llegaste",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "llegues",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:16.044Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:16.044Z"
+      }
+    },
+    {
+      "id": "cmu3g7tdo000l11yaz7d0jyee",
+      "topicId": "cmrr1je98002ihi3ndr1xdv8t",
+      "stem": "\"La profesora entregó los exámenes corregidos a los alumnos.\" ¿Cuál es el COMPLEMENTO DIRECTO de esta oración?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "la profesora",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "corregidos",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "a los alumnos",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "los exámenes corregidos",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:17.245Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:17.245Z"
+      }
+    },
+    {
+      "id": "cmu3g815x0001visgr0u5wdfe",
+      "topicId": "cmrr1jes9002khi3nwx46c11d",
+      "stem": "¿Cuál palabra es ANTÓNIMO de \"escaso\"?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Abundante",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Moderado",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Limitado",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Reducido",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:27.333Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:27.333Z"
+      }
+    },
+    {
+      "id": "cmu3g823m0006visgw6crkphr",
+      "topicId": "cmrr1jes9002khi3nwx46c11d",
+      "stem": "Completa la analogía: MÉDICO es a HOSPITAL como MAESTRO es a ____.",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Escuela",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Diploma",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Pizarrón",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Alumno",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:28.546Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:28.546Z"
+      }
+    },
+    {
+      "id": "cmu3g8331000bvisg6wtqlor1",
+      "topicId": "cmrr1jes9002khi3nwx46c11d",
+      "stem": "En la oración \"Ese hombre tiene un corazón de piedra\", la palabra \"piedra\" se usa de forma...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "denotativa, porque describe con precisión el material del que está hecho el corazón.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "literal, porque el corazón humano puede estar hecho de distintos minerales.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "connotativa, pues alude a la frialdad emocional, no al material del corazón.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "técnica, porque pertenece al vocabulario especializado de la geología.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:29.821Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:29.821Z"
+      }
+    },
+    {
+      "id": "cmu3g8afe0001v457woll3m8m",
+      "topicId": "cmrr1jfdd002mhi3n55zq7o6c",
+      "stem": "¿Cuál es la obra literaria que se considera el poema épico medieval más antiguo conservado en lengua castellana, cuyo protagonista es el caballero Rodrigo Díaz de Vivar?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El Cantar de Mio Cid",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Los Milagros de Nuestra Señora",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La Tragicomedia de Calisto y Melibea",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El Libro de Buen Amor",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:39.339Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:39.339Z"
+      }
+    },
+    {
+      "id": "cmu3g8b6z0006v4572cohp4fb",
+      "topicId": "cmrr1jfdd002mhi3n55zq7o6c",
+      "stem": "Gonzalo de Berceo, considerado el primer poeta de nombre conocido en lengua castellana, escribió sus obras siguiendo la estructura del...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "mester de juglaría, con versos de transmisión oral recitados por juglares errantes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "mester de clerecía, con estrofas de cuatro versos monorrimos llamadas cuaderna vía.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "cancionero petrarquista, con sonetos endecasílabos de tema amoroso.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "romancero viejo, con versos octosílabos de rima asonante en los versos pares.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:40.332Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:40.332Z"
+      }
+    },
+    {
+      "id": "cmu3g8bzg000bv457z1xo6tb6",
+      "topicId": "cmrr1jfdd002mhi3n55zq7o6c",
+      "stem": "El Arcipreste de Hita, Juan Ruiz, es el autor de una obra medieval que combina episodios cómicos, moralizantes y autobiográficos en torno al tema del amor. ¿Cómo se llama esa obra?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El Conde Lucanor",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El Cantar de Mio Cid",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La Celestina",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El Libro de Buen Amor",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:41.356Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:41.356Z"
+      }
+    },
+    {
+      "id": "cmu3g8cry000gv457p20d7sg8",
+      "topicId": "cmrr1jfdd002mhi3n55zq7o6c",
+      "stem": "\"La Celestina\", de Fernando de Rojas, publicada a finales del siglo XV, se considera una obra de TRANSICIÓN entre la literatura medieval y la renacentista principalmente porque...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "combina el didactismo moral medieval con personajes de psicología más individual, ya renacentista.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "narra exclusivamente hazañas guerreras de un héroe medieval sin ningún rasgo renacentista.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "fue compuesta de forma anónima y transmitida oralmente durante varias generaciones.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "está escrita enteramente en verso, siguiendo la tradición del mester de clerecía medieval.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:42.382Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:42.382Z"
+      }
+    },
+    {
+      "id": "cmu3g8dlq000lv457axtmmpfv",
+      "topicId": "cmrr1jfdd002mhi3n55zq7o6c",
+      "stem": "El Romancero viejo, formado por composiciones populares y anónimas transmitidas oralmente durante la Edad Media, se caracteriza métricamente por...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "versos libres sin ningún patrón de rima ni de medida silábica.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "versos octosílabos con rima asonante en los versos pares.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "versos alejandrinos con rima consonante agrupados en cuaderna vía.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "versos endecasílabos organizados en catorce líneas a manera de soneto.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:43.454Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:43.454Z"
+      }
+    },
+    {
+      "id": "cmu3g8l330001f5jtl0nfsfvy",
+      "topicId": "cmrr1jfvg002ohi3ndoxs1etc",
+      "stem": "Miguel de Cervantes publicó en 1605 la primera parte de una novela que suele considerarse fundadora de la novela moderna occidental. ¿Cuál es esa obra?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El Lazarillo de Tormes, anónimo",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Don Quijote de la Mancha",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Las Novelas ejemplares, de 1613",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La Celestina, de Fernando de Rojas",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:53.151Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:53.151Z"
+      }
+    },
+    {
+      "id": "cmu3g8lun0006f5jtoavwo3tm",
+      "topicId": "cmrr1jfvg002ohi3ndoxs1etc",
+      "stem": "Sor Juana Inés de la Cruz, escritora novohispana del Barroco del siglo XVII, es reconocida sobre todo por su defensa del derecho de las mujeres al conocimiento, expresada en poemas como...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "los sonetos amorosos reunidos bajo el título \"Rimas\".",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el poema \"Canto a mí mismo\", de tono autobiográfico.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "la oda \"A la disciplina\", escrita en su etapa como estudiante.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "las redondillas que comienzan \"Hombres necios que acusáis\".",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:54.143Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:54.143Z"
+      }
+    },
+    {
+      "id": "cmu3g8mm7000bf5jtpfztk4vr",
+      "topicId": "cmrr1jfvg002ohi3ndoxs1etc",
+      "stem": "El poeta nicaragüense Rubén Darío es considerado el fundador del movimiento literario hispanoamericano conocido como Modernismo, iniciado formalmente con la publicación de su libro...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "\"Veinte poemas de amor\", en 1924.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "\"Azul...\", en 1888.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "\"Cien años de soledad\", en 1967.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "\"Platero y yo\", en 1914.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:55.135Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:55.135Z"
+      }
+    },
+    {
+      "id": "cmu3g8nds000gf5jta6ma70gw",
+      "topicId": "cmrr1jfvg002ohi3ndoxs1etc",
+      "stem": "Federico García Lorca perteneció a la Generación del 27 y combinó en su obra la tradición popular española con la vanguardia; su libro de poemas más conocido, que fusiona el romance tradicional con imágenes surrealistas, es...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "las Rimas y leyendas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "el Romancero gitano.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "las Soledades.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "el Cantar de Mio Cid.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:56.128Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:56.128Z"
+      }
+    },
+    {
+      "id": "cmu3g8o5o000lf5jthrwqql7d",
+      "topicId": "cmrr1jfvg002ohi3ndoxs1etc",
+      "stem": "Gabriel García Márquez, autor colombiano ganador del Premio Nobel de Literatura, es el máximo exponente del realismo mágico gracias a su novela...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "\"La casa de los espíritus\", publicada en 1982.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "\"Rayuela\", publicada en 1963.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "\"Cien años de soledad\", publicada en 1967.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "\"Pedro Páramo\", publicada en 1955.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "TEMARIO_ONLY",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:55:57.132Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:55:57.132Z"
+      }
+    },
+    {
+      "id": "cmu3g8ve00001mqpq0j6wlo4y",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "¿Cuál oración expresa correctamente una relación de CAUSA entre las dos ideas?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Los alumnos llegaron tarde al examen aunque el camión escolar se descompuso a medio camino.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Los alumnos llegaron tarde al examen; por lo tanto, el camión escolar se descompuso a medio camino.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los alumnos llegaron tarde al examen porque el camión escolar se descompuso a medio camino.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Los alumnos llegaron tarde al examen; sin embargo, el camión escolar se descompuso a medio camino.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:06.504Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:06.504Z"
+      }
+    },
+    {
+      "id": "cmu3g8wda0006mqpqddp3k9lm",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "¿Cuál oración usa el conector adecuado para expresar una relación de CONTRASTE (oposición) entre las dos ideas?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "El pronóstico anunciaba lluvia para todo el fin de semana, por lo tanto, el sábado amaneció completamente despejado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El pronóstico anunciaba lluvia para todo el fin de semana, pero el sábado amaneció completamente despejado.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "El pronóstico anunciaba lluvia para todo el fin de semana, porque el sábado amaneció completamente despejado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El pronóstico anunciaba lluvia para todo el fin de semana, además, el sábado amaneció completamente despejado.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:07.774Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:07.774Z"
+      }
+    },
+    {
+      "id": "cmu3g8xb4000bmqpqbqt3tcgz",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "¿Cuál oración expresa correctamente una relación de CONSECUENCIA entre las dos ideas?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La planta llevaba tres semanas sin recibir agua, porque sus hojas se marchitaron por completo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La planta llevaba tres semanas sin recibir agua, por lo tanto, sus hojas se marchitaron por completo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "La planta llevaba tres semanas sin recibir agua, sin embargo, sus hojas se marchitaron por completo.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La planta llevaba tres semanas sin recibir agua, aunque sus hojas se marchitaron por completo.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:08.992Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:08.992Z"
+      }
+    },
+    {
+      "id": "cmu3g8y8t000gmqpq8g8e1d5z",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "Un párrafo desarrolla estas tres ideas: el reciclaje reduce la basura en los rellenos sanitarios, ahorra energía en la fabricación de productos nuevos y disminuye la extracción de materias primas. ¿Cuál oración funciona mejor como ORACIÓN TEMÁTICA (la idea principal que introduce el párrafo)?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Fabricar productos nuevos siempre requiere más energía que reciclar materiales usados.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La extracción de materias primas ha aumentado de forma constante en las últimas décadas.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Los rellenos sanitarios de las grandes ciudades reciben toneladas de basura todos los días.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "El reciclaje ofrece beneficios ambientales que van más allá de la simple reducción de basura.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:10.205Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:10.205Z"
+      }
+    },
+    {
+      "id": "cmu3g8z6f000lmqpqtswg0o1i",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "Lee el fragmento: 'Añada una taza de harina cernida, dos huevos y una pizca de sal; bata la mezcla durante tres minutos antes de verterla en el molde engrasado.' ¿A qué tipo de texto pertenece?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Un texto narrativo, porque relata una sucesión de hechos vividos por un personaje.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Un texto instructivo, porque da indicaciones ordenadas para realizar un procedimiento.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Un texto descriptivo, porque detalla las características físicas de un platillo terminado.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Un texto argumentativo, porque defiende una postura sobre el uso de ingredientes.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:11.415Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:11.415Z"
+      }
+    },
+    {
+      "id": "cmu3g9042000qmqpqquk287pk",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "¿Cuál de las siguientes oraciones es adecuada para el registro FORMAL de una carta dirigida a una autoridad universitaria?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Te paso mi expediente para que lo revises cuando se te haga fácil, gracias.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Ahí te va mi expediente, échame la mano con eso cuando puedas, porfa.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Por medio de la presente, solicito a usted la revisión de mi expediente académico.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Oye, nada más te escribo para que le eches un ojo a mi expediente, va.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:12.627Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:12.627Z"
+      }
+    },
+    {
+      "id": "cmu3g911q000vmqpqzd6jxcdd",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "'Los ingenieros revisaron el puente durante tres días. Al final, lo declararon seguro para el tránsito pesado.' ¿A qué se refiere el pronombre 'lo' en la segunda oración?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "A los tres días que duró la revisión.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Al puente que revisaron los ingenieros.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Al tránsito pesado que circula por la zona.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Al grupo de ingenieros que hizo la revisión.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:13.839Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:13.839Z"
+      }
+    },
+    {
+      "id": "cmu3g91ze0010mqpqnxm744rc",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "¿Cuál oración ROMPE la unidad temática del siguiente párrafo? 'El café llegó a América procedente de Etiopía a través de las rutas comerciales árabes. (1) Los primeros cultivos americanos se establecieron en el Caribe durante el siglo XVIII. (2) El maíz es uno de los cultivos más antiguos domesticados en Mesoamérica. (3) Hoy, países como Brasil y Colombia concentran buena parte de la producción mundial.'",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La oración que dice que hoy, países como Brasil y Colombia concentran buena parte de la producción mundial.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "La oración que dice que los primeros cultivos americanos se establecieron en el Caribe durante el siglo XVIII.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La oración que dice que el café llegó a América procedente de Etiopía a través de las rutas comerciales árabes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "La oración que dice que el maíz es uno de los cultivos más antiguos domesticados en Mesoamérica.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:15.051Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:15.051Z"
+      }
+    },
+    {
+      "id": "cmu3g92x60015mqpq8gcp8sni",
+      "topicId": "cmrr1jghp002qhi3nqdkertop",
+      "stem": "Un texto instructivo para plantar un árbol incluye estos pasos desordenados: (1) Rellena el hoyo con tierra y compacta ligeramente. (2) Cava un hoyo del doble de ancho que el cepellón. (3) Riega abundantemente después de sembrar. (4) Coloca el árbol centrado dentro del hoyo. ¿Cuál es el ORDEN correcto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Regar, cavar el hoyo, colocar el árbol y, al final, rellenar con tierra.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Rellenar con tierra, colocar el árbol, cavar el hoyo y, al final, regar.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Cavar el hoyo, colocar el árbol, rellenar con tierra y, al final, regar.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "Colocar el árbol, cavar el hoyo, regar y, al final, rellenar con tierra.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "MULTIPLE_CHOICE",
+      "passageId": null,
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:16.267Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:16.267Z"
+      }
+    },
+    {
+      "id": "cmu3g9cbv0003lgevee9bcuss",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "¿Cuál es la idea principal del texto?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Compara la velocidad de vuelo de la mariposa monarca con la de otras especies migratorias.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Explica el fenómeno migratorio de la mariposa monarca hacia México y los retos que enfrenta.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Describe el ciclo de vida completo de la mariposa monarca, desde huevo hasta adulto.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Explica el papel del algodoncillo en la reproducción de todas las especies de mariposas.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9b1u0000lgevv4gr72jp",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:28.460Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:28.460Z"
+      }
+    },
+    {
+      "id": "cmu3g9d9r0008lgevxrbinqox",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "¿Cuántas generaciones se requieren, según el texto, para completar el viaje de ida y vuelta?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Exactamente dos generaciones, una de ida y una de vuelta.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Hasta cuatro generaciones sucesivas.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Solo una generación, la \"matusalén\".",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Más de ocho generaciones a lo largo de un año.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9b1u0000lgevv4gr72jp",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:29.679Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:29.679Z"
+      }
+    },
+    {
+      "id": "cmu3g9e7m000dlgev1ibg5mwl",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "En el texto, la expresión \"generación matusalén\" se refiere a...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "la primera generación que nace cada primavera en Canadá.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "la generación que vive más tiempo y por eso logra completar el viaje hasta México.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "la generación que se reproduce con mayor frecuencia que las otras.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "la generación que nunca migra y permanece todo el año en el norte.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9b1u0000lgevv4gr72jp",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:30.898Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:30.898Z"
+      }
+    },
+    {
+      "id": "cmu3g9f5g000ilgevrq8mrvnw",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "De acuerdo con el texto, ¿qué ha causado la reducción de la población de mariposa monarca?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "La competencia con otras especies de mariposas por el néctar de las flores.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "El aumento en la velocidad de los vientos durante la temporada de otoño.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "La deforestación de los sitios de hibernación y la pérdida de algodoncillo en la ruta.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "D",
+          "text": "El uso de brújulas artificiales que confunden su orientación magnética natural.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9b1u0000lgevv4gr72jp",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:32.116Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:32.116Z"
+      }
+    },
+    {
+      "id": "cmu3g9g36000nlgev95d99zi6",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "¿Cuál es la idea principal de este fragmento?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Mariana descubre una perspectiva distinta de la ciudad al dibujar desde la azotea.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "B",
+          "text": "Mariana describe una discusión con sus vecinos sobre el uso de la azotea.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "Mariana narra un accidente que sufrió mientras subía las escaleras del edificio.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Mariana explica a un amigo por qué decidió aprender a dibujar paisajes urbanos.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:33.331Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:33.331Z"
+      }
+    },
+    {
+      "id": "cmu3g9h1r000slgevwlxzocyd",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "Según el fragmento, ¿qué estaba haciendo Mariana en la azotea?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Tender ropa que había lavado esa misma mañana.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Terminar un dibujo que llevaba semanas posponiendo.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Buscar su cuaderno, que el viento le había arrebatado antes.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Reparar una antena que se había torcido con el viento.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "BASIC",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:34.576Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:34.576Z"
+      }
+    },
+    {
+      "id": "cmu3g9hzk000xlgeviscoway5",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "¿Por qué guardó el lápiz \"no para descansar la mano, sino para quedarse un rato nada más mirando\"?",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "Porque el viento le impedía seguir dibujando con precisión.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "Porque quedó absorta contemplando la ciudad desde una perspectiva que no conocía.",
+          "imageUrl": null,
+          "isCorrect": true
+        },
+        {
+          "id": "C",
+          "text": "Porque terminó el dibujo antes de lo que esperaba.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "Porque escuchó un ruido que la distrajo del cuaderno.",
+          "imageUrl": null,
+          "isCorrect": false
+        }
+      ],
+      "difficulty": "INTERMEDIATE",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:35.792Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:35.792Z"
+      }
+    },
+    {
+      "id": "cmu3g9ixa0012lgevcvbf7h6e",
+      "topicId": "cmrr1jgz2002shi3nqpqjyheu",
+      "stem": "En el fragmento, la frase \"como si alguien hubiera bajado el volumen del mundo\" sirve para...",
+      "imageUrl": null,
+      "options": [
+        {
+          "id": "A",
+          "text": "anunciar que la ciudad se había quedado sin electricidad esa tarde.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "B",
+          "text": "explicar que Mariana había perdido parcialmente el oído por el viento.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "C",
+          "text": "señalar que los coches habían dejado de circular por completo esa tarde.",
+          "imageUrl": null,
+          "isCorrect": false
+        },
+        {
+          "id": "D",
+          "text": "comparar la azotea con un lugar donde los sonidos de la calle llegan amortiguados.",
+          "imageUrl": null,
+          "isCorrect": true
+        }
+      ],
+      "difficulty": "ADVANCED",
+      "sourceYear": null,
+      "isVerified": false,
+      "source": "GENERATED",
+      "usage": "SERVABLE",
+      "sourceRef": null,
+      "contentSourceId": null,
+      "format": "READING_COMPREHENSION",
+      "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
+      "externalRef": null,
+      "verification": null,
+      "groundingStatus": "SOURCED",
+      "videoLectureId": null,
+      "professorNoteId": null,
+      "createdAt": {
+        "$d": "2026-09-16T01:56:37.006Z"
+      },
+      "updatedAt": {
+        "$d": "2026-09-16T01:56:37.006Z"
+      }
     }
   ],
   "QuestionSourceChunk": [
@@ -118109,6 +120209,279 @@
       "sourceChunkId": "cmrsroinh002w13b34mq10hxk",
       "createdAt": {
         "$d": "2026-09-15T00:32:59.557Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7dsa0001s5hja7cplv5z",
+      "sourceChunkId": "cmrsroinh002o13b3yzlqa0s9",
+      "createdAt": {
+        "$d": "2026-09-16T01:54:57.029Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7ett0006s5hj5s4v4l57",
+      "sourceChunkId": "cmrsroinh002o13b3yzlqa0s9",
+      "createdAt": {
+        "$d": "2026-09-16T01:54:58.385Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7frw000bs5hjiwcjro9l",
+      "sourceChunkId": "cmrsroinh002q13b3ssucjbca",
+      "createdAt": {
+        "$d": "2026-09-16T01:54:59.612Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7gqn000gs5hjngw5lo0y",
+      "sourceChunkId": "cmrsroinh002q13b3ssucjbca",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:00.863Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7hom000ls5hjts0ljin3",
+      "sourceChunkId": "cmrsrog05001613b3wfwu3hwo",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:02.087Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7pn0000111yaefzy8gec",
+      "sourceChunkId": "cmrsroeyc000i13b3lz6i80yf",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:12.396Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7qkj000611yawdhjqvz0",
+      "sourceChunkId": "cmrsrucnx0011kh2oavvn8vi6",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:13.604Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7ri5000b11yapij87rlg",
+      "sourceChunkId": "cmrsromj4007l13b30vx0zgvp",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:14.814Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7sgc000g11ya3h7chzb2",
+      "sourceChunkId": "cmrsroeyc000i13b3lz6i80yf",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:16.044Z"
+      }
+    },
+    {
+      "questionId": "cmu3g7tdo000l11yaz7d0jyee",
+      "sourceChunkId": "cmrsrucnx000zkh2omohcm9l1",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:17.245Z"
+      }
+    },
+    {
+      "questionId": "cmu3g815x0001visgr0u5wdfe",
+      "sourceChunkId": "cmrsroinh002s13b3gm477ege",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:27.333Z"
+      }
+    },
+    {
+      "questionId": "cmu3g823m0006visgw6crkphr",
+      "sourceChunkId": "cmrsroinh002b13b3gi6mcztq",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:28.546Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8331000bvisg6wtqlor1",
+      "sourceChunkId": "cmrsroinh002d13b39r03dnvw",
+      "createdAt": {
+        "$d": "2026-09-16T01:55:29.821Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8ve00001mqpq0j6wlo4y",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:06.504Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8ve00001mqpq0j6wlo4y",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:06.504Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8wda0006mqpqddp3k9lm",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:07.774Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8wda0006mqpqddp3k9lm",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:07.774Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8xb4000bmqpqbqt3tcgz",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:08.992Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8xb4000bmqpqbqt3tcgz",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:08.992Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8y8t000gmqpq8g8e1d5z",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:10.205Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8y8t000gmqpq8g8e1d5z",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:10.205Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8z6f000lmqpqtswg0o1i",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:11.415Z"
+      }
+    },
+    {
+      "questionId": "cmu3g8z6f000lmqpqtswg0o1i",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:11.415Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9042000qmqpqquk287pk",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:12.627Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9042000qmqpqquk287pk",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:12.627Z"
+      }
+    },
+    {
+      "questionId": "cmu3g911q000vmqpqzd6jxcdd",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:13.839Z"
+      }
+    },
+    {
+      "questionId": "cmu3g911q000vmqpqzd6jxcdd",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:13.839Z"
+      }
+    },
+    {
+      "questionId": "cmu3g91ze0010mqpqnxm744rc",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:15.051Z"
+      }
+    },
+    {
+      "questionId": "cmu3g91ze0010mqpqnxm744rc",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:15.051Z"
+      }
+    },
+    {
+      "questionId": "cmu3g92x60015mqpq8gcp8sni",
+      "sourceChunkId": "cmrsroeyc000h13b3upmf8feu",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:16.267Z"
+      }
+    },
+    {
+      "questionId": "cmu3g92x60015mqpq8gcp8sni",
+      "sourceChunkId": "cmrsrog05001513b3396wazw6",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:16.267Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9cbv0003lgevee9bcuss",
+      "sourceChunkId": "cmrsroeyc000c13b3lc9nt8k2",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:28.460Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9d9r0008lgevxrbinqox",
+      "sourceChunkId": "cmrsroeyc000f13b3q2ueut5c",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:29.679Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9e7m000dlgev1ibg5mwl",
+      "sourceChunkId": "cmrsroeyc000g13b3me8i8czl",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:30.898Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9f5g000ilgevrq8mrvnw",
+      "sourceChunkId": "cmrsroeyc000g13b3me8i8czl",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:32.116Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9g36000nlgev95d99zi6",
+      "sourceChunkId": "cmrsroeyc000c13b3lc9nt8k2",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:33.331Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9h1r000slgevwlxzocyd",
+      "sourceChunkId": "cmrsroeyc000f13b3q2ueut5c",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:34.576Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9hzk000xlgeviscoway5",
+      "sourceChunkId": "cmrsrog05001413b3vsosdi0i",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:35.792Z"
+      }
+    },
+    {
+      "questionId": "cmu3g9ixa0012lgevcvbf7h6e",
+      "sourceChunkId": "cmrsroeyc000g13b3me8i8czl",
+      "createdAt": {
+        "$d": "2026-09-16T01:56:37.006Z"
       }
     }
   ],
@@ -153319,6 +155692,966 @@
       "layer": 3,
       "title": "Por qué no las otras opciones",
       "content": "Durante la fase folicular el estrógeno en realidad SUBE, no cae, conforme el folículo madura; la progesterona se eleva DESPUÉS de la ovulación, en la fase lútea, no desde el primer día del ciclo; y la FSH sí está presente en la fase lútea, en niveles bajos, pero su ausencia no es lo que dispara la ovulación.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7dsa0002s5hj4zwf5w4f",
+      "questionId": "cmu3g7dsa0001s5hja7cplv5z",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "La tilde diacrítica distingue palabras que se escriben igual pero cumplen funciones distintas: \"él\" es pronombre personal (sujeto) y lleva tilde; \"el\" es artículo determinante y nunca la lleva.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7dsa0003s5hjsdtmuorm",
+      "questionId": "cmu3g7dsa0001s5hja7cplv5z",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) \"Él llegó...\" — \"Él\" sustituye a una persona (sujeto de \"llegó\"): pronombre, requiere tilde. 2) \"...el resto del equipo...\" — \"el\" antecede al sustantivo \"resto\": artículo, sin tilde.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7dsa0004s5hj8qw17swo",
+      "questionId": "cmu3g7dsa0001s5hja7cplv5z",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las otras tres oraciones invierten o duplican el error: una acentúa el artículo, otra acentúa ambas palabras y otra no acentúa ninguna, así que ninguna respeta la regla en las dos apariciones a la vez.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7ett0007s5hj9o2trmfn",
+      "questionId": "cmu3g7ett0006s5hj5s4v4l57",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "\"Tú\" es pronombre personal (sujeto) y lleva tilde; \"tu\" es adjetivo posesivo que antecede a un sustantivo (\"mochila\") y nunca la lleva.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7ett0008s5hj6qklkyi1",
+      "questionId": "cmu3g7ett0006s5hj5s4v4l57",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) \"Tú siempre olvidas...\" — \"Tú\" es el sujeto de \"olvidas\": pronombre, tilde obligatoria. 2) \"...tu mochila...\" — \"tu\" indica posesión sobre \"mochila\": posesivo, sin tilde.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7ett0009s5hjkio3omol",
+      "questionId": "cmu3g7ett0006s5hj5s4v4l57",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las otras oraciones invierten la tilde entre ambas palabras, acentúan las dos o no acentúan ninguna, así que ninguna cumple la regla en sus dos apariciones.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7frw000cs5hjqxewps55",
+      "questionId": "cmu3g7frw000bs5hjiwcjro9l",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "\"Votar\" (con v) significa emitir un voto en una elección; \"botar\" (con b) significa arrojar, lanzar o hacer rebotar algo. Son homófonos que se distinguen únicamente por el contexto de significado, no por el sonido.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7frw000ds5hjsvuekpnj",
+      "questionId": "cmu3g7frw000bs5hjiwcjro9l",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "La única oración donde el sentido es \"emitir un voto\" es la del ciudadano en unas elecciones: ahí corresponde \"votar\". En las otras tres el sentido real es \"lanzar/arrojar\" (el balón fuera del área, la basura al contenedor, hacer rebotar el balón), así que en las tres debió escribirse \"botar\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7frw000es5hj6meh7owv",
+      "questionId": "cmu3g7frw000bs5hjiwcjro9l",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El portero no emite un voto, hace rebotar o lanza la pelota; el reciclador arroja la basura al contenedor; el niño hace rebotar el balón al driblar. Las tres usan el verbo equivocado para el sentido que describen.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7gqn000hs5hjoti8wu6l",
+      "questionId": "cmu3g7gqn000gs5hjngw5lo0y",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "\"Cocer\" (con c) significa preparar un alimento por acción del calor; \"coser\" (con s) significa unir tela o material con hilo y aguja. Ambas se pronuncian igual en el español de México, por lo que solo el significado del contexto permite distinguirlas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7gqn000is5hj5b9r693y",
+      "questionId": "cmu3g7gqn000gs5hjngw5lo0y",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "Solo la oración de los frijoles a fuego lento describe una preparación con calor: ahí corresponde \"cocer\". En las otras tres el sentido real es \"unir con hilo y aguja\" (los frijoles no se cosen; el botón y el vestido se cosen, no se cuecen).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7gqn000js5hj4k5gdtzd",
+      "questionId": "cmu3g7gqn000gs5hjngw5lo0y",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La segunda oración usa \"coser\" donde el sentido pide \"cocer\" (los frijoles se someten al fuego, no se cosen); la tercera y la cuarta usan \"cocer\" donde el sentido pide \"coser\" (un botón y un vestido se unen con hilo, no se someten al fuego).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7hon000ms5hjzw71ppzs",
+      "questionId": "cmu3g7hom000ls5hjts0ljin3",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Una palabra es esdrújula cuando su sílaba tónica es la antepenúltima (la tercera contando desde el final). A diferencia de las agudas y las graves, cuya tilde depende de en qué letra terminan, las esdrújulas llevan tilde SIEMPRE, sin excepción.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7hon000ns5hjh88g5gf1",
+      "questionId": "cmu3g7hom000ls5hjts0ljin3",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "\"ma-te-má-ti-cas\": contando desde el final, \"cas\" es la 1ª sílaba, \"ti\" la 2ª y \"má\" la 3ª (antepenúltima) — ahí cae el golpe de voz, así que es esdrújula y por eso se escribe con tilde en la \"á\", sin importar que termine en \"s\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7hon000os5hjhbvr80mw",
+      "questionId": "cmu3g7hom000ls5hjts0ljin3",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"camisa\" es grave (el golpe cae en \"mi\", la penúltima) y termina en vocal, así que NO lleva tilde. \"camión\" es aguda (el golpe cae en \"mión\", la última) y termina en \"n\", así que SÍ lleva tilde — pero por ser aguda, no esdrújula. \"reloj\" es aguda y termina en \"j\" (ni vocal, ni n, ni s), así que NO lleva tilde. Ninguna de las tres es esdrújula.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7pn0000211ya4etbrrgv",
+      "questionId": "cmu3g7pn0000111yaefzy8gec",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El pronombre de complemento directo debe concordar en género y número con el sustantivo al que sustituye. \"Una computadora nueva\" es femenino singular, así que el pronombre correcto es \"la\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7pn0000311ya9dsc6951",
+      "questionId": "cmu3g7pn0000111yaefzy8gec",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identificar el antecedente: \"una computadora nueva\" (femenino, singular). 2) El complemento directo femenino singular se sustituye con \"la\": \"...y la instalé de inmediato\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7pn0000411yah92vlqbv",
+      "questionId": "cmu3g7pn0000111yaefzy8gec",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"lo\" es masculino singular (no concuerda en género); \"los\" es masculino plural (no concuerda en género ni número); \"les\" es pronombre de complemento INDIRECTO plural, no directo, así que ninguno de los tres respeta la concordancia ni la función que exige la oración.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7qkk000711yafm1uhhdl",
+      "questionId": "cmu3g7qkj000611yawdhjqvz0",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El sujeto y el verbo deben concordar en número, y el artículo debe concordar en género y número con el sustantivo que acompaña. El sujeto de la oración es \"los libros\" (plural), así que el verbo debe ir en plural (\"llegaron\") y el artículo también en plural (\"los\").",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7qkk000811ya639j4eke",
+      "questionId": "cmu3g7qkj000611yawdhjqvz0",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Sujeto: \"los libros\" (plural). 2) Verbo: debe ser \"llegaron\" (plural), no \"llegó\" (singular). 3) Artículo-sustantivo: \"los libros\" (ambos plural), no \"el libros\" ni \"los libro\" (mezcla de número).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7qkk000911yayodw63rt",
+      "questionId": "cmu3g7qkj000611yawdhjqvz0",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La segunda oración usa el verbo en singular (\"llegó\") con un sujeto plural; la tercera usa el artículo en singular (\"El\") con el sustantivo en plural (\"libros\"); la cuarta usa el sustantivo en singular (\"libro\") con el artículo en plural (\"Los\"). Las tres rompen alguna concordancia.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7ri6000c11yav21h0q5u",
+      "questionId": "cmu3g7ri5000b11yapij87rlg",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Un prefijo es un afijo que se antepone a una raíz o palabra base para modificar su significado. \"des-\" es un prefijo de sentido negativo o inverso (deshacer = invertir la acción de hacer), y \"hacer\" es la palabra base sobre la que actúa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7ri6000d11yafpx4jfov",
+      "questionId": "cmu3g7ri5000b11yapij87rlg",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identificar la palabra base: \"hacer\" (verbo con significado propio y funcional por sí solo). 2) Identificar el elemento antepuesto: \"des-\" (no tiene significado independiente, solo modifica el sentido de \"hacer\" a su inverso). 3) Clasificar: prefijo + palabra base.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7ri6000e11ya6xed21vi",
+      "questionId": "cmu3g7ri5000b11yapij87rlg",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"des-\" no es una raíz (no tiene significado léxico propio, como sí lo tiene \"hacer\") ni un sufijo diminutivo (los diminutivos son sufijos que se AÑADEN al final, como \"-ito\", nunca al inicio); y \"hacer\" no es un afijo, es la palabra base, por lo que \"dos raíces sin afijo\" tampoco describe la estructura real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7sgc000h11ya54vxqfgk",
+      "questionId": "cmu3g7sgc000g11ya3h7chzb2",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Los verbos que expresan deseo, duda o esperanza (\"espero que...\") exigen que el verbo de la cláusula subordinada vaya en modo subjuntivo, no en indicativo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7sgc000i11yaiemnevz4",
+      "questionId": "cmu3g7sgc000g11ya3h7chzb2",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) \"Espero que\" introduce una cláusula subordinada de deseo. 2) Ese tipo de cláusula exige subjuntivo presente. 3) La forma de subjuntivo presente de \"llegar\" para \"tú\" es \"llegues\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7sgc000j11yaqn48xmbm",
+      "questionId": "cmu3g7sgc000g11ya3h7chzb2",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"llegas\" es indicativo presente, \"llegarás\" es indicativo futuro y \"llegaste\" es indicativo pretérito: las tres son formas del modo indicativo, que no puede usarse después de un verbo de deseo como \"espero que\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7tdp000m11yafue5ccoe",
+      "questionId": "cmu3g7tdo000l11yaz7d0jyee",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El complemento directo es lo que recibe directamente la acción del verbo y puede sustituirse por \"lo/la/los/las\". Aquí el verbo es \"entregó\", y lo que se entrega es \"los exámenes corregidos\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7tdp000n11yakqqmimvi",
+      "questionId": "cmu3g7tdo000l11yaz7d0jyee",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Verbo: \"entregó\". 2) Pregunta clave: ¿qué entregó la profesora? → \"los exámenes corregidos\". 3) Prueba de sustitución: \"La profesora LOS entregó a los alumnos\" — el pronombre \"los\" confirma que ese es el complemento directo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g7tdp000o11ya08h04nvd",
+      "questionId": "cmu3g7tdo000l11yaz7d0jyee",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"la profesora\" es el sujeto, quien realiza la acción, no quien la recibe. \"a los alumnos\" responde a \"¿a quién?\" y lleva la preposición \"a\": es complemento indirecto. \"corregidos\" es solo un adjetivo que describe a \"exámenes\", no el complemento completo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g815x0002visg5mjd3whg",
+      "questionId": "cmu3g815x0001visgr0u5wdfe",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Un antónimo es una palabra de significado opuesto. \"Escaso\" significa que hay poca cantidad de algo; su opuesto describe que hay mucha cantidad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g815x0003visg6nbwc0yw",
+      "questionId": "cmu3g815x0001visgr0u5wdfe",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Significado de \"escaso\": insuficiente, poco. 2) Buscar el término que expresa justo lo contrario: mucha cantidad, suficiente y de sobra → \"abundante\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g815x0004visgmbh2ygcn",
+      "questionId": "cmu3g815x0001visgr0u5wdfe",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"Reducido\", \"limitado\" y \"moderado\" no son opuestos de \"escaso\": los tres describen igualmente poca o mediana cantidad, así que son sinónimos o cercanos a \"escaso\", no su antónimo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g823m0007visgr7qf39vu",
+      "questionId": "cmu3g823m0006visgw6crkphr",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Una analogía verbal exige encontrar la MISMA relación entre el segundo par que la que existe entre el primero. Entre \"médico\" y \"hospital\" la relación es \"profesional : lugar donde ejerce su profesión\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g823m0008visg60bbyxkp",
+      "questionId": "cmu3g823m0006visgw6crkphr",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Relación del primer par: el médico ejerce su profesión en el hospital (persona → lugar de trabajo). 2) Aplicar la misma relación al maestro: el lugar donde el maestro ejerce su profesión es la escuela.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g823m0009visgm5tuoeyg",
+      "questionId": "cmu3g823m0006visgw6crkphr",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"pizarrón\" es una herramienta del maestro, no su lugar de trabajo (relación persona→herramienta, distinta a la del par original); \"alumno\" es una persona con quien interactúa, no un lugar; \"diploma\" es un documento, no un lugar. Ninguno reproduce la relación persona→lugar de trabajo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8331000cvisg6lv3289z",
+      "questionId": "cmu3g8331000bvisg6wtqlor1",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "La denotación es el significado literal y objetivo de una palabra; la connotación es un significado adicional, subjetivo o figurado que se le atribuye en un contexto. \"Corazón de piedra\" es una metáfora: no describe un material, sino una cualidad emocional (dureza, falta de compasión).",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8331000dvisgfw268mtq",
+      "questionId": "cmu3g8331000bvisg6wtqlor1",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Significado literal (denotativo) de \"piedra\": mineral sólido. 2) En la oración, \"piedra\" no se aplica literalmente al corazón (un órgano no puede ser mineral). 3) El sentido real que transmite es figurado: frialdad, insensibilidad. Por lo tanto, el uso es connotativo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8331000evisgh7h9k37z",
+      "questionId": "cmu3g8331000bvisg6wtqlor1",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La lectura \"denotativa\" y la \"literal\" asumen, de forma absurda, que el corazón está hecho físicamente de piedra; la lectura \"técnica\" confunde el uso figurado con vocabulario especializado de geología, que no tiene relación con el sentido emocional que transmite la frase.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8afe0002v457ugy586jh",
+      "questionId": "cmu3g8afe0001v457woll3m8m",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El Cantar de Mio Cid es un cantar de gesta anónimo, considerado el poema épico completo más antiguo conservado en castellano. Narra las hazañas del caballero Rodrigo Díaz de Vivar, \"El Cid Campeador\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8afe0003v457k156h9if",
+      "questionId": "cmu3g8afe0001v457woll3m8m",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La pista clave es \"poema épico\" y \"protagonista Rodrigo Díaz de Vivar\". 2) Esa combinación identifica de forma única al Cantar de Mio Cid, distinto de cualquier otra obra medieval castellana.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8afe0004v457t008t69n",
+      "questionId": "cmu3g8afe0001v457woll3m8m",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El Libro de Buen Amor (Arcipreste de Hita) es una obra del siglo XIV sobre el amor, no un cantar de gesta. Los Milagros de Nuestra Señora (Gonzalo de Berceo) son relatos religiosos en verso, sin protagonista guerrero. La Tragicomedia de Calisto y Melibea (La Celestina) es una obra dialogada de finales del siglo XV sobre un amor trágico, no una epopeya.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8b700007v457qukgn5te",
+      "questionId": "cmu3g8b6z0006v4572cohp4fb",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El mester de clerecía era la escuela de poetas cultos (clérigos formados) que escribían con una técnica fija: la cuaderna vía, estrofas de cuatro versos alejandrinos con una sola rima. Gonzalo de Berceo es su representante más antiguo conocido por nombre.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8b700008v457fzodbxv8",
+      "questionId": "cmu3g8b6z0006v4572cohp4fb",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Berceo era clérigo formado, no juglar popular. 2) Su técnica de composición es la cuaderna vía (cuatro versos, una sola rima). 3) Esa combinación define el mester de clerecía, distinto del mester de juglaría.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8b700009v457wr2t8kvh",
+      "questionId": "cmu3g8b6z0006v4572cohp4fb",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El mester de juglaría era oral y popular, propio de juglares, no de clérigos como Berceo. El romancero viejo usa versos octosílabos con rima asonante, una forma distinta y posterior en su difusión masiva. El cancionero petrarquista y el soneto endecasílabo son formas renacentistas, ajenas por completo al siglo XIII de Berceo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8bzg000cv457313re3uu",
+      "questionId": "cmu3g8bzg000bv457z1xo6tb6",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El Libro de Buen Amor (siglo XIV) es la obra maestra del Arcipreste de Hita: mezcla relatos cómicos, enseñanzas morales y episodios narrados en primera persona sobre las aventuras amorosas del propio narrador.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8bzg000dv4575k9eaqgg",
+      "questionId": "cmu3g8bzg000bv457z1xo6tb6",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Autor mencionado: Arcipreste de Hita (Juan Ruiz). 2) Rasgos descritos: cómico + moralizante + autobiográfico + tema del amor. 3) Esa combinación de rasgos identifica de forma única al Libro de Buen Amor entre las obras medievales castellanas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8bzg000ev457i8cehe6o",
+      "questionId": "cmu3g8bzg000bv457z1xo6tb6",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El Cantar de Mio Cid es anónimo y épico, sin ninguno de esos rasgos. El Conde Lucanor es una colección de cuentos moralizantes de Don Juan Manuel, sin el componente autobiográfico ni el tema central del amor. La Celestina es de Fernando de Rojas, un siglo después, y no es una obra del Arcipreste de Hita.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8cry000hv457njqomsoc",
+      "questionId": "cmu3g8cry000gv457p20d7sg8",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Una obra de \"transición\" conserva rasgos de la época anterior mientras anuncia la siguiente. La Celestina mantiene una visión moral y pesimista típica medieval, pero retrata a sus personajes con una psicología individual y un realismo que anticipan el Renacimiento.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8cry000iv457phjzzy75",
+      "questionId": "cmu3g8cry000gv457p20d7sg8",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Rasgo medieval que conserva: el desenlace trágico como advertencia moral (didactismo). 2) Rasgo renacentista que anticipa: personajes con motivaciones y psicología individuales, no solo tipos morales. 3) La combinación de ambos es justo lo que define a una obra \"de transición\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8cry000jv45734coa35o",
+      "questionId": "cmu3g8cry000gv457p20d7sg8",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La Celestina no narra hazañas guerreras (es una historia de amor y engaño en un entorno urbano); no está escrita en verso, sino mayoritariamente en prosa dialogada (forma de \"comedia humanística\"); y tiene autor conocido y reconocido, Fernando de Rojas, no es anónima ni de transmisión oral.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8dlq000mv457xvquwklc",
+      "questionId": "cmu3g8dlq000lv457axtmmpfv",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El romance es la forma métrica popular por excelencia de la lírica narrativa medieval castellana: series de versos octosílabos donde solo los versos pares comparten rima asonante, mientras los impares quedan sueltos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8dlq000nv457ko3pqtrv",
+      "questionId": "cmu3g8dlq000lv457axtmmpfv",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Medida silábica del romance: ocho sílabas por verso (octosílabo). 2) Patrón de rima: asonante (coinciden solo las vocales), y únicamente en los versos pares. 3) Esa combinación es la firma métrica reconocible del Romancero.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8dlq000ov457aw41vvwv",
+      "questionId": "cmu3g8dlq000lv457axtmmpfv",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Los versos alejandrinos con rima consonante en cuaderna vía corresponden al mester de clerecía, no al Romancero. El soneto de catorce versos endecasílabos es una forma renacentista italiana, muy posterior. Y el Romancero sí tiene un patrón fijo de rima asonante, así que no puede describirse como \"verso libre sin ningún patrón\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8l330002f5jt11pfwg5r",
+      "questionId": "cmu3g8l330001f5jtl0nfsfvy",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Don Quijote de la Mancha (1605, con segunda parte en 1615) es la obra de Cervantes reconocida universalmente como fundadora de la novela moderna, por su complejidad narrativa y la profundidad psicológica de sus personajes.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8l330003f5jtjeiaiohw",
+      "questionId": "cmu3g8l330001f5jtl0nfsfvy",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Autor y año mencionados: Cervantes, 1605. 2) Esos dos datos identifican de forma única la primera parte de Don Quijote entre las obras del propio Cervantes y de la literatura española.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8l330004f5jtr0blyavu",
+      "questionId": "cmu3g8l330001f5jtl0nfsfvy",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La Celestina es de Fernando de Rojas, un siglo antes (finales del XV), no de Cervantes. El Lazarillo de Tormes es anónimo y anterior (mediados del XVI), de la tradición picaresca. Las Novelas ejemplares sí son de Cervantes, pero son relatos breves publicados en 1613, no la novela de 1605 descrita en el enunciado.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8lun0007f5jtxzkjrvxv",
+      "questionId": "cmu3g8lun0006f5jtoavwo3tm",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "\"Hombres necios que acusáis\" es la redondilla más célebre de Sor Juana Inés de la Cruz: cuestiona la doble moral de los hombres que reprochan a las mujeres conductas que ellos mismos provocan, y es su texto más asociado a la defensa del intelecto femenino.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8lun0008f5jtimczfabh",
+      "questionId": "cmu3g8lun0006f5jtoavwo3tm",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Autora mencionada: Sor Juana Inés de la Cruz. 2) Rasgo descrito: defensa del derecho de las mujeres al conocimiento. 3) La obra que corresponde de forma inconfundible a ese rasgo es \"Hombres necios que acusáis\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8lun0009f5jt3dipbvrq",
+      "questionId": "cmu3g8lun0006f5jtoavwo3tm",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"Rimas\" es la obra del poeta español Gustavo Adolfo Bécquer, del siglo XIX. \"Canto a mí mismo\" es del estadounidense Walt Whitman. \"A la disciplina\" es un título inventado que no corresponde a ninguna obra real de Sor Juana.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8mm7000cf5jtj6ruthd3",
+      "questionId": "cmu3g8mm7000bf5jtpfztk4vr",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "\"Azul...\" (1888) es el libro de cuentos y poemas de Rubén Darío que renovó el lenguaje literario en español con influencias del simbolismo y el parnasianismo franceses, y que la crítica señala como el punto de arranque formal del Modernismo hispanoamericano.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8mm7000df5jt9kebg8fi",
+      "questionId": "cmu3g8mm7000bf5jtpfztk4vr",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Autor: Rubén Darío. 2) Rasgo: obra fundadora del Modernismo. 3) El título y año que corresponden de forma única a ese hito son \"Azul...\", 1888.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8mm7000ef5jttwfpem9d",
+      "questionId": "cmu3g8mm7000bf5jtpfztk4vr",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"Cien años de soledad\" (1967) es de Gabriel García Márquez, del realismo mágico, ocho décadas después. \"Platero y yo\" (1914) es del español Juan Ramón Jiménez. \"Veinte poemas de amor\" (1924) es del chileno Pablo Neruda. Ninguna de las tres funda el Modernismo ni es de Rubén Darío.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8nds000hf5jtb4fzybnk",
+      "questionId": "cmu3g8nds000gf5jta6ma70gw",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El Romancero gitano (1928) es el libro donde García Lorca retoma la forma tradicional del romance (verso octosílabo, rima asonante) para construir imágenes de vanguardia sobre el mundo gitano andaluz, mezclando lo popular con lo culto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8nds000if5jtqn4l1om2",
+      "questionId": "cmu3g8nds000gf5jta6ma70gw",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Autor: García Lorca. 2) Rasgo: fusiona el romance tradicional con imágenes surrealistas/vanguardistas. 3) El título que corresponde de forma única a esa fusión es el Romancero gitano.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8nds000jf5jtmuup62d5",
+      "questionId": "cmu3g8nds000gf5jta6ma70gw",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El Cantar de Mio Cid es medieval y anónimo, sin ninguna vanguardia. Las Soledades son del poeta barroco Luis de Góngora (siglo XVII). Las Rimas y leyendas son del romántico Gustavo Adolfo Bécquer (siglo XIX). Ninguna es de García Lorca ni pertenece a la Generación del 27.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8o5o000mf5jt7590zccg",
+      "questionId": "cmu3g8o5o000lf5jthrwqql7d",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "\"Cien años de soledad\" (1967) narra la historia de la familia Buendía en el pueblo imaginario de Macondo, mezclando hechos cotidianos con elementos fantásticos narrados con total naturalidad: es la obra que consolidó a García Márquez como máximo referente del realismo mágico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8o5o000nf5jt8819dxse",
+      "questionId": "cmu3g8o5o000lf5jthrwqql7d",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Autor: Gabriel García Márquez. 2) Rasgo: máximo exponente del realismo mágico. 3) El título y año que corresponden de forma única son \"Cien años de soledad\", 1967.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8o5o000of5jt9qi9xbzc",
+      "questionId": "cmu3g8o5o000lf5jthrwqql7d",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"La casa de los espíritus\" (1982) es de la chilena Isabel Allende. \"Pedro Páramo\" (1955) es del mexicano Juan Rulfo, antecedente del realismo mágico pero no de García Márquez. \"Rayuela\" (1963) es del argentino Julio Cortázar. Ninguna es la novela de García Márquez descrita.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8ve00002mqpqt1qc9dlo",
+      "questionId": "cmu3g8ve00001mqpq0j6wlo4y",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Un conector causal (\"porque\") introduce el motivo de un hecho. Aquí el motivo del retraso es la descompostura del camión, así que la relación entre ambas ideas es de causa-efecto, y \"porque\" es el conector que la expresa.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8ve00003mqpq3nchw1wx",
+      "questionId": "cmu3g8ve00001mqpq0j6wlo4y",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Efecto: los alumnos llegaron tarde. 2) Causa: el camión se descompuso. 3) El conector que enlaza un efecto con su causa es \"porque\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8ve00004mqpq3z2cmlfx",
+      "questionId": "cmu3g8ve00001mqpq0j6wlo4y",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"sin embargo\" expresa contraste, no causa, y aquí no hay ninguna oposición entre las ideas. \"aunque\" expresa concesión (algo ocurre a pesar de otra cosa), lo cual invertiría el sentido lógico. \"por lo tanto\" expresa consecuencia en el sentido opuesto: haría parecer que la descompostura fue CAUSADA por el retraso, cuando es al revés.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8wda0007mqpqz7evvzj3",
+      "questionId": "cmu3g8wda0006mqpqddp3k9lm",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Un conector adversativo (\"pero\") enlaza dos ideas que se oponen. Aquí el pronóstico anunciaba lluvia y en realidad el cielo estuvo despejado: son ideas contrarias, así que corresponde un conector de contraste.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8wda0008mqpqgg0crxkf",
+      "questionId": "cmu3g8wda0006mqpqddp3k9lm",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Primera idea: se anunció lluvia. 2) Segunda idea: en realidad hizo sol. 3) Como ambas ideas se oponen, el conector correcto es \"pero\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8wda0009mqpqidh3nmn5",
+      "questionId": "cmu3g8wda0006mqpqddp3k9lm",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"porque\" expresaría que el sol fue la CAUSA del pronóstico de lluvia, lo cual no tiene sentido lógico. \"por lo tanto\" expresaría que el sol fue la CONSECUENCIA del pronóstico, tampoco tiene sentido. \"además\" expresaría que ambas ideas se suman en el mismo sentido, cuando en realidad se contradicen.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8xb4000cmqpqm3521xwi",
+      "questionId": "cmu3g8xb4000bmqpqbqt3tcgz",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Un conector consecutivo (\"por lo tanto\") introduce el resultado de un hecho previo. Aquí la falta de agua es la causa, y las hojas marchitas son su consecuencia natural.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8xb4000dmqpqd5k4kla1",
+      "questionId": "cmu3g8xb4000bmqpqbqt3tcgz",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Causa: tres semanas sin agua. 2) Consecuencia: las hojas se marchitaron. 3) El conector que enlaza una causa con su consecuencia es \"por lo tanto\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8xb4000emqpqb51mc2w5",
+      "questionId": "cmu3g8xb4000bmqpqbqt3tcgz",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"sin embargo\" señalaría una oposición que aquí no existe (la falta de agua y el marchitamiento no se contradicen, van en el mismo sentido). \"porque\" invertiría la causalidad, como si las hojas marchitas hubieran provocado la falta de agua. \"aunque\" expresaría que la planta se marchitó A PESAR de la falta de agua, lo contrario de lo que en realidad ocurrió.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8y8t000hmqpq3n3vi88d",
+      "questionId": "cmu3g8y8t000gmqpq8g8e1d5z",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "La oración temática debe ser lo bastante general para introducir y unificar TODAS las ideas que desarrolla el párrafo, no solo una de ellas. Aquí el párrafo trata tres beneficios distintos del reciclaje, así que la oración temática debe anunciarlos como un conjunto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8y8t000imqpqt9yx6p9j",
+      "questionId": "cmu3g8y8t000gmqpq8g8e1d5z",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identificar las tres ideas del párrafo: menos basura, ahorro de energía, menos extracción de materias primas. 2) Buscar la oración que las englobe a las tres sin limitarse a una sola. 3) \"El reciclaje ofrece beneficios ambientales...\" cubre las tres, mientras que las demás opciones solo tocan una.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8y8t000jmqpqyf151pg5",
+      "questionId": "cmu3g8y8t000gmqpq8g8e1d5z",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "La oración sobre los rellenos sanitarios solo cubre la primera idea (basura); la de fabricar productos nuevos solo cubre la segunda (energía); la de la extracción de materias primas solo cubre la tercera. Ninguna de las tres introduce el párrafo completo, así que ninguna funciona como oración temática.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8z6f000mmqpqbei4bqno",
+      "questionId": "cmu3g8z6f000lmqpqtswg0o1i",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Los textos instructivos dan indicaciones ordenadas, con verbos en modo imperativo o infinitivo, para que el lector realice un procedimiento paso a paso. El fragmento usa imperativos (\"Añada\", \"bata\") en una secuencia de acciones: es una receta, un texto instructivo típico.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8z6f000nmqpq0km584ii",
+      "questionId": "cmu3g8z6f000lmqpqtswg0o1i",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Identificar los verbos: \"añada\", \"bata\" — modo imperativo. 2) Identificar la estructura: pasos en orden (\"primero... antes de...\"). 3) Esa combinación (imperativos + secuencia de pasos) define al texto instructivo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g8z6f000omqpq9vg8581e",
+      "questionId": "cmu3g8z6f000lmqpqtswg0o1i",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No es narrativo porque no hay personajes ni hechos sucediendo en el tiempo, solo instrucciones. No es argumentativo porque no defiende ninguna postura ni da razones para convencer. No es descriptivo porque no detalla características de un platillo ya terminado, sino los pasos para prepararlo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9043000rmqpq5mtau9kl",
+      "questionId": "cmu3g9042000qmqpqquk287pk",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El registro formal usa fórmulas de cortesía establecidas (\"por medio de la presente\", \"solicito a usted\"), pronombres de respeto y ausencia de coloquialismos. El registro informal usa muletillas, contracciones y expresiones coloquiales propias del habla cotidiana entre conocidos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9043000smqpq8q7c2298",
+      "questionId": "cmu3g9042000qmqpqquk287pk",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Contexto: carta a una autoridad universitaria → exige registro formal. 2) Revisar cada opción: solo una usa fórmulas de cortesía y trato de \"usted\" sin coloquialismos. 3) Esa es la respuesta correcta.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9043000tmqpqj5ytusor",
+      "questionId": "cmu3g9042000qmqpqquk287pk",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las otras tres opciones usan expresiones propias del habla coloquial entre amigos (\"oye\", \"va\", \"échame la mano\", \"porfa\", \"se te haga fácil\"), impropias de una comunicación formal dirigida a una autoridad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g911q000wmqpq09mtovti",
+      "questionId": "cmu3g911q000vmqpqzd6jxcdd",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Un pronombre de complemento directo como \"lo\" sustituye a un sustantivo masculino singular mencionado antes (su antecedente), para evitar repetirlo. Aquí \"lo\" sustituye a \"el puente\", que es lo que fue declarado seguro.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g911q000xmqpqu2afw0c6",
+      "questionId": "cmu3g911q000vmqpqzd6jxcdd",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Buscar en la oración anterior un sustantivo masculino singular que pueda ser \"declarado seguro\": \"el puente\". 2) Confirmar con la prueba de sustitución: \"declararon el puente seguro\" = \"lo declararon seguro\". 3) \"lo\" se refiere al puente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g911q000ymqpqhlqgu457",
+      "questionId": "cmu3g911q000vmqpqzd6jxcdd",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "\"los tres días\" es plural, no puede sustituirse por \"lo\" (singular). \"el tránsito pesado\" no fue declarado seguro, es aquello PARA lo que el puente se declaró seguro. \"el grupo de ingenieros\" es quien declara, no lo declarado: ninguno de los tres encaja como antecedente de \"lo\".",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g91zf0011mqpqqbdrad2m",
+      "questionId": "cmu3g91ze0010mqpqnxm744rc",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "La unidad temática exige que todas las oraciones de un párrafo desarrollen el mismo tema. Este párrafo trata sobre la HISTORIA DEL CAFÉ en América; la oración sobre el maíz introduce un cultivo distinto y rompe esa unidad.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g91zf0012mqpq5lonf8u5",
+      "questionId": "cmu3g91ze0010mqpqnxm744rc",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Tema del párrafo: la trayectoria del café en América (origen, llegada, cultivo, producción actual). 2) Revisar cada oración: origen (Etiopía), primeros cultivos (Caribe), producción actual (Brasil/Colombia) — las tres hablan de café. 3) La oración del maíz habla de OTRO cultivo, así que no pertenece al tema.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g91zf0013mqpq42w10oyl",
+      "questionId": "cmu3g91ze0010mqpqnxm744rc",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Las otras tres oraciones sí desarrollan la historia del café: su origen geográfico, dónde se cultivó primero en América y quién lo produce hoy. Solo la oración del maíz introduce un tema distinto al que el párrafo viene desarrollando.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g92x60016mqpqdkce3s67",
+      "questionId": "cmu3g92x60015mqpq8gcp8sni",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Un texto instructivo de este tipo tiene un orden lógico obligado por dependencias físicas: no se puede colocar el árbol sin que exista el hoyo, no se puede rellenar sin haber colocado el árbol, y regar antes de rellenar dejaría el hoyo vacío de tierra.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g92x60017mqpqawsnylqs",
+      "questionId": "cmu3g92x60015mqpq8gcp8sni",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Debe existir el hoyo antes de colocar el árbol (cavar → colocar). 2) El árbol debe estar colocado antes de rellenar (colocar → rellenar). 3) Solo tiene sentido regar después de rellenar, para que el agua asiente la tierra (rellenar → regar). El único orden que respeta las tres dependencias es cavar, colocar, rellenar, regar.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g92x60018mqpqrbpvvl2z",
+      "questionId": "cmu3g92x60015mqpq8gcp8sni",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "Colocar el árbol antes de cavar el hoyo es físicamente imposible. Regar antes de cavar o de rellenar dejaría el agua sin tierra que absorberla alrededor de la raíz. Rellenar con tierra antes de cavar el hoyo o de colocar el árbol tampoco tiene sentido físico: no hay nada que rellenar todavía.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9cbv0004lgevskibchpv",
+      "questionId": "cmu3g9cbv0003lgevee9bcuss",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "La idea principal de un texto informativo es la que engloba todo lo que se desarrolla en él. Este texto trata la migración de la monarca (el viaje, las generaciones, la orientación) y termina señalando las amenazas que la ponen en riesgo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9cbv0005lgev4qyztkoi",
+      "questionId": "cmu3g9cbv0003lgevee9bcuss",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El texto describe el viaje migratorio (distancia, generaciones). 2) Explica cómo se orientan. 3) Señala las amenazas (deforestación, pérdida de algodoncillo). Los tres bloques giran en torno a un mismo eje: el fenómeno migratorio y sus retos.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9cbv0006lgevpd7i8icg",
+      "questionId": "cmu3g9cbv0003lgevee9bcuss",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El texto no describe el ciclo de vida completo (huevo, larva, crisálida), solo menciona generaciones en el contexto del viaje. No compara velocidades de vuelo con otras especies. Y el algodoncillo se menciona como alimento/hábitat de la RUTA migratoria, no como parte de la reproducción de \"todas las especies\" de mariposas.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9d9r0009lgev0ky4meit",
+      "questionId": "cmu3g9d9r0008lgevxrbinqox",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Esta es una pregunta de detalle explícito: la respuesta está declarada literalmente en el texto (\"la travesía requiere hasta cuatro generaciones sucesivas\").",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9d9r000algev23wcihx8",
+      "questionId": "cmu3g9d9r0008lgevxrbinqox",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Localizar la oración que menciona el número de generaciones. 2) El texto dice, sin ambigüedad, \"hasta cuatro generaciones sucesivas\". 3) Esa es la respuesta, sin necesidad de inferir nada.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9d9r000blgevur87ap6t",
+      "questionId": "cmu3g9d9r0008lgevxrbinqox",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El texto NO dice que sea una sola generación (de hecho aclara que \"ninguna mariposa individual completa el recorrido\"), ni dos, ni más de ocho: el número explícito es cuatro.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9e7m000elgev0kdx8vqm",
+      "questionId": "cmu3g9e7m000dlgev1ibg5mwl",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "El nombre \"matusalén\" alude a la longevidad (por el personaje bíblico famoso por su larga vida). El texto explica que esa generación \"vive lo suficiente, casi ocho meses, para llegar a México, hibernar y emprender el regreso\" — es decir, vive más que las demás generaciones del ciclo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9e7m000flgevevaqc6ct",
+      "questionId": "cmu3g9e7m000dlgev1ibg5mwl",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El texto asocia \"matusalén\" con una duración de vida específica: casi ocho meses. 2) Aclara que esa duración extra es justo lo que le permite completar el trayecto a México y volver. 3) Por lo tanto, \"matusalén\" designa a la generación de mayor longevidad del ciclo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9e7m000glgevsdtsl50a",
+      "questionId": "cmu3g9e7m000dlgev1ibg5mwl",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El texto no dice que sea la primera generación de la primavera (al contrario, nace \"a finales del verano\"), ni que se quede todo el año en el norte (viaja a México), ni que se reproduzca con más frecuencia: el rasgo que el texto destaca es su longevidad, no su ritmo reproductivo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9f5g000jlgevb7jg1fam",
+      "questionId": "cmu3g9f5g000ilgevrq8mrvnw",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Pregunta de detalle explícito: la última oración del texto declara directamente las dos causas de la reducción de la población.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9f5g000klgevatwfqlke",
+      "questionId": "cmu3g9f5g000ilgevrq8mrvnw",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Localizar la oración final del texto. 2) Identifica dos causas explícitas: deforestación en los sitios de hibernación y pérdida de algodoncillo en la ruta. 3) Esas son, literalmente, las causas que el texto menciona.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9f5g000llgev9nzjllo3",
+      "questionId": "cmu3g9f5g000ilgevrq8mrvnw",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El texto no menciona vientos más veloces, ni competencia con otras mariposas por néctar, ni brújulas artificiales: esas tres opciones no aparecen en ninguna parte del pasaje.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9g36000olgevfabtcqut",
+      "questionId": "cmu3g9g36000nlgev95d99zi6",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "La idea principal de un fragmento narrativo es el eje sobre el que gira toda la escena. Aquí, Mariana sube a dibujar y, en el proceso, descubre una vista de la ciudad que no conocía: ese descubrimiento es el centro del fragmento.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9g36000plgev8j99g144",
+      "questionId": "cmu3g9g36000nlgev95d99zi6",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Acción inicial: Mariana sube a la azotea a dibujar. 2) Desarrollo: observa la ciudad desde una perspectiva nueva. 3) Cierre: se detiene solo para mirar, señal de que la vista la sorprendió. Los tres momentos giran en torno al descubrimiento de esa perspectiva.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9g36000qlgev33zu0b4h",
+      "questionId": "cmu3g9g36000nlgev95d99zi6",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El fragmento no incluye ningún diálogo con un amigo explicando una decisión, ninguna discusión con vecinos, ni ningún accidente en las escaleras: ninguno de esos hechos aparece en el texto.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9h1r000tlgev4f8xhw4z",
+      "questionId": "cmu3g9h1r000slgevwlxzocyd",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Pregunta de detalle explícito: el propio texto declara el propósito de Mariana en su segunda oración.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9h1s000ulgev7t75pyez",
+      "questionId": "cmu3g9h1r000slgevwlxzocyd",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) Localizar la oración donde se explica el motivo de la subida. 2) El texto dice: \"Había subido para terminar un dibujo que llevaba semanas posponiendo\". 3) Esa es la respuesta literal.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9h1s000vlgevcxds9fi9",
+      "questionId": "cmu3g9h1r000slgevwlxzocyd",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El texto menciona ropa tendida y antenas torcidas solo como parte del PAISAJE que Mariana observa desde arriba, no como actividades que ella realiza; y el cuaderno casi se le vuela, pero no lo pierde ni tiene que buscarlo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9hzk000ylgevoos02fbc",
+      "questionId": "cmu3g9hzk000xlgeviscoway5",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Esta es una pregunta de inferencia: el texto no dice explícitamente \"se quedó absorta\", pero todo el fragmento anterior (la vista nueva, el darse cuenta de que había olvidado cómo se veía la ciudad desde arriba) lleva a esa conclusión.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9hzk000zlgevg1gv5da5",
+      "questionId": "cmu3g9hzk000xlgeviscoway5",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) El fragmento previo describe el asombro de Mariana ante la vista. 2) La frase aclara que dejar el lápiz NO fue por cansancio (se descarta explícitamente esa razón). 3) La única explicación que encaja con el contexto es que se detuvo a contemplar, absorta, lo que estaba viendo.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9hzk0010lgevy2kjreny",
+      "questionId": "cmu3g9hzk000xlgeviscoway5",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "El texto no menciona que el viento le impidiera dibujar en ese momento (el viento se menciona solo al inicio); no dice que el dibujo estuviera terminado, sino \"a la mitad\"; y no se menciona ningún ruido que la distrajera del cuaderno.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9ixa0013lgevjybh20t9",
+      "questionId": "cmu3g9ixa0012lgevcvbf7h6e",
+      "layer": 1,
+      "title": "El principio o la regla aplicable",
+      "content": "Es una comparación (símil) que describe, de forma figurada, cómo se percibe el ruido de la calle desde la altura: no desaparece, pero llega \"apagado\", como si su volumen hubiera sido reducido deliberadamente.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9ixa0014lgev395pld7v",
+      "questionId": "cmu3g9ixa0012lgevcvbf7h6e",
+      "layer": 2,
+      "title": "Resolución paso a paso",
+      "content": "1) La oración completa dice \"el ruido del tráfico llegaba apagado, como si alguien hubiera bajado el volumen del mundo\". 2) \"Apagado\" ya indica que el sonido persiste, solo que más bajo. 3) La comparación refuerza esa idea de sonido amortiguado por la distancia/altura, no de silencio total ni de un fenómeno real.",
+      "latexContent": null
+    },
+    {
+      "id": "cmu3g9ixa0015lgev8ktwulvl",
+      "questionId": "cmu3g9ixa0012lgevcvbf7h6e",
+      "layer": 3,
+      "title": "Por qué no las otras opciones",
+      "content": "No hay ninguna mención a que Mariana perdiera el oído, a un apagón eléctrico, ni a que los coches dejaran de circular: el tráfico sigue ahí, solo que se percibe más bajo desde la azotea, que es justamente lo que la comparación figurada expresa.",
       "latexContent": null
     }
   ]

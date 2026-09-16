@@ -1,0 +1,443 @@
+[
+  {
+    "stem": "¿Cuál oración expresa correctamente una relación de CAUSA entre las dos ideas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los alumnos llegaron tarde al examen aunque el camión escolar se descompuso a medio camino.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Los alumnos llegaron tarde al examen; por lo tanto, el camión escolar se descompuso a medio camino.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Los alumnos llegaron tarde al examen porque el camión escolar se descompuso a medio camino.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Los alumnos llegaron tarde al examen; sin embargo, el camión escolar se descompuso a medio camino.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un conector causal (\"porque\") introduce el motivo de un hecho. Aquí el motivo del retraso es la descompostura del camión, así que la relación entre ambas ideas es de causa-efecto, y \"porque\" es el conector que la expresa."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Efecto: los alumnos llegaron tarde. 2) Causa: el camión se descompuso. 3) El conector que enlaza un efecto con su causa es \"porque\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"sin embargo\" expresa contraste, no causa, y aquí no hay ninguna oposición entre las ideas. \"aunque\" expresa concesión (algo ocurre a pesar de otra cosa), lo cual invertiría el sentido lógico. \"por lo tanto\" expresa consecuencia en el sentido opuesto: haría parecer que la descompostura fue CAUSADA por el retraso, cuando es al revés."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál oración usa el conector adecuado para expresar una relación de CONTRASTE (oposición) entre las dos ideas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El pronóstico anunciaba lluvia para todo el fin de semana, por lo tanto, el sábado amaneció completamente despejado.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El pronóstico anunciaba lluvia para todo el fin de semana, pero el sábado amaneció completamente despejado.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El pronóstico anunciaba lluvia para todo el fin de semana, porque el sábado amaneció completamente despejado.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El pronóstico anunciaba lluvia para todo el fin de semana, además, el sábado amaneció completamente despejado.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un conector adversativo (\"pero\") enlaza dos ideas que se oponen. Aquí el pronóstico anunciaba lluvia y en realidad el cielo estuvo despejado: son ideas contrarias, así que corresponde un conector de contraste."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Primera idea: se anunció lluvia. 2) Segunda idea: en realidad hizo sol. 3) Como ambas ideas se oponen, el conector correcto es \"pero\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"porque\" expresaría que el sol fue la CAUSA del pronóstico de lluvia, lo cual no tiene sentido lógico. \"por lo tanto\" expresaría que el sol fue la CONSECUENCIA del pronóstico, tampoco tiene sentido. \"además\" expresaría que ambas ideas se suman en el mismo sentido, cuando en realidad se contradicen."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál oración expresa correctamente una relación de CONSECUENCIA entre las dos ideas?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La planta llevaba tres semanas sin recibir agua, porque sus hojas se marchitaron por completo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La planta llevaba tres semanas sin recibir agua, por lo tanto, sus hojas se marchitaron por completo.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La planta llevaba tres semanas sin recibir agua, sin embargo, sus hojas se marchitaron por completo.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La planta llevaba tres semanas sin recibir agua, aunque sus hojas se marchitaron por completo.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un conector consecutivo (\"por lo tanto\") introduce el resultado de un hecho previo. Aquí la falta de agua es la causa, y las hojas marchitas son su consecuencia natural."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Causa: tres semanas sin agua. 2) Consecuencia: las hojas se marchitaron. 3) El conector que enlaza una causa con su consecuencia es \"por lo tanto\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"sin embargo\" señalaría una oposición que aquí no existe (la falta de agua y el marchitamiento no se contradicen, van en el mismo sentido). \"porque\" invertiría la causalidad, como si las hojas marchitas hubieran provocado la falta de agua. \"aunque\" expresaría que la planta se marchitó A PESAR de la falta de agua, lo contrario de lo que en realidad ocurrió."
+      }
+    ]
+  },
+  {
+    "stem": "Un párrafo desarrolla estas tres ideas: el reciclaje reduce la basura en los rellenos sanitarios, ahorra energía en la fabricación de productos nuevos y disminuye la extracción de materias primas. ¿Cuál oración funciona mejor como ORACIÓN TEMÁTICA (la idea principal que introduce el párrafo)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Fabricar productos nuevos siempre requiere más energía que reciclar materiales usados.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La extracción de materias primas ha aumentado de forma constante en las últimas décadas.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Los rellenos sanitarios de las grandes ciudades reciben toneladas de basura todos los días.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "El reciclaje ofrece beneficios ambientales que van más allá de la simple reducción de basura.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La oración temática debe ser lo bastante general para introducir y unificar TODAS las ideas que desarrolla el párrafo, no solo una de ellas. Aquí el párrafo trata tres beneficios distintos del reciclaje, así que la oración temática debe anunciarlos como un conjunto."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Identificar las tres ideas del párrafo: menos basura, ahorro de energía, menos extracción de materias primas. 2) Buscar la oración que las englobe a las tres sin limitarse a una sola. 3) \"El reciclaje ofrece beneficios ambientales...\" cubre las tres, mientras que las demás opciones solo tocan una."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La oración sobre los rellenos sanitarios solo cubre la primera idea (basura); la de fabricar productos nuevos solo cubre la segunda (energía); la de la extracción de materias primas solo cubre la tercera. Ninguna de las tres introduce el párrafo completo, así que ninguna funciona como oración temática."
+      }
+    ]
+  },
+  {
+    "stem": "Lee el fragmento: 'Añada una taza de harina cernida, dos huevos y una pizca de sal; bata la mezcla durante tres minutos antes de verterla en el molde engrasado.' ¿A qué tipo de texto pertenece?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Un texto narrativo, porque relata una sucesión de hechos vividos por un personaje.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Un texto instructivo, porque da indicaciones ordenadas para realizar un procedimiento.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Un texto descriptivo, porque detalla las características físicas de un platillo terminado.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Un texto argumentativo, porque defiende una postura sobre el uso de ingredientes.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Los textos instructivos dan indicaciones ordenadas, con verbos en modo imperativo o infinitivo, para que el lector realice un procedimiento paso a paso. El fragmento usa imperativos (\"Añada\", \"bata\") en una secuencia de acciones: es una receta, un texto instructivo típico."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Identificar los verbos: \"añada\", \"bata\" — modo imperativo. 2) Identificar la estructura: pasos en orden (\"primero... antes de...\"). 3) Esa combinación (imperativos + secuencia de pasos) define al texto instructivo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No es narrativo porque no hay personajes ni hechos sucediendo en el tiempo, solo instrucciones. No es argumentativo porque no defiende ninguna postura ni da razones para convencer. No es descriptivo porque no detalla características de un platillo ya terminado, sino los pasos para prepararlo."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál de las siguientes oraciones es adecuada para el registro FORMAL de una carta dirigida a una autoridad universitaria?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Te paso mi expediente para que lo revises cuando se te haga fácil, gracias.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Ahí te va mi expediente, échame la mano con eso cuando puedas, porfa.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Por medio de la presente, solicito a usted la revisión de mi expediente académico.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Oye, nada más te escribo para que le eches un ojo a mi expediente, va.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El registro formal usa fórmulas de cortesía establecidas (\"por medio de la presente\", \"solicito a usted\"), pronombres de respeto y ausencia de coloquialismos. El registro informal usa muletillas, contracciones y expresiones coloquiales propias del habla cotidiana entre conocidos."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Contexto: carta a una autoridad universitaria → exige registro formal. 2) Revisar cada opción: solo una usa fórmulas de cortesía y trato de \"usted\" sin coloquialismos. 3) Esa es la respuesta correcta."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las otras tres opciones usan expresiones propias del habla coloquial entre amigos (\"oye\", \"va\", \"échame la mano\", \"porfa\", \"se te haga fácil\"), impropias de una comunicación formal dirigida a una autoridad."
+      }
+    ]
+  },
+  {
+    "stem": "'Los ingenieros revisaron el puente durante tres días. Al final, lo declararon seguro para el tránsito pesado.' ¿A qué se refiere el pronombre 'lo' en la segunda oración?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A los tres días que duró la revisión.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Al puente que revisaron los ingenieros.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Al tránsito pesado que circula por la zona.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Al grupo de ingenieros que hizo la revisión.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un pronombre de complemento directo como \"lo\" sustituye a un sustantivo masculino singular mencionado antes (su antecedente), para evitar repetirlo. Aquí \"lo\" sustituye a \"el puente\", que es lo que fue declarado seguro."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Buscar en la oración anterior un sustantivo masculino singular que pueda ser \"declarado seguro\": \"el puente\". 2) Confirmar con la prueba de sustitución: \"declararon el puente seguro\" = \"lo declararon seguro\". 3) \"lo\" se refiere al puente."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"los tres días\" es plural, no puede sustituirse por \"lo\" (singular). \"el tránsito pesado\" no fue declarado seguro, es aquello PARA lo que el puente se declaró seguro. \"el grupo de ingenieros\" es quien declara, no lo declarado: ninguno de los tres encaja como antecedente de \"lo\"."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál oración ROMPE la unidad temática del siguiente párrafo? 'El café llegó a América procedente de Etiopía a través de las rutas comerciales árabes. (1) Los primeros cultivos americanos se establecieron en el Caribe durante el siglo XVIII. (2) El maíz es uno de los cultivos más antiguos domesticados en Mesoamérica. (3) Hoy, países como Brasil y Colombia concentran buena parte de la producción mundial.'",
+    "options": [
+      {
+        "id": "A",
+        "text": "La oración que dice que hoy, países como Brasil y Colombia concentran buena parte de la producción mundial.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La oración que dice que los primeros cultivos americanos se establecieron en el Caribe durante el siglo XVIII.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La oración que dice que el café llegó a América procedente de Etiopía a través de las rutas comerciales árabes.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La oración que dice que el maíz es uno de los cultivos más antiguos domesticados en Mesoamérica.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La unidad temática exige que todas las oraciones de un párrafo desarrollen el mismo tema. Este párrafo trata sobre la HISTORIA DEL CAFÉ en América; la oración sobre el maíz introduce un cultivo distinto y rompe esa unidad."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Tema del párrafo: la trayectoria del café en América (origen, llegada, cultivo, producción actual). 2) Revisar cada oración: origen (Etiopía), primeros cultivos (Caribe), producción actual (Brasil/Colombia) — las tres hablan de café. 3) La oración del maíz habla de OTRO cultivo, así que no pertenece al tema."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Las otras tres oraciones sí desarrollan la historia del café: su origen geográfico, dónde se cultivó primero en América y quién lo produce hoy. Solo la oración del maíz introduce un tema distinto al que el párrafo viene desarrollando."
+      }
+    ]
+  },
+  {
+    "stem": "Un texto instructivo para plantar un árbol incluye estos pasos desordenados: (1) Rellena el hoyo con tierra y compacta ligeramente. (2) Cava un hoyo del doble de ancho que el cepellón. (3) Riega abundantemente después de sembrar. (4) Coloca el árbol centrado dentro del hoyo. ¿Cuál es el ORDEN correcto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Regar, cavar el hoyo, colocar el árbol y, al final, rellenar con tierra.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Rellenar con tierra, colocar el árbol, cavar el hoyo y, al final, regar.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Cavar el hoyo, colocar el árbol, rellenar con tierra y, al final, regar.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Colocar el árbol, cavar el hoyo, regar y, al final, rellenar con tierra.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1,
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un texto instructivo de este tipo tiene un orden lógico obligado por dependencias físicas: no se puede colocar el árbol sin que exista el hoyo, no se puede rellenar sin haber colocado el árbol, y regar antes de rellenar dejaría el hoyo vacío de tierra."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Debe existir el hoyo antes de colocar el árbol (cavar → colocar). 2) El árbol debe estar colocado antes de rellenar (colocar → rellenar). 3) Solo tiene sentido regar después de rellenar, para que el agua asiente la tierra (rellenar → regar). El único orden que respeta las tres dependencias es cavar, colocar, rellenar, regar."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Colocar el árbol antes de cavar el hoyo es físicamente imposible. Regar antes de cavar o de rellenar dejaría el agua sin tierra que absorberla alrededor de la raíz. Rellenar con tierra antes de cavar el hoyo o de colocar el árbol tampoco tiene sentido físico: no hay nada que rellenar todavía."
+      }
+    ]
+  }
+]

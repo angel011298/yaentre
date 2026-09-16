@@ -1,0 +1,426 @@
+[
+  {
+    "stem": "¿Cuál es la idea principal del texto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Compara la velocidad de vuelo de la mariposa monarca con la de otras especies migratorias.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Explica el fenómeno migratorio de la mariposa monarca hacia México y los retos que enfrenta.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Describe el ciclo de vida completo de la mariposa monarca, desde huevo hasta adulto.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Explica el papel del algodoncillo en la reproducción de todas las especies de mariposas.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      3
+    ],
+    "passage": {
+      "ref": "g93-monarca",
+      "title": "La migración de la mariposa monarca",
+      "content": "Cada otoño, millones de mariposas monarca emprenden un viaje de más de cuatro mil kilómetros desde el sur de Canadá y el norte de Estados Unidos hasta los bosques de oyamel en Michoacán y el Estado de México. Ninguna mariposa individual completa el recorrido de ida y vuelta: la travesía requiere hasta cuatro generaciones sucesivas, y solo la llamada \"generación matusalén\" —la que nace a finales del verano— vive lo suficiente, casi ocho meses, para llegar a México, hibernar y emprender el regreso hacia el norte. Los científicos todavía no comprenden del todo cómo estas mariposas, que jamás han estado antes en los bosques mexicanos, logran orientarse hacia el mismo sitio exacto donde hibernaron sus antepasados; se sospecha que combinan una brújula solar interna con sensibilidad al campo magnético terrestre. La deforestación en los sitios de hibernación y la pérdida de algodoncillo —su única planta huésped— a lo largo de la ruta han reducido drásticamente la población en las últimas décadas.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La idea principal de un texto informativo es la que engloba todo lo que se desarrolla en él. Este texto trata la migración de la monarca (el viaje, las generaciones, la orientación) y termina señalando las amenazas que la ponen en riesgo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El texto describe el viaje migratorio (distancia, generaciones). 2) Explica cómo se orientan. 3) Señala las amenazas (deforestación, pérdida de algodoncillo). Los tres bloques giran en torno a un mismo eje: el fenómeno migratorio y sus retos."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El texto no describe el ciclo de vida completo (huevo, larva, crisálida), solo menciona generaciones en el contexto del viaje. No compara velocidades de vuelo con otras especies. Y el algodoncillo se menciona como alimento/hábitat de la RUTA migratoria, no como parte de la reproducción de \"todas las especies\" de mariposas."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuántas generaciones se requieren, según el texto, para completar el viaje de ida y vuelta?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Exactamente dos generaciones, una de ida y una de vuelta.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Hasta cuatro generaciones sucesivas.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Solo una generación, la \"matusalén\".",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Más de ocho generaciones a lo largo de un año.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      2
+    ],
+    "passage": {
+      "ref": "g93-monarca",
+      "title": "La migración de la mariposa monarca",
+      "content": "Cada otoño, millones de mariposas monarca emprenden un viaje de más de cuatro mil kilómetros desde el sur de Canadá y el norte de Estados Unidos hasta los bosques de oyamel en Michoacán y el Estado de México. Ninguna mariposa individual completa el recorrido de ida y vuelta: la travesía requiere hasta cuatro generaciones sucesivas, y solo la llamada \"generación matusalén\" —la que nace a finales del verano— vive lo suficiente, casi ocho meses, para llegar a México, hibernar y emprender el regreso hacia el norte. Los científicos todavía no comprenden del todo cómo estas mariposas, que jamás han estado antes en los bosques mexicanos, logran orientarse hacia el mismo sitio exacto donde hibernaron sus antepasados; se sospecha que combinan una brújula solar interna con sensibilidad al campo magnético terrestre. La deforestación en los sitios de hibernación y la pérdida de algodoncillo —su única planta huésped— a lo largo de la ruta han reducido drásticamente la población en las últimas décadas.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Esta es una pregunta de detalle explícito: la respuesta está declarada literalmente en el texto (\"la travesía requiere hasta cuatro generaciones sucesivas\")."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Localizar la oración que menciona el número de generaciones. 2) El texto dice, sin ambigüedad, \"hasta cuatro generaciones sucesivas\". 3) Esa es la respuesta, sin necesidad de inferir nada."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El texto NO dice que sea una sola generación (de hecho aclara que \"ninguna mariposa individual completa el recorrido\"), ni dos, ni más de ocho: el número explícito es cuatro."
+      }
+    ]
+  },
+  {
+    "stem": "En el texto, la expresión \"generación matusalén\" se refiere a...",
+    "options": [
+      {
+        "id": "A",
+        "text": "la primera generación que nace cada primavera en Canadá.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "la generación que vive más tiempo y por eso logra completar el viaje hasta México.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "la generación que se reproduce con mayor frecuencia que las otras.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "la generación que nunca migra y permanece todo el año en el norte.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      4
+    ],
+    "passage": {
+      "ref": "g93-monarca",
+      "title": "La migración de la mariposa monarca",
+      "content": "Cada otoño, millones de mariposas monarca emprenden un viaje de más de cuatro mil kilómetros desde el sur de Canadá y el norte de Estados Unidos hasta los bosques de oyamel en Michoacán y el Estado de México. Ninguna mariposa individual completa el recorrido de ida y vuelta: la travesía requiere hasta cuatro generaciones sucesivas, y solo la llamada \"generación matusalén\" —la que nace a finales del verano— vive lo suficiente, casi ocho meses, para llegar a México, hibernar y emprender el regreso hacia el norte. Los científicos todavía no comprenden del todo cómo estas mariposas, que jamás han estado antes en los bosques mexicanos, logran orientarse hacia el mismo sitio exacto donde hibernaron sus antepasados; se sospecha que combinan una brújula solar interna con sensibilidad al campo magnético terrestre. La deforestación en los sitios de hibernación y la pérdida de algodoncillo —su única planta huésped— a lo largo de la ruta han reducido drásticamente la población en las últimas décadas.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El nombre \"matusalén\" alude a la longevidad (por el personaje bíblico famoso por su larga vida). El texto explica que esa generación \"vive lo suficiente, casi ocho meses, para llegar a México, hibernar y emprender el regreso\" — es decir, vive más que las demás generaciones del ciclo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El texto asocia \"matusalén\" con una duración de vida específica: casi ocho meses. 2) Aclara que esa duración extra es justo lo que le permite completar el trayecto a México y volver. 3) Por lo tanto, \"matusalén\" designa a la generación de mayor longevidad del ciclo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El texto no dice que sea la primera generación de la primavera (al contrario, nace \"a finales del verano\"), ni que se quede todo el año en el norte (viaja a México), ni que se reproduzca con más frecuencia: el rasgo que el texto destaca es su longevidad, no su ritmo reproductivo."
+      }
+    ]
+  },
+  {
+    "stem": "De acuerdo con el texto, ¿qué ha causado la reducción de la población de mariposa monarca?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La competencia con otras especies de mariposas por el néctar de las flores.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El aumento en la velocidad de los vientos durante la temporada de otoño.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La deforestación de los sitios de hibernación y la pérdida de algodoncillo en la ruta.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "El uso de brújulas artificiales que confunden su orientación magnética natural.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      4
+    ],
+    "passage": {
+      "ref": "g93-monarca",
+      "title": "La migración de la mariposa monarca",
+      "content": "Cada otoño, millones de mariposas monarca emprenden un viaje de más de cuatro mil kilómetros desde el sur de Canadá y el norte de Estados Unidos hasta los bosques de oyamel en Michoacán y el Estado de México. Ninguna mariposa individual completa el recorrido de ida y vuelta: la travesía requiere hasta cuatro generaciones sucesivas, y solo la llamada \"generación matusalén\" —la que nace a finales del verano— vive lo suficiente, casi ocho meses, para llegar a México, hibernar y emprender el regreso hacia el norte. Los científicos todavía no comprenden del todo cómo estas mariposas, que jamás han estado antes en los bosques mexicanos, logran orientarse hacia el mismo sitio exacto donde hibernaron sus antepasados; se sospecha que combinan una brújula solar interna con sensibilidad al campo magnético terrestre. La deforestación en los sitios de hibernación y la pérdida de algodoncillo —su única planta huésped— a lo largo de la ruta han reducido drásticamente la población en las últimas décadas.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Pregunta de detalle explícito: la última oración del texto declara directamente las dos causas de la reducción de la población."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Localizar la oración final del texto. 2) Identifica dos causas explícitas: deforestación en los sitios de hibernación y pérdida de algodoncillo en la ruta. 3) Esas son, literalmente, las causas que el texto menciona."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El texto no menciona vientos más veloces, ni competencia con otras mariposas por néctar, ni brújulas artificiales: esas tres opciones no aparecen en ninguna parte del pasaje."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál es la idea principal de este fragmento?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Mariana descubre una perspectiva distinta de la ciudad al dibujar desde la azotea.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Mariana describe una discusión con sus vecinos sobre el uso de la azotea.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Mariana narra un accidente que sufrió mientras subía las escaleras del edificio.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Mariana explica a un amigo por qué decidió aprender a dibujar paisajes urbanos.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      3
+    ],
+    "passage": {
+      "ref": "g93-azotea",
+      "title": "La azotea",
+      "content": "Cuando Mariana subió por primera vez a la azotea del edificio, el viento casi le arrebata el cuaderno de las manos. Había subido para terminar un dibujo que llevaba semanas posponiendo, pero la ciudad se veía distinta desde allá arriba: los coches parecían insectos de colores deslizándose entre las calles, y el ruido del tráfico llegaba apagado, como si alguien hubiera bajado el volumen del mundo. Se sentó junto al tinaco, abrió el cuaderno sobre las rodillas y empezó a trazar el contorno de los edificios vecinos. A la mitad del dibujo se dio cuenta de algo: llevaba tanto tiempo mirando la ciudad desde la calle que había olvidado cómo se veía desde arriba, con los techos de lámina, las antenas torcidas y la ropa tendida meciéndose entre azotea y azotea. Guardó el lápiz un momento, no para descansar la mano, sino para quedarse un rato nada más mirando.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La idea principal de un fragmento narrativo es el eje sobre el que gira toda la escena. Aquí, Mariana sube a dibujar y, en el proceso, descubre una vista de la ciudad que no conocía: ese descubrimiento es el centro del fragmento."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Acción inicial: Mariana sube a la azotea a dibujar. 2) Desarrollo: observa la ciudad desde una perspectiva nueva. 3) Cierre: se detiene solo para mirar, señal de que la vista la sorprendió. Los tres momentos giran en torno al descubrimiento de esa perspectiva."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El fragmento no incluye ningún diálogo con un amigo explicando una decisión, ninguna discusión con vecinos, ni ningún accidente en las escaleras: ninguno de esos hechos aparece en el texto."
+      }
+    ]
+  },
+  {
+    "stem": "Según el fragmento, ¿qué estaba haciendo Mariana en la azotea?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tender ropa que había lavado esa misma mañana.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Terminar un dibujo que llevaba semanas posponiendo.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Buscar su cuaderno, que el viento le había arrebatado antes.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Reparar una antena que se había torcido con el viento.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      2
+    ],
+    "passage": {
+      "ref": "g93-azotea",
+      "title": "La azotea",
+      "content": "Cuando Mariana subió por primera vez a la azotea del edificio, el viento casi le arrebata el cuaderno de las manos. Había subido para terminar un dibujo que llevaba semanas posponiendo, pero la ciudad se veía distinta desde allá arriba: los coches parecían insectos de colores deslizándose entre las calles, y el ruido del tráfico llegaba apagado, como si alguien hubiera bajado el volumen del mundo. Se sentó junto al tinaco, abrió el cuaderno sobre las rodillas y empezó a trazar el contorno de los edificios vecinos. A la mitad del dibujo se dio cuenta de algo: llevaba tanto tiempo mirando la ciudad desde la calle que había olvidado cómo se veía desde arriba, con los techos de lámina, las antenas torcidas y la ropa tendida meciéndose entre azotea y azotea. Guardó el lápiz un momento, no para descansar la mano, sino para quedarse un rato nada más mirando.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Pregunta de detalle explícito: el propio texto declara el propósito de Mariana en su segunda oración."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Localizar la oración donde se explica el motivo de la subida. 2) El texto dice: \"Había subido para terminar un dibujo que llevaba semanas posponiendo\". 3) Esa es la respuesta literal."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El texto menciona ropa tendida y antenas torcidas solo como parte del PAISAJE que Mariana observa desde arriba, no como actividades que ella realiza; y el cuaderno casi se le vuela, pero no lo pierde ni tiene que buscarlo."
+      }
+    ]
+  },
+  {
+    "stem": "¿Por qué guardó el lápiz \"no para descansar la mano, sino para quedarse un rato nada más mirando\"?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Porque el viento le impedía seguir dibujando con precisión.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Porque quedó absorta contemplando la ciudad desde una perspectiva que no conocía.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Porque terminó el dibujo antes de lo que esperaba.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Porque escuchó un ruido que la distrajo del cuaderno.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      9
+    ],
+    "passage": {
+      "ref": "g93-azotea",
+      "title": "La azotea",
+      "content": "Cuando Mariana subió por primera vez a la azotea del edificio, el viento casi le arrebata el cuaderno de las manos. Había subido para terminar un dibujo que llevaba semanas posponiendo, pero la ciudad se veía distinta desde allá arriba: los coches parecían insectos de colores deslizándose entre las calles, y el ruido del tráfico llegaba apagado, como si alguien hubiera bajado el volumen del mundo. Se sentó junto al tinaco, abrió el cuaderno sobre las rodillas y empezó a trazar el contorno de los edificios vecinos. A la mitad del dibujo se dio cuenta de algo: llevaba tanto tiempo mirando la ciudad desde la calle que había olvidado cómo se veía desde arriba, con los techos de lámina, las antenas torcidas y la ropa tendida meciéndose entre azotea y azotea. Guardó el lápiz un momento, no para descansar la mano, sino para quedarse un rato nada más mirando.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Esta es una pregunta de inferencia: el texto no dice explícitamente \"se quedó absorta\", pero todo el fragmento anterior (la vista nueva, el darse cuenta de que había olvidado cómo se veía la ciudad desde arriba) lleva a esa conclusión."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) El fragmento previo describe el asombro de Mariana ante la vista. 2) La frase aclara que dejar el lápiz NO fue por cansancio (se descarta explícitamente esa razón). 3) La única explicación que encaja con el contexto es que se detuvo a contemplar, absorta, lo que estaba viendo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El texto no menciona que el viento le impidiera dibujar en ese momento (el viento se menciona solo al inicio); no dice que el dibujo estuviera terminado, sino \"a la mitad\"; y no se menciona ningún ruido que la distrajera del cuaderno."
+      }
+    ]
+  },
+  {
+    "stem": "En el fragmento, la frase \"como si alguien hubiera bajado el volumen del mundo\" sirve para...",
+    "options": [
+      {
+        "id": "A",
+        "text": "anunciar que la ciudad se había quedado sin electricidad esa tarde.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "explicar que Mariana había perdido parcialmente el oído por el viento.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "señalar que los coches habían dejado de circular por completo esa tarde.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "comparar la azotea con un lugar donde los sonidos de la calle llegan amortiguados.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [
+      4
+    ],
+    "passage": {
+      "ref": "g93-azotea",
+      "title": "La azotea",
+      "content": "Cuando Mariana subió por primera vez a la azotea del edificio, el viento casi le arrebata el cuaderno de las manos. Había subido para terminar un dibujo que llevaba semanas posponiendo, pero la ciudad se veía distinta desde allá arriba: los coches parecían insectos de colores deslizándose entre las calles, y el ruido del tráfico llegaba apagado, como si alguien hubiera bajado el volumen del mundo. Se sentó junto al tinaco, abrió el cuaderno sobre las rodillas y empezó a trazar el contorno de los edificios vecinos. A la mitad del dibujo se dio cuenta de algo: llevaba tanto tiempo mirando la ciudad desde la calle que había olvidado cómo se veía desde arriba, con los techos de lámina, las antenas torcidas y la ropa tendida meciéndose entre azotea y azotea. Guardó el lápiz un momento, no para descansar la mano, sino para quedarse un rato nada más mirando.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Es una comparación (símil) que describe, de forma figurada, cómo se percibe el ruido de la calle desde la altura: no desaparece, pero llega \"apagado\", como si su volumen hubiera sido reducido deliberadamente."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) La oración completa dice \"el ruido del tráfico llegaba apagado, como si alguien hubiera bajado el volumen del mundo\". 2) \"Apagado\" ya indica que el sonido persiste, solo que más bajo. 3) La comparación refuerza esa idea de sonido amortiguado por la distancia/altura, no de silencio total ni de un fenómeno real."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "No hay ninguna mención a que Mariana perdiera el oído, a un apagón eléctrico, ni a que los coches dejaran de circular: el tráfico sigue ahí, solo que se percibe más bajo desde la azotea, que es justamente lo que la comparación figurada expresa."
+      }
+    ]
+  }
+]

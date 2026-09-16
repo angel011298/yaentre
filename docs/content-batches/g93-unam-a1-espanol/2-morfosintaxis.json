@@ -1,0 +1,242 @@
+[
+  {
+    "stem": "\"Compré una computadora nueva y ___ instalé de inmediato.\" ¿Qué pronombre completa correctamente la oración, evitando repetir \"una computadora nueva\" y respetando su género y número?",
+    "options": [
+      {
+        "id": "A",
+        "text": "lo",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "los",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "les",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "la",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El pronombre de complemento directo debe concordar en género y número con el sustantivo al que sustituye. \"Una computadora nueva\" es femenino singular, así que el pronombre correcto es \"la\"."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Identificar el antecedente: \"una computadora nueva\" (femenino, singular). 2) El complemento directo femenino singular se sustituye con \"la\": \"...y la instalé de inmediato\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"lo\" es masculino singular (no concuerda en género); \"los\" es masculino plural (no concuerda en género ni número); \"les\" es pronombre de complemento INDIRECTO plural, no directo, así que ninguno de los tres respeta la concordancia ni la función que exige la oración."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál de las siguientes oraciones tiene concordancia correcta entre sujeto y verbo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los libro que compré la semana pasada llegaron esta mañana a mi casa.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Los libros que compré la semana pasada llegaron esta mañana a mi casa.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El libros que compré la semana pasada llegaron esta mañana a mi casa.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los libros que compré la semana pasada llegó esta mañana a mi casa.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      6
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El sujeto y el verbo deben concordar en número, y el artículo debe concordar en género y número con el sustantivo que acompaña. El sujeto de la oración es \"los libros\" (plural), así que el verbo debe ir en plural (\"llegaron\") y el artículo también en plural (\"los\")."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Sujeto: \"los libros\" (plural). 2) Verbo: debe ser \"llegaron\" (plural), no \"llegó\" (singular). 3) Artículo-sustantivo: \"los libros\" (ambos plural), no \"el libros\" ni \"los libro\" (mezcla de número)."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La segunda oración usa el verbo en singular (\"llegó\") con un sujeto plural; la tercera usa el artículo en singular (\"El\") con el sustantivo en plural (\"libros\"); la cuarta usa el sustantivo en singular (\"libro\") con el artículo en plural (\"Los\"). Las tres rompen alguna concordancia."
+      }
+    ]
+  },
+  {
+    "stem": "La palabra \"deshacer\" está formada por...",
+    "options": [
+      {
+        "id": "A",
+        "text": "un sufijo diminutivo (\"-hacer\") más el adjetivo \"des\".",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "un prefijo negativo (\"des-\") más el verbo \"hacer\".",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "una raíz (\"des-\") más un sufijo verbal (\"hacer\").",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "dos raíces distintas unidas sin ningún afijo.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      4
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un prefijo es un afijo que se antepone a una raíz o palabra base para modificar su significado. \"des-\" es un prefijo de sentido negativo o inverso (deshacer = invertir la acción de hacer), y \"hacer\" es la palabra base sobre la que actúa."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Identificar la palabra base: \"hacer\" (verbo con significado propio y funcional por sí solo). 2) Identificar el elemento antepuesto: \"des-\" (no tiene significado independiente, solo modifica el sentido de \"hacer\" a su inverso). 3) Clasificar: prefijo + palabra base."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"des-\" no es una raíz (no tiene significado léxico propio, como sí lo tiene \"hacer\") ni un sufijo diminutivo (los diminutivos son sufijos que se AÑADEN al final, como \"-ito\", nunca al inicio); y \"hacer\" no es un afijo, es la palabra base, por lo que \"dos raíces sin afijo\" tampoco describe la estructura real."
+      }
+    ]
+  },
+  {
+    "stem": "\"Espero que tú ___ a tiempo a la ceremonia.\" ¿Qué forma verbal completa correctamente la oración?",
+    "options": [
+      {
+        "id": "A",
+        "text": "llegas",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "llegarás",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "llegaste",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "llegues",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Los verbos que expresan deseo, duda o esperanza (\"espero que...\") exigen que el verbo de la cláusula subordinada vaya en modo subjuntivo, no en indicativo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) \"Espero que\" introduce una cláusula subordinada de deseo. 2) Ese tipo de cláusula exige subjuntivo presente. 3) La forma de subjuntivo presente de \"llegar\" para \"tú\" es \"llegues\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"llegas\" es indicativo presente, \"llegarás\" es indicativo futuro y \"llegaste\" es indicativo pretérito: las tres son formas del modo indicativo, que no puede usarse después de un verbo de deseo como \"espero que\"."
+      }
+    ]
+  },
+  {
+    "stem": "\"La profesora entregó los exámenes corregidos a los alumnos.\" ¿Cuál es el COMPLEMENTO DIRECTO de esta oración?",
+    "options": [
+      {
+        "id": "A",
+        "text": "la profesora",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "corregidos",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "a los alumnos",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "los exámenes corregidos",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      5
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El complemento directo es lo que recibe directamente la acción del verbo y puede sustituirse por \"lo/la/los/las\". Aquí el verbo es \"entregó\", y lo que se entrega es \"los exámenes corregidos\"."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Verbo: \"entregó\". 2) Pregunta clave: ¿qué entregó la profesora? → \"los exámenes corregidos\". 3) Prueba de sustitución: \"La profesora LOS entregó a los alumnos\" — el pronombre \"los\" confirma que ese es el complemento directo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"la profesora\" es el sujeto, quien realiza la acción, no quien la recibe. \"a los alumnos\" responde a \"¿a quién?\" y lleva la preposición \"a\": es complemento indirecto. \"corregidos\" es solo un adjetivo que describe a \"exámenes\", no el complemento completo."
+      }
+    ]
+  }
+]

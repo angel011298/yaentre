@@ -1,0 +1,232 @@
+[
+  {
+    "stem": "Miguel de Cervantes publicó en 1605 la primera parte de una novela que suele considerarse fundadora de la novela moderna occidental. ¿Cuál es esa obra?",
+    "options": [
+      {
+        "id": "A",
+        "text": "El Lazarillo de Tormes, anónimo",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Don Quijote de la Mancha",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Las Novelas ejemplares, de 1613",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La Celestina, de Fernando de Rojas",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Don Quijote de la Mancha (1605, con segunda parte en 1615) es la obra de Cervantes reconocida universalmente como fundadora de la novela moderna, por su complejidad narrativa y la profundidad psicológica de sus personajes."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Autor y año mencionados: Cervantes, 1605. 2) Esos dos datos identifican de forma única la primera parte de Don Quijote entre las obras del propio Cervantes y de la literatura española."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La Celestina es de Fernando de Rojas, un siglo antes (finales del XV), no de Cervantes. El Lazarillo de Tormes es anónimo y anterior (mediados del XVI), de la tradición picaresca. Las Novelas ejemplares sí son de Cervantes, pero son relatos breves publicados en 1613, no la novela de 1605 descrita en el enunciado."
+      }
+    ]
+  },
+  {
+    "stem": "Sor Juana Inés de la Cruz, escritora novohispana del Barroco del siglo XVII, es reconocida sobre todo por su defensa del derecho de las mujeres al conocimiento, expresada en poemas como...",
+    "options": [
+      {
+        "id": "A",
+        "text": "los sonetos amorosos reunidos bajo el título \"Rimas\".",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "el poema \"Canto a mí mismo\", de tono autobiográfico.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "la oda \"A la disciplina\", escrita en su etapa como estudiante.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "las redondillas que comienzan \"Hombres necios que acusáis\".",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "\"Hombres necios que acusáis\" es la redondilla más célebre de Sor Juana Inés de la Cruz: cuestiona la doble moral de los hombres que reprochan a las mujeres conductas que ellos mismos provocan, y es su texto más asociado a la defensa del intelecto femenino."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Autora mencionada: Sor Juana Inés de la Cruz. 2) Rasgo descrito: defensa del derecho de las mujeres al conocimiento. 3) La obra que corresponde de forma inconfundible a ese rasgo es \"Hombres necios que acusáis\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"Rimas\" es la obra del poeta español Gustavo Adolfo Bécquer, del siglo XIX. \"Canto a mí mismo\" es del estadounidense Walt Whitman. \"A la disciplina\" es un título inventado que no corresponde a ninguna obra real de Sor Juana."
+      }
+    ]
+  },
+  {
+    "stem": "El poeta nicaragüense Rubén Darío es considerado el fundador del movimiento literario hispanoamericano conocido como Modernismo, iniciado formalmente con la publicación de su libro...",
+    "options": [
+      {
+        "id": "A",
+        "text": "\"Veinte poemas de amor\", en 1924.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "\"Azul...\", en 1888.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "\"Cien años de soledad\", en 1967.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "\"Platero y yo\", en 1914.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "\"Azul...\" (1888) es el libro de cuentos y poemas de Rubén Darío que renovó el lenguaje literario en español con influencias del simbolismo y el parnasianismo franceses, y que la crítica señala como el punto de arranque formal del Modernismo hispanoamericano."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Autor: Rubén Darío. 2) Rasgo: obra fundadora del Modernismo. 3) El título y año que corresponden de forma única a ese hito son \"Azul...\", 1888."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"Cien años de soledad\" (1967) es de Gabriel García Márquez, del realismo mágico, ocho décadas después. \"Platero y yo\" (1914) es del español Juan Ramón Jiménez. \"Veinte poemas de amor\" (1924) es del chileno Pablo Neruda. Ninguna de las tres funda el Modernismo ni es de Rubén Darío."
+      }
+    ]
+  },
+  {
+    "stem": "Federico García Lorca perteneció a la Generación del 27 y combinó en su obra la tradición popular española con la vanguardia; su libro de poemas más conocido, que fusiona el romance tradicional con imágenes surrealistas, es...",
+    "options": [
+      {
+        "id": "A",
+        "text": "las Rimas y leyendas.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "el Romancero gitano.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "las Soledades.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "el Cantar de Mio Cid.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El Romancero gitano (1928) es el libro donde García Lorca retoma la forma tradicional del romance (verso octosílabo, rima asonante) para construir imágenes de vanguardia sobre el mundo gitano andaluz, mezclando lo popular con lo culto."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Autor: García Lorca. 2) Rasgo: fusiona el romance tradicional con imágenes surrealistas/vanguardistas. 3) El título que corresponde de forma única a esa fusión es el Romancero gitano."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El Cantar de Mio Cid es medieval y anónimo, sin ninguna vanguardia. Las Soledades son del poeta barroco Luis de Góngora (siglo XVII). Las Rimas y leyendas son del romántico Gustavo Adolfo Bécquer (siglo XIX). Ninguna es de García Lorca ni pertenece a la Generación del 27."
+      }
+    ]
+  },
+  {
+    "stem": "Gabriel García Márquez, autor colombiano ganador del Premio Nobel de Literatura, es el máximo exponente del realismo mágico gracias a su novela...",
+    "options": [
+      {
+        "id": "A",
+        "text": "\"La casa de los espíritus\", publicada en 1982.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "\"Rayuela\", publicada en 1963.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "\"Cien años de soledad\", publicada en 1967.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "\"Pedro Páramo\", publicada en 1955.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "\"Cien años de soledad\" (1967) narra la historia de la familia Buendía en el pueblo imaginario de Macondo, mezclando hechos cotidianos con elementos fantásticos narrados con total naturalidad: es la obra que consolidó a García Márquez como máximo referente del realismo mágico."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Autor: Gabriel García Márquez. 2) Rasgo: máximo exponente del realismo mágico. 3) El título y año que corresponden de forma única son \"Cien años de soledad\", 1967."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"La casa de los espíritus\" (1982) es de la chilena Isabel Allende. \"Pedro Páramo\" (1955) es del mexicano Juan Rulfo, antecedente del realismo mágico pero no de García Márquez. \"Rayuela\" (1963) es del argentino Julio Cortázar. Ninguna es la novela de García Márquez descrita."
+      }
+    ]
+  }
+]

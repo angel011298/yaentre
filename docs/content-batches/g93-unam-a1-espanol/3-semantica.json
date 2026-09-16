@@ -1,0 +1,146 @@
+[
+  {
+    "stem": "¿Cuál palabra es ANTÓNIMO de \"escaso\"?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Abundante",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Moderado",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Limitado",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Reducido",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      3
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un antónimo es una palabra de significado opuesto. \"Escaso\" significa que hay poca cantidad de algo; su opuesto describe que hay mucha cantidad."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Significado de \"escaso\": insuficiente, poco. 2) Buscar el término que expresa justo lo contrario: mucha cantidad, suficiente y de sobra → \"abundante\"."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"Reducido\", \"limitado\" y \"moderado\" no son opuestos de \"escaso\": los tres describen igualmente poca o mediana cantidad, así que son sinónimos o cercanos a \"escaso\", no su antónimo."
+      }
+    ]
+  },
+  {
+    "stem": "Completa la analogía: MÉDICO es a HOSPITAL como MAESTRO es a ____.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Escuela",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Diploma",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Pizarrón",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Alumno",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      1
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una analogía verbal exige encontrar la MISMA relación entre el segundo par que la que existe entre el primero. Entre \"médico\" y \"hospital\" la relación es \"profesional : lugar donde ejerce su profesión\"."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Relación del primer par: el médico ejerce su profesión en el hospital (persona → lugar de trabajo). 2) Aplicar la misma relación al maestro: el lugar donde el maestro ejerce su profesión es la escuela."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "\"pizarrón\" es una herramienta del maestro, no su lugar de trabajo (relación persona→herramienta, distinta a la del par original); \"alumno\" es una persona con quien interactúa, no un lugar; \"diploma\" es un documento, no un lugar. Ninguno reproduce la relación persona→lugar de trabajo."
+      }
+    ]
+  },
+  {
+    "stem": "En la oración \"Ese hombre tiene un corazón de piedra\", la palabra \"piedra\" se usa de forma...",
+    "options": [
+      {
+        "id": "A",
+        "text": "denotativa, porque describe con precisión el material del que está hecho el corazón.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "literal, porque el corazón humano puede estar hecho de distintos minerales.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "connotativa, pues alude a la frialdad emocional, no al material del corazón.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "técnica, porque pertenece al vocabulario especializado de la geología.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [
+      2
+    ],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La denotación es el significado literal y objetivo de una palabra; la connotación es un significado adicional, subjetivo o figurado que se le atribuye en un contexto. \"Corazón de piedra\" es una metáfora: no describe un material, sino una cualidad emocional (dureza, falta de compasión)."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "1) Significado literal (denotativo) de \"piedra\": mineral sólido. 2) En la oración, \"piedra\" no se aplica literalmente al corazón (un órgano no puede ser mineral). 3) El sentido real que transmite es figurado: frialdad, insensibilidad. Por lo tanto, el uso es connotativo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La lectura \"denotativa\" y la \"literal\" asumen, de forma absurda, que el corazón está hecho físicamente de piedra; la lectura \"técnica\" confunde el uso figurado con vocabulario especializado de geología, que no tiene relación con el sentido emocional que transmite la frase."
+      }
+    ]
+  }
+]
