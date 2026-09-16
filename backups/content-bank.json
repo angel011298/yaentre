@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-16T03:03:29.430Z",
+    "exportedAt": "2026-09-16T03:12:23.783Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -117379,7 +117379,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117387,7 +117387,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El texto recorre el viaje migratorio (4 000 km, Canada/EUA -> oyamel de Michoacan y Edomex), el relevo generacional que lo hace posible, el enigma de la orientacion y cierra con deforestacion y perdida de algodoncillo. La unica opcion que abarca el conjunto es la migracion hacia Mexico mas sus amenazas. Descartadas: no se compara velocidad con otras especies (A); no se describe el ciclo huevo-adulto sino generaciones sucesivas del trayecto (B); el algodoncillo se menciona como planta huesped UNICA de la monarca, no de todas las mariposas (C).",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-16T03:09:00.411Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117395,7 +117415,7 @@
         "$d": "2026-09-16T01:56:28.460Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:50:06.388Z"
+        "$d": "2026-09-16T03:09:00.415Z"
       }
     },
     {
@@ -117503,7 +117523,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117511,7 +117531,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El texto define la expresion en aposicion: 'solo la llamada generacion matusalen -la que nace a finales del verano- vive lo suficiente, casi ocho meses, para llegar a Mexico, hibernar y emprender el regreso'. Es decir, la mas longeva y la unica que alcanza Mexico. Descartadas: no se habla de frecuencia reproductiva (A); nace a finales del verano, no en primavera (C); si migra, es justamente la que llega (D).",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-16T03:09:01.601Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117519,7 +117559,7 @@
         "$d": "2026-09-16T01:56:30.898Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:50:07.502Z"
+        "$d": "2026-09-16T03:09:01.603Z"
       }
     },
     {
@@ -117555,7 +117595,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117563,7 +117603,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Recuperacion literal de la ultima oracion: 'La deforestacion en los sitios de hibernacion y la perdida de algodoncillo ... han reducido drasticamente la poblacion en las ultimas decadas'. Las otras tres (vientos, competencia por nectar, brujulas artificiales) no aparecen en el texto; la mencion de brujula es a la brujula SOLAR INTERNA de la mariposa, no a un artefacto.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T03:09:02.933Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117571,7 +117631,7 @@
         "$d": "2026-09-16T01:56:32.116Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:50:08.596Z"
+        "$d": "2026-09-16T03:09:02.935Z"
       }
     },
     {
@@ -117607,7 +117667,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117615,7 +117675,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El fragmento es narrativo: Mariana sube a dibujar y, a la mitad del dibujo, 'se dio cuenta' de que habia olvidado como se veia la ciudad desde arriba; el cierre refuerza el descubrimiento (se queda mirando). Eso es un cambio de perspectiva descubierto mientras dibuja. Descartadas: no hay discusion con vecinos (A); no hay interlocutor ni explicacion de por que aprendio a dibujar (B); no hay accidente, el viento solo casi le arrebata el cuaderno (C).",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-16T03:09:04.225Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117623,7 +117703,7 @@
         "$d": "2026-09-16T01:56:33.331Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:50:09.694Z"
+        "$d": "2026-09-16T03:09:04.227Z"
       }
     },
     {
@@ -117731,7 +117811,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117739,7 +117819,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La oracion niega explicitamente el motivo fisico ('no para descansar la mano') y lo sustituye por la contemplacion ('sino para quedarse un rato nada mas mirando'), justo despues de la revelacion sobre la vista desde arriba. Descartadas: seguia a la mitad del dibujo, no lo termino (A); el viento aparece solo al subir y no se dice que estorbara el trazo (C); no hay ningun ruido que la distraiga, al contrario, el trafico llegaba apagado (D).",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-16T03:09:05.476Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117747,7 +117847,7 @@
         "$d": "2026-09-16T01:56:35.792Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:50:10.793Z"
+        "$d": "2026-09-16T03:09:05.478Z"
       }
     },
     {
@@ -117783,7 +117883,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117791,7 +117891,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Es un simil que glosa la clausula inmediatamente anterior: 'el ruido del trafico llegaba apagado, como si alguien hubiera bajado el volumen del mundo'. Su funcion es transmitir sonido amortiguado por la altura. Descartadas: los coches SI circulaban ('deslizandose entre las calles'), no se detuvieron (A); no se sugiere perdida auditiva (B); no se menciona apagon alguno (C).",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-16T03:09:06.794Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117799,7 +117919,7 @@
         "$d": "2026-09-16T01:56:37.006Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:50:11.893Z"
+        "$d": "2026-09-16T03:09:06.797Z"
       }
     }
   ],

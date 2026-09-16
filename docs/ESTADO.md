@@ -1,6 +1,13 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-15 · Última fase ejecutada: **G96 (COMPLETADA — verificación ciega REAL de los **6 reactivos de Comprensión lectora** que G95 corrigió editorialmente y devolvió a la cola: **6/6 auto-aprobados (100%)**, confianza media **0.967**, mínima 0.95, **0 discrepancias y 0 `problems`**. Con esto el banco **vuelve a cruzar la meta de 1 500: 1 502 servibles, excedente +2**, y la cola de verificación adversarial queda de nuevo en **cero**. **① Aislamiento respetado y verificado, no asumido**: único insumo el lote ciego de `pnpm content:blind-batch --all`, que devolvió **exactamente 6 pendientes** (la condición de parada que pedía el encargo — más de 6 habría significado contenido ajeno mezclado). El archivo se inspeccionó en crudo antes de resolver: el conjunto COMPLETO de claves es `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options{label, text, imageUrl}` — **sin `isCorrect` ni `explanations`** — y los **2 pasajes llegaron ÍNTEGROS** (mariposa monarca 1 003 car.; Mariana en la azotea 863 car.), sin los cuales los 6 no son resolubles. No se leyó el commit de G95, ni `scripts/g95/fix-reading-comp.ts`, ni el lote de G93. En ningún momento se vio una respuesta correcta antes de responderla. **② La longitud se descartó explícitamente como heurística** — es justo la señal que G95 corrigió, así que usarla habría hecho circular la verificación. Los 6 se resolvieron contra el pasaje, cada uno con descarte nominal de los 3 distractores: 3 de recuperación literal anclados en cita del texto («la deforestación … y la pérdida de algodoncillo», la aposición que define «generación matusalén»), 1 de idea principal por cobertura del conjunto frente a 3 opciones que cubren solo un detalle o lo desbordan (el algodoncillo como huésped **único de la monarca**, no de todas las mariposas), y 2 de inferencia resueltos por un dato del pasaje que el conocimiento general no puede aportar: el distractor «terminó el dibujo antes de lo que esperaba» queda descartado porque el texto sitúa a Mariana **«a la mitad del dibujo»**, y el símil «como si alguien hubiera bajado el volumen del mundo» se lee contra la cláusula que gloso —«el ruido del tráfico llegaba apagado»— lo que descarta «los coches habían dejado de circular» (el texto los muestra «deslizándose entre las calles»). **③ 🎯 El sesgo quedó desmontado, medido dos veces y por separado.** (a) Desde el LOTE CIEGO, con la clave ya confirmada por la resolución (las longitudes son invariantes bajo el mezclado): la clave es la opción **estrictamente más larga en 0 de 6 (0.0%)** —contra **6 de 8 (75.0%), p=0.42%, antes de la corrección**—, rango medio de la clave 2.00 sobre 4, y el **rango de longitudes de las 4 opciones se cerró a 5-10 caracteres** por reactivo, que es el efecto buscado: no queda margen para que «la más larga» signifique algo. (b) Sonda nueva `scripts/g96/length-recheck.ts`, que mide **POR EFECTO contra la base** (no contra el lote) y **por pool**, con la misma aritmética que G95 (`binomialUpperTail` contra azar 25%, empates NO cuentan — regla de G79, advertencia <5%, rechazo <1%): el subgrupo «Comprensión lectora» de `UNAM:ESPANOL` queda en **2/11 = 18.2%, p=80.29% → ✅ SANO**, y de paso el de `IPN:ESPANOL` en **0/20 = 0.0% → ✅ SANO**. La sonda sale con código 1 si algún pool vuelve a caer bajo el umbral de advertencia. **④ Las 4 sondas de contenido corridas DESPUÉS de la resolución**: `content:guard` **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**, las 4 aserciones en verde contra recuento SQL independiente y las 7 áreas al **100% del peso** de su examen; `content:coverage` **1 502 servibles · 0 pendientes de resolución · 1 503 en banco**, auto-aprobación global **99.7%**; `content:margin` Área 1 con **427 propios y margen de Early Bird `+127`** sobre el mínimo de 300, y «Brecha contra la meta de 1 500: **−2**»; `content:pools` **VOLUMEN cumplido (+2)** frente a la meta EFECTIVA de G26 en **1 116/1 222, brecha 106** repartida en 6 pools (IPN Física −41, `IPN:MATEMATICAS` −28, `IPN:QUIMICA` −19, IPN Biología −12, UNAM Historia de México −4, UNAM Matemáticas −2) con 386 de excedente NO transferible en 17 pools — dos preguntas distintas (cuánto hay / dónde está), y esa brecha no bloquea nada. **⑤ Acumulado definitivo del banco: 1 502 servibles de 1 507 filas** (1 496 → +6), 5 con veredicto sin publicar (4 discrepancias históricas de F3 + 1 retirado de G40), **0 en cola**. `pnpm backup:export` corrido en el mismo commit (7 227 filas, 4.91 MB). `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.** **Queda abierto, sin tocar** (fuera del alcance, heredado de G95 ③): los **12 lotes históricos** con sesgo de subgrupo que encontró el barrido retrospectivo, de los cuales **dos son posteriores a G77** y el chequeo de lote completo jamás habría advertido — Historia Universal «Siglo XXI» 83.3%/p=0.46% y Artes «Artes visuales prehispánicas» 75.0%/p=0.42%.)**. Modelo real `claude-opus-5`. Ver §G96 abajo.
+
+<details><summary>Historial: G95 (2026-09-15)</summary>
+
 Última actualización: 2026-09-15 · Última fase ejecutada: **G95 (COMPLETADA — el chequeo `LENGTH_BIAS` de G77 medía el PROMEDIO del lote y G94 encontró que eso puede esconder un sesgo real CONCENTRADO: Comprensión lectora del lote de Español (G93, pool `UNAM:ESPANOL`) salió 6/8=75% (P(≥6|azar 25%)=0.42%) mientras el lote completo promediaba exactamente 40.0% — bajo `LENGTH_SHARE_WARN_MAX` comparado con `>` estricto, así que no disparó ni la advertencia. Esta fase cierra el hueco. **① `lot-validation.ts` mide `LENGTH_BIAS_SUBGROUP`** por TEMA (`LotItem.topic`, nuevo campo opcional poblado por `topicLabelFromFilename` desde el nombre de archivo cuando el lote llega por `--lot-dir`/`--dir`, convención de un archivo por tema) y por FORMATO (siempre disponible, dos particiones independientes del lote). Como un subgrupo puede tener 3-9 reactivos —muy por debajo del mínimo de 20 del lote completo— compara contra un % fijo no sirve: se usa la probabilidad EXACTA bajo azar puro, `binomialUpperTail(k, n, 0.25)` (cola superior binomial calculada término a término, sin factoriales) — reproduce al decimal los p-valores que G94 calculó a mano (6/8→0.42%, 2/5→36.7%, 1/3→57.8%, 3/9→39.9%, 16/40→2.62%). Dos bandas (advertencia <5%, rechazo <1%) elegidas para separar con margen los 6 temas sanos de G93/G94 (36.7%-100%) del problema real (0.42%); mínimo `LENGTH_BIAS_SUBGROUP_MIN_SIZE=4` porque por debajo ni el resultado más extremo posible (100%) alcanza el nivel de rechazo — el "margen para muestra chica" que pedía la tarea sale gratis de la aritmética binomial, no hace falta una tabla de umbrales por tamaño. **② El umbral de LOTE completo pasa de `>` a `>=`** — un lote que aterriza EXACTAMENTE en 40.0% (el caso real de G93) ahora sí advierte. **③ Barrido retrospectivo** (`scripts/g95/historical-sweep.ts`, reconstruye lotes agrupando `Question` por materia y hueco de tiempo ≥1h desde `backups/content-bank.json`, mismo método que G77 usó a mano): de 38 lotes históricos reconstruidos (n≥8), **12 tienen sesgo de subgrupo bajo la regla nueva** — la mayoría de lotes muy anteriores a G77 (nunca pasaron por ningún chequeo de longitud) y **dos posteriores a G77 donde el lote completo JAMÁS habría advertido** (Historia Universal "Siglo XXI" 83.3%/p=0.46%; Artes "Artes visuales prehispánicas" 75.0%/p=0.42%) — reportados SIN corregir, fuera del alcance de esta fase. **④ Solo se corrigió Comprensión lectora** (el caso que motivó la fase): los 6 reactivos de G93 con la clave estrictamente más larga se editaron para acortar la CLAVE a su núcleo (nunca alargar distractores, regla de G77) hasta quedar dentro del rango de los 3 distractores — 0/8 "más larga" y 0/8 "más corta" tras el ajuste — y volvieron a `isVerified=false` + `verification=NULL` (re-encolados para verificación ciega real, no auto-aprobados por esta sesión). **⑤ 11 tests nuevos** (`tests/scripts/lot-validation.test.ts`, 29→40), con ROJO demostrado en un caso sintético que reproduce el reparto real de G93/G94: el chequeo de LOTE completo llega solo a `warn` (40.0%, bajo el 45% de rechazo) mientras `LENGTH_BIAS_SUBGROUP` sí `reject`-ea el mismo lote por Comprensión lectora — la prueba de que el subgrupo atrapa lo que el promedio no. Banco temporalmente **1 496 servibles** (1 502 → −6, los 6 reactivos re-encolados) de 1 507 filas, brecha contra la meta de 1 500 = 4 (se resuelve con la próxima verificación ciega). `pnpm backup:export` corrido en el mismo commit. `typecheck`/`lint`/`test:unit` en verde, dos corridas. **No se tocó `prisma/schema.prisma`.**)**. Modelo real `claude-opus-5`. Ver §G95 abajo.
+
+</details>
+
 
 <details><summary>Historial: G94 (2026-09-15)</summary>
 
@@ -481,6 +488,111 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G96 — Verificación ciega: los 6 reactivos de Comprensión lectora reparados por G95 (2026-09-15)
+
+**Modelo real:** `claude-opus-5` · **Estado:** COMPLETADA
+
+G95 corrigió editorialmente 6 reactivos de Comprensión lectora del pool `UNAM:ESPANOL`
+(lote de G93) cuya clave era la opción estrictamente más larga con una concentración
+prácticamente imposible por azar (**6/8 = 75.0 %, P(≥6 | azar 25 %) = 0.42 %**), y —en vez de
+darlos por buenos— los devolvió a `isVerified=false` con `verification=NULL` para que
+pasaran por verificación ciega **real**. Esta fase es esa verificación.
+
+### 1. Aislamiento: comprobado, no asumido
+
+| Control | Resultado |
+|---|---|
+| Único insumo | `pnpm content:blind-batch --all --limit 100` |
+| Pendientes devueltos | **exactamente 6** (condición de parada del encargo: >6 habría indicado contenido ajeno mezclado) |
+| Claves presentes en el archivo | `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options{label, text, imageUrl}` |
+| `isCorrect` / `explanations` | **ausentes** (garantía estructural de `buildBlindItem`) |
+| Pasajes | **íntegros**: monarca 1 003 car. · Mariana en la azotea 863 car. — sin ellos los 6 no son resolubles |
+| No leído | el commit de G95, `scripts/g95/fix-reading-comp.ts`, el lote JSON de G93 |
+
+En ningún momento se vio una respuesta correcta antes de responderla.
+
+### 2. Resolución, con la longitud descartada como pista
+
+La instrucción explícita era **no** usar «la opción más larga» como heurística: es justo la
+señal que G95 corrigió, y apoyarse en ella habría hecho circular la verificación. Los 6 se
+resolvieron contra el pasaje, con descarte nominal de los 3 distractores en cada uno.
+
+| # | Ítem | Tipo | Cómo se resolvió | Conf. |
+|---|---|---|---|---|
+| 1 | Idea principal (monarca) | Global | La única opción que cubre el conjunto (viaje + relevo generacional + orientación + amenazas); el distractor del algodoncillo lo desborda a «todas las especies» cuando el texto lo da como huésped **único de la monarca** | 0.97 |
+| 2 | «generación matusalén» | Léxico en contexto | El texto la define en aposición: «la que nace a finales del verano … vive lo suficiente … para llegar a México»; descarta «primera generación de primavera» y «la que nunca migra» | 0.96 |
+| 3 | Causa de la caída poblacional | Literal | Recuperación de la última oración; la «brújula» del texto es la **solar interna** de la mariposa, no un artefacto | 0.99 |
+| 4 | Idea principal (Mariana) | Global | El fragmento es narrativo y gira sobre «se dio cuenta»: descubrimiento de una perspectiva mientras dibuja; no hay interlocutor, ni discusión, ni accidente | 0.97 |
+| 5 | Por qué guarda el lápiz | Inferencia | La oración niega el motivo físico y lo sustituye por la contemplación; **el distractor «terminó el dibujo» se cae solo con el dato del pasaje** («a la mitad del dibujo»), que el conocimiento general no aporta | 0.95 |
+| 6 | «bajado el volumen del mundo» | Función retórica | Símil que glosa «el ruido del tráfico llegaba apagado»; descarta «los coches dejaron de circular», pues el texto los muestra «deslizándose entre las calles» | 0.96 |
+
+`pnpm content:resolve --file scripts/content-exports/g96-answers.json`:
+
+```
+✔ cmu3g9cbv0003lgevee9bcuss   ✔ cmu3g9e7m000dlgev1ibg5mwl   ✔ cmu3g9f5g000ilgevrq8mrvnw
+✔ cmu3g9g36000nlgev95d99zi6   ✔ cmu3g9hzk000xlgeviscoway5   ✔ cmu3g9ixa0012lgevcvbf7h6e
+✅ Auto-aprobados: 6   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+**6/6 = 100 %** de auto-aprobación · confianza media **0.967**, mínima 0.95 · **0 discrepancias, 0 `problems`**.
+
+### 3. 🎯 El sesgo, re-medido por dos vías independientes
+
+**(a) Desde el lote ciego**, con la clave ya confirmada por la resolución — las longitudes son
+invariantes bajo el mezclado de opciones, así que la medición es legítima:
+
+| Métrica | Antes (G95) | Después (G96) |
+|---|---|---|
+| Clave **estrictamente** más larga | **6/8 = 75.0 %** | **0/6 = 0.0 %** |
+| P(≥k \| azar 25 %) | **0.42 %** → ❌ rechazo | 100 % |
+| Rango medio de la clave (1 = más larga) | — | **2.00** (azar = 2.50) |
+| Dispersión de longitudes por reactivo | — | **5–10 caracteres** entre la más larga y la más corta |
+
+Ese último renglón es el efecto que se buscaba: con las 4 opciones dentro de una franja de
+5–10 caracteres, «la más larga» deja de significar nada.
+
+**(b) Sonda nueva `scripts/g96/length-recheck.ts`** — mide **POR EFECTO contra la base**, no
+contra el lote, y **por pool**, con la misma aritmética que G95 (`binomialUpperTail` contra
+azar 25 %; los empates **no** cuentan, regla de G79; advertencia < 5 %, rechazo < 1 %):
+
+| Pool | Reactivos | Clave estrict. más larga | p | Veredicto |
+|---|---|---|---|---|
+| `UNAM:ESPANOL` · Comprensión lectora | 11 | 2/11 = 18.2 % | 80.29 % | ✅ SANO |
+| `IPN:ESPANOL` · Comprensión lectora | 20 | 0/20 = 0.0 % | 100 % | ✅ SANO |
+
+Sale con código 1 si algún pool vuelve a caer bajo el umbral de advertencia.
+
+### 4. Las 4 sondas de contenido, después de la resolución
+
+| Sonda | Resultado |
+|---|---|
+| `content:guard` | **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**; P1-P4 en verde contra recuento SQL independiente; las 7 áreas al **100 % del peso** de su examen |
+| `content:coverage` | **1 502 servibles · 0 pendientes · 1 retirado · 1 503 en banco**; auto-aprobación global **99.7 %**; meta 1 500 al **100 %** |
+| `content:margin` | Área 1: 427 propios (Mat 142 · Fís 119 · Esp 75 · Quím 51 · Ing 40) · **margen Early Bird `+127`** · «Brecha contra la meta de 1 500: **−2**» |
+| `content:pools` | VOLUMEN **cumplido (+2)**; meta EFECTIVA (G26) **1 116/1 222, brecha 106** en 6 pools, con **386 de excedente no transferible** en 17 pools |
+
+La brecha efectiva de 106 **no bloquea nada** — es dónde está el contenido, no cuánto hay.
+
+### 5. Acumulado definitivo del banco
+
+**1 502 servibles** (1 496 → **+6**) de **1 507 filas** · **0 en cola de verificación
+adversarial** · 5 con veredicto sin publicar (4 discrepancias históricas de F3 + 1 retirado de
+G40) · auto-aprobación global **99.7 %** · **meta de 1 500 cumplida, excedente +2**.
+
+`pnpm backup:export` corrido en el mismo commit (7 227 filas, 4.91 MB).
+`typecheck` y `lint` en verde. **No se tocó `prisma/schema.prisma`.**
+
+### 6. Queda abierto (heredado de G95 ③, fuera del alcance de esta fase)
+
+Los **12 lotes históricos** con sesgo de subgrupo que encontró el barrido retrospectivo siguen
+**sin corregir**. Dos de ellos son **posteriores a G77** y el chequeo de lote completo jamás
+los habría advertido:
+
+- Historia Universal · «Siglo XXI» — 83.3 %, p = 0.46 %
+- Artes · «Artes visuales prehispánicas» — 75.0 %, p = 0.42 %
+
+---
 
 ## G95 — `LENGTH_BIAS` por subgrupo (tema/formato) y reparación de Comprensión lectora (2026-09-15)
 
