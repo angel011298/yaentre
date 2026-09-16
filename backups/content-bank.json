@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-16T02:19:23.748Z",
+    "exportedAt": "2026-09-16T03:03:29.430Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -117360,7 +117360,7 @@
         },
         {
           "id": "B",
-          "text": "Explica el fenómeno migratorio de la mariposa monarca hacia México y los retos que enfrenta.",
+          "text": "Explica el fenómeno migratorio de la mariposa monarca hacia México y sus mayores amenazas.",
           "imageUrl": null,
           "isCorrect": true
         },
@@ -117379,7 +117379,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": true,
+      "isVerified": false,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117387,27 +117387,7 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": {
-        "audit": null,
-        "reasons": [],
-        "verdict": {
-          "model": "claude-opus-5",
-          "usage": {
-            "inputTokens": 0,
-            "outputTokens": 0
-          },
-          "problems": [],
-          "reasoning": "El pasaje expone la migracion de la monarca a Mexico (ruta, generaciones, orientacion) y cierra con la deforestacion y la perdida de algodoncillo como amenazas: fenomeno mas retos.",
-          "confidence": 0.98,
-          "verifiedAt": "2026-09-16T02:14:58.643Z",
-          "chosenOption": "B",
-          "usedCalculation": false
-        },
-        "decision": "AUTO_APPROVED",
-        "pipeline": "session-v1",
-        "generatorModel": "claude-code-session",
-        "generatorOption": "B"
-      },
+      "verification": null,
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117415,7 +117395,7 @@
         "$d": "2026-09-16T01:56:28.460Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:14:58.656Z"
+        "$d": "2026-09-16T02:50:06.388Z"
       }
     },
     {
@@ -117504,7 +117484,7 @@
         },
         {
           "id": "B",
-          "text": "la generación que vive más tiempo y por eso logra completar el viaje hasta México.",
+          "text": "la generación más longeva, la única que logra llegar hasta México.",
           "imageUrl": null,
           "isCorrect": true
         },
@@ -117523,7 +117503,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": true,
+      "isVerified": false,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117531,27 +117511,7 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": {
-        "audit": null,
-        "reasons": [],
-        "verdict": {
-          "model": "claude-opus-5",
-          "usage": {
-            "inputTokens": 0,
-            "outputTokens": 0
-          },
-          "problems": [],
-          "reasoning": "El pasaje define la matusalen como la que nace a finales del verano y \"vive lo suficiente, casi ocho meses, para llegar a Mexico, hibernar y emprender el regreso\": la de mayor longevidad.",
-          "confidence": 0.98,
-          "verifiedAt": "2026-09-16T02:15:00.853Z",
-          "chosenOption": "B",
-          "usedCalculation": false
-        },
-        "decision": "AUTO_APPROVED",
-        "pipeline": "session-v1",
-        "generatorModel": "claude-code-session",
-        "generatorOption": "B"
-      },
+      "verification": null,
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117559,7 +117519,7 @@
         "$d": "2026-09-16T01:56:30.898Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:15:00.866Z"
+        "$d": "2026-09-16T02:50:07.502Z"
       }
     },
     {
@@ -117582,7 +117542,7 @@
         },
         {
           "id": "C",
-          "text": "La deforestación de los sitios de hibernación y la pérdida de algodoncillo en la ruta.",
+          "text": "La deforestación de los sitios de hibernación y la pérdida de algodoncillo.",
           "imageUrl": null,
           "isCorrect": true
         },
@@ -117595,7 +117555,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": true,
+      "isVerified": false,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117603,27 +117563,7 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": {
-        "audit": null,
-        "reasons": [],
-        "verdict": {
-          "model": "claude-opus-5",
-          "usage": {
-            "inputTokens": 0,
-            "outputTokens": 0
-          },
-          "problems": [],
-          "reasoning": "El pasaje atribuye la caida a \"la deforestacion en los sitios de hibernacion y la perdida de algodoncillo\". Vientos, competencia y brujulas artificiales no aparecen en el texto.",
-          "confidence": 0.99,
-          "verifiedAt": "2026-09-16T02:15:01.953Z",
-          "chosenOption": "C",
-          "usedCalculation": false
-        },
-        "decision": "AUTO_APPROVED",
-        "pipeline": "session-v1",
-        "generatorModel": "claude-code-session",
-        "generatorOption": "C"
-      },
+      "verification": null,
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117631,7 +117571,7 @@
         "$d": "2026-09-16T01:56:32.116Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:15:01.967Z"
+        "$d": "2026-09-16T02:50:08.596Z"
       }
     },
     {
@@ -117642,7 +117582,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Mariana descubre una perspectiva distinta de la ciudad al dibujar desde la azotea.",
+          "text": "Mariana descubre, mientras dibuja, una perspectiva distinta de la ciudad.",
           "imageUrl": null,
           "isCorrect": true
         },
@@ -117667,7 +117607,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": true,
+      "isVerified": false,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117675,27 +117615,7 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": {
-        "audit": null,
-        "reasons": [],
-        "verdict": {
-          "model": "claude-opus-5",
-          "usage": {
-            "inputTokens": 0,
-            "outputTokens": 0
-          },
-          "problems": [],
-          "reasoning": "El fragmento narra que Mariana, al dibujar desde la azotea, redescubre la ciudad vista de arriba (techos de lamina, antenas torcidas, ropa tendida): un cambio de perspectiva. No hay discusion, ni accidente, ni explicacion a un amigo.",
-          "confidence": 0.98,
-          "verifiedAt": "2026-09-16T02:15:03.052Z",
-          "chosenOption": "A",
-          "usedCalculation": false
-        },
-        "decision": "AUTO_APPROVED",
-        "pipeline": "session-v1",
-        "generatorModel": "claude-code-session",
-        "generatorOption": "A"
-      },
+      "verification": null,
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117703,7 +117623,7 @@
         "$d": "2026-09-16T01:56:33.331Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:15:03.065Z"
+        "$d": "2026-09-16T02:50:09.694Z"
       }
     },
     {
@@ -117792,7 +117712,7 @@
         },
         {
           "id": "B",
-          "text": "Porque quedó absorta contemplando la ciudad desde una perspectiva que no conocía.",
+          "text": "Porque quedó absorta contemplando la ciudad desde arriba.",
           "imageUrl": null,
           "isCorrect": true
         },
@@ -117811,7 +117731,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": true,
+      "isVerified": false,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117819,27 +117739,7 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": {
-        "audit": null,
-        "reasons": [],
-        "verdict": {
-          "model": "claude-opus-5",
-          "usage": {
-            "inputTokens": 0,
-            "outputTokens": 0
-          },
-          "problems": [],
-          "reasoning": "Guardo el lapiz a la mitad del dibujo, no al terminarlo, para \"quedarse un rato nada mas mirando\": queda absorta en la perspectiva que habia olvidado. El viento solo aparece al subir.",
-          "confidence": 0.96,
-          "verifiedAt": "2026-09-16T02:15:05.253Z",
-          "chosenOption": "B",
-          "usedCalculation": false
-        },
-        "decision": "AUTO_APPROVED",
-        "pipeline": "session-v1",
-        "generatorModel": "claude-code-session",
-        "generatorOption": "B"
-      },
+      "verification": null,
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117847,7 +117747,7 @@
         "$d": "2026-09-16T01:56:35.792Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:15:05.266Z"
+        "$d": "2026-09-16T02:50:10.793Z"
       }
     },
     {
@@ -117876,14 +117776,14 @@
         },
         {
           "id": "D",
-          "text": "comparar la azotea con un lugar donde los sonidos de la calle llegan amortiguados.",
+          "text": "comparar la azotea con un lugar donde el sonido se oye amortiguado.",
           "imageUrl": null,
           "isCorrect": true
         }
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": true,
+      "isVerified": false,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117891,27 +117791,7 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": {
-        "audit": null,
-        "reasons": [],
-        "verdict": {
-          "model": "claude-opus-5",
-          "usage": {
-            "inputTokens": 0,
-            "outputTokens": 0
-          },
-          "problems": [],
-          "reasoning": "Es un simil que expresa que el ruido del trafico llegaba \"apagado\" a la azotea: sonidos amortiguados por la altura, no silencio real, ni sordera, ni apagon.",
-          "confidence": 0.97,
-          "verifiedAt": "2026-09-16T02:15:06.358Z",
-          "chosenOption": "D",
-          "usedCalculation": false
-        },
-        "decision": "AUTO_APPROVED",
-        "pipeline": "session-v1",
-        "generatorModel": "claude-code-session",
-        "generatorOption": "D"
-      },
+      "verification": null,
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117919,7 +117799,7 @@
         "$d": "2026-09-16T01:56:37.006Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T02:15:06.371Z"
+        "$d": "2026-09-16T02:50:11.893Z"
       }
     }
   ],

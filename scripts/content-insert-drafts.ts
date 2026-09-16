@@ -60,7 +60,7 @@ import { join } from 'node:path';
 import { parseModelOutput } from './lib/parse-model-output';
 import { validateDraft, normalizeStem, type QuestionDraft } from './lib/question-draft-schema';
 import { resolveCitations, type GroundingChunk } from './lib/grounding';
-import { analyzeLot, formatLotReport, type LotItem } from './lib/lot-validation';
+import { analyzeLot, formatLotReport, topicLabelFromFilename, type LotItem } from './lib/lot-validation';
 import {
   loadTopicContext,
   loadExistingStems,
@@ -105,11 +105,14 @@ function parseArgs(argv: string[]): CliArgs {
 
 /** Lee un archivo de drafts y devuelve solo los que pasan Zod/KaTeX (forma
  *  QuestionDraftSchema), listos para `analyzeLot`. Usado tanto para el propio
- *  archivo de este tema como para los archivos hermanos de `--lot-dir`. */
+ *  archivo de este tema como para los archivos hermanos de `--lot-dir`.
+ *  `topic` (G95) se deriva del nombre de archivo — convención de un archivo
+ *  por tema — para que LENGTH_BIAS_SUBGROUP pueda agrupar por tema. */
 function loadValidItemsForLotCheck(path: string): LotItem[] {
   const raw = readFileSync(path, 'utf8');
   const parsed = parseModelOutput(raw);
   if (!parsed.ok) return [];
+  const topic = topicLabelFromFilename(path);
   const items: LotItem[] = [];
   for (const candidate of parsed.items) {
     const result = validateDraft(candidate);
@@ -120,6 +123,7 @@ function loadValidItemsForLotCheck(path: string): LotItem[] {
       difficulty: result.draft.difficulty,
       explanations: result.draft.explanations,
       passageRef: result.draft.passage?.ref ?? null,
+      topic,
     });
   }
   return items;
@@ -254,6 +258,7 @@ async function main() {
     difficulty: draft.difficulty,
     explanations: draft.explanations,
     passageRef: draft.passage?.ref ?? null,
+    topic: ctx.topic,
   }));
   if (args.lotDir) {
     lotItems = [];

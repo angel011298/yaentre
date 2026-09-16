@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-15 · Última fase ejecutada: **G95 (COMPLETADA — el chequeo `LENGTH_BIAS` de G77 medía el PROMEDIO del lote y G94 encontró que eso puede esconder un sesgo real CONCENTRADO: Comprensión lectora del lote de Español (G93, pool `UNAM:ESPANOL`) salió 6/8=75% (P(≥6|azar 25%)=0.42%) mientras el lote completo promediaba exactamente 40.0% — bajo `LENGTH_SHARE_WARN_MAX` comparado con `>` estricto, así que no disparó ni la advertencia. Esta fase cierra el hueco. **① `lot-validation.ts` mide `LENGTH_BIAS_SUBGROUP`** por TEMA (`LotItem.topic`, nuevo campo opcional poblado por `topicLabelFromFilename` desde el nombre de archivo cuando el lote llega por `--lot-dir`/`--dir`, convención de un archivo por tema) y por FORMATO (siempre disponible, dos particiones independientes del lote). Como un subgrupo puede tener 3-9 reactivos —muy por debajo del mínimo de 20 del lote completo— compara contra un % fijo no sirve: se usa la probabilidad EXACTA bajo azar puro, `binomialUpperTail(k, n, 0.25)` (cola superior binomial calculada término a término, sin factoriales) — reproduce al decimal los p-valores que G94 calculó a mano (6/8→0.42%, 2/5→36.7%, 1/3→57.8%, 3/9→39.9%, 16/40→2.62%). Dos bandas (advertencia <5%, rechazo <1%) elegidas para separar con margen los 6 temas sanos de G93/G94 (36.7%-100%) del problema real (0.42%); mínimo `LENGTH_BIAS_SUBGROUP_MIN_SIZE=4` porque por debajo ni el resultado más extremo posible (100%) alcanza el nivel de rechazo — el "margen para muestra chica" que pedía la tarea sale gratis de la aritmética binomial, no hace falta una tabla de umbrales por tamaño. **② El umbral de LOTE completo pasa de `>` a `>=`** — un lote que aterriza EXACTAMENTE en 40.0% (el caso real de G93) ahora sí advierte. **③ Barrido retrospectivo** (`scripts/g95/historical-sweep.ts`, reconstruye lotes agrupando `Question` por materia y hueco de tiempo ≥1h desde `backups/content-bank.json`, mismo método que G77 usó a mano): de 38 lotes históricos reconstruidos (n≥8), **12 tienen sesgo de subgrupo bajo la regla nueva** — la mayoría de lotes muy anteriores a G77 (nunca pasaron por ningún chequeo de longitud) y **dos posteriores a G77 donde el lote completo JAMÁS habría advertido** (Historia Universal "Siglo XXI" 83.3%/p=0.46%; Artes "Artes visuales prehispánicas" 75.0%/p=0.42%) — reportados SIN corregir, fuera del alcance de esta fase. **④ Solo se corrigió Comprensión lectora** (el caso que motivó la fase): los 6 reactivos de G93 con la clave estrictamente más larga se editaron para acortar la CLAVE a su núcleo (nunca alargar distractores, regla de G77) hasta quedar dentro del rango de los 3 distractores — 0/8 "más larga" y 0/8 "más corta" tras el ajuste — y volvieron a `isVerified=false` + `verification=NULL` (re-encolados para verificación ciega real, no auto-aprobados por esta sesión). **⑤ 11 tests nuevos** (`tests/scripts/lot-validation.test.ts`, 29→40), con ROJO demostrado en un caso sintético que reproduce el reparto real de G93/G94: el chequeo de LOTE completo llega solo a `warn` (40.0%, bajo el 45% de rechazo) mientras `LENGTH_BIAS_SUBGROUP` sí `reject`-ea el mismo lote por Comprensión lectora — la prueba de que el subgrupo atrapa lo que el promedio no. Banco temporalmente **1 496 servibles** (1 502 → −6, los 6 reactivos re-encolados) de 1 507 filas, brecha contra la meta de 1 500 = 4 (se resuelve con la próxima verificación ciega). `pnpm backup:export` corrido en el mismo commit. `typecheck`/`lint`/`test:unit` en verde, dos corridas. **No se tocó `prisma/schema.prisma`.**)**. Modelo real `claude-opus-5`. Ver §G95 abajo.
+
+<details><summary>Historial: G94 (2026-09-15)</summary>
+
 Última actualización: 2026-09-15 · Última fase ejecutada: **G94 (COMPLETADA — verificación ciega de los 40 reactivos de Español que compuso G93, repartidos en los **7 temas** del pool compartido `UNAM:ESPANOL`: **40/40 auto-aprobados (100%)**, confianza media **0.985**, mínima 0.95, **0 discrepancias y 0 `problems`** — los 7 temas al 100%. **🎯 HITO: el banco CRUZA la meta de 1 500 reactivos servibles — 1 502, excedente +2** (`content:margin`, recuento SQL independiente: «Brecha contra la meta de 1 500: **−2**»), cerrando el bloque de contenido que arrancó en G26. Único insumo el lote ciego de `content:blind-batch --all`, que devolvió exactamente los 40 pendientes; verificado en crudo sobre el archivo: el conjunto COMPLETO de claves es `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options{label, text, imageUrl}` — **sin `isCorrect` ni `explanations`** — y los **2 pasajes originales llegaron ÍNTEGROS** (1 003 y 863 caracteres, 4 preguntas cada uno), condición sin la cual los 8 reactivos de comprensión lectora no son resolubles. No se leyó el commit de G93, ni su lote JSON, ni sus scripts. **① Reglas formales aplicadas explícitamente, ignorando `requiresCalculation:false` en los 40** (la etiqueta no es fiable para decidir qué amerita verificación mecánica — lección de G92): silabeo y posición de la tónica para la clasificación esdrújula/llana/aguda más la condición de tilde por letra final (`matemáticas` ma-te-MÁ-ti-cas frente a `camisa`/`reloj`/`camión`), tilde diacrítica resuelta por FUNCIÓN gramatical en ambos miembros de cada par (`él` pronombre vs. `el` artículo; `tú` pronombre vs. `tu` posesivo — las 4 opciones se evaluaron en sus DOS posiciones, que es lo que distingue la clave de los 3 distractores), pares homófonos `votar`/`botar` y `cocer`/`coser` verificados contra la definición del propio enunciado en las 4 opciones, y el reactivo de orden lógico resuelto por dependencias físicas (cavar → colocar → rellenar → regar = secuencia 2-4-1-3) antes de mirar las opciones. **② Atribuciones literarias verificadas obra-autor-movimiento una por una** en los 10 reactivos de literatura medieval y moderna, incluida la identidad de cada distractor: Cid anónimo h. 1200 vs. Libro de Buen Amor (Hita) vs. Milagros (Berceo) vs. Tragicomedia de Calisto y Melibea = La Celestina (Rojas, 1499); cuaderna vía = tetrástrofo monorrimo alejandrino del mester de clerecía frente al octosílabo asonante del romancero; y las atribuciones cruzadas de los distractores identificadas por nombre («Canto a mí mismo» → Whitman, «Rimas» → Bécquer, «Soledades» → Góngora, «Platero y yo» → Jiménez, «Rayuela» → Cortázar, «Pedro Páramo» → Rulfo, «La casa de los espíritus» → Allende). La Celestina se resolvió por eliminación material (autor conocido y prosa dialogada descartan 3 de las 4 opciones), no por reconocimiento. **③ Comprensión lectora razonada contra el pasaje, no contra conocimiento general**: las 4 respuestas factuales se anclan en cita literal del texto («la travesía requiere hasta cuatro generaciones sucesivas», «la deforestación … y la pérdida de algodoncillo», «para terminar un dibujo que llevaba semanas posponiendo») y el ítem de inferencia sobre por qué Mariana guarda el lápiz se resolvió notando que el pasaje la sitúa **«a la mitad del dibujo»**, lo que descarta el distractor «terminó el dibujo antes de lo que esperaba» — un distractor que el conocimiento general no puede descartar. **④ 🔴 HALLAZGO — el sesgo de longitud del lote está CONCENTRADO, no repartido, y la métrica de lote lo esconde.** La medición independiente re-implementada desde cero contra el lote ciego (las longitudes son invariantes bajo el mezclado) **CONFIRMA al decimal el 40.0% que reportó G93: 16/40 exactas**, más corta en 6/40 (15.0%), razón media clave/distractores 1.0674 — pero el desglose POR TEMA, que `lot-validation.ts` no calcula, muestra que esas 16 no están repartidas: **comprensión lectora sola va 6/8 = 75.0%** (P(≥6 | azar 25%) = **0.42%**), mientras literatura moderna va 0/5 y los otros cinco temas quedan entre 33% y 40%, todos con p ≥ 0.37. Dos consecuencias que conviene dejar por escrito: **(a)** el 40.0% del lote **no dispara ni la advertencia**, porque `LENGTH_SHARE_WARN_MAX` se compara con `>` estricto y 0.40 > 0.40 es falso — el lote pasó apoyado exactamente en el canto del umbral, y su p global es 2.62%, ya por debajo del 5%; **(b)** a diferencia de `ORDER_PATTERN`, que G76 declaró inocuo para la UNAM porque `shuffleOptions:true` (confirmado en `src/lib/simulator/config.ts`) rebaraja las letras, un sesgo de LONGITUD **sobrevive intacto al mezclado**: «elige la opción más larga» no depende de la posición, así que en el bloque de comprensión lectora de un simulacro de UNAM la heurística acierta 3 de cada 4 veces sin leer el pasaje. Se reporta SIN corregir el contenido (los 40 son sanos y la señal es de método de redacción, no de un reactivo concreto) y sin tocar el validador, que es cambio de alcance propio: la recomendación es medir `LENGTH_BIAS` **por tema además de por lote** y comparar con `>=`. **⑤ La meta de 1 500 se alcanzó en VOLUMEN; la métrica «efectiva» de G26 mide otra cosa y sigue con brecha 106** — dos preguntas distintas que es fácil confundir al pie del reporte de `content:coverage`, así que esta fase las separa con la sonda nueva `pnpm content:pools` (`scripts/g94/pool-deficit.ts`), que replica `computeSharedGoal` reusando el MISMO agrupador de G26 en vez de definir el cálculo por segunda vez: la meta de 1 500 cuenta VOLUMEN (cada reactivo una sola vez, vive en un único `Subject`) y está **cumplida con +2**; la meta «efectiva» de 1 222 mide DISTRIBUCIÓN y topa la cobertura de cada pool en `min(poolHave, poolTarget)`, así que el excedente de un pool no tapa el hueco de otro — sus 106 se localizan en **6 pools** (IPN Física −41, pool `IPN:MATEMATICAS` −28, pool `IPN:QUIMICA` −19, IPN Biología −12, UNAM Historia de México −4, UNAM Matemáticas −2) frente a **386 de excedente no transferible en 17 pools**. Esa brecha **no bloquea nada**: `content:guard` deja las **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**, las 4 aserciones en verde contra recuento SQL independiente y las 7 áreas al **100% del peso** de su examen. `content:coverage`: el pool `UNAM:ESPANOL` pasa de 35✓/40⧗ a **75✓/0⧗** y la **cola de verificación adversarial vuelve a cero**. `content:margin`: Área 1 sube de **+127** de margen de Early Bird (427 propios contra el mínimo de 300), +40 sobre el +87 de G90, porque el Español de Área 1 es la fila donde vive el pool. Banco: **1 502 servibles** (1 462 → +40) de **1 507 filas**, 5 con veredicto sin publicar (4 discrepancias históricas de F3 + 1 retirado de G40), tasa de auto-aprobación global **99.7%**. `pnpm backup:export` corrido en el mismo commit (7 227 filas, 4.91 MB). `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.**)**. Modelo real `claude-opus-5`. Ver §G94 abajo.
+
+</details>
 
 <details><summary>Historial: G93 (2026-09-15)</summary>
 
@@ -475,6 +481,234 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G95 — `LENGTH_BIAS` por subgrupo (tema/formato) y reparación de Comprensión lectora (2026-09-15)
+
+> Modelo real `claude-opus-5`. G94 encontró que `lot-validation.ts` mide
+> `LENGTH_BIAS` sobre el PROMEDIO del lote, y que un sesgo real puede estar
+> CONCENTRADO en un subgrupo sin que el promedio lo delate. Esta fase cierra
+> el hueco: detección por subgrupo, umbral de lote inclusivo, barrido
+> retrospectivo del banco, y reparación editorial del caso que lo motivó.
+
+### 1. El hueco exacto, en una frase
+
+`analyzeLengthBias` recorre TODO el lote y calcula un solo `longestShare`.
+Comprensión lectora del lote de Español (G93, pool `UNAM:ESPANOL`) salió
+6/8 = 75.0% (P(≥6 reactivos | azar 25%) = 0.42%, prácticamente imposible por
+azar), pero como los otros 32 reactivos del lote de 40 estaban sanos, el
+promedio dio exactamente 40.0% — apoyado en el canto de
+`LENGTH_SHARE_WARN_MAX` (0.40), comparado además con `>` estricto
+(`0.40 > 0.40` es `false`). El lote pasó sin una sola advertencia.
+
+### 2. `LENGTH_BIAS_SUBGROUP` — diseño
+
+`scripts/lib/lot-validation.ts` gana un campo opcional en `LotItem`:
+
+```ts
+topic?: string | null;
+```
+
+y una función `analyzeLengthBiasSubgroups(items, dimension)` que agrupa por
+`topic` o por `format` (`format` siempre está disponible; `topic` lo puebla
+el llamador) y mide, DENTRO de cada grupo, el mismo conteo que
+`analyzeLengthBias` ya hacía — cuántos reactivos tienen la clave
+estrictamente más larga/corta que las 3 incorrectas (empates no cuentan,
+regla heredada de G77).
+
+**Por qué un % fijo no sirve aquí.** El lote completo siempre tiene ≥20
+reactivos (mínimo de `LENGTH_BIAS_MIN_LOT_SIZE`); un subgrupo real observado
+va de 3 a 16. El mismo 40% significa cosas muy distintas en n=5 que en n=40.
+En su lugar, `binomialUpperTail(k, n, p)` calcula la cola superior EXACTA de
+una binomial —P(X ≥ k)— actualizando el término de la PMF de forma
+incremental (sin factoriales, estable para los tamaños reales del proyecto).
+Verificado contra los números que G94 calculó a mano:
+
+| n, k | p calculado a mano (G94) | `binomialUpperTail` |
+|---|---|---|
+| n=8, k=6 (Comprensión lectora) | 0.42% | 0.4226684570…% |
+| n=5, k=2 (Ortografía/Morfosintaxis/Lit. medieval) | 36.7% | 36.71875% |
+| n=3, k=1 (Semántica) | 57.8% | 57.8125% |
+| n=9, k=3 (Redacción de textos) | 39.9% | 39.9322509…% |
+| n=40, k=16 (lote completo) | 2.62% | 2.6244884…% |
+
+Coincide al decimal en los cinco casos — mismo cruce de verificación que G92
+hizo con el sesgo de longitud simple.
+
+### 3. Umbrales, y por qué un subgrupo chico necesita más margen SIN una tabla aparte
+
+```ts
+export const LENGTH_BIAS_SUBGROUP_MIN_SIZE = 4;
+export const LENGTH_BIAS_SUBGROUP_P_WARN_MAX = 0.05;
+export const LENGTH_BIAS_SUBGROUP_P_REJECT_MAX = 0.01;
+```
+
+- **El ajuste por tamaño de muestra sale gratis de la aritmética binomial.**
+  Con n=8 hacen falta 6 aciertos para bajar de 1%; con n=40 bastan 22 (más
+  cerca del 25% esperado). Cuanto más chico el subgrupo, más extremo tiene
+  que ser el conteo para que el p-valor baje — no hace falta codificar un
+  "margen" aparte por tamaño, la prueba exacta ya lo resuelve.
+- **`MIN_SIZE=4`** es el piso por debajo del cual NINGÚN resultado, ni
+  siquiera el más extremo (100% en una dirección), puede alcanzar el nivel
+  de rechazo: n=3, k=3 → p=1.56% (por encima de 1%); n=2, k=2 → p=6.25%. Por
+  debajo de 4 reactivos no hay conteo que separe señal de ruido con margen
+  suficiente, así que el chequeo se omite — mismo criterio que
+  `POSITION_SKEW_MIN_LOT_SIZE` para el lote completo, escalado al tamaño
+  real de un subgrupo.
+- **Dos bandas (5%/1%)**, elegidas para separar con margen los datos reales
+  de G94: los 6 temas sanos cayeron en 36.7%-100%, el problema real en
+  0.42% — no hay zona gris entre ambos, así que la banda de rechazo puede
+  ser estricta sin arriesgar los casos sanos observados.
+- **Riesgo de comparaciones múltiples, reconocido explícitamente**: un lote
+  típico se parte en ~7 temas; probar 7 hipótesis a `alpha=1%` da un riesgo
+  conjunto de falso positivo de ~1-(0.99)⁷≈6.7% por lote — aceptable frente
+  al costo de dejar pasar un sesgo real, que es exactamente lo que esta fase
+  corrige.
+
+### 4. El campo `topic` — cómo se puebla sin tocar la DB en ese punto del script
+
+`content-insert-drafts.ts`/`validate-batch.ts` validan lotes repartidos en
+un archivo por tema (convención `--lot-dir`/`--dir`/`--files`, ya usada
+desde G3a: p. ej. `docs/content-batches/g93-unam-a1-espanol/7-comprension-lectora.json`).
+Nueva función pura `topicLabelFromFilename(path)` quita la extensión y el
+prefijo numérico de orden (`"7-comprension-lectora.json"` → `"comprension-lectora"`).
+Para el archivo del propio tema que se está insertando (`--file`, sin
+`--lot-dir`), se usa el `Topic.name` real que `loadTopicContext` ya cargó
+(`ctx.topic`) — más preciso que el nombre de archivo cuando está disponible.
+
+### 5. Umbral de LOTE completo: `>` → `>=`
+
+Los dos únicos usos de `LENGTH_SHARE_WARN_MAX`/`LENGTH_SHARE_REJECT_MAX` en
+`analyzeLot` cambian de `share > umbral` a `share >= umbral` — recomendación
+explícita de G94 §6(a). Un lote que aterrice EXACTAMENTE en 40.0% (el caso
+real de G93) ahora dispara la advertencia en vez de pasar apoyado en el
+canto del umbral.
+
+### 6. Barrido retrospectivo — alcance completo del problema
+
+`scripts/g95/historical-sweep.ts` reconstruye lotes históricos desde
+`backups/content-bank.json` (retención vía git, G61 — no toca la DB):
+agrupa `Question` por `Subject` y parte en clusters cuando el hueco entre
+`createdAt` consecutivos supera 1 hora (mismo criterio que G77 usó a mano
+para reconstruir el lote de Inglés UNAM). 38 clusters con ≥8 reactivos.
+
+| Materia (pool) | Ventana | n | Lote completo (`>=`) | Subgrupo nuevo (G95) |
+|---|---|---|---|---|
+| Biología (temario original) | 2026-07-21 | 65 | REJECT 58.5% | **Homeostasis REJECT 100% (6/6), p=0.02%**; 4 temas WARN (66-71%) |
+| Español `UNAM:ESPANOL` | 2026-07-21 | 35 | WARN 42.9% | Literatura medieval WARN 80.0% (4/5), p=1.56%; formato MULTIPLE_CHOICE REJECT 48.1%, p=0.78% |
+| **Español `UNAM:ESPANOL` (G93/G94)** | 2026-09-16 | 40 | WARN 40.0% | **Comprensión lectora REJECT 75.0% (6/8), p=0.42% — ÚNICO CORREGIDO en esta fase** |
+| Química `UNAM:QUIMICA` | 2026-07-21 | 72 | WARN 44.4% | **Equilibrio químico REJECT 83.3% (10/12), p<0.01%** |
+| Biología (temario original) | 2026-08-05 | 35 | REJECT 45.7% | (redundante con el lote: formato MULTIPLE_CHOICE = todo el lote) |
+| Biología (temario original) | 2026-08-25 | 35 | REJECT 65.7% | (redundante con el lote) |
+| Física | 2026-08-26 | 35 | sano (17.1%) | formato MULTIPLE_CHOICE, submuestra n=8 dentro del lote, WARN 62.5%, p=2.73% |
+| Inglés `UNAM:INGLES` (ya conocido, G76/G77) | 2026-09-13 | 40 | REJECT 50.0% | Reading comprehension REJECT 62.5% (10/16), p=0.16% |
+| Historia de México | 2026-09-13 | 40 | sano (32.5%) | Independencia y Reforma/Intervención, WARN 66.7% (4/6) cada uno, p=3.76% |
+| Geografía | 2026-09-13 | 40 | sano (32.5%) | Geografía política WARN 71.4% (5/7); Geografía de México WARN por CORTA 60.0% (6/10) |
+| **Historia Universal** | 2026-09-14 | 40 | **sano (35.0%) — nunca habría advertido** | **Siglo XXI REJECT 83.3% (5/6), p=0.46%** |
+| **Artes** | 2026-09-14 | 40 | **sano (37.5%) — nunca habría advertido** | **Artes visuales prehispánicas REJECT 75.0% (6/8), p=0.42%** |
+
+**Lectura del barrido:** 12/38 clusters tienen algún hallazgo de subgrupo.
+La mayoría (Biología ×3, Química, Español 2026-07-21, Inglés) ya tenían el
+LOTE completo en WARN o REJECT — son lotes anteriores a G77 (2026-09-13),
+que nunca pasaron por NINGÚN chequeo de longitud al insertarse, así que no
+sorprende que fallen contra una regla que no existía entonces. Los dos casos
+genuinamente nuevos son **Historia Universal** y **Artes**: su lote completo
+está sano incluso con el umbral `>=` corregido (35.0% y 37.5%, ambos bajo el
+40% de advertencia) y aun así esconden un tema con concentración real
+(p=0.46% y p=0.42%) — la prueba de que el chequeo de subgrupo encuentra algo
+que el de lote, aunque ya corregido, sigue sin poder ver.
+
+**Alcance de la corrección de esta fase: SOLO Comprensión lectora.** Por
+instrucción explícita de la tarea, los otros 11 hallazgos (incluidos los dos
+nuevos de Historia Universal y Artes) quedan **reportados sin tocar** —
+contenido ya publicado, en producción, con historial de respuestas; su
+reparación es una fase futura con encargo propio.
+
+### 7. Reparación editorial de Comprensión lectora (pool `UNAM:ESPANOL`)
+
+Localizados los 8 reactivos de G93 en el tema `Comprensión lectora`
+(`cmrr1jgz2002shi3nqpqjyheu`, Subject `Español` de Área 1,
+`cmrr1jdql002ehi3nk1j6bzp6`) con `createdAt` del 2026-09-16 (los otros 3 del
+mismo tema son de la siembra original, 2026-07-21, fuera de alcance). 6 de
+los 8 tenían la clave estrictamente más larga:
+
+| Reactivo | Antes (long.) | Después (long.) | Distractores (min-max) |
+|---|---|---|---|
+| Idea principal (mariposa) | 92 | 90 | 84-90 |
+| "Generación matusalén" | 82 | 66 | 56-66 |
+| Causas de la reducción de población | 86 | 75 | 72-79 |
+| Idea principal (La azotea) | 82 | 73 | 73-80 |
+| Por qué guardó el lápiz | 81 | 57 | 50-59 |
+| Frase "bajó el volumen del mundo" | 82 | 67 | 67-72 |
+
+Cada edición **recorta la CLAVE a su núcleo** (regla de G77 — nunca alargar
+distractores) hasta caer dentro del rango `[mínimo, máximo]` de los 3
+distractores (empates con el extremo no cuentan como sesgo, así que caer
+justo en el borde es seguro). Verificado uno por uno que el significado y la
+corrección de la respuesta no cambian, y que ninguna capa de explicación cita
+el TEXTO literal de la opción editada (las explicaciones citan el PASAJE,
+no la opción — ningún ajuste de sincronización necesario). Resultado
+medido sobre el tema completo (8 reactivos): **0/8 "más larga", 0/8 "más
+corta"** — de 75.0% a sano.
+
+Los 6 reactivos volvieron a `isVerified=false` **y** `verification=NULL`
+(SQL `NULL`, no solo el booleano — `loadPendingQuestionsWithContext` exige
+ambas condiciones para que reingresen a la cola de `content:blind-batch`,
+`scripts/lib/content-db.ts:481`). No se auto-aprobaron: la próxima
+verificación ciega los resuelve desde cero, sesión independiente, como
+cualquier reactivo nuevo — ninguna de las dos sesiones de esta fase (G93 la
+compuso, G94 la verificó) los vuelve a tocar.
+
+### 8. Tests — 11 nuevos, rojo demostrado
+
+`tests/scripts/lot-validation.test.ts` pasa de 29 a 40 tests (+11). El caso central reconstruye SINTÉTICAMENTE el reparto
+por tema real de G93/G94 (40 ítems, 7 temas, 16/40=40.0% de longestShare
+igual al real) y demuestra el ROJO exacto que motivó la fase:
+
+```
+lotLevelHits.some(severity === 'reject')   → false  (solo 'warn' a 40.0%)
+subgroupHits con Comprensión lectora        → 'reject' (p=0.42%)
+report.ok                                   → false  (el lote queda rechazado
+                                                        SOLO gracias al subgrupo)
+```
+
+Más: `binomialUpperTail` contra los 5 pares (n,k) de la tabla del §2;
+`topicLabelFromFilename` con prefijos numéricos y sin ellos, con `/` y `\`;
+subgrupos sanos (p≥5%) que no generan violación; Semántica (n=3) excluida
+por `MIN_SIZE`; el caso "sin `topic`" que muestra por qué agrupar solo por
+`format` NO habría aislado el problema (todas las opciones del lote
+sintético son `MULTIPLE_CHOICE`, así que la dimensión `format` solo
+reproduce las cifras del lote completo); zona WARN vs REJECT con n=6,
+k=4 (p≈3.30%, entre ambas bandas); y el caso de lote completo en 40.0%
+exacto que ahora sí advierte gracias al `>=`.
+
+### 9. Estado del banco y sondas
+
+```
+content:coverage → 1496 servibles · 6 en cola de resolución (los reparados) ·
+                    UNAM:ESPANOL pasa de 75✓/0⧗ a 69✓/6⧗ (Área1 Español "sirve 69")
+content:guard    → 7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente» (sin cambio —
+                    Área 1 sigue READY con margen de sobra)
+content:margin   → Área 1: 421 propios (Español 69), margen de Early Bird +121
+                    (de +127 a +121 — sigue muy por encima del mínimo de 300)
+                    Brecha contra la meta de 1,500: 4 (temporal, hasta la próxima
+                    verificación ciega de estos 6)
+```
+
+`pnpm backup:export` corrido en el mismo commit. `typecheck`/`lint`/`test:unit`
+en verde, dos corridas. **No se tocó `prisma/schema.prisma`.**
+
+### 10. Lo que queda
+
+1. **11 lotes históricos con sesgo de subgrupo, reportados sin corregir**
+   (§6) — Historia Universal y Artes son los más urgentes porque su lote
+   completo nunca habría advertido ni con la regla `>=` corregida.
+2. Los bloqueadores de negocio de G72 (Stripe en modo prueba, Vercel
+   Hobby/Supabase free, cero validación de mercado) siguen abiertos y
+   siguen siendo los que deciden el lanzamiento.
+3. La brecha de distribución de 106 en 6 pools (G94 §7) sigue pendiente si
+   se quiere profundidad homogénea.
+
+---
 
 ## G94 — Verificación ciega: Español, pool `UNAM:ESPANOL` (lote de G93) (2026-09-15)
 

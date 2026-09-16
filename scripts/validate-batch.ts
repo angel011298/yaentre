@@ -29,7 +29,7 @@ import { join } from 'node:path';
 
 import { parseModelOutput } from './lib/parse-model-output';
 import { validateDraft } from './lib/question-draft-schema';
-import { analyzeLot, formatLotReport, type LotItem } from './lib/lot-validation';
+import { analyzeLot, formatLotReport, topicLabelFromFilename, type LotItem } from './lib/lot-validation';
 
 interface CliArgs {
   files: string[];
@@ -71,6 +71,7 @@ function loadItemsFromFile(path: string): { items: LotItem[]; rejected: number }
   if (!parsed.ok) {
     throw new Error(`${path}: no contiene un array JSON válido — ${parsed.error}`);
   }
+  const topic = topicLabelFromFilename(path);
   const items: LotItem[] = [];
   let rejected = 0;
   for (const candidate of parsed.items) {
@@ -85,6 +86,7 @@ function loadItemsFromFile(path: string): { items: LotItem[]; rejected: number }
       difficulty: result.draft.difficulty,
       explanations: result.draft.explanations,
       passageRef: result.draft.passage?.ref ?? null,
+      topic,
     });
   }
   return { items, rejected };

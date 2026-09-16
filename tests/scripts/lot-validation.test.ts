@@ -1,10 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import {
   analyzeLot,
+  binomialUpperTail,
+  topicLabelFromFilename,
   POSITION_SKEW_MIN_LOT_SIZE,
   LENGTH_BIAS_MIN_LOT_SIZE,
   LENGTH_SHARE_WARN_MAX,
   LENGTH_SHARE_REJECT_MAX,
+  LENGTH_BIAS_SUBGROUP_MIN_SIZE,
+  LENGTH_BIAS_SUBGROUP_P_WARN_MAX,
+  LENGTH_BIAS_SUBGROUP_P_REJECT_MAX,
   ORDER_PATTERN_MIN_CYCLES,
   type LotItem,
 } from '../../scripts/lib/lot-validation';
@@ -420,6 +425,201 @@ describe('analyzeLot — patrón de orden predecible (G77)', () => {
     expect(hit).toBeDefined();
     expect(hit?.startItem).toBe(1);
     expect(hit?.endItem).toBe(12);
+  });
+});
+
+describe('binomialUpperTail — cola exacta P(X >= k | Binomial(n, 0.25))', () => {
+  it('reproduce al decimal los p-valores que G94 calculó a mano contra el lote real de G93', () => {
+    // docs/ESTADO.md §G94.6 — tabla "Tema | clave = la más larga | P(>=k|azar 25%)"
+    expect(binomialUpperTail(6, 8, 0.25)).toBeCloseTo(0.0042266845703125, 10); // Comprensión lectora 6/8 = 0.42%
+    expect(binomialUpperTail(2, 5, 0.25)).toBeCloseTo(0.3671875, 10); // Ortografía/Morfosintaxis/Lit. medieval 2/5 = 36.7%
+    expect(binomialUpperTail(1, 3, 0.25)).toBeCloseTo(0.578125, 10); // Semántica 1/3 = 57.8%
+    expect(binomialUpperTail(3, 9, 0.25)).toBeCloseTo(0.399322509765625, 10); // Redacción de textos 3/9 = 39.9%
+    expect(binomialUpperTail(0, 5, 0.25)).toBe(1); // Literatura moderna 0/5 = 100%
+    expect(binomialUpperTail(16, 40, 0.25)).toBeCloseTo(0.026244884083743814, 10); // Lote completo 16/40 = 2.62%
+  });
+
+  it('k<=0 -> 1 (todo es "al menos 0 aciertos"); k>n -> 0 (imposible)', () => {
+    expect(binomialUpperTail(0, 10, 0.25)).toBe(1);
+    expect(binomialUpperTail(-1, 10, 0.25)).toBe(1);
+    expect(binomialUpperTail(11, 10, 0.25)).toBe(0);
+  });
+
+  it('a mayor n, el mismo 100% de aciertos es más improbable (el "margen" de muestra chica sale de la aritmética)', () => {
+    const p3 = binomialUpperTail(3, 3, 0.25); // 1.5625%
+    const p4 = binomialUpperTail(4, 4, 0.25); // 0.39%
+    expect(p3).toBeCloseTo(0.015625, 10);
+    expect(p4).toBeCloseTo(0.00390625, 10);
+    expect(p4).toBeLessThan(p3);
+  });
+});
+
+describe('topicLabelFromFilename — G95', () => {
+  it('quita extensión y prefijo numérico de orden', () => {
+    expect(topicLabelFromFilename('7-comprension-lectora.json')).toBe('comprension-lectora');
+    expect(topicLabelFromFilename('/a/b/2-morfosintaxis.json')).toBe('morfosintaxis');
+    expect(topicLabelFromFilename('C:\\lote\\1-ortografia-puntuacion.json')).toBe('ortografia-puntuacion');
+  });
+
+  it('sin prefijo numérico, deja el nombre tal cual (menos extensión)', () => {
+    expect(topicLabelFromFilename('semantica.json')).toBe('semantica');
+  });
+});
+
+describe('analyzeLot — LENGTH_BIAS_SUBGROUP (G95): sesgo concentrado que el promedio del lote esconde', () => {
+  /** Reactivo con las 4 opciones de igual longitud (ninguna cuenta como más
+   *  larga/corta — ties no cuentan) o, si `markLongest`, con la clave mucho
+   *  más larga que las 3 incorrectas (todas iguales entre sí). */
+  function makeLengthFlaggedItem(
+    correctId: 'A' | 'B' | 'C' | 'D',
+    markLongest: boolean,
+    topic: string,
+  ): LotItem {
+    const even = 'x'.repeat(20);
+    const long = 'x'.repeat(60);
+    const texts = { A: even, B: even, C: even, D: even } as Record<'A' | 'B' | 'C' | 'D', string>;
+    if (markLongest) texts[correctId] = long;
+    return { ...makeItemWithOptionTexts(correctId, texts), topic };
+  }
+
+  /**
+   * Reconstruye, en forma sintética, el reparto POR TEMA que G94 midió en el
+   * lote real de G93 (docs/ESTADO.md §G94.6): 40 reactivos, la clave es la
+   * "más larga" en exactamente 16 (40.0% del lote completo — el mismo
+   * número que G93 reportó y que G94 confirmó al decimal), pero esos 16 NO
+   * están repartidos: 6 de los 8 de "Comprensión lectora" (75%, p=0.42%),
+   * el resto entre 0% y 40% en los otros temas (p entre 36.7% y 100%).
+   * Semántica queda con solo 3 reactivos — por debajo de
+   * LENGTH_BIAS_SUBGROUP_MIN_SIZE=4, así que ni siquiera se evalúa.
+   */
+  const TOPIC_PLAN: { topic: string; n: number; longest: number }[] = [
+    { topic: 'Comprensión lectora', n: 8, longest: 6 },
+    { topic: 'Ortografía y puntuación', n: 5, longest: 2 },
+    { topic: 'Morfosintaxis', n: 5, longest: 2 },
+    { topic: 'Literatura medieval', n: 5, longest: 2 },
+    { topic: 'Redacción de textos', n: 9, longest: 3 },
+    { topic: 'Literatura moderna', n: 5, longest: 0 },
+    { topic: 'Semántica', n: 3, longest: 1 },
+  ];
+
+  function buildG93LikeLot(): LotItem[] {
+    const letters: Array<'A' | 'B' | 'C' | 'D'> = ['A', 'B', 'C', 'D'];
+    let letterCursor = 0;
+    const items: LotItem[] = [];
+    for (const { topic, n, longest } of TOPIC_PLAN) {
+      for (let i = 0; i < n; i++) {
+        const correctId = letters[letterCursor % 4];
+        letterCursor++;
+        items.push(makeLengthFlaggedItem(correctId, i < longest, topic));
+      }
+    }
+    return items;
+  }
+
+  it('RED DEMOSTRADO: el chequeo de LOTE COMPLETO no rechaza (solo advierte) el caso donde SUBGROUP sí debe rechazar', () => {
+    const items = buildG93LikeLot();
+    expect(items).toHaveLength(40);
+    const report = analyzeLot(items);
+
+    // Confirma que el escenario reproduce el 40.0% exacto de G93/G94 a nivel de lote.
+    expect(report.lengthBias.longestShare).toBeCloseTo(0.4, 10);
+
+    // El chequeo de LOTE COMPLETO (aun ya corregido a `>=` en esta fase) solo
+    // llega a WARN con 40.0% — no alcanza LENGTH_SHARE_REJECT_MAX (45%).
+    // Esto es lo que un chequeo de puro promedio deja pasar sin bloquear.
+    const lotLevelHits = report.violations.filter((v) => v.code === 'LENGTH_BIAS');
+    expect(lotLevelHits.some((v) => v.severity === 'reject')).toBe(false);
+    expect(lotLevelHits.some((v) => v.severity === 'warn')).toBe(true);
+
+    // El chequeo por SUBGRUPO sí encuentra el problema real y RECHAZA el lote.
+    const subgroupRejects = report.violations.filter(
+      (v) => v.code === 'LENGTH_BIAS_SUBGROUP' && v.severity === 'reject',
+    );
+    expect(subgroupRejects.length).toBeGreaterThan(0);
+    expect(subgroupRejects.some((v) => v.detail.includes('Comprensión lectora'))).toBe(true);
+    expect(report.ok).toBe(false); // el lote completo queda RECHAZADO gracias al subgrupo
+
+    // La estadística del subgrupo problemático coincide con el hallazgo real de G94.
+    const compLectora = report.lengthBiasSubgroups.find(
+      (s) => s.dimension === 'topic' && s.key === 'Comprensión lectora',
+    );
+    expect(compLectora).toBeDefined();
+    expect(compLectora?.sampleSize).toBe(8);
+    expect(compLectora?.longestCount).toBe(6);
+    expect(compLectora?.pValueLongest).toBeCloseTo(0.0042266845703125, 8);
+  });
+
+  it('los subgrupos sanos (p >= 5%) no generan ni advertencia ni rechazo', () => {
+    const items = buildG93LikeLot();
+    const report = analyzeLot(items);
+    const ortografia = report.lengthBiasSubgroups.find(
+      (s) => s.dimension === 'topic' && s.key === 'Ortografía y puntuación',
+    );
+    expect(ortografia?.pValueLongest).toBeGreaterThan(LENGTH_BIAS_SUBGROUP_P_WARN_MAX);
+    expect(
+      report.violations.some(
+        (v) => v.code === 'LENGTH_BIAS_SUBGROUP' && v.detail.includes('Ortografía y puntuación'),
+      ),
+    ).toBe(false);
+  });
+
+  it('un subgrupo por debajo de LENGTH_BIAS_SUBGROUP_MIN_SIZE se omite aunque su % sea alto (Semántica, n=3)', () => {
+    const items = buildG93LikeLot();
+    expect(LENGTH_BIAS_SUBGROUP_MIN_SIZE).toBe(4);
+    const report = analyzeLot(items);
+    expect(
+      report.lengthBiasSubgroups.some((s) => s.dimension === 'topic' && s.key === 'Semántica'),
+    ).toBe(false);
+  });
+
+  it('sin `topic` en los ítems, la dimensión "topic" no se evalúa — solo "format" (que aquí no aísla el problema)', () => {
+    const items = buildG93LikeLot().map(({ topic: _topic, ...rest }) => rest);
+    const report = analyzeLot(items);
+    expect(report.lengthBiasSubgroups.some((s) => s.dimension === 'topic')).toBe(false);
+    // El caso sintético usa un solo formato (MULTIPLE_CHOICE) para las 4 opciones,
+    // así que agrupar por formato solo reproduce las cifras del lote completo
+    // (40.0%, p=2.62%) y NO aísla el 75% real de comprensión lectora — la razón
+    // por la que agrupar por TEMA es indispensable para este hallazgo (G94/G95).
+    const byFormat = report.lengthBiasSubgroups.find((s) => s.dimension === 'format');
+    expect(byFormat?.sampleSize).toBe(40);
+    expect(byFormat?.longestCount).toBe(16);
+  });
+
+  it('umbral WARN (5%) vs REJECT (1%): un subgrupo entre ambos advierte sin rechazar', () => {
+    // n=6, k=4 -> p = P(X>=4|n=6,p=.25) ≈ 3.30% -- entre 1% y 5%.
+    const items: LotItem[] = [];
+    const letters: Array<'A' | 'B' | 'C' | 'D'> = ['A', 'B', 'C', 'D', 'A', 'B'];
+    for (let i = 0; i < 6; i++) {
+      items.push(makeLengthFlaggedItem(letters[i], i < 4, 'Tema de prueba'));
+    }
+    const report = analyzeLot(items);
+    const stat = report.lengthBiasSubgroups.find((s) => s.key === 'Tema de prueba' && s.dimension === 'topic');
+    expect(stat?.pValueLongest).toBeGreaterThan(LENGTH_BIAS_SUBGROUP_P_REJECT_MAX);
+    expect(stat?.pValueLongest).toBeLessThan(LENGTH_BIAS_SUBGROUP_P_WARN_MAX);
+    const hit = report.violations.find(
+      (v) => v.code === 'LENGTH_BIAS_SUBGROUP' && v.detail.includes('Tema de prueba'),
+    );
+    expect(hit?.severity).toBe('warn');
+  });
+});
+
+describe('analyzeLot — LENGTH_BIAS de lote completo: `>=` en vez de `>` (G95)', () => {
+  it('un lote EXACTAMENTE en 40.0% ahora SÍ advierte (antes pasaba silencioso — caso real de G93)', () => {
+    // 40 ítems, exactamente 16 con la clave más larga (40.0% al decimal, la
+    // misma cifra que G93 reportó y que antes de G95 no disparaba nada
+    // porque el chequeo comparaba con `>` estricto.
+    const items = Array.from({ length: 40 }, (_, i) => {
+      const correctId = (['A', 'B', 'C', 'D'] as const)[i % 4];
+      const even = 'x'.repeat(20);
+      const long = 'x'.repeat(60);
+      const texts = { A: even, B: even, C: even, D: even } as Record<'A' | 'B' | 'C' | 'D', string>;
+      if (i < 16) texts[correctId] = long;
+      return makeItemWithOptionTexts(correctId, texts);
+    });
+    const report = analyzeLot(items);
+    expect(report.lengthBias.longestShare).toBeCloseTo(0.4, 10);
+    const hit = report.violations.find((v) => v.code === 'LENGTH_BIAS' && v.severity === 'warn');
+    expect(hit).toBeDefined();
   });
 });
 
