@@ -27,6 +27,7 @@
     "content:coverage": "tsx scripts/content-coverage.ts",
     "content:margin": "tsx scripts/g90/margin-probe.ts",
     "content:guard": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g74/coverage-probe.ts",
+    "content:pools": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g94/pool-deficit.ts",
     "content:ingest": "tsx scripts/ingest-source.ts",
     "stripe:setup-prices": "tsx scripts/setup-stripe-prices.ts",
     "stripe:setup-webhook": "tsx scripts/setup-stripe-webhook.ts",

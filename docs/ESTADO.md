@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-15 · Última fase ejecutada: **G94 (COMPLETADA — verificación ciega de los 40 reactivos de Español que compuso G93, repartidos en los **7 temas** del pool compartido `UNAM:ESPANOL`: **40/40 auto-aprobados (100%)**, confianza media **0.985**, mínima 0.95, **0 discrepancias y 0 `problems`** — los 7 temas al 100%. **🎯 HITO: el banco CRUZA la meta de 1 500 reactivos servibles — 1 502, excedente +2** (`content:margin`, recuento SQL independiente: «Brecha contra la meta de 1 500: **−2**»), cerrando el bloque de contenido que arrancó en G26. Único insumo el lote ciego de `content:blind-batch --all`, que devolvió exactamente los 40 pendientes; verificado en crudo sobre el archivo: el conjunto COMPLETO de claves es `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options{label, text, imageUrl}` — **sin `isCorrect` ni `explanations`** — y los **2 pasajes originales llegaron ÍNTEGROS** (1 003 y 863 caracteres, 4 preguntas cada uno), condición sin la cual los 8 reactivos de comprensión lectora no son resolubles. No se leyó el commit de G93, ni su lote JSON, ni sus scripts. **① Reglas formales aplicadas explícitamente, ignorando `requiresCalculation:false` en los 40** (la etiqueta no es fiable para decidir qué amerita verificación mecánica — lección de G92): silabeo y posición de la tónica para la clasificación esdrújula/llana/aguda más la condición de tilde por letra final (`matemáticas` ma-te-MÁ-ti-cas frente a `camisa`/`reloj`/`camión`), tilde diacrítica resuelta por FUNCIÓN gramatical en ambos miembros de cada par (`él` pronombre vs. `el` artículo; `tú` pronombre vs. `tu` posesivo — las 4 opciones se evaluaron en sus DOS posiciones, que es lo que distingue la clave de los 3 distractores), pares homófonos `votar`/`botar` y `cocer`/`coser` verificados contra la definición del propio enunciado en las 4 opciones, y el reactivo de orden lógico resuelto por dependencias físicas (cavar → colocar → rellenar → regar = secuencia 2-4-1-3) antes de mirar las opciones. **② Atribuciones literarias verificadas obra-autor-movimiento una por una** en los 10 reactivos de literatura medieval y moderna, incluida la identidad de cada distractor: Cid anónimo h. 1200 vs. Libro de Buen Amor (Hita) vs. Milagros (Berceo) vs. Tragicomedia de Calisto y Melibea = La Celestina (Rojas, 1499); cuaderna vía = tetrástrofo monorrimo alejandrino del mester de clerecía frente al octosílabo asonante del romancero; y las atribuciones cruzadas de los distractores identificadas por nombre («Canto a mí mismo» → Whitman, «Rimas» → Bécquer, «Soledades» → Góngora, «Platero y yo» → Jiménez, «Rayuela» → Cortázar, «Pedro Páramo» → Rulfo, «La casa de los espíritus» → Allende). La Celestina se resolvió por eliminación material (autor conocido y prosa dialogada descartan 3 de las 4 opciones), no por reconocimiento. **③ Comprensión lectora razonada contra el pasaje, no contra conocimiento general**: las 4 respuestas factuales se anclan en cita literal del texto («la travesía requiere hasta cuatro generaciones sucesivas», «la deforestación … y la pérdida de algodoncillo», «para terminar un dibujo que llevaba semanas posponiendo») y el ítem de inferencia sobre por qué Mariana guarda el lápiz se resolvió notando que el pasaje la sitúa **«a la mitad del dibujo»**, lo que descarta el distractor «terminó el dibujo antes de lo que esperaba» — un distractor que el conocimiento general no puede descartar. **④ 🔴 HALLAZGO — el sesgo de longitud del lote está CONCENTRADO, no repartido, y la métrica de lote lo esconde.** La medición independiente re-implementada desde cero contra el lote ciego (las longitudes son invariantes bajo el mezclado) **CONFIRMA al decimal el 40.0% que reportó G93: 16/40 exactas**, más corta en 6/40 (15.0%), razón media clave/distractores 1.0674 — pero el desglose POR TEMA, que `lot-validation.ts` no calcula, muestra que esas 16 no están repartidas: **comprensión lectora sola va 6/8 = 75.0%** (P(≥6 | azar 25%) = **0.42%**), mientras literatura moderna va 0/5 y los otros cinco temas quedan entre 33% y 40%, todos con p ≥ 0.37. Dos consecuencias que conviene dejar por escrito: **(a)** el 40.0% del lote **no dispara ni la advertencia**, porque `LENGTH_SHARE_WARN_MAX` se compara con `>` estricto y 0.40 > 0.40 es falso — el lote pasó apoyado exactamente en el canto del umbral, y su p global es 2.62%, ya por debajo del 5%; **(b)** a diferencia de `ORDER_PATTERN`, que G76 declaró inocuo para la UNAM porque `shuffleOptions:true` (confirmado en `src/lib/simulator/config.ts`) rebaraja las letras, un sesgo de LONGITUD **sobrevive intacto al mezclado**: «elige la opción más larga» no depende de la posición, así que en el bloque de comprensión lectora de un simulacro de UNAM la heurística acierta 3 de cada 4 veces sin leer el pasaje. Se reporta SIN corregir el contenido (los 40 son sanos y la señal es de método de redacción, no de un reactivo concreto) y sin tocar el validador, que es cambio de alcance propio: la recomendación es medir `LENGTH_BIAS` **por tema además de por lote** y comparar con `>=`. **⑤ La meta de 1 500 se alcanzó en VOLUMEN; la métrica «efectiva» de G26 mide otra cosa y sigue con brecha 106** — dos preguntas distintas que es fácil confundir al pie del reporte de `content:coverage`, así que esta fase las separa con la sonda nueva `pnpm content:pools` (`scripts/g94/pool-deficit.ts`), que replica `computeSharedGoal` reusando el MISMO agrupador de G26 en vez de definir el cálculo por segunda vez: la meta de 1 500 cuenta VOLUMEN (cada reactivo una sola vez, vive en un único `Subject`) y está **cumplida con +2**; la meta «efectiva» de 1 222 mide DISTRIBUCIÓN y topa la cobertura de cada pool en `min(poolHave, poolTarget)`, así que el excedente de un pool no tapa el hueco de otro — sus 106 se localizan en **6 pools** (IPN Física −41, pool `IPN:MATEMATICAS` −28, pool `IPN:QUIMICA` −19, IPN Biología −12, UNAM Historia de México −4, UNAM Matemáticas −2) frente a **386 de excedente no transferible en 17 pools**. Esa brecha **no bloquea nada**: `content:guard` deja las **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**, las 4 aserciones en verde contra recuento SQL independiente y las 7 áreas al **100% del peso** de su examen. `content:coverage`: el pool `UNAM:ESPANOL` pasa de 35✓/40⧗ a **75✓/0⧗** y la **cola de verificación adversarial vuelve a cero**. `content:margin`: Área 1 sube de **+127** de margen de Early Bird (427 propios contra el mínimo de 300), +40 sobre el +87 de G90, porque el Español de Área 1 es la fila donde vive el pool. Banco: **1 502 servibles** (1 462 → +40) de **1 507 filas**, 5 con veredicto sin publicar (4 discrepancias históricas de F3 + 1 retirado de G40), tasa de auto-aprobación global **99.7%**. `pnpm backup:export` corrido en el mismo commit (7 227 filas, 4.91 MB). `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.**)**. Modelo real `claude-opus-5`. Ver §G94 abajo.
+
+<details><summary>Historial: G93 (2026-09-15)</summary>
+
 Última actualización: 2026-09-15 · Última fase ejecutada: **G93 (COMPLETADA — 40 reactivos de Español, pool compartido `UNAM:ESPANOL`, insertados contra la materia de Área 1 (peso 10, la de más contenido del grupo — regla G26): **último lote de generación pura antes de la meta de 1 500**. **① El empate de G92 se reconfirmó contra la DB real, no se asumió**: `content:guard` mostró IPN Física en 70 servibles/peso 20 (3.50) y el pool `UNAM:ESPANOL` en 35 servibles/peso 10 (3.50) — el mismo empate exacto, sin variación entre fases. **② Criterio de desempate documentado**: `UNAM:ESPANOL` es un pool COMPARTIDO por las 4 áreas de la UNAM que evalúan Español (Área 1 peso 10, Área 2 peso 5, Área 3 peso 3, Área 4 peso 1, vía `sharedContentKey`), mientras que Física de IPN es EXCLUSIVA de una sola área (IPN FISMAT) — la misma inversión de 40 reactivos profundiza el pool que sirve a 4 áreas en vez de 1, beneficiando además a la población más amplia de aspirantes (todo UNAM Superior). Ninguna de las dos elecciones cambiaba el estado READY/PARTIAL de ningún área (las 7 ya están al 100%); la decisión es puramente sobre profundidad y alcance del catálogo. **③ Censo por tema ANTES de redactar** (`Subject` cmrr1jdql002ehi3nk1j6bzp6, 7 temas): el más delgado con ventaja clara, Redacción de textos (2 servibles) y Comprensión lectora (3), seguidos de Literatura medieval/moderna/Morfosintaxis/Ortografía (5 cada uno) y Semántica ya la más profunda (10). Reparto de los 40: **+9 Redacción de textos, +8 Comprensión lectora, +5 cada una de Literatura medieval/Literatura moderna/Morfosintaxis/Ortografía y puntuación, +3 Semántica** — ningún tema se queda atrás y los dos más delgados casi alcanzan al resto. **④ SourceChunk real como ancla de TIPO, nunca de texto** (mismo criterio que G75/G84/G86/G89): 5 de los 7 temas tenían fragmentos (Ortografía 16, Morfosintaxis 6, Semántica 17, Redacción 2, Comprensión lectora 26, todos de guías UAM/CENEVAL de OTRAS áreas de examen) y CADA reactivo de esos 5 temas cita un índice válido — verificado por `resolveCitations`, que rechaza sin cita cuando hay fragmentos disponibles; Literatura medieval y moderna tenían 0 fragmentos → **TEMARIO_ONLY**, sin cita. **⑤ Verificación computable, no la etiqueta del formato** (`requiresCalculation` no existe en el draft — se infiere después, en `content:blind-batch`, así que no hay nada que "decir lo contrario" a esta altura; el espíritu de la instrucción se cumplió verificando en código las tres afirmaciones formales del lote que sí son reglas objetivas, no solo redacción): `verify-calcs.mjs` reconstruye desde cero la regla RAE de acentuación (aguda/grave/esdrújula + condición de tilde por letra final) para las 4 palabras del reactivo de clasificación silábica, la regla de tilde diacrítica por función gramatical (pronombre vs. determinante) para los pares él/el y tú/tu, y un chequeo de restricciones de precedencia que confirma que EXACTAMENTE UNA de las 4 secuencias del reactivo de orden lógico (plantar un árbol) satisface las 3 dependencias físicas obligatorias — **8+4+2 aserciones, todas correctas**. **⑥ Sesgo de longitud corregido ANTES de insertar**: la primera redacción salió en 45.0% (por encima del umbral de advertencia de 40%, aunque no del de rechazo en 45%); se recortaron 6 respuestas correctas (nunca se alargaron distractores) hasta bajar a **exactamente 40.0%**, medido tanto por `content:validate-batch` como por un script independiente propio (`length-check.mjs`/`position-check.mjs`, que leen el JSON final, no el reporte del validador) — mismo resultado en ambos, razón media clave/distractores 1.07, 0 citas por letra (`grep` sobre el lote). **⑦ Posición de la clave con `crypto.randomInt`** (Fisher-Yates por reactivo, independiente): la primera tirada violó `POSITION_SKEW` por azar puro (mismo patrón que G80/G86/G91) y se regeneró; la tirada final quedó A 20%/B 40%/C 15%/D 25%, sin racha periódica ≥3 ciclos en períodos 2/3/4 — verificado también con script propio, no solo con el validador. **⑧ Insertados 40/40 con `isVerified=false`** (5 Ortografía y puntuación + 5 Morfosintaxis + 3 Semántica + 5 Literatura medieval + 5 Literatura moderna + 9 Redacción de textos + 8 Comprensión lectora), estos últimos 8 ligados a **2 pasajes originales nuevos** (migración de la mariposa monarca; una escena narrativa en una azotea), cada uno creado una sola vez y reutilizado en sus 4 preguntas. **⑨ `content:guard`/`content:coverage`/`content:margin` corridos ANTES y DESPUÉS, sin cambio — esperado**: cuentan solo `isVerified=true` y los 40 quedan en cola de verificación adversarial; 7/7 áreas siguen `READY`, margen de Área 1 sigue en `+87` (el pool de Español ya cubría su cuota antes del lote). Banco: **1 462 servibles sin cambio** (40 en cola, antes 0), de **1 507 filas** (antes 1 467), brecha contra la meta de 1 500 = **38 sin cambio** — se resolverá con la verificación ciega de G94. `pnpm backup:export` corrido en el mismo commit (7 227 filas, 4.89 MB). `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.**)**. Modelo real `claude-sonnet-5`. Ver §G93 abajo.
+
+</details>
 
 <details><summary>Historial: G92 (2026-09-15)</summary>
 
@@ -469,6 +475,269 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G94 — Verificación ciega: Español, pool `UNAM:ESPANOL` (lote de G93) (2026-09-15)
+
+**Cierre del bloque de contenido.** Verificación adversarial ciega de los 40
+reactivos que compuso G93, y con ella el banco cruza la meta de 1 500 reactivos
+servibles que el proyecto arrastraba desde G26.
+
+Modelo real de esta sesión: `claude-opus-5`. Sesión independiente de la que
+compuso el lote (aislamiento de sesión, no de código — es la garantía que
+reemplaza al «segundo modelo», PRD §8).
+
+### 1. Aislamiento: qué se leyó y qué no
+
+Único insumo permitido: la salida de `pnpm content:blind-batch --all --limit 60`,
+que devolvió **exactamente 40 reactivos pendientes** (los de G93; las 4
+discrepancias históricas de F3 no entran en `loadPendingQuestionsWithContext`).
+**No se leyó** el commit `617e757` de G93, ni su lote JSON, ni sus scripts de
+composición, ni el campo `verification` de ningún reactivo.
+
+El archivo se verificó en crudo antes de resolver, en vez de confiar en el tipo:
+el conjunto **completo** de claves de cada ítem es
+
+```
+questionId, institution, subject, topic, format, passage,
+requiresCalculation, stem, options{label, text, imageUrl}
+```
+
+— sin `isCorrect` y sin `explanations`, con las opciones remezcladas con semilla
+determinista = id del reactivo.
+
+**Los 2 pasajes llegaron íntegros**, que es condición para que los 8 reactivos de
+comprensión lectora sean resolubles: 1 003 caracteres (migración de la mariposa
+monarca) y 863 (escena narrativa en una azotea), 4 preguntas cada uno, cada
+pasaje entregado una sola vez por ítem y verificado idéntico entre sus 4
+preguntas.
+
+### 2. Reglas formales aplicadas explícitamente, no por intuición
+
+El lote trae **`requiresCalculation:false` en los 40**. Siguiendo la lección de
+G92 —esa etiqueta no es fiable para decidir qué amerita verificación mecánica— se
+aplicó la regla explícita en todos los reactivos donde existe una regla objetiva
+que no admite criterio:
+
+| Reactivo | Regla aplicada, no intuida |
+|---|---|
+| Clasificación silábica | Silabeo completo y posición de la tónica: `ma-te-MÁ-ti-cas` (antepenúltima → esdrújula → tilde siempre). Contraste con `ca-MI-sa` (llana), `re-LOJ` (aguda en `j`, sin tilde) y `ca-MIÓN` (aguda en `n`, lleva tilde pero **no** es esdrújula — el distractor que castiga leer «lleva tilde» como «esdrújula») |
+| Tilde diacrítica `él/el` | Función gramatical en **ambas** posiciones de cada opción: pronombre personal tónico (tilde) vs. artículo determinado (sin tilde). Las 4 opciones combinan los dos slots, así que solo la evaluación doble distingue la clave |
+| Tilde diacrítica `tú/tu` | Igual: pronombre personal (tilde) vs. determinante posesivo átono (sin tilde) |
+| `votar` / `botar` | Definición del propio enunciado contrastada contra las 4 oraciones: basura, balón y pelota exigen `botar`; solo «votar por el candidato» usa `votar` |
+| `cocer` / `coser` | Igual, incluido el distractor que **invierte** los dos verbos («coser los frijoles a fuego lento») |
+| Orden lógico de redacción | Dependencias físicas del procedimiento resueltas **antes** de mirar las opciones: cavar → colocar → rellenar → regar, es decir la secuencia 2-4-1-3 del enunciado |
+| Concordancia, pronombre CD, subjuntivo, análisis de CD/CI | Rasgos de género/número y régimen verbal enunciados por escrito en cada caso, no reconocimiento de la forma «que suena bien» |
+
+### 3. Literatura: obra-autor-movimiento, distractor por distractor
+
+En los 10 reactivos de literatura medieval y moderna se verificó la atribución de
+la clave **y la de cada distractor**, para no aprobar por reconocimiento:
+
+- **Cid** anónimo (h. 1200, cantar de gesta) frente a **Libro de Buen Amor**
+  (Arcipreste de Hita), **Milagros de Nuestra Señora** (Berceo) y
+  **Tragicomedia de Calisto y Melibea**, que es el título alterno de **La
+  Celestina** (Rojas, 1499) — el distractor menos evidente del lote.
+- **Cuaderna vía** = tetrástrofo monorrimo alejandrino del mester de clerecía,
+  contrastada con el **octosílabo de rima asonante en los pares** del romancero
+  viejo y con el endecasílabo del soneto renacentista.
+- Atribuciones cruzadas de los distractores identificadas por nombre: «Canto a mí
+  mismo» → Whitman, «Rimas» → Bécquer, «Soledades» → Góngora, «Platero y yo» →
+  Juan Ramón Jiménez, «Rayuela» → Cortázar, «Pedro Páramo» → Rulfo, «La casa de
+  los espíritus» → Allende, «Veinte poemas de amor» → Neruda.
+- **La Celestina** (el único ítem de literatura por debajo de 0.98) se resolvió
+  por **eliminación material**, no por reconocimiento: la obra tiene autor
+  conocido y está en prosa dialogada, lo que descarta «anónima y transmitida
+  oralmente» y «escrita enteramente en verso» sin necesidad de juzgar el matiz
+  historiográfico de la clave.
+
+### 4. Comprensión lectora: contra el pasaje, no contra el tema
+
+Las 4 preguntas factuales se anclan en cita literal («la travesía requiere hasta
+cuatro generaciones sucesivas»; «la deforestación en los sitios de hibernación y
+la pérdida de algodoncillo»; «para terminar un dibujo que llevaba semanas
+posponiendo»).
+
+El ítem que separa lectura real de conocimiento general es el de inferencia sobre
+por qué Mariana guarda el lápiz: el distractor «porque terminó el dibujo antes de
+lo que esperaba» es plausible en abstracto y **solo el pasaje lo descarta**, al
+situarla explícitamente **«a la mitad del dibujo»**. El de «como si alguien
+hubiera bajado el volumen del mundo» se resolvió como símil apoyado en el
+«apagado» que el propio texto usa dos líneas antes, no por interpretación libre.
+
+### 5. Resultado: 40/40, con desglose por tema
+
+`pnpm content:resolve --file scripts/content-exports/g94-answers.json`:
+
+```
+✅ Auto-aprobados: 40   ✋ Sin publicar: 0   ⚠️ Omitidos: 0
+```
+
+| Tema | Auto-aprobados | Tasa |
+|---|---|---|
+| Ortografía y puntuación | 5/5 | 100% |
+| Morfosintaxis | 5/5 | 100% |
+| Semántica | 3/3 | 100% |
+| Literatura medieval | 5/5 | 100% |
+| Literatura moderna | 5/5 | 100% |
+| Redacción de textos | 9/9 | 100% |
+| Comprensión lectora | 8/8 | 100% |
+| **Total** | **40/40** | **100%** |
+
+Confianza media **0.985**, mínima **0.95** (La Celestina como obra de transición,
+y la oración temática del párrafo de reciclaje — los dos únicos ítems del lote
+donde manda un criterio de redacción y no una regla). **0 `problems`**: no se
+forzó ninguno, siguiendo la lección de G81/G92 de que un `problems` por
+imprecisión menor **bloquea un reactivo sano**.
+
+Una nota de método sobre la propia sesión: al construir el archivo de respuestas
+se omitió por error un reactivo (el del Cantar de Mio Cid), y la aserción
+`ans.length !== items.length` del script generador lo detuvo antes de escribir
+nada. Sin esa comprobación, las 26 respuestas siguientes habrían quedado
+desplazadas una posición y el lote entero habría reportado discrepancias falsas.
+Vale para cualquier verificación futura: **alinear respuestas por `questionId` o
+afirmar el conteo; nunca confiar en el orden.**
+
+### 6. 🔴 Hallazgo: el sesgo de longitud está CONCENTRADO y la métrica de lote lo esconde
+
+La medición se re-implementó **desde cero** contra el lote ciego (las longitudes
+de las 4 opciones son invariantes bajo el mezclado, así que el archivo ciego
+basta) con la definición estricta de G77 —empates no cuentan—, y **confirma al
+decimal el 40.0% que reportó el commit de G93**:
+
+| Métrica | G94 (post-hoc, desde el lote ciego) | G93 (en composición) | Azar |
+|---|---|---|---|
+| clave = estrictamente la más larga | **16/40 = 40.0%** | 40.0% | ~25% |
+| clave = estrictamente la más corta | 6/40 = 15.0% | — | ~25% |
+| razón media clave/distractores | 1.0674 | 1.07 | 1.00 |
+
+Ese cruce vuelve a servir de prueba del validador, como en G92. **Pero el
+desglose por tema —que `lot-validation.ts` no calcula, porque `analyzeLengthBias`
+recorre el lote entero— muestra que esas 16 no están repartidas:**
+
+| Tema | clave = la más larga | P(≥k \| azar 25%) |
+|---|---|---|
+| **Comprensión lectora** | **6/8 = 75.0%** | **0.42%** |
+| Ortografía y puntuación | 2/5 = 40.0% | 36.7% |
+| Morfosintaxis | 2/5 = 40.0% | 36.7% |
+| Literatura medieval | 2/5 = 40.0% | 36.7% |
+| Redacción de textos | 3/9 = 33.3% | 39.9% |
+| Semántica | 1/3 = 33.3% | 57.8% |
+| Literatura moderna | 0/5 = 0.0% | 100% |
+| **Lote completo** | **16/40 = 40.0%** | **2.62%** |
+
+Dos cosas que conviene dejar escritas:
+
+**(a) El lote pasó apoyado exactamente en el canto del umbral.** El chequeo
+compara `share > LENGTH_SHARE_WARN_MAX` con `>` **estricto**, y `0.40 > 0.40` es
+falso: con 40.0% exactas **no se emite ni la advertencia**, aunque la p global del
+lote (2.62%) ya esté por debajo del 5%. Un lote medio reactivo peor habría
+advertido.
+
+**(b) Un sesgo de longitud sobrevive al mezclado; un patrón de orden no.** G76
+declaró `ORDER_PATTERN` inocuo para la UNAM porque `shuffleOptions:true`
+(confirmado hoy en `src/lib/simulator/config.ts`: `UNAM` es la **única**
+institución que rebaraja; IPN/UAM/CENEVAL/CNBV no) reasigna las letras en cada
+sesión. **Esa protección no aplica aquí**: «elige la opción más larga» no depende
+de la posición. En el bloque de comprensión lectora de un simulacro real de UNAM
+—y este pool sirve a las 4 áreas de la UNAM vía `sharedContentKey`— la heurística
+acierta **3 de cada 4 veces sin leer el pasaje**, que es justo lo que el reactivo
+pretende medir.
+
+Se reporta **sin corregir**: los 40 reactivos son sanos, la señal es del método de
+redacción y no de un reactivo concreto, y reescribir el validador es cambio de
+alcance propio. **Recomendación para la fase que lo tome:** calcular
+`LENGTH_BIAS` **por tema además de por lote** (con muestra mínima propia) y
+cambiar la comparación a `>=`, para que un lote que aterrice justo en 40.0% sí
+advierta. Comprensión lectora es el tema estructuralmente más expuesto, porque la
+clave suele necesitar más texto para ser inequívoca contra el pasaje — razón de
+más para igualar longitudes ahí, recortando la clave antes que alargando
+distractores (G77).
+
+### 7. Las dos metas de contenido no son la misma pregunta
+
+`content:coverage` imprime dos metas al pie y es fácil leerlas como una sola.
+Esta fase las separa con una sonda nueva, **`pnpm content:pools`** (`scripts/g94/pool-deficit.ts`), que
+replica `computeSharedGoal` **reusando el mismo agrupador de G26**
+(`resolveSharedSubjectGroups`) en vez de definir el cálculo por segunda vez —
+lección de G74: nunca una constante ni un criterio paralelo, que se desincroniza.
+
+```
+VOLUMEN  · servibles en banco: 1502  vs meta 1,500  →  CUMPLIDA, excedente +2
+EFECTIVA · meta 1222 · cubierto 1116 · brecha 106
+```
+
+- **META 1 500 (volumen).** ¿Cuántos reactivos servibles hay? Cada uno se cuenta
+  **una vez** (vive en un solo `Subject`). **1 502 → cumplida, +2.**
+- **META 1 222 (efectiva, G26 — distribución).** La meta de cada pool compartido
+  es la de su celda de mayor peso, y la cobertura se topa en
+  `min(poolHave, poolTarget)`, así que **el excedente de un pool no tapa el hueco
+  de otro**. Su «brecha 106» **no** significa que falten 106 reactivos para
+  1 500: significa que 106 de esos 1 222 caen en pools que siguen bajo su propio
+  objetivo de profundidad.
+
+| Pool bajo su objetivo | Tiene / Meta | Déficit |
+|---|---|---|
+| IPN Ingeniería y Cs. Físico-Matemáticas · Física | 70 / 111 | −41 |
+| IPN pool `IPN:MATEMATICAS` · Matemáticas | 105 / 133 | −28 |
+| IPN pool `IPN:QUIMICA` · Química | 70 / 89 | −19 |
+| IPN Cs. Médico-Biológicas · Biología | 110 / 122 | −12 |
+| UNAM Cs. Sociales · Historia de México | 35 / 39 | −4 |
+| UNAM Cs. Físico-Matemáticas · Matemáticas | 142 / 144 | −2 |
+| **Total** | | **−106** |
+
+Frente a eso hay **386 reactivos de excedente no transferible en 17 pools**. Esa
+brecha **no bloquea nada**: es un objetivo de profundidad, no un umbral de
+servibilidad.
+
+### 8. Sondas después de la resolución
+
+- **`pnpm content:guard`** — **7 áreas · 7 listas · 0 con hueco conocido · 0 en
+  «Próximamente»**, las 4 aserciones (P1-P4) en verde contra un recuento SQL
+  independiente, y las **7 áreas al 100% del peso** de su examen. El pool
+  `UNAM:ESPANOL` sirve **75** en las 4 áreas de la UNAM (Área 1 cuota 5, Área 2
+  cuota 5, Área 3 cuota 5, Área 4 cuota 4).
+- **`pnpm content:coverage`** — el pool `UNAM:ESPANOL` pasa de 35✓/40⧗ a
+  **75✓/0⧗**; la **cola de verificación adversarial vuelve a cero**; tasa de
+  auto-aprobación global **99.7% (1503/1507)**; `META 1,500 (por celda): 100%`.
+- **`pnpm content:margin`** — Área 1 sube a **427 propios** y su margen de Early
+  Bird sobre el mínimo de 300 pasa de **+87 a `+127`**, porque el Español de Área
+  1 es la fila donde se insertó el pool (regla G26: se inserta contra la materia
+  de más peso del grupo). Reporta «Brecha contra la meta de 1 500: **−2**».
+
+### 9. Estado del banco
+
+| | Antes de G94 | Después |
+|---|---|---|
+| Servibles (`isVerified=true`) | 1 462 | **1 502** |
+| En cola de verificación | 40 | **0** |
+| Con veredicto sin publicar | 5 | 5 |
+| Filas totales | 1 507 | 1 507 |
+| **Brecha contra la meta de 1 500** | 38 | **−2 (superada)** |
+
+Los 5 sin publicar son las **4 discrepancias históricas de F3** (incluida la
+autoría de «Madre campesina» que abrió G87) más **1 retirado de G40** — ninguno
+es de este lote.
+
+`pnpm backup:export` corrido en el mismo commit: 7 227 filas, 4.91 MB
+(el historial de git es la retención, G61).
+`pnpm typecheck` y `pnpm lint` en verde. **No se tocó `prisma/schema.prisma`.**
+
+### 10. Lo que queda
+
+El bloque de contenido que arrancó en G26 **cierra aquí**: la meta de volumen
+está superada y las 7 áreas activas están servibles al 100% de su peso. Lo
+pendiente no es contenido:
+
+1. **Los bloqueadores de negocio de G72 siguen abiertos** y son los que deciden
+   el lanzamiento, no el banco: Stripe en modo **PRUEBA**, Vercel Hobby y
+   Supabase free (que prohíben o no soportan uso comercial), y cero validación de
+   mercado. Ver `docs/VEREDICTO_LANZAMIENTO.md`.
+2. **`LENGTH_BIAS` por tema** (§6), la única deuda técnica que esta fase
+   descubre.
+3. **Brecha de distribución de 106** (§7) en 6 pools, si se quiere profundidad
+   homogénea — ~4 lotes, y ninguno cambia el estado READY de ningún área.
+
+---
 
 ## G93 — Lote de reactivos: Español, pool `UNAM:ESPANOL` (Área 1) (2026-09-15)
 

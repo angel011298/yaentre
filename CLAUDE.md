@@ -87,6 +87,7 @@ pnpm verify:cleanup           # borra lo que un recorrido de verificación creó
 pnpm security:abuse           # simulacro "1 gratis" / práctica "10/día" reales (G67)
 pnpm security:time-integrity  # el tiempo del examen se calcula en servidor (G67)
 pnpm content:guard            # cobertura por área: qué se puede ofrecer y qué no (G74)
+pnpm content:pools            # volumen vs distribución: dónde queda la brecha de la meta efectiva (G94)
 pnpm perf:lighthouse-prod     # Lighthouse móvil contra https://yaentre.com, no contra el build local (G74)
 pnpm scale:audit              # ops de Prisma y peticiones por recorrido, escrituras incluidas (G69)
 pnpm scale:pool               # techo real del pool de servidor de Supavisor (G69)

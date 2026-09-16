@@ -2,7 +2,7 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-16T01:58:57.736Z",
+    "exportedAt": "2026-09-16T02:19:23.748Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
     "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
     "models": [
@@ -115075,7 +115075,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115083,7 +115083,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Pronombre tonico sujeto \"El llego\" lleva tilde diacritica; \"el resto\" es articulo determinado, sin tilde. Solo D aplica ambas reglas.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:23.066Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115091,7 +115111,7 @@
         "$d": "2026-09-16T01:54:57.029Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:54:57.029Z"
+        "$d": "2026-09-16T02:14:23.085Z"
       }
     },
     {
@@ -115127,7 +115147,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115135,7 +115155,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "\"Tu siempre olvidas\" = pronombre personal, con tilde; \"tu mochila\" = posesivo atono, sin tilde. Solo D acierta las dos.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:24.238Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115143,7 +115183,7 @@
         "$d": "2026-09-16T01:54:58.385Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:54:58.385Z"
+        "$d": "2026-09-16T02:14:24.252Z"
       }
     },
     {
@@ -115179,7 +115219,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115187,7 +115227,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Votar = emitir un voto: solo \"votar por el candidato\" lo usa asi. Basura, balon y pelota exigen \"botar\".",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:25.343Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115195,7 +115255,7 @@
         "$d": "2026-09-16T01:54:59.612Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:54:59.612Z"
+        "$d": "2026-09-16T02:14:25.357Z"
       }
     },
     {
@@ -115231,7 +115291,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115239,7 +115299,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cocer = someter al fuego: \"cocer los frijoles a fuego lento\". Vestido y boton piden \"coser\"; \"coser los frijoles\" invierte los verbos.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:26.442Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115247,7 +115327,7 @@
         "$d": "2026-09-16T01:55:00.863Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:00.863Z"
+        "$d": "2026-09-16T02:14:26.455Z"
       }
     },
     {
@@ -115283,7 +115363,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115291,7 +115371,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Silabeo: ma-te-MA-ti-cas, tonica en la antepenultima = esdrujula, tilde obligatoria. Camisa es llana; reloj es aguda terminada en j (sin tilde); camion es aguda en n (lleva tilde) pero no es esdrujula.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:27.543Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115299,7 +115399,7 @@
         "$d": "2026-09-16T01:55:02.087Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:02.087Z"
+        "$d": "2026-09-16T02:14:27.556Z"
       }
     },
     {
@@ -115335,7 +115435,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115343,7 +115443,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El CD \"una computadora nueva\" es femenino singular, asi que el pronombre atono de acusativo es \"la\".",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:28.646Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115351,7 +115471,7 @@
         "$d": "2026-09-16T01:55:12.396Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:12.396Z"
+        "$d": "2026-09-16T02:14:28.660Z"
       }
     },
     {
@@ -115387,7 +115507,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115395,7 +115515,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Sujeto plural \"los libros\" exige verbo plural \"llegaron\": solo C concuerda en numero en determinante, nucleo y verbo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:29.745Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115403,7 +115543,7 @@
         "$d": "2026-09-16T01:55:13.604Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:13.604Z"
+        "$d": "2026-09-16T02:14:29.758Z"
       }
     },
     {
@@ -115439,7 +115579,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115447,7 +115587,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Des- es prefijo (antepuesto, de inversion/negacion) y hacer es el verbo base; no hay sufijo ni dos raices.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:14:30.863Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115455,7 +115615,7 @@
         "$d": "2026-09-16T01:55:14.814Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:14.814Z"
+        "$d": "2026-09-16T02:14:30.876Z"
       }
     },
     {
@@ -115491,7 +115651,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115499,7 +115659,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "\"Espero que\" (verbo de deseo) subordina en subjuntivo: presente de subjuntivo de llegar para tu = llegues.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:31.962Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115507,7 +115687,7 @@
         "$d": "2026-09-16T01:55:16.044Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:16.044Z"
+        "$d": "2026-09-16T02:14:31.975Z"
       }
     },
     {
@@ -115543,7 +115723,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115551,7 +115731,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Entrego QUE: \"los examenes corregidos\" = CD (sustituible por \"los\"); \"a los alumnos\" es CI.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:14:33.059Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115559,7 +115759,7 @@
         "$d": "2026-09-16T01:55:17.245Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:17.245Z"
+        "$d": "2026-09-16T02:14:33.072Z"
       }
     },
     {
@@ -115595,7 +115795,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115603,7 +115803,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Escaso = poco, insuficiente; su opuesto es abundante. Moderado, limitado y reducido son sinonimos o atenuaciones, no antonimos.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:34.162Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115611,7 +115831,7 @@
         "$d": "2026-09-16T01:55:27.333Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:27.333Z"
+        "$d": "2026-09-16T02:14:34.175Z"
       }
     },
     {
@@ -115647,7 +115867,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115655,7 +115875,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La relacion es profesional : lugar habitual de trabajo. Medico-hospital, maestro-escuela. Alumno es destinatario, pizarron instrumento, diploma producto.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:35.262Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115663,7 +115903,7 @@
         "$d": "2026-09-16T01:55:28.546Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:28.546Z"
+        "$d": "2026-09-16T02:14:35.275Z"
       }
     },
     {
@@ -115699,7 +115939,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115707,7 +115947,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "\"Corazon de piedra\" es sentido figurado que evoca dureza y frialdad afectiva: uso connotativo, no denotativo ni tecnico.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:14:36.395Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115715,7 +115975,7 @@
         "$d": "2026-09-16T01:55:29.821Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:29.821Z"
+        "$d": "2026-09-16T02:14:36.408Z"
       }
     },
     {
@@ -115751,7 +116011,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115759,7 +116019,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El Cantar de Mio Cid (h. 1200), sobre Rodrigo Diaz de Vivar, es el cantar de gesta castellano mas antiguo conservado. El Libro de Buen Amor (Hita) y los Milagros (Berceo) son mester de clerecia; la Tragicomedia de Calisto y Melibea es La Celestina, de 1499.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:37.502Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115767,7 +116047,7 @@
         "$d": "2026-09-16T01:55:39.339Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:39.339Z"
+        "$d": "2026-09-16T02:14:37.516Z"
       }
     },
     {
@@ -115803,7 +116083,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115811,7 +116091,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Berceo es mester de clerecia: cuaderna via = tetrastrofo monorrimo alejandrino, cuatro versos con una sola rima. El romancero y la juglaria son orales y anonimos; el cancionero petrarquista es posterior.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:14:38.712Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115819,7 +116119,7 @@
         "$d": "2026-09-16T01:55:40.332Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:40.332Z"
+        "$d": "2026-09-16T02:14:38.725Z"
       }
     },
     {
@@ -115855,7 +116155,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115863,7 +116163,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Juan Ruiz, Arcipreste de Hita, escribio el Libro de Buen Amor. El Conde Lucanor es de don Juan Manuel, La Celestina de Rojas, el Cid anonimo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:39.812Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115871,7 +116191,7 @@
         "$d": "2026-09-16T01:55:41.356Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:41.356Z"
+        "$d": "2026-09-16T02:14:39.825Z"
       }
     },
     {
@@ -115907,7 +116227,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115915,7 +116235,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La Celestina tiene autor conocido y esta en prosa dialogada, no en verso ni anonima: su rasgo de transicion es unir el didactismo moral medieval con personajes de interioridad individual ya renacentista.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-16T02:14:40.911Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115923,7 +116263,7 @@
         "$d": "2026-09-16T01:55:42.382Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:42.382Z"
+        "$d": "2026-09-16T02:14:40.925Z"
       }
     },
     {
@@ -115959,7 +116299,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -115967,7 +116307,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El romance es una tirada de octosilabos con rima asonante en los pares y los impares libres. El alejandrino en cuaderna via es clerecia y el endecasilabo del soneto es renacentista.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:42.015Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -115975,7 +116335,7 @@
         "$d": "2026-09-16T01:55:43.454Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:43.454Z"
+        "$d": "2026-09-16T02:14:42.028Z"
       }
     },
     {
@@ -116011,7 +116371,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116019,7 +116379,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "La primera parte del Quijote se publico en 1605. Novelas ejemplares es de 1613, La Celestina de 1499 y el Lazarillo de 1554.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:43.116Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116027,7 +116407,7 @@
         "$d": "2026-09-16T01:55:53.151Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:53.151Z"
+        "$d": "2026-09-16T02:14:43.129Z"
       }
     },
     {
@@ -116063,7 +116443,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116071,7 +116451,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las redondillas \"Hombres necios que acusais\" son el texto donde Sor Juana defiende el juicio de la mujer. \"Canto a mi mismo\" es de Whitman; \"Rimas\" remite a Becquer.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:44.220Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116079,7 +116479,7 @@
         "$d": "2026-09-16T01:55:54.143Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:54.143Z"
+        "$d": "2026-09-16T02:14:44.233Z"
       }
     },
     {
@@ -116115,7 +116515,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116123,7 +116523,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Azul... (1888) abre el Modernismo hispanoamericano. Cien anos de soledad es de Garcia Marquez, Platero y yo de Juan Ramon Jimenez, Veinte poemas de amor de Neruda.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:45.320Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116131,7 +116551,7 @@
         "$d": "2026-09-16T01:55:55.135Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:55.135Z"
+        "$d": "2026-09-16T02:14:45.334Z"
       }
     },
     {
@@ -116167,7 +116587,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116175,7 +116595,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Romancero gitano (1928) es el libro de Lorca que cruza el romance tradicional con la imagen vanguardista. Rimas y leyendas es de Becquer, Soledades de Gongora, el Cid anonimo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:46.428Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116183,7 +116623,7 @@
         "$d": "2026-09-16T01:55:56.128Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:56.128Z"
+        "$d": "2026-09-16T02:14:46.441Z"
       }
     },
     {
@@ -116219,7 +116659,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116227,7 +116667,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cien anos de soledad (1967), de Garcia Marquez. La casa de los espiritus es de Allende, Rayuela de Cortazar, Pedro Paramo de Rulfo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:47.531Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "TEMARIO_ONLY",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116235,7 +116695,7 @@
         "$d": "2026-09-16T01:55:57.132Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:55:57.132Z"
+        "$d": "2026-09-16T02:14:47.545Z"
       }
     },
     {
@@ -116271,7 +116731,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116279,7 +116739,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Causa = la segunda idea explica la primera: \"porque\" es el nexo causal. Aunque es concesivo, sin embargo adversativo, y por lo tanto consecutivo (invierte la logica).",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:48.633Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116287,7 +116767,7 @@
         "$d": "2026-09-16T01:56:06.504Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:06.504Z"
+        "$d": "2026-09-16T02:14:48.646Z"
       }
     },
     {
@@ -116323,7 +116803,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116331,7 +116811,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Contraste: el pronostico anunciaba lluvia PERO amanecio despejado. Porque seria causal, ademas aditivo, por lo tanto consecutivo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:49.732Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116339,7 +116839,7 @@
         "$d": "2026-09-16T01:56:07.774Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:07.774Z"
+        "$d": "2026-09-16T02:14:49.745Z"
       }
     },
     {
@@ -116375,7 +116875,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116383,7 +116883,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Consecuencia: falta de agua -> hojas marchitas, con \"por lo tanto\". Sin embargo y aunque oponen; porque invierte causa y efecto.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:50.832Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116391,7 +116911,7 @@
         "$d": "2026-09-16T01:56:08.992Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:08.992Z"
+        "$d": "2026-09-16T02:14:50.845Z"
       }
     },
     {
@@ -116427,7 +116947,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116435,7 +116955,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Las tres ideas (menos basura, ahorro de energia, menos extraccion) son beneficios ambientales: solo A las engloba. B, C y D son detalles de apoyo, no la idea que introduce el parrafo.",
+          "confidence": 0.95,
+          "verifiedAt": "2026-09-16T02:14:51.930Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116443,7 +116983,7 @@
         "$d": "2026-09-16T01:56:10.205Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:10.205Z"
+        "$d": "2026-09-16T02:14:51.944Z"
       }
     },
     {
@@ -116479,7 +117019,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116487,7 +117027,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Verbos exhortativos y pasos secuenciados (anada, bata, viertala) con cantidades: texto instructivo tipo receta.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:53.030Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116495,7 +117055,7 @@
         "$d": "2026-09-16T01:56:11.415Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:11.415Z"
+        "$d": "2026-09-16T02:14:53.044Z"
       }
     },
     {
@@ -116531,7 +117091,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116539,7 +117099,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "\"Por medio de la presente, solicito a usted\" es formula de registro formal; las otras usan coloquialismos (porfa, echar la mano, echar un ojo, va) y tuteo.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:54.244Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116547,7 +117127,7 @@
         "$d": "2026-09-16T01:56:12.627Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:12.627Z"
+        "$d": "2026-09-16T02:14:54.257Z"
       }
     },
     {
@@ -116583,7 +117163,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116591,7 +117171,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "\"Lo\" es CD masculino singular y su antecedente es \"el puente\" (lo declararon seguro). Los ingenieros son sujeto y \"tres dias\" no admite ese pronombre.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:55.345Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116599,7 +117199,7 @@
         "$d": "2026-09-16T01:56:13.839Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:13.839Z"
+        "$d": "2026-09-16T02:14:55.358Z"
       }
     },
     {
@@ -116635,7 +117235,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116643,7 +117243,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El parrafo trata del cafe (origen etiope, cultivos americanos, produccion actual); la oracion sobre el maiz en Mesoamerica introduce otro cultivo y rompe la unidad tematica.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:14:56.446Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116651,7 +117271,7 @@
         "$d": "2026-09-16T01:56:15.051Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:15.051Z"
+        "$d": "2026-09-16T02:14:56.460Z"
       }
     },
     {
@@ -116687,7 +117307,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116695,7 +117315,27 @@
       "format": "MULTIPLE_CHOICE",
       "passageId": null,
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Orden logico del procedimiento: (2) cavar el hoyo -> (4) colocar el arbol centrado dentro -> (1) rellenar con tierra y compactar -> (3) regar despues de sembrar. Secuencia 2-4-1-3 = A.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:57.546Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116703,7 +117343,7 @@
         "$d": "2026-09-16T01:56:16.267Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:16.267Z"
+        "$d": "2026-09-16T02:14:57.559Z"
       }
     },
     {
@@ -116739,7 +117379,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116747,7 +117387,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El pasaje expone la migracion de la monarca a Mexico (ruta, generaciones, orientacion) y cierra con la deforestacion y la perdida de algodoncillo como amenazas: fenomeno mas retos.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:14:58.643Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116755,7 +117415,7 @@
         "$d": "2026-09-16T01:56:28.460Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:28.460Z"
+        "$d": "2026-09-16T02:14:58.656Z"
       }
     },
     {
@@ -116791,7 +117451,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116799,7 +117459,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Cita literal del pasaje: \"la travesia requiere hasta cuatro generaciones sucesivas\".",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:14:59.739Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116807,7 +117487,7 @@
         "$d": "2026-09-16T01:56:29.679Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:29.679Z"
+        "$d": "2026-09-16T02:14:59.752Z"
       }
     },
     {
@@ -116843,7 +117523,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116851,7 +117531,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El pasaje define la matusalen como la que nace a finales del verano y \"vive lo suficiente, casi ocho meses, para llegar a Mexico, hibernar y emprender el regreso\": la de mayor longevidad.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:15:00.853Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116859,7 +117559,7 @@
         "$d": "2026-09-16T01:56:30.898Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:30.898Z"
+        "$d": "2026-09-16T02:15:00.866Z"
       }
     },
     {
@@ -116895,7 +117595,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116903,7 +117603,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9b1u0000lgevv4gr72jp",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El pasaje atribuye la caida a \"la deforestacion en los sitios de hibernacion y la perdida de algodoncillo\". Vientos, competencia y brujulas artificiales no aparecen en el texto.",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:15:01.953Z",
+          "chosenOption": "C",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "C"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116911,7 +117631,7 @@
         "$d": "2026-09-16T01:56:32.116Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:32.116Z"
+        "$d": "2026-09-16T02:15:01.967Z"
       }
     },
     {
@@ -116947,7 +117667,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -116955,7 +117675,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El fragmento narra que Mariana, al dibujar desde la azotea, redescubre la ciudad vista de arriba (techos de lamina, antenas torcidas, ropa tendida): un cambio de perspectiva. No hay discusion, ni accidente, ni explicacion a un amigo.",
+          "confidence": 0.98,
+          "verifiedAt": "2026-09-16T02:15:03.052Z",
+          "chosenOption": "A",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "A"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -116963,7 +117703,7 @@
         "$d": "2026-09-16T01:56:33.331Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:33.331Z"
+        "$d": "2026-09-16T02:15:03.065Z"
       }
     },
     {
@@ -116999,7 +117739,7 @@
       ],
       "difficulty": "BASIC",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117007,7 +117747,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "El pasaje dice que subio \"para terminar un dibujo que llevaba semanas posponiendo\".",
+          "confidence": 0.99,
+          "verifiedAt": "2026-09-16T02:15:04.149Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117015,7 +117775,7 @@
         "$d": "2026-09-16T01:56:34.576Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:34.576Z"
+        "$d": "2026-09-16T02:15:04.162Z"
       }
     },
     {
@@ -117051,7 +117811,7 @@
       ],
       "difficulty": "INTERMEDIATE",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117059,7 +117819,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Guardo el lapiz a la mitad del dibujo, no al terminarlo, para \"quedarse un rato nada mas mirando\": queda absorta en la perspectiva que habia olvidado. El viento solo aparece al subir.",
+          "confidence": 0.96,
+          "verifiedAt": "2026-09-16T02:15:05.253Z",
+          "chosenOption": "B",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "B"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117067,7 +117847,7 @@
         "$d": "2026-09-16T01:56:35.792Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:35.792Z"
+        "$d": "2026-09-16T02:15:05.266Z"
       }
     },
     {
@@ -117103,7 +117883,7 @@
       ],
       "difficulty": "ADVANCED",
       "sourceYear": null,
-      "isVerified": false,
+      "isVerified": true,
       "source": "GENERATED",
       "usage": "SERVABLE",
       "sourceRef": null,
@@ -117111,7 +117891,27 @@
       "format": "READING_COMPREHENSION",
       "passageId": "cmu3g9bwi0001lgevkhm9jd1p",
       "externalRef": null,
-      "verification": null,
+      "verification": {
+        "audit": null,
+        "reasons": [],
+        "verdict": {
+          "model": "claude-opus-5",
+          "usage": {
+            "inputTokens": 0,
+            "outputTokens": 0
+          },
+          "problems": [],
+          "reasoning": "Es un simil que expresa que el ruido del trafico llegaba \"apagado\" a la azotea: sonidos amortiguados por la altura, no silencio real, ni sordera, ni apagon.",
+          "confidence": 0.97,
+          "verifiedAt": "2026-09-16T02:15:06.358Z",
+          "chosenOption": "D",
+          "usedCalculation": false
+        },
+        "decision": "AUTO_APPROVED",
+        "pipeline": "session-v1",
+        "generatorModel": "claude-code-session",
+        "generatorOption": "D"
+      },
       "groundingStatus": "SOURCED",
       "videoLectureId": null,
       "professorNoteId": null,
@@ -117119,7 +117919,7 @@
         "$d": "2026-09-16T01:56:37.006Z"
       },
       "updatedAt": {
-        "$d": "2026-09-16T01:56:37.006Z"
+        "$d": "2026-09-16T02:15:06.371Z"
       }
     }
   ],
