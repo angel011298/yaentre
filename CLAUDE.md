@@ -16,6 +16,8 @@ Fase 1 es 100% autogestionable (sin profesores ni clases en vivo). La arquitectu
 ## Repositorio
 
 - **Repo nuevo desde cero.** No hay migración de Certifik PLD; el reúso es conceptual (patrones del motor de preguntas), no de código ni datos.
+- **Remoto:** `origin` → **https://github.com/angel011298/yaentre** — **privado** (sin autenticar responde 404, que es lo que GitHub devuelve para un repo privado; un 200 significaría que se volvió público). Rama **`master`**, no `main`. Desde G97 (2026-09-16).
+- **El remoto NO está conectado a la integración de Git de Vercel.** El despliegue sigue siendo manual, `vercel --prod` desde la CLI. Un `git push` **no** despliega nada. Conectarlo es una decisión aparte, no la tomes sin instrucción explícita.
 - **OS de desarrollo:** Windows (Lenovo). Rutas locales estilo `C:\Users\LENOVO\...`.
 - **Gestor de paquetes:** `pnpm` (no usar npm ni yarn).
 
@@ -181,6 +183,7 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 - Incluir tests Vitest si toca lógica crítica (scoring, motor, pagos).
 - Respetar los design tokens y las convenciones de este archivo.
 - **No** modificar `prisma/schema.prisma` sin instrucción explícita.
+- **Terminar con `git push`** y comprobar POR EFECTO que llegó: `git ls-remote origin master` debe imprimir el mismo SHA que `git rev-parse HEAD`. Un commit local no respaldado no cuenta como trabajo terminado — en este historial vive el ÚNICO respaldo restaurable del banco de contenido (`backups/content-bank.json`, G61), porque el plan gratuito de Supabase no da respaldos. Cerrar una sesión sin empujar deja ese respaldo otra vez en una sola máquina.
 
 ---
 

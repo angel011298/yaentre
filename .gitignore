@@ -74,3 +74,11 @@ docs/guias/*.pdf
 
 .vercel
 .lighthouse-g74/
+
+# Artefactos LOCALES de las herramientas de Claude — no son del proyecto (G97)
+# `Claude outputs/` la crea la app de escritorio de Claude al entregarle archivos
+# a Ángel con la carpeta del proyecto conectada; reaparece sola.
+# `.claude/settings.local.json` ya estaba cubierto por el gitignore GLOBAL de la
+# máquina; se declara también aquí para que un clon en otra máquina lo herede.
+Claude outputs/
+.claude/settings.local.json

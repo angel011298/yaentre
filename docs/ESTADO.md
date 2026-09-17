@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-16 · Última fase ejecutada: **G97 (COMPLETADA — el repositorio deja de existir en una sola máquina: se publicó en un **remoto privado de GitHub**, `https://github.com/angel011298/yaentre`, rama `master`. Antes de G97 `git remote -v` estaba vacío y, como la retención del respaldo del banco de contenido **es** el historial de git (`backups/content-bank.json`, G61) y el plan gratuito de Supabase no da respaldos restaurables, un fallo de disco se llevaba **el código y su único respaldo a la vez**. **① Desviación declarada en el paso 1:** el árbol no traía `.claude/settings.local.json` sin rastrear como anticipaba el encargo —ya estaba cubierto por el gitignore **GLOBAL** de la máquina (`C:\Users\LENOVO/.config/git/ignore:3`), no por el del repo— sino una carpeta `Claude outputs/` con un expediente legal/fiscal de 359 líneas creado ese mismo día a las 02:52 por otra sesión. Se activó la condición de parada y **no se subió nada hasta que el dueño decidió**: ignorarla. La crea la app de escritorio de Claude al entregarle archivos con la carpeta del proyecto conectada, así que reaparece sola; ambas rutas quedaron en el `.gitignore` del repo (la local también, para que un clon en otra máquina la herede sin depender del gitignore global). **② Escaneo de secretos sobre TODO el historial, en UN solo recorrido:** los **1 573 blobs únicos** (312.1 MiB) de todas las revisiones, contra **37 valores** de `.env`/`.env.local`/`vercel env pull` de producción (24 candidatos a secreto, de ≥12 caracteres) y **16 patrones**. **508 coincidencias, 0 secretos reales.** El dato que decide no es el total sino su complemento: **los 13 valores realmente secretos —los 7 de Vercel producción (`STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`, `DATABASE_URL`, `DIRECT_URL`, `CRON_SECRET`, `VERCEL_OIDC_TOKEN`) y los reales de `.env.local`— tienen CERO apariciones en los 1 573 blobs**. Las 508 se clasifican en: 238 `NEXT_PUBLIC_*` (públicas por diseño), 204 del *placeholder* `sk_test_placeholder` citado en prosa en este mismo documento, 32 `re_…` de 27 caracteres que son **IDs de reembolso de Stripe, no llaves de Resend** (colisión de prefijo — el patrón del encargo produce ese falso positivo), 15 `postgres://user:password@…` de `.env.example` y de los fixtures de `tests/db/connection-url.test.ts`, 10 del placeholder `your-service-role-key`, y 9 Price IDs de Stripe (identificadores públicos, commiteados a propósito en G70). El `vercel env pull` se escribió FUERA del repo, en `%TEMP%`, y se borró con confirmación. **③ Tamaño:** un solo blob supera 50 MiB, `Guia IPN.pdf` con **79.8 MiB**; ninguno llega a 100 MiB. GitHub lo aceptó con la advertencia esperada (`GH001`). **④ Verificación por efecto, no por confianza:** `git ls-remote origin master` = `git rev-parse HEAD` = `90dbe71` tras el push inicial, y sin autenticar el repositorio responde **404 en web y en API** —que es lo que GitHub devuelve para un privado; un 200 significaría que se volvió público—. **⑤ Lo que estaba dormido:** `.github/workflows/security-audit.yml` escuchaba pushes a `main`, **una rama que nunca ha existido en este repo** — otro caso de «verificación que nunca falla» (G73b); corregido a `master`. `.github/dependabot.yml` no necesitaba corrección porque Dependabot trabaja siempre contra la rama por defecto, pero **sigue inerte hasta que el dueño lo active en Settings → Code security**. El remoto **NO** se conectó a la integración de Git de Vercel: un `git push` no despliega nada, por decisión explícita del encargo.)**. Modelo real `claude-opus-5`.
+
+<details><summary>Historial: G96 (2026-09-15)</summary>
+
 Última actualización: 2026-09-15 · Última fase ejecutada: **G96 (COMPLETADA — verificación ciega REAL de los **6 reactivos de Comprensión lectora** que G95 corrigió editorialmente y devolvió a la cola: **6/6 auto-aprobados (100%)**, confianza media **0.967**, mínima 0.95, **0 discrepancias y 0 `problems`**. Con esto el banco **vuelve a cruzar la meta de 1 500: 1 502 servibles, excedente +2**, y la cola de verificación adversarial queda de nuevo en **cero**. **① Aislamiento respetado y verificado, no asumido**: único insumo el lote ciego de `pnpm content:blind-batch --all`, que devolvió **exactamente 6 pendientes** (la condición de parada que pedía el encargo — más de 6 habría significado contenido ajeno mezclado). El archivo se inspeccionó en crudo antes de resolver: el conjunto COMPLETO de claves es `questionId, institution, subject, topic, format, passage, requiresCalculation, stem, options{label, text, imageUrl}` — **sin `isCorrect` ni `explanations`** — y los **2 pasajes llegaron ÍNTEGROS** (mariposa monarca 1 003 car.; Mariana en la azotea 863 car.), sin los cuales los 6 no son resolubles. No se leyó el commit de G95, ni `scripts/g95/fix-reading-comp.ts`, ni el lote de G93. En ningún momento se vio una respuesta correcta antes de responderla. **② La longitud se descartó explícitamente como heurística** — es justo la señal que G95 corrigió, así que usarla habría hecho circular la verificación. Los 6 se resolvieron contra el pasaje, cada uno con descarte nominal de los 3 distractores: 3 de recuperación literal anclados en cita del texto («la deforestación … y la pérdida de algodoncillo», la aposición que define «generación matusalén»), 1 de idea principal por cobertura del conjunto frente a 3 opciones que cubren solo un detalle o lo desbordan (el algodoncillo como huésped **único de la monarca**, no de todas las mariposas), y 2 de inferencia resueltos por un dato del pasaje que el conocimiento general no puede aportar: el distractor «terminó el dibujo antes de lo que esperaba» queda descartado porque el texto sitúa a Mariana **«a la mitad del dibujo»**, y el símil «como si alguien hubiera bajado el volumen del mundo» se lee contra la cláusula que gloso —«el ruido del tráfico llegaba apagado»— lo que descarta «los coches habían dejado de circular» (el texto los muestra «deslizándose entre las calles»). **③ 🎯 El sesgo quedó desmontado, medido dos veces y por separado.** (a) Desde el LOTE CIEGO, con la clave ya confirmada por la resolución (las longitudes son invariantes bajo el mezclado): la clave es la opción **estrictamente más larga en 0 de 6 (0.0%)** —contra **6 de 8 (75.0%), p=0.42%, antes de la corrección**—, rango medio de la clave 2.00 sobre 4, y el **rango de longitudes de las 4 opciones se cerró a 5-10 caracteres** por reactivo, que es el efecto buscado: no queda margen para que «la más larga» signifique algo. (b) Sonda nueva `scripts/g96/length-recheck.ts`, que mide **POR EFECTO contra la base** (no contra el lote) y **por pool**, con la misma aritmética que G95 (`binomialUpperTail` contra azar 25%, empates NO cuentan — regla de G79, advertencia <5%, rechazo <1%): el subgrupo «Comprensión lectora» de `UNAM:ESPANOL` queda en **2/11 = 18.2%, p=80.29% → ✅ SANO**, y de paso el de `IPN:ESPANOL` en **0/20 = 0.0% → ✅ SANO**. La sonda sale con código 1 si algún pool vuelve a caer bajo el umbral de advertencia. **④ Las 4 sondas de contenido corridas DESPUÉS de la resolución**: `content:guard` **7 áreas · 7 listas · 0 con hueco · 0 en «Próximamente»**, las 4 aserciones en verde contra recuento SQL independiente y las 7 áreas al **100% del peso** de su examen; `content:coverage` **1 502 servibles · 0 pendientes de resolución · 1 503 en banco**, auto-aprobación global **99.7%**; `content:margin` Área 1 con **427 propios y margen de Early Bird `+127`** sobre el mínimo de 300, y «Brecha contra la meta de 1 500: **−2**»; `content:pools` **VOLUMEN cumplido (+2)** frente a la meta EFECTIVA de G26 en **1 116/1 222, brecha 106** repartida en 6 pools (IPN Física −41, `IPN:MATEMATICAS` −28, `IPN:QUIMICA` −19, IPN Biología −12, UNAM Historia de México −4, UNAM Matemáticas −2) con 386 de excedente NO transferible en 17 pools — dos preguntas distintas (cuánto hay / dónde está), y esa brecha no bloquea nada. **⑤ Acumulado definitivo del banco: 1 502 servibles de 1 507 filas** (1 496 → +6), 5 con veredicto sin publicar (4 discrepancias históricas de F3 + 1 retirado de G40), **0 en cola**. `pnpm backup:export` corrido en el mismo commit (7 227 filas, 4.91 MB). `typecheck`/`lint` en verde. **No se tocó `prisma/schema.prisma`.** **Queda abierto, sin tocar** (fuera del alcance, heredado de G95 ③): los **12 lotes históricos** con sesgo de subgrupo que encontró el barrido retrospectivo, de los cuales **dos son posteriores a G77** y el chequeo de lote completo jamás habría advertido — Historia Universal «Siglo XXI» 83.3%/p=0.46% y Artes «Artes visuales prehispánicas» 75.0%/p=0.42%.)**. Modelo real `claude-opus-5`. Ver §G96 abajo.
+
+</details>
 
 <details><summary>Historial: G95 (2026-09-15)</summary>
 
@@ -398,6 +404,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G97 | Repositorio remoto privado en GitHub | **COMPLETADA — `origin` → https://github.com/angel011298/yaentre (privado, rama `master`); historial completo subido y verificado por efecto. Escaneo de 1 573 blobs × 37 valores × 16 patrones: 508 coincidencias, **0 secretos reales**. Parada declarada en el paso 1 por `Claude outputs/`, resuelta ignorándola.** | (G97) | Ver sección dedicada abajo. **El único respaldo restaurable del banco de contenido deja de vivir en un solo disco.** `security-audit.yml` escuchaba `main`, rama inexistente aquí → `master`. Dependabot pendiente de activar por el dueño. Remoto **sin** integración de Git de Vercel: `git push` no despliega. |
 | G70b | Corrección del Site URL, traducción de los correos y limpieza de datos de prueba | **COMPLETADA — los 4 pendientes de G70 cerrados por la sesión, 0 para el dueño. Site URL `localhost` → `https://yaentre.com` + 2 redirecciones permitidas; 6 plantillas de correo traducidas Y reapuntadas a `/auth/confirm?token_hash=` (con `{{ .ConfirmationURL }}` el registro habría fallado igual); 4 correos reales verificados; base sin cuentas de prueba; Early Bird 500/500; pago de prueba reembolsado.** | (G70b) | Modelo real `claude-opus-5`. **Herramientas:** panel de Supabase por control del navegador (sesión de GitHub del dueño), SQL como `postgres` por MCP, API de Stripe y API de Resend. **🔴 El hallazgo de la fase no era el Site URL:** era que arreglarlo solo no bastaba. `{{ .ConfirmationURL }}` hace que GoTrue verifique el token y redirija al destino **pelado**, sin `token_hash` ni `type`; `app/auth/confirm/route.ts` los exige desde G60 y sin ellos redirige a `/login?error=verification_failed` — cuenta confirmada, usuario viendo un error. Las 6 plantillas del grupo Authentication construyen ahora el enlace contra la app; `{{ .RedirectTo }}` en registro/recuperación para no perder el `next` de `app/actions/auth.ts` (un tutor aterrizaba en `/app` en vez de `/tutor`), `{{ .SiteURL }}` en las 4 restantes porque ahí `.RedirectTo` puede venir vacío. Copia versionada en **`docs/CORREOS_AUTH.md`**. Las 7 plantillas *Security* quedan en inglés: están deshabilitadas (7 interruptores en `false`), nadie las recibe. **Verificación sin buzón:** `GET https://api.resend.com/emails/<id>` devuelve el `.html` renderizado de los correos que Supabase manda por ese SMTP — 4 entregados y leídos (registro, recuperación, magic link, cambio de correo). El enlace de registro se siguió en el navegador: `email_confirmed_at`, sesión creada, `/onboarding`; el de recuperación, `/actualizar-password`. **Limpieza:** `user_profiles` cae en cascada a suscripciones/pagos/sesiones, así que bastó borrar el perfil + `auth.users` (el `SUPABASE_SERVICE_ROLE_KEY` sigue sin estar en prod, pero el MCP entra como `postgres` y sí puede tocar `auth`). Quedan **solo las 5 cuentas fixture `@acierta-test.mx`** — `rlsprobe.*`, `e2e.sim@`, `e2e.free@` — que NO se borran: las usan `security:authz`, `security:abuse`, `test:rls` y el E2E del simulador. **El contador Early Bird no llegaba a 500 solo con borrar la cuenta de G70:** `e2e_sim_sub` (sembrada en F19, nunca fue una compra) también contaba; pasó a `HIGH_SEASON` conservando `PREMIUM`/`ACTIVE`. **Reembolso** `re_3UCa5HEtRO7AKqHV1kfAeU8k`, 49 900 MXN, `charge.refunded=true`; el `Customer` `cus_VD04…` se conserva a propósito (modo prueba, y borrarlo destruiría la trazabilidad del reembolso). `typecheck`/`lint` verde. **No se tocó `prisma/schema.prisma`.** |
 | G70 | Activación de Stripe, Resend, Sentry y PostHog en producción | **COMPLETADA — 7 credenciales validadas contra su API real y cargadas en Vercel prod + 9 `STRIPE_PRICE_*`; 9 productos «YaEntre» en Stripe; 3 pruebas reales de punta a punta (correo entregado, compra $499 → plan ACTIVE por webhook, Sentry+PostHog reciben eventos). 1 🔴 bug de checkout corregido (SPEI). 2 🟠 config de dashboard del dueño (Site URL de Supabase, plantillas de correo).** | (G70) | Modelo real `claude-sonnet-5`. **Credenciales:** `RESEND_API_KEY` (dominio `yaentre.com` verificado, sending enabled), `STRIPE_SECRET_KEY`/`NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`/`STRIPE_WEBHOOK_SECRET` (test, `livemode:false`, cuenta `acct_1UC7IkEtRO7AKqHV`), `NEXT_PUBLIC_SENTRY_DSN` (envelope de prueba → HTTP 200), `NEXT_PUBLIC_POSTHOG_KEY`+`_HOST` (capture → `{"status":"Ok"}`). Las 4 `NEXT_PUBLIC_*` no son secretas por diseño; las 3 reales (`RESEND`/`STRIPE_SECRET`/`WEBHOOK`) las pegó el dueño en el chat (canal que eligió a sabiendas de que `.env*` está bloqueado por `.claude/settings.json`). **Stripe:** `pnpm stripe:setup-prices` creó 9 Price idempotentes por `lookup_key` (`mensual/pase/premium` × `eb/reg/lm`), producto por Price con nombre `YaEntre — {plan} ({temporada})`, montos $99/$149/$199 · $499/$799/$999 · $899/$1 299/$1 499 MXN (Mensual recurrente, resto pago único); IDs → `.env.example` (commiteado) → Vercel prod. Webhook `we_1UC7dtEtRO7AKqHVNqAA6eMU` (`https://yaentre.com/api/webhooks/stripe`) traía 3 de los 4 eventos que enruta `src/lib/stripe/webhook.ts` → se agregó `checkout.session.async_payment_failed` por API. **Prueba 1 (correo):** registro real de `yaentreg701788677536@uberip.com` → `Tu cuenta se creó. Revisa tu correo` → Resend log `last_event: delivered` (from `notificaciones@yaentre.com`, msgid `email.amazonses.com`) → clic al enlace → `auth.users.email_confirmed_at` puesto. 🟠 el enlace lleva `redirect_to=http://localhost:3000` (Site URL de Supabase Auth sin actualizar + allowlist sin `yaentre.com`) → aterrizaje muerto para el usuario real, cuenta igual confirmada. 🟠 plantilla en inglés. **Prueba 2 (pago): 🔴 `app/actions/checkout.ts`** — el primer checkout real lanzó `StripeInvalidRequestError: The payment method 'customer_balance' requires 'customer' to be set`. `customer_creation: 'always'` NO basta para SPEI: en `mode: 'payment'` ese Customer se materializa al completarse el pago y Stripe lo valida antes. Fix: crear el `Customer` explícito para pagos únicos y pasar `customer` (excluyente con `customer_email`). Post-fix: Checkout hospedado con las 3 formas de pago (tarjeta/SPEI/OXXO) → `4242 4242 4242 4242` → **`subscriptions` `ACTIVE`** (`SEASON_PASS`/`EARLY_BIRD`, `stripeCustomerId` `cus_VD04…`, `expiresAt` 2027-05-15), **activada por el webhook** (creada `PENDING` 07:00:39 → `ACTIVE` 07:01:50, POST `/api/webhooks/stripe` → 200), `payments` `SUCCEEDED` `pi_3UCa5H…`, `processed_stripe_events` `evt_1UCa5I…` (idempotencia + firma `whsec_` OK). **Prueba 3 (observabilidad):** ruta temporal `app/api/g70-probe` (guardada por env var efímera `G70_PROBE_TOKEN`, ambas **eliminadas** al terminar) → `Sentry.captureException` + `Sentry.flush(5000)` = `true` (`eventId 134f0367…`) y `trackServerEvent('paywall_shown')` + `PostHog.flush()` sin throw, desde la función serverless de producción; `posthog-js` en el navegador dejó `$feature_flag_details`/`$active_feature_flags` en `localStorage` (round-trip con `us.i.posthog.com` tras aceptar cookies). **La confirmación visual en los dashboards es del dueño** (sin token de lectura). **Deja pendiente:** cuenta de prueba + Pase ACTIVE en la base real (1 licencia EB consumida) → borrar y reembolsar; `SUPABASE_SERVICE_ROLE_KEY` fuera de prod (no estaba en las 7). 5 deploys (`vercel --prod`), último limpio sin la sonda. `typecheck`/`lint` verde. **No se tocó `prisma/schema.prisma`.** |
 | G69 | Preparación para escala (límites, carga y capacidad) | **COMPLETADA — límites de los 6 servicios documentados con precisión, consumo por recorrido MEDIDO, punto de quiebre identificado (NO son las conexiones: son el correo y los términos de Vercel Hobby), prueba de carga controlada contra producción, proyección de costos para 500/1 000/5 000 alumnos, y −38 % de operaciones en el simulacro sin gastar un peso. Reporte: `docs/ESCALA.md`** | (G69) | Modelo real `claude-opus-5`. **3 sondas nuevas y repetibles:** `pnpm scale:audit` (consumo por recorrido, ESCRITURAS incluidas, sobre un perfil desechable que el script crea y borra — la mitad que a G59 le faltaba), `pnpm scale:pool` (techo real del pool de Supavisor), `pnpm scale:load` (carga acotada contra `https://yaentre.com` y contra la base). **🟢 El cuello de botella NO es la base de datos, contra la sospecha de partida.** Delta de `pg_stat_statements` alrededor de una corrida completa: **1 293 sentencias = 86.2 ms** de CPU de Postgres para un recorrido entero (diagnóstico + simulacro de 120 + práctica + dashboard), 0.067 ms por sentencia. Lo que cuesta es el VIAJE de red, no el cómputo. **Techo de conexiones medido por dos vías independientes** (backends en `pg_stat_activity` + tiempo de pared con `pg_sleep`): el pool de servidor de Supavisor es **17 por ROL de base de datos** — invisible en `pg_settings`, es config del pooler — y por encima **no hay errores, hay cola** (K=60 concurrentes, 0 errores). Dos roles en uso (`acierta_ci` + `acierta_prod`) = 34 de las 57 conexiones útiles. Calculado: **~10 600 alumnos simultáneos en simulacro** antes de saturarlo. **🔴 Los dos quiebres reales son de plan, no de capacidad:** (1) **el registro ya está roto hoy** (`over_email_send_rate_limit` del SMTP integrado de Supabase; con SMTP propio el default sigue siendo **30 usuarios nuevos/hora**, configurable); (2) **Vercel Hobby prohíbe el uso comercial** — cita textual de sus Fair Use Guidelines, y YaEntre cobra con Stripe: la sanción documentada es la PAUSA del despliegue, no una degradación. **Otros techos, con su aritmética:** Resend gratuito topa en **100 correos/DÍA** (~300 alumnos activos, antes que el mensual de 3 000); base de 500 MB ⇒ **~3 200 alumnos-temporada** (medido: **325 B por fila de `session_answers`**, 128 heap + 197 índices, con 100 k filas sintéticas en un esquema aislado que se eliminó); egreso de **5 GB por ORGANIZACIÓN** —compartido con `financeos-whatsapp`, el otro proyecto activo— ⇒ ~2 800 alumnos/mes; 1 M de invocaciones de Vercel ⇒ ~1 400 alumnos/mes. **Carga controlada (0 errores en todo):** contra producción `/`, `/precios`, `/login` y `/app` en rampa 1→24 concurrentes — la p50 **no se movió** (92/91/180/86 ms) y el rendimiento creció linealmente hasta 207 req/s: no se alcanzó el techo de Vercel, se saturó el enlace del medidor. Contra la base, 24 dashboards en vuelo dieron un pico de **2 backends ACTIVOS**: la base estuvo ociosa. **Optimizaciones sin costo (medidas antes/después con el mismo arnés):** simulacro **635 → 396 ops** (−38 %), diagnóstico **149 → 89** (−40 %), práctica **74 → 54** (−27 %). Tres cambios: (a) el middleware dejaba de usar el resultado de `auth.getUser()` en casi toda petición y aun así lo pedía —**81 ms de ida y vuelta medidos**— ahora se evita en `/api/*` (~140 viajes menos por simulacro: el sync sale cada 15 s durante 3 h), sin cookie de sesión, y en pre-cargas de rutas públicas (~20 por vista de página: Next precarga cada `<Link>` del viewport); la frontera vive en `src/lib/auth/middleware-policy.ts`, puro y con 8 casos de prueba, y una navegación real CON sesión sigue refrescando el token. (b) `submitAnswer` **4 → 2 ops** con un `LEFT JOIN` que trae sesión + asignación + opciones; las guardas de G65 son las mismas, en el mismo orden y con los mismos códigos (el `LEFT JOIN` es deliberado: un INNER no distingue «no es tuyo» de «no existe»). (c) sincronización del simulador **5 → 3 ops**: pertenencia y opciones en un JOIN, y los contadores de integridad **solo se escriben si cambiaron** (`integrityNeedsWrite`) — ese UPDATE salía ~120 veces por simulacro reescribiendo los mismos valores. **🟠 De regalo, una sonda que mentía:** `pnpm security:authz` salió roja tras (b) y hubo que distinguir regresión de falso positivo — se reprodujo el escenario con la fixture idéntica (rechazado correctamente), se comparó con `git stash`, y se halló la causa: la sonda tomaba `answers[0]` del simulacro de la víctima, y como el selector adaptativo baraja con `Math.random()`, a veces ESE reactivo caía también en la práctica del atacante, donde responderlo es legítimo. Ahora elige uno que NO esté asignado al atacante. 3 corridas seguidas: **10/10**. Un rojo intermitente es peor que no tener la prueba. **Verificado en vivo:** las 8 rutas privadas siguen devolviendo `307 → /login` sin sesión, con cookie inválida y como pre-carga, contra el build de producción local. `security:authz` 10/10, `security:abuse` 8/8, `typecheck`/`lint`/`build` y **545 tests** (58 archivos, +19) en verde. **9 acciones del dueño en `docs/ESCALA.md` §9**, las dos primeras bloqueantes del lanzamiento (SMTP propio + Vercel Pro). **Proyección: $65 / $70 / $85 USD al mes** para 500 / 1 000 / 5 000 alumnos — el costo casi no crece con los usuarios porque lo que se paga son cuotas de plataforma; con 500 alumnos en plan Mensual de Temporada Alta eso es **1.6 % del ingreso**. **No se tocó `prisma/schema.prisma`.** |
@@ -488,6 +495,171 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G97 — Repositorio remoto privado en GitHub (2026-09-16)
+
+**Modelo real:** `claude-opus-5` · **Estado:** COMPLETADA
+
+Hasta esta fase `git remote -v` estaba **vacío**: el repositorio existía en una sola
+máquina. Eso no era solo un riesgo de código. La retención del respaldo del banco de
+contenido **es** el historial de git (`backups/content-bank.json`, G61) porque el plan
+gratuito de Supabase no da respaldos restaurables — así que un fallo de disco se
+llevaba **el código y su único respaldo a la vez**, con 1 502 reactivos verificados
+dentro. Esta fase cierra eso.
+
+**Alcance deliberadamente estrecho:** solo git y documentación. No se tocó la app, la
+base de datos, `prisma/schema.prisma` ni Vercel, no se desplegó nada y **no se conectó
+el remoto a la integración de Git de Vercel** — eso cambiaría el flujo de despliegue y
+se decide aparte.
+
+### 1. Desviación declarada en el paso 1 — la condición de parada SÍ se activó
+
+El encargo anticipaba un árbol con un solo cambio sin rastrear,
+`.claude/settings.local.json`. No era así, por dos razones distintas:
+
+| Lo esperado | Lo encontrado |
+|---|---|
+| `.claude/settings.local.json` sin rastrear | **No aparecía en `git status`**: ya estaba ignorado por el gitignore **GLOBAL** de la máquina (`C:\Users\LENOVO/.config/git/ignore:3:**/.claude/settings.local.json`), no por el del repo |
+| — | **`Claude outputs/`**, sin rastrear y sin ninguna regla que la cubriera: `YaEntre_expediente_legal_financiero.md`, 359 líneas / 29 KB, creado ese mismo día a las **02:52** por otra sesión |
+
+**Se detuvo la fase y no se subió nada hasta que el dueño decidió.** El análisis previo
+a la consulta ya establecía que la carpeta es *untracked* y por tanto **no podía viajar
+en un `push`**; la parada fue por respetar el contrato del encargo, no porque hubiera
+riesgo de fuga. Decisión del dueño: **ignorarla**. La crea la app de escritorio de
+Claude cuando le entrega archivos con la carpeta del proyecto conectada, así que va a
+seguir reapareciendo.
+
+Las dos rutas quedaron en el `.gitignore` **del repo** (líneas 83-84). La local también,
+aunque el gitignore global ya la cubría: un clon en otra máquina no hereda el gitignore
+global, y una regla que solo existe en la configuración personal de un desarrollador es
+una protección que no viaja.
+
+### 2. Escaneo de secretos sobre TODO el historial, en un solo recorrido
+
+`git rev-list --objects --all` + `git cat-file --batch`: cada blob único de todas las
+revisiones se leyó **una sola vez** y sobre ese mismo contenido se aplicaron las dos
+búsquedas.
+
+| Dimensión | Cantidad |
+|---|---|
+| Blobs únicos revisados | **1 573 / 1 573** (312.1 MiB) |
+| Objetos totales del repo | 1 573 blobs · 1 267 árboles · 158 commits |
+| Valores cargados (≥12 caracteres) | **37** — de `.env`, `.env.local` y un `vercel env pull` de producción |
+| ├─ candidatos a secreto | 24 |
+| └─ públicos por diseño (`NEXT_PUBLIC_*`, vars de sistema de Vercel) | 13 |
+| Pares `KEY=VALUE` leídos / descartados por <12 caracteres | 78 / 32 |
+| Patrones aplicados | **16** (15 del encargo + JWT con `"role":"service_role"`) |
+
+El `vercel env pull` se escribió **fuera del repo**, en `%TEMP%`, y se borró al terminar
+con confirmación de que ya no existe. Ningún valor se imprimió en ningún momento: el
+clasificador reporta longitud, huella SHA-256 de 8 caracteres y contexto con la
+coincidencia **enmascarada**.
+
+#### 2.1 Resultado: 508 coincidencias, **0 secretos reales**
+
+| Clase | Coincid. | Blobs | Veredicto |
+|---|---|---|---|
+| `NEXT_PUBLIC_*` y hosts públicos | 238 | 166 | **Público por diseño.** Viajan en el bundle del navegador; que estén en el historial es correcto |
+| Valor de `.env:STRIPE_SECRET_KEY` + patrón `sk_test_` | 204 | 102 | **Placeholder.** El valor local es literalmente `sk_test_placeholder` (19 car.), citado en prosa en este mismo `ESTADO.md` al narrar el scaffolding de F1 |
+| Patrón `re_` + 20 o más caracteres | 32 | 32 | **Falso positivo del patrón.** Son **IDs de reembolso de Stripe** (`re_…`, 27 car.), no llaves de Resend: Stripe y Resend comparten el prefijo `re_`. Aparecen en `ESTADO.md`, `STRIPE_LIVE_CHECKLIST.md` y `VERIFICACION_FINAL.md` narrando el reembolso de la compra de prueba de G70 |
+| Patrón `postgres://` con contraseña | 15 | 15 | **Marcadores y fixtures.** `postgresql://user:password@host:5432/yaentre` de `.env.example`, su cita en `AUDITORIA_SEGURIDAD.md`, y las URLs fabricadas (`u.ref:pw@…`) de `tests/db/connection-url.test.ts` |
+| Valor de `.env:SUPABASE_SERVICE_ROLE_KEY` | 10 | 10 | **Placeholder.** El valor local es `your-service-role-key`, el mismo texto de `.env.example` |
+| Valores `STRIPE_PRICE_*` | 9 | 1 | **Identificadores públicos**, no credenciales. Commiteados a propósito en `.env.example` por G70 |
+
+8 de esas coincidencias caen en **2 blobs sueltos, sin ruta alcanzable** desde ninguna
+referencia (residuo de commits enmendados). No viajan en un `push`, y de todos modos su
+contenido es el mismo placeholder.
+
+#### 2.2 El dato que realmente decide
+
+El total de coincidencias no prueba nada por sí solo; lo que prueba algo es su
+complemento. **De los 24 valores candidatos a secreto, los 13 que son secretos de
+verdad tienen CERO apariciones en los 1 573 blobs:**
+
+```
+OK  vercel(prod):STRIPE_SECRET_KEY        OK  .env.local:DATABASE_URL
+OK  vercel(prod):STRIPE_WEBHOOK_SECRET    OK  .env.local:DIRECT_URL
+OK  vercel(prod):RESEND_API_KEY           OK  .env.local:CRON_SECRET
+OK  vercel(prod):DATABASE_URL             OK  .env.local:SUPABASE_SERVICE_ROLE_KEY
+OK  vercel(prod):DIRECT_URL               OK  .env:DATABASE_URL, .env:DIRECT_URL
+OK  vercel(prod):CRON_SECRET              OK  .env:STRIPE_WEBHOOK_SECRET, .env.local:STRIPE_WEBHOOK_SECRET
+OK  vercel(prod):VERCEL_OIDC_TOKEN
+```
+
+Los 11 «con coincidencia» son, sin excepción, los placeholders y los Price IDs de la
+tabla de arriba. **El historial estaba limpio para publicarse sin reescribir nada** — no
+se usó `filter-repo`, ni `rebase`, ni `push --force`.
+
+### 3. Tamaño
+
+| Blob | Tamaño | Ruta |
+|---|---|---|
+| `cc1c7e63a4` | **79.8 MiB** | `Guia IPN.pdf` |
+
+Es el único por encima de 50 MiB y **ninguno llega a 100 MiB**, que era la condición de
+parada. GitHub lo aceptó con la advertencia esperada:
+
+```
+remote: warning: File Guia IPN.pdf is 79.82 MB; this is larger than
+remote: GitHub's recommended maximum file size of 50.00 MB
+remote: warning: GH001: Large files detected.
+```
+
+Le sigue `guia ECOEM.pdf` con 13.1 MiB y las versiones de `backups/content-bank.json`
+con ~6.3 MiB cada una. Migrar los PDF a Git LFS queda **sin hacer**: hoy solo es una
+advertencia, y moverlos implicaría reescribir el historial.
+
+### 4. Verificación por efecto
+
+Antes de subir, y de nuevo después:
+
+| Comprobación | Antes del push | Después del push |
+|---|---|---|
+| `https://github.com/angel011298/yaentre` sin autenticar | **404** | **404** |
+| `https://api.github.com/repos/angel011298/yaentre` sin autenticar | **404** | **404** |
+| `git ls-remote origin` | 0 refs (vacío, como exigía el encargo) | — |
+| `git ls-remote origin master` | — | `90dbe712ea5a53ef6ba186e168d29077773aaa7a` |
+| `git rev-parse HEAD` | `90dbe71…` | `90dbe71…` — **idénticos** |
+
+El **404 es la señal de que sigue privado**: es lo que GitHub devuelve para un
+repositorio privado a quien no tiene acceso. Un 200 significaría que se volvió público,
+y por eso la comprobación se repite *después* de subir, no solo antes.
+
+### 5. Lo que estaba dormido
+
+**`.github/workflows/security-audit.yml` escuchaba pushes a `main` — una rama que nunca
+ha existido en este repositorio.** Es exactamente el patrón de G73b: un disparador que
+no puede dispararse es una verificación que nunca falla, y habría seguido en verde
+—o más bien, en silencio— indefinidamente. Corregido a `master`, y actualizado el
+comentario «Dormido hasta que el repo tenga remoto», que ya era falso.
+
+**`.github/dependabot.yml` no dependía de `main`** y no necesitó corrección: Dependabot
+trabaja siempre contra la rama por defecto del repositorio, que aquí es `master`. Se
+actualizó su comentario, que afirmaba que el repo no tenía remoto. **Sigue inerte**
+hasta que el dueño lo active en Settings → Code security → Dependabot alerts +
+Dependabot security updates.
+
+### 6. Convención nueva
+
+- **`CLAUDE.md` §Repositorio:** URL del remoto, que es privado, que la rama es `master`
+  y que **no** está conectado a la integración de Git de Vercel — `git push` no despliega.
+- **`CLAUDE.md` §«Toda sesión debe»:** terminar con `git push` y comprobar por efecto que
+  `git ls-remote origin master` = `git rev-parse HEAD`. Un commit local no empujado deja
+  el respaldo del banco otra vez en una sola máquina.
+- **`docs/RESPALDOS.md` §2.3 y §0:** el historial de git —y con él
+  `backups/content-bank.json` con todas sus versiones— ya tiene copia fuera de la laptop,
+  con la advertencia de que esa copia solo está tan al día como el último `git push`.
+
+### 7. Queda abierto
+
+- **Activar Dependabot** en la configuración del repositorio (acción del dueño).
+- **Decidir si el remoto se conecta a la integración de Git de Vercel.** Hoy no lo está,
+  a propósito: el despliegue sigue siendo `vercel --prod` desde la CLI.
+- **Producción sigue corriendo `95fa64a` (G73b)**: G74 lleva 12 fases sin desplegarse.
+  Ajeno a esta fase, pero el remoto no cambia nada ahí.
+- **Git LFS para los dos PDF** (79.8 y 13.1 MiB), solo si la advertencia llega a molestar.
+
+---
 
 ## G96 — Verificación ciega: los 6 reactivos de Comprensión lectora reparados por G95 (2026-09-15)
 

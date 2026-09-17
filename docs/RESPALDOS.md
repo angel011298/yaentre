@@ -12,7 +12,7 @@
 | Riesgo | Cobertura hoy | Acción |
 |---|---|---|
 | **Borrado accidental / bug que corrompe el banco** | ✅ `pnpm backup:export` → `backups/content-bank.json` versionado en git. Restauración probada (G61). | Correr el export tras cada lote de contenido y commitearlo. |
-| **Fallo de disco / pérdida del proyecto Supabase** | ⚠️ El plan **gratuito NO da respaldos restaurables**. El respaldo de contenido de git cubre el contenido; los datos de usuario/pago **no tienen red**. | Decisión pendiente del dueño: subir a **Pro ($25/mes)** antes de tener clientes pagando — §6. |
+| **Fallo de disco / pérdida del proyecto Supabase** | ⚠️ El plan **gratuito NO da respaldos restaurables**. El respaldo de contenido de git cubre el contenido, y desde **G97** ese historial vive también en un **remoto privado de GitHub** (§2.3), así que ya sobrevive a la pérdida de la laptop. Los datos de usuario/pago **siguen sin red**. | Decisión pendiente del dueño: subir a **Pro ($25/mes)** antes de tener clientes pagando — §6. |
 | **Necesito un entorno de pruebas idéntico al de prod** | ✅ `pnpm backup:import --schema <x>` o contra un proyecto vacío. | — |
 
 ---
@@ -118,6 +118,18 @@ pnpm backup:export --out ../acierta-backups/content-2026-09-01.json
 **La retención es el historial de git.** Cada corrida sobreescribe
 `backups/content-bank.json`; ese cambio se commitea y queda una versión
 recuperable por commit.
+
+> **Desde G97 (2026-09-16) ese historial ya vive fuera de la laptop.** El
+> repositorio tiene remoto privado en **https://github.com/angel011298/yaentre**
+> (rama `master`), así que `backups/content-bank.json` —y con él todas sus
+> versiones históricas— tiene por fin una **segunda copia física**. Hasta ese
+> día, el único respaldo restaurable del banco existía en un solo disco: un
+> fallo de esa máquina se llevaba el contenido y su respaldo a la vez.
+>
+> **La copia solo está tan al día como el último `git push`.** Un
+> `pnpm backup:export` commiteado pero no empujado no está respaldado fuera de
+> la laptop. Por eso `CLAUDE.md` §«Toda sesión debe» exige cerrar con `git push`
+> y comprobar por efecto que `git ls-remote origin master` = `git rev-parse HEAD`.
 
 | Cuándo | Por qué |
 |---|---|

@@ -1,12 +1,15 @@
 # G66 — avisos de vulnerabilidades nuevas en dependencias.
 #
-# Hoy el repo NO tiene remoto de git (se despliega con `vercel --prod` desde
-# la CLI, ver docs/ESTADO.md); este archivo no hace nada hasta que el repo
-# viva en GitHub. Se deja listo a propósito: en cuanto exista el remoto y se
-# active Dependabot en la configuración del repositorio (Settings → Code
-# security → Dependabot alerts + Dependabot security updates), empieza a
-# abrir un PR automático cada vez que salga un parche para una vulnerabilidad
-# ya publicada — sin esperar a que alguien corra `pnpm audit` a mano.
+# Desde G97 (2026-09-16) el repo ya vive en GitHub (remoto privado
+# https://github.com/angel011298/yaentre), así que este archivo por fin puede
+# hacer algo. No declara ninguna rama a propósito: Dependabot trabaja siempre
+# contra la rama POR DEFECTO del repositorio, que aquí es `master`, así que no
+# necesitó la corrección que sí requirió `.github/workflows/security-audit.yml`.
+# FALTA UN PASO MANUAL: activar Dependabot en Settings → Code security →
+# Dependabot alerts + Dependabot security updates. Hasta que Ángel lo haga,
+# este archivo sigue sin abrir un solo PR. Una vez activo, abre un PR
+# automático cada vez que salga un parche para una vulnerabilidad ya publicada
+# — sin esperar a que alguien corra `pnpm audit` a mano.
 #
 # `open-pull-requests-limit: 0` para las actualizaciones de RUTINA (no
 # ligadas a una vulnerabilidad): este proyecto fija versiones exactas a

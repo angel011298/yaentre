@@ -3,19 +3,23 @@
 # Dependabot avisa cuando SALE un parche; esto corre `pnpm audit` contra lo
 # que el proyecto tiene YA fijado (`pnpm-lock.yaml`, versionado desde esta
 # misma fase — ver docs/AUDITORIA_SEGURIDAD.md §16) cada semana y en cada
-# push/PR a main, así una vulnerabilidad publicada un martes no espera al
-# siguiente `pnpm install` de alguien para notarse. Falla el job — no solo
-# avisa — ante cualquier hallazgo `high` o `critical`; `moderate`/`low`
+# push/PR a la rama por defecto, así una vulnerabilidad publicada un martes no
+# espera al siguiente `pnpm install` de alguien para notarse. Falla el job — no
+# solo avisa — ante cualquier hallazgo `high` o `critical`; `moderate`/`low`
 # quedan en el log para revisión sin bloquear.
 #
-# Dormido hasta que el repo tenga remoto en GitHub (hoy se despliega con
-# `vercel --prod` desde la CLI, sin integración de git — ver docs/ESTADO.md).
-# Actívalo solo empujando el repo; no requiere nada más.
+# ACTIVO desde G97 (2026-09-16): el repo ya tiene remoto privado en
+# https://github.com/angel011298/yaentre y este workflow corre de verdad.
+# La rama real del proyecto es `master`, no `main` — G97 corrigió el disparador,
+# que hasta entonces escuchaba una rama que nunca ha existido aquí (un workflow
+# que no puede dispararse es una verificación que nunca falla, G73b).
+# El despliegue sigue siendo `vercel --prod` desde la CLI: este remoto NO está
+# conectado a la integración de Git de Vercel (decisión aparte).
 name: Auditoría de dependencias
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - 'package.json'
       - 'pnpm-lock.yaml'
