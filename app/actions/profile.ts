@@ -68,10 +68,19 @@ export async function updateThemeAction(
 }
 
 // El alumno solo controla SUS propias preferencias — PARENT_WEEKLY es del
-// tutor (ya tiene su propio toggle en /tutor, F16); MARKETING no se expone
-// todavía (sin campaña activa que la use, F19+).
+// tutor (ya tiene su propio toggle en /tutor, F16).
+//
+// G98: MARKETING se añade a la lista. Ya es opt-in (sin fila = apagado, ver
+// `src/lib/notifications/preferences.ts`) y se acepta explícitamente desde
+// «Avísame cuando abra» en /paywall; este interruptor es el otro lado del
+// trato — quien lo aceptó tiene que poder retirarlo desde su perfil, no solo
+// desde el enlace de baja de un correo que quizá nunca llegue.
+//
+// El dueño del recurso sale SIEMPRE del guard (`requireUser`), nunca del
+// input: no hay ningún `userProfileId` en este esquema (guardrail de CLAUDE.md,
+// verificado por `pnpm security:authz`).
 const notificationSchema = z.object({
-  type: z.enum(['STREAK_RISK', 'EXAM_COUNTDOWN']),
+  type: z.enum(['STREAK_RISK', 'EXAM_COUNTDOWN', 'MARKETING']),
   enabled: z.boolean(),
 });
 

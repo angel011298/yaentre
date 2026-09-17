@@ -30,6 +30,15 @@ export interface AnalyticsEvents {
     pendingSubjects: number;
   };
 
+  /**
+   * G98 — «Avísame cuando abra» del paywall con la venta cerrada. Lo que se
+   * PERSISTE es el consentimiento (`NotificationPreference` MARKETING); este
+   * evento es solo la señal de producto que permite medir cuánta demanda hay
+   * antes de abrir la preventa. Sin propiedades: el `distinctId` ya es el
+   * `UserProfile.id` y no hay ningún dato personal que añadir.
+   */
+  sales_waitlist_joined: Record<string, never>;
+
   // ── Núcleo de estudio (finishSession, un solo dispatcher por modo) ──
   diagnostic_completed: { score: number; totalQuestions: number; durationSecs: number };
   practice_completed: {

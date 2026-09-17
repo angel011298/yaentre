@@ -35,9 +35,14 @@ function formatMxn(cents: number): string {
 export function PlanCard({
   pricing,
   highlighted = false,
+  salesOpen,
 }: {
   pricing: PlanPricing;
   highlighted?: boolean;
+  /** G98: con la venta cerrada el plan conserva TODA su información y solo
+   *  cambia su llamada a la acción. Ocultar el precio sería esconder lo único
+   *  que el alumno vino a ver. */
+  salesOpen: boolean;
 }) {
   return (
     <Card
@@ -69,7 +74,16 @@ export function PlanCard({
         ))}
       </ul>
 
-      <ChoosePlanButton plan={pricing.plan} variant={highlighted ? 'primary' : 'secondary'} />
+      {salesOpen ? (
+        <ChoosePlanButton plan={pricing.plan} variant={highlighted ? 'primary' : 'secondary'} />
+      ) : (
+        // G98: en lugar de «Elegir este plan». No es un botón deshabilitado —
+        // un botón apagado invita a insistir; esto informa. La acción posible
+        // («Avísame cuando abra») vive una vez, debajo de la comparativa.
+        <p className="rounded-md border border-border-subtle bg-elevated px-3 py-2 text-center text-sm font-semibold text-text-secondary">
+          🔒 La preventa abre pronto
+        </p>
+      )}
     </Card>
   );
 }

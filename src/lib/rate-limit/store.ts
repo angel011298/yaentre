@@ -102,6 +102,14 @@ export const RATE_LIMITS = {
   /** G74 — «avísame cuando abra esta área»: un puñado por hora y alumno basta
    *  para un onboarding real; evita que un clic repetido infle la lista. */
   AREA_WAITLIST: { limit: 10, windowSecs: 3600 },
+  /**
+   * G98 — «avísame cuando abra la preventa» (/paywall). Escribe una fila de
+   * consentimiento de MARKETING, así que es una escritura por clic: 10 por
+   * hora y alumno cubre de sobra a quien duda y vuelve, y corta el machaque.
+   * Va contra el contador COMPARTIDO de Postgres, no contra el de memoria: el
+   * de memoria no cuenta entre instancias de Vercel (G65 §5).
+   */
+  SALES_WAITLIST: { limit: 10, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

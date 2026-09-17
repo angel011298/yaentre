@@ -141,7 +141,7 @@ export function PendingView({
 }
 
 /** Fallido: pago asíncrono no confirmado a tiempo o rechazado. */
-export function FailedView({ plan }: { plan: SubscriptionPlan }) {
+export function FailedView({ plan, salesOpen }: { plan: SubscriptionPlan; salesOpen: boolean }) {
   return (
     <div className="flex flex-col items-center gap-5 py-8 text-center">
       <Tino state="encouraging" size={88} />
@@ -152,7 +152,7 @@ export function FailedView({ plan }: { plan: SubscriptionPlan }) {
           nuevo con otro método cuando quieras.
         </p>
       </div>
-      <RetryButton plan={plan} />
+      <RetryButton plan={plan} salesOpen={salesOpen} />
       <Link href="/app" className="text-sm font-semibold text-brand-soft hover:underline">
         Volver a mi tablero
       </Link>
@@ -161,7 +161,7 @@ export function FailedView({ plan }: { plan: SubscriptionPlan }) {
 }
 
 /** Cancelado: el usuario salió del Checkout sin pagar. */
-export function CanceledView({ plan }: { plan: SubscriptionPlan }) {
+export function CanceledView({ plan, salesOpen }: { plan: SubscriptionPlan; salesOpen: boolean }) {
   return (
     <div className="flex flex-col items-center gap-5 py-8 text-center">
       <Tino state="attentive" size={88} />
@@ -172,7 +172,7 @@ export function CanceledView({ plan }: { plan: SubscriptionPlan }) {
           continuar.
         </p>
       </div>
-      <RetryButton plan={plan} />
+      <RetryButton plan={plan} salesOpen={salesOpen} />
       <Link href="/app" className="text-sm font-semibold text-brand-soft hover:underline">
         Volver a mi tablero
       </Link>

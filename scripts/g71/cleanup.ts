@@ -14,6 +14,12 @@
  *
  *   pnpm tsx scripts/g71/cleanup.ts            (solo inspecciona)
  *   pnpm tsx scripts/g71/cleanup.ts --apply    (borra de verdad)
+ *
+ * G98: cada fase que verifica en producción añade aquí SU sección. Lo que la
+ * sonda de G98 crea es una fila de consentimiento de MARKETING en la cuenta
+ * fixture (al pulsar «Avísame cuando abra» de verdad, que es la única forma
+ * de saber que el botón guarda algo). La propia sonda la borra al terminar;
+ * esta sección es la red por si se interrumpió a media corrida.
  */
 import { prisma } from './db';
 
@@ -42,6 +48,14 @@ async function main() {
   });
   console.log(`Perfiles de G71 por borrar: ${perfiles.length}/${PERFILES_DE_G71.length}`);
   for (const p of perfiles) console.log(`  ${p.role.padEnd(7)} ${p.id}  ${p.createdAt.toISOString()}`);
+
+  const prefsFixture = await prisma.notificationPreference.findMany({
+    where: { userProfileId: { in: FIXTURES }, type: 'MARKETING' },
+    select: { userProfileId: true, enabled: true },
+  });
+  console.log(`
+Consentimientos MARKETING en las fixture (G98): ${prefsFixture.length}`);
+  for (const p of prefsFixture) console.log(`  ${p.userProfileId.padEnd(14)} enabled=${p.enabled}`);
 
   const sesionesFixture = await prisma.examSession.findMany({
     where: { userProfileId: { in: FIXTURES }, startedAt: { gte: DESDE } },
@@ -79,6 +93,12 @@ async function main() {
     `\nBorrado: ${borradosPerfiles.count} perfiles · ${borradasSesiones.count} sesiones fixture · ${borradasSubs.count} suscripciones fixture`
   );
 
+  // ── G98: consentimientos de MARKETING dejados por `pnpm sales:probe` ──
+  const prefsG98 = await prisma.notificationPreference.deleteMany({
+    where: { userProfileId: { in: FIXTURES }, type: 'MARKETING' },
+  });
+  console.log(`Consentimientos MARKETING de las fixture que se retiran (G98): ${prefsG98.count}`);
+
   // `processed_stripe_events` no cuelga de ningún perfil: es el registro de
   // idempotencia del webhook y se limpia por su `eventId`.
   const eventos = await prisma.processedStripeEvent.deleteMany({ where: { processedAt: { gte: DESDE } } });
@@ -99,6 +119,7 @@ async function verificar() {
   const respuestas = await prisma.sessionAnswer.count();
   const vinculos = await prisma.parentLink.count();
   const codigos = await prisma.parentLinkCode.count();
+  const marketing = await prisma.notificationPreference.count({ where: { type: 'MARKETING' } });
 
   console.log('\n─ Estado tras la limpieza ─────────────────────────────────────');
   console.log(`  user_profiles            ${perfiles}   (esperado 5: las fixture)`);
@@ -109,6 +130,7 @@ async function verificar() {
   console.log(`  session_answers          ${respuestas}   (esperado 480)`);
   console.log(`  parent_links             ${vinculos}   (esperado 0)`);
   console.log(`  parent_link_codes        ${codigos}   (esperado 0)`);
+  console.log(`  prefs MARKETING          ${marketing}   (esperado 0 — G98)`);
   console.log(
     `  licencias EARLY_BIRD     ${earlyBirdActivas} usadas → quedan ${500 - earlyBirdActivas} de 500` +
       '   (el contador de la app cuenta solo ACTIVE — ver countEarlyBirdUsed)'

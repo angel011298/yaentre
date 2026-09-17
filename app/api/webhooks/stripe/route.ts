@@ -1,11 +1,15 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import type Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe/client';
-import { handleStripeEvent, type HandleResult } from '@/lib/stripe/webhook';
+import {
+  eventLivemodeMismatch,
+  handleStripeEvent,
+  type HandleResult,
+} from '@/lib/stripe/webhook';
 import { billingStore } from '@/lib/db/billing';
 import { sendEmail } from '@/lib/email/client';
 import { paymentConfirmationEmail } from '@/lib/email/templates';
-import { reportSilentDegradation } from '@/lib/observability/report';
+import { reportControlFailure, reportSilentDegradation } from '@/lib/observability/report';
 
 /**
  * Webhook de Stripe (F8) — el ÚNICO punto donde se activa el acceso de pago.
@@ -17,6 +21,13 @@ import { reportSilentDegradation } from '@/lib/observability/report';
  * - Evento manejado, duplicado o ignorado → 200 (Stripe deja de reintentar).
  * - Error inesperado al procesar → 500 (Stripe reintenta; nuestra idempotencia
  *   revierte el marcador del evento en el rollback, así el reintento es seguro).
+ * - G98: en PRODUCCIÓN, evento con `livemode` distinto al modo de la llave →
+ *   200 sin activar nada + evento en Sentry. 200 (y no 4xx) a propósito: el
+ *   evento es auténtico —su firma verificó— y no queremos que Stripe lo
+ *   reintente durante días contra una configuración que no va a cambiar sola.
+ *   La idempotencia no se toca: se rechaza ANTES de llegar al store, así que
+ *   `processed_stripe_events` no registra nada y, si el modo se corrige, el
+ *   mismo evento puede reprocesarse.
  */
 
 // El cuerpo debe leerse CRUDO (sin parsear) para verificar la firma HMAC.
@@ -46,6 +57,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const message = err instanceof Error ? err.message : 'firma inválida';
     console.warn('[stripe/webhook] Firma inválida:', message);
     return NextResponse.json({ error: 'Firma inválida.' }, { status: 400 });
+  }
+
+  // G98 — segunda defensa: coherencia de modo ANTES de tocar el store.
+  if (eventLivemodeMismatch(event)) {
+    reportControlFailure(
+      'stripe_livemode',
+      'fail-closed',
+      new Error('Evento de Stripe con livemode incoherente con el modo de la llave'),
+      { eventId: event.id, eventType: event.type, eventLivemode: event.livemode }
+    );
+    return NextResponse.json(
+      { received: true, status: 'rejected', type: event.type, reason: 'livemode_mismatch' },
+      { status: 200 }
+    );
   }
 
   try {

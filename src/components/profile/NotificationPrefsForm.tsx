@@ -6,10 +6,12 @@ import { updateNotificationPrefAction } from '@/app/actions/profile';
 function Toggle({
   type,
   label,
+  hint,
   initialEnabled,
 }: {
-  type: 'STREAK_RISK' | 'EXAM_COUNTDOWN';
+  type: 'STREAK_RISK' | 'EXAM_COUNTDOWN' | 'MARKETING';
   label: string;
+  hint?: string;
   initialEnabled: boolean;
 }) {
   const [enabled, setEnabled] = useState(initialEnabled);
@@ -25,7 +27,10 @@ function Toggle({
 
   return (
     <label className="flex min-h-touch cursor-pointer items-center justify-between gap-3 py-1">
-      <span className="text-sm text-text-primary">{label}</span>
+      <span className="text-sm text-text-primary">
+        {label}
+        {hint && <span className="mt-0.5 block text-xs text-text-muted">{hint}</span>}
+      </span>
       <input
         type="checkbox"
         checked={enabled}
@@ -42,9 +47,11 @@ function Toggle({
 export function NotificationPrefsForm({
   streakRiskEnabled,
   examCountdownEnabled,
+  marketingEnabled,
 }: {
   streakRiskEnabled: boolean;
   examCountdownEnabled: boolean;
+  marketingEnabled: boolean;
 }) {
   return (
     <div className="space-y-3">
@@ -57,6 +64,15 @@ export function NotificationPrefsForm({
         type="EXAM_COUNTDOWN"
         label="Recordatorios de cuenta regresiva al examen"
         initialEnabled={examCountdownEnabled}
+      />
+      {/* G98: MARKETING es opt-in desde esta fase — sin fila, apagado. Este
+          es el interruptor donde se retira lo aceptado en «Avísame cuando
+          abra» (/paywall), sin depender del enlace de baja de un correo. */}
+      <Toggle
+        type="MARKETING"
+        label="Novedades, promociones y apertura de la preventa"
+        hint="Correo ocasional sobre precios y nuevas funciones. Puedes apagarlo cuando quieras."
+        initialEnabled={marketingEnabled}
       />
     </div>
   );

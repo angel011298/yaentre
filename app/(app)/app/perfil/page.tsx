@@ -36,6 +36,7 @@ export default async function PerfilPage() {
     masteredSubjects,
     streakRiskEnabled,
     examCountdownEnabled,
+    marketingEnabled,
     linkedParents,
   ] = await Promise.all([
     loadProfileOverview(profile.id),
@@ -44,6 +45,7 @@ export default async function PerfilPage() {
     loadMasteredSubjectBadges(profile.id),
     isNotificationTypeEnabled(profile.id, 'STREAK_RISK'),
     isNotificationTypeEnabled(profile.id, 'EXAM_COUNTDOWN'),
+    isNotificationTypeEnabled(profile.id, 'MARKETING'),
     loadLinkedParents(profile.id),
   ]);
 
@@ -91,6 +93,7 @@ export default async function PerfilPage() {
         <NotificationPrefsForm
           streakRiskEnabled={streakRiskEnabled}
           examCountdownEnabled={examCountdownEnabled}
+          marketingEnabled={marketingEnabled}
         />
       </Card>
 

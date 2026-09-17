@@ -46,6 +46,8 @@
     "security:time-integrity": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/time-integrity-probe.ts",
     "security:simulator": "node scripts/security/simulator-integrity-probe.mjs",
     "verify:baseline": "tsx scripts/g71/baseline.ts",
+    "sales:census": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g98/billing-census.ts",
+    "sales:probe": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g98/sales-closed-probe.ts",
     "verify:tutor-privacy": "node scripts/g71/tutor-privacy-probe.mjs",
     "verify:emails": "tsx scripts/g73/scheduled-emails-probe.ts",
     "verify:cleanup": "tsx scripts/g71/cleanup.ts",

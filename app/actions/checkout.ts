@@ -3,7 +3,7 @@
 import type Stripe from 'stripe';
 import { z } from 'zod';
 import { AuthError } from '@/lib/auth/errors';
-import { requireVerifiedForPurchase } from '@/lib/auth/guards';
+import { requireUser, requireVerifiedForPurchase } from '@/lib/auth/guards';
 import { getSiteUrl } from '@/lib/auth/site-url';
 import { getStripe } from '@/lib/stripe/client';
 import { getPlanPricing, stripePriceEnvVar } from '@/lib/stripe/pricing';
@@ -11,6 +11,10 @@ import { createPendingSubscription, resolveEffectiveSeason } from '@/lib/db/bill
 import type { ActionResult } from '@/lib/sessions/schemas';
 import { trackServerEvent } from '@/lib/analytics/server';
 import { reportControlFailure } from '@/lib/observability/report';
+import { salesGate } from '@/lib/stripe/sales-gate';
+import { SALES_CLOSED_CODE, SALES_CLOSED_MESSAGE } from '@/lib/stripe/sales-switch';
+import { setNotificationPreference } from '@/lib/db/notifications';
+import { consumeRateLimit } from '@/lib/rate-limit/store';
 
 /**
  * Inicio de checkout (F8). Reglas críticas:
@@ -20,6 +24,11 @@ import { reportControlFailure } from '@/lib/observability/report';
  *   aquí: eso ocurre únicamente en el webhook al confirmarse el pago.
  * - OXXO/SPEI solo se ofrecen en pagos únicos (pase/premium); una suscripción
  *   recurrente de Stripe (plan mensual) solo admite tarjeta.
+ * - G98: la venta tiene un INTERRUPTOR del lado del servidor. Mientras esté
+ *   cerrado esta acción rechaza ANTES de llamar a Stripe y ANTES de crear la
+ *   Subscription PENDING: ni una sesión de Checkout huérfana, ni una licencia
+ *   Early Bird descontada. Esconder el botón en la interfaz no cierra nada —
+ *   esta acción se invoca con un `fetch` a la ruta de la Server Action.
  */
 
 const checkoutSchema = z.object({
@@ -29,6 +38,17 @@ const checkoutSchema = z.object({
 export async function startCheckoutAction(
   input: z.input<typeof checkoutSchema>
 ): Promise<ActionResult<{ url: string }>> {
+  // ── G98: PRIMERA línea de la acción, antes del guard ─────────────────────
+  // Va antes incluso de resolver la identidad: con la venta cerrada no hay
+  // nada que decidir por usuario, y el rechazo no debe depender de haber
+  // llegado a ningún otro punto del camino. Todo lo que toca dinero (crear el
+  // Customer de Stripe, la sesión de Checkout, la fila PENDING que consume
+  // una licencia Early Bird) queda detrás de este `return`.
+  const gate = salesGate();
+  if (!gate.open) {
+    return { ok: false, code: SALES_CLOSED_CODE, message: SALES_CLOSED_MESSAGE };
+  }
+
   let profileId: string;
   let email: string | undefined;
   try {
@@ -178,4 +198,54 @@ export async function startCheckoutAction(
   await trackServerEvent(profileId, 'checkout_started', { plan, season });
 
   return { ok: true, data: { url: session.url } };
+}
+
+
+/**
+ * G98 — «Avísame cuando abra» del paywall con la venta cerrada.
+ *
+ * Es un CONSENTIMIENTO de marketing, no un formulario de lista de espera: lo
+ * que se guarda es `NotificationPreference` MARKETING con `enabled = true`, la
+ * misma fila que el alumno puede apagar desde /app/perfil o desde el enlace de
+ * baja de cualquier correo. No se pide el correo: el alumno ya está registrado
+ * y verificado, y lo que falta no es su dirección sino su permiso.
+ *
+ * El dueño sale del guard (`requireUser`), nunca del input — esta acción no
+ * acepta ningún identificador de perfil (guardrail de CLAUDE.md).
+ *
+ * El límite usa el contador COMPARTIDO de Postgres (`rate-limit/store.ts`), no
+ * el de memoria: el de memoria no acumula entre instancias de Vercel y no
+ * frenaría nada real (G65 §5).
+ */
+export async function notifyWhenSalesOpenAction(): Promise<ActionResult<{ accepted: true }>> {
+  let profileId: string;
+  try {
+    const { profile } = await requireUser();
+    profileId = profile.id;
+  } catch (err) {
+    if (err instanceof AuthError) {
+      return { ok: false, code: err.code, message: err.message };
+    }
+    throw err;
+  }
+
+  const gate = await consumeRateLimit('SALES_WAITLIST', profileId);
+  if (!gate.allowed) {
+    return {
+      ok: false,
+      code: 'RATE_LIMIT',
+      message: 'Ya te apuntamos. Espera un momento antes de volver a intentar.',
+    };
+  }
+
+  try {
+    await setNotificationPreference(profileId, 'MARKETING', true);
+  } catch (err) {
+    console.error('[checkout] No se pudo guardar el consentimiento de marketing', err);
+    return { ok: false, code: 'DB', message: 'No pudimos apuntarte. Intenta de nuevo.' };
+  }
+
+  await trackServerEvent(profileId, 'sales_waitlist_joined', {});
+
+  return { ok: true, data: { accepted: true } };
 }

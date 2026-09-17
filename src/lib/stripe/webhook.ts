@@ -1,5 +1,6 @@
 import type Stripe from 'stripe';
 import type { PaymentMethod } from '@prisma/client';
+import { stripeKeyMode, type StripeKeyMode } from './sales-switch';
 
 /**
  * Lógica de manejo de webhooks de Stripe (F8). Es el corazón del dinero real,
@@ -65,7 +66,52 @@ export interface BillingStore {
 export type HandleResult =
   | { status: 'duplicate'; type: string }
   | { status: 'ignored'; type: string }
+  /** G98: modo del evento ≠ modo de la llave en producción. No se aplicó nada. */
+  | { status: 'rejected'; type: string; reason: 'livemode_mismatch' }
   | { status: 'handled'; type: string; action: 'activated' | 'pending' | 'failed' | 'canceled' };
+
+/**
+ * ── G98: SEGUNDA DEFENSA — coherencia de modo entre el evento y la llave ────
+ *
+ * El interruptor de ventas cierra la puerta de entrada (`startCheckoutAction`),
+ * pero el webhook es una puerta INDEPENDIENTE: Stripe lo llama directamente y
+ * activa el acceso sin que ningún guard de la app intervenga. Un evento cuyo
+ * `livemode` no corresponde al modo de la llave con la que se verificó su
+ * firma significa que algo está mal apuntado —un endpoint de PRUEBA enviando
+ * al webhook de producción, o un endpoint del modo anterior que sobrevivió al
+ * cambio de llaves— y no se debe activar nada con él.
+ *
+ * Solo aplica en PRODUCCIÓN. En local y en preview se trabaja con llave de
+ * prueba y con eventos reenviados por el CLI de Stripe, y exigir coherencia
+ * ahí solo rompería el desarrollo sin proteger nada.
+ *
+ * Con la llave en `unknown` (ausente o irreconocible) no se puede afirmar el
+ * modo, y afirmar de menos es peor que rechazar: se rechaza. Sin llave el
+ * webhook no habría podido verificar la firma de todos modos.
+ */
+export interface LivemodeCheckEnv {
+  /** `event.livemode` del evento ya verificado. */
+  eventLivemode: boolean | undefined;
+  /** Modo de `STRIPE_SECRET_KEY`. */
+  keyMode: StripeKeyMode;
+  /** `VERCEL_ENV === 'production'`. */
+  isProduction: boolean;
+}
+
+export function livemodeMismatch(env: LivemodeCheckEnv): boolean {
+  if (!env.isProduction) return false;
+  if (env.keyMode === 'unknown') return true;
+  return env.eventLivemode !== (env.keyMode === 'live');
+}
+
+/** Lee el entorno del proceso y decide. Único punto que toca `process.env`. */
+export function eventLivemodeMismatch(event: Stripe.Event): boolean {
+  return livemodeMismatch({
+    eventLivemode: event.livemode,
+    keyMode: stripeKeyMode(process.env.STRIPE_SECRET_KEY),
+    isProduction: process.env.VERCEL_ENV === 'production',
+  });
+}
 
 /** Extrae el id de un campo Stripe que puede ser string | objeto | null. */
 function idOf(ref: string | { id: string } | null | undefined): string | null {

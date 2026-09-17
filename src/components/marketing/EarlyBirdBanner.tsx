@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { earlyBirdLicensesRemainingSafe, resolveEffectiveSeasonSafe } from '@/lib/db/billing';
 import { EARLY_BIRD_LICENSE_LIMIT, getPlanPricing } from '@/lib/stripe/pricing';
+import { isSalesOpen } from '@/lib/stripe/sales-gate';
 
 function formatMxn(cents: number): string {
   return (cents / 100).toLocaleString('es-MX', {
@@ -18,13 +19,20 @@ function formatMxn(cents: number): string {
  * completo — nunca promete un precio que ya no aplica. Igual se oculta si la
  * DB no responde (build o caída transitoria): sin dato real, no se muestra
  * ningún número en vez de arriesgar uno inventado.
+ *
+ * G98: mientras la venta esté CERRADA el contador desaparece de la página
+ * principal. «Quedan 500 de 500 licencias» es una urgencia fabricada si nadie
+ * puede comprar una sola; y el número ni se consulta, porque no se va a
+ * pintar. El banner sobrevive —el precio de fundador sigue siendo cierto y
+ * registrarse sigue abierto—, solo deja de contar lo que no se está vendiendo.
  */
 export async function EarlyBirdBanner() {
   const season = await resolveEffectiveSeasonSafe(new Date());
   if (season !== 'EARLY_BIRD') return null;
 
-  const remaining = await earlyBirdLicensesRemainingSafe();
-  if (remaining === null) return null;
+  const salesOpen = isSalesOpen();
+  const remaining = salesOpen ? await earlyBirdLicensesRemainingSafe() : null;
+  if (salesOpen && remaining === null) return null;
 
   const eb = getPlanPricing('SEASON_PASS', 'EARLY_BIRD');
   const regular = getPlanPricing('SEASON_PASS', 'HIGH_SEASON');
@@ -34,8 +42,14 @@ export async function EarlyBirdBanner() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-4 text-center text-white sm:flex-row sm:justify-between sm:px-6 sm:text-left">
         <div>
           <p className="font-display text-base font-bold sm:text-lg">
-            🏅 Promoción Early Bird — quedan {remaining} de {EARLY_BIRD_LICENSE_LIMIT} licencias
-            fundadoras
+            {remaining === null ? (
+              <>🏅 Promoción Early Bird — precio de fundador al abrir la preventa</>
+            ) : (
+              <>
+                🏅 Promoción Early Bird — quedan {remaining} de {EARLY_BIRD_LICENSE_LIMIT}{' '}
+                licencias fundadoras
+              </>
+            )}
           </p>
           {/* G63: `/90` — `/85` daba 4.5:1 justo y `/60` (el precio tachado)
               solo 3.0:1 sobre el morado. `/90` da 4.9:1. */}

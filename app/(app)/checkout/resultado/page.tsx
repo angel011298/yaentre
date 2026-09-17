@@ -9,6 +9,7 @@ import {
 import { requireOnboarding } from '@/lib/auth/guards';
 import { getSubscriptionByCheckoutSession } from '@/lib/db/billing';
 import { getHostedVoucherUrl } from '@/lib/stripe/voucher';
+import { isSalesOpen } from '@/lib/stripe/sales-gate';
 
 /**
  * Pantalla de resultado del checkout (F8). Punto CRÍTICO: aterrizar aquí NO
@@ -32,6 +33,11 @@ export default async function CheckoutResultadoPage({
   const { profile } = await requireOnboarding();
   const sp = await searchParams;
 
+  // G98: el reintento pasa por `startCheckoutAction`, que el interruptor
+  // cierra en el servidor. La vista lo refleja en vez de ofrecer un botón que
+  // siempre va a fallar.
+  const salesOpen = isSalesOpen();
+
   const sessionId = typeof sp.session_id === 'string' ? sp.session_id : null;
   const canceled = sp.canceled === '1';
 
@@ -49,17 +55,17 @@ export default async function CheckoutResultadoPage({
   }
 
   if (subscription.status === 'FAILED') {
-    return <FailedView plan={subscription.plan} />;
+    return <FailedView plan={subscription.plan} salesOpen={salesOpen} />;
   }
 
   if (subscription.status === 'CANCELED') {
-    return <CanceledView plan={subscription.plan} />;
+    return <CanceledView plan={subscription.plan} salesOpen={salesOpen} />;
   }
 
   // PENDING: si el usuario canceló en Stripe, la fila queda PENDING sin pago →
   // mostramos "cancelado"; si hay un pago asíncrono en curso, la vista pendiente.
   if (canceled && subscription.payments.length === 0) {
-    return <CanceledView plan={subscription.plan} />;
+    return <CanceledView plan={subscription.plan} salesOpen={salesOpen} />;
   }
 
   const voucherUrl = await getHostedVoucherUrl(sessionId);

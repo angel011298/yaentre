@@ -10,7 +10,9 @@ import {
  * E2E del recorrido completo de un usuario nuevo (F19 tarea 2):
  *   1. Registro → onboarding (examen, área, carrera) → diagnóstico → tablero.
  *   2. El límite diario de práctica gratuita se aplica de verdad.
- *   3. El checkout llega hasta la redirección a la pasarela, SIN pagar nada real.
+ *   3. El paywall respeta el interruptor de ventas (G98): con la venta cerrada
+ *      no hay forma de empezar a pagar; con la venta abierta, el checkout llega
+ *      hasta la redirección a la pasarela, SIN pagar nada real.
  *
  * El registro real depende de la configuración de correo de Supabase (y de su
  * límite de envíos en el plan gratuito), así que ese spec se activa con
@@ -138,7 +140,7 @@ test.describe('Recorrido del usuario nuevo', () => {
     expect(body.questionIds.length).toBeLessThanOrEqual(body.remainingToday);
   });
 
-  test('el checkout llega hasta la pasarela sin completar ningún pago real', async ({ page }) => {
+  test('el paywall respeta el interruptor de ventas del servidor', async ({ page }) => {
     // G71: esta prueba usa la cuenta GRATUITA, no `E2E_EMAIL`.
     //
     // Su afirmación final —«el acceso sigue sin activarse»— solo significa algo
@@ -154,13 +156,37 @@ test.describe('Recorrido del usuario nuevo', () => {
       !freeEmail || !freePassword,
       'Define E2E_FREE_USED_EMAIL/PASSWORD (una cuenta SIN plan: la aserción final es que sigue sin acceso).'
     );
-    test.skip(
-      !process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_'),
-      'Requiere una llave de PRUEBA de Stripe (sk_test_...).'
-    );
 
     await login(page, freeEmail!, freePassword!);
     await page.goto('/paywall');
+
+    // G98 — la prueba ya no asume que la compra está abierta: comprueba el
+    // estado que el servidor DECIDIÓ. No es una versión más débil de la de
+    // F19; es la misma afirmación (el acceso solo lo activa el webhook) más
+    // una nueva (con la venta cerrada no hay ni forma de empezar a pagar).
+    const salesOpen = process.env.SALES_OPEN === 'true';
+
+    if (!salesOpen) {
+      // El precio sigue visible —el plan conserva su información— pero no hay
+      // ninguna llamada a la compra, y sí la de consentimiento.
+      await expect(page.getByText(/La preventa abre pronto/i).first()).toBeVisible({
+        timeout: 20_000,
+      });
+      await expect(page.getByRole('button', { name: /avísame cuando abra/i })).toBeVisible();
+      await expect(page.getByRole('button', { name: /elegir este plan/i })).toHaveCount(0);
+      // Y el contador de licencias no aparece: nadie puede comprar una.
+      await expect(page.getByText(/quedan \d+ de 500/i)).toHaveCount(0);
+
+      // El acceso sigue sin activarse, que es la aserción original.
+      await page.goto('/app/perfil');
+      await expect(page.getByText(/plan gratuito/i)).toBeVisible({ timeout: 30_000 });
+      return;
+    }
+
+    test.skip(
+      !process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_'),
+      'Con la venta ABIERTA esta prueba exige una llave de PRUEBA (sk_test_...): no se toca una pasarela real.'
+    );
 
     const cta = page.getByRole('button', { name: /pase de temporada|elegir|desbloquear/i }).first();
     await expect(cta).toBeVisible({ timeout: 20_000 });

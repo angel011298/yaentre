@@ -61,6 +61,108 @@ Lo que G70 cargó / creó / corrigió:
 
 ---
 
+## Cómo abrir la venta (G98) — el orden importa
+
+> **Desde G98 la venta tiene un interruptor del lado del SERVIDOR**
+> (`src/lib/stripe/sales-switch.ts` + `src/lib/stripe/sales-gate.ts`).
+> Mientras esté cerrado, `startCheckoutAction` rechaza con `SALES_CLOSED`
+> **antes** de llamar a Stripe y **antes** de crear la `Subscription` PENDING
+> que descuenta una licencia Early Bird. Esconder el botón no cierra nada: la
+> Server Action se invoca con un `fetch`. El interruptor es lo que cierra.
+>
+> Reglas del interruptor:
+> - Abierta **solo** si `SALES_OPEN === 'true'`. Ausente o cualquier otro
+>   valor = cerrada. **El default seguro es cerrado**: olvidar la variable no
+>   puede abrir la caja.
+> - En **producción** (`VERCEL_ENV === 'production'`), además, la llave de
+>   Stripe tiene que ser de **modo real** (`sk_live_` / `rk_live_`).
+>   `SALES_OPEN=true` en producción con llave de prueba **no abre**: queda
+>   cerrada y dispara `reportControlFailure('sales_gate', 'fail-closed', …)`
+>   en Sentry como configuración inconsistente.
+> - Fuera de producción (preview, local) basta con `SALES_OPEN=true`: es el
+>   único modo de ensayar el flujo completo contra Stripe de prueba.
+
+Los cinco pasos, **en este orden**. Saltarse el orden no "adelanta" nada: el
+paso 3 no tiene efecto sin el 1, y el 5 no se puede hacer sin el 4.
+
+### 1. Llaves, precios y webhook en modo real
+
+Todo lo de la **sección 2** de este documento (2.1 → 2.4): cuenta activada en
+Stripe, `sk_live_`/`pk_live_`, los 9 Price recreados en modo live
+(`pnpm stripe:setup-prices` con la llave live), el webhook live creado a mano
+con los **4** eventos, y las variables **reemplazadas** en Vercel producción.
+
+**Por qué va primero:** con llave de prueba en producción el interruptor se
+niega a abrir. No es un orden sugerido — es el orden que el código impone.
+
+### 2. Proyecto en un plan de Vercel que permita uso comercial
+
+El plan **Hobby prohíbe el uso comercial** (bloqueador identificado en G72,
+`docs/VEREDICTO_LANZAMIENTO.md`). Cobrar dinero real desde un despliegue
+Hobby es una violación de los términos de Vercel, no un detalle de facturación.
+
+Ángel abrirá la **prueba Pro de 14 días** al abrir ventas, de modo que el reloj
+de la prueba empiece a correr cuando ya haya algo que vender — no antes.
+
+**Por qué va antes de `SALES_OPEN=true`:** el interruptor no sabe en qué plan
+está el proyecto; nadie lo va a comprobar por ti en el momento de la primera
+compra.
+
+### 3. `SALES_OPEN=true` en Vercel producción
+
+```bash
+npx vercel env rm SALES_OPEN production
+npx vercel env add SALES_OPEN production   # escribe exactamente: true
+```
+
+Con `SALES_OPEN` ausente la venta también está cerrada, así que dejar la
+variable puesta en `false` no es obligatorio — pero sí es preferible: una
+variable presente y explícita se ve en el panel, y una ausente se confunde con
+un olvido.
+
+### 4. Redeploy
+
+```bash
+npx vercel --prod --yes
+```
+
+Las variables de entorno se resuelven **en el build/runtime del despliegue**:
+cambiarlas sin redesplegar no cambia lo que sirve producción.
+
+Después del redeploy, comprobar **por efecto**, no por el panel: abrir
+`/paywall` con una cuenta fixture y ver el botón «Elegir este plan» en lugar
+de «🔒 La preventa abre pronto». Si sigue cerrado con `SALES_OPEN=true`, la
+llave no es live — y hay un evento `sales_gate` en Sentry diciéndolo.
+
+### 5. Compra real con tarjeta propia, y reembolso
+
+Es el paso 2.5 de este documento, y sigue siendo obligatorio: **una** compra
+real con una tarjeta real (el plan más barato, Mensual) para confirmar que el
+cargo llega, que el webhook activa el plan en la base, y que el depósito queda
+programado. Reembolsarla después desde
+[dashboard.stripe.com/payments](https://dashboard.stripe.com/payments).
+
+Verificar el efecto en la base, no solo en Stripe:
+
+```bash
+pnpm tsx --tsconfig scripts/tsconfig.perf.json scripts/g98/billing-census.ts
+```
+
+Debe aparecer esa compra como **NO fixture** (es la primera legítima) con su
+`payment`. A partir de ese momento el censo de G98 deja de servir como
+condición de parada "cero filas reales" — eso era una propiedad de la etapa
+pre-venta, no un invariante del producto.
+
+### Cerrar la venta otra vez
+
+Simétrico y sin despliegue de código: `SALES_OPEN=false` (o borrar la
+variable) + redeploy. Las suscripciones ya activas **no se tocan**: el
+interruptor solo gobierna el INICIO de una compra nueva. El webhook sigue
+procesando los pagos asíncronos (OXXO/SPEI) que ya estaban en curso.
+
+
+---
+
 ## 0. Decisión de cuenta (G6)
 
 **Cuenta de Stripe separada y dedicada a YaEntre**, no la cuenta existente

@@ -56,6 +56,20 @@ export type ControlName =
   | 'payment_consistency'
   /** Firma HMAC del enlace de baja de correo cayendo a la clave de respaldo. */
   | 'unsubscribe_signature'
+  /**
+   * G98 — interruptor de ventas. Se dispara cuando `SALES_OPEN=true` en
+   * PRODUCCIÓN con una llave de Stripe que NO es de modo real: alguien creyó
+   * que abría la caja y el dinero no entraría a ninguna parte. La venta queda
+   * cerrada (`fail-closed`), pero el silencio sería justo el defecto de G73.
+   */
+  | 'sales_gate'
+  /**
+   * G98 — un webhook de Stripe llegó con un `livemode` que NO corresponde al
+   * modo de la llave con la que se verificó su firma. En producción no se
+   * activa nada: o alguien apuntó un endpoint de prueba al webhook real, o
+   * quedó un endpoint del modo anterior vivo tras el cambio de llaves.
+   */
+  | 'stripe_livemode'
   /** Persistencia de la preferencia de baja de correo. */
   | 'unsubscribe_write';
 

@@ -11,8 +11,14 @@ import { currentSeason, getPlanPricing } from '@/lib/stripe/pricing';
  * Botón de reintento de pago. Reusa `startCheckoutAction` con el mismo plan de
  * la suscripción fallida: crea una NUEVA sesión de Checkout y redirige. El
  * acceso sigue activándose solo desde el webhook — esto solo abre otro intento.
+ *
+ * G98: es el OTRO camino que llega a `startCheckoutAction`. Con la venta
+ * cerrada la acción lo rechaza igual que al del paywall —el cierre es del
+ * servidor—, pero un botón que siempre falla no informa de nada: aquí se dice
+ * qué pasa. El píxel `InitiateCheckout` ya solo se dispara con `res.ok`, así
+ * que tampoco puede salir por este lado.
  */
-export function RetryButton({ plan }: { plan: SubscriptionPlan }) {
+export function RetryButton({ plan, salesOpen }: { plan: SubscriptionPlan; salesOpen: boolean }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,6 +34,15 @@ export function RetryButton({ plan }: { plan: SubscriptionPlan }) {
       setError(res.message);
       setLoading(false);
     }
+  }
+
+  if (!salesOpen) {
+    return (
+      <p className="max-w-sm rounded-md border border-border-subtle bg-elevated px-3 py-2 text-center text-sm text-text-secondary">
+        🔒 La preventa todavía no abre, así que no se puede reintentar el pago. Te avisamos en
+        cuanto puedas completar tu compra.
+      </p>
+    );
   }
 
   return (

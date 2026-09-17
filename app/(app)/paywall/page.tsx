@@ -5,6 +5,7 @@ import { earlyBirdLicensesRemaining, resolveEffectiveSeason } from '@/lib/db/bil
 import type { PaywallTrigger } from '@/lib/paywall/gates';
 import { sanitizeReturnPath } from '@/lib/paywall/return-path';
 import { getPlanPricing } from '@/lib/stripe/pricing';
+import { isSalesOpen } from '@/lib/stripe/sales-gate';
 import { trackServerEvent } from '@/lib/analytics/server';
 
 const VALID_TRIGGERS: readonly PaywallTrigger[] = [
@@ -41,9 +42,14 @@ export default async function PaywallPage({
   const trigger = parseTrigger(sp.trigger);
   const returnTo = sanitizeReturnPath(typeof sp.return === 'string' ? sp.return : undefined);
 
+  // G98: el interruptor se resuelve en el SERVIDOR y baja a la pantalla como
+  // dato. Con la venta cerrada ni siquiera se consulta el cupo Early Bird: el
+  // contador no se va a pintar, así que esa consulta no tiene para qué correr.
+  const salesOpen = isSalesOpen();
   const season = await resolveEffectiveSeason(new Date());
   const pricing = PLANS.map((plan) => getPlanPricing(plan, season));
-  const earlyBirdRemaining = season === 'EARLY_BIRD' ? await earlyBirdLicensesRemaining() : null;
+  const earlyBirdRemaining =
+    salesOpen && season === 'EARLY_BIRD' ? await earlyBirdLicensesRemaining() : null;
 
   await trackServerEvent(profile.id, 'paywall_shown', { trigger });
 
@@ -53,6 +59,7 @@ export default async function PaywallPage({
       returnTo={returnTo}
       pricing={pricing}
       earlyBirdRemaining={earlyBirdRemaining}
+      salesOpen={salesOpen}
     />
   );
 }

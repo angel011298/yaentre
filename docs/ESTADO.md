@@ -1,6 +1,12 @@
 # ESTADO — YaEntre
 
+Última actualización: 2026-09-17 · Última fase ejecutada: **G98 (COMPLETADA — la compra deja de estar abierta en producción. Desde G70 `https://yaentre.com` corría con llaves de PRUEBA de Stripe **y con el checkout habilitado**: cualquier alumno con correo verificado podía activar un plan de pago con la tarjeta de prueba PÚBLICA de Stripe (`4242 4242 4242 4242`), sin pagar un peso y descontando una de las 500 licencias Early Bird. G72 lo declaró bloqueador absoluto y siguió abierto **cuatro fases más**, porque lo único que existía era una advertencia en un documento — nadie había puesto un cierre. **① Interruptor del lado del SERVIDOR, no de la interfaz.** `src/lib/stripe/sales-switch.ts` es puro y total: abierta solo con `SALES_OPEN === 'true'` y, en `VERCEL_ENV === 'production'`, solo con llave de modo real (`sk_live_`/`rk_live_`). **El default es CERRADO** — variable ausente cierra, para que olvidarla nunca abra la caja. `SALES_OPEN=true` en producción con llave de prueba **no abre**: queda cerrada y dispara `reportControlFailure('sales_gate','fail-closed',…)`, porque el único desenlace verdaderamente peligroso es el dueño creyendo que abrió una caja que sigue cerrada. La **matriz 3×3×3 se enumera entera** en `tests/sales/sales-switch.test.ts` (27 celdas por nombre, 7 abiertas, y las 7 listadas una por una en vez de contadas) — un `if` añadido más tarde no puede abrir una celda sin romper una prueba con nombre. **② La guarda va en la PRIMERA línea de `startCheckoutAction`**, antes incluso del guard de identidad: el `Customer` de Stripe, la sesión de Checkout y la fila `Subscription` PENDING que consume la licencia quedan todos detrás de ese `return`. La prueba no pregunta «¿devuelve error?» sino **«¿llega a tocar Stripe o la base?»**: los dobles registran cada llamada y el camino cerrado exige el registro VACÍO. **Rojo demostrado por mutación**: al quitar las cuatro líneas de la guarda, 7 de 12 pruebas se ponen en rojo; restaurada, 12/12. **③ El webhook es una puerta INDEPENDIENTE** —lo llama Stripe, sin sesión ni guard, y es el único punto del sistema que activa acceso— así que lleva su propia defensa: en producción, un evento cuyo `livemode` no corresponda al modo de la llave responde **200 sin aplicar nada** y deja un `stripe_livemode` en Sentry. 200 y no 4xx a propósito: el evento es auténtico (su firma verificó) y no queremos que Stripe lo reintente días contra una configuración que no se arregla sola. Se rechaza **ANTES del store**, así que `processed_stripe_events` no registra nada y el mismo evento sigue siendo reprocesable si el modo se corrige — **la idempotencia no cambia**. **④ `MARKETING` pasa a opt-in.** Hasta G97, `isNotificationEnabled(null,'MARKETING')` devolvía `true` porque el tipo no estaba en `OPT_IN_TYPES`: **todo registrado —público de 15 a 22 años— contaba como destinatario válido de publicidad sin habérselo pedido jamás**, y no existía ninguna pantalla para aceptarlo ni rechazarlo. El defecto era latente (ningún job usa ese tipo todavía), que es justo lo que lo hacía invisible: habría salido a la luz con la primera campaña, ya enviada. Ahora se acepta desde «Avísame cuando abra» en `/paywall`, con el texto de qué se acepta y cómo darse de baja **antes** del botón, y se retira desde el interruptor nuevo de `/app/perfil` o desde el enlace de baja (que ya aceptaba `MARKETING` desde F16). **⑤ Verificado POR EFECTO en producción, 6/6** (`pnpm sales:probe`, sonda nueva): `/paywall` con 0 botones «Elegir este plan», 1 «Avísame cuando abra» y los 3 planes con su precio intacto; contador de licencias ausente en la página principal y en `/paywall`; **la Server Action invocada SALTÁNDOSE la interfaz** —POST con la cabecera `Next-Action` y la cookie de sesión real, que es como la llamaría alguien decidido a comprar con el botón escondido— devolvió `SALES_CLOSED` y **ninguna URL de `checkout.stripe.com`**; control POSITIVO del consentimiento (se pulsó el botón de verdad y apareció la fila `MARKETING enabled=true`, borrada al terminar); interruptor presente en `/app/perfil`; y **0 filas nuevas** en `subscriptions` y `payments`. `pnpm verify:baseline` antes y después es **byte a byte idéntico**. **⑥ Censo de la tarea 1:** 1 suscripción (PREMIUM/ACTIVE/HIGH_SEASON) de la fixture `e2e.sim@acierta-test.mx`, **0 pagos**, **0 filas MARKETING**, Early Bird 500/500 — ninguna suscripción ni pago de cuenta no fixture, así que la condición de parada no se activó. **⑦ Desviación declarada:** ninguna credencial fixture estaba en `.env.local`, así que se siguió el precedente documentado de G62/G71 — contraseña temporal a `e2e.free@acierta-test.mx` con el hash original guardado **dentro de la base** (tabla efímera en `app_security`, para que no pasara por ningún log ni transcripción) y **restaurado y verificado al terminar** (`md5` idéntico al de partida; tabla eliminada). `typecheck`/`lint`/`test:unit` (**724 en 65 archivos, verde en dos corridas seguidas**) y `security:authz` (10/10, con `C-sin-id-en-el-borde` ya cubriendo los 19 archivos de borde incluida la acción nueva) en verde. **No se tocó `prisma/schema.prisma`.** **Para G99: el aviso de privacidad (`/legal/privacidad`) tiene que incluir la finalidad de MARKETING y este consentimiento nuevo** — hoy los legales siguen con texto provisional y `noindex` (G68).)**
+
+<details><summary>Historial: G97 (2026-09-16)</summary>
+
 Última actualización: 2026-09-16 · Última fase ejecutada: **G97 (COMPLETADA — el repositorio deja de existir en una sola máquina: se publicó en un **remoto privado de GitHub**, `https://github.com/angel011298/yaentre`, rama `master`. Antes de G97 `git remote -v` estaba vacío y, como la retención del respaldo del banco de contenido **es** el historial de git (`backups/content-bank.json`, G61) y el plan gratuito de Supabase no da respaldos restaurables, un fallo de disco se llevaba **el código y su único respaldo a la vez**. **① Desviación declarada en el paso 1:** el árbol no traía `.claude/settings.local.json` sin rastrear como anticipaba el encargo —ya estaba cubierto por el gitignore **GLOBAL** de la máquina (`C:\Users\LENOVO/.config/git/ignore:3`), no por el del repo— sino una carpeta `Claude outputs/` con un expediente legal/fiscal de 359 líneas creado ese mismo día a las 02:52 por otra sesión. Se activó la condición de parada y **no se subió nada hasta que el dueño decidió**: ignorarla. La crea la app de escritorio de Claude al entregarle archivos con la carpeta del proyecto conectada, así que reaparece sola; ambas rutas quedaron en el `.gitignore` del repo (la local también, para que un clon en otra máquina la herede sin depender del gitignore global). **② Escaneo de secretos sobre TODO el historial, en UN solo recorrido:** los **1 573 blobs únicos** (312.1 MiB) de todas las revisiones, contra **37 valores** de `.env`/`.env.local`/`vercel env pull` de producción (24 candidatos a secreto, de ≥12 caracteres) y **16 patrones**. **508 coincidencias, 0 secretos reales.** El dato que decide no es el total sino su complemento: **los 13 valores realmente secretos —los 7 de Vercel producción (`STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`, `DATABASE_URL`, `DIRECT_URL`, `CRON_SECRET`, `VERCEL_OIDC_TOKEN`) y los reales de `.env.local`— tienen CERO apariciones en los 1 573 blobs**. Las 508 se clasifican en: 238 `NEXT_PUBLIC_*` (públicas por diseño), 204 del *placeholder* `sk_test_placeholder` citado en prosa en este mismo documento, 32 `re_…` de 27 caracteres que son **IDs de reembolso de Stripe, no llaves de Resend** (colisión de prefijo — el patrón del encargo produce ese falso positivo), 15 `postgres://user:password@…` de `.env.example` y de los fixtures de `tests/db/connection-url.test.ts`, 10 del placeholder `your-service-role-key`, y 9 Price IDs de Stripe (identificadores públicos, commiteados a propósito en G70). El `vercel env pull` se escribió FUERA del repo, en `%TEMP%`, y se borró con confirmación. **③ Tamaño:** un solo blob supera 50 MiB, `Guia IPN.pdf` con **79.8 MiB**; ninguno llega a 100 MiB. GitHub lo aceptó con la advertencia esperada (`GH001`). **④ Verificación por efecto, no por confianza:** `git ls-remote origin master` = `git rev-parse HEAD` = `90dbe71` tras el push inicial, y sin autenticar el repositorio responde **404 en web y en API** —que es lo que GitHub devuelve para un privado; un 200 significaría que se volvió público—. **⑤ Lo que estaba dormido:** `.github/workflows/security-audit.yml` escuchaba pushes a `main`, **una rama que nunca ha existido en este repo** — otro caso de «verificación que nunca falla» (G73b); corregido a `master`. `.github/dependabot.yml` no necesitaba corrección porque Dependabot trabaja siempre contra la rama por defecto, pero **sigue inerte hasta que el dueño lo active en Settings → Code security**. El remoto **NO** se conectó a la integración de Git de Vercel: un `git push` no despliega nada, por decisión explícita del encargo.)**. Modelo real `claude-opus-5`.
+
+</details>
 
 <details><summary>Historial: G96 (2026-09-15)</summary>
 
@@ -404,6 +410,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G98 | Interruptor de ventas y consentimiento de marketing | **COMPLETADA — la compra queda CERRADA en el servidor y verificada por efecto en producción (6/6). Interruptor puro `SALES_OPEN` con default cerrado + exigencia de llave `sk_live_` en producción; guarda en la primera línea de `startCheckoutAction`; webhook rechaza `livemode` incoherente sin tocar la idempotencia; `MARKETING` pasa a opt-in con consentimiento explícito e interruptor en el perfil. `verify:baseline` idéntico antes y después; 0 filas nuevas en `subscriptions`/`payments`.** | (G98) | Modelo real `claude-opus-5`. **Lo que estaba abierto:** desde G70 producción vendía con llaves de PRUEBA — la tarjeta pública `4242…` activaba un plan sin pagar y consumía una licencia Early Bird. G72 lo llamó bloqueador absoluto y sobrevivió cuatro fases, porque la única defensa era un párrafo en un documento. **Por qué el cierre es del servidor:** una Server Action se invoca con un `fetch` a su ruta; esconder el botón no cierra nada, y así se comprobó — la sonda POSTea `Next-Action` con la cookie real y recibe `SALES_CLOSED`, no una URL de Stripe. **`SALES_OPEN=true` con llave de prueba en producción NO abre**: cierra y reporta `sales_gate` a Sentry, porque el desenlace peligroso no es la caja cerrada sino el dueño creyendo que la abrió. **Matriz 3×3×3 enumerada celda por celda** (27, 7 abiertas listadas por nombre, no contadas). **Rojo demostrado por mutación:** sin la guarda, 7/12 pruebas en rojo. **Webhook:** `livemode` incoherente → 200, nada aplicado, evento en Sentry, y rechazo ANTES del store para que `processed_stripe_events` quede intacto y el evento siga siendo reprocesable. **`MARKETING`:** estaba encendido por defecto para TODOS los registrados —menores incluidos— sin pantalla para aceptarlo ni rechazarlo; latente porque ningún job lo usaba aún, que es exactamente lo que lo hacía invisible. Ahora opt-in, con el consentimiento y su retirada construidos en la misma fase. **Censo (tarea 1):** 1 suscripción fixture, 0 pagos, 0 filas MARKETING, Early Bird 500/500 — sin cuentas reales, condición de parada no activada. **Desviación declarada:** sin credenciales fixture en `.env.local`, contraseña temporal a `e2e.free@` con el hash guardado DENTRO de la base y restaurado/verificado al terminar (precedente de G62/G71). `typecheck`/`lint`/`test:unit` (724, dos corridas)/`security:authz` (10/10) en verde. **No se tocó `prisma/schema.prisma`.** **Para G99: el aviso de privacidad debe declarar la finalidad de marketing y este consentimiento.** |
 | G97 | Repositorio remoto privado en GitHub | **COMPLETADA — `origin` → https://github.com/angel011298/yaentre (privado, rama `master`); historial completo subido y verificado por efecto. Escaneo de 1 573 blobs × 37 valores × 16 patrones: 508 coincidencias, **0 secretos reales**. Parada declarada en el paso 1 por `Claude outputs/`, resuelta ignorándola.** | (G97) | Ver sección dedicada abajo. **El único respaldo restaurable del banco de contenido deja de vivir en un solo disco.** `security-audit.yml` escuchaba `main`, rama inexistente aquí → `master`. Dependabot pendiente de activar por el dueño. Remoto **sin** integración de Git de Vercel: `git push` no despliega. |
 | G70b | Corrección del Site URL, traducción de los correos y limpieza de datos de prueba | **COMPLETADA — los 4 pendientes de G70 cerrados por la sesión, 0 para el dueño. Site URL `localhost` → `https://yaentre.com` + 2 redirecciones permitidas; 6 plantillas de correo traducidas Y reapuntadas a `/auth/confirm?token_hash=` (con `{{ .ConfirmationURL }}` el registro habría fallado igual); 4 correos reales verificados; base sin cuentas de prueba; Early Bird 500/500; pago de prueba reembolsado.** | (G70b) | Modelo real `claude-opus-5`. **Herramientas:** panel de Supabase por control del navegador (sesión de GitHub del dueño), SQL como `postgres` por MCP, API de Stripe y API de Resend. **🔴 El hallazgo de la fase no era el Site URL:** era que arreglarlo solo no bastaba. `{{ .ConfirmationURL }}` hace que GoTrue verifique el token y redirija al destino **pelado**, sin `token_hash` ni `type`; `app/auth/confirm/route.ts` los exige desde G60 y sin ellos redirige a `/login?error=verification_failed` — cuenta confirmada, usuario viendo un error. Las 6 plantillas del grupo Authentication construyen ahora el enlace contra la app; `{{ .RedirectTo }}` en registro/recuperación para no perder el `next` de `app/actions/auth.ts` (un tutor aterrizaba en `/app` en vez de `/tutor`), `{{ .SiteURL }}` en las 4 restantes porque ahí `.RedirectTo` puede venir vacío. Copia versionada en **`docs/CORREOS_AUTH.md`**. Las 7 plantillas *Security* quedan en inglés: están deshabilitadas (7 interruptores en `false`), nadie las recibe. **Verificación sin buzón:** `GET https://api.resend.com/emails/<id>` devuelve el `.html` renderizado de los correos que Supabase manda por ese SMTP — 4 entregados y leídos (registro, recuperación, magic link, cambio de correo). El enlace de registro se siguió en el navegador: `email_confirmed_at`, sesión creada, `/onboarding`; el de recuperación, `/actualizar-password`. **Limpieza:** `user_profiles` cae en cascada a suscripciones/pagos/sesiones, así que bastó borrar el perfil + `auth.users` (el `SUPABASE_SERVICE_ROLE_KEY` sigue sin estar en prod, pero el MCP entra como `postgres` y sí puede tocar `auth`). Quedan **solo las 5 cuentas fixture `@acierta-test.mx`** — `rlsprobe.*`, `e2e.sim@`, `e2e.free@` — que NO se borran: las usan `security:authz`, `security:abuse`, `test:rls` y el E2E del simulador. **El contador Early Bird no llegaba a 500 solo con borrar la cuenta de G70:** `e2e_sim_sub` (sembrada en F19, nunca fue una compra) también contaba; pasó a `HIGH_SEASON` conservando `PREMIUM`/`ACTIVE`. **Reembolso** `re_3UCa5HEtRO7AKqHV1kfAeU8k`, 49 900 MXN, `charge.refunded=true`; el `Customer` `cus_VD04…` se conserva a propósito (modo prueba, y borrarlo destruiría la trazabilidad del reembolso). `typecheck`/`lint` verde. **No se tocó `prisma/schema.prisma`.** |
 | G70 | Activación de Stripe, Resend, Sentry y PostHog en producción | **COMPLETADA — 7 credenciales validadas contra su API real y cargadas en Vercel prod + 9 `STRIPE_PRICE_*`; 9 productos «YaEntre» en Stripe; 3 pruebas reales de punta a punta (correo entregado, compra $499 → plan ACTIVE por webhook, Sentry+PostHog reciben eventos). 1 🔴 bug de checkout corregido (SPEI). 2 🟠 config de dashboard del dueño (Site URL de Supabase, plantillas de correo).** | (G70) | Modelo real `claude-sonnet-5`. **Credenciales:** `RESEND_API_KEY` (dominio `yaentre.com` verificado, sending enabled), `STRIPE_SECRET_KEY`/`NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`/`STRIPE_WEBHOOK_SECRET` (test, `livemode:false`, cuenta `acct_1UC7IkEtRO7AKqHV`), `NEXT_PUBLIC_SENTRY_DSN` (envelope de prueba → HTTP 200), `NEXT_PUBLIC_POSTHOG_KEY`+`_HOST` (capture → `{"status":"Ok"}`). Las 4 `NEXT_PUBLIC_*` no son secretas por diseño; las 3 reales (`RESEND`/`STRIPE_SECRET`/`WEBHOOK`) las pegó el dueño en el chat (canal que eligió a sabiendas de que `.env*` está bloqueado por `.claude/settings.json`). **Stripe:** `pnpm stripe:setup-prices` creó 9 Price idempotentes por `lookup_key` (`mensual/pase/premium` × `eb/reg/lm`), producto por Price con nombre `YaEntre — {plan} ({temporada})`, montos $99/$149/$199 · $499/$799/$999 · $899/$1 299/$1 499 MXN (Mensual recurrente, resto pago único); IDs → `.env.example` (commiteado) → Vercel prod. Webhook `we_1UC7dtEtRO7AKqHVNqAA6eMU` (`https://yaentre.com/api/webhooks/stripe`) traía 3 de los 4 eventos que enruta `src/lib/stripe/webhook.ts` → se agregó `checkout.session.async_payment_failed` por API. **Prueba 1 (correo):** registro real de `yaentreg701788677536@uberip.com` → `Tu cuenta se creó. Revisa tu correo` → Resend log `last_event: delivered` (from `notificaciones@yaentre.com`, msgid `email.amazonses.com`) → clic al enlace → `auth.users.email_confirmed_at` puesto. 🟠 el enlace lleva `redirect_to=http://localhost:3000` (Site URL de Supabase Auth sin actualizar + allowlist sin `yaentre.com`) → aterrizaje muerto para el usuario real, cuenta igual confirmada. 🟠 plantilla en inglés. **Prueba 2 (pago): 🔴 `app/actions/checkout.ts`** — el primer checkout real lanzó `StripeInvalidRequestError: The payment method 'customer_balance' requires 'customer' to be set`. `customer_creation: 'always'` NO basta para SPEI: en `mode: 'payment'` ese Customer se materializa al completarse el pago y Stripe lo valida antes. Fix: crear el `Customer` explícito para pagos únicos y pasar `customer` (excluyente con `customer_email`). Post-fix: Checkout hospedado con las 3 formas de pago (tarjeta/SPEI/OXXO) → `4242 4242 4242 4242` → **`subscriptions` `ACTIVE`** (`SEASON_PASS`/`EARLY_BIRD`, `stripeCustomerId` `cus_VD04…`, `expiresAt` 2027-05-15), **activada por el webhook** (creada `PENDING` 07:00:39 → `ACTIVE` 07:01:50, POST `/api/webhooks/stripe` → 200), `payments` `SUCCEEDED` `pi_3UCa5H…`, `processed_stripe_events` `evt_1UCa5I…` (idempotencia + firma `whsec_` OK). **Prueba 3 (observabilidad):** ruta temporal `app/api/g70-probe` (guardada por env var efímera `G70_PROBE_TOKEN`, ambas **eliminadas** al terminar) → `Sentry.captureException` + `Sentry.flush(5000)` = `true` (`eventId 134f0367…`) y `trackServerEvent('paywall_shown')` + `PostHog.flush()` sin throw, desde la función serverless de producción; `posthog-js` en el navegador dejó `$feature_flag_details`/`$active_feature_flags` en `localStorage` (round-trip con `us.i.posthog.com` tras aceptar cookies). **La confirmación visual en los dashboards es del dueño** (sin token de lectura). **Deja pendiente:** cuenta de prueba + Pase ACTIVE en la base real (1 licencia EB consumida) → borrar y reembolsar; `SUPABASE_SERVICE_ROLE_KEY` fuera de prod (no estaba en las 7). 5 deploys (`vercel --prod`), último limpio sin la sonda. `typecheck`/`lint` verde. **No se tocó `prisma/schema.prisma`.** |
@@ -495,6 +502,245 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G98 — Interruptor de ventas y consentimiento de marketing (2026-09-17)
+
+**Modelo real:** `claude-opus-5` · **Estado:** COMPLETADA
+
+Desde G70, `https://yaentre.com` corría con llaves de **PRUEBA** de Stripe y con el
+checkout **habilitado**. La combinación es peor que cualquiera de sus mitades:
+cualquier alumno con correo verificado podía llegar a `/paywall`, pagar con la tarjeta
+de prueba **pública** de Stripe (`4242 4242 4242 4242`, que cualquiera conoce) y salir
+con un plan de pago **activado por el webhook**, sin haber pagado un peso — descontando
+además una de las 500 licencias Early Bird.
+
+G72 lo declaró **bloqueador absoluto** del lanzamiento. Y siguió abierto **cuatro fases
+más**. La razón es la lección de la fase: lo único que existía era una advertencia en un
+documento. Un documento no cierra una caja.
+
+### 1. El estado de la base antes de tocar nada (tarea 1)
+
+`pnpm sales:census` (`scripts/g98/billing-census.ts`) cuenta `subscriptions` por estado
+× temporada y `payments`, separando las cuentas fixture (`@acierta-test.mx`) del resto.
+El correo no vive en `user_profiles` sino en `auth.users`, que el rol de la app no
+alcanza, así que se resuelve con `app_security.auth_emails_for_profiles` (G73); **un
+perfil sin correo resoluble cuenta como NO fixture**, porque el criterio conservador es
+el único seguro para una condición de parada.
+
+| | fixture | no fixture |
+|---|---|---|
+| `subscriptions` ACTIVE · HIGH_SEASON | 1 | 0 |
+| `payments` | 0 | 0 |
+
+La única fila es `e2e.sim@acierta-test.mx` (PREMIUM/ACTIVE/HIGH_SEASON), la sembrada en
+F19 y reasignada a HIGH_SEASON por G70b para que no consumiera licencia. **Early Bird
+500/500.** `NotificationPreference` de tipo `MARKETING`: **0 filas** — nadie había
+aceptado ni rechazado nada, porque no había dónde.
+
+Sin suscripciones PENDING/ACTIVE ni pagos de cuentas reales: la condición de parada no
+se activó.
+
+### 2. El interruptor: puro, total, y cerrado por defecto
+
+`src/lib/stripe/sales-switch.ts` no lee `process.env` por su cuenta — recibe un
+`SalesEnv` y devuelve un veredicto. `readSalesEnv()` es el único punto que toca el
+entorno, y `src/lib/stripe/sales-gate.ts` (con `import 'server-only'`) es el que además
+reporta.
+
+Dos condiciones:
+
+1. `SALES_OPEN === 'true'`. **Ausente o cualquier otro valor cierra.** El default
+   seguro es cerrado: olvidar una variable no puede abrir la caja.
+2. En `VERCEL_ENV === 'production'`, además, la llave de Stripe tiene que ser de modo
+   real (`sk_live_` / `rk_live_`). Una llave ausente o irreconocible (`unknown`) **no**
+   cuenta como real: afirmar de menos es peor que rechazar.
+
+Fuera de producción basta la bandera — es el único modo de ensayar el flujo completo
+contra Stripe de prueba.
+
+**`SALES_OPEN=true` en producción con llave de prueba no abre.** Queda cerrada y dispara
+`reportControlFailure('sales_gate', 'fail-closed', …)`. Es el único desenlace que merece
+una alerta, y la razón es precisa: el peligro no es la caja cerrada, es **el dueño
+creyendo que la abrió** — anunciando una preventa que nadie puede completar, sin una
+sola señal de que algo va mal.
+
+`tests/sales/sales-switch.test.ts` enumera la matriz **3×3×3 entera**: 27 celdas, cada
+una con su propio `it` nombrado, y las **7 abiertas listadas una por una** en un `Set`
+en vez de contadas. Un contador agregado se «arregla» cambiando el número; una celda con
+nombre no. Fuera de producción abren las 6 combinaciones de `SALES_OPEN=true`
+(independientes de la llave); en producción, solo `true|production|live`.
+
+### 3. El cierre va en la PRIMERA línea de la acción
+
+En `app/actions/checkout.ts`, `salesGate()` corre **antes incluso del guard de
+identidad**. Todo lo que toca dinero queda detrás de ese `return`: el `Customer` de
+Stripe, la sesión de Checkout, y la fila `Subscription` PENDING que consume la licencia
+Early Bird.
+
+Los dos caminos que llegan a esa acción son `ChoosePlanButton` (paywall) y `RetryButton`
+(resultado de un checkout fallido o cancelado); ambos quedan cubiertos por el mismo
+`return`, y ambos muestran ahora el estado de preventa en vez de un botón que siempre
+falla.
+
+`tests/sales/checkout-closed.test.ts` no pregunta «¿devuelve un error?» sino **«¿llega a
+tocar Stripe o la base?»**: los dobles registran cada llamada y el camino cerrado exige
+que ese registro quede **vacío**. Si alguien mueve la guarda tres líneas más abajo, la
+prueba se pone roja aunque el `ActionResult` siga diciendo `SALES_CLOSED`.
+
+**El rojo es alcanzable, y se comprobó (G71 §6 D6):** al quitar las cuatro líneas de la
+guarda, **7 de 12 pruebas fallan**; restaurada, 12/12. Además el propio archivo lleva un
+bloque de control positivo que abre la venta (`SALES_OPEN=true` fuera de producción) y
+exige que **entonces sí** se llame a `customers.create` y `checkout.sessions.create` —
+sin él, los `expect(stripeCalls).toEqual([])` pasarían igual con dobles muertos.
+
+### 4. El webhook es una puerta independiente
+
+El interruptor cierra la puerta de entrada, pero el webhook no pasa por ella: lo llama
+Stripe, sin sesión y sin guard, y es **el único punto del sistema que activa acceso de
+pago**. Un endpoint de prueba apuntado al webhook de producción —o uno del modo anterior
+que sobreviva al cambio de llaves— podría activar un plan con un evento del modo
+equivocado.
+
+En producción, un evento cuyo `livemode` no corresponda al modo de la llave con la que
+se verificó su firma responde **200 sin aplicar nada** y deja un `stripe_livemode` en
+Sentry. Tres decisiones, cada una con su razón:
+
+- **200 y no 4xx:** el evento es auténtico, su firma verificó. Un 4xx haría que Stripe
+  lo reintentara durante días contra una configuración que no se arregla sola.
+- **Rechazo ANTES del store:** `processed_stripe_events` no registra nada, así que **la
+  idempotencia no cambia** y el mismo evento sigue siendo reprocesable si el modo se
+  corrige.
+- **Solo en producción:** en local y en preview se trabaja con llave de prueba y eventos
+  reenviados por el CLI de Stripe; exigir coherencia ahí rompería el desarrollo sin
+  proteger nada.
+
+`tests/sales/webhook-livemode.test.ts` cubre la decisión pura en ambos sentidos (evento
+real con llave de prueba — el caso de hoy; evento de prueba con llave real — el de
+mañana) y el Route Handler real con firma HMAC generada por el SDK de Stripe, con su
+control positivo: **el evento coherente, por la misma ruta, sí activa**.
+
+### 5. `MARKETING` pasa a opt-in
+
+`isNotificationEnabled(null, 'MARKETING')` devolvía `true` porque el tipo no estaba en
+`OPT_IN_TYPES`. Traducido: **todo usuario registrado —un público de 15 a 22 años—
+contaba como destinatario válido de correo promocional sin haberlo pedido jamás**, y no
+existía ninguna pantalla para aceptarlo ni para rechazarlo.
+
+El defecto era **latente**: ningún job usa ese tipo todavía. Eso es justo lo que lo hacía
+invisible — habría salido a la luz con la primera campaña, ya enviada. Publicidad no es
+lo mismo que un recordatorio del producto que el alumno decidió usar; solo lo segundo
+puede venir encendido.
+
+Lo que cambia:
+
+- `MARKETING` entra a `OPT_IN_TYPES`: sin fila, apagado.
+- Se acepta desde **«Avísame cuando abra»** en `/paywall`, con el texto de qué se acepta
+  y cómo darse de baja **antes** del botón, no en letra chica posterior. Lo que guarda es
+  la fila `NotificationPreference` MARKETING `enabled = true` — no una lista de espera
+  aparte. No se pide el correo: el alumno ya está registrado, y lo que falta no es su
+  dirección sino su permiso.
+- Se retira desde el interruptor nuevo de `/app/perfil` **o** desde el enlace de baja,
+  que ya aceptaba `MARKETING` desde F16 (`VALID_TYPES` en
+  `app/api/email/unsubscribe/route.ts`) y sigue funcionando sin cambios.
+- El límite usa el contador **compartido** de Postgres (`SALES_WAITLIST`, 10/hora y
+  alumno), no el de memoria, que no acumula entre instancias de Vercel (G65 §5).
+- La acción **no recibe ningún argumento**: el dueño sale del guard. `security:authz`
+  lo verifica (`C-sin-id-en-el-borde`, ahora 19 archivos de borde).
+
+**No se expuso el interruptor en `/tutor`:** hoy ningún job manda `MARKETING` a un
+perfil PARENT, y `/paywall` es exclusivo de alumnos (`requireOnboarding` redirige a los
+tutores a `/tutor`), así que quien puede aceptar es quien puede retirar. **El día que
+una campaña incluya tutores, ese interruptor tiene que existir en `/tutor` en la misma
+fase** — un consentimiento que solo se puede dar es una trampa, no un consentimiento.
+
+### 6. Lo que la interfaz muestra con la venta cerrada
+
+- Cada plan conserva **toda** su información, precio incluido — esconderlo sería
+  esconder lo único que el alumno vino a ver. Lo que cambia es la llamada a la acción:
+  «🔒 La preventa abre pronto» en lugar de «Elegir este plan». **No es un botón
+  deshabilitado**: un botón apagado invita a insistir; esto informa.
+- «Avísame cuando abra» aparece **una vez**, debajo de la comparativa, con el texto del
+  consentimiento.
+- El contador «quedan X de 500 licencias» **desaparece** de la página principal
+  (`EarlyBirdBanner`) y de `/paywall`. Prometer urgencia por un cupo que nadie puede
+  consumir es urgencia fabricada. El banner sobrevive —el precio de fundador sigue
+  siendo cierto y registrarse sigue abierto— y ni siquiera se consulta el cupo.
+- **Ningún píxel de compra puede dispararse.** `InitiateCheckout` solo sale en la rama
+  `res.ok` de `ChoosePlanButton`/`RetryButton`, y con la venta cerrada esa rama es
+  inalcanzable — es una garantía del servidor, no un botón escondido.
+
+### 7. Verificación POR EFECTO en producción — 6/6
+
+`pnpm sales:probe` (`scripts/g98/sales-closed-probe.ts`), contra `https://yaentre.com`
+con la cuenta fixture `e2e.free@acierta-test.mx`:
+
+| | Comprobación | Resultado |
+|---|---|---|
+| P1 | `/paywall` sin botón de compra | «Elegir este plan» = **0** · «Avísame cuando abra» = **1** · «La preventa abre pronto» = **3** (uno por plan), con los precios intactos |
+| P2 | Contador de licencias oculto | **ausente** en la página principal y en `/paywall` |
+| P3 | Acción invocada **saltándose la interfaz** | HTTP 200 · **`SALES_CLOSED`** · **0** URLs de `checkout.stripe.com` |
+| P4 | La base no ganó filas | `subscriptions` 1→1 · `payments` 0→0 |
+| P5 | Control POSITIVO del consentimiento | se pulsó el botón de verdad → fila `MARKETING enabled=true`; **borrada al terminar** |
+| P6 | Interruptor de `MARKETING` en `/app/perfil` | **presente** |
+
+**P3 es la comprobación que importa**, y es la que distingue esta fase de esconder un
+botón. Next.js expone cada Server Action como un POST a la ruta de la página con la
+cabecera `Next-Action: <id>`; ese id se hornea en el bundle del cliente en el build, así
+que la sonda lo extrae de las llamadas a `createServerReference(...)` de los chunks
+servidos para `/paywall` y lo POSTea con la cookie de sesión real — exactamente lo que
+haría alguien decidido a comprar con el botón escondido. **Devolvió `SALES_CLOSED`.**
+
+Un intento previo confirmó que el id **no** es reproducible entre builds: el mismo
+código compilado en local da otro id, y POSTearlo contra producción responde `404 Server
+action not found`. Por eso la sonda lo lee del bundle desplegado y no del local.
+
+**P5 es el control positivo que P1 necesita:** sin él, un botón decorativo que no
+guardara nada pasaría la fase igual de verde.
+
+`pnpm verify:baseline` antes y después es **byte a byte idéntico** (5 perfiles, 1
+suscripción, 0 pagos, 5 sesiones, 480 respuestas, 1 502 reactivos verificados, Early
+Bird 500/500). `pnpm verify:cleanup --apply` —ampliado en esta fase con su sección de
+G98— cierra en 0 consentimientos `MARKETING`.
+
+### 8. Desviación declarada: cómo se autenticó la sonda
+
+**Ninguna credencial fixture estaba en `.env.local`** (`E2E_*`, `G73B_PROBE_PASSWORD`:
+todas ausentes) y `SUPABASE_SERVICE_ROLE_KEY` local es un placeholder de 22 caracteres,
+así que no había forma de iniciar sesión ni de pedirle a la API de Auth que cambiara una
+contraseña.
+
+Se siguió el precedente documentado de G62 y G71: contraseña temporal a
+`e2e.free@acierta-test.mx` por SQL como `postgres`, **guardando el hash original dentro
+de la propia base** (tabla efímera en `app_security`, para que no pasara por ningún log
+ni por la transcripción de la sesión) y **restaurándolo al terminar**, verificado por
+efecto: el `md5` del hash final es idéntico al de partida (`bf045c8c…`) y la tabla de
+respaldo quedó eliminada. Se eligió la cuenta **gratuita** a propósito: es la única sin
+plan, así que nada de lo que la sonda hiciera podía tocar una suscripción.
+
+### 9. El rojo de la sonda de producción NO se ejecutó, y por qué
+
+La cabecera de `sales-closed-probe.ts` documenta cómo ponerla en rojo: quitar
+`SALES_OPEN` de Vercel y redesplegar. **No se hizo.** Eso abriría la compra real en
+producción durante los minutos del despliegue y la verificación, que es exactamente el
+estado que esta fase existe para terminar.
+
+El rojo se demostró donde se puede demostrar sin abrir la caja: por **mutación del
+código** en la suite unitaria (7/12 en rojo sin la guarda). Y la sonda no puede dar un
+verde vacío: si ningún id candidato alcanza la acción, P3 se marca en **rojo** como
+inconcluso en vez de pasar por falta de evidencia.
+
+### 10. Qué queda para el dueño
+
+1. **La venta sigue cerrada, a propósito.** Abrirla son cinco pasos en orden, en
+   `docs/STRIPE_LIVE_CHECKLIST.md` § «Cómo abrir la venta»: llaves/precios/webhook en
+   modo real → proyecto en un plan de Vercel que permita uso comercial (la prueba Pro de
+   14 días) → `SALES_OPEN=true` → redeploy → una compra real con tarjeta propia y su
+   reembolso. El orden no es sugerencia: el paso 3 no tiene efecto sin el 1, porque el
+   interruptor se niega a abrir con llave de prueba.
+2. **G99 — aviso de privacidad.** `/legal/privacidad` debe declarar la **finalidad de
+   marketing** y este consentimiento nuevo: qué se envía, con qué base legal, y cómo se
+   retira (perfil o enlace de baja). Hoy los legales siguen con texto provisional y
+   `noindex` (G68), y esta fase no los tocó por encargo explícito.
 
 ## G97 — Repositorio remoto privado en GitHub (2026-09-16)
 
