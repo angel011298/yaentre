@@ -56,7 +56,21 @@ async function attempt(
  * autorización: el `userProfileId` sale SIEMPRE del guard, nunca del cliente.
  */
 async function assertNoUserIdAtTheEdge(): Promise<void> {
-  const sospechoso = /(userProfileId|studentProfileId|parentProfileId|authUserId|userId)\s*:/;
+  // ⚠️ G99 — ESTA REGEX ESTUVO ROTA DESDE G65 (`069026a`), Y POR ESO ESTA
+  // COMPROBACIÓN LLEVABA MESES SIN PODER FALLAR.
+  //
+  // El literal contenía un carácter BACKSPACE REAL (U+0008) donde se quiso
+  // escribir `\b`: alguien tecleó la secuencia de escape y lo que quedó
+  // guardado en el archivo fue el carácter de control, invisible en cualquier
+  // editor y en `git diff`. El patrón resultante exigía un backspace literal
+  // delante de `userProfileId`, cosa que no existe en ningún código fuente:
+  // `sospechoso.test('userProfileId: x')` devolvía **false**. La sonda
+  // informaba «0 aceptan un id de usuario» SIEMPRE, revisara 22 archivos o
+  // 141, hubiera o no un ofensor real.
+  //
+  // Es exactamente la lección de G71 §6 D6: antes de creerle a un verde, hay
+  // que comprobar que el ROJO es alcanzable. Aquí no lo era.
+  const sospechoso = /\b(userProfileId|studentProfileId|parentProfileId|authUserId|userId)\s*:/;
   const permitido = /counterpartProfileId/; // el vínculo a romper, verificado contra el que llama
   const archivos: string[] = [];
 
@@ -69,16 +83,48 @@ async function assertNoUserIdAtTheEdge(): Promise<void> {
   };
   walk(join(process.cwd(), 'app', 'actions'));
   walk(join(process.cwd(), 'app', 'api'));
+  // G99: también `src/lib/**`. Los esquemas de borde no siempre viven junto a
+  // la acción que los usa — los del panel admin están en
+  // `src/lib/admin/schemas.ts`. Sin esto, mover un esquema fuera de
+  // `app/actions` bastaba para salirse del barrido sin que nada lo dijera: la
+  // sonda seguía informando «0 aceptan un id de usuario» mientras un esquema
+  // nuevo sí lo aceptaba. Un verde que se esquiva cambiando un archivo de
+  // carpeta no es una comprobación.
+  walk(join(process.cwd(), 'src', 'lib'));
+
+  /**
+   * EXCEPCIÓN AUTORIZADA (G99), documentada en CLAUDE.md junto al guardrail.
+   * Las acciones de ADMINISTRACIÓN sí reciben a quién afectan —el objetivo no
+   * es quien actúa, así que no hay nada que derivar del guard— y valen solo
+   * con las cuatro condiciones: `requireRole('ADMIN')` dentro de la acción,
+   * id validado como cuid, escritura en `admin_audit_log` ANTES de responder,
+   * y `consumeRateLimit`. La matriz completa de roles la cubre
+   * `tests/admin/authz.test.ts`.
+   *
+   * Se enumera POR ARCHIVO, no por patrón: así, un esquema nuevo con un id de
+   * usuario en cualquier otro sitio sigue poniendo la sonda en rojo.
+   */
+  const excepcionAutorizada = [join('src', 'lib', 'admin', 'schemas.ts')];
 
   const ofensores: string[] = [];
+  const exceptuados: string[] = [];
   for (const file of archivos) {
     const src = readFileSync(file, 'utf-8');
     // Solo los bloques de esquema Zod: es ahí donde se declara lo que el
     // cliente puede mandar.
-    for (const bloque of src.split('z.object(')) {
+    // ⚠️ `.slice(1)` NO es cosmético: `split('z.object(')` devuelve en la
+    // posición 0 todo lo que va ANTES de la primera aparición — y, si el
+    // archivo no tiene ninguna, ESE ÚNICO elemento es el archivo entero. Sin
+    // saltárselo, cualquier `where: { userProfileId }` de Prisma en
+    // `src/lib/db/*` contaba como «esquema de entrada que acepta un id»: al
+    // arreglar la regex salieron 24 ofensores, y 20 eran archivos sin un solo
+    // esquema Zod. Solo el texto que SIGUE a `z.object(` es cuerpo de esquema.
+    for (const bloque of src.split('z.object(').slice(1)) {
       const cuerpo = bloque.slice(0, bloque.indexOf('})') + 2);
       if (sospechoso.test(cuerpo) && !permitido.test(cuerpo)) {
-        ofensores.push(`${file.replace(process.cwd(), '.')}`);
+        const rel = `${file.replace(process.cwd(), '.')}`;
+        if (excepcionAutorizada.some((e) => file.endsWith(e))) exceptuados.push(rel);
+        else ofensores.push(rel);
         break;
       }
     }
@@ -89,7 +135,10 @@ async function assertNoUserIdAtTheEdge(): Promise<void> {
     'ningún esquema de entrada acepta un identificador de usuario',
     ofensores.length === 0,
     ofensores.length === 0
-      ? `${archivos.length} archivos de borde revisados, 0 aceptan un id de usuario`
+      ? `${archivos.length} archivos de borde revisados, 0 aceptan un id de usuario` +
+        (exceptuados.length > 0
+          ? ` · excepción autorizada de admin (con sus 4 condiciones): ${exceptuados.join(', ')}`
+          : '')
       : `aceptan un id de usuario: ${ofensores.join(', ')}`
   );
 }
