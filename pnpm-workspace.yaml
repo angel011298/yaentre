@@ -55,6 +55,16 @@ overrides:
   #     GHSA-px8p-9vwx-vf98, parcheado en 0.4.9.
   '@xmldom/xmldom': '^0.8.15'
   fflate: '^0.4.9'
+  # G99: `exceljs` (previsualización de .xlsx en la bóveda del admin)
+  # arrastra `uuid@^8.3.0`, y el aviso GHSA-w5hq-g745-h8pq exige >=11.1.1
+  # («missing buffer bounds check» cuando se pasa `buf`). Es MODERADO y
+  # además no alcanzable por el uso que hace exceljs —llama a `v4()` sin
+  # `buf`—, así que `pnpm security:deps` (--audit-level=high) no se
+  # inmuta; se corrige igual, por el mismo criterio que los dos de G71.
+  # Salto de 3 mayores, así que se verificó POR EFECTO que exceljs sigue
+  # leyendo un .xlsx real (tests/admin/xlsx-preview.test.ts), no solo que
+  # instala. Techo de mayor, como TODO override de este archivo (G66).
+  uuid: '^11.1.1'
 allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true

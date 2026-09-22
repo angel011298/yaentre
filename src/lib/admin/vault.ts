@@ -186,3 +186,65 @@ export function parseCsv(text: string, maxRows: number, maxCols: number): string
   }
   return rows;
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// G99 parte B — PREVISUALIZACIÓN DE HOJAS DE CÁLCULO
+// ═══════════════════════════════════════════════════════════════════════════
+
+/** Topes de la previsualización, para no reventar la respuesta con un libro
+ *  de cien mil filas. */
+export const XLSX_MAX_SHEETS = 3;
+export const XLSX_MAX_ROWS = 200;
+export const XLSX_MAX_COLS = 30;
+
+export interface SheetPreview {
+  name: string;
+  rows: string[][];
+  truncatedRows: boolean;
+  truncatedCols: boolean;
+}
+
+export interface XlsxPreview {
+  ok: boolean;
+  sheets: SheetPreview[];
+  /** Mensaje para el administrador cuando el archivo no se pudo leer. */
+  error?: string;
+  totalSheets: number;
+}
+
+/**
+ * Convierte el valor de una celda de ExcelJS a TEXTO.
+ *
+ * 🔒 REGLA: las fórmulas NO se evalúan. Si la celda es una fórmula, se muestra
+ * su RESULTADO ya calculado y guardado en el archivo (`result`), y si no lo
+ * tiene, la fórmula como texto plano, nunca ejecutada. Evaluar fórmulas de un
+ * archivo subido dentro del servidor sería ejecutar código de entrada no
+ * confiable; y el resultado, sea cual sea, se pinta como texto de React, que
+ * escapa por construcción.
+ */
+export function cellToText(value: unknown): string {
+  if (value === null || value === undefined) return '';
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  if (value instanceof Date) return value.toISOString().slice(0, 19).replace('T', ' ');
+
+  const v = value as Record<string, unknown>;
+
+  // Celda de fórmula: se prefiere el resultado CACHEADO del archivo.
+  if ('formula' in v || 'sharedFormula' in v) {
+    if (v.result !== undefined && v.result !== null) return cellToText(v.result);
+    const f = (v.formula ?? v.sharedFormula) as string;
+    return `=${f}`;
+  }
+  // Error de Excel (#DIV/0!, #REF!, …)
+  if ('error' in v) return String(v.error);
+  // Texto enriquecido
+  if ('richText' in v && Array.isArray(v.richText)) {
+    return (v.richText as Array<{ text?: string }>).map((r) => r.text ?? '').join('');
+  }
+  // Hipervínculo
+  if ('text' in v) return String(v.text ?? '');
+  if ('hyperlink' in v) return String(v.hyperlink ?? '');
+
+  return '';
+}

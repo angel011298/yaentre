@@ -14,6 +14,7 @@
  */
 import '../g71/env';
 import { chromium, type Page } from '@playwright/test';
+import ExcelJS from 'exceljs';
 import { PrismaClient } from '@prisma/client';
 
 const BASE = 'https://yaentre.com';
@@ -77,16 +78,23 @@ async function main() {
     await login(page);
 
     // ── Subir por la interfaz real ──────────────────────────────────────
+    // Un .xlsx REAL, con una fórmula, para ejercer también la parte B.
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet('Sonda');
+    ws.addRow(['columna', 'valor']);
+    ws.addRow(['uno', 1]);
+    ws.getCell('C2').value = { formula: 'B2*2', result: 2 } as ExcelJS.CellFormulaValue;
+    const xlsxBytes = Buffer.from(await wb.xlsx.writeBuffer());
+
     await page.goto(`${BASE}/admin/boveda`, { waitUntil: 'domcontentloaded' });
     await page.setInputFiles('input[type="file"]', {
-      name: 'sonda-g99.csv',
-      mimeType: 'text/csv',
-      buffer: Buffer.from('columna,valor\nuno,1\ndos,2\n'),
+      name: 'sonda-g99.xlsx',
+      mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      buffer: xlsxBytes,
     });
     page.on('console', (m) => {
       if (m.type() === 'error') console.log(`    [consola] ${m.text().slice(0, 200)}`);
     });
-    await page.getByRole('button', { name: /^Subir$/ }).click();
 
     // Se espera por el TEXTO concreto que el control debe producir, y el patrón
     // cubre tanto el éxito como el fallo: esperar por `[role="alert"]` a secas
@@ -94,14 +102,32 @@ async function main() {
     const outcome = page.getByText(
       /Archivo guardado en la bóveda|Tipo de archivo no permitido|No pudimos guardar|Demasiadas subidas|No recibimos ningún archivo|Algo salió mal|reservada al administrador/i
     );
-    await outcome.first().waitFor({ timeout: 30_000 });
+
+    // ⚠️ El botón es `type="button"` con `onClick` (a propósito: un `<form>`
+    // hacía submit GET nativo antes de hidratar). El efecto secundario es que
+    // un clic ANTES de la hidratación no hace absolutamente nada — ni error ni
+    // navegación. Por eso se reintenta en vez de hacer un solo clic y esperar:
+    // un único clic temprano dejaba la sonda esperando 30 s a un mensaje que
+    // nunca iba a llegar, y el rojo parecía un fallo de la subida.
+    let uploaded = false;
+    for (let intento = 1; intento <= 4 && !uploaded; intento += 1) {
+      await page.getByRole('button', { name: /^Subir$/ }).click();
+      uploaded = await outcome
+        .first()
+        .waitFor({ timeout: 15_000 })
+        .then(() => true)
+        .catch(() => false);
+      if (!uploaded) console.log(`    (sin respuesta tras el clic ${intento}; reintentando)`);
+    }
+    if (!uploaded) throw new Error('El botón Subir no produjo ninguna respuesta.');
+
     const outcomeText = (await outcome.first().textContent()) ?? '';
     if (!/Archivo guardado/i.test(outcomeText)) {
       throw new Error(`La subida falló en producción: "${outcomeText.trim()}"`);
     }
 
     const created = await prisma.adminFile.findFirst({
-      where: { originalName: 'sonda-g99.csv', deletedAt: null },
+      where: { originalName: 'sonda-g99.xlsx', deletedAt: null },
       orderBy: { createdAt: 'desc' },
       select: { id: true, sha256: true },
     });
@@ -123,8 +149,21 @@ async function main() {
       `HTTP ${inline.status()} · cache-control="${ih['cache-control']}" · disposition="${ih['content-disposition']}" · pragma="${ih['pragma']}" · nosniff="${ih['x-content-type-options']}" · referrer="${ih['referrer-policy']}"`
     );
 
-    const body = await inline.text();
-    record('INLINE-contenido', body.includes('columna,valor'), `${body.length} bytes servidos`);
+    const body = await inline.body();
+    record(
+      'INLINE-contenido',
+      body.length === xlsxBytes.length,
+      `${body.length} bytes servidos (subidos ${xlsxBytes.length})`
+    );
+
+    // ── Parte B: el visor renderiza la hoja EN EL SERVIDOR ──────────────
+    await page.goto(`${BASE}/admin/boveda/${fileId}`, { waitUntil: 'domcontentloaded' });
+    const html = await page.content();
+    record(
+      'XLSX-visor',
+      html.includes('Sonda') && html.includes('columna') && html.includes('valor'),
+      'la hoja se pinta como tabla con sus celdas, renderizada en el servidor'
+    );
 
     // ── Cabeceras REALES: descarga ──────────────────────────────────────
     const dl = await page.request.get(`${BASE}/api/admin/vault/${fileId}?download=1`);
