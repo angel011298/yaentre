@@ -14,7 +14,7 @@
  * Nada de precaching, nada de Workbox: "capacidad MÍNIMA" es literal.
  */
 
-const SHELL_CACHE = 'yaentre-shell-v1';
+const SHELL_CACHE = 'yaentre-shell-v2';
 
 const OFFLINE_FALLBACK_HTML = `<!doctype html>
 <html lang="es">
@@ -53,12 +53,45 @@ function isSimulatorPath(pathname) {
   return pathname === '/simulador' || pathname.startsWith('/simulador/') || pathname.startsWith('/simulador?');
 }
 
+/**
+ * G99 — NADA DE /admin NI DE LA BÓVEDA SE GUARDA EN CACHÉ. NUNCA.
+ *
+ * El manejador de navegación de abajo metía en `SHELL_CACHE` la respuesta de
+ * CUALQUIER navegación, `/admin/*` incluido. Eso escribía en el disco del
+ * navegador el listado de usuarios, la bitácora y los nombres de los archivos
+ * de la bóveda — y la Cache Storage SOBREVIVE al cierre de sesión, así que en
+ * una computadora compartida el siguiente en usarla podía recuperarlos sin
+ * credenciales.
+ *
+ * Peor aún: el botón «Descargar» es un `<a href>`, o sea `mode === 'navigate'`,
+ * así que la respuesta de `/api/admin/vault/<id>` —el archivo entero— también
+ * acababa cacheada, tirando por la borda las cabeceras `no-store` que el Route
+ * Handler se toma el trabajo de mandar.
+ *
+ * `return` sin `respondWith`: la petición sigue su curso normal hacia la red.
+ * No se intercepta, no se guarda, no hay respaldo sin conexión — que es lo
+ * correcto: un panel de administración sin conexión no tiene sentido.
+ */
+function isPrivateAdminPath(pathname) {
+  return (
+    pathname === '/admin' ||
+    pathname.startsWith('/admin/') ||
+    pathname.startsWith('/api/admin/')
+  );
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+
+  // G99 — el panel de administración y la bóveda salen del service worker
+  // ANTES de cualquier otra rama: ni se sirven desde caché ni se guardan en
+  // ella. Va primero a propósito, para que ninguna rama posterior pueda
+  // reintroducirlos por descuido.
+  if (isPrivateAdminPath(url.pathname)) return;
 
   if (request.mode === 'navigate') {
     if (isSimulatorPath(url.pathname)) {

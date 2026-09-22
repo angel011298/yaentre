@@ -11,6 +11,7 @@ const LINKS = [
   // destructivas de dentro exigen además `MASTER_ADMIN_EMAILS`.
   { href: '/admin/usuarios', label: 'Usuarios' },
   { href: '/admin/bitacora', label: 'Bitácora' },
+  { href: '/admin/boveda', label: 'Bóveda' },
 ];
 
 export function AdminNav() {

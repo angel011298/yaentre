@@ -503,9 +503,11 @@ model UserProfile {
   asStudentLinks ParentLink[] @relation("StudentSide")
   linkCodes      ParentLinkCode[]
 
-  // Administración (G99). SetNull, nunca Cascade: la bitácora no puede
-  // desaparecer porque se elimine la cuenta del admin que actuó.
+  // Administración (G99). Ambas con SetNull, nunca Cascade: ni la bitácora ni
+  // la bóveda pueden desaparecer porque se elimine la cuenta del admin que
+  // actuó o que subió el archivo.
   adminAuditActions AdminAuditLog[] @relation("AdminAuditActor")
+  adminFiles        AdminFile[]     @relation("AdminFileUploader")
 
   createdAt DateTime @default(now())
 
@@ -733,4 +735,37 @@ model AdminAuditLog {
   @@index([action, createdAt])
   @@index([createdAt])
   @@map("admin_audit_log")
+}
+
+// Índice de la bóveda de archivos del administrador (G99 parte A2).
+//
+// El listado se sirve de esta tabla y NO de listar el bucket: el nombre
+// ORIGINAL del archivo no puede vivir en el path (el path se deriva de
+// `crypto.randomUUID()` + la extensión del TIPO declarado, nunca del nombre
+// que mandó el cliente), y listar un bucket es una llamada de red por página.
+//
+// 🔒 Requisito explícito del dueño: los archivos se guardan HASTA que el admin
+// maestro los elimine. De ahí `uploadedBy` con SetNull —jamás Cascade—: si la
+// fila muriera al borrarse la cuenta de quien subió, el objeto quedaría
+// huérfano en el bucket, fuera del listado y por tanto ni accesible ni
+// borrable. `uploadedByEmail` es la instantánea legible que lo sobrevive.
+// No hay TTL, ni ciclo de vida, ni job que borre nada: `deletedAt` solo lo
+// escribe `deleteVaultFileAction`, que exige admin maestro.
+model AdminFile {
+  id           String  @id @default(cuid())
+  path         String  @unique
+  originalName String
+  mimeType     String
+  sizeBytes    Int
+  sha256       String
+
+  uploadedById    String?
+  uploadedBy      UserProfile? @relation("AdminFileUploader", fields: [uploadedById], references: [id], onDelete: SetNull)
+  uploadedByEmail String?
+
+  createdAt DateTime  @default(now())
+  deletedAt DateTime?
+
+  @@index([deletedAt, createdAt])
+  @@map("admin_files")
 }
