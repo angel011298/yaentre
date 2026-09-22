@@ -110,6 +110,34 @@ export const RATE_LIMITS = {
    * de memoria no cuenta entre instancias de Vercel (G65 §5).
    */
   SALES_WAITLIST: { limit: 10, windowSecs: 3600 },
+  /**
+   * G99 — acciones de administración sobre una CUENTA (cortesía, baja de
+   * plan, forzar restablecimiento, cerrar sesiones, cambiar rol), por admin.
+   * 60 por hora es holgadísimo para trabajo manual real —nadie administra 60
+   * cuentas a mano en una hora— y acota el daño si la sesión de un admin se
+   * ve comprometida: no convierte el panel en una herramienta de cambio
+   * masivo de roles o de emisión masiva de correos de recuperación.
+   */
+  ADMIN_USER_ACTION: { limit: 60, windowSecs: 3600 },
+  /**
+   * G99 — forzar el correo de recuperación, POR CUENTA OBJETIVO. Presupuesto
+   * aparte y mucho más estrecho que el del admin: el correo llega a la bandeja
+   * de OTRA persona, así que el límite tiene que colgar de quien lo recibe, no
+   * de quien lo dispara. Mismo criterio que `PASSWORD_RESET`.
+   */
+  ADMIN_PASSWORD_RESET_TARGET: { limit: 4, windowSecs: 3600 },
+  /**
+   * G99 — subida de archivos a la bóveda. El tope real es el tamaño (40 MB
+   * por archivo) y el 1 GB del plan gratuito de Supabase; esto solo evita
+   * que un bucle accidental agote la cuota de almacenamiento de golpe.
+   */
+  ADMIN_VAULT_UPLOAD: { limit: 40, windowSecs: 3600 },
+  /**
+   * G99 — lectura/descarga de un archivo de la bóveda. Generoso (ver un PDF
+   * de varias páginas puede disparar varias peticiones de rango), pero acota
+   * la exfiltración masiva si una sesión de admin se ve comprometida.
+   */
+  ADMIN_VAULT_READ: { limit: 300, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

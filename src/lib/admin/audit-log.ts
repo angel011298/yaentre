@@ -1,18 +1,35 @@
+import { prisma } from '@/lib/db/prisma';
+import { reportSilentDegradation } from '@/lib/observability/report';
+
 /**
- * Registro de auditoría mínimo para acciones de administración de contenido
- * (CC-06). NO se agregó ninguna tabla ni columna al schema (restricción
- * explícita de la sesión): el "quién y cuándo" se registra como un log
- * estructurado en la propia Server Action, no como estado persistido.
+ * Bitácora de acciones de administración.
  *
- * En producción, `console.log` en una Server Action de Vercel llega a los
- * logs de la función (inspeccionables desde el dashboard / `vercel logs`).
- * El prefijo `[ADMIN_AUDIT]` facilita filtrarlos. Si más adelante se necesita
- * un historial persistente y consultable (p. ej. para disputas de contenido),
- * la vía correcta es un ALTER explícito (tabla `AdminAuditLog`), fuera del
- * alcance de esta sesión.
+ * ── Qué cambió en G99 ──────────────────────────────────────────────────────
+ *
+ * Hasta G98 esto era SOLO un `console.log` con prefijo `[ADMIN_AUDIT]`, y su
+ * propio comentario decía que un historial consultable exigía un ALTER
+ * explícito. G99 hace ese ALTER (migración 0016, tabla `admin_audit_log`):
+ * la plataforma trata datos de personas de 15 a 17 años y las acciones que
+ * esta fase añade —regalar un plan, darlo de baja, cambiar un rol, cerrar las
+ * sesiones de alguien, subir y borrar archivos— necesitan rastro persistente.
+ *
+ * El `console.log` SE CONSERVA además de la escritura: los logs de la función
+ * de Vercel son la evidencia que sobrevive a que la base esté caída justo
+ * cuando importa.
+ *
+ * ── El contrato que hace que la bitácora sirva ──────────────────────────────
+ *
+ * `logAdminAction` es **async y se espera SIEMPRE antes de responder**. No es
+ * un detalle de estilo: si la escritura se dispara sin esperar, una acción
+ * puede completarse y devolver éxito mientras su fila se pierde en un rechazo
+ * que nadie ve. Un rastro que se escribe "casi siempre" no es un rastro.
+ *
+ * Por el mismo motivo se registra TAMBIÉN cuando la acción falla por
+ * validación o por permisos: el intento es justo lo que interesa auditar.
  */
 
-export type AdminAuditEvent =
+/** Acciones de contenido, ya existentes desde CC-06. */
+type ContentAuditAction =
   | 'question.approved'
   | 'question.approved_with_option'
   | 'question.rejected'
@@ -20,22 +37,87 @@ export type AdminAuditEvent =
   | 'question.updated_and_approved'
   | 'question.reports_resolved';
 
+/** Acciones de administración de cuentas y bóveda (G99). */
+type AccountAuditAction =
+  | 'user.comp_granted'
+  | 'user.plan_canceled'
+  | 'user.password_reset_forced'
+  | 'user.sessions_revoked'
+  | 'user.role_changed'
+  | 'admin.promoted'
+  | 'vault.uploaded'
+  | 'vault.viewed'
+  | 'vault.downloaded'
+  | 'vault.deleted';
+
+export type AdminAuditAction = ContentAuditAction | AccountAuditAction;
+
+/**
+ * Qué clase de cosa es el objetivo. Permite filtrar la bitácora sin parsear
+ * el nombre de la acción.
+ */
+export type AdminAuditTargetKind = 'question' | 'user' | 'file' | 'system';
+
 export interface AdminActor {
   userProfileId: string;
   email: string | null | undefined;
 }
 
-export function logAdminAction(
-  event: AdminAuditEvent,
+export interface AdminAuditDetails {
+  targetUserProfileId?: string | null;
+  targetKind?: AdminAuditTargetKind;
+  reason?: string | null;
+  /** Identificadores internos y resultados. NUNCA datos personales ni, por
+   *  supuesto, material de contraseñas. */
+  metadata?: Record<string, unknown>;
+  /** `false` cuando la acción se rechazó (validación, permisos, límite de
+   *  tasa). Se registra igual: el intento es lo que interesa auditar. */
+  outcome?: 'applied' | 'rejected';
+}
+
+export async function logAdminAction(
+  action: AdminAuditAction,
   actor: AdminActor,
-  details: Record<string, unknown> = {},
-): void {
+  details: AdminAuditDetails = {}
+): Promise<void> {
+  const {
+    targetUserProfileId = null,
+    targetKind = 'system',
+    reason = null,
+    metadata = {},
+    outcome = 'applied',
+  } = details;
+
   const entry = {
-    event,
+    action,
     adminUserProfileId: actor.userProfileId,
     adminEmail: actor.email ?? null,
+    targetUserProfileId,
+    targetKind,
+    outcome,
     at: new Date().toISOString(),
-    ...details,
+    ...metadata,
   };
   console.log(`[ADMIN_AUDIT] ${JSON.stringify(entry)}`);
+
+  try {
+    await prisma.adminAuditLog.create({
+      data: {
+        actorUserProfileId: actor.userProfileId,
+        actorEmail: actor.email ?? null,
+        action,
+        targetUserProfileId,
+        targetKind,
+        reason,
+        metadata: { ...metadata, outcome } as object,
+      },
+    });
+  } catch (err) {
+    // No se relanza A PROPÓSITO: que la bitácora esté caída no debe revertir
+    // una baja de plan que ya se aplicó, ni dejar al admin sin saber qué pasó.
+    // Pero tampoco puede quedar en silencio — si esto se dispara, hay acciones
+    // de administración ocurriendo SIN rastro, que es exactamente el agujero
+    // que esta tabla vino a tapar.
+    reportSilentDegradation('admin_audit', err, { action, targetKind, outcome });
+  }
 }

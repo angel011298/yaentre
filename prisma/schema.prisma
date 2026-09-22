@@ -503,6 +503,10 @@ model UserProfile {
   asStudentLinks ParentLink[] @relation("StudentSide")
   linkCodes      ParentLinkCode[]
 
+  // Administración (G99). SetNull, nunca Cascade: la bitácora no puede
+  // desaparecer porque se elimine la cuenta del admin que actuó.
+  adminAuditActions AdminAuditLog[] @relation("AdminAuditActor")
+
   createdAt DateTime @default(now())
 
   @@index([userId])
@@ -608,6 +612,13 @@ model Subscription {
   season        PricingSeason
   hasGuarantee  Boolean            @default(false) // true para PREMIUM
 
+  // G99 — cortesía otorgada desde el panel de administración, no una venta.
+  // Para el paywall es INDISTINGUIBLE de una compra (mismo status, mismo
+  // expiresAt, misma insignia); solo el contador de licencias Early Bird la
+  // excluye, porque una licencia regalada no puede descontar del «quedan X
+  // de 500» que se anuncia en vivo. Una cortesía nunca crea `Payment`.
+  isComp Boolean @default(false)
+
   // Referencias Stripe
   stripeCustomerId        String?
   stripeSubscriptionId    String? // solo MONTHLY (recurring)
@@ -685,4 +696,41 @@ model NotificationPreference {
 
   @@unique([userProfileId, type])
   @@map("notification_preferences")
+}
+
+// ──────────────── ADMINISTRACIÓN (G99) ────────────────
+
+// Bitácora persistente de acciones de administración. Sustituye al
+// `console.log` con prefijo `[ADMIN_AUDIT]` de CC-06, que no dejaba historial
+// consultable. La plataforma trata datos de personas de 15 a 17 años.
+//
+// `actor` es NULABLE con SetNull (no Cascade): una bitácora que se borra sola
+// al eliminarse la cuenta del actor no es una bitácora. `actorEmail` es la
+// instantánea legible que sobrevive a ese borrado.
+//
+// `targetUserProfileId` va SIN relación a propósito — la bitácora registra lo
+// que le pasó a una cuenta aunque después se elimine (LFPDPPP).
+//
+// `action` es un string tipado en código (`AdminAuditAction` en
+// src/lib/admin/audit-log.ts), no un enum de base: añadir una acción no debe
+// exigir una migración.
+model AdminAuditLog {
+  id String @id @default(cuid())
+
+  actorUserProfileId String?
+  actor              UserProfile? @relation("AdminAuditActor", fields: [actorUserProfileId], references: [id], onDelete: SetNull)
+  actorEmail         String?
+
+  action              String
+  targetUserProfileId String?
+  targetKind          String
+  reason              String?
+  metadata            Json     @default("{}")
+  createdAt           DateTime @default(now())
+
+  @@index([actorUserProfileId, createdAt])
+  @@index([targetUserProfileId, createdAt])
+  @@index([action, createdAt])
+  @@index([createdAt])
+  @@map("admin_audit_log")
 }

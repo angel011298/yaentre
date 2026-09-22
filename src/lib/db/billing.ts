@@ -94,6 +94,98 @@ async function grantEarlyBirdBadge(
   return false;
 }
 
+/**
+ * G99 — ACTIVACIÓN, EN UN SOLO LUGAR.
+ *
+ * Antes esta lógica vivía únicamente dentro del `work` de
+ * `activateFromCheckout`. El alta manual de una cortesía desde el panel de
+ * administración tiene que producir EXACTAMENTE el mismo estado —si no, una
+ * Premium regalada queda sin `expiresAt` ni insignia y el paywall se comporta
+ * distinto con ella que con una comprada—, así que el camino es uno solo.
+ *
+ * Qué hace, y en este orden (el MISMO que tenía el webhook):
+ *   1. lee la suscripción con la fecha del examen objetivo del alumno;
+ *   2. sale si ya está ACTIVE (defensa extra a la idempotencia por event.id);
+ *   3. deriva `expiresAt` de `targetExam.examDate` con `computeExpiresAt`;
+ *   4. transición ATÓMICA con `status: { not: 'ACTIVE' }` — solo un llamador
+ *      concurrente gana (G60);
+ *   5. `afterActivate`, para lo que es propio de cada camino;
+ *   6. insignia Early Bird si la temporada es EARLY_BIRD.
+ *
+ * `afterActivate` existe para preservar el orden exacto de sentencias del
+ * webhook, que escribía el `Payment` entre el paso 4 y el 6. Todo ocurre en la
+ * MISMA transacción que abre el llamador, así que un fallo revierte el
+ * conjunto — pero mantener el orden hace que la extracción sea demostrablemente
+ * equivalente, no solo equivalente "en el resultado".
+ */
+export interface ActivationOutcome {
+  activated: boolean;
+  subscriptionId: string;
+  userProfileId: string;
+  plan: SubscriptionPlan;
+  season: PricingSeason;
+  expiresAt: Date | null;
+  earlyBirdBadgeGranted: boolean;
+}
+
+export async function activateSubscriptionTx(
+  tx: Prisma.TransactionClient,
+  input: {
+    subscriptionId: string;
+    now: Date;
+    stripeCustomerId?: string | null;
+    stripeSubscriptionId?: string | null;
+    afterActivate?: (sub: { id: string; plan: SubscriptionPlan; season: PricingSeason }) => Promise<void>;
+  }
+): Promise<ActivationOutcome | null> {
+  const sub = await tx.subscription.findUnique({
+    where: { id: input.subscriptionId },
+    include: {
+      userProfile: { select: { id: true, targetExam: { select: { examDate: true } } } },
+    },
+  });
+  if (!sub) return null;
+
+  const base: ActivationOutcome = {
+    activated: false,
+    subscriptionId: sub.id,
+    userProfileId: sub.userProfileId,
+    plan: sub.plan,
+    season: sub.season,
+    expiresAt: sub.expiresAt,
+    earlyBirdBadgeGranted: false,
+  };
+
+  if (sub.status === 'ACTIVE') return base;
+
+  const expiresAt = computeExpiresAt(
+    sub.plan,
+    sub.userProfile.targetExam?.examDate ?? null,
+    input.now
+  );
+
+  const activated = await tx.subscription.updateMany({
+    where: { id: sub.id, status: { not: 'ACTIVE' } },
+    data: {
+      status: 'ACTIVE',
+      startedAt: input.now,
+      expiresAt,
+      stripeCustomerId: input.stripeCustomerId ?? undefined,
+      stripeSubscriptionId: input.stripeSubscriptionId ?? undefined,
+    },
+  });
+  if (activated.count === 0) return base;
+
+  await input.afterActivate?.({ id: sub.id, plan: sub.plan, season: sub.season });
+
+  let earlyBirdBadgeGranted = false;
+  if (sub.season === 'EARLY_BIRD') {
+    earlyBirdBadgeGranted = await grantEarlyBirdBadge(tx, sub.userProfileId);
+  }
+
+  return { ...base, activated: true, expiresAt, earlyBirdBadgeGranted };
+}
+
 async function upsertPayment(
   tx: Prisma.TransactionClient,
   subscriptionId: string,
@@ -144,59 +236,45 @@ export const billingStore: BillingStore = {
     } = { value: null };
 
     const result = await runIdempotent(eventId, eventType, async (tx) => {
-      const sub = await tx.subscription.findUnique({
+      const found = await tx.subscription.findUnique({
         where: { stripeCheckoutSessionId: activation.checkoutSessionId },
-        include: {
-          userProfile: {
-            select: { id: true, targetExam: { select: { examDate: true } } },
-          },
-        },
+        select: { id: true },
       });
 
-      if (!sub) throw new SubscriptionNotFoundError(activation.checkoutSessionId);
-
-      // Ya activa: no re-aplicar (defensa extra a la idempotencia por event.id).
-      if (sub.status === 'ACTIVE') return;
+      if (!found) throw new SubscriptionNotFoundError(activation.checkoutSessionId);
 
       const now = new Date();
-      const expiresAt = computeExpiresAt(sub.plan, sub.userProfile.targetExam?.examDate ?? null, now);
-      const amountMxn = resolveAmountMxn(activation, sub.plan, sub.season);
 
-      // G60 — activación atómica. El webhook real y el job de reconciliación
-      // (F22) pueden intentar activar la MISMA suscripción casi a la vez, cada
-      // uno con su propio `eventId` (el de reconciliación es sintético), así
-      // que la guarda `sub.status === 'ACTIVE'` de arriba —una lectura— no los
-      // detiene si corren en paralelo: ambos leerían PENDING. El `updateMany`
-      // condicionado a `status: { not: 'ACTIVE' }` hace que solo UNO gane la
-      // transición; el otro ve `count === 0` y sale sin duplicar el `Payment`,
-      // la insignia Early Bird ni el evento `purchase_completed`.
-      const activated = await tx.subscription.updateMany({
-        where: { id: sub.id, status: { not: 'ACTIVE' } },
-        data: {
-          status: 'ACTIVE',
-          startedAt: now,
-          expiresAt,
-          stripeCustomerId: activation.stripeCustomerId ?? undefined,
-          stripeSubscriptionId: activation.stripeSubscriptionId ?? undefined,
+      // G99 — el cuerpo de la activación (guarda de ACTIVE, `expiresAt`
+      // derivado del examen, transición atómica con `status: { not: 'ACTIVE' }`
+      // de G60, insignia Early Bird) vive en `activateSubscriptionTx`, que
+      // comparte con el alta manual de cortesías. El `Payment` se escribe en
+      // `afterActivate`, que es EXACTAMENTE el punto donde se escribía antes:
+      // después de ganar la transición y antes de otorgar la insignia. Así el
+      // camino del webhook queda intacto —mismos efectos, mismo orden— y una
+      // cortesía no puede divergir de una compra.
+      let amountMxn = 0;
+      const outcome = await activateSubscriptionTx(tx, {
+        subscriptionId: found.id,
+        now,
+        stripeCustomerId: activation.stripeCustomerId,
+        stripeSubscriptionId: activation.stripeSubscriptionId,
+        afterActivate: async (sub) => {
+          amountMxn = resolveAmountMxn(activation, sub.plan, sub.season);
+          await upsertPayment(tx, sub.id, activation, amountMxn, 'SUCCEEDED');
         },
       });
-      if (activated.count === 0) return;
 
-      await upsertPayment(tx, sub.id, activation, amountMxn, 'SUCCEEDED');
-
-      let earlyBirdBadgeGranted = false;
-      if (sub.season === 'EARLY_BIRD') {
-        earlyBirdBadgeGranted = await grantEarlyBirdBadge(tx, sub.userProfileId);
-      }
+      if (!outcome || !outcome.activated) return;
 
       tracked.value = {
-        userProfileId: sub.userProfileId,
-        plan: sub.plan,
-        season: sub.season,
+        userProfileId: outcome.userProfileId,
+        plan: outcome.plan,
+        season: outcome.season,
         amountMxn,
         method: activation.method,
-        isEarlyBird: sub.season === 'EARLY_BIRD',
-        earlyBirdBadgeGranted,
+        isEarlyBird: outcome.season === 'EARLY_BIRD',
+        earlyBirdBadgeGranted: outcome.earlyBirdBadgeGranted,
       };
     });
 
@@ -416,7 +494,15 @@ export async function getSubscriptionByCheckoutSession(
  * de negocio (no es una restricción dura de inventario físico).
  */
 export async function countActiveEarlyBirdSubscriptions(): Promise<number> {
-  return prisma.subscription.count({ where: { season: 'EARLY_BIRD', status: 'ACTIVE' } });
+  // G99 — `isComp: false`. Una licencia REGALADA desde el panel de
+  // administración no puede descontar del «quedan X de 500» que se anuncia en
+  // vivo en la landing y el paywall: ese contador es una promesa comercial
+  // sobre cuántas quedan en VENTA. Regalar diez cortesías no vende diez
+  // licencias, y dejarlas contar haría que el precio subiera de temporada
+  // (`degradeIfEarlyBirdExhausted`) sin que hubiera entrado un peso.
+  return prisma.subscription.count({
+    where: { season: 'EARLY_BIRD', status: 'ACTIVE', isComp: false },
+  });
 }
 
 export async function earlyBirdLicensesRemaining(): Promise<number> {

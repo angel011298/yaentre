@@ -18,8 +18,9 @@ import { validateDraft } from '../../scripts/lib/question-draft-schema';
 /**
  * Server Actions del panel admin (CC-06). Cada una: (1) exige rol ADMIN,
  * (2) valida el input, (3) delega en la capa DB, (4) registra auditoría
- * mínima (quién + cuándo, vía log — ver src/lib/admin/audit-log.ts, el schema
- * no se tocó), (5) revalida las rutas afectadas.
+ * (quién + cuándo, ahora persistida en `admin_audit_log` — G99), (5) revalida
+ * las rutas afectadas. La auditoría se ESPERA antes de responder: una fila que
+ * se pierde en un rechazo no observado no es un rastro.
  */
 
 function toError(err: unknown): { code: string; message: string } {
@@ -41,10 +42,10 @@ export async function approveQuestionAction(
 
     await adminDb.approveQuestion(questionId);
 
-    logAdminAction(
+    await logAdminAction(
       'question.approved',
       { userProfileId: profile.id, email: authUser.email },
-      { questionId },
+      { targetKind: 'question', metadata: { questionId } },
     );
 
     revalidatePath('/admin/questions/queue');
@@ -66,10 +67,10 @@ export async function approveWithOptionAction(
 
     await adminDb.approveQuestionWithOption(questionId, optionId);
 
-    logAdminAction(
+    await logAdminAction(
       'question.approved_with_option',
       { userProfileId: profile.id, email: authUser.email },
-      { questionId, optionId },
+      { targetKind: 'question', metadata: { questionId, optionId } },
     );
 
     revalidatePath('/admin/questions/queue');
@@ -90,10 +91,10 @@ export async function rejectQuestionAction(
 
     const snapshot = await adminDb.rejectQuestion(questionId);
 
-    logAdminAction(
+    await logAdminAction(
       'question.rejected',
       { userProfileId: profile.id, email: authUser.email },
-      { questionId, snapshot },
+      { targetKind: 'question', metadata: { questionId, snapshot } },
     );
 
     revalidatePath('/admin/questions/queue');
@@ -118,10 +119,10 @@ export async function updateQuestionAction(
 
     await adminDb.updateQuestion(questionId, validated.draft, { markVerified });
 
-    logAdminAction(
+    await logAdminAction(
       markVerified ? 'question.updated_and_approved' : 'question.updated',
       { userProfileId: profile.id, email: authUser.email },
-      { questionId },
+      { targetKind: 'question', metadata: { questionId } },
     );
 
     revalidatePath(`/admin/questions/${questionId}`);
@@ -142,10 +143,10 @@ export async function resolveReportsAction(
 
     const resolvedCount = await adminDb.resolveReportsForQuestion(questionId);
 
-    logAdminAction(
+    await logAdminAction(
       'question.reports_resolved',
       { userProfileId: profile.id, email: authUser.email },
-      { questionId, resolvedCount },
+      { targetKind: 'question', metadata: { questionId, resolvedCount } },
     );
 
     revalidatePath('/admin/reports');

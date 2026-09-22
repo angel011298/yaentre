@@ -70,6 +70,22 @@ export type ControlName =
    * quedó un endpoint del modo anterior vivo tras el cambio de llaves.
    */
   | 'stripe_livemode'
+  /**
+   * G99 — compuerta de admin maestro. Se dispara cuando `MASTER_ADMIN_EMAILS`
+   * está ausente o vacía: TODA acción destructiva del panel queda bloqueada
+   * (`fail-closed`, que es lo correcto), pero desde la interfaz ese bloqueo es
+   * indistinguible de "este admin no es maestro". Sin el evento, el dueño
+   * puede pasar semanas creyendo que el panel está mal cuando lo que falta es
+   * una variable de entorno.
+   */
+  | 'master_admin_gate'
+  /**
+   * G99 — bóveda de archivos del administrador: la subida, la lectura o el
+   * borrado del objeto en Storage falló. Un archivo que la bitácora da por
+   * subido y el bucket no tiene es una pérdida silenciosa de material que el
+   * dueño cree guardado.
+   */
+  | 'admin_vault_storage'
   /** Persistencia de la preferencia de baja de correo. */
   | 'unsubscribe_write';
 
@@ -101,7 +117,14 @@ export type DegradationArea =
   /** Envío de eventos de producto a PostHog. */
   | 'analytics'
   /** Un job del cron diario que terminó rechazado. */
-  | 'scheduled_job';
+  | 'scheduled_job'
+  /**
+   * G99 — la escritura en `admin_audit_log` falló. La acción de
+   * administración ya se aplicó y no se revierte por esto, pero significa que
+   * hay operaciones sobre cuentas de menores ocurriendo SIN rastro: justo el
+   * agujero que la tabla vino a tapar.
+   */
+  | 'admin_audit';
 
 type Context = Record<string, unknown>;
 

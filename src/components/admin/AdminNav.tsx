@@ -7,6 +7,10 @@ const LINKS = [
   { href: '/admin/questions/queue', label: 'Revisión' },
   { href: '/admin/reports', label: 'Reportes' },
   { href: '/admin/coverage', label: 'Cobertura' },
+  // G99 — administración maestra. Las tres exigen ADMIN (layout); las acciones
+  // destructivas de dentro exigen además `MASTER_ADMIN_EMAILS`.
+  { href: '/admin/usuarios', label: 'Usuarios' },
+  { href: '/admin/bitacora', label: 'Bitácora' },
 ];
 
 export function AdminNav() {
