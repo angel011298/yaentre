@@ -508,6 +508,7 @@ model UserProfile {
   // actuó o que subió el archivo.
   adminAuditActions AdminAuditLog[] @relation("AdminAuditActor")
   adminFiles        AdminFile[]     @relation("AdminFileUploader")
+  adminNotes        AdminNote[]     @relation("AdminNoteAuthor")
 
   createdAt DateTime @default(now())
 
@@ -768,4 +769,30 @@ model AdminFile {
 
   @@index([deletedAt, createdAt])
   @@map("admin_files")
+}
+
+// Notas del panel de administración — apartado dentro de /admin/boveda.
+//
+// Persistidas en Postgres a propósito: el requisito es que sean las MISMAS
+// sin importar en qué dispositivo o sesión se abran, «en el momento que
+// sea» — localStorage es por-navegador y no lo cumple. Cualquier ADMIN puede
+// crear, ver y borrar (no se exige admin maestro: son apuntes internos de
+// bajo riesgo, a diferencia de una cortesía o un cambio de rol).
+//
+// `authorId` con SetNull, igual que `AdminFile.uploadedBy`: la nota no
+// desaparece porque se borre la cuenta de quien la escribió. `authorEmail`
+// es la instantánea legible que sobrevive a ese borrado.
+model AdminNote {
+  id      String @id @default(cuid())
+  content String @db.Text
+
+  authorId    String?
+  author      UserProfile? @relation("AdminNoteAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  authorEmail String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@map("admin_notes")
 }

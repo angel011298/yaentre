@@ -26,6 +26,12 @@ export const VAULT_TYPES: Record<string, string> = {
   'text/csv': 'csv',
   'text/plain': 'txt',
   'text/markdown': 'md',
+  // 🔒 `.html` SE PUEDE SUBIR, pero nunca se sirve como HTML ejecutable en
+  // línea — ver `vaultResponseHeaders`. Solo se ve como texto fuente (igual
+  // que .txt/.md) o se descarga; nunca se renderiza dentro del origen de la
+  // app, porque eso correría cualquier <script> del archivo con la sesión
+  // del admin que lo abre — la más privilegiada del producto.
+  'text/html': 'html',
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'xlsx',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
   'application/vnd.openxmlformats-officedocument.presentationml.presentation': 'pptx',
@@ -55,7 +61,12 @@ export function previewKindFor(mimeType: string): VaultPreview {
     return 'image';
   }
   if (mimeType === 'text/csv') return 'csv';
-  if (mimeType === 'text/plain' || mimeType === 'text/markdown') return 'text';
+  // 'text/html' se trata IGUAL que .txt/.md: se muestra como código fuente
+  // escapado por React, nunca renderizado. Ver el comentario junto a
+  // `VAULT_TYPES` y `vaultResponseHeaders`.
+  if (mimeType === 'text/plain' || mimeType === 'text/markdown' || mimeType === 'text/html') {
+    return 'text';
+  }
   if (
     mimeType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
   ) {
@@ -81,7 +92,7 @@ export function validateVaultUpload(input: {
     return {
       ok: false,
       message:
-        'Tipo de archivo no permitido. Se aceptan PDF, PNG, JPG, WebP, CSV, TXT, Markdown, XLSX, DOCX y PPTX.',
+        'Tipo de archivo no permitido. Se aceptan PDF, PNG, JPG, WebP, CSV, TXT, Markdown, HTML, XLSX, DOCX y PPTX.',
     };
   }
   if (input.sizeBytes <= 0) {
@@ -117,8 +128,30 @@ export function vaultResponseHeaders(input: {
   originalName: string;
   download: boolean;
 }): Record<string, string> {
+  // 🔒 UN `.html` NUNCA SE SIRVE COMO `text/html` EN LÍNEA.
+  //
+  // Si se sirviera con su Content-Type real e `inline`, cualquiera que
+  // navegara DIRECTO a esta ruta (sin pasar por el visor — nada lo impide,
+  // es la misma URL) haría que el navegador interpretara el archivo como una
+  // página HTML del origen `https://yaentre.com` y ejecutara cualquier
+  // <script> que contenga, CON LA SESIÓN DEL ADMIN QUE LO ABRE — la cookie es
+  // httpOnly así que un script no puede leerla, pero sí puede usarla: un
+  // `fetch()` del propio script hacia cualquier Server Action del panel
+  // viajaría con esa sesión adjunta. Un ADMIN no maestro podría así, por
+  // ejemplo, subir un .html que invoque `changeRoleAction` cuando lo abra el
+  // admin MAESTRO — precisamente la escalada de privilegios que la compuerta
+  // de maestro existe para impedir.
+  //
+  // Al DESCARGAR (`download`) sí se sirve el tipo real: `Content-Disposition:
+  // attachment` obliga al navegador a GUARDAR el archivo en vez de
+  // interpretarlo, así que abrirlo después ocurre fuera del origen y la
+  // sesión de la app (como archivo local, o en el programa que el sistema
+  // asocie a `.html`).
+  const servedType =
+    input.mimeType === 'text/html' && !input.download ? 'text/plain; charset=utf-8' : input.mimeType;
+
   return {
-    'Content-Type': input.mimeType,
+    'Content-Type': servedType,
     'Content-Disposition': `${input.download ? 'attachment' : 'inline'}; filename="${sanitizeFilename(
       input.originalName
     )}"`,

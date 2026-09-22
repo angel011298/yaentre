@@ -60,7 +60,7 @@ export function VaultUploadForm() {
           ref={inputRef}
           type="file"
           aria-label="Archivo"
-          accept=".pdf,.png,.jpg,.jpeg,.webp,.csv,.txt,.md,.xlsx,.docx,.pptx"
+          accept=".pdf,.png,.jpg,.jpeg,.webp,.csv,.txt,.md,.html,.xlsx,.docx,.pptx"
           className="min-h-touch flex-1 rounded-md border border-border-subtle bg-input px-3 py-2 text-sm text-text-primary file:mr-3 file:rounded-md file:border-0 file:bg-elevated file:px-3 file:py-1.5 file:text-sm file:text-text-primary"
         />
         <Button type="button" onClick={handleSubmit} disabled={isPending}>
@@ -68,8 +68,9 @@ export function VaultUploadForm() {
         </Button>
       </div>
       <p className="mt-2 text-xs text-text-muted">
-        PDF, PNG, JPG, WebP, CSV, TXT, Markdown, XLSX, DOCX y PPTX. Máximo{' '}
-        {formatBytes(MAX_VAULT_BYTES)} por archivo.
+        PDF, PNG, JPG, WebP, CSV, TXT, Markdown, HTML, XLSX, DOCX y PPTX. Máximo{' '}
+        {formatBytes(MAX_VAULT_BYTES)} por archivo. Un .html se puede ver como código fuente o
+        descargar, pero nunca se ejecuta dentro de la app.
       </p>
       {message && (
         <p

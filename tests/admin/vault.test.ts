@@ -19,7 +19,7 @@ import {
  */
 
 describe('lista blanca de tipos', () => {
-  it('acepta exactamente los 10 tipos acordados', () => {
+  it('acepta exactamente los 11 tipos acordados', () => {
     expect(Object.keys(VAULT_TYPES).sort()).toEqual(
       [
         'application/pdf',
@@ -30,6 +30,7 @@ describe('lista blanca de tipos', () => {
         'image/png',
         'image/webp',
         'text/csv',
+        'text/html',
         'text/markdown',
         'text/plain',
       ].sort()
@@ -43,7 +44,7 @@ describe('lista blanca de tipos', () => {
     });
   }
 
-  for (const mime of ['text/html', 'application/x-msdownload', 'image/svg+xml', '', 'application/zip']) {
+  for (const mime of ['application/x-msdownload', 'image/svg+xml', '', 'application/zip']) {
     it(`rechaza ${mime || '(vacío)'}`, () => {
       const v = validateVaultUpload({ mimeType: mime, sizeBytes: 1024 });
       expect(v.ok).toBe(false);
@@ -85,8 +86,19 @@ describe('la extensión se deriva del TIPO, nunca del nombre enviado', () => {
     expect(v.ok && v.ext).toBe('pdf');
   });
 
-  it('un nombre .pdf con tipo text/html se RECHAZA, no se guarda como pdf', () => {
-    expect(validateVaultUpload({ mimeType: 'text/html', sizeBytes: 10 }).ok).toBe(false);
+  it('un nombre .pdf con tipo text/html SÍ se acepta, pero se guarda como .html, nunca .pdf', () => {
+    // .html SÍ está en la lista blanca (se puede subir), pero la extensión
+    // real del archivo guardado sigue viniendo del tipo declarado, no del
+    // nombre — un `informe.pdf` con `Content-Type: text/html` no se cuela
+    // como un PDF.
+    const v = validateVaultUpload({ mimeType: 'text/html', sizeBytes: 10 });
+    expect(v.ok && v.ext).toBe('html');
+  });
+
+  it('un nombre .html con tipo application/x-msdownload se RECHAZA', () => {
+    expect(validateVaultUpload({ mimeType: 'application/x-msdownload', sizeBytes: 10 }).ok).toBe(
+      false
+    );
   });
 });
 
@@ -140,6 +152,13 @@ describe('qué se puede ver dentro del navegador', () => {
     expect(previewKindFor('text/markdown')).toBe('text');
   });
 
+  it('html se ve como TEXTO (código fuente escapado), NUNCA renderizado como página', () => {
+    // Mismo tratamiento que .txt/.md, a propósito: 'text' significa
+    // "preformateado y escapado por React", nunca "interpretado como HTML".
+    expect(previewKindFor('text/html')).toBe('text');
+    expect(previewKindFor('text/html')).not.toBe('none');
+  });
+
   it('docx y pptx quedan solo como descarga en este corte', () => {
     expect(
       previewKindFor(
@@ -151,6 +170,35 @@ describe('qué se puede ver dentro del navegador', () => {
         'application/vnd.openxmlformats-officedocument.presentationml.presentation'
       )
     ).toBe('none');
+  });
+});
+
+describe('html: nunca se sirve como text/html EN LÍNEA (self-XSS en la sesión del admin)', () => {
+  it('inline (Ver / sin ?download): el Content-Type se fuerza a text/plain aunque el mimeType real sea text/html', () => {
+    const h = vaultResponseHeaders({ mimeType: 'text/html', originalName: 'nota.html', download: false });
+    expect(h['Content-Type']).toBe('text/plain; charset=utf-8');
+    expect(h['Content-Disposition']).toBe('inline; filename="nota.html"');
+    // El resto de las cabeceras de seguridad no cambian por esta regla.
+    expect(h['X-Content-Type-Options']).toBe('nosniff');
+    expect(h['Cache-Control']).toBe('no-store, no-cache, must-revalidate, private');
+  });
+
+  it('descarga (?download=1): SÍ se sirve el tipo real, porque `attachment` obliga a GUARDAR, no a ejecutar', () => {
+    const h = vaultResponseHeaders({ mimeType: 'text/html', originalName: 'nota.html', download: true });
+    expect(h['Content-Type']).toBe('text/html');
+    expect(h['Content-Disposition']).toBe('attachment; filename="nota.html"');
+  });
+
+  it('un pdf normal no se ve afectado por esta regla especial', () => {
+    const inline = vaultResponseHeaders({ mimeType: 'application/pdf', originalName: 'x.pdf', download: false });
+    expect(inline['Content-Type']).toBe('application/pdf');
+    const download = vaultResponseHeaders({ mimeType: 'application/pdf', originalName: 'x.pdf', download: true });
+    expect(download['Content-Type']).toBe('application/pdf');
+  });
+
+  it('un .txt tampoco se ve afectado (ya era texto plano real)', () => {
+    const h = vaultResponseHeaders({ mimeType: 'text/plain', originalName: 'x.txt', download: false });
+    expect(h['Content-Type']).toBe('text/plain');
   });
 });
 

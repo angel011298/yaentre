@@ -151,11 +151,28 @@ describe('SUBIR — exige ADMIN, no exige maestro', () => {
     identity.role = 'ADMIN';
     identity.email = 'jefa@yaentre.com';
     const fd = new FormData();
-    fd.set('file', new File([new Uint8Array([1])], 'x.html', { type: 'text/html' }));
+    // .html SÍ está en la lista blanca (se puede ver/almacenar como texto
+    // fuente, nunca como HTML ejecutable — ver src/lib/admin/vault.ts); un
+    // ejecutable no lo está, y ese es el caso que esta prueba cubre.
+    fd.set('file', new File([new Uint8Array([1])], 'x.exe', { type: 'application/x-msdownload' }));
     const result = await vaultActions.uploadVaultFileAction(fd);
     expect(result.ok).toBe(false);
     expect(storageCalls).toEqual([]);
     expect(auditRows[0]).toMatchObject({ metadata: { denied: 'VALIDATION' } });
+  });
+
+  it('.html SÍ se puede subir (lista blanca), pero se guarda para verse como texto, no como página', async () => {
+    identity.role = 'ADMIN';
+    identity.email = 'jefa@yaentre.com';
+    const fd = new FormData();
+    fd.set(
+      'file',
+      new File([new Uint8Array([1, 2, 3])], 'nota.html', { type: 'text/html' })
+    );
+    const result = await vaultActions.uploadVaultFileAction(fd);
+    expect(result.ok).toBe(true);
+    expect(storageCalls).toContain('upload');
+    expect(dbCalls).toContain('recordVaultFile');
   });
 
   it('un archivo de 0 bytes se rechaza', async () => {

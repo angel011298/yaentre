@@ -130,3 +130,22 @@ export const deleteVaultFileSchema = z.object({
   reason: reasonSchema,
 });
 export type DeleteVaultFileInput = z.input<typeof deleteVaultFileSchema>;
+
+// ── Notas del panel (apartado dentro de /admin/boveda) ─────────────────────
+//
+// NO llevan `reason`: a diferencia de las acciones de la lista de arriba
+// (cortesías, bajas, cambios de rol), crear o borrar una nota no mueve
+// dinero ni cambia el acceso de una cuenta — exigir un motivo aquí sería
+// burocracia sin ningún caso real que la use seis meses después.
+
+export const createNoteSchema = z.object({
+  content: z
+    .string()
+    .trim()
+    .min(1, 'Escribe algo antes de guardar.')
+    .max(5000, 'Máximo 5 000 caracteres.'),
+});
+export type CreateNoteInput = z.input<typeof createNoteSchema>;
+
+export const deleteNoteSchema = z.object({ noteId: cuidSchema });
+export type DeleteNoteInput = z.input<typeof deleteNoteSchema>;

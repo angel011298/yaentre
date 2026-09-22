@@ -138,6 +138,13 @@ export const RATE_LIMITS = {
    * la exfiltración masiva si una sesión de admin se ve comprometida.
    */
   ADMIN_VAULT_READ: { limit: 300, windowSecs: 3600 },
+  /**
+   * Notas del panel (apartado dentro de /admin/boveda). Generoso a propósito:
+   * son apuntes internos rápidos y frecuentes, y el tope real que importa es
+   * de TAMAÑO (5 000 caracteres por nota), no de frecuencia — esto solo
+   * acota un bucle accidental o una sesión comprometida.
+   */
+  ADMIN_NOTE_ACTION: { limit: 120, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

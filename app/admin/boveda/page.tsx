@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
 import { VaultUploadForm } from '@/components/admin/VaultUploadForm';
 import { VaultDeleteButton } from '@/components/admin/VaultDeleteButton';
+import { AdminNotes, type NoteItem } from '@/components/admin/AdminNotes';
 import { listVaultFiles, vaultUsedBytes } from '@/lib/db/admin-vault';
+import { listNotes } from '@/lib/db/admin-notes';
 import { formatBytes, previewKindFor, VAULT_QUOTA_BYTES } from '@/lib/admin/vault';
 import { isMasterAdminEmail } from '@/lib/admin/master';
 import { requireRole } from '@/lib/auth/guards';
@@ -21,8 +23,14 @@ export default async function AdminVaultPage() {
   const { authUser } = await requireRole('ADMIN');
   const isMaster = isMasterAdminEmail(authUser.email, process.env.MASTER_ADMIN_EMAILS);
 
-  const [files, used] = await Promise.all([listVaultFiles(), vaultUsedBytes()]);
+  const [files, used, notes] = await Promise.all([listVaultFiles(), vaultUsedBytes(), listNotes()]);
   const pct = Math.min(100, (used / VAULT_QUOTA_BYTES) * 100);
+  const noteItems: NoteItem[] = notes.map((n) => ({
+    id: n.id,
+    content: n.content,
+    authorEmail: n.authorEmail,
+    createdAtLabel: n.createdAt.toISOString().slice(0, 16).replace('T', ' '),
+  }));
 
   return (
     <div className="space-y-6">
@@ -54,6 +62,19 @@ export default async function AdminVaultPage() {
         <p className="mt-2 text-xs text-text-muted">
           El límite de 1 GB y el máximo de 40 MB por archivo vienen del plan gratuito de Supabase.
         </p>
+      </Card>
+
+      {/* ── Notas: persistidas en Postgres, no en localStorage — así son las
+          mismas sin importar en qué dispositivo o sesión se abra el panel. ── */}
+      <Card className="p-4">
+        <h2 className="font-display text-lg font-semibold">Notas</h2>
+        <p className="mt-1 text-sm text-text-secondary">
+          Apuntes del equipo de administración. Se guardan en el servidor: abrir el panel en un
+          equipo o una sesión distinta muestra las mismas notas.
+        </p>
+        <div className="mt-3">
+          <AdminNotes notes={noteItems} />
+        </div>
       </Card>
 
       <VaultUploadForm />

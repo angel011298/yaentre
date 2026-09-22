@@ -48,7 +48,9 @@ type AccountAuditAction =
   | 'vault.uploaded'
   | 'vault.viewed'
   | 'vault.downloaded'
-  | 'vault.deleted';
+  | 'vault.deleted'
+  | 'note.created'
+  | 'note.deleted';
 
 export type AdminAuditAction = ContentAuditAction | AccountAuditAction;
 
@@ -56,7 +58,7 @@ export type AdminAuditAction = ContentAuditAction | AccountAuditAction;
  * Qué clase de cosa es el objetivo. Permite filtrar la bitácora sin parsear
  * el nombre de la acción.
  */
-export type AdminAuditTargetKind = 'question' | 'user' | 'file' | 'system';
+export type AdminAuditTargetKind = 'question' | 'user' | 'file' | 'system' | 'note';
 
 export interface AdminActor {
   userProfileId: string;
