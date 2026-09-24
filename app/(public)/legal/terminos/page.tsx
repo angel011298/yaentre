@@ -55,7 +55,7 @@ export default function TerminosPage() {
             <p>Ofrecemos los siguientes planes:</p>
             <ul>
               <li>
-                <strong>Free (gratuito):</strong> 1 simulacro completo + 10 reactivos de práctica al día. Válido indefinidamente mientras uses la plataforma.
+                <strong>Free (gratuito):</strong> 1 medio simulacro (60 reactivos) + 10 reactivos de práctica al día. Válido indefinidamente mientras uses la plataforma.
               </li>
               <li>
                 <strong>Pase Estacional:</strong> acceso ilimitado hasta la fecha de tu examen objetivo. Vigencia: desde la compra hasta el día del examen (máximo 150 días si no especificas fecha).

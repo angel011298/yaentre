@@ -8,6 +8,7 @@ import { AuthError } from '@/lib/auth/errors';
 import { requireOnboarding } from '@/lib/auth/guards';
 import * as sessionsDb from '@/lib/db/sessions';
 import * as simulatorDb from '@/lib/db/simulator';
+import { isUserPaid } from '@/lib/db/paywall';
 import { getStreak } from '@/lib/db/streak';
 import { decodeCelebrationParam } from '@/lib/gamification/celebrations';
 import { noTargetChosen } from '@/lib/tino/copy';
@@ -46,13 +47,16 @@ export default async function SimuladorPage({
   if (view === 'result' && sessionParam) {
     const result = await simulatorDb.loadSimulatorResult(profileId, sessionParam);
     if (result) {
-      const streak = await getStreak(profileId);
+      const [streak, paid] = await Promise.all([getStreak(profileId), isUserPaid(profileId)]);
       const celebrationParam = typeof sp.celebration === 'string' ? sp.celebration : undefined;
       return (
         <SimulatorResult
           data={result}
           currentStreak={streak?.currentStreak ?? 0}
           celebration={decodeCelebrationParam(celebrationParam)}
+          // Bloque 1: un usuario Free acaba de gastar su único (medio) simulacro
+          // — se le ofrece la conversión a Básico/Premium al terminar.
+          showConversion={!paid}
         />
       );
     }
@@ -89,7 +93,7 @@ export default async function SimuladorPage({
     redirect(`/paywall?trigger=${access.decision.trigger}&return=%2Fsimulador`);
   }
 
-  const meta = await simulatorDb.loadSimulatorEntryMeta(profileId);
+  const meta = await simulatorDb.loadSimulatorEntryMeta(profileId, access.isPaid);
   if (!meta) return <NoTargetMessage />;
 
   return (
@@ -100,6 +104,7 @@ export default async function SimuladorPage({
         examName: meta.examName,
         totalQuestions: meta.totalQuestions,
         durationMins: meta.durationMins,
+        isHalfSimulation: meta.isHalfSimulation,
       }}
     />
   );

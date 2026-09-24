@@ -16,6 +16,7 @@ type CameraStatus = 'idle' | 'granted' | 'denied' | 'unsupported';
  */
 export function SimulatorPreflight({
   isFreeFirstTime,
+  isHalfSimulation = false,
   examName,
   totalQuestions,
   durationMins,
@@ -24,6 +25,8 @@ export function SimulatorPreflight({
   onStart,
 }: {
   isFreeFirstTime: boolean;
+  /** Bloque 1: medio simulacro Free (60 reactivos). Cambia título y aviso. */
+  isHalfSimulation?: boolean;
   examName: string;
   totalQuestions: number;
   durationMins: number;
@@ -60,10 +63,19 @@ export function SimulatorPreflight({
       )}
 
       <div>
-        <h1 className="font-display text-2xl font-bold text-text-primary">Simulacro completo</h1>
+        <h1 className="font-display text-2xl font-bold text-text-primary">
+          {isHalfSimulation ? 'Medio simulacro' : 'Simulacro completo'}
+        </h1>
         <p className="mt-1 text-sm text-text-secondary">
           {examName} · {totalQuestions} preguntas · {durationMins} minutos
         </p>
+        {isHalfSimulation && (
+          <p className="mt-2 text-sm text-text-secondary">
+            Esta es tu prueba gratuita — <strong className="text-text-primary">medio simulacro
+            de {totalQuestions} reactivos, una sola vez</strong>. El examen real y los simulacros
+            completos (ilimitados) están en los planes Básico y Premium.
+          </p>
+        )}
       </div>
 
       <ul className="space-y-3 rounded-lg border border-border-subtle bg-surface p-5 text-sm text-text-secondary">

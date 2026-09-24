@@ -33,7 +33,7 @@ export function Hero() {
             </LinkButton>
           </div>
           <p className="text-sm text-text-muted">
-            Sin tarjeta para empezar · Diagnóstico y 1 simulacro completo gratis
+            Sin tarjeta para empezar · Diagnóstico y medio simulacro (60 reactivos) gratis
           </p>
         </div>
 

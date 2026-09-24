@@ -243,7 +243,10 @@ async function main(): Promise<void> {
   // ══════════════ Recorrido 2: SIMULACRO COMPLETO ══════════════
   console.log('· Simulacro completo…');
   await step('sim/carga-pagina', () => simulator.loadSimulatorState(PROBE_ID));
-  await step('sim/portada', () => simulator.loadSimulatorEntryMeta(PROBE_ID));
+  // Bloque 1: la portada ahora depende del plan (medio simulacro Free vs.
+  // completo pagado). El recorrido de escala mide el caso pagado (peor caso:
+  // set completo de 120/140 reactivos).
+  await step('sim/portada', () => simulator.loadSimulatorEntryMeta(PROBE_ID, true));
 
   const simStart = (await step('sim/arranque', () =>
     simulator.startSimulation(PROBE_ID)

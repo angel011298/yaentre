@@ -177,7 +177,7 @@ export function simulatorFreeWelcome(): TinoLine {
   return {
     state: 'encouraging',
     message:
-      'Este primer simulacro va por mi cuenta. Vívelo como el examen real: sin pausas, sin regresar. Así llegas sin sorpresas el día que cuenta. 🦉',
+      'Este medio simulacro va por mi cuenta. Vívelo como el examen real: sin pausas, sin regresar. Así llegas sin sorpresas el día que cuenta. 🦉',
   };
 }
 

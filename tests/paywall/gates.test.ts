@@ -7,6 +7,9 @@ import {
   drillQuestionsRemainingToday,
   FREE_DRILL_DAILY_LIMIT,
   FREE_FULL_SIMULATION_LIMIT,
+  FREE_HALF_SIMULATION_QUESTION_COUNT,
+  simulationQuestionTarget,
+  simulationTimeLimitSecs,
 } from '@/lib/paywall/gates';
 
 describe('canStartFullSimulation — 1 simulacro completo gratis', () => {
@@ -65,6 +68,54 @@ describe('canAnswerDrillQuestion / drillQuestionsRemainingToday — 10/día', ()
 
   it('el límite gratuito documentado es exactamente 10', () => {
     expect(FREE_DRILL_DAILY_LIMIT).toBe(10);
+  });
+});
+
+describe('simulationQuestionTarget / simulationTimeLimitSecs — medio simulacro Free (Bloque 1)', () => {
+  it('el medio simulacro documentado es exactamente 60 reactivos', () => {
+    expect(FREE_HALF_SIMULATION_QUESTION_COUNT).toBe(60);
+  });
+
+  it('Free sirve 60 reactivos; pagado sirve el total oficial (UNAM 120, IPN 140)', () => {
+    expect(simulationQuestionTarget({ isPaid: false, officialTotal: 120 })).toBe(60);
+    expect(simulationQuestionTarget({ isPaid: false, officialTotal: 140 })).toBe(60);
+    expect(simulationQuestionTarget({ isPaid: true, officialTotal: 120 })).toBe(120);
+    expect(simulationQuestionTarget({ isPaid: true, officialTotal: 140 })).toBe(140);
+  });
+
+  it('si el examen oficial tuviera menos de 60, no se inventan reactivos', () => {
+    expect(simulationQuestionTarget({ isPaid: false, officialTotal: 40 })).toBe(40);
+  });
+
+  it('el tiempo Free es proporcional a los reactivos servidos; el pagado es completo', () => {
+    // UNAM: 120 reactivos / 180 min → medio = 60 reactivos / 90 min.
+    expect(
+      simulationTimeLimitSecs({
+        isPaid: false,
+        officialTotal: 120,
+        officialDurationMins: 180,
+        servedTarget: 60,
+      })
+    ).toBe(90 * 60);
+    expect(
+      simulationTimeLimitSecs({
+        isPaid: true,
+        officialTotal: 120,
+        officialDurationMins: 180,
+        servedTarget: 120,
+      })
+    ).toBe(180 * 60);
+  });
+
+  it('nunca divide entre cero si el total oficial fuera 0', () => {
+    expect(
+      simulationTimeLimitSecs({
+        isPaid: false,
+        officialTotal: 0,
+        officialDurationMins: 180,
+        servedTarget: 0,
+      })
+    ).toBe(180 * 60);
   });
 });
 

@@ -36,10 +36,13 @@ export function SimulatorResult({
   data,
   currentStreak,
   celebration,
+  showConversion = false,
 }: {
   data: SimulatorResultData;
   currentStreak: number;
   celebration?: Celebration | null;
+  /** Bloque 1: usuario Free que gastó su único (medio) simulacro — CTA a plan. */
+  showConversion?: boolean;
 }) {
   const timedOut = data.status === 'COMPLETED_BY_TIMEOUT';
   const failedCount = data.servedCount - data.score;
@@ -176,8 +179,32 @@ export function SimulatorResult({
         </Link>
       )}
 
+      {/* Bloque 1: pantalla de conversión al terminar el medio simulacro Free.
+          El alumno ya no tiene simulacros gratis (1 intento), así que el
+          siguiente paso natural es Básico/Premium — con simulacros COMPLETOS e
+          ilimitados. `/paywall` decide el precio y respeta el interruptor de
+          venta (G98). */}
+      {showConversion && (
+        <Card className="space-y-3 border-2 border-brand p-6 text-center">
+          <p className="font-display text-lg font-bold text-text-primary">
+            Ese fue tu simulacro gratis
+          </p>
+          <p className="text-sm text-text-secondary">
+            Con <strong className="text-text-primary">Básico</strong> o{' '}
+            <strong className="text-text-primary">Premium</strong> haces el simulacro{' '}
+            <strong className="text-text-primary">completo</strong> ({data.examTotalQuestions}{' '}
+            reactivos) y todos los que quieras, con la ruta adaptativa y el Entrómetro completos.
+          </p>
+          <Link href="/paywall?trigger=FULL_SIMULATION_LIMIT&return=%2Fsimulador">
+            <Button variant="primary" className="w-full">
+              Ver planes
+            </Button>
+          </Link>
+        </Card>
+      )}
+
       <Link href="/app">
-        <Button variant="primary" className="w-full">
+        <Button variant={showConversion ? 'secondary' : 'primary'} className="w-full">
           Ir a mi tablero
         </Button>
       </Link>

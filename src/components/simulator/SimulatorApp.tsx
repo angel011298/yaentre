@@ -21,6 +21,7 @@ export type SimulatorInitial =
       examName: string;
       totalQuestions: number;
       durationMins: number;
+      isHalfSimulation: boolean;
     };
 
 /**
@@ -83,6 +84,7 @@ export function SimulatorApp({ initial }: { initial: SimulatorInitial }) {
   return (
     <SimulatorPreflight
       isFreeFirstTime={entry?.isFreeFirstTime ?? false}
+      isHalfSimulation={entry?.isHalfSimulation ?? false}
       examName={entry?.examName ?? ''}
       totalQuestions={entry?.totalQuestions ?? 0}
       durationMins={entry?.durationMins ?? 0}

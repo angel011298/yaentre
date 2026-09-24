@@ -122,7 +122,7 @@ export default async function PreciosPage() {
   // Datos estructurados `Product` (G68): una oferta por plan con el precio de
   // la temporada VIGENTE (el mismo que ve y paga el usuario), en pesos.
   const offers: ProductOffer[] = [
-    { name: 'Free', price: '0.00', description: 'Diagnóstico y primer simulacro completo gratis, para siempre.' },
+    { name: 'Free', price: '0.00', description: 'Diagnóstico y medio simulacro (60 reactivos) gratis, para siempre.' },
     ...PAID_PLANS.map((plan) => ({
       name: planLabel(plan),
       price: (pricing[plan].amountMxn / 100).toFixed(2),

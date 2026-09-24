@@ -120,7 +120,7 @@ export function EntrometroLocked() {
       <div className="max-w-xs">
         <p className="font-display font-semibold text-text-primary">Tu Entrómetro te espera</p>
         <p className="mt-1 text-sm text-text-secondary">
-          Termina tu primer simulacro completo (gratis) para desbloquear tu predicción real de
+          Termina tu medio simulacro gratis para desbloquear tu predicción real de
           aciertos.
         </p>
         <a

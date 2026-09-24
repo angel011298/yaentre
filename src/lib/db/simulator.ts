@@ -15,6 +15,8 @@ import {
 import {
   canStartFullSimulation,
   FREE_FULL_SIMULATION_LIMIT,
+  simulationQuestionTarget,
+  simulationTimeLimitSecs,
   type GateDecision,
   type PaywallTrigger,
 } from '@/lib/paywall/gates';
@@ -127,20 +129,40 @@ export async function evaluateSimulatorAccess(userProfileId: string): Promise<Si
 
 export interface SimulatorEntryMeta {
   examName: string;
+  /** Reactivos que se SERVIRÁN a este usuario: 120/140 pagado, 60 en Free. */
   totalQuestions: number;
+  /** Minutos que durará su simulacro (proporcional en Free). */
   durationMins: number;
+  /** true si es un medio simulacro Free (para el copy del pre-flight). */
+  isHalfSimulation: boolean;
 }
 
-/** Metadatos del examen objetivo para la pantalla de entrada/pre-flight. */
+/**
+ * Metadatos del examen objetivo para la pantalla de entrada/pre-flight.
+ *
+ * Bloque 1: los números que se muestran dependen del plan. Un usuario Free ve
+ * su MEDIO simulacro (60 reactivos y su tiempo proporcional), no el total
+ * oficial que nunca se le va a servir — mostrar 120 y luego servir 60 sería
+ * confuso. `isPaid` lo resuelve la página (ya lo calcula para el muro suave).
+ */
 export async function loadSimulatorEntryMeta(
-  userProfileId: string
+  userProfileId: string,
+  isPaid: boolean
 ): Promise<SimulatorEntryMeta | null> {
   const ctx = await resolveTargetContext(userProfileId);
   if (!ctx) return null;
+  const servedTarget = simulationQuestionTarget({ isPaid, officialTotal: ctx.totalQuestions });
+  const timeLimitSecs = simulationTimeLimitSecs({
+    isPaid,
+    officialTotal: ctx.totalQuestions,
+    officialDurationMins: ctx.durationMins,
+    servedTarget,
+  });
   return {
     examName: ctx.examName,
-    totalQuestions: ctx.totalQuestions,
-    durationMins: ctx.durationMins,
+    totalQuestions: servedTarget,
+    durationMins: Math.round(timeLimitSecs / 60),
+    isHalfSimulation: !isPaid && servedTarget < ctx.totalQuestions,
   };
 }
 
@@ -279,7 +301,21 @@ export async function startSimulation(
     return { ok: false, code: 'PAYWALL', trigger: access.decision.trigger };
   }
 
-  const { questionIds } = await buildDiagnosticQuestionSet(ctx.areaId, ctx.totalQuestions);
+  // Bloque 1: el simulacro Free es MEDIO (60 reactivos, tiempo proporcional),
+  // una sola vez. El pagado sigue siendo el examen completo (120/140, duración
+  // oficial). El tope de intentos (1) no cambia y se re-verifica bajo el lock.
+  const servedTarget = simulationQuestionTarget({
+    isPaid: access.isPaid,
+    officialTotal: ctx.totalQuestions,
+  });
+  const timeLimitSecs = simulationTimeLimitSecs({
+    isPaid: access.isPaid,
+    officialTotal: ctx.totalQuestions,
+    officialDurationMins: ctx.durationMins,
+    servedTarget,
+  });
+
+  const { questionIds } = await buildDiagnosticQuestionSet(ctx.areaId, servedTarget);
   if (questionIds.length === 0) return { ok: false, code: 'NO_CONTENT' };
 
   // G60 — la creación va bajo el lock del usuario. Dos peticiones simultáneas
@@ -325,7 +361,7 @@ export async function startSimulation(
       userProfileId,
       examId: ctx.examId,
       mode: 'FULL_SIMULATION',
-      timeLimitSecs: ctx.durationMins * 60,
+      timeLimitSecs,
       questionIds,
       client: tx,
     });

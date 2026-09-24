@@ -14,7 +14,7 @@ export function StartSimulationButton() {
         href="/simulador"
         className={buttonClassName('primary', 'w-full py-3 text-base')}
       >
-        ▶ Hacer un simulacro completo
+        ▶ Hacer un simulacro
       </Link>
     </div>
   );

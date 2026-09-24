@@ -40,7 +40,7 @@ export const FAQ_ITEMS: readonly FaqEntry[] = [
   {
     question: '¿Necesito tarjeta para probarlo?',
     answer:
-      'No. El plan Free no pide tarjeta: puedes hacer tu diagnóstico, tu primer simulacro completo y practicar todos los días sin pagar nada.',
+      'No. El plan Free no pide tarjeta: puedes hacer tu diagnóstico, un medio simulacro (60 reactivos) y practicar todos los días sin pagar nada.',
   },
   {
     question: '¿Puedo cancelar el plan Mensual cuando quiera?',
