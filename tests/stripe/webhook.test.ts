@@ -391,26 +391,30 @@ describe('extractCheckoutActivation', () => {
 
 describe('pricing — matriz de precios (PRD §9)', () => {
   it('valores de referencia en centavos por plan y temporada', () => {
+    // Bloque 1: Básico (SEASON_PASS) $999 / Premium $1,799 Early Bird
+    // (confirmados por Ángel); Temporada Alta/Último Minuto por propuesta §3.3.
     expect(getPlanPricing('MONTHLY', 'EARLY_BIRD').amountMxn).toBe(9900);
-    expect(getPlanPricing('SEASON_PASS', 'EARLY_BIRD').amountMxn).toBe(49900);
-    expect(getPlanPricing('PREMIUM', 'EARLY_BIRD').amountMxn).toBe(89900);
+    expect(getPlanPricing('SEASON_PASS', 'EARLY_BIRD').amountMxn).toBe(99900);
+    expect(getPlanPricing('PREMIUM', 'EARLY_BIRD').amountMxn).toBe(179900);
     expect(getPlanPricing('MONTHLY', 'HIGH_SEASON').amountMxn).toBe(14900);
-    expect(getPlanPricing('SEASON_PASS', 'HIGH_SEASON').amountMxn).toBe(79900);
-    expect(getPlanPricing('PREMIUM', 'HIGH_SEASON').amountMxn).toBe(129900);
+    expect(getPlanPricing('SEASON_PASS', 'HIGH_SEASON').amountMxn).toBe(119900);
+    expect(getPlanPricing('PREMIUM', 'HIGH_SEASON').amountMxn).toBe(219900);
     expect(getPlanPricing('MONTHLY', 'LAST_MINUTE').amountMxn).toBe(19900);
-    expect(getPlanPricing('SEASON_PASS', 'LAST_MINUTE').amountMxn).toBe(99900);
-    expect(getPlanPricing('PREMIUM', 'LAST_MINUTE').amountMxn).toBe(149900);
+    expect(getPlanPricing('SEASON_PASS', 'LAST_MINUTE').amountMxn).toBe(149900);
+    expect(getPlanPricing('PREMIUM', 'LAST_MINUTE').amountMxn).toBe(259900);
   });
 
   it('MONTHLY es recurrente (subscription); pase y premium son pago único', () => {
     expect(getPlanPricing('MONTHLY', 'EARLY_BIRD')).toMatchObject({ mode: 'subscription', isRecurring: true });
     expect(getPlanPricing('SEASON_PASS', 'EARLY_BIRD')).toMatchObject({ mode: 'payment', isRecurring: false });
-    expect(getPlanPricing('PREMIUM', 'EARLY_BIRD')).toMatchObject({ mode: 'payment', hasGuarantee: true });
+    expect(getPlanPricing('PREMIUM', 'EARLY_BIRD')).toMatchObject({ mode: 'payment', isRecurring: false });
   });
 
-  it('currentSeason es monotónica por fecha de corte', () => {
+  it('currentSeason es monotónica por fecha de corte (EB cierra 30-nov-2026 MX)', () => {
     expect(currentSeason(new Date('2026-10-15T00:00:00Z'))).toBe('EARLY_BIRD');
-    expect(currentSeason(new Date('2026-12-20T00:00:00Z'))).toBe('EARLY_BIRD'); // pre-launch
+    // Bloque 1: Early Bird cierra el 30 de noviembre de 2026 (hora de México).
+    expect(currentSeason(new Date('2026-11-30T23:00:00Z'))).toBe('EARLY_BIRD'); // 30-nov 17:00 MX
+    expect(currentSeason(new Date('2026-12-20T00:00:00Z'))).toBe('HIGH_SEASON'); // ya cerrado EB
     expect(currentSeason(new Date('2027-02-01T00:00:00Z'))).toBe('HIGH_SEASON');
     expect(currentSeason(new Date('2027-05-10T00:00:00Z'))).toBe('LAST_MINUTE');
   });

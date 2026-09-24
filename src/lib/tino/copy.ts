@@ -127,8 +127,8 @@ const PAYWALL_TRIGGER_COPY: Record<PaywallTrigger, PaywallCopy> = {
     body: 'La Capa 1 siempre es gratis. El paso a paso, el concepto base y la práctica similar viven en los planes de pago.',
   },
   PARENT_DASHBOARD: {
-    title: 'El panel parental es para Pase o Premium',
-    body: 'Con el Pase de Temporada o Premium, ve el progreso de tu hijo desde tu propio dispositivo.',
+    title: 'El panel parental es para Básico o Premium',
+    body: 'Con el plan Básico o Premium, ve el progreso de tu hijo desde tu propio dispositivo.',
   },
 };
 

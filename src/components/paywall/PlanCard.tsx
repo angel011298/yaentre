@@ -3,12 +3,21 @@ import { Card } from '@/components/ui/Card';
 import type { PlanPricing } from '@/lib/stripe/pricing';
 import { ChoosePlanButton } from './ChoosePlanButton';
 
+// Bloque 1 (handoff §3.2): «Pase de Temporada» → «Básico»; «Premium Garantía»
+// → «Premium» (sin garantía). Los VALORES del enum no cambian (ver pricing.ts).
 const PLAN_LABELS: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Mensual',
-  SEASON_PASS: 'Pase de Temporada',
-  PREMIUM: 'Premium Garantía',
+  SEASON_PASS: 'Básico',
+  PREMIUM: 'Premium',
 };
 
+// Copy conforme a los guardrails del handoff §8: sin «garantía», sin
+// «próximamente», sin «nuestros profesores»/«equipo docente». Premium NO
+// incluye clases en el precio: «abre el acceso» a profesores independientes
+// verificados en YaEntre, cuyas clases se cobran por sesión, aparte (§3.2).
+// ⚠️ El marketplace de profesores es Bloque 2 (aún no construido): la posición
+// comercial final de Premium requiere visto bueno de CLO/CMO antes de abrir
+// venta — ver el .md de retorno.
 const PLAN_FEATURES: Record<SubscriptionPlan, string[]> = {
   MONTHLY: [
     'Reactivos ilimitados (Drill)',
@@ -17,14 +26,17 @@ const PLAN_FEATURES: Record<SubscriptionPlan, string[]> = {
     'Entrómetro',
   ],
   SEASON_PASS: [
-    'Todo lo de Mensual',
+    'Todo el contenido digital',
+    'Simulacros y reactivos ilimitados',
+    'Ruta adaptativa y Entrómetro',
     'Panel parental incluido',
     'Vigente hasta el día de tu examen',
   ],
   PREMIUM: [
-    'Todo lo del Pase de Temporada',
-    'Garantía: reembolso si no ingresas',
-    'Tutorías prioritarias (próximamente)',
+    'Todo lo de Básico',
+    'Acceso a profesores independientes verificados en YaEntre',
+    'Directorio, agenda y aula con grabación',
+    'Las clases en vivo se agendan y se cobran aparte',
   ],
 };
 
@@ -60,7 +72,7 @@ export function PlanCard({
         <p className="mt-1 text-2xl font-bold text-text-primary">
           {formatMxn(pricing.amountMxn)}
           <span className="text-sm font-normal text-text-muted">
-            {pricing.isRecurring ? '/mes' : pricing.hasGuarantee ? ' · con garantía' : ' · pago único'}
+            {pricing.isRecurring ? '/mes' : ' · pago único'}
           </span>
         </p>
       </div>

@@ -54,7 +54,7 @@ export async function EarlyBirdBanner() {
           {/* G63: `/90` — `/85` daba 4.5:1 justo y `/60` (el precio tachado)
               solo 3.0:1 sobre el morado. `/90` da 4.9:1. */}
           <p className="text-sm text-white/90">
-            Pase de Temporada:{' '}
+            Plan Básico:{' '}
             <span className="font-bold">{formatMxn(eb.amountMxn)}</span>{' '}
             <span className="text-white/90 line-through">{formatMxn(regular.amountMxn)}</span> ·
             precio congelado para tu ciclo

@@ -117,7 +117,6 @@ export default async function AdminUserDetailPage({
                       cortesía
                     </span>
                   )}
-                  {s.hasGuarantee && <span className="text-xs text-text-secondary">con garantía</span>}
                 </div>
                 <p className="mt-1 text-xs text-text-muted">
                   inicio {fmt(s.startedAt)} · vence {fmt(s.expiresAt)}

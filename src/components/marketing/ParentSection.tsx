@@ -7,7 +7,12 @@ import { Card } from '@/components/ui/Card';
  *  (a) la angustia de asegurar el lugar en la institución que SÍ quiere,
  *      no cualquier lugar;
  *  (b) visibilidad del avance real desde el celular del padre;
- *  (c) garantía de reembolso/repetición — aclarado que aplica SOLO a Premium.
+ *  (c) precio claro: un solo pago con vigencia hasta el examen, sin cobros
+ *      recurrentes que sorprendan.
+ *
+ * Bloque 1 (handoff §3.2 y guardrails §8): se retiró el ángulo de «garantía de
+ * reembolso» — el producto ya no ofrece garantía de ingreso de ningún tipo, y
+ * la palabra «garantía» se elimina de todo el copy.
  */
 export function ParentSection() {
   return (
@@ -47,14 +52,14 @@ export function ParentSection() {
           </Card>
 
           <Card className="p-6">
-            <p className="text-2xl">🛡️</p>
+            <p className="text-2xl">🧾</p>
             <h3 className="mt-2 font-display text-lg font-bold text-text-primary">
-              Garantía si no ingresa
+              Precio claro, sin sorpresas
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-              Con el plan <strong className="text-text-primary">Premium Garantía</strong>, si tu
-              hijo no ingresa, te reembolsamos o repite el ciclo con nosotros. Esta garantía aplica
-              únicamente al plan Premium.
+              Los planes <strong className="text-text-primary">Básico</strong> y{' '}
+              <strong className="text-text-primary">Premium</strong> son un solo pago con vigencia
+              hasta el día del examen — sin cobros recurrentes que recordar ni cancelar.
             </p>
           </Card>
         </div>

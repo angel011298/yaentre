@@ -175,7 +175,6 @@ export async function startCheckoutAction(
       plan,
       season,
       checkoutSessionId: session.id,
-      hasGuarantee: pricing.hasGuarantee,
       stripeCustomerId:
         typeof session.customer === 'string' ? session.customer : session.customer?.id,
     });

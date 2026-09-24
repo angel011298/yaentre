@@ -17,22 +17,24 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: 'Precios y planes',
   description:
-    'Planes de YaEntre para prepararte al examen de admisión de la UNAM, el IPN, la UAM y el CENEVAL: Free (gratis para siempre), Mensual, Pase de Temporada y Premium Garantía. Compara qué incluye cada uno. Pago con tarjeta, OXXO o SPEI.',
+    'Planes de YaEntre para prepararte al examen de admisión de la UNAM, el IPN, la UAM y el CENEVAL: Free (gratis para siempre), Mensual, Básico y Premium. Compara qué incluye cada uno. Pago con tarjeta, OXXO o SPEI.',
   alternates: { canonical: '/precios' },
   openGraph: openGraphFor({
     url: '/precios',
     title: 'Precios y planes — YaEntre',
     description:
-      'Empieza gratis. Sube de plan cuando estés listo: Mensual, Pase de Temporada o Premium con garantía de reembolso si no ingresas.',
+      'Empieza gratis. Sube de plan cuando estés listo: Mensual, Básico o Premium, con vigencia hasta el día de tu examen.',
   }),
 };
 
 const PAID_PLANS: SubscriptionPlan[] = ['MONTHLY', 'SEASON_PASS', 'PREMIUM'];
 
+// Bloque 1 (handoff §3.2): «Pase de Temporada» → «Básico»; «Premium Garantía»
+// → «Premium» (sin garantía).
 const PLAN_LABEL: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Mensual',
-  SEASON_PASS: 'Pase de Temporada ⭐',
-  PREMIUM: 'Premium Garantía',
+  SEASON_PASS: 'Básico ⭐',
+  PREMIUM: 'Premium',
 };
 
 /** Tabla de features EXACTA a la matriz del PRD §9 "Qué incluye cada plan" —
@@ -49,7 +51,7 @@ const FEATURE_ROWS: Array<{ feature: string; free: string; monthly: string; seas
   },
   {
     feature: 'Simulador fullscreen (120/140 reactivos)',
-    free: '❌',
+    free: '1 vez (medio, 60 reactivos)',
     monthly: '✅',
     seasonPass: '✅',
     premium: '✅',
@@ -66,8 +68,17 @@ const FEATURE_ROWS: Array<{ feature: string; free: string; monthly: string; seas
     seasonPass: 'Hasta el día del examen',
     premium: 'Hasta el día del examen',
   },
-  { feature: 'Garantía de reembolso', free: '❌', monthly: '❌', seasonPass: '❌', premium: '✅ si no ingresa' },
-  { feature: 'Tutorías (Fase 2)', free: '❌', monthly: '❌', seasonPass: '❌', premium: 'Prioritario' },
+  // Bloque 1 (handoff §3.2): se retira la fila «Garantía de reembolso» (el
+  // producto ya no ofrece garantía de ingreso). Premium «abre el acceso» a
+  // profesores independientes verificados en YaEntre; las clases en vivo se
+  // cobran por sesión, aparte, y NO están incluidas en el precio del plan.
+  {
+    feature: 'Profesores verificados en vivo',
+    free: '❌',
+    monthly: '❌',
+    seasonPass: '❌',
+    premium: 'Acceso (clases se cobran aparte)',
+  },
 ];
 
 function formatMxn(cents: number): string {

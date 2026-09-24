@@ -354,13 +354,21 @@ export const billingStore: BillingStore = {
 
 // ─────────────────────── Helpers de checkout / lectura ───────────────────────
 
-/** Crea la Subscription en estado PENDING al iniciar un checkout (F8 Task 4). */
+/**
+ * Crea la Subscription en estado PENDING al iniciar un checkout (F8 Task 4).
+ *
+ * Bloque 1: se retiró el parámetro `hasGuarantee` — el producto ya no ofrece
+ * garantía (handoff §3.2, «se elimina la palabra garantía»). La columna
+ * `subscriptions.hasGuarantee` permanece en el schema por compatibilidad con
+ * filas históricas y se escribe siempre en `false` (su default). Eliminar la
+ * columna es una migración destructiva que esta fase no pidió; ver el .md de
+ * retorno para recomendar su baja en una fase futura.
+ */
 export async function createPendingSubscription(input: {
   userProfileId: string;
   plan: SubscriptionPlan;
   season: PricingSeason;
   checkoutSessionId: string;
-  hasGuarantee: boolean;
   stripeCustomerId?: string | null;
 }): Promise<void> {
   await prisma.subscription.create({
@@ -369,7 +377,6 @@ export async function createPendingSubscription(input: {
       plan: input.plan,
       season: input.season,
       status: 'PENDING',
-      hasGuarantee: input.hasGuarantee,
       stripeCheckoutSessionId: input.checkoutSessionId,
       stripeCustomerId: input.stripeCustomerId ?? undefined,
     },

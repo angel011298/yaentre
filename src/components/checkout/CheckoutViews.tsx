@@ -8,10 +8,11 @@ import { RetryButton } from './RetryButton';
 import { StatusPoller } from './StatusPoller';
 import { PurchasePixelFire } from './PurchasePixelFire';
 
+// Bloque 1 (handoff §3.2): nombres nuevos, sin «garantía».
 const PLAN_DISPLAY: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Plan Mensual',
-  SEASON_PASS: 'Pase de Temporada',
-  PREMIUM: 'Premium Garantía',
+  SEASON_PASS: 'Básico',
+  PREMIUM: 'Premium',
 };
 
 const METHOD_DISPLAY: Record<PaymentMethod, string> = {
@@ -41,12 +42,12 @@ const NEXT_STEPS: Record<SubscriptionPlan, string[]> = {
   SEASON_PASS: [
     'Haz un simulacro completo — ya no tienes límite de 1 gratis.',
     'Vincula a tu tutor desde tu perfil para que vea tu progreso.',
-    'Tu pase dura hasta el día de tu examen — sin renovaciones que recordar.',
+    'Tu plan Básico dura hasta el día de tu examen — sin renovaciones que recordar.',
   ],
   PREMIUM: [
     'Haz un simulacro completo — ya no tienes límite de 1 gratis.',
     'Vincula a tu tutor desde tu perfil para que vea tu progreso.',
-    'Tu garantía de reembolso ya está activa — solo sigue estudiando.',
+    'Tu plan Premium dura hasta el día de tu examen — sin renovaciones que recordar.',
   ],
 };
 

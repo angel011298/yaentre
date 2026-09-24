@@ -25,35 +25,64 @@ export interface PlanPricing {
   /** Modo del Checkout de Stripe: recurrente vs. pago único. */
   mode: StripeCheckoutMode;
   isRecurring: boolean;
-  /** PREMIUM incluye garantía de reembolso si el alumno no ingresa. */
-  hasGuarantee: boolean;
   /** Nombre visible del producto en el Checkout hospedado de Stripe. */
   productName: string;
 }
 
-/** Precios en CENTAVOS de MXN. PRD §9 «Planes y precios». */
+/**
+ * Precios en CENTAVOS de MXN.
+ *
+ * ── Cierre legal para abrir venta (Bloque 1, handoff CLO/CFO §3.3) ──
+ * El titular no tiene RVOE, así que TODOS los planes causan IVA 16% incluido en
+ * el precio exhibido (no aplica la exención del art. 15-IV LIVA). Estos montos
+ * ya son con IVA incluido.
+ *
+ * · Early Bird (SEASON_PASS «Básico» $999, PREMIUM «Premium» $1,799):
+ *   CONFIRMADOS por instrucción explícita de Ángel (24-sep-2026), que resuelve
+ *   la decisión abierta §6.1 del handoff con un ajuste sobre la propuesta previa
+ *   ($899/$1,699 → $999/$1,799). La regla de neto mínimo ($500 en Básico) se
+ *   cumple con holgura: 0.8117 × 999 − 33.48 ≈ $777.
+ * · Temporada Alta y Último Minuto de Básico/Premium: tomados de la PROPUESTA
+ *   del handoff §3.3. ⚠️ PENDIENTE de confirmación de Ángel — la instrucción de
+ *   esta fase solo fijó los precios Early Bird. Ver el .md de retorno §Preguntas.
+ * · MONTHLY «Mensual»: SIN CAMBIO respecto al código previo. La instrucción de
+ *   esta fase no tocó el plan mensual y el handoff §3.2 lista solo tres niveles
+ *   (Free · Básico · Premium), así que la existencia y el precio del mensual son
+ *   una decisión abierta que NO se adivina aquí. Ver el .md de retorno.
+ */
 const AMOUNTS_MXN_CENTS: Record<SubscriptionPlan, Record<PricingSeason, number>> = {
   MONTHLY: {
-    EARLY_BIRD: 9_900, //   $99
-    HIGH_SEASON: 14_900, // $149
-    LAST_MINUTE: 19_900, // $199
+    EARLY_BIRD: 9_900, //   $99  — sin cambio (pendiente de decisión, ver retorno)
+    HIGH_SEASON: 14_900, // $149 — sin cambio
+    LAST_MINUTE: 19_900, // $199 — sin cambio
   },
   SEASON_PASS: {
-    EARLY_BIRD: 49_900, //  $499
-    HIGH_SEASON: 79_900, //  $799
-    LAST_MINUTE: 99_900, //  $999
+    EARLY_BIRD: 99_900, //   $999   — Básico Early Bird (CONFIRMADO por Ángel)
+    HIGH_SEASON: 119_900, // $1,199 — propuesta §3.3 (⚠️ pendiente)
+    LAST_MINUTE: 149_900, // $1,499 — propuesta §3.3 (⚠️ pendiente)
   },
   PREMIUM: {
-    EARLY_BIRD: 89_900, //   $899
-    HIGH_SEASON: 129_900, // $1,299
-    LAST_MINUTE: 149_900, // $1,499
+    EARLY_BIRD: 179_900, //  $1,799 — Premium Early Bird (CONFIRMADO por Ángel)
+    HIGH_SEASON: 219_900, // $2,199 — propuesta §3.3 (⚠️ pendiente)
+    LAST_MINUTE: 259_900, // $2,599 — propuesta §3.3 (⚠️ pendiente)
   },
 };
 
+/**
+ * Nombre visible de cada plan. El handoff §3.2 retira «Pase de Temporada» y
+ * «Premium Garantía»: el nivel intermedio es «Básico» y el superior «Premium»
+ * (SIN garantía — la palabra «garantía» se elimina de todo el producto).
+ *
+ * Los VALORES del enum `SubscriptionPlan` (MONTHLY/SEASON_PASS/PREMIUM) NO se
+ * renombran: son códigos internos ya persistidos en `subscriptions.plan` de
+ * cientos de filas y en price ids/env vars de Stripe; renombrarlos exigiría una
+ * migración de datos y un cambio de `prisma/schema.prisma` que la instrucción no
+ * pidió. El renombrado de cara al usuario vive aquí, en las etiquetas.
+ */
 const PLAN_LABELS: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Plan Mensual',
-  SEASON_PASS: 'Pase de Temporada',
-  PREMIUM: 'Premium Garantía',
+  SEASON_PASS: 'Básico',
+  PREMIUM: 'Premium',
 };
 
 /** Nombre visible de un plan — única fuente (F17): antes duplicado como un
@@ -77,25 +106,30 @@ export function getPlanPricing(plan: SubscriptionPlan, season: PricingSeason): P
     amountMxn,
     mode: isRecurring ? 'subscription' : 'payment',
     isRecurring,
-    hasGuarantee: plan === 'PREMIUM',
     productName: `YaEntre — ${PLAN_LABELS[plan]} (${SEASON_LABELS[season]})`,
   };
 }
 
 /**
- * Temporada de precios vigente para una fecha dada. Ventanas del PRD:
- * Early Bird (sep–nov 2026) · Temporada Alta (ene–mar 2027) · Último Minuto
- * (abr–may 2027). Se define de forma MONOTÓNICA por fecha de corte para cubrir
- * TODAS las fechas sin huecos (p. ej. dic 2026 pre-launch cae en Early Bird;
- * cualquier fecha ≥ abr 2027 cae en Último Minuto):
- *   now < 2027-01-01           → EARLY_BIRD
- *   2027-01-01 ≤ now < 2027-04-01 → HIGH_SEASON
- *   now ≥ 2027-04-01           → LAST_MINUTE
+ * Temporada de precios vigente para una fecha dada. Se define de forma
+ * MONOTÓNICA por fecha de corte para cubrir TODAS las fechas sin huecos:
+ *   now < 2026-12-01 (MX)         → EARLY_BIRD
+ *   2026-12-01 ≤ now < 2027-04-01 → HIGH_SEASON
+ *   now ≥ 2027-04-01              → LAST_MINUTE
+ *
+ * ── Cierre de Early Bird al 30-nov-2026 (Bloque 1, handoff §3.3) ──
+ * Antes el corte era 2027-01-01 (el código «decía» 31-dic). El PRD y el handoff
+ * fijan el cierre de la preventa al 30 de NOVIEMBRE, así que Early Bird vale
+ * hasta el final de ese día en hora de México (UTC−6, sin horario de verano
+ * desde 2023) y a partir del 1 de diciembre rige Temporada Alta. Se usa el
+ * offset explícito Date.UTC(2026, 11, 1, 6) = 2026-12-01 00:00 CST para que el
+ * corte caiga a la medianoche mexicana y no seis horas antes.
+ *
  * El límite de licencias Early Bird (max_redemptions 500) es una capa aparte
- * que se resuelve en F9; aquí solo mapea fecha → temporada.
+ * (`resolveEffectiveSeason`); aquí solo mapea fecha → temporada.
  */
 export function currentSeason(now: Date): PricingSeason {
-  const highSeasonStart = Date.UTC(2027, 0, 1); // 1 ene 2027
+  const highSeasonStart = Date.UTC(2026, 11, 1, 6); // 1 dic 2026 00:00 CST (fin de EB 30-nov MX)
   const lastMinuteStart = Date.UTC(2027, 3, 1); // 1 abr 2027
   const t = now.getTime();
 

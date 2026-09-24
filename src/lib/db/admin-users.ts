@@ -141,7 +141,6 @@ export interface AdminUserDetail extends AdminUserRow {
     season: PricingSeason;
     status: string;
     isComp: boolean;
-    hasGuarantee: boolean;
     startedAt: Date | null;
     expiresAt: Date | null;
     createdAt: Date;
@@ -171,7 +170,6 @@ export async function getUserDetail(userProfileId: string): Promise<AdminUserDet
           season: true,
           status: true,
           isComp: true,
-          hasGuarantee: true,
           startedAt: true,
           expiresAt: true,
           createdAt: true,
@@ -285,7 +283,8 @@ export async function grantCompSubscription(input: {
         season: input.season,
         status: 'PENDING',
         isComp: true,
-        hasGuarantee: input.plan === 'PREMIUM',
+        // Bloque 1: el producto ya no ofrece garantía (handoff §3.2). La columna
+        // se conserva por compatibilidad y queda en su default `false`.
       },
       select: { id: true },
     });

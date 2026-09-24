@@ -34,10 +34,11 @@ function wrapEmail(bodyHtml: string, unsubscribeUrl?: string): string {
 
 // ─────────────────────────── Confirmación de pago ───────────────────────────
 
+// Bloque 1 (handoff §3.2): nombres nuevos, sin «garantía».
 const PLAN_LABELS: Record<string, string> = {
   MONTHLY: 'Plan Mensual',
-  SEASON_PASS: 'Pase de Temporada',
-  PREMIUM: 'Premium Garantía',
+  SEASON_PASS: 'Básico',
+  PREMIUM: 'Premium',
 };
 
 export function paymentConfirmationEmail(input: {
