@@ -34,6 +34,13 @@ export const signUpSchema = z.object({
     (val) => val === 'on',
     'Debes aceptar los términos y condiciones para continuar.'
   ),
+  // Bloque 1 — registro de ALUMNO: fecha de nacimiento + declaración de que es
+  // verídica. Opcionales en el schema porque el registro de TUTOR (adulto) no
+  // los pide; el Server Action los EXIGE cuando el rol es STUDENT y valida la
+  // edad con `parseDeclaredBirthDate` (bloqueo < 15 años). El formato lo revisa
+  // ahí porque depende de `now` y devuelve motivos de rechazo específicos.
+  birthDate: z.string().optional(),
+  ageDeclaration: z.string().optional(),
 });
 
 export const signInSchema = z.object({

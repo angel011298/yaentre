@@ -4,7 +4,7 @@ import type { PaywallTrigger } from '@/lib/paywall/gates';
 import type { PlanPricing } from '@/lib/stripe/pricing';
 import { paywallTriggerCopy } from '@/lib/tino/copy';
 import { NotifyWhenOpenCard } from './NotifyWhenOpenCard';
-import { PlanCard } from './PlanCard';
+import { PlanChooser } from './PlanChooser';
 
 interface Props {
   trigger: PaywallTrigger | null;
@@ -54,16 +54,7 @@ export function PaywallScreen({
         </p>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        {pricing.map((p) => (
-          <PlanCard
-            key={p.plan}
-            pricing={p}
-            highlighted={p.plan === 'SEASON_PASS'}
-            salesOpen={salesOpen}
-          />
-        ))}
-      </div>
+      <PlanChooser pricing={pricing} salesOpen={salesOpen} />
 
       {!salesOpen && <NotifyWhenOpenCard />}
 

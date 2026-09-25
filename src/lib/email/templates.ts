@@ -32,6 +32,47 @@ function wrapEmail(bodyHtml: string, unsubscribeUrl?: string): string {
 </div>`.trim();
 }
 
+// ─────────────────────── Confirmación del tutor (menores, Bloque 1) ───────────────────────
+
+/**
+ * Correo al TUTOR de un alumno menor de 18 con la liga de confirmación
+ * (handoff §3.1). Transaccional: sin enlace de baja. `confirmUrl` ya trae el
+ * token en claro. El copy explica qué se le pide y que puede ignorarlo si no
+ * reconoce al alumno.
+ */
+export function tutorConsentEmail(input: {
+  studentName: string | null;
+  confirmUrl: string;
+}): EmailContent {
+  const who = input.studentName ? `<strong>${input.studentName}</strong>` : 'una persona menor de edad';
+  return {
+    subject: 'Confirma la inscripción de tu hijo(a) en YaEntre',
+    html: wrapEmail(
+      `
+      <h1 style="font-size: 18px; margin: 0 0 12px;">Te pidieron confirmar una inscripción</h1>
+      <p style="font-size: 14px; line-height: 1.5; margin: 0 0 12px;">
+        ${who} registró una cuenta en YaEntre (preparación para exámenes de admisión) y te
+        indicó como su madre, padre o tutor. Como es menor de edad, necesitamos tu confirmación
+        antes de que pueda contratar un plan de pago.
+      </p>
+      <p style="font-size: 14px; line-height: 1.5; margin: 0 0 20px;">
+        Al confirmar, autorizas su uso de la plataforma y el tratamiento de sus datos, y podrás
+        decidir sobre avisos, analítica y grabación de clases.
+      </p>
+      <p style="text-align: center; margin: 0 0 20px;">
+        <a href="${input.confirmUrl}" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; font-size: 14px;">
+          Revisar y confirmar
+        </a>
+      </p>
+      <p style="font-size: 12px; line-height: 1.5; color: #888; margin: 0;">
+        Si no reconoces esta solicitud, puedes ignorar este correo: sin tu confirmación no se
+        activa ningún plan de pago. La liga caduca en 7 días.
+      </p>
+      `.trim()
+    ),
+  };
+}
+
 // ─────────────────────────── Confirmación de pago ───────────────────────────
 
 // Bloque 1 (handoff §3.2): nombres nuevos, sin «garantía».

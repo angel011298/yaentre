@@ -48,6 +48,7 @@ export function PlanCard({
   pricing,
   highlighted = false,
   salesOpen,
+  art56Accepted = false,
 }: {
   pricing: PlanPricing;
   highlighted?: boolean;
@@ -55,6 +56,8 @@ export function PlanCard({
    *  cambia su llamada a la acción. Ocultar el precio sería esconder lo único
    *  que el alumno vino a ver. */
   salesOpen: boolean;
+  /** Bloque 1: la casilla del art. 56 (compartida) habilita el botón de compra. */
+  art56Accepted?: boolean;
 }) {
   return (
     <Card
@@ -87,7 +90,11 @@ export function PlanCard({
       </ul>
 
       {salesOpen ? (
-        <ChoosePlanButton plan={pricing.plan} variant={highlighted ? 'primary' : 'secondary'} />
+        <ChoosePlanButton
+          plan={pricing.plan}
+          variant={highlighted ? 'primary' : 'secondary'}
+          art56Accepted={art56Accepted}
+        />
       ) : (
         // G98: en lugar de «Elegir este plan». No es un botón deshabilitado —
         // un botón apagado invita a insistir; esto informa. La acción posible

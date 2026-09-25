@@ -145,6 +145,21 @@ export const RATE_LIMITS = {
    * acota un bucle accidental o una sesión comprometida.
    */
   ADMIN_NOTE_ACTION: { limit: 120, windowSecs: 3600 },
+  /**
+   * Bloque 1 — el alumno menor SOLICITA (o reenvía) la liga de confirmación a
+   * su tutor: cada solicitud manda un correo a una dirección que escribe el
+   * alumno, así que es un remitente hacia terceros. Pocos por hora bastan para
+   * reintentar o corregir el correo del tutor, y cortan el uso como cañón de
+   * spam. Va contra el contador COMPARTIDO de Postgres (G65 §5).
+   */
+  TUTOR_CONSENT_REQUEST: { limit: 6, windowSecs: 3600 },
+  /**
+   * Bloque 1 — confirmación del tutor desde la liga (público, sin sesión). Se
+   * limita por IP: la autorización real es el token, pero sin un tope alguien
+   * podría probar tokens en ráfaga. Generoso porque un tutor legítimo confirma
+   * una sola vez.
+   */
+  TUTOR_CONSENT_CONFIRM_IP: { limit: 30, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

@@ -111,39 +111,39 @@ enum NotificationType {
 }
 
 enum QuestionSource {
-  GENERATED      // Creado por el pipeline IA
+  GENERATED // Creado por el pipeline IA
   OFFICIAL_SAMPLE // Muestra oficial de examen (UNAM, IPN, etc.)
-  IMPORTED       // Importado de otras fuentes
+  IMPORTED // Importado de otras fuentes
 }
 
 enum QuestionUsage {
-  SERVABLE          // Se puede mostrar a usuarios finales
-  CALIBRATION_ONLY  // Solo para calibración interna, nunca servible
+  SERVABLE // Se puede mostrar a usuarios finales
+  CALIBRATION_ONLY // Solo para calibración interna, nunca servible
 }
 
 enum QuestionFormat {
-  MULTIPLE_CHOICE       // Pregunta directa estándar de opción múltiple (4 opciones de texto)
+  MULTIPLE_CHOICE // Pregunta directa estándar de opción múltiple (4 opciones de texto)
   READING_COMPREHENSION // Depende de un Passage compartido (comprensión de lectura)
-  IMAGE_OPTIONS         // Las opciones son imágenes (imageUrl por opción)
-  CHART_TABLE           // El enunciado incluye una gráfica/tabla como estímulo
-  MATCHING              // Relacionar columnas (concepto ↔ descripción)
-  SENTENCE_COMPLETION   // Completar la oración / frase con la opción correcta
-  ANALOGY               // Analogías verbales (A es a B como C es a ...)
-  ORDERING              // Ordenamiento de elementos (cronológico, lógico, sintáctico)
-  NUMERIC_SERIES        // Series numéricas (sucesiones; hallar el siguiente término)
-  PROBLEM_SOLVING       // Resolución de problemas con cálculo (mat/fís/quím aplicadas)
-  SPATIAL_SERIES        // Series espaciales (secuencias de figuras)
-  SPATIAL_IMAGINATION   // Imaginación espacial (rotación, plegado, perspectiva)
+  IMAGE_OPTIONS // Las opciones son imágenes (imageUrl por opción)
+  CHART_TABLE // El enunciado incluye una gráfica/tabla como estímulo
+  MATCHING // Relacionar columnas (concepto ↔ descripción)
+  SENTENCE_COMPLETION // Completar la oración / frase con la opción correcta
+  ANALOGY // Analogías verbales (A es a B como C es a ...)
+  ORDERING // Ordenamiento de elementos (cronológico, lógico, sintáctico)
+  NUMERIC_SERIES // Series numéricas (sucesiones; hallar el siguiente término)
+  PROBLEM_SOLVING // Resolución de problemas con cálculo (mat/fís/quím aplicadas)
+  SPATIAL_SERIES // Series espaciales (secuencias de figuras)
+  SPATIAL_IMAGINATION // Imaginación espacial (rotación, plegado, perspectiva)
 }
 
 enum ConfidenceLevel {
   HIGH // Fuente oficial primaria (transparencia/resultados), dato verificado
-  MED  // ≥2 fuentes independientes coinciden (±2), sin fuente oficial primaria confirmada
-  LOW  // Fuentes divergen (>±2) o solo hay una fuente débil — se usa el valor más conservador
+  MED // ≥2 fuentes independientes coinciden (±2), sin fuente oficial primaria confirmada
+  LOW // Fuentes divergen (>±2) o solo hay una fuente débil — se usa el valor más conservador
 }
 
 enum GroundingStatus {
-  SOURCED      // El reactivo cita ≥1 SourceChunk real (trazabilidad en QuestionSourceChunk)
+  SOURCED // El reactivo cita ≥1 SourceChunk real (trazabilidad en QuestionSourceChunk)
   TEMARIO_ONLY // Generado solo con el temario oficial (sin fragmento fuente disponible)
 }
 
@@ -161,19 +161,19 @@ model Institution {
 }
 
 model ContentSource {
-  id          String   @id @default(cuid())
-  name        String   // "Guía UNAM 2025", "IPN Simulacro Oficial", etc.
-  institution String?  // Institución asociada (UNAM, IPN, etc.)
-  type        String?  // "MEDIA_SUPERIOR" / "SUPERIOR"
-  year        Int?     // Año de publicación
-  fileRef     String?  // Dónde vive el PDF: URL pública oficial (https://..., embebible/enlazable
-                        // directo, ver CC-25) o path local aún no publicado (docs/guias/..., no servible)
-  license     String?  // Descripción de licencia
-  externalRef String?  @unique // Clave estable para idempotencia de ingesta (p. ej. "ECOEMS-2025")
-  contentHash String?  @unique // SHA-256 del archivo (F2b): detección de nuevos/modificados por contenido
-  ingestedAt  DateTime @default(now())
-  questions   Question[] @relation("QuestionSource")
-  passages    Passage[]  @relation("PassageSource")
+  id          String        @id @default(cuid())
+  name        String // "Guía UNAM 2025", "IPN Simulacro Oficial", etc.
+  institution String? // Institución asociada (UNAM, IPN, etc.)
+  type        String? // "MEDIA_SUPERIOR" / "SUPERIOR"
+  year        Int? // Año de publicación
+  fileRef     String? // Dónde vive el PDF: URL pública oficial (https://..., embebible/enlazable
+  // directo, ver CC-25) o path local aún no publicado (docs/guias/..., no servible)
+  license     String? // Descripción de licencia
+  externalRef String?       @unique // Clave estable para idempotencia de ingesta (p. ej. "ECOEMS-2025")
+  contentHash String?       @unique // SHA-256 del archivo (F2b): detección de nuevos/modificados por contenido
+  ingestedAt  DateTime      @default(now())
+  questions   Question[]    @relation("QuestionSource")
+  passages    Passage[]     @relation("PassageSource")
   chunks      SourceChunk[]
 
   @@map("content_sources")
@@ -183,18 +183,18 @@ model ContentSource {
 // reactivo SOURCED cita ≥1 chunk vía QuestionSourceChunk. NUNCA servible a
 // usuarios finales (RLS: solo ADMIN; el pipeline escribe con service role).
 model SourceChunk {
-  id              String        @id @default(cuid())
+  id              String                @id @default(cuid())
   contentSourceId String
-  contentSource   ContentSource @relation(fields: [contentSourceId], references: [id], onDelete: Cascade)
-  topicId         String?       // Tema del temario al que corresponde (null = sin clasificar o fuera de temario)
-  topic           Topic?        @relation(fields: [topicId], references: [id], onDelete: SetNull)
-  subjectId       String?       // Materia (para chunks clasificables a materia pero no a tema puntual)
-  subject         Subject?      @relation(fields: [subjectId], references: [id], onDelete: SetNull)
-  text            String        @db.Text // Fragmento completo (contexto de generación)
-  excerpt         String        // Cita breve para UI/admin (primeras ~200 chars limpias)
-  locationRef     String?       // Página/sección de origen (p. ej. "p. 34", "§2.3")
-  classifiedAt    DateTime?     // null = clasificación pendiente; set + topicId null = fuera de temario
-  createdAt       DateTime      @default(now())
+  contentSource   ContentSource         @relation(fields: [contentSourceId], references: [id], onDelete: Cascade)
+  topicId         String? // Tema del temario al que corresponde (null = sin clasificar o fuera de temario)
+  topic           Topic?                @relation(fields: [topicId], references: [id], onDelete: SetNull)
+  subjectId       String? // Materia (para chunks clasificables a materia pero no a tema puntual)
+  subject         Subject?              @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+  text            String                @db.Text // Fragmento completo (contexto de generación)
+  excerpt         String // Cita breve para UI/admin (primeras ~200 chars limpias)
+  locationRef     String? // Página/sección de origen (p. ej. "p. 34", "§2.3")
+  classifiedAt    DateTime? // null = clasificación pendiente; set + topicId null = fuera de temario
+  createdAt       DateTime              @default(now())
   questions       QuestionSourceChunk[]
 
   @@index([topicId])
@@ -219,7 +219,7 @@ model Passage {
   id              String         @id @default(cuid())
   title           String?
   content         String         @db.Text
-  sourceRef       String?        // Cita del texto (autor, obra)
+  sourceRef       String? // Cita del texto (autor, obra)
   contentSourceId String?
   contentSource   ContentSource? @relation("PassageSource", fields: [contentSourceId], references: [id], onDelete: SetNull)
   questions       Question[]
@@ -227,7 +227,6 @@ model Passage {
 
   @@map("passages")
 }
-
 
 model Level {
   id            String      @id @default(cuid())
@@ -247,9 +246,9 @@ model Exam {
   level          Level         @relation(fields: [levelId], references: [id], onDelete: Cascade)
   year           Int
   name           String
-  durationMins   Int           // UNAM: 180, IPN: ~180
-  totalQuestions Int           // UNAM: 120, IPN: 140
-  examDate       DateTime?     // fecha oficial del examen (para countdown/vigencia)
+  durationMins   Int // UNAM: 180, IPN: ~180
+  totalQuestions Int // UNAM: 120, IPN: 140
+  examDate       DateTime? // fecha oficial del examen (para countdown/vigencia)
   isActive       Boolean       @default(true)
   areas          Area[]
   sessions       ExamSession[]
@@ -263,7 +262,7 @@ model Area {
   id        String    @id @default(cuid())
   examId    String
   exam      Exam      @relation(fields: [examId], references: [id], onDelete: Cascade)
-  code      String    // "AREA_1", "IPN_FISMAT"...
+  code      String // "AREA_1", "IPN_FISMAT"...
   name      String
   colorHex  String
   iconEmoji String?
@@ -280,10 +279,10 @@ model Career {
   areaId                String
   area                  Area             @relation(fields: [areaId], references: [id], onDelete: Cascade)
   name                  String
-  minAciertos           Int?             // aciertos mínimos históricos de ingreso (arranque en frío del Entrómetro)
+  minAciertos           Int? // aciertos mínimos históricos de ingreso (arranque en frío del Entrómetro)
   minAciertosYear       Int?
   minAciertosConfidence ConfidenceLevel? // HIGH/MED/LOW — ver CC-13: triangulación multi-fuente
-  sources               Json?            // [{ url, label, retrievedAt }] — evidencia citable del dato
+  sources               Json? // [{ url, label, retrievedAt }] — evidencia citable del dato
   acceptanceRate        Float?
   targetedBy            UserProfile[]    @relation("TargetCareer")
 
@@ -292,13 +291,13 @@ model Career {
 }
 
 model Subject {
-  id             String        @id @default(cuid())
+  id             String  @id @default(cuid())
   areaId         String
-  area           Area          @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  area           Area    @relation(fields: [areaId], references: [id], onDelete: Cascade)
   name           String
   iconEmoji      String?
   position       Int
-  questionWeight Int           @default(1) // # reactivos esperados en el examen real
+  questionWeight Int     @default(1) // # reactivos esperados en el examen real
 
   // ── Reutilización de contenido entre áreas (G26) ──
   // Varias áreas del MISMO examen evalúan esta materia con el mismo temario
@@ -312,9 +311,9 @@ model Subject {
   // instituciones (guías, profundidad y formato distintos).
   sharedContentKey String?
 
-  topics         Topic[]
-  contentItems   ContentItem[]
-  sourceChunks   SourceChunk[]
+  topics       Topic[]
+  contentItems ContentItem[]
+  sourceChunks SourceChunk[]
 
   @@unique([areaId, name])
   @@index([sharedContentKey])
@@ -337,35 +336,35 @@ model Topic {
 }
 
 model Question {
-  id         String             @id @default(cuid())
+  id         String          @id @default(cuid())
   topicId    String
-  topic      Topic              @relation(fields: [topicId], references: [id], onDelete: Cascade)
-  stem       String             @db.Text
+  topic      Topic           @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  stem       String          @db.Text
   imageUrl   String?
-  options    Json               // [{ id:"A", text, isCorrect }, ...]
-  difficulty DifficultyLevel    @default(INTERMEDIATE)
+  options    Json // [{ id:"A", text, isCorrect }, ...]
+  difficulty DifficultyLevel @default(INTERMEDIATE)
   sourceYear Int?
-  isVerified Boolean            @default(false)
+  isVerified Boolean         @default(false)
 
   // ── Procedencia y uso del contenido (CC-01c) ──
-  source        QuestionSource   @default(GENERATED)  // De dónde viene el reactivo
-  usage         QuestionUsage    @default(SERVABLE)   // Puede servirse a usuarios
-  sourceRef     String?                               // Cita/referencia de la fuente
+  source          QuestionSource @default(GENERATED) // De dónde viene el reactivo
+  usage           QuestionUsage  @default(SERVABLE) // Puede servirse a usuarios
+  sourceRef       String? // Cita/referencia de la fuente
   contentSourceId String?
-  contentSource ContentSource?   @relation("QuestionSource", fields: [contentSourceId], references: [id])
+  contentSource   ContentSource? @relation("QuestionSource", fields: [contentSourceId], references: [id])
 
   // ── Formato y estímulo compartido (CC-01b / CC-09) ──
-  format        QuestionFormat   @default(MULTIPLE_CHOICE)
-  passageId     String?
-  passage       Passage?         @relation(fields: [passageId], references: [id], onDelete: SetNull)
-  externalRef   String?          @unique // Idempotencia de ingesta (p. ej. "ECOEMS-2025#Q29")
+  format      QuestionFormat @default(MULTIPLE_CHOICE)
+  passageId   String?
+  passage     Passage?       @relation(fields: [passageId], references: [id], onDelete: SetNull)
+  externalRef String?        @unique // Idempotencia de ingesta (p. ej. "ECOEMS-2025#Q29")
 
   // ── Verificación adversarial (F2) ──
   // Veredicto completo del pipeline: respuesta del verificador, confianza,
   // problemas detectados, decisión, tercera pasada de auditoría si aplica.
   // Un reactivo GENERATED solo pasa a isVerified=true vía este pipeline
   // (dos modelos independientes coinciden). Sin resolver → queda sin publicar.
-  verification  Json?
+  verification Json?
 
   // ── Anclaje en documentos fuente (F2b) ──
   // SOURCED = cita ≥1 SourceChunk real (relación en QuestionSourceChunk).
@@ -396,7 +395,7 @@ model ExplanationLayer {
   id           String   @id @default(cuid())
   questionId   String
   question     Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  layer        Int      // 1..4
+  layer        Int // 1..4
   title        String
   content      String   @db.Text
   latexContent String?
@@ -409,7 +408,7 @@ model QuestionReport {
   id         String   @id @default(cuid())
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  reportedBy String   // userId
+  reportedBy String // userId
   reason     String?
   resolved   Boolean  @default(false)
   createdAt  DateTime @default(now())
@@ -459,14 +458,25 @@ model Professor {
 // ──────────────── USUARIO Y APRENDIZAJE ────────────────
 
 model UserProfile {
-  id       String   @id @default(cuid())
-  userId   String   @unique // Supabase Auth UID
-  role     UserRole @default(STUDENT)
+  id     String   @id @default(cuid())
+  userId String   @unique // Supabase Auth UID
+  role   UserRole @default(STUDENT)
 
   displayName String?
   avatarUrl   String?
   themePref   String   @default("dark") // "dark" | "light"
-  badges      String[] @default([])    // ["EARLY_BIRD", ...]
+  badges      String[] @default([]) // ["EARLY_BIRD", ...]
+
+  // ── Protección de menores + datos personales (Bloque 1, handoff §3.1) ──
+  // Fecha de nacimiento DECLARADA en el registro (modelo por capas de menores):
+  //   · < 15 años → registro bloqueado (no se crea la cuenta);
+  //   · < 18 años → antes de PAGAR se exige confirmación del tutor por liga
+  //     (ver `TutorConsent`).
+  // `birthDateDeclaredAt` es la evidencia de CUÁNDO se hizo la declaración.
+  // Nulable: las cuentas creadas antes de Bloque 1 no la traen y el checkout
+  // exige completarla antes de comprar.
+  birthDate           DateTime?
+  birthDateDeclaredAt DateTime?
 
   // Atribución de marketing (F24): parámetros de campaña de la PRIMERA visita
   // (utm_source/medium/campaign/content/term, fbclid/ttclid/gclid, landingPath,
@@ -499,9 +509,12 @@ model UserProfile {
   notificationPrefs NotificationPreference[]
 
   // Vinculación parental (dos lados)
-  asParentLinks  ParentLink[] @relation("ParentSide")
-  asStudentLinks ParentLink[] @relation("StudentSide")
+  asParentLinks  ParentLink[]     @relation("ParentSide")
+  asStudentLinks ParentLink[]     @relation("StudentSide")
   linkCodes      ParentLinkCode[]
+
+  // Confirmación del tutor para un alumno menor de 18 (Bloque 1)
+  tutorConsent TutorConsent?
 
   // Administración (G99). Ambas con SetNull, nunca Cascade: ni la bitácora ni
   // la bóveda pueden desaparecer porque se elimine la cuenta del admin que
@@ -594,7 +607,7 @@ model SessionAnswer {
   session        ExamSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   questionId     String
   question       Question    @relation(fields: [questionId], references: [id])
-  selectedOption String?     // "A".."D" | null (omitida)
+  selectedOption String? // "A".."D" | null (omitida)
   isCorrect      Boolean
   timeSpentSecs  Int
   position       Int
@@ -622,6 +635,16 @@ model Subscription {
   // de 500» que se anuncia en vivo. Una cortesía nunca crea `Payment`.
   isComp Boolean @default(false)
 
+  // ── Consentimiento art. 56 LFPC (Bloque 1, handoff §3.4) ──
+  // Renuncia expresa al derecho de revocación por prestación inmediata. Se
+  // captura en `startCheckoutAction` ANTES de crear la sesión de Stripe (es un
+  // requisito para poder cobrar sin ofrecer los 10 días hábiles). Se guarda la
+  // marca de tiempo Y la versión del texto aceptado (`ART56_CONSENT_VERSION` en
+  // src/lib/legal/consent-texts.ts). Nulable por compatibilidad con filas
+  // históricas; toda compra nueva lo escribe.
+  art56ConsentAt      DateTime?
+  art56ConsentVersion String?
+
   // Referencias Stripe
   stripeCustomerId        String?
   stripeSubscriptionId    String? // solo MONTHLY (recurring)
@@ -639,14 +662,14 @@ model Subscription {
 }
 
 model Payment {
-  id             String        @id @default(cuid())
-  subscriptionId String
-  subscription   Subscription  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
-  amountMxn      Int           // en centavos
-  method         PaymentMethod
-  status         PaymentStatus @default(PENDING)
-  stripePaymentIntentId String? @unique
-  createdAt      DateTime      @default(now())
+  id                    String        @id @default(cuid())
+  subscriptionId        String
+  subscription          Subscription  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  amountMxn             Int // en centavos
+  method                PaymentMethod
+  status                PaymentStatus @default(PENDING)
+  stripePaymentIntentId String?       @unique
+  createdAt             DateTime      @default(now())
 
   @@map("payments")
 }
@@ -680,12 +703,61 @@ model ParentLinkCode {
   code             String      @unique // 6 dígitos
   studentProfileId String
   studentProfile   UserProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
-  expiresAt        DateTime    // TTL 10 min
+  expiresAt        DateTime // TTL 10 min
   usedAt           DateTime?
   createdAt        DateTime    @default(now())
 
   @@index([code])
   @@map("parent_link_codes")
+}
+
+// ──────────────── CONFIRMACIÓN DEL TUTOR PARA MENORES (Bloque 1) ────────────────
+//
+// Modelo por capas de menores (handoff §3.1): un titular menor de 18 puede
+// registrarse y usar el plan Free, pero ANTES DE PAGAR necesita que su tutor
+// confirme por una liga. Esa confirmación sirve doble: (a) consentimiento del
+// tratamiento de datos del menor (LFPDPPP), y (b) ratificación del contrato de
+// adhesión, que sana la nulidad relativa por minoría de edad (arts. 646/1798/
+// 2228 CCF). La misma liga recoge los consentimientos granulares de marketing,
+// analítica y grabación (item 4).
+//
+// El token de la liga NUNCA se genera con `Math.random` (guardrail G65): se crea
+// con `crypto.randomBytes` y se guarda SOLO su hash SHA-256 — la liga trae el
+// token en claro y el servidor lo hashea para buscar, así que una fuga de la
+// base no permite reconstruir ligas válidas. Un solo `TutorConsent` por alumno
+// (`@unique`): reenviar la liga regenera el token de la misma fila.
+model TutorConsent {
+  id               String      @id @default(cuid())
+  studentProfileId String      @unique
+  studentProfile   UserProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+
+  tutorEmail   String
+  tutorName    String?
+  relationship String? // parentesco declarado por el tutor al confirmar
+
+  // Liga de un solo uso. `tokenHash` = SHA-256 del token en claro (nunca el
+  // token). `tokenExpiresAt` acota la ventana de la liga.
+  tokenHash      String   @unique
+  tokenExpiresAt DateTime
+
+  // Consentimientos granulares (item 4). `dataConsent` es obligatorio para
+  // menores; los otros tres son opcionales. `consentVersion` sella con qué
+  // versión de los textos se otorgaron (src/lib/legal/consent-texts.ts).
+  dataConsent      Boolean @default(false)
+  marketingConsent Boolean @default(false)
+  analyticsConsent Boolean @default(false)
+  recordingConsent Boolean @default(false)
+  consentVersion   String?
+
+  requestedAt DateTime  @default(now())
+  confirmedAt DateTime? // set cuando el tutor confirma; null = pendiente
+  confirmedIp String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tokenHash])
+  @@map("tutor_consents")
 }
 
 // ──────────────── PREFERENCIAS DE NOTIFICACIÓN ────────────────
@@ -753,8 +825,8 @@ model AdminAuditLog {
 // No hay TTL, ni ciclo de vida, ni job que borre nada: `deletedAt` solo lo
 // escribe `deleteVaultFileAction`, que exige admin maestro.
 model AdminFile {
-  id           String  @id @default(cuid())
-  path         String  @unique
+  id           String @id @default(cuid())
+  path         String @unique
   originalName String
   mimeType     String
   sizeBytes    Int

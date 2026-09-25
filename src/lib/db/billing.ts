@@ -369,6 +369,9 @@ export async function createPendingSubscription(input: {
   plan: SubscriptionPlan;
   season: PricingSeason;
   checkoutSessionId: string;
+  /** Bloque 1: consentimiento art. 56 LFPC capturado en el checkout. */
+  art56ConsentAt?: Date;
+  art56ConsentVersion?: string;
   stripeCustomerId?: string | null;
 }): Promise<void> {
   await prisma.subscription.create({
@@ -377,6 +380,8 @@ export async function createPendingSubscription(input: {
       plan: input.plan,
       season: input.season,
       status: 'PENDING',
+      art56ConsentAt: input.art56ConsentAt ?? undefined,
+      art56ConsentVersion: input.art56ConsentVersion ?? undefined,
       stripeCheckoutSessionId: input.checkoutSessionId,
       stripeCustomerId: input.stripeCustomerId ?? undefined,
     },

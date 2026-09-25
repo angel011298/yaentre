@@ -16,6 +16,7 @@ import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
 import { trackServerEvent } from '@/lib/analytics/server';
 import { ATTRIBUTION_COOKIE_NAME, parseAttributionCookie } from '@/lib/marketing/attribution';
+import { MIN_REGISTRATION_AGE, parseDeclaredBirthDate } from '@/lib/legal/age';
 import { consumeAll, consumeRateLimit, type RateLimitVerdict } from '@/lib/rate-limit/store';
 import { currentClientIp, emailSubject } from '@/lib/rate-limit/request';
 
@@ -52,10 +53,48 @@ export async function signUpAction(
     email: formData.get('email'),
     password: formData.get('password'),
     acceptTerms: formData.get('acceptTerms'),
+    birthDate: formData.get('birthDate') ?? undefined,
+    ageDeclaration: formData.get('ageDeclaration') ?? undefined,
   });
 
   if (!parsed.success) {
     return { status: 'error', fieldErrors: parsed.error.flatten().fieldErrors };
+  }
+
+  // Registro de tutor (F16): un query param en /registro?role=tutor marca un
+  // hidden field `role=PARENT` en el form — cualquier otro valor (o ausente)
+  // es el registro normal de alumno. El destino post-registro también
+  // cambia: un tutor nunca debe aterrizar en /onboarding ni /app.
+  const isParent = formData.get('role') === 'PARENT';
+  const role = isParent ? 'PARENT' : 'STUDENT';
+  const defaultNext = isParent ? '/tutor' : '/app';
+
+  // Bloque 1 — protección de menores (handoff §3.1). Solo el registro de ALUMNO
+  // declara fecha de nacimiento; el bloqueo < 15 se aplica ANTES de crear nada
+  // en Supabase, así que una cuenta de un menor de 15 nunca llega a existir.
+  let studentBirthDate: Date | null = null;
+  if (!isParent) {
+    if (parsed.data.ageDeclaration !== 'on') {
+      return {
+        status: 'error',
+        fieldErrors: {
+          ageDeclaration: ['Confirma que la fecha de nacimiento es verídica para continuar.'],
+        },
+      };
+    }
+    const birth = parseDeclaredBirthDate(parsed.data.birthDate ?? '', new Date());
+    if (!birth.ok) {
+      const message =
+        birth.reason === 'TOO_YOUNG'
+          ? `Debes tener al menos ${MIN_REGISTRATION_AGE} años para crear una cuenta en YaEntre.`
+          : birth.reason === 'FUTURE'
+            ? 'La fecha de nacimiento no puede estar en el futuro.'
+            : birth.reason === 'TOO_OLD'
+              ? 'Revisa tu fecha de nacimiento.'
+              : 'Ingresa una fecha de nacimiento válida (día, mes y año).';
+      return { status: 'error', fieldErrors: { birthDate: [message] } };
+    }
+    studentBirthDate = birth.date;
   }
 
   // G65: registro masivo por IP. Va DESPUÉS de validar la forma (no gasta
@@ -64,13 +103,6 @@ export async function signUpAction(
   if (!gate.allowed) return tooManyAttempts(gate, 'registro');
 
   const { email, password } = parsed.data;
-  // Registro de tutor (F16): un query param en /registro?role=tutor marca un
-  // hidden field `role=PARENT` en el form — cualquier otro valor (o ausente)
-  // es el registro normal de alumno. El destino post-registro también
-  // cambia: un tutor nunca debe aterrizar en /onboarding ni /app.
-  const isParent = formData.get('role') === 'PARENT';
-  const role = isParent ? 'PARENT' : 'STUDENT';
-  const defaultNext = isParent ? '/tutor' : '/app';
   const next = safeInternalPath(formData.get('next'), defaultNext);
   const supabase = await createSupabaseServerClient();
 
@@ -128,6 +160,12 @@ export async function signUpAction(
         userId: data.user.id,
         role,
         onboardingStep: 0,
+        // Bloque 1: fecha de nacimiento declarada (solo alumno). `declaredAt`
+        // registra CUÁNDO se declaró (evidencia). Se escribe SOLO en el create:
+        // un login repetido a través de este action nunca la sobreescribe.
+        ...(studentBirthDate
+          ? { birthDate: studentBirthDate, birthDateDeclaredAt: new Date() }
+          : {}),
         ...(acquisitionSource
           ? { acquisitionSource: acquisitionSource as unknown as Prisma.InputJsonValue }
           : {}),

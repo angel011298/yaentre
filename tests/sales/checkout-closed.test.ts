@@ -23,7 +23,10 @@ const dbCalls: string[] = [];
 vi.mock('@/lib/auth/guards', () => ({
   requireVerifiedForPurchase: vi.fn(async () => ({
     authUser: { email: 'alumna@acierta-test.mx' },
-    profile: { id: 'prof_g98' },
+    // Bloque 1: perfil de una persona ADULTA con fecha de nacimiento declarada,
+    // para que el checkout no se detenga por el gate de menores en este test —
+    // que verifica el interruptor de venta (G98), no la protección de menores.
+    profile: { id: 'prof_g98', birthDate: new Date('2000-01-01T00:00:00Z') },
   })),
   requireUser: vi.fn(async () => ({
     authUser: { email: 'alumna@acierta-test.mx' },
@@ -120,7 +123,7 @@ describe('startCheckoutAction — venta cerrada', () => {
     it(`${name}: rechaza con SALES_CLOSED y NO toca Stripe ni la base`, async () => {
       setEnv(salesOpen, vercelEnv, key);
 
-      const res = await startCheckoutAction({ plan: 'SEASON_PASS' });
+      const res = await startCheckoutAction({ plan: 'SEASON_PASS', art56Consent: true });
 
       expect(res.ok).toBe(false);
       if (res.ok) throw new Error('inalcanzable');
@@ -135,13 +138,13 @@ describe('startCheckoutAction — venta cerrada', () => {
 
   it('no consume una licencia Early Bird: `createPendingSubscription` nunca corre', async () => {
     setEnv('false', 'production', 'sk_test_g98');
-    await startCheckoutAction({ plan: 'PREMIUM' });
+    await startCheckoutAction({ plan: 'PREMIUM', art56Consent: true });
     expect(dbCalls).not.toContain('createPendingSubscription');
   });
 
   it('el rechazo no depende de un plan válido — cierra antes que la validación', async () => {
     setEnv(undefined, undefined, 'sk_test_g98');
-    const res = await startCheckoutAction({ plan: 'PLAN_QUE_NO_EXISTE' as never });
+    const res = await startCheckoutAction({ plan: 'PLAN_QUE_NO_EXISTE' as never, art56Consent: true });
     expect(res.ok).toBe(false);
     if (res.ok) throw new Error('inalcanzable');
     expect(res.code).toBe('SALES_CLOSED');
@@ -153,7 +156,7 @@ describe('startCheckoutAction — el rojo es alcanzable (G71 §6 D6)', () => {
   it('con la venta ABIERTA, la misma acción SÍ llama a Stripe y crea la fila PENDING', async () => {
     setEnv('true', 'preview', 'sk_test_g98');
 
-    const res = await startCheckoutAction({ plan: 'SEASON_PASS' });
+    const res = await startCheckoutAction({ plan: 'SEASON_PASS', art56Consent: true });
 
     expect(res.ok).toBe(true);
     // Si los dobles estuvieran muertos, este bloque fallaría: es la prueba de

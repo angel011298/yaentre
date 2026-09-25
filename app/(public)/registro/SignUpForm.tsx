@@ -32,6 +32,41 @@ export function SignUpForm({ next, isTutor = false }: { next?: string; isTutor?:
         errors={state.fieldErrors?.password}
       />
 
+      {/* Bloque 1: solo el registro de ALUMNO declara fecha de nacimiento. El
+          tutor es adulto y no la captura. El bloqueo de menores de 15 y la
+          exigencia de tutor para menores de 18 los aplica el servidor. */}
+      {!isTutor && (
+        <>
+          <TextField
+            name="birthDate"
+            type="date"
+            label="Fecha de nacimiento"
+            autoComplete="bday"
+            required
+            hint="Necesitas al menos 15 años para crear una cuenta."
+            errors={state.fieldErrors?.birthDate}
+          />
+          <div className="flex gap-3">
+            <input
+              type="checkbox"
+              id="age-declaration"
+              name="ageDeclaration"
+              required
+              className="mt-1 h-4 w-4 flex-shrink-0 cursor-pointer"
+              aria-label="Declaro que mi fecha de nacimiento es verídica"
+            />
+            <label htmlFor="age-declaration" className="text-sm text-text-secondary leading-tight cursor-pointer">
+              Declaro que la fecha de nacimiento es verídica.
+            </label>
+          </div>
+          {state.fieldErrors?.ageDeclaration && (
+            <p role="alert" className="text-sm text-danger -mt-2">
+              {state.fieldErrors.ageDeclaration[0]}
+            </p>
+          )}
+        </>
+      )}
+
       {/* F21: Aceptación de términos */}
       <div className="flex gap-3 pt-2">
         <input

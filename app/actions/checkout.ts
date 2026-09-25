@@ -15,6 +15,9 @@ import { salesGate } from '@/lib/stripe/sales-gate';
 import { SALES_CLOSED_CODE, SALES_CLOSED_MESSAGE } from '@/lib/stripe/sales-switch';
 import { setNotificationPreference } from '@/lib/db/notifications';
 import { consumeRateLimit } from '@/lib/rate-limit/store';
+import { requiresTutorConsent } from '@/lib/legal/age';
+import { hasConfirmedTutorConsent } from '@/lib/db/tutor-consent';
+import { ART56_CONSENT_VERSION } from '@/lib/legal/consent-texts';
 
 /**
  * Inicio de checkout (F8). Reglas críticas:
@@ -33,6 +36,11 @@ import { consumeRateLimit } from '@/lib/rate-limit/store';
 
 const checkoutSchema = z.object({
   plan: z.enum(['MONTHLY', 'SEASON_PASS', 'PREMIUM']),
+  // Bloque 1 (handoff §3.4): casilla OBLIGATORIA del art. 56 LFPC. El cliente
+  // manda `true` solo si el usuario marcó la casilla NO premarcada. El servidor
+  // vuelve a exigirlo (nunca confía en la UI) y sella la marca de tiempo + la
+  // VERSIÓN del texto aceptado. Ningún identificador de usuario entra por aquí.
+  art56Consent: z.boolean(),
 });
 
 export async function startCheckoutAction(
@@ -51,10 +59,12 @@ export async function startCheckoutAction(
 
   let profileId: string;
   let email: string | undefined;
+  let birthDate: Date | null;
   try {
     const { authUser, profile } = await requireVerifiedForPurchase();
     profileId = profile.id;
     email = authUser.email ?? undefined;
+    birthDate = profile.birthDate;
   } catch (err) {
     if (err instanceof AuthError) {
       return { ok: false, code: err.code, message: err.message };
@@ -68,6 +78,42 @@ export async function startCheckoutAction(
   }
 
   const { plan } = parsed.data;
+
+  // ── Bloque 1: consentimiento art. 56 LFPC (obligatorio para cobrar) ──
+  // Se valida ANTES de crear el Customer/sesión de Stripe: sin él no hay compra.
+  if (parsed.data.art56Consent !== true) {
+    return {
+      ok: false,
+      code: 'ART56_CONSENT_REQUIRED',
+      message:
+        'Para continuar, acepta que tu acceso se activa de inmediato al confirmarse el pago.',
+    };
+  }
+
+  // ── Bloque 1: protección de menores (handoff §3.1) ──
+  // El titular declaró su fecha de nacimiento al registrarse. Sin ella no
+  // podemos saber si es menor, así que no se le cobra hasta completarla. Un
+  // menor de 18 necesita la confirmación de su tutor (liga) ANTES de pagar.
+  const now = new Date();
+  if (!birthDate) {
+    return {
+      ok: false,
+      code: 'BIRTHDATE_REQUIRED',
+      message:
+        'Necesitamos tu fecha de nacimiento antes de comprar. Complétala en tu perfil para continuar.',
+    };
+  }
+  if (requiresTutorConsent(birthDate, now)) {
+    const tutorOk = await hasConfirmedTutorConsent(profileId);
+    if (!tutorOk) {
+      return {
+        ok: false,
+        code: 'TUTOR_CONSENT_REQUIRED',
+        message:
+          'Como eres menor de edad, tu madre, padre o tutor debe confirmar tu inscripción antes de pagar.',
+      };
+    }
+  }
   // Temporada EFECTIVA (F9): si Early Bird ya agotó sus 500 licencias, esto
   // degrada a Temporada Alta — es el MISMO cálculo que usa el paywall para
   // decidir qué precio mostrar, así nunca se muestra un precio y se cobra otro.
@@ -175,6 +221,10 @@ export async function startCheckoutAction(
       plan,
       season,
       checkoutSessionId: session.id,
+      // Bloque 1: sella el consentimiento art. 56 con su marca de tiempo y la
+      // versión del texto aceptado, en la MISMA fila que representa la compra.
+      art56ConsentAt: now,
+      art56ConsentVersion: ART56_CONSENT_VERSION,
       stripeCustomerId:
         typeof session.customer === 'string' ? session.customer : session.customer?.id,
     });
