@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const h = vi.hoisted(() => ({
-  result: null as any,
+  result: null as unknown as Record<string, unknown>,
   cancelThrows: false,
   refunded: [] as string[],
   notified: 0,

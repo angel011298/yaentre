@@ -114,7 +114,19 @@ interface Calls {
   pmList: unknown[];
   piCreate: Array<{ params: Record<string, unknown>; options: { idempotencyKey: string } }>;
   piCancel: string[];
-  sessionCreate: Array<{ params: Record<string, any>; options: { idempotencyKey: string } }>;
+  sessionCreate: Array<{
+    params: {
+      mode: string;
+      payment_method_types: string[];
+      customer: string;
+      expires_at: number;
+      line_items: Array<{ price_data: Record<string, unknown> }>;
+      metadata: Record<string, string>;
+      payment_intent_data: { metadata: Record<string, string> };
+      payment_method_options: unknown;
+    };
+    options: { idempotencyKey: string };
+  }>;
   customerCreate: unknown[];
   customerSearch: unknown[];
 }
@@ -161,7 +173,7 @@ function fakeStripe(
     checkout: {
       sessions: {
         create: async (params: Record<string, unknown>, options: { idempotencyKey: string }) => {
-          calls.sessionCreate.push({ params, options });
+          calls.sessionCreate.push({ params: params as never, options });
           if (opts.sessionThrows) throw new Error('Stripe caído');
           return { id: 'cs_1', url: opts.sessionUrl === undefined ? 'https://checkout.stripe.test/cs_1' : opts.sessionUrl };
         },
