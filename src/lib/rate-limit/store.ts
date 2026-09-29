@@ -192,6 +192,15 @@ export const RATE_LIMITS = {
    * a diez profesores no debe agotar el cupo con el que se atiende una cuenta.
    */
   ADMIN_MARKETPLACE_ACTION: { limit: 60, windowSecs: 3600 },
+
+  // ── Bloque 3: lo fiscal, soporte y referidos. También por PERFIL. ──
+
+  /**
+   * Lectura del tablero fiscal y su exportación (contador y admin). Solo lectura,
+   * pero cada carga recorre las filas de un año: el tope acota un bucle o una
+   * sesión robada tirando del CSV.
+   */
+  FISCAL_READ: { limit: 120, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

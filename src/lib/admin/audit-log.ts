@@ -65,13 +65,40 @@ type MarketplaceAuditAction =
   | 'teacher.suspended'
   | 'teacher.reactivated';
 
-export type AdminAuditAction = ContentAuditAction | AccountAuditAction | MarketplaceAuditAction;
+/**
+ * Bloque 3 — lo fiscal, soporte y referidos. Descargar el CSV fiscal es sacar
+ * datos del negocio del sistema; exportar los datos de un titular (ARCO) o
+ * emitir un reembolso es tocar datos personales y dinero: las tres dejan rastro
+ * igual que una baja de plan.
+ */
+type StaffAuditAction =
+  | 'fiscal.exported'
+  | 'arco.exported'
+  | 'arco.marketing_opt_out'
+  | 'refund.issued'
+  | 'referral.suspended'
+  | 'referral.reinstated'
+  | 'referral.flag_resolved';
+
+export type AdminAuditAction =
+  | ContentAuditAction
+  | AccountAuditAction
+  | MarketplaceAuditAction
+  | StaffAuditAction;
 
 /**
  * Qué clase de cosa es el objetivo. Permite filtrar la bitácora sin parsear
  * el nombre de la acción.
  */
-export type AdminAuditTargetKind = 'question' | 'user' | 'file' | 'system' | 'note' | 'teacher';
+export type AdminAuditTargetKind =
+  | 'question'
+  | 'user'
+  | 'file'
+  | 'system'
+  | 'note'
+  | 'teacher'
+  | 'referral'
+  | 'payment';
 
 export interface AdminActor {
   userProfileId: string;
