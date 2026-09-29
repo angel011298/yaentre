@@ -103,13 +103,17 @@ describe('minPaidCents — el menor monto pagado que cumple el piso (calculado a
 describe('validateNetAfterCommission — la validación de la spec §6', () => {
   it('coincide con la fórmula flotante de la spec en TODO el rango de precios reales, salvo a ±1 centavo del límite', () => {
     const min = minPaidCents(REFERRAL_COMMISSION_MXN_CENTS);
+    // Un solo `expect` al final: 400 000 aserciones dentro del bucle cuestan segundos y
+    // en una corrida en paralelo revientan el presupuesto de tiempo de la prueba
+    // (el rojo intermitente que CLAUDE.md prohíbe). Se acumulan las discrepancias.
+    const discrepancias: number[] = [];
     let comparados = 0;
     for (let cents = 1; cents <= 400_000; cents++) {
       if (Math.abs(cents - min) <= 1) continue; // el redondeo del flotante puede diferir en el propio umbral
-      const spec = specNetPesos(cents, REFERRAL_COMMISSION_MXN_CENTS) >= 500;
-      expect(validateNetAfterCommission(cents)).toBe(spec);
+      if (validateNetAfterCommission(cents) !== specNetPesos(cents, REFERRAL_COMMISSION_MXN_CENTS) >= 500) discrepancias.push(cents);
       comparados++;
     }
+    expect(discrepancias).toEqual([]);
     expect(comparados).toBeGreaterThan(399_000);
   });
 
