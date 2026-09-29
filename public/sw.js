@@ -106,6 +106,7 @@ function isPrivateMarketplacePath(pathname) {
     pathname.startsWith('/app/verificacion-tutor/') ||
     pathname === '/confirmar-tutor' ||
     pathname.startsWith('/confirmar-tutor/') ||
+    pathname === '/api/classes' ||
     pathname.startsWith('/api/teachers/') ||
     pathname.startsWith('/api/classes/')
   );

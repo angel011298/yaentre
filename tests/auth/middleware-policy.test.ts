@@ -125,3 +125,12 @@ describe('matchesPrefix', () => {
     expect(matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES)).toBe(true);
   });
 });
+
+describe('Bloque 2 — el panel del profesor exige sesión', () => {
+  it('/profesor y sus subrutas están protegidas; la landing pública /profesores NO', () => {
+    expect(matchesPrefix('/profesor', AUTH_REQUIRED_PREFIXES)).toBe(true);
+    expect(matchesPrefix('/profesor/solicitud', AUTH_REQUIRED_PREFIXES)).toBe(true);
+    // «profesores» (con «es») es marketing público: comparar por segmento, no por prefijo de texto.
+    expect(matchesPrefix('/profesores', AUTH_REQUIRED_PREFIXES)).toBe(false);
+  });
+});

@@ -60,3 +60,22 @@ export async function readJson(request: Request): Promise<unknown> {
     return undefined;
   }
 }
+
+const RESULT_STATUS: Record<string, number> = {
+  VALIDATION: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  INVALID_STATE: 409,
+  CONFLICT: 409,
+  RATE_LIMIT: 429,
+  UPSTREAM: 502,
+};
+
+/** Traduce un `ActionResult` (lo que devuelven las funciones de servicio de admin) a una respuesta HTTP. */
+export function resultResponse<T>(
+  result: { ok: true; data: T } | { ok: false; code: string; message: string }
+): NextResponse {
+  if (result.ok) return jsonOk(result.data);
+  return jsonError(result.code, result.message, RESULT_STATUS[result.code] ?? 400);
+}

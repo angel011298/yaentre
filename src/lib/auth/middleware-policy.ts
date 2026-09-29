@@ -21,6 +21,9 @@ export const AUTH_REQUIRED_PREFIXES = [
   '/checkout',
   '/tutor',
   '/admin',
+  // Bloque 2: el panel y la solicitud de profesor. `/profesores` (con «es») es la
+  // landing pública y NO cae aquí: `matchesPrefix` compara por segmento completo.
+  '/profesor',
 ];
 
 /** Prefijos que además exigen el correo verificado. */

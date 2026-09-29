@@ -405,3 +405,18 @@ export function adminAlertEmail(input: { title: string; lines: string[] }): Emai
     `),
   };
 }
+
+/** Al profesor: subió de nivel por mérito. */
+export function teacherLevelUpEmail(input: { level: 'VERIFICADO' | 'DESTACADO'; dashboardUrl: string }): EmailContent {
+  const label = input.level === 'DESTACADO' ? 'Destacado' : 'Verificado';
+  return {
+    subject: `Subiste a nivel ${label} — YaEntre`,
+    html: wrapEmail(`
+      <h1 style="font-size: 18px; margin: 0 0 12px;">¡Subiste a nivel ${label}!</h1>
+      <p style="font-size: 14px; line-height: 1.6;">
+        Por las clases que impartiste y las calificaciones que recibiste, ahora eres profesor
+        <strong>${label}</strong> en YaEntre. El nivel se gana por mérito y se refleja en tu perfil.
+      </p>${ctaButton(input.dashboardUrl, 'Ver mi panel')}
+    `),
+  };
+}

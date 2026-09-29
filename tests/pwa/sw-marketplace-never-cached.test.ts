@@ -50,6 +50,7 @@ const PRIVATE = [
   'https://yaentre.com/app/clases/directorio',
   'https://yaentre.com/app/verificacion-tutor',
   'https://yaentre.com/confirmar-tutor?token=abc123',
+  'https://yaentre.com/api/classes',
   'https://yaentre.com/api/teachers/me',
   'https://yaentre.com/api/teachers/me/classes',
   'https://yaentre.com/api/classes/teachers',

@@ -574,6 +574,7 @@ export async function confirmClass(teacherId: string, classId: string, now: Date
 }
 
 export interface LevelUp {
+  teacherId: string;
   promotedTo: 'VERIFICADO' | 'DESTACADO' | null;
 }
 
@@ -794,7 +795,7 @@ export async function recomputeTeacherMetrics(
     }),
     tx.teacher.findUnique({ where: { id: teacherId }, select: { level: true, onboardedAt: true } }),
   ]);
-  if (!teacher) return { promotedTo: null };
+  if (!teacher) return { teacherId, promotedTo: null };
 
   const averageRating = ratings._avg.studentRating ?? 0;
   const cancellationRate = computeCancellationRate({
@@ -825,7 +826,7 @@ export async function recomputeTeacherMetrics(
     },
   });
 
-  return { promotedTo: next === 'VERIFICADO' || next === 'DESTACADO' ? next : null };
+  return { teacherId, promotedTo: next === 'VERIFICADO' || next === 'DESTACADO' ? next : null };
 }
 
 // ─────────────────────────────── Consultas del job ───────────────────────────────
@@ -1041,4 +1042,18 @@ export async function attachPaymentIntent(classId: string, paymentIntentId: stri
     where: { id: classId, status: 'PENDING_PAYMENT', stripePaymentId: null },
     data: { stripePaymentId: paymentIntentId },
   });
+}
+
+/** Clases futuras y vivas de un profesor (para cancelarlas al suspenderlo). */
+export async function listUpcomingCancellableClassIds(teacherId: string, now: Date): Promise<string[]> {
+  const rows = await prisma.classSession.findMany({
+    where: {
+      teacherId,
+      status: { in: [...CANCELLABLE_STATUSES] as ClassStatus[] },
+      scheduledAt: { gt: now },
+    },
+    select: { id: true },
+    take: 500,
+  });
+  return rows.map((r) => r.id);
 }

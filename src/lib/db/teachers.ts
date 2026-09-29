@@ -503,3 +503,11 @@ export async function reactivateTeacher(teacherId: string): Promise<void> {
     throw new MarketplaceError('INVALID_STATE', 'Ese profesor no está suspendido.');
   }
 }
+
+/** Lo mínimo para avisar y medir tras una decisión del admin. Nunca sale de la capa de servidor. */
+export async function getTeacherContact(teacherId: string) {
+  return prisma.teacher.findUnique({
+    where: { id: teacherId },
+    select: { id: true, userProfileId: true, publicName: true, paymentRail: true, csfDocumentUrl: true },
+  });
+}

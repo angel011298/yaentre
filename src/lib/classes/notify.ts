@@ -2,6 +2,7 @@ import { getSiteUrl } from '@/lib/auth/site-url';
 import { parseMasterAdminList } from '@/lib/admin/master';
 import { getClassNotifyContext, type CancelResult, type ClassNotifyContext } from '@/lib/db/classes';
 import { getAuthEmails } from '@/lib/db/auth-users';
+import { prisma } from '@/lib/db/prisma';
 import { sendEmail } from '@/lib/email/client';
 import {
   adminAlertEmail,
@@ -9,6 +10,7 @@ import {
   classCancelledEmail,
   classLinkEmail,
   classUnconfirmedStudentEmail,
+  teacherLevelUpEmail,
   confirmClassRequestEmail,
   type EmailContent,
 } from '@/lib/email/templates';
@@ -188,5 +190,17 @@ export async function announceBooked(classId: string, method: 'ONE_CLICK' | 'CHE
     });
   } catch (err) {
     reportSilentDegradation('class_lifecycle', err, { stage: 'announce_booked', classId });
+  }
+}
+
+/** El profesor subió de nivel (por mérito, al calificar o completar una clase). Nunca lanza. */
+export async function notifyLevelUp(teacherId: string, level: 'VERIFICADO' | 'DESTACADO'): Promise<void> {
+  try {
+    const teacher = await prisma.teacher.findUnique({ where: { id: teacherId }, select: { userProfileId: true } });
+    if (!teacher) return;
+    await deliver(teacher.userProfileId, teacherLevelUpEmail({ level, dashboardUrl: teacherPanelUrl() }), 'level-up');
+    await trackServerEvent(teacher.userProfileId, 'teacher_level_up', { level });
+  } catch (err) {
+    reportSilentDegradation('class_lifecycle', err, { stage: 'level_up', teacherId });
   }
 }
