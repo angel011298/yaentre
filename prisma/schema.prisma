@@ -55,6 +55,12 @@ enum UserRole {
   STUDENT
   PARENT
   ADMIN
+  // Bloque 3 — roles de personal. NO son alumnos ni tutores: no tienen onboarding
+  // ni acceso a /app. Sus capacidades viven en `src/lib/admin/capabilities.ts`
+  // (matriz enumerada y probada); `is_admin()` en la base sigue reconociendo SOLO
+  // a ADMIN, así que ninguno de los dos puede leer nada por /rest/v1.
+  ACCOUNTANT // contador: solo lectura fiscal (/fiscal)
+  SUPPORT // soporte: ARCO y reembolsos (/soporte)
 }
 
 enum SubscriptionPlan {
@@ -680,7 +686,45 @@ model Payment {
   stripePaymentIntentId String?       @unique
   createdAt             DateTime      @default(now())
 
+  // Bloque 3 — CUÁNDO se cobró de verdad. `createdAt` es cuándo se creó la fila,
+  // y para OXXO/SPEI la fila nace PENDING al generar la ficha y el dinero llega
+  // días después (a veces en otro mes). La base fiscal es de EFECTIVO: el
+  // tablero fiscal y el monitor RESICO cuentan por esta fecha, no por `createdAt`.
+  // La escribe el webhook al pasar el pago a SUCCEEDED.
+  paidAt DateTime?
+
+  refunds PaymentRefund[]
+
+  @@index([paidAt])
   @@map("payments")
+}
+
+/// Bloque 3 — un reembolso de un pago, con SU fecha. Una sola columna acumulada
+/// («reembolsado: $X») no sirve para lo fiscal: el IVA de una devolución se
+/// descuenta en el mes en que se HACE, que puede no ser el del cobro. La fila la
+/// escribe el webhook (`charge.refunded`), la acción de soporte o la reconciliación
+/// —las tres por `stripeRefundId` único, así que reintentar no duplica— y es lo
+/// que revierte el crédito de un referido.
+model PaymentRefund {
+  id             String       @id @default(cuid())
+  paymentId      String
+  payment        Payment      @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  stripeRefundId String       @unique
+  amountMxn      Int // centavos devueltos
+  occurredAt     DateTime // cuándo lo registró Stripe: la fecha fiscal de la devolución
+  source         RefundSource
+  reason         String?
+  createdAt      DateTime     @default(now())
+
+  @@index([paymentId])
+  @@index([occurredAt])
+  @@map("payment_refunds")
+}
+
+enum RefundSource {
+  WEBHOOK // llegó por `charge.refunded` (p. ej. hecho desde el panel de Stripe)
+  SUPPORT // lo emitió el rol de soporte desde /soporte
+  RECONCILIATION // lo encontró el job diario al comparar con Stripe
 }
 
 // Idempotencia de webhooks de Stripe

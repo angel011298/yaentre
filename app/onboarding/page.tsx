@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { requireUser } from '@/lib/auth/guards';
+import { isNonStudentRole, postLoginPath } from '@/lib/admin/capabilities';
 import * as onboardingDb from '@/lib/db/onboarding';
 import { OnboardingStep, isOnboardingComplete } from '@/lib/onboarding/steps';
 import { StepProgress } from '@/components/ui/StepProgress';
@@ -41,8 +42,8 @@ export default async function OnboardingPage({
   // asistente, que es de ALUMNO), así que sin esta comprobación entraría al
   // Paso 1 y no tendría salida — mismo criterio de "rol antes que onboarding"
   // de `(app)/layout.tsx` y `requireOnboarding` (G10).
-  if (profile.role === 'PARENT') {
-    redirect('/tutor');
+  if (isNonStudentRole(profile.role)) {
+    redirect(postLoginPath(profile.role));
   }
 
   if (isOnboardingComplete(profile.onboardingStep)) {

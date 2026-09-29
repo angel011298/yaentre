@@ -12,6 +12,7 @@ import {
 } from '@/lib/auth/schemas';
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import { safeInternalPath } from '@/lib/auth/safe-redirect';
+import { postLoginPath } from '@/lib/admin/capabilities';
 import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
 import { trackServerEvent } from '@/lib/analytics/server';
@@ -249,7 +250,7 @@ export async function signInAction(
     where: { userId: data.user.id },
     select: { role: true },
   });
-  redirect(profile?.role === 'PARENT' ? '/tutor' : '/app');
+  redirect(postLoginPath(profile?.role));
 }
 
 export async function signOutAction(): Promise<void> {

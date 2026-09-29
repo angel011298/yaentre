@@ -20,6 +20,9 @@ export default function robots(): MetadataRoute.Robots {
         '/app/', // dashboard del alumno y todo lo anidado
         '/tutor', // panel parental
         '/admin', // panel de contenido
+        '/fiscal', // tablero fiscal (contador) — Bloque 3
+        '/soporte', // mesa de soporte — Bloque 3
+        '/r/', // redirect de referidos: escribe una cookie de atribución, no es contenido
         '/api/', // route handlers (webhooks, cron, sync, export…)
         '/monitoring', // túnel de Sentry
         '/simulador', // sesión de examen

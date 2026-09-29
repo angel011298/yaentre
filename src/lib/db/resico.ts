@@ -13,6 +13,8 @@ import {
  * de qué cuenta en cada carril). Base de efectivo: cuenta cuándo se cobró, no
  * cuándo se impartió la clase.
  *
+ * Suscripciones: lo cobrado en el año menos lo devuelto en el año (`payment_refunds`).
+ *
  * Ingreso de una clase = lo cobrado menos lo que se DEBE devolver
  * (`refundDueCents`, que incluye lo ya reembolsado): un reembolso pendiente no es
  * ingreso. La comisión es la que quedó sellada en la fila al cobrar/cancelar.
@@ -20,9 +22,16 @@ import {
 export async function getResicoStatus(now: Date = new Date()): Promise<ResicoStatus & { year: number }> {
   const fy = fiscalYearOf(now);
 
-  const [subscriptions, classes] = await Promise.all([
+  const [subscriptions, refunds, classes] = await Promise.all([
     prisma.payment.aggregate({
-      where: { status: 'SUCCEEDED', createdAt: { gte: fy.startUtc, lt: fy.endUtc } },
+      // Base de EFECTIVO: por la fecha en que se COBRÓ (`paidAt`), no en que se creó la fila.
+      where: { status: 'SUCCEEDED', paidAt: { gte: fy.startUtc, lt: fy.endUtc } },
+      _sum: { amountMxn: true },
+    }),
+    // Lo devuelto en el año, por la fecha en que se HIZO la devolución (puede ser de un
+    // cobro de otro año): una devolución reduce el ingreso del periodo en que se otorga.
+    prisma.paymentRefund.aggregate({
+      where: { occurredAt: { gte: fy.startUtc, lt: fy.endUtc } },
       _sum: { amountMxn: true },
     }),
     prisma.classSession.findMany({
@@ -45,7 +54,7 @@ export async function getResicoStatus(now: Date = new Date()): Promise<ResicoSta
   return {
     year: fy.year,
     ...calculateResicoStatus(
-      subscriptions._sum.amountMxn ?? 0,
+      Math.max(0, (subscriptions._sum.amountMxn ?? 0) - (refunds._sum.amountMxn ?? 0)),
       aggregateClassRevenue(rows),
       fy.dayOfYear,
       fy.daysInYear

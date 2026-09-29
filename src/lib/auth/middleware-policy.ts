@@ -24,6 +24,10 @@ export const AUTH_REQUIRED_PREFIXES = [
   // Bloque 2: el panel y la solicitud de profesor. `/profesores` (con «es») es la
   // landing pública y NO cae aquí: `matchesPrefix` compara por segmento completo.
   '/profesor',
+  // Bloque 3: el tablero fiscal (contador) y la mesa de soporte. Cada página y
+  // cada acción vuelve a exigir su capacidad; esto solo evita renderizar sin sesión.
+  '/fiscal',
+  '/soporte',
 ];
 
 /** Prefijos que además exigen el correo verificado. */

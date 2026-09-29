@@ -10,6 +10,7 @@ import { InstallPrompt } from '@/components/pwa/InstallPrompt';
 import { OfflineBanner } from '@/components/pwa/OfflineBanner';
 import { IdentifyUser } from '@/components/analytics/IdentifyUser';
 import { AuthError } from '@/lib/auth/errors';
+import { isNonStudentRole, postLoginPath } from '@/lib/admin/capabilities';
 import { requireUser } from '@/lib/auth/guards';
 import { getStreak } from '@/lib/db/streak';
 import { isOnboardingComplete } from '@/lib/onboarding/steps';
@@ -37,8 +38,9 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   let themePref: string;
   try {
     const { authUser: user, profile } = await requireUser();
-    if (profile.role === 'PARENT') {
-      redirect('/tutor');
+    if (isNonStudentRole(profile.role)) {
+      // Tutor → /tutor; contador → /fiscal; soporte → /soporte (Bloque 3).
+      redirect(postLoginPath(profile.role));
     }
     if (!isOnboardingComplete(profile.onboardingStep)) {
       redirect('/onboarding');

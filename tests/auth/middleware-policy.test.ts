@@ -134,3 +134,16 @@ describe('Bloque 2 — el panel del profesor exige sesión', () => {
     expect(matchesPrefix('/profesores', AUTH_REQUIRED_PREFIXES)).toBe(false);
   });
 });
+
+describe('Bloque 3 — lo fiscal y el soporte exigen sesión', () => {
+  it('/fiscal y /soporte (y sus subrutas) están protegidas', () => {
+    for (const path of ['/fiscal', '/fiscal/resico', '/soporte', '/soporte/usuarios/abc']) {
+      expect(matchesPrefix(path, AUTH_REQUIRED_PREFIXES)).toBe(true);
+    }
+  });
+
+  it('un prefijo parecido no queda protegido por accidente (se compara por segmento)', () => {
+    expect(matchesPrefix('/fiscalia', AUTH_REQUIRED_PREFIXES)).toBe(false);
+    expect(matchesPrefix('/soportes', AUTH_REQUIRED_PREFIXES)).toBe(false);
+  });
+});

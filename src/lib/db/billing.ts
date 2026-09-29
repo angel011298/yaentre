@@ -196,8 +196,13 @@ async function upsertPayment(
   subscriptionId: string,
   activation: CheckoutActivation,
   amountMxn: number,
-  status: 'PENDING' | 'SUCCEEDED' | 'FAILED'
+  status: 'PENDING' | 'SUCCEEDED' | 'FAILED',
+  paidAt?: Date
 ): Promise<void> {
+  // Bloque 3: `paidAt` es CUÁNDO se cobró de verdad y solo se escribe al pasar a
+  // SUCCEEDED. `createdAt` no sirve para lo fiscal: en OXXO/SPEI la fila nace
+  // PENDING con la ficha y el dinero llega días después, a veces en otro mes.
+  const paid = status === 'SUCCEEDED' && paidAt ? { paidAt } : {};
   if (activation.paymentIntentId) {
     await tx.payment.upsert({
       where: { stripePaymentIntentId: activation.paymentIntentId },
@@ -207,12 +212,13 @@ async function upsertPayment(
         method: activation.method,
         status,
         stripePaymentIntentId: activation.paymentIntentId,
+        ...paid,
       },
-      update: { status, method: activation.method },
+      update: { status, method: activation.method, ...paid },
     });
   } else {
     await tx.payment.create({
-      data: { subscriptionId, amountMxn, method: activation.method, status },
+      data: { subscriptionId, amountMxn, method: activation.method, status, ...paid },
     });
   }
 }
@@ -266,7 +272,7 @@ export const billingStore: BillingStore = {
         stripeSubscriptionId: activation.stripeSubscriptionId,
         afterActivate: async (sub) => {
           amountMxn = resolveAmountMxn(activation, sub.plan, sub.season);
-          await upsertPayment(tx, sub.id, activation, amountMxn, 'SUCCEEDED');
+          await upsertPayment(tx, sub.id, activation, amountMxn, 'SUCCEEDED', now);
         },
       });
 

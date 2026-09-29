@@ -234,6 +234,8 @@ export function UserAdminActions({
               <option value="STUDENT">STUDENT</option>
               <option value="PARENT">PARENT</option>
               <option value="ADMIN">ADMIN</option>
+              <option value="ACCOUNTANT">ACCOUNTANT (contador: solo lectura fiscal)</option>
+              <option value="SUPPORT">SUPPORT (soporte: ARCO y reembolsos)</option>
             </select>
             <Button
               type="button"
@@ -241,7 +243,11 @@ export function UserAdminActions({
               disabled={disabled || role === currentRole}
               onClick={() =>
                 run('role', () =>
-                  changeRoleAction({ userProfileId, reason, role: role as 'STUDENT' })
+                  changeRoleAction({
+                    userProfileId,
+                    reason,
+                    role: role as 'STUDENT' | 'PARENT' | 'ADMIN' | 'ACCOUNTANT' | 'SUPPORT',
+                  })
                 )
               }
             >

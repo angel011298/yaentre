@@ -112,6 +112,35 @@ function isPrivateMarketplacePath(pathname) {
   );
 }
 
+/**
+ * Bloque 3 — PERSONAL (contador y soporte) Y PROGRAMA DE REFERIDOS.
+ *
+ *  · `/fiscal/*` y `/api/fiscal/*` traen los ingresos, el IVA y las retenciones
+ *    del negocio; `/soporte/*` y `/api/support/*` traen la ficha de un titular
+ *    (a veces un menor) y la exportación de sus datos. Cacheados, quedarían en el
+ *    disco del navegador tras cerrar sesión — en una computadora compartida, el
+ *    siguiente en usarla los recuperaría sin credenciales.
+ *  · `/r/{código}` es un redirect que ESCRIBE una cookie de atribución: una
+ *    respuesta servida desde caché no la escribiría, y se perdería la atribución.
+ *  · `/api/referrals/*` trae el saldo y el historial de referidos de una persona.
+ *
+ * Sale del manejador ANTES de cualquier otra rama y no llama a `respondWith`.
+ */
+function isPrivateStaffPath(pathname) {
+  return (
+    pathname === '/fiscal' ||
+    pathname.startsWith('/fiscal/') ||
+    pathname === '/soporte' ||
+    pathname.startsWith('/soporte/') ||
+    pathname.startsWith('/api/fiscal/') ||
+    pathname.startsWith('/api/support/') ||
+    pathname.startsWith('/r/') ||
+    pathname === '/app/invitar' ||
+    pathname.startsWith('/app/invitar/') ||
+    pathname.startsWith('/api/referrals/')
+  );
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
@@ -126,6 +155,8 @@ self.addEventListener('fetch', (event) => {
   if (isPrivateAdminPath(url.pathname)) return;
   // Bloque 2 — mismo criterio para el marketplace y la liga del tutor.
   if (isPrivateMarketplacePath(url.pathname)) return;
+  // Bloque 3 — personal y referidos.
+  if (isPrivateStaffPath(url.pathname)) return;
 
   if (request.mode === 'navigate') {
     if (isSimulatorPath(url.pathname)) {

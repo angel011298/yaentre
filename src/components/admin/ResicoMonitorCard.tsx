@@ -47,7 +47,7 @@ export function ResicoMonitorCard({
           <h2 className="font-display text-lg font-semibold">
             {sig.dot} Monitor RESICO — {status.year}
           </h2>
-          <Link href="/admin/resico" className="text-sm font-medium text-brand hover:underline">
+          <Link href="/fiscal/resico" className="text-sm font-medium text-brand hover:underline">
             Ver desglose
           </Link>
         </div>

@@ -103,7 +103,9 @@ export type CancelPlanInput = z.input<typeof cancelPlanSchema>;
 export const changeRoleSchema = z.object({
   userProfileId: cuidSchema,
   reason: reasonSchema,
-  role: z.enum(['STUDENT', 'PARENT', 'ADMIN']),
+  // Bloque 3: contador y soporte. Cambiar a un rol de personal da acceso a datos
+  // sensibles, así que sigue siendo una acción de admin MAESTRO (ver `changeRoleAction`).
+  role: z.enum(['STUDENT', 'PARENT', 'ADMIN', 'ACCOUNTANT', 'SUPPORT']),
 });
 export type ChangeRoleInput = z.input<typeof changeRoleSchema>;
 

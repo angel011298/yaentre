@@ -6,6 +6,7 @@ import { prisma } from '@/lib/db/prisma';
 import { isOnboardingComplete } from '@/lib/onboarding/steps';
 import { reportControlFailure } from '@/lib/observability/report';
 import { AuthError } from './errors';
+import { isNonStudentRole, postLoginPath, roleHasCapability, type Capability } from '@/lib/admin/capabilities';
 import { createSupabaseServerClient } from './supabase-server';
 
 export type RequireUserResult = {
@@ -77,6 +78,22 @@ export async function requireRole(allowed: UserRole | UserRole[]): Promise<Requi
 }
 
 /**
+ * Bloque 3 — exige una CAPACIDAD de personal (`src/lib/admin/capabilities.ts`),
+ * no un rol: ADMIN, contador y soporte comparten algunas (p. ej. `fiscal.read`) y
+ * no otras. Cada página, ruta y acción de `/fiscal` y `/soporte` lo llama por su
+ * cuenta, como en `/admin` con `requireRole`: un layout no protege un endpoint.
+ */
+export async function requireCapability(capability: Capability): Promise<RequireUserResult> {
+  const result = await requireUser();
+
+  if (!roleHasCapability(result.profile.role, capability)) {
+    throw new AuthError('FORBIDDEN', 'No tienes permiso para acceder a esto.');
+  }
+
+  return result;
+}
+
+/**
  * Exige una Subscription con status ACTIVE. Usado para features exclusivas
  * de planes de pago (simulacros ilimitados, capas 2-4, panel parental, etc.).
  */
@@ -113,8 +130,10 @@ export async function requirePaidPlan(): Promise<
 export async function requireOnboarding(): Promise<RequireUserResult> {
   const result = await requireUser();
 
-  if (result.profile.role === 'PARENT') {
-    redirect('/tutor');
+  // Bloque 3: lo mismo vale para contador y soporte —no tienen onboarding de
+  // alumno—, cada uno a su destino (`postLoginPath`).
+  if (isNonStudentRole(result.profile.role)) {
+    redirect(postLoginPath(result.profile.role));
   }
 
   if (!isOnboardingComplete(result.profile.onboardingStep)) {
