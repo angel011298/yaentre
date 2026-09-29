@@ -17,9 +17,11 @@ import { PlanCard } from './PlanCard';
 export function PlanChooser({
   pricing,
   salesOpen,
+  marketplaceOpen,
 }: {
   pricing: PlanPricing[];
   salesOpen: boolean;
+  marketplaceOpen: boolean;
 }) {
   const [accepted, setAccepted] = useState(false);
 
@@ -48,6 +50,7 @@ export function PlanChooser({
             highlighted={p.plan === 'SEASON_PASS'}
             salesOpen={salesOpen}
             art56Accepted={accepted}
+            marketplaceOpen={marketplaceOpen}
           />
         ))}
       </div>

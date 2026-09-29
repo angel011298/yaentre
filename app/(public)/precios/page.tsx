@@ -9,6 +9,7 @@ import { JsonLd } from '@/lib/seo/JsonLd';
 import { openGraphFor } from '@/lib/seo/metadata';
 import { productJsonLd, type ProductOffer } from '@/lib/seo/structured-data';
 import { getPlanPricing, planLabel, type PlanPricing } from '@/lib/stripe/pricing';
+import { isMarketplaceOpen } from '@/lib/marketplace/marketplace-gate';
 
 // La temporada efectiva (Early Bird vs. regular) depende de compras reales —
 // sin esto, el precio quedaría congelado en el estado del momento del build.
@@ -108,6 +109,9 @@ export default async function PreciosPage() {
   // degrada a HIGH_SEASON en vez de romper la página — ver billing.ts.
   const season = await resolveEffectiveSeasonSafe(new Date());
   const isEarlyBird = season === 'EARLY_BIRD';
+  // Bloque 2 (fase Early Bird): con el marketplace cerrado Premium muestra su
+  // precio pero se marca «Disponible pronto» (spec §12).
+  const marketplaceOpen = isMarketplaceOpen();
 
   const pricing = Object.fromEntries(
     PAID_PLANS.map((plan) => [plan, getPlanPricing(plan, season)])
@@ -173,6 +177,11 @@ export default async function PreciosPage() {
               <p className="mt-1 text-sm text-text-muted">
                 {pricing[plan].isRecurring ? 'Renovación mensual' : 'Pago único'}
               </p>
+              {plan === 'PREMIUM' && !marketplaceOpen && (
+                <p className="mt-2 w-fit rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand">
+                  Disponible pronto
+                </p>
+              )}
               <LinkButton
                 href="/registro"
                 variant={plan === 'SEASON_PASS' ? 'primary' : 'secondary'}
@@ -201,7 +210,7 @@ export default async function PreciosPage() {
                   <th className="p-4 font-semibold text-text-primary">Feature</th>
                   <th className="p-4 font-semibold text-text-primary">Free</th>
                   <th className="p-4 font-semibold text-text-primary">Mensual</th>
-                  <th className="p-4 font-semibold text-brand">Pase ⭐</th>
+                  <th className="p-4 font-semibold text-brand">Básico ⭐</th>
                   <th className="p-4 font-semibold text-text-primary">Premium</th>
                 </tr>
               </thead>

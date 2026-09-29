@@ -18,6 +18,11 @@ import { consumeRateLimit } from '@/lib/rate-limit/store';
 import { requiresTutorConsent } from '@/lib/legal/age';
 import { hasConfirmedTutorConsent } from '@/lib/db/tutor-consent';
 import { ART56_CONSENT_VERSION } from '@/lib/legal/consent-texts';
+import { marketplaceGate } from '@/lib/marketplace/marketplace-gate';
+import {
+  MARKETPLACE_CLOSED_CODE,
+  MARKETPLACE_CLOSED_MESSAGE,
+} from '@/lib/marketplace/marketplace-switch';
 
 /**
  * Inicio de checkout (F8). Reglas críticas:
@@ -78,6 +83,20 @@ export async function startCheckoutAction(
   }
 
   const { plan } = parsed.data;
+
+  // ── Bloque 2 (fase Early Bird): Premium cerrado mientras no exista el
+  // marketplace ──
+  // Premium «abre el acceso» a profesores independientes verificados en
+  // YaEntre; con el directorio sin abrir, cobrarlo sería vender un acceso que
+  // no se puede usar. Va ANTES de los gates de consentimiento y de menores —
+  // no tiene sentido pedirle a un tutor que confirme algo que no se puede
+  // comprar— y, como el interruptor de ventas, se decide en el SERVIDOR: el
+  // botón deshabilitado de la tarjeta no cierra nada, esta acción se invoca
+  // con un `fetch`. Las cortesías de admin (`grantCompSubscription`) no pasan
+  // por aquí, así que siguen funcionando.
+  if (plan === 'PREMIUM' && !marketplaceGate().open) {
+    return { ok: false, code: MARKETPLACE_CLOSED_CODE, message: MARKETPLACE_CLOSED_MESSAGE };
+  }
 
   // ── Bloque 1: consentimiento art. 56 LFPC (obligatorio para cobrar) ──
   // Se valida ANTES de crear el Customer/sesión de Stripe: sin él no hay compra.

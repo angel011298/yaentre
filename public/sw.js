@@ -80,6 +80,37 @@ function isPrivateAdminPath(pathname) {
   );
 }
 
+/**
+ * Bloque 2 — LO MISMO PARA EL MARKETPLACE DE PROFESORES Y LA LIGA DEL TUTOR.
+ *
+ * Las mismas razones que arriba, con datos aún más delicados:
+ *
+ *  · `/profesor/*` y `/api/teachers/*` traen CURP, CLABE, RFC y el saldo de un
+ *    profesor. Cacheados, quedarían en el disco del navegador tras cerrar
+ *    sesión.
+ *  · `/app/clases` y `/api/classes/*` traen el historial de clases de un
+ *    alumno —a veces un MENOR— y el acceso a sus grabaciones (imagen y voz).
+ *  · `/confirmar-tutor` lleva el token de un solo uso EN LA URL; y
+ *    `/app/verificacion-tutor` muestra el correo del tutor.
+ *
+ * `/profesores` (con «es», la landing pública) NO está aquí a propósito: es
+ * marketing sin datos personales y sí puede servirse desde caché.
+ */
+function isPrivateMarketplacePath(pathname) {
+  return (
+    pathname === '/profesor' ||
+    pathname.startsWith('/profesor/') ||
+    pathname === '/app/clases' ||
+    pathname.startsWith('/app/clases/') ||
+    pathname === '/app/verificacion-tutor' ||
+    pathname.startsWith('/app/verificacion-tutor/') ||
+    pathname === '/confirmar-tutor' ||
+    pathname.startsWith('/confirmar-tutor/') ||
+    pathname.startsWith('/api/teachers/') ||
+    pathname.startsWith('/api/classes/')
+  );
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
@@ -92,6 +123,8 @@ self.addEventListener('fetch', (event) => {
   // ella. Va primero a propósito, para que ninguna rama posterior pueda
   // reintroducirlos por descuido.
   if (isPrivateAdminPath(url.pathname)) return;
+  // Bloque 2 — mismo criterio para el marketplace y la liga del tutor.
+  if (isPrivateMarketplacePath(url.pathname)) return;
 
   if (request.mode === 'navigate') {
     if (isSimulatorPath(url.pathname)) {

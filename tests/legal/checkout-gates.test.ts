@@ -130,7 +130,9 @@ describe('gate de menores', () => {
 
   it('adulto con art. 56 procede sin necesitar tutor', async () => {
     h.birthDate = new Date('1999-01-01T00:00:00Z');
-    const res = await startCheckoutAction({ plan: 'PREMIUM', art56Consent: true });
+    // Bloque 2: Premium exige el marketplace abierto; este caso prueba el gate
+    // de menores, no el del marketplace, así que se usa el plan Básico.
+    const res = await startCheckoutAction({ plan: 'SEASON_PASS', art56Consent: true });
     expect(res.ok).toBe(true);
     expect(h.stripeCalls).toContain('checkout.sessions.create');
   });

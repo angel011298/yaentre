@@ -6,6 +6,7 @@ import type { PaywallTrigger } from '@/lib/paywall/gates';
 import { sanitizeReturnPath } from '@/lib/paywall/return-path';
 import { getPlanPricing } from '@/lib/stripe/pricing';
 import { isSalesOpen } from '@/lib/stripe/sales-gate';
+import { isMarketplaceOpen } from '@/lib/marketplace/marketplace-gate';
 import { trackServerEvent } from '@/lib/analytics/server';
 
 const VALID_TRIGGERS: readonly PaywallTrigger[] = [
@@ -60,6 +61,7 @@ export default async function PaywallPage({
       pricing={pricing}
       earlyBirdRemaining={earlyBirdRemaining}
       salesOpen={salesOpen}
+      marketplaceOpen={isMarketplaceOpen()}
     />
   );
 }

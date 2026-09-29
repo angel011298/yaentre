@@ -13,6 +13,8 @@ interface Props {
   earlyBirdRemaining: number | null;
   /** G98: veredicto del interruptor de ventas, resuelto en el servidor. */
   salesOpen: boolean;
+  /** Bloque 2: veredicto del interruptor del marketplace (Premium). */
+  marketplaceOpen: boolean;
 }
 
 /**
@@ -34,6 +36,7 @@ export function PaywallScreen({
   pricing,
   earlyBirdRemaining,
   salesOpen,
+  marketplaceOpen,
 }: Props) {
   const copy = paywallTriggerCopy(trigger);
   const seasonPass = pricing.find((p) => p.plan === 'SEASON_PASS');
@@ -54,7 +57,7 @@ export function PaywallScreen({
         </p>
       )}
 
-      <PlanChooser pricing={pricing} salesOpen={salesOpen} />
+      <PlanChooser pricing={pricing} salesOpen={salesOpen} marketplaceOpen={marketplaceOpen} />
 
       {!salesOpen && <NotifyWhenOpenCard />}
 

@@ -49,6 +49,7 @@ export function PlanCard({
   highlighted = false,
   salesOpen,
   art56Accepted = false,
+  marketplaceOpen = true,
 }: {
   pricing: PlanPricing;
   highlighted?: boolean;
@@ -58,6 +59,9 @@ export function PlanCard({
   salesOpen: boolean;
   /** Bloque 1: la casilla del art. 56 (compartida) habilita el botón de compra. */
   art56Accepted?: boolean;
+  /** Bloque 2: con el marketplace cerrado Premium no se puede contratar todavía
+   *  (el directorio de profesores no existe aún). Conserva su precio visible. */
+  marketplaceOpen?: boolean;
 }) {
   return (
     <Card
@@ -89,7 +93,15 @@ export function PlanCard({
         ))}
       </ul>
 
-      {salesOpen ? (
+      {salesOpen && pricing.plan === 'PREMIUM' && !marketplaceOpen ? (
+        // Bloque 2 (spec §12): «Premium visible con Disponible pronto, botón
+        // desactivado». No es un botón apagado — informa. El cierre real vive
+        // en `startCheckoutAction`, que rechaza PREMIUM con el marketplace
+        // cerrado aunque alguien invoque la acción sin pasar por esta tarjeta.
+        <p className="rounded-md border border-border-subtle bg-elevated px-3 py-2 text-center text-sm font-semibold text-text-secondary">
+          Disponible pronto
+        </p>
+      ) : salesOpen ? (
         <ChoosePlanButton
           plan={pricing.plan}
           variant={highlighted ? 'primary' : 'secondary'}
