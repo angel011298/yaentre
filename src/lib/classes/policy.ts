@@ -102,9 +102,24 @@ export const AUTO_CANCEL_MIN_MINUTES_BEFORE_CLASS = 30;
  * suelta. No son 20 por capricho: una sesión de Checkout de Stripe NO puede
  * expirar en menos de 30 minutos (`expires_at` mínimo), así que retener menos
  * dejaría una ventana en la que el alumno aún puede pagar una clase que ya se
- * soltó. Aun con 30, un pago tardío se REEMBOLSA solo (ver `confirmClassPayment`).
+ * soltó. Este es el plazo que SE LE DICE al alumno.
  */
 export const PAYMENT_HOLD_MINUTES = 30;
+/**
+ * Vigencia real de la sesión de Checkout: el mínimo de Stripe (30) más un
+ * minuto de margen, porque Stripe valida `expires_at` contra SU reloj y no el
+ * nuestro — pedir exactamente 30 puede rechazarse por unos milisegundos.
+ */
+export const CHECKOUT_EXPIRY_MINUTES = 31;
+/**
+ * Cuándo se SUELTA el horario retenido. Tiene que ser POSTERIOR a la vigencia de
+ * la sesión de Checkout: si el horario se soltara a los 30 min pero la sesión
+ * aún aceptara pago a los 30:30, el alumno A podría pagar una hora que ya se le
+ * ofreció al alumno B, y habría dos clases reservadas en el mismo horario. Con
+ * la sesión muerta antes de que el horario se libere, esa ventana no existe.
+ * (Un pago que aun así llegue tarde se REEMBOLSA solo: `confirmPayment`.)
+ */
+export const PAYMENT_SLOT_RELEASE_MINUTES = 33;
 /** spec §6.6: el alumno tiene 48 h para calificar. */
 export const RATING_WINDOW_HOURS = 48;
 /** SUPUESTO: el alumno tiene 48 h para reportar un problema de una clase «impartida». */
@@ -248,7 +263,7 @@ export function meetingLinkDueAt(scheduledAt: Date): Date {
 
 /** ¿La reserva sin pagar ya venció y hay que soltar el horario? */
 export function paymentHoldExpired(createdAt: Date, now: Date): boolean {
-  return now.getTime() - createdAt.getTime() >= PAYMENT_HOLD_MINUTES * MINUTE_MS;
+  return now.getTime() - createdAt.getTime() >= PAYMENT_SLOT_RELEASE_MINUTES * MINUTE_MS;
 }
 
 // ───────────────────────── Ciclo de vida posterior a la clase ─────────────────────────

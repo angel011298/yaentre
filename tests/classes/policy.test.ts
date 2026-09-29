@@ -15,6 +15,9 @@ import {
   meetingLinkDueAt,
   noShowDeclarable,
   paymentHoldExpired,
+  PAYMENT_HOLD_MINUTES,
+  PAYMENT_SLOT_RELEASE_MINUTES,
+  CHECKOUT_EXPIRY_MINUTES,
   recordingConsentGranted,
   recordingExpiry,
   studentCanCancel,
@@ -211,10 +214,20 @@ describe('otros plazos', () => {
     expect(meetingLinkDueAt(T0).getTime()).toBe(T0.getTime() - 15 * 60_000);
   });
 
-  it('una reserva sin pagar suelta el horario a los 30 min (el mínimo de expiración de Checkout de Stripe)', () => {
+  it('el horario retenido se suelta DESPUÉS de que la sesión de Checkout ya no acepta pago', () => {
+    // Si el horario se soltara antes, un alumno podría pagar una hora que ya se
+    // le ofreció a otro: dos clases reservadas al mismo tiempo.
+    expect(PAYMENT_SLOT_RELEASE_MINUTES).toBeGreaterThan(CHECKOUT_EXPIRY_MINUTES);
+    // Stripe no admite expirar una sesión en menos de 30 min.
+    expect(CHECKOUT_EXPIRY_MINUTES).toBeGreaterThanOrEqual(30);
+    // Al alumno se le dice el plazo de 30 min (lo que promete la interfaz).
+    expect(PAYMENT_HOLD_MINUTES).toBe(30);
+  });
+
+  it('una reserva sin pagar suelta el horario a los 33 min, ni un segundo antes', () => {
     const created = new Date('2026-11-01T12:00:00Z');
-    expect(paymentHoldExpired(created, new Date('2026-11-01T12:29:59Z'))).toBe(false);
-    expect(paymentHoldExpired(created, new Date('2026-11-01T12:30:00Z'))).toBe(true);
+    expect(paymentHoldExpired(created, new Date('2026-11-01T12:32:59Z'))).toBe(false);
+    expect(paymentHoldExpired(created, new Date('2026-11-01T12:33:00Z'))).toBe(true);
   });
 
   it('un no-show solo se declara pasados 15 min del inicio; la clase «empezó» desde el inicio', () => {

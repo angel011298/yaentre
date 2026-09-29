@@ -6,7 +6,7 @@ import { MarketplaceError } from '@/lib/classes/errors';
 import { firstNameOf } from '@/lib/classes/format';
 import {
   CANCELLABLE_STATUSES,
-  PAYMENT_HOLD_MINUTES,
+  PAYMENT_SLOT_RELEASE_MINUTES,
   SLOT_HOLDING_STATUSES,
   canTransition,
   checkCanRate,
@@ -834,8 +834,8 @@ export const lifecycleQueries = {
   /** Reservas sin pagar que ya vencieron. */
   expiredHolds(now: Date) {
     return prisma.classSession.findMany({
-      where: { status: 'PENDING_PAYMENT', createdAt: { lt: new Date(now.getTime() - PAYMENT_HOLD_MINUTES * 60_000) } },
-      select: { id: true, stripeCheckoutSessionId: true },
+      where: { status: 'PENDING_PAYMENT', createdAt: { lt: new Date(now.getTime() - PAYMENT_SLOT_RELEASE_MINUTES * 60_000) } },
+      select: { id: true, stripeCheckoutSessionId: true, stripePaymentId: true },
       take: 200,
     });
   },
@@ -883,3 +883,162 @@ export const lifecycleQueries = {
     });
   },
 };
+
+// ─────────────────────────────── Contexto para avisos ───────────────────────────────
+
+export interface ClassNotifyContext {
+  id: string;
+  status: ClassStatus;
+  subjectKey: string;
+  scheduledAt: Date;
+  durationMinutes: number;
+  finalTariffCents: number;
+  recordingConsent: boolean;
+  meetingUrl: string | null;
+  confirmationRequestedAt: Date | null;
+  student: { profileId: string; displayName: string | null };
+  teacher: { id: string; userProfileId: string; publicName: string };
+}
+
+/** Todo lo que un correo de clase necesita, en una consulta. Nunca sale de esta capa hacia el navegador. */
+export async function getClassNotifyContext(classId: string): Promise<ClassNotifyContext | null> {
+  const row = await prisma.classSession.findUnique({
+    where: { id: classId },
+    select: {
+      id: true,
+      status: true,
+      subjectKey: true,
+      scheduledAt: true,
+      durationMinutes: true,
+      finalTariffCents: true,
+      recordingConsent: true,
+      meetingUrl: true,
+      confirmationRequestedAt: true,
+      studentProfile: { select: { id: true, displayName: true } },
+      teacher: { select: { id: true, userProfileId: true, publicName: true } },
+    },
+  });
+  if (!row) return null;
+  return {
+    id: row.id,
+    status: row.status,
+    subjectKey: row.subjectKey,
+    scheduledAt: row.scheduledAt,
+    durationMinutes: row.durationMinutes,
+    finalTariffCents: row.finalTariffCents,
+    recordingConsent: row.recordingConsent,
+    meetingUrl: row.meetingUrl,
+    confirmationRequestedAt: row.confirmationRequestedAt,
+    student: { profileId: row.studentProfile.id, displayName: row.studentProfile.displayName },
+    teacher: row.teacher,
+  };
+}
+
+/** Marca (una sola vez) que ya se pidió la confirmación al profesor. Devuelve si esta llamada la marcó. */
+export async function markConfirmationRequested(classId: string, now: Date): Promise<boolean> {
+  const res = await prisma.classSession.updateMany({
+    where: { id: classId, status: 'BOOKED', confirmationRequestedAt: null },
+    data: { confirmationRequestedAt: now },
+  });
+  return res.count > 0;
+}
+
+/** Marca (una sola vez) que ya se alertó al admin y se avisó al alumno. */
+export async function markAdminAlerted(classId: string, now: Date): Promise<boolean> {
+  const res = await prisma.classSession.updateMany({
+    where: { id: classId, status: 'BOOKED', adminAlertedAt: null },
+    data: { adminAlertedAt: now },
+  });
+  return res.count > 0;
+}
+
+/** Guarda el enlace de la clase (una vez: la creación en el proveedor es idempotente por clase). */
+export async function saveMeeting(
+  classId: string,
+  meeting: { meetingUrl: string; eventId: string }
+): Promise<void> {
+  await prisma.classSession.update({
+    where: { id: classId },
+    data: { meetingUrl: meeting.meetingUrl, meetingEventId: meeting.eventId },
+  });
+}
+
+/** Marca que el enlace ya se mandó a las dos partes. */
+export async function markMeetingLinkSent(classId: string, now: Date): Promise<void> {
+  await prisma.classSession.updateMany({
+    where: { id: classId, meetingLinkSentAt: null },
+    data: { meetingLinkSentAt: now },
+  });
+}
+
+// ─────────────────────────────── Datos para reservar ───────────────────────────────
+
+export interface ActivePremium {
+  /** Fin de vigencia = fecha del examen. `null` = sin tope. */
+  expiresAt: Date | null;
+  /** Cliente de Stripe donde el Checkout de Premium guardó la tarjeta (null en una cortesía). */
+  stripeCustomerId: string | null;
+}
+
+/**
+ * El Premium VIGENTE del alumno. Se pide PREMIUM a propósito: `getActiveSubscription`
+ * devuelve la suscripción activa más reciente de cualquier plan, y un Pase de
+ * Temporada más nuevo taparía a un Premium que sí da acceso a las clases.
+ */
+export async function getActivePremium(userProfileId: string, now: Date): Promise<ActivePremium | null> {
+  const sub = await prisma.subscription.findFirst({
+    where: {
+      userProfileId,
+      plan: 'PREMIUM',
+      status: 'ACTIVE',
+      OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+    },
+    orderBy: { updatedAt: 'desc' },
+    select: { expiresAt: true, stripeCustomerId: true },
+  });
+  return sub ? { expiresAt: sub.expiresAt, stripeCustomerId: sub.stripeCustomerId } : null;
+}
+
+export interface TeacherForBooking {
+  id: string;
+  userProfileId: string;
+  publicName: string;
+  level: TeacherLevel;
+  availability: unknown;
+  subjects: string[];
+  recordingPolicyAccepted: boolean;
+}
+
+/** Un profesor RESERVABLE (ACTIVE). Cualquier otro estado es «no existe» para el alumno. */
+export async function getTeacherForBooking(teacherId: string): Promise<TeacherForBooking | null> {
+  const t = await prisma.teacher.findFirst({
+    where: { id: teacherId, status: 'ACTIVE' },
+    select: {
+      id: true,
+      userProfileId: true,
+      publicName: true,
+      level: true,
+      availability: true,
+      recordingPolicyAcceptedAt: true,
+      subjects: { select: { subjectKey: true } },
+    },
+  });
+  if (!t) return null;
+  return {
+    id: t.id,
+    userProfileId: t.userProfileId,
+    publicName: t.publicName,
+    level: t.level,
+    availability: t.availability,
+    subjects: t.subjects.map((s) => s.subjectKey),
+    recordingPolicyAccepted: t.recordingPolicyAcceptedAt !== null,
+  };
+}
+
+/** Guarda el PaymentIntent del cobro con tarjeta guardada: permite reconciliar si el webhook se pierde. */
+export async function attachPaymentIntent(classId: string, paymentIntentId: string): Promise<void> {
+  await prisma.classSession.updateMany({
+    where: { id: classId, status: 'PENDING_PAYMENT', stripePaymentId: null },
+    data: { stripePaymentId: paymentIntentId },
+  });
+}

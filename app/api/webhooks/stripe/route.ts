@@ -7,6 +7,9 @@ import {
   type HandleResult,
 } from '@/lib/stripe/webhook';
 import { billingStore } from '@/lib/db/billing';
+import { classPaymentStore } from '@/lib/db/classes';
+import { handleClassWebhook } from '@/lib/classes/webhook-handler';
+import { classBookingRef } from '@/lib/stripe/class-payments';
 import { sendEmail } from '@/lib/email/client';
 import { paymentConfirmationEmail } from '@/lib/email/templates';
 import { reportControlFailure, reportSilentDegradation } from '@/lib/observability/report';
@@ -74,6 +77,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
+    // Bloque 2: el pago de una CLASE se desvía ANTES del camino de suscripciones.
+    // Si cayera ahí, `SubscriptionNotFoundError` daría 500 y Stripe reintentaría
+    // para siempre un evento que jamás encontrará suscripción. Tampoco recibe el
+    // correo de confirmación de plan.
+    if (classBookingRef(event)) {
+      const classResult = await handleClassWebhook(event, { store: classPaymentStore, stripe: getStripe() });
+      return NextResponse.json({ received: true, type: event.type, ...classResult }, { status: 200 });
+    }
+
     const result = await handleStripeEvent(event, billingStore);
     // F16 tarea 8: correo de confirmación de pago. Va DESPUÉS de que el
     // acceso ya se activó/registró — un fallo de correo nunca debe volver
