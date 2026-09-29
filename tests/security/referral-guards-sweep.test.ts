@@ -126,7 +126,8 @@ describe('ningún esquema del borde acepta un identificador de usuario', () => {
 
   it('los esquemas nuevos de admin usan referralId/saleId (los ids de a qué afectan), no un id de usuario', () => {
     const src = readFileSync(join(ROOT, 'src/lib/admin/schemas.ts'), 'utf8');
-    const block = src.slice(src.indexOf('Programa de referidos (Bloque 3)'));
+    const block = src.slice(src.indexOf('Programa de referidos (Bloque 3)'), src.indexOf('Soporte: ARCO y reembolsos (Bloque 3)'));
+    expect(block.length).toBeGreaterThan(200);
     expect(block).toMatch(/referralId: referralCuidSchema/);
     expect(block).toMatch(/saleId: referralCuidSchema/);
     expect(FORBIDDEN.test(block)).toBe(false);

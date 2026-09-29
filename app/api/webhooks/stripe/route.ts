@@ -10,6 +10,7 @@ import { billingStore } from '@/lib/db/billing';
 import { classPaymentStore } from '@/lib/db/classes';
 import { handleClassWebhook } from '@/lib/classes/webhook-handler';
 import { classBookingRef } from '@/lib/stripe/class-payments';
+import { handleChargeRefunded, stripeListRefunds } from '@/lib/stripe/refund-webhook';
 import { sendEmail } from '@/lib/email/client';
 import { paymentConfirmationEmail } from '@/lib/email/templates';
 import { reportControlFailure, reportSilentDegradation } from '@/lib/observability/report';
@@ -84,6 +85,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     if (classBookingRef(event)) {
       const classResult = await handleClassWebhook(event, { store: classPaymentStore, stripe: getStripe() });
       return NextResponse.json({ received: true, type: event.type, ...classResult }, { status: 200 });
+    }
+
+    // Bloque 3: un reembolso (de soporte, del panel de Stripe o de una disputa) se
+    // sincroniza a `payment_refunds` y revierte la venta de referido. Se desvía
+    // antes del camino de suscripciones: no activa ni cambia acceso alguno.
+    if (event.type === 'charge.refunded') {
+      const refundResult = await handleChargeRefunded(event, { listRefunds: stripeListRefunds(getStripe()) });
+      return NextResponse.json({ received: true, ...refundResult }, { status: 200 });
     }
 
     const result = await handleStripeEvent(event, billingStore);

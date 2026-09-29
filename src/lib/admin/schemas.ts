@@ -195,12 +195,41 @@ const referralCuidSchema = z
 export const adminReferralCodeSchema = z.object({
   referralId: referralCuidSchema,
   reason: reasonSchema,
-});
+}).strict();
 export type AdminReferralCodeInput = z.input<typeof adminReferralCodeSchema>;
 
 export const adminResolveFlagSchema = z.object({
   saleId: referralCuidSchema,
   decision: z.enum(['CLEAR', 'CONFIRM']),
   reason: reasonSchema,
-});
+}).strict();
 export type AdminResolveFlagInput = z.input<typeof adminResolveFlagSchema>;
+
+// ── Soporte: ARCO y reembolsos (Bloque 3) ──────────────────────────────────
+//
+// El objetivo es una CUENTA o una SUSCRIPCIÓN y no hay forma de derivarlo del
+// guard (no es quien actúa): mismas cuatro condiciones de la excepción autorizada
+// de G99, con `requireCapability(...)` como primera línea en lugar de
+// `requireRole('ADMIN')` porque estas acciones también las hace el rol SUPPORT.
+
+const subscriptionCuidSchema = z
+  .string()
+  .trim()
+  .regex(/^c[a-z0-9]{24,31}$/, 'Identificador de plan inválido.');
+
+/** Reembolso de UN plan (soporte dentro de la válvula de 48 h; admin maestro en cualquier caso). */
+export const supportRefundSchema = z.object({
+  subscriptionId: subscriptionCuidSchema,
+  reason: reasonSchema,
+}).strict();
+export type SupportRefundInput = z.input<typeof supportRefundSchema>;
+
+/** ARCO — oposición: retirar el consentimiento de marketing de un titular. */
+export const supportOpposeMarketingSchema = z.object({
+  userProfileId: cuidSchema,
+  reason: reasonSchema,
+}).strict();
+export type SupportOpposeMarketingInput = z.input<typeof supportOpposeMarketingSchema>;
+
+/** ARCO — acceso: exportar los datos de un titular. La lectura se audita; no lleva motivo (como `teacher.viewed`). */
+export const supportUserIdSchema = z.object({ userProfileId: cuidSchema }).strict();

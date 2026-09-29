@@ -25,7 +25,18 @@ const STAFF_TREES = ['app/fiscal', 'app/soporte', 'app/api/fiscal', 'app/api/sup
 const STAFF_FILES = [
   'app/api/admin/resico/route.ts', // el contador lo llama: cae bajo /api/admin, cuyo layout no existe para rutas
   'app/actions/support.ts',
+  'app/api/support/users/[id]/export/route.ts',
 ];
+
+/**
+ * Las acciones y rutas de SOPORTE son envoltorios delgados: el guard vive en el
+ * servicio (`src/lib/support/service.ts`), que lo exige en la primera línea de CADA
+ * función exportada — eso lo comprueba el último bloque de este archivo. Sin él,
+ * «importar el servicio» sería una promesa que nada verifica.
+ */
+export function usesSupportService(source: string): boolean {
+  return /from '@\/lib\/support\/service'/.test(source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1'));
+}
 
 const GUARDED_FILE = /(^|\/)(page\.tsx|route\.ts|layout\.tsx)$/;
 
@@ -76,8 +87,39 @@ describe('las zonas de personal', () => {
 
   for (const file of files) {
     const rel = relative(ROOT, file);
-    it(`${rel} llama a requireCapability por su cuenta`, () => {
-      expect(callsCapabilityGuard(readFileSync(file, 'utf8'))).toBe(true);
+    it(`${rel} llama a requireCapability por su cuenta (o pasa por el servicio de soporte, que lo exige)`, () => {
+      const src = readFileSync(file, 'utf8');
+      expect(callsCapabilityGuard(src) || usesSupportService(src)).toBe(true);
+    });
+  }
+});
+
+describe('el servicio de soporte exige su guard en la primera línea de CADA función exportada', () => {
+  const src = readFileSync(join(ROOT, 'src/lib/support/service.ts'), 'utf8')
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/(^|[^:])\/\/.*$/gm, '$1');
+  const bodies = src.split(/\nexport async function /).slice(1);
+
+  it('el predicado reconoce la importación y no se deja engañar por un comentario', () => {
+    expect(usesSupportService("import { x } from '@/lib/support/service';")).toBe(true);
+    expect(usesSupportService("// from '@/lib/support/service'")).toBe(false);
+    expect(usesSupportService("import { x } from '@/lib/support/valve';")).toBe(false);
+  });
+
+  it('son las 5 funciones esperadas', () => {
+    expect(bodies.map((b) => b.slice(0, b.indexOf('(')))).toEqual([
+      'searchUsersForSupport',
+      'loadFichaForSupport',
+      'exportUserDataForSupport',
+      'opposeMarketingForSupport',
+      'issueRefundForSupport',
+    ]);
+  });
+
+  for (const body of bodies) {
+    const name = body.slice(0, body.indexOf('('));
+    it(`${name} empieza por su guard`, () => {
+      expect(/beginSupportAction\(|requireCapability\(/.test(body.slice(0, 500))).toBe(true);
     });
   }
 });

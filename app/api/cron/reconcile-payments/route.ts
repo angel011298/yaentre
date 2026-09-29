@@ -3,6 +3,8 @@ import { isAuthorizedCronRequest } from '@/lib/cron/auth';
 import { runPaymentReconciliation } from '@/lib/db/billing';
 import { runReferralJobs, stripeRefundLookup } from '@/lib/db/referral-jobs';
 import { getStripe } from '@/lib/stripe/client';
+import { reconcileRecentRefunds } from '@/lib/stripe/refund-webhook';
+import { reportSilentDegradation } from '@/lib/observability/report';
 
 /**
  * Cron diario de reconciliación de pagos (F22 — edge case documentado desde
@@ -37,11 +39,26 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     } catch {
       stripeDeps = null;
     }
+    // Bloque 3: reembolsos que el webhook no dejó (endpoint sin suscribir a
+    // `charge.refunded`, caída, reintentos agotados). ANTES de acreditar referidos:
+    // una venta reembolsada no debe acreditarse.
+    let refunds: { examined: number; inserted: number } | null = null;
+    let refundsFailed = false;
+    if (process.env.STRIPE_SECRET_KEY) {
+      try {
+        refunds = await reconcileRecentRefunds(getStripe(), now);
+      } catch (err) {
+        refundsFailed = true;
+        reportSilentDegradation('scheduled_job', err, { job: 'refund-reconciliation' });
+      }
+    }
+
     const referrals = await runReferralJobs(now, stripeDeps);
+    const failed = referrals.failedSteps.length > 0 || refundsFailed;
 
     return NextResponse.json(
-      { ok: referrals.failedSteps.length === 0, ...summary, referrals },
-      { status: referrals.failedSteps.length === 0 ? 200 : 500 }
+      { ok: !failed, ...summary, refunds, refundsFailed, referrals },
+      { status: failed ? 500 : 200 }
     );
   } catch (err) {
     // Seguro de re-ejecutar: cada activación pasa por `runIdempotent` +

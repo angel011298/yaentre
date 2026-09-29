@@ -220,6 +220,15 @@ export const RATE_LIMITS = {
    */
   ADMIN_REFERRAL_ACTION: { limit: 60, windowSecs: 3600 },
   ADMIN_REFERRAL_READ: { limit: 120, windowSecs: 3600 },
+
+  /**
+   * Soporte (por perfil). Un reembolso es dinero que sale: 10 por hora es muy por
+   * encima de la atención real y acota el daño de una sesión de soporte comprometida.
+   * Las acciones ARCO (exportar, oposición) y las lecturas de ficha llevan su tope.
+   */
+  REFUND_ISSUE: { limit: 10, windowSecs: 3600 },
+  SUPPORT_ACTION: { limit: 60, windowSecs: 3600 },
+  SUPPORT_READ: { limit: 240, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

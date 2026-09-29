@@ -108,9 +108,7 @@ export type ControlName =
    */
   | 'referral_credit'
   /** Bloque 3 — la comprobación de reembolsos contra Stripe (reconciliación de `payment_refunds`). */
-  | 'refund_reconciliation'
-  /** Bloque 3 — acción de soporte (ARCO, reembolso) que se aplicó a medias. */
-  | 'support_action';
+  | 'refund_reconciliation';
 
 /**
  * Áreas cuya degradación silenciosa devuelve un éxito aparente. No son
@@ -177,7 +175,9 @@ export type DegradationArea =
   /** Bloque 3 — un Route Handler del programa de referidos devolvió un 500 genérico. */
   | 'referral_api'
   /** Bloque 3 — un Route Handler de personal (fiscal, soporte, admin de referidos) devolvió un 500 genérico. */
-  | 'staff_api';
+  | 'staff_api'
+  /** Bloque 3 — una acción de soporte (ARCO, ficha, reembolso) reventó y se respondió un error genérico. */
+  | 'support_action';
 
 type Context = Record<string, unknown>;
 

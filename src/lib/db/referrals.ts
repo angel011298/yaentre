@@ -563,6 +563,32 @@ export async function consumeRedemptionTx(tx: Tx, subscriptionId: string, now: D
   return existing?.status === 'RELEASED' ? 'was_released' : 'none';
 }
 
+/**
+ * Un plan que se REEMBOLSÓ devuelve a sus lotes el crédito que se gastó en él: la
+ * persona pagó menos por ese plan, y con el reembolso se queda sin plan; que
+ * además perdiera el crédito sería cobrarle dos veces. Solo actúa sobre un apartado
+ * CONSUMIDO (idempotente: pasa a RELEASED y no vuelve a devolver). Devuelve los
+ * centavos restituidos.
+ */
+export async function restoreConsumedCreditTx(tx: Tx, subscriptionId: string, now: Date): Promise<number> {
+  const redemption = await tx.referralCreditRedemption.findUnique({
+    where: { subscriptionId },
+    select: { id: true, allocations: true, amountCents: true },
+  });
+  if (!redemption) return 0;
+
+  const changed = await tx.referralCreditRedemption.updateMany({
+    where: { id: redemption.id, status: 'CONSUMED' },
+    data: { status: 'RELEASED', releasedAt: now, releaseReason: 'purchase_refunded' },
+  });
+  if (changed.count === 0) return 0;
+
+  for (const a of parseAllocations(redemption.allocations)) {
+    await tx.referralCreditLot.updateMany({ where: { id: a.lotId }, data: { remainingCents: { increment: a.cents } } });
+  }
+  return redemption.amountCents;
+}
+
 /** Une el apartado con la suscripción PENDING del mismo checkout. */
 export async function attachRedemptionToSubscriptionTx(tx: Tx, redemptionId: string, subscriptionId: string): Promise<void> {
   await tx.referralCreditRedemption.update({ where: { id: redemptionId }, data: { subscriptionId } });

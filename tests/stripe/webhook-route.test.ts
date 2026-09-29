@@ -129,6 +129,15 @@ vi.mock('@/lib/email/client', () => ({
   }),
 }));
 
+// Bloque 3: `charge.refunded` se desvía a su propio manejador (sincroniza
+// `payment_refunds`); aquí se comprueba el ENRUTADO, no su lógica (que cubre
+// `tests/stripe/refund-webhook.test.ts`).
+const refundHandler = vi.hoisted(() => vi.fn());
+vi.mock('@/lib/stripe/refund-webhook', () => ({
+  handleChargeRefunded: (...args: unknown[]) => refundHandler(...args),
+  stripeListRefunds: () => async () => [],
+}));
+
 // El Route Handler se importa DESPUÉS de registrar los mocks.
 const { POST } = await import('@/app/api/webhooks/stripe/route');
 
@@ -378,5 +387,45 @@ describe('Webhook de pagos — contrato de reintento de Stripe', () => {
     await expect(res.json()).resolves.toMatchObject({ status: 'ignored' });
     expect(store.processedEvents.size).toBe(0);
     expect(sentEmails).toHaveLength(0);
+  });
+});
+
+describe('Webhook de pagos — Bloque 3: charge.refunded', () => {
+  beforeEach(() => {
+    refundHandler.mockReset();
+    refundHandler.mockResolvedValue({ status: 'handled', type: 'charge.refunded', inserted: 1, refundedCents: 99_900 });
+  });
+
+  const refundPayload = (id = 'evt_refund_1') =>
+    buildPayload(id, 'charge.refunded', { id: 'ch_1', object: 'charge', payment_intent: 'pi_f19', amount_refunded: 99_900 });
+
+  it('se desvía a su manejador, responde 200 y NO toca el camino de suscripciones ni manda correo', async () => {
+    store.seedPending(CHECKOUT_ID);
+    const res = await POST(asRouteRequest(signedRequest(refundPayload())));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ received: true, status: 'handled', inserted: 1 });
+    expect(refundHandler).toHaveBeenCalledTimes(1);
+    expect(store.activateCalls).toBe(0);
+    expect(store.subs.get(CHECKOUT_ID)!.status).toBe('PENDING');
+    expect(sentEmails).toEqual([]);
+  });
+
+  it('un fallo del manejador es 500: Stripe reintenta (y la lista de reembolsos se vuelve a pedir)', async () => {
+    refundHandler.mockRejectedValueOnce(new Error('Stripe caído'));
+    const res = await POST(asRouteRequest(signedRequest(refundPayload())));
+    expect(res.status).toBe(500);
+  });
+
+  it('con firma inválida ni siquiera se llama al manejador (400)', async () => {
+    const res = await POST(asRouteRequest(signedRequest(refundPayload(), 'whsec_otro')));
+    expect(res.status).toBe(400);
+    expect(refundHandler).not.toHaveBeenCalled();
+  });
+
+  it('el rojo es alcanzable: un evento de OTRO tipo NO pasa por el manejador de reembolsos', async () => {
+    store.seedPending(CHECKOUT_ID);
+    await POST(asRouteRequest(signedRequest(buildPayload('evt_x', 'checkout.session.completed', checkoutSessionObject()))));
+    expect(refundHandler).not.toHaveBeenCalled();
+    expect(store.activateCalls).toBe(1);
   });
 });

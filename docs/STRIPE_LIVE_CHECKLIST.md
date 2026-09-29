@@ -306,9 +306,15 @@ ante Stripe. Pasos exactos:
    (mismos 4 que `src/lib/stripe/webhook.ts` enruta) **y, antes de abrir el
    marketplace de profesores (Bloque 2), `payment_intent.succeeded` y
    `checkout.session.expired`**: sin ellos el cobro de una clase nunca la pasa
-   a BOOKED ni se suelta el horario de una reserva abandonada. Con esos dos
-   eventos, las compras de suscripción también los emiten y caen en la rama
-   `ignored` de `handleStripeEvent` (200, sin efecto). Copia el signing
+   a BOOKED ni se suelta el horario de una reserva abandonada. `checkout.session.expired`
+   de una compra de SUSCRIPCIÓN cierra su checkout (Subscription y Payment a
+   FAILED) y libera el crédito de referidos que tuviera apartado (Bloque 3);
+   `payment_intent.succeeded` de una suscripción cae en la rama `ignored` (200,
+   sin efecto). **Bloque 3: agrega también `charge.refunded`**: sincroniza cada
+   reembolso a `payment_refunds` (el IVA se descuenta en el mes en que se HACE)
+   y revierte la venta de referido de esa compra. Sin él, el respaldo diario
+   (`/api/cron/reconcile-payments`) lo recoge con hasta un día de retraso, pero el
+   tablero fiscal y un crédito de referidos quedarían mal ese día. Copia el signing
    secret (`whsec_...`) que Stripe muestra **una sola vez**.
 
 ### 2.4 Variables de entorno en Vercel (producción)

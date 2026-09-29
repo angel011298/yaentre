@@ -76,6 +76,7 @@ type StaffAuditAction =
   | 'arco.exported'
   | 'arco.marketing_opt_out'
   | 'refund.issued'
+  | 'support.ficha_viewed'
   | 'referral.suspended'
   | 'referral.reinstated'
   | 'referral.flag_resolved';

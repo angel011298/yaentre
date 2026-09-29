@@ -349,6 +349,54 @@ async function main() {
     check('el listado de referidores incluye al de la prueba con sus conteos', referrers.some((r) => r.code === code.code && r.sales.accrued >= 1));
     const alerts = await R.listFraudAlerts();
     check('las alertas de fraude listan la autocompra y el mismo correo, marcadas como bloqueadas', alerts.some((a) => a.flags.includes('same_email') && a.blocked) && alerts.some((a) => a.flags.includes('self_purchase') && a.blocked));
+
+    console.log('\n── Reembolsos (payment_refunds) y baja del plan ──');
+    const Rf = await import('@/lib/db/refunds');
+    const rfBuyer = await mkUser('rfbuyer', 'reembolso@hotmail.com');
+    const piRf = `pi_${tag}_rf`;
+    const rfSub = await mkPurchase(rfBuyer.id, { pi: piRf, cents: 99_900, paidAgoDays: 1 });
+    const stripeRefund = (id: string, amount: number, status = 'succeeded', origin: string | null = null) => ({
+      id, amount, created: Math.floor(NOW.getTime() / 1000), status, reason: null, origin,
+    });
+
+    const first = await Rf.recordRefundsForPaymentIntent(prisma, piRf, [stripeRefund(`re_${tag}_a`, 50_000), stripeRefund(`re_${tag}_b`, 10_000, 'pending'), stripeRefund(`re_${tag}_c`, 5_000, 'failed')], 'WEBHOOK');
+    check('solo cuentan los reembolsos EXITOSOS (pendiente y fallido no son dinero devuelto)', first.inserted === 1 && first.refundedCents === 50_000 && first.paymentAmountCents === 99_900, first);
+    check('el pago se resuelve al plan correcto', first.subscriptionId === rfSub.id && first.paymentId !== null);
+
+    const again = await Rf.recordRefundsForPaymentIntent(prisma, piRf, [stripeRefund(`re_${tag}_a`, 50_000)], 'RECONCILIATION');
+    check('el MISMO reembolso por otra vía (reconciliación) NO se cuenta dos veces', again.inserted === 0 && again.refundedCents === 50_000, again);
+    check('…y conserva la fuente del primero', (await prisma.paymentRefund.findUnique({ where: { stripeRefundId: `re_${tag}_a` } }))?.source === 'WEBHOOK');
+
+    const raced = await Promise.all([1, 2, 3].map(() => Rf.recordRefundsForPaymentIntent(prisma, piRf, [stripeRefund(`re_${tag}_d`, 49_900, 'succeeded', 'support')], 'SUPPORT')));
+    check('tres escrituras simultáneas del mismo reembolso: UNA fila', (await prisma.paymentRefund.count({ where: { stripeRefundId: `re_${tag}_d` } })) === 1 && raced.reduce((n, r) => n + r.inserted, 0) === 1, raced.map((r) => r.inserted));
+    check('el total refleja lo devuelto y detecta el origen soporte', raced.every((r) => r.refundedCents === 99_900) && raced.every((r) => r.anyFromSupport));
+    check('un PaymentIntent que no es de un plan (una clase) no toca nada', (await Rf.recordRefundsForPaymentIntent(prisma, 'pi_desconocido', [stripeRefund('re_x', 1)], 'WEBHOOK')).paymentId === null && (await prisma.paymentRefund.count({ where: { stripeRefundId: 're_x' } })) === 0);
+    check('lo ya devuelto de un pago', (await Rf.refundedCentsOfPayment(first.paymentId!)) === 99_900);
+
+    // Baja del plan con el crédito que se gastó en él.
+    const spender = await mkUser('rfspender', 'gastadora@hotmail.com');
+    const spenderCredit = await prisma.referralSale.findFirst({ where: { status: 'ACCRUED', referralCode: { userProfileId: ref.id } } });
+    check('hay saldo de crédito de la prueba anterior para gastar', spenderCredit !== null || (await R.getAvailableCreditCents(ref.id, NOW)) > 0);
+    const creditBefore = await R.getAvailableCreditCents(ref.id, NOW);
+    const spendAmount = Math.min(5_000, creditBefore);
+    if (spendAmount > 0) {
+      const res = await R.reserveCredit(ref.id, spendAmount, NOW);
+      const spendSub = await prisma.subscription.create({ data: { userProfileId: spender.id, plan: 'SEASON_PASS', season: 'EARLY_BIRD', status: 'ACTIVE', startedAt: NOW }, select: { id: true } });
+      await prisma.$transaction(async (tx) => {
+        await R.attachRedemptionToSubscriptionTx(tx, res!.redemptionId, spendSub.id);
+        await R.consumeRedemptionTx(tx, spendSub.id, NOW);
+      });
+      check('el crédito gastado bajó el saldo', (await R.getAvailableCreditCents(ref.id, NOW)) === creditBefore - spendAmount);
+
+      const cancel = await Rf.cancelRefundedSubscription(spendSub.id, NOW);
+      check('reembolsar el plan lo da de baja', cancel.canceled && (await prisma.subscription.findUnique({ where: { id: spendSub.id } }))?.status === 'CANCELED', cancel);
+      check('…y le DEVUELVE el crédito que gastó en él', cancel.creditRestoredCents === spendAmount && (await R.getAvailableCreditCents(ref.id, NOW)) === creditBefore, cancel);
+      const twice = await Rf.cancelRefundedSubscription(spendSub.id, NOW);
+      check('repetirlo NO da de baja ni devuelve crédito otra vez (idempotente)', !twice.canceled && twice.creditRestoredCents === 0 && (await R.getAvailableCreditCents(ref.id, NOW)) === creditBefore, twice);
+    }
+    const plain = await Rf.cancelRefundedSubscription(rfSub.id, NOW);
+    check('un plan pagado sin crédito se da de baja sin devolver nada', plain.canceled && plain.creditRestoredCents === 0, plain);
+
   } finally {
     // Limpieza: solo lo que esta corrida creó.
     if (created.length > 0) {
