@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
 import { Pagination } from '@/components/admin/Pagination';
+import { ResicoMonitorCard } from '@/components/admin/ResicoMonitorCard';
 import { adminTeacherListSchema } from '@/lib/admin/schemas';
 import { ADMIN_TEACHERS_PAGE_SIZE } from '@/lib/db/teachers';
 import { getResicoStatus } from '@/lib/db/resico';
-import { formatMxnFromCents } from '@/lib/teachers/tariff';
 import { listTeachersForAdmin } from '@/lib/teachers/admin-service';
 
 export const metadata = { title: 'Profesores' };
@@ -14,12 +14,6 @@ const STATUS_LABEL = {
   ACTIVE: 'Activo',
   SUSPENDED: 'Suspendido',
   INACTIVE: 'En pausa',
-} as const;
-
-const SIGNAL = {
-  GREEN: { dot: '🟢', label: 'Verde' },
-  YELLOW: { dot: '🟡', label: 'Amarillo' },
-  RED: { dot: '🔴', label: 'Rojo' },
 } as const;
 
 /**
@@ -36,7 +30,6 @@ export default async function AdminTeachersPage({
   const { status, page } = adminTeacherListSchema.parse({ status: sp.status || undefined, page: sp.page });
   const [result, resico] = await Promise.all([listTeachersForAdmin({ status, page }), getResicoStatus()]);
   const totalPages = Math.max(1, Math.ceil(result.total / ADMIN_TEACHERS_PAGE_SIZE));
-  const sig = SIGNAL[resico.signal];
 
   return (
     <div className="space-y-6">
@@ -48,44 +41,7 @@ export default async function AdminTeachersPage({
         </p>
       </div>
 
-      <Card className="space-y-2 p-4">
-        <h2 className="font-display text-lg font-semibold">
-          {sig.dot} Monitor RESICO — año fiscal {resico.year}
-        </h2>
-        <p className="text-sm text-text-secondary">
-          Acumulado <strong>{formatMxnFromCents(resico.yearToDateIncomeCents)}</strong> de{' '}
-          {formatMxnFromCents(resico.ceilingCents)} ({resico.percentUsed}% · {sig.label}). Proyección al 31 de
-          diciembre: {formatMxnFromCents(resico.projectedAnnualCents)} ({resico.projectedPercentUsed}%).
-        </p>
-        <div
-          className="h-2 w-full overflow-hidden rounded-full bg-elevated"
-          role="progressbar"
-          aria-valuenow={Math.min(100, resico.percentUsed)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-label="Porcentaje del techo de RESICO usado"
-        >
-          <div
-            className="h-full bg-brand"
-            style={{ width: `${Math.min(100, resico.percentUsed)}%` }}
-          />
-        </div>
-        <ul className="text-sm text-text-secondary">
-          <li>Suscripciones: {formatMxnFromCents(resico.subscriptionIncomeCents)}</li>
-          <li>
-            Clases (peor caso, todo como Carril B): {formatMxnFromCents(resico.classIncomeCents)} · con el Carril A
-            contando solo su comisión: {formatMxnFromCents(resico.classIncomeMixedCents)}
-          </li>
-          <li>
-            Clases cobradas — Carril A: {resico.carrils.A} · Carril B: {resico.carrils.B}
-          </li>
-        </ul>
-        <p className="text-sm font-medium">{resico.recommendation}</p>
-        <p className="text-xs text-text-muted">
-          Base de efectivo, importes con IVA incluido (el techo se mide sin IVA: el porcentaje sale más alto que el
-          real, a propósito). Pendiente de validar con el contador.
-        </p>
-      </Card>
+      <ResicoMonitorCard status={resico} variant="compact" />
 
       <nav className="flex flex-wrap gap-2 text-sm" aria-label="Filtrar por estado">
         <Link href="/admin/profesores" className="rounded-md bg-elevated px-3 py-1.5">

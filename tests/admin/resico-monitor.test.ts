@@ -1,12 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
   RESICO_CEILING_CENTS,
+  aggregateClassRevenue,
   calculateResicoStatus,
   fiscalYearOf,
   signalFor,
+  type ClassRevenueRow,
+  type ResicoClassRevenue,
 } from '@/lib/admin/resico-monitor';
 
-const NO_CLASSES = { totalCents: 0, commissionCents: 0, carrils: { A: 0, B: 0 } };
+const NO_CLASSES: ResicoClassRevenue = {
+  carrilA: { classes: 0, totalCents: 0, commissionCents: 0 },
+  carrilB: { classes: 0, totalCents: 0, commissionCents: 0 },
+};
 const at = (cents: number, day = 200) => calculateResicoStatus(cents, NO_CLASSES, day);
 
 describe('semáforo — fronteras EXACTAS', () => {
@@ -43,38 +49,108 @@ describe('semáforo — fronteras EXACTAS', () => {
   });
 
   it('signalFor enumera las tres zonas', () => {
-    expect([0, 599, 600, 799, 800, 1000].map(signalFor)).toEqual(['GREEN', 'GREEN', 'YELLOW', 'YELLOW', 'RED', 'RED']);
+    expect([0, 599, 600, 799, 800, 1000].map(signalFor)).toEqual([
+      'GREEN', 'GREEN', 'YELLOW', 'YELLOW', 'RED', 'RED',
+    ]);
   });
 });
 
-describe('peor caso de clases (todo como Carril B)', () => {
-  it('suma el 100% de lo retenido de las clases, no solo la comisión', () => {
-    const s = calculateResicoStatus(
-      100_000_000,
-      { totalCents: 40_000_000, commissionCents: 10_000_000, carrils: { A: 0, B: 10 } },
-      200
-    );
-    expect(s.classIncomeCents).toBe(40_000_000);
-    expect(s.yearToDateIncomeCents).toBe(140_000_000);
-    expect(s.subscriptionIncomeCents).toBe(100_000_000);
+describe('desglose por carril — A = solo comisión, B = valor completo', () => {
+  // Ejemplo de la spec §10: Carril A $12,500 de comisión + Carril B $344,000 = $356,500.
+  const spec: ResicoClassRevenue = {
+    carrilA: { classes: 40, totalCents: 5_000_000, commissionCents: 1_250_000 },
+    carrilB: { classes: 1_100, totalCents: 34_400_000, commissionCents: 8_600_000 },
+  };
+
+  it('el Carril A aporta SOLO su comisión y el Carril B su valor completo', () => {
+    const s = calculateResicoStatus(49_950_000, spec, 250);
+    expect(s.carrilA.incomeCents).toBe(1_250_000);
+    expect(s.carrilB.incomeCents).toBe(34_400_000);
+    expect(s.classIncomeCents).toBe(35_650_000);
+    expect(s.subscriptionIncomeCents).toBe(49_950_000);
+    // $499,500 + $356,500 = $856,000, el acumulado de la pantalla de la spec.
+    expect(s.yearToDateIncomeCents).toBe(85_600_000);
+    expect(s.percentUsed).toBe(24.4);
   });
 
-  it('el ingreso «mixto» cuenta solo la comisión del Carril A, sin gobernar el semáforo', () => {
-    const s = calculateResicoStatus(
-      0,
-      {
-        totalCents: 100_000_000,
-        commissionCents: 25_000_000,
-        carrils: { A: 4, B: 6 },
-        carrilA: { totalCents: 60_000_000, commissionCents: 15_000_000 },
-      },
-      200
-    );
-    // B completo (40M) + comisión de A (15M) = 55M; el peor caso sigue siendo 100M.
-    expect(s.classIncomeMixedCents).toBe(55_000_000);
-    expect(s.classIncomeCents).toBe(100_000_000);
-    expect(s.signal).toBe('GREEN'); // 100M / 3500M = 2.8 %
-    expect(s.carrils).toEqual({ A: 4, B: 6 });
+  it('el valor cobrado del Carril A NO entra al ingreso (es del profesor), pero se conserva para referencia', () => {
+    const s = calculateResicoStatus(0, spec, 250);
+    expect(s.carrilA.totalCents).toBe(5_000_000);
+    expect(s.yearToDateIncomeCents).toBe(s.carrilA.commissionCents + s.carrilB.totalCents);
+    expect(s.yearToDateIncomeCents).not.toBe(s.carrilA.totalCents + s.carrilB.totalCents);
+  });
+
+  it('el «techo teórico» del código original (todo Carril B) se conserva aparte y NO manda sobre el color', () => {
+    // Todo como B serían 39.4M; con A a comisión son 35.65M. Con el techo de 3.5M en 350M no cambia el color aquí,
+    // pero sí en la frontera: se construye un caso que cruza el 60% solo con el peor caso.
+    const borderline: ResicoClassRevenue = {
+      carrilA: { classes: 10, totalCents: 100_000_000, commissionCents: 25_000_000 },
+      carrilB: { classes: 0, totalCents: 0, commissionCents: 0 },
+    };
+    const s = calculateResicoStatus(150_000_000, borderline, 200);
+    expect(s.classIncomeAllCarrilBCents).toBe(100_000_000);
+    expect(s.yearToDateIncomeCents).toBe(175_000_000); // 150M + 25M de comisión
+    expect(s.signal).toBe('GREEN'); // 50%: con todo como B serían 250M = 71% (amarillo)
+    expect(s.subscriptionIncomeCents + s.classIncomeAllCarrilBCents).toBe(250_000_000);
+  });
+
+  it('el ahorro de migrar B→A es el valor del Carril B menos su comisión', () => {
+    const s = calculateResicoStatus(0, spec, 250);
+    expect(s.migrationSavingsCents).toBe(34_400_000 - 8_600_000);
+  });
+
+  it('sin clases todo queda en cero y sin ahorro', () => {
+    const s = at(0);
+    expect(s.classIncomeCents).toBe(0);
+    expect(s.migrationSavingsCents).toBe(0);
+    expect(s.carrilA.classes + s.carrilB.classes).toBe(0);
+  });
+});
+
+describe('aggregateClassRevenue — la regla de qué cuenta en cada carril', () => {
+  const row = (over: Partial<ClassRevenueRow> = {}): ClassRevenueRow => ({
+    retainedCents: 30_000,
+    commissionCents: 7_500,
+    rail: 'ASIMILADOS',
+    ...over,
+  });
+
+  it('reparte cada clase a SU carril: COMISION_MERCANTIL = A, ASIMILADOS = B', () => {
+    const r = aggregateClassRevenue([
+      row({ rail: 'COMISION_MERCANTIL' }),
+      row({ rail: 'ASIMILADOS' }),
+      row({ rail: 'ASIMILADOS', retainedCents: 28_000, commissionCents: 7_000 }),
+    ]);
+    expect(r.carrilA).toEqual({ classes: 1, totalCents: 30_000, commissionCents: 7_500 });
+    expect(r.carrilB).toEqual({ classes: 2, totalCents: 58_000, commissionCents: 14_500 });
+  });
+
+  it('una clase totalmente reembolsada no aporta ni cuenta como clase', () => {
+    const r = aggregateClassRevenue([row({ retainedCents: 0, commissionCents: 0 }), row()]);
+    expect(r.carrilB.classes).toBe(1);
+    expect(r.carrilB.totalCents).toBe(30_000);
+  });
+
+  it('un reembolso PARCIAL cuenta lo retenido, con la comisión sellada sobre lo retenido', () => {
+    // Cancelación tardía: 50% devuelto, la fila sella la comisión sobre lo retenido.
+    const r = aggregateClassRevenue([row({ retainedCents: 15_000, commissionCents: 3_750 })]);
+    expect(r.carrilB).toEqual({ classes: 1, totalCents: 15_000, commissionCents: 3_750 });
+  });
+
+  it('la comisión se acota a lo retenido: un dato malo no infla el ingreso', () => {
+    const r = aggregateClassRevenue([row({ retainedCents: 1_000, commissionCents: 9_999, rail: 'COMISION_MERCANTIL' })]);
+    expect(r.carrilA.commissionCents).toBe(1_000);
+  });
+
+  it('rechaza centavos negativos o fraccionarios', () => {
+    for (const bad of [-1, 0.5, Number.NaN]) {
+      expect(() => aggregateClassRevenue([row({ retainedCents: bad })])).toThrow();
+      expect(() => aggregateClassRevenue([row({ commissionCents: bad })])).toThrow();
+    }
+  });
+
+  it('sin clases devuelve ceros', () => {
+    expect(aggregateClassRevenue([])).toEqual(NO_CLASSES);
   });
 });
 
@@ -94,12 +170,32 @@ describe('proyección al 31 de diciembre', () => {
   });
 });
 
+describe('referencia sin IVA (el techo se mide sin IVA)', () => {
+  it('divide entre 1.16, redondeando hacia abajo, y no cambia el color', () => {
+    const s = at(210_000_000); // 60.0% con IVA → amarillo
+    expect(s.yearToDateExcludingIvaCents).toBe(Math.floor((210_000_000 * 100) / 116));
+    expect(s.percentUsedExcludingIva).toBeLessThan(s.percentUsed);
+    expect(s.signal).toBe('YELLOW'); // el semáforo sigue el criterio conservador (con IVA)
+  });
+});
+
 describe('entradas inválidas (nunca un semáforo engañoso)', () => {
   it('rechaza centavos negativos, fraccionarios o NaN', () => {
     for (const bad of [-1, 1.5, Number.NaN]) {
       expect(() => calculateResicoStatus(bad, NO_CLASSES, 10)).toThrow();
-      expect(() => calculateResicoStatus(0, { ...NO_CLASSES, totalCents: bad }, 10)).toThrow();
+      expect(() =>
+        calculateResicoStatus(0, { ...NO_CLASSES, carrilB: { classes: 1, totalCents: bad, commissionCents: 0 } }, 10)
+      ).toThrow();
+      expect(() =>
+        calculateResicoStatus(0, { ...NO_CLASSES, carrilA: { classes: 1, totalCents: 1_000, commissionCents: bad } }, 10)
+      ).toThrow();
     }
+  });
+
+  it('una comisión mayor que el valor de sus clases es un dato imposible', () => {
+    expect(() =>
+      calculateResicoStatus(0, { ...NO_CLASSES, carrilA: { classes: 1, totalCents: 100, commissionCents: 101 } }, 10)
+    ).toThrow(/comisión/);
   });
 
   it('rechaza un día del año fuera de rango (evita dividir entre cero)', () => {

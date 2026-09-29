@@ -14,6 +14,7 @@ const LINKS = [
   { href: '/admin/boveda', label: 'Bóveda' },
   // Bloque 2 — marketplace de profesores (lectura: ADMIN; decisiones: maestro).
   { href: '/admin/profesores', label: 'Profesores' },
+  { href: '/admin/resico', label: 'RESICO' },
 ];
 
 export function AdminNav() {

@@ -1,14 +1,17 @@
 import { prisma } from './prisma';
 import {
+  aggregateClassRevenue,
   calculateResicoStatus,
   fiscalYearOf,
+  type ClassRevenueRow,
   type ResicoStatus,
 } from '@/lib/admin/resico-monitor';
 
 /**
  * Lee los ingresos COBRADOS del año fiscal en curso y los pasa al cálculo puro
- * del monitor RESICO. Base de efectivo: cuenta cuándo se cobró, no cuándo se
- * impartió la clase.
+ * del monitor RESICO (`src/lib/admin/resico-monitor.ts`, donde viven las reglas
+ * de qué cuenta en cada carril). Base de efectivo: cuenta cuándo se cobró, no
+ * cuándo se impartió la clase.
  *
  * Ingreso de una clase = lo cobrado menos lo que se DEBE devolver
  * (`refundDueCents`, que incluye lo ya reembolsado): un reembolso pendiente no es
@@ -33,30 +36,17 @@ export async function getResicoStatus(now: Date = new Date()): Promise<ResicoSta
     }),
   ]);
 
-  let total = 0;
-  let commission = 0;
-  const carrils = { A: 0, B: 0 };
-  const carrilA = { totalCents: 0, commissionCents: 0 };
-  for (const c of classes) {
-    const retained = Math.max(0, c.finalTariffCents - c.refundDueCents);
-    if (retained === 0) continue;
-    total += retained;
-    commission += c.commissionCents;
-    // Carril A = COMISION_MERCANTIL (factura y RFC propios); Carril B = ASIMILADOS.
-    if (c.teacher.paymentRail === 'COMISION_MERCANTIL') {
-      carrils.A += 1;
-      carrilA.totalCents += retained;
-      carrilA.commissionCents += c.commissionCents;
-    } else {
-      carrils.B += 1;
-    }
-  }
+  const rows: ClassRevenueRow[] = classes.map((c) => ({
+    retainedCents: Math.max(0, c.finalTariffCents - c.refundDueCents),
+    commissionCents: c.commissionCents,
+    rail: c.teacher.paymentRail,
+  }));
 
   return {
     year: fy.year,
     ...calculateResicoStatus(
       subscriptions._sum.amountMxn ?? 0,
-      { totalCents: total, commissionCents: commission, carrils, carrilA },
+      aggregateClassRevenue(rows),
       fy.dayOfYear,
       fy.daysInYear
     ),
