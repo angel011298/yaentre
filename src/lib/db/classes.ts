@@ -174,6 +174,7 @@ export interface TeacherClassView {
   canConfirm: boolean;
   canComplete: boolean;
   canDeclareStudentNoShow: boolean;
+  canCancel: boolean;
   joinUrl: string | null;
   willBeRecorded: boolean;
   rating: number | null;
@@ -191,6 +192,7 @@ export function toTeacherClassView(row: TeacherClassRow, now: Date): TeacherClas
     canConfirm: row.status === 'BOOKED' && now.getTime() < row.scheduledAt.getTime(),
     canComplete: row.status === 'CONFIRMED' && classCompletable(row.scheduledAt, row.durationMinutes, now),
     canDeclareStudentNoShow: row.status === 'CONFIRMED' && noShowDeclarable(row.scheduledAt, now),
+    canCancel: (row.status === 'BOOKED' || row.status === 'CONFIRMED') && now.getTime() < row.scheduledAt.getTime(),
     joinUrl: joinUrlFor(row, now),
     willBeRecorded: row.recordingConsent,
     rating: row.studentRating,

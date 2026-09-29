@@ -82,3 +82,25 @@ export const TEACHER_AGREEMENTS: readonly TeacherAgreement[] = [
     version: TEACHER_RECORDING_POLICY_VERSION,
   },
 ];
+
+/** Marca con la que se escriben los textos legales aún NO entregados por CLO. */
+const PLACEHOLDER_MARK = 'PLACEHOLDER';
+
+export function isPlaceholderText(body: string): boolean {
+  return body.trimStart().startsWith(PLACEHOLDER_MARK);
+}
+
+/**
+ * ¿Ya están los TRES textos legales definitivos? Mientras cualquiera siga siendo
+ * un placeholder, no se aceptan solicitudes: un profesor no puede firmar un
+ * contrato de comisión mercantil, un NDA y una política de grabación que todavía
+ * no existen. Se decide por el CONTENIDO —no por una variable de entorno—, así
+ * que se abre solo el día que CLO entrega los textos y alguien los reemplaza;
+ * nadie tiene que acordarse de encender nada.
+ */
+export function teacherLegalTextsFinal(agreements: readonly TeacherAgreement[] = TEACHER_AGREEMENTS): boolean {
+  return agreements.every((a) => !isPlaceholderText(a.body));
+}
+
+export const TEACHER_APPLICATIONS_CLOSED_MESSAGE =
+  'Estamos terminando los documentos legales del registro de profesores. Te avisaremos cuando puedas enviar tu solicitud.';

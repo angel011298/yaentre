@@ -44,7 +44,21 @@ export async function deleteAccountAction(
     return { status: 'error', message: 'Escribe tu correo exactamente para confirmar.' };
   }
 
-  await anonymizeAndDeletePersonalData(profileId);
+  const outcome = await anonymizeAndDeletePersonalData(profileId);
+  if (outcome === 'HAS_TEACHER_PROFILE') {
+    return {
+      status: 'error',
+      message:
+        'Tu cuenta tiene un perfil de profesor con datos fiscales y bancarios que debemos conservar. Escríbenos a soporte y cerramos tu perfil contigo.',
+    };
+  }
+  if (outcome === 'HAS_LIVE_CLASSES') {
+    return {
+      status: 'error',
+      message:
+        'Tienes clases reservadas. Cancélalas primero desde Mis clases (te devolvemos el pago según la política) y vuelve a intentar.',
+    };
+  }
 
   try {
     await getSupabaseAdmin().auth.admin.deleteUser(authUser.id);

@@ -103,7 +103,10 @@ export async function buildUserDataExport(
   };
 }
 
-export type DeleteAccountResult = 'OK' | 'NOT_FOUND';
+export type DeleteAccountResult = 'OK' | 'NOT_FOUND' | 'HAS_TEACHER_PROFILE' | 'HAS_LIVE_CLASSES';
+
+/** Estados de una clase que todavía compromete a alguien (dinero cobrado o una hora reservada). */
+const LIVE_CLASS_STATUSES = ['PENDING_PAYMENT', 'BOOKED', 'CONFIRMED', 'IN_PROGRESS'] as const;
 
 /**
  * Borra en cascada los datos PERSONALES/de comportamiento; el `UserProfile`
@@ -125,6 +128,23 @@ export async function anonymizeAndDeletePersonalData(
     select: { id: true },
   });
   if (!profile) return 'NOT_FOUND';
+
+  // Bloque 2 — la eliminación NO procede si dejaría algo a medias. Va DENTRO de
+  // esta función (y no solo en la acción) para que ningún otro llamador pueda
+  // anonimizar por encima de estas dos condiciones:
+  //  · un PROFESOR conserva CURP, CLABE y RFC, y sus liquidaciones/CFDI tienen
+  //    plazo de conservación fiscal: cerrar ese perfil es un proceso manual con
+  //    soporte, no un botón;
+  //  · un alumno con clases vivas tiene dinero cobrado y una hora reservada de
+  //    otra persona: primero se cancelan (con su reembolso).
+  const [teacher, liveClasses] = await Promise.all([
+    prisma.teacher.findUnique({ where: { userProfileId }, select: { id: true } }),
+    prisma.classSession.count({
+      where: { studentProfileId: userProfileId, status: { in: [...LIVE_CLASS_STATUSES] } },
+    }),
+  ]);
+  if (teacher) return 'HAS_TEACHER_PROFILE';
+  if (liveClasses > 0) return 'HAS_LIVE_CLASSES';
 
   await prisma.$transaction([
     prisma.examSession.deleteMany({ where: { userProfileId } }),

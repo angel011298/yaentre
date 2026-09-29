@@ -7,9 +7,11 @@ import { createTeacherApplication, updateOwnTeacher } from '@/lib/db/teachers';
 import { sendEmail } from '@/lib/email/client';
 import { teacherClabeChangedEmail } from '@/lib/email/templates';
 import {
+  TEACHER_APPLICATIONS_CLOSED_MESSAGE,
   TEACHER_CONTRACT_VERSION,
   TEACHER_NDA_VERSION,
   TEACHER_RECORDING_POLICY_VERSION,
+  teacherLegalTextsFinal,
 } from '@/lib/legal/teacher-texts';
 import { reportSilentDegradation } from '@/lib/observability/report';
 import { consumeRateLimit } from '@/lib/rate-limit/store';
@@ -124,6 +126,11 @@ export async function submitTeacherApplication(
   application: TeacherApplication,
   now: Date = new Date()
 ): Promise<{ teacherId: string }> {
+  // Sin los textos legales definitivos no se firma nada (ver `teacherLegalTextsFinal`).
+  if (!teacherLegalTextsFinal()) {
+    throw new MarketplaceError('MARKETPLACE_CLOSED', TEACHER_APPLICATIONS_CLOSED_MESSAGE);
+  }
+
   const gate = await consumeRateLimit('TEACHER_APPLY', actor.userProfileId);
   if (!gate.allowed) {
     throw new MarketplaceError('RATE_LIMIT', 'Enviaste varias solicitudes seguidas. Espera un momento y vuelve a intentar.');
