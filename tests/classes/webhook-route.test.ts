@@ -196,6 +196,16 @@ describe('webhook — pago de una clase', () => {
     expect(h.expireCalls).toEqual([]);
   });
 
+  it('un payment_intent.succeeded de una SUSCRIPCIÓN (sin metadata de clase) se ignora: 200 y sin efecto', async () => {
+    // Al suscribir el endpoint a este evento, también llegan los pagos de planes.
+    const res = await POST(signed(payload('evt_c13', 'payment_intent.succeeded', intent({ plan: 'PREMIUM' }))));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ status: 'ignored' });
+    expect(h.confirmCalls).toEqual([]);
+    expect(h.announced).toEqual([]);
+    expect(h.refunded).toEqual([]);
+  });
+
   it('con una firma inválida no se procesa nada', async () => {
     const body = payload('evt_c12', 'payment_intent.succeeded', intent());
     const bad = new Request('http://localhost/api/webhooks/stripe', {

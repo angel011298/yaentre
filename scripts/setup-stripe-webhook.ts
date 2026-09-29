@@ -32,6 +32,13 @@ const WEBHOOK_EVENTS: Stripe.WebhookEndpointCreateParams.EnabledEvent[] = [
   'checkout.session.async_payment_succeeded',
   'checkout.session.async_payment_failed',
   'customer.subscription.deleted',
+  // Bloque 2 (marketplace de profesores): el cobro de una clase confirma la
+  // reserva con `payment_intent.succeeded` y suelta el horario con
+  // `checkout.session.expired`. Sin estos DOS eventos en el endpoint, una clase
+  // pagada nunca pasa a BOOKED. Los pagos de suscripciones que también generan
+  // estos eventos caen en la rama `ignored` de `handleStripeEvent`.
+  'payment_intent.succeeded',
+  'checkout.session.expired',
 ];
 
 interface CliArgs {

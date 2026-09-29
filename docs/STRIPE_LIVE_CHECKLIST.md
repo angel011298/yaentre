@@ -303,7 +303,12 @@ ante Stripe. Pasos exactos:
    (ver sección 3 sobre qué URL usar) → eventos:
    `checkout.session.completed`, `checkout.session.async_payment_succeeded`,
    `checkout.session.async_payment_failed`, `customer.subscription.deleted`
-   (mismos 4 que `src/lib/stripe/webhook.ts` enruta). Copia el signing
+   (mismos 4 que `src/lib/stripe/webhook.ts` enruta) **y, antes de abrir el
+   marketplace de profesores (Bloque 2), `payment_intent.succeeded` y
+   `checkout.session.expired`**: sin ellos el cobro de una clase nunca la pasa
+   a BOOKED ni se suelta el horario de una reserva abandonada. Con esos dos
+   eventos, las compras de suscripción también los emiten y caen en la rama
+   `ignored` de `handleStripeEvent` (200, sin efecto). Copia el signing
    secret (`whsec_...`) que Stripe muestra **una sola vez**.
 
 ### 2.4 Variables de entorno en Vercel (producción)
