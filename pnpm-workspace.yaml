@@ -35,10 +35,10 @@ verifyDepsBeforeRun: false
 # pnpm) para no cruzarlas, CON techo de mayor en el valor — la falta de techo
 # fue la causa real del cruce (ver punto 2), no el selector en sí.
 overrides:
-  fast-uri: '^4.1.2'
+  fast-uri: '^4.1.4'
   dompurify: '^3.4.13'
   postcss: '^8.5.18'
-  sharp: '^0.35.0'
+  sharp: '^0.35.4'
   minimatch@3.1.5>brace-expansion: '^1.1.18'
   minimatch@10.2.5>brace-expansion: '^5.0.9'
   undici: '^7.29.0'

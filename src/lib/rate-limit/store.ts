@@ -201,6 +201,25 @@ export const RATE_LIMITS = {
    * sesión robada tirando del CSV.
    */
   FISCAL_READ: { limit: 120, windowSecs: 3600 },
+
+  /**
+   * Programa de referidos (por PERFIL). Generar el código es idempotente, así que
+   * 20 por hora solo acota un bucle; las lecturas del tablero son consultas
+   * baratas pero recorren el historial; el QR se compone en el servidor (CPU), por
+   * eso su tope es el más bajo.
+   */
+  REFERRAL_GENERATE: { limit: 20, windowSecs: 3600 },
+  REFERRAL_READ: { limit: 240, windowSecs: 3600 },
+  REFERRAL_QR: { limit: 30, windowSecs: 3600 },
+
+  /**
+   * Administración de referidos: suspender, reactivar y resolver marcas de
+   * antifraude (por admin). 60 por hora es holgadísimo para revisión manual y
+   * acota el daño de una sesión de admin comprometida. Las lecturas de las
+   * pestañas llevan su propio tope.
+   */
+  ADMIN_REFERRAL_ACTION: { limit: 60, windowSecs: 3600 },
+  ADMIN_REFERRAL_READ: { limit: 120, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

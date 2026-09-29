@@ -8,6 +8,9 @@ import { getPlanPricing } from '@/lib/stripe/pricing';
 import { isSalesOpen } from '@/lib/stripe/sales-gate';
 import { isMarketplaceOpen } from '@/lib/marketplace/marketplace-gate';
 import { trackServerEvent } from '@/lib/analytics/server';
+import { getAvailableCreditCents } from '@/lib/db/referrals';
+import { formatMxnExact } from '@/lib/format/money';
+import { reportControlFailure } from '@/lib/observability/report';
 
 const VALID_TRIGGERS: readonly PaywallTrigger[] = [
   'FULL_SIMULATION_LIMIT',
@@ -54,14 +57,39 @@ export default async function PaywallPage({
 
   await trackServerEvent(profile.id, 'paywall_shown', { trigger });
 
+  // Bloque 3: si la persona tiene crédito de referidos, se le dice ANTES de pagar
+  // que se aplica solo. Solo con la venta abierta (con ella cerrada no hay pago
+  // al que aplicarlo) y sin poder romper la pantalla: si la consulta falla, el
+  // aviso simplemente no sale — y queda reportado, porque el checkout sí volverá
+  // a consultarlo al pagar.
+  let creditCents = 0;
+  if (salesOpen) {
+    try {
+      creditCents = await getAvailableCreditCents(profile.id);
+    } catch (err) {
+      reportControlFailure('referral_credit', 'degraded', err, { stage: 'paywall' });
+    }
+  }
+
   return (
-    <PaywallScreen
+    <>
+      {creditCents > 0 && (
+        <p
+          role="status"
+          className="mx-auto mb-4 max-w-3xl rounded-lg border border-border-subtle bg-surface p-4 text-sm text-text-secondary"
+        >
+          Tienes <strong className="text-text-primary">{formatMxnExact(creditCents)}</strong> de crédito de referidos. Se
+          aplica solo al pagar Básico o Premium, hasta el tope de cada compra.
+        </p>
+      )}
+      <PaywallScreen
       trigger={trigger}
       returnTo={returnTo}
       pricing={pricing}
       earlyBirdRemaining={earlyBirdRemaining}
       salesOpen={salesOpen}
       marketplaceOpen={isMarketplaceOpen()}
-    />
+      />
+    </>
   );
 }

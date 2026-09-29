@@ -14,6 +14,8 @@ const LINKS = [
   { href: '/admin/boveda', label: 'Bóveda' },
   // Bloque 2 — marketplace de profesores (lectura: ADMIN; decisiones: maestro).
   { href: '/admin/profesores', label: 'Profesores' },
+  // Bloque 3 — programa de referidos (lectura: ADMIN; decisiones: maestro).
+  { href: '/admin/referidos', label: 'Referidos' },
   // Bloque 3 — zonas de personal fuera de /admin (las ve también el contador / soporte).
   { href: '/fiscal', label: 'Fiscal' },
   { href: '/soporte', label: 'Soporte' },

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { requireUser } from '@/lib/auth/guards';
 import { loadCareerOptions, loadPlanStatus, loadProfileOverview } from '@/lib/db/profile';
 import { loadMasteredSubjectBadges } from '@/lib/db/gamification';
@@ -109,6 +110,19 @@ export default async function PerfilPage() {
       <PlanSection status={planStatus} />
 
       <ProfileBadges masteredSubjects={masteredSubjects} otherBadges={otherBadges} />
+
+      <Card className="p-5">
+        <p className="text-sm font-semibold text-text-primary">Invita y gana</p>
+        <p className="mt-1 text-sm text-text-secondary">
+          Comparte tu enlace y gana crédito cuando alguien compre con él.
+        </p>
+        <Link
+          href="/app/invitar"
+          className="mt-3 inline-flex min-h-touch items-center rounded-md border border-border-subtle px-4 text-sm font-medium hover:bg-elevated"
+        >
+          Ver mi enlace y mi crédito
+        </Link>
+      </Card>
 
       <ParentLinkCard />
 

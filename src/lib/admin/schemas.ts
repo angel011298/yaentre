@@ -177,3 +177,30 @@ export type CreateNoteInput = z.input<typeof createNoteSchema>;
 
 export const deleteNoteSchema = z.object({ noteId: cuidSchema });
 export type DeleteNoteInput = z.input<typeof deleteNoteSchema>;
+
+// ── Programa de referidos (Bloque 3) ───────────────────────────────────────
+//
+// Las acciones sobre un referidor o una venta reciben a QUÉ afectan (`referralId`
+// = el código; `saleId` = la venta): no hay forma de derivarlo del guard, porque
+// el objetivo NO es quien actúa. Cumplen las mismas cuatro condiciones de la
+// excepción autorizada de G99 (arriba) y exigen admin MAESTRO — suspender a un
+// referidor retiene su crédito y confirmar un fraude lo anula, igual de
+// consecuente que regalar un plan.
+
+const referralCuidSchema = z
+  .string()
+  .trim()
+  .regex(/^c[a-z0-9]{24,31}$/, 'Identificador de referido inválido.');
+
+export const adminReferralCodeSchema = z.object({
+  referralId: referralCuidSchema,
+  reason: reasonSchema,
+});
+export type AdminReferralCodeInput = z.input<typeof adminReferralCodeSchema>;
+
+export const adminResolveFlagSchema = z.object({
+  saleId: referralCuidSchema,
+  decision: z.enum(['CLEAR', 'CONFIRM']),
+  reason: reasonSchema,
+});
+export type AdminResolveFlagInput = z.input<typeof adminResolveFlagSchema>;

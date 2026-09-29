@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { requireUser } from '@/lib/auth/guards';
 import { loadLinkedStudents, loadParentDashboardData } from '@/lib/db/parent';
 import { isNotificationTypeEnabled } from '@/lib/db/notifications';
@@ -69,6 +70,12 @@ export default async function TutorPage({
 
         <div className="border-t border-border-subtle pt-6">
           <LinkCodeForm />
+        </div>
+
+        <div className="border-t border-border-subtle pt-6">
+          <Link href="/tutor/invitar" className="text-sm font-semibold text-brand underline">
+            Invita y gana: comparte YaEntre y recibe crédito →
+          </Link>
         </div>
       </div>
     </ParentShell>
