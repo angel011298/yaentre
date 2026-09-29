@@ -27,6 +27,29 @@ export async function buildUserDataExport(
   });
   if (!profile) return null;
 
+  // Programa de referidos (Bloque 3). Solo datos DE ESTA PERSONA: su código, su
+  // crédito y las fechas y montos de sus propias ventas. Nada del comprador
+  // —ni nombre, ni correo, ni id— y nada de las marcas de antifraude.
+  const ownCode = await prisma.referralCode.findUnique({
+    where: { userProfileId_type: { userProfileId, type: 'REFERIDO' } },
+    select: { id: true, code: true, active: true, createdAt: true },
+  });
+  const [creditLots, referralSales, referredBy] = await Promise.all([
+    prisma.referralCreditLot.findMany({
+      where: { userProfileId },
+      orderBy: { accruedAt: 'asc' },
+      select: { amountCents: true, remainingCents: true, accruedAt: true, expiresAt: true, revokedAt: true },
+    }),
+    ownCode
+      ? prisma.referralSale.findMany({
+          where: { referralCodeId: ownCode.id },
+          orderBy: { createdAt: 'asc' },
+          select: { createdAt: true, commissionAmount: true, status: true, accruedAt: true, reversedAt: true },
+        })
+      : Promise.resolve([]),
+    prisma.userProfile.findUnique({ where: { id: userProfileId }, select: { referredByCodeId: true } }),
+  ]);
+
   return {
     exportedAt: new Date().toISOString(),
     cuenta: {
@@ -100,6 +123,24 @@ export async function buildUserDataExport(
       tutoresVinculados: profile.asStudentLinks.length,
       alumnosVinculados: profile.asParentLinks.length,
     },
+    programaDeReferidos: {
+      codigo: ownCode ? { valor: ownCode.code, activo: ownCode.active, creadoEl: ownCode.createdAt } : null,
+      llegasteConUnCodigoDeReferido: referredBy?.referredByCodeId != null,
+      credito: creditLots.map((l) => ({
+        montoCentavos: l.amountCents,
+        saldoCentavos: l.remainingCents,
+        acreditadoEl: l.accruedAt,
+        venceEl: l.expiresAt,
+        revocado: l.revokedAt !== null,
+      })),
+      ventasAtribuidas: referralSales.map((v) => ({
+        fecha: v.createdAt,
+        comisionCentavos: v.commissionAmount,
+        estado: v.status,
+        acreditadaEl: v.accruedAt,
+        revertidaEl: v.reversedAt,
+      })),
+    },
   };
 }
 
@@ -156,6 +197,16 @@ export async function anonymizeAndDeletePersonalData(
     prisma.parentLink.deleteMany({
       where: { OR: [{ parentProfileId: userProfileId }, { studentProfileId: userProfileId }] },
     }),
+    // Programa de referidos (Bloque 3): el código deja de atribuir y el crédito
+    // que quedaba se pierde con la cuenta (es un descuento, no dinero: no hay a
+    // quién devolverlo). Las FILAS de venta se conservan —registran lo que pasó
+    // y no llevan datos personales del comprador— y `referredByCodeId` se borra
+    // porque «a quién le debo mi registro» sí es un dato de la persona.
+    prisma.referralCode.updateMany({ where: { userProfileId }, data: { active: false } }),
+    prisma.referralCreditLot.updateMany({
+      where: { userProfileId, revokedAt: null, remainingCents: { gt: 0 } },
+      data: { revokedAt: new Date(), remainingCents: 0 },
+    }),
     prisma.userProfile.update({
       where: { id: userProfileId },
       data: {
@@ -164,6 +215,7 @@ export async function anonymizeAndDeletePersonalData(
         targetExamId: null,
         targetCareerId: null,
         badges: [],
+        referredByCodeId: null,
       },
     }),
   ]);

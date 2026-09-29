@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
 import { Prisma, type PricingSeason, type SubscriptionPlan } from '@prisma/client';
 import { prisma } from './prisma';
-import { reportSilentDegradation } from '@/lib/observability/report';
+import { reportControlFailure, reportSilentDegradation } from '@/lib/observability/report';
 import { computeExpiresAt } from '@/lib/stripe/expiry';
 import {
   currentSeason,
@@ -16,6 +16,12 @@ import type {
 } from '@/lib/stripe/webhook';
 import { reconcileCheckoutSession, type ReconcileOutcome } from '@/lib/stripe/reconciliation';
 import { trackServerEvent } from '@/lib/analytics/server';
+import {
+  attachRedemptionToSubscriptionTx,
+  consumeRedemptionTx,
+  recordReferralSaleSafely,
+  releaseRedemptionForSubscriptionTx,
+} from './referrals';
 
 /**
  * Capa de datos de facturación (F8): implementación real (prisma-backed) del
@@ -236,6 +242,8 @@ export const billingStore: BillingStore = {
     // se lee fresco en cada punto.
     const tracked: {
       value: {
+        subscriptionId: string;
+        creditWasReleased: boolean;
         userProfileId: string;
         plan: SubscriptionPlan;
         season: PricingSeason;
@@ -276,9 +284,19 @@ export const billingStore: BillingStore = {
         },
       });
 
-      if (!outcome || !outcome.activated) return;
+      if (!outcome) return;
+
+      // Bloque 3 — el crédito de referidos apartado para ESTE checkout pasa a
+      // gastado en la MISMA transacción que activa el plan: o ambas cosas o
+      // ninguna. Va aunque el plan ya estuviera activo (reintento): consumir es
+      // idempotente y un apartado que quedara RESERVED bloquearía saldo real.
+      const credit = await consumeRedemptionTx(tx, found.id, now);
+
+      if (!outcome.activated) return;
 
       tracked.value = {
+        subscriptionId: outcome.subscriptionId,
+        creditWasReleased: credit === 'was_released',
         userProfileId: outcome.userProfileId,
         plan: outcome.plan,
         season: outcome.season,
@@ -291,6 +309,19 @@ export const billingStore: BillingStore = {
 
     const t = tracked.value;
     if (result === 'applied' && t) {
+      // Bloque 3 — DESPUÉS del commit y sin poder lanzar: el plan ya está activo
+      // y no se revierte por un fallo del programa de referidos. Si esto falla se
+      // reporta (`referral_sale`) y el respaldo diario lo recoge.
+      if (t.creditWasReleased) {
+        reportControlFailure(
+          'referral_credit',
+          'degraded',
+          new Error('El pago se confirmó sobre un apartado de crédito que ya se había devuelto'),
+          { subscriptionId: t.subscriptionId }
+        );
+      }
+      await recordReferralSaleSafely(t.subscriptionId);
+
       await trackServerEvent(t.userProfileId, 'purchase_completed', {
         plan: t.plan,
         season: t.season,
@@ -347,6 +378,10 @@ export const billingStore: BillingStore = {
         where: { subscriptionId: sub.id, status: 'PENDING' },
         data: { status: 'FAILED' },
       });
+
+      // Bloque 3 — el pago no ocurrió: el crédito de referidos apartado para este
+      // checkout vuelve a sus lotes, en la misma transacción.
+      await releaseRedemptionForSubscriptionTx(tx, sub.id, 'checkout_failed', new Date());
     });
   },
 
@@ -384,18 +419,31 @@ export async function createPendingSubscription(input: {
   art56ConsentAt?: Date;
   art56ConsentVersion?: string;
   stripeCustomerId?: string | null;
+  /** Bloque 3: el crédito de referidos apartado para este checkout, si lo hay. */
+  creditRedemptionId?: string | null;
 }): Promise<void> {
-  await prisma.subscription.create({
-    data: {
-      userProfileId: input.userProfileId,
-      plan: input.plan,
-      season: input.season,
-      status: 'PENDING',
-      art56ConsentAt: input.art56ConsentAt ?? undefined,
-      art56ConsentVersion: input.art56ConsentVersion ?? undefined,
-      stripeCheckoutSessionId: input.checkoutSessionId,
-      stripeCustomerId: input.stripeCustomerId ?? undefined,
-    },
+  const data = {
+    userProfileId: input.userProfileId,
+    plan: input.plan,
+    season: input.season,
+    status: 'PENDING' as const,
+    art56ConsentAt: input.art56ConsentAt ?? undefined,
+    art56ConsentVersion: input.art56ConsentVersion ?? undefined,
+    stripeCheckoutSessionId: input.checkoutSessionId,
+    stripeCustomerId: input.stripeCustomerId ?? undefined,
+  };
+
+  if (!input.creditRedemptionId) {
+    await prisma.subscription.create({ data });
+    return;
+  }
+
+  // Con crédito: la fila PENDING y su unión con el apartado nacen juntas. Sin la
+  // unión, el webhook no sabría qué apartado consumir ni qué liberar.
+  const redemptionId = input.creditRedemptionId;
+  await prisma.$transaction(async (tx) => {
+    const sub = await tx.subscription.create({ data, select: { id: true } });
+    await attachRedemptionToSubscriptionTx(tx, redemptionId, sub.id);
   });
 }
 

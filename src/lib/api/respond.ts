@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { AuthError } from '@/lib/auth/errors';
 import { MarketplaceError } from '@/lib/classes/errors';
-import { reportSilentDegradation } from '@/lib/observability/report';
+import { reportSilentDegradation, type DegradationArea } from '@/lib/observability/report';
 
 /**
  * Respuestas JSON de los Route Handlers del marketplace — Bloque 2.
@@ -34,7 +34,11 @@ export function jsonError(code: string, message: string, status: number, extra?:
  * reporta a Sentry: un 500 que solo vive en un log de Vercel es justo el patrón
  * de G73b.
  */
-export function errorResponse(err: unknown, context: Record<string, unknown> = {}): NextResponse {
+export function errorResponse(
+  err: unknown,
+  context: Record<string, unknown> = {},
+  area: DegradationArea = 'marketplace_api'
+): NextResponse {
   if (err instanceof AuthError) {
     // 404 en lugar de 403 lo decide cada ruta cuando conviene no confirmar que
     // el recurso existe; el resto usa el código del guard.
@@ -48,7 +52,7 @@ export function errorResponse(err: unknown, context: Record<string, unknown> = {
     return jsonError('VALIDATION', err.issues[0]?.message ?? 'Datos inválidos.', 400);
   }
 
-  reportSilentDegradation('marketplace_api', err, context);
+  reportSilentDegradation(area, err, context);
   return jsonError('UNKNOWN', 'Algo salió mal. Intenta de nuevo en un momento.', 500);
 }
 

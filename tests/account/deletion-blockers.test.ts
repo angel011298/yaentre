@@ -30,6 +30,8 @@ vi.mock('@/lib/db/prisma', () => {
       notificationPreference: { deleteMany: del('notificationPreference') },
       parentLinkCode: { deleteMany: del('parentLinkCode') },
       parentLink: { deleteMany: del('parentLink') },
+      referralCode: { updateMany: del('referralCode') },
+      referralCreditLot: { updateMany: del('referralCreditLot') },
       $transaction: async (ops: unknown[]) => Promise.all(ops),
     },
   };
@@ -48,6 +50,12 @@ describe('eliminar cuenta — Bloque 2', () => {
   it('sin profesor ni clases vivas se anonimiza como siempre', async () => {
     expect(await anonymizeAndDeletePersonalData('ckp')).toBe('OK');
     expect(h.writes).toContain('userProfile.update');
+  });
+
+  it('al anonimizar, el código de referido deja de atribuir y el crédito sobrante se pierde con la cuenta', async () => {
+    expect(await anonymizeAndDeletePersonalData('ckp')).toBe('OK');
+    expect(h.writes).toContain('referralCode');
+    expect(h.writes).toContain('referralCreditLot');
   });
 
   it('un PROFESOR no se anonimiza: conserva datos fiscales y bancarios, y NO se escribe nada', async () => {

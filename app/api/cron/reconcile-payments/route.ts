@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { isAuthorizedCronRequest } from '@/lib/cron/auth';
 import { runPaymentReconciliation } from '@/lib/db/billing';
+import { runReferralJobs, stripeRefundLookup } from '@/lib/db/referral-jobs';
+import { getStripe } from '@/lib/stripe/client';
 
 /**
  * Cron diario de reconciliación de pagos (F22 — edge case documentado desde
@@ -22,8 +24,25 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    const summary = await runPaymentReconciliation(new Date());
-    return NextResponse.json({ ok: true, ...summary });
+    const now = new Date();
+    const summary = await runPaymentReconciliation(now);
+
+    // Bloque 3: el programa de referidos corre DESPUÉS de reconciliar los pagos
+    // (un cobro rescatado ya puede generar su venta atribuida) y aislado: su
+    // fallo no invalida el resultado de la reconciliación, pero SÍ se ve — un
+    // paso que falló responde 500 y no un `accrued: 0` limpio (G73b).
+    let stripeDeps = null;
+    try {
+      stripeDeps = process.env.STRIPE_SECRET_KEY ? stripeRefundLookup(getStripe()) : null;
+    } catch {
+      stripeDeps = null;
+    }
+    const referrals = await runReferralJobs(now, stripeDeps);
+
+    return NextResponse.json(
+      { ok: referrals.failedSteps.length === 0, ...summary, referrals },
+      { status: referrals.failedSteps.length === 0 ? 200 : 500 }
+    );
   } catch (err) {
     // Seguro de re-ejecutar: cada activación pasa por `runIdempotent` +
     // la guarda `status !== 'ACTIVE'`, así que un reintento tras un fallo

@@ -137,6 +137,8 @@ function isPrivateStaffPath(pathname) {
     pathname.startsWith('/r/') ||
     pathname === '/app/invitar' ||
     pathname.startsWith('/app/invitar/') ||
+    pathname === '/tutor/invitar' ||
+    pathname.startsWith('/tutor/invitar/') ||
     pathname.startsWith('/api/referrals/')
   );
 }

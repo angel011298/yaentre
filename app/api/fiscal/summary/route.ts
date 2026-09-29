@@ -28,6 +28,6 @@ export async function GET(request: Request) {
 
     return jsonOk(await getFiscalSnapshot(year.year, now));
   } catch (err) {
-    return errorResponse(err, { route: 'fiscal.summary' });
+    return errorResponse(err, { route: 'fiscal.summary' }, 'staff_api');
   }
 }

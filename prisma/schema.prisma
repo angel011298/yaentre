@@ -538,9 +538,26 @@ model UserProfile {
   adminFiles        AdminFile[]     @relation("AdminFileUploader")
   adminNotes        AdminNote[]     @relation("AdminNoteAuthor")
 
+  // Programa de referidos (Bloque 3, ESPECIFICACION_QR_COMISIONES §3). Nivel 1:
+  // el crédito no es efectivo, así que ninguna de estas filas es un pago.
+  //   · `referredByCodeId`: a QUÉ código de referido se debe el registro. Se
+  //     escribe SOLO al crear el perfil (first-touch wins: nunca se
+  //     sobreescribe) y se pone en NULL al eliminar el código, no al revés.
+  //   · `referralCode`: el código PROPIO de esta persona (uno por tipo).
+  //   · `referralCreditLots`/`referralRedemptions`: el libro del crédito ganado
+  //     y gastado. Con Cascade: son datos de la persona y no un registro fiscal
+  //     (un descuento comercial no es ingreso). El borrado de cuenta ANONIMIZA
+  //     el perfil, así que en la práctica nada se elimina en cascada.
+  referredByCodeId    String?
+  referredByCode      ReferralCode?              @relation("ReferredByCode", fields: [referredByCodeId], references: [id], onDelete: SetNull)
+  referralCodes       ReferralCode[]             @relation("ReferralCodeOwner")
+  referralCreditLots  ReferralCreditLot[]        @relation("ReferralCreditOwner")
+  referralRedemptions ReferralCreditRedemption[] @relation("ReferralCreditRedeemer")
+
   createdAt DateTime @default(now())
 
   @@index([userId])
+  @@index([referredByCodeId])
   @@map("user_profiles")
 }
 
@@ -1193,4 +1210,170 @@ model TeacherPayout {
   @@index([status])
   @@index([periodEnd])
   @@map("teacher_payouts")
+}
+
+// ──────────────── PROGRAMA DE REFERIDOS (Bloque 3) ────────────────
+//
+// Tres niveles, separados por CÓMO se paga (ESPECIFICACION_QR_COMISIONES §2).
+// Solo el NIVEL 1 (Referido, en CRÉDITO) está activo. Los campos de Embajador y
+// Aliado existen porque el modelo de la spec (§3.1) los pide, pero NINGÚN
+// código los escribe: el efectivo espera al contador, igual que el marketplace.
+//
+//   · Un código REFERIDO se genera solo, para cualquier alumno o tutor.
+//   · La venta atribuida nace PENDING y entra a un periodo antifraude de 7
+//     días; pasado el periodo, sin reembolso ni marca, se ACREDITA y se abre un
+//     LOTE de crédito de $150 que vence a los 12 meses.
+//   · El crédito NO se canjea por efectivo: solo baja el precio de la siguiente
+//     compra, y jamás por debajo del piso de $500 netos (commission.ts).
+//
+// 🔒 Las cuatro tablas son de SOLO SERVIDOR (RLS sin política + REVOKE en la
+// migración 0023): la app las lee y escribe únicamente por Prisma.
+
+enum ReferralType {
+  REFERIDO // Nivel 1 — crédito, cualquier usuario
+  EMBAJADOR // Nivel 2 — efectivo, adultos con RFC. ⛔ Inactivo (espera al contador)
+  ALIADO // Nivel 3 — B2B. ⛔ Inactivo (fase 2)
+}
+
+enum CommissionType {
+  CREDIT
+  CASH // ⛔ Sin uso hasta el Nivel 2
+}
+
+enum CommissionStatus {
+  PENDING // Venta completada; en periodo antifraude (7 días) o retenida por una marca
+  ACCRUED // Acreditada: el lote de crédito existe
+  PAID // Efectivo transferido (solo CASH)
+  REVERSED // Revertida: reembolso, fraude o autocompra
+}
+
+enum CreditRedemptionStatus {
+  RESERVED // El checkout tiene el crédito apartado
+  CONSUMED // El pago se confirmó por webhook: el crédito se gastó
+  RELEASED // El pago no ocurrió: el crédito volvió a sus lotes
+}
+
+model ReferralCode {
+  id   String @id @default(cuid())
+  code String @unique // MAYÚSCULAS, siempre
+
+  // La spec (§3.1) escribe `userId` con relación a `User`; en este proyecto la
+  // cuenta es `UserProfile` (su `userId` es el UID de Supabase Auth). Nulable
+  // porque un Aliado B2B no es un usuario registrado.
+  userProfileId String?
+  userProfile   UserProfile? @relation("ReferralCodeOwner", fields: [userProfileId], references: [id], onDelete: SetNull)
+
+  type      ReferralType @default(REFERIDO)
+  active    Boolean      @default(true)
+  createdAt DateTime     @default(now())
+
+  // Suspensión (admin): detiene la atribución NUEVA y RETIENE —no cancela— las
+  // comisiones pendientes hasta que el admin decida.
+  suspendedAt     DateTime?
+  suspendedReason String?
+
+  // Solo Embajador/Aliado. ⛔ Ningún código los escribe en esta fase.
+  holderName  String?
+  holderRfc   String?
+  holderClabe String?
+  paymentRail TeacherPaymentRail? // la spec lo llama `PaymentRail`; es el mismo par de valores que el del profesor
+
+  sales         ReferralSale[]
+  referredUsers UserProfile[]  @relation("ReferredByCode")
+
+  // Una persona tiene UN código por tipo. Cierra la carrera de dos clics que
+  // generan el código a la vez (el segundo INSERT viola el único y se lee el ya
+  // creado). Los NULL (Aliados) no colisionan entre sí en Postgres.
+  @@unique([userProfileId, type])
+  @@index([userProfileId])
+  @@map("referral_codes")
+}
+
+model ReferralSale {
+  id             String       @id @default(cuid())
+  referralCodeId String
+  referralCode   ReferralCode @relation(fields: [referralCodeId], references: [id])
+
+  // El id de la compra: `Subscription.id`. ÚNICO: una compra produce a lo sumo
+  // UNA venta atribuida, así que reprocesar el webhook o correr el respaldo
+  // diario dos veces jamás duplica una comisión.
+  purchaseId String @unique
+
+  // Sin clave foránea, igual que `AdminAuditLog.targetUserProfileId`: es un
+  // registro de lo que pasó y debe sobrevivir aunque la cuenta se elimine.
+  buyerProfileId String
+
+  saleAmount       Int // lo que el comprador PAGÓ, en centavos (ya con su crédito descontado)
+  commissionAmount Int // centavos ($150 = 15000). 0 en una venta bloqueada
+  commissionType   CommissionType
+  status           CommissionStatus @default(PENDING)
+
+  createdAt     DateTime  @default(now())
+  accrueAfter   DateTime // fin del periodo antifraude (cobro + 7 días)
+  accruedAt     DateTime?
+  paidAt        DateTime?
+  reversedAt    DateTime?
+  reverseReason String?
+
+  // Antifraude. `fraudFlag` guarda las marcas separadas por coma. Una marca
+  // BLANDA retiene la acreditación hasta que un admin la resuelve
+  // (`fraudClearedAt` = falsa alarma); una DURA (autocompra) nace REVERSED.
+  fraudFlag      String?
+  fraudClearedAt DateTime?
+
+  creditLot ReferralCreditLot?
+
+  @@index([referralCodeId, createdAt])
+  @@index([buyerProfileId])
+  @@index([status, accrueAfter])
+  @@index([fraudFlag])
+  @@map("referral_sales")
+}
+
+// UN lote por venta acreditada. `remainingCents` baja al reservar crédito en un
+// checkout y vuelve a subir si ese checkout se libera. El lote que vence lo
+// hace por fecha: no hay job que lo borre.
+model ReferralCreditLot {
+  id String @id @default(cuid())
+
+  userProfileId String
+  userProfile   UserProfile @relation("ReferralCreditOwner", fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  saleId String       @unique
+  sale   ReferralSale @relation(fields: [saleId], references: [id])
+
+  amountCents    Int
+  remainingCents Int
+  accruedAt      DateTime
+  expiresAt      DateTime // acreditación + 12 meses
+  revokedAt      DateTime? // la venta se revirtió después de acreditarse
+  createdAt      DateTime  @default(now())
+
+  @@index([userProfileId, expiresAt])
+  @@map("referral_credit_lots")
+}
+
+// El crédito apartado por UN checkout. `allocations` = [{ lotId, cents }], de
+// dónde salió cada centavo, para poder devolverlo a su lote si el pago no
+// ocurre. `subscriptionId` (sin clave foránea) lo une a la Subscription PENDING
+// del mismo checkout: el webhook consume, o el fallo/expiración libera, por ahí.
+model ReferralCreditRedemption {
+  id String @id @default(cuid())
+
+  userProfileId String
+  userProfile   UserProfile @relation("ReferralCreditRedeemer", fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  subscriptionId String?                @unique
+  amountCents    Int
+  allocations    Json
+  status         CreditRedemptionStatus @default(RESERVED)
+
+  createdAt     DateTime  @default(now())
+  consumedAt    DateTime?
+  releasedAt    DateTime?
+  releaseReason String?
+
+  @@index([userProfileId, status])
+  @@index([status, createdAt])
+  @@map("referral_credit_redemptions")
 }

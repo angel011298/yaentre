@@ -8,6 +8,13 @@ import { getSiteUrl } from '@/lib/auth/site-url';
 import { getStripe } from '@/lib/stripe/client';
 import { getPlanPricing, stripePriceEnvVar } from '@/lib/stripe/pricing';
 import { createPendingSubscription, resolveEffectiveSeason } from '@/lib/db/billing';
+import {
+  buyerIsAttributed,
+  getAvailableCreditCents,
+  releaseRedemptionById,
+  reserveCredit,
+} from '@/lib/db/referrals';
+import { isReferralEligiblePlan, maxCreditApplicableCents } from '@/lib/referrals/commission';
 import type { ActionResult } from '@/lib/sessions/schemas';
 import { trackServerEvent } from '@/lib/analytics/server';
 import { reportControlFailure } from '@/lib/observability/report';
@@ -148,6 +155,50 @@ export async function startCheckoutAction(
   const pricing = getPlanPricing(plan, season);
   const site = getSiteUrl();
 
+  // ── Bloque 3: crédito de referidos ──
+  // Solo Básico y Premium (pago único). Se aparta ANTES de hablar con Stripe y el
+  // tope de $500 netos lo decide `maxCreditApplicableCents`, que además deja
+  // espacio para la comisión que esta misma compra generará si el comprador vino
+  // de un referidor. Si el crédito no se puede consultar o apartar, NO se cobra el
+  // precio completo por la libre: el alumno espera un descuento y se le dice que
+  // no se pudo aplicar.
+  let credit: { redemptionId: string; reservedCents: number } | null = null;
+  if (isReferralEligiblePlan(plan)) {
+    try {
+      const available = await getAvailableCreditCents(profileId, now);
+      if (available > 0) {
+        const cap = maxCreditApplicableCents({
+          plan,
+          priceCents: pricing.amountMxn,
+          availableCents: available,
+          sellsWithCommission: await buyerIsAttributed(profileId),
+        });
+        if (cap > 0) credit = await reserveCredit(profileId, cap, now);
+      }
+    } catch (err) {
+      reportControlFailure('referral_credit', 'fail-closed', err, { userProfileId: profileId, stage: 'reserve' });
+      return {
+        ok: false,
+        code: 'DB',
+        message: 'No pudimos aplicar tu crédito de referidos. Intenta de nuevo en un momento.',
+      };
+    }
+  }
+  const creditCents = credit?.reservedCents ?? 0;
+  const chargeCents = pricing.amountMxn - creditCents;
+
+  /** El pago no va a ocurrir: el crédito apartado vuelve a sus lotes. Nunca lanza. */
+  const giveCreditBack = async (reason: string): Promise<void> => {
+    if (!credit) return;
+    try {
+      await releaseRedemptionById(credit.redemptionId, reason);
+    } catch (err) {
+      // Si esto falla el crédito queda apartado; la red de seguridad diaria lo
+      // libera a los 4 días, pero mientras tanto el saldo se ve menor.
+      reportControlFailure('referral_credit', 'degraded', err, { redemptionId: credit.redemptionId, stage: reason });
+    }
+  };
+
   // Tarjeta siempre; OXXO/SPEI solo en pagos únicos (no recurring).
   const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] =
     pricing.isRecurring ? ['card'] : ['card', 'oxxo', 'customer_balance'];
@@ -173,6 +224,7 @@ export async function startCheckoutAction(
       stripeCustomerId = customer.id;
     } catch (err) {
       console.error('[checkout] No se pudo crear el Customer de Stripe', err);
+      await giveCreditBack('customer_failed');
       return { ok: false, code: 'STRIPE', message: 'No pudimos iniciar el pago. Intenta de nuevo.' };
     }
   }
@@ -181,14 +233,22 @@ export async function startCheckoutAction(
     mode: pricing.mode,
     payment_method_types: paymentMethodTypes,
     line_items: [
-      configuredPriceId
+      // Con crédito no puede usarse un Price de Stripe (su monto es fijo): se
+      // cobra `price_data` con el monto ya descontado y el descuento a la vista
+      // en el nombre del producto, que es lo que el alumno ve en Stripe.
+      configuredPriceId && creditCents === 0
         ? { price: configuredPriceId, quantity: 1 }
         : {
             quantity: 1,
             price_data: {
               currency: 'mxn',
-              unit_amount: pricing.amountMxn,
-              product_data: { name: pricing.productName },
+              unit_amount: chargeCents,
+              product_data: {
+                name:
+                  creditCents > 0
+                    ? `${pricing.productName} — con crédito de referidos de −$${(creditCents / 100).toFixed(2)}`
+                    : pricing.productName,
+              },
               ...(pricing.isRecurring ? { recurring: { interval: 'month' } } : {}),
             },
           },
@@ -202,7 +262,12 @@ export async function startCheckoutAction(
     // Customer solo y basta con el correo.
     ...(stripeCustomerId ? { customer: stripeCustomerId } : { customer_email: email }),
     // Trazabilidad para el webhook y para un futuro job de reconciliación.
-    metadata: { userProfileId: profileId, plan, season },
+    metadata: {
+      userProfileId: profileId,
+      plan,
+      season,
+      ...(creditCents > 0 ? { referralCreditCents: String(creditCents) } : {}),
+    },
     ...(pricing.isRecurring
       ? {}
       : {
@@ -230,10 +295,12 @@ export async function startCheckoutAction(
     session = await getStripe().checkout.sessions.create(params);
   } catch (err) {
     console.error('[checkout] No se pudo crear la sesión de Stripe', err);
+    await giveCreditBack('session_failed');
     return { ok: false, code: 'STRIPE', message: 'No pudimos iniciar el pago. Intenta de nuevo.' };
   }
 
   if (!session.url) {
+    await giveCreditBack('session_without_url');
     return { ok: false, code: 'STRIPE', message: 'No pudimos iniciar el pago. Intenta de nuevo.' };
   }
 
@@ -255,8 +322,10 @@ export async function startCheckoutAction(
       art56ConsentVersion: ART56_CONSENT_VERSION,
       stripeCustomerId:
         typeof session.customer === 'string' ? session.customer : session.customer?.id,
+      creditRedemptionId: credit?.redemptionId,
     });
   } catch (err) {
+    await giveCreditBack('subscription_failed');
     // G73b: el usuario puede estar a un clic de PAGAR una sesión de Stripe que
     // no tiene fila local que activar. El webhook la rechazará y el job de
     // reconciliación no la verá (solo mira PENDING): dinero cobrado sin acceso.

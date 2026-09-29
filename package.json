@@ -48,6 +48,7 @@
     "verify:baseline": "tsx scripts/g71/baseline.ts",
     "sales:census": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g98/billing-census.ts",
     "sales:probe": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g98/sales-closed-probe.ts",
+    "referrals:integration": "tsx --tsconfig scripts/tsconfig.perf.json scripts/bloque3/referrals-integration.ts",
     "admin:census": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g99/census.ts",
     "admin:promote": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g99/promote-admin.ts",
     "admin:sql": "node scripts/g99/apply-sql.mjs",

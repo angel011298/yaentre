@@ -87,7 +87,30 @@ export type ControlName =
    */
   | 'admin_vault_storage'
   /** Persistencia de la preferencia de baja de correo. */
-  | 'unsubscribe_write';
+  | 'unsubscribe_write'
+  /**
+   * Bloque 3 — una venta atribuida a un referidor NO se pudo registrar tras el
+   * pago. El comprador ya pagó y su acceso está activo (eso no se revierte), pero
+   * sin la fila el referidor no recibe su crédito. El respaldo diario reintenta;
+   * este evento dice que hubo que reintentar.
+   */
+  | 'referral_sale'
+  /**
+   * Bloque 3 — la acreditación diaria no pudo VERIFICAR una venta (Stripe
+   * inalcanzable, reembolso sin confirmar). Falla CERRADO: no se acredita lo que
+   * no se pudo comprobar, y se reintenta al día siguiente.
+   */
+  | 'referral_accrual'
+  /**
+   * Bloque 3 — el libro del crédito quedó incoherente: un pago se confirmó sobre
+   * crédito ya liberado, o una reserva quedó sin su suscripción. Es dinero
+   * comercial (un descuento), así que no puede quedar en un log.
+   */
+  | 'referral_credit'
+  /** Bloque 3 — la comprobación de reembolsos contra Stripe (reconciliación de `payment_refunds`). */
+  | 'refund_reconciliation'
+  /** Bloque 3 — acción de soporte (ARCO, reembolso) que se aplicó a medias. */
+  | 'support_action';
 
 /**
  * Áreas cuya degradación silenciosa devuelve un éxito aparente. No son
@@ -143,7 +166,18 @@ export type DegradationArea =
    * terminó rechazado. El job aísla cada paso; aplanar su rechazo a «0
    * procesadas» sería indistinguible de «no había nada que hacer».
    */
-  | 'class_lifecycle';
+  | 'class_lifecycle'
+  /**
+   * Bloque 3 — la atribución de un registro a un código de referido se perdió
+   * (fallo de base al resolver el código). El registro sigue; el referidor no.
+   */
+  | 'referral_attribution'
+  /** Bloque 3 — no se pudo generar el código de referido de una persona (se reintenta al abrir «Invita y gana»). */
+  | 'referral_code'
+  /** Bloque 3 — un Route Handler del programa de referidos devolvió un 500 genérico. */
+  | 'referral_api'
+  /** Bloque 3 — un Route Handler de personal (fiscal, soporte, admin de referidos) devolvió un 500 genérico. */
+  | 'staff_api';
 
 type Context = Record<string, unknown>;
 

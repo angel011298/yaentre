@@ -63,6 +63,12 @@ vi.mock('@/lib/db/billing', () => ({
   },
 }));
 
+vi.mock('@/lib/db/referrals', () => ({
+  getAvailableCreditCents: vi.fn(async () => 0),
+  buyerIsAttributed: vi.fn(async () => false),
+  reserveCredit: vi.fn(async () => null),
+  releaseRedemptionById: vi.fn(async () => true),
+}));
 vi.mock('@/lib/db/notifications', () => ({
   setNotificationPreference: vi.fn(async () => {
     dbCalls.push('setNotificationPreference');

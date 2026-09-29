@@ -211,6 +211,19 @@ export async function handleStripeEvent(
         : { status: 'handled', type: event.type, action: 'failed' };
     }
 
+    case 'checkout.session.expired': {
+      // Bloque 3: una sesión que expiró sin pagarse no se cobrará jamás. Se cierra
+      // igual que un pago asíncrono fallido —Subscription y Payment a FAILED— y,
+      // con ello, el crédito de referidos apartado vuelve a sus lotes. Sin este
+      // evento, el reconciliador diario (`reconcile-payments`) lo cierra ≤ 48 h
+      // después. Los pagos de CLASES se desvían antes de llegar aquí.
+      const session = event.data.object as Stripe.Checkout.Session;
+      const r = await store.failCheckout(event.id, event.type, session.id);
+      return r === 'duplicate'
+        ? { status: 'duplicate', type: event.type }
+        : { status: 'handled', type: event.type, action: 'failed' };
+    }
+
     case 'customer.subscription.deleted': {
       const subscription = event.data.object as Stripe.Subscription;
       const r = await store.cancelBySubscriptionId(event.id, event.type, subscription.id);

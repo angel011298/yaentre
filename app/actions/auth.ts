@@ -16,6 +16,9 @@ import { postLoginPath } from '@/lib/admin/capabilities';
 import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
 import { trackServerEvent } from '@/lib/analytics/server';
+import { ensureReferralCode, resolveCodeForAttribution } from '@/lib/db/referrals';
+import { REFERRAL_COOKIE_NAME, parseReferralCookie } from '@/lib/referrals/code';
+import { reportSilentDegradation } from '@/lib/observability/report';
 import { ATTRIBUTION_COOKIE_NAME, parseAttributionCookie } from '@/lib/marketing/attribution';
 import { MIN_REGISTRATION_AGE, parseDeclaredBirthDate } from '@/lib/legal/age';
 import { consumeAll, consumeRateLimit, type RateLimitVerdict } from '@/lib/rate-limit/store';
@@ -150,8 +153,24 @@ export async function signUpAction(
   // graba SOLO en el `create` del upsert — un usuario que ya tenía perfil
   // (login repetido a través de este mismo Server Action, caso raro) nunca
   // sobreescribe su atribución original.
-  const attributionCookie = (await cookies()).get(ATTRIBUTION_COOKIE_NAME)?.value;
+  const cookieStore = await cookies();
+  const attributionCookie = cookieStore.get(ATTRIBUTION_COOKIE_NAME)?.value;
   const acquisitionSource = parseAttributionCookie(attributionCookie);
+
+  // Programa de referidos (Bloque 3): la cookie `ye_ref` la escribe `/r/{código}`
+  // en la PRIMERA visita (first-touch wins). Se resuelve a un código REFERIDO
+  // activo y se persiste SOLO en el `create` del perfil — igual que la atribución
+  // de marketing, nunca se sobreescribe. Si la consulta falla el registro sigue
+  // (una cuenta no se pierde por un programa de descuentos) pero queda reportado.
+  let referredByCodeId: string | undefined;
+  const referralCode = parseReferralCookie(cookieStore.get(REFERRAL_COOKIE_NAME)?.value);
+  if (referralCode) {
+    try {
+      referredByCodeId = (await resolveCodeForAttribution(referralCode))?.id;
+    } catch (err) {
+      reportSilentDegradation('referral_attribution', err, { stage: 'signup' });
+    }
+  }
 
   let profile;
   try {
@@ -170,6 +189,7 @@ export async function signUpAction(
         ...(acquisitionSource
           ? { acquisitionSource: acquisitionSource as unknown as Prisma.InputJsonValue }
           : {}),
+        ...(referredByCodeId ? { referredByCodeId } : {}),
       },
       update: {},
     });
@@ -182,6 +202,14 @@ export async function signUpAction(
   }
 
   await trackServerEvent(profile.id, 'signup_completed', { role });
+
+  // Su propio código de referido (spec §3.2: «se le genera automáticamente»).
+  // Mejor esfuerzo: si falla, «Invita y gana» lo crea al abrirse.
+  try {
+    await ensureReferralCode(profile.id);
+  } catch (err) {
+    reportSilentDegradation('referral_code', err, { stage: 'signup' });
+  }
 
   // Marca `signup=1` en el destino para que `SignupConversionTracker` (F24,
   // en el layout raíz) dispare el evento de conversión "registro completado"

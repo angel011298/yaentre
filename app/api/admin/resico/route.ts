@@ -15,6 +15,6 @@ export async function GET() {
     await requireCapability('fiscal.read');
     return jsonOk(await getResicoStatus());
   } catch (err) {
-    return errorResponse(err, { route: 'admin.resico' });
+    return errorResponse(err, { route: 'admin.resico' }, 'staff_api');
   }
 }

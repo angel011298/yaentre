@@ -74,6 +74,6 @@ export async function GET(request: Request) {
       },
     });
   } catch (err) {
-    return errorResponse(err, { route: 'fiscal.export' });
+    return errorResponse(err, { route: 'fiscal.export' }, 'staff_api');
   }
 }

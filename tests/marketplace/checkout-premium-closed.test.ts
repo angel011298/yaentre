@@ -48,6 +48,12 @@ vi.mock('@/lib/db/billing', () => ({
   },
 }));
 
+vi.mock('@/lib/db/referrals', () => ({
+  getAvailableCreditCents: vi.fn(async () => 0),
+  buyerIsAttributed: vi.fn(async () => false),
+  reserveCredit: vi.fn(async () => null),
+  releaseRedemptionById: vi.fn(async () => true),
+}));
 vi.mock('@/lib/db/tutor-consent', () => ({ hasConfirmedTutorConsent: vi.fn(async () => true) }));
 vi.mock('@/lib/rate-limit/store', () => ({
   consumeRateLimit: vi.fn(async () => ({ allowed: true, hits: 1, retryAfterSecs: 0 })),

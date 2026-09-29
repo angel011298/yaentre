@@ -55,6 +55,7 @@ const PRIVATE = [
   'https://yaentre.com/api/support/arco/export',
   'https://yaentre.com/r/ABCD2345',
   'https://yaentre.com/app/invitar',
+  'https://yaentre.com/tutor/invitar',
   'https://yaentre.com/api/referrals/stats',
   'https://yaentre.com/api/referrals/qr/ABCD2345',
 ];
