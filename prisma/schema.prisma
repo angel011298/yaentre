@@ -962,6 +962,11 @@ model Teacher {
   clabe      String
   bankName   String
   phone      String
+  // Cuándo se CAMBIÓ la CLABE por última vez (null = la del onboarding). Cambiar
+  // la cuenta de destino es el vector clásico para desviar pagos si alguien
+  // toma la sesión del profesor: la hoja de pago del admin avisa cuando la CLABE
+  // es reciente, y el cambio manda un correo al titular.
+  clabeUpdatedAt DateTime?
 
   // Carril de pago
   paymentRail    TeacherPaymentRail @default(ASIMILADOS) // Carril B = default
@@ -1079,6 +1084,12 @@ model ClassSession {
   studentRating   Int? // 1-5
   studentFeedback String?
   ratedAt         DateTime?
+
+  // Disputa: el alumno reporta un problema de una clase marcada como impartida
+  // (o discute un no-show). La clase pasa a DISPUTED y un admin la resuelve; el
+  // pago al profesor NO se libera mientras esté en disputa.
+  disputeReason String?
+  disputedAt    DateTime?
 
   // Aula. La grabación exige consentimiento (tutor si es menor); sin él NO se
   // graba. `recordingConsent` es la instantánea al reservar.

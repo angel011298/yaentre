@@ -43,7 +43,10 @@ export type ClassStatusKey =
  */
 export const TRANSITIONS: Record<ClassStatusKey, readonly ClassStatusKey[]> = {
   PENDING_PAYMENT: ['BOOKED', 'CANCELLED'],
-  BOOKED: ['CONFIRMED', 'CANCELLED'],
+  // BOOKED → NO_SHOW_TEACHER: un profesor que nunca confirmó y tampoco se
+  // presentó. (El job cancela las sin confirmar antes del inicio; esta es la red
+  // para cuando el job no alcanzó a correr.)
+  BOOKED: ['CONFIRMED', 'CANCELLED', 'NO_SHOW_TEACHER'],
   CONFIRMED: ['IN_PROGRESS', 'COMPLETED', 'CANCELLED', 'NO_SHOW_TEACHER', 'NO_SHOW_STUDENT'],
   IN_PROGRESS: ['COMPLETED', 'DISPUTED'],
   COMPLETED: ['DISPUTED'],
@@ -94,8 +97,14 @@ export const CONFIRMATION_AUTO_CANCEL_AFTER_HOURS = 12;
 export const ALERT_MIN_MINUTES_BEFORE_CLASS = 60;
 export const AUTO_CANCEL_MIN_MINUTES_BEFORE_CLASS = 30;
 
-/** SUPUESTO: una reserva sin pagar retiene el horario 20 minutos y luego se suelta. */
-export const PAYMENT_HOLD_MINUTES = 20;
+/**
+ * SUPUESTO: una reserva sin pagar retiene el horario 30 minutos y luego se
+ * suelta. No son 20 por capricho: una sesión de Checkout de Stripe NO puede
+ * expirar en menos de 30 minutos (`expires_at` mínimo), así que retener menos
+ * dejaría una ventana en la que el alumno aún puede pagar una clase que ya se
+ * soltó. Aun con 30, un pago tardío se REEMBOLSA solo (ver `confirmClassPayment`).
+ */
+export const PAYMENT_HOLD_MINUTES = 30;
 /** spec §6.6: el alumno tiene 48 h para calificar. */
 export const RATING_WINDOW_HOURS = 48;
 /** SUPUESTO: el alumno tiene 48 h para reportar un problema de una clase «impartida». */
@@ -249,9 +258,28 @@ export function noShowDeclarable(scheduledAt: Date, now: Date): boolean {
   return now.getTime() >= scheduledAt.getTime() + NO_SHOW_GRACE_MINUTES * MINUTE_MS;
 }
 
-/** ¿Ya empezó la clase? Un profesor no puede marcar como impartida una clase futura. */
+/** ¿Ya empezó la clase? */
 export function classHasStarted(scheduledAt: Date, now: Date): boolean {
   return now.getTime() >= scheduledAt.getTime();
+}
+
+/** SUPUESTO: se puede marcar como impartida desde 10 min antes del final (una clase puede acabar un poco antes). */
+export const COMPLETION_EARLY_MINUTES = 10;
+
+/**
+ * ¿Ya se puede marcar como IMPARTIDA? Marcar una clase completada es la
+ * evidencia con la que después se le paga al profesor (spec §13: «NUNCA pagar
+ * sin que la clase haya sido impartida»), así que no se acepta antes de que la
+ * clase esté por terminar: con solo «ya empezó», bastaría marcarla al minuto 1.
+ *
+ * ⚠️ Es un control de TIEMPO, no de asistencia: no prueba que alguien haya
+ * estado en la sala (eso exige los eventos de asistencia de Meet, que esta fase
+ * no integra). Lo respaldan la ventana de disputa del alumno y la aprobación
+ * manual de cada liquidación.
+ */
+export function classCompletable(scheduledAt: Date, durationMinutes: number, now: Date): boolean {
+  const end = scheduledAt.getTime() + durationMinutes * MINUTE_MS;
+  return now.getTime() >= end - COMPLETION_EARLY_MINUTES * MINUTE_MS;
 }
 
 export type RatingRejection = 'NOT_COMPLETED' | 'ALREADY_RATED' | 'WINDOW_CLOSED' | 'INVALID_RATING';

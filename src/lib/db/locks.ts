@@ -19,6 +19,35 @@ import { prisma } from './prisma';
  * armar el set de reactivos) FUERA del `fn`; dentro del `fn`, únicamente la
  * re-verificación y la escritura que deben ser atómicas.
  */
+/**
+ * Varios locks de aplicación en UNA transacción (Bloque 2). Reservar una clase
+ * tiene que serializar a la vez el horario del PROFESOR y el del ALUMNO: dos
+ * alumnos que piden la misma hora al mismo profesor, o un alumno que pide dos
+ * profesores a la misma hora, no pueden pasar ambos la comprobación de
+ * traslape.
+ *
+ * Las llaves se ORDENAN antes de tomarse: dos transacciones que necesiten
+ * {A, B} y {B, A} las toman siempre en el mismo orden, así que no se
+ * interbloquean. Sin ese orden, un alumno que reserva con el profesor P y el
+ * profesor P que (en otra petición) toma su propio lock antes que el del alumno
+ * generarían un abrazo mortal intermitente — de los que solo aparecen en
+ * producción.
+ */
+export function withAdvisoryLocks<T>(
+  keys: readonly string[],
+  fn: (tx: Prisma.TransactionClient) => Promise<T>,
+): Promise<T> {
+  const ordered = [...new Set(keys)].sort();
+  return prisma.$transaction(async (tx) => {
+    for (const key of ordered) {
+      // `$executeRaw`, no `$queryRaw`: `pg_advisory_xact_lock` devuelve `void` y
+      // Prisma no sabe deserializarlo (G67 §3).
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${key}::text, 0))`;
+    }
+    return fn(tx);
+  });
+}
+
 export function withUserAdvisoryLock<T>(
   userProfileId: string,
   fn: (tx: Prisma.TransactionClient) => Promise<T>,

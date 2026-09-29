@@ -160,6 +160,38 @@ export const RATE_LIMITS = {
    * una sola vez.
    */
   TUTOR_CONSENT_CONFIRM_IP: { limit: 30, windowSecs: 3600 },
+
+  // ── Marketplace de profesores (Bloque 2) ──────────────────────────────────
+  // Todos por PERFIL (el dueño sale del guard), contra el contador compartido.
+
+  /**
+   * Solicitud de onboarding de profesor. Guarda CURP, CLABE y teléfono, y sube un
+   * PDF: pocas por hora bastan para corregir un dato mal capturado, y cortan el
+   * uso como puerta para probar CURP/CLABE ajenas en ráfaga.
+   */
+  TEACHER_APPLY: { limit: 6, windowSecs: 3600 },
+  /** Subida de la Constancia de Situación Fiscal (PDF de hasta 5 MB al Storage). */
+  TEACHER_CSF_UPLOAD: { limit: 8, windowSecs: 3600 },
+  /** Cambios de datos del profesor (CLABE, disponibilidad, materias, presentación). */
+  TEACHER_UPDATE: { limit: 30, windowSecs: 3600 },
+  /** Acciones del profesor sobre una clase: confirmar y marcar como impartida. */
+  TEACHER_CLASS_ACTION: { limit: 120, windowSecs: 3600 },
+  /** Lectura del directorio y del perfil público de un profesor. */
+  DIRECTORY_READ: { limit: 240, windowSecs: 3600 },
+  /**
+   * Reserva de clase. COBRA dinero, así que es el límite más estrecho: 15 por
+   * hora y alumno es de sobra para quien agenda varias clases, y frena un bucle
+   * (o un intento de probar tarjetas) sobre el PaymentIntent de un click.
+   */
+  CLASS_BOOK: { limit: 15, windowSecs: 3600 },
+  /** Cancelar, calificar o reportar una clase. */
+  CLASS_ACTION: { limit: 60, windowSecs: 3600 },
+  /**
+   * Acciones de administración del marketplace (aprobar/suspender profesores, ver
+   * su CURP/CLABE). Presupuesto PROPIO, separado de `ADMIN_USER_ACTION`: aprobar
+   * a diez profesores no debe agotar el cupo con el que se atiende una cuenta.
+   */
+  ADMIN_MARKETPLACE_ACTION: { limit: 60, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

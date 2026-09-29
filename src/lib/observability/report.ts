@@ -124,7 +124,26 @@ export type DegradationArea =
    * hay operaciones sobre cuentas de menores ocurriendo SIN rastro: justo el
    * agujero que la tabla vino a tapar.
    */
-  | 'admin_audit';
+  | 'admin_audit'
+  /**
+   * Bloque 2 — un Route Handler del marketplace devolvió un 500 genérico. El
+   * mensaje real no sale al cliente; sin este evento solo viviría en un log de
+   * Vercel que nadie lee, que es justo el patrón de G73b.
+   */
+  | 'marketplace_api'
+  /**
+   * Bloque 2 — el proveedor del aula (Google Meet) falló o no está configurado.
+   * La clase sigue en pie y se reintenta, pero una clase sin enlace es un
+   * alumno y un profesor esperando en una sala que no existe.
+   */
+  | 'classroom_provider'
+  /**
+   * Bloque 2 — un paso del job del ciclo de vida de las clases (confirmaciones,
+   * cancelaciones automáticas, reintento de reembolsos, purga de grabaciones)
+   * terminó rechazado. El job aísla cada paso; aplanar su rechazo a «0
+   * procesadas» sería indistinguible de «no había nada que hacer».
+   */
+  | 'class_lifecycle';
 
 type Context = Record<string, unknown>;
 

@@ -207,6 +207,15 @@ export async function startCheckoutAction(
       ? {}
       : {
           payment_method_options: {
+            // Bloque 2 (spec §6.1): Premium «abre el acceso» a clases que se
+            // agendan con UN click sobre la tarjeta ya guardada. La spec da por
+            // hecho que esa tarjeta existe, pero este Checkout no la guardaba.
+            // Se pide en la opción POR MÉTODO (`card`), no en
+            // `payment_intent_data`: OXXO y SPEI no admiten guardar el método y
+            // un `setup_future_usage` global haría fallar la sesión completa.
+            // `on_session`: el alumno está presente cada vez que agenda (hace
+            // el click); no se cobra nunca sin él.
+            ...(plan === 'PREMIUM' ? { card: { setup_future_usage: 'on_session' as const } } : {}),
             oxxo: { expires_after_days: 3 },
             customer_balance: {
               funding_type: 'bank_transfer',

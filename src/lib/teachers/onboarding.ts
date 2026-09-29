@@ -214,3 +214,90 @@ export function buildTeacherApplicationSchema(now: Date) {
       };
     });
 }
+
+// ───────────────────────── Actualización de datos propios ─────────────────────────
+
+export interface TeacherUpdateData {
+  clabe?: string;
+  bankName?: string;
+  phone?: string;
+  bio?: string | null;
+  publicName?: string;
+  availability?: AvailabilityBlock[];
+  subjects?: SubjectKey[];
+}
+
+/**
+ * Esquema de `PATCH /api/teachers/me` (spec §11: «actualizar datos, CLABE,
+ * disponibilidad»). Es ESTRICTO: un campo que no está en la lista se rechaza con
+ * 400 en vez de ignorarse en silencio. Un cliente que manda `level`, `rfc`,
+ * `curp` o el identificador de otro profesor recibe un error claro —no un «ok»
+ * que hizo otra cosa—, y ningún campo sensible se cuela por descuido.
+ *
+ * Lo que NO se puede cambiar por aquí, a propósito:
+ *   · `level`  — solo por mérito automático (spec §4);
+ *   · `curp`, `rfc`, carril — son la identidad fiscal: cambiarlos exige volver a
+ *     pasar por la revisión del admin, no un PATCH;
+ *   · `status` — la visibilidad se cambia con su propia acción.
+ */
+export function buildTeacherUpdateSchema() {
+  return z
+    .object({
+      clabe: z
+        .string()
+        .transform((v, ctx) => {
+          const r = validateClabe(v);
+          if (r.ok) return r.clabe;
+          ctx.addIssue({
+            code: 'custom',
+            message:
+              r.reason === 'CHECK_DIGIT'
+                ? 'Revisa tu CLABE: el último dígito no coincide.'
+                : 'La CLABE interbancaria tiene 18 dígitos.',
+          });
+          return z.NEVER;
+        })
+        .optional(),
+      bankName: z.string().trim().min(2, 'Escribe el nombre de tu banco.').max(60).optional(),
+      phone: z
+        .string()
+        .trim()
+        .transform((v, ctx) => {
+          const normalized = normalizeMxPhone(v);
+          if (!normalized) {
+            ctx.addIssue({ code: 'custom', message: 'Ingresa un teléfono de 10 dígitos.' });
+            return z.NEVER;
+          }
+          return normalized;
+        })
+        .optional(),
+      bio: z
+        .string()
+        .trim()
+        .max(500, 'La presentación no puede pasar de 500 caracteres.')
+        .transform((v) => (v ? v : null))
+        .refine((v) => v === null || !containsContactInfo(v), {
+          message:
+            'Tu presentación no puede incluir teléfonos, correos, redes ni enlaces: las clases se agendan y se pagan dentro de YaEntre.',
+        })
+        .optional(),
+      publicName: personName('Nombre público', 2, 40)
+        .refine((v) => !containsContactInfo(v), 'El nombre público no puede incluir datos de contacto.')
+        .optional(),
+      availability: availabilitySchema
+        .min(1, 'Agrega al menos un bloque de disponibilidad.')
+        .transform((blocks) => normalizeAvailability(blocks))
+        .optional(),
+      subjects: z
+        .array(z.string())
+        .min(1, 'Elige al menos una materia.')
+        .max(SUBJECT_KEYS.length)
+        .refine((list) => list.every(isSubjectKey), 'Materia no válida.')
+        .refine((list) => new Set(list).size === list.length, 'Materia repetida.')
+        .transform((list) => list as SubjectKey[])
+        .optional(),
+    })
+    .strict()
+    .refine((data) => Object.keys(data).length > 0, 'No mandaste ningún cambio.')
+    .transform((data): TeacherUpdateData => data);
+}

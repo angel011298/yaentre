@@ -39,6 +39,26 @@ export interface AnalyticsEvents {
    */
   sales_waitlist_joined: Record<string, never>;
 
+  // ── Marketplace de profesores (Bloque 2) ──
+  // Ninguno lleva nombre, CURP, CLABE, RFC ni teléfono: solo códigos y montos
+  // agregados. El `distinctId` es el `UserProfile.id`.
+
+  /** Un profesor envió su solicitud de onboarding. */
+  teacher_applied: { paymentRail: 'ASIMILADOS' | 'COMISION_MERCANTIL'; subjects: number };
+  /** El admin aprobó un profesor. */
+  teacher_approved: { paymentRail: 'ASIMILADOS' | 'COMISION_MERCANTIL' };
+  /** Un alumno Premium reservó una clase (con el monto, para medir demanda). */
+  class_booked: {
+    subjectKey: string;
+    durationMinutes: number;
+    priceCents: number;
+    method: 'ONE_CLICK' | 'CHECKOUT';
+  };
+  /** Una clase se canceló; `by` dice quién y `refundCents` cuánto se devolvió. */
+  class_cancelled: { by: 'STUDENT' | 'TEACHER' | 'SYSTEM'; refundCents: number };
+  /** Un profesor subió de nivel por mérito. */
+  teacher_level_up: { level: 'VERIFICADO' | 'DESTACADO' };
+
   // ── Núcleo de estudio (finishSession, un solo dispatcher por modo) ──
   diagnostic_completed: { score: number; totalQuestions: number; durationSecs: number };
   practice_completed: {

@@ -38,7 +38,7 @@ describe('máquina de estados', () => {
     expect(legal.sort()).toEqual(
       [
         'PENDING_PAYMENT→BOOKED', 'PENDING_PAYMENT→CANCELLED',
-        'BOOKED→CONFIRMED', 'BOOKED→CANCELLED',
+        'BOOKED→CONFIRMED', 'BOOKED→CANCELLED', 'BOOKED→NO_SHOW_TEACHER',
         'CONFIRMED→IN_PROGRESS', 'CONFIRMED→COMPLETED', 'CONFIRMED→CANCELLED',
         'CONFIRMED→NO_SHOW_TEACHER', 'CONFIRMED→NO_SHOW_STUDENT',
         'IN_PROGRESS→COMPLETED', 'IN_PROGRESS→DISPUTED',
@@ -211,10 +211,10 @@ describe('otros plazos', () => {
     expect(meetingLinkDueAt(T0).getTime()).toBe(T0.getTime() - 15 * 60_000);
   });
 
-  it('una reserva sin pagar suelta el horario a los 20 min', () => {
+  it('una reserva sin pagar suelta el horario a los 30 min (el mínimo de expiración de Checkout de Stripe)', () => {
     const created = new Date('2026-11-01T12:00:00Z');
-    expect(paymentHoldExpired(created, new Date('2026-11-01T12:19:59Z'))).toBe(false);
-    expect(paymentHoldExpired(created, new Date('2026-11-01T12:20:00Z'))).toBe(true);
+    expect(paymentHoldExpired(created, new Date('2026-11-01T12:29:59Z'))).toBe(false);
+    expect(paymentHoldExpired(created, new Date('2026-11-01T12:30:00Z'))).toBe(true);
   });
 
   it('un no-show solo se declara pasados 15 min del inicio; la clase «empezó» desde el inicio', () => {

@@ -175,6 +175,20 @@ export async function getTutorConsentStatus(
   };
 }
 
+/**
+ * ¿El TUTOR consintió la grabación de las clases del menor? Solo cuenta si la
+ * confirmación está completa (datos + sello) Y marcó la casilla de grabación:
+ * un token creado pero no confirmado no consiente nada (Bloque 2, contexto
+ * maestro §4.5).
+ */
+export async function hasTutorRecordingConsent(studentProfileId: string): Promise<boolean> {
+  const row = await prisma.tutorConsent.findUnique({
+    where: { studentProfileId },
+    select: { confirmedAt: true, dataConsent: true, recordingConsent: true },
+  });
+  return Boolean(row && row.confirmedAt !== null && row.dataConsent && row.recordingConsent);
+}
+
 /** ¿El menor ya tiene la confirmación del tutor que habilita la compra? */
 export async function hasConfirmedTutorConsent(studentProfileId: string): Promise<boolean> {
   return (await getTutorConsentStatus(studentProfileId)).confirmed;

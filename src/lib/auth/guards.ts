@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import type { Subscription, UserProfile, UserRole } from '@prisma/client';
+import type { Subscription, Teacher, TeacherStatus, UserProfile, UserRole } from '@prisma/client';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db/prisma';
@@ -140,4 +140,48 @@ export async function requireVerifiedForPurchase(): Promise<RequireUserResult> {
   }
 
   return result;
+}
+
+/**
+ * Bloque 2 — sesión con el correo VERIFICADO, para acciones que no son una
+ * compra pero tratan dinero o datos financieros (la solicitud de profesor pide
+ * CURP y CLABE). Mismo criterio que `requireVerifiedForPurchase`, con un mensaje
+ * que no habla de «comprar».
+ */
+export async function requireVerifiedUser(): Promise<RequireUserResult> {
+  const result = await requireUser();
+
+  if (!result.authUser.email_confirmed_at) {
+    throw new AuthError(
+      'UNAUTHORIZED',
+      'Verifica tu correo para continuar. Te reenviamos el enlace.'
+    );
+  }
+
+  return result;
+}
+
+/**
+ * Bloque 2 — exige que la cuenta tenga un perfil de PROFESOR en uno de los
+ * estados permitidos. Ser profesor NO es un rol (`UserRole`): es la existencia
+ * de una fila `Teacher`, así que una misma cuenta puede ser alumno y profesor.
+ *
+ * El profesor sale SIEMPRE de la sesión, nunca de un identificador del cuerpo:
+ * esta es la barrera que impide que un profesor lea o modifique a otro.
+ *
+ * Por defecto solo pasa un profesor ACTIVO. Las pantallas de solicitud y de
+ * estado pasan `['PENDING_REVIEW', …]` explícitamente: que un estado se permita
+ * es una decisión de cada llamador, no un valor por omisión.
+ */
+export async function requireTeacher(
+  allowedStatuses: readonly TeacherStatus[] = ['ACTIVE']
+): Promise<RequireUserResult & { teacher: Teacher }> {
+  const result = await requireUser();
+
+  const teacher = await prisma.teacher.findUnique({ where: { userProfileId: result.profile.id } });
+  if (!teacher || !allowedStatuses.includes(teacher.status)) {
+    throw new AuthError('FORBIDDEN', 'No tienes un perfil de profesor activo en YaEntre.');
+  }
+
+  return { ...result, teacher };
 }

@@ -47,7 +47,12 @@ class SubscriptionNotFoundError extends Error {
   }
 }
 
-async function runIdempotent(
+/**
+ * Exportada en el Bloque 2: los pagos de CLASES reusan exactamente esta
+ * idempotencia por `event.id` (misma tabla `processed_stripe_events`, misma
+ * transacción que aplica el cambio) en lugar de reimplementarla.
+ */
+export async function runIdempotent(
   eventId: string,
   eventType: string,
   work: (tx: Prisma.TransactionClient) => Promise<void>

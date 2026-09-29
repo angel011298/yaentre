@@ -107,6 +107,32 @@ export const changeRoleSchema = z.object({
 });
 export type ChangeRoleInput = z.input<typeof changeRoleSchema>;
 
+// ── Marketplace de profesores (Bloque 2) ───────────────────────────────────
+//
+// El objetivo es un `Teacher` (no una cuenta de usuario), y se identifica con
+// `teacherId`. Cumplen las mismas cuatro condiciones que las acciones de
+// cuentas (ver arriba): rol dentro de la acción, id validado como cuid,
+// bitácora antes de responder y límite de tasa compartido.
+
+const teacherCuidSchema = z
+  .string()
+  .trim()
+  .regex(/^c[a-z0-9]{24,31}$/, 'Identificador de profesor inválido.');
+
+export const adminTeacherTargetSchema = z.object({
+  teacherId: teacherCuidSchema,
+  reason: reasonSchema,
+});
+export type AdminTeacherTargetInput = z.input<typeof adminTeacherTargetSchema>;
+
+/** Solo el id: para leer datos sensibles (la lectura se audita, no lleva motivo). */
+export const adminTeacherIdSchema = z.object({ teacherId: teacherCuidSchema });
+
+export const adminTeacherListSchema = z.object({
+  status: z.enum(['PENDING_REVIEW', 'ACTIVE', 'SUSPENDED', 'INACTIVE']).optional(),
+  page: z.coerce.number().int().min(1).max(500).optional().default(1),
+});
+
 /** Búsqueda paginada de la pestaña Usuarios. Resuelta EN EL SERVIDOR. */
 export const userSearchSchema = z.object({
   q: z.string().trim().max(120).optional().default(''),

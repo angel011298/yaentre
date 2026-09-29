@@ -52,13 +52,26 @@ type AccountAuditAction =
   | 'note.created'
   | 'note.deleted';
 
-export type AdminAuditAction = ContentAuditAction | AccountAuditAction;
+/**
+ * Acciones del marketplace de profesores (Bloque 2). `teacher.viewed` audita la
+ * LECTURA de datos sensibles (CURP, CLABE, RFC, constancia): consultar el dato
+ * financiero de una persona es una operación que debe dejar rastro igual que
+ * modificarlo.
+ */
+type MarketplaceAuditAction =
+  | 'teacher.viewed'
+  | 'teacher.csf_viewed'
+  | 'teacher.approved'
+  | 'teacher.suspended'
+  | 'teacher.reactivated';
+
+export type AdminAuditAction = ContentAuditAction | AccountAuditAction | MarketplaceAuditAction;
 
 /**
  * Qué clase de cosa es el objetivo. Permite filtrar la bitácora sin parsear
  * el nombre de la acción.
  */
-export type AdminAuditTargetKind = 'question' | 'user' | 'file' | 'system' | 'note';
+export type AdminAuditTargetKind = 'question' | 'user' | 'file' | 'system' | 'note' | 'teacher';
 
 export interface AdminActor {
   userProfileId: string;
