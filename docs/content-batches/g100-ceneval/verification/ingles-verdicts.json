@@ -1,0 +1,282 @@
+[
+  {
+    "questionId": "969d895d83c9",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "'right now' + 'is quiet' requires present continuous.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "5580f305c31e",
+    "chosenOption": "C",
+    "confidence": 0.97,
+    "reasoning": "Habitual fact about a vegetarian: present simple, 3rd person singular.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "B 'do not eat' fails agreement with 'He'; easy but well-formed learner error."
+  },
+  {
+    "questionId": "f6a0844c5c13",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "State verb 'belong' in present simple, 3rd person singular; 'isn't belonging' is not used for stative verbs.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "6a39742be609",
+    "chosenOption": "C",
+    "confidence": 0.98,
+    "reasoning": "'two weeks ago' requires simple past.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "53a3869c1106",
+    "chosenOption": "A",
+    "confidence": 0.97,
+    "reasoning": "Reply to a present perfect question with 'yet': hasn't arrived. 'won't arrive yet' is unnatural; 'hadn't' needs a past reference.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "9d58f824a97e",
+    "chosenOption": "D",
+    "confidence": 0.96,
+    "reasoning": "Present perfect continuous with 'I' + 'since six': have been working. 'had been working' would need a past reference point and 'I'm exhausted' is present.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "A is only possible in a past narrative; reasonable distractor."
+  },
+  {
+    "questionId": "de9609ebdd24",
+    "chosenOption": "B",
+    "confidence": 0.98,
+    "reasoning": "Past continuous interrupted by simple past 'found'.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "56564b06a6a6",
+    "chosenOption": "A",
+    "confidence": 0.95,
+    "reasoning": "Past perfect for an experience before a past event (the trip).",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "D 'was never' followed by 'to Europe' is ungrammatical (would need 'in' or 'been'); weak but plausible Spanish-speaker error. C 'have never been' is wrong because the context is narrated in the past."
+  },
+  {
+    "questionId": "7c026a38a113",
+    "chosenOption": "A",
+    "confidence": 0.97,
+    "reasoning": "'police' takes a plural verb; 'right now' calls for present continuous.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "Distractors B/C/D are mostly agreement/tense errors; easy."
+  },
+  {
+    "questionId": "c8af8c355060",
+    "chosenOption": "B",
+    "confidence": 0.95,
+    "reasoning": "Past habitual state contrasted with now: 'used to have'. 'would have' is not used for stative past habits in this sense.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "A 'would have' is rejected on a grammar rule (stative verb) that is subtle; acceptable at B2."
+  },
+  {
+    "questionId": "6c68a585c762",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "After 'by the time' a present simple is used for future reference, with future perfect in the main clause.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "bfb8e4fbf07f",
+    "chosenOption": "D",
+    "confidence": 0.97,
+    "reasoning": "'By the time ... arrived' (past) + 'for nearly six hours': past perfect continuous.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "9842b089ce73",
+    "chosenOption": "D",
+    "confidence": 0.97,
+    "reasoning": "Passage presents several theories without consensus ('scientists still cannot agree').",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "f8e0cbb50726",
+    "chosenOption": "A",
+    "confidence": 0.98,
+    "reasoning": "The cooling theory: lowers the brain's temperature.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "da47933b8932",
+    "chosenOption": "C",
+    "confidence": 0.97,
+    "reasoning": "'puzzling' = hard to explain, consistent with 'scientists cannot agree'.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "d23f84b0f16a",
+    "chosenOption": "A",
+    "confidence": 0.98,
+    "reasoning": "'this reaction' follows the contagious yawning sentence: catching a yawn from another person.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "5e3734b4eb5d",
+    "chosenOption": "D",
+    "confidence": 0.99,
+    "reasoning": "'They feared that customers would stop coming because there were fewer parking spaces.'",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "96575419e03e",
+    "chosenOption": "C",
+    "confidence": 0.98,
+    "reasoning": "He admits he was wrong, so he changed his opinion.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "A is not supported: he runs a bakery; the cyclists stopping are customers."
+  },
+  {
+    "questionId": "124a08f2146a",
+    "chosenOption": "A",
+    "confidence": 0.98,
+    "reasoning": "'admits that he was wrong' = acknowledges.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "784fad230063",
+    "chosenOption": "C",
+    "confidence": 0.96,
+    "reasoning": "The truck complaints and promised move show remaining open problems.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "634a2c40f199",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "Passage traces chocolate from ancient bitter drink to modern bar.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "44723bdf82f8",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "'found the drink too harsh. They began adding sugar'.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "d813e2c228cc",
+    "chosenOption": "D",
+    "confidence": 0.95,
+    "reasoning": "Drink became 'fashionable among the wealthy' in Europe.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "A is contradicted by 'not meant for everyone'; the 'probably true' stem is fine because D is stated almost directly."
+  },
+  {
+    "questionId": "079843911dc1",
+    "chosenOption": "D",
+    "confidence": 0.96,
+    "reasoning": "'too harsh' for a bitter drink = unpleasantly strong.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  },
+  {
+    "questionId": "887d4c2d0d84",
+    "chosenOption": "B",
+    "confidence": 0.95,
+    "reasoning": "The author shows the experiment demanded effort at first but paid off later.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "A overstates ('could not sleep'); C contradicted."
+  },
+  {
+    "questionId": "cc6a460bcad1",
+    "chosenOption": "B",
+    "confidence": 0.93,
+    "reasoning": "She accepted charging the phone in the kitchen for a month; charging at night is the natural reading.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "'at night' is a mild inference (text says only 'charge the phone in the kitchen'), but the other options are clearly false."
+  },
+  {
+    "questionId": "dd78a6185de2",
+    "chosenOption": "A",
+    "confidence": 0.95,
+    "reasoning": "The challenge is the friend's experiment: charging the phone in the kitchen for a month (and buying an alarm clock).",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": "Option A covers only half of the proposal; still the only defensible one."
+  },
+  {
+    "questionId": "9ead7d4ea33b",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "She goes on to say the problem was the habit of never letting her mind rest.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code (Sonnet 5.5)",
+    "problems": [],
+    "notes": ""
+  }
+]

@@ -1,5 +1,6 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import type { PromptContext } from './prompt-loader';
+import { isRestrictedGroundingSource } from './grounding';
 
 /**
  * Cliente Prisma dedicado para los scripts offline. Separado del singleton de
@@ -312,12 +313,17 @@ export async function loadTaxonomyTopics() {
 /** Fragmentos clasificados de un tema, para anclar la generación (F2b). */
 export async function loadTopicChunks(topicId: string, limit = 12) {
   const prisma = getPrisma();
-  const chunks = await prisma.sourceChunk.findMany({
+  const rows = await prisma.sourceChunk.findMany({
     where: { topicId },
-    include: { contentSource: { select: { name: true } } },
+    include: { contentSource: { select: { name: true, institution: true, fileRef: true } } },
     orderBy: { createdAt: 'asc' },
-    take: limit,
   });
+  // G100: los fragmentos de guías CENEVAL/EXANI no se ofrecen como anclaje (ver
+  // `isRestrictedGroundingSource`). El filtro va ANTES del `limit` para que no
+  // desplacen a fragmentos legítimos del mismo tema.
+  const chunks = rows
+    .filter((c) => !isRestrictedGroundingSource(c.contentSource))
+    .slice(0, limit);
   return chunks.map((c) => ({
     id: c.id,
     text: c.text,

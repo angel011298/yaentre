@@ -1,0 +1,508 @@
+[
+  {
+    "stem": "Elige el conector que completa con sentido la oración: «El equipo no ganó el torneo, ______ varios jugadores estaban lesionados».",
+    "options": [
+      {
+        "id": "A",
+        "text": "sin que",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "ya que",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "así que",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "aunque",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Los conectores de causa introducen la razón por la que ocurre algo (porque, ya que, puesto que), mientras que los de consecuencia introducen el resultado y los de concesión señalan un obstáculo que no impide lo dicho. Elegir el conector exige identificar qué relación lógica hay entre las dos ideas."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Las lesiones de varios jugadores explican por qué el equipo no ganó, de modo que la segunda parte es la causa de la primera. «Ya que» marca precisamente esa relación causal y deja una oración coherente."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«Así que» presentaría las lesiones como resultado de la derrota, lo cual invierte la lógica. «Aunque» expresaría concesión, como si las lesiones hubieran debido favorecer el triunfo. «Sin que» exige un verbo en subjuntivo y señala algo que no ocurre, por lo que además queda mal construida."
+      }
+    ]
+  },
+  {
+    "stem": "En el enunciado «La biblioteca amplió su horario; por consiguiente, aumentó el número de visitantes», ¿qué relación establece el conector «por consiguiente»?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La segunda idea es resultado de la primera",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "La segunda idea añade otro dato equivalente",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "La segunda idea contradice a la primera",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La segunda idea es causa de la primera",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Los conectores consecutivos (por consiguiente, por lo tanto, en consecuencia) anuncian que lo que sigue es un efecto o resultado de lo expresado antes. La idea introducida depende lógicamente de la anterior."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Primero se informa de una acción de la biblioteca, ampliar el horario, y después de un efecto, el aumento de visitantes. «Por consiguiente» vincula ambos hechos como acción y resultado."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Una relación de contradicción exigiría un conector adversativo como «sin embargo». Invertir los papeles y tratar el aumento de visitantes como causa del horario cambia el orden lógico que marca el texto. Una simple adición se expresaría con «además» o «asimismo», que no indican dependencia entre los hechos."
+      }
+    ]
+  },
+  {
+    "stem": "Elige la oración que funciona mejor como oración tópica (la que presenta la idea general) del siguiente párrafo: «______ Por ejemplo, el agua de mares y ríos se evapora, se condensa en las nubes y regresa a la tierra como lluvia o nieve. Al caer, vuelve a comenzar el recorrido».",
+    "options": [
+      {
+        "id": "A",
+        "text": "A mucha gente le gusta caminar bajo la lluvia por las tardes.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "El agua potable escasea en varias regiones del país.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "El agua del planeta se mueve en un ciclo continuo.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Las nubes se forman cuando el vapor se enfría en lo alto.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La oración tópica enuncia la idea general de un párrafo, y las demás oraciones la desarrollan con ejemplos, explicaciones o detalles. Una buena oración tópica abarca todo lo que el párrafo dice, ni menos ni más."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El resto del párrafo describe un recorrido completo, desde la evaporación hasta la lluvia y el reinicio del proceso, y lo presenta como ejemplo de una idea más amplia. Esa idea es que el agua del planeta se mueve en un ciclo continuo, y la expresión «por ejemplo» lo confirma."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La oración sobre la formación de nubes describe solo una etapa y no abarca el recorrido completo. La que habla del gusto por caminar bajo la lluvia pertenece a otro tema, una preferencia personal. La que trata de la escasez de agua potable introduce un problema que el párrafo no desarrolla."
+      }
+    ]
+  },
+  {
+    "stem": "Lee el párrafo.\n(1) El colibrí es la única ave capaz de volar hacia atrás. (2) Para lograrlo, bate las alas hasta ochenta veces por segundo. (3) Mi vecina cría palomas mensajeras en su azotea. (4) Esa velocidad le permite detenerse frente a una flor y beber su néctar sin posarse.\n¿Cuál oración rompe la unidad temática y debe eliminarse?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Bate las alas hasta ochenta veces por segundo.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Mi vecina cría palomas mensajeras en su azotea.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Es la única ave capaz de volar hacia atrás.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Esa velocidad le permite detenerse frente a una flor.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un párrafo tiene unidad cuando todas sus oraciones desarrollan una misma idea central. Una oración que habla de otro asunto, aunque esté bien escrita, rompe esa unidad y conviene eliminarla."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El párrafo trata del vuelo del colibrí: su capacidad de volar hacia atrás, el batir de alas que la hace posible y la ventaja de detenerse ante una flor. La oración sobre la vecina y sus palomas mensajeras habla de otra persona y de otras aves, sin relación con esa idea."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La oración sobre el batir de alas explica cómo logra el colibrí volar hacia atrás, y la que menciona la velocidad se apoya en ella con el pronombre «esa». La oración inicial plantea la idea central del párrafo. Quitar cualquiera de las tres dejaría el texto incompleto o sin referentes."
+      }
+    ]
+  },
+  {
+    "stem": "Ordena las oraciones para formar un párrafo coherente.\n(1) Después, las colocó en una olla con agua hirviendo durante diez minutos.\n(2) Primero, Marta lavó las papas con un cepillo.\n(3) Por último, las sirvió con un poco de sal y mantequilla.\n(4) Cuando estuvieron suaves, las sacó y las dejó enfriar.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2 – 4 – 1 – 3",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "1 – 2 – 4 – 3",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "2 – 1 – 3 – 4",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "2 – 1 – 4 – 3",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Para ordenar un párrafo se identifican los marcadores de secuencia (primero, después, por último), los referentes que necesitan un antecedente (como «las» para «las papas») y el orden lógico de los hechos. La primera oración presenta a los participantes y la última cierra la secuencia."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La oración con «Primero» y el nombre de Marta introduce a la protagonista y a las papas, así que abre el párrafo. Sigue «Después», con la cocción, luego la oración que habla de cuando ya estaban suaves y, al final, «Por último», con el servicio. El orden resultante respeta tanto los conectores como la lógica de la receta."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Empezar con «Después» deja al pronombre «las» sin antecedente y coloca un paso intermedio antes del «Primero». Poner el servicio antes de sacar las papas de la olla contradice «por último» y la lógica de la receta. Sacar y enfriar las papas antes de cocerlas es imposible, porque ese paso presupone que ya están suaves."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál versión está redactada sin redundancias?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tomás volvió a subir de nuevo al cuarto piso por el paquete de su tía.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Tomás subió al cuarto piso por el paquete pequeño y diminuto de su tía.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Tomás subió arriba al cuarto piso para recoger el paquete de su tía.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Tomás subió al cuarto piso para recoger el paquete de su tía.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La redundancia consiste en repetir una idea que ya está contenida en otra palabra de la oración. Verbos como subir, bajar o salir ya indican la dirección, y expresiones como «volver a… de nuevo» repiten lo mismo dos veces."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La versión correcta dice que Tomás subió al cuarto piso y da el propósito sin añadir información repetida. Cada palabra aporta un dato distinto: quién, qué hizo, adónde, para qué y a quién pertenece el paquete."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "En «subió arriba» el adverbio repite la dirección que ya expresa el verbo. En «volvió a subir de nuevo» el prefijo verbal y la locución indican dos veces la reiteración. En «paquete pequeño y diminuto» los dos adjetivos expresan lo mismo, de modo que uno de ellos sobra."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál enunciado es adecuado para una carta formal dirigida a la directora de una escuela?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Quiero avisarle que ocupo más tiempo pa' entregar los papeles, nomás por si acaso.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Le solicito atentamente que me conceda una prórroga para entregar mis documentos.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Oiga, mire, ¿no me daría chance de entregar mis papeles un poquito más tarde?",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Qué onda, necesito que me des una prórroga para entregarte mis documentos, porfa.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El registro formal se emplea con interlocutores a quienes se debe respeto o con quienes no hay confianza. Se reconoce por el trato de usted, el vocabulario preciso, las fórmulas de cortesía y la ausencia de coloquialismos, diminutivos innecesarios y abreviaciones del habla oral."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El enunciado correcto trata de usted a la directora con «le solicito», emplea «atentamente» como fórmula de cortesía y nombra el trámite con palabras exactas, como «prórroga» y «documentos». La petición es clara y respetuosa, tal como lo exige el tipo de carta."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La versión con «oiga, mire» y «chance» usa expresiones coloquiales y un tono de plática. La que contiene «pa'» y «nomás por si acaso» reproduce la pronunciación del habla oral y resta seriedad. La que abre con «qué onda» y termina en «porfa» tutea a la directora y emplea abreviaturas propias de un mensaje entre amigos."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál oración está bien redactada en cuanto al uso de la preposición «de» con la conjunción «que»?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Me di cuenta que faltaban dos sillas en el salón.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Pienso de que faltaban dos sillas en el salón.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Me di cuenta de que faltaban dos sillas en el salón.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Dijo de que faltaban dos sillas en el salón.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Hay dos desvíos opuestos con «que»: el queísmo, que suprime una preposición necesaria (como «de» en «darse cuenta de que»), y el dequeísmo, que agrega «de» donde el verbo no la rige (como en «decir que» o «pensar que»). Para comprobarlo se sustituye la subordinada por «eso» o «ello» y se ve qué preposición pide el verbo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El verbo «darse cuenta» rige la preposición «de»: se dice «me di cuenta de eso», por lo que la construcción completa es «me di cuenta de que faltaban dos sillas». La oración conserva la preposición que el verbo exige y no añade ninguna otra."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«Me di cuenta que» omite la preposición obligatoria, lo que constituye queísmo. «Dijo de que» y «pienso de que» agregan «de» a verbos que no la rigen, pues se dice «dijo eso» y «pienso eso», lo que constituye dequeísmo."
+      }
+    ]
+  },
+  {
+    "stem": "¿En cuál oración se usa correctamente el gerundio?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Los visitantes llegaron al museo a las diez, saliendo a las doce.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Los visitantes recorrieron el museo escuchando la explicación de la guía.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "El museo publicó un aviso estableciendo nuevas reglas para los visitantes.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Los visitantes dejaron una nota sobre la mesa conteniendo todas las instrucciones.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El gerundio expresa una acción simultánea o inmediatamente anterior a la del verbo principal, y modifica a ese verbo. No es correcto cuando expresa una acción posterior, cuando califica a un sustantivo como si fuera adjetivo (gerundio especificativo) ni cuando se usa para añadir una consecuencia en textos oficiales (el llamado gerundio del BOE)."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "En la oración correcta, escuchar la explicación ocurre al mismo tiempo que recorrer el museo, y el gerundio modifica al verbo «recorrieron». La relación de simultaneidad es exactamente la que el gerundio puede expresar."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "En «llegaron… saliendo a las doce» el gerundio indica una acción posterior a llegar, algo que no admite. En «una nota… conteniendo» el gerundio califica al sustantivo, función que corresponde a un adjetivo o a una oración de relativo («que contenía»). En «un aviso estableciendo nuevas reglas» se usa el gerundio para especificar el aviso o presentar su resultado, un uso censurado por la norma."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál versión del mensaje deja claro, sin ambigüedad, de quién es la hermana que está enferma?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Pedro vio a Juan y le dijo: «Mi hermana está enferma».",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Pedro le comentó a Juan que su hermana estaba enferma desde ayer.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Al ver a Juan, Pedro le contó que la hermana estaba muy enferma.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Pedro vio a Juan y le dijo que su hermana estaba enferma.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Hay ambigüedad cuando un enunciado admite más de una interpretación, y es frecuente con posesivos como «su», que pueden referirse a más de una persona. Se resuelve repitiendo el nombre, reformulando la oración o recurriendo al estilo directo, en el que el hablante aparece con sus propias palabras."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Al citar las palabras de Pedro en estilo directo, el posesivo «mi» solo puede referirse a quien habla, es decir, a Pedro. No queda ninguna duda de que la hermana enferma es suya."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«Su hermana» en estilo indirecto puede significar la hermana de Pedro o la de Juan, por lo que las versiones con «su hermana» siguen siendo ambiguas. En la que dice «la hermana», el artículo ni siquiera indica a quién pertenece, así que la duda es mayor."
+      }
+    ]
+  },
+  {
+    "stem": "Ordena las oraciones para obtener el párrafo con mayor cohesión.\n(1) Sin embargo, esa ventaja tiene un precio: obliga a almacenar semillas durante años.\n(2) Para protegerse de las sequías, algunas comunidades agrícolas guardan una parte de su cosecha.\n(3) Gracias a esa reserva, cuando la lluvia falla pueden volver a sembrar sin depender de proveedores externos.\n(4) Ese precio, no obstante, suele considerarse menor que el de perder un ciclo completo de cultivo.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2 – 3 – 1 – 4",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "2 – 1 – 3 – 4",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "2 – 3 – 4 – 1",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "3 – 2 – 1 – 4",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "EXPERT",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La cohesión se logra con referentes (esa reserva, esa ventaja, ese precio), con conectores que suponen un contenido previo (sin embargo, gracias a, no obstante) y con una progresión lógica de las ideas. Cada oración debe poder apoyarse en lo que se dijo inmediatamente antes."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La oración sobre guardar parte de la cosecha introduce el tema y no depende de ninguna otra. Le sigue la que habla de «esa reserva» y de lo que permite, que presenta la ventaja. Después viene «Sin embargo, esa ventaja…», que retoma la ventaja para oponerle un precio, y al final «Ese precio, no obstante…» responde a ese precio y cierra con la valoración."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Poner «Sin embargo, esa ventaja…» antes de la oración que presenta la ventaja deja el referente sin antecedente. Empezar con «Gracias a esa reserva» tampoco funciona, porque la reserva aún no se ha mencionado. Colocar «Ese precio» antes de la oración que lo introduce rompe la referencia, y «Sin embargo» al final dejaría la objeción sin la respuesta que la matiza."
+      }
+    ]
+  }
+]

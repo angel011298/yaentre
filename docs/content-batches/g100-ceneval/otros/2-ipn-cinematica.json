@@ -1,0 +1,232 @@
+[
+  {
+    "stem": "Un ciclista recorre 540 metros en 1.5 minutos con rapidez constante. ¿Cuál es su rapidez en metros por segundo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "6 m/s",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "9 m/s",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "810 m/s",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "360 m/s",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "En el movimiento rectilíneo uniforme la rapidez es el cociente de la distancia entre el tiempo, $v=\\dfrac{d}{t}$. Para expresarla en metros por segundo, el tiempo debe estar en segundos."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Primero se convierte el tiempo: $1.5\\ \\text{min}=1.5\\times 60=90\\ \\text{s}$. Luego $v=\\dfrac{540\\ \\text{m}}{90\\ \\text{s}}=6\\ \\text{m/s}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El valor de 360 m/s sale de dividir entre 1.5 sin convertir los minutos, que daría 360 metros por minuto y no por segundo. El valor de 810 m/s multiplica la distancia por el tiempo en lugar de dividir. El valor de 9 m/s trata los 1.5 minutos como si fueran 60 segundos, porque $540/60=9$."
+      }
+    ]
+  },
+  {
+    "stem": "Una piedra se suelta desde el reposo en un puente y tarda 4 s en llegar al agua. Si se desprecia la resistencia del aire y $g=9.8\\ \\text{m/s}^2$, ¿qué altura tiene el puente?",
+    "options": [
+      {
+        "id": "A",
+        "text": "156.8 m",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "39.2 m",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "78.4 m",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "19.6 m",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "En caída libre desde el reposo la posición vertical recorrida es $h=\\dfrac{1}{2}gt^2$, porque la velocidad inicial es cero y la aceleración es la gravedad."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Se sustituye $t=4\\ \\text{s}$: $h=\\dfrac{1}{2}(9.8)(4)^2=\\dfrac{1}{2}(9.8)(16)=78.4\\ \\text{m}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El valor de 39.2 m es el producto $gt$, que en realidad es la rapidez final en m/s y no una altura. El valor de 156.8 m se obtiene al olvidar el factor $\\dfrac{1}{2}$ de la fórmula. El valor de 19.6 m resulta de usar $\\dfrac{1}{2}gt$, sin elevar el tiempo al cuadrado."
+      }
+    ]
+  },
+  {
+    "stem": "Un tren avanza a 24 m/s y empieza a frenar con una aceleración constante de $-1.2\\ \\text{m/s}^2$ hasta detenerse. ¿Qué distancia recorre mientras frena?",
+    "options": [
+      {
+        "id": "A",
+        "text": "480 m",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "20 m",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "720 m",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "240 m",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "PROBLEM_SOLVING",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Cuando se conocen las velocidades inicial y final, la aceleración y se pide el desplazamiento, sin dato de tiempo, conviene la relación $v^2=v_0^2+2a\\Delta x$. La aceleración de frenado es negativa porque se opone al movimiento."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Con $v=0$, $v_0=24\\ \\text{m/s}$ y $a=-1.2\\ \\text{m/s}^2$: $0=24^2+2(-1.2)\\Delta x$, es decir $0=576-2.4\\,\\Delta x$. Entonces $\\Delta x=\\dfrac{576}{2.4}=240\\ \\text{m}$. Comprobación: el tiempo de frenado es $t=\\dfrac{24}{1.2}=20\\ \\text{s}$ y $\\Delta x=\\dfrac{24}{2}\\cdot 20=240\\ \\text{m}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El valor de 720 m resulta de usar $\\Delta x=v_0t+\\dfrac{1}{2}at^2$ con $t=20\\ \\text{s}$ y tomar la aceleración como positiva, de modo que se suma $480+240$ en lugar de restar. El valor de 480 m se obtiene al olvidar el 2 de $2a\\Delta x$, o al suponer que el tren mantiene su rapidez durante los 20 s. El valor de 20 m es en realidad el tiempo de frenado en segundos, no una distancia."
+      }
+    ]
+  },
+  {
+    "stem": "Dos ciudades están a 300 km de distancia sobre una carretera recta. A las 8:00 h sale un autobús de la ciudad A hacia la B a 70 km/h y, a la misma hora, un auto sale de la B hacia la A a 80 km/h, ambos con rapidez constante. ¿A qué distancia de la ciudad A se cruzan?",
+    "options": [
+      {
+        "id": "A",
+        "text": "150 km",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "160 km",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "2 100 km",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "140 km",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "PROBLEM_SOLVING",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Cuando dos móviles avanzan uno hacia el otro con rapidez constante, sus distancias recorridas suman la separación inicial, y ambos viajan el mismo tiempo hasta cruzarse. Con el tiempo de encuentro se calcula la posición."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Si $t$ es el tiempo hasta el cruce, $70t+80t=300$, así que $150t=300$ y $t=2\\ \\text{h}$. El autobús recorre $70\\times 2=140\\ \\text{km}$ desde A. Comprobación: el auto recorre $80\\times 2=160\\ \\text{km}$ y $140+160=300\\ \\text{km}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El valor de 160 km es la distancia que recorre el auto desde la ciudad B, no desde A. El valor de 150 km ubica el cruce en el punto medio, como si ambos vehículos fueran a la misma rapidez. El valor de 2 100 km sale de restar las rapideces, $t=\\dfrac{300}{80-70}=30\\ \\text{h}$, que corresponde a un móvil que persigue a otro y no a dos que se acercan de frente."
+      }
+    ]
+  },
+  {
+    "stem": "Una pelota se lanza verticalmente hacia arriba con una rapidez inicial de 29.4 m/s. Considera $g=9.8\\ \\text{m/s}^2$ y sin resistencia del aire. ¿Qué altura máxima alcanza y cuánto tarda en volver al punto de lanzamiento?",
+    "options": [
+      {
+        "id": "A",
+        "text": "88.2 m y 6 s",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "176.4 m y 6 s",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "44.1 m y 6 s",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "44.1 m y 3 s",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "PROBLEM_SOLVING",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "En un tiro vertical la gravedad frena la subida con aceleración constante $-g$. En el punto más alto la velocidad es cero, y el movimiento de bajada es simétrico al de subida, de modo que el vuelo completo dura el doble que la subida."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El tiempo de subida es $t_s=\\dfrac{v_0}{g}=\\dfrac{29.4}{9.8}=3\\ \\text{s}$. La altura máxima sale de $v^2=v_0^2-2gh$ con $v=0$: $h=\\dfrac{v_0^2}{2g}=\\dfrac{864.36}{19.6}=44.1\\ \\text{m}$. El tiempo hasta regresar al punto de lanzamiento es $2t_s=6\\ \\text{s}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La respuesta de 44.1 m y 3 s da bien la altura, pero reporta solo el tiempo de subida y no el regreso al punto de lanzamiento. La respuesta de 88.2 m y 6 s usa $\\dfrac{v_0^2}{g}$, olvidando el 2 del denominador. La respuesta de 176.4 m y 6 s calcula la altura como una caída libre de 6 s, $\\dfrac{1}{2}g(6)^2$, cuando la pelota solo sube durante la mitad del vuelo."
+      }
+    ]
+  }
+]

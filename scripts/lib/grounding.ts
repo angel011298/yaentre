@@ -8,6 +8,33 @@
  * Sin fragmentos: se genera con el temario y se marca TEMARIO_ONLY.
  */
 
+/**
+ * FUENTES PROHIBIDAS COMO ANCLAJE (G100, instrucción CLO del 22-sep-2026).
+ *
+ * Las guías de CENEVAL/EXANI prohíben «cualquier tipo de reproducción,
+ * transformación, distribución, ya sea de forma total o parcial». Un reactivo
+ * generado cuyo `sourceChunks` apunta a un fragmento de esas guías queda ANCLADO
+ * a ellas aunque su redacción sea original: ese vínculo fue exactamente lo que
+ * marcó a 70 reactivos del banco. Por eso un fragmento de esas guías NUNCA se
+ * ofrece como contexto de generación ni como cita válida, ni siquiera «solo
+ * como ancla de formato» (como se hizo en G75).
+ *
+ * Se decide por el nombre del archivo Y por la institución de la fuente, para
+ * que renombrar el PDF no la saque de la lista. Es una lista NEGATIVA a
+ * propósito: una fuente nueva y legítima entra sola, una de CENEVAL no.
+ */
+const RESTRICTED_SOURCE_PATTERN = /ceneval|exani/i;
+
+export function isRestrictedGroundingSource(source: {
+  name: string;
+  institution?: string | null;
+  fileRef?: string | null;
+}): boolean {
+  return [source.name, source.institution, source.fileRef].some(
+    (field) => typeof field === 'string' && RESTRICTED_SOURCE_PATTERN.test(field),
+  );
+}
+
 export interface GroundingChunk {
   id: string;
   text: string;

@@ -1,0 +1,94 @@
+[
+  {
+    "stem": "¿Cuál es el residuo que se obtiene al dividir $p(x)=2x^3-5x^2+3x-7$ entre $x-2$?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$5$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$-5$",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "$-17$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$-49$",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El teorema del residuo establece que el residuo de dividir un polinomio $p(x)$ entre $x-a$ es el valor $p(a)$. Así no hace falta realizar la división completa."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El divisor $x-2$ corresponde a $a=2$. Se evalúa: $p(2)=2(8)-5(4)+3(2)-7=16-20+6-7=-5$. El residuo es $-5$. Con división sintética con coeficientes 2, $-5$, 3, $-7$ y el valor 2 se obtienen 2, $-1$, 1 y finalmente $-5$, que coincide."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El valor $-49$ proviene de evaluar $p(-2)$, es decir, de usar el cero de $x+2$ en lugar del de $x-2$. El valor $-17$ aparece al equivocar el signo del término $3x$ y calcular $16-20-6-7$. El valor $5$ es el opuesto del correcto y surge de creer que el residuo es $-p(2)$."
+      }
+    ]
+  },
+  {
+    "stem": "El polinomio $p(x)=2x^3+x^2-13x+6$ tiene tres raíces racionales. ¿Cuál es la suma de los cuadrados de esas raíces?",
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\dfrac{1}{4}$",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "$-\\dfrac{51}{4}$",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "$\\dfrac{27}{4}$",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "$\\dfrac{53}{4}$",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "PROBLEM_SOLVING",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Las posibles raíces racionales de un polinomio con coeficientes enteros son de la forma $\\dfrac{p}{q}$, con $p$ divisor del término independiente y $q$ divisor del coeficiente principal. Al encontrar una raíz, el teorema del factor permite dividir y reducir el grado hasta factorizar por completo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Entre los candidatos se prueba $x=2$: $p(2)=16+4-26+6=0$, así que $x-2$ es factor. La división sintética da $2x^2+5x-3=(2x-1)(x+3)$, luego $p(x)=(x-2)(2x-1)(x+3)$ y las raíces son $2$, $\\dfrac{1}{2}$ y $-3$. La suma de cuadrados es $4+\\dfrac{1}{4}+9=\\dfrac{53}{4}$. Con las relaciones de Vieta: suma $=-\\dfrac{1}{2}$, suma de productos por pares $=-\\dfrac{13}{2}$, y $\\left(-\\dfrac{1}{2}\\right)^2-2\\left(-\\dfrac{13}{2}\\right)=\\dfrac{1}{4}+13=\\dfrac{53}{4}$."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "El valor $\\dfrac{1}{4}$ es el cuadrado de la suma de las raíces, $\\left(-\\dfrac{1}{2}\\right)^2$, que no es la suma de los cuadrados. El valor $-\\dfrac{51}{4}$ resulta de usar el signo contrario para la suma de productos por pares, restando 13 en lugar de sumarlo. El valor $\\dfrac{27}{4}$ olvida el factor 2 en la identidad, calculando $\\dfrac{1}{4}+\\dfrac{13}{2}$."
+      }
+    ]
+  }
+]

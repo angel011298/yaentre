@@ -1,0 +1,554 @@
+[
+  {
+    "stem": "Please be quiet. My sister _____ for an important exam right now. Choose the option that best completes the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "will study",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "studied",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "is studying",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "has studied",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Para hablar de una acción que está ocurriendo en este momento se usa el present continuous: sujeto + am/is/are + verbo con -ing. La expresión «right now» es una pista clara de que la acción está en progreso."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El sujeto es «My sister» (tercera persona singular) y la acción sucede ahora, mientras se pide silencio. Por eso corresponde «is studying»: «My sister is studying for an important exam right now»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«studied» es pasado simple y contradice «right now», que sitúa la acción en este momento. «has studied» (present perfect) habla de una experiencia o un resultado previo, no de una acción en curso. «will study» es futuro y contradice «right now»."
+      }
+    ]
+  },
+  {
+    "stem": "My cousin is a vegetarian. He _____ meat at any meal. Which option correctly completes the sentence?",
+    "options": [
+      {
+        "id": "A",
+        "text": "do not eat",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "didn't eat",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "isn't eating",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "doesn't eat",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El present simple expresa hábitos, rutinas y hechos permanentes. En negativo se forma con don't/doesn't + verbo en forma base; con he/she/it se usa «doesn't» y el verbo NO lleva -s."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "«is a vegetarian» indica algo permanente, no una acción de este momento. El sujeto «He» pide «doesn't» y el verbo queda en forma base: «He doesn't eat meat at any meal»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«do not eat» no concuerda con «He», que exige «doesn't». «didn't eat» está en pasado, pero «is a vegetarian» describe cómo es hoy este primo, no algo que ocurrió una vez. «isn't eating» describe algo temporal o en curso, no el hábito permanente de un vegetariano."
+      }
+    ]
+  },
+  {
+    "stem": "That blue bag _____ to me. It's my sister's, so please put it back. Select the most appropriate option to complete the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "doesn't belong",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "isn't belonging",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "don't belong",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "didn't belong",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Los stative verbs (belong, know, like, want, understand, seem) describen estados, no acciones, y casi nunca se usan en forma continua (-ing). Se conjugan en presente simple."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "«belong» expresa pertenencia, que es un estado. El sujeto «That blue bag» es singular y la oración es negativa, así que se usa «doesn't belong»: «That blue bag doesn't belong to me»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«isn't belonging» pone en continuo un verbo de estado, algo que el inglés no permite. «don't belong» no concuerda con el sujeto singular «bag», que pide «doesn't». «didn't belong» está en pasado, pero la bolsa sigue siendo hoy de su hermana («It's my sister's»), así que el tiempo no concuerda con la situación actual."
+      }
+    ]
+  },
+  {
+    "stem": "Ricardo _____ two weeks ago, and he is very happy with his new life. Choose the option that best completes the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "moved to Mérida",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "has moved to Mérida",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "had moved to Mérida",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "moves to Mérida",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Cuando una oración incluye un momento terminado y concreto del pasado, como «two weeks ago», se usa el past simple. El present perfect (have/has + participio) no se combina con expresiones de tiempo finalizado como «ago», «yesterday» o «last year»."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "«two weeks ago» sitúa la mudanza en un punto cerrado del pasado, y el verbo regular se forma con -ed. Por eso: «Ricardo moved to Mérida two weeks ago»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«has moved to Mérida» es un calco del pretérito perfecto español («se ha mudado hace dos semanas»), pero en inglés no admite «ago». «moves to Mérida» está en presente y no puede ubicar la acción dos semanas atrás. «had moved to Mérida» es past perfect y exigiría otra acción pasada posterior como referencia, que aquí no existe."
+      }
+    ]
+  },
+  {
+    "stem": "A: Has the package from the store arrived? B: No, it _____ yet. Which option correctly completes the sentence?",
+    "options": [
+      {
+        "id": "A",
+        "text": "hadn't arrived",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "doesn't arrive",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "won't arrive",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "hasn't arrived",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "«Yet» se usa con el present perfect en oraciones negativas y preguntas para hablar de algo que se esperaba y todavía no ha ocurrido. La estructura negativa es haven't/hasn't + participio pasado."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La pregunta «Has the package ... arrived?» ya está en present perfect, y la respuesta lo repite en negativo con «it» (tercera persona): «No, it hasn't arrived yet»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«doesn't arrive» está en presente simple y habla de un horario habitual, no de si algo ha llegado hasta ahora. «hadn't arrived» es past perfect y requiere un punto de referencia en el pasado que aquí no aparece. «won't arrive» es futuro: la pregunta no es si llegará, sino si ya llegó hasta este momento."
+      }
+    ]
+  },
+  {
+    "stem": "I'm exhausted. I _____ in the garden since six o'clock this morning. Select the most appropriate option to complete the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "has been working",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "had been working",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "have been working",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "worked",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El present perfect continuous (have/has been + verbo con -ing) expresa una acción que empezó en el pasado y continúa hasta ahora. Se usa con «for» y «since» para marcar la duración o el punto de inicio, y enfatiza el proceso y su efecto presente."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "«since six o'clock this morning» indica el inicio de una actividad que sigue vigente, y el cansancio actual es su consecuencia. Con «I» se usa «have»: «I have been working in the garden since six o'clock this morning»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«had been working» es past perfect continuous y sitúa la acción antes de un momento pasado, pero aquí el hablante habla de cómo se siente ahora. «worked» es pasado simple y no se combina con «since» para una actividad que continúa hasta ahora. «has been working» no concuerda con «I», que lleva «have»."
+      }
+    ]
+  },
+  {
+    "stem": "Yesterday afternoon I _____ along the beach when I found a beautiful shell. Choose the option that best completes the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "am walking",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "were walking",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "have walked",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "was walking",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El past continuous (was/were + -ing) describe una acción en progreso en el pasado que es interrumpida por otra, expresada en past simple. «When» suele introducir la acción que interrumpe."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La caminata estaba en curso cuando ocurrió el hallazgo («found»). El sujeto «I» lleva «was»: «I was walking along the beach when I found a beautiful shell»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«have walked» es present perfect y no se combina con «yesterday afternoon», que marca un tiempo terminado. «am walking» está en presente y contradice el pasado de «found». «were walking» usa la forma plural, que no corresponde al sujeto «I»."
+      }
+    ]
+  },
+  {
+    "stem": "It was my first visit to Madrid. I _____ to Europe before that trip. Which option correctly completes the sentence?",
+    "options": [
+      {
+        "id": "A",
+        "text": "would never be",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "was never",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "had never been",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "have never been",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El past perfect (had + participio pasado) se usa para una acción o situación que ocurrió antes de otro momento del pasado. Aquí ese momento es «that trip», el viaje a Madrid, y lo anterior a él es no haber viajado nunca a Europa."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La narración está en pasado («It was my first visit») y la experiencia previa al viaje requiere el pasado del perfecto: «had never been». Resultado: «I had never been to Europe before that trip»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«have never been» es present perfect y conecta con el presente, lo que rompe la narración en pasado. «would never be» expresa condición o futuro visto desde el pasado, no una experiencia previa. «was never» calca el español («nunca fui a Europa»): en inglés, haber estado en un lugar se dice con el participio «been», no con el pasado de «be»."
+      }
+    ]
+  },
+  {
+    "stem": "The police _____ the stolen bicycle right now. Choose the option that best completes the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "looks for",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "are looking for",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "is looking for",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "has looked for",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "«Police» es un sustantivo colectivo que en inglés funciona siempre como plural: se usa con «are/have/do», aunque en español «la policía» sea singular. Además, «right now» pide el present continuous."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Sujeto plural + acción en curso da «are looking for»: «The police are looking for the stolen bicycle right now»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«is looking for» trata «police» como singular, calco del español. «has looked for» también usa un auxiliar singular y además es present perfect, que no encaja con «right now». «looks for» conserva la concordancia singular y el presente simple, que no describe una acción que ocurre en este momento."
+      }
+    ]
+  },
+  {
+    "stem": "I _____ long hair when I was in high school, but now I keep it very short. Select the most appropriate option to complete the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "used to have",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "use to have",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "was having",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "would have",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "«Used to» + verbo base habla de estados o hábitos del pasado que ya no son ciertos. «Would» solo puede expresar hábitos repetidos del pasado (acciones), nunca estados o posesiones, como tener el pelo largo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "«Having long hair» es un estado, y la oración lo contrasta con el presente («but now I keep it very short»). Por eso se necesita «used to have»: «I used to have long hair when I was in high school»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«would have» no sirve para estados y además sugiere una condición, no un hábito pasado. «use to have» omite la -d, una forma que solo aparece en preguntas y negativas con «did». «was having» pone en continuo un verbo de estado (tener el pelo largo), algo que el inglés no admite en este sentido."
+      }
+    ]
+  },
+  {
+    "stem": "Hurry up! By the time we _____, the movie will have already started. Choose the option that best completes the sentence.",
+    "options": [
+      {
+        "id": "A",
+        "text": "got to the movie theater",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "get to the movie theater",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "will get to the movie theater",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "would get to the movie theater",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "En las cláusulas temporales que se refieren al futuro e inician con «when», «while», «as soon as», «until» o «by the time» NO se usa «will»: se emplea el presente simple. El «will» queda para la cláusula principal."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La cláusula principal ya contiene el futuro («the movie will have already started»), así que la cláusula con «by the time» va en presente: «By the time we get to the movie theater, the movie will have already started»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«will get to the movie theater» y «would get to the movie theater» ponen un modal dentro de la cláusula temporal, algo que el inglés evita aunque el español use un subjuntivo («cuando lleguemos»). «got to the movie theater» está en pasado y no concuerda con el futuro de la oración principal."
+      }
+    ]
+  },
+  {
+    "stem": "By the time the rescue team arrived, the hikers _____ in the freezing cold for nearly six hours. Which option correctly completes the sentence?",
+    "options": [
+      {
+        "id": "A",
+        "text": "had been waiting",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "would have waited",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "have been waiting",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "have waited",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "EXPERT",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El past perfect continuous (had been + -ing) expresa una acción que venía desarrollándose durante un periodo (marcado con «for») hasta otro momento del pasado. «By the time» + past simple marca ese momento, y el verbo principal va un paso más atrás."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "«By the time the rescue team arrived» fija el punto de referencia en el pasado; hasta entonces los excursionistas llevaban seis horas esperando, y la duración aparece con «for nearly six hours». La forma correcta es «had been waiting»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«have been waiting» es present perfect continuous y conecta con el presente, pero el rescate ya sucedió. «would have waited» es un condicional perfecto que habla de algo hipotético, no de lo que realmente ocurrió. «have waited» es present perfect: conecta la espera con el presente, pero el rescate ya había llegado."
+      }
+    ]
+  }
+]

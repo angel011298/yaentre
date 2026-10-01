@@ -1,0 +1,94 @@
+[
+  {
+    "stem": "En la oración «Las flores del jardín de mi abuela se abrieron temprano», ¿cuál es el núcleo del sujeto?",
+    "options": [
+      {
+        "id": "A",
+        "text": "La palabra «abuela»",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "La palabra «flores»",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "La palabra «jardín»",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "La palabra «abrieron»",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El núcleo del sujeto es la palabra principal del grupo nominal, la que concuerda en número y persona con el verbo. Los demás elementos (artículos, adjetivos y complementos introducidos por preposición) la modifican."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El verbo «abrieron» está en tercera persona del plural, de modo que el sujeto es plural. Al preguntar quiénes se abrieron, la respuesta es «las flores del jardín de mi abuela», y dentro de ese grupo la palabra que concuerda con el verbo es «flores». El artículo «las» la acompaña y «del jardín de mi abuela» es un complemento."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«Jardín» y «abuela» son singulares y aparecen dentro de complementos con preposición, por lo que no concuerdan con el verbo. «Abrieron» es el verbo, núcleo del predicado y no del sujeto."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál oración respeta la norma de concordancia con el verbo haber cuando significa «existir» o «tener lugar»?",
+    "options": [
+      {
+        "id": "A",
+        "text": "En la reunión han habido varios problemas de organización.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "En la reunión hubo varios problemas de organización.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "En la reunión hubieron varios problemas de organización.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "En la reunión habían varios problemas de organización.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Cuando haber significa «existir» o «tener lugar», es un verbo impersonal: solo se conjuga en tercera persona del singular (hubo, había, ha habido, habrá). El sustantivo que lo sigue es complemento directo, no sujeto, por lo que el verbo no concuerda con él aunque esté en plural."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "En la oración se habla de la existencia de problemas durante la reunión, así que «hubo» funciona como impersonal. «Varios problemas de organización» es el complemento directo y no obliga a pluralizar el verbo. El pretérito singular «hubo» es la forma que corresponde a una situación ocurrida y concluida."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«Hubieron» y «habían» pluralizan el verbo para concordar con «problemas», error muy frecuente porque se confunde el complemento con un sujeto. «Han habido» comete el mismo error en el pretérito perfecto compuesto, cuando la forma normativa sería «ha habido»."
+      }
+    ]
+  }
+]

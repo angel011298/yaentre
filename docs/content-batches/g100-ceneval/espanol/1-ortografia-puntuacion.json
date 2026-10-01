@@ -1,0 +1,140 @@
+[
+  {
+    "stem": "¿En cuál oración la coma separa correctamente el vocativo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Lucía, pasa por el pan antes de que cierren la panadería.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Lucía pasa, por el pan antes de que cierren la panadería.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Lucía; pasa por el pan antes de que cierren la panadería.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Pasa por el pan, Lucía antes de que cierren la panadería.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "El vocativo es la palabra o expresión con la que se nombra a la persona a quien se habla, y siempre se separa del resto del enunciado con coma. Si va al inicio, la coma se escribe después de él; si va en medio, se encierra entre dos comas; si va al final, la coma se escribe antes."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "En «Lucía, pasa por el pan antes de que cierren la panadería», el nombre «Lucía» abre el enunciado y se aísla con una coma de la orden que le sigue. El verbo «pasa» y su complemento «por el pan» permanecen unidos, sin ninguna pausa entre ellos. Por eso la puntuación refleja exactamente la estructura de la oración."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La versión que coloca la coma después de «pasa» separa el verbo de su complemento y deja sin marcar a la persona a quien se habla. La que escribe «Lucía» en medio de la orden sin coma de cierre omite la segunda coma que exige un vocativo intercalado. La que emplea punto y coma usa un signo propio de oraciones relacionadas entre sí, no de un vocativo."
+      }
+    ]
+  },
+  {
+    "stem": "¿En cuál de las siguientes series todos los infinitivos están escritos correctamente?",
+    "options": [
+      {
+        "id": "A",
+        "text": "coger, elejir, sugerir, finjir",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "escoger, corrijir, tejer, exigir",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "protejer, elegir, recojer, dirigir",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "proteger, elegir, recoger, dirigir",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Los verbos cuyo infinitivo termina en -ger o en -gir se escriben con g (proteger, elegir, dirigir). Las pocas excepciones, como tejer y crujir, se escriben con j. La j que aparece en algunas formas conjugadas (protejo, elijo) no cambia la grafía del infinitivo."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Se revisa cada infinitivo contra esa regla: proteger, elegir, recoger y dirigir terminan en -ger o -gir y ninguno es excepción, así que todos llevan g. Como los cuatro cumplen la norma, la serie completa está bien escrita."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La serie que contiene «protejer» y «recojer» falla porque ambos infinitivos deben escribirse con g. La que incluye «corrijir» es incorrecta porque el infinitivo es «corregir», aunque «tejer» sí lleve j por ser excepción. La que presenta «elejir» y «finjir» se equivoca en ambos casos, pues se escriben «elegir» y «fingir»."
+      }
+    ]
+  },
+  {
+    "stem": "¿Cuál oración está correctamente acentuada?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Tú sabes que el quiere té con leche, pero tu hermano prefiere café.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Tu sabes que él quiere té con leche, pero tu hermano prefiere café.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Tú sabes que él quiere té con leche, pero tu hermano prefiere café.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "Tú sabes que él quiere te con leche, pero tu hermano prefiere café.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "MULTIPLE_CHOICE",
+    "sourceChunks": [],
+    "passage": null,
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La tilde diacrítica distingue palabras que se escriben igual pero cumplen funciones distintas: «tú» (pronombre) frente a «tu» (posesivo), «él» (pronombre) frente a «el» (artículo) y «té» (sustantivo, la bebida) frente a «te» (pronombre). La forma tónica y pronominal o sustantiva lleva tilde; la átona no."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "En la oración, «Tú» es el pronombre que funciona como sujeto, «él» es otro pronombre que sustituye a una persona, «té» nombra la infusión y «tu» acompaña a «hermano» como posesivo, por lo que no lleva tilde. Las cuatro palabras están escritas como corresponde a su función."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La versión que escribe «Tu sabes» deja sin tilde un pronombre sujeto que sí debe llevarla. La que escribe «el quiere» usa la forma del artículo donde debe ir el pronombre «él». La que escribe «te con leche» omite la tilde del sustantivo que nombra la bebida."
+      }
+    ]
+  }
+]

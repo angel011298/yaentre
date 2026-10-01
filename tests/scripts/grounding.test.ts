@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   buildGroundingBlock,
+  isRestrictedGroundingSource,
   resolveCitations,
   type GroundingChunk,
 } from '../../scripts/lib/grounding';
@@ -109,5 +110,30 @@ describe('chunking del escáner', () => {
     expect(excerpt.length).toBeLessThanOrEqual(210);
     expect(excerpt.endsWith('…')).toBe(true);
     expect(excerpt).not.toMatch(/\s…$/);
+  });
+});
+
+describe('isRestrictedGroundingSource (G100: guías CENEVAL/EXANI no anclan contenido)', () => {
+  it('rechaza por nombre de archivo, institución o ruta, sin distinguir mayúsculas', () => {
+    expect(isRestrictedGroundingSource({ name: 'ceneval_exanii.pdf' })).toBe(true);
+    expect(isRestrictedGroundingSource({ name: 'Guia_EXANI-II_2026.pdf' })).toBe(true);
+    // renombrar el PDF no la saca de la lista: cuenta también la institución y la ruta
+    expect(isRestrictedGroundingSource({ name: 'guia_01.pdf', institution: 'CENEVAL' })).toBe(true);
+    expect(isRestrictedGroundingSource({ name: 'guia_01.pdf', fileRef: 'docs/guias/ceneval_x.pdf' })).toBe(true);
+  });
+
+  it('deja pasar las fuentes legítimas (control positivo: el rojo es alcanzable pero no es la regla general)', () => {
+    expect(isRestrictedGroundingSource({ name: 'unam_ingreso2026.pdf', institution: 'UNAM' })).toBe(false);
+    expect(isRestrictedGroundingSource({ name: 'guia_ECOEM.pdf', institution: 'ECOEMS', fileRef: 'docs/guias/guia_ECOEM.pdf' })).toBe(false);
+    expect(isRestrictedGroundingSource({ name: 'uam_cbi.pdf', institution: 'UAM', fileRef: null })).toBe(false);
+  });
+
+  it('una fuente restringida sacada de la lista deja el tema sin anclaje, que NO bloquea', () => {
+    const offered = chunks.filter((c) => !isRestrictedGroundingSource({ name: c.sourceName }));
+    expect(offered).toHaveLength(2);
+    const onlyRestricted: GroundingChunk[] = [
+      { id: 'x', text: 't', locationRef: null, sourceName: 'ceneval_exanii.pdf' },
+    ].filter((c) => !isRestrictedGroundingSource({ name: c.sourceName }));
+    expect(resolveCitations([], onlyRestricted)).toEqual({ ok: true, chunkIds: [] });
   });
 });

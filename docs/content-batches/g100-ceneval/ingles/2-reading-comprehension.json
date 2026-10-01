@@ -1,0 +1,818 @@
+[
+  {
+    "stem": "What is the main idea of the passage?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Scientists have ideas about yawning but no final answer.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Contagious yawning proves that yawns are caused by germs.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Yawning is a habit that people can easily stop.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Yawning always means that a person needs more oxygen.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-bostezo",
+      "title": "The Mystery of the Yawn",
+      "content": "Everyone yawns, from newborn babies to elderly people, and many animals do it too. Yet scientists still cannot agree on why. For a long time, people believed that we yawn because our bodies need more oxygen, but tests have not supported this idea. A more recent theory suggests that a yawn helps to cool the brain: when we breathe in deeply, cooler air and extra blood flow may lower its temperature. This could explain why people yawn more often when they are tired or bored, since the brain may be working less efficiently at those moments. Another puzzling feature is that yawning is contagious. Seeing someone yawn, or even reading about it, can make you do the same. Researchers think this reaction may be linked to empathy, although the evidence is still limited.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "La idea principal de un texto es el mensaje que abarca todo el pasaje, no un detalle aislado. Conviene preguntarse qué sostiene el autor de principio a fin."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El pasaje plantea una pregunta (por qué bostezamos), repasa la teoría del oxígeno, la del enfriamiento del cerebro y el bostezo contagioso, y señala que «scientists still cannot agree». Por eso la idea central es que existen varias hipótesis pero ninguna respuesta definitiva."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La afirmación sobre el oxígeno repite una teoría que el texto dice que las pruebas no respaldaron. La idea de que es un hábito fácil de detener no aparece en ningún punto del pasaje. La explicación de los gérmenes tampoco se menciona: el texto relaciona el bostezo contagioso con la empatía."
+      }
+    ]
+  },
+  {
+    "stem": "According to the passage, what might a yawn do for the brain?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It might help to lower its temperature.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "It might help it to store new memories.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "It might provide it with more oxygen.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "It might make it work much faster.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-bostezo",
+      "title": "The Mystery of the Yawn",
+      "content": "Everyone yawns, from newborn babies to elderly people, and many animals do it too. Yet scientists still cannot agree on why. For a long time, people believed that we yawn because our bodies need more oxygen, but tests have not supported this idea. A more recent theory suggests that a yawn helps to cool the brain: when we breathe in deeply, cooler air and extra blood flow may lower its temperature. This could explain why people yawn more often when they are tired or bored, since the brain may be working less efficiently at those moments. Another puzzling feature is that yawning is contagious. Seeing someone yawn, or even reading about it, can make you do the same. Researchers think this reaction may be linked to empathy, although the evidence is still limited.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "En una pregunta de detalle explícito la respuesta está dicha casi con las mismas palabras en el texto. Hay que localizar la frase y comparar con cuidado."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El pasaje dice que «a yawn helps to cool the brain» y que el aire fresco y el flujo sanguíneo «may lower its temperature». Esa es la función que se atribuye al bostezo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "La idea de dar más oxígeno es la teoría antigua que, según el texto, las pruebas no apoyaron. Guardar recuerdos nuevos no se menciona en el pasaje. Hacer que el cerebro funcione más rápido contradice el texto, que dice que al bostezar el cerebro podría estar trabajando con menos eficiencia."
+      }
+    ]
+  },
+  {
+    "stem": "In the passage, the word \"puzzling\" is closest in meaning to",
+    "options": [
+      {
+        "id": "A",
+        "text": "common in animals",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "unpleasant to see",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "hard to explain",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "easy to ignore",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-bostezo",
+      "title": "The Mystery of the Yawn",
+      "content": "Everyone yawns, from newborn babies to elderly people, and many animals do it too. Yet scientists still cannot agree on why. For a long time, people believed that we yawn because our bodies need more oxygen, but tests have not supported this idea. A more recent theory suggests that a yawn helps to cool the brain: when we breathe in deeply, cooler air and extra blood flow may lower its temperature. This could explain why people yawn more often when they are tired or bored, since the brain may be working less efficiently at those moments. Another puzzling feature is that yawning is contagious. Seeing someone yawn, or even reading about it, can make you do the same. Researchers think this reaction may be linked to empathy, although the evidence is still limited.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "En una pregunta de vocabulario en contexto no se busca la definición de diccionario, sino el significado que la palabra tiene en esa oración. El contexto cercano da las pistas."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "«Another puzzling feature is that yawning is contagious» aparece después de que el texto dice que los científicos «cannot agree on why». Algo «puzzling» es algo que desconcierta, es decir, difícil de explicar."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«easy to ignore» (fácil de ignorar) es lo contrario de una característica que intriga a los investigadores. «unpleasant to see» (desagradable de ver) añade un juicio de gusto que el texto no hace. «common in animals» (común en animales) no tiene relación con el sentido de la palabra en esa frase."
+      }
+    ]
+  },
+  {
+    "stem": "In the passage, \"this reaction\" refers to",
+    "options": [
+      {
+        "id": "A",
+        "text": "breathing in deeply in cold places",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "feeling tired after a long day",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "catching a yawn from another person",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "cooling the brain with fresh blood",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-bostezo",
+      "title": "The Mystery of the Yawn",
+      "content": "Everyone yawns, from newborn babies to elderly people, and many animals do it too. Yet scientists still cannot agree on why. For a long time, people believed that we yawn because our bodies need more oxygen, but tests have not supported this idea. A more recent theory suggests that a yawn helps to cool the brain: when we breathe in deeply, cooler air and extra blood flow may lower its temperature. This could explain why people yawn more often when they are tired or bored, since the brain may be working less efficiently at those moments. Another puzzling feature is that yawning is contagious. Seeing someone yawn, or even reading about it, can make you do the same. Researchers think this reaction may be linked to empathy, although the evidence is still limited.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un pronombre o una expresión demostrativa («this», «that», «it») casi siempre remite a algo mencionado justo antes. Para resolverlo se sustituye la expresión por el candidato y se comprueba que la frase tenga sentido."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La oración anterior dice: «Seeing someone yawn, or even reading about it, can make you do the same». Esa respuesta de bostezar al ver a otro es «this reaction», que los investigadores vinculan con la empatía."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Respirar profundo en lugares fríos no se menciona como reacción ante nadie. Sentir cansancio es un momento en que se bosteza más, no una reacción contagiosa. Enfriar el cerebro con sangre fresca pertenece a la teoría anterior y no tiene que ver con la empatía."
+      }
+    ]
+  },
+  {
+    "stem": "Why were many shop owners unhappy at first?",
+    "options": [
+      {
+        "id": "A",
+        "text": "They feared losing customers because of less parking.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "They believed the paint would damage their shops.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "They thought bicycles would be too noisy for customers.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "They had to close the street for six months.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-ciclovia",
+      "title": "Changes on Maple Street",
+      "content": "Last spring, the city council of Riverton painted a bike lane along Maple Street. At first, many shop owners were angry. They feared that customers would stop coming because there were fewer parking spaces. Mr. Dawson, who runs a bakery on the corner, even collected signatures against the project. Six months later, however, he admits that he was wrong. \"I thought nobody would ride a bike in the rain or in winter,\" he says, \"but plenty of people stop here on their way to work.\" A recent survey shows that the number of people walking past the shops has grown by almost a fifth, and sales at the bakery have gone up. Not everyone is convinced, though. Some residents still complain that delivery trucks block the new lane. The council has promised to move the loading area to the side street before the end of the year.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Las preguntas de detalle se contestan con información que el texto da de forma directa. Hay que ubicar el motivo exacto que el autor menciona y no sustituirlo por algo que suene razonable."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El pasaje dice que los dueños «feared that customers would stop coming because there were fewer parking spaces». El miedo a perder clientes por la falta de estacionamiento es el motivo de su enojo."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Que la pintura dañaría los negocios no se menciona. El ruido de las bicicletas tampoco aparece en el texto. Cerrar la calle seis meses mezcla un dato incorrecto: los seis meses se refieren al tiempo transcurrido hasta que el panadero cambió de opinión."
+      }
+    ]
+  },
+  {
+    "stem": "What can we infer about Mr. Dawson from the passage?",
+    "options": [
+      {
+        "id": "A",
+        "text": "He still thinks that the project was a mistake.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "He rides a bike to work in every kind of weather.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "He has changed his opinion about the bike lane.",
+        "isCorrect": true
+      },
+      {
+        "id": "D",
+        "text": "He plans to move his bakery to the side street.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-ciclovia",
+      "title": "Changes on Maple Street",
+      "content": "Last spring, the city council of Riverton painted a bike lane along Maple Street. At first, many shop owners were angry. They feared that customers would stop coming because there were fewer parking spaces. Mr. Dawson, who runs a bakery on the corner, even collected signatures against the project. Six months later, however, he admits that he was wrong. \"I thought nobody would ride a bike in the rain or in winter,\" he says, \"but plenty of people stop here on their way to work.\" A recent survey shows that the number of people walking past the shops has grown by almost a fifth, and sales at the bakery have gone up. Not everyone is convinced, though. Some residents still complain that delivery trucks block the new lane. The council has promised to move the loading area to the side street before the end of the year.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una inferencia es una conclusión que el texto permite sacar sin decirla literalmente. Debe apoyarse en datos del pasaje y no añadir información nueva."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Primero reunió firmas en contra del proyecto, pero seis meses después «admits that he was wrong» y dice que mucha gente se detiene en su panadería. Se concluye que ya no se opone al carril ciclista."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Mudar la panadería a la calle lateral confunde ese dato con el cambio de la zona de carga de camiones que promete el ayuntamiento. Seguir pensando que fue un error contradice su reconocimiento de que se equivocó. Que él mismo vaya en bicicleta con cualquier clima no se dice: se habla de otras personas que pasan por allí."
+      }
+    ]
+  },
+  {
+    "stem": "In the passage, the word \"admits\" is closest in meaning to",
+    "options": [
+      {
+        "id": "A",
+        "text": "asks politely",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "acknowledges",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "forgets quickly",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "hides carefully",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-ciclovia",
+      "title": "Changes on Maple Street",
+      "content": "Last spring, the city council of Riverton painted a bike lane along Maple Street. At first, many shop owners were angry. They feared that customers would stop coming because there were fewer parking spaces. Mr. Dawson, who runs a bakery on the corner, even collected signatures against the project. Six months later, however, he admits that he was wrong. \"I thought nobody would ride a bike in the rain or in winter,\" he says, \"but plenty of people stop here on their way to work.\" A recent survey shows that the number of people walking past the shops has grown by almost a fifth, and sales at the bakery have gone up. Not everyone is convinced, though. Some residents still complain that delivery trucks block the new lane. The council has promised to move the loading area to the side street before the end of the year.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Para deducir una palabra en contexto se examina qué hace el personaje o el autor en esa frase y se prueba cada opción como reemplazo. «Admit» significa reconocer algo que antes no se quería aceptar."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El panadero había reunido firmas en contra, pero ahora «admits that he was wrong». Reconoce su error con franqueza, por lo que la mejor sustitución es «acknowledges»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«hides carefully» (oculta con cuidado) es lo contrario de reconocer un error en público. «forgets quickly» (olvida pronto) no encaja: él recuerda perfectamente lo que pensaba. «asks politely» (pide con cortesía) cambia la acción de afirmar por la de preguntar, y no hay ninguna petición en la frase."
+      }
+    ]
+  },
+  {
+    "stem": "Why does the author mention that delivery trucks block the new lane?",
+    "options": [
+      {
+        "id": "A",
+        "text": "To explain why bakery sales have gone up this year",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "To show that the project still has some open problems",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "To argue that the council should remove the bike lane",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "To prove that the shop owners were right from the start",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-ciclovia",
+      "title": "Changes on Maple Street",
+      "content": "Last spring, the city council of Riverton painted a bike lane along Maple Street. At first, many shop owners were angry. They feared that customers would stop coming because there were fewer parking spaces. Mr. Dawson, who runs a bakery on the corner, even collected signatures against the project. Six months later, however, he admits that he was wrong. \"I thought nobody would ride a bike in the rain or in winter,\" he says, \"but plenty of people stop here on their way to work.\" A recent survey shows that the number of people walking past the shops has grown by almost a fifth, and sales at the bakery have gone up. Not everyone is convinced, though. Some residents still complain that delivery trucks block the new lane. The council has promised to move the loading area to the side street before the end of the year.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una pregunta sobre el propósito del autor pide entender por qué se incluye un dato, no solo qué dice. Se analiza qué papel cumple dentro de la estructura y del tono general del texto."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Después de los resultados favorables, el pasaje añade «Not everyone is convinced, though» y menciona los camiones. Con esto muestra que el proyecto no está libre de dificultades, y el ayuntamiento promete mover la zona de carga."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Decir que los comerciantes tenían razón desde el principio contradice la propia rectificación del panadero. Explicar el aumento de ventas no tiene relación con los camiones: ese dato viene de la encuesta. Pedir que se retire el carril sería una postura del autor que el texto nunca adopta, pues solo informa de las quejas."
+      }
+    ]
+  },
+  {
+    "stem": "Which sentence best summarizes the passage?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Aztec rulers preferred cacao money to cacao drinks.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Chocolate changed from an ancient drink into a modern treat.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "Spanish explorers invented chocolate when they reached Europe.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Chocolate bars have been popular for thousands of years.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-chocolate",
+      "title": "From Bitter Drink to Sweet Bar",
+      "content": "Today chocolate is a popular sweet treat, but its beginnings were very different. Thousands of years ago, peoples of Mesoamerica prepared a drink from roasted cacao beans, water and spices. It was bitter, and it was not meant for everyone: in many communities, it was reserved for important ceremonies and for rulers and warriors. Cacao beans were so valuable that the Aztecs even used them as a kind of money. When Spanish explorers took cacao to Europe in the sixteenth century, people there found the drink too harsh. They began adding sugar and serving it hot, and it quickly became fashionable among the wealthy. Solid chocolate bars, the kind we eat today, only appeared in the nineteenth century, when new machines made it possible to separate the cocoa fat from the powder.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Un buen resumen cubre todo el pasaje, de principio a fin, sin quedarse en un detalle ni afirmar algo que el texto no dice. Se descartan las opciones que solo abarcan una parte o que cambian los hechos."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El pasaje sigue el recorrido del chocolate: una bebida amarga mesoamericana, su llegada a Europa con azúcar y, siglos después, la barra sólida. Esa transformación de bebida antigua a golosina moderna resume el texto."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Atribuir la invención a los exploradores españoles contradice el texto, que dice que ya se preparaba miles de años antes. La preferencia de los gobernantes aztecas por el dinero de cacao es un detalle inventado. Decir que las barras son populares desde hace miles de años contradice el texto, que las ubica hasta el siglo diecinueve."
+      }
+    ]
+  },
+  {
+    "stem": "According to the passage, why did Europeans begin adding sugar to the drink?",
+    "options": [
+      {
+        "id": "A",
+        "text": "They could not find any spices in Europe.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "They found the original drink too harsh.",
+        "isCorrect": true
+      },
+      {
+        "id": "C",
+        "text": "They had machines that separated the cocoa fat.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "They wanted to use it as a kind of money.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-chocolate",
+      "title": "From Bitter Drink to Sweet Bar",
+      "content": "Today chocolate is a popular sweet treat, but its beginnings were very different. Thousands of years ago, peoples of Mesoamerica prepared a drink from roasted cacao beans, water and spices. It was bitter, and it was not meant for everyone: in many communities, it was reserved for important ceremonies and for rulers and warriors. Cacao beans were so valuable that the Aztecs even used them as a kind of money. When Spanish explorers took cacao to Europe in the sixteenth century, people there found the drink too harsh. They began adding sugar and serving it hot, and it quickly became fashionable among the wealthy. Solid chocolate bars, the kind we eat today, only appeared in the nineteenth century, when new machines made it possible to separate the cocoa fat from the powder.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Las preguntas con «why» en un pasaje suelen tener la causa expresada de forma explícita, a menudo en la frase inmediatamente anterior a la consecuencia. Hay que buscar el motivo, no solo el hecho."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El texto dice: «people there found the drink too harsh. They began adding sugar and serving it hot». La causa de añadir azúcar fue que la bebida original les resultaba demasiado fuerte."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Usar el cacao como dinero es algo que hacían los aztecas, no una razón europea para endulzar. Que no hubiera especias en Europa nunca se dice. Las máquinas que separan la grasa del cacao llegaron en el siglo diecinueve, mucho después de que se empezara a endulzar."
+      }
+    ]
+  },
+  {
+    "stem": "Which statement is probably true according to the passage?",
+    "options": [
+      {
+        "id": "A",
+        "text": "In Mesoamerica, machines helped to prepare the drink.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "In Mesoamerica, ordinary people drank cacao every day.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "In Europe, the first chocolate was sold as solid bars.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "In Europe, chocolate was first enjoyed by rich people.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-chocolate",
+      "title": "From Bitter Drink to Sweet Bar",
+      "content": "Today chocolate is a popular sweet treat, but its beginnings were very different. Thousands of years ago, peoples of Mesoamerica prepared a drink from roasted cacao beans, water and spices. It was bitter, and it was not meant for everyone: in many communities, it was reserved for important ceremonies and for rulers and warriors. Cacao beans were so valuable that the Aztecs even used them as a kind of money. When Spanish explorers took cacao to Europe in the sixteenth century, people there found the drink too harsh. They began adding sugar and serving it hot, and it quickly became fashionable among the wealthy. Solid chocolate bars, the kind we eat today, only appeared in the nineteenth century, when new machines made it possible to separate the cocoa fat from the powder.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una pregunta de inferencia pide una conclusión probable que se apoye en varios datos del texto sin estar escrita literalmente. La respuesta correcta nunca contradice lo que el pasaje afirma."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El pasaje dice que, ya endulzada y caliente, la bebida «became fashionable among the wealthy». De esto se concluye que al principio el chocolate era un producto de lujo entre la gente con dinero."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Que la gente común bebiera cacao a diario contradice «it was not meant for everyone», pues se reservaba a ceremonias, gobernantes y guerreros. Las barras sólidas aparecieron hasta el siglo diecinueve, no en el primer chocolate europeo. Las máquinas son una invención del siglo diecinueve y no se usaban en Mesoamérica."
+      }
+    ]
+  },
+  {
+    "stem": "In the passage, the word \"harsh\" is closest in meaning to",
+    "options": [
+      {
+        "id": "A",
+        "text": "unpleasantly strong",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "dangerously hot",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "surprisingly cheap",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "pleasantly smooth",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-chocolate",
+      "title": "From Bitter Drink to Sweet Bar",
+      "content": "Today chocolate is a popular sweet treat, but its beginnings were very different. Thousands of years ago, peoples of Mesoamerica prepared a drink from roasted cacao beans, water and spices. It was bitter, and it was not meant for everyone: in many communities, it was reserved for important ceremonies and for rulers and warriors. Cacao beans were so valuable that the Aztecs even used them as a kind of money. When Spanish explorers took cacao to Europe in the sixteenth century, people there found the drink too harsh. They began adding sugar and serving it hot, and it quickly became fashionable among the wealthy. Solid chocolate bars, the kind we eat today, only appeared in the nineteenth century, when new machines made it possible to separate the cocoa fat from the powder.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Para deducir una palabra desconocida se observa la consecuencia que sigue: aquí la reacción de las personas y lo que hicieron después revelan el sentido. Se prueba cada opción en la oración original."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Los europeos encontraron la bebida «too harsh» y entonces empezaron a añadirle azúcar. Se endulza algo que resulta demasiado amargo o fuerte, así que «harsh» equivale a «unpleasantly strong»."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "«pleasantly smooth» (agradablemente suave) es lo contrario: no habría razón para añadir azúcar. «surprisingly cheap» (sorprendentemente barata) habla de precio, y el texto dice que el cacao era muy valioso. «dangerously hot» (peligrosamente caliente) no encaja, porque el calor se añadió después, junto con el azúcar."
+      }
+    ]
+  },
+  {
+    "stem": "Why does the author mention that the first week was hard?",
+    "options": [
+      {
+        "id": "A",
+        "text": "To show that changing a habit takes some effort",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "To suggest that alarm clocks are difficult to use",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "To explain why Valeria stopped the experiment",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "To prove that Valeria could not sleep without her phone",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "INTERMEDIATE",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-telefono",
+      "title": "A Phone-Free Bedroom",
+      "content": "Valeria, a university student, used to check her phone until she fell asleep. In the morning, she felt tired, even after eight hours in bed. A friend suggested a simple experiment: charge the phone in the kitchen for one month and buy an alarm clock. Valeria laughed at the idea, but she accepted the challenge. The first week was hard. She kept reaching for a phone that was not there, and she lay awake for a long time. After ten days, however, she began falling asleep earlier and reading a few pages of a novel instead. By the end of the month, she woke up before her alarm and felt more focused during her morning classes. \"I don't think the phone itself was the problem,\" she says. \"It was the habit of never letting my mind rest.\" Today, Valeria still leaves the phone in the kitchen, although she admits that she breaks the rule on weekends.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una pregunta de propósito se contesta fijándose en la función de un detalle dentro del texto completo, no solo en su significado literal. Hay que ver qué sucede antes y después."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La primera semana fue difícil, pero después de diez días Valeria empezó a dormir antes y a leer. El contraste muestra que cambiar un hábito exige esfuerzo al principio."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Valeria no abandonó el experimento: sigue dejando el teléfono en la cocina. Los relojes despertadores no se presentan como difíciles de usar. Decir que no podía dormir sin su teléfono es una exageración, pues solo tardó en conciliar el sueño y después mejoró."
+      }
+    ]
+  },
+  {
+    "stem": "What did Valeria do during the experiment?",
+    "options": [
+      {
+        "id": "A",
+        "text": "She stopped going to her morning classes.",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "She slept in the kitchen with an alarm clock.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "She used her phone only for reading novels.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "She charged her phone in the kitchen at night.",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "BASIC",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-telefono",
+      "title": "A Phone-Free Bedroom",
+      "content": "Valeria, a university student, used to check her phone until she fell asleep. In the morning, she felt tired, even after eight hours in bed. A friend suggested a simple experiment: charge the phone in the kitchen for one month and buy an alarm clock. Valeria laughed at the idea, but she accepted the challenge. The first week was hard. She kept reaching for a phone that was not there, and she lay awake for a long time. After ten days, however, she began falling asleep earlier and reading a few pages of a novel instead. By the end of the month, she woke up before her alarm and felt more focused during her morning classes. \"I don't think the phone itself was the problem,\" she says. \"It was the habit of never letting my mind rest.\" Today, Valeria still leaves the phone in the kitchen, although she admits that she breaks the rule on weekends.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Una pregunta de detalle se responde localizando en el texto la acción exacta que realiza el personaje. Las opciones incorrectas suelen mezclar elementos del pasaje con acciones que no ocurrieron."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "El experimento que propone su amigo es «charge the phone in the kitchen for one month», y al final dice que sigue dejando el teléfono ahí. Esa es la acción que Valeria realizó."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Usar el teléfono solo para leer novelas no se dice: la novela es un libro, no una función del teléfono. Dejar de ir a clases contradice que se sintiera más concentrada en sus clases de la mañana. Dormir en la cocina confunde el lugar donde cargaba el teléfono con el lugar donde dormía."
+      }
+    ]
+  },
+  {
+    "stem": "In the sentence \"Valeria laughed at the idea, but she accepted the challenge,\" what is \"the challenge\"?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reading a few pages of a novel every night",
+        "isCorrect": false
+      },
+      {
+        "id": "B",
+        "text": "Buying a new alarm clock for her friend",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Waking up before the alarm for one week",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Leaving the phone in the kitchen for a month",
+        "isCorrect": true
+      }
+    ],
+    "difficulty": "ADVANCED",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-telefono",
+      "title": "A Phone-Free Bedroom",
+      "content": "Valeria, a university student, used to check her phone until she fell asleep. In the morning, she felt tired, even after eight hours in bed. A friend suggested a simple experiment: charge the phone in the kitchen for one month and buy an alarm clock. Valeria laughed at the idea, but she accepted the challenge. The first week was hard. She kept reaching for a phone that was not there, and she lay awake for a long time. After ten days, however, she began falling asleep earlier and reading a few pages of a novel instead. By the end of the month, she woke up before her alarm and felt more focused during her morning classes. \"I don't think the phone itself was the problem,\" she says. \"It was the habit of never letting my mind rest.\" Today, Valeria still leaves the phone in the kitchen, although she admits that she breaks the rule on weekends.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Al identificar a qué se refiere una expresión como «the challenge» hay que buscar en las frases anteriores lo que se acaba de proponer. El referente siempre está antes, nunca en lo que ocurre después."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "La frase previa explica la propuesta del amigo: «a simple experiment: charge the phone in the kitchen for one month and buy an alarm clock». Valeria acepta ese reto, cuyo núcleo es dejar el teléfono fuera de su cuarto durante un mes."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Leer unas páginas cada noche ocurre después como consecuencia, no es lo que se propone. Despertar antes de la alarma también es un resultado posterior, y se menciona un mes, no una semana. Comprar un reloj para su amiga cambia el sentido: el reloj es para ella, y su amigo solo hace la sugerencia."
+      }
+    ]
+  },
+  {
+    "stem": "What does Valeria mean when she says, \"I don't think the phone itself was the problem\"?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Her night-time habit mattered more than the device itself.",
+        "isCorrect": true
+      },
+      {
+        "id": "B",
+        "text": "Her phone was too old and needed to be replaced.",
+        "isCorrect": false
+      },
+      {
+        "id": "C",
+        "text": "Phones can never affect how well people sleep.",
+        "isCorrect": false
+      },
+      {
+        "id": "D",
+        "text": "Her friend's advice about the alarm clock was wrong.",
+        "isCorrect": false
+      }
+    ],
+    "difficulty": "EXPERT",
+    "format": "READING_COMPREHENSION",
+    "sourceChunks": [],
+    "passage": {
+      "ref": "g100-ing-telefono",
+      "title": "A Phone-Free Bedroom",
+      "content": "Valeria, a university student, used to check her phone until she fell asleep. In the morning, she felt tired, even after eight hours in bed. A friend suggested a simple experiment: charge the phone in the kitchen for one month and buy an alarm clock. Valeria laughed at the idea, but she accepted the challenge. The first week was hard. She kept reaching for a phone that was not there, and she lay awake for a long time. After ten days, however, she began falling asleep earlier and reading a few pages of a novel instead. By the end of the month, she woke up before her alarm and felt more focused during her morning classes. \"I don't think the phone itself was the problem,\" she says. \"It was the habit of never letting my mind rest.\" Today, Valeria still leaves the phone in the kitchen, although she admits that she breaks the rule on weekends.",
+      "sourceRef": null
+    },
+    "explanations": [
+      {
+        "layer": 1,
+        "title": "El principio o la regla aplicable",
+        "content": "Cuando se cita una frase del texto, su significado se interpreta junto con lo que la rodea. Las frases dichas por un personaje a menudo expresan una conclusión que hay que reformular con otras palabras."
+      },
+      {
+        "layer": 2,
+        "title": "Resolución paso a paso",
+        "content": "Valeria continúa: «It was the habit of never letting my mind rest». Quiere decir que lo que le afectaba era la costumbre de usar el teléfono hasta dormirse, más que el aparato en sí."
+      },
+      {
+        "layer": 3,
+        "title": "Por qué no las otras opciones",
+        "content": "Que el teléfono fuera viejo y necesitara cambiarse no aparece en el texto. La idea de que los teléfonos nunca afectan el sueño es una generalización excesiva que ella no hace, ya que ella misma cambió su rutina. Que el consejo del reloj despertador fuera erróneo contradice que el experimento le funcionó."
+      }
+    ]
+  }
+]

@@ -1,0 +1,237 @@
+[
+  {
+    "questionId": "9928aa4c9578",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "El vocativo inicial se separa con una coma; A y B colocan la coma mal, C usa punto y coma.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "9976239fdcbb",
+    "chosenOption": "A",
+    "confidence": 0.98,
+    "reasoning": "proteger, elegir, recoger, dirigir llevan g; B, C y D traen elejir/finjir, protejer/recojer, corrijir mal escritos.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "5dad0139a0ee",
+    "chosenOption": "C",
+    "confidence": 0.98,
+    "reasoning": "Tú (pronombre), él (pronombre), té (infusión) llevan tilde; tu hermano no.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "5e62de229ef6",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "El sujeto es 'Las flores del jardín de mi abuela'; el núcleo es flores.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "1523c7c2eead",
+    "chosenOption": "A",
+    "confidence": 0.98,
+    "reasoning": "Haber impersonal es invariable en 3.ª persona singular: hubo.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "9ee6e5c2e73c",
+    "chosenOption": "D",
+    "confidence": 0.9,
+    "reasoning": "La segunda parte da la causa de no ganar: 'ya que'. 'así que' invierte la relación; 'aunque' y 'sin que' no dan sentido.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "b36f4f994676",
+    "chosenOption": "C",
+    "confidence": 0.98,
+    "reasoning": "'Por consiguiente' introduce consecuencia.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "2cf327a001c6",
+    "chosenOption": "A",
+    "confidence": 0.95,
+    "reasoning": "La idea general (ciclo continuo del agua) la ilustra el ejemplo; las demás son temas ajenos o parciales.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "99df40ba88e1",
+    "chosenOption": "A",
+    "confidence": 0.98,
+    "reasoning": "La oración sobre las palomas del vecino rompe la unidad temática del colibrí.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "559c19b97caf",
+    "chosenOption": "B",
+    "confidence": 0.97,
+    "reasoning": "Orden cronológico: lavar (2), hervir (1), enfriar (4), servir (3).",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "754a9b2ad415",
+    "chosenOption": "A",
+    "confidence": 0.97,
+    "reasoning": "B: subir arriba; C: volver a... de nuevo; D: pequeño y diminuto. Solo A carece de redundancia.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "923700201c05",
+    "chosenOption": "D",
+    "confidence": 0.98,
+    "reasoning": "Registro formal y cortés; los demás son coloquiales.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "2ca2117a709a",
+    "chosenOption": "B",
+    "confidence": 0.97,
+    "reasoning": "'Darse cuenta de que' es correcto; A y C son dequeísmo; D es queísmo.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "5c4035b17d17",
+    "chosenOption": "B",
+    "confidence": 0.93,
+    "reasoning": "B es gerundio de simultaneidad (modo) válido. A y D son gerundios 'del BOE' (especificativos, censurados por la RAE); C expresa posterioridad.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "259941e45542",
+    "chosenOption": "C",
+    "confidence": 0.92,
+    "reasoning": "Estilo directo elimina la ambigüedad del posesivo 'su'; D con 'la hermana' sigue sin precisar de quién.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "9ac023b7343c",
+    "chosenOption": "D",
+    "confidence": 0.88,
+    "reasoning": "2 plantea la práctica, 3 la ventaja, 1 el 'Sin embargo... precio', 4 retoma 'ese precio'. C (2-1-3-4) es peor porque 'esa ventaja' queda sin antecedente claro y 4 no sigue al precio.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "fddc8af3bfb3",
+    "chosenOption": "A",
+    "confidence": 0.99,
+    "reasoning": "El texto define neotenia como conservar rasgos de larva durante toda la vida.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "848fff3bc104",
+    "chosenOption": "D",
+    "confidence": 0.97,
+    "reasoning": "Se infiere el interés médico por la regeneración; el resto contradice el texto o no se sustenta.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "51054e12370d",
+    "chosenOption": "C",
+    "confidence": 0.98,
+    "reasoning": "Especies introducidas son foráneas llevadas a los canales (carpa y tilapia).",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "5a055b4b98c4",
+    "chosenOption": "A",
+    "confidence": 0.97,
+    "reasoning": "El autor sostiene que ensanchar no reduce el tráfico y propone transporte colectivo y ciclovías.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "cbd9d6d3a139",
+    "chosenOption": "C",
+    "confidence": 0.97,
+    "reasoning": "'ese' retoma que algunos oficios necesitan vehículos.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "3b400d9aef62",
+    "chosenOption": "C",
+    "confidence": 0.98,
+    "reasoning": "Reconoce una objeción (concesión) y la responde para reforzar la tesis.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "c367521c0b0f",
+    "chosenOption": "C",
+    "confidence": 0.99,
+    "reasoning": "La mujer le ofreció la mitad de una torta.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "2437e8998eda",
+    "chosenOption": "B",
+    "confidence": 0.95,
+    "reasoning": "Ambas cartas, sin abrir y deshecha de tanto leerla, sugieren algo emocionalmente difícil.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "61d50cb1630e",
+    "chosenOption": "B",
+    "confidence": 0.97,
+    "reasoning": "La frase alude metafóricamente a la carga emocional de la carta.",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": []
+  },
+  {
+    "questionId": "681ec708f09e",
+    "chosenOption": "D",
+    "confidence": 0.97,
+    "reasoning": "El texto presenta los rasgos singulares del ajolote (neotenia, regeneración) y concluye que su hábitat se ha reducido y quedan pocos ejemplares. D resume ambas partes. A generaliza ('la peor plaga de todos los canales de México'), B contradice el texto ('a diferencia de la mayoría de las salamandras'), C afirma un logro que el texto no dice (solo 'con la esperanza de entender').",
+    "usedCalculation": false,
+    "model": "subagente de Claude Code",
+    "problems": [],
+    "notes": ""
+  }
+]
