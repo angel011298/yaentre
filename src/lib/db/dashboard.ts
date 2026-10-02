@@ -2,6 +2,8 @@ import { cache } from 'react';
 import { prisma } from './prisma';
 import { countCompletedFullSimulations, isUserPaid } from './paywall';
 import { startOfMexicoDay } from '@/lib/paywall/mexico-time';
+import { dailyGoalProgress, studyMinutesToday, type DailyGoalProgress } from '@/lib/study/daily-goal';
+import { normalizeDailyGoal } from '@/lib/profile/settings';
 
 /**
  * Orquestación del dashboard del alumno (F11): cada loader es una consulta
@@ -221,6 +223,35 @@ export async function loadHeatmapData(
     result.push({ date: key, level });
   }
   return result;
+}
+
+// ─────────────────────────────── Meta de hoy (G100) ───────────────────────────────
+
+/**
+ * Minutos estudiados hoy contra la meta que el alumno eligió en su perfil.
+ * Cuenta práctica, diagnóstico y simulacro por igual: la meta es de tiempo de
+ * estudio, no de un modo concreto. Una consulta acotada a las sesiones de hoy
+ * (índice `userProfileId, status`).
+ */
+export async function loadDailyGoal(
+  userProfileId: string,
+  now: Date = new Date()
+): Promise<DailyGoalProgress> {
+  const [profile, sessions] = await Promise.all([
+    prisma.userProfile.findUnique({ where: { id: userProfileId }, select: { dailyGoalMins: true } }),
+    prisma.examSession.findMany({
+      where: {
+        userProfileId,
+        status: { in: [...FINISHED_STATUSES] },
+        startedAt: { gte: startOfMexicoDay(now) },
+      },
+      select: { startedAt: true, finishedAt: true, timeLimitSecs: true },
+    }),
+  ]);
+  return dailyGoalProgress(
+    studyMinutesToday(sessions, now),
+    normalizeDailyGoal(profile?.dailyGoalMins)
+  );
 }
 
 // ─────────────────────────────── Entrómetro bloqueado ───────────────────────────────

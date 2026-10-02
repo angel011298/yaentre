@@ -13,6 +13,8 @@ import { AuthError } from '@/lib/auth/errors';
 import { requireUser } from '@/lib/auth/guards';
 import { getStreak } from '@/lib/db/streak';
 import { isOnboardingComplete } from '@/lib/onboarding/steps';
+import { normalizeThemePref } from '@/lib/profile/theme';
+import { normalizeFontScale } from '@/lib/profile/settings';
 
 // Toda la app del alumno (dashboard, práctica, diagnóstico, checkout, paywall)
 // es privada: nunca se indexa (G68). `app/robots.ts` además la bloquea al
@@ -35,6 +37,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   let displayName: string | null;
   let avatarUrl: string | null;
   let themePref: string;
+  let fontScale: string;
   try {
     const { authUser: user, profile } = await requireUser();
     if (profile.role === 'PARENT') {
@@ -47,7 +50,8 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     profileId = profile.id;
     displayName = profile.displayName;
     avatarUrl = profile.avatarUrl;
-    themePref = profile.themePref;
+    themePref = normalizeThemePref(profile.themePref);
+    fontScale = normalizeFontScale(profile.fontScale);
   } catch (err) {
     if (err instanceof AuthError) {
       redirect('/login?next=/app');
@@ -60,8 +64,11 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   return (
     // F17: el tema ya viene de `UserProfile.themePref` (antes vivía solo en
     // localStorage, sin persistencia real) — se cambia desde /app/perfil.
+    // G100: `data-font-scale` escala el tamaño raíz vía `:root:has(...)` en
+    // `app/globals.css`; `system` en `data-theme` lo resuelve el CSS.
     <div
       data-theme={themePref}
+      data-font-scale={fontScale}
       className="flex min-h-screen flex-col bg-base text-text-primary"
     >
       <IdentifyUser profileId={profileId} />

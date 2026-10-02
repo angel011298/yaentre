@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AuthShell } from '@/components/ui/AuthShell';
+import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
 import { openGraphFor } from '@/lib/seo/metadata';
 import { SignUpForm } from './SignUpForm';
 
@@ -29,6 +30,13 @@ export default async function RegistroPage({
           : 'Empieza gratis. Sin tarjeta, sin compromiso.'
       }
     >
+      {/* G100: Google solo para alumnos — el registro de tutor marca el rol
+          PARENT con un campo del formulario de correo. */}
+      {!isTutor && (
+        <div className="mb-4">
+          <GoogleSignInButton next={next} mode="registro" />
+        </div>
+      )}
       <SignUpForm next={next} isTutor={isTutor} />
       <p className="mt-6 text-center text-sm text-text-secondary">
         ¿Ya tienes cuenta?{' '}

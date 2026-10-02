@@ -339,13 +339,41 @@ const loadAreaServablePool = unstable_cache(
         isVerified: true,
         topic: { subjectId: { in: poolSubjectIds } },
       },
-      select: { id: true, topicId: true },
+      select: { id: true, topicId: true, topic: { select: { subjectId: true } } },
     });
-    return rows.map((r) => ({ id: r.id, topicId: r.topicId }));
+    return rows.map((r) => ({ id: r.id, topicId: r.topicId, subjectId: r.topic.subjectId }));
   },
-  ['loadAreaServablePool'],
+  // G100: `-v2` porque la forma cacheada cambió (lleva `subjectId`). La data
+  // cache de Next sobrevive a los deploys: con la misma clave, hasta 5 min
+  // después del deploy el pool vendría sin `subjectId` y el foco no aplicaría.
+  ['loadAreaServablePool-v2'],
   { revalidate: QUESTION_BANK_REVALIDATE_SECS }
 );
+
+/**
+ * G100 — materias a reforzar del alumno, expandidas a TODAS las filas
+ * `Subject` de las que el área sirve ese contenido (G26: Química de Área 1 se
+ * sirve también desde la fila de Química de otra área). Sin la expansión, el
+ * foco se perdería justo en las materias compartidas. Solo cuentan las
+ * materias del área pedida: un foco guardado para otra área no aplica aquí.
+ */
+async function loadFocusPoolSubjectIds(
+  userProfileId: string,
+  areaId: string
+): Promise<Set<string>> {
+  const profile = await prisma.userProfile.findUnique({
+    where: { id: userProfileId },
+    select: { focusSubjectIds: true },
+  });
+  const chosen = profile?.focusSubjectIds ?? [];
+  if (chosen.length === 0) return new Set();
+  const { equivalentsBySubjectId } = await loadAreaSharedContent(areaId);
+  const result = new Set<string>();
+  for (const id of chosen) {
+    for (const eq of equivalentsBySubjectId.get(id) ?? []) result.add(eq);
+  }
+  return result;
+}
 
 /** Área por defecto del alumno (la de su carrera meta). null si aún no tiene. */
 export async function getDefaultAreaId(userProfileId: string): Promise<string | null> {
@@ -379,12 +407,16 @@ export async function selectNextAdaptiveQuestions(
   ]);
 
   try {
-    const topicTier = await computeTopicTiers(userProfileId);
+    const [topicTier, focusSubjectIds] = await Promise.all([
+      computeTopicTiers(userProfileId),
+      loadFocusPoolSubjectIds(userProfileId, areaId),
+    ]);
     const questionIds = selectAdaptiveQuestions({
       questions: pool,
       topicTier,
       excludeQuestionIds,
       count,
+      focusSubjectIds,
     });
     return { questionIds, fallbackUsed: false };
   } catch (err) {

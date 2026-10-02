@@ -145,6 +145,16 @@ export const RATE_LIMITS = {
    * acota un bucle accidental o una sesión comprometida.
    */
   ADMIN_NOTE_ACTION: { limit: 120, windowSecs: 3600 },
+  /**
+   * G100 — código TOTP del segundo factor (reto al iniciar sesión, activar y
+   * desactivar). Mismo razonamiento que el código parental: 6 dígitos con
+   * ventana de ~30 s; sin tope, un script con la contraseña robada barre
+   * combinaciones hasta acertar. Por cuenta y por IP.
+   */
+  MFA_VERIFY: { limit: 6, windowSecs: 600 },
+  MFA_VERIFY_IP: { limit: 20, windowSecs: 600 },
+  /** G100 — cambio de correo con sesión abierta (cada intento manda correos). */
+  EMAIL_CHANGE: { limit: 4, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

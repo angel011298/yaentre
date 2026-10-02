@@ -1,4 +1,11 @@
-import type { ThemePref } from '@/lib/profile/theme';
+import { normalizeThemePref, type ThemePref } from '@/lib/profile/theme';
+import {
+  normalizeDailyGoal,
+  normalizeFontScale,
+  normalizeReminderDays,
+  normalizeReminderHour,
+  type FontScale,
+} from '@/lib/profile/settings';
 import { prisma } from './prisma';
 import { getActiveSubscription } from './paywall';
 import { getStripe } from '@/lib/stripe/client';
@@ -14,6 +21,11 @@ export interface ProfileOverview {
   displayName: string | null;
   avatarUrl: string | null;
   themePref: ThemePref;
+  fontScale: FontScale;
+  dailyGoalMins: number;
+  focusSubjectIds: string[];
+  reminderHour: number;
+  reminderDays: number[];
   badges: string[];
   targetExamName: string | null;
   targetCareerId: string | null;
@@ -27,6 +39,11 @@ export async function loadProfileOverview(userProfileId: string): Promise<Profil
       displayName: true,
       avatarUrl: true,
       themePref: true,
+      fontScale: true,
+      dailyGoalMins: true,
+      focusSubjectIds: true,
+      reminderHour: true,
+      reminderDays: true,
       badges: true,
       targetExam: { select: { name: true } },
       targetCareerId: true,
@@ -38,7 +55,12 @@ export async function loadProfileOverview(userProfileId: string): Promise<Profil
   return {
     displayName: profile.displayName,
     avatarUrl: profile.avatarUrl,
-    themePref: profile.themePref === 'light' ? 'light' : 'dark',
+    themePref: normalizeThemePref(profile.themePref),
+    fontScale: normalizeFontScale(profile.fontScale),
+    dailyGoalMins: normalizeDailyGoal(profile.dailyGoalMins),
+    focusSubjectIds: profile.focusSubjectIds,
+    reminderHour: normalizeReminderHour(profile.reminderHour),
+    reminderDays: normalizeReminderDays(profile.reminderDays),
     badges: profile.badges,
     targetExamName: profile.targetExam?.name ?? null,
     targetCareerId: profile.targetCareerId,
@@ -58,64 +80,56 @@ export async function updateThemePref(userProfileId: string, themePref: ThemePre
   await prisma.userProfile.update({ where: { id: userProfileId }, data: { themePref } });
 }
 
-// ─────────────────────────────── Carrera meta ───────────────────────────────
+// ─────────────────────────────── G100: ajustes ───────────────────────────────
 
-export interface CareerOption {
+export async function updateFontScale(userProfileId: string, fontScale: FontScale): Promise<void> {
+  await prisma.userProfile.update({ where: { id: userProfileId }, data: { fontScale } });
+}
+
+export async function updateDailyGoal(userProfileId: string, dailyGoalMins: number): Promise<void> {
+  await prisma.userProfile.update({ where: { id: userProfileId }, data: { dailyGoalMins } });
+}
+
+export async function updateReminderSchedule(
+  userProfileId: string,
+  reminderHour: number,
+  reminderDays: number[]
+): Promise<void> {
+  await prisma.userProfile.update({
+    where: { id: userProfileId },
+    data: { reminderHour, reminderDays },
+  });
+}
+
+export interface FocusSubjectOption {
   id: string;
   name: string;
-  minAciertos: number | null;
 }
 
 /**
- * Carreras a las que el alumno puede cambiar su meta (F17 tarea 2) — SOLO
- * dentro de la misma área que ya eligió en onboarding (F5). Cambiar de área
- * por completo es un cambio de fondo (temario, materias) que corresponde al
- * asistente de onboarding, no a un selector de ajustes.
+ * Materias del área del alumno que puede marcar para reforzar, en el orden
+ * del examen. Vacío si aún no tiene carrera meta. Es también la LISTA BLANCA
+ * de la Server Action: un id que no esté aquí no se guarda.
  */
-export async function loadCareerOptions(userProfileId: string): Promise<CareerOption[]> {
+export async function loadFocusSubjectOptions(userProfileId: string): Promise<FocusSubjectOption[]> {
   const profile = await prisma.userProfile.findUnique({
     where: { id: userProfileId },
     select: { targetCareer: { select: { areaId: true } } },
   });
   const areaId = profile?.targetCareer?.areaId;
   if (!areaId) return [];
-
-  return prisma.career.findMany({
+  return prisma.subject.findMany({
     where: { areaId },
-    select: { id: true, name: true, minAciertos: true },
-    orderBy: { name: 'asc' },
+    orderBy: { position: 'asc' },
+    select: { id: true, name: true },
   });
 }
 
-export type UpdateTargetCareerResult = 'OK' | 'INVALID_CAREER';
-
-/**
- * Cambia la carrera meta (F17 tarea 2). Verificado contra la DB (nunca se
- * confía en el `careerId` del cliente): debe pertenecer a la MISMA área que
- * la carrera actual. El Entrómetro no necesita recomputar `predictedScore`
- * (depende de las materias del ÁREA, no de la carrera) — el "hueco" contra
- * la meta ya se recalcula solo en cada carga, porque `computeCareerStrategy`
- * (F6) siempre lee `targetCareerId` fresco desde la DB.
- */
-export async function updateTargetCareer(
-  userProfileId: string,
-  careerId: string
-): Promise<UpdateTargetCareerResult> {
-  const profile = await prisma.userProfile.findUnique({
+export async function updateFocusSubjects(userProfileId: string, subjectIds: string[]): Promise<void> {
+  await prisma.userProfile.update({
     where: { id: userProfileId },
-    select: { targetCareer: { select: { areaId: true } } },
+    data: { focusSubjectIds: subjectIds },
   });
-  const currentAreaId = profile?.targetCareer?.areaId;
-  if (!currentAreaId) return 'INVALID_CAREER';
-
-  const career = await prisma.career.findUnique({
-    where: { id: careerId },
-    select: { areaId: true },
-  });
-  if (!career || career.areaId !== currentAreaId) return 'INVALID_CAREER';
-
-  await prisma.userProfile.update({ where: { id: userProfileId }, data: { targetCareerId: careerId } });
-  return 'OK';
 }
 
 // ─────────────────────────────── Mi plan ───────────────────────────────

@@ -7,6 +7,7 @@ import { isMondayInMexico } from '@/lib/notifications/schedule';
 import { sendEmail } from '@/lib/email/client';
 import { buildUnsubscribeUrl } from '@/lib/email/links';
 import { reportSilentDegradation } from '@/lib/observability/report';
+import { checkReminderHeartbeat } from './reminder-jobs';
 import {
   examCountdownEmail,
   parentWeeklySummaryEmail,
@@ -169,15 +170,18 @@ export interface DailyNotificationResults {
   streakRisk: number;
   examCountdown: number;
   parentWeeklySummary: number;
+  /** G100: ¿el disparador horario de recordatorios lleva horas sin latir? */
+  reminderTriggerStale: boolean;
 }
 
 export async function runDailyNotificationJobs(
   now: Date = new Date()
 ): Promise<DailyNotificationResults> {
-  const [streakRisk, examCountdown, parentWeeklySummary] = await Promise.allSettled([
+  const [streakRisk, examCountdown, parentWeeklySummary, heartbeat] = await Promise.allSettled([
     runStreakRiskJob(now),
     runExamCountdownJob(now),
     runParentWeeklySummaryJob(now),
+    checkReminderHeartbeat(now),
   ]);
 
   // G73b — `Promise.allSettled` es correcto (un job caído no debe tumbar a los
@@ -190,9 +194,16 @@ export async function runDailyNotificationJobs(
     return 0;
   };
 
+  // Si leer el latido falla, se reporta y se asume caído: un "no sé" no puede
+  // pasar por un "todo bien".
+  let reminderTriggerStale = true;
+  if (heartbeat.status === 'fulfilled') reminderTriggerStale = heartbeat.value.stale;
+  else reportSilentDegradation('scheduled_job', heartbeat.reason, { job: 'reminderHeartbeat' });
+
   return {
     streakRisk: value(streakRisk, 'streakRisk'),
     examCountdown: value(examCountdown, 'examCountdown'),
     parentWeeklySummary: value(parentWeeklySummary, 'parentWeeklySummary'),
+    reminderTriggerStale,
   };
 }

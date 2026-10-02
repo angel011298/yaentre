@@ -12,6 +12,7 @@ import {
 } from '@/lib/auth/schemas';
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import { safeInternalPath } from '@/lib/auth/safe-redirect';
+import { hasVerifiedTotp } from '@/lib/auth/mfa';
 import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
 import { trackServerEvent } from '@/lib/analytics/server';
@@ -203,15 +204,21 @@ export async function signInAction(
     return { status: 'error', message: 'Correo o contraseña incorrectos.' };
   }
 
-  if (explicitNext) {
-    redirect(explicitNext);
+  let destination = explicitNext;
+  if (!destination) {
+    const profile = await prisma.userProfile.findUnique({
+      where: { userId: data.user.id },
+      select: { role: true },
+    });
+    destination = profile?.role === 'PARENT' ? '/tutor' : '/app';
   }
 
-  const profile = await prisma.userProfile.findUnique({
-    where: { userId: data.user.id },
-    select: { role: true },
-  });
-  redirect(profile?.role === 'PARENT' ? '/tutor' : '/app');
+  // G100: con segundo factor, la contraseña solo deja una sesión aal1; el
+  // reto la sube a aal2. `requireUser` rechazaría cualquier otro destino.
+  if (hasVerifiedTotp(data.user.factors)) {
+    redirect(`/verificacion-2fa?next=${encodeURIComponent(destination)}`);
+  }
+  redirect(destination);
 }
 
 export async function signOutAction(): Promise<void> {

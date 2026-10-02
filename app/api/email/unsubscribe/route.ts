@@ -21,6 +21,8 @@ const VALID_TYPES: readonly NotificationType[] = [
   'PARENT_WEEKLY',
   'EXAM_COUNTDOWN',
   'MARKETING',
+  'STUDY_REMINDER',
+  'SIMULATION_REMINDER',
 ];
 
 function page(message: string): NextResponse {

@@ -108,6 +108,8 @@ enum NotificationType {
   PARENT_WEEKLY
   EXAM_COUNTDOWN
   MARKETING
+  STUDY_REMINDER      // G100: recordatorio diario a la hora que eligió el alumno
+  SIMULATION_REMINDER // G100: aviso de simulacro del sábado, a esa misma hora
 }
 
 enum QuestionSource {
@@ -465,8 +467,22 @@ model UserProfile {
 
   displayName String?
   avatarUrl   String?
-  themePref   String   @default("dark") // "dark" | "light"
+  themePref   String   @default("dark") // "dark" | "light" | "system" (src/lib/profile/theme.ts)
   badges      String[] @default([])    // ["EARLY_BIRD", ...]
+
+  // G100 — ajustes del alumno. Strings/enteros libres validados en código
+  // (src/lib/profile/settings.ts), mismo criterio que `themePref`: añadir un
+  // valor no debe exigir una migración.
+  fontScale     String @default("md") // "sm" | "md" | "lg" | "xl"
+  dailyGoalMins Int    @default(20)   // meta diaria de estudio, minutos
+  // Materias que el alumno pidió reforzar: ids de `Subject` de SU área. El
+  // selector de práctica sube sus temas no dominados a la cubeta de débiles
+  // (src/lib/adaptive/selector.ts). Nunca toca el simulacro ni el diagnóstico.
+  focusSubjectIds String[] @default([])
+  // Recordatorios (STUDY_REMINDER / SIMULATION_REMINDER): hora local de la
+  // Ciudad de México (0-23) y días de la semana (0 = domingo).
+  reminderHour Int   @default(18)
+  reminderDays Int[] @default([1, 2, 3, 4, 5])
 
   // Atribución de marketing (F24): parámetros de campaña de la PRIMERA visita
   // (utm_source/medium/campaign/content/term, fbclid/ttclid/gclid, landingPath,
@@ -496,7 +512,8 @@ model UserProfile {
   subscriptions Subscription[]
 
   // Preferencias
-  notificationPrefs NotificationPreference[]
+  notificationPrefs      NotificationPreference[]
+  notificationDeliveries NotificationDelivery[]
 
   // Vinculación parental (dos lados)
   asParentLinks  ParentLink[] @relation("ParentSide")
@@ -699,6 +716,36 @@ model NotificationPreference {
 
   @@unique([userProfileId, type])
   @@map("notification_preferences")
+}
+
+// G100 — un correo programado por (usuario, tipo, día de la Ciudad de México).
+// El cron de recordatorios corre CADA HORA y puede reintentarse; la fila se
+// inserta ANTES de enviar y el índice único hace que un segundo intento del
+// mismo día (reintento, o el alumno moviendo su hora a una que aún no pasa)
+// no mande un duplicado.
+model NotificationDelivery {
+  id            String           @id @default(cuid())
+  userProfileId String
+  userProfile   UserProfile      @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  type          NotificationType
+  dayKey        String // "YYYY-MM-DD" en la Ciudad de México
+  createdAt     DateTime         @default(now())
+
+  @@unique([userProfileId, type, dayKey])
+  @@map("notification_deliveries")
+}
+
+// G100 — ajustes del sistema con fecha y autor (latido del cron horario y,
+// en la fase 2, el modo mantenimiento). `key` es un string tipado en código
+// (src/lib/db/system-settings.ts), no un enum: añadir una clave no exige
+// migración.
+model SystemSetting {
+  key       String   @id
+  value     Json
+  updatedBy String? // correo del admin que lo cambió (instantánea legible)
+  updatedAt DateTime @updatedAt
+
+  @@map("system_settings")
 }
 
 // ──────────────── ADMINISTRACIÓN (G99) ────────────────

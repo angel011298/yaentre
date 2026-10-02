@@ -6,11 +6,25 @@ import { AuthError } from '@/lib/auth/errors';
 import { requireUser } from '@/lib/auth/guards';
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import {
+  loadFocusSubjectOptions,
   updateAvatarUrl,
+  updateDailyGoal,
   updateDisplayName,
-  updateTargetCareer,
+  updateFocusSubjects,
+  updateFontScale,
+  updateReminderSchedule,
   updateThemePref,
 } from '@/lib/db/profile';
+import { THEME_PREFS, type ThemePref } from '@/lib/profile/theme';
+import { changeAcademicTarget } from '@/lib/db/academic-target';
+import {
+  DAILY_GOAL_OPTIONS,
+  FONT_SCALES,
+  REMINDER_HOUR_MAX,
+  REMINDER_HOUR_MIN,
+  normalizeReminderDays,
+  type FontScale,
+} from '@/lib/profile/settings';
 import { setNotificationPreference } from '@/lib/db/notifications';
 import { MAX_PASSWORD_LENGTH } from '@/lib/auth/schemas';
 import { verifyPassword } from '@/lib/auth/verify-password';
@@ -48,12 +62,13 @@ export async function updateDisplayNameAction(
   }
 }
 
-const themeSchema = z.object({ theme: z.enum(['dark', 'light']) });
+const themeSchema = z.object({ theme: z.enum(THEME_PREFS as [ThemePref, ...ThemePref[]]) });
 
-/** F17: persiste en `UserProfile.themePref` — antes solo vivía en localStorage. */
+/** F17: persiste en `UserProfile.themePref` — antes solo vivía en localStorage.
+ *  G100: acepta `system` (sigue al sistema operativo, resuelto en CSS). */
 export async function updateThemeAction(
   input: z.input<typeof themeSchema>
-): Promise<ActionResult<{ theme: 'dark' | 'light' }>> {
+): Promise<ActionResult<{ theme: ThemePref }>> {
   try {
     const { profile } = await requireUser();
     const parsed = themeSchema.safeParse(input);
@@ -62,6 +77,104 @@ export async function updateThemeAction(
     }
     await updateThemePref(profile.id, parsed.data.theme);
     return { ok: true, data: { theme: parsed.data.theme } };
+  } catch (err) {
+    return { ok: false, ...toError(err) };
+  }
+}
+
+const fontScaleSchema = z.object({
+  fontScale: z.enum(FONT_SCALES as [FontScale, ...FontScale[]]),
+});
+
+/** G100: tamaño de letra de la app del alumno (y del simulador). */
+export async function updateFontScaleAction(
+  input: z.input<typeof fontScaleSchema>
+): Promise<ActionResult<{ fontScale: FontScale }>> {
+  try {
+    const { profile } = await requireUser();
+    const parsed = fontScaleSchema.safeParse(input);
+    if (!parsed.success) {
+      return { ok: false, code: 'VALIDATION', message: 'Tamaño de letra inválido.' };
+    }
+    await updateFontScale(profile.id, parsed.data.fontScale);
+    return { ok: true, data: parsed.data };
+  } catch (err) {
+    return { ok: false, ...toError(err) };
+  }
+}
+
+const dailyGoalSchema = z.object({
+  minutes: z.number().int().refine((m) => DAILY_GOAL_OPTIONS.includes(m), 'Meta inválida.'),
+});
+
+/** G100: minutos de estudio al día — alimenta la tarjeta «Meta de hoy». */
+export async function updateDailyGoalAction(
+  input: z.input<typeof dailyGoalSchema>
+): Promise<ActionResult<{ minutes: number }>> {
+  try {
+    const { profile } = await requireUser();
+    const parsed = dailyGoalSchema.safeParse(input);
+    if (!parsed.success) {
+      return { ok: false, code: 'VALIDATION', message: 'Elige una de las metas disponibles.' };
+    }
+    await updateDailyGoal(profile.id, parsed.data.minutes);
+    return { ok: true, data: parsed.data };
+  } catch (err) {
+    return { ok: false, ...toError(err) };
+  }
+}
+
+// Ids de materia, no de usuario: la lista blanca es `loadFocusSubjectOptions`
+// (materias del área del propio alumno), así que un id ajeno no entra aunque
+// tenga forma válida.
+const focusSubjectsSchema = z.object({
+  subjectIds: z.array(z.string().min(1).max(40)).max(20),
+});
+
+/** G100: materias a reforzar — el selector de práctica las prioriza. */
+export async function updateFocusSubjectsAction(
+  input: z.input<typeof focusSubjectsSchema>
+): Promise<ActionResult<{ subjectIds: string[] }>> {
+  try {
+    const { profile } = await requireUser();
+    const parsed = focusSubjectsSchema.safeParse(input);
+    if (!parsed.success) {
+      return { ok: false, code: 'VALIDATION', message: 'Selección inválida.' };
+    }
+    const allowed = new Set((await loadFocusSubjectOptions(profile.id)).map((s) => s.id));
+    const subjectIds = [...new Set(parsed.data.subjectIds)].filter((id) => allowed.has(id));
+    if (subjectIds.length !== new Set(parsed.data.subjectIds).size) {
+      return {
+        ok: false,
+        code: 'VALIDATION',
+        message: 'Alguna de esas materias no es de tu área. Recarga la página.',
+      };
+    }
+    await updateFocusSubjects(profile.id, subjectIds);
+    return { ok: true, data: { subjectIds } };
+  } catch (err) {
+    return { ok: false, ...toError(err) };
+  }
+}
+
+const reminderScheduleSchema = z.object({
+  hour: z.number().int().min(REMINDER_HOUR_MIN).max(REMINDER_HOUR_MAX),
+  days: z.array(z.number().int().min(0).max(6)).max(7),
+});
+
+/** G100: hora (Ciudad de México) y días de los recordatorios por correo. */
+export async function updateReminderScheduleAction(
+  input: z.input<typeof reminderScheduleSchema>
+): Promise<ActionResult<{ hour: number; days: number[] }>> {
+  try {
+    const { profile } = await requireUser();
+    const parsed = reminderScheduleSchema.safeParse(input);
+    if (!parsed.success) {
+      return { ok: false, code: 'VALIDATION', message: 'Horario inválido.' };
+    }
+    const days = normalizeReminderDays(parsed.data.days);
+    await updateReminderSchedule(profile.id, parsed.data.hour, days);
+    return { ok: true, data: { hour: parsed.data.hour, days } };
   } catch (err) {
     return { ok: false, ...toError(err) };
   }
@@ -80,7 +193,13 @@ export async function updateThemeAction(
 // input: no hay ningún `userProfileId` en este esquema (guardrail de CLAUDE.md,
 // verificado por `pnpm security:authz`).
 const notificationSchema = z.object({
-  type: z.enum(['STREAK_RISK', 'EXAM_COUNTDOWN', 'MARKETING']),
+  type: z.enum([
+    'STREAK_RISK',
+    'EXAM_COUNTDOWN',
+    'MARKETING',
+    'STUDY_REMINDER',
+    'SIMULATION_REMINDER',
+  ]),
   enabled: z.boolean(),
 });
 
@@ -100,25 +219,29 @@ export async function updateNotificationPrefAction(
   }
 }
 
-const careerSchema = z.object({ careerId: z.string().min(1) });
+const academicTargetSchema = z.object({ careerId: z.string().min(1).max(64) });
 
-/** F17: cambiar la carrera meta — el hueco del Entrómetro se recalcula
- *  solo (ver `updateTargetCareer`, no hace falta tocar `LearningProfile`). */
-export async function updateTargetCareerAction(
-  input: z.input<typeof careerSchema>
+/**
+ * G100: cambio de meta completo (universidad → área → carrera). La carrera
+ * determina el área y el examen; las compuertas (flag del examen, cobertura
+ * del área) se revalidan en `changeAcademicTarget`.
+ */
+export async function changeAcademicTargetAction(
+  input: z.input<typeof academicTargetSchema>
 ): Promise<ActionResult<{ careerId: string }>> {
   try {
     const { profile } = await requireUser();
-    const parsed = careerSchema.safeParse(input);
-    if (!parsed.success) {
-      return { ok: false, code: 'VALIDATION', message: 'Carrera inválida.' };
-    }
-    const result = await updateTargetCareer(profile.id, parsed.data.careerId);
+    const parsed = academicTargetSchema.safeParse(input);
+    if (!parsed.success) return { ok: false, code: 'VALIDATION', message: 'Elige una carrera.' };
+    const result = await changeAcademicTarget(profile.id, parsed.data.careerId);
     if (result === 'INVALID_CAREER') {
+      return { ok: false, code: 'INVALID_CAREER', message: 'Esa carrera no existe. Recarga la página.' };
+    }
+    if (result === 'UNAVAILABLE') {
       return {
         ok: false,
-        code: 'INVALID_CAREER',
-        message: 'Esa carrera no está disponible para tu área.',
+        code: 'UNAVAILABLE',
+        message: 'Esa opción todavía no está disponible. Elige otra o vuelve pronto.',
       };
     }
     return { ok: true, data: { careerId: parsed.data.careerId } };
@@ -128,7 +251,9 @@ export async function updateTargetCareerAction(
 }
 
 const passwordSchema = z.object({
-  currentPassword: z.string().min(1, 'Escribe tu contraseña actual.').max(1024),
+  // G100: opcional SOLO para una cuenta sin identidad de contraseña (entra
+  // con Google); el servidor decide cuál es el caso, no el cliente.
+  currentPassword: z.string().max(1024).optional(),
   password: z
     .string()
     .min(8, 'La contraseña debe tener al menos 8 caracteres.')
@@ -176,9 +301,19 @@ export async function changePasswordAction(
       return { ok: false, code: 'AUTH', message: 'No pudimos identificar tu cuenta.' };
     }
 
-    const correcta = await verifyPassword(authUser.email, parsed.data.currentPassword);
-    if (!correcta) {
-      return { ok: false, code: 'BAD_CURRENT_PASSWORD', message: 'Tu contraseña actual no coincide.' };
+    // G100: quien ya tiene contraseña tiene que confirmarla (G65). Una cuenta
+    // que solo entra con Google no tiene ninguna que confirmar: para ella
+    // esto CREA la primera. Lo decide la identidad real, no el formulario.
+    const hasPassword = (authUser.identities ?? []).some((i) => i.provider === 'email');
+    if (hasPassword) {
+      const current = parsed.data.currentPassword ?? '';
+      if (current.length === 0) {
+        return { ok: false, code: 'VALIDATION', message: 'Escribe tu contraseña actual.' };
+      }
+      const correcta = await verifyPassword(authUser.email, current);
+      if (!correcta) {
+        return { ok: false, code: 'BAD_CURRENT_PASSWORD', message: 'Tu contraseña actual no coincide.' };
+      }
     }
 
     const supabase = await createSupabaseServerClient();

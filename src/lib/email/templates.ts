@@ -156,3 +156,61 @@ export function examCountdownEmail(input: {
     ),
   };
 }
+
+// ─────────────────────────── G100: recordatorios con horario ───────────────────────────
+
+function ctaButton(href: string, label: string): string {
+  return `<p style="margin: 20px 0 0; text-align: center;">
+        <a href="${href}" style="display: inline-block; background: ${BRAND_COLOR}; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 14px; padding: 12px 20px; border-radius: 12px;">${label}</a>
+      </p>`;
+}
+
+export function studyReminderEmail(input: {
+  goalMins: number;
+  practiceUrl: string;
+  unsubscribeUrl: string;
+}): EmailContent {
+  return {
+    subject: `Tus ${input.goalMins} minutos de hoy te esperan 🦉`,
+    html: wrapEmail(
+      `
+      <h1 style="font-size: 18px; margin: 0 0 12px;">Es tu hora de estudiar</h1>
+      <p style="font-size: 14px; line-height: 1.6;">
+        Tu meta de hoy son <strong>${input.goalMins} minutos</strong>. Una práctica corta de tus
+        temas débiles cuenta, y cada día suma para tu examen.
+      </p>
+      ${ctaButton(input.practiceUrl, 'Practicar ahora')}
+      <p style="font-size: 12px; line-height: 1.6; color: #888; margin: 16px 0 0;">
+        Cambia la hora o los días desde tu perfil, en Notificaciones.
+      </p>
+    `,
+      input.unsubscribeUrl
+    ),
+  };
+}
+
+export function simulationReminderEmail(input: {
+  examName: string | null;
+  durationMins: number | null;
+  simulatorUrl: string;
+  unsubscribeUrl: string;
+}): EmailContent {
+  const exam = input.examName ? ` de ${input.examName}` : '';
+  const duration = input.durationMins
+    ? ` Aparta ${Math.round(input.durationMins / 60)} horas sin interrupciones, como el día real.`
+    : '';
+  return {
+    subject: 'Sábado de simulacro: mide cómo vas — YaEntre',
+    html: wrapEmail(
+      `
+      <h1 style="font-size: 18px; margin: 0 0 12px;">Hoy toca simulacro</h1>
+      <p style="font-size: 14px; line-height: 1.6;">
+        Un simulacro completo${exam} con tiempo real es la mejor forma de saber cuántos aciertos
+        llevas y qué reforzar la próxima semana.${duration}
+      </p>
+      ${ctaButton(input.simulatorUrl, 'Ir al simulador')}
+    `,
+      input.unsubscribeUrl
+    ),
+  };
+}

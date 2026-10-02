@@ -24,7 +24,19 @@ import type { NotificationType } from '@prisma/client';
  * consentimiento explícito, y por eso entra aquí.
  */
 
-const OPT_IN_TYPES: readonly NotificationType[] = ['PARENT_WEEKLY', 'STREAK_RISK', 'MARKETING'];
+/*
+ * G100: los recordatorios con horario (STUDY_REMINDER, SIMULATION_REMINDER)
+ * son motivacionales → opt-in, igual que STREAK_RISK. Se activan desde
+ * /app/perfil, que es también donde se apagan (regla de G98: el sitio donde
+ * se acepta y el sitio donde se retira se construyen en la misma fase).
+ */
+const OPT_IN_TYPES: readonly NotificationType[] = [
+  'PARENT_WEEKLY',
+  'STREAK_RISK',
+  'MARKETING',
+  'STUDY_REMINDER',
+  'SIMULATION_REMINDER',
+];
 
 export function isOptInType(type: NotificationType): boolean {
   return OPT_IN_TYPES.includes(type);

@@ -6,6 +6,7 @@ import { prisma } from '@/lib/db/prisma';
 import { isOnboardingComplete } from '@/lib/onboarding/steps';
 import { reportControlFailure } from '@/lib/observability/report';
 import { AuthError } from './errors';
+import { aalFromAccessToken, hasVerifiedTotp, needsMfaChallenge } from './mfa';
 import { createSupabaseServerClient } from './supabase-server';
 
 export type RequireUserResult = {
@@ -24,8 +25,14 @@ export type RequireUserResult = {
  * vuelta de red) MÁS una consulta a `user_profiles`. `cache()` deduplica ambas
  * dentro del mismo render: la segunda llamada es gratis. No cambia semántica —
  * la sesión no muta a mitad de request.
+ *
+ * G100 — la sesión se resuelve UNA vez por request (de ahí el `cache()`), con su
+ * nivel de garantía. `requireUser` exige además el segundo factor; solo la
+ * pantalla del reto (y cerrar sesión) usan `requireUserPendingMfa`.
  */
-export const requireUser = cache(async function requireUser(): Promise<RequireUserResult> {
+const resolveSession = cache(async function resolveSession(): Promise<
+  RequireUserResult & { mfaPending: boolean }
+> {
   const supabase = await createSupabaseServerClient();
 
   let authUser: SupabaseUser | null = null;
@@ -57,8 +64,40 @@ export const requireUser = cache(async function requireUser(): Promise<RequireUs
     );
   }
 
+  // Solo las cuentas con un TOTP verificado necesitan leer el nivel de la
+  // sesión. `getUser()` ya validó este mismo token contra el servidor de Auth;
+  // `getSession()` solo lo lee de la cookie, sin red.
+  let mfaPending = false;
+  if (hasVerifiedTotp(authUser.factors)) {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    mfaPending = needsMfaChallenge(aalFromAccessToken(session?.access_token), authUser.factors);
+  }
+
+  return { authUser, profile, mfaPending };
+});
+
+export const requireUser = cache(async function requireUser(): Promise<RequireUserResult> {
+  const { authUser, profile, mfaPending } = await resolveSession();
+  // G100: con un TOTP verificado, una sesión aal1 (solo contraseña o Google)
+  // no entra a NADA — páginas, Server Actions y Route Handlers comparten este
+  // guard, así que un endpoint no puede olvidarse de pedir el código.
+  if (mfaPending) {
+    throw new AuthError('UNAUTHORIZED', 'Escribe el código de tu app de autenticación para continuar.', {
+      mfaRequired: true,
+    });
+  }
   return { authUser, profile };
 });
+
+/**
+ * Sesión válida AUNQUE falte el segundo factor. Solo para el reto de 2FA y
+ * para cerrar sesión: cualquier otro uso abre la cuenta con solo la contraseña.
+ */
+export async function requireUserPendingMfa(): Promise<RequireUserResult & { mfaPending: boolean }> {
+  return resolveSession();
+}
 
 /**
  * Exige uno de los roles indicados. No aplica el guard de verificación de

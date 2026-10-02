@@ -17,7 +17,9 @@ import { MasteredSubjectBadges } from '@/components/gamification/MasteredSubject
 import { StreakRiskBanner } from '@/components/gamification/StreakRiskBanner';
 import { requireOnboarding } from '@/lib/auth/guards';
 import { computeCareerStrategy, computeWeekOverWeekDelta } from '@/lib/db/adaptive';
+import { DailyGoalCard } from '@/components/dashboard/DailyGoalCard';
 import {
+  loadDailyGoal,
   loadEntrometroAccess,
   loadExamCountdown,
   loadHeatmapData,
@@ -95,6 +97,12 @@ export default async function DashboardPage() {
 
       <Suspense fallback={null}>
         <StreakAndBadges profileId={pid} />
+      </Suspense>
+
+      {/* G100: meta diaria elegida en /app/perfil. Altura reservada en el
+          esqueleto para no mover lo de abajo al llegar (CLS, G62). */}
+      <Suspense fallback={<Skeleton className="h-[76px] w-full rounded-lg" />}>
+        <DailyGoalSection profileId={pid} />
       </Suspense>
 
       <Suspense
@@ -206,6 +214,11 @@ async function StreakAndBadges({ profileId }: { profileId: string }) {
       <MasteredSubjectBadges badges={masteredBadges} />
     </>
   );
+}
+
+async function DailyGoalSection({ profileId }: { profileId: string }) {
+  const progress = await loadDailyGoal(profileId, new Date());
+  return <DailyGoalCard progress={progress} />;
 }
 
 async function EntrometroCard({ profileId }: { profileId: string }) {

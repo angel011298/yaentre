@@ -124,7 +124,15 @@ export type DegradationArea =
    * hay operaciones sobre cuentas de menores ocurriendo SIN rastro: justo el
    * agujero que la tabla vino a tapar.
    */
-  | 'admin_audit';
+  | 'admin_audit'
+  /**
+   * G100 — el disparador HORARIO de recordatorios (pg_cron → /api/cron/reminders)
+   * no ha latido en horas. Vercel Hobby solo programa un cron diario, así que
+   * los recordatorios con horario dependen de un disparador externo; si se cae
+   * o nunca se configuró, ningún alumno recibe su recordatorio y nada más lo
+   * delataría. Lo detecta el cron DIARIO al leer el latido.
+   */
+  | 'reminder_trigger';
 
 type Context = Record<string, unknown>;
 

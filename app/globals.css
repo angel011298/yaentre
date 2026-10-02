@@ -68,7 +68,11 @@
   }
 }
 
-[data-theme='dark'] {
+/* G100: `system` es oscuro por defecto (la dirección visual del alumno) y
+   pasa a claro solo cuando el sistema operativo lo pide — ver el bloque
+   `@media (prefers-color-scheme: light)` al final de la sección de temas. */
+[data-theme='dark'],
+[data-theme='system'] {
   color-scheme: dark;
   --bg-base: #0f0f14;
   --bg-surface: #1a1a22;
@@ -126,6 +130,64 @@
   /* El lila claro de acento no cumple AA como texto sobre fondos claros —
      colapsa al morado principal (que sí cumple, 5.5:1+) solo en light. */
   --brand-soft: var(--brand-primary);
+}
+
+/* G100 — tema «Sincronizar con el sistema». Copia EXACTA del bloque light de
+   arriba con otro selector: CSS no permite meter una media query dentro de
+   una lista de selectores, así que la alternativa a duplicar sería resolver el
+   tema en JavaScript, con destello del tema equivocado antes de hidratar.
+   `tests/profile/settings.test.ts` falla si las dos copias se separan. */
+@media (prefers-color-scheme: light) {
+  [data-theme='system'] {
+    color-scheme: light;
+    --bg-base: #fbfaff;
+    --bg-surface: #ffffff;
+    --bg-elevated: #ffffff;
+    --bg-input: #f4f3fa;
+    --border-subtle: #e9e7f2;
+    --border-strong: #d8d4e8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5a5a6a;
+    /* G63: bajado de #8a8a9a (3.1-3.4:1) — texto normal necesita 4.5:1.
+       #6b6b7a da ≥ 4.75:1 sobre base/surface/input claros. */
+    --text-muted: #6b6b7a;
+    --shadow-md: 0 4px 16px rgba(124, 58, 237, 0.1);
+
+    /* Mismo verde/ámbar/rojo/azul, calibrados más oscuros para cumplir AA
+       (4.5:1) como texto sobre estos fondos claros — sobre dark, esos mismos
+       tonos vivos ya cumplen de sobra (F18, ver tailwind.config.ts). */
+    --success: #15803d;
+    --warning: #b45309;
+    --danger: #dc2626;
+    --info: #0369a1;
+    --streak: #c2410c;
+    /* G63: en light estos tokens son oscuros → el texto/ícono encima es blanco
+       (dark text daría 3.4:1). Medido ≥ 4.8:1 con blanco. */
+    --on-success: #ffffff;
+    --on-danger: #ffffff;
+    --on-warning: #ffffff;
+    --on-info: #ffffff;
+    --on-streak: #ffffff;
+    /* El lila claro de acento no cumple AA como texto sobre fondos claros —
+       colapsa al morado principal (que sí cumple, 5.5:1+) solo en light. */
+    --brand-soft: var(--brand-primary);
+  }
+}
+
+/* G100 — tamaño de letra del alumno. Escala el `font-size` RAÍZ (todo en
+   Tailwind va en `rem`), igual que el zoom del navegador: crecen juntos texto
+   y espaciado, y el diseño conserva sus proporciones. Se aplica con `:has()`
+   porque el atributo vive en el contenedor del layout de la app, no en
+   <html>, que pertenece al layout raíz compartido con la parte pública.
+   Valores en `src/lib/profile/settings.ts` (FONT_SCALE_PERCENT). */
+:root:has([data-font-scale='sm']) {
+  font-size: 93.75%;
+}
+:root:has([data-font-scale='lg']) {
+  font-size: 112.5%;
+}
+:root:has([data-font-scale='xl']) {
+  font-size: 125%;
 }
 
 html {

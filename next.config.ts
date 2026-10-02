@@ -20,6 +20,8 @@ function isConfigured(id: string | undefined): boolean {
 // `isConfigured` que decide si el snippet del píxel se inyecta en el
 // navegador, src/lib/marketing/pixels.ts). Sin esto, la CSP incluiría
 // dominios de terceros que el sitio nunca llega a cargar.
+// G100 — mismo flag que `src/lib/auth/google.ts`.
+const googleAuthEnabled = process.env.NEXT_PUBLIC_ENABLE_GOOGLE_AUTH === "true";
 const metaPixelEnabled = isConfigured(process.env.NEXT_PUBLIC_META_PIXEL_ID);
 const tiktokPixelEnabled = isConfigured(process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID);
 
@@ -80,7 +82,11 @@ function buildCsp(): string {
     "frame-ancestors 'none'",
     "object-src 'none'",
     "base-uri 'self'",
-    "form-action 'self'",
+    // G100: con «Continuar con Google», un envío ANTES de hidratar es un POST
+    // nativo que el servidor redirige a Supabase Auth y de ahí a Google, y
+    // Chrome aplica `form-action` a toda la cadena de redirecciones. Con JS,
+    // Next resuelve esa redirección en el cliente y no pasa por aquí.
+    `form-action ${["'self'", ...(googleAuthEnabled ? [...(supabaseHost ? [supabaseHost] : []), "https://accounts.google.com"] : [])].join(" ")}`,
     // Cinturón junto al HSTS: cualquier subrecurso que quedara escrito con
     // `http://` (un enlace viejo en contenido, un asset copiado a mano) se
     // pide por https en vez de dispararse como contenido mixto bloqueado.

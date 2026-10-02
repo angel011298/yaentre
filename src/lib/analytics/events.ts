@@ -12,7 +12,7 @@
 
 export interface AnalyticsEvents {
   // ── Registro y onboarding ──
-  signup_completed: { role: 'STUDENT' | 'PARENT' };
+  signup_completed: { role: 'STUDENT' | 'PARENT'; method?: 'password' | 'google' };
   onboarding_completed: Record<string, never>;
 
   /**

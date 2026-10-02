@@ -25,6 +25,8 @@ export const RECENT_EXCLUSION_HOURS = 72;
 export interface SelectableQuestion {
   id: string;
   topicId: string;
+  /** Materia del reactivo. Solo hace falta para `focusSubjectIds` (G100). */
+  subjectId?: string;
 }
 
 export interface SelectionInput {
@@ -38,6 +40,15 @@ export interface SelectionInput {
   count: number;
   /** Aleatoriedad inyectable para tests deterministas. */
   rng?: () => number;
+  /**
+   * G100 — materias que el alumno pidió reforzar (ids de `Subject`, YA
+   * expandidos a sus equivalentes de contenido compartido por la capa DB).
+   * Regla, explícita y determinista: los temas NO dominados de estas materias
+   * se tratan como débiles, así compiten por el ~60% de la sesión en vez del
+   * ~25%. Los temas dominados siguen siendo repaso: pedir «más Matemáticas»
+   * no debe convertir la sesión en repetir lo que ya se sabe.
+   */
+  focusSubjectIds?: ReadonlySet<string>;
 }
 
 /** A qué "cubeta" de selección va cada tier. Los de muestra insuficiente se
@@ -102,9 +113,11 @@ export function selectAdaptiveQuestions(input: SelectionInput): string[] {
     intermediate: [],
     mastered: [],
   };
+  const focus = input.focusSubjectIds;
   for (const q of available) {
     const tier = topicTier.get(q.topicId) ?? 'insufficient';
-    buckets[bucketOf(tier)].push(q);
+    const isFocus = focus !== undefined && q.subjectId !== undefined && focus.has(q.subjectId);
+    buckets[isFocus && tier !== 'mastered' ? 'weak' : bucketOf(tier)].push(q);
   }
 
   const shuffled = {
