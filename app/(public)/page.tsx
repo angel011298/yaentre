@@ -17,7 +17,14 @@ import { faqJsonLd, organizationJsonLd, websiteJsonLd } from '@/lib/seo/structur
 // El conteo de licencias Early Bird (EarlyBirdBanner) debe reflejar compras
 // reales — sin esto, Next.js pre-renderiza la página como estática y el
 // número queda congelado en el momento del build, no en tiempo real.
-export const revalidate = 60;
+//
+// 600 s y no 60 s: con 60 s, cualquier visita (bots, sondas, monitores)
+// que llegue cada minuto regenera la página y cada regeneración es una
+// «ISR Write» de Vercel. En septiembre de 2026 yaentre acumuló 208 743
+// escrituras en 30 días (límite gratuito: 200 000) y Vercel pausó toda la
+// cuenta. 600 s reduce ese consumo diez veces; un conteo con hasta 10
+// minutos de retraso es aceptable para un contador de licencias.
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: {

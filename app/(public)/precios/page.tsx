@@ -12,7 +12,11 @@ import { getPlanPricing, planLabel, type PlanPricing } from '@/lib/stripe/pricin
 
 // La temporada efectiva (Early Bird vs. regular) depende de compras reales —
 // sin esto, el precio quedaría congelado en el estado del momento del build.
-export const revalidate = 60;
+//
+// 600 s y no 60 s por el mismo motivo que en la página principal: cada
+// regeneración cuenta como «ISR Write» y el plan gratuito de Vercel pausa la
+// cuenta entera al pasar de 200 000 en 30 días.
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: 'Precios y planes',

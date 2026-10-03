@@ -1,3 +1,7 @@
 # El respaldo de contenido (G61) se reescribe y commitea seguido — fijar LF para
 # que los diffs muestren solo los cambios reales del banco, no el fin de línea.
 backups/content-bank.json text eol=lf
+
+# Fin de línea: LF en el repositorio sin importar el sistema (Windows trae CRLF y
+# hacía aparecer ~100 archivos como modificados sin cambios reales).
+* text=auto eol=lf
