@@ -1,17 +1,33 @@
-.git
-.github
-node_modules
-.next
-.env
-.env.*
-!.env.example
-Claude outputs
-CONTEXTO_YAENTRE_HANDOFF.md
-*.pdf
-backups
-docs/content-batches
-playwright-report
-test-results
-tests
-tsconfig.tsbuildinfo
-*.log
+# LISTA BLANCA: todo queda fuera del contexto de build salvo lo que se nombra
+# abajo. Una lista negra deja pasar cualquier carpeta nueva que nadie pensó en
+# excluir — así se coló `.lighthouse-g74/chrome-profile` (un perfil de Chrome
+# con cookies de sesión de yaentre.com) al primer build local. Con lista blanca,
+# si al build le falta algo falla de forma RUIDOSA; nunca se cuela algo en
+# silencio. Ver docs/MIGRACION_SERVIDOR_PROPIO.md.
+*
+
+!app/
+!src/
+!public/
+!prisma/
+# app/actions/admin-questions.ts y src/lib/db/admin-questions.ts importan
+# scripts/lib/question-draft-schema: sin scripts/ el build no compila.
+!scripts/
+
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!.npmrc
+!next.config.ts
+!next-env.d.ts
+!tsconfig.json
+!postcss.config.mjs
+!tailwind.config.ts
+!proxy.ts
+!instrumentation.ts
+!instrumentation-client.ts
+
+# Ningún archivo de entorno entra al contexto, esté donde esté: las variables
+# llegan al build SOLO como secreto de BuildKit (ver Dockerfile).
+**/.env
+**/.env.*

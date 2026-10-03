@@ -1,10 +1,32 @@
 # YaEntre en servidor propio: app + túnel de Cloudflare + tareas programadas.
 # Se usa SIEMPRE con:  docker compose -f deploy/docker-compose.yml --env-file .env <comando>
-# (el archivo .env vive en la raíz del repo del SERVIDOR; nunca se sube a git).
+# (el archivo .env vive en la raíz del repo del SERVIDOR, con chmod 600; nunca
+# se sube a git). Ver docs/MIGRACION_SERVIDOR_PROPIO.md.
+#
+# Red: NINGÚN servicio publica puertos (no hay `ports:`). Todo el tráfico entra
+# por el túnel saliente de cloudflared; la VM no expone nada a internet. Esto no
+# es solo higiene: el límite de tasa por IP confía en `cf-connecting-ip`
+# (TRUSTED_PROXY=cloudflare), y eso solo es seguro si nadie puede llegar a la
+# app sin pasar por Cloudflare. Publicar el 3000 abriría la suplantación de IP.
 name: yaentre
+
+x-logging: &logging
+  # Sin rotación, el log json-file de Docker crece hasta llenar el disco.
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+x-hardening: &hardening
+  restart: unless-stopped
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
 
 services:
   app:
+    <<: *hardening
     build:
       context: ..
       dockerfile: Dockerfile
@@ -15,8 +37,12 @@ services:
     environment:
       NODE_ENV: production
       VERCEL_ENV: production # ver el comentario del Dockerfile: no quitar
-    restart: unless-stopped
+      TRUSTED_PROXY: cloudflare # ver src/lib/rate-limit/client-ip.ts: no quitar
+    init: true # tini como PID 1: reenvía SIGTERM a Node y recoge procesos huérfanos
+    stop_grace_period: 30s
     mem_limit: 4g
+    pids_limit: 512
+    logging: *logging
     healthcheck:
       test:
         - CMD
@@ -30,34 +56,63 @@ services:
 
   # Túnel de Cloudflare: el servidor NO abre puertos ni necesita certificado;
   # el tráfico entra por Cloudflare (gratis) y la IP del servidor queda oculta.
+  # Versión fijada (no :latest): se actualiza a propósito, no al reiniciar.
   cloudflared:
-    image: cloudflare/cloudflared:latest
+    <<: *hardening
+    image: cloudflare/cloudflared:2026.9.3@sha256:072c067d25ccbe61d46e18f0d0723255f2bb5304f7317caa95b27031520ff92c
     command: tunnel --no-autoupdate run
     environment:
-      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?Falta TUNNEL_TOKEN en .env}
+    read_only: true
+    mem_limit: 256m
+    logging: *logging
     depends_on:
       app:
         condition: service_healthy
-    restart: unless-stopped
 
-  # Reemplazo de los crons de vercel.json (misma hora, UTC).
+  # Reemplazo de los crons de vercel.json (misma hora, UTC). El secreto se
+  # escribe a un archivo legible solo por root y se lee en cada ejecución: no
+  # va dentro del crontab (un `%` en el secreto partiría la línea) y crond no
+  # hereda el entorno del contenedor. Cada ejecución deja una línea con fecha,
+  # ruta y OK/FALLO en `docker compose ... logs cron`.
   cron:
-    image: alpine:3.20
+    <<: *hardening
+    image: alpine:3.24.2@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6
+    # crond cambia de identidad (a root) antes de cada tarea: necesita estas dos.
+    cap_add:
+      - SETUID
+      - SETGID
     environment:
-      CRON_SECRET: ${CRON_SECRET}
+      CRON_SECRET: ${CRON_SECRET:?Falta CRON_SECRET en .env}
+    mem_limit: 64m
+    logging: *logging
     command:
       - sh
       - -c
       - |
-        cat > /etc/crontabs/root <<EOF
-        0 13 * * * wget -q -O- --header="Authorization: Bearer $$CRON_SECRET" http://app:3000/api/cron/notifications > /proc/1/fd/1 2>&1
-        0 14 * * * wget -q -O- --header="Authorization: Bearer $$CRON_SECRET" http://app:3000/api/cron/reconcile-payments > /proc/1/fd/1 2>&1
+        set -eu
+        umask 077
+        printf '%s' "$$CRON_SECRET" > /root/cron_secret
+        cat > /usr/local/bin/llamar-cron <<'EOF'
+        #!/bin/sh
+        # Uso: llamar-cron /api/cron/<ruta>
+        inicio=$$(date -u +%Y-%m-%dT%H:%M:%SZ)
+        if salida=$$(wget -q -O- -T 600 --header="Authorization: Bearer $$(cat /root/cron_secret)" "http://app:3000$$1" 2>&1); then
+          echo "$$inicio OK $$1 $$salida"
+        else
+          echo "$$inicio FALLO $$1 $$salida"
+        fi
         EOF
+        chmod 700 /usr/local/bin/llamar-cron
+        cat > /etc/crontabs/root <<'EOF'
+        0 13 * * * /usr/local/bin/llamar-cron /api/cron/notifications > /proc/1/fd/1 2>&1
+        0 14 * * * /usr/local/bin/llamar-cron /api/cron/reconcile-payments > /proc/1/fd/1 2>&1
+        EOF
+        echo "cron listo: notifications 13:00 UTC, reconcile-payments 14:00 UTC"
         exec crond -f -l 8
     depends_on:
       app:
         condition: service_healthy
-    restart: unless-stopped
 
 secrets:
   build_env:

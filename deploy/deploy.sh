@@ -18,6 +18,13 @@ COMPOSE="docker compose -f deploy/docker-compose.yml --env-file .env"
 [ -f .env ] || { echo "Falta el archivo .env en $(pwd)"; exit 1; }
 perm=$(stat -c '%a' .env)
 [ "$perm" = "600" ] || { echo "El .env debe tener permisos 600 (tiene $perm): chmod 600 .env"; exit 1; }
+# Un .env escrito en Windows trae CRLF: cada valor llegaría con un `\r` pegado
+# (la contraseña de la base «incorrecta», un secreto que no coincide) y nada lo
+# explicaría. Se detiene aquí en vez de fallar raro después.
+if grep -q $'\r' .env; then
+  echo "El .env tiene finales de línea de Windows (CRLF). Corrígelo con:  sed -i 's/\r\$//' .env"
+  exit 1
+fi
 
 esperar_sano() {
   local id estado
