@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { resolveClientIp, UNKNOWN_IP } from '@/lib/rate-limit/client-ip';
+import { resolveClientIp, trustedProxyFromEnv, UNKNOWN_IP } from '@/lib/rate-limit/client-ip';
 
 /**
  * G65 — De esta función cuelga TODO el límite de tasa por IP. Si un atacante
@@ -48,5 +48,50 @@ describe('resolveClientIp (G65)', () => {
   it('acota la longitud: la cabecera es texto arbitrario del exterior y va a una llave indexada', () => {
     const largo = 'a'.repeat(500);
     expect(resolveClientIp(headers({ 'x-forwarded-for': largo }))).toHaveLength(45);
+  });
+});
+
+/**
+ * Servidor propio detrás de Cloudflare Tunnel. Ahí Cloudflare deja pasar la
+ * `x-vercel-forwarded-for` que mande el cliente y AÑADE (no reemplaza) en
+ * `x-forwarded-for`: las tres cabeceras del modo Vercel son elegibles por el
+ * atacante. La única que el borde sobreescribe es `cf-connecting-ip`.
+ */
+describe('resolveClientIp detrás de Cloudflare (servidor propio)', () => {
+  const spoofed = {
+    'x-vercel-forwarded-for': '10.6.6.6',
+    'x-forwarded-for': '10.7.7.7, 203.0.113.7',
+    'x-real-ip': '10.8.8.8',
+  };
+
+  it('usa SOLO cf-connecting-ip e ignora las cabeceras que el cliente puede falsear', () => {
+    const ip = resolveClientIp(headers({ ...spoofed, 'cf-connecting-ip': '198.51.100.23' }), 'cloudflare');
+    expect(ip).toBe('198.51.100.23');
+  });
+
+  it('sin cf-connecting-ip NO cae a las cabeceras falseables: cubo desconocido', () => {
+    expect(resolveClientIp(headers(spoofed), 'cloudflare')).toBe(UNKNOWN_IP);
+  });
+
+  it('acota la longitud también en este modo', () => {
+    expect(resolveClientIp(headers({ 'cf-connecting-ip': 'b'.repeat(500) }), 'cloudflare')).toHaveLength(45);
+  });
+
+  it('en modo Vercel cf-connecting-ip NO cuenta: ahí la manda el cliente, no la plataforma', () => {
+    const ip = resolveClientIp(
+      headers({ 'cf-connecting-ip': '10.9.9.9', 'x-vercel-forwarded-for': '203.0.113.7' }),
+      'vercel'
+    );
+    expect(ip).toBe('203.0.113.7');
+    expect(resolveClientIp(headers({ 'cf-connecting-ip': '10.9.9.9' }), 'vercel')).toBe(UNKNOWN_IP);
+  });
+});
+
+describe('trustedProxyFromEnv', () => {
+  it('solo el valor exacto "cloudflare" activa el modo Cloudflare', () => {
+    expect(trustedProxyFromEnv('cloudflare')).toBe('cloudflare');
+    for (const otro of [undefined, '', 'Cloudflare', ' cloudflare', 'true', 'vercel']) {
+      expect(trustedProxyFromEnv(otro)).toBe('vercel');
+    }
   });
 });

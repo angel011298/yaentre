@@ -45,6 +45,7 @@
     "security:abuse": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/abuse-probe.ts",
     "security:time-integrity": "tsx --tsconfig scripts/tsconfig.perf.json scripts/security/time-integrity-probe.ts",
     "security:simulator": "node scripts/security/simulator-integrity-probe.mjs",
+    "security:ip-spoof": "node scripts/g99b/ip-spoof-probe.mjs",
     "verify:baseline": "tsx scripts/g71/baseline.ts",
     "sales:census": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g98/billing-census.ts",
     "sales:probe": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g98/sales-closed-probe.ts",
