@@ -1,0 +1,64 @@
+# YaEntre en servidor propio: app + túnel de Cloudflare + tareas programadas.
+# Se usa SIEMPRE con:  docker compose -f deploy/docker-compose.yml --env-file .env <comando>
+# (el archivo .env vive en la raíz del repo del SERVIDOR; nunca se sube a git).
+name: yaentre
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      secrets:
+        - build_env
+    image: yaentre:local
+    env_file: ../.env
+    environment:
+      NODE_ENV: production
+      VERCEL_ENV: production # ver el comentario del Dockerfile: no quitar
+    restart: unless-stopped
+    mem_limit: 4g
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.status<500?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Túnel de Cloudflare: el servidor NO abre puertos ni necesita certificado;
+  # el tráfico entra por Cloudflare (gratis) y la IP del servidor queda oculta.
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Reemplazo de los crons de vercel.json (misma hora, UTC).
+  cron:
+    image: alpine:3.20
+    environment:
+      CRON_SECRET: ${CRON_SECRET}
+    command:
+      - sh
+      - -c
+      - |
+        cat > /etc/crontabs/root <<EOF
+        0 13 * * * wget -q -O- --header="Authorization: Bearer $$CRON_SECRET" http://app:3000/api/cron/notifications > /proc/1/fd/1 2>&1
+        0 14 * * * wget -q -O- --header="Authorization: Bearer $$CRON_SECRET" http://app:3000/api/cron/reconcile-payments > /proc/1/fd/1 2>&1
+        EOF
+        exec crond -f -l 8
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+
+secrets:
+  build_env:
+    file: ../.env

@@ -1,0 +1,17 @@
+.git
+.github
+node_modules
+.next
+.env
+.env.*
+!.env.example
+Claude outputs
+CONTEXTO_YAENTRE_HANDOFF.md
+*.pdf
+backups
+docs/content-batches
+playwright-report
+test-results
+tests
+tsconfig.tsbuildinfo
+*.log

@@ -101,6 +101,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Servidor propio (Docker, ver docs/MIGRACION_SERVIDOR_PROPIO.md): con
+  // BUILD_STANDALONE=1 Next genera un servidor autónomo en .next/standalone.
+  // En Vercel la variable no existe y el build no cambia.
+  output: process.env.BUILD_STANDALONE === "1" ? "standalone" : undefined,
   // G65: `X-Powered-By: Next.js` viajaba en cada respuesta (confirmado en
   // producción). No abre nada por sí solo, pero le regala al atacante la
   // versión de framework a la que apuntar sus exploits conocidos. No cuesta
