@@ -113,7 +113,7 @@ El script se niega a seguir si el `.env` no tiene permisos 600 o trae CRLF. Espe
 
 ### 7. Verificación antes de mover el dominio (contra `https://nuevo.yaentre.com`)
 - `/`, `/precios`, login y un panel. Para el login de prueba hay que añadir **temporalmente** `https://nuevo.yaentre.com/**` en Supabase → Auth → URL Configuration → Redirect URLs.
-- **Suplantación de IP, desde tu PC:** `pnpm security:ip-spoof https://nuevo.yaentre.com` → debe salir VERDE, incluido `rotar-cf`. Esto prueba por efecto que Cloudflare sobreescribe `cf-connecting-ip`.
+- **Suplantación de IP, desde tu PC:** `pnpm security:ip-spoof https://nuevo.yaentre.com` → debe salir VERDE. En `rotar-cf` la columna `bloqueadasEnBorde` debe ser 70: Cloudflare rechaza con 403 (error 1000) la petición que trae un `cf-connecting-ip` puesto a mano, antes de que llegue a la app. Verificado así contra un túnel rápido en G99b; **repetir contra el túnel con nombre** antes del cutover, porque es la prueba de que el borde de ESTE túnel se comporta igual.
 - **Ventas cerradas:** `G98_BASE_URL=https://nuevo.yaentre.com pnpm sales:probe`. Necesita la contraseña de la cuenta fixture `e2e.free@acierta-test.mx` (ver la cabecera de `scripts/g98/sales-closed-probe.ts`) y crea y borra una fila de preferencia `MARKETING` en la base (su control positivo P5).
 - **Cabeceras:** `curl -sI https://nuevo.yaentre.com/ | grep -iE "content-security|strict-transport|x-frame"`.
 - **Cron sin efectos:** `curl -s -o /dev/null -w "%{http_code}\n" https://nuevo.yaentre.com/api/cron/notifications` → 401. **No** lo llames con el secreto correcto: manda correos reales.
@@ -140,6 +140,21 @@ El script se niega a seguir si el `.env` no tiene permisos 600 o trae CRLF. Espe
 - Reinicio de la VM: `restart: unless-stopped`, los contenedores arrancan solos.
 - Imágenes base: fijadas por versión **y** digest (Node 24.21.0, cloudflared 2026.9.3, alpine 3.24.2). Se actualizan a propósito: cambia la etiqueta y el digest y redespliega. Revisa cloudflared al menos una vez al trimestre.
 - Respaldos: la base y los archivos están en Supabase (`docs/RESPALDOS.md`) y el banco de contenido en git. El servidor no guarda estado; se recrea con esta guía más el `.env` de tu gestor de contraseñas.
+
+## Enlace temporal para pruebas con usuarios (túnel rápido)
+
+Para recibir retroalimentación mientras no está listo el dominio ni el plan de Vercel. **No es producción**: sirve la misma app y la misma base de datos, desde un túnel de Cloudflare sin cuenta ni costo.
+
+**Cómo está montado** (ver `yaentre-quick` y `app` en `docker ps` del servidor): contenedor `cloudflared tunnel --url http://app:3000` y la app en una red privada `yaentre-test`, sin ningún puerto publicado y **sin el contenedor de cron** (no deben salir recordatorios a alumnos reales desde una URL de prueba). El `.env` base está en `~/.yaentre-env.base` (600), fuera del repositorio.
+
+**Lo que hay que saber:**
+- **La URL es temporal y aleatoria.** Si el contenedor `yaentre-quick` se detiene o la VM se reinicia, **cambia**. No tiene política de reinicio a propósito. Hay que repetir: arrancar el túnel, leer la nueva URL, recompilar con ella (`NEXT_PUBLIC_SITE_URL`, ~80 s) y agregar la nueva URL a Supabase. Cloudflare avisa que los túneles sin cuenta no tienen garantía de disponibilidad.
+- **Supabase debe tener la URL EXACTA en Redirect URLs** (`https://<subdominio>.trycloudflare.com/**`). Sin eso los correos de verificación salen con un enlace muerto (ver `docs/CORREOS_AUTH.md` §7) y nadie puede registrarse. **Nunca un comodín como `https://*.trycloudflare.com/**`**: cualquiera puede abrir un túnel con ese dominio, y un enlace de recuperación de contraseña con `redirect_to` hacia el túnel de un atacante le entregaría el token de la víctima.
+- **Los testers crean cuentas REALES** en la base de producción y reciben correos reales (Resend gratis: 100 al día). Las ventas siguen cerradas y Stripe está en modo prueba, así que nadie puede pagar.
+- Sentry y PostHog reciben el tráfico de prueba etiquetado como producción.
+- No lo publiques en redes: las páginas públicas son indexables y su `canonical` apunta a esa URL.
+
+**Al terminar:** `ssh yaentre-oracle "sudo docker rm -f yaentre-quick app; sudo docker network rm yaentre-test"`, y borrar la URL de Supabase → Authentication → URL Configuration.
 
 ## Riesgos conocidos y pendientes
 - **Pendiente de verificar en el servidor:** el build nativo en ARM (en local fue con emulación QEMU), un evento real de Sentry (el DSN local es un placeholder), el login y el panel contra `nuevo.yaentre.com`, la sonda de IP **a través de Cloudflare** y la primera corrida real del cron.

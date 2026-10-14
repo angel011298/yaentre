@@ -38,6 +38,7 @@ async function correr(modo) {
   const ruta = `/api/__sonda-ip-${modo}-${Date.now()}`; // cubo nuevo por corrida
   const statuses = {};
   let primer429 = null;
+  let bloqueadasEnBorde = 0;
   for (let i = 1; i <= N; i++) {
     const falsa = `10.${(i >> 8) & 255}.${i & 255}.${(i * 7) & 255}`;
     const h = {};
@@ -59,9 +60,26 @@ async function correr(modo) {
     const res = await fetch(base + ruta, { headers: h, redirect: 'manual' });
     statuses[res.status] = (statuses[res.status] ?? 0) + 1;
     if (res.status === 429 && primer429 === null) primer429 = i;
-    await res.arrayBuffer();
+    // Un 403 firmado por Cloudflare lo da el BORDE, no la app: medido en G99b,
+    // mandar `cf-connecting-ip` a mano a través del túnel se rechaza allí
+    // (error 1000) y la petición nunca llega al servidor. Es un bloqueo mejor que
+    // un 429, y sin esto la sonda lo marcaba como evasión (falso rojo: solo sabía
+    // reconocer el 429). Se reconoce por: 403 + `server: cloudflare` + SIN la
+    // `content-security-policy` de la app (que `next.config.ts` pone a TODAS sus
+    // respuestas, así que un 403 propio nunca se confundiría con este). No se
+    // mira el cuerpo: a `curl` le llega texto plano y a `fetch` una página HTML.
+    const cuerpo = await res.text();
+    if (
+      res.status === 403 &&
+      (res.headers.get('server') ?? '').toLowerCase() === 'cloudflare' &&
+      !res.headers.has('content-security-policy') &&
+      /cloudflare|error code/i.test(cuerpo)
+    ) {
+      bloqueadasEnBorde++;
+    }
   }
-  return { modo, statuses, primer429, bloquea: primer429 !== null };
+  const bloquea = primer429 !== null || bloqueadasEnBorde === N;
+  return { modo, statuses, primer429, bloqueadasEnBorde, bloquea };
 }
 
 const viaCloudflare = /^https:\/\//.test(base) && !/localhost|127\.0\.0\.1/.test(base);
