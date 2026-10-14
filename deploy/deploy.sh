@@ -70,6 +70,9 @@ if docker image inspect yaentre:local >/dev/null 2>&1; then
   docker tag yaentre:local yaentre:anterior
 fi
 
+# Huella del .env: Docker no cuenta los secretos en su caché, así que sin esto un
+# cambio de variables NEXT_PUBLIC_* no reconstruiría la app (ver el Dockerfile).
+export ENV_FINGERPRINT=$(sha256sum .env | cut -c1-16)
 $COMPOSE build app
 $COMPOSE up -d ${SERVICIOS:-}
 if ! esperar_sano; then

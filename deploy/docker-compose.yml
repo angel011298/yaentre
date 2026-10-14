@@ -32,6 +32,9 @@ services:
       dockerfile: Dockerfile
       secrets:
         - build_env
+      args:
+        # Ver el Dockerfile: sin esto, cambiar el .env no reconstruye la app.
+        ENV_FINGERPRINT: ${ENV_FINGERPRINT:-sin-huella}
     image: yaentre:local
     env_file: ../.env
     environment:

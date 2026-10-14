@@ -37,8 +37,17 @@ COPY . .
 # Mismas variables que el contenedor final (ver runner): Vercel también define
 # VERCEL_ENV durante el build, y TRUSTED_PROXY por si algún módulo la leyera ahí.
 ENV NODE_ENV=production BUILD_STANDALONE=1 VERCEL_ENV=production TRUSTED_PROXY=cloudflare
+# Docker NO incluye el contenido de un secreto en la clave de caché: si cambian
+# las variables (NEXT_PUBLIC_SITE_URL, la URL de Supabase…) pero el código no,
+# `pnpm build` se serviría de caché con las variables VIEJAS incrustadas — medido
+# en G99b: un «build» de 3.7 s que habría desplegado una app sin la URL de
+# Supabase y con los enlaces de correo apuntando a otro dominio. Esta huella
+# (hash truncado del .env, lo calcula deploy.sh) invalida la caché solo cuando
+# cambia el contenido del .env, y la referencia en el RUN fuerza que cuente.
+ARG ENV_FINGERPRINT=sin-huella
 RUN --mount=type=secret,id=build_env,target=/app/.env.production.local \
-    pnpm build \
+    echo "huella del entorno: ${ENV_FINGERPRINT}" \
+ && pnpm build \
  && for f in .env .env.local .env.production .env.production.local; do \
       if [ -e ".next/standalone/$f" ]; then echo "ERROR: $f quedó dentro de .next/standalone" >&2; exit 1; fi; \
     done \
