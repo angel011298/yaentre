@@ -1,7 +1,13 @@
 import type { RecentSimulation } from '@/lib/db/dashboard';
+import { MEXICO_TIME_ZONE } from '@/lib/paywall/mexico-time';
 
 function formatDate(d: Date): string {
-  return d.toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' });
+  return d.toLocaleDateString('es-MX', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: MEXICO_TIME_ZONE,
+  });
 }
 
 export function RecentSimulations({ simulations }: { simulations: RecentSimulation[] }) {

@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/Card';
 import type { ParentDashboardData } from '@/lib/db/parent';
 import { WeekActivityStrip } from './WeekActivityStrip';
 import { WeeklyEmailToggle } from './WeeklyEmailToggle';
+import { MEXICO_TIME_ZONE } from '@/lib/paywall/mexico-time';
 
 function countdownCopy(daysRemaining: number): string {
   if (daysRemaining > 1) return `Faltan ${daysRemaining} días para su examen`;
@@ -89,7 +90,11 @@ export function ParentDashboard({
                 className="flex items-center justify-between rounded-md border border-border-subtle bg-elevated p-3 text-sm"
               >
                 <span className="text-text-primary">
-                  {s.finishedAt.toLocaleDateString('es-MX', { day: 'numeric', month: 'short' })}
+                  {s.finishedAt.toLocaleDateString('es-MX', {
+                    day: 'numeric',
+                    month: 'short',
+                    timeZone: MEXICO_TIME_ZONE,
+                  })}
                 </span>
                 <span className="font-mono tabular-nums text-text-secondary">
                   {s.score ?? 0}/{s.totalQuestions}

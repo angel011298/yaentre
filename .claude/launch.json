@@ -45,6 +45,16 @@
         "EPHEMERAL_SESSION_MAX_AGE_SECS=40"
       ],
       "port": 3102
+    },
+    {
+      "name": "g100-utc",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/g100/serve.mjs",
+        "3103",
+        "TZ=UTC"
+      ],
+      "port": 3103
     }
   ]
 }

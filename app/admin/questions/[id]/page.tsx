@@ -12,6 +12,7 @@ import { getAdminContext } from '@/lib/admin/context';
 import { AdminError } from '@/lib/admin/errors';
 import { parseAdminOptions, parseVerificationRecord } from '@/lib/admin/verification';
 import { getQuestionDetail } from '@/lib/db/admin-questions';
+import { MEXICO_TIME_ZONE } from '@/lib/paywall/mexico-time';
 
 export const metadata = { title: 'Detalle del reactivo' };
 
@@ -160,7 +161,9 @@ export default async function QuestionDetailPage({
                 {record.manualReview && (
                   <p className="text-xs text-text-muted">
                     Resuelto a mano ({record.manualReview.action}) el{' '}
-                    {new Date(record.manualReview.at).toLocaleString('es-MX')}
+                    {new Date(record.manualReview.at).toLocaleString('es-MX', {
+                      timeZone: MEXICO_TIME_ZONE,
+                    })}
                   </p>
                 )}
               </div>

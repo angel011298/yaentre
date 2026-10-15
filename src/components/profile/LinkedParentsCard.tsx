@@ -6,6 +6,7 @@ import { unlinkParentStudentAction } from '@/app/actions/parent';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import type { LinkedParent } from '@/lib/db/parent';
+import { MEXICO_TIME_ZONE } from '@/lib/paywall/mexico-time';
 
 /**
  * G65 — Tutores vinculados, con opción de revocar.
@@ -66,7 +67,7 @@ export function LinkedParentsCard({
                 {parentNames[p.parentProfileId] ?? 'Tu tutor'}
               </p>
               <p className="text-xs text-text-muted">
-                Vinculado el {p.linkedAt.toLocaleDateString('es-MX')}
+                Vinculado el {p.linkedAt.toLocaleDateString('es-MX', { timeZone: MEXICO_TIME_ZONE })}
               </p>
             </div>
 

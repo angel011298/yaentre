@@ -25,6 +25,16 @@ import { PrismaClient } from '@prisma/client';
 import { freshSession, injectSession, sessionCookies } from './lib';
 
 const BASE = (process.env.G100_BASE ?? 'http://localhost:3101').replace(/\/$/, '');
+
+/**
+ * El navegador SIEMPRE en hora de México, sin importar la zona de la máquina
+ * que corre la sonda. Vercel renderiza en UTC: un componente que formatee o
+ * calcule fechas con la zona local pinta en el navegador otra cosa que en el
+ * servidor (G100: el calendario del tablero daba el error de hidratación #418
+ * solo en producción). Contra un build local, levantarlo con `TZ=UTC`
+ * (configuración `g100-utc` de `.claude/launch.json`) para reproducirlo.
+ */
+const CONTEXT = { timezoneId: 'America/Mexico_City', locale: 'es-MX' } as const;
 const prisma = new PrismaClient({ datasourceUrl: process.env.DATABASE_URL });
 
 type Expect = string | RegExp;
@@ -84,7 +94,7 @@ async function firstHref(page: Page, prefix: string): Promise<string | null> {
 
 async function anon(browser: Browser): Promise<void> {
   console.log('\n· anónimo');
-  const ctx = await browser.newContext();
+  const ctx = await browser.newContext(CONTEXT);
   const page = await ctx.newPage();
   for (const [ruta, exp] of [
     ['/', '/'],
@@ -118,7 +128,7 @@ async function anon(browser: Browser): Promise<void> {
 
 async function student(browser: Browser): Promise<void> {
   console.log('\n· alumno (onboarding y diagnóstico completos, sin plan)');
-  const ctx = await browser.newContext();
+  const ctx = await browser.newContext(CONTEXT);
   await injectSession(ctx, await freshSession('rlsprobe.alumnoa@acierta-test.mx'), BASE);
   const page = await ctx.newPage();
   for (const [ruta, exp] of [
@@ -181,7 +191,7 @@ async function student(browser: Browser): Promise<void> {
 
 async function parent(browser: Browser): Promise<void> {
   console.log('\n· tutor');
-  const ctx = await browser.newContext();
+  const ctx = await browser.newContext(CONTEXT);
   await injectSession(ctx, await freshSession('rlsprobe.tutor@acierta-test.mx'), BASE);
   const page = await ctx.newPage();
   for (const [ruta, exp] of [
@@ -204,7 +214,7 @@ async function admin(browser: Browser): Promise<void> {
   console.log('\n· administrador (cuenta fixture promovida; onboarding DONE como la cuenta real)');
   try {
     await prisma.userProfile.update({ where: { id: fixtureId }, data: { role: 'ADMIN', onboardingStep: 3 } });
-    const ctx = await browser.newContext();
+    const ctx = await browser.newContext(CONTEXT);
     await injectSession(ctx, await freshSession('rlsprobe.alumnob@acierta-test.mx'), BASE);
     const page = await ctx.newPage();
     for (const [ruta, exp] of [

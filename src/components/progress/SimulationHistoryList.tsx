@@ -1,10 +1,16 @@
 import Link from 'next/link';
 import type { SimulationHistoryEntry } from '@/lib/db/progress';
+import { MEXICO_TIME_ZONE } from '@/lib/paywall/mexico-time';
 
 /** Mismo formato que `RecentSimulations` (F11) — consistencia visual entre
  *  el dashboard y el historial completo. */
 function formatDate(d: Date): string {
-  return d.toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' });
+  return d.toLocaleDateString('es-MX', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: MEXICO_TIME_ZONE,
+  });
 }
 
 /**
