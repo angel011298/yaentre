@@ -1,4 +1,5 @@
 import type { CookieOptions } from '@supabase/ssr';
+import { applySessionPersistence, SESSION_PERSISTENCE } from './session-policy';
 
 /**
  * G65 🟠 — Opciones de la cookie de sesión.
@@ -31,3 +32,17 @@ export const AUTH_COOKIE_OPTIONS: CookieOptions = {
   secure: process.env.NODE_ENV === 'production',
   path: '/',
 };
+
+/**
+ * Opciones finales de CADA escritura de cookie de sesión, en el cliente de
+ * servidor y en el del middleware por igual (G65: si un lado se olvidara, el
+ * primer refresco deshacía el arreglo).
+ *
+ * G100: encima de lo de G65 se aplica la política de persistencia. En modo
+ * efímero —el default— se quitan `maxAge`/`expires`, que `@supabase/ssr` fija
+ * SIEMPRE a 400 días sin importar `cookieOptions`: la cookie muere con el
+ * navegador. Ver `session-policy.ts`.
+ */
+export function authCookieWriteOptions(options: CookieOptions): CookieOptions {
+  return applySessionPersistence({ ...options, ...AUTH_COOKIE_OPTIONS }, SESSION_PERSISTENCE);
+}

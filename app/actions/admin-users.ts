@@ -6,7 +6,11 @@ import { AuthError } from '@/lib/auth/errors';
 import { requireRole } from '@/lib/auth/guards';
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import { logAdminAction, type AdminAuditAction } from '@/lib/admin/audit-log';
-import { MASTER_ADMIN_DENIED_MESSAGE, requireMasterAdmin } from '@/lib/admin/master';
+import {
+  MASTER_ADMIN_DENIED_MESSAGE,
+  masterCandidateEmail,
+  requireMasterAdmin,
+} from '@/lib/admin/master';
 import {
   adminUserTargetSchema,
   cancelPlanSchema,
@@ -95,7 +99,7 @@ async function beginAdminAction<T extends { userProfileId: string; reason: strin
 
   // 2. COMPUERTA DE MAESTRO para las acciones destructivas.
   if (opts.requireMaster) {
-    const verdict = requireMasterAdmin(authUser.email);
+    const verdict = requireMasterAdmin(masterCandidateEmail(authUser));
     if (!verdict.ok) {
       await audit(null, { denied: verdict.reason });
       return {

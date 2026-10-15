@@ -86,6 +86,19 @@ export type ControlName =
    * dueño cree guardado.
    */
   | 'admin_vault_storage'
+  /**
+   * G100 — tope de vida de la sesión efímera. Se dispara cuando el access
+   * token no trae una hora de autenticación legible (`amr`) y la sesión se deja
+   * pasar sin tope (`fail-open`): cerrarla por las dudas expulsaría a todos en
+   * bucle si Supabase cambiara el formato del claim.
+   */
+  | 'session_lifetime'
+  /**
+   * G100 — la revocación de la sesión en Supabase falló al cerrar sesión. Las
+   * cookies del dispositivo se borran igual; lo que queda vivo es el refresh
+   * token del lado del servidor hasta que caduque.
+   */
+  | 'session_signout'
   /** Persistencia de la preferencia de baja de correo. */
   | 'unsubscribe_write';
 

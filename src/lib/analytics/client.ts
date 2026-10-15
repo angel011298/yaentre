@@ -1,6 +1,7 @@
 'use client';
 
 import type { PostHog } from 'posthog-js';
+import { SESSION_PERSISTENCE } from '@/lib/auth/session-policy';
 import { posthogApiHost } from './posthog-hosts';
 
 /**
@@ -49,6 +50,12 @@ export function loadPostHog(): Promise<PostHog> | null {
           capture_pageview: true,
           autocapture: false,
           disable_session_recording: true,
+          // G100: en modo efímero el id anónimo y el perfil identificado viven
+          // en `sessionStorage` (mueren con la pestaña) en vez de en
+          // `localStorage` + una cookie de un año, que dejaban en el equipo
+          // el rastro de QUIÉN lo usó.
+          persistence:
+            SESSION_PERSISTENCE === 'persistent' ? 'localStorage+cookie' : 'sessionStorage',
         });
       }
       return posthog;

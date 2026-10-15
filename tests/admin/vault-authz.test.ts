@@ -21,7 +21,11 @@ const dbCalls: string[] = [];
 const order: string[] = [];
 const auditRows: Array<Record<string, unknown>> = [];
 
-const identity: { role: string | null; email: string | null } = { role: null, email: null };
+const identity: { role: string | null; email: string | null; emailConfirmedAt: string | null } = {
+  role: null,
+  email: null,
+  emailConfirmedAt: '2026-09-22T06:31:22.000Z',
+};
 
 vi.mock('@/lib/auth/guards', () => ({
   requireRole: vi.fn(async (allowed: string | string[]) => {
@@ -29,7 +33,7 @@ vi.mock('@/lib/auth/guards', () => ({
     const roles = Array.isArray(allowed) ? allowed : [allowed];
     if (!roles.includes(identity.role)) throw new AuthError('FORBIDDEN', 'Sin permiso.');
     return {
-      authUser: { id: 'uid', email: identity.email },
+      authUser: { id: 'uid', email: identity.email, email_confirmed_at: identity.emailConfirmedAt },
       profile: { id: 'cku0000000000000000000001', role: identity.role },
     };
   }),
@@ -211,6 +215,22 @@ describe('BORRAR — exige ADMIN **y** maestro', () => {
     expect(storageCalls).toEqual([]);
     expect(dbCalls).toEqual([]);
     expect(auditRows[0]).toMatchObject({ metadata: { denied: 'NOT_MASTER' }, outcome: 'rejected' });
+  });
+
+  it('G100: ADMIN con el correo maestro SIN verificar NO puede borrar', async () => {
+    identity.role = 'ADMIN';
+    identity.email = 'jefa@yaentre.com';
+    identity.emailConfirmedAt = null;
+    try {
+      const result = await vaultActions.deleteVaultFileAction({ fileId: FILE_ID, reason: REASON });
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.code).toBe('FORBIDDEN');
+      expect(storageCalls).toEqual([]);
+      expect(dbCalls).toEqual([]);
+      expect(auditRows[0]).toMatchObject({ metadata: { denied: 'NOT_MASTER' } });
+    } finally {
+      identity.emailConfirmedAt = '2026-09-22T06:31:22.000Z';
+    }
   });
 
   it('MASTER_ADMIN_EMAILS ausente: nadie borra', async () => {

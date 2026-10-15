@@ -7,7 +7,11 @@ import { AuthError } from '@/lib/auth/errors';
 import { requireRole } from '@/lib/auth/guards';
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
 import { logAdminAction } from '@/lib/admin/audit-log';
-import { MASTER_ADMIN_DENIED_MESSAGE, requireMasterAdmin } from '@/lib/admin/master';
+import {
+  MASTER_ADMIN_DENIED_MESSAGE,
+  masterCandidateEmail,
+  requireMasterAdmin,
+} from '@/lib/admin/master';
 import { deleteVaultFileSchema, type ActionResult } from '@/lib/admin/schemas';
 import { validateVaultUpload, VAULT_BUCKET } from '@/lib/admin/vault';
 import * as vaultDb from '@/lib/db/admin-vault';
@@ -147,7 +151,7 @@ export async function deleteVaultFileAction(
     const { profile, authUser } = await requireRole('ADMIN');
     const actor = { userProfileId: profile.id, email: authUser.email };
 
-    const verdict = requireMasterAdmin(authUser.email);
+    const verdict = requireMasterAdmin(masterCandidateEmail(authUser));
     if (!verdict.ok) {
       await logAdminAction('vault.deleted', actor, {
         targetKind: 'file',

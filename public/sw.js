@@ -1,9 +1,10 @@
 /**
  * Service worker mínimo (F17 tarea 1). Dos estrategias, nada más:
- *  - Navegaciones (HTML): network-first con respaldo a caché — el tablero
- *    principal (y cualquier otra pantalla de la app) queda disponible sin
- *    conexión mostrando la ÚLTIMA versión que sí cargó. `/simulador` es la
- *    EXCEPCIÓN explícita: nunca se sirve desde caché, nunca se cachea — sin
+ *  - Navegaciones (HTML): network-first. Sin conexión responde con una página
+ *    de aviso. SOLO en modo persistente (registro con `?modo=persistente`)
+ *    guarda además la última versión de cada pantalla para servirla sin
+ *    conexión — ver G100 abajo. `/simulador` es la EXCEPCIÓN explícita en
+ *    cualquier modo: nunca se sirve desde caché, nunca se cachea — sin
  *    conexión responde con una página de aviso, nunca con contenido viejo
  *    del examen (regla de negocio, no un descuido).
  *  - Assets estáticos de Next (`/_next/static`, `/_next/image`): cache-first
@@ -14,15 +15,36 @@
  * Nada de precaching, nada de Workbox: "capacidad MÍNIMA" es literal.
  */
 
-const SHELL_CACHE = 'yaentre-shell-v2';
+/**
+ * G100 — SIN RASTRO EN EL DISPOSITIVO (modo por defecto).
+ *
+ * Hasta G99 cada navegación se guardaba en `yaentre-shell-v2`: el HTML del
+ * tablero, del perfil, del progreso y del panel del tutor quedaba escrito en
+ * el disco del navegador, y la Cache Storage SOBREVIVE al cierre de sesión.
+ * En un equipo prestado, el siguiente usuario podía abrir esas pantallas sin
+ * conexión y sin credenciales.
+ *
+ * El modo lo decide quien registra el worker (`ServiceWorkerRegister`, con la
+ * misma variable que las cookies de sesión: `NEXT_PUBLIC_PERSISTENT_SESSIONS`).
+ * Por defecto NO se guarda ninguna navegación, y al activarse este worker se
+ * borra toda caché que no sea la de assets estáticos — incluida la
+ * `yaentre-shell-v2` que los dispositivos ya traen llena de pantallas.
+ *
+ * Los assets de `/_next/static` y `/_next/image` sí se guardan: son públicos,
+ * iguales para todos y no dicen nada de quién usó el equipo.
+ */
+const PERSIST_PAGES = new URL(self.location.href).searchParams.get('modo') === 'persistente';
+const STATIC_CACHE = 'yaentre-static-v3';
+const PAGES_CACHE = 'yaentre-pages-v3';
+const KEEP_CACHES = PERSIST_PAGES ? [STATIC_CACHE, PAGES_CACHE] : [STATIC_CACHE];
 
 const OFFLINE_FALLBACK_HTML = `<!doctype html>
 <html lang="es">
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Sin conexión · YaEntre</title></head>
 <body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:420px;margin:96px auto;text-align:center;background:#0F0F14;color:#fff;padding:0 24px;">
   <h1 style="color:#7C3AED;">YaEntre</h1>
-  <p>Estás sin conexión y todavía no guardamos una versión de esta pantalla en tu celular.</p>
-  <p>Conéctate una vez para que quede disponible sin internet la próxima vez.</p>
+  <p>Estás sin conexión.</p>
+  <p>Por privacidad, YaEntre no guarda copias de tus pantallas en este dispositivo. Conéctate a internet para continuar.</p>
 </body>
 </html>`;
 
@@ -44,7 +66,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== SHELL_CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => !KEEP_CACHES.includes(k)).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -56,7 +78,7 @@ function isSimulatorPath(pathname) {
 /**
  * G99 — NADA DE /admin NI DE LA BÓVEDA SE GUARDA EN CACHÉ. NUNCA.
  *
- * El manejador de navegación de abajo metía en `SHELL_CACHE` la respuesta de
+ * El manejador de navegación de abajo metía en la caché de páginas la respuesta de
  * CUALQUIER navegación, `/admin/*` incluido. Eso escribía en el disco del
  * navegador el listado de usuarios, la bitácora y los nombres de los archivos
  * de la bóveda — y la Cache Storage SOBREVIVE al cierre de sesión, así que en
@@ -110,12 +132,14 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(SHELL_CACHE).then((cache) => cache.put(request, copy));
+          if (PERSIST_PAGES) {
+            const copy = response.clone();
+            caches.open(PAGES_CACHE).then((cache) => cache.put(request, copy));
+          }
           return response;
         })
         .catch(async () => {
-          const cached = await caches.match(request);
+          const cached = PERSIST_PAGES ? await caches.match(request) : undefined;
           return (
             cached ||
             new Response(OFFLINE_FALLBACK_HTML, {
@@ -135,7 +159,7 @@ self.addEventListener('fetch', (event) => {
           cached ||
           fetch(request).then((response) => {
             const copy = response.clone();
-            caches.open(SHELL_CACHE).then((cache) => cache.put(request, copy));
+            caches.open(STATIC_CACHE).then((cache) => cache.put(request, copy));
             return response;
           })
       )

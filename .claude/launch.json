@@ -4,14 +4,47 @@
     {
       "name": "yaentre-dev",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["dev"],
+      "runtimeArgs": [
+        "dev"
+      ],
       "port": 3000
     },
     {
       "name": "yaentre-prod",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["start"],
+      "runtimeArgs": [
+        "start"
+      ],
       "port": 3000
+    },
+    {
+      "name": "g100-sesion",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/g100/serve.mjs",
+        "3100"
+      ],
+      "port": 3100
+    },
+    {
+      "name": "g100-maestro",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/g100/serve.mjs",
+        "3101",
+        "MASTER_ADMIN_EMAILS=rlsprobe.alumnob@acierta-test.mx"
+      ],
+      "port": 3101
+    },
+    {
+      "name": "g100-tope",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/g100/serve.mjs",
+        "3102",
+        "EPHEMERAL_SESSION_MAX_AGE_SECS=40"
+      ],
+      "port": 3102
     }
   ]
 }

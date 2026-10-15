@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import { AUTH_COOKIE_OPTIONS } from './cookie-options';
+import { AUTH_COOKIE_OPTIONS, authCookieWriteOptions } from './cookie-options';
 
 /**
  * Cliente de Supabase para Server Components, Server Actions y Route Handlers.
@@ -30,7 +30,7 @@ export const createSupabaseServerClient = cache(async function createSupabaseSer
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) => {
-              cookieStore.set(name, value, { ...options, ...AUTH_COOKIE_OPTIONS });
+              cookieStore.set(name, value, authCookieWriteOptions(options));
             });
           } catch {
             // Se invocó desde un Server Component (no puede escribir cookies).

@@ -11,6 +11,7 @@ import {
   updatePasswordSchema,
 } from '@/lib/auth/schemas';
 import { createSupabaseServerClient } from '@/lib/auth/supabase-server';
+import { homePathForRole } from '@/lib/auth/role-home';
 import { safeInternalPath } from '@/lib/auth/safe-redirect';
 import type { ActionState } from '@/lib/auth/types';
 import { prisma } from '@/lib/db/prisma';
@@ -211,14 +212,15 @@ export async function signInAction(
     where: { userId: data.user.id },
     select: { role: true },
   });
-  redirect(profile?.role === 'PARENT' ? '/tutor' : '/app');
+  // G100: el destino sale del ROL — un admin aterriza en su panel en
+  // cualquier dispositivo, no en el onboarding de alumno (`role-home.ts`).
+  redirect(homePathForRole(profile?.role));
 }
 
-export async function signOutAction(): Promise<void> {
-  const supabase = await createSupabaseServerClient();
-  await supabase.auth.signOut();
-  redirect('/login');
-}
+// G100: `signOutAction` desapareció. Cerrar sesión es ahora un POST nativo a
+// `/auth/salir` (Route Handler): solo una respuesta HTTP puede llevar la
+// cabecera `Clear-Site-Data`, y el cierre es LOCAL a este dispositivo en vez
+// del `signOut()` global de antes. Ver `app/auth/salir/route.ts`.
 
 export async function forgotPasswordAction(
   _prevState: ActionState,

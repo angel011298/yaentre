@@ -23,9 +23,15 @@ const dbCalls: string[] = [];
 const auditRows: Array<Record<string, unknown>> = [];
 
 // ── Identidad simulada, cambiada por cada caso de la matriz ────────────────
-const identity: { role: string | null; email: string | null; profileId: string } = {
+const identity: {
+  role: string | null;
+  email: string | null;
+  emailConfirmedAt: string | null;
+  profileId: string;
+} = {
   role: null,
   email: null,
+  emailConfirmedAt: '2026-09-22T06:31:22.000Z',
   profileId: 'cku0000000000000000000001',
 };
 
@@ -39,7 +45,7 @@ vi.mock('@/lib/auth/guards', () => ({
       throw new AuthError('FORBIDDEN', 'No tienes permiso para acceder a esto.');
     }
     return {
-      authUser: { id: 'auth-uid', email: identity.email },
+      authUser: { id: 'auth-uid', email: identity.email, email_confirmed_at: identity.emailConfirmedAt },
       profile: { id: identity.profileId, role: identity.role },
     };
   }),
@@ -162,9 +168,14 @@ function beAnonymous() {
   identity.role = null;
   identity.email = null;
 }
-function beRole(role: 'STUDENT' | 'PARENT' | 'ADMIN', email: string) {
+function beRole(
+  role: 'STUDENT' | 'PARENT' | 'ADMIN',
+  email: string,
+  emailConfirmedAt: string | null = '2026-09-22T06:31:22.000Z'
+) {
   identity.role = role;
   identity.email = email;
+  identity.emailConfirmedAt = emailConfirmedAt;
 }
 
 /**
@@ -240,6 +251,25 @@ describe('MASTER_ADMIN_EMAILS ausente: ni siquiera el dueño pasa', () => {
       if (!result.ok) expect(result.code).toBe('FORBIDDEN');
       expect(dbCalls).toEqual([]);
       expect(auditRows[0]).toMatchObject({ metadata: { denied: 'NOT_CONFIGURED' } });
+    });
+  }
+});
+
+/**
+ * G100 — el correo de la lista solo cuenta VERIFICADO. El registro abre sesión
+ * antes de verificar el correo, así que una cuenta que tecleó el correo del
+ * maestro sin poder abrir su buzón no puede heredar sus poderes. Se le da rol
+ * ADMIN a propósito: así lo ÚNICO que la detiene es la verificación.
+ */
+describe('ADMIN con el correo maestro SIN verificar: se deniega', () => {
+  for (const action of DESTRUCTIVE) {
+    it(`${action.name}`, async () => {
+      beRole('ADMIN', 'jefa@yaentre.com', null);
+      const result = await action.run();
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.code).toBe('FORBIDDEN');
+      expect(dbCalls).toEqual([]);
+      expect(auditRows[0]).toMatchObject({ metadata: { denied: 'NOT_MASTER' } });
     });
   }
 });

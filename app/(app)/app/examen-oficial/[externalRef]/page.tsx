@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Card } from '@/components/ui/Card';
+import { requireOnboarding } from '@/lib/auth/guards';
 import { getOfficialSampleSource } from '@/lib/db/content-sources';
 
 /**
@@ -26,6 +27,10 @@ export default async function OfficialSampleDetailPage({
 }: {
   params: Promise<{ externalRef: string }>;
 }) {
+  // G100: guard propio y primero — el del layout no impide que esta página
+  // consulte la base y viaje en el cuerpo de la redirección (ver
+  // `tests/admin/pages-guard.test.ts`).
+  await requireOnboarding();
   const { externalRef } = await params;
   const source = await getOfficialSampleSource(externalRef);
 

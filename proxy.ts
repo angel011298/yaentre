@@ -1,5 +1,14 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { createSupabaseMiddlewareClient } from '@/lib/auth/supabase-middleware';
+import {
+  createSupabaseMiddlewareClient,
+  redirectKeepingCookies,
+} from '@/lib/auth/supabase-middleware';
+import {
+  evaluateSessionLifetime,
+  resolveEphemeralMaxAgeSecs,
+  SESSION_PERSISTENCE,
+  sessionAuthenticatedAt,
+} from '@/lib/auth/session-policy';
 import { checkRateLimit } from '@/lib/rate-limit/limiter';
 import { resolveClientIp } from '@/lib/rate-limit/client-ip';
 import {
@@ -145,7 +154,7 @@ export async function proxy(request: NextRequest) {
     );
   }
 
-  const { supabase, response } = createSupabaseMiddlewareClient(request);
+  const { supabase, getResponse } = createSupabaseMiddlewareClient(request);
 
   let user;
   try {
@@ -163,19 +172,81 @@ export async function proxy(request: NextRequest) {
     user = null;
   }
 
+  // ── G100: TOPE DE VIDA DE LA SESIÓN EFÍMERA ──────────────────────────────
+  //
+  // La cookie sin `Max-Age` muere al cerrar el navegador, pero en Android el
+  // navegador casi nunca se cierra y Chrome restaura las cookies de sesión con
+  // «Continuar donde lo dejaste». Aquí se cierra, del lado del servidor, la
+  // sesión que lleva más del tope desde que la persona se autenticó en ESTE
+  // dispositivo. Va en el middleware y no en `requireUser` a propósito: solo
+  // aquí se pueden BORRAR las cookies (un Server Component no puede), y así un
+  // simulacro en curso —que sincroniza por `/api`, donde esto no corre— no se
+  // corta a la mitad; la siguiente navegación de página es la que lo cierra.
+  let sessionExpired = false;
+  if (user && SESSION_PERSISTENCE === 'ephemeral') {
+    sessionExpired = await closeIfPastMaxAge(supabase, pathname);
+    if (sessionExpired) user = null;
+  }
+
   if (matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES) && !user) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('next', `${pathname}${search}`);
-    return withAttributionCookie(NextResponse.redirect(loginUrl), request);
+    if (sessionExpired) loginUrl.searchParams.set('sesion', 'expirada');
+    return withAttributionCookie(redirectKeepingCookies(loginUrl, getResponse()), request);
   }
 
   if (matchesPrefix(pathname, VERIFIED_EMAIL_REQUIRED_PREFIXES) && user && !user.email_confirmed_at) {
     const appUrl = new URL('/app', request.url);
     appUrl.searchParams.set('verify', '1');
-    return withAttributionCookie(NextResponse.redirect(appUrl), request);
+    return withAttributionCookie(redirectKeepingCookies(appUrl, getResponse()), request);
   }
 
-  return withAttributionCookie(response, request);
+  return withAttributionCookie(getResponse(), request);
+}
+
+/** Un solo reporte por proceso: el claim ilegible se repetiría en CADA petición. */
+let unknownAuthTimeReported = false;
+
+/**
+ * Cierra la sesión de este dispositivo si superó el tope. El access token ya
+ * lo validó `getUser()` en esta misma petición; aquí solo se lee su claim
+ * `amr` (ver `sessionAuthenticatedAt`). `signOut({ scope: 'local' })` revoca
+ * la sesión en Supabase y, vía `setAll`, deja el borrado de las cookies en la
+ * respuesta del middleware.
+ */
+async function closeIfPastMaxAge(
+  supabase: ReturnType<typeof createSupabaseMiddlewareClient>['supabase'],
+  pathname: string
+): Promise<boolean> {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  const verdict = evaluateSessionLifetime({
+    mode: SESSION_PERSISTENCE,
+    authenticatedAt: sessionAuthenticatedAt(session?.access_token),
+    nowSecs: Math.floor(Date.now() / 1000),
+    maxAgeSecs: resolveEphemeralMaxAgeSecs(process.env.EPHEMERAL_SESSION_MAX_AGE_SECS),
+  });
+
+  if (verdict.reason === 'UNKNOWN_AUTH_TIME' && !unknownAuthTimeReported) {
+    unknownAuthTimeReported = true;
+    reportControlFailure(
+      'session_lifetime',
+      'fail-open',
+      new Error('El access token no trae una hora de autenticación legible (claim amr).'),
+      { pathname }
+    );
+  }
+  if (!verdict.expired) return false;
+
+  try {
+    await supabase.auth.signOut({ scope: 'local' });
+  } catch (err) {
+    // La sesión se trata como cerrada de todos modos: la redirección a /login
+    // ocurre igual y la cookie de sesión muere con el navegador.
+    reportControlFailure('session_signout', 'degraded', err, { pathname, motivo: 'tope' });
+  }
+  return true;
 }
 
 export const config = {

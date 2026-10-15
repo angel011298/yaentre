@@ -3,8 +3,7 @@ import { notFound } from 'next/navigation';
 import { Card } from '@/components/ui/Card';
 import { UserAdminActions } from '@/components/admin/UserAdminActions';
 import { getUserDetail } from '@/lib/db/admin-users';
-import { isMasterAdminEmail } from '@/lib/admin/master';
-import { requireRole } from '@/lib/auth/guards';
+import { getAdminContext } from '@/lib/admin/context';
 
 export const metadata = { title: 'Cuenta' };
 
@@ -32,11 +31,10 @@ export default async function AdminUserDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { authUser, profile } = await requireRole('ADMIN');
+  const { profile, isMaster } = await getAdminContext();
   const detail = await getUserDetail(id);
   if (!detail) notFound();
 
-  const isMaster = isMasterAdminEmail(authUser.email, process.env.MASTER_ADMIN_EMAILS);
   const isSelf = profile.id === detail.id;
 
   return (

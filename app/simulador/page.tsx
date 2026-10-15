@@ -31,7 +31,7 @@ export default async function SimuladorPage({
 }) {
   let profileId: string;
   try {
-    const { profile } = await requireOnboarding();
+    const { profile } = await requireOnboarding('/simulador');
     profileId = profile.id;
   } catch (err) {
     if (err instanceof AuthError) redirect('/login?next=/simulador');

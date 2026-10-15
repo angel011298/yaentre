@@ -35,19 +35,26 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   let displayName: string | null;
   let avatarUrl: string | null;
   let themePref: string;
+  let isAdmin: boolean;
   try {
     const { authUser: user, profile } = await requireUser();
     if (profile.role === 'PARENT') {
       redirect('/tutor');
     }
     if (!isOnboardingComplete(profile.onboardingStep)) {
-      redirect('/onboarding');
+      // G100: un ADMIN sin onboarding de alumno no es un aspirante a medio
+      // registrar — es una cuenta de administración. Mandarlo a /onboarding
+      // lo dejaba en el asistente de alumno sin enlace al panel, en cualquier
+      // dispositivo donde entrara. Si quiere probar la app, puede abrir
+      // /onboarding a mano.
+      redirect(profile.role === 'ADMIN' ? '/admin' : '/onboarding');
     }
     authUser = user;
     profileId = profile.id;
     displayName = profile.displayName;
     avatarUrl = profile.avatarUrl;
     themePref = profile.themePref;
+    isAdmin = profile.role === 'ADMIN';
   } catch (err) {
     if (err instanceof AuthError) {
       redirect('/login?next=/app');
@@ -83,8 +90,17 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
           `<Suspense>`, la cáscara sale de inmediato y la racha entra en cuanto
           su consulta resuelve, sin mover nada de sitio (`StreakFlame` reserva
           su alto). Mismo criterio que G62 aplicó dentro del dashboard. */}
-      <Suspense fallback={<TopBar streak={0} initial={initial || '?'} avatarUrl={avatarUrl} />}>
-        <TopBarWithStreak profileId={profileId} initial={initial || '?'} avatarUrl={avatarUrl} />
+      <Suspense
+        fallback={
+          <TopBar streak={0} initial={initial || '?'} avatarUrl={avatarUrl} isAdmin={isAdmin} />
+        }
+      >
+        <TopBarWithStreak
+          profileId={profileId}
+          initial={initial || '?'}
+          avatarUrl={avatarUrl}
+          isAdmin={isAdmin}
+        />
       </Suspense>
       {!authUser.email_confirmed_at && <VerificationBanner />}
       <OfflineBanner />
@@ -111,11 +127,20 @@ async function TopBarWithStreak({
   profileId,
   initial,
   avatarUrl,
+  isAdmin,
 }: {
   profileId: string;
   initial: string;
   avatarUrl: string | null;
+  isAdmin: boolean;
 }) {
   const streak = await getStreak(profileId);
-  return <TopBar streak={streak?.currentStreak ?? 0} initial={initial} avatarUrl={avatarUrl} />;
+  return (
+    <TopBar
+      streak={streak?.currentStreak ?? 0}
+      initial={initial}
+      avatarUrl={avatarUrl}
+      isAdmin={isAdmin}
+    />
+  );
 }

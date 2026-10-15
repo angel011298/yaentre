@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { signOutAction } from '@/app/actions/auth';
+import { SignOutButton } from '@/components/auth/SignOutButton';
 
 /**
  * Envoltura del panel parental (F16 tarea 3): modo claro fijo, a diferencia
@@ -32,14 +32,7 @@ export function ParentShell({
           </Link>
           <div className="flex items-center gap-4">
             {studentSwitcher}
-            <form action={signOutAction}>
-              <button
-                type="submit"
-                className="inline-flex min-h-touch items-center text-sm font-semibold text-text-muted hover:text-brand"
-              >
-                Cerrar sesión
-              </button>
-            </form>
+            <SignOutButton className="inline-flex min-h-touch items-center text-sm font-semibold text-text-muted hover:text-brand" />
           </div>
         </div>
       </header>

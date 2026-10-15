@@ -39,8 +39,24 @@ export function matchesPrefix(pathname: string, prefixes: string[]): boolean {
  * cambia entre entornos y no debe quedar escrito aquí.
  */
 export function hasSupabaseAuthCookie(cookieNames: readonly string[]): boolean {
-  return cookieNames.some((name) => name.startsWith('sb-') && name.includes('-auth-token'));
+  return cookieNames.some(isSupabaseAuthCookieName);
 }
+
+/** La misma forma, para UNA cookie — el cierre de sesión borra cada trozo. */
+export function isSupabaseAuthCookieName(name: string): boolean {
+  return name.startsWith('sb-') && name.includes('-auth-token');
+}
+
+/**
+ * G100 — rutas donde el middleware NO debe tocar la sesión.
+ *
+ * `/auth/salir` borra las cookies de sesión en su respuesta. Si el middleware
+ * validara el usuario en esa misma petición y le tocara refrescar el token, su
+ * `Set-Cookie` con la sesión NUEVA viajaría junto al borrado del Route Handler,
+ * y gana el que el navegador procese al último: cerrar sesión podría dejar la
+ * sesión abierta. Saltarse la validación ahí además ahorra el viaje a Auth.
+ */
+const SESSION_UNTOUCHED_PATHS = ['/auth/salir'];
 
 /**
  * ¿Es una petición de PRE-CARGA del router de Next?
@@ -81,6 +97,7 @@ export function shouldResolveUser(params: {
   const { pathname, hasSessionCookie, isPrefetch } = params;
   if (!hasSessionCookie) return false;
   if (pathname.startsWith('/api/')) return false;
+  if (SESSION_UNTOUCHED_PATHS.includes(pathname)) return false;
 
   const gated =
     matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES) ||

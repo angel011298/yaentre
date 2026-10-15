@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
+import { getAdminContext } from '@/lib/admin/context';
 import { Pagination } from '@/components/admin/Pagination';
 import { UserSearchForm } from '@/components/admin/UserSearchForm';
 import { searchUsers, USERS_PAGE_SIZE } from '@/lib/db/admin-users';
@@ -22,6 +23,11 @@ export default async function AdminUsersPage({
 }: {
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
+  // G100 🔴 — el guard va AQUÍ, antes de leer un solo dato. El layout no basta:
+  // Next renderiza layout y página EN PARALELO, y el 307 a /app que manda el
+  // layout llevaba en el CUERPO la página ya renderizada (medido: correos de
+  // cuentas reales en la respuesta a un alumno). Ver `getAdminContext`.
+  await getAdminContext();
   const sp = await searchParams;
   const { q, page } = userSearchSchema.parse({ q: sp.q, page: sp.page });
   const result = await searchUsers({ q, page });

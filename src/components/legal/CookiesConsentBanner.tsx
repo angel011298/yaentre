@@ -12,6 +12,16 @@ const CONSENT_STORAGE_KEY = 'yaentre-cookies-consent';
  *  (En desktop mandan el Sidebar y `.yaentre-cookie-banner` vuelve a `bottom:0`.) */
 const APP_ROUTE_RE = /^\/(app|practicar|diagnostico|paywall|checkout)(\/|$)/;
 
+/** G100 — exámenes cronometrados: el banner NO se pinta. Fijo abajo, tapaba el
+ *  botón «Siguiente» del simulador (lo encontró el E2E: el clic caía en
+ *  «Rechazar»), y en pleno examen eso le roba segundos al alumno. Además, con
+ *  la sesión «sin rastro» cerrar sesión borra la decisión de cookies, así que
+ *  el banner reaparecería en cada examen. Sin consentimiento PostHog no carga
+ *  (F21), así que no pintarlo aquí no activa nada: se pregunta en la
+ *  siguiente pantalla normal. Coherente con la UIUX Spec: el simulador es la
+ *  excepción visual, serio y sin distracciones. */
+const EXAM_ROUTE_RE = /^\/(simulador|diagnostico)(\/|$)/;
+
 export function CookiesConsentBanner() {
   const pathname = usePathname();
   // G62: se RENDERIZA en el HTML inicial (arranca `undefined`, no `return
@@ -32,6 +42,9 @@ export function CookiesConsentBanner() {
   }, []);
 
   if (consent === true || consent === false) {
+    return null;
+  }
+  if (pathname && EXAM_ROUTE_RE.test(pathname)) {
     return null;
   }
 

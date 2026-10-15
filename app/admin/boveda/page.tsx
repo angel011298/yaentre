@@ -6,8 +6,7 @@ import { AdminNotes, type NoteItem } from '@/components/admin/AdminNotes';
 import { listVaultFiles, vaultUsedBytes } from '@/lib/db/admin-vault';
 import { listNotes } from '@/lib/db/admin-notes';
 import { formatBytes, previewKindFor, VAULT_QUOTA_BYTES } from '@/lib/admin/vault';
-import { isMasterAdminEmail } from '@/lib/admin/master';
-import { requireRole } from '@/lib/auth/guards';
+import { getAdminContext } from '@/lib/admin/context';
 
 export const metadata = { title: 'Bóveda' };
 
@@ -20,8 +19,7 @@ export const metadata = { title: 'Bóveda' };
  * que exige admin maestro y deja fila en la bitácora.
  */
 export default async function AdminVaultPage() {
-  const { authUser } = await requireRole('ADMIN');
-  const isMaster = isMasterAdminEmail(authUser.email, process.env.MASTER_ADMIN_EMAILS);
+  const { isMaster } = await getAdminContext();
 
   const [files, used, notes] = await Promise.all([listVaultFiles(), vaultUsedBytes(), listNotes()]);
   const pct = Math.min(100, (used / VAULT_QUOTA_BYTES) * 100);

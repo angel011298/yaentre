@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/Card';
+import { getAdminContext } from '@/lib/admin/context';
 import {
   buildCoverageReport,
   COVERAGE_GOAL_VERIFIED,
@@ -19,6 +20,11 @@ function rateLabel(autoApproved: number, unpublished: number): string {
 export const metadata = { title: 'Cobertura del banco' };
 
 export default async function CoveragePage() {
+  // G100 🔴 — el guard va AQUÍ, antes de leer un solo dato. El layout no basta:
+  // Next renderiza layout y página EN PARALELO, y el 307 a /app que manda el
+  // layout llevaba en el CUERPO la página ya renderizada (medido: correos de
+  // cuentas reales en la respuesta a un alumno). Ver `getAdminContext`.
+  await getAdminContext();
   const report = await buildCoverageReport();
   const grandTotal = report.totalVerified + report.totalPending;
   const goalPct = Math.min(100, pct(report.totalVerified, COVERAGE_GOAL_VERIFIED));

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   evaluateMasterAdmin,
   isMasterAdminEmail,
+  masterCandidateEmail,
   parseMasterAdminList,
 } from '@/lib/admin/master';
 
@@ -123,5 +124,29 @@ describe('mutación: el default nunca puede invertirse sin romper esto', () => {
         expect(isMasterAdminEmail(email, list)).toBe(false);
       }
     }
+  });
+});
+
+/**
+ * G100 — el correo solo cuenta para la compuerta si está VERIFICADO: el
+ * registro abre sesión antes de verificar, así que teclear el correo del
+ * maestro no puede bastar para heredar sus poderes.
+ */
+describe('masterCandidateEmail', () => {
+  it('correo verificado ⇒ el correo', () => {
+    expect(
+      masterCandidateEmail({ email: 'jefa@yaentre.com', email_confirmed_at: '2026-09-22T00:00:00Z' })
+    ).toBe('jefa@yaentre.com');
+  });
+
+  it.each([
+    ['sin verificar', { email: 'jefa@yaentre.com', email_confirmed_at: null }],
+    ['sin campo de verificación', { email: 'jefa@yaentre.com' }],
+    ['sin correo', { email: null, email_confirmed_at: '2026-09-22T00:00:00Z' }],
+    ['usuario nulo', null],
+  ])('%s ⇒ null, y la compuerta lo rechaza', (_l, user) => {
+    const candidate = masterCandidateEmail(user as never);
+    expect(candidate).toBeNull();
+    expect(isMasterAdminEmail(candidate, 'jefa@yaentre.com')).toBe(false);
   });
 });

@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const LINKS = [
+  // G100 — resumen del panel y del nivel de acceso. Única entrada con
+  // coincidencia EXACTA: con `startsWith('/admin')` estaría siempre activa.
+  { href: '/admin', label: 'Inicio', exact: true },
   { href: '/admin/questions/queue', label: 'Revisión' },
   { href: '/admin/reports', label: 'Reportes' },
   { href: '/admin/coverage', label: 'Cobertura' },
@@ -20,7 +23,7 @@ export function AdminNav() {
   return (
     <nav className="flex flex-wrap gap-2">
       {LINKS.map((link) => {
-        const active = pathname.startsWith(link.href);
+        const active = 'exact' in link ? pathname === link.href : pathname.startsWith(link.href);
         return (
           <Link
             key={link.href}

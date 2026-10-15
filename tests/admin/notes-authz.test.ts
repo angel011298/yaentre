@@ -18,7 +18,11 @@ import { AuthError } from '@/lib/auth/errors';
 const dbCalls: string[] = [];
 const auditRows: Array<Record<string, unknown>> = [];
 
-const identity: { role: string | null; email: string | null } = { role: null, email: null };
+const identity: { role: string | null; email: string | null; emailConfirmedAt: string | null } = {
+  role: null,
+  email: null,
+  emailConfirmedAt: '2026-09-22T06:31:22.000Z',
+};
 
 vi.mock('@/lib/auth/guards', () => ({
   requireRole: vi.fn(async (allowed: string | string[]) => {
@@ -26,7 +30,7 @@ vi.mock('@/lib/auth/guards', () => ({
     const roles = Array.isArray(allowed) ? allowed : [allowed];
     if (!roles.includes(identity.role)) throw new AuthError('FORBIDDEN', 'Sin permiso.');
     return {
-      authUser: { id: 'uid', email: identity.email },
+      authUser: { id: 'uid', email: identity.email, email_confirmed_at: identity.emailConfirmedAt },
       profile: { id: 'cku0000000000000000000001', role: identity.role },
     };
   }),

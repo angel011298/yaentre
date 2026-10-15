@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import { signOutAction } from '@/app/actions/auth';
+import { SignOutButton } from '@/components/auth/SignOutButton';
 import { startDiagnosticAction } from '@/app/actions/onboarding';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -176,14 +176,7 @@ export default async function DashboardPage() {
         >
           📄 Examen muestra oficial
         </Link>
-        <form action={signOutAction}>
-          <button
-            type="submit"
-            className="inline-flex min-h-touch items-center text-sm font-semibold text-brand-soft hover:underline"
-          >
-            Cerrar sesión
-          </button>
-        </form>
+        <SignOutButton className="inline-flex min-h-touch items-center text-sm font-semibold text-brand-soft hover:underline" />
       </div>
     </div>
   );

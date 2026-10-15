@@ -109,3 +109,21 @@ export function requireMasterAdmin(email: string | null | undefined): MasterAdmi
 
   return verdict;
 }
+
+/**
+ * G100 — el correo con el que se evalúa la compuerta, SOLO si está verificado.
+ *
+ * La lista de maestros identifica por correo, y el registro de YaEntre abre
+ * sesión ANTES de verificarlo (estado REGISTERED_UNVERIFIED). Si algún día la
+ * lista nombrara un correo que todavía no tiene cuenta, cualquiera podría
+ * registrarlo y la compuerta no distinguiría al dueño de quien lo tecleó
+ * primero. Hoy lo frena además el rol ADMIN (que solo se da por
+ * `admin:promote`), pero una compuerta de privilegio máximo no debe depender
+ * de que otra capa no falle. Pura: recibe el usuario ya resuelto.
+ */
+export function masterCandidateEmail(
+  user: { email?: string | null; email_confirmed_at?: string | null } | null | undefined
+): string | null {
+  if (!user?.email || !user.email_confirmed_at) return null;
+  return user.email;
+}

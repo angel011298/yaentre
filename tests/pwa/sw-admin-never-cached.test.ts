@@ -36,7 +36,7 @@ function runFetch(url: string, mode: 'navigate' | 'no-cors'): FetchOutcome {
   let fetchHandler: ((e: unknown) => void) | null = null;
 
   const self = {
-    location: { origin: 'https://yaentre.com' },
+    location: { origin: 'https://yaentre.com', href: 'https://yaentre.com/sw.js' },
     skipWaiting: () => {},
     clients: { claim: () => {} },
     addEventListener: (type: string, handler: (e: unknown) => void) => {
@@ -98,7 +98,7 @@ describe('el service worker NUNCA intercepta /admin ni /api/admin', () => {
  * que ser interceptada (G71 §6 D6).
  */
 describe('control positivo: una ruta normal SÍ se intercepta', () => {
-  it('/app es network-first con respaldo en caché', () => {
+  it('/app es network-first (con aviso sin conexión)', () => {
     expect(runFetch('https://yaentre.com/app', 'navigate').respondWithCalled).toBe(true);
   });
 

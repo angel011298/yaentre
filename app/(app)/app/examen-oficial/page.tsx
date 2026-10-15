@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
+import { requireOnboarding } from '@/lib/auth/guards';
 import { listOfficialSampleSources } from '@/lib/db/content-sources';
 
 /**
@@ -11,6 +12,10 @@ import { listOfficialSampleSources } from '@/lib/db/content-sources';
 export const metadata = { title: 'Exámenes muestra oficiales' };
 
 export default async function OfficialSampleIndexPage() {
+  // G100: guard propio y primero — el del layout no impide que esta página
+  // consulte la base y viaje en el cuerpo de la redirección (ver
+  // `tests/admin/pages-guard.test.ts`).
+  await requireOnboarding();
   const sources = await listOfficialSampleSources();
 
   return (

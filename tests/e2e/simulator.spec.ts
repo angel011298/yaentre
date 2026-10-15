@@ -155,6 +155,16 @@ test.describe('Simulador', () => {
     // paywall con el disparador correcto, sin abrir una segunda sesión.
     await page.waitForURL(/\/paywall/, { timeout: 30_000 });
     expect(page.url()).toContain('trigger=FULL_SIMULATION_LIMIT');
-    await expect(page.getByRole('button', { name: /elegir|desbloquear|ver planes/i }).first()).toBeVisible();
+    // G100: el paywall tiene DOS estados válidos desde G98 — con la venta
+    // abierta ofrece comprar; con la venta cerrada (el default del
+    // interruptor) dice que la preventa abre pronto. Esta aserción solo
+    // aceptaba el primero y se quedó roja en cuanto el interruptor existió.
+    // Se exige uno de los dos, por su TEXTO (nunca `[role="alert"]`, G73b).
+    await expect(
+      page
+        .getByRole('button', { name: /elegir|desbloquear|ver planes/i })
+        .or(page.getByText(/la preventa abre pronto/i))
+        .first()
+    ).toBeVisible();
   });
 });

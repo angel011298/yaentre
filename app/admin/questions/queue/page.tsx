@@ -5,6 +5,7 @@ import { Pagination } from '@/components/admin/Pagination';
 import { QueueFilterBar } from '@/components/admin/QueueFilterBar';
 import { ReviewTabs } from '@/components/admin/ReviewTabs';
 import { Card } from '@/components/ui/Card';
+import { getAdminContext } from '@/lib/admin/context';
 import { loadFilterTaxonomy } from '@/lib/db/admin-questions';
 import { listReviewQueue } from '@/lib/db/review-queue';
 import { REVIEW_QUEUE_LABELS, REVIEW_QUEUE_ORDER, type ReviewQueueKind } from '@/lib/admin/verification';
@@ -40,6 +41,11 @@ export default async function QueuePage({
 }: {
   searchParams: Promise<RawSearchParams>;
 }) {
+  // G100 🔴 — el guard va AQUÍ, antes de leer un solo dato. El layout no basta:
+  // Next renderiza layout y página EN PARALELO, y el 307 a /app que manda el
+  // layout llevaba en el CUERPO la página ya renderizada (medido: correos de
+  // cuentas reales en la respuesta a un alumno). Ver `getAdminContext`.
+  await getAdminContext();
   const sp = await searchParams;
   const kind = parseKind(sp.kind);
   const page = sp.page ? Math.max(1, parseInt(sp.page, 10) || 1) : 1;

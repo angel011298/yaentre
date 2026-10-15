@@ -154,6 +154,17 @@ export async function dismissResumeOverlay(page: Page) {
 export async function ensureNoActiveSimulation(page: Page) {
   await page.goto('/simulador');
   const timer = page.getByLabel('Tiempo restante');
+  // G100: `isVisible()` NO espera — responde por el instante exacto en que se
+  // pregunta. Justo después del `goto` el simulador todavía no pinta, así que
+  // un simulacro colgado se daba por «limpio» y la prueba siguiente topaba
+  // con «Retomando tu simulacro» en vez del pre-flight. Se espera a que
+  // aparezca UNO de los dos estados posibles antes de decidir.
+  const start = page.getByRole('button', { name: /iniciar examen/i });
+  await timer
+    .or(start)
+    .first()
+    .waitFor({ state: 'visible', timeout: 20_000 })
+    .catch(() => {});
   if (!(await timer.isVisible().catch(() => false))) return; // ya está limpio
 
   await dismissResumeOverlay(page);

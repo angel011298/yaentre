@@ -1701,3 +1701,27 @@ dentro de la misma comprobación.
   proveedor; nuestro limitador es la mitigación, y ahora está verificado vivo.
 - El **muro suave de cuentas múltiples** (G67 §17.4) sigue con su riesgo
   residual: un atacante con muchas IPs distintas.
+
+## 19. Fuga de /admin por páginas sin guard, Next con RCE y sesión sin rastro (G100 — 2026-10-15)
+
+Detalle completo y evidencia en `docs/ESTADO.md` §G100. Aquí, lo que cambia en el modelo de amenazas.
+
+### 19.1 🔴 Las páginas de `/admin` entregaban sus datos a cualquier sesión (en producción)
+- **Qué:** `usuarios`, `bitacora`, `questions/queue`, `reports`, `coverage` y `questions/[id]` no tenían guard propio. El de `app/admin/layout.tsx` no protege los datos de la página: Next renderiza ambos en paralelo, y el 307 a `/app` llevaba la página renderizada en el cuerpo. En navegación RSC parcial el layout ni se ejecuta y la respuesta es un 200.
+- **Quién podía explotarlo:** cualquiera con una cuenta — el registro es libre y abre sesión antes de verificar el correo.
+- **Qué se exponía:** correos de todas las cuentas (menores incluidos, en cuanto haya usuarios reales), la bitácora de administración, el banco de reactivos SIN publicar (incluida la clave, contra G67) y los reportes.
+- **Medido en producción el 2026-10-15** con una cuenta fixture de alumno: 6 correos ajenos en `/admin/usuarios` (2 fuera del dominio de prueba, uno el del dueño). Mientras no se despliegue G100, sigue abierto.
+- **Corrección:** guard en la primera línea de cada página; prueba estática (`tests/admin/pages-guard.test.ts`) para TODAS las zonas privadas y prueba por efecto (`pnpm verify:routes`), ambas con rojo comprobado por mutación.
+- **Lección para el modelo:** G99 ya había escrito que «un layout NO protege una Server Action ni un Route Handler»; faltaba la mitad: **tampoco protege los datos de la propia página**.
+
+### 19.2 🔴 Next 16.2.12: tres RCE críticas y una SSRF
+`next` y `eslint-config-next` a 16.3.8. Overrides nuevos con techo de mayor. `pnpm audit`: de 42 avisos (3 críticas, 15 altas) a 7 (0 críticas, 1 alta: `braces`, sin versión parcheada publicada y solo en ESLint).
+
+### 19.3 🟠 Sesión: persistencia, cierre global y refresco perdido
+- La cookie de sesión vivía 400 días aunque el código creyera controlarla (`@supabase/ssr` fuerza el `maxAge`). Ahora muere con el navegador y el servidor cierra la sesión a las 12 h de la autenticación en ese dispositivo (claim `amr`).
+- `signOut()` era global; ahora el cierre es local (`/auth/salir`), con `Clear-Site-Data` y protección CSRF propia (un Route Handler no trae la de las Server Actions).
+- El middleware devolvía una respuesta obsoleta y el token refrescado nunca llegaba al navegador.
+- El service worker y PostHog dejaban rastro en el disco del navegador; ya no en modo efímero.
+
+### 19.4 🟡 Compuerta de maestro con correo sin verificar
+Solo cuenta un correo con `email_confirmed_at`. Antes la frenaba el rol ADMIN; ahora no depende de esa otra capa.

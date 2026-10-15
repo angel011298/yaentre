@@ -110,15 +110,30 @@ export async function requirePaidPlan(): Promise<
  * comprobación, un tutor que abre /simulador queda atrapado en el asistente
  * de alumno (G10). Todos los llamadores de este guard son rutas de alumno.
  */
-export async function requireOnboarding(): Promise<RequireUserResult> {
-  const result = await requireUser();
+export async function requireOnboarding(loginNext = '/app'): Promise<RequireUserResult> {
+  let result: RequireUserResult;
+  try {
+    result = await requireUser();
+  } catch (err) {
+    // G100: sin sesión se REDIRIGE en vez de lanzar. Todos los llamadores son
+    // páginas, y un `AuthError` sin capturar en una página llega a Sentry por
+    // `onRequestError` aunque el layout ya haya redirigido: cada visitante sin
+    // sesión en /practicar o /paywall era un "error" que tapaba los reales
+    // (G71 D3). Con sesiones efímeras (G100) esas visitas son más frecuentes.
+    if (err instanceof AuthError) {
+      redirect(`/login?next=${encodeURIComponent(loginNext)}`);
+    }
+    throw err;
+  }
 
   if (result.profile.role === 'PARENT') {
     redirect('/tutor');
   }
 
   if (!isOnboardingComplete(result.profile.onboardingStep)) {
-    redirect('/onboarding');
+    // G100: mismo criterio que `(app)/layout.tsx` — un ADMIN sin onboarding de
+    // alumno vuelve a su panel, no al asistente de aspirante.
+    redirect(result.profile.role === 'ADMIN' ? '/admin' : '/onboarding');
   }
 
   return result;

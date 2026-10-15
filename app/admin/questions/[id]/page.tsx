@@ -8,6 +8,7 @@ import { OptionCard } from '@/components/admin/OptionCard';
 import { PassageBlock } from '@/components/admin/PassageBlock';
 import { ReviewDecisionPanel } from '@/components/admin/ReviewDecisionPanel';
 import { Card } from '@/components/ui/Card';
+import { getAdminContext } from '@/lib/admin/context';
 import { AdminError } from '@/lib/admin/errors';
 import { parseAdminOptions, parseVerificationRecord } from '@/lib/admin/verification';
 import { getQuestionDetail } from '@/lib/db/admin-questions';
@@ -19,6 +20,11 @@ export default async function QuestionDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  // G100 🔴 — el guard va AQUÍ, antes de leer un solo dato. El layout no basta:
+  // Next renderiza layout y página EN PARALELO, y el 307 a /app que manda el
+  // layout llevaba en el CUERPO la página ya renderizada (medido: correos de
+  // cuentas reales en la respuesta a un alumno). Ver `getAdminContext`.
+  await getAdminContext();
   const { id } = await params;
 
   let question;

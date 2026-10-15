@@ -4,6 +4,7 @@ import {
   VERIFIED_EMAIL_REQUIRED_PREFIXES,
   hasSupabaseAuthCookie,
   isRouterPrefetch,
+  isSupabaseAuthCookieName,
   matchesPrefix,
   shouldResolveUser,
 } from '@/lib/auth/middleware-policy';
@@ -123,5 +124,30 @@ describe('matchesPrefix', () => {
     const pathname = '/app/progreso';
     expect(resolve(pathname, false)).toBe(false);
     expect(matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES)).toBe(true);
+  });
+});
+
+/**
+ * G100 — `/auth/salir` borra las cookies de sesión en su respuesta; si el
+ * middleware validara al usuario ahí y refrescara el token, su `Set-Cookie`
+ * con la sesión nueva competiría con el borrado.
+ */
+describe('G100: el cierre de sesión no pasa por la validación del middleware', () => {
+  it('/auth/salir con cookie de sesión NO resuelve usuario', () => {
+    expect(
+      shouldResolveUser({ pathname: '/auth/salir', hasSessionCookie: true, isPrefetch: false })
+    ).toBe(false);
+  });
+
+  it('control: /auth/confirm (mismo prefijo /auth) sí se resuelve', () => {
+    expect(
+      shouldResolveUser({ pathname: '/auth/confirm', hasSessionCookie: true, isPrefetch: false })
+    ).toBe(true);
+  });
+
+  it('isSupabaseAuthCookieName reconoce los trozos de la cookie', () => {
+    expect(isSupabaseAuthCookieName('sb-abc-auth-token')).toBe(true);
+    expect(isSupabaseAuthCookieName('sb-abc-auth-token.0')).toBe(true);
+    expect(isSupabaseAuthCookieName('yaentre_attribution')).toBe(false);
   });
 });

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { Card } from '@/components/ui/Card';
 import { getVaultFile } from '@/lib/db/admin-vault';
 import { formatBytes, parseCsv, previewKindFor, VAULT_BUCKET } from '@/lib/admin/vault';
-import { requireRole } from '@/lib/auth/guards';
+import { getAdminContext } from '@/lib/admin/context';
 
 export const metadata = { title: 'Ver archivo' };
 export const dynamic = 'force-dynamic';
@@ -25,8 +25,10 @@ export default async function VaultViewerPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  // G100: guard propio y primero (ver `getAdminContext`); redirige en vez de
+  // lanzar, así un alumno que abre la URL no deja un error en Sentry.
+  await getAdminContext();
   const { id } = await params;
-  await requireRole('ADMIN');
 
   const file = await getVaultFile(id);
   if (!file) notFound();
