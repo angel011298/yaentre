@@ -1,9 +1,20 @@
+import Link from 'next/link';
 import type { Area, Career } from '@prisma/client';
 import { selectCareerAction } from '@/app/actions/onboarding';
-import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
+import { CareerPicker } from '@/components/onboarding/CareerPicker';
+import { Icon } from '@/components/ui/Icon';
 import type { AreaCoverage } from '@/lib/content/coverage';
+import { toCareerPickerItems } from '@/lib/content/career-picker';
 import { areaPartialCoverage } from '@/lib/tino/copy';
 
+/**
+ * Paso 3: carrera meta.
+ *
+ * G101: el área trae ahora TODAS las carreras de la oferta oficial (hasta 46
+ * en IPN Físico-Matemáticas), así que la lista de botones de antes se volvió
+ * un selector con búsqueda (`CareerPicker`). Cada carrera dice dónde se
+ * imparte; la meta de aciertos aparece solo donde hay dato documentado.
+ */
 export function CareerStep({
   area,
   careers,
@@ -14,13 +25,23 @@ export function CareerStep({
   /** G74 — cobertura del área ya elegida; sólo se muestra si es PARTIAL. */
   coverage?: AreaCoverage;
 }) {
+  const items = toCareerPickerItems(area.code, careers);
+
   return (
     <div className="space-y-5">
-      <header className="space-y-1">
-        <p className="text-sm font-medium text-brand-soft">{area.name}</p>
-        <h1 className="font-display text-2xl font-bold">¿Cuál es tu carrera meta?</h1>
+      <header className="space-y-2">
+        <Link
+          href="/onboarding"
+          className="inline-flex min-h-touch items-center gap-1 text-sm font-medium text-brand-soft hover:underline"
+        >
+          <Icon name="chevronRight" className="h-4 w-4 rotate-180" />
+          {area.name}
+          <span className="sr-only">(cambiar de área)</span>
+        </Link>
+        <h1 className="font-display text-2xl font-bold">¿A qué carrera quieres entrar?</h1>
         <p className="text-sm text-text-secondary">
-          Usamos esto para calcular tu Entrómetro contra una meta de referencia.
+          Con su puntaje de referencia calculamos tu Entrómetro. Si todavía no tenemos el dato, tu
+          avance se mide igual. Puedes cambiarla después desde tu perfil.
         </p>
       </header>
 
@@ -33,42 +54,12 @@ export function CareerStep({
         </p>
       )}
 
-      {careers.length === 0 ? (
+      {items.length === 0 ? (
         <p className="rounded-lg border border-border-subtle bg-surface p-4 text-sm text-text-secondary">
           Esta área todavía no tiene carreras cargadas. Elige otra área para continuar.
         </p>
       ) : (
-        <div className="space-y-3">
-          {careers.map((career) => {
-            const target = formatEntrometroTarget({
-              minAciertos: career.minAciertos,
-              minAciertosYear: career.minAciertosYear,
-              minAciertosConfidence: career.minAciertosConfidence,
-            });
-
-            return (
-              <form key={career.id} action={selectCareerAction}>
-                <input type="hidden" name="careerId" value={career.id} />
-                <button
-                  type="submit"
-                  className="min-h-touch w-full rounded-lg border border-border-subtle bg-surface p-4 text-left transition-all hover:border-brand-soft hover:bg-elevated active:scale-[0.98]"
-                >
-                  <p className="font-display text-base font-semibold text-text-primary">
-                    {career.name}
-                  </p>
-                  {target.hasTarget ? (
-                    <p className="mt-1 text-sm text-text-secondary">
-                      <span className="font-semibold text-brand-soft">{target.qualifier}</span>{' '}
-                      {target.label}
-                    </p>
-                  ) : (
-                    <p className="mt-1 text-sm text-text-muted">{target.disclaimer}</p>
-                  )}
-                </button>
-              </form>
-            );
-          })}
-        </div>
+        <CareerPicker mode="submit" items={items} action={selectCareerAction} />
       )}
     </div>
   );

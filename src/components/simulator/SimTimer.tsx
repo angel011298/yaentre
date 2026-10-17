@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { formatClock, timerTone } from '@/lib/simulator/time';
+import { Icon } from '@/components/ui/Icon';
 
 const TONE_CLASS = {
   normal: 'text-text-secondary',
@@ -11,7 +12,7 @@ const TONE_CLASS = {
 
 // G63: el tono también se comunica con un ícono (no solo color), y se anuncia
 // una vez al cruzar cada umbral (30 / 15 min) — antes solo cambiaba el color.
-const TONE_ICON = { normal: '', warning: '⏳', urgent: '⏰' } as const;
+const TONE_ICON = { normal: false, warning: true, urgent: true } as const;
 const TONE_ANNOUNCE = {
   normal: '',
   warning: 'Quedan menos de 30 minutos.',
@@ -59,11 +60,7 @@ export function SimTimer({
 
   return (
     <span className="flex items-center gap-1.5">
-      {TONE_ICON[tone] && (
-        <span aria-hidden className="text-base">
-          {TONE_ICON[tone]}
-        </span>
-      )}
+      {TONE_ICON[tone] && <Icon name="clock" className={`h-5 w-5 ${TONE_CLASS[tone]}`} />}
       <span
         className={`font-mono text-xl font-semibold tabular-nums sm:text-2xl ${TONE_CLASS[tone]}`}
         role="timer"

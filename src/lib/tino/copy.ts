@@ -23,7 +23,7 @@ export interface TinoLine {
 // ─────────────────────────────── Estados vacíos ───────────────────────────────
 
 export function emptySimulations(): TinoLine {
-  return { state: 'encouraging', message: '¡El primero es el más importante! 🦉' };
+  return { state: 'encouraging', message: '¡El primero es el más importante!' };
 }
 
 export function noWeakTopicsYet(): TinoLine {
@@ -64,14 +64,14 @@ export function diagnosticNotReady(code: 'NO_TARGET' | 'NO_CONTENT' | 'RATE_LIMI
 export function streakAtRisk(days: number): TinoLine {
   return {
     state: 'sleepy',
-    message: `Tu racha de ${days} ${days === 1 ? 'día' : 'días'} está en riesgo. ¿Unos minutos hoy? 🔥`,
+    message: `Tu racha de ${days} ${days === 1 ? 'día' : 'días'} está en riesgo. ¿Unos minutos hoy?`,
   };
 }
 
 const STREAK_MILESTONE_MESSAGE: Record<7 | 14 | 30, string> = {
-  7: '¡Una semana completa! 7 días seguidos, no pares. 🔥',
-  14: '¡14 días seguidos! Ya es un hábito de verdad. 🔥',
-  30: '¡30 días! Un mes entero de racha — vas increíble. 🔥',
+  7: '¡Una semana completa! 7 días seguidos, no pares.',
+  14: '¡14 días seguidos! Ya es un hábito de verdad.',
+  30: '¡30 días! Un mes entero de racha — vas increíble.',
 };
 
 export function streakMilestone(days: 7 | 14 | 30): TinoLine {
@@ -81,19 +81,19 @@ export function streakMilestone(days: 7 | 14 | 30): TinoLine {
 // ─────────────────────────────── Después de responder ───────────────────────────────
 
 export function afterMistake(): TinoLine {
-  return { state: 'encouraging', message: 'Uy, esa estuvo difícil. La volvemos a ver más adelante. 💪' };
+  return { state: 'encouraging', message: 'Uy, esa estuvo difícil. La volvemos a ver más adelante.' };
 }
 
 // ─────────────────────────────── Celebraciones ───────────────────────────────
 
 export function perfectRound(): TinoLine {
-  return { state: 'celebrating', message: '¡Ronda perfecta! Vas imparable. 🎉' };
+  return { state: 'celebrating', message: '¡Ronda perfecta! Vas imparable.' };
 }
 
 export function materiaDominada(subjectName: string): TinoLine {
   return {
     state: 'celebrating',
-    message: `¡Dominaste ${subjectName}! Una menos, vamos por la siguiente. 🎓`,
+    message: `¡Dominaste ${subjectName}! Una menos, vamos por la siguiente.`,
   };
 }
 
@@ -102,7 +102,7 @@ export function materiaDominada(subjectName: string): TinoLine {
 export function paywallInvite(): TinoLine {
   return {
     state: 'encouraging',
-    message: 'Desbloquea simulacros ilimitados y el examen completo. Tino te acompaña. 🦉',
+    message: 'Desbloquea simulacros ilimitados y el examen completo. Tino te acompaña.',
   };
 }
 
@@ -146,7 +146,7 @@ export function paywallTriggerCopy(trigger: PaywallTrigger | null): PaywallCopy 
 export function predictionUp(delta: number): TinoLine {
   return {
     state: 'celebrating',
-    message: `Tu predicción subió ${delta} ${delta === 1 ? 'acierto' : 'aciertos'} esta semana 🚀`,
+    message: `Tu predicción subió ${delta} ${delta === 1 ? 'acierto' : 'aciertos'} esta semana`,
   };
 }
 
@@ -177,7 +177,7 @@ export function simulatorFreeWelcome(): TinoLine {
   return {
     state: 'encouraging',
     message:
-      'Este primer simulacro va por mi cuenta. Vívelo como el examen real: sin pausas, sin regresar. Así llegas sin sorpresas el día que cuenta. 🦉',
+      'Este primer simulacro va por mi cuenta. Vívelo como el examen real: sin pausas, sin regresar. Así llegas sin sorpresas el día que cuenta.',
   };
 }
 
@@ -210,8 +210,8 @@ export function drillLimitReached(): TinoLine {
 
 export function drillSummary(fraction: number): TinoLine {
   return fraction >= 0.7
-    ? { state: 'celebrating', message: '¡Buena práctica! Se nota que le sigues entendiendo. 🎉' }
-    : { state: 'encouraging', message: 'Ya actualizamos tus temas débiles y tu racha del día. 🔥' };
+    ? { state: 'celebrating', message: '¡Buena práctica! Se nota que le sigues entendiendo.' }
+    : { state: 'encouraging', message: 'Ya actualizamos tus temas débiles y tu racha del día.' };
 }
 
 // ──────────────────── Cobertura de contenido (G74) ────────────────────
@@ -254,7 +254,7 @@ export function areaPartialCoverage(pendingSubjectNames: readonly string[]): str
 export function areaWaitlistJoined(areaName: string): TinoLine {
   return {
     state: 'celebrating',
-    message: `¡Listo! Te escribimos a tu correo en cuanto ${areaName} esté completa. 🦉`,
+    message: `¡Listo! Te escribimos a tu correo en cuanto ${areaName} esté completa.`,
   };
 }
 

@@ -4,6 +4,7 @@ import type { ParentDashboardData } from '@/lib/db/parent';
 import { WeekActivityStrip } from './WeekActivityStrip';
 import { WeeklyEmailToggle } from './WeeklyEmailToggle';
 import { MEXICO_TIME_ZONE } from '@/lib/paywall/mexico-time';
+import { Icon } from '@/components/ui/Icon';
 
 function countdownCopy(daysRemaining: number): string {
   if (daysRemaining > 1) return `Faltan ${daysRemaining} días para su examen`;
@@ -39,8 +40,11 @@ export function ParentDashboard({
 
       {data.isInactive && (
         <Card className="border-danger/40 bg-danger/10 p-4">
-          <p className="text-sm font-semibold text-danger">
-            ⚠️ Sin actividad en 3 días o más — {data.studentName} no ha estudiado recientemente.
+          <p className="flex items-start gap-2 text-sm font-semibold text-danger">
+            <Icon name="alert" className="mt-0.5 h-4 w-4" />
+            <span>
+              Sin actividad en 3 días o más — {data.studentName} no ha estudiado recientemente.
+            </span>
           </p>
         </Card>
       )}
@@ -50,8 +54,9 @@ export function ParentDashboard({
           <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
             Racha actual
           </p>
-          <p className="mt-1 font-display text-3xl font-bold text-streak">
-            🔥 {data.currentStreak} {data.currentStreak === 1 ? 'día' : 'días'}
+          <p className="mt-1 flex items-center gap-2 font-display text-3xl font-bold text-streak">
+            <Icon name="flame" className="h-7 w-7" />
+            {data.currentStreak} {data.currentStreak === 1 ? 'día' : 'días'}
           </p>
         </Card>
 

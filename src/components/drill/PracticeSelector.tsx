@@ -7,6 +7,7 @@ import { Tino } from '@/components/mascot/Tino';
 import type { PracticeOptions, PracticeScope } from '@/lib/db/drill';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
 import { drillLimitReached, subjectNotReady } from '@/lib/tino/copy';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Selector de práctica (F14 tarea 1): reforzar temas débiles (default, usa el
@@ -76,8 +77,9 @@ export function PracticeSelector({
         onClick={() => onStart({ kind: 'area' })}
         className="w-full rounded-lg border border-brand bg-brand/10 p-4 text-left transition-all hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
       >
-        <p className="font-display font-semibold text-text-primary">
-          🎯 Reforzar mis temas débiles
+        <p className="flex items-center gap-2 font-display font-semibold text-text-primary">
+          <Icon name="target" className="h-5 w-5 text-brand-soft" />
+          Reforzar mis temas débiles
         </p>
         <p className="mt-1 text-sm text-text-secondary">
           {options.weakTopics.length > 0

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Icon } from '@/components/ui/Icon';
 
 const WARNING_THRESHOLD_SECS = 5 * 60;
 const DANGER_THRESHOLD_SECS = 60;
@@ -49,9 +50,7 @@ export function Timer({ deadline, onExpire }: { deadline: Date; onExpire: () => 
     <span className="flex items-center gap-1.5">
       {/* G63: ícono además del color, y aviso puntual al cruzar cada umbral. */}
       {level !== 'normal' && (
-        <span aria-hidden className="text-sm">
-          {level === 'danger' ? '⏰' : '⏳'}
-        </span>
+        <Icon name="clock" className={`h-4 w-4 ${colorClass}`} />
       )}
       <span
         className={`font-mono text-lg font-semibold tabular-nums ${colorClass}`}

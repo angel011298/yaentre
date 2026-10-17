@@ -3,7 +3,9 @@
 import { useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { updateTargetCareerAction } from '@/app/actions/profile';
+import { CareerPicker } from '@/components/onboarding/CareerPicker';
 import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
 import type { CareerOption } from '@/lib/db/profile';
 
 /**
@@ -11,6 +13,10 @@ import type { CareerOption } from '@/lib/db/profile';
  * vuelve a pedir el dashboard/Entrómetro al servidor — que ya lee
  * `targetCareerId` fresco (`computeCareerStrategy`, F6), así el hueco contra
  * la nueva meta aparece recalculado sin lógica adicional aquí.
+ *
+ * G101: era un `<select>` con el nombre y «(~N aciertos)». Con la oferta
+ * oficial completa (hasta 46 carreras por área) se usa el mismo selector con
+ * búsqueda del onboarding, que además dice dónde se imparte cada carrera.
  */
 export function TargetCareerForm({
   options,
@@ -27,9 +33,12 @@ export function TargetCareerForm({
 
   if (options.length === 0) return null;
 
+  const current = options.find((o) => o.id === currentCareerId);
+  const changed = Boolean(careerId) && careerId !== currentCareerId;
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!careerId || careerId === currentCareerId) return;
+    if (!changed) return;
     setPending(true);
     setError(null);
     setSaved(false);
@@ -45,29 +54,31 @@ export function TargetCareerForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
-      <label htmlFor="careerId" className="block text-sm font-semibold text-text-primary">
-        Carrera meta
-      </label>
-      <select
-        id="careerId"
-        value={careerId}
-        onChange={(e) => {
-          setCareerId(e.target.value);
-          setSaved(false);
-        }}
-        className="min-h-touch w-full rounded-md border border-border-subtle bg-input px-3 text-text-primary outline-none focus:border-transparent focus:ring-2 focus:ring-brand"
-      >
-        {options.map((c) => (
-          <option key={c.id} value={c.id}>
-            {c.name}
-            {c.minAciertos != null ? ` (~${c.minAciertos} aciertos)` : ''}
-          </option>
-        ))}
-      </select>
-      <Button type="submit" variant="secondary" disabled={pending || careerId === currentCareerId}>
+      <div>
+        <p className="text-sm font-semibold text-text-primary">Carrera meta</p>
+        {current && <p className="text-sm text-text-secondary">Actual: {current.name}</p>}
+      </div>
+      <div className="max-h-[28rem] overflow-y-auto rounded-lg">
+        <CareerPicker
+          mode="select"
+          surface="surface"
+          items={options}
+          selectedId={careerId || null}
+          onSelect={(id) => {
+            setCareerId(id);
+            setSaved(false);
+          }}
+        />
+      </div>
+      <Button type="submit" variant="secondary" disabled={pending || !changed}>
         {pending ? 'Guardando…' : 'Actualizar meta'}
       </Button>
-      {saved && <p className="text-sm text-success">Meta actualizada — tu Entrómetro ya refleja el nuevo hueco.</p>}
+      {saved && (
+        <p role="status" className="inline-flex items-center gap-1.5 text-sm text-success">
+          <Icon name="check" className="h-4 w-4" />
+          Meta actualizada — tu Entrómetro ya refleja el nuevo hueco.
+        </p>
+      )}
       {error && <p role="alert" className="text-sm text-danger">{error}</p>}
     </form>
   );

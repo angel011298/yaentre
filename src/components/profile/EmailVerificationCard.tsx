@@ -4,6 +4,7 @@ import { useActionState } from 'react';
 import { resendVerificationAction } from '@/app/actions/auth';
 import { Card } from '@/components/ui/Card';
 import { initialActionState } from '@/lib/auth/types';
+import { Icon } from '@/components/ui/Icon';
 
 /** Estado de verificación del correo + reenviar (F17 tarea 2). Reusa
  *  `resendVerificationAction` de F5 sin cambios — mismo botón que ya
@@ -15,7 +16,10 @@ export function EmailVerificationCard({ verified }: { verified: boolean }) {
     <Card className="p-5">
       <p className="text-sm font-semibold text-text-primary">Correo electrónico</p>
       {verified ? (
-        <p className="mt-1 text-sm text-success">✓ Verificado</p>
+        <p className="mt-1 inline-flex items-center gap-1.5 text-sm text-success">
+          <Icon name="checkCircle" className="h-4 w-4" />
+          Verificado
+        </p>
       ) : (
         <div className="mt-1 space-y-2">
           <p className="text-sm text-warning">Sin verificar — necesitas verificarlo antes de comprar un plan.</p>

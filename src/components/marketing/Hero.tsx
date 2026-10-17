@@ -1,5 +1,6 @@
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Tino } from '@/components/mascot/Tino';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Mensaje de posicionamiento (F10 Task 1): YaEntre no es un curso de videos —
@@ -12,7 +13,8 @@ export function Hero() {
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6 text-center lg:text-left">
           <span className="inline-flex items-center gap-1 rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand">
-            🦉 Tu entrenador de admisión con IA
+            <Icon name="sparkles" className="h-3.5 w-3.5" />
+            Tu entrenador de admisión con IA
           </span>
           <h1 className="font-display text-4xl font-extrabold leading-[1.1] text-text-primary sm:text-5xl">
             No es otro curso con videos.
@@ -25,10 +27,10 @@ export function Hero() {
             vez que lo vives.
           </p>
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
-            <LinkButton href="/registro" variant="primary" className="px-8 py-3 text-base">
+            <LinkButton href="/registro" variant="primary" className="px-8 py-3 text-[1rem]">
               Empieza gratis
             </LinkButton>
-            <LinkButton href="/precios" variant="secondary" className="px-8 py-3 text-base">
+            <LinkButton href="/precios" variant="secondary" className="px-8 py-3 text-[1rem]">
               Ver planes y precios
             </LinkButton>
           </div>

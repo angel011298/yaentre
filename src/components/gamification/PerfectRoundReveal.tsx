@@ -2,6 +2,7 @@
 
 import { motion, MotionConfig } from 'framer-motion';
 import { useMemo } from 'react';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Celebración de partículas reusable (F13 tarea 2; UIUX §9 catálogo: "Perfect
@@ -31,7 +32,9 @@ export function PerfectRoundReveal() {
           id: i,
           x: Math.cos(angle) * distance,
           y: Math.sin(angle) * distance,
-          emoji: ['🎉', '✨', '⭐'][i % 3],
+          // G101: sin emojis — partículas de la paleta de gamificación.
+          tone: ['text-brand-soft', 'text-success', 'text-streak'][i % 3],
+          icon: i % 2 === 0 ? ('star' as const) : ('sparkles' as const),
         };
       }),
     []
@@ -49,12 +52,12 @@ export function PerfectRoundReveal() {
         {particles.map((p) => (
           <motion.span
             key={p.id}
-            className="absolute text-2xl"
+            className={`absolute ${p.tone}`}
             initial={{ x: 0, y: 0, opacity: 0, scale: 0.4 }}
             animate={{ x: p.x, y: p.y, opacity: [0, 1, 1, 0], scale: 1 }}
             transition={{ duration: 1.2, type: 'spring', bounce: 0.5 }}
           >
-            {p.emoji}
+            <Icon name={p.icon} className="h-5 w-5" />
           </motion.span>
         ))}
       </div>

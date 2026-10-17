@@ -13,6 +13,7 @@ import { AdminError } from '@/lib/admin/errors';
 import { parseAdminOptions, parseVerificationRecord } from '@/lib/admin/verification';
 import { getQuestionDetail } from '@/lib/db/admin-questions';
 import { MEXICO_TIME_ZONE } from '@/lib/paywall/mexico-time';
+import { Icon } from '@/components/ui/Icon';
 
 export const metadata = { title: 'Detalle del reactivo' };
 
@@ -66,7 +67,7 @@ export default async function QuestionDetailPage({
               {question.topic.subject.area.exam.level.institution.name} ·{' '}
               {question.topic.subject.area.name} · {question.topic.subject.name} ·{' '}
               {question.topic.name} · {question.difficulty}
-              {question.isVerified && ' · ✅ Verificado'}
+              {question.isVerified && ' · Verificado'}
             </span>
             <GroundingBadge status={question.groundingStatus} />
           </p>
@@ -193,9 +194,16 @@ export default async function QuestionDetailPage({
           </p>
           <ul className="space-y-1 text-sm text-text-secondary">
             {question.reports.map((r) => (
-              <li key={r.id}>
-                {r.resolved ? '✅' : '⚠️'} {r.reason ?? 'Sin razón especificada'} —{' '}
-                {r.createdAt.toLocaleDateString('es-MX')}
+              <li key={r.id} className="flex items-start gap-2">
+                <Icon
+                  name={r.resolved ? 'checkCircle' : 'alert'}
+                  className={`mt-0.5 h-4 w-4 ${r.resolved ? 'text-success' : 'text-warning'}`}
+                />
+                <span>
+                  <span className="sr-only">{r.resolved ? 'Resuelto: ' : 'Pendiente: '}</span>
+                  {r.reason ?? 'Sin razón especificada'} —{' '}
+                  {r.createdAt.toLocaleDateString('es-MX', { timeZone: MEXICO_TIME_ZONE })}
+                </span>
               </li>
             ))}
           </ul>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { requestAreaNotificationAction } from '@/app/actions/onboarding';
 import { Tino } from '@/components/mascot/Tino';
 import { areaComingSoon, areaWaitlistJoined } from '@/lib/tino/copy';
+import { AreaMark } from '@/components/onboarding/AreaMark';
 
 /**
  * G74 — tarjeta de un área que todavía no se puede ofrecer. Deliberadamente NO
@@ -21,15 +22,16 @@ import { areaComingSoon, areaWaitlistJoined } from '@/lib/tino/copy';
 export function AreaComingSoonCard({
   areaId,
   areaName,
+  areaCode,
   colorHex,
-  iconEmoji,
   pendingSubjectNames,
   hasAlternatives,
 }: {
   areaId: string;
   areaName: string;
+  /** `areas.code`, para el distintivo (antes un `iconEmoji`). */
+  areaCode: string;
   colorHex: string;
-  iconEmoji: string | null;
   pendingSubjectNames: string[];
   hasAlternatives: boolean;
 }) {
@@ -53,13 +55,7 @@ export function AreaComingSoonCard({
   return (
     <div className="rounded-lg border border-dashed border-border-subtle bg-surface p-4">
       <div className="flex items-start gap-3">
-        <span
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg opacity-60"
-          style={{ backgroundColor: `${colorHex}26` }}
-          aria-hidden
-        >
-          {iconEmoji ?? '📘'}
-        </span>
+        <AreaMark code={areaCode} name={areaName} colorHex={colorHex} muted />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <p className="font-display text-sm font-semibold text-text-primary">{areaName}</p>

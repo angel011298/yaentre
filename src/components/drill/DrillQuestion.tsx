@@ -52,7 +52,7 @@ export function DrillQuestion({
       )}
 
       <div className="space-y-3 rounded-lg border border-border-subtle bg-surface p-5">
-        <p className="text-base leading-relaxed text-text-primary">
+        <p className="text-[1rem] leading-relaxed text-text-primary">
           <LatexText text={question.stem} />
         </p>
         {question.imageUrl && (

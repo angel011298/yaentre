@@ -1,7 +1,8 @@
 import { Card } from '@/components/ui/Card';
+import { Icon } from '@/components/ui/Icon';
 
 const BADGE_LABELS: Record<string, string> = {
-  EARLY_BIRD: '🏅 Fundador YaEntre',
+  EARLY_BIRD: 'Fundador YaEntre',
 };
 
 /**
@@ -29,17 +30,19 @@ export function ProfileBadges({
           {otherBadges.map((b) => (
             <li
               key={b}
-              className="rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
+              className="inline-flex items-center gap-1.5 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
             >
+              <Icon name="award" className="h-4 w-4" />
               {BADGE_LABELS[b] ?? b}
             </li>
           ))}
           {masteredSubjects.map((s) => (
             <li
               key={s.subjectId}
-              className="rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
+              className="inline-flex items-center gap-1.5 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
             >
-              🎓 {s.subjectName}
+              <Icon name="graduation" className="h-4 w-4" />
+              {s.subjectName}
             </li>
           ))}
         </ul>

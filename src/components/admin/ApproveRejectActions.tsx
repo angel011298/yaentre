@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { approveQuestionAction, rejectQuestionAction } from '@/app/actions/admin-questions';
 import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
 
 interface Props {
   questionId: string;
@@ -63,8 +64,9 @@ export function ApproveRejectActions({ questionId, compact = false, redirectTo }
 
   if (done) {
     return (
-      <span className="text-sm text-text-muted">
-        {done === 'approved' ? '✅ Aprobado' : '🗑️ Rechazado'}
+      <span className="inline-flex items-center gap-1.5 text-sm text-text-muted">
+        <Icon name={done === 'approved' ? 'checkCircle' : 'trash'} className="h-4 w-4" />
+        {done === 'approved' ? 'Aprobado' : 'Rechazado'}
       </span>
     );
   }

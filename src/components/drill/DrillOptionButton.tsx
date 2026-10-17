@@ -1,4 +1,5 @@
 import { LatexText } from '@/components/admin/LatexText';
+import { Icon } from '@/components/ui/Icon';
 
 export type OptionReveal = 'correct' | 'incorrect' | 'neutral' | null;
 
@@ -58,7 +59,13 @@ export function DrillOptionButton({ id, text, selected, reveal, onClick, disable
         className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${badgeClass}`}
         aria-hidden
       >
-        {reveal === 'correct' ? '✓' : reveal === 'incorrect' ? '✗' : id}
+        {reveal === 'correct' ? (
+          <Icon name="check" className="h-3.5 w-3.5" />
+        ) : reveal === 'incorrect' ? (
+          <Icon name="x" className="h-3.5 w-3.5" />
+        ) : (
+          id
+        )}
       </span>
       <span className="pt-0.5">
         {stateWord && <span className="sr-only">{stateWord}</span>}

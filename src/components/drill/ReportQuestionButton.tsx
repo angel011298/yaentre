@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { reportQuestionAction } from '@/app/actions/drill';
+import { Icon } from '@/components/ui/Icon';
 
 /** Botón "reportar error" (F14 tarea 7): registra un `QuestionReport` real —
  *  visible en `/admin/reports` en cuanto un reactivo junta 3 reportes sin
@@ -18,7 +19,7 @@ export function ReportQuestionButton({ questionId }: { questionId: string }) {
   }
 
   if (status === 'sent') {
-    return <p role="status" className="text-xs text-text-muted">Gracias, ya lo reportamos. 🦉</p>;
+    return <p role="status" className="text-xs text-text-muted">Gracias, ya lo reportamos.</p>;
   }
 
   if (!open) {
@@ -26,9 +27,10 @@ export function ReportQuestionButton({ questionId }: { questionId: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex min-h-touch items-center text-xs text-text-muted underline hover:text-text-secondary"
+        className="flex min-h-touch items-center gap-1.5 text-xs text-text-muted underline hover:text-text-secondary"
       >
-        ⚠️ Reportar error en este reactivo
+        <Icon name="alert" className="h-3.5 w-3.5" />
+        Reportar error en este reactivo
       </button>
     );
   }

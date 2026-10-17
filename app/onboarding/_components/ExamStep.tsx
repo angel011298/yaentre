@@ -42,7 +42,7 @@ export function ExamStep({
                 type="submit"
                 className="min-h-touch w-full rounded-lg border border-border-subtle bg-surface p-4 text-left transition-all hover:border-brand-soft hover:bg-elevated active:scale-[0.98]"
               >
-                <p className="font-display text-base font-semibold text-text-primary">
+                <p className="font-display text-[1rem] font-semibold text-text-primary">
                   {option.institutionName}
                 </p>
                 <p className="text-sm text-text-secondary">

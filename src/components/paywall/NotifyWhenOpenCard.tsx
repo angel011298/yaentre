@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { notifyWhenSalesOpenAction } from '@/app/actions/checkout';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * G98 — «Avísame cuando abra». Lo que ofrece el paywall mientras la venta está
@@ -36,8 +37,9 @@ export function NotifyWhenOpenCard() {
   if (state === 'done') {
     return (
       <Card className="flex flex-col items-center gap-2 p-5 text-center">
-        <p className="font-display text-base font-bold text-success">
-          ✓ Listo — te avisamos en cuanto abra
+        <p className="inline-flex items-center gap-2 font-display text-[1rem] font-bold text-success">
+          <Icon name="checkCircle" className="h-5 w-5" />
+          Listo — te avisamos en cuanto abra
         </p>
         <p className="max-w-md text-sm text-text-secondary">
           Te escribiremos al correo de tu cuenta cuando la preventa esté abierta. Si cambias de
@@ -50,7 +52,7 @@ export function NotifyWhenOpenCard() {
   return (
     <Card className="flex flex-col items-center gap-3 p-5 text-center">
       <div className="space-y-1">
-        <p className="font-display text-base font-bold text-text-primary">
+        <p className="font-display text-[1rem] font-bold text-text-primary">
           ¿Quieres apartar tu precio de fundador?
         </p>
         <p className="max-w-md text-sm text-text-secondary">

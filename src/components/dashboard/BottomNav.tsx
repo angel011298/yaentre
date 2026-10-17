@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from './nav-items';
+import { Icon } from '@/components/ui/Icon';
 
 /** Navegación inferior móvil (F11 Task 9, UIUX Spec §7.5 `BottomNav`): 5
  *  opciones fijas. Oculta en desktop (`lg:hidden`) — ahí manda `Sidebar`. */
@@ -22,9 +23,7 @@ export function BottomNav() {
               active ? 'text-brand-soft' : 'text-text-muted'
             }`}
           >
-            <span className="text-lg" aria-hidden>
-              {item.icon}
-            </span>
+            <Icon name={item.icon} className="h-5 w-5" />
             {item.label}
           </Link>
         );

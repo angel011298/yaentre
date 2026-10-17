@@ -1,5 +1,5 @@
-import { PrismaClient, type Prisma } from '@prisma/client';
-import type { CareerSeed } from './unam';
+import { PrismaClient } from '@prisma/client';
+import { seedCareerTargets, syncCatalogCareers, type CareerSeed } from './careers';
 
 const prisma = new PrismaClient();
 
@@ -155,10 +155,18 @@ export async function seedIpn() {
 
   // 6. Carreras ancla por rama con minAciertos históricos
   // TODO-VERIFICAR: minAciertos son estimaciones en base a históricos 2021-2025 del IPN.
-  await seedCareers(prisma, ramas.fismat.id, generateCareersFismat());
-  await seedCareers(prisma, ramas.medbio.id, generateCareersMedbio());
-  await seedCareers(prisma, ramas.socadm.id, generateCareersSocadm());
-  console.log('  ✓ Carreras ancla (20+) con aciertos mínimos');
+  // G101: TODO el catálogo oficial del IPN (src/lib/content/career-catalog.ts)
+  // + aciertos mínimos de las anclas, por nombre OFICIAL.
+  const ramaPairs = [
+    [ramas.fismat.id, 'IPN_FISMAT', generateCareersFismat()],
+    [ramas.medbio.id, 'IPN_MEDBIO', generateCareersMedbio()],
+    [ramas.socadm.id, 'IPN_SOCADM', generateCareersSocadm()],
+  ] as const;
+  for (const [areaId, code, anchors] of ramaPairs) {
+    await syncCatalogCareers(prisma, areaId, code);
+    await seedCareerTargets(prisma, areaId, code, anchors);
+  }
+  console.log('  ✓ 72 carreras del catálogo oficial, con aciertos mínimos en las anclas');
 
   console.log('✅ IPN Superior 2027 lista');
 }
@@ -206,28 +214,6 @@ async function seedSubjectsAndTopics(
   }
 }
 
-async function seedCareers(prisma: PrismaClient, areaId: string, careers: CareerSeed[]) {
-  for (const career of careers) {
-    const sources = career.sources as unknown as Prisma.InputJsonValue;
-    await prisma.career.upsert({
-      where: { areaId_name: { areaId, name: career.name } },
-      create: {
-        areaId,
-        name: career.name,
-        minAciertos: career.minAciertos,
-        minAciertosYear: career.year,
-        minAciertosConfidence: career.confidence,
-        sources,
-      },
-      update: {
-        minAciertos: career.minAciertos,
-        minAciertosYear: career.year,
-        minAciertosConfidence: career.confidence,
-        sources,
-      },
-    });
-  }
-}
 
 // ─────────────────────────────────────────────────────────────────
 // Generadores de temas (temario oficial IPN)
@@ -411,7 +397,7 @@ const WEB_CROSSCHECK = 'Corroboración cruzada por búsqueda web (coincide con u
 function generateCareersFismat(): CareerSeed[] {
   return [
     {
-      name: 'Ingeniería en Sistemas Computacionales (ESCOM)',
+      name: 'Ingeniería en Sistemas Computacionales',
       minAciertos: 97,
       year: 2026,
       confidence: 'LOW',
@@ -421,7 +407,7 @@ function generateCareersFismat(): CareerSeed[] {
       ],
     },
     {
-      name: 'Ingeniería Eléctrica (ESIME)',
+      name: 'Ingeniería Eléctrica',
       minAciertos: 99,
       year: 2024,
       confidence: 'LOW',
@@ -431,7 +417,7 @@ function generateCareersFismat(): CareerSeed[] {
       ],
     },
     {
-      name: 'Ingeniería Mecánica (ESIME)',
+      name: 'Ingeniería Mecánica',
       minAciertos: 94,
       year: 2024,
       confidence: 'LOW',
@@ -451,7 +437,7 @@ function generateCareersFismat(): CareerSeed[] {
       ],
     },
     {
-      name: 'Ingeniería Civil (ESIA)',
+      name: 'Ingeniería Civil',
       minAciertos: 70,
       year: 2024,
       confidence: 'LOW',
@@ -461,7 +447,7 @@ function generateCareersFismat(): CareerSeed[] {
       ],
     },
     {
-      name: 'Ingeniería Química (ESIQIE)',
+      name: 'Ingeniería Química Industrial',
       minAciertos: 94,
       year: 2024,
       confidence: 'LOW',
@@ -473,7 +459,7 @@ function generateCareersFismat(): CareerSeed[] {
     {
       // CC-08: "Matemáticas (Ciencias Básicas)" — nombre corregido al real
       // (ESFM), ver scripts/extraction/ipn.taxonomy.json (CC-09b).
-      name: 'Ingeniería Matemática (ESFM)',
+      name: 'Ingeniería Matemática',
       minAciertos: 95,
       year: 2024,
       confidence: 'LOW',
@@ -484,7 +470,7 @@ function generateCareersFismat(): CareerSeed[] {
     },
     {
       // CC-08: "Física (Ciencias Básicas)" — nombre corregido al real (ESFM).
-      name: 'Licenciatura en Física y Matemáticas (ESFM)',
+      name: 'Licenciatura en Física y Matemáticas',
       minAciertos: 104,
       year: 2026,
       confidence: 'LOW',
@@ -500,7 +486,7 @@ function generateCareersMedbio(): CareerSeed[] {
   return [
     {
       // CC-08: "Medicina (ESM)" — nombre corregido al real (CC-09b).
-      name: 'Médico Cirujano y Partero (ESM)',
+      name: 'Médico Cirujano Partero',
       minAciertos: 109,
       year: 2024,
       confidence: 'MED',
@@ -512,7 +498,7 @@ function generateCareersMedbio(): CareerSeed[] {
     {
       // CC-08: "Cirugía Dental (ESD)" no existe; el IPN ofrece Odontología
       // en CICS (CC-09b).
-      name: 'Licenciatura en Odontología (CICS)',
+      name: 'Licenciatura en Odontología',
       minAciertos: 115,
       year: 2026,
       confidence: 'LOW',
@@ -522,7 +508,7 @@ function generateCareersMedbio(): CareerSeed[] {
       ],
     },
     {
-      name: 'Licenciatura en Biología (ENCB)',
+      name: 'Licenciatura en Biología',
       minAciertos: 110,
       year: 2026,
       confidence: 'LOW',
@@ -533,7 +519,7 @@ function generateCareersMedbio(): CareerSeed[] {
     },
     {
       // CC-08: "Química Farmacéutica (ENCB)" — nombre corregido al real.
-      name: 'Químico Farmacéutico Industrial (ENCB)',
+      name: 'Químico Farmacéutico Industrial',
       minAciertos: 110,
       year: 2026,
       confidence: 'LOW',
@@ -545,7 +531,7 @@ function generateCareersMedbio(): CareerSeed[] {
     {
       // CC-08: "Enfermería (ESM)" — el IPN la ofrece como Enfermería y
       // Obstetricia en ESEO (CC-09b).
-      name: 'Licenciatura en Enfermería y Obstetricia (ESEO)',
+      name: 'Licenciatura en Enfermería y Obstetricia',
       minAciertos: 111,
       year: 2026,
       confidence: 'LOW',
@@ -555,26 +541,23 @@ function generateCareersMedbio(): CareerSeed[] {
       ],
     },
     {
-      name: 'Licenciatura en Psicología (CICS)',
+      name: 'Licenciatura en Psicología',
       minAciertos: 93,
       year: 2024,
       confidence: 'LOW',
       sources: [{ url: 'https://unibetas.com/aciertos-carreras-ipn/', label: `${UNIBETAS_2024}: 93 (única fuente encontrada, sin corroborar)` }],
     },
-    {
-      name: 'Bioquímica Clínica (ENCB)',
-      minAciertos: 92,
-      year: 2025,
-      confidence: 'LOW',
-      sources: [{ url: '', label: 'Estimación previa de CC-08, sin verificación en CC-13 (no se encontró en ninguna de las 2 compilaciones consultadas)' }],
-    },
+    // G101: «Bioquímica Clínica (ENCB)» se retiró — no existe en la oferta
+    // oficial del IPN y sus aciertos mínimos eran una estimación sin fuente.
   ];
 }
 
 function generateCareersSocadm(): CareerSeed[] {
   return [
     {
-      name: 'Administración (CIMA)',
+      // G101: «Administración (CIMA)» — el IPN no tiene plantel CIMA; la fuente
+      // citada es «Industrial Administration» (UPIICSA).
+      name: 'Licenciatura en Administración Industrial',
       minAciertos: 99,
       year: 2024,
       confidence: 'LOW',
@@ -584,7 +567,8 @@ function generateCareersSocadm(): CareerSeed[] {
       ],
     },
     {
-      name: 'Contabilidad (CIMA)',
+      // G101: «Contabilidad (CIMA)» — la fuente es «Public Accounting» (ESCA).
+      name: 'Contador Público',
       minAciertos: 97,
       year: 2026,
       confidence: 'LOW',
@@ -594,7 +578,9 @@ function generateCareersSocadm(): CareerSeed[] {
       ],
     },
     {
-      name: 'Comercio Internacional (CIMA)',
+      // G101: «Comercio Internacional (CIMA)» — la fuente es «International
+      // Business», que en la oferta oficial es Negocios Internacionales (ESCA).
+      name: 'Licenciatura en Negocios Internacionales',
       minAciertos: 107,
       year: 2026,
       confidence: 'LOW',
@@ -604,7 +590,8 @@ function generateCareersSocadm(): CareerSeed[] {
       ],
     },
     {
-      name: 'Economía (CICS)',
+      // G101: «Economía (CICS)» — Economía se imparte en la ESE, no en CICS.
+      name: 'Licenciatura en Economía',
       minAciertos: 94,
       year: 2024,
       confidence: 'LOW',
@@ -614,7 +601,7 @@ function generateCareersSocadm(): CareerSeed[] {
       ],
     },
     {
-      name: 'Turismo (CIMA)',
+      name: 'Licenciatura en Turismo',
       minAciertos: 100,
       year: 2026,
       confidence: 'LOW',
@@ -623,12 +610,7 @@ function generateCareersSocadm(): CareerSeed[] {
         { url: 'https://fabricadeperiodismo.com/noticias/cuantos-aciertos-pide-el-ipn-puntajes-minimos-por-licenciatura-e-ingenierias/', label: `${FABRICA_2026}: 100 (usado, más conservador)` },
       ],
     },
-    {
-      name: 'Gestión y Dirección de Empresas',
-      minAciertos: 78,
-      year: 2025,
-      confidence: 'LOW',
-      sources: [{ url: '', label: 'Estimación previa de CC-08, sin verificación en CC-13 (no se encontró en ninguna de las 2 compilaciones consultadas)' }],
-    },
+    // G101: «Gestión y Dirección de Empresas» se retiró — no existe en la
+    // oferta oficial del IPN y sus aciertos mínimos eran una estimación sin fuente.
   ];
 }

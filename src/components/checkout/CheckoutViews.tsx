@@ -7,6 +7,7 @@ import type { SubscriptionForResult } from '@/lib/db/billing';
 import { RetryButton } from './RetryButton';
 import { StatusPoller } from './StatusPoller';
 import { PurchasePixelFire } from './PurchasePixelFire';
+import { Icon } from '@/components/ui/Icon';
 
 const PLAN_DISPLAY: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Plan Mensual',
@@ -77,7 +78,7 @@ export function SuccessView({ subscription }: { subscription: SubscriptionForRes
         <ul className="space-y-1.5 text-sm text-text-secondary">
           {NEXT_STEPS[subscription.plan].map((step) => (
             <li key={step} className="flex gap-2">
-              <span aria-hidden className="text-success">✓</span>
+              <Icon name="check" className="mt-0.5 h-4 w-4 text-success" />
               <span>{step}</span>
             </li>
           ))}

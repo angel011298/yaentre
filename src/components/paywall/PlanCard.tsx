@@ -2,6 +2,7 @@ import type { SubscriptionPlan } from '@prisma/client';
 import { Card } from '@/components/ui/Card';
 import type { PlanPricing } from '@/lib/stripe/pricing';
 import { ChoosePlanButton } from './ChoosePlanButton';
+import { Icon } from '@/components/ui/Icon';
 
 const PLAN_LABELS: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Mensual',
@@ -51,8 +52,9 @@ export function PlanCard({
       }`}
     >
       {highlighted && (
-        <span className="w-fit rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand">
-          ⭐ Más elegido
+        <span className="inline-flex w-fit items-center gap-1 rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand">
+          <Icon name="star" className="h-3.5 w-3.5" />
+          Más elegido
         </span>
       )}
       <div>
@@ -68,7 +70,7 @@ export function PlanCard({
       <ul className="flex-1 space-y-2 text-sm text-text-secondary">
         {PLAN_FEATURES[pricing.plan].map((feature) => (
           <li key={feature} className="flex items-start gap-2">
-            <span aria-hidden className="text-success">✓</span>
+            <Icon name="check" className="mt-0.5 h-4 w-4 text-success" />
             <span>{feature}</span>
           </li>
         ))}
@@ -80,8 +82,9 @@ export function PlanCard({
         // G98: en lugar de «Elegir este plan». No es un botón deshabilitado —
         // un botón apagado invita a insistir; esto informa. La acción posible
         // («Avísame cuando abra») vive una vez, debajo de la comparativa.
-        <p className="rounded-md border border-border-subtle bg-elevated px-3 py-2 text-center text-sm font-semibold text-text-secondary">
-          🔒 La preventa abre pronto
+        <p className="flex items-center justify-center gap-2 rounded-md border border-border-subtle bg-elevated px-3 py-2 text-center text-sm font-semibold text-text-secondary">
+          <Icon name="lock" className="h-4 w-4" />
+          La preventa abre pronto
         </p>
       )}
     </Card>

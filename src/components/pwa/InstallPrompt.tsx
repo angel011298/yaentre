@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { shouldShowInstallPrompt } from '@/lib/pwa/install-prompt';
+import { Icon } from '@/components/ui/Icon';
 
 const VISIT_KEY = 'yaentre:pwaVisitCount';
 const DISMISS_KEY = 'yaentre:pwaInstallDismissedAt';
@@ -95,14 +96,15 @@ export function InstallPrompt() {
       // `bottom: 1rem`.
       className="yaentre-above-bottomnav fixed inset-x-0 z-30 mx-auto flex max-w-md items-start gap-3 rounded-lg border border-l-4 border-border-subtle border-l-brand bg-elevated p-4 shadow-md lg:left-64"
     >
-      <span className="text-2xl" aria-hidden>
-        📲
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-tint text-brand">
+        <Icon name="smartphone" className="h-5 w-5" />
       </span>
       <div className="flex-1">
-        <p className="text-sm font-semibold text-text-primary">Instala YaEntre en tu celular</p>
+        <p className="text-sm font-semibold text-text-primary">Instala YaEntre como app</p>
         <p className="mt-1 text-sm text-text-secondary">
-          Acceso directo desde tu pantalla de inicio, y tu tablero disponible aunque te quedes sin
-          internet.
+          {/* G101: ya no promete el tablero sin conexión — con la sesión «sin
+              rastro» (G100) el service worker no guarda pantallas privadas. */}
+          Ábrela directo desde tu pantalla de inicio o tu escritorio, sin buscarla en el navegador.
         </p>
         <div className="mt-3 flex flex-wrap items-center gap-3">
           {deferredPrompt ? (

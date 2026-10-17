@@ -5,6 +5,7 @@ import { Pagination } from '@/components/admin/Pagination';
 import { UserSearchForm } from '@/components/admin/UserSearchForm';
 import { searchUsers, USERS_PAGE_SIZE } from '@/lib/db/admin-users';
 import { userSearchSchema } from '@/lib/admin/schemas';
+import { Icon } from '@/components/ui/Icon';
 
 export const metadata = { title: 'Usuarios' };
 
@@ -61,11 +62,20 @@ export default async function AdminUsersPage({
                   </p>
                   <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-text-secondary">
                     <span className="rounded-md bg-elevated px-2 py-0.5 font-medium">{u.role}</span>
-                    <span>{u.emailVerified ? '✅ verificado' : '⚠️ sin verificar'}</span>
+                    <span className="inline-flex items-center gap-1">
+                      <Icon
+                        name={u.emailVerified ? 'checkCircle' : 'alert'}
+                        className={`h-3.5 w-3.5 ${u.emailVerified ? 'text-success' : 'text-warning'}`}
+                      />
+                      {u.emailVerified ? 'verificado' : 'sin verificar'}
+                    </span>
                     <span>alta {u.createdAt.toISOString().slice(0, 10)}</span>
                     <span>{u.onboardingComplete ? 'onboarding completo' : 'onboarding pendiente'}</span>
                     {u.targetExamLabel && <span>{u.targetExamLabel}</span>}
-                    <span>🔥 {u.currentStreak}</span>
+                    <span className="inline-flex items-center gap-1" title="Racha actual">
+                      <Icon name="flame" className="h-3.5 w-3.5 text-streak" />
+                      {u.currentStreak}
+                    </span>
                     {u.activeSubscriptions > 0 && (
                       <span className="text-success">
                         {u.activeSubscriptions} plan{u.activeSubscriptions === 1 ? '' : 'es'} activo

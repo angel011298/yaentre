@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/Card';
 import { EditQuestionModal, type EditQuestionModalHandle } from './EditQuestionModal';
 import { LatexText } from './LatexText';
 import type { VerificationRecord } from '@/lib/admin/verification';
+import { Icon } from '@/components/ui/Icon';
 
 interface OptionInput {
   id: string;
@@ -40,8 +41,11 @@ function ProblemsList({ problems }: { problems: VerificationRecord['verdict']['p
   return (
     <ul className="space-y-1 text-sm text-text-secondary">
       {problems.map((p, i) => (
-        <li key={i}>
-          ⚠️ <strong>{p.type}</strong> — {p.detail}
+        <li key={i} className="flex items-start gap-2">
+          <Icon name="alert" className="mt-0.5 h-4 w-4 text-warning" />
+          <span>
+            <strong>{p.type}</strong> — {p.detail}
+          </span>
         </li>
       ))}
     </ul>
@@ -137,7 +141,10 @@ export function ReviewDecisionPanel({
   if (done) {
     return (
       <Card className="p-6 text-center text-text-secondary">
-        {done === 'approved' ? '✅ Aprobado' : '🗑️ Descartado'} — regresando a la cola…
+        <span className="inline-flex items-center gap-2">
+          <Icon name={done === 'approved' ? 'checkCircle' : 'trash'} className="h-4 w-4" />
+          {done === 'approved' ? 'Aprobado' : 'Descartado'} — regresando a la cola…
+        </span>
       </Card>
     );
   }
@@ -186,12 +193,12 @@ export function ReviewDecisionPanel({
                 <div className="flex flex-wrap items-center gap-1.5">
                   {isGenerator && (
                     <span className="rounded-full bg-info/20 px-2 py-0.5 text-xs font-medium text-info">
-                      🤖 Generador
+                      Generador
                     </span>
                   )}
                   {isVerifier && (
                     <span className="rounded-full bg-warning/20 px-2 py-0.5 text-xs font-medium text-warning">
-                      🔍 Verificador
+                      Verificador
                     </span>
                   )}
                 </div>

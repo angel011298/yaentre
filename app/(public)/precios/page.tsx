@@ -9,6 +9,7 @@ import { JsonLd } from '@/lib/seo/JsonLd';
 import { openGraphFor } from '@/lib/seo/metadata';
 import { productJsonLd, type ProductOffer } from '@/lib/seo/structured-data';
 import { getPlanPricing, planLabel, type PlanPricing } from '@/lib/stripe/pricing';
+import { Icon } from '@/components/ui/Icon';
 
 // La temporada efectiva (Early Bird vs. regular) depende de compras reales —
 // sin esto, el precio quedaría congelado en el estado del momento del build.
@@ -35,44 +36,75 @@ const PAID_PLANS: SubscriptionPlan[] = ['MONTHLY', 'SEASON_PASS', 'PREMIUM'];
 
 const PLAN_LABEL: Record<SubscriptionPlan, string> = {
   MONTHLY: 'Mensual',
-  SEASON_PASS: 'Pase de Temporada ⭐',
+  SEASON_PASS: 'Pase de Temporada',
   PREMIUM: 'Premium Garantía',
 };
 
 /** Tabla de features EXACTA a la matriz del PRD §9 "Qué incluye cada plan" —
  *  no se reordena ni se reinterpreta ninguna celda. */
-const FEATURE_ROWS: Array<{ feature: string; free: string; monthly: string; seasonPass: string; premium: string }> = [
-  { feature: 'Diagnóstico inicial', free: '✅', monthly: '✅', seasonPass: '✅', premium: '✅' },
-  { feature: 'Reactivos ilimitados (Drill)', free: '❌ 10/día', monthly: '✅', seasonPass: '✅', premium: '✅' },
+/** G101: celda de la tabla — incluido / no incluido / texto, sin emojis. El
+ *  ícono nunca va solo: el lector de pantalla oye «Incluido»/«No incluido». */
+type FeatureCell = { mark?: 'yes' | 'no'; text?: string };
+const Y = (text?: string): FeatureCell => ({ mark: 'yes', text });
+const N = (text?: string): FeatureCell => ({ mark: 'no', text });
+const T = (text: string): FeatureCell => ({ text });
+
+const FEATURE_ROWS: Array<{
+  feature: string;
+  free: FeatureCell;
+  monthly: FeatureCell;
+  seasonPass: FeatureCell;
+  premium: FeatureCell;
+}> = [
+  { feature: 'Diagnóstico inicial', free: Y(), monthly: Y(), seasonPass: Y(), premium: Y() },
+  { feature: 'Reactivos ilimitados (Drill)', free: N('10/día'), monthly: Y(), seasonPass: Y(), premium: Y() },
   {
     feature: 'Simulacros completos',
-    free: '1 (30 reactivos)',
-    monthly: '✅ ilimitados',
-    seasonPass: '✅ ilimitados',
-    premium: '✅ ilimitados',
+    free: T('1 (30 reactivos)'),
+    monthly: Y('ilimitados'),
+    seasonPass: Y('ilimitados'),
+    premium: Y('ilimitados'),
   },
   {
     feature: 'Simulador fullscreen (120/140 reactivos)',
-    free: '❌',
-    monthly: '✅',
-    seasonPass: '✅',
-    premium: '✅',
+    free: N(),
+    monthly: Y(),
+    seasonPass: Y(),
+    premium: Y(),
   },
-  { feature: 'Resolución por capas', free: 'Capa 1 solo', monthly: '✅ todas', seasonPass: '✅ todas', premium: '✅ todas' },
-  { feature: 'Dashboard del alumno', free: 'Básico', monthly: '✅ completo', seasonPass: '✅ completo', premium: '✅ completo' },
-  { feature: 'Entrómetro', free: '❌', monthly: '✅', seasonPass: '✅', premium: '✅' },
-  { feature: 'Dashboard parental', free: '❌', monthly: '❌', seasonPass: '✅', premium: '✅' },
-  { feature: 'Gamificación completa', free: 'Parcial', monthly: '✅', seasonPass: '✅', premium: '✅' },
+  { feature: 'Resolución por capas', free: T('Capa 1 solo'), monthly: Y('todas'), seasonPass: Y('todas'), premium: Y('todas') },
+  { feature: 'Dashboard del alumno', free: T('Básico'), monthly: Y('completo'), seasonPass: Y('completo'), premium: Y('completo') },
+  { feature: 'Entrómetro', free: N(), monthly: Y(), seasonPass: Y(), premium: Y() },
+  { feature: 'Dashboard parental', free: N(), monthly: N(), seasonPass: Y(), premium: Y() },
+  { feature: 'Gamificación completa', free: T('Parcial'), monthly: Y(), seasonPass: Y(), premium: Y() },
   {
     feature: 'Vigencia',
-    free: 'Siempre',
-    monthly: 'Mensual renovable',
-    seasonPass: 'Hasta el día del examen',
-    premium: 'Hasta el día del examen',
+    free: T('Siempre'),
+    monthly: T('Mensual renovable'),
+    seasonPass: T('Hasta el día del examen'),
+    premium: T('Hasta el día del examen'),
   },
-  { feature: 'Garantía de reembolso', free: '❌', monthly: '❌', seasonPass: '❌', premium: '✅ si no ingresa' },
-  { feature: 'Tutorías (Fase 2)', free: '❌', monthly: '❌', seasonPass: '❌', premium: 'Prioritario' },
+  { feature: 'Garantía de reembolso', free: N(), monthly: N(), seasonPass: N(), premium: Y('si no ingresa') },
+  { feature: 'Tutorías (Fase 2)', free: N(), monthly: N(), seasonPass: N(), premium: T('Prioritario') },
 ];
+
+function FeatureCellView({ cell }: { cell: FeatureCell }) {
+  // `relative`: el texto `sr-only` es `position:absolute`, y sin un ancestro
+  // posicionado DENTRO del contenedor con scroll se escapa del recorte y
+  // ensancha la página entera en celular (medido: 543 px en una pantalla de 390).
+  return (
+    <td className="relative p-4 text-text-secondary">
+      <span className="inline-flex items-center gap-1.5">
+        {cell.mark === 'yes' && <Icon name="check" className="h-4 w-4 text-success" />}
+        {cell.mark === 'no' && <Icon name="x" className="h-4 w-4 text-text-muted" />}
+        {cell.mark && (
+          <span className="sr-only">{cell.mark === 'yes' ? 'Incluido' : 'No incluido'}</span>
+        )}
+        {cell.text && <span>{cell.text}</span>}
+      </span>
+    </td>
+  );
+}
 
 function formatMxn(cents: number): string {
   return (cents / 100).toLocaleString('es-MX', {
@@ -194,7 +226,7 @@ export default async function PreciosPage() {
                   <th className="p-4 font-semibold text-text-primary">Feature</th>
                   <th className="p-4 font-semibold text-text-primary">Free</th>
                   <th className="p-4 font-semibold text-text-primary">Mensual</th>
-                  <th className="p-4 font-semibold text-brand">Pase ⭐</th>
+                  <th className="p-4 font-semibold text-brand">Pase de Temporada</th>
                   <th className="p-4 font-semibold text-text-primary">Premium</th>
                 </tr>
               </thead>
@@ -205,10 +237,10 @@ export default async function PreciosPage() {
                     className={`border-t border-border-subtle ${i % 2 === 1 ? 'bg-elevated/40' : ''}`}
                   >
                     <td className="p-4 font-medium text-text-primary">{row.feature}</td>
-                    <td className="p-4 text-text-secondary">{row.free}</td>
-                    <td className="p-4 text-text-secondary">{row.monthly}</td>
-                    <td className="p-4 text-text-secondary">{row.seasonPass}</td>
-                    <td className="p-4 text-text-secondary">{row.premium}</td>
+                    <FeatureCellView cell={row.free} />
+                    <FeatureCellView cell={row.monthly} />
+                    <FeatureCellView cell={row.seasonPass} />
+                    <FeatureCellView cell={row.premium} />
                   </tr>
                 ))}
               </tbody>

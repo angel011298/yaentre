@@ -1,12 +1,15 @@
 import type { GroundingStatus } from '@prisma/client';
+import { Icon, type IconName } from '@/components/ui/Icon';
 
-const CONFIG: Record<GroundingStatus, { label: string; className: string }> = {
+const CONFIG: Record<GroundingStatus, { label: string; icon: IconName; className: string }> = {
   SOURCED: {
-    label: '⚓ Con fuente real',
+    label: 'Con fuente real',
+    icon: 'anchor',
     className: 'border-info/30 bg-info/10 text-info',
   },
   TEMARIO_ONLY: {
-    label: '📖 Solo temario',
+    label: 'Solo temario',
+    icon: 'book',
     className: 'border-warning/30 bg-warning/10 text-warning',
   },
 };
@@ -28,6 +31,7 @@ export function GroundingBadge({
     <span
       className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full border px-2 py-0.5 text-xs font-medium ${cfg.className} ${className}`}
     >
+      <Icon name={cfg.icon} className="h-3 w-3" />
       {cfg.label}
     </span>
   );

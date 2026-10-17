@@ -1,6 +1,7 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
+import { Icon } from '@/components/ui/Icon';
 
 function subscribe(callback: () => void): () => void {
   window.addEventListener('online', callback);
@@ -34,9 +35,12 @@ export function OfflineBanner() {
   return (
     <div
       role="status"
-      className="border-b border-warning/40 bg-warning/15 px-4 py-2 text-center text-sm font-semibold text-warning"
+      className="flex items-center justify-center gap-2 border-b border-warning/40 bg-warning/15 px-4 py-2 text-center text-sm font-semibold text-warning"
     >
-      <span aria-hidden>📡 </span>Sin conexión — viendo tus últimos datos guardados.
+      <Icon name="wifiOff" className="h-4 w-4" />
+      {/* G101: sin «viendo tus últimos datos guardados» — en el modo sin
+          rastro (G100) no se guarda ninguna pantalla en el dispositivo. */}
+      Sin conexión — revisa tu internet para seguir estudiando.
     </div>
   );
 }

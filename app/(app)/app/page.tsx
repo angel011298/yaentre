@@ -26,6 +26,7 @@ import {
 } from '@/lib/db/dashboard';
 import { loadMasteredSubjectBadges, loadStreakStatus } from '@/lib/db/gamification';
 import { emptySimulations, noWeakTopicsYet } from '@/lib/tino/copy';
+import { Icon } from '@/components/ui/Icon';
 
 function greetingName(displayName: string | null, email: string | undefined): string {
   if (displayName) return displayName;
@@ -63,7 +64,7 @@ export default async function DashboardPage() {
     return (
       <div className="space-y-4">
         <h1 className="font-display text-2xl font-bold text-text-primary">
-          ¡Hola, {displayName}! 👋
+          ¡Hola, {displayName}!
         </h1>
         <EmptyState
           title="Completa tu diagnóstico"
@@ -86,7 +87,7 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <div>
         <h1 className="font-display text-2xl font-bold text-text-primary">
-          ¡Hola, {displayName}! 👋
+          ¡Hola, {displayName}!
         </h1>
         <Suspense fallback={<Skeleton className="mt-1 h-5 w-56" />}>
           <ExamCountdownLine profileId={pid} />
@@ -128,7 +129,11 @@ export default async function DashboardPage() {
       <TinoRecommendationSection profileId={pid} />
 
       <section>
-        <h2 className="mb-3 font-display text-lg font-bold text-text-primary">Tu semana</h2>
+        {/* G101: decía «Tu semana», pero el calendario muestra 90 días. */}
+        <div className="mb-3 flex items-baseline justify-between gap-2">
+          <h2 className="font-display text-lg font-bold text-text-primary">Tu actividad</h2>
+          <p className="text-xs text-text-muted">Últimos 90 días</p>
+        </div>
         {/* Altura fija (G62): el heatmap (react-calendar-heatmap) recalcula el
             alto de su SVG al hidratar en el cliente; sin reservar el espacio,
             ese reajuste empujaba las secciones de abajo (CLS ~0.09 medido). */}
@@ -172,9 +177,10 @@ export default async function DashboardPage() {
       <div className="flex flex-wrap items-center gap-2 border-t border-border-subtle pt-4">
         <Link
           href="/app/examen-oficial"
-          className="inline-flex min-h-touch items-center text-sm font-semibold text-text-secondary hover:text-brand-soft"
+          className="inline-flex min-h-touch items-center gap-2 text-sm font-semibold text-text-secondary hover:text-brand-soft"
         >
-          📄 Examen muestra oficial
+          <Icon name="file" className="h-4 w-4" />
+          Examen muestra oficial
         </Link>
         <SignOutButton className="inline-flex min-h-touch items-center text-sm font-semibold text-brand-soft hover:underline" />
       </div>

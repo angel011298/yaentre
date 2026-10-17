@@ -89,7 +89,7 @@ export default async function QueuePage({
       </p>
 
       {result.items.length === 0 ? (
-        <Card className="p-8 text-center text-text-secondary">Nada en esta cola. 🎉</Card>
+        <Card className="p-8 text-center text-text-secondary">Nada en esta cola.</Card>
       ) : (
         <div className="space-y-3">
           {result.items.map((q) => {
@@ -108,7 +108,7 @@ export default async function QueuePage({
                       <LatexText text={q.stem} />
                     </p>
                     <p className="text-xs text-text-secondary">
-                      🤖 Generador: <strong>{v.generatorOption}</strong> · 🔍 Verificador:{' '}
+                      Generador: <strong>{v.generatorOption}</strong> · Verificador:{' '}
                       <strong>{v.verdict.chosenOption}</strong> · confianza{' '}
                       {(v.verdict.confidence * 100).toFixed(0)}%
                       {v.audit && (

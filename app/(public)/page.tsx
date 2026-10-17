@@ -69,7 +69,7 @@ export default function LandingPage() {
             Empieza tu diagnóstico gratis hoy — te toma menos de 45 minutos.
           </p>
           <div className="mt-6">
-            <LinkButton href="/registro" variant="primary" className="px-8 py-3 text-base">
+            <LinkButton href="/registro" variant="primary" className="px-8 py-3 text-[1rem]">
               Empieza gratis
             </LinkButton>
           </div>

@@ -5,6 +5,7 @@ import type { PlanPricing } from '@/lib/stripe/pricing';
 import { paywallTriggerCopy } from '@/lib/tino/copy';
 import { NotifyWhenOpenCard } from './NotifyWhenOpenCard';
 import { PlanCard } from './PlanCard';
+import { Icon } from '@/components/ui/Icon';
 
 interface Props {
   trigger: PaywallTrigger | null;
@@ -49,8 +50,9 @@ export function PaywallScreen({
       </div>
 
       {salesOpen && earlyBirdRemaining !== null && seasonPass?.season === 'EARLY_BIRD' && (
-        <p className="rounded-md border border-streak/40 bg-streak/10 px-3 py-2 text-center text-sm font-semibold text-streak">
-          🏅 Precio Early Bird — quedan {earlyBirdRemaining} de 500 licencias fundadoras
+        <p className="flex items-center justify-center gap-2 rounded-md border border-streak/40 bg-streak/10 px-3 py-2 text-center text-sm font-semibold text-streak">
+          <Icon name="award" className="h-4 w-4" />
+          Precio Early Bird — quedan {earlyBirdRemaining} de 500 licencias fundadoras
         </p>
       )}
 

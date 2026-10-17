@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { BRAND_GRADIENT } from '@/lib/brand/colors';
+import { OWL_MARK_DATA_URI, OWL_MARK_RATIO } from '@/lib/brand/owl-mark';
 
 export const runtime = 'edge';
 export const size = { width: 180, height: 180 };
@@ -25,7 +26,9 @@ export default function AppleIcon() {
           fontSize: 110,
         }}
       >
-        🦉
+        {/* G101: Tino en SVG, no el emoji del búho (ver src/lib/brand/owl-mark.ts). */}
+        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+        <img src={OWL_MARK_DATA_URI} height={112} width={Math.round(112 * OWL_MARK_RATIO)} />
       </div>
     ),
     { ...size }

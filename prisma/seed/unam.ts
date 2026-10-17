@@ -1,19 +1,7 @@
-import { PrismaClient, type ConfidenceLevel, type Prisma } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import { seedCareerTargets, syncCatalogCareers, type CareerSeed } from './careers';
 
 const prisma = new PrismaClient();
-
-export interface CareerSource {
-  url: string;
-  label: string;
-}
-
-export interface CareerSeed {
-  name: string;
-  minAciertos: number;
-  year: number;
-  confidence: ConfidenceLevel;
-  sources: CareerSource[];
-}
 
 /**
  * Seed de UNAM Superior 2027 (MVP): Institución → Nivel → Examen → 4 Áreas
@@ -196,13 +184,19 @@ export async function seedUnam() {
   );
   console.log('  ✓ Área 4: 4 materias con 15+ temas');
 
-  // 6. Carreras ancla por área con minAciertos históricos
-  // TODO-VERIFICAR: minAciertos son estimaciones en base a históricos 2021-2025.
-  await seedCareers(prisma, area1.id, generateCareersArea1());
-  await seedCareers(prisma, area2.id, generateCareersArea2());
-  await seedCareers(prisma, area3.id, generateCareersArea3());
-  await seedCareers(prisma, area4.id, generateCareersArea4());
-  console.log('  ✓ Carreras ancla (25+) con aciertos mínimos');
+  // 6. Carreras: TODO el catálogo oficial de la DGAE (G101,
+  // src/lib/content/career-catalog.ts) + aciertos mínimos de las anclas.
+  const areaPairs = [
+    [area1.id, 'AREA_1', generateCareersArea1()],
+    [area2.id, 'AREA_2', generateCareersArea2()],
+    [area3.id, 'AREA_3', generateCareersArea3()],
+    [area4.id, 'AREA_4', generateCareersArea4()],
+  ] as const;
+  for (const [areaId, code, anchors] of areaPairs) {
+    await syncCatalogCareers(prisma, areaId, code);
+    await seedCareerTargets(prisma, areaId, code, anchors);
+  }
+  console.log('  ✓ 128 carreras del catálogo oficial, con aciertos mínimos en las anclas');
 
   console.log('✅ UNAM Superior 2027 lista');
 }
@@ -250,28 +244,6 @@ async function seedSubjectsAndTopics(
   }
 }
 
-async function seedCareers(prisma: PrismaClient, areaId: string, careers: CareerSeed[]) {
-  for (const career of careers) {
-    const sources = career.sources as unknown as Prisma.InputJsonValue;
-    await prisma.career.upsert({
-      where: { areaId_name: { areaId, name: career.name } },
-      create: {
-        areaId,
-        name: career.name,
-        minAciertos: career.minAciertos,
-        minAciertosYear: career.year,
-        minAciertosConfidence: career.confidence,
-        sources,
-      },
-      update: {
-        minAciertos: career.minAciertos,
-        minAciertosYear: career.year,
-        minAciertosConfidence: career.confidence,
-        sources,
-      },
-    });
-  }
-}
 
 // ─────────────────────────────────────────────────────────────────
 // Generadores de temas (temario oficial UNAM)

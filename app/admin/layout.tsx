@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { AdminNav } from '@/components/admin/AdminNav';
 import { SignOutButton } from '@/components/auth/SignOutButton';
 import { getAdminContext } from '@/lib/admin/context';
+import { Icon } from '@/components/ui/Icon';
 
 export const metadata: Metadata = {
   title: 'Admin',
@@ -41,8 +42,9 @@ export default async function AdminLayout({ children }: { children: ReactNode })
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <Link href="/admin" className="font-display text-lg font-semibold">
-                  🦉 YaEntre — Admin
+                <Link href="/admin" className="inline-flex items-center gap-2 font-display text-lg font-semibold">
+                  <Icon name="shield" className="h-5 w-5 text-brand" />
+                  YaEntre · Admin
                 </Link>
                 <RoleBadge isMaster={ctx.isMaster} />
               </div>
@@ -74,9 +76,10 @@ function RoleBadge({ isMaster }: { isMaster: boolean }) {
   return isMaster ? (
     <span
       data-testid="admin-role-badge"
-      className="rounded-md bg-brand px-2 py-0.5 text-xs font-semibold text-white"
+      className="inline-flex items-center gap-1 rounded-md bg-brand px-2 py-0.5 text-xs font-semibold text-white"
     >
-      ★ Administrador maestro
+      <Icon name="star" className="h-3 w-3" />
+      Administrador maestro
     </span>
   ) : (
     <span

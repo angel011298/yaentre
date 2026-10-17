@@ -99,7 +99,7 @@ export function parentWeeklySummaryEmail(input: {
       `
       <h1 style="font-size: 18px; margin: 0 0 12px;">Progreso de ${input.studentName} esta semana</h1>
       <p style="font-size: 14px; line-height: 1.6;">
-        🔥 Racha actual: <strong>${input.currentStreak} ${input.currentStreak === 1 ? 'día' : 'días'}</strong><br/>
+        Racha actual: <strong>${input.currentStreak} ${input.currentStreak === 1 ? 'día' : 'días'}</strong><br/>
         ${
           input.predictedScore != null
             ? `Predicción de aciertos: <strong>${input.predictedScore}</strong>${deltaText}<br/>`
@@ -120,10 +120,10 @@ export function parentWeeklySummaryEmail(input: {
 
 export function streakRiskEmail(input: { days: number; unsubscribeUrl: string }): EmailContent {
   return {
-    subject: `Tu racha de ${input.days} ${input.days === 1 ? 'día' : 'días'} está en riesgo 🔥`,
+    subject: `Tu racha de ${input.days} ${input.days === 1 ? 'día' : 'días'} está en riesgo`,
     html: wrapEmail(
       `
-      <h1 style="font-size: 18px; margin: 0 0 12px;">No dejes que se apague 🔥</h1>
+      <h1 style="font-size: 18px; margin: 0 0 12px;">No dejes que se apague</h1>
       <p style="font-size: 14px; line-height: 1.6;">
         Llevas <strong>${input.days} ${input.days === 1 ? 'día' : 'días'}</strong> de racha, pero
         hoy todavía no has estudiado. Unos minutos bastan para mantenerla viva.

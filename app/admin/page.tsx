@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/Card';
 import { getAdminContext } from '@/lib/admin/context';
 import { currentSessionEndsAt } from '@/lib/auth/session-info';
 import { SESSION_PERSISTENCE } from '@/lib/auth/session-policy';
+import { Icon } from '@/components/ui/Icon';
 
 export const metadata = { title: 'Panel de administración' };
 
@@ -72,7 +73,10 @@ export default async function AdminHomePage() {
         <ul className="mt-3 space-y-1 text-sm">
           {MASTER_POWERS.map((power) => (
             <li key={power} className="flex gap-2">
-              <span aria-hidden>{isMaster ? '✓' : '🔒'}</span>
+              <Icon
+                name={isMaster ? 'check' : 'lock'}
+                className={`mt-0.5 h-4 w-4 ${isMaster ? 'text-success' : 'text-text-muted'}`}
+              />
               <span className={isMaster ? '' : 'text-text-secondary'}>{power}</span>
             </li>
           ))}
@@ -93,8 +97,8 @@ export default async function AdminHomePage() {
               <p className="font-semibold">{s.label}</p>
               <p className="text-sm text-text-secondary">{s.desc}</p>
               {s.master && (
-                <p className="mt-2 text-xs text-text-muted">
-                  {isMaster ? '★ ' : '🔒 '}
+                <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-text-muted">
+                  <Icon name={isMaster ? 'star' : 'lock'} className="h-3.5 w-3.5" />
                   {s.master}: {isMaster ? 'disponible para ti' : 'solo administrador maestro'}
                 </p>
               )}

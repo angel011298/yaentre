@@ -10,6 +10,7 @@ import { afterMistake } from '@/lib/tino/copy';
 import { DrillQuestion } from './DrillQuestion';
 import { ExplanationAccordion } from './ExplanationAccordion';
 import { ReportQuestionButton } from './ReportQuestionButton';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Sesión activa de práctica libre (F14). Una pregunta a la vez, feedback
@@ -153,7 +154,7 @@ export function DrillRunner({
       {answered && (
         <div className="space-y-3">
           {/* `role="status"` para que el lector de pantalla anuncie el
-              resultado al responder; el color NO es el único canal (✓/✗ +
+              resultado al responder; el color NO es el único canal (ícono +
               palabra). */}
           <p
             role="status"
@@ -161,7 +162,19 @@ export function DrillRunner({
               selections[currentIndex] === correctness[currentIndex] ? 'text-success' : 'text-danger'
             }`}
           >
-            {selections[currentIndex] === correctness[currentIndex] ? '¡Correcto! ✓' : 'Incorrecto ✗'}
+            <span className="inline-flex items-center gap-1.5">
+              {selections[currentIndex] === correctness[currentIndex] ? (
+                <>
+                  <Icon name="checkCircle" className="h-4 w-4" />
+                  ¡Correcto!
+                </>
+              ) : (
+                <>
+                  <Icon name="xCircle" className="h-4 w-4" />
+                  Incorrecto
+                </>
+              )}
+            </span>
           </p>
 
           {selections[currentIndex] !== correctness[currentIndex] && (

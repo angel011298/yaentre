@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { earlyBirdLicensesRemainingSafe, resolveEffectiveSeasonSafe } from '@/lib/db/billing';
 import { EARLY_BIRD_LICENSE_LIMIT, getPlanPricing } from '@/lib/stripe/pricing';
 import { isSalesOpen } from '@/lib/stripe/sales-gate';
+import { Icon } from '@/components/ui/Icon';
 
 function formatMxn(cents: number): string {
   return (cents / 100).toLocaleString('es-MX', {
@@ -41,15 +42,18 @@ export async function EarlyBirdBanner() {
     <section className="bg-brand">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-4 text-center text-white sm:flex-row sm:justify-between sm:px-6 sm:text-left">
         <div>
-          <p className="font-display text-base font-bold sm:text-lg">
-            {remaining === null ? (
-              <>🏅 Promoción Early Bird — precio de fundador al abrir la preventa</>
-            ) : (
-              <>
-                🏅 Promoción Early Bird — quedan {remaining} de {EARLY_BIRD_LICENSE_LIMIT}{' '}
-                licencias fundadoras
-              </>
-            )}
+          <p className="inline-flex items-start gap-2 font-display text-[1rem] font-bold sm:text-lg">
+            <Icon name="award" className="mt-0.5 h-5 w-5" />
+            <span>
+              {remaining === null ? (
+                <>Promoción Early Bird — precio de fundador al abrir la preventa</>
+              ) : (
+                <>
+                  Promoción Early Bird — quedan {remaining} de {EARLY_BIRD_LICENSE_LIMIT}{' '}
+                  licencias fundadoras
+                </>
+              )}
+            </span>
           </p>
           {/* G63: `/90` — `/85` daba 4.5:1 justo y `/60` (el precio tachado)
               solo 3.0:1 sobre el morado. `/90` da 4.9:1. */}

@@ -1,4 +1,6 @@
 import type { HeatmapDay } from '@/lib/db/dashboard';
+import { Icon } from '@/components/ui/Icon';
+import type { ReactNode } from 'react';
 
 const DAY_LABELS = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
 const DAY_NAMES = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
@@ -18,7 +20,12 @@ const LEVEL_CLASS: Record<0 | 1 | 2, string> = {
   1: 'bg-streak/25 text-text-primary',
   2: 'bg-streak text-on-streak',
 };
-const LEVEL_GLYPH: Record<0 | 1 | 2, string> = { 0: '', 1: '·', 2: '✓' };
+// G101: el nivel 2 lleva un ícono de check (antes el carácter ✓).
+const LEVEL_GLYPH: Record<0 | 1 | 2, ReactNode> = {
+  0: null,
+  1: '·',
+  2: <Icon name="check" className="h-4 w-4" />,
+};
 
 /**
  * "Actividad de la semana" del panel parental (F16 tarea 3, PRD F-06:
@@ -42,7 +49,9 @@ export function WeekActivityStrip({ data }: { data: HeatmapDay[] }) {
             <span
               className={`flex h-8 w-full items-center justify-center rounded-md text-xs font-bold ${LEVEL_CLASS[d.level]}`}
             >
-              <span aria-hidden>{LEVEL_GLYPH[d.level]}</span>
+              <span aria-hidden className="inline-flex">
+                {LEVEL_GLYPH[d.level]}
+              </span>
               <span className="sr-only">
                 {DAY_NAMES[weekday]}: {LEVEL_TEXT[d.level]}
               </span>

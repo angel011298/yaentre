@@ -6,6 +6,7 @@ import { startCheckoutAction } from '@/app/actions/checkout';
 import { Button } from '@/components/ui/Button';
 import { trackAdPixelEvent } from '@/lib/marketing/pixels';
 import { currentSeason, getPlanPricing } from '@/lib/stripe/pricing';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Botón de reintento de pago. Reusa `startCheckoutAction` con el mismo plan de
@@ -38,9 +39,12 @@ export function RetryButton({ plan, salesOpen }: { plan: SubscriptionPlan; sales
 
   if (!salesOpen) {
     return (
-      <p className="max-w-sm rounded-md border border-border-subtle bg-elevated px-3 py-2 text-center text-sm text-text-secondary">
-        🔒 La preventa todavía no abre, así que no se puede reintentar el pago. Te avisamos en
-        cuanto puedas completar tu compra.
+      <p className="flex max-w-sm items-start gap-2 rounded-md border border-border-subtle bg-elevated px-3 py-2 text-left text-sm text-text-secondary">
+        <Icon name="lock" className="mt-0.5 h-4 w-4" />
+        <span>
+          La preventa todavía no abre, así que no se puede reintentar el pago. Te avisamos en
+          cuanto puedas completar tu compra.
+        </span>
       </p>
     );
   }

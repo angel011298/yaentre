@@ -3,6 +3,7 @@ import { LatexText } from '@/components/admin/LatexText';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import type { RevealedQuestion } from '@/lib/db/simulator';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Revisión de preguntas falladas (F13 tareas 8 y 9). Server Component,
@@ -61,7 +62,13 @@ export function SimulatorReview({
                     key={opt.id}
                     className={`flex items-start gap-2 rounded-md border p-2.5 text-sm ${tone}`}
                   >
-                    <span aria-hidden>{opt.isCorrect ? '✓' : wasSelected ? '✗' : '○'}</span>
+                    {opt.isCorrect ? (
+                      <Icon name="check" className="mt-0.5 h-4 w-4 text-success" />
+                    ) : wasSelected ? (
+                      <Icon name="x" className="mt-0.5 h-4 w-4 text-danger" />
+                    ) : (
+                      <span aria-hidden className="mt-0.5 inline-block h-4 w-4 rounded-full border border-border-subtle" />
+                    )}
                     <span>
                       <LatexText text={opt.text} />
                       {opt.isCorrect && (

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import type { DifficultyLevel } from '@prisma/client';
 import { updateQuestionAction } from '@/app/actions/admin-questions';
 import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
 
 const OPTION_IDS = ['A', 'B', 'C', 'D'] as const;
 const DIFFICULTIES: DifficultyLevel[] = [
@@ -150,7 +151,7 @@ export const EditQuestionModal = forwardRef<EditQuestionModalHandle, Props>(
               className="min-h-touch min-w-touch text-text-secondary hover:text-text-primary"
               aria-label="Cerrar"
             >
-              ✕
+              <Icon name="x" className="h-5 w-5" />
             </button>
           </div>
 

@@ -3,6 +3,7 @@
 import NumberFlow from '@number-flow/react';
 import type { CSSProperties } from 'react';
 import type { EntrometroDisplay } from '@/lib/adaptive/entrometro';
+import { Icon } from '@/components/ui/Icon';
 
 const RADIUS = 54;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -113,9 +114,7 @@ export function EntrometroLocked() {
   return (
     <div className="flex flex-col items-center gap-3 py-2 text-center">
       <div className="flex h-40 w-40 items-center justify-center rounded-full border-8 border-dashed border-border-subtle">
-        <span className="text-5xl" aria-hidden>
-          🔒
-        </span>
+        <Icon name="lock" className="h-12 w-12 text-text-muted" />
       </div>
       <div className="max-w-xs">
         <p className="font-display font-semibold text-text-primary">Tu Entrómetro te espera</p>

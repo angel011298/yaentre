@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
+import { Icon, type IconName } from '@/components/ui/Icon';
 
 /**
  * Sección para padres (F10 Task 1) — exactamente los 3 ángulos pedidos, sin
@@ -25,7 +26,7 @@ export function ParentSection() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
           <Card className="p-6">
-            <p className="text-2xl">🎯</p>
+            <FeatureIcon name="target" />
             <h3 className="mt-2 font-display text-lg font-bold text-text-primary">
               No cualquier lugar — el lugar correcto
             </h3>
@@ -36,7 +37,7 @@ export function ParentSection() {
           </Card>
 
           <Card className="p-6">
-            <p className="text-2xl">📱</p>
+            <FeatureIcon name="smartphone" />
             <h3 className="mt-2 font-display text-lg font-bold text-text-primary">
               Ve el avance real, sin tener que preguntar
             </h3>
@@ -47,7 +48,7 @@ export function ParentSection() {
           </Card>
 
           <Card className="p-6">
-            <p className="text-2xl">🛡️</p>
+            <FeatureIcon name="shield" />
             <h3 className="mt-2 font-display text-lg font-bold text-text-primary">
               Garantía si no ingresa
             </h3>
@@ -69,5 +70,14 @@ export function ParentSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** G101: ícono de la tarjeta (antes un emoji de 24 px). */
+function FeatureIcon({ name }: { name: IconName }) {
+  return (
+    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-tint text-brand">
+      <Icon name={name} className="h-5 w-5" />
+    </span>
   );
 }

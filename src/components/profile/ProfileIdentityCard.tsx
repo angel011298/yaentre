@@ -6,6 +6,7 @@ import { updateDisplayNameAction, uploadAvatarAction } from '@/app/actions/profi
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { TextField } from '@/components/ui/TextField';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Nombre visible + foto de perfil (F17 tarea 2).
@@ -125,7 +126,12 @@ export function ProfileIdentityCard({
           {savingName ? 'Guardando…' : 'Guardar'}
         </Button>
       </form>
-      {nameSaved && <p role="status" className="text-sm text-success">Guardado ✓</p>}
+      {nameSaved && (
+        <p role="status" className="inline-flex items-center gap-1.5 text-sm text-success">
+          <Icon name="check" className="h-4 w-4" />
+          Guardado
+        </p>
+      )}
       {error && <p role="alert" className="text-sm text-danger">{error}</p>}
     </Card>
   );

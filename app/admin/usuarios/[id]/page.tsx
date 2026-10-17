@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/Card';
 import { UserAdminActions } from '@/components/admin/UserAdminActions';
 import { getUserDetail } from '@/lib/db/admin-users';
 import { getAdminContext } from '@/lib/admin/context';
+import { Icon } from '@/components/ui/Icon';
 
 export const metadata = { title: 'Cuenta' };
 
@@ -84,7 +85,10 @@ export default async function AdminUserDetailPage({
           </div>
           <div className="flex justify-between gap-4">
             <dt className="text-text-secondary">Racha actual</dt>
-            <dd className="font-medium">🔥 {detail.currentStreak}</dd>
+            <dd className="inline-flex items-center gap-1 font-medium">
+              <Icon name="flame" className="h-4 w-4 text-streak" />
+              {detail.currentStreak}
+            </dd>
           </div>
           <div className="flex justify-between gap-4">
             <dt className="text-text-secondary">Última sesión de estudio</dt>

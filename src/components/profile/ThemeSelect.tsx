@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { updateThemeAction } from '@/app/actions/profile';
 import type { ThemePref } from '@/lib/profile/theme';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Selector de tema (F17 tarea 2): persiste en `UserProfile.themePref` (antes
@@ -29,9 +30,9 @@ export function ThemeSelect({ initialTheme }: { initialTheme: ThemePref }) {
     }
   }
 
-  const OPTIONS: { value: ThemePref; label: string }[] = [
-    { value: 'dark', label: '🌙 Oscuro' },
-    { value: 'light', label: '☀️ Claro' },
+  const OPTIONS: { value: ThemePref; label: string; icon: 'moon' | 'sun' }[] = [
+    { value: 'dark', label: 'Oscuro', icon: 'moon' },
+    { value: 'light', label: 'Claro', icon: 'sun' },
   ];
 
   return (
@@ -49,12 +50,13 @@ export function ThemeSelect({ initialTheme }: { initialTheme: ThemePref }) {
             disabled={pending}
             aria-pressed={initialTheme === opt.value}
             onClick={() => select(opt.value)}
-            className={`min-h-touch rounded-md border px-4 text-sm font-semibold transition-all disabled:opacity-50 ${
+            className={`inline-flex min-h-touch items-center gap-2 rounded-md border px-4 text-sm font-semibold transition-all disabled:opacity-50 ${
               initialTheme === opt.value
                 ? 'border-brand bg-brand-tint text-brand'
                 : 'border-border-subtle bg-surface text-text-secondary hover:bg-elevated'
             }`}
           >
+            <Icon name={opt.icon} className="h-4 w-4" />
             {opt.label}
           </button>
         ))}

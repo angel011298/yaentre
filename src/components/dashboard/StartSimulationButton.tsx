@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { buttonClassName } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * CTA primario del dashboard "Hacer un simulacro completo" (F11 → F12). Desde
@@ -12,9 +13,10 @@ export function StartSimulationButton() {
     <div id="simulacro-cta">
       <Link
         href="/simulador"
-        className={buttonClassName('primary', 'w-full py-3 text-base')}
+        className={buttonClassName('primary', 'w-full gap-2 py-3 text-[1rem]')}
       >
-        ▶ Hacer un simulacro completo
+        <Icon name="target" className="h-5 w-5" />
+        Hacer un simulacro completo
       </Link>
     </div>
   );

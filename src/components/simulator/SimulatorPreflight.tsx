@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Tino } from '@/components/mascot/Tino';
 import { Button } from '@/components/ui/Button';
 import { simulatorFreeWelcome } from '@/lib/tino/copy';
+import { Icon } from '@/components/ui/Icon';
 
 type CameraStatus = 'idle' | 'granted' | 'denied' | 'unsupported';
 
@@ -68,17 +69,17 @@ export function SimulatorPreflight({
 
       <ul className="space-y-3 rounded-lg border border-border-subtle bg-surface p-5 text-sm text-text-secondary">
         <li className="flex gap-3">
-          <span aria-hidden>⏱️</span>
+          <Icon name="clock" className="mt-0.5 h-4 w-4 text-text-muted" />
           <span>El examen <strong className="text-text-primary">no se puede pausar</strong>. El
           tiempo corre aunque cambies de pestaña o cierres la ventana.</span>
         </li>
         <li className="flex gap-3">
-          <span aria-hidden>➡️</span>
+          <Icon name="arrowRight" className="mt-0.5 h-4 w-4 text-text-muted" />
           <span><strong className="text-text-primary">No podrás regresar</strong> a una pregunta
           anterior, igual que en el examen real.</span>
         </li>
         <li className="flex gap-3">
-          <span aria-hidden>🖥️</span>
+          <Icon name="monitor" className="mt-0.5 h-4 w-4 text-text-muted" />
           <span>Se abrirá en <strong className="text-text-primary">pantalla completa</strong>. Si
           tu navegador no lo permite, podrás continuar de todas formas.</span>
         </li>
@@ -92,7 +93,14 @@ export function SimulatorPreflight({
         </p>
         <div className="mt-3 flex items-center gap-3">
           <Button variant="secondary" onClick={requestCamera} disabled={camera === 'granted'}>
-            {camera === 'granted' ? 'Cámara permitida ✓' : 'Permitir cámara'}
+            {camera === 'granted' ? (
+              <span className="inline-flex items-center gap-1.5">
+                <Icon name="check" className="h-4 w-4" />
+                Cámara permitida
+              </span>
+            ) : (
+              'Permitir cámara'
+            )}
           </Button>
           {camera === 'denied' && (
             <span className="text-sm text-text-muted">Sin cámara — puedes continuar igual.</span>
@@ -119,7 +127,7 @@ export function SimulatorPreflight({
 
       <Button
         variant="primary"
-        className="w-full py-3 text-base"
+        className="w-full py-3 text-[1rem]"
         disabled={starting}
         onClick={() => onStart(cameraGranted)}
       >

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { LatexText } from '@/components/admin/LatexText';
 import type { ExplanationLayerContent } from '@/lib/db/drill';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
+import { Icon } from '@/components/ui/Icon';
 
 const LAYER_TITLES: Record<number, string> = {
   1: '¿Por qué es correcta?',
@@ -86,7 +87,13 @@ export function ExplanationAccordion({
                 Capa {layer} — {LAYER_TITLES[layer]}
               </span>
               <span aria-hidden className="text-text-muted">
-                {isLoading ? '…' : isRevealed ? (isOpen ? '−' : '+') : isUnlocked ? '🔓' : '🔒'}
+                {isLoading ? (
+                  '…'
+                ) : isRevealed ? (
+                  isOpen ? '−' : '+'
+                ) : (
+                  <Icon name={isUnlocked ? 'unlock' : 'lock'} className="h-4 w-4" />
+                )}
               </span>
             </button>
 

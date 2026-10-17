@@ -31,7 +31,7 @@ export function CelebrationDisplay({ celebration }: { celebration: Celebration }
           <PerfectRoundReveal />
           <Tino state={copy.state} size={72} />
           <p className="mt-3 font-display text-lg font-bold text-text-primary">
-            ¡Materia dominada! 🎓
+            ¡Materia dominada!
           </p>
           <p className="mt-1 text-sm text-text-secondary">{copy.message}</p>
         </motion.div>

@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { resolveReportsAction } from '@/app/actions/admin-questions';
 import { Button } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
 
 export function ResolveReportsButton({ questionId }: { questionId: string }) {
   const router = useRouter();
@@ -25,7 +26,12 @@ export function ResolveReportsButton({ questionId }: { questionId: string }) {
   }
 
   if (done) {
-    return <span className="text-sm text-text-muted">✅ Resueltos</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-sm text-text-muted">
+        <Icon name="checkCircle" className="h-4 w-4" />
+        Resueltos
+      </span>
+    );
   }
 
   return (

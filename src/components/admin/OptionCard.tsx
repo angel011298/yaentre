@@ -1,4 +1,5 @@
 import { LatexText } from './LatexText';
+import { Icon } from '@/components/ui/Icon';
 
 interface Props {
   id: string;
@@ -29,7 +30,12 @@ export function OptionCard({ id, text, imageUrl, isCorrect }: Props) {
             <LatexText text={text} />
           </span>
         </span>
-        {isCorrect && <span className="shrink-0 text-success">✓ correcta</span>}
+        {isCorrect && (
+          <span className="inline-flex shrink-0 items-center gap-1 text-success">
+            <Icon name="check" className="h-4 w-4" />
+            correcta
+          </span>
+        )}
       </div>
       {imageUrl && (
         // eslint-disable-next-line @next/next/no-img-element

@@ -2,6 +2,7 @@ import { selectAreaAction } from '@/app/actions/onboarding';
 import type { AreaOption } from '@/lib/db/onboarding';
 import { areaPartialCoverage } from '@/lib/tino/copy';
 import { AreaComingSoonCard } from './AreaComingSoonCard';
+import { AreaMark } from '@/components/onboarding/AreaMark';
 
 /**
  * Selección de área/rama. El área elegida no se persiste en DB (ver
@@ -65,13 +66,7 @@ export function AreaStep({
                 type="submit"
                 className="flex min-h-touch w-full flex-col gap-2 rounded-lg border border-border-subtle bg-surface p-4 text-left transition-all hover:border-brand-soft hover:bg-elevated active:scale-[0.98]"
               >
-                <span
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-lg"
-                  style={{ backgroundColor: `${area.colorHex}26` }}
-                  aria-hidden
-                >
-                  {area.iconEmoji ?? '📘'}
-                </span>
+                <AreaMark code={area.code} name={area.name} colorHex={area.colorHex} />
                 <span className="font-display text-sm font-semibold text-text-primary">
                   {area.name}
                 </span>
@@ -95,7 +90,7 @@ export function AreaStep({
               areaId={area.id}
               areaName={area.name}
               colorHex={area.colorHex}
-              iconEmoji={area.iconEmoji}
+              areaCode={area.code}
               pendingSubjectNames={coverage.pendingSubjectNames}
               hasAlternatives={selectable.length > 0}
             />

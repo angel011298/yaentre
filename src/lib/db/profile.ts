@@ -3,6 +3,7 @@ import { prisma } from './prisma';
 import { getActiveSubscription } from './paywall';
 import { getStripe } from '@/lib/stripe/client';
 import { reportSilentDegradation } from '@/lib/observability/report';
+import { toCareerPickerItems, type CareerPickerItem } from '@/lib/content/career-picker';
 
 /**
  * Orquestación de la pantalla de perfil (F17): lecturas/escrituras chicas y
@@ -60,11 +61,8 @@ export async function updateThemePref(userProfileId: string, themePref: ThemePre
 
 // ─────────────────────────────── Carrera meta ───────────────────────────────
 
-export interface CareerOption {
-  id: string;
-  name: string;
-  minAciertos: number | null;
-}
+/** G101: la misma forma que el selector del onboarding (`CareerPicker`). */
+export type CareerOption = CareerPickerItem;
 
 /**
  * Carreras a las que el alumno puede cambiar su meta (F17 tarea 2) — SOLO
@@ -75,16 +73,23 @@ export interface CareerOption {
 export async function loadCareerOptions(userProfileId: string): Promise<CareerOption[]> {
   const profile = await prisma.userProfile.findUnique({
     where: { id: userProfileId },
-    select: { targetCareer: { select: { areaId: true } } },
+    select: { targetCareer: { select: { areaId: true, area: { select: { code: true } } } } },
   });
   const areaId = profile?.targetCareer?.areaId;
-  if (!areaId) return [];
+  const areaCode = profile?.targetCareer?.area.code;
+  if (!areaId || !areaCode) return [];
 
-  return prisma.career.findMany({
+  const careers = await prisma.career.findMany({
     where: { areaId },
-    select: { id: true, name: true, minAciertos: true },
-    orderBy: { name: 'asc' },
+    select: {
+      id: true,
+      name: true,
+      minAciertos: true,
+      minAciertosYear: true,
+      minAciertosConfidence: true,
+    },
   });
+  return toCareerPickerItems(areaCode, careers);
 }
 
 export type UpdateTargetCareerResult = 'OK' | 'INVALID_CAREER';

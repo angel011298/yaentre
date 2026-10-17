@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { BRAND_GRADIENT } from '@/lib/brand/colors';
+import { OWL_MARK_DATA_URI, OWL_MARK_RATIO } from '@/lib/brand/owl-mark';
 
 export const alt = 'YaEntre — Tu entrenador de admisión con IA';
 export const size = { width: 1200, height: 630 };
@@ -38,7 +39,9 @@ export default function OpengraphImage() {
             marginBottom: 32,
           }}
         >
-          🦉
+          {/* G101: Tino en SVG, no el emoji del búho (ver src/lib/brand/owl-mark.ts). */}
+          {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+          <img src={OWL_MARK_DATA_URI} height={96} width={Math.round(96 * OWL_MARK_RATIO)} />
         </div>
         <div style={{ display: 'flex', fontSize: 88, fontWeight: 800, color: 'white' }}>
           YaEntre

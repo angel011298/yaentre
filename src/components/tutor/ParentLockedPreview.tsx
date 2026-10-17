@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/Card';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * Vista bloqueada del panel parental (F16 tarea 5): el alumno vinculado
@@ -9,7 +10,9 @@ import { Card } from '@/components/ui/Card';
 export function ParentLockedPreview({ studentName }: { studentName: string }) {
   return (
     <Card className="space-y-4 p-8 text-center">
-      <p className="text-3xl">🔒</p>
+      <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-elevated text-text-muted">
+        <Icon name="lock" className="h-7 w-7" />
+      </span>
       <h2 className="font-display text-lg font-bold text-text-primary">
         El panel completo está bloqueado
       </h2>

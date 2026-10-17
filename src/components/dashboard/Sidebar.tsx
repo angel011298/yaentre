@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from './nav-items';
+import { Icon } from '@/components/ui/Icon';
 
 /** Barra lateral de escritorio (F11 Task 9, UIUX Spec §7.5 `Sidebar`).
  *  Oculta en móvil — ahí manda `BottomNav`. */
@@ -28,9 +29,7 @@ export function Sidebar() {
                   : 'text-text-secondary hover:bg-elevated hover:text-text-primary'
               }`}
             >
-              <span className="text-lg" aria-hidden>
-                {item.icon}
-              </span>
+              <Icon name={item.icon} className="h-5 w-5" />
               {item.label}
             </Link>
           );

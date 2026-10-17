@@ -78,7 +78,7 @@ export function SimulatorResult({
         <p className="font-display text-3xl font-bold text-text-primary">
           {data.score}/{data.servedCount}
         </p>
-        {perfectRound && <p className="text-sm font-semibold text-success">¡Ronda perfecta! 🎉</p>}
+        {perfectRound && <p className="text-sm font-semibold text-success">¡Ronda perfecta!</p>}
         <p className="text-sm text-text-secondary">
           Tiempo total: {formatClock(data.elapsedSecs)} · {data.avgSecsPerQuestion}s en promedio
           por pregunta

@@ -1,3 +1,5 @@
+import { Icon } from '@/components/ui/Icon';
+
 /**
  * Insignias permanentes de "materia dominada" (F15 tarea 1). Sin página de
  * Perfil dedicada todavía en la app (el nav la deja `builtRoute:false`), así
@@ -20,7 +22,8 @@ export function MasteredSubjectBadges({
             key={b.subjectId}
             className="flex items-center gap-2 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
           >
-            🎓 {b.subjectName}
+            <Icon name="graduation" className="h-4 w-4" />
+            {b.subjectName}
           </li>
         ))}
       </ul>

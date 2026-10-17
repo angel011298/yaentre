@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { getAdminContext } from '@/lib/admin/context';
 import { listUnresolvedReportedQuestions, REPORT_THRESHOLD } from '@/lib/db/admin-questions';
+import { Icon } from '@/components/ui/Icon';
 
 export const metadata = { title: 'Reportes de reactivos' };
 
@@ -27,7 +28,7 @@ export default async function ReportsPage() {
 
       {questions.length === 0 ? (
         <Card className="p-8 text-center text-text-secondary">
-          No hay reactivos con reportes pendientes por encima del umbral. 🎉
+          No hay reactivos con reportes pendientes por encima del umbral.
         </Card>
       ) : (
         <div className="space-y-3">
@@ -41,8 +42,9 @@ export default async function ReportsPage() {
                   <p className="mt-1 text-sm text-text-primary">
                     <LatexText text={q.stem} />
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-danger">
-                    ⚠️ {q.unresolvedCount} reporte{q.unresolvedCount === 1 ? '' : 's'} sin resolver
+                  <p className="mt-1 flex items-center gap-1.5 text-sm font-semibold text-danger">
+                    <Icon name="alert" className="h-4 w-4" />
+                    {q.unresolvedCount} reporte{q.unresolvedCount === 1 ? '' : 's'} sin resolver
                   </p>
                 </div>
                 <div className="flex shrink-0 flex-wrap items-center gap-2">

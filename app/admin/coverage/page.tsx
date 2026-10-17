@@ -5,6 +5,7 @@ import {
   COVERAGE_GOAL_VERIFIED,
   HEALTHY_AUTO_APPROVAL_RATE,
 } from '@/lib/db/content-coverage';
+import { Icon } from '@/components/ui/Icon';
 
 function pct(n: number, total: number): number {
   if (total === 0) return 0;
@@ -87,8 +88,9 @@ export default async function CoveragePage() {
               </p>
             </div>
             {!globalRateHealthy && (
-              <p className="text-sm text-danger">
-                ⚠️ Por debajo de {HEALTHY_AUTO_APPROVAL_RATE * 100}%: el problema está en el{' '}
+              <p className="flex items-start gap-2 text-sm text-danger">
+                <Icon name="alert" className="mt-0.5 h-4 w-4" />
+                Por debajo de {HEALTHY_AUTO_APPROVAL_RATE * 100}%: el problema está en el{' '}
                 <strong>generador</strong> — mejorar su system prompt, no revisar a mano en
                 volumen.
               </p>
@@ -106,12 +108,14 @@ export default async function CoveragePage() {
           <p className="text-sm text-text-secondary">Todavía no hay reactivos generados.</p>
         ) : (
           <div className="flex flex-wrap items-center gap-4 text-sm">
-            <span className="text-info">
-              ⚓ {report.totalSourced.toLocaleString('es-MX')} con fuente real (
+            <span className="inline-flex items-center gap-1.5 text-info">
+              <Icon name="anchor" className="h-4 w-4" />
+              {report.totalSourced.toLocaleString('es-MX')} con fuente real (
               {pct(report.totalSourced, totalGrounded)}%)
             </span>
-            <span className="text-warning">
-              📖 {report.totalTemarioOnly.toLocaleString('es-MX')} solo temario (
+            <span className="inline-flex items-center gap-1.5 text-warning">
+              <Icon name="book" className="h-4 w-4" />
+              {report.totalTemarioOnly.toLocaleString('es-MX')} solo temario (
               {pct(report.totalTemarioOnly, totalGrounded)}%)
             </span>
           </div>
@@ -143,8 +147,11 @@ export default async function CoveragePage() {
                       style={{ width: `${formatPct}%` }}
                     />
                   </div>
-                  <span className="w-32 shrink-0 text-right text-text-muted">
-                    {f.autoApproved}✓ / {f.unpublished}✋ ({formatPct}%)
+                  <span
+                    className="w-32 shrink-0 text-right text-text-muted"
+                    title="aprobados / no publicados"
+                  >
+                    {f.autoApproved} aprob. / {f.unpublished} no pub. ({formatPct}%)
                   </span>
                 </div>
               );
@@ -183,15 +190,19 @@ export default async function CoveragePage() {
                             style={{ width: `${subjectPct}%` }}
                           />
                         </div>
-                        <span className="w-28 shrink-0 text-right text-text-muted">
-                          {subject.verified}✓ / {subject.pending}⧗ ({subjectPct}%)
+                        <span
+                          className="w-28 shrink-0 text-right text-text-muted"
+                          title="verificados / pendientes"
+                        >
+                          {subject.verified} verif. / {subject.pending} pend. ({subjectPct}%)
                         </span>
                       </div>
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pl-40 text-xs text-text-muted">
                         <span>{rateLabel(subject.autoApproved, subject.unpublished)}</span>
                         {grounded > 0 && (
-                          <span>
-                            ⚓ {subject.sourced} con fuente / {subject.temarioOnly} solo temario
+                          <span className="inline-flex items-center gap-1">
+                            <Icon name="anchor" className="h-3.5 w-3.5" />
+                            {subject.sourced} con fuente / {subject.temarioOnly} solo temario
                           </span>
                         )}
                         <span>

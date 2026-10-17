@@ -5,6 +5,7 @@ import { changePasswordAction } from '@/app/actions/profile';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { TextField } from '@/components/ui/TextField';
+import { Icon } from '@/components/ui/Icon';
 
 /**
  * G65: el formulario pide ahora la contraseña ACTUAL además de la nueva. Sin
@@ -68,7 +69,12 @@ export function ChangePasswordForm() {
           </Button>
         </div>
       </form>
-      {success && <p role="status" className="mt-2 text-sm text-success">Tu contraseña se actualizó ✓</p>}
+      {success && (
+        <p role="status" className="mt-2 inline-flex items-center gap-1.5 text-sm text-success">
+          <Icon name="check" className="h-4 w-4" />
+          Tu contraseña se actualizó
+        </p>
+      )}
       {error && <p role="alert" className="mt-2 text-sm text-danger">{error}</p>}
     </Card>
   );

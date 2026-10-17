@@ -201,6 +201,12 @@ body {
    contenido real, ver ese archivo) — esto es el remanente menor. */
 .yaentre-heatmap {
   min-height: 222px;
+  /* G101: sin tope, en escritorio el SVG se estiraba a todo el ancho de la
+     tarjeta (casillas de 40 px y etiquetas de 24 px) y su alto se salía de los
+     254 px reservados: el calendario quedaba recortado. 26rem es el ancho al
+     que 90 días caben en ese alto; se centra. */
+  max-width: 26rem;
+  margin-inline: auto;
 }
 .yaentre-heatmap .react-calendar-heatmap text {
   fill: var(--text-muted);
