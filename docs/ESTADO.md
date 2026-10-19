@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-10-17 · Última fase ejecutada: **G101 (COMPLETADA en código; las 200 carreras oficiales —128 UNAM + 72 IPN— ya están en la base de producción, con 18 nombres inventados del IPN corregidos y 2 inexistentes retiradas; interfaz sin emojis —165 en 59 archivos, ahora íconos SVG—, selector de carrera con búsqueda en onboarding y perfil, y 5 defectos de UX/UI corregidos —el más visible: `text-base` compilaba a un COLOR, no a un tamaño. Interfaz verificada en local (servidor en UTC); falta desplegarla. Ver §G101.)**
+Última actualización: 2026-10-17 · Última fase ejecutada: **G101 (COMPLETADA en código; las 200 carreras oficiales —128 UNAM + 72 IPN— ya están en la base de producción, con 18 nombres inventados del IPN corregidos y 2 inexistentes retiradas; interfaz sin emojis —165 en 59 archivos, ahora íconos SVG—, selector de carrera con búsqueda en onboarding y perfil, y 5 defectos de UX/UI corregidos —el más visible: `text-base` compilaba a un COLOR, no a un tamaño. Desplegada el 2026-10-19 y verificada en producción. Ver §G101.)**
 
 <details><summary>Historial: G100 (2026-10-15)</summary>
 
@@ -430,7 +430,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
-| G101 | Todas las carreras UNAM/IPN, sin emojis y mejoras de UX/UI | **COMPLETADA en código; carreras ya en producción; interfaz pendiente de desplegar.** | (G101) | Catálogo oficial (`career-catalog.ts`): 128 UNAM (DGAE) + 72 IPN; sincronización `pnpm content:careers` que renombra conservando id/metas/aciertos, crea sin inventar aciertos y retira solo inexistentes sin alumnos. Producción: 200 carreras, metas intactas. `CareerPicker` con búsqueda por carrera o plantel. 165 emojis → `Icon.tsx`; íconos de la app con Tino en SVG. `text-base` = color de fondo en este tema (banner Early Bird ilegible). `test:unit` 1073 (local y UTC), `verify:routes` 62/62, E2E 3/3. |
+| G101 | Todas las carreras UNAM/IPN, sin emojis y mejoras de UX/UI | **COMPLETADA y DESPLEGADA (2026-10-19); verificada en producción.** | 83ee6a6 | Catálogo oficial (`career-catalog.ts`): 128 UNAM (DGAE) + 72 IPN; sincronización `pnpm content:careers` que renombra conservando id/metas/aciertos, crea sin inventar aciertos y retira solo inexistentes sin alumnos. Producción: 200 carreras, metas intactas. `CareerPicker` con búsqueda por carrera o plantel. 165 emojis → `Icon.tsx`; íconos de la app con Tino en SVG. `text-base` = color de fondo en este tema (banner Early Bird ilegible). `test:unit` 1073 (local y UTC), `verify:routes` 62/62, E2E 3/3. |
 | G100 | Admin maestro en cualquier dispositivo, sesión sin rastro y auditoría funcional | **COMPLETADA y DESPLEGADA (2026-10-15, equipo de Vercel `ya-entre`); verificada en producción.** | c3ad5f2, 10a2d8d | 🔴 5 páginas de /admin sin guard propio entregaban su contenido a cualquier sesión de alumno en el cuerpo del 307 (6 correos en usuarios, la bitácora, la cola sin publicar) y con 200 en navegación RSC parcial — medido en local Y en producción; guard en la primera línea de cada página + prueba estática `pages-guard` + comprobación en `verify:routes`. 🔴 Next 16.2.12 → 16.3.8 (3 RCE críticas + SSRF); `pnpm audit` de 42 (3 críticas/15 altas) a 7 (0/1, `braces` sin parche, solo ESLint). Admin aterriza en `/admin` (antes: tablero de alumno sin enlace al panel), insignia de maestro, inicio del panel, «Cerrar sesión» en el panel. Sesión: cookie sin caducidad (antes 400 días), tope 12 h por `amr`, `signOut` LOCAL (antes global), `Clear-Site-Data`, SW sin pantallas, PostHog en sessionStorage. Middleware: el token refrescado nunca llegaba al navegador. Banner de cookies tapaba «Siguiente» del simulador. `test:unit` 1003, `verify:session-no-trace` 49/49, `verify:routes` 62/62, E2E simulador 3/3. |
 | G99b | Migración a servidor propio (Docker + Cloudflare Tunnel) | **EN CURSO — imagen construida y verificada en local (amd64 y arm64); despliegue en Oracle y cutover pendientes, paso a paso con el dueño (ver §G99b).** | (G99b) | Imagen `standalone` endurecida: 24/24 capturas idénticas píxel a píxel al build de Vercel en ambas arquitecturas, 0 secretos en las 17 capas descomprimidas (con control positivo), usuario no root, sin puertos publicados. Hallazgo de seguridad: detrás de Cloudflare el límite de tasa por IP se evadía falseando `x-vercel-forwarded-for`/`x-forwarded-for` (rojo medido: 70 peticiones sin un 429) → `TRUSTED_PROXY=cloudflare` + `cf-connecting-ip`; sonda nueva `pnpm security:ip-spoof`. Además: sharp sin `libvips` en la salida `standalone`, `deploy.sh` sin bit de ejecución y con un rollback que no podía funcionar, `.dockerignore` que dejaba pasar un perfil de Chrome con cookies, `alpine:3.20` sin soporte, pnpm 10 vs 11. `test:unit` 896. |
 | G99 | Admin maestro: usuarios, bitácora, cortesías, bóveda y notas | **COMPLETADA en código y desplegada (cortes A1, A2, B + notas). Incidente de hosting abierto: cuenta de Vercel pausada por ISR Writes (ver §G99).** | 423ca6f, a492a84, 57d87ea, 241de3b, f9b61e9 | Panel de administración con bitácora persistente, cortesías que no consumen licencias, bóveda de archivos con previsualización de .xlsx (exceljs 4.4.0 exacta; fórmulas no se evalúan), notas persistentes en Postgres (migración 0018) y subida de .html servida siempre como text/plain. Hallazgo de seguridad: la sonda `C-sin-id-en-el-borde` llevaba inerte desde G65 por un carácter BACKSPACE (U+0008) dentro de la regex; corregida (22 → 141 archivos revisados). Cifras de pruebas citadas de los mensajes de commit: `test:unit` 891, `security:authz` 10/10. |
@@ -529,7 +529,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 ## G101 — Todas las carreras de la UNAM y el IPN, sin emojis y mejoras de UX/UI (2026-10-17)
 
-**Modelo real:** `claude-opus-5-5` · **Estado:** COMPLETADA en código; las carreras ya están en la base de PRODUCCIÓN; la interfaz nueva está verificada contra un build local con servidor en UTC (como Vercel) y queda pendiente de desplegar.
+**Modelo real:** `claude-opus-5-5` · **Estado:** COMPLETADA y DESPLEGADA (`83ee6a6` → `dpl_DcT4sMjNoJeNx5bzs3v3MpWEZgra`, 2026-10-19) y verificada en `https://yaentre.com` (ver §7).
 
 ### 0. Encargo
 1. Todas las carreras, sin excepción, de la UNAM y el IPN, en el onboarding y donde aplique.
@@ -570,9 +570,16 @@ nunca actualizó la línea 3 de este documento.)*
 - Cuentas fixture: contraseñas temporales con el hash guardado dentro de la base y restaurado (0 con la temporal al cierre); perfiles devueltos a su estado.
 
 ### 6. Pendientes
-1. **Desplegar** la interfaz (`vercel --prod --scope ya-entre`). Mientras tanto, producción ya muestra las 200 carreras con el selector anterior (una lista de botones, funcional).
+1. ~~Desplegar la interfaz~~ — hecho, §7.
 2. Los aciertos mínimos de las 155 carreras nuevas: no se inventaron. Se pueden ir agregando como anclas en los seeds, con su fuente.
 3. `Area.iconEmoji` y `Subject.iconEmoji` siguen en la base (ya no se pintan en ninguna parte).
+
+### 7. Despliegue y verificación en producción (2026-10-19)
+- `83ee6a6` desplegado con `vercel --prod --scope ya-entre` (árbol limpio; los dos archivos sin seguimiento se apartaron durante la subida) → `dpl_DcT4sMjNoJeNx5bzs3v3MpWEZgra`, READY y con alias en `yaentre.com`.
+- `pnpm verify:routes` contra `https://yaentre.com`: **62/62** (sin errores de consola ni de hidratación con el navegador en hora de México y Vercel en UTC; la protección de `/admin` de G100 intacta).
+- Comprobación en vivo con navegador real: el onboarding muestra **39/31/24/34** carreras en las áreas de la UNAM y **46/12/14** en las ramas del IPN (lo mismo que el catálogo); el nombre se lee en escritorio (color del texto, 16 px); la búsqueda «actuaria» encuentra 1 carrera, con su plantel; el perfil lista las 39 de su área con la carrera actual marcada; **ningún emoji** en el texto pintado de 9 pantallas (`/`, `/precios`, `/login`, `/app`, `/practicar`, `/simulador`, `/app/progreso`, `/app/perfil`, `/paywall`); «Tu actividad» en el tablero; los 4 íconos de la app responden imagen.
+- Un rojo de la sonda (38 de 39 en el perfil) fue de la propia sonda: filtraba las opciones por «Facultad|FES|ENES|Instituto» y 2 carreras se imparten en un «Centro de…». Contando los botones de la lista: 39.
+- Cuentas fixture restauradas por efecto (0 con contraseña temporal, perfiles en su estado original).
 
 ## G100 — Admin maestro en cualquier dispositivo, sesión sin rastro y auditoría funcional (2026-10-15)
 
