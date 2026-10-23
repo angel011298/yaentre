@@ -72,7 +72,8 @@
     "perf:audit": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-audit.ts",
     "perf:pool": "tsx --tsconfig scripts/tsconfig.perf.json scripts/perf-pool-probe.ts",
     "perf:lighthouse-prod": "node scripts/g74/lighthouse-prod.mjs",
-    "brand:favicon": "tsx scripts/brand/build-favicon.ts"
+    "brand:favicon": "tsx scripts/brand/build-favicon.ts",
+    "verify:brand": "tsx --tsconfig scripts/tsconfig.perf.json scripts/g102/app-shots.ts"
   },
   "dependencies": {
     "@number-flow/react": "0.6.1",
