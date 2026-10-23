@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { Logo } from '@/components/brand/Logo';
 
 export function AuthShell({
   title,
@@ -15,12 +17,16 @@ export function AuthShell({
     // arbitraria con env() — esa sintaxis rompe el escáner de CSS (F11/F18).
     <div
       data-theme="dark"
-      className="flex min-h-screen items-center justify-center bg-base px-4 text-text-primary"
+      className="flex min-h-screen flex-col items-center justify-center gap-6 bg-base px-4 text-text-primary"
       style={{
         paddingTop: 'max(3rem, env(safe-area-inset-top))',
         paddingBottom: 'max(3rem, env(safe-area-inset-bottom))',
       }}
     >
+      {/* Marca v1: el logo arriba de la tarjeta, enlazado al inicio. */}
+      <Link href="/" className="flex min-h-touch items-center">
+        <Logo size={40} />
+      </Link>
       {/* G63: landmark `<main>` — antes era solo `<div>`, sin punto de
           referencia para saltar a contenido con lector de pantalla. */}
       <main className="w-full max-w-sm rounded-xl border border-border-subtle bg-surface p-8 shadow-md">

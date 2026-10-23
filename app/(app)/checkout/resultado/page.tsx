@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Tino } from '@/components/mascot/Tino';
+import { Logo } from '@/components/brand/Logo';
 import {
   CanceledView,
   FailedView,
@@ -75,7 +75,8 @@ export default async function CheckoutResultadoPage({
 function ResultNotice({ message }: { message: string }) {
   return (
     <div className="flex flex-col items-center gap-4 py-12 text-center">
-      <Tino state="attentive" size={80} />
+      {/* Marca v1: en pagos va el logo sin personaje, nunca la mascota. */}
+      <Logo variante="sin-personaje" size={30} />
       <p className="max-w-sm text-sm text-text-secondary">{message}</p>
       <Link href="/app" className="text-sm font-semibold text-brand-soft hover:underline">
         Volver a mi tablero

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { PaymentMethod, SubscriptionPlan } from '@prisma/client';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { Tino } from '@/components/mascot/Tino';
+import { Logo } from '@/components/brand/Logo';
 import type { SubscriptionForResult } from '@/lib/db/billing';
 import { RetryButton } from './RetryButton';
 import { StatusPoller } from './StatusPoller';
@@ -62,7 +62,8 @@ export function SuccessView({ subscription }: { subscription: SubscriptionForRes
         currency="MXN"
         plan={subscription.plan}
       />
-      <Tino state="celebrating" size={96} />
+      {/* Marca v1: en pagos va el logo sin personaje, nunca la mascota. */}
+      <Logo variante="sin-personaje" size={30} />
       <div className="space-y-1">
         <h1 className="font-display text-2xl font-bold text-text-primary">
           ¡Gracias! Ya eres parte de YaEntre
@@ -105,7 +106,7 @@ export function PendingView({
   return (
     <div className="flex flex-col items-center gap-5 py-8 text-center">
       <StatusPoller />
-      <Tino state="encouraging" size={88} />
+      <Logo variante="sin-personaje" size={30} />
       <div className="space-y-1">
         <h1 className="font-display text-2xl font-bold text-text-primary">Tu pago está pendiente</h1>
         <p className="max-w-sm text-sm text-text-secondary">
@@ -145,7 +146,7 @@ export function PendingView({
 export function FailedView({ plan, salesOpen }: { plan: SubscriptionPlan; salesOpen: boolean }) {
   return (
     <div className="flex flex-col items-center gap-5 py-8 text-center">
-      <Tino state="encouraging" size={88} />
+      <Logo variante="sin-personaje" size={30} />
       <div className="space-y-1">
         <h1 className="font-display text-2xl font-bold text-text-primary">El pago no se completó</h1>
         <p className="max-w-sm text-sm text-text-secondary">
@@ -165,7 +166,7 @@ export function FailedView({ plan, salesOpen }: { plan: SubscriptionPlan; salesO
 export function CanceledView({ plan, salesOpen }: { plan: SubscriptionPlan; salesOpen: boolean }) {
   return (
     <div className="flex flex-col items-center gap-5 py-8 text-center">
-      <Tino state="attentive" size={88} />
+      <Logo variante="sin-personaje" size={30} />
       <div className="space-y-1">
         <h1 className="font-display text-2xl font-bold text-text-primary">Cancelaste el pago</h1>
         <p className="max-w-sm text-sm text-text-secondary">

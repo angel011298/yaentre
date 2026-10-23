@@ -1,6 +1,11 @@
 import { BRAND_PRIMARY_HEX } from './colors';
 
 /**
+ * @deprecated Marca v1.0 (G102): los íconos, el favicon y la imagen de redes
+ * usan el logo nuevo (`logo-mark.ts`). Este archivo se conserva SOLO como
+ * plan de reversa a la marca anterior — nada lo importa; ver
+ * docs/ESTADO.md §G102.
+ *
  * G101 — marca de Tino para los íconos de la app (favicon, PWA, Apple) y la
  * imagen de vista previa en redes. Antes era el emoji 🦉: Satori (`next/og`)
  * lo dibujaba con la fuente de emojis que descarga en cada render, distinto
@@ -25,6 +30,7 @@ const OWL_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
 <path d="M36 78 Q50 88 64 78" stroke="${BRAND_PRIMARY_HEX}" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.35"/>
 </svg>`;
 
+/** @deprecated Usar `LOGO_ON_GRADIENT_DATA_URI` de `logo-mark.ts`. */
 export const OWL_MARK_DATA_URI = `data:image/svg+xml;base64,${btoa(OWL_SVG)}`;
 
 /** Proporción del dibujo (ancho / alto). */

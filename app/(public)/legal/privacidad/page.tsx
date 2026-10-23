@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacidadPage() {
   return (
-    <PublicPageShell>
+    <PublicPageShell logo="sin-personaje">
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-3xl font-bold text-text-primary">Aviso de privacidad</h1>
         <p className="mt-4 text-sm text-text-secondary italic">
@@ -26,7 +26,7 @@ export default function PrivacidadPage() {
             <p>
               <strong className="text-text-primary">EDITAR ANTES DE PUBLICAR:</strong> Razón social exacta de la empresa, domicilio legal, correo y teléfono.
               {' '}
-              <span className="inline-block bg-yellow-100 px-2 py-1 text-xs">
+              <span className="inline-block bg-warning-subtle px-2 py-1 text-xs">
                 PLACEHOLDER: YaEntre SAS de CV, Av. Ejemplo 123, México, CDMX | contacto@yaentre.com | +52 55 1234 5678
               </span>
             </p>
@@ -125,7 +125,7 @@ export default function PrivacidadPage() {
             </ul>
             <p>
               Si no encuentras la opción que buscas, escríbenos a{' '}
-              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand-fg hover:underline">
                 hola@yaentre.com
               </a>{' '}
               con tu solicitud.
@@ -181,13 +181,13 @@ export default function PrivacidadPage() {
             <ul>
               <li>
                 Correo:{' '}
-                <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+                <a href="mailto:hola@yaentre.com" className="font-semibold text-brand-fg hover:underline">
                   hola@yaentre.com
                 </a>
               </li>
               <li>
                 Dirección:{' '}
-                <span className="inline-block bg-yellow-100 px-2 py-1 text-xs">
+                <span className="inline-block bg-warning-subtle px-2 py-1 text-xs">
                   PLACEHOLDER: Av. Ejemplo 123, México, CDMX
                 </span>
               </li>

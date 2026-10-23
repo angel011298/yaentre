@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Logo } from '@/components/brand/Logo';
 
 export function PublicFooter() {
   const year = new Date().getFullYear();
@@ -8,7 +9,7 @@ export function PublicFooter() {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <p className="font-display text-lg font-bold text-brand">YaEntre</p>
+            <Logo size={32} />
             <p className="mt-1 max-w-xs text-sm text-text-secondary">
               Preparación para tu examen de admisión con IA — UNAM, IPN, UAM y CENEVAL.
             </p>
@@ -17,28 +18,28 @@ export function PublicFooter() {
           <div className="flex flex-wrap gap-x-8 gap-y-4 text-sm">
             <div className="space-y-2">
               <p className="font-semibold text-text-primary">Producto</p>
-              <Link href="/precios" className="block text-text-secondary hover:text-brand">
+              <Link href="/precios" className="block text-text-secondary hover:text-brand-fg">
                 Precios
               </Link>
-              <Link href="/registro" className="block text-text-secondary hover:text-brand">
+              <Link href="/registro" className="block text-text-secondary hover:text-brand-fg">
                 Crear cuenta
               </Link>
-              <Link href="/login" className="block text-text-secondary hover:text-brand">
+              <Link href="/login" className="block text-text-secondary hover:text-brand-fg">
                 Iniciar sesión
               </Link>
             </div>
             <div className="space-y-2">
               <p className="font-semibold text-text-primary">Legal</p>
-              <Link href="/legal/terminos" className="block text-text-secondary hover:text-brand">
+              <Link href="/legal/terminos" className="block text-text-secondary hover:text-brand-fg">
                 Términos y condiciones
               </Link>
-              <Link href="/legal/privacidad" className="block text-text-secondary hover:text-brand">
+              <Link href="/legal/privacidad" className="block text-text-secondary hover:text-brand-fg">
                 Aviso de privacidad
               </Link>
             </div>
             <div className="space-y-2">
               <p className="font-semibold text-text-primary">Contacto</p>
-              <a href="mailto:hola@yaentre.com" className="block text-text-secondary hover:text-brand">
+              <a href="mailto:hola@yaentre.com" className="block text-text-secondary hover:text-brand-fg">
                 hola@yaentre.com
               </a>
             </div>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function TerminosPage() {
   return (
-    <PublicPageShell>
+    <PublicPageShell logo="sin-personaje">
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-3xl font-bold text-text-primary">Términos y condiciones</h1>
         <p className="mt-4 text-sm text-text-secondary italic">
@@ -92,7 +92,7 @@ export default function TerminosPage() {
             </ul>
             <p>
               Para reclamar: escribe a{' '}
-              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand-fg hover:underline">
                 hola@yaentre.com
               </a>{' '}
               con tu constancia de resultado oficial.
@@ -207,7 +207,7 @@ export default function TerminosPage() {
             <h2>11. Resolución de disputas</h2>
             <p>
               Si tienes una disputa sobre tu account, pago o uso de YaEntre, escribe primero a{' '}
-              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+              <a href="mailto:hola@yaentre.com" className="font-semibold text-brand-fg hover:underline">
                 hola@yaentre.com
               </a>{' '}
               con una descripción clara del problema. Intentaremos resolverlo en 15 días.
@@ -234,13 +234,13 @@ export default function TerminosPage() {
             <ul>
               <li>
                 Correo:{' '}
-                <a href="mailto:hola@yaentre.com" className="font-semibold text-brand hover:underline">
+                <a href="mailto:hola@yaentre.com" className="font-semibold text-brand-fg hover:underline">
                   hola@yaentre.com
                 </a>
               </li>
               <li>
                 Dirección:{' '}
-                <span className="inline-block bg-yellow-100 px-2 py-1 text-xs">
+                <span className="inline-block bg-warning-subtle px-2 py-1 text-xs">
                   PLACEHOLDER: Av. Ejemplo 123, México, CDMX
                 </span>
               </li>

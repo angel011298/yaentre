@@ -15,13 +15,21 @@ export interface EmailContent {
   html: string;
 }
 
-const BRAND_COLOR = '#7C3AED';
+/**
+ * Marca v1.0 (G102): los correos llevan el logo SIN personaje — «YaEntre» en
+ * tinta con la barra Cempasúchil debajo (alto 0.13× el texto, a 0.1×). Es el
+ * de pagos y el de madres y padres, y un correo es ambas cosas a menudo. Va
+ * en HTML, no como imagen: casi todos los clientes bloquean imágenes de
+ * entrada y el logo desaparecería justo en el primer correo.
+ */
+const INK = '#131119';
+const ACCENT = '#FC9712';
 
 function wrapEmail(bodyHtml: string, unsubscribeUrl?: string): string {
   return `
 <div style="font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a1a;">
   <div style="padding: 24px 0; text-align: center;">
-    <span style="font-size: 20px; font-weight: 700; color: ${BRAND_COLOR};">YaEntre</span>
+    <span style="display: inline-block; font-family: Outfit, -apple-system, Segoe UI, Roboto, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: ${INK};">YaEntre<span style="display: block; height: 3px; margin-top: 2px; border-radius: 3px; background: ${ACCENT};"></span></span>
   </div>
   <div style="background: #ffffff; border: 1px solid #e5e5e5; border-radius: 16px; padding: 24px;">
     ${bodyHtml}

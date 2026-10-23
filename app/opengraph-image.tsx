@@ -1,17 +1,29 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 import { BRAND_GRADIENT } from '@/lib/brand/colors';
-import { OWL_MARK_DATA_URI, OWL_MARK_RATIO } from '@/lib/brand/owl-mark';
+import { LOGO_ON_GRADIENT_DATA_URI } from '@/lib/brand/logo-mark';
 
 export const alt = 'YaEntre — Tu entrenador de admisión con IA';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
+/** Alto del símbolo en el logo horizontal. */
+const MARK = 200;
+
 /**
- * Imagen de vista previa (F10 Task 3) generada al vuelo — sin depender de un
- * archivo de diseño que todavía no existe. Cascada por defecto a `/precios` y
- * cualquier otra ruta pública que no defina la suya propia.
+ * Imagen de vista previa (F10 Task 3) generada al vuelo. Cascada por defecto a
+ * `/precios` y cualquier otra ruta pública que no defina la suya propia.
+ *
+ * Marca v1.0: el logo HORIZONTAL blanco sobre el degradado violeta — símbolo +
+ * «YaEntre» en Outfit 700 a 0.7× su alto, separados 0.2× (docs/marca). El
+ * texto es texto real, así que Satori necesita la fuente: se lee el TTF del
+ * repo (Satori no acepta woff2 y `next/font` no le sirve). La frase de abajo
+ * es la que ya tenía la imagen anterior.
  */
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const outfitBold = await readFile(join(process.cwd(), 'src/lib/brand/fonts/Outfit-Bold.ttf'));
+
   return new ImageResponse(
     (
       <div
@@ -23,36 +35,33 @@ export default function OpengraphImage() {
           alignItems: 'center',
           justifyContent: 'center',
           background: BRAND_GRADIENT,
-          fontFamily: 'sans-serif',
+          fontFamily: 'Outfit',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 140,
-            height: 140,
-            borderRadius: '9999px',
-            background: 'rgba(255,255,255,0.15)',
-            fontSize: 72,
-            marginBottom: 32,
-          }}
-        >
-          {/* G101: Tino en SVG, no el emoji del búho (ver src/lib/brand/owl-mark.ts). */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: Math.round(MARK * 0.2) }}>
           {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-          <img src={OWL_MARK_DATA_URI} height={96} width={Math.round(96 * OWL_MARK_RATIO)} />
-        </div>
-        <div style={{ display: 'flex', fontSize: 88, fontWeight: 800, color: 'white' }}>
-          YaEntre
+          <img src={LOGO_ON_GRADIENT_DATA_URI} width={MARK} height={MARK} />
+          <div
+            style={{
+              display: 'flex',
+              fontSize: Math.round(MARK * 0.7),
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
+              lineHeight: 1,
+              color: '#FFFFFF',
+            }}
+          >
+            YaEntre
+          </div>
         </div>
         <div
           style={{
             display: 'flex',
-            marginTop: 20,
-            fontSize: 32,
-            color: 'rgba(255,255,255,0.9)',
-            maxWidth: 820,
+            marginTop: 36,
+            fontSize: 34,
+            fontWeight: 700,
+            color: 'rgba(255,255,255,0.92)',
+            maxWidth: 860,
             textAlign: 'center',
           }}
         >
@@ -60,6 +69,9 @@ export default function OpengraphImage() {
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [{ name: 'Outfit', data: outfitBold, weight: 700, style: 'normal' }],
+    }
   );
 }

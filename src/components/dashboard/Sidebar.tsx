@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from './nav-items';
 import { Icon } from '@/components/ui/Icon';
+import { Logo } from '@/components/brand/Logo';
 
 /** Barra lateral de escritorio (F11 Task 9, UIUX Spec §7.5 `Sidebar`).
  *  Oculta en móvil — ahí manda `BottomNav`. */
@@ -12,8 +13,8 @@ export function Sidebar() {
 
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-56 flex-col border-r border-border-subtle bg-surface p-4 lg:flex">
-      <Link href="/" className="mb-8 px-2 font-display text-xl font-bold text-brand-soft">
-        YaEntre
+      <Link href="/" className="mb-8 flex min-h-touch items-center px-2">
+        <Logo size={34} />
       </Link>
       <nav className="flex flex-col gap-1">
         {NAV_ITEMS.map((item) => {
@@ -25,7 +26,7 @@ export function Sidebar() {
               aria-current={active ? 'page' : undefined}
               className={`flex min-h-touch items-center gap-3 rounded-md px-3 text-sm font-semibold transition-all ${
                 active
-                  ? 'bg-brand-tint text-brand'
+                  ? 'bg-brand-tint text-brand-fg'
                   : 'text-text-secondary hover:bg-elevated hover:text-text-primary'
               }`}
             >

@@ -12,17 +12,24 @@ import { PublicHeader } from './PublicHeader';
  * compartido les inyectaría este header/footer de marketing sin que lo
  * pidan — este componente se importa explícitamente solo donde se necesita.
  */
-export function PublicPageShell({ children }: { children: ReactNode }) {
+export function PublicPageShell({
+  children,
+  logo,
+}: {
+  children: ReactNode;
+  /** Documentos legales: `sin-personaje` (docs/marca: ahí no va Chilo). */
+  logo?: 'personaje' | 'sin-personaje';
+}) {
   return (
     <div data-theme="light" className="flex min-h-screen flex-col bg-base text-text-primary">
       {/* G63: saltar el header de navegación con el teclado. */}
       <a
         href="#contenido-principal"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-on-brand"
       >
         Saltar al contenido
       </a>
-      <PublicHeader />
+      <PublicHeader logo={logo} />
       <main id="contenido-principal" className="flex-1">
         {children}
       </main>

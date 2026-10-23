@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { SignOutButton } from '@/components/auth/SignOutButton';
+import { Logo } from '@/components/brand/Logo';
 
 /**
  * Envoltura del panel parental (F16 tarea 3): modo claro fijo, a diferencia
  * del resto de la app del alumno (UIUX Spec: "Panel parental | Light | No").
- * Deliberadamente ligera — sin Sidebar/BottomNav/Tino del alumno, sin
+ * Deliberadamente ligera — sin Sidebar/BottomNav/Chilo del alumno, sin
  * gamificación: el tono aquí es informativo/tranquilizador, no motivacional
  * (F16 tarea 3, público distinto al del alumno).
  *
@@ -27,12 +28,14 @@ export function ParentShell({
           navegador integrado de redes sociales (donde muchos padres lo abren). */}
       <header className="yaentre-safe-top border-b border-border-subtle bg-surface">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 py-3">
-          <Link href="/tutor" className="font-display text-lg font-bold text-brand">
-            YaEntre · Panel del tutor
+          {/* Marca v1: con madres y padres va el logo SIN personaje. */}
+          <Link href="/tutor" className="flex min-h-touch items-center gap-3">
+            <Logo variante="sin-personaje" size={22} />
+            <span className="text-sm font-semibold text-text-secondary">Panel del tutor</span>
           </Link>
           <div className="flex items-center gap-4">
             {studentSwitcher}
-            <SignOutButton className="inline-flex min-h-touch items-center text-sm font-semibold text-text-muted hover:text-brand" />
+            <SignOutButton className="inline-flex min-h-touch items-center text-sm font-semibold text-text-muted hover:text-brand-fg" />
           </div>
         </div>
       </header>

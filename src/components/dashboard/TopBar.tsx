@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Logo } from '@/components/brand/Logo';
 import { StreakFlame } from '@/components/gamification/StreakFlame';
 
 /** Barra superior (F11 Task 4 + UIUX Spec §7.5 `TopBar`): logo, racha
@@ -21,8 +22,8 @@ export function TopBar({
 }) {
   return (
     <header className="yaentre-safe-top sticky top-0 z-20 flex items-center justify-between border-b border-border-subtle bg-surface/90 px-4 py-3 backdrop-blur lg:pl-60">
-      <Link href="/app" className="font-display text-lg font-bold text-brand-soft lg:hidden">
-        YaEntre
+      <Link href="/app" className="flex min-h-touch items-center lg:hidden">
+        <Logo size={32} />
       </Link>
       <div className="ml-auto flex items-center gap-4">
         {isAdmin && (
@@ -36,7 +37,7 @@ export function TopBar({
         <StreakFlame days={streak} />
         <Link
           href="/app/perfil"
-          className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-brand-tint text-sm font-bold text-brand"
+          className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-brand-tint text-sm font-bold text-brand-fg"
           aria-label="Perfil"
         >
           {avatarUrl ? (
