@@ -1,0 +1,321 @@
+/* YaEntre — Sistema de color v1.0 (oct 2026)
+   Ancla de marca: Violeta #7C3AED. Acento: Cempasúchil #FC9712.
+   Uso (Tailwind 4): importar DESPUÉS de @import "tailwindcss".
+   Tema por atributo: <html data-theme="dark"> (alumno, por defecto) o data-theme="light" (madres/padres).
+   Nombres semánticos compatibles con app/globals.css actual (--bg-*, --text-*, --brand-*, --on-*). */
+
+/* 1. Primitivos (no usar directo en componentes: usar los semánticos) */
+:root {
+  /* Violeta (marca) */
+  --ye-violeta-50: #F5F3FF;
+  --ye-violeta-100: #EDE9FE;
+  --ye-violeta-200: #DDD6FE;
+  --ye-violeta-300: #C4B5FD;
+  --ye-violeta-400: #A78BFA;
+  --ye-violeta-500: #8B5CF6;
+  --ye-violeta-600: #7C3AED;
+  --ye-violeta-700: #6D28D9;
+  --ye-violeta-800: #5B21B6;
+  --ye-violeta-900: #4C1D95;
+  --ye-violeta-950: #2E1065;
+  /* Cempasúchil (acento) */
+  --ye-cempasuchil-50: #FFF9F3;
+  --ye-cempasuchil-100: #FFEFE2;
+  --ye-cempasuchil-200: #FFE0C5;
+  --ye-cempasuchil-300: #FECA9A;
+  --ye-cempasuchil-400: #FEB165;
+  --ye-cempasuchil-500: #FC9712;
+  --ye-cempasuchil-600: #D7810F;
+  --ye-cempasuchil-700: #AC6506;
+  --ye-cempasuchil-800: #864E05;
+  --ye-cempasuchil-900: #6C3E01;
+  --ye-cempasuchil-950: #412300;
+  /* Neutro violáceo */
+  --ye-neutro-0: #FFFFFF;
+  --ye-neutro-25: #FBFAFF;
+  --ye-neutro-50: #F6F5FA;
+  --ye-neutro-100: #EEEDF2;
+  --ye-neutro-200: #E1E1E5;
+  --ye-neutro-300: #CFCED8;
+  --ye-neutro-400: #ABA9B3;
+  --ye-neutro-500: #807F88;
+  --ye-neutro-600: #65636C;
+  --ye-neutro-700: #504F57;
+  --ye-neutro-800: #37353E;
+  --ye-neutro-850: #2A2932;
+  --ye-neutro-900: #1F1E26;
+  --ye-neutro-925: #191720;
+  --ye-neutro-950: #131119;
+  --ye-neutro-975: #0C0B13;
+  /* Éxito */
+  --ye-exito-50: #ECFDF5;
+  --ye-exito-100: #D1FAE5;
+  --ye-exito-200: #A7F3D0;
+  --ye-exito-300: #6EE7B7;
+  --ye-exito-400: #34D399;
+  --ye-exito-500: #10B981;
+  --ye-exito-600: #059669;
+  --ye-exito-700: #047857;
+  --ye-exito-800: #065F46;
+  --ye-exito-900: #064E3B;
+  --ye-exito-950: #022C22;
+  /* Aviso */
+  --ye-aviso-50: #FEFCE8;
+  --ye-aviso-100: #FEF9C3;
+  --ye-aviso-200: #FEF08A;
+  --ye-aviso-300: #FDE047;
+  --ye-aviso-400: #FACC15;
+  --ye-aviso-500: #EAB308;
+  --ye-aviso-600: #CA8A04;
+  --ye-aviso-700: #A16207;
+  --ye-aviso-800: #854D0E;
+  --ye-aviso-900: #713F12;
+  --ye-aviso-950: #422006;
+  /* Error */
+  --ye-error-50: #FEF2F2;
+  --ye-error-100: #FEE2E2;
+  --ye-error-200: #FECACA;
+  --ye-error-300: #FCA5A5;
+  --ye-error-400: #F87171;
+  --ye-error-500: #EF4444;
+  --ye-error-600: #DC2626;
+  --ye-error-700: #B91C1C;
+  --ye-error-800: #991B1B;
+  --ye-error-900: #7F1D1D;
+  --ye-error-950: #450A0A;
+  /* Información */
+  --ye-info-50: #F0F9FF;
+  --ye-info-100: #E0F2FE;
+  --ye-info-200: #BAE6FD;
+  --ye-info-300: #7DD3FC;
+  --ye-info-400: #38BDF8;
+  --ye-info-500: #0EA5E9;
+  --ye-info-600: #0284C7;
+  --ye-info-700: #0369A1;
+  --ye-info-800: #075985;
+  --ye-info-900: #0C4A6E;
+  --ye-info-950: #082F49;
+}
+
+/* 2. Tema OSCURO — alumno (por defecto) */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg-base: var(--ye-neutro-950);
+  --bg-surface: var(--ye-neutro-900);
+  --bg-elevated: var(--ye-neutro-850);
+  --bg-input: var(--ye-neutro-925);
+  --border-subtle: var(--ye-neutro-800);
+  --border-strong: var(--ye-neutro-500);
+  --text-primary: var(--ye-neutro-50);
+  --text-secondary: var(--ye-neutro-300);
+  --text-muted: var(--ye-neutro-400);
+  --brand-primary: var(--ye-violeta-600);
+  --brand-primary-hover: var(--ye-violeta-700);
+  --brand-primary-border: var(--ye-violeta-400);
+  --on-brand: var(--ye-neutro-0);
+  --brand-fg: var(--ye-violeta-300);
+  --brand-soft: var(--ye-violeta-400);
+  --brand-tint: #28194C; /* tinte calculado */
+  --focus-ring: var(--ye-violeta-400);
+  --accent: var(--ye-cempasuchil-500);
+  --accent-hover: var(--ye-cempasuchil-400);
+  --accent-strong: var(--ye-cempasuchil-500);
+  --on-accent: var(--ye-cempasuchil-950);
+  --accent-fg: var(--ye-cempasuchil-500);
+  --accent-subtle: #361F08; /* tinte calculado */
+  --success: var(--ye-exito-400);
+  --on-success: var(--ye-exito-950);
+  --success-subtle: #072D1E; /* tinte calculado */
+  --warning: var(--ye-aviso-400);
+  --on-warning: var(--ye-aviso-950);
+  --warning-subtle: #2D2504; /* tinte calculado */
+  --danger: var(--ye-error-400);
+  --on-danger: var(--ye-neutro-950);
+  --danger-subtle: #3E1816; /* tinte calculado */
+  --info: var(--ye-info-400);
+  --on-info: var(--ye-neutro-950);
+  --info-subtle: #06293A; /* tinte calculado */
+  --meter-track: var(--ye-neutro-800);
+  --meter-fill: var(--ye-violeta-400);
+  --qr-ink: var(--ye-violeta-800);
+  --qr-paper: var(--ye-neutro-0);
+  /* alias de compatibilidad con el código actual */
+  --streak: var(--accent);
+  --streak-glow: var(--accent-hover);
+  --on-streak: var(--on-accent);
+}
+
+/* 3. Tema CLARO — panel de madres/padres (por defecto) */
+[data-theme='light'] {
+  color-scheme: light;
+  --bg-base: var(--ye-neutro-25);
+  --bg-surface: var(--ye-neutro-0);
+  --bg-elevated: var(--ye-neutro-0);
+  --bg-input: var(--ye-neutro-50);
+  --border-subtle: var(--ye-neutro-200);
+  --border-strong: var(--ye-neutro-500);
+  --text-primary: var(--ye-neutro-950);
+  --text-secondary: var(--ye-neutro-700);
+  --text-muted: var(--ye-neutro-600);
+  --brand-primary: var(--ye-violeta-600);
+  --brand-primary-hover: var(--ye-violeta-700);
+  --brand-primary-border: var(--ye-violeta-600);
+  --on-brand: var(--ye-neutro-0);
+  --brand-fg: var(--ye-violeta-700);
+  --brand-soft: var(--ye-violeta-600);
+  --brand-tint: var(--ye-violeta-100);
+  --focus-ring: var(--ye-violeta-600);
+  --accent: var(--ye-cempasuchil-500);
+  --accent-hover: var(--ye-cempasuchil-600);
+  --accent-strong: var(--ye-cempasuchil-700);
+  --on-accent: var(--ye-cempasuchil-950);
+  --accent-fg: var(--ye-cempasuchil-800);
+  --accent-subtle: var(--ye-cempasuchil-100);
+  --success: var(--ye-exito-700);
+  --on-success: var(--ye-neutro-0);
+  --success-subtle: var(--ye-exito-50);
+  --warning: var(--ye-aviso-700);
+  --on-warning: var(--ye-neutro-0);
+  --warning-subtle: var(--ye-aviso-50);
+  --danger: var(--ye-error-700);
+  --on-danger: var(--ye-neutro-0);
+  --danger-subtle: var(--ye-error-50);
+  --info: var(--ye-info-700);
+  --on-info: var(--ye-neutro-0);
+  --info-subtle: var(--ye-info-50);
+  --meter-track: var(--ye-neutro-200);
+  --meter-fill: var(--ye-violeta-600);
+  --qr-ink: var(--ye-violeta-800);
+  --qr-paper: var(--ye-neutro-0);
+  --streak: var(--accent);
+  --streak-glow: var(--accent-hover);
+  --on-streak: var(--on-accent);
+}
+
+/* 4. Tailwind 4 — utilidades (bg-brand, text-text-primary, border-border-subtle, bg-violeta-600…) */
+@theme inline {
+  --color-violeta-50: var(--ye-violeta-50);
+  --color-violeta-100: var(--ye-violeta-100);
+  --color-violeta-200: var(--ye-violeta-200);
+  --color-violeta-300: var(--ye-violeta-300);
+  --color-violeta-400: var(--ye-violeta-400);
+  --color-violeta-500: var(--ye-violeta-500);
+  --color-violeta-600: var(--ye-violeta-600);
+  --color-violeta-700: var(--ye-violeta-700);
+  --color-violeta-800: var(--ye-violeta-800);
+  --color-violeta-900: var(--ye-violeta-900);
+  --color-violeta-950: var(--ye-violeta-950);
+  --color-cempasuchil-50: var(--ye-cempasuchil-50);
+  --color-cempasuchil-100: var(--ye-cempasuchil-100);
+  --color-cempasuchil-200: var(--ye-cempasuchil-200);
+  --color-cempasuchil-300: var(--ye-cempasuchil-300);
+  --color-cempasuchil-400: var(--ye-cempasuchil-400);
+  --color-cempasuchil-500: var(--ye-cempasuchil-500);
+  --color-cempasuchil-600: var(--ye-cempasuchil-600);
+  --color-cempasuchil-700: var(--ye-cempasuchil-700);
+  --color-cempasuchil-800: var(--ye-cempasuchil-800);
+  --color-cempasuchil-900: var(--ye-cempasuchil-900);
+  --color-cempasuchil-950: var(--ye-cempasuchil-950);
+  --color-neutro-0: var(--ye-neutro-0);
+  --color-neutro-25: var(--ye-neutro-25);
+  --color-neutro-50: var(--ye-neutro-50);
+  --color-neutro-100: var(--ye-neutro-100);
+  --color-neutro-200: var(--ye-neutro-200);
+  --color-neutro-300: var(--ye-neutro-300);
+  --color-neutro-400: var(--ye-neutro-400);
+  --color-neutro-500: var(--ye-neutro-500);
+  --color-neutro-600: var(--ye-neutro-600);
+  --color-neutro-700: var(--ye-neutro-700);
+  --color-neutro-800: var(--ye-neutro-800);
+  --color-neutro-850: var(--ye-neutro-850);
+  --color-neutro-900: var(--ye-neutro-900);
+  --color-neutro-925: var(--ye-neutro-925);
+  --color-neutro-950: var(--ye-neutro-950);
+  --color-neutro-975: var(--ye-neutro-975);
+  --color-exito-50: var(--ye-exito-50);
+  --color-exito-100: var(--ye-exito-100);
+  --color-exito-200: var(--ye-exito-200);
+  --color-exito-300: var(--ye-exito-300);
+  --color-exito-400: var(--ye-exito-400);
+  --color-exito-500: var(--ye-exito-500);
+  --color-exito-600: var(--ye-exito-600);
+  --color-exito-700: var(--ye-exito-700);
+  --color-exito-800: var(--ye-exito-800);
+  --color-exito-900: var(--ye-exito-900);
+  --color-exito-950: var(--ye-exito-950);
+  --color-aviso-50: var(--ye-aviso-50);
+  --color-aviso-100: var(--ye-aviso-100);
+  --color-aviso-200: var(--ye-aviso-200);
+  --color-aviso-300: var(--ye-aviso-300);
+  --color-aviso-400: var(--ye-aviso-400);
+  --color-aviso-500: var(--ye-aviso-500);
+  --color-aviso-600: var(--ye-aviso-600);
+  --color-aviso-700: var(--ye-aviso-700);
+  --color-aviso-800: var(--ye-aviso-800);
+  --color-aviso-900: var(--ye-aviso-900);
+  --color-aviso-950: var(--ye-aviso-950);
+  --color-error-50: var(--ye-error-50);
+  --color-error-100: var(--ye-error-100);
+  --color-error-200: var(--ye-error-200);
+  --color-error-300: var(--ye-error-300);
+  --color-error-400: var(--ye-error-400);
+  --color-error-500: var(--ye-error-500);
+  --color-error-600: var(--ye-error-600);
+  --color-error-700: var(--ye-error-700);
+  --color-error-800: var(--ye-error-800);
+  --color-error-900: var(--ye-error-900);
+  --color-error-950: var(--ye-error-950);
+  --color-info-50: var(--ye-info-50);
+  --color-info-100: var(--ye-info-100);
+  --color-info-200: var(--ye-info-200);
+  --color-info-300: var(--ye-info-300);
+  --color-info-400: var(--ye-info-400);
+  --color-info-500: var(--ye-info-500);
+  --color-info-600: var(--ye-info-600);
+  --color-info-700: var(--ye-info-700);
+  --color-info-800: var(--ye-info-800);
+  --color-info-900: var(--ye-info-900);
+  --color-info-950: var(--ye-info-950);
+  --color-brand: var(--brand-primary);
+  --color-brand-hover: var(--brand-primary-hover);
+  --color-brand-border: var(--brand-primary-border);
+  --color-on-brand: var(--on-brand);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-tint: var(--brand-tint);
+  --color-focus: var(--focus-ring);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-base: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
+  --color-input: var(--bg-input);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-meter-track: var(--meter-track);
+  --color-meter-fill: var(--meter-fill);
+  --color-qr-ink: var(--qr-ink);
+  --color-qr-paper: var(--qr-paper);
+  --color-streak: var(--streak);
+  --color-on-streak: var(--on-streak);
+  --color-success: var(--success);
+  --color-on-success: var(--on-success);
+  --color-success-subtle: var(--success-subtle);
+  --color-warning: var(--warning);
+  --color-on-warning: var(--on-warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-danger: var(--danger);
+  --color-on-danger: var(--on-danger);
+  --color-danger-subtle: var(--danger-subtle);
+  --color-info: var(--info);
+  --color-on-info: var(--on-info);
+  --color-info-subtle: var(--info-subtle);
+}

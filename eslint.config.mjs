@@ -22,6 +22,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Marca v1.0: generadores de referencia del handoff de diseño, tal cual
+    // llegaron (CommonJS). Las pruebas los usan como oráculo; no son código
+    // de la app.
+    "docs/marca/**",
   ]),
 ]);
 
