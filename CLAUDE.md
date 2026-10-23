@@ -31,7 +31,8 @@ Toda decisión de producto y arquitectura está en estos documentos. **Consúlta
 | Documento | Para qué |
 |---|---|
 | `PRD_Acierta_v1.0.md` | Requerimientos de producto, features, criterios de aceptación |
-| `UIUX_Spec_Acierta_v1.0.md` | Sistema de diseño, tokens, componentes, mascota Tino |
+| `UIUX_Spec_Acierta_v1.0.md` | Sistema de diseño, tokens, componentes (la mascota Tino de ese documento fue reemplazada por Chilo en G102) |
+| `marca/README.md` | **Marca v1.0 (G102): logo, Chilo, tokens de color, animación, tono de voz. Geometría de referencia (`marca/referencia/*.js`, oráculo de las pruebas), SVG finales (`marca/svg/`) y tokens (`marca/tokens/`). Manda sobre el UIUX Spec en todo lo de marca** |
 | `Flujo_App_Acierta_v1.0.md` | Flujos de usuario, estados, edge cases, máquinas de estado |
 | `Backend_Schema_Acierta_v1.0.md` | **Schema de Prisma final, enums, índices, RLS, seeds** |
 | `Plan_Implementacion_Acierta_v1.0.md` | Sesiones CC, orden de construcción, dependencias |
@@ -108,6 +109,7 @@ pnpm admin:notes-cross-device # EN PRODUCCIÓN: una nota creada en un contexto a
 pnpm verify:session-no-trace  # sesión sin rastro + admin maestro, por efecto con Auth real; G100_BASE, G100_EXPECT_MASTER, G100_CAP_SECS (G100)
 pnpm verify:routes            # las pantallas en 4 perfiles + la fuga de /admin (cuerpo del 307 y RSC parcial) por efecto (G100)
 pnpm perf:lighthouse-prod     # Lighthouse móvil contra https://yaentre.com, no contra el build local (G74)
+pnpm brand:favicon            # regenera app/icon.svg y app/favicon.ico desde logo-mark.ts (G102)
 pnpm scale:audit              # ops de Prisma y peticiones por recorrido, escrituras incluidas (G69)
 pnpm scale:pool               # techo real del pool de servidor de Supavisor (G69)
 pnpm scale:load               # carga controlada contra producción; --db para la capa de base (G69)
@@ -151,19 +153,19 @@ Estas decisiones vienen del TRD. **No las contradigas sin instrucción explícit
 Detalle completo en `/docs/UIUX_Spec_Acierta_v1.0.md`. Dirección: **cálido y gamificado (Duolingo/Brilliant)**, no corporativo.
 
 ```css
-/* Marca */
---brand: #7C3AED;  --brand-hover: #6D28D9;  --brand-soft: #A78BFA;
-/* Gamificación */
---success: #22C55E;  --streak: #F97316;  --danger: #EF4444;  --info: #38BDF8;
-/* Superficies dark (default alumno): --bg-base #0F0F14 (tinte violeta, no negro puro) */
-/* Superficies light (default panel parental): --bg-base #FBFAFF */
+/* Marca v1.0 (G102) — fuente: docs/marca/tokens, aplicada en app/globals.css */
+--brand-primary: #7C3AED (violeta-600);  --accent: #FC9712 (Cempasúchil);
+/* Oscuro (alumno, default): --bg-base #131119 · --brand-fg violeta-300 · contorno del botón primario violeta-400 */
+/* Claro (madres/padres, público, admin): --bg-base #FBFAFF · --brand-fg violeta-700 · --accent-fg #864E05 */
+/* --streak es alias de --accent. Como TEXTO: text-brand-fg / text-accent-fg, nunca text-brand ni text-streak */
 ```
 
 - **Tipografía:** Outfit (display), Inter (body), JetBrains Mono (números/timer, `tabular-nums`).
 - **Radios generosos:** botones 12px, tarjetas 16px, contenedores 24-32px (firma del look amigable).
 - **Temas:** dark por default en la app del alumno; light por default en el panel parental. Ambos desde el MVP.
-- **Mascota: Tino el tecolote** (búho mexicano). Aparece en logros, estados vacíos y onboarding. **No** en el simulador. Voz motivadora, nunca regaña.
-- **Simulador = excepción visual:** deliberadamente serio, sin Tino, sin gamificación, solo el timer con color. El contraste es intencional.
+- **Logo (G102):** el personaje se asoma sobre una barra Cempasúchil con la mano levantada. `src/components/brand/Logo.tsx` (horizontal, vertical, mark, sin-personaje); por debajo de 32 px, versión chica. **Sin personaje** en pagos, facturas, documentos legales, correos y el panel de madres y padres.
+- **Mascota: Chilo (G102)** — siempre vestido (hoodie negra en claro, crema en oscuro, jeans, tenis). `src/components/mascot/Chilo.tsx`, 10 poses y 5 caras; geometría en `src/lib/brand/chilo-geometry.ts`, idéntica al carácter a la referencia del manual (`tests/brand/chilo.test.ts`). Dice **una frase por pantalla** (`src/lib/chilo/copy.ts`). **Nunca** en pagos, legales ni panel parental. `Tino.tsx` es solo un envoltorio obsoleto. Nombre pendiente de búsqueda en el IMPI (fuera de código).
+- **Simulador = excepción visual:** deliberadamente serio, sin mascota, sin gamificación, solo el timer con color. En la ruta del simulador (preflight/resultado) Chilo aparece quieto: `animacion="ninguna"` (`tests/brand/chilo-usage.test.ts`).
 - **Accesibilidad:** WCAG AA, área táctil ≥44px, respetar `prefers-reduced-motion`, color nunca es el único canal (✓/✗ + texto).
 
 ---
@@ -292,8 +294,9 @@ Cada tarea es una sesión autónoma con criterios de aceptación explícitos (ve
 │   ├── components/
 │   │   ├── ui/               ← botones, tarjetas, inputs
 │   │   ├── exam/             ← QuestionCard, OptionButton, Timer, ...
-│   │   ├── gamification/     ← StreakFlame, Entrometro, Tino, ...
-│   │   └── mascot/           ← Tino SVG + estados
+│   │   ├── gamification/     ← StreakFlame, Entrometro, ...
+│   │   ├── brand/            ← Logo (G102)
+│   │   └── mascot/           ← Chilo (Tino = envoltorio obsoleto)
 │   ├── lib/
 │   │   ├── db/               ← capa de acceso a datos (Prisma)
 │   │   ├── adaptive/         ← motor determinista (puro, testeado)
@@ -420,8 +423,12 @@ Pipeline de contenido: verificación adversarial garantiza calidad sin freelance
 
 - ❌ **Las carreras salen del catálogo oficial, no se escriben sueltas.** `src/lib/content/career-catalog.ts` tiene las 128 licenciaturas de la DGAE y las 72 carreras del IPN, con su fuente y fecha. Hasta G101 la base tenía 47 de 200 y 8 del IPN con nombres inventados («Administración (CIMA)»: el IPN no tiene plantel CIMA) — un aspirante a Actuaría o a Inteligencia Artificial no encontraba su carrera. Una carrera nueva entra al catálogo; un nombre que cambia se cambia ahí y el viejo va a `formerNames` (la sincronización renombra la fila y conserva el id, así no se pierde la meta de ningún alumno); una que deja de ofrecerse va a `RETIRED_CAREER_NAMES` y solo se borra si nadie la tiene de meta. Los aciertos mínimos NUNCA se inventan: viven en las anclas de los seeds con su fuente, y una ancla fuera del catálogo hace fallar el seed. Aplicar a una base existente: `pnpm content:careers` (vista previa) y `--apply`; NO correr el seed completo contra producción, que también reescribe materias y temas.
 
-- ❌ **Sin emojis en la interfaz: íconos de `src/components/ui/Icon.tsx`.** Un emoji se dibuja con la fuente de cada sistema, no hereda el color del tema ni escala con el texto. Íconos decorativos con `aria-hidden` (el default); si un ícono va solo, `label`. Tampoco `▶`/`◀`: iOS los pinta como emoji. `tests/ui/no-emoji.test.ts` lo vigila (ignora comentarios). Los íconos de la app y la imagen de redes usan la silueta de Tino en SVG (`src/lib/brand/owl-mark.ts`), no el emoji del búho.
+- ❌ **Sin emojis en la interfaz: íconos de `src/components/ui/Icon.tsx`.** Un emoji se dibuja con la fuente de cada sistema, no hereda el color del tema ni escala con el texto. Íconos decorativos con `aria-hidden` (el default); si un ícono va solo, `label`. Tampoco `▶`/`◀`: iOS los pinta como emoji. `tests/ui/no-emoji.test.ts` lo vigila (ignora comentarios). Los íconos de la app, el favicon y la imagen de redes usan el logo de la marca v1 (`src/lib/brand/logo-mark.ts`; `owl-mark.ts` queda obsoleto, solo como reversa). Si cambia el logo: `pnpm brand:favicon` regenera `app/icon.svg` y `app/favicon.ico`.
 
 - ❌ **`text-base` NO es 16 px en este proyecto: es el COLOR del fondo.** `tailwind.config.ts` define el color `base` (`var(--bg-base)`) y Tailwind resuelve `text-base` como ese color: el CSS compilado era `.text-base{color:var(--bg-base)}`, sin `font-size`. Diez componentes lo usaban pensando en el tamaño; el banner Early Bird quedaba con el texto casi negro sobre morado, y `sm:text-base` dejaba invisibles los nombres de carrera en pantallas ≥ 640 px (G101). Para 16 px: `text-[1rem]`. `tests/ui/tailwind-tokens.test.ts` lo prohíbe.
 
 - ❌ **Un `sr-only` dentro de un contenedor con `overflow-x-auto` necesita un ancestro posicionado ADENTRO.** `sr-only` es `position:absolute`; sin un `relative` dentro del contenedor con scroll, su caja se ubica respecto de la página, escapa del recorte y ensancha el documento: la tabla de precios llevó la página a 543 px en un celular de 390 (G101). Medir el desbordamiento con el navegador en celular, no a ojo.
+
+- ❌ **Marca v1 (G102): los colores viven SOLO en `app/globals.css`, en `@theme inline`.** `tailwind.config.ts` ya no define colores: tenerlos en los dos sitios daba dos reglas para la misma utilidad compitiendo por orden. `inline` no es decorativo: sin él, `--color-brand: var(--brand-primary)` se resuelve en `:root` y un `data-theme="light"` anidado (sitio público, panel parental, /admin) dejaría de cambiar nada. El violeta sólido (`text-brand`) NO pasa AA como texto sobre el fondo oscuro, y el Cempasúchil (`text-streak`/`text-accent`) tampoco sobre el claro: como texto se usa `text-brand-fg` y `text-accent-fg`, que cambian por tema. `tests/ui/contrast.test.ts` recalcula los pares contra `globals.css` (con controles que demuestran que esos dos fallan).
+
+- ❌ **Chilo no se dibuja a mano ni se «ajusta» a ojo.** Su geometría es un port literal de `OUTFIT()` (docs/marca/referencia/atuendo-svg.js) con la MISMA aritmética en el mismo orden, y `tests/brand/chilo.test.ts` lo compara al carácter en las 2 160 combinaciones de pose × cara × materia × tema × ojos y contra los 22 SVG finales. Dos reglas del manual que la prueba fija: con las manos en la bolsa, el bolsillo se dibuja DESPUÉS de las mangas y ningún remate asoma fuera (con control que sí detecta una manga mal puesta); y la hoodie siempre va por variable (`--chilo-hood*`), nunca en un hex, para que siga al `data-theme` y no a `prefers-color-scheme`.
