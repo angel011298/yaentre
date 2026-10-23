@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { EntrometroLoader as Entrometro } from '@/components/gamification/EntrometroLoader';
 import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplayLazy';
 import { StreakFlame } from '@/components/gamification/StreakFlame';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
+import { Icon } from '@/components/ui/Icon';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
@@ -11,11 +12,12 @@ import type { SimulatorResultData } from '@/lib/db/simulator';
 import { isPerfectRound } from '@/lib/simulator/config';
 import { summarizeIntegrityEvents } from '@/lib/simulator/integrity';
 import { formatClock } from '@/lib/simulator/time';
-import { predictionUp, simulatorResult as simulatorResultCopy } from '@/lib/tino/copy';
+import { predictionUp, simulatorResult as simulatorResultCopy } from '@/lib/chilo/copy';
 
 /**
  * Resultados del simulacro (F13). Aquí regresa la calidez (UIUX §13): tras el
- * modo serio del simulador, Tino, el color y la celebración reaparecen.
+ * modo serio del simulador, Chilo, el color y la celebración reaparecen
+ * (Chilo quieto: dentro de la ruta del simulador nada se anima).
  * Server Component — las únicas islas de cliente son el anillo animado
  * (`Entrometro`) y `CelebrationDisplay` (que respeta `prefers-reduced-motion`
  * por sí solo).
@@ -55,17 +57,17 @@ export function SimulatorResult({
       });
 
   const fraction = data.servedCount > 0 ? data.score / data.servedCount : 0;
-  const tino = simulatorResultCopy({ timedOut, perfectRound, fraction });
+  const line = simulatorResultCopy({ timedOut, perfectRound, fraction });
 
   return (
     <main className="yaentre-safe-viewport mx-auto max-w-2xl space-y-6 px-4">
       <div className="flex items-center gap-3">
-        <Tino state={tino.state} size={64} />
+        <Chilo pose={line.pose} size={52} animacion="ninguna" />
         <div>
           <h1 className="font-display text-xl font-bold text-text-primary">
             Terminaste tu simulacro
           </h1>
-          <p className="text-sm text-text-secondary">{tino.message}</p>
+          <p className="text-sm text-text-secondary">{line.message}</p>
         </div>
       </div>
 
@@ -109,7 +111,8 @@ export function SimulatorResult({
           />
           {data.predictionDelta != null && data.predictionDelta > 0 && (
             <div className="flex items-center gap-2">
-              <Tino state={predictionUp(data.predictionDelta).state} size={32} />
+              {/* La mascota ya habló arriba (una frase por pantalla): aquí, ícono. */}
+              <Icon name="chart" className="h-5 w-5 text-success" />
               <p className="text-sm font-semibold text-success">
                 {predictionUp(data.predictionDelta).message}
               </p>

@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { Button } from '@/components/ui/Button';
-import { simulatorFreeWelcome } from '@/lib/tino/copy';
+import { simulatorFreeWelcome } from '@/lib/chilo/copy';
 import { Icon } from '@/components/ui/Icon';
 
 type CameraStatus = 'idle' | 'granted' | 'denied' | 'unsupported';
@@ -12,8 +12,9 @@ type CameraStatus = 'idle' | 'granted' | 'denied' | 'unsupported';
  * Pantalla previa del simulador (F12 tarea 2). Explica las reglas, ofrece el
  * permiso de cámara (orientativo, nunca bloquea), y avisa en móvil que el
  * examen real requiere computadora. Para un usuario gratuito que estrena su
- * simulacro, Tino da la bienvenida cálida (tarea 1) — esta es la ÚLTIMA
- * aparición de Tino antes del modo serio; en la sesión activa desaparece.
+ * simulacro, Chilo da la bienvenida cálida (tarea 1) — esta es la ÚLTIMA
+ * aparición de la mascota antes del modo serio; en la sesión activa
+ * desaparece. Quieto (`animacion="ninguna"`): en el simulador nada se mueve.
  */
 export function SimulatorPreflight({
   isFreeFirstTime,
@@ -55,7 +56,7 @@ export function SimulatorPreflight({
     <main className="yaentre-safe-viewport mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-6 px-4">
       {isFreeFirstTime && (
         <div className="flex items-start gap-3 rounded-lg border border-border-subtle bg-surface p-4">
-          <Tino state={simulatorFreeWelcome().state} size={52} />
+          <Chilo pose={simulatorFreeWelcome().pose} size={40} animacion="ninguna" />
           <p className="text-sm text-text-secondary">{simulatorFreeWelcome().message}</p>
         </div>
       )}

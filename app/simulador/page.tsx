@@ -3,14 +3,14 @@ import { redirect } from 'next/navigation';
 import { SimulatorApp } from '@/components/simulator/SimulatorApp';
 import { SimulatorResult } from '@/components/simulator/SimulatorResult';
 import { SimulatorReview } from '@/components/simulator/SimulatorReview';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { AuthError } from '@/lib/auth/errors';
 import { requireOnboarding } from '@/lib/auth/guards';
 import * as sessionsDb from '@/lib/db/sessions';
 import * as simulatorDb from '@/lib/db/simulator';
 import { getStreak } from '@/lib/db/streak';
 import { decodeCelebrationParam } from '@/lib/gamification/celebrations';
-import { noTargetChosen } from '@/lib/tino/copy';
+import { noTargetChosen } from '@/lib/chilo/copy';
 
 export const metadata = {
   title: 'Simulacro',
@@ -109,7 +109,7 @@ function NoTargetMessage() {
   const copy = noTargetChosen('simulacro');
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center gap-4 px-4 text-center">
-      <Tino state={copy.state} size={72} />
+      <Chilo pose={copy.pose} size={56} animacion="ninguna" />
       <h1 className="font-display text-xl font-bold text-text-primary">
         Primero elige tu examen
       </h1>

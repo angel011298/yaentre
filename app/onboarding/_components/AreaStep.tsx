@@ -1,6 +1,6 @@
 import { selectAreaAction } from '@/app/actions/onboarding';
 import type { AreaOption } from '@/lib/db/onboarding';
-import { areaPartialCoverage } from '@/lib/tino/copy';
+import { areaPartialCoverage } from '@/lib/chilo/copy';
 import { AreaComingSoonCard } from './AreaComingSoonCard';
 import { AreaMark } from '@/components/onboarding/AreaMark';
 

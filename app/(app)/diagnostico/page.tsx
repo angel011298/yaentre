@@ -1,10 +1,10 @@
 import { DiagnosticResults } from '@/components/exam/DiagnosticResults';
 import { DiagnosticRunner } from '@/components/exam/DiagnosticRunner';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { requireOnboarding } from '@/lib/auth/guards';
 import * as diagnosticDb from '@/lib/db/diagnostic';
 import { toRunnerQuestion } from '@/lib/db/diagnostic';
-import { diagnosticNotReady } from '@/lib/tino/copy';
+import { diagnosticNotReady } from '@/lib/chilo/copy';
 
 /**
  * Ruta del diagnóstico inicial (F7). Server Component: resuelve el estado
@@ -58,7 +58,7 @@ function NoContentMessage({ code }: { code: diagnosticDb.DiagnosticStartError })
   const copy = diagnosticNotReady(code);
   return (
     <div className="flex flex-col items-center gap-4 py-12 text-center">
-      <Tino state={copy.state} size={80} />
+      <Chilo pose={copy.pose} size={64} />
       <h1 className="font-display text-xl font-bold text-text-primary">
         Todavía estamos preparando tu diagnóstico
       </h1>

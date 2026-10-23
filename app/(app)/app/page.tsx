@@ -8,7 +8,7 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { EmptyState } from '@/components/dashboard/EmptyState';
 import { RecentSimulations } from '@/components/dashboard/RecentSimulations';
 import { StartSimulationButton } from '@/components/dashboard/StartSimulationButton';
-import { TinoRecommendation } from '@/components/dashboard/TinoRecommendation';
+import { ChiloRecommendation } from '@/components/dashboard/ChiloRecommendation';
 import { WeakTopicCard } from '@/components/dashboard/WeakTopicCard';
 import { EntrometroLoader } from '@/components/gamification/EntrometroLoader';
 import { EntrometroLocked } from '@/components/gamification/Entrometro';
@@ -25,7 +25,7 @@ import {
   loadWeakestTopics,
 } from '@/lib/db/dashboard';
 import { loadMasteredSubjectBadges, loadStreakStatus } from '@/lib/db/gamification';
-import { emptySimulations, noWeakTopicsYet } from '@/lib/tino/copy';
+import { emptySimulations, noWeakTopicsYet } from '@/lib/chilo/copy';
 import { Icon } from '@/components/ui/Icon';
 
 function greetingName(displayName: string | null, email: string | undefined): string {
@@ -126,7 +126,7 @@ export default async function DashboardPage() {
           pagarla otra vez); lo que G62 quitó del camino crítico fue un
           `Promise.all` de NUEVE loaders, no una. Las otras ocho islas siguen
           llegando por stream exactamente igual. */}
-      <TinoRecommendationSection profileId={pid} />
+      <ChiloRecommendationSection profileId={pid} />
 
       <section>
         {/* G101: decía «Tu semana», pero el calendario muestra 90 días. */}
@@ -241,10 +241,10 @@ async function EntrometroCard({ profileId }: { profileId: string }) {
   );
 }
 
-async function TinoRecommendationSection({ profileId }: { profileId: string }) {
+async function ChiloRecommendationSection({ profileId }: { profileId: string }) {
   const weakTopics = await loadWeakestTopics(profileId, 3);
   if (weakTopics.length === 0) return null;
-  return <TinoRecommendation weakestTopic={weakTopics[0]} />;
+  return <ChiloRecommendation weakestTopic={weakTopics[0]} />;
 }
 
 async function WeekHeatmapCard({ profileId }: { profileId: string }) {
@@ -263,6 +263,7 @@ async function ReforzarHoySection({ profileId }: { profileId: string }) {
   if (weakTopics.length === 0) {
     return (
       <EmptyState
+        pose={noWeakTopicsYet().pose}
         title="Todavía no identificamos temas débiles"
         description={noWeakTopicsYet().message}
         action={
@@ -287,6 +288,7 @@ async function RecentSimulationsSection({ profileId }: { profileId: string }) {
   if (recentSims.length === 0) {
     return (
       <EmptyState
+        pose={emptySimulations().pose}
         title="Aún no haces ningún simulacro"
         description={emptySimulations().message}
         action={

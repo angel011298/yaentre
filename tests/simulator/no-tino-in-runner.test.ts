@@ -10,7 +10,7 @@ import { describe, expect, it } from 'vitest';
  * verifica leyendo el CÓDIGO FUENTE real (no un snapshot ni un mock) para que
  * cualquier reintroducción futura del import rompa este test de inmediato.
  */
-describe('SimulatorRunner nunca importa ni renderiza a Tino', () => {
+describe('SimulatorRunner nunca importa ni renderiza a la mascota', () => {
   it('el archivo fuente no contiene la palabra "Tino"', () => {
     const source = readFileSync(
       join(process.cwd(), 'src/components/simulator/SimulatorRunner.tsx'),
@@ -24,5 +24,7 @@ describe('SimulatorRunner nunca importa ni renderiza a Tino', () => {
       .filter((line) => !line.trim().startsWith('*') && !line.trim().startsWith('//'))
       .join('\n');
     expect(codeOnly).not.toContain('Tino');
+    // Marca v1.0 (G102): la mascota ahora es Chilo; la regla no cambia.
+    expect(codeOnly).not.toContain('Chilo');
   });
 });

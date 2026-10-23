@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { requestAreaNotificationAction } from '@/app/actions/onboarding';
-import { Tino } from '@/components/mascot/Tino';
-import { areaComingSoon, areaWaitlistJoined } from '@/lib/tino/copy';
+import { Chilo } from '@/components/mascot/Chilo';
+import { areaComingSoon, areaWaitlistJoined } from '@/lib/chilo/copy';
 import { AreaMark } from '@/components/onboarding/AreaMark';
 
 /**
@@ -73,7 +73,7 @@ export function AreaComingSoonCard({
 
           {state === 'done' ? (
             <div className="mt-3 flex items-center gap-2">
-              <Tino state={areaWaitlistJoined(areaName).state} size={32} />
+              <Chilo variante="avatar" pose={areaWaitlistJoined(areaName).pose} size={32} />
               <p role="status" className="text-sm font-semibold text-success">
                 {areaWaitlistJoined(areaName).message}
               </p>

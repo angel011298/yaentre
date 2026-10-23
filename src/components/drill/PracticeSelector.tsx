@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import type { PracticeOptions, PracticeScope } from '@/lib/db/drill';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
-import { drillLimitReached, subjectNotReady } from '@/lib/tino/copy';
+import { drillLimitReached, subjectNotReady } from '@/lib/chilo/copy';
 import { Icon } from '@/components/ui/Icon';
 
 /**
@@ -58,7 +58,7 @@ export function PracticeSelector({
 
       {limitReached && (
         <Card className="flex items-start gap-3 p-4">
-          <Tino state={drillLimitReached().state} size={48} />
+          <Chilo variante="avatar" pose={drillLimitReached().pose} size={48} />
           <div>
             <p className="text-sm font-semibold text-text-primary">{drillLimitReached().message}</p>
             <Link

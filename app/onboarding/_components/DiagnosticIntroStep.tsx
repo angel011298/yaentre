@@ -1,11 +1,11 @@
 import { postponeDiagnosticAction, startDiagnosticAction } from '@/app/actions/onboarding';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { Button } from '@/components/ui/Button';
 
 export function DiagnosticIntroStep({ careerName }: { careerName: string | null }) {
   return (
     <div className="flex flex-col items-center gap-6 text-center">
-      <Tino state="encouraging" size={140} />
+      <Chilo pose="libro" size={112} animacion="entrada" />
 
       <div className="space-y-2">
         <h1 className="font-display text-2xl font-bold">

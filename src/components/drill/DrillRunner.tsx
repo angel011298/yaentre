@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { finishSession, submitAnswer } from '@/app/actions/sessions';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { Button } from '@/components/ui/Button';
 import type { FinishSessionResult } from '@/lib/db/sessions';
 import type { DrillPayload } from '@/lib/db/drill';
-import { afterMistake } from '@/lib/tino/copy';
+import { afterMistake } from '@/lib/chilo/copy';
 import { DrillQuestion } from './DrillQuestion';
 import { ExplanationAccordion } from './ExplanationAccordion';
 import { ReportQuestionButton } from './ReportQuestionButton';
@@ -179,7 +179,7 @@ export function DrillRunner({
 
           {selections[currentIndex] !== correctness[currentIndex] && (
             <div className="flex items-start gap-3 rounded-lg border border-border-subtle bg-surface p-3">
-              <Tino state={afterMistake().state} size={40} />
+              <Chilo variante="avatar" pose={afterMistake().pose} size={40} animacion="error" />
               <p className="text-sm text-text-secondary">{afterMistake().message}</p>
             </div>
           )}

@@ -2,15 +2,15 @@ import Link from 'next/link';
 import { EntrometroLoader as Entrometro } from '@/components/gamification/EntrometroLoader';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { formatEntrometroTarget } from '@/lib/adaptive/entrometro';
 import type { DiagnosticResultsData } from '@/lib/db/diagnostic';
-import { diagnosticResult } from '@/lib/tino/copy';
+import { diagnosticResult } from '@/lib/chilo/copy';
 
 /**
  * Pantalla de resultados del diagnóstico (F7 Task 3): score obtenido,
  * Entrómetro inicial animado, comparación vs. meta de carrera con el hueco
- * visible, 3 temas prioritarios y mensaje de Tino. Server Component — la
+ * visible, 3 temas prioritarios y mensaje de Chilo. Server Component — la
  * única pieza interactiva (el anillo animado) es `Entrometro`.
  */
 export function DiagnosticResults({ data }: { data: DiagnosticResultsData }) {
@@ -18,7 +18,7 @@ export function DiagnosticResults({ data }: { data: DiagnosticResultsData }) {
     ? data.strategy.chosenTarget
     : formatEntrometroTarget({ minAciertos: null, minAciertosYear: null, minAciertosConfidence: null });
 
-  const tino = diagnosticResult({
+  const line = diagnosticResult({
     hasTarget: data.strategy?.hasTarget ?? false,
     onTrack: data.strategy?.onTrack ?? false,
   });
@@ -26,10 +26,10 @@ export function DiagnosticResults({ data }: { data: DiagnosticResultsData }) {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <Tino state={tino.state} size={64} />
+        <Chilo pose={line.pose} size={52} animacion="entrada" />
         <div>
           <h1 className="font-display text-xl font-bold text-text-primary">Tu diagnóstico está listo</h1>
-          <p className="text-sm text-text-secondary">{tino.message}</p>
+          <p className="text-sm text-text-secondary">{line.message}</p>
         </div>
       </div>
 

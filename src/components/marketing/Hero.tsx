@@ -1,5 +1,5 @@
 import { LinkButton } from '@/components/ui/LinkButton';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { Icon } from '@/components/ui/Icon';
 
 /**
@@ -12,14 +12,14 @@ export function Hero() {
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6 text-center lg:text-left">
-          <span className="inline-flex items-center gap-1 rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand">
+          <span className="inline-flex items-center gap-1 rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand-fg">
             <Icon name="sparkles" className="h-3.5 w-3.5" />
             Tu entrenador de admisión con IA
           </span>
           <h1 className="font-display text-4xl font-extrabold leading-[1.1] text-text-primary sm:text-5xl">
             No es otro curso con videos.
             <br />
-            Es un entrenador que sabe <span className="text-brand">exactamente</span> qué te falta.
+            Es un entrenador que sabe <span className="text-brand-fg">exactamente</span> qué te falta.
           </h1>
           <p className="mx-auto max-w-xl text-lg leading-relaxed text-text-secondary lg:mx-0">
             YaEntre detecta tus temas débiles con inteligencia artificial y te pone a practicar en
@@ -43,8 +43,8 @@ export function Hero() {
           <div className="relative flex h-72 w-72 items-center justify-center rounded-full bg-brand-tint sm:h-80 sm:w-80">
             <div className="absolute inset-4 rounded-full border-4 border-dashed border-brand-soft/40" />
             <div className="flex flex-col items-center gap-2">
-              <Tino state="graduated" size={140} />
-              <p className="font-display text-sm font-bold text-brand">Entrómetro activo</p>
+              <Chilo pose="celebrar" size={128} animacion="entrada" />
+              <p className="font-display text-sm font-bold text-brand-fg">Entrómetro activo</p>
             </div>
           </div>
         </div>

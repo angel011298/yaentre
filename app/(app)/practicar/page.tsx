@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { DrillApp } from '@/components/drill/DrillApp';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { requireOnboarding } from '@/lib/auth/guards';
 import * as drillDb from '@/lib/db/drill';
-import { noTargetChosen } from '@/lib/tino/copy';
+import { noTargetChosen } from '@/lib/chilo/copy';
 
 /**
  * Ruta de práctica libre (F14). Vive DENTRO del grupo (app) a propósito —
@@ -79,7 +79,7 @@ function NoTargetMessage() {
   const copy = noTargetChosen('practicar');
   return (
     <div className="mx-auto flex max-w-md flex-col items-center gap-4 py-16 text-center">
-      <Tino state={copy.state} size={72} />
+      <Chilo pose={copy.pose} size={56} />
       <h1 className="font-display text-xl font-bold text-text-primary">
         Primero elige tu examen
       </h1>

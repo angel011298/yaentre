@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Tino } from '@/components/mascot/Tino';
+import { Logo } from '@/components/brand/Logo';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
 import type { PlanPricing } from '@/lib/stripe/pricing';
-import { paywallTriggerCopy } from '@/lib/tino/copy';
+import { paywallTriggerCopy } from '@/lib/chilo/copy';
 import { NotifyWhenOpenCard } from './NotifyWhenOpenCard';
 import { PlanCard } from './PlanCard';
 import { Icon } from '@/components/ui/Icon';
@@ -41,8 +41,9 @@ export function PaywallScreen({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3">
-        <Tino state="encouraging" size={64} />
+      <div className="flex flex-col items-start gap-3">
+        {/* Marca v1: en pagos va el logo sin personaje, nunca la mascota. */}
+        <Logo variante="sin-personaje" size={24} />
         <div>
           <h1 className="font-display text-xl font-bold text-text-primary">{copy.title}</h1>
           <p className="text-sm text-text-secondary">{copy.body}</p>
@@ -50,7 +51,7 @@ export function PaywallScreen({
       </div>
 
       {salesOpen && earlyBirdRemaining !== null && seasonPass?.season === 'EARLY_BIRD' && (
-        <p className="flex items-center justify-center gap-2 rounded-md border border-streak/40 bg-streak/10 px-3 py-2 text-center text-sm font-semibold text-streak">
+        <p className="flex items-center justify-center gap-2 rounded-md border border-streak/40 bg-streak/10 px-3 py-2 text-center text-sm font-semibold text-accent-fg">
           <Icon name="award" className="h-4 w-4" />
           Precio Early Bird — quedan {earlyBirdRemaining} de 500 licencias fundadoras
         </p>

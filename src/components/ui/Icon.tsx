@@ -11,6 +11,10 @@ import type { ReactNode, SVGProps } from 'react';
  * dispositivos.
  *
  * Trazo de 24×24, 2 px, puntas redondeadas — un solo lenguaje visual.
+ * Marca v1.0 (G102): home, book, target, chart, flame, clock, check, x, lock,
+ * user, search y arrowRight usan el trazo del manual de marca; sliders, bell,
+ * calendar, play, trophy, bulb, flag, plus y door son nuevos. Los demás
+ * (pencil, alert, award…) se conservan: el manual no los define.
  * Decorativos por defecto (`aria-hidden`): casi siempre acompañan a un texto
  * que ya dice lo mismo. Si un ícono va SOLO, se le pasa `label` y se anuncia
  * como imagen con nombre.
@@ -19,9 +23,8 @@ import type { ReactNode, SVGProps } from 'react';
 const PATHS = {
   home: (
     <>
-      <path d="M3 10.5 12 3l9 7.5" />
-      <path d="M5 9.5V21h14V9.5" />
-      <path d="M10 21v-6h4v6" />
+      <path d="M3 11l9-8 9 8" />
+      <path d="M5 10v10h5v-6h4v6h5V10" />
     </>
   ),
   pencil: (
@@ -34,33 +37,19 @@ const PATHS = {
     <>
       <circle cx="12" cy="12" r="9" />
       <circle cx="12" cy="12" r="5" />
-      <circle cx="12" cy="12" r="1.5" />
+      <circle cx="12" cy="12" r="1" fill="currentColor" />
     </>
   ),
-  chart: (
-    <>
-      <path d="M3 3v18h18" />
-      <path d="M8 17v-4" />
-      <path d="M13 17V7" />
-      <path d="M18 17v-7" />
-    </>
-  ),
+  chart: <path d="M5 20v-7M12 20V5M19 20v-10" />,
   user: (
     <>
       <circle cx="12" cy="8" r="4" />
       <path d="M4 21a8 8 0 0 1 16 0" />
     </>
   ),
-  flame: (
-    <path d="M12 22c3.9 0 7-2.6 7-6.5 0-3-1.8-5.2-3.5-7-.5 1.5-1.5 2.6-2.8 3.1.3-3.2-.9-6.2-3.3-8.1C9.2 6.2 5 9.4 5 15.4 5 19.3 8.1 22 12 22Z" />
-  ),
-  check: <path d="M20 6 9 17l-5-5" />,
-  x: (
-    <>
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </>
-  ),
+  flame: <path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z" />,
+  check: <path d="M5 12l5 5 9-10" />,
+  x: <path d="M6 6l12 12M18 6L6 18" />,
   checkCircle: (
     <>
       <circle cx="12" cy="12" r="9" />
@@ -76,8 +65,8 @@ const PATHS = {
   ),
   lock: (
     <>
-      <rect x="4" y="11" width="16" height="10" rx="2" />
-      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+      <rect x="5" y="11" width="14" height="9" rx="2" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
     </>
   ),
   unlock: (
@@ -126,8 +115,8 @@ const PATHS = {
   ),
   book: (
     <>
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5Z" />
-      <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5" />
+      <path d="M5 20a2 2 0 0 1 2-2h12V4H7a2 2 0 0 0-2 2z" />
+      <path d="M9 8h6" />
     </>
   ),
   anchor: (
@@ -147,7 +136,7 @@ const PATHS = {
   search: (
     <>
       <circle cx="11" cy="11" r="7" />
-      <path d="m20 20-3.5-3.5" />
+      <path d="M20 20l-4-4" />
     </>
   ),
   trash: (
@@ -163,12 +152,7 @@ const PATHS = {
       <path d="M12 7v5l3 2" />
     </>
   ),
-  arrowRight: (
-    <>
-      <path d="M5 12h14" />
-      <path d="m13 6 6 6-6 6" />
-    </>
-  ),
+  arrowRight: <path d="M5 12h14M13 6l6 6-6 6" />,
   chevronRight: <path d="m9 18 6-6-6-6" />,
   monitor: (
     <>
@@ -227,6 +211,41 @@ const PATHS = {
       <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
       <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8" />
       <path d="M18.5 14a6.5 6.5 0 0 1 3 6" />
+    </>
+  ),
+  // ── Marca v1.0: resto del set del manual (docs/marca/referencia, `IC`). ──
+  sliders: (
+    <>
+      <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
+      <circle cx="16" cy="7" r="2" />
+      <circle cx="8" cy="17" r="2" />
+    </>
+  ),
+  bell: (
+    <>
+      <path d="M6 17v-6a6 6 0 0 1 12 0v6l2 2H4z" />
+      <path d="M10 21h4" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="4" y="5" width="16" height="16" rx="2" />
+      <path d="M4 10h16M8 3v4M16 3v4" />
+    </>
+  ),
+  play: <path d="M8 5l11 7-11 7z" />,
+  trophy: (
+    <path d="M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3M12 14v4M8 21h8" />
+  ),
+  bulb: (
+    <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z" />
+  ),
+  flag: <path d="M5 21V4M5 4h12l-2 4 2 4H5" />,
+  plus: <path d="M12 5v14M5 12h14" />,
+  door: (
+    <>
+      <path d="M6 21V4h9v17M3 21h18" />
+      <circle cx="12" cy="12.5" r="0.8" fill="currentColor" />
     </>
   ),
 } satisfies Record<string, ReactNode>;

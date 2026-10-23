@@ -1,41 +1,49 @@
-import type { TinoState } from '@/components/mascot/Tino';
+import type { ChiloPose } from '@/lib/brand/chilo-geometry';
 import type { PaywallTrigger } from '@/lib/paywall/gates';
 
 /**
- * Diccionario centralizado de la voz de Tino (F15 tarea 4). TODO texto que
- * "dice" Tino en la app vive aquí — no repartido por el código — para que la
- * personalidad se mantenga consistente sin copiar/pegar frases entre
+ * Diccionario centralizado de la voz de la mascota (F15 tarea 4). TODO texto
+ * que "dice" Chilo en la app vive aquí — no repartido por el código — para que
+ * la personalidad se mantenga consistente sin copiar/pegar frases entre
  * componentes. Personalidad (UIUX §2.1): motivador, cercano, español
- * mexicano, NUNCA regaña ni usa culpa. Cada entrada trae el `state` de Tino
- * que le corresponde, para que quien la use no tenga que adivinar la
- * expresión correcta.
+ * mexicano, NUNCA regaña ni usa culpa. Cada entrada trae la `pose` de Chilo
+ * que le corresponde, para que quien la use no tenga que adivinar.
+ *
+ * Marca v1.0 (G102, docs/marca §Tono de voz): de tú, frases cortas, reconoce
+ * el avance CONCRETO y, ante un error, dice qué sigue. La mascota dice como
+ * mucho UNA frase por pantalla, así que cada línea es una sola oración y sin
+ * signos de exclamación en cadena. Poses: `libro` (base), `bolsa` (espera),
+ * `lapiz` (acierto), `error`, `dormido` (taza: pausa), `pensando` (lupa),
+ * `reloj` (simulacro), `celebrar`, `probeta` (contenido en preparación).
+ * Hasta G101 la mascota era Tino; `components/mascot/Tino.tsx` queda solo
+ * como envoltorio de compatibilidad.
  *
  * Copy EXACTO tomado de UIUX Spec §10 donde existe una tabla explícita; el
  * resto sigue el mismo tono, migrado desde donde vivía disperso antes de
  * esta fase (ver ESTADO.md F15 para el mapa completo de migraciones).
  */
 
-export interface TinoLine {
-  state: TinoState;
+export interface ChiloLine {
+  pose: ChiloPose;
   message: string;
 }
 
 // ─────────────────────────────── Estados vacíos ───────────────────────────────
 
-export function emptySimulations(): TinoLine {
-  return { state: 'encouraging', message: '¡El primero es el más importante!' };
+export function emptySimulations(): ChiloLine {
+  return { pose: 'reloj', message: 'El primer simulacro es el que más te enseña.' };
 }
 
-export function noWeakTopicsYet(): TinoLine {
+export function noWeakTopicsYet(): ChiloLine {
   return {
-    state: 'encouraging',
+    pose: 'pensando',
     message: 'Sigue practicando y aquí van a aparecer los temas donde más te conviene enfocarte.',
   };
 }
 
-export function noTargetChosen(context: 'practicar' | 'simulacro'): TinoLine {
+export function noTargetChosen(context: 'practicar' | 'simulacro'): ChiloLine {
   return {
-    state: 'sleepy',
+    pose: 'bolsa',
     message:
       context === 'practicar'
         ? 'Para practicar necesitamos saber a qué examen y carrera apuntas.'
@@ -43,66 +51,69 @@ export function noTargetChosen(context: 'practicar' | 'simulacro'): TinoLine {
   };
 }
 
-export function diagnosticNotReady(code: 'NO_TARGET' | 'NO_CONTENT' | 'RATE_LIMIT'): TinoLine {
+export function diagnosticNotReady(code: 'NO_TARGET' | 'NO_CONTENT' | 'RATE_LIMIT'): ChiloLine {
   if (code === 'RATE_LIMIT') {
     return {
-      state: 'sleepy',
-      message: 'Demasiados intentos seguidos. Espera unos minutos y vuelve a intentar.',
+      pose: 'dormido',
+      message: 'Fueron muchos intentos seguidos: espera unos minutos y vuelve a intentar.',
     };
   }
-  return {
-    state: 'sleepy',
-    message:
-      code === 'NO_TARGET'
-        ? 'Necesitamos que termines de elegir tu examen y carrera antes de empezar.'
-        : 'Aún no tenemos suficientes reactivos verificados para tu área. Estamos generando más contenido — vuelve pronto.',
-  };
+  return code === 'NO_TARGET'
+    ? {
+        pose: 'bolsa',
+        message: 'Necesitamos que termines de elegir tu examen y carrera antes de empezar.',
+      }
+    : {
+        pose: 'probeta',
+        message:
+          'Aún nos faltan reactivos verificados para tu área; estamos preparando más, vuelve pronto.',
+      };
 }
 
 // ─────────────────────────────── Racha ───────────────────────────────
 
-export function streakAtRisk(days: number): TinoLine {
+export function streakAtRisk(days: number): ChiloLine {
   return {
-    state: 'sleepy',
-    message: `Tu racha de ${days} ${days === 1 ? 'día' : 'días'} está en riesgo. ¿Unos minutos hoy?`,
+    pose: 'dormido',
+    message: `Tu racha de ${days} ${days === 1 ? 'día' : 'días'} está en riesgo: con unos minutos hoy la salvas.`,
   };
 }
 
 const STREAK_MILESTONE_MESSAGE: Record<7 | 14 | 30, string> = {
-  7: '¡Una semana completa! 7 días seguidos, no pares.',
-  14: '¡14 días seguidos! Ya es un hábito de verdad.',
-  30: '¡30 días! Un mes entero de racha — vas increíble.',
+  7: 'Llevas 7 días seguidos: una semana completa.',
+  14: 'Llevas 14 días seguidos: esto ya es un hábito.',
+  30: 'Llevas 30 días seguidos: un mes entero de racha.',
 };
 
-export function streakMilestone(days: 7 | 14 | 30): TinoLine {
-  return { state: 'streak', message: STREAK_MILESTONE_MESSAGE[days] };
+export function streakMilestone(days: 7 | 14 | 30): ChiloLine {
+  return { pose: 'celebrar', message: STREAK_MILESTONE_MESSAGE[days] };
 }
 
 // ─────────────────────────────── Después de responder ───────────────────────────────
 
-export function afterMistake(): TinoLine {
-  return { state: 'encouraging', message: 'Uy, esa estuvo difícil. La volvemos a ver más adelante.' };
+export function afterMistake(): ChiloLine {
+  return { pose: 'error', message: 'Esa estuvo difícil: la vamos a repasar más adelante.' };
 }
 
 // ─────────────────────────────── Celebraciones ───────────────────────────────
 
-export function perfectRound(): TinoLine {
-  return { state: 'celebrating', message: '¡Ronda perfecta! Vas imparable.' };
+export function perfectRound(): ChiloLine {
+  return { pose: 'celebrar', message: 'Ronda perfecta: no fallaste ni una.' };
 }
 
-export function materiaDominada(subjectName: string): TinoLine {
+export function materiaDominada(subjectName: string): ChiloLine {
   return {
-    state: 'celebrating',
-    message: `¡Dominaste ${subjectName}! Una menos, vamos por la siguiente.`,
+    pose: 'celebrar',
+    message: `Dominaste ${subjectName}: una materia menos, vamos por la siguiente.`,
   };
 }
 
 // ─────────────────────────────── Paywall ───────────────────────────────
 
-export function paywallInvite(): TinoLine {
+export function paywallInvite(): ChiloLine {
   return {
-    state: 'encouraging',
-    message: 'Desbloquea simulacros ilimitados y el examen completo. Tino te acompaña.',
+    pose: 'libro',
+    message: 'Desbloquea simulacros ilimitados y el examen completo.',
   };
 }
 
@@ -143,41 +154,41 @@ export function paywallTriggerCopy(trigger: PaywallTrigger | null): PaywallCopy 
 
 // ─────────────────────────────── Entrómetro ───────────────────────────────
 
-export function predictionUp(delta: number): TinoLine {
+export function predictionUp(delta: number): ChiloLine {
   return {
-    state: 'celebrating',
+    pose: 'lapiz',
     message: `Tu predicción subió ${delta} ${delta === 1 ? 'acierto' : 'aciertos'} esta semana`,
   };
 }
 
 // ─────────────────────────────── Diagnóstico ───────────────────────────────
 
-export function diagnosticResult(input: { hasTarget: boolean; onTrack: boolean }): TinoLine {
+export function diagnosticResult(input: { hasTarget: boolean; onTrack: boolean }): ChiloLine {
   if (!input.hasTarget) {
     return {
-      state: 'encouraging',
-      message: '¡Terminaste tu diagnóstico! Ya sé por dónde empezar a ayudarte a mejorar.',
+      pose: 'libro',
+      message: 'Terminaste tu diagnóstico y ya sé por dónde empezar a ayudarte.',
     };
   }
   if (input.onTrack) {
     return {
-      state: 'celebrating',
-      message: '¡Vas muy bien encaminado hacia tu meta! Sigamos afinando los temas que te faltan.',
+      pose: 'celebrar',
+      message: 'Vas bien encaminado a tu meta; sigamos afinando los temas que te faltan.',
     };
   }
   return {
-    state: 'encouraging',
-    message: 'Este es tu punto de partida, no tu límite. Empecemos por tus temas más débiles.',
+    pose: 'libro',
+    message: 'Este es tu punto de partida: empecemos por tus temas más débiles.',
   };
 }
 
 // ─────────────────────────────── Simulador (solo antes/después, NUNCA durante) ───────────────────────────────
 
-export function simulatorFreeWelcome(): TinoLine {
+export function simulatorFreeWelcome(): ChiloLine {
   return {
-    state: 'encouraging',
+    pose: 'reloj',
     message:
-      'Este primer simulacro va por mi cuenta. Vívelo como el examen real: sin pausas, sin regresar. Así llegas sin sorpresas el día que cuenta.',
+      'Este primer simulacro va por mi cuenta: vívelo como el examen real, sin pausas ni regresar.',
   };
 }
 
@@ -185,33 +196,33 @@ export function simulatorResult(input: {
   timedOut: boolean;
   perfectRound: boolean;
   fraction: number;
-}): TinoLine {
+}): ChiloLine {
   if (input.timedOut) {
     return {
-      state: 'encouraging',
-      message: 'Se agotó el tiempo — guardamos todo lo que respondiste. Así es el examen real.',
+      pose: 'reloj',
+      message: 'Se agotó el tiempo y guardamos todo lo que respondiste, igual que en el examen real.',
     };
   }
   if (input.perfectRound) return perfectRound();
   if (input.fraction >= 0.6) {
-    return { state: 'attentive', message: 'Buen trabajo. Sigamos afinando los temas que te faltan.' };
+    return { pose: 'lapiz', message: 'Buen trabajo: sigamos afinando los temas que te faltan.' };
   }
   return {
-    state: 'encouraging',
-    message: 'Este es tu punto de partida, no tu límite. Vamos por tus temas más débiles.',
+    pose: 'libro',
+    message: 'Este es tu punto de partida: vamos por tus temas más débiles.',
   };
 }
 
 // ─────────────────────────────── Drill ───────────────────────────────
 
-export function drillLimitReached(): TinoLine {
-  return { state: 'encouraging', message: 'Vuelve mañana o desbloquea ilimitado' };
+export function drillLimitReached(): ChiloLine {
+  return { pose: 'bolsa', message: 'Vuelve mañana o desbloquea la práctica ilimitada.' };
 }
 
-export function drillSummary(fraction: number): TinoLine {
+export function drillSummary(fraction: number): ChiloLine {
   return fraction >= 0.7
-    ? { state: 'celebrating', message: '¡Buena práctica! Se nota que le sigues entendiendo.' }
-    : { state: 'encouraging', message: 'Ya actualizamos tus temas débiles y tu racha del día.' };
+    ? { pose: 'lapiz', message: 'Buena práctica: se nota que le vas entendiendo.' }
+    : { pose: 'libro', message: 'Ya actualizamos tus temas débiles y tu racha del día.' };
 }
 
 // ──────────────────── Cobertura de contenido (G74) ────────────────────
@@ -232,13 +243,13 @@ export function joinSubjectNames(names: readonly string[]): string {
  * dice el MOTIVO concreto (qué materias faltan), no culpa al alumno ni se
  * disculpa de más, y promete algo que sí se puede cumplir.
  */
-export function areaComingSoon(pendingSubjectNames: readonly string[]): TinoLine {
+export function areaComingSoon(pendingSubjectNames: readonly string[]): ChiloLine {
   const list = joinSubjectNames(pendingSubjectNames);
   return {
-    state: 'sleepy',
+    pose: 'probeta',
     message: list
-      ? `Todavía nos faltan los reactivos de ${list}. Prefiero decírtelo ahora y no dejarte a medias en tu diagnóstico.`
-      : 'Todavía estamos armando el contenido de esta rama. Prefiero decírtelo ahora y no dejarte a medias en tu diagnóstico.',
+      ? `Todavía nos faltan los reactivos de ${list}, y prefiero decírtelo ahora que dejarte a medias en tu diagnóstico.`
+      : 'Todavía estamos armando esta rama, y prefiero decírtelo ahora que dejarte a medias en tu diagnóstico.',
   };
 }
 
@@ -251,18 +262,18 @@ export function areaPartialCoverage(pendingSubjectNames: readonly string[]): str
 }
 
 /** Confirmación de «avísame»: concreta, sin pedir nada más. */
-export function areaWaitlistJoined(areaName: string): TinoLine {
+export function areaWaitlistJoined(areaName: string): ChiloLine {
   return {
-    state: 'celebrating',
-    message: `¡Listo! Te escribimos a tu correo en cuanto ${areaName} esté completa.`,
+    pose: 'celebrar',
+    message: `Listo: te escribimos en cuanto ${areaName} esté completa.`,
   };
 }
 
 /** Materia sin reactivos suficientes en la pantalla de práctica (caso que lo
  *  motivó: Inglés UNAM, en cero hasta G75/G76). */
-export function subjectNotReady(subjectName: string): TinoLine {
+export function subjectNotReady(subjectName: string): ChiloLine {
   return {
-    state: 'sleepy',
-    message: `Todavía no tengo reactivos de ${subjectName} — estamos en eso. Mientras tanto, tu práctica adaptativa se arma con las materias que ya están listas.`,
+    pose: 'probeta',
+    message: `Todavía no tengo reactivos de ${subjectName}; mientras, tu práctica se arma con las materias que ya están listas.`,
   };
 }

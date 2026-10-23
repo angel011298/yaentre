@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { CelebrationDisplay } from '@/components/gamification/CelebrationDisplayLazy';
-import { Tino } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import type { FinishSessionResult } from '@/lib/db/sessions';
-import { drillSummary } from '@/lib/tino/copy';
+import { drillSummary } from '@/lib/chilo/copy';
 
 /**
  * Resumen al terminar una sesión de práctica (F14 tarea 8; Flujo_App §7:
@@ -24,12 +24,15 @@ export function DrillSummary({
   const correct = result.answers.filter((a) => a.isCorrect).length;
   const minutes = Math.max(1, Math.round(result.elapsedSecs / 60));
   const fraction = total > 0 ? correct / total : 0;
-  const tino = drillSummary(fraction);
+  const line = drillSummary(fraction);
 
   return (
     <div className="mx-auto max-w-md space-y-6 py-6 text-center">
       <div className="flex flex-col items-center gap-3">
-        <Tino state={tino.state} size={64} />
+        {/* Si hay celebración, la mascota sale ahí: una sola aparición por pantalla. */}
+        {!result.celebration && (
+          <Chilo pose={line.pose} size={52} animacion={line.pose === 'lapiz' ? 'acierto' : 'entrada'} />
+        )}
         <h1 className="font-display text-xl font-bold text-text-primary">
           Terminaste tu práctica
         </h1>
@@ -46,7 +49,7 @@ export function DrillSummary({
         </p>
       </Card>
 
-      <p className="text-sm text-text-secondary">{tino.message}</p>
+      <p className="text-sm text-text-secondary">{line.message}</p>
 
       <div className="space-y-2">
         <Button variant="primary" className="w-full" onClick={onPracticeAgain}>

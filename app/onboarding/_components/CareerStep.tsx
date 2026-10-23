@@ -5,7 +5,7 @@ import { CareerPicker } from '@/components/onboarding/CareerPicker';
 import { Icon } from '@/components/ui/Icon';
 import type { AreaCoverage } from '@/lib/content/coverage';
 import { toCareerPickerItems } from '@/lib/content/career-picker';
-import { areaPartialCoverage } from '@/lib/tino/copy';
+import { areaPartialCoverage } from '@/lib/chilo/copy';
 
 /**
  * Paso 3: carrera meta.

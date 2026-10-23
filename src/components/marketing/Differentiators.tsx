@@ -1,33 +1,34 @@
 import { Card } from '@/components/ui/Card';
-import { Tino, type TinoState } from '@/components/mascot/Tino';
+import { Chilo } from '@/components/mascot/Chilo';
+import type { ChiloPose } from '@/lib/brand/chilo-geometry';
 
 interface Differentiator {
-  tino: TinoState;
+  pose: ChiloPose;
   title: string;
   description: string;
 }
 
 const DIFFERENTIATORS: Differentiator[] = [
   {
-    tino: 'attentive',
+    pose: 'reloj',
     title: 'Simulador del examen en línea',
     description:
       'Réplica fiel de la plataforma real de tu examen: mismo formato, mismo timer, misma presión. Nada de sorpresas el día del examen.',
   },
   {
-    tino: 'celebrating',
+    pose: 'calc',
     title: 'Entrómetro',
     description:
       'Predice cuántos aciertos vas a sacar, actualizado después de cada sesión, comparado contra la meta real de tu carrera.',
   },
   {
-    tino: 'streak',
+    pose: 'pensando',
     title: 'Ruta de estudio personalizada',
     description:
       'El motor detecta tus temas débiles y prioriza tu práctica ahí — no repites lo que ya dominas.',
   },
   {
-    tino: 'graduated',
+    pose: 'libro',
     title: 'Panel para padres',
     description:
       'Ve el progreso real de tu hijo desde tu propio celular: sesiones de estudio, avance por materia, sin tener que preguntar.',
@@ -50,7 +51,7 @@ export function Differentiators() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {DIFFERENTIATORS.map((item) => (
             <Card key={item.title} className="flex gap-4 p-6">
-              <Tino state={item.tino} size={56} />
+              <Chilo pose={item.pose} size={48} animacion="ninguna" />
               <div>
                 <h3 className="font-display text-lg font-bold text-text-primary">{item.title}</h3>
                 <p className="mt-1 text-sm leading-relaxed text-text-secondary">{item.description}</p>
