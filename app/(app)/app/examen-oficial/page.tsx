@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { buttonClassName } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { requireOnboarding } from '@/lib/auth/guards';
 import { listOfficialSampleSources } from '@/lib/db/content-sources';
@@ -38,7 +39,7 @@ export default async function OfficialSampleIndexPage() {
           {sources.map((source) => (
             <Link key={source.externalRef} href={`/app/examen-oficial/${source.externalRef}`}>
               <Card className="flex h-full flex-col gap-2 p-5">
-                <span className="inline-flex w-fit items-center rounded-full bg-brand-tint px-2.5 py-0.5 text-xs font-semibold text-brand">
+                <span className="inline-flex w-fit items-center rounded-full bg-brand-tint px-2.5 py-0.5 text-xs font-semibold text-brand-fg">
                   {source.institution}
                 </span>
                 <h2 className="font-display text-lg font-semibold text-text-primary">
@@ -65,7 +66,7 @@ export default async function OfficialSampleIndexPage() {
         </p>
         <Link
           href="/simulador"
-          className="inline-flex min-h-touch w-fit items-center justify-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-hover hover:shadow-lg active:scale-[0.97]"
+          className={buttonClassName('primary', 'w-fit')}
         >
           Hacer un simulacro YaEntre →
         </Link>

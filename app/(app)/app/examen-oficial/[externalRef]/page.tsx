@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { buttonClassName } from '@/components/ui/Button';
 import { notFound } from 'next/navigation';
 import { Card } from '@/components/ui/Card';
 import { requireOnboarding } from '@/lib/auth/guards';
@@ -45,7 +46,7 @@ export default async function OfficialSampleDetailPage({
       </Link>
 
       <div className="space-y-2">
-        <span className="inline-flex w-fit items-center rounded-full bg-brand-tint px-2.5 py-0.5 text-xs font-semibold text-brand">
+        <span className="inline-flex w-fit items-center rounded-full bg-brand-tint px-2.5 py-0.5 text-xs font-semibold text-brand-fg">
           {source.institution}
         </span>
         <h1 className="font-display text-2xl font-bold text-text-primary">{source.name}</h1>
@@ -95,7 +96,7 @@ export default async function OfficialSampleDetailPage({
         </p>
         <Link
           href="/simulador"
-          className="inline-flex min-h-touch w-fit items-center justify-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-hover hover:shadow-lg active:scale-[0.97]"
+          className={buttonClassName('primary', 'w-fit')}
         >
           Hacer un simulacro YaEntre →
         </Link>

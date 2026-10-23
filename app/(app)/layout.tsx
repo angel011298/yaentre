@@ -75,7 +75,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
       {/* G63: enlace para saltar la barra lateral / superior con el teclado. */}
       <a
         href="#contenido-principal"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-on-brand"
       >
         Saltar al contenido
       </a>

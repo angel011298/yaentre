@@ -29,7 +29,7 @@ export function OptionButton({ id, text, selected, onClick, disabled }: Props) {
     >
       <span
         className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
-          selected ? 'bg-brand text-white' : 'bg-elevated text-text-muted'
+          selected ? 'bg-brand text-on-brand' : 'bg-elevated text-text-muted'
         }`}
       >
         {id}

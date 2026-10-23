@@ -35,7 +35,7 @@ export function QuestionNavigator({ total, currentIndex, answered, onJump }: Pro
             onClick={() => onJump(i)}
             className={`flex min-h-touch min-w-touch items-center justify-center rounded-md border-2 text-xs font-semibold transition-all active:scale-[0.95] ${
               isCurrent
-                ? 'border-brand bg-brand text-white'
+                ? 'border-brand bg-brand text-on-brand'
                 : isAnswered
                   ? 'border-success bg-success/10 text-success'
                   : 'border-border-subtle bg-surface text-text-muted hover:border-brand-soft'

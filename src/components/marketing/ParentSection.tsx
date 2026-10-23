@@ -63,7 +63,7 @@ export function ParentSection() {
         <div className="mt-8 text-center">
           <Link
             href="/registro?role=tutor"
-            className="text-sm font-semibold text-brand hover:underline"
+            className="text-sm font-semibold text-brand-fg hover:underline"
           >
             ¿Eres papá o mamá? Ve el progreso de tu hijo →
           </Link>
@@ -76,7 +76,7 @@ export function ParentSection() {
 /** G101: ícono de la tarjeta (antes un emoji de 24 px). */
 function FeatureIcon({ name }: { name: IconName }) {
   return (
-    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-tint text-brand">
+    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-tint text-brand-fg">
       <Icon name={name} className="h-5 w-5" />
     </span>
   );

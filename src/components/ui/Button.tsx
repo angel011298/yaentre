@@ -15,14 +15,17 @@ const BASE_BUTTON_CLASSNAME =
   'inline-flex min-h-touch min-w-touch items-center justify-center rounded-md px-4 py-2 text-sm font-semibold transition-all active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50';
 
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
-  primary: 'bg-brand text-white hover:bg-brand-hover shadow-md hover:shadow-lg',
+  // Marca v1: contorno `--brand-primary-border` — violeta-400 en oscuro (el
+  // violeta sólido se funde con la superficie), igual al relleno en claro.
+  primary:
+    'border border-brand-border bg-brand text-on-brand hover:bg-brand-hover shadow-md hover:shadow-lg',
   secondary: 'bg-surface border border-border-subtle text-text-primary hover:bg-elevated',
-  tertiary: 'text-brand-soft hover:text-brand-hover hover:bg-brand-tint',
+  tertiary: 'text-brand-soft hover:text-brand-fg hover:bg-brand-tint',
   ghost: 'text-text-secondary hover:text-brand-soft bg-transparent',
-  // G63: `#ef4444` (bg-danger en dark) con texto blanco da 3.76:1 — falla
-  // 4.5:1 para el texto del botón. `red-600` (#dc2626) da 4.83:1 en ambos
-  // temas.
-  danger: 'bg-red-600 text-white hover:bg-red-700 shadow-md hover:shadow-lg',
+  // G63 pedía un rojo con texto blanco ≥ 4.5:1. Marca v1: `--danger` ya trae
+  // su par `--on-danger` por tema (rojo claro + tinta en oscuro, 7.6:1; rojo
+  // 700 + blanco en claro, 6.5:1), así que el botón usa los tokens.
+  danger: 'bg-danger text-on-danger hover:bg-danger/90 shadow-md hover:shadow-lg',
 };
 
 /** Classes compartidas por `Button` y `LinkButton` (src/components/ui/LinkButton.tsx)

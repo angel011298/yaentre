@@ -20,7 +20,7 @@ export function MasteredSubjectBadges({
         {badges.map((b) => (
           <li
             key={b.subjectId}
-            className="flex items-center gap-2 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
+            className="flex items-center gap-2 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand-fg"
           >
             <Icon name="graduation" className="h-4 w-4" />
             {b.subjectName}

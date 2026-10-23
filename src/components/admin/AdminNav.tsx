@@ -31,7 +31,7 @@ export function AdminNav() {
             aria-current={active ? 'page' : undefined}
             className={`min-h-touch inline-flex items-center rounded-md px-3 text-sm font-medium transition-all ${
               active
-                ? 'bg-brand text-white'
+                ? 'bg-brand text-on-brand'
                 : 'text-text-secondary hover:bg-elevated hover:text-text-primary'
             }`}
           >

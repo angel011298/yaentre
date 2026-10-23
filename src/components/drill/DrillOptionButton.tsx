@@ -39,7 +39,7 @@ export function DrillOptionButton({ id, text, selected, reveal, onClick, disable
       : reveal === 'incorrect'
         ? 'bg-danger text-on-danger'
         : selected
-          ? 'bg-brand text-white'
+          ? 'bg-brand text-on-brand'
           : 'bg-elevated text-text-muted';
 
   // Estado dicho también con palabra (no solo color + símbolo) para lectores

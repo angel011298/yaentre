@@ -96,7 +96,7 @@ export function InstallPrompt() {
       // `bottom: 1rem`.
       className="yaentre-above-bottomnav fixed inset-x-0 z-30 mx-auto flex max-w-md items-start gap-3 rounded-lg border border-l-4 border-border-subtle border-l-brand bg-elevated p-4 shadow-md lg:left-64"
     >
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-tint text-brand">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-tint text-brand-fg">
         <Icon name="smartphone" className="h-5 w-5" />
       </span>
       <div className="flex-1">

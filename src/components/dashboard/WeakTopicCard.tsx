@@ -40,7 +40,7 @@ export function WeakTopicCard({ topic }: { topic: WeakTopicSummary }) {
 
       <Link
         href={`/practicar?topicId=${topic.topicId}`}
-        className="mt-auto inline-flex min-h-touch items-center justify-center rounded-md border border-border-subtle bg-elevated px-3 py-2 text-sm font-semibold text-text-primary transition-all hover:bg-brand-tint hover:text-brand active:scale-[0.97]"
+        className="mt-auto inline-flex min-h-touch items-center justify-center rounded-md border border-border-subtle bg-elevated px-3 py-2 text-sm font-semibold text-text-primary transition-all hover:bg-brand-tint hover:text-brand-fg active:scale-[0.97]"
       >
         Practicar
       </Link>

@@ -226,7 +226,7 @@ export default async function PreciosPage() {
                   <th className="p-4 font-semibold text-text-primary">Feature</th>
                   <th className="p-4 font-semibold text-text-primary">Free</th>
                   <th className="p-4 font-semibold text-text-primary">Mensual</th>
-                  <th className="p-4 font-semibold text-brand">Pase de Temporada</th>
+                  <th className="p-4 font-semibold text-brand-fg">Pase de Temporada</th>
                   <th className="p-4 font-semibold text-text-primary">Premium</th>
                 </tr>
               </thead>

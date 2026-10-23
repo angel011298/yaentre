@@ -52,7 +52,7 @@ export function PlanCard({
       }`}
     >
       {highlighted && (
-        <span className="inline-flex w-fit items-center gap-1 rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand">
+        <span className="inline-flex w-fit items-center gap-1 rounded-full bg-brand-tint px-3 py-1 text-xs font-semibold text-brand-fg">
           <Icon name="star" className="h-3.5 w-3.5" />
           Más elegido
         </span>

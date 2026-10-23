@@ -81,7 +81,7 @@ export default function LandingPage() {
       <section className="pb-16 text-center">
         <p className="text-sm text-text-muted">
           ¿Ya tienes cuenta?{' '}
-          <Link href="/login" className="font-semibold text-brand hover:underline">
+          <Link href="/login" className="font-semibold text-brand-fg hover:underline">
             Inicia sesión
           </Link>
         </p>

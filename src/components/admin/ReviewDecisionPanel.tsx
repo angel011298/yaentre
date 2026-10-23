@@ -239,7 +239,7 @@ export function ReviewDecisionPanel({
 
       {record.audit && (
         <Card className="space-y-3 border-brand/30 p-6">
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-fg">
             Auditoría (tercera pasada — muestreo de control 5%)
           </p>
           <p className="text-sm text-text-secondary">
@@ -272,7 +272,7 @@ export function ReviewDecisionPanel({
           Editar <span className="ml-1 text-text-muted">(E)</span>
         </Button>
         <Button type="button" variant="danger" onClick={handleDiscard} disabled={isPending}>
-          Descartar <span className="ml-1 text-white/70">(D)</span>
+          Descartar <span className="ml-1 opacity-75">(D)</span>
         </Button>
         {isPending && <span className="text-sm text-text-muted">Procesando…</span>}
         {error && (

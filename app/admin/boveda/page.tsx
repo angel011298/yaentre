@@ -130,7 +130,7 @@ export default async function AdminVaultPage() {
                     )}
                     <a
                       href={`/api/admin/vault/${f.id}?download=1`}
-                      className="min-h-touch inline-flex items-center rounded-md bg-brand px-3 text-sm font-medium text-white hover:bg-brand-hover"
+                      className="min-h-touch inline-flex items-center rounded-md bg-brand px-3 text-sm font-medium text-on-brand hover:bg-brand-hover"
                     >
                       Descargar
                     </a>

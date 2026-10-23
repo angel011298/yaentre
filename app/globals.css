@@ -22,37 +22,110 @@
    renderizan fórmulas lo cargan, en vez de cada ruta del sitio (landing,
    dashboard, precios...) donde nunca aparece una fórmula. */
 
-/* Tokens de marca (constantes en ambos modos) */
-:root {
-  --brand-primary: #7c3aed;
-  --brand-primary-hover: #6d28d9;
-  --brand-soft: #a78bfa;
-  --brand-tint: #ede9fe;
-  --success: #22c55e;
-  --success-glow: #4ade80;
-  --streak: #f97316;
-  --streak-glow: #fb923c;
-  --danger: #ef4444;
-  --info: #38bdf8;
-  --warning: #fbbf24;
+/* ─── Marca v1.0 (oct 2026) ────────────────────────────────────────────────
+   Fuente: docs/marca/tokens/yaentre-colors.css (handoff de marca). Ancla
+   violeta #7C3AED, acento Cempasúchil #FC9712. Tres capas:
+     1. Primitivos `--ye-*`: NO se usan directo en componentes.
+     2. Semánticos por tema (`--bg-*`, `--text-*`, `--brand-*`, `--accent*`,
+        estados, `--on-*`): los nombres anteriores se conservan, cambian los
+        valores. El tema lo decide el `data-theme` MÁS CERCANO (el <html> lleva
+        `dark`; el panel parental, el sitio público y /admin envuelven en
+        `light`), no `prefers-color-scheme`.
+     3. `@theme inline` (más abajo): las utilidades de Tailwind apuntan a la
+        variable semántica sin resolverla en :root. Sin `inline`, un
+        `data-theme="light"` anidado no cambiaría nada.
+   Los 110 pares texto/fondo de los dos temas cumplen WCAG AA; la prueba
+   `tests/ui/contrast.test.ts` recalcula los delicados contra ESTE archivo. */
 
-  /* G63 (accesibilidad WCAG AA): color de TEXTO/ÍCONO que va ENCIMA de un
-     fondo sólido de cada color semántico. Los tonos vivos de arriba son
-     claros (para leerse sobre superficies oscuras como texto), así que sobre
-     ellos como fondo hace falta texto OSCURO — blanco da 1.7-2.8:1. En light
-     (más abajo) estos mismos tokens son tonos oscuros → el texto encima es
-     blanco. Medido ≥ 4.5:1 en ambos temas. */
-  --on-success: #052e16;
-  --on-danger: #450a0a;
-  --on-warning: #422006;
-  --on-info: #082f49;
-  --on-streak: #431407;
+/* 1. Primitivos */
+:root {
+  --ye-violeta-50: #f5f3ff;
+  --ye-violeta-100: #ede9fe;
+  --ye-violeta-200: #ddd6fe;
+  --ye-violeta-300: #c4b5fd;
+  --ye-violeta-400: #a78bfa;
+  --ye-violeta-500: #8b5cf6;
+  --ye-violeta-600: #7c3aed;
+  --ye-violeta-700: #6d28d9;
+  --ye-violeta-800: #5b21b6;
+  --ye-violeta-900: #4c1d95;
+  --ye-violeta-950: #2e1065;
+  --ye-cempasuchil-50: #fff9f3;
+  --ye-cempasuchil-100: #ffefe2;
+  --ye-cempasuchil-200: #ffe0c5;
+  --ye-cempasuchil-300: #feca9a;
+  --ye-cempasuchil-400: #feb165;
+  --ye-cempasuchil-500: #fc9712;
+  --ye-cempasuchil-600: #d7810f;
+  --ye-cempasuchil-700: #ac6506;
+  --ye-cempasuchil-800: #864e05;
+  --ye-cempasuchil-900: #6c3e01;
+  --ye-cempasuchil-950: #412300;
+  --ye-neutro-0: #ffffff;
+  --ye-neutro-25: #fbfaff;
+  --ye-neutro-50: #f6f5fa;
+  --ye-neutro-100: #eeedf2;
+  --ye-neutro-200: #e1e1e5;
+  --ye-neutro-300: #cfced8;
+  --ye-neutro-400: #aba9b3;
+  --ye-neutro-500: #807f88;
+  --ye-neutro-600: #65636c;
+  --ye-neutro-700: #504f57;
+  --ye-neutro-800: #37353e;
+  --ye-neutro-850: #2a2932;
+  --ye-neutro-900: #1f1e26;
+  --ye-neutro-925: #191720;
+  --ye-neutro-950: #131119;
+  --ye-neutro-975: #0c0b13;
+  --ye-exito-50: #ecfdf5;
+  --ye-exito-100: #d1fae5;
+  --ye-exito-200: #a7f3d0;
+  --ye-exito-300: #6ee7b7;
+  --ye-exito-400: #34d399;
+  --ye-exito-500: #10b981;
+  --ye-exito-600: #059669;
+  --ye-exito-700: #047857;
+  --ye-exito-800: #065f46;
+  --ye-exito-900: #064e3b;
+  --ye-exito-950: #022c22;
+  --ye-aviso-50: #fefce8;
+  --ye-aviso-100: #fef9c3;
+  --ye-aviso-200: #fef08a;
+  --ye-aviso-300: #fde047;
+  --ye-aviso-400: #facc15;
+  --ye-aviso-500: #eab308;
+  --ye-aviso-600: #ca8a04;
+  --ye-aviso-700: #a16207;
+  --ye-aviso-800: #854d0e;
+  --ye-aviso-900: #713f12;
+  --ye-aviso-950: #422006;
+  --ye-error-50: #fef2f2;
+  --ye-error-100: #fee2e2;
+  --ye-error-200: #fecaca;
+  --ye-error-300: #fca5a5;
+  --ye-error-400: #f87171;
+  --ye-error-500: #ef4444;
+  --ye-error-600: #dc2626;
+  --ye-error-700: #b91c1c;
+  --ye-error-800: #991b1b;
+  --ye-error-900: #7f1d1d;
+  --ye-error-950: #450a0a;
+  --ye-info-50: #f0f9ff;
+  --ye-info-100: #e0f2fe;
+  --ye-info-200: #bae6fd;
+  --ye-info-300: #7dd3fc;
+  --ye-info-400: #38bdf8;
+  --ye-info-500: #0ea5e9;
+  --ye-info-600: #0284c7;
+  --ye-info-700: #0369a1;
+  --ye-info-800: #075985;
+  --ye-info-900: #0c4a6e;
+  --ye-info-950: #082f49;
 
   /* Paleta categórica para el desglose por materia (F13,
      src/lib/simulator/subjectColors.ts) — DISTINTA de los tokens semánticos
-     de arriba a propósito: --success/--danger ya significan correcto/
-     incorrecto en toda la app, reusarlos aquí para identificar materias
-     confundiría ambos significados. */
+     a propósito: --success/--danger ya significan correcto/incorrecto en
+     toda la app, reusarlos aquí confundiría ambos significados. */
   --chart-1: #7c3aed;
   --chart-2: #38bdf8;
   --chart-3: #f59e0b;
@@ -61,72 +134,261 @@
   --chart-6: #64748b;
 }
 
-/* Dark mode (default alumno) — sección 3.3 del UI/UX Spec */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
-}
-
+/* 2. Tema OSCURO — alumno (por defecto) */
+:root,
 [data-theme='dark'] {
   color-scheme: dark;
-  --bg-base: #0f0f14;
-  --bg-surface: #1a1a22;
-  --bg-elevated: #26262f;
-  --bg-input: #1e1e27;
-  --border-subtle: #33333f;
-  --border-strong: #4a4a57;
-  --text-primary: #fafafa;
-  --text-secondary: #b4b4c0;
-  /* G63: subido de #7a7a88 — daba 4.09:1 sobre `bg-surface` y 3.55:1 sobre
-     `bg-elevated`, por debajo de 4.5:1 para texto normal (la mayoría del texto
-     `muted` es `text-xs`/`text-sm`). #9a9aa8 da ≥ 5.4:1 en todas las
-     superficies oscuras y sigue distinguiéndose de `text-secondary`. */
-  --text-muted: #9a9aa8;
+  --bg-base: var(--ye-neutro-950);
+  --bg-surface: var(--ye-neutro-900);
+  --bg-elevated: var(--ye-neutro-850);
+  --bg-input: var(--ye-neutro-925);
+  --border-subtle: var(--ye-neutro-800);
+  --border-strong: var(--ye-neutro-500);
+  --text-primary: var(--ye-neutro-50);
+  --text-secondary: var(--ye-neutro-300);
+  --text-muted: var(--ye-neutro-400);
+  --brand-primary: var(--ye-violeta-600);
+  --brand-primary-hover: var(--ye-violeta-700);
+  /* El violeta sólido se pierde sobre las superficies oscuras: el botón
+     primario lleva este contorno violeta-400 en oscuro. */
+  --brand-primary-border: var(--ye-violeta-400);
+  --on-brand: var(--ye-neutro-0);
+  /* Texto e íconos en color de marca (sobre fondo o sobre `--brand-tint`). */
+  --brand-fg: var(--ye-violeta-300);
+  --brand-soft: var(--ye-violeta-400);
+  --brand-tint: #28194c;
+  --focus-ring: var(--ye-violeta-400);
+  --accent: var(--ye-cempasuchil-500);
+  --accent-hover: var(--ye-cempasuchil-400);
+  --accent-strong: var(--ye-cempasuchil-500);
+  --on-accent: var(--ye-cempasuchil-950);
+  --accent-fg: var(--ye-cempasuchil-500);
+  --accent-subtle: #361f08;
+  --success: var(--ye-exito-400);
+  --success-glow: var(--ye-exito-300);
+  --on-success: var(--ye-exito-950);
+  --success-subtle: #072d1e;
+  --warning: var(--ye-aviso-400);
+  --on-warning: var(--ye-aviso-950);
+  --warning-subtle: #2d2504;
+  --danger: var(--ye-error-400);
+  --on-danger: var(--ye-neutro-950);
+  --danger-subtle: #3e1816;
+  --info: var(--ye-info-400);
+  --on-info: var(--ye-neutro-950);
+  --info-subtle: #06293a;
+  --meter-track: var(--ye-neutro-800);
+  --meter-fill: var(--ye-violeta-400);
+  --qr-ink: var(--ye-violeta-800);
+  --qr-paper: var(--ye-neutro-0);
+  /* Alias de compatibilidad: la racha es el acento Cempasúchil. Como TEXTO
+     usar `text-accent-fg` (en claro el #FC9712 da 2:1 sobre blanco). */
+  --streak: var(--accent);
+  --streak-glow: var(--accent-hover);
+  --on-streak: var(--on-accent);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+  /* Logo y Chilo (src/components/brand/Logo.tsx, src/components/mascot/Chilo.tsx).
+     Noche: cuerpo del logo violeta-400 y hoodie CREMA. */
+  --logo-body: var(--ye-violeta-400);
+  --logo-bar: var(--ye-cempasuchil-500);
+  --logo-text: var(--ye-neutro-50);
+  --chilo-hood: #f1e8d0;
+  --chilo-hood-shade: #ddd0ac;
+  --chilo-sleeve: #f9f4e6;
+  --chilo-avatar-bg: #2a2833;
 }
 
-/* Light mode (default panel parental) — sección 3.4 del UI/UX Spec */
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-  }
-}
-
+/* 3. Tema CLARO — panel de madres/padres, sitio público y /admin */
 [data-theme='light'] {
   color-scheme: light;
-  --bg-base: #fbfaff;
-  --bg-surface: #ffffff;
-  --bg-elevated: #ffffff;
-  --bg-input: #f4f3fa;
-  --border-subtle: #e9e7f2;
-  --border-strong: #d8d4e8;
-  --text-primary: #1a1a1a;
-  --text-secondary: #5a5a6a;
-  /* G63: bajado de #8a8a9a (3.1-3.4:1) — texto normal necesita 4.5:1.
-     #6b6b7a da ≥ 4.75:1 sobre base/surface/input claros. */
-  --text-muted: #6b6b7a;
+  --bg-base: var(--ye-neutro-25);
+  --bg-surface: var(--ye-neutro-0);
+  --bg-elevated: var(--ye-neutro-0);
+  --bg-input: var(--ye-neutro-50);
+  --border-subtle: var(--ye-neutro-200);
+  --border-strong: var(--ye-neutro-500);
+  --text-primary: var(--ye-neutro-950);
+  --text-secondary: var(--ye-neutro-700);
+  --text-muted: var(--ye-neutro-600);
+  --brand-primary: var(--ye-violeta-600);
+  --brand-primary-hover: var(--ye-violeta-700);
+  --brand-primary-border: var(--ye-violeta-600);
+  --on-brand: var(--ye-neutro-0);
+  --brand-fg: var(--ye-violeta-700);
+  --brand-soft: var(--ye-violeta-600);
+  --brand-tint: var(--ye-violeta-100);
+  --focus-ring: var(--ye-violeta-600);
+  --accent: var(--ye-cempasuchil-500);
+  --accent-hover: var(--ye-cempasuchil-600);
+  --accent-strong: var(--ye-cempasuchil-700);
+  --on-accent: var(--ye-cempasuchil-950);
+  --accent-fg: var(--ye-cempasuchil-800);
+  --accent-subtle: var(--ye-cempasuchil-100);
+  --success: var(--ye-exito-700);
+  --success-glow: var(--ye-exito-200);
+  --on-success: var(--ye-neutro-0);
+  --success-subtle: var(--ye-exito-50);
+  --warning: var(--ye-aviso-700);
+  --on-warning: var(--ye-neutro-0);
+  --warning-subtle: var(--ye-aviso-50);
+  --danger: var(--ye-error-700);
+  --on-danger: var(--ye-neutro-0);
+  --danger-subtle: var(--ye-error-50);
+  --info: var(--ye-info-700);
+  --on-info: var(--ye-neutro-0);
+  --info-subtle: var(--ye-info-50);
+  --meter-track: var(--ye-neutro-200);
+  --meter-fill: var(--ye-violeta-600);
+  --qr-ink: var(--ye-violeta-800);
+  --qr-paper: var(--ye-neutro-0);
+  --streak: var(--accent);
+  --streak-glow: var(--accent-hover);
+  --on-streak: var(--on-accent);
   --shadow-md: 0 4px 16px rgba(124, 58, 237, 0.1);
 
-  /* Mismo verde/ámbar/rojo/azul, calibrados más oscuros para cumplir AA
-     (4.5:1) como texto sobre estos fondos claros — sobre dark, esos mismos
-     tonos vivos ya cumplen de sobra (F18, ver tailwind.config.ts). */
-  --success: #15803d;
-  --warning: #b45309;
-  --danger: #dc2626;
-  --info: #0369a1;
-  --streak: #c2410c;
-  /* G63: en light estos tokens son oscuros → el texto/ícono encima es blanco
-     (dark text daría 3.4:1). Medido ≥ 4.8:1 con blanco. */
-  --on-success: #ffffff;
-  --on-danger: #ffffff;
-  --on-warning: #ffffff;
-  --on-info: #ffffff;
-  --on-streak: #ffffff;
-  /* El lila claro de acento no cumple AA como texto sobre fondos claros —
-     colapsa al morado principal (que sí cumple, 5.5:1+) solo en light. */
-  --brand-soft: var(--brand-primary);
+  /* Día: cuerpo del logo violeta-600 y hoodie NEGRA. */
+  --logo-body: var(--ye-violeta-600);
+  --logo-bar: var(--ye-cempasuchil-500);
+  --logo-text: var(--ye-neutro-950);
+  --chilo-hood: #1e1d24;
+  --chilo-hood-shade: #121116;
+  --chilo-sleeve: #2b2a33;
+  --chilo-avatar-bg: #ede9fe;
 }
+
+/* 4. Tailwind 4 — utilidades (bg-brand, text-brand-fg, bg-accent,
+   text-text-primary, border-border-subtle, bg-violeta-600…). Ojo: `base` es
+   un COLOR (`--bg-base`), así que `text-base` pinta el texto del color del
+   fondo; para 16 px usar `text-[1rem]` (G101, tests/ui/tailwind-tokens). */
+@theme inline {
+  --color-violeta-50: var(--ye-violeta-50);
+  --color-violeta-100: var(--ye-violeta-100);
+  --color-violeta-200: var(--ye-violeta-200);
+  --color-violeta-300: var(--ye-violeta-300);
+  --color-violeta-400: var(--ye-violeta-400);
+  --color-violeta-500: var(--ye-violeta-500);
+  --color-violeta-600: var(--ye-violeta-600);
+  --color-violeta-700: var(--ye-violeta-700);
+  --color-violeta-800: var(--ye-violeta-800);
+  --color-violeta-900: var(--ye-violeta-900);
+  --color-violeta-950: var(--ye-violeta-950);
+  --color-cempasuchil-50: var(--ye-cempasuchil-50);
+  --color-cempasuchil-100: var(--ye-cempasuchil-100);
+  --color-cempasuchil-200: var(--ye-cempasuchil-200);
+  --color-cempasuchil-300: var(--ye-cempasuchil-300);
+  --color-cempasuchil-400: var(--ye-cempasuchil-400);
+  --color-cempasuchil-500: var(--ye-cempasuchil-500);
+  --color-cempasuchil-600: var(--ye-cempasuchil-600);
+  --color-cempasuchil-700: var(--ye-cempasuchil-700);
+  --color-cempasuchil-800: var(--ye-cempasuchil-800);
+  --color-cempasuchil-900: var(--ye-cempasuchil-900);
+  --color-cempasuchil-950: var(--ye-cempasuchil-950);
+  --color-neutro-0: var(--ye-neutro-0);
+  --color-neutro-25: var(--ye-neutro-25);
+  --color-neutro-50: var(--ye-neutro-50);
+  --color-neutro-100: var(--ye-neutro-100);
+  --color-neutro-200: var(--ye-neutro-200);
+  --color-neutro-300: var(--ye-neutro-300);
+  --color-neutro-400: var(--ye-neutro-400);
+  --color-neutro-500: var(--ye-neutro-500);
+  --color-neutro-600: var(--ye-neutro-600);
+  --color-neutro-700: var(--ye-neutro-700);
+  --color-neutro-800: var(--ye-neutro-800);
+  --color-neutro-850: var(--ye-neutro-850);
+  --color-neutro-900: var(--ye-neutro-900);
+  --color-neutro-925: var(--ye-neutro-925);
+  --color-neutro-950: var(--ye-neutro-950);
+  --color-neutro-975: var(--ye-neutro-975);
+  --color-exito-50: var(--ye-exito-50);
+  --color-exito-100: var(--ye-exito-100);
+  --color-exito-200: var(--ye-exito-200);
+  --color-exito-300: var(--ye-exito-300);
+  --color-exito-400: var(--ye-exito-400);
+  --color-exito-500: var(--ye-exito-500);
+  --color-exito-600: var(--ye-exito-600);
+  --color-exito-700: var(--ye-exito-700);
+  --color-exito-800: var(--ye-exito-800);
+  --color-exito-900: var(--ye-exito-900);
+  --color-exito-950: var(--ye-exito-950);
+  --color-aviso-50: var(--ye-aviso-50);
+  --color-aviso-100: var(--ye-aviso-100);
+  --color-aviso-200: var(--ye-aviso-200);
+  --color-aviso-300: var(--ye-aviso-300);
+  --color-aviso-400: var(--ye-aviso-400);
+  --color-aviso-500: var(--ye-aviso-500);
+  --color-aviso-600: var(--ye-aviso-600);
+  --color-aviso-700: var(--ye-aviso-700);
+  --color-aviso-800: var(--ye-aviso-800);
+  --color-aviso-900: var(--ye-aviso-900);
+  --color-aviso-950: var(--ye-aviso-950);
+  --color-error-50: var(--ye-error-50);
+  --color-error-100: var(--ye-error-100);
+  --color-error-200: var(--ye-error-200);
+  --color-error-300: var(--ye-error-300);
+  --color-error-400: var(--ye-error-400);
+  --color-error-500: var(--ye-error-500);
+  --color-error-600: var(--ye-error-600);
+  --color-error-700: var(--ye-error-700);
+  --color-error-800: var(--ye-error-800);
+  --color-error-900: var(--ye-error-900);
+  --color-error-950: var(--ye-error-950);
+  --color-info-50: var(--ye-info-50);
+  --color-info-100: var(--ye-info-100);
+  --color-info-200: var(--ye-info-200);
+  --color-info-300: var(--ye-info-300);
+  --color-info-400: var(--ye-info-400);
+  --color-info-500: var(--ye-info-500);
+  --color-info-600: var(--ye-info-600);
+  --color-info-700: var(--ye-info-700);
+  --color-info-800: var(--ye-info-800);
+  --color-info-900: var(--ye-info-900);
+  --color-info-950: var(--ye-info-950);
+  --color-brand: var(--brand-primary);
+  --color-brand-hover: var(--brand-primary-hover);
+  --color-brand-border: var(--brand-primary-border);
+  --color-on-brand: var(--on-brand);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-tint: var(--brand-tint);
+  --color-focus: var(--focus-ring);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-base: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
+  --color-input: var(--bg-input);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-meter-track: var(--meter-track);
+  --color-meter-fill: var(--meter-fill);
+  --color-qr-ink: var(--qr-ink);
+  --color-qr-paper: var(--qr-paper);
+  --color-streak: var(--streak);
+  --color-streak-glow: var(--streak-glow);
+  --color-on-streak: var(--on-streak);
+  --color-success: var(--success);
+  --color-success-glow: var(--success-glow);
+  --color-on-success: var(--on-success);
+  --color-success-subtle: var(--success-subtle);
+  --color-warning: var(--warning);
+  --color-on-warning: var(--on-warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-danger: var(--danger);
+  --color-on-danger: var(--on-danger);
+  --color-danger-subtle: var(--danger-subtle);
+  --color-info: var(--info);
+  --color-on-info: var(--on-info);
+  --color-info-subtle: var(--info-subtle);
+}
+
 
 html {
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
@@ -152,8 +414,9 @@ body {
      3:1 que exige WCAG 2.4.11 para el indicador de foco. `--brand-soft` es
      lila claro en dark (≥ 5.5:1 en toda superficie) y colapsa al morado en
      light (≥ 5.4:1). El `outline-offset` deja el anillo sobre el fondo del
-     contenedor, nunca tocando un botón de color. */
-  outline: 2px solid var(--brand-soft);
+     contenedor, nunca tocando un botón de color. Marca v1: `--focus-ring`
+     tiene esos mismos valores (violeta-400 / violeta-600) con nombre propio. */
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -172,6 +435,143 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Chilo (src/components/mascot/Chilo.tsx) — Marca v1.0 ────────────────
+   Tiempos y curvas del manual (docs/marca/README.md §Animación):
+     salida   cubic-bezier(.2,.8,.2,1)   entrada  320 ms
+     in-out   cubic-bezier(.65,0,.35,1)  error    480 ms
+     rebote   cubic-bezier(.34,1.56,.64,1) acierto 600 ms
+   Se mueve el <svg> entero (sube, salta, se sacude) y, por dentro, el grupo
+   de los ojos (parpadeo, mirada). Nada de esto corre dentro del simulador: ahí
+   Chilo va con `animacion="ninguna"` (tests/brand/chilo-usage.test.ts). */
+:root {
+  --ease-salida: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-rebote: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-boton: 100ms;
+  --dur-mensaje: 200ms;
+  --dur-entrada: 320ms;
+  --dur-celebracion: 600ms;
+}
+
+@keyframes chilo-reposo {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes chilo-entrada {
+  from {
+    transform: translateY(34px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes chilo-acierto {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  35% {
+    transform: translateY(-14px) rotate(-4deg);
+  }
+  70% {
+    transform: translateY(0) rotate(4deg);
+  }
+}
+@keyframes chilo-error {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  16.6%,
+  50%,
+  83.3% {
+    transform: translateX(-4px);
+  }
+  33.3%,
+  66.6% {
+    transform: translateX(4px);
+  }
+}
+/* Parpadeo: escala vertical a 0.1 durante ~120 ms cada 5.6 s. */
+@keyframes chilo-parpadeo {
+  0%,
+  97.8%,
+  100% {
+    transform: scaleY(1);
+  }
+  98.9% {
+    transform: scaleY(0.1);
+  }
+}
+@keyframes chilo-mirada {
+  0%,
+  100% {
+    transform: translateX(-3.5px);
+  }
+  50% {
+    transform: translateX(3.5px);
+  }
+}
+@keyframes chilo-fundido {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chilo-reposo {
+  animation: chilo-reposo 3.4s ease-in-out infinite;
+}
+.chilo-entrada {
+  animation:
+    chilo-entrada var(--dur-entrada) var(--ease-salida) both,
+    chilo-reposo 3.4s ease-in-out var(--dur-entrada) infinite;
+}
+.chilo-acierto {
+  animation: chilo-acierto var(--dur-celebracion) var(--ease-rebote) both;
+  transform-origin: 50% 100%;
+}
+.chilo-error {
+  animation: chilo-error 480ms var(--ease-in-out) both;
+}
+.chilo .chilo-ojos {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.chilo .chilo-parpadeo {
+  animation: chilo-parpadeo 5.6s linear infinite;
+}
+.chilo .chilo-mirada {
+  animation: chilo-mirada 1.6s var(--ease-in-out) infinite;
+}
+/* Cambio de pose: el grupo se remonta (cambia su `key`) y entra con fundido. */
+.chilo .chilo-pose {
+  animation: chilo-fundido 150ms linear both;
+}
+
+/* Movimiento reducido: Chilo no se mueve; solo queda el fundido de 150 ms al
+   cambiar de pose. Va DESPUÉS de la regla global de arriba y con más
+   especificidad, porque esa recorta toda animación a 0.01 ms. */
+@media (prefers-reduced-motion: reduce) {
+  .chilo.chilo-anim,
+  .chilo .chilo-parpadeo,
+  .chilo .chilo-mirada {
+    animation: none !important;
+  }
+  .chilo .chilo-pose {
+    animation: chilo-fundido 150ms linear both !important;
   }
 }
 

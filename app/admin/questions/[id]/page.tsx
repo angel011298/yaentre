@@ -58,7 +58,7 @@ export default async function QuestionDetailPage({
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-1">
-          <Link href="/admin/questions/queue" className="text-sm text-brand hover:underline">
+          <Link href="/admin/questions/queue" className="text-sm text-brand-fg hover:underline">
             ← Volver a la cola
           </Link>
           <h1 className="font-display text-2xl font-bold">Revisión de reactivo</h1>

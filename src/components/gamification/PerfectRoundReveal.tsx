@@ -33,7 +33,7 @@ export function PerfectRoundReveal() {
           x: Math.cos(angle) * distance,
           y: Math.sin(angle) * distance,
           // G101: sin emojis — partículas de la paleta de gamificación.
-          tone: ['text-brand-soft', 'text-success', 'text-streak'][i % 3],
+          tone: ['text-brand-soft', 'text-success', 'text-accent-fg'][i % 3],
           icon: i % 2 === 0 ? ('star' as const) : ('sparkles' as const),
         };
       }),

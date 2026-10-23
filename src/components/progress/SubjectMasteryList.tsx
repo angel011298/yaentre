@@ -51,7 +51,7 @@ export function SubjectMasteryList({ subjects }: { subjects: SubjectMastery[] })
             </div>
             <Link
               href={`/practicar?subjectId=${s.subjectId}`}
-              className="inline-flex min-h-touch shrink-0 items-center justify-center rounded-md border border-border-subtle bg-elevated px-3 py-2 text-sm font-semibold text-text-primary transition-all hover:bg-brand-tint hover:text-brand active:scale-[0.97]"
+              className="inline-flex min-h-touch shrink-0 items-center justify-center rounded-md border border-border-subtle bg-elevated px-3 py-2 text-sm font-semibold text-text-primary transition-all hover:bg-brand-tint hover:text-brand-fg active:scale-[0.97]"
             >
               Practicar
             </Link>

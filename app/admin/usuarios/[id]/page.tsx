@@ -41,7 +41,7 @@ export default async function AdminUserDetailPage({
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/admin/usuarios" className="text-sm text-brand hover:underline">
+        <Link href="/admin/usuarios" className="text-sm text-brand-fg hover:underline">
           ← Usuarios
         </Link>
         <h1 className="mt-2 font-display text-2xl font-bold">
@@ -86,7 +86,7 @@ export default async function AdminUserDetailPage({
           <div className="flex justify-between gap-4">
             <dt className="text-text-secondary">Racha actual</dt>
             <dd className="inline-flex items-center gap-1 font-medium">
-              <Icon name="flame" className="h-4 w-4 text-streak" />
+              <Icon name="flame" className="h-4 w-4 text-accent-fg" />
               {detail.currentStreak}
             </dd>
           </div>

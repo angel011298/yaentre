@@ -24,7 +24,7 @@ export function Faq() {
             <details key={item.question} className="group p-5 open:pb-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-text-primary">
                 {item.question}
-                <span className="shrink-0 text-brand transition-transform group-open:rotate-45">
+                <span className="shrink-0 text-brand-fg transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>

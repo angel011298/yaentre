@@ -73,7 +73,7 @@ export default async function AdminUsersPage({
                     <span>{u.onboardingComplete ? 'onboarding completo' : 'onboarding pendiente'}</span>
                     {u.targetExamLabel && <span>{u.targetExamLabel}</span>}
                     <span className="inline-flex items-center gap-1" title="Racha actual">
-                      <Icon name="flame" className="h-3.5 w-3.5 text-streak" />
+                      <Icon name="flame" className="h-3.5 w-3.5 text-accent-fg" />
                       {u.currentStreak}
                     </span>
                     {u.activeSubscriptions > 0 && (
@@ -93,7 +93,7 @@ export default async function AdminUsersPage({
                 </div>
                 <Link
                   href={`/admin/usuarios/${u.id}`}
-                  className="min-h-touch inline-flex shrink-0 items-center rounded-md bg-brand px-3 text-sm font-medium text-white transition-colors hover:bg-brand-hover"
+                  className="min-h-touch inline-flex shrink-0 items-center rounded-md bg-brand px-3 text-sm font-medium text-on-brand transition-colors hover:bg-brand-hover"
                 >
                   Administrar
                 </Link>

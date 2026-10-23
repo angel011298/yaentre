@@ -121,7 +121,7 @@ export default async function QueuePage({
                   </div>
                   <Link
                     href={`/admin/questions/${q.id}`}
-                    className="min-h-touch inline-flex shrink-0 items-center rounded-md bg-brand px-4 text-sm font-semibold text-white hover:bg-brand-hover"
+                    className="min-h-touch inline-flex shrink-0 items-center rounded-md bg-brand px-4 text-sm font-semibold text-on-brand hover:bg-brand-hover"
                   >
                     Revisar
                   </Link>

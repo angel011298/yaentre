@@ -136,7 +136,7 @@ export default async function AdminHomePage() {
         <div className="mt-3">
           <SignOutButton
             label="Cerrar sesión en este dispositivo"
-            className="inline-flex min-h-touch items-center rounded-md bg-brand px-4 text-sm font-semibold text-white hover:bg-brand-hover"
+            className="inline-flex min-h-touch items-center rounded-md bg-brand px-4 text-sm font-semibold text-on-brand hover:bg-brand-hover"
           />
         </div>
       </Card>

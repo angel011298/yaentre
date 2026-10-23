@@ -52,7 +52,7 @@ export function ThemeSelect({ initialTheme }: { initialTheme: ThemePref }) {
             onClick={() => select(opt.value)}
             className={`inline-flex min-h-touch items-center gap-2 rounded-md border px-4 text-sm font-semibold transition-all disabled:opacity-50 ${
               initialTheme === opt.value
-                ? 'border-brand bg-brand-tint text-brand'
+                ? 'border-brand bg-brand-tint text-brand-fg'
                 : 'border-border-subtle bg-surface text-text-secondary hover:bg-elevated'
             }`}
           >

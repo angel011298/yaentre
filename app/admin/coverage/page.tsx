@@ -49,7 +49,7 @@ export default async function CoveragePage() {
 
       <Card className="space-y-3 p-6">
         <div className="flex items-baseline justify-between">
-          <p className="font-display text-3xl font-bold text-brand">
+          <p className="font-display text-3xl font-bold text-brand-fg">
             {report.totalVerified.toLocaleString('es-MX')}
           </p>
           <p className="text-sm text-text-secondary">

@@ -123,7 +123,7 @@ export default async function AdminAuditPage({
                       {r.targetKind === 'user' ? (
                         <Link
                           href={`/admin/usuarios/${r.targetUserProfileId}`}
-                          className="text-brand hover:underline"
+                          className="text-brand-fg hover:underline"
                         >
                           {r.targetUserProfileId}
                         </Link>

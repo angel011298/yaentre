@@ -63,7 +63,7 @@ export function ParentLinkCard() {
 
       {code && !expired ? (
         <div className="mt-4 text-center">
-          <p className="font-mono text-3xl font-bold tracking-[0.3em] text-brand">{code}</p>
+          <p className="font-mono text-3xl font-bold tracking-[0.3em] text-brand-fg">{code}</p>
           <p className="mt-1 text-xs text-text-muted">Vence en {formatRemaining(remainingMs)}</p>
         </div>
       ) : (

@@ -43,7 +43,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <Link href="/admin" className="inline-flex items-center gap-2 font-display text-lg font-semibold">
-                  <Icon name="shield" className="h-5 w-5 text-brand" />
+                  <Icon name="shield" className="h-5 w-5 text-brand-fg" />
                   YaEntre · Admin
                 </Link>
                 <RoleBadge isMaster={ctx.isMaster} />
@@ -76,7 +76,7 @@ function RoleBadge({ isMaster }: { isMaster: boolean }) {
   return isMaster ? (
     <span
       data-testid="admin-role-badge"
-      className="inline-flex items-center gap-1 rounded-md bg-brand px-2 py-0.5 text-xs font-semibold text-white"
+      className="inline-flex items-center gap-1 rounded-md bg-brand px-2 py-0.5 text-xs font-semibold text-on-brand"
     >
       <Icon name="star" className="h-3 w-3" />
       Administrador maestro

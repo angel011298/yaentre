@@ -8,7 +8,7 @@ import {
 const TAB_STYLES: Record<ReviewQueueKind, string> = {
   discrepancy: 'border-danger text-danger',
   low_confidence: 'border-warning text-warning',
-  degraded_audit: 'border-brand text-brand',
+  degraded_audit: 'border-brand text-brand-fg',
 };
 
 interface Props {

@@ -39,7 +39,7 @@ export default async function VaultViewerPage({
   return (
     <div className="space-y-4">
       <div>
-        <Link href="/admin/boveda" className="text-sm text-brand hover:underline">
+        <Link href="/admin/boveda" className="text-sm text-brand-fg hover:underline">
           ← Bóveda
         </Link>
         <h1 className="mt-2 truncate font-display text-2xl font-bold">{file.originalName}</h1>
@@ -51,7 +51,7 @@ export default async function VaultViewerPage({
 
       <p className="text-xs text-text-muted">
         Estás viendo el archivo dentro del navegador; no se guarda en el equipo.{' '}
-        <a href={`${src}?download=1`} className="text-brand hover:underline">
+        <a href={`${src}?download=1`} className="text-brand-fg hover:underline">
           Descargarlo
         </a>{' '}
         sí deja una copia en el disco de esta computadora.
@@ -62,7 +62,7 @@ export default async function VaultViewerPage({
           <object data={src} type="application/pdf" className="h-[75vh] w-full">
             <p className="p-6 text-sm text-text-secondary">
               Tu navegador no puede mostrar este PDF aquí.{' '}
-              <a href={`${src}?download=1`} className="text-brand hover:underline">
+              <a href={`${src}?download=1`} className="text-brand-fg hover:underline">
                 Descárgalo
               </a>{' '}
               para abrirlo.
@@ -84,7 +84,7 @@ export default async function VaultViewerPage({
         {kind === 'none' && (
           <p className="p-6 text-sm text-text-secondary">
             Este tipo de archivo no se puede ver dentro del navegador.{' '}
-            <a href={`${src}?download=1`} className="text-brand hover:underline">
+            <a href={`${src}?download=1`} className="text-brand-fg hover:underline">
               Descárgalo
             </a>{' '}
             para abrirlo con la aplicación correspondiente.
@@ -198,7 +198,7 @@ async function SheetTables({ src }: { src: string }) {
         <p className="font-medium text-danger">{preview.error}</p>
         <p className="mt-2 text-text-secondary">
           Puedes{' '}
-          <a href={`${src}?download=1`} className="text-brand hover:underline">
+          <a href={`${src}?download=1`} className="text-brand-fg hover:underline">
             descargarlo
           </a>{' '}
           e intentar abrirlo con Excel o LibreOffice.

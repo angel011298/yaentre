@@ -90,7 +90,7 @@ export function ProfileIdentityCard({
       <p className="text-sm font-semibold text-text-primary">Tu perfil</p>
 
       <div className="flex items-center gap-4">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-tint text-xl font-bold text-brand">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-tint text-xl font-bold text-brand-fg">
           {avatarUrl ? (
             <Image src={avatarUrl} alt="" width={64} height={64} className="h-full w-full object-cover" />
           ) : (

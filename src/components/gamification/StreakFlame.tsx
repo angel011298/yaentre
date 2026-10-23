@@ -5,7 +5,7 @@ import { Icon } from '@/components/ui/Icon';
 export function StreakFlame({ days }: { days: number }) {
   return (
     <span
-      className="inline-flex items-center gap-1 font-mono text-sm font-bold tabular-nums text-streak"
+      className="inline-flex items-center gap-1 font-mono text-sm font-bold tabular-nums text-accent-fg"
       title={`${days} ${days === 1 ? 'día' : 'días'} de racha`}
     >
       <Icon name="flame" className="h-4 w-4" />

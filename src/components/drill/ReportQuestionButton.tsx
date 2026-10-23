@@ -54,7 +54,7 @@ export function ReportQuestionButton({ questionId }: { questionId: string }) {
           type="button"
           onClick={submit}
           disabled={status === 'sending'}
-          className="min-h-touch rounded-md bg-brand px-3 text-xs font-semibold text-white hover:bg-brand-hover disabled:opacity-50"
+          className="min-h-touch rounded-md bg-brand px-3 text-xs font-semibold text-on-brand hover:bg-brand-hover disabled:opacity-50"
         >
           {status === 'sending' ? 'Enviando…' : 'Enviar reporte'}
         </button>

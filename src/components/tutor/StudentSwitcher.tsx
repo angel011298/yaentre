@@ -25,8 +25,8 @@ export function StudentSwitcher({
           aria-current={s.studentProfileId === selectedId ? 'page' : undefined}
           className={`flex min-h-touch items-center whitespace-nowrap rounded-full px-3 text-sm font-semibold transition-colors ${
             s.studentProfileId === selectedId
-              ? 'bg-brand text-white'
-              : 'bg-elevated text-text-secondary hover:bg-brand-tint hover:text-brand'
+              ? 'bg-brand text-on-brand'
+              : 'bg-elevated text-text-secondary hover:bg-brand-tint hover:text-brand-fg'
           }`}
         >
           {s.displayName}

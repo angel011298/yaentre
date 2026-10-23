@@ -30,7 +30,7 @@ export function ProfileBadges({
           {otherBadges.map((b) => (
             <li
               key={b}
-              className="inline-flex items-center gap-1.5 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
+              className="inline-flex items-center gap-1.5 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand-fg"
             >
               <Icon name="award" className="h-4 w-4" />
               {BADGE_LABELS[b] ?? b}
@@ -39,7 +39,7 @@ export function ProfileBadges({
           {masteredSubjects.map((s) => (
             <li
               key={s.subjectId}
-              className="inline-flex items-center gap-1.5 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand"
+              className="inline-flex items-center gap-1.5 rounded-full border border-brand bg-brand-tint px-3 py-1.5 text-sm font-semibold text-brand-fg"
             >
               <Icon name="graduation" className="h-4 w-4" />
               {s.subjectName}

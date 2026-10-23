@@ -40,7 +40,7 @@ export async function EarlyBirdBanner() {
 
   return (
     <section className="bg-brand">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-4 text-center text-white sm:flex-row sm:justify-between sm:px-6 sm:text-left">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-4 text-center text-on-brand sm:flex-row sm:justify-between sm:px-6 sm:text-left">
         <div>
           <p className="inline-flex items-start gap-2 font-display text-[1rem] font-bold sm:text-lg">
             <Icon name="award" className="mt-0.5 h-5 w-5" />
@@ -57,16 +57,16 @@ export async function EarlyBirdBanner() {
           </p>
           {/* G63: `/90` — `/85` daba 4.5:1 justo y `/60` (el precio tachado)
               solo 3.0:1 sobre el morado. `/90` da 4.9:1. */}
-          <p className="text-sm text-white/90">
+          <p className="text-sm text-on-brand/90">
             Pase de Temporada:{' '}
             <span className="font-bold">{formatMxn(eb.amountMxn)}</span>{' '}
-            <span className="text-white/90 line-through">{formatMxn(regular.amountMxn)}</span> ·
+            <span className="text-on-brand/90 line-through">{formatMxn(regular.amountMxn)}</span> ·
             precio congelado para tu ciclo
           </p>
         </div>
         <Link
           href="/registro"
-          className="inline-flex min-h-touch min-w-touch items-center justify-center whitespace-nowrap rounded-md bg-white px-4 py-2 text-sm font-semibold text-brand shadow-md transition-all hover:bg-white/90 active:scale-[0.97]"
+          className="inline-flex min-h-touch min-w-touch items-center justify-center whitespace-nowrap rounded-md bg-on-brand px-4 py-2 text-sm font-semibold text-brand shadow-md transition-all hover:bg-on-brand/90 active:scale-[0.97]"
         >
           Asegurar mi lugar
         </Link>

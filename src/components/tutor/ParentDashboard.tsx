@@ -54,7 +54,7 @@ export function ParentDashboard({
           <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
             Racha actual
           </p>
-          <p className="mt-1 flex items-center gap-2 font-display text-3xl font-bold text-streak">
+          <p className="mt-1 flex items-center gap-2 font-display text-3xl font-bold text-accent-fg">
             <Icon name="flame" className="h-7 w-7" />
             {data.currentStreak} {data.currentStreak === 1 ? 'día' : 'días'}
           </p>
@@ -123,7 +123,7 @@ export function ParentDashboard({
       <div className="text-center">
         <Link
           href="/"
-          className="inline-flex min-h-touch items-center text-sm font-semibold text-text-secondary hover:text-brand"
+          className="inline-flex min-h-touch items-center text-sm font-semibold text-text-secondary hover:text-brand-fg"
         >
           Ir a yaentre.com
         </Link>
