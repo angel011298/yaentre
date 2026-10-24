@@ -9,6 +9,7 @@ import { Faq } from '@/components/marketing/Faq';
 import { PixelPageView } from '@/components/marketing/PixelPageView';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { getSiteUrl } from '@/lib/auth/site-url';
+import { readMarketplaceFlags } from '@/lib/marketplace/flags';
 import { FAQ_ITEMS } from '@/lib/marketing/faq-data';
 import { JsonLd } from '@/lib/seo/JsonLd';
 import { openGraphFor } from '@/lib/seo/metadata';
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     url: '/',
     title: 'YaEntre — Tu entrenador de admisión con IA para la UNAM y el IPN',
     description:
-      'No es otro curso con videos. Es un entrenador que sabe exactamente qué te falta para entrar — con simulador del examen real y predicción de aciertos.',
+      'No es solo ver videos: es practicar hasta quedar. Un entrenador que sabe exactamente qué te falta para entrar — con simulador del examen real y predicción de aciertos.',
   }),
 };
 
@@ -57,16 +58,17 @@ export default function LandingPage() {
       <PixelPageView />
       <EarlyBirdBanner />
       <Hero />
-      <Differentiators />
+      <Differentiators flags={readMarketplaceFlags()} />
       <ParentSection />
 
       <section className="bg-brand-tint py-16 text-center sm:py-20">
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
           <h2 className="font-display text-3xl font-bold text-text-primary">
-            Tu lugar no se gana viendo videos. Se gana practicando.
+            El examen no es de ver: es de resolver.
           </h2>
           <p className="mt-3 text-text-secondary">
-            Empieza tu diagnóstico gratis hoy — te toma menos de 45 minutos.
+            Por eso YaEntre se enfoca en la práctica. Empieza tu diagnóstico gratis hoy — te toma
+            menos de 45 minutos.
           </p>
           <div className="mt-6">
             <LinkButton href="/registro" variant="primary" className="px-8 py-3 text-[1rem]">

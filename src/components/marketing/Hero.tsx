@@ -3,9 +3,15 @@ import { Chilo } from '@/components/mascot/Chilo';
 import { Icon } from '@/components/ui/Icon';
 
 /**
- * Mensaje de posicionamiento (F10 Task 1): YaEntre no es un curso de videos —
- * es un entrenador que sabe exactamente qué le falta al alumno y lo pone a
- * practicar en el examen real antes del examen real.
+ * Mensaje de posicionamiento (F10 Task 1): YaEntre es un entrenador que sabe
+ * exactamente qué le falta al alumno y lo pone a practicar en el examen real
+ * antes del examen real.
+ *
+ * G103 (spec de temporalidad §4): el titular decía «No es otro curso con
+ * videos» — una negación de los videos que deja de ser cierta en cuanto
+ * existan clases grabadas y cursos. Se reposiciona como comparativo, no
+ * excluyente: la práctica va primero; los videos y las clases son el
+ * complemento. `tests/marketing/forbidden-copy.test.ts` vigila que no vuelva.
  */
 export function Hero() {
   return (
@@ -17,9 +23,10 @@ export function Hero() {
             Tu entrenador de admisión con IA
           </span>
           <h1 className="font-display text-4xl font-extrabold leading-[1.1] text-text-primary sm:text-5xl">
-            No es otro curso con videos.
+            No es solo ver videos.
             <br />
-            Es un entrenador que sabe <span className="text-brand-fg">exactamente</span> qué te falta.
+            Es practicar hasta quedar, con un entrenador que sabe{' '}
+            <span className="text-brand-fg">exactamente</span> qué te falta.
           </h1>
           <p className="mx-auto max-w-xl text-lg leading-relaxed text-text-secondary lg:mx-0">
             YaEntre detecta tus temas débiles con inteligencia artificial y te pone a practicar en

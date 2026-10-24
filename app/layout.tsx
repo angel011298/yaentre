@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "YaEntre — Tu entrenador de admisión con IA para la UNAM y el IPN",
     description:
-      "No es otro curso con videos. Es un entrenador que sabe exactamente qué te falta para entrar — con simulador del examen real y predicción de aciertos.",
+      "No es solo ver videos: es practicar hasta quedar. Un entrenador que sabe exactamente qué te falta para entrar — con simulador del examen real y predicción de aciertos.",
   },
   twitter: {
     card: "summary_large_image",
