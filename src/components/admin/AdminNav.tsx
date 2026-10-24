@@ -15,6 +15,8 @@ const LINKS = [
   { href: '/admin/usuarios', label: 'Usuarios' },
   { href: '/admin/bitacora', label: 'Bitácora' },
   { href: '/admin/boveda', label: 'Bóveda' },
+  // G103 — temporalidad de acceso (solo lectura).
+  { href: '/admin/vigencias', label: 'Vigencias' },
 ];
 
 export function AdminNav() {

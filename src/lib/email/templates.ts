@@ -164,3 +164,99 @@ export function examCountdownEmail(input: {
     ),
   };
 }
+
+// ─────────────────────────── Vigencia del acceso (G103) ───────────────────────────
+
+/**
+ * G103 — los cinco avisos de vigencia (spec de temporalidad §3.5). Son
+ * TRANSACCIONALES: informan del estado del servicio que el alumno pagó (como
+ * la confirmación de pago), así que no llevan enlace de baja.
+ * TODO-CLO: confirmar que el aviso de fin de gracia —que invita a comprar un
+ * plan nuevo— puede ir sin opción de baja o si debe tratarse como MARKETING.
+ *
+ * Fechas en hora de la Ciudad de México y montos con `Intl` en MXN: el correo
+ * se arma en un servidor en UTC (G100).
+ */
+export type AccessNoticeKind = 'T30' | 'T7' | 'T1' | 'T0' | 'GRACE_END';
+
+function formatMexicoDate(date: Date): string {
+  return date.toLocaleDateString('es-MX', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'America/Mexico_City',
+  });
+}
+
+function formatMxn(cents: number): string {
+  return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(cents / 100);
+}
+
+function ctaButton(href: string, label: string): string {
+  return `<p style="margin: 20px 0 4px; text-align: center;"><a href="${href}" style="display: inline-block; background: #7C3AED; color: #ffffff; text-decoration: none; font-weight: 600; font-size: 14px; padding: 12px 20px; border-radius: 12px;">${label}</a></p>`;
+}
+
+export function accessNoticeEmail(input: {
+  kind: AccessNoticeKind;
+  expiresAt: Date;
+  graceEndsAt: Date;
+  /** `null` si ya no se puede extender (fin de gracia). */
+  extensionPriceCents: number | null;
+  siteUrl: string;
+}): EmailContent {
+  const expires = formatMexicoDate(input.expiresAt);
+  const graceEnd = formatMexicoDate(input.graceEndsAt);
+  const price = input.extensionPriceCents != null ? formatMxn(input.extensionPriceCents) : null;
+  const extendUrl = `${input.siteUrl}/app/extender`;
+  const extendCta = price ? ctaButton(extendUrl, `Extender 6 meses — ${price}`) : '';
+  const p = (text: string) => `<p style="font-size: 14px; line-height: 1.6;">${text}</p>`;
+
+  switch (input.kind) {
+    case 'T30':
+      return {
+        subject: 'Tu acceso a YaEntre expira pronto',
+        html: wrapEmail(`
+          <h1 style="font-size: 18px; margin: 0 0 12px;">Tu acceso expira el ${expires}</h1>
+          ${p(`Si tu examen es en la próxima convocatoria, puedes extender tu acceso 6 meses más${price ? ` por ${price}` : ''} y seguir practicando sin perder nada.`)}
+          ${extendCta}
+        `),
+      };
+    case 'T7':
+      return {
+        subject: 'Te quedan 7 días de acceso — YaEntre',
+        html: wrapEmail(`
+          <h1 style="font-size: 18px; margin: 0 0 12px;">Te quedan 7 días</h1>
+          ${p(`Tu acceso a simulacros y contenido de pago termina el ${expires}. Extiéndelo 6 meses y sigue con tu ruta donde la dejaste.`)}
+          ${extendCta}
+        `),
+      };
+    case 'T1':
+      return {
+        subject: 'Último día de acceso — extiende ahora',
+        html: wrapEmail(`
+          <h1 style="font-size: 18px; margin: 0 0 12px;">Hoy es tu último día de acceso</h1>
+          ${p(`Tu acceso termina el ${expires}. Después tendrás 7 días de gracia para extender sin perder tu avance.`)}
+          ${extendCta}
+        `),
+      };
+    case 'T0':
+      return {
+        subject: 'Tu acceso ha expirado — YaEntre',
+        html: wrapEmail(`
+          <h1 style="font-size: 18px; margin: 0 0 12px;">Tu acceso expiró el ${expires}</h1>
+          ${p(`Tienes hasta el ${graceEnd} para extenderlo. Después de esa fecha dejarás de tener acceso a los simulacros y al contenido de pago.`)}
+          ${p('Tu progreso y tus estadísticas se conservan.')}
+          ${extendCta}
+        `),
+      };
+    case 'GRACE_END':
+      return {
+        subject: 'Acceso finalizado — tu progreso está guardado',
+        html: wrapEmail(`
+          <h1 style="font-size: 18px; margin: 0 0 12px;">Tu acceso terminó</h1>
+          ${p('Tu periodo de gracia terminó el ' + graceEnd + '. Tu progreso, tu historial y tu Entrómetro siguen guardados: si eliges un plan nuevo, retomas donde te quedaste.')}
+          ${ctaButton(`${input.siteUrl}/precios`, 'Ver planes')}
+        `),
+      };
+  }
+}

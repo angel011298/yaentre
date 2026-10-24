@@ -100,7 +100,21 @@ export type ControlName =
    */
   | 'session_signout'
   /** Persistencia de la preferencia de baja de correo. */
-  | 'unsubscribe_write';
+  | 'unsubscribe_write'
+  /**
+   * G103 — una acción que depende de un texto legal todavía marcado
+   * `TODO-CLO` (contrato del profesor, T&C de cursos, declaración de mayoría
+   * de edad) se rechazó en producción. `fail-closed`: correcto, pero si nadie
+   * se entera, el dueño cree que encendió algo que sigue cerrado.
+   */
+  | 'legal_text_pending'
+  /** G103 — Storage de cursos y documentos de profesores (subida, firma, borrado). */
+  | 'marketplace_storage'
+  /**
+   * G103 — reserva de clase cobrada que ya no se puede sostener (el apartado
+   * caducó y el horario lo tomó otra persona) o reembolso que Stripe rechazó.
+   */
+  | 'class_booking';
 
 /**
  * Áreas cuya degradación silenciosa devuelve un éxito aparente. No son

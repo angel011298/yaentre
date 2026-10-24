@@ -20,7 +20,8 @@ const PLAN_FEATURES: Record<SubscriptionPlan, string[]> = {
   SEASON_PASS: [
     'Todo lo de Mensual',
     'Panel parental incluido',
-    'Vigente hasta el día de tu examen',
+    // G103: 12 meses desde la compra; cubre las dos convocatorias del año.
+    '12 meses de acceso',
   ],
   PREMIUM: [
     'Todo lo del Pase de Temporada',

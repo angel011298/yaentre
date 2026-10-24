@@ -145,6 +145,43 @@ export const RATE_LIMITS = {
    * acota un bucle accidental o una sesión comprometida.
    */
   ADMIN_NOTE_ACTION: { limit: 120, windowSecs: 3600 },
+
+  // ── G103 — horarios, cursos, regularización y temporalidad ──────────────
+  /** Inicio de la compra de la extensión de 6 meses: cada intento crea una
+   *  sesión de Checkout (y quizá un Customer) en Stripe. 6/h y alumno sobra
+   *  para quien duda entre tarjeta y OXXO; corta un bucle. */
+  ACCESS_EXTENSION_CHECKOUT: { limit: 6, windowSecs: 3600 },
+  /** Solicitud de alta como profesor (datos fiscales y bancarios): 5 al día. */
+  TEACHER_APPLY: { limit: 5, windowSecs: 86_400 },
+  /** Escrituras del panel del profesor (disponibilidad, fechas bloqueadas,
+   *  edición de cursos, módulos y lecciones): trabajo manual frecuente. */
+  TEACHER_WRITE: { limit: 240, windowSecs: 3600 },
+  /** URLs firmadas de SUBIDA (vídeo, portada, PDF, constancia fiscal). El tope
+   *  real es la cuota de 500 MB por vídeo y 5 GB por curso; esto acota que una
+   *  sesión comprometida llene el almacenamiento de golpe. */
+  TEACHER_UPLOAD: { limit: 60, windowSecs: 3600 },
+  /** Consulta de horarios disponibles, por IP: el calendario pide un mes a la
+   *  vez y cambia de duración; un humano no llega a 240 en 10 min, un raspador
+   *  del directorio sí. */
+  SLOTS_READ_IP: { limit: 240, windowSecs: 600 },
+  /** Catálogo público de cursos en JSON, por IP (antiscraping). */
+  CATALOG_READ_IP: { limit: 240, windowSecs: 600 },
+  /** Reservar una clase: cada intento puede crear un cobro en Stripe. */
+  CLASS_BOOKING: { limit: 10, windowSecs: 3600 },
+  /** Cancelar una clase (dispara un reembolso). */
+  CLASS_CANCEL: { limit: 10, windowSecs: 3600 },
+  /** Inicio de la compra de un curso (sesión de Checkout). */
+  COURSE_CHECKOUT: { limit: 10, windowSecs: 3600 },
+  /** Progreso del reproductor: un latido cada ~15 s mientras se ve un vídeo
+   *  (240/h) más los cambios de lección. */
+  COURSE_PROGRESS: { limit: 600, windowSecs: 3600 },
+  /** Calificación/reseña de un curso. */
+  COURSE_REVIEW: { limit: 10, windowSecs: 3600 },
+  /** URLs firmadas de LECTURA de vídeos y recursos (renovables al caducar). */
+  COURSE_MEDIA_URL: { limit: 300, windowSecs: 3600 },
+  /** Acciones de moderación y de liquidación del panel (profesores, cursos,
+   *  liquidaciones), por admin. Mismo criterio que `ADMIN_USER_ACTION`. */
+  ADMIN_MARKETPLACE_ACTION: { limit: 120, windowSecs: 3600 },
 } as const;
 
 export type RateLimitName = keyof typeof RATE_LIMITS;

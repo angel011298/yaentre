@@ -15,6 +15,7 @@ import { Card } from '@/components/ui/Card';
 import { ParentLinkCard } from '@/components/dashboard/ParentLinkCard';
 import { LinkedParentsCard } from '@/components/profile/LinkedParentsCard';
 import { loadLinkedParents } from '@/lib/db/parent';
+import { loadAccessSummary } from '@/lib/db/access-summary';
 import { getAuthEmails } from '@/lib/db/auth-users';
 import { reportSilentDegradation } from '@/lib/observability/report';
 
@@ -38,6 +39,7 @@ export default async function PerfilPage() {
     examCountdownEnabled,
     marketingEnabled,
     linkedParents,
+    accessSummary,
   ] = await Promise.all([
     loadProfileOverview(profile.id),
     loadCareerOptions(profile.id),
@@ -47,6 +49,7 @@ export default async function PerfilPage() {
     isNotificationTypeEnabled(profile.id, 'EXAM_COUNTDOWN'),
     isNotificationTypeEnabled(profile.id, 'MARKETING'),
     loadLinkedParents(profile.id),
+    loadAccessSummary(profile.id, new Date()),
   ]);
 
   if (!overview) return null;
@@ -106,7 +109,7 @@ export default async function PerfilPage() {
         </Card>
       )}
 
-      <PlanSection status={planStatus} />
+      <PlanSection status={planStatus} access={accessSummary} />
 
       <ProfileBadges masteredSubjects={masteredSubjects} otherBadges={otherBadges} />
 

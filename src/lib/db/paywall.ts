@@ -1,6 +1,7 @@
 import type { Subscription } from '@prisma/client';
 import { prisma } from './prisma';
 import { startOfMexicoDay } from '@/lib/paywall/mexico-time';
+import { accessibleSubscriptionWhere } from '@/lib/subscriptions/access-check';
 import {
   canAccessParentDashboard,
   canAnswerDrillQuestion,
@@ -21,15 +22,17 @@ const FINISHED_STATUSES = ['COMPLETED', 'COMPLETED_BY_TIMEOUT'] as const;
 
 /** Suscripción activa y VIGENTE (no basta el status: una `expiresAt` pasada
  *  ya no da acceso aunque el status siga en ACTIVE hasta que un cron la
- *  transicione a EXPIRED — ver F22). */
-export async function getActiveSubscription(userProfileId: string): Promise<Subscription | null> {
-  const now = new Date();
+ *  transicione a EXPIRED — ver F22).
+ *
+ *  G103: «vigente» incluye los 7 días de GRACIA después de `expiresAt` (spec
+ *  de temporalidad §7.3: nunca se bloquea sin darla). El criterio vive en
+ *  `accessibleSubscriptionWhere`, junto a su gemelo puro `checkAccessStatus`. */
+export async function getActiveSubscription(
+  userProfileId: string,
+  now: Date = new Date()
+): Promise<Subscription | null> {
   return prisma.subscription.findFirst({
-    where: {
-      userProfileId,
-      status: 'ACTIVE',
-      OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
-    },
+    where: { userProfileId, ...accessibleSubscriptionWhere(now) },
     orderBy: { updatedAt: 'desc' },
   });
 }

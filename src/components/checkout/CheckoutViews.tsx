@@ -42,7 +42,7 @@ const NEXT_STEPS: Record<SubscriptionPlan, string[]> = {
   SEASON_PASS: [
     'Haz un simulacro completo — ya no tienes límite de 1 gratis.',
     'Vincula a tu tutor desde tu perfil para que vea tu progreso.',
-    'Tu pase dura hasta el día de tu examen — sin renovaciones que recordar.',
+    'Tu pase dura 12 meses — cubre las dos convocatorias del año, sin renovaciones que recordar.',
   ],
   PREMIUM: [
     'Haz un simulacro completo — ya no tienes límite de 1 gratis.',

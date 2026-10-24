@@ -3,6 +3,7 @@ import { Prisma, type PricingSeason, type SubscriptionPlan } from '@prisma/clien
 import { prisma } from './prisma';
 import { reportSilentDegradation } from '@/lib/observability/report';
 import { computeExpiresAt } from '@/lib/stripe/expiry';
+import { calculateGraceEndsAt } from '@/lib/subscriptions/access-duration';
 import {
   currentSeason,
   degradeIfEarlyBirdExhausted,
@@ -47,7 +48,7 @@ class SubscriptionNotFoundError extends Error {
   }
 }
 
-async function runIdempotent(
+export async function runIdempotent(
   eventId: string,
   eventType: string,
   work: (tx: Prisma.TransactionClient) => Promise<void>
@@ -104,9 +105,9 @@ async function grantEarlyBirdBadge(
  * distinto con ella que con una comprada—, así que el camino es uno solo.
  *
  * Qué hace, y en este orden (el MISMO que tenía el webhook):
- *   1. lee la suscripción con la fecha del examen objetivo del alumno;
+ *   1. lee la suscripción;
  *   2. sale si ya está ACTIVE (defensa extra a la idempotencia por event.id);
- *   3. deriva `expiresAt` de `targetExam.examDate` con `computeExpiresAt`;
+ *   3. deriva `expiresAt` con `computeExpiresAt` (G103: 12 meses) y `graceEndsAt`;
  *   4. transición ATÓMICA con `status: { not: 'ACTIVE' }` — solo un llamador
  *      concurrente gana (G60);
  *   5. `afterActivate`, para lo que es propio de cada camino;
@@ -138,12 +139,7 @@ export async function activateSubscriptionTx(
     afterActivate?: (sub: { id: string; plan: SubscriptionPlan; season: PricingSeason }) => Promise<void>;
   }
 ): Promise<ActivationOutcome | null> {
-  const sub = await tx.subscription.findUnique({
-    where: { id: input.subscriptionId },
-    include: {
-      userProfile: { select: { id: true, targetExam: { select: { examDate: true } } } },
-    },
-  });
+  const sub = await tx.subscription.findUnique({ where: { id: input.subscriptionId } });
   if (!sub) return null;
 
   const base: ActivationOutcome = {
@@ -158,11 +154,9 @@ export async function activateSubscriptionTx(
 
   if (sub.status === 'ACTIVE') return base;
 
-  const expiresAt = computeExpiresAt(
-    sub.plan,
-    sub.userProfile.targetExam?.examDate ?? null,
-    input.now
-  );
+  // G103: 12 meses desde la activación (ya no la fecha del examen) y la
+  // gracia de 7 días guardada desde el nacimiento de la vigencia.
+  const expiresAt = computeExpiresAt(sub.plan, input.now);
 
   const activated = await tx.subscription.updateMany({
     where: { id: sub.id, status: { not: 'ACTIVE' } },
@@ -170,6 +164,7 @@ export async function activateSubscriptionTx(
       status: 'ACTIVE',
       startedAt: input.now,
       expiresAt,
+      graceEndsAt: expiresAt ? calculateGraceEndsAt(expiresAt) : null,
       stripeCustomerId: input.stripeCustomerId ?? undefined,
       stripeSubscriptionId: input.stripeSubscriptionId ?? undefined,
     },
@@ -246,7 +241,7 @@ export const billingStore: BillingStore = {
       const now = new Date();
 
       // G99 — el cuerpo de la activación (guarda de ACTIVE, `expiresAt`
-      // derivado del examen, transición atómica con `status: { not: 'ACTIVE' }`
+      // a 12 meses con su gracia (G103), transición atómica con `status: { not: 'ACTIVE' }`
       // de G60, insignia Early Bird) vive en `activateSubscriptionTx`, que
       // comparte con el alta manual de cortesías. El `Payment` se escribe en
       // `afterActivate`, que es EXACTAMENTE el punto donde se escribía antes:

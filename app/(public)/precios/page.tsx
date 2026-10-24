@@ -81,8 +81,9 @@ const FEATURE_ROWS: Array<{
     feature: 'Vigencia',
     free: T('Siempre'),
     monthly: T('Mensual renovable'),
-    seasonPass: T('Hasta el día del examen'),
-    premium: T('Hasta el día del examen'),
+    // G103: 12 meses desde la compra (antes, hasta el día del examen).
+    seasonPass: T('12 meses'),
+    premium: T('12 meses'),
   },
   { feature: 'Garantía de reembolso', free: N(), monthly: N(), seasonPass: N(), premium: Y('si no ingresa') },
   { feature: 'Tutorías (Fase 2)', free: N(), monthly: N(), seasonPass: N(), premium: T('Prioritario') },
@@ -151,7 +152,7 @@ export default async function PreciosPage() {
     ...PAID_PLANS.map((plan) => ({
       name: planLabel(plan),
       price: (pricing[plan].amountMxn / 100).toFixed(2),
-      description: pricing[plan].isRecurring ? 'Suscripción mensual renovable.' : 'Pago único, acceso hasta el día de tu examen.',
+      description: pricing[plan].isRecurring ? 'Suscripción mensual renovable.' : 'Pago único, 12 meses de acceso.',
     })),
   ];
 

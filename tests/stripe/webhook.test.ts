@@ -107,7 +107,7 @@ class FakeBillingStore implements BillingStore {
     const now = new Date();
     sub.status = 'ACTIVE';
     sub.startedAt = now;
-    sub.expiresAt = computeExpiresAt(sub.plan, sub.examDate, now);
+    sub.expiresAt = computeExpiresAt(sub.plan, now);
     if (a.stripeSubscriptionId) sub.stripeSubscriptionId = a.stripeSubscriptionId;
     this.upsertPayment(sub, a, 'SUCCEEDED');
     return 'applied';
@@ -418,21 +418,20 @@ describe('pricing — matriz de precios (PRD §9)', () => {
 
 describe('expiry — vigencia por plan', () => {
   it('MONTHLY no calcula expiración (la maneja Stripe)', () => {
-    expect(computeExpiresAt('MONTHLY', new Date('2027-06-01'), new Date('2027-01-01'))).toBeNull();
+    expect(computeExpiresAt('MONTHLY', new Date('2027-01-01'))).toBeNull();
   });
 
-  it('SEASON_PASS/PREMIUM expiran el día del examen objetivo', () => {
-    const examDate = new Date('2027-06-01T00:00:00Z');
-    expect(computeExpiresAt('SEASON_PASS', examDate, new Date('2027-01-01'))).toEqual(examDate);
-    expect(computeExpiresAt('PREMIUM', examDate, new Date('2027-01-01'))).toEqual(examDate);
+  it('G103: SEASON_PASS/PREMIUM vencen 12 meses después de la activación', () => {
+    const now = new Date('2027-01-15T18:30:00Z');
+    expect(computeExpiresAt('SEASON_PASS', now)).toEqual(new Date('2028-01-15T18:30:00Z'));
+    expect(computeExpiresAt('PREMIUM', now)).toEqual(new Date('2028-01-15T18:30:00Z'));
   });
 
-  it('sin fecha de examen, usa el respaldo de 150 días desde la activación', () => {
+  it('G103: la fecha del examen ya no fija la vigencia (no hay respaldo de 150 días)', () => {
     const now = new Date('2027-01-01T00:00:00Z');
-    const result = computeExpiresAt('SEASON_PASS', null, now);
-    expect(result).not.toBeNull();
+    const result = computeExpiresAt('SEASON_PASS', now);
     const days = Math.round((result!.getTime() - now.getTime()) / (24 * 3600 * 1000));
-    expect(days).toBe(150);
+    expect(days).toBe(365);
   });
 });
 

@@ -1,4 +1,5 @@
 import { prisma } from './prisma';
+import { runAccessExpiryJob } from './access-expiry-jobs';
 import { loadParentDashboardData } from './parent';
 import { getAuthEmails } from './auth-users';
 import { filterEnabledForType } from './notifications';
@@ -169,15 +170,18 @@ export interface DailyNotificationResults {
   streakRisk: number;
   examCountdown: number;
   parentWeeklySummary: number;
+  /** G103 — avisos de vigencia del acceso de pago. */
+  accessExpiry: number;
 }
 
 export async function runDailyNotificationJobs(
   now: Date = new Date()
 ): Promise<DailyNotificationResults> {
-  const [streakRisk, examCountdown, parentWeeklySummary] = await Promise.allSettled([
+  const [streakRisk, examCountdown, parentWeeklySummary, accessExpiry] = await Promise.allSettled([
     runStreakRiskJob(now),
     runExamCountdownJob(now),
     runParentWeeklySummaryJob(now),
+    runAccessExpiryJob(now),
   ]);
 
   // G73b — `Promise.allSettled` es correcto (un job caído no debe tumbar a los
@@ -194,5 +198,6 @@ export async function runDailyNotificationJobs(
     streakRisk: value(streakRisk, 'streakRisk'),
     examCountdown: value(examCountdown, 'examCountdown'),
     parentWeeklySummary: value(parentWeeklySummary, 'parentWeeklySummary'),
+    accessExpiry: value(accessExpiry, 'accessExpiry'),
   };
 }

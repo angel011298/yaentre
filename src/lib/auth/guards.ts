@@ -4,6 +4,7 @@ import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/db/prisma';
 import { isOnboardingComplete } from '@/lib/onboarding/steps';
+import { accessibleSubscriptionWhere } from '@/lib/subscriptions/access-check';
 import { reportControlFailure } from '@/lib/observability/report';
 import { AuthError } from './errors';
 import { createSupabaseServerClient } from './supabase-server';
@@ -77,15 +78,20 @@ export async function requireRole(allowed: UserRole | UserRole[]): Promise<Requi
 }
 
 /**
- * Exige una Subscription con status ACTIVE. Usado para features exclusivas
- * de planes de pago (simulacros ilimitados, capas 2-4, panel parental, etc.).
+ * Exige una Subscription con acceso de pago VIGENTE (incluida la gracia de
+ * G103). Usado para features exclusivas de planes de pago.
+ *
+ * G103: antes solo miraba `status: 'ACTIVE'` y daba por buena una suscripción
+ * vencida; ahora usa el MISMO criterio que el muro suave
+ * (`accessibleSubscriptionWhere`), para que no haya dos definiciones de «pagó».
  */
 export async function requirePaidPlan(): Promise<
   RequireUserResult & { subscription: Subscription }
 > {
   const result = await requireUser();
   const subscription = await prisma.subscription.findFirst({
-    where: { userProfileId: result.profile.id, status: 'ACTIVE' },
+    where: { userProfileId: result.profile.id, ...accessibleSubscriptionWhere(new Date()) },
+    orderBy: { updatedAt: 'desc' },
   });
 
   if (!subscription) {

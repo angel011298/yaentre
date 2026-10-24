@@ -1,43 +1,23 @@
 import type { SubscriptionPlan } from '@prisma/client';
+import { calculateExpirationDate } from '@/lib/subscriptions/access-duration';
 
 /**
- * Vigencia (expiresAt) de una suscripción ya activada. Módulo PURO (Task 1):
+ * Vigencia (expiresAt) de una suscripción ya activada. Módulo PURO.
  *
  * - MONTHLY: suscripción recurrente de Stripe. El acceso vive mientras el
  *   estado sea ACTIVE; Stripe controla las renovaciones/cancelaciones, así que
  *   NO se calcula una fecha de expiración en la app → `null`.
- * - SEASON_PASS / PREMIUM: pago único cuya vigencia es «hasta el día del examen
- *   objetivo del usuario» (PRD §9, Flujo_App §10). Se controla en la app, no en
- *   Stripe.
+ * - SEASON_PASS / PREMIUM: **12 meses desde la activación** (G103, decisión de
+ *   Ángel del 23-oct-2026, spec de temporalidad §3.2). El cálculo vive en
+ *   `src/lib/subscriptions/access-duration.ts` (meses de calendario en hora de
+ *   México).
  *
- * Si el plan es de pase/premium pero el usuario aún no tiene examen objetivo
- * con fecha conocida (`examDate` null), se cae a un respaldo prudente: 150 días
- * desde la activación (≈ una temporada de examen). Así el acceso pagado nunca
- * queda sin vigencia por un dato faltante, sin inventar una fecha de examen.
- *
- * F19 (bug real corregido): el mismo respaldo aplica si la fecha del examen ya
- * PASÓ en el momento de activar. Antes se devolvía esa fecha pasada tal cual,
- * así que la suscripción nacía ya vencida (`getActiveSubscription` filtra por
- * `expiresAt > now`) — el alumno pagaba y se quedaba SIN acceso, en silencio.
- * Es alcanzable de verdad: en cuanto pasa la fecha del examen del ciclo (p. ej.
- * UNAM 2027-05-15) cualquier compra posterior caía en esto, y también un
- * aspirante rechazado que vuelve a comprar para el siguiente ciclo antes de que
- * se cargue el examen nuevo. Un pago SIEMPRE debe otorgar vigencia real.
+ * Hasta G102 la vigencia era «hasta la fecha del examen objetivo» con un
+ * respaldo de 150 días. La regla de F19 sigue en pie y ahora se cumple por
+ * construcción: un pago SIEMPRE otorga vigencia futura — 12 meses a partir del
+ * instante de activar, sin depender de un dato del perfil que pueda faltar o
+ * haber pasado.
  */
-
-export const SEASON_PASS_FALLBACK_DAYS = 150;
-
-export function computeExpiresAt(
-  plan: SubscriptionPlan,
-  examDate: Date | null,
-  now: Date
-): Date | null {
-  if (plan === 'MONTHLY') return null;
-
-  // Solo sirve como vigencia una fecha de examen que todavía esté por venir.
-  if (examDate && examDate.getTime() > now.getTime()) return examDate;
-
-  const fallback = new Date(now);
-  fallback.setUTCDate(fallback.getUTCDate() + SEASON_PASS_FALLBACK_DAYS);
-  return fallback;
+export function computeExpiresAt(plan: SubscriptionPlan, now: Date): Date | null {
+  return calculateExpirationDate(plan, now);
 }

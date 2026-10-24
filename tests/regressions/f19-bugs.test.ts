@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { SEASON_PASS_FALLBACK_DAYS, computeExpiresAt } from '@/lib/stripe/expiry';
+import { computeExpiresAt } from '@/lib/stripe/expiry';
 import { getCorrectOptionId, isAnswerCorrect, parseQuestionOptions } from '@/lib/sessions/scoring';
 
 /**
@@ -16,52 +16,44 @@ describe('BUG F19-1 — una compra nunca puede nacer ya vencida', () => {
    * la suscripción quedaba vencida en el instante de crearse: el alumno pagaba
    * y no obtenía absolutamente nada, sin ningún error visible.
    *
-   * Alcanzable de verdad: en cuanto pasa la fecha del examen del ciclo (UNAM
-   * 2027-05-15 / IPN 2027-06-10 en el seed real) toda compra posterior caía
-   * aquí, igual que un aspirante rechazado recomprando para el siguiente ciclo.
+   * G103: la vigencia dejó de depender de la fecha del examen (12 meses desde
+   * la activación, decisión de Ángel del 23-oct-2026). El bug de F19 queda
+   * imposible por construcción, pero la regresión se conserva —y se endurece—
+   * porque la invariante es la misma: un pago SIEMPRE otorga vigencia futura.
    */
   const activacion = new Date('2027-06-01T12:00:00Z');
+  const DOCE_MESES = new Date('2028-06-01T12:00:00Z');
 
-  it('con la fecha del examen YA PASADA, cae al respaldo en vez de vencer al instante', () => {
-    const examenPasado = new Date('2027-05-15T00:00:00Z');
-    const expiresAt = computeExpiresAt('SEASON_PASS', examenPasado, activacion);
-
+  it('la vigencia de un pase es de 12 meses desde la activación, nunca una fecha pasada', () => {
+    const expiresAt = computeExpiresAt('SEASON_PASS', activacion);
     expect(expiresAt).not.toBeNull();
     expect(expiresAt!.getTime()).toBeGreaterThan(activacion.getTime());
-    const dias = Math.round((expiresAt!.getTime() - activacion.getTime()) / (24 * 3600 * 1000));
-    expect(dias).toBe(SEASON_PASS_FALLBACK_DAYS);
+    expect(expiresAt).toEqual(DOCE_MESES);
   });
 
   it('lo mismo aplica a PREMIUM (el plan más caro no puede ser el más frágil)', () => {
-    const expiresAt = computeExpiresAt('PREMIUM', new Date('2026-01-01T00:00:00Z'), activacion);
-    expect(expiresAt!.getTime()).toBeGreaterThan(activacion.getTime());
-  });
-
-  it('con la fecha del examen aún por venir, se respeta esa fecha exacta', () => {
-    const examenFuturo = new Date('2027-11-20T00:00:00Z');
-    expect(computeExpiresAt('SEASON_PASS', examenFuturo, activacion)).toEqual(examenFuturo);
+    expect(computeExpiresAt('PREMIUM', activacion)).toEqual(DOCE_MESES);
   });
 
   it('MONTHLY sigue sin vigencia calculada (la maneja Stripe)', () => {
-    expect(computeExpiresAt('MONTHLY', new Date('2020-01-01'), activacion)).toBeNull();
+    expect(computeExpiresAt('MONTHLY', activacion)).toBeNull();
   });
 
-  it('INVARIANTE: pase/premium SIEMPRE reciben una vigencia futura', () => {
-    const fechas = [
-      null,
-      new Date('2020-01-01T00:00:00Z'),
-      new Date('2027-06-01T11:59:59Z'), // un segundo antes de activar
-      new Date('2027-06-01T12:00:00Z'), // exactamente el instante de activar
-      new Date('2030-01-01T00:00:00Z'),
+  it('INVARIANTE: pase/premium SIEMPRE reciben una vigencia futura de ≥ 365 días', () => {
+    const activaciones = [
+      new Date('2026-10-23T05:59:59Z'),
+      new Date('2027-02-28T18:00:00Z'),
+      new Date('2027-06-01T12:00:00Z'),
+      new Date('2028-02-29T06:00:00Z'), // 29 de febrero (bisiesto) en hora de México
+      new Date('2030-12-31T23:59:59Z'),
     ];
     for (const plan of ['SEASON_PASS', 'PREMIUM'] as const) {
-      for (const examDate of fechas) {
-        const expiresAt = computeExpiresAt(plan, examDate, activacion);
-        expect(expiresAt, `${plan} con examDate ${examDate}`).not.toBeNull();
-        expect(
-          expiresAt!.getTime(),
-          `${plan} con examDate ${examDate} venció al nacer`
-        ).toBeGreaterThan(activacion.getTime());
+      for (const now of activaciones) {
+        const expiresAt = computeExpiresAt(plan, now);
+        expect(expiresAt, `${plan} activado ${now.toISOString()}`).not.toBeNull();
+        const dias = (expiresAt!.getTime() - now.getTime()) / (24 * 3600 * 1000);
+        expect(dias, `${plan} activado ${now.toISOString()} venció antes de un año`).toBeGreaterThanOrEqual(365);
+        expect(dias).toBeLessThanOrEqual(366);
       }
     }
   });

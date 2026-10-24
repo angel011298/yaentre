@@ -628,13 +628,29 @@ model Subscription {
   stripeCheckoutSessionId String? @unique
 
   startedAt DateTime?
-  expiresAt DateTime? // Pase/Premium: = fecha del examen
+  // Pase/Premium: 12 meses desde la activación (G103). Hasta G102 era la fecha
+  // del examen; las filas anteriores conservan la que tenían. MONTHLY: null.
+  expiresAt DateTime?
+
+  // ── Temporalidad (G103, src/lib/subscriptions) ──
+  // Gracia: 7 días DESPUÉS de expiresAt, con acceso. Nunca se bloquea sin ella.
+  graceEndsAt       DateTime?
+  // Extensión de 6 meses: última compra y la vigencia ANTES de la primera.
+  extendedAt        DateTime?
+  originalExpiresAt DateTime?
+  // Consentimiento del art. 56 aceptado al comprar la última extensión.
+  extensionConsentAt      DateTime?
+  extensionConsentVersion String?
+  // Avisos de vigencia ya enviados: "T30:2027-10-23" (tipo + día de expiresAt).
+  // Idempotencia del cron: un aviso se reclama aquí ANTES de mandarse.
+  expiryNoticesSent String[] @default([])
 
   payments  Payment[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 
   @@index([userProfileId, status])
+  @@index([status, expiresAt])
   @@map("subscriptions")
 }
 

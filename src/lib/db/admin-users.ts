@@ -243,7 +243,7 @@ export interface CompGrantResult {
  *
  * Pasa por `activateSubscriptionTx` —la MISMA función que usa el webhook de
  * Stripe— para que el resultado sea indistinguible de una compra: `status`
- * ACTIVE, `startedAt`, `expiresAt` derivado de la fecha del examen objetivo, e
+ * ACTIVE, `startedAt`, `expiresAt` a 12 meses con su `graceEndsAt` (G103), e
  * insignia Early Bird si aplica. Si esto se hiciera con un `create` suelto, una
  * Premium regalada quedaría sin `expiresAt` y el paywall la trataría distinto.
  *

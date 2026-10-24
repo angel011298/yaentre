@@ -27,6 +27,8 @@ import {
 import { loadMasteredSubjectBadges, loadStreakStatus } from '@/lib/db/gamification';
 import { emptySimulations, noWeakTopicsYet } from '@/lib/chilo/copy';
 import { Icon } from '@/components/ui/Icon';
+import { AccessStatusBanner } from '@/components/subscription/AccessStatusBanner';
+import { loadAccessSummary } from '@/lib/db/access-summary';
 
 function greetingName(displayName: string | null, email: string | undefined): string {
   if (displayName) return displayName;
@@ -82,9 +84,14 @@ export default async function DashboardPage() {
   }
 
   const pid = profile.id;
+  // G103: aviso de vigencia en la CÁSCARA y no en un `<Suspense>`: si llegara
+  // por stream empujaría todo el tablero hacia abajo (CLS). Es UNA consulta
+  // indexada por alumno (`subscriptions_userProfileId_status_idx`).
+  const accessSummary = await loadAccessSummary(pid, new Date());
 
   return (
     <div className="space-y-6">
+      <AccessStatusBanner summary={accessSummary} />
       <div>
         <h1 className="font-display text-2xl font-bold text-text-primary">
           ¡Hola, {displayName}!

@@ -7,6 +7,8 @@ import {
   type HandleResult,
 } from '@/lib/stripe/webhook';
 import { billingStore } from '@/lib/db/billing';
+import { marketplaceStore } from '@/lib/db/marketplace-store';
+import { handleMarketplaceEvent } from '@/lib/stripe/marketplace-webhook';
 import { sendEmail } from '@/lib/email/client';
 import { paymentConfirmationEmail } from '@/lib/email/templates';
 import { reportControlFailure, reportSilentDegradation } from '@/lib/observability/report';
@@ -74,6 +76,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
+    // G103 — los pagos que no son de planes (extensión de vigencia, clases,
+    // cursos) llevan `metadata.kind` y se resuelven aquí. Todo lo demás sigue
+    // a `handleStripeEvent` exactamente como antes.
+    const marketplace = await handleMarketplaceEvent(event, marketplaceStore);
+    if (marketplace) {
+      return NextResponse.json({ received: true, ...marketplace }, { status: 200 });
+    }
+
     const result = await handleStripeEvent(event, billingStore);
     // F16 tarea 8: correo de confirmación de pago. Va DESPUÉS de que el
     // acceso ya se activó/registró — un fallo de correo nunca debe volver
