@@ -25,7 +25,15 @@ let db = { events: new Set<string>(), enrollments: [] as Enr[], course: { totalE
 const failures: string[] = [];
 
 function makeTx(state: typeof db) {
+  const findEnrollment = async ({ where }: { where: { courseId_userProfileId?: { courseId: string; userProfileId: string }; stripePaymentId?: string } }) => {
+    const e = where.stripePaymentId
+      ? state.enrollments.find((x) => x.stripePaymentId === where.stripePaymentId)
+      : state.enrollments.find((x) => x.courseId === where.courseId_userProfileId!.courseId && x.userProfileId === where.courseId_userProfileId!.userProfileId);
+    return e ? { ...e, course: { teacherId: 'ckteacher1' } } : null;
+  };
   return {
+    // Candado de liquidaciones del profesor (`pg_advisory_xact_lock`).
+    $executeRaw: async () => 0,
     processedStripeEvent: {
       create: async ({ data }: { data: { eventId: string } }) => {
         if (state.events.has(data.eventId)) throw new Prisma.PrismaClientKnownRequestError('dup', { code: 'P2002', clientVersion: 't' });
@@ -40,10 +48,11 @@ function makeTx(state: typeof db) {
       },
     },
     courseEnrollment: {
-      findUnique: async ({ where }: { where: { courseId_userProfileId?: { courseId: string; userProfileId: string }; stripePaymentId?: string } }) => {
-        if (where.stripePaymentId) return state.enrollments.find((e) => e.stripePaymentId === where.stripePaymentId) ?? null;
-        const k = where.courseId_userProfileId!;
-        return state.enrollments.find((e) => e.courseId === k.courseId && e.userProfileId === k.userProfileId) ?? null;
+      findUnique: findEnrollment,
+      findUniqueOrThrow: async (args: Parameters<typeof findEnrollment>[0]) => {
+        const e = await findEnrollment(args);
+        if (!e) throw new Error('not found');
+        return e;
       },
       create: async ({ data }: { data: Omit<Enr, 'id'> }) => {
         if (state.enrollments.some((e) => e.courseId === data.courseId && e.userProfileId === data.userProfileId)) {

@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AuthError } from '@/lib/auth/errors';
+import { lastClosedWeekStart } from '@/lib/teachers/payout-calculator';
+import { addDaysToKey } from '@/lib/teachers/slot-calculator';
 
 /**
  * G103 — MATRIZ DE AUTORIZACIÓN de la moderación del marketplace, con el mismo
@@ -55,11 +57,26 @@ vi.mock('@/lib/db/courses', () => ({
   }),
 }));
 
-const { reviewTeacherAction, reviewCourseAction, moderateCourseReviewAction } = await import('@/app/actions/admin-marketplace');
+vi.mock('@/lib/db/payouts', () => ({
+  computeWeekPayouts: vi.fn(async () => {
+    dbCalls.push('payouts.compute');
+    return [{ teacherId: 't', outcome: 'created', payoutId: 'ckpayout00000000000000001', netCents: 50_000 }];
+  }),
+  applyPayoutDecision: vi.fn(async (_id: string, decision: string) => {
+    dbCalls.push(`payouts.${decision}`);
+    return { ok: true, teacherId: 't', teacherUserProfileId: 'cku_t', from: 'APPROVED', to: 'TRANSFERRED' };
+  }),
+}));
+
+const { reviewTeacherAction, reviewCourseAction, moderateCourseReviewAction, computePayoutsAction, payoutDecisionAction } = await import(
+  '@/app/actions/admin-marketplace'
+);
 
 const TEACHER = { teacherId: 'ckteacher00000000000000001', decision: 'APPROVE', reason: 'CURP y CLABE verificadas' };
 const COURSE = { courseId: 'ckcourse0000000000000000a', decision: 'APPROVE', reason: 'Contenido original y claro' };
 const REVIEW = { enrollmentId: 'ckenroll0000000000000000a', hidden: true, reason: 'Reseña con datos personales' };
+const COMPUTE = { weekStart: '2026-10-12', reason: 'Liquidación semanal' };
+const TRANSFER = { payoutId: 'ckpayout00000000000000001', decision: 'MARK_TRANSFERRED', reason: 'SPEI enviado', speiReference: 'MBAN0100261026' };
 
 const ENV = { ...process.env };
 beforeEach(() => {
@@ -81,7 +98,13 @@ describe.each([
   it('no llega a la base en ninguna acción de moderación', async () => {
     identity.role = role;
     identity.email = 'x@acierta-test.mx';
-    for (const r of [await reviewTeacherAction(TEACHER), await reviewCourseAction(COURSE), await moderateCourseReviewAction(REVIEW)]) {
+    for (const r of [
+      await reviewTeacherAction(TEACHER),
+      await reviewCourseAction(COURSE),
+      await moderateCourseReviewAction(REVIEW),
+      await computePayoutsAction(COMPUTE),
+      await payoutDecisionAction(TRANSFER),
+    ]) {
       expect(r.ok).toBe(false);
     }
     expect(dbCalls).toEqual([]);
@@ -106,6 +129,16 @@ describe('ADMIN no maestro', () => {
     expect((await moderateCourseReviewAction(REVIEW)).ok).toBe(true);
     expect(dbCalls).toEqual(['courses.set:PUBLISHED', 'reviews.hide']);
     expect(auditRows.map((a) => a.outcome)).toEqual(['applied', 'applied']);
+  });
+
+  it('NO calcula ni mueve liquidaciones (es dinero) y cada intento queda en la bitácora', async () => {
+    expect(await computePayoutsAction(COMPUTE)).toMatchObject({ ok: false, code: 'FORBIDDEN' });
+    for (const decision of ['APPROVE', 'MARK_TRANSFERRED', 'MARK_FAILED', 'CANCEL', 'FORFEIT_RETENTION']) {
+      expect(await payoutDecisionAction({ ...TRANSFER, decision }), decision).toMatchObject({ ok: false, code: 'FORBIDDEN' });
+    }
+    expect(dbCalls).toEqual([]);
+    expect(auditRows.every((a) => a.outcome === 'rejected')).toBe(true);
+    expect(auditRows.map((a) => a.action)).toEqual(['payout.computed', ...Array(5).fill('payout.updated')]);
   });
 
   it('id que no es cuid → VALIDATION, auditado, sin base', async () => {
@@ -139,6 +172,37 @@ describe('ADMIN maestro', () => {
     expect(r).toMatchObject({ ok: false, code: 'INVALID' });
     expect(dbCalls).toEqual(['teachers.get']);
     expect(auditRows.at(-1)).toMatchObject({ outcome: 'rejected' });
+  });
+
+  it('calcula una semana cerrada (control positivo) y lo deja auditado con los ids creados', async () => {
+    const r = await computePayoutsAction(COMPUTE);
+    expect(r).toMatchObject({ ok: true, data: { created: 1, belowMinimum: 0, existing: 0 } });
+    expect(auditRows.at(-1)).toMatchObject({ action: 'payout.computed', outcome: 'applied', metadata: { payoutIds: ['ckpayout00000000000000001'] } });
+  });
+
+  it('una semana que no ha cerrado, o una fecha que no es lunes, no se calcula', async () => {
+    // El lunes de ESTA semana (la que sigue abierta).
+    const thisMonday = addDaysToKey(lastClosedWeekStart(new Date()), 7);
+    expect(await computePayoutsAction({ ...COMPUTE, weekStart: thisMonday })).toMatchObject({ ok: false, message: 'Esa semana todavía no termina.' });
+    expect(await computePayoutsAction({ ...COMPUTE, weekStart: '2026-10-13' })).toMatchObject({ ok: false, code: 'INVALID' });
+    expect(dbCalls).toEqual([]);
+    expect(auditRows.every((a) => a.outcome === 'rejected')).toBe(true);
+  });
+
+  it('marcar como transferida exige una clave de rastreo SPEI válida', async () => {
+    for (const speiReference of [undefined, '', '123', "x' OR 1=1", 'A'.repeat(31)]) {
+      expect(await payoutDecisionAction({ ...TRANSFER, speiReference }), String(speiReference)).toMatchObject({ ok: false, code: 'VALIDATION' });
+    }
+    expect(dbCalls).toEqual([]);
+    expect(await payoutDecisionAction(TRANSFER)).toMatchObject({ ok: true, data: { status: 'TRANSFERRED' } });
+    expect(dbCalls).toEqual(['payouts.MARK_TRANSFERRED']);
+    expect(auditRows.at(-1)).toMatchObject({ action: 'payout.updated', outcome: 'applied', metadata: { speiReference: 'MBAN0100261026' } });
+  });
+
+  it('campos de más (p. ej. un monto) se rechazan: el monto sale de la base, nunca del cliente', async () => {
+    expect(await payoutDecisionAction({ ...TRANSFER, netCents: 1 })).toMatchObject({ ok: false, code: 'VALIDATION' });
+    expect(await computePayoutsAction({ ...COMPUTE, teacherId: 'ckteacher00000000000000001' })).toMatchObject({ ok: false, code: 'VALIDATION' });
+    expect(dbCalls).toEqual([]);
   });
 
   it('MASTER_ADMIN_EMAILS ausente → cerrado para todos', async () => {

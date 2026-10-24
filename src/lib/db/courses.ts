@@ -2,6 +2,8 @@ import { randomInt } from 'node:crypto';
 import { Prisma, type CourseCategory, type CourseLevel, type CourseStatus, type LessonType } from '@prisma/client';
 import { prisma } from './prisma';
 import { runIdempotent } from './billing';
+import { lockKeyInTx } from './locks';
+import { payoutLockKey, recordRefundAdjustmentTx } from './payouts';
 import { calculateCourseRevenue } from '@/lib/courses/commission';
 import { averageRating, isVideoCompleted, progressPercent, slugify } from '@/lib/courses/rules';
 import { reportControlFailure } from '@/lib/observability/report';
@@ -570,7 +572,7 @@ export function enrollCoursePurchase(
       status: 'ACTIVE' as const,
       refundedAt: null,
       payoutId: null,
-      refundAdjustedPayoutId: null,
+      payoutTeacherCents: null,
     };
     if (existing) {
       await tx.courseEnrollment.update({ where: { id: existing.id }, data });
@@ -587,14 +589,34 @@ export function enrollCoursePurchase(
 
 /** Reembolso visto en Stripe → la inscripción pasa a REFUNDED y pierde el acceso. */
 export async function recordCourseRefundTx(tx: Prisma.TransactionClient, paymentIntentId: string, now: Date): Promise<boolean> {
-  const e = await tx.courseEnrollment.findUnique({ where: { stripePaymentId: paymentIntentId } });
-  if (!e) return false;
+  const owner = await tx.courseEnrollment.findUnique({
+    where: { stripePaymentId: paymentIntentId },
+    select: { course: { select: { teacherId: true } } },
+  });
+  if (!owner) return false;
+  // Mismo candado que el cálculo de liquidaciones (ver `recordClassRefundTx`).
+  await lockKeyInTx(tx, payoutLockKey(owner.course.teacherId));
+  const e = await tx.courseEnrollment.findUniqueOrThrow({ where: { stripePaymentId: paymentIntentId } });
   if (e.status === 'REFUNDED') return true;
   await tx.courseEnrollment.update({ where: { id: e.id }, data: { status: 'REFUNDED', refundedAt: now } });
   await tx.course.update({
     where: { id: e.courseId },
     data: { totalEnrollments: { decrement: 1 }, totalRevenueCents: { decrement: e.pricePaidCents } },
   });
+  // Ya estaba en una liquidación: el profesor cobró (o va a cobrar) su parte,
+  // así que se asienta el descuento. La recompra reutiliza ESTA fila, por eso
+  // la deuda vive en el libro de ajustes y no aquí.
+  if (e.payoutId && e.payoutTeacherCents !== null) {
+    await recordRefundAdjustmentTx(tx, {
+      teacherId: owner.course.teacherId,
+      sourceKind: 'COURSE',
+      sourceId: e.id,
+      sourcePayoutId: e.payoutId,
+      creditedCents: e.payoutTeacherCents,
+      currentShareCents: 0,
+      note: 'Reembolso de una inscripción ya liquidada.',
+    });
+  }
   return true;
 }
 

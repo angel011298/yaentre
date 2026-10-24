@@ -935,6 +935,7 @@ model Teacher {
   dateBlocks   TeacherDateBlock[]
   classes      ClassSession[]
   payouts      TeacherPayout[]
+  payoutAdjustments TeacherPayoutAdjustment[]
   courses      Course[]
 
   createdAt DateTime @default(now())
@@ -1051,10 +1052,12 @@ model ClassSession {
   recordingUrl       String?
   recordingExpiresAt DateTime?
 
-  payoutId               String?
-  payout                 TeacherPayout? @relation(fields: [payoutId], references: [id], onDelete: SetNull)
-  // Reembolso posterior a la liquidación: se descuenta en ESTA liquidación.
-  refundAdjustedPayoutId String?
+  // Liquidación que pagó esta clase y cuánto le acreditó al profesor al
+  // incluirla. Un reembolso POSTERIOR no reescribe esto: deja un ajuste
+  // negativo en `TeacherPayoutAdjustment` (G103, Fase 6).
+  payoutId           String?
+  payout             TeacherPayout? @relation(fields: [payoutId], references: [id], onDelete: SetNull)
+  payoutTeacherCents Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1101,15 +1104,58 @@ model TeacherPayout {
 
   classes           ClassSession[]
   courseEnrollments CourseEnrollment[]
+  adjustments       TeacherPayoutAdjustment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([teacherId, periodStart])
+  // Una liquidación VIGENTE por profesor y semana: índice único PARCIAL
+  // (`WHERE status <> 'CANCELLED'`, migración 0020), invisible para Prisma.
+  // Con un único simple, cancelar una semana impediría recalcularla.
+  @@index([teacherId, periodStart])
   @@index([teacherId])
   @@index([status])
   @@index([periodEnd])
   @@map("teacher_payouts")
+}
+
+enum PayoutAdjustmentKind {
+  REFUND          // reembolso de una partida que ya estaba en una liquidación
+  CANCEL_REVERSAL // se canceló la liquidación que había pagado la partida
+}
+
+enum PayoutSourceKind {
+  CLASS
+  COURSE
+}
+
+// Libro de ajustes de las liquidaciones (G103, Fase 6). Un reembolso que llega
+// DESPUÉS de que la partida entró a una liquidación no se descuenta
+// reescribiendo la partida: se asienta aquí, con signo, y la siguiente
+// liquidación lo aplica. `sourcePayoutId` acota el ajuste a ESA inclusión de
+// la partida (una recompra del curso reutiliza la fila de inscripción, pero es
+// otra inclusión). Sin llave foránea a la partida: el asiento sobrevive.
+model TeacherPayoutAdjustment {
+  id        String  @id @default(cuid())
+  teacherId String
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+
+  kind           PayoutAdjustmentKind
+  sourceKind     PayoutSourceKind
+  sourceId       String
+  sourcePayoutId String
+  amountCents    Int // con signo: negativo se descuenta, positivo se devuelve
+  note           String?
+
+  appliedInPayoutId String?
+  appliedInPayout   TeacherPayout? @relation(fields: [appliedInPayoutId], references: [id], onDelete: SetNull)
+  voidedAt          DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([teacherId, appliedInPayoutId])
+  @@index([sourceKind, sourceId, sourcePayoutId])
+  @@map("teacher_payout_adjustments")
 }
 
 // ──────────────── CURSOS PREGRABADOS (G103) ────────────────
@@ -1286,9 +1332,11 @@ model CourseEnrollment {
   status     EnrollmentStatus @default(ACTIVE)
   refundedAt DateTime?
 
-  payoutId               String?
-  payout                 TeacherPayout? @relation(fields: [payoutId], references: [id], onDelete: SetNull)
-  refundAdjustedPayoutId String?
+  // Mismo esquema que `ClassSession`: la recompra tras un reembolso reutiliza
+  // ESTA fila, así que la deuda del reembolso anterior no puede vivir aquí.
+  payoutId           String?
+  payout             TeacherPayout? @relation(fields: [payoutId], references: [id], onDelete: SetNull)
+  payoutTeacherCents Int?
 
   lessonProgress CourseLessonProgress[]
 

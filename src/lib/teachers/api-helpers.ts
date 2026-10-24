@@ -2,7 +2,7 @@ import 'server-only';
 import { NextResponse } from 'next/server';
 import { AuthError } from '@/lib/auth/errors';
 import { isSameOriginRequest } from '@/lib/auth/same-origin';
-import { readMarketplaceFlags } from '@/lib/marketplace/flags';
+import { anyMarketplaceOn, readMarketplaceFlags } from '@/lib/marketplace/flags';
 import { consumeRateLimit, type RateLimitName } from '@/lib/rate-limit/store';
 import { requireTeacher, type TeacherContext } from './guard';
 
@@ -27,9 +27,10 @@ const EDITABLE = ['PENDING_REVIEW', 'ACTIVE', 'INACTIVE'];
 
 export async function beginTeacherApi(
   request: Request,
-  opts: { write: boolean; rateLimit?: RateLimitName }
+  opts: { write: boolean; rateLimit?: RateLimitName; flag?: 'liveClasses' | 'any' }
 ): Promise<{ ok: true; ctx: TeacherContext } | { ok: false; response: NextResponse }> {
-  if (!readMarketplaceFlags().liveClasses) {
+  const flags = readMarketplaceFlags();
+  if (!(opts.flag === 'any' ? anyMarketplaceOn(flags) : flags.liveClasses)) {
     return { ok: false, response: apiJson({ error: 'No encontrado.' }, 404) };
   }
   if (opts.write && !isSameOriginRequest(request.headers)) {

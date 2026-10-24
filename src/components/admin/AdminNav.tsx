@@ -21,6 +21,8 @@ const LINKS = [
   // muestran su estado vacío).
   { href: '/admin/profesores', label: 'Profesores' },
   { href: '/admin/cursos', label: 'Cursos' },
+  { href: '/admin/liquidaciones', label: 'Liquidaciones' },
+  { href: '/admin/resico', label: 'RESICO' },
 ];
 
 export function AdminNav() {

@@ -34,6 +34,16 @@ DO $$ BEGIN
 EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 
+DO $$ BEGIN
+  CREATE TYPE "PayoutAdjustmentKind" AS ENUM ('REFUND', 'CANCEL_REVERSAL');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
+DO $$ BEGIN
+  CREATE TYPE "PayoutSourceKind" AS ENUM ('CLASS', 'COURSE');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
 CREATE TABLE IF NOT EXISTS "courses" (
     "id" TEXT NOT NULL,
     "teacherId" TEXT NOT NULL,
@@ -126,7 +136,7 @@ CREATE TABLE IF NOT EXISTS "course_enrollments" (
     "status" "EnrollmentStatus" NOT NULL DEFAULT 'ACTIVE',
     "refundedAt" TIMESTAMP(3),
     "payoutId" TEXT,
-    "refundAdjustedPayoutId" TEXT,
+    "payoutTeacherCents" INTEGER,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -173,6 +183,27 @@ CREATE INDEX IF NOT EXISTS "course_enrollments_payoutId_idx" ON "course_enrollme
 
 CREATE UNIQUE INDEX IF NOT EXISTS "course_enrollments_courseId_userProfileId_key" ON "course_enrollments"("courseId", "userProfileId");
 
+-- Libro de ajustes de las liquidaciones (reembolsos posteriores a un pago).
+CREATE TABLE IF NOT EXISTS "teacher_payout_adjustments" (
+    "id" TEXT NOT NULL,
+    "teacherId" TEXT NOT NULL,
+    "kind" "PayoutAdjustmentKind" NOT NULL,
+    "sourceKind" "PayoutSourceKind" NOT NULL,
+    "sourceId" TEXT NOT NULL,
+    "sourcePayoutId" TEXT NOT NULL,
+    "amountCents" INTEGER NOT NULL,
+    "note" TEXT,
+    "appliedInPayoutId" TEXT,
+    "voidedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "teacher_payout_adjustments_pkey" PRIMARY KEY ("id")
+);
+
+CREATE INDEX IF NOT EXISTS "teacher_payout_adjustments_teacherId_appliedInPayoutId_idx" ON "teacher_payout_adjustments"("teacherId", "appliedInPayoutId");
+
+CREATE INDEX IF NOT EXISTS "teacher_payout_adjustments_sourceKind_sourceId_sourcePayout_idx" ON "teacher_payout_adjustments"("sourceKind", "sourceId", "sourcePayoutId");
+
 CREATE INDEX IF NOT EXISTS "course_lesson_progress_lessonId_idx" ON "course_lesson_progress"("lessonId");
 
 CREATE UNIQUE INDEX IF NOT EXISTS "course_lesson_progress_enrollmentId_lessonId_key" ON "course_lesson_progress"("enrollmentId", "lessonId");
@@ -217,7 +248,23 @@ DO $$ BEGIN
 EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 
+DO $$ BEGIN
+  ALTER TABLE "teacher_payout_adjustments" ADD CONSTRAINT "teacher_payout_adjustments_teacherId_fkey" FOREIGN KEY ("teacherId") REFERENCES "teachers"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
+DO $$ BEGIN
+  ALTER TABLE "teacher_payout_adjustments" ADD CONSTRAINT "teacher_payout_adjustments_appliedInPayoutId_fkey" FOREIGN KEY ("appliedInPayoutId") REFERENCES "teacher_payouts"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
 -- ── Invariantes de dinero y de calificación ────────────────────────────────
+DO $$ BEGIN
+  ALTER TABLE "teacher_payout_adjustments" ADD CONSTRAINT "teacher_payout_adjustments_amount_chk"
+    CHECK ("amountCents" <> 0);
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
 DO $$ BEGIN
   ALTER TABLE "courses" ADD CONSTRAINT "courses_price_chk"
     CHECK (("isFree" AND "priceCents" = 0) OR (NOT "isFree" AND "priceCents" BETWEEN 9900 AND 999900));
@@ -247,12 +294,13 @@ ALTER TABLE "course_modules" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "course_lessons" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "course_enrollments" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "course_lesson_progress" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "teacher_payout_adjustments" ENABLE ROW LEVEL SECURITY;
 
 REVOKE ALL ON TABLE "courses", "course_modules", "course_lessons", "course_enrollments",
-  "course_lesson_progress" FROM anon, authenticated;
+  "course_lesson_progress", "teacher_payout_adjustments" FROM anon, authenticated;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE "courses", "course_modules", "course_lessons",
-  "course_enrollments", "course_lesson_progress" TO acierta_app;
+  "course_enrollments", "course_lesson_progress", "teacher_payout_adjustments" TO acierta_app;
 
 -- ════════════════════════════════════════════════════════════════════════════
 -- STORAGE — BUCKETS PRIVADOS

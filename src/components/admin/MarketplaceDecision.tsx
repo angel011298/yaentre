@@ -2,18 +2,30 @@
 
 import { useId, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { reviewCourseAction, reviewTeacherAction } from '@/app/actions/admin-marketplace';
+import { payoutDecisionAction, reviewCourseAction, reviewTeacherAction } from '@/app/actions/admin-marketplace';
 import { Button } from '@/components/ui/Button';
 
-export type DecisionTarget = { kind: 'teacher'; teacherId: string } | { kind: 'course'; courseId: string };
+export type DecisionTarget =
+  | { kind: 'teacher'; teacherId: string }
+  | { kind: 'course'; courseId: string }
+  | { kind: 'payout'; payoutId: string };
 
 type DecisionResult = { ok: true } | { ok: false; message: string };
 
-function submitFor(target: DecisionTarget, decision: string, reason: string): Promise<DecisionResult> {
-  if (target.kind === 'teacher') {
-    return reviewTeacherAction({ teacherId: target.teacherId, decision, reason });
+function submitFor(target: DecisionTarget, decision: string, reason: string, extra: string): Promise<DecisionResult> {
+  switch (target.kind) {
+    case 'teacher':
+      return reviewTeacherAction({ teacherId: target.teacherId, decision, reason });
+    case 'course':
+      return reviewCourseAction({ courseId: target.courseId, decision, reason });
+    case 'payout':
+      return payoutDecisionAction({
+        payoutId: target.payoutId,
+        decision,
+        reason,
+        ...(decision === 'MARK_TRANSFERRED' ? { speiReference: extra } : {}),
+      });
   }
-  return reviewCourseAction({ courseId: target.courseId, decision, reason });
 }
 
 interface DecisionOption {
@@ -32,13 +44,10 @@ export function MarketplaceDecision({
   options,
   target,
   extraField,
-  submitOverride,
 }: {
   options: DecisionOption[];
-  target: DecisionTarget | null;
+  target: DecisionTarget;
   extraField?: { label: string; name: string; showFor: string[] };
-  /** Para objetivos que no están en `DecisionTarget` (liquidaciones, Fase 6). */
-  submitOverride?: (decision: string, reason: string, extra: string) => Promise<DecisionResult>;
 }) {
   const id = useId();
   const router = useRouter();
@@ -52,13 +61,13 @@ export function MarketplaceDecision({
     if (!chosen) return;
     setPending(true);
     setMessage(null);
-    const run = submitOverride ?? ((d: string, r: string) => (target ? submitFor(target, d, r) : Promise.resolve<DecisionResult>({ ok: false, message: 'Sin objetivo.' })));
-    const r = await run(chosen, reason, extra).catch(() => null);
+    const r = await submitFor(target, chosen, reason, extra).catch(() => null);
     setPending(false);
     if (r?.ok) {
       setMessage({ tone: 'ok', text: 'Listo.' });
       setChosen(null);
       setReason('');
+      setExtra('');
       router.refresh();
     } else {
       setMessage({ tone: 'error', text: r && !r.ok ? r.message : 'No se pudo aplicar.' });

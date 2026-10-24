@@ -1,6 +1,7 @@
 import { Prisma, type ClassSession, type ClassTrack } from '@prisma/client';
 import { prisma } from './prisma';
 import { lockKeyInTx, withKeyedAdvisoryLock } from './locks';
+import { payoutLockKey, recordRefundAdjustmentTx } from './payouts';
 import { dateKeyOfDbDate } from './teachers';
 import { mexicoDayKey } from '@/lib/subscriptions/access-check';
 import { addDaysToKey } from '@/lib/teachers/slot-calculator';
@@ -10,6 +11,7 @@ import {
   type ExistingBooking,
 } from '@/lib/teachers/conflict-prevention';
 import { evaluateTeacherLevel } from '@/lib/teachers/level-engine';
+import { teacherShareAfterRefund } from '@/lib/teachers/payout-calculator';
 import type { AvailabilityBlock } from '@/lib/teachers/availability';
 import { calculateTariff, DEFAULT_DEMAND_CATEGORY, type ClassDuration } from '@/lib/teachers/tariff';
 
@@ -367,8 +369,13 @@ export async function recordClassRefundTx(
   refundedCents: number,
   now: Date
 ): Promise<boolean> {
-  const row = await tx.classSession.findUnique({ where: { stripePaymentId: paymentIntentId } });
-  if (!row) return false;
+  const owner = await tx.classSession.findUnique({ where: { stripePaymentId: paymentIntentId }, select: { teacherId: true } });
+  if (!owner) return false;
+  // Candado de liquidaciones del profesor ANTES de leer la clase: si el cálculo
+  // de la semana la está tomando ahora mismo, el reembolso espera y ve el
+  // `payoutId` ya escrito (y asienta el ajuste) en vez de perderse.
+  await lockKeyInTx(tx, payoutLockKey(owner.teacherId));
+  const row = await tx.classSession.findUniqueOrThrow({ where: { stripePaymentId: paymentIntentId } });
   const total = Math.min(row.finalTariffCents, Math.max(row.refundedCents, refundedCents));
   const fullyRefunded = total >= row.finalTariffCents;
   await tx.classSession.update({
@@ -381,6 +388,17 @@ export async function recordClassRefundTx(
         : {}),
     },
   });
+  if (row.payoutId && row.payoutTeacherCents !== null) {
+    await recordRefundAdjustmentTx(tx, {
+      teacherId: row.teacherId,
+      sourceKind: 'CLASS',
+      sourceId: row.id,
+      sourcePayoutId: row.payoutId,
+      creditedCents: row.payoutTeacherCents,
+      currentShareCents: teacherShareAfterRefund(row.teacherPayCents, row.finalTariffCents, total),
+      note: 'Reembolso de una clase ya liquidada.',
+    });
+  }
   return true;
 }
 

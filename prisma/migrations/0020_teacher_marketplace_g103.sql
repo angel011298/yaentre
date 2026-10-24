@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS "class_sessions" (
     "recordingUrl" TEXT,
     "recordingExpiresAt" TIMESTAMP(3),
     "payoutId" TEXT,
-    "refundAdjustedPayoutId" TEXT,
+    "payoutTeacherCents" INTEGER,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -251,7 +251,13 @@ CREATE INDEX IF NOT EXISTS "teacher_payouts_status_idx" ON "teacher_payouts"("st
 
 CREATE INDEX IF NOT EXISTS "teacher_payouts_periodEnd_idx" ON "teacher_payouts"("periodEnd");
 
-CREATE UNIQUE INDEX IF NOT EXISTS "teacher_payouts_teacherId_periodStart_key" ON "teacher_payouts"("teacherId", "periodStart");
+CREATE INDEX IF NOT EXISTS "teacher_payouts_teacherId_periodStart_idx" ON "teacher_payouts"("teacherId", "periodStart");
+
+-- Una liquidación VIGENTE por profesor y semana. Parcial a propósito (Prisma
+-- no lo modela, como los índices de 0012): una semana cancelada se puede
+-- volver a calcular sin borrar la fila cancelada, que es historia.
+CREATE UNIQUE INDEX IF NOT EXISTS "teacher_payouts_active_week_key" ON "teacher_payouts"("teacherId", "periodStart")
+  WHERE "status" <> 'CANCELLED';
 
 DO $$ BEGIN
   ALTER TABLE "teachers" ADD CONSTRAINT "teachers_userProfileId_fkey" FOREIGN KEY ("userProfileId") REFERENCES "user_profiles"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

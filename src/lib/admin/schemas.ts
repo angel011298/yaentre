@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { isValidSpeiTrackingKey } from '@/lib/teachers/payout-calculator';
 
 /** Validación Zod en el borde de las Server Actions del panel admin. */
 
@@ -177,17 +178,32 @@ export const reviewModerationSchema = z.object({
 });
 export type ReviewModerationInput = z.input<typeof reviewModerationSchema>;
 
-export const payoutActionSchema = z.object({
-  payoutId: cuidSchema,
-  decision: z.enum(['APPROVE', 'MARK_TRANSFERRED', 'MARK_FAILED', 'CANCEL']),
-  reason: reasonSchema,
-  /** Clave de rastreo SPEI (solo al marcar como transferida). */
-  speiReference: z.string().trim().max(40).optional(),
-});
+export const payoutActionSchema = z
+  .object({
+    payoutId: cuidSchema,
+    decision: z.enum(['APPROVE', 'MARK_TRANSFERRED', 'MARK_FAILED', 'CANCEL', 'FORFEIT_RETENTION']),
+    reason: reasonSchema,
+    /** Clave de rastreo SPEI: obligatoria al marcar como transferida. */
+    speiReference: z.string().trim().max(40).optional(),
+  })
+  .strict()
+  .superRefine((v, ctx) => {
+    if (v.decision !== 'MARK_TRANSFERRED') return;
+    if (!v.speiReference || !isValidSpeiTrackingKey(v.speiReference)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['speiReference'],
+        message: 'Escribe la clave de rastreo del SPEI (6 a 30 letras o números).',
+      });
+    }
+  });
 export type PayoutActionInput = z.input<typeof payoutActionSchema>;
 
-export const computePayoutsSchema = z.object({
-  /** Lunes (`YYYY-MM-DD`, hora de México) con que empieza la semana a liquidar. */
-  weekStart: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-});
+export const computePayoutsSchema = z
+  .object({
+    /** Lunes (`YYYY-MM-DD`, hora de México) con que empieza la semana a liquidar. */
+    weekStart: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    reason: reasonSchema,
+  })
+  .strict();
 export type ComputePayoutsInput = z.input<typeof computePayoutsSchema>;

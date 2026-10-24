@@ -1,4 +1,5 @@
 import { splitMarketplaceRevenue } from '@/lib/marketplace/commission';
+import { PAYOUT_RULES } from '@/lib/teachers/payout-calculator';
 
 /**
  * G103 — precio y reparto de los cursos pregrabados (spec §2.3). PURO.
@@ -10,7 +11,8 @@ import { splitMarketplaceRevenue } from '@/lib/marketplace/commission';
 export const COURSE_COMMISSION = {
   MIN_PRICE_CENTS: 9_900,
   MAX_PRICE_CENTS: 999_900,
-  MIN_PAYOUT_CENTS: 30_000,
+  // El mismo mínimo que las clases: una sola liquidación junta ambas fuentes.
+  MIN_PAYOUT_CENTS: PAYOUT_RULES.MIN_PAYOUT_CENTS,
 } as const;
 
 export function calculateCourseRevenue(priceCents: number): { teacherCents: number; yaentreCents: number } {
