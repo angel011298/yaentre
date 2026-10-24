@@ -5,6 +5,7 @@ import { prisma } from './prisma';
 import { applyAccessExtension } from './access-extension';
 import { runIdempotent } from './billing';
 import { confirmClassBookingTx, recordClassRefundTx, releaseClassBookingTx } from './classes';
+import { enrollCoursePurchase, recordCourseRefundTx } from './courses';
 
 /**
  * G103 — implementación real (Prisma) del `MarketplaceStore` que usa el
@@ -36,11 +37,30 @@ export const marketplaceStore: MarketplaceStore = {
   },
 
   async recordRefund(eventId, eventType, paymentIntentId, refundedCents) {
-    const isClass = await prisma.classSession.count({ where: { stripePaymentId: paymentIntentId } });
-    if (isClass === 0) return 'unknown';
+    const [isClass, isCourse] = await Promise.all([
+      prisma.classSession.count({ where: { stripePaymentId: paymentIntentId } }),
+      prisma.courseEnrollment.count({ where: { stripePaymentId: paymentIntentId } }),
+    ]);
+    if (isClass === 0 && isCourse === 0) return 'unknown';
     return runIdempotent(eventId, eventType, async (tx) => {
-      await recordClassRefundTx(tx, paymentIntentId, refundedCents, new Date());
+      const now = new Date();
+      if (isClass) await recordClassRefundTx(tx, paymentIntentId, refundedCents, now);
+      // Un curso se reembolsa completo o no se reembolsa (sin acceso parcial).
+      if (isCourse && refundedCents > 0) await recordCourseRefundTx(tx, paymentIntentId, now);
     });
+  },
+
+  enrollCoursePurchase,
+
+  async refundCoursePayment(checkoutSessionId, paymentIntentId) {
+    try {
+      await getStripe().refunds.create(
+        { payment_intent: paymentIntentId, reason: 'duplicate', metadata: { checkoutSessionId, cause: 'duplicate_course_purchase' } },
+        { idempotencyKey: `refund-course-dup-${checkoutSessionId}` }
+      );
+    } catch (err) {
+      reportControlFailure('payment_consistency', 'degraded', err, { checkoutSessionId, paymentIntentId, stage: 'course_duplicate_refund' });
+    }
   },
 
   async refundClassPayment(classSessionId, paymentIntentId) {

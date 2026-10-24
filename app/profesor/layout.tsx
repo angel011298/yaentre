@@ -37,6 +37,7 @@ export default async function ProfesorLayout({ children }: { children: ReactNode
           { href: '/profesor/clases', label: 'Clases' },
         ]
       : []),
+    ...(flags.courses ? [{ href: '/profesor/cursos', label: 'Cursos' }] : []),
   ];
 
   return (

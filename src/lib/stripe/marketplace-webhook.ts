@@ -58,6 +58,7 @@ export interface ClassPayment {
 }
 
 export type ClassConfirmOutcome = 'booked' | 'already' | 'conflict' | 'mismatch' | 'not_found';
+export type CourseEnrollOutcome = 'enrolled' | 'already' | 'mismatch' | 'duplicate_purchase';
 
 export interface MarketplaceStore {
   /** Extensión de 6 meses pagada → nueva vigencia. Idempotente. */
@@ -79,6 +80,14 @@ export interface MarketplaceStore {
   ): Promise<ApplyResult | 'unknown'>;
   /** Reembolso automático de una clase cobrada sin horario. Nunca lanza. */
   refundClassPayment(classSessionId: string, paymentIntentId: string): Promise<void>;
+  /** Compra de curso pagada → inscripción (acceso permanente). Idempotente. */
+  enrollCoursePurchase(
+    eventId: string,
+    eventType: string,
+    paid: PaidCheckout
+  ): Promise<{ result: ApplyResult; outcome: CourseEnrollOutcome | null }>;
+  /** Reembolso automático de una compra duplicada del mismo curso. Nunca lanza. */
+  refundCoursePayment(checkoutSessionId: string, paymentIntentId: string): Promise<void>;
 }
 
 export type MarketplaceAction =
@@ -87,6 +96,8 @@ export type MarketplaceAction =
   | 'refunded_conflict'
   | 'released'
   | 'refund_recorded'
+  | 'enrolled'
+  | 'refunded_duplicate'
   | 'pending'
   | 'failed'
   | 'ignored';
@@ -199,8 +210,25 @@ export async function handleMarketplaceEvent(
         return { status: 'handled', type: event.type, kind, action: 'ignored' };
       }
 
-      // Cursos: se añade su manejo en su fase.
-      return { status: 'handled', type: event.type, kind, action: 'ignored' };
+      // course_purchase — la inscripción existe SOLO cuando se paga.
+      if (paidNow) {
+        const forceAsync = event.type === 'checkout.session.async_payment_succeeded';
+        const paid = toPaidCheckout(event, session, forceAsync);
+        const { result, outcome } = await store.enrollCoursePurchase(event.id, event.type, paid);
+        if (result === 'applied' && outcome === 'duplicate_purchase' && paid.paymentIntentId) {
+          // Ya tenía el curso (otra pestaña, otro dispositivo): no se cobra dos veces.
+          await store.refundCoursePayment(paid.checkoutSessionId, paid.paymentIntentId);
+          return { status: 'handled', type: event.type, kind, action: 'refunded_duplicate' };
+        }
+        return wrap(result, event, kind, outcome === 'enrolled' ? 'enrolled' : 'ignored');
+      }
+      const action: MarketplaceAction =
+        event.type === 'checkout.session.completed'
+          ? 'pending'
+          : event.type === 'checkout.session.async_payment_failed'
+            ? 'failed'
+            : 'ignored';
+      return { status: 'handled', type: event.type, kind, action };
     }
 
     case 'payment_intent.succeeded':

@@ -41,7 +41,9 @@ function sessionEvent(
   } as unknown as Stripe.Event;
 }
 
-function storeSpy(opts: { confirmOutcome?: 'booked' | 'conflict' | 'already'; knownRefunds?: string[] } = {}) {
+function storeSpy(
+  opts: { confirmOutcome?: 'booked' | 'conflict' | 'already'; knownRefunds?: string[]; enrollOutcome?: 'enrolled' | 'duplicate_purchase' } = {}
+) {
   const calls: PaidCheckout[] = [];
   const processed = new Set<string>();
   const once = (eventId: string) => {
@@ -64,6 +66,11 @@ function storeSpy(opts: { confirmOutcome?: 'booked' | 'conflict' | 'already'; kn
       (opts.knownRefunds ?? []).includes(pi) ? once(eventId) : ('unknown' as const)
     ),
     refundClassPayment: vi.fn(async () => undefined),
+    enrollCoursePurchase: vi.fn(async (eventId: string) => {
+      const r = once(eventId);
+      return { result: r, outcome: r === 'applied' ? (opts.enrollOutcome ?? 'enrolled') : null };
+    }),
+    refundCoursePayment: vi.fn(async () => undefined),
   };
   return { store, calls };
 }
@@ -251,5 +258,45 @@ describe('handleMarketplaceEvent — reembolsos', () => {
     const { store } = storeSpy({ knownRefunds: ['pi_cls'] });
     expect(await handleMarketplaceEvent(refund('pi_cls'), store)).toMatchObject({ action: 'refund_recorded' });
     expect(store.recordRefund).toHaveBeenCalledWith('evt_rf', 'charge.refunded', 'pi_cls', 30_000);
+  });
+});
+
+// ─────────────────────────── Cursos ───────────────────────────
+
+const COURSE_MD = { kind: 'course_purchase', courseId: 'ckcourse1', userProfileId: 'cku1', expectedAmountCents: '49900' };
+
+describe('handleMarketplaceEvent — compra de cursos', () => {
+  it('pagada → inscripción (y nunca pasa por la extensión ni por las clases)', async () => {
+    const { store } = storeSpy();
+    const r = await handleMarketplaceEvent(sessionEvent('checkout.session.completed', { metadata: COURSE_MD }), store);
+    expect(r).toMatchObject({ kind: 'course_purchase', action: 'enrolled' });
+    expect(store.enrollCoursePurchase).toHaveBeenCalledTimes(1);
+    expect(store.applyAccessExtension).not.toHaveBeenCalled();
+    expect(store.confirmClassBooking).not.toHaveBeenCalled();
+  });
+
+  it('OXXO/SPEI generado → pendiente, sin inscripción', async () => {
+    const { store } = storeSpy();
+    const r = await handleMarketplaceEvent(
+      sessionEvent('checkout.session.completed', { metadata: COURSE_MD, payment_status: 'unpaid' }),
+      store
+    );
+    expect(r).toMatchObject({ action: 'pending' });
+    expect(store.enrollCoursePurchase).not.toHaveBeenCalled();
+  });
+
+  it('confirmación asíncrona → inscribe', async () => {
+    const { store } = storeSpy();
+    await handleMarketplaceEvent(sessionEvent('checkout.session.async_payment_succeeded', { metadata: COURSE_MD }), store);
+    expect(store.enrollCoursePurchase).toHaveBeenCalledTimes(1);
+  });
+
+  it('compra duplicada del mismo curso → reembolso automático, una sola vez', async () => {
+    const { store } = storeSpy({ enrollOutcome: 'duplicate_purchase' });
+    const ev = sessionEvent('checkout.session.completed', { metadata: COURSE_MD }, 'evt_dup_course');
+    expect(await handleMarketplaceEvent(ev, store)).toMatchObject({ action: 'refunded_duplicate' });
+    await handleMarketplaceEvent(ev, store);
+    expect(store.refundCoursePayment).toHaveBeenCalledTimes(1);
+    expect(store.refundCoursePayment).toHaveBeenCalledWith('cs_test_1', 'pi_1');
   });
 });

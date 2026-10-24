@@ -52,13 +52,30 @@ type AccountAuditAction =
   | 'note.created'
   | 'note.deleted';
 
-export type AdminAuditAction = ContentAuditAction | AccountAuditAction;
+/** Moderación y liquidaciones del marketplace (G103). */
+type MarketplaceAuditAction =
+  | 'teacher.reviewed'
+  | 'course.reviewed'
+  | 'course_review.moderated'
+  | 'payout.computed'
+  | 'payout.updated';
+
+export type AdminAuditAction = ContentAuditAction | AccountAuditAction | MarketplaceAuditAction;
 
 /**
  * Qué clase de cosa es el objetivo. Permite filtrar la bitácora sin parsear
  * el nombre de la acción.
  */
-export type AdminAuditTargetKind = 'question' | 'user' | 'file' | 'system' | 'note';
+export type AdminAuditTargetKind =
+  | 'question'
+  | 'user'
+  | 'file'
+  | 'system'
+  | 'note'
+  | 'teacher'
+  | 'course'
+  | 'course_review'
+  | 'payout';
 
 export interface AdminActor {
   userProfileId: string;

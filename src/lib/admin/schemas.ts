@@ -149,3 +149,45 @@ export type CreateNoteInput = z.input<typeof createNoteSchema>;
 
 export const deleteNoteSchema = z.object({ noteId: cuidSchema });
 export type DeleteNoteInput = z.input<typeof deleteNoteSchema>;
+
+// ── Marketplace (G103): profesores, cursos, reseñas y liquidaciones ───────
+//
+// Mismas cuatro condiciones de la excepción G99: estas acciones reciben el id
+// del RECURSO que modera el admin (profesor, curso, reseña, liquidación), no
+// el de quien actúa. Todas exigen motivo, salvo calcular la semana.
+
+export const teacherReviewSchema = z.object({
+  teacherId: cuidSchema,
+  decision: z.enum(['APPROVE', 'REJECT', 'SUSPEND', 'REACTIVATE']),
+  reason: reasonSchema,
+});
+export type TeacherReviewInput = z.input<typeof teacherReviewSchema>;
+
+export const courseReviewSchema = z.object({
+  courseId: cuidSchema,
+  decision: z.enum(['APPROVE', 'REJECT', 'ARCHIVE']),
+  reason: reasonSchema,
+});
+export type CourseReviewInput = z.input<typeof courseReviewSchema>;
+
+export const reviewModerationSchema = z.object({
+  enrollmentId: cuidSchema,
+  hidden: z.boolean(),
+  reason: reasonSchema,
+});
+export type ReviewModerationInput = z.input<typeof reviewModerationSchema>;
+
+export const payoutActionSchema = z.object({
+  payoutId: cuidSchema,
+  decision: z.enum(['APPROVE', 'MARK_TRANSFERRED', 'MARK_FAILED', 'CANCEL']),
+  reason: reasonSchema,
+  /** Clave de rastreo SPEI (solo al marcar como transferida). */
+  speiReference: z.string().trim().max(40).optional(),
+});
+export type PayoutActionInput = z.input<typeof payoutActionSchema>;
+
+export const computePayoutsSchema = z.object({
+  /** Lunes (`YYYY-MM-DD`, hora de México) con que empieza la semana a liquidar. */
+  weekStart: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+});
+export type ComputePayoutsInput = z.input<typeof computePayoutsSchema>;

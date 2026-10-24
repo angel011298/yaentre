@@ -511,8 +511,9 @@ model UserProfile {
   adminNotes        AdminNote[]     @relation("AdminNoteAuthor")
 
   // Marketplace (G103). Relaciones inversas: no agregan columnas a esta tabla.
-  teacher        Teacher?
-  bookedClasses  ClassSession[] @relation("StudentClasses")
+  teacher           Teacher?
+  bookedClasses     ClassSession[]     @relation("StudentClasses")
+  courseEnrollments CourseEnrollment[] @relation("CourseEnrollments")
 
   createdAt DateTime @default(now())
 
@@ -934,6 +935,7 @@ model Teacher {
   dateBlocks   TeacherDateBlock[]
   classes      ClassSession[]
   payouts      TeacherPayout[]
+  courses      Course[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1097,7 +1099,8 @@ model TeacherPayout {
   retentionStatus         RetentionStatus @default(HELD)
   retentionPaidInPayoutId String?
 
-  classes ClassSession[]
+  classes           ClassSession[]
+  courseEnrollments CourseEnrollment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1107,4 +1110,212 @@ model TeacherPayout {
   @@index([status])
   @@index([periodEnd])
   @@map("teacher_payouts")
+}
+
+// ──────────────── CURSOS PREGRABADOS (G103) ────────────────
+//
+// Course Marketplace (spec §2.1-2.8). Independiente de los planes de admisión:
+// cualquier cuenta registrada compra un curso y lo conserva para siempre
+// (también si el curso se archiva). Comisión ÚNICA de 25 % compartida con las
+// clases (`src/lib/marketplace/commission.ts`): no se guarda por curso.
+// Videos, portada y recursos viven en el bucket PRIVADO `course-videos`; las
+// columnas `*Path` son rutas de Storage, nunca URLs públicas.
+
+enum CourseCategory {
+  REGULARIZACION
+  IDIOMAS
+  HABILIDADES
+  TECNOLOGIA
+  OTRO
+}
+
+enum CourseLevel {
+  BASICO
+  INTERMEDIO
+  AVANZADO
+}
+
+enum CourseStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  ARCHIVED
+  REJECTED
+}
+
+enum LessonType {
+  VIDEO
+  TEXT
+  QUIZ
+  RESOURCE
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  REFUNDED
+}
+
+model Course {
+  id        String  @id @default(cuid())
+  teacherId String
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+
+  title            String
+  slug             String         @unique
+  description      String         @db.Text
+  shortDescription String
+  learningOutcomes String[]       @default([])
+  category         CourseCategory
+  subjectArea      String
+  level            CourseLevel
+  tags             String[]       @default([])
+
+  modules              CourseModule[]
+  totalDurationMinutes Int            @default(0)
+  totalLessons         Int            @default(0)
+
+  priceCents         Int
+  originalPriceCents Int?
+  isFree             Boolean @default(false)
+
+  status      CourseStatus @default(DRAFT)
+  submittedAt DateTime?
+  publishedAt DateTime?
+  archivedAt  DateTime?
+  rejectedAt  DateTime?
+  reviewNote  String?
+
+  thumbnailPath    String?
+  previewVideoPath String?
+
+  totalEnrollments  Int   @default(0)
+  averageRating     Float @default(0)
+  totalRatings      Int   @default(0)
+  totalRevenueCents Int   @default(0)
+
+  enrollments CourseEnrollment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([teacherId])
+  @@index([status])
+  @@index([category])
+  @@index([subjectArea])
+  @@index([priceCents])
+  @@map("courses")
+}
+
+model CourseModule {
+  id          String  @id @default(cuid())
+  courseId    String
+  course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  sortOrder   Int
+
+  lessons CourseLesson[]
+
+  createdAt DateTime @default(now())
+
+  @@index([courseId, sortOrder])
+  @@map("course_modules")
+}
+
+model CourseLesson {
+  id       String       @id @default(cuid())
+  moduleId String
+  module   CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  title     String
+  type      LessonType
+  sortOrder Int
+
+  videoPath            String?
+  videoDurationSeconds Int?
+  videoSizeBytes       Int?
+  // Texto plano (Markdown sin interpretar): la interfaz nunca lo pinta como HTML.
+  content           String? @db.Text
+  resourcePath      String?
+  resourceSizeBytes Int?
+  quizData          Json?
+
+  isFreePreview Boolean @default(false)
+
+  progress CourseLessonProgress[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([moduleId, sortOrder])
+  @@map("course_lessons")
+}
+
+model CourseEnrollment {
+  id            String      @id @default(cuid())
+  courseId      String
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Restrict)
+  userProfileId String
+  userProfile   UserProfile @relation("CourseEnrollments", fields: [userProfileId], references: [id], onDelete: Restrict)
+
+  // Pago (el precio de compra se honra siempre). Reparto congelado al comprar.
+  pricePaidCents          Int
+  teacherPayCents         Int       @default(0)
+  commissionCents         Int       @default(0)
+  stripePaymentId         String?   @unique
+  stripeCheckoutSessionId String?   @unique
+  stripeCustomerId        String?
+  paidAt                  DateTime?
+  // Casilla del art. 56 LFPC aceptada al comprar.
+  consentAt      DateTime?
+  consentVersion String?
+
+  completedLessons Int       @default(0)
+  totalLessons     Int
+  progressPercent  Float     @default(0)
+  completedAt      DateTime?
+  lastAccessedAt   DateTime?
+  lastLessonId     String?
+
+  rating       Int?
+  review       String?   @db.Text
+  ratedAt      DateTime?
+  reviewHidden Boolean   @default(false)
+
+  status     EnrollmentStatus @default(ACTIVE)
+  refundedAt DateTime?
+
+  payoutId               String?
+  payout                 TeacherPayout? @relation(fields: [payoutId], references: [id], onDelete: SetNull)
+  refundAdjustedPayoutId String?
+
+  lessonProgress CourseLessonProgress[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseId, userProfileId])
+  @@index([userProfileId])
+  @@index([status])
+  @@index([payoutId])
+  @@map("course_enrollments")
+}
+
+model CourseLessonProgress {
+  id           String           @id @default(cuid())
+  enrollmentId String
+  enrollment   CourseEnrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  lessonId     String
+  lesson       CourseLesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  completed            Boolean   @default(false)
+  completedAt          DateTime?
+  videoProgressSeconds Int?
+
+  updatedAt DateTime @updatedAt
+
+  @@unique([enrollmentId, lessonId])
+  @@index([lessonId])
+  @@map("course_lesson_progress")
 }

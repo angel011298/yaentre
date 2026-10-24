@@ -17,6 +17,10 @@ const LINKS = [
   { href: '/admin/boveda', label: 'Bóveda' },
   // G103 — temporalidad de acceso (solo lectura).
   { href: '/admin/vigencias', label: 'Vigencias' },
+  // G103 — marketplace (las páginas existen siempre; sin profesores ni cursos
+  // muestran su estado vacío).
+  { href: '/admin/profesores', label: 'Profesores' },
+  { href: '/admin/cursos', label: 'Cursos' },
 ];
 
 export function AdminNav() {

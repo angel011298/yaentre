@@ -70,6 +70,11 @@ function buildCsp(): string {
     "style-src 'self' 'unsafe-inline'",
     `img-src ${imgSrc.join(" ")}`,
     "font-src 'self' data:",
+    // G103 — los videos de los cursos se reproducen con URLs FIRMADAS del
+    // bucket privado de Supabase (vida de 1 h). Sin esta directiva, `media-src`
+    // hereda `default-src 'self'` y el <video> no carga. Solo se agrega el host
+    // de Supabase (el mismo que ya está en img-src/connect-src), nada más.
+    `media-src 'self' blob:${supabaseHost ? ` ${supabaseHost}` : ""}`,
     `connect-src ${connectSrc.join(" ")}`,
     "frame-src 'none'",
     // G65: `frame-ancestors` es el SUSTITUTO estándar de X-Frame-Options —
