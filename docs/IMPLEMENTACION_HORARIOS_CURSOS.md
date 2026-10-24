@@ -57,6 +57,11 @@
 20. **Candado por profesor** (`payout-teacher:<id>`) compartido por el cálculo, la cancelación y los manejadores de REEMBOLSO: sin él, un reembolso que llega mientras se calcula la semana se perdería (el cálculo vería la partida sin reembolsar y el webhook la vería sin liquidación).
 21. **Solo clases `COMPLETED`**. `NO_SHOW_STUDENT` (el profesor se presentó y el alumno no) NO se liquida hoy: la spec dice «nunca pagar sin que la clase se haya impartido». Si Ángel decide pagarlas, es una línea en `classPayableCents`. (Decisión pendiente, en el reporte.)
 22. **RESICO**: ingresos COBRADOS en el año calendario de la Ciudad de México, netos de reembolsos registrados; el semáforo usa el peor caso (todo como Carril B) y el desglose realista (Carril A solo comisión) es informativo. Suscripciones = `payments` SUCCEEDED (planes y extensiones). TODO-CLO: validar con el contador la base exacta.
+23. **E2E en pila 100 % local** (`tests/e2e-local`): Supabase en Docker, simulador de Stripe con webhooks firmados y el build de producción con el entorno local. Las cuentas de prueba, los cobros y las subidas existen solo en este equipo; el log del servidor es parte del veredicto (`globalTeardown`).
+24. **Con una bandera apagada, sus rutas no exigen sesión en el middleware** (`authRequiredPrefixes(flags)`): dan 404 como antes de G103 en vez de redirigir a `/login`.
+25. **Guard de página que redirige** (`requireUserPage`) en las páginas de alumno del marketplace: Next corre la página en paralelo al layout y un guard que lanza deja un `AuthError` en Sentry aunque la respuesta sea 404.
+26. **Sin `loading.tsx` en el catálogo público**: un `notFound()` de página bajo ese límite responde 200 («404 suave»); la bandera se verifica en el layout del segmento.
+27. **`teacher_payouts_money_chk` no acota `adjustmentCents`**: el libro de ajustes produce ajustes positivos al cancelar una liquidación ya descontada (encontrado al releer 0020 antes de aplicarla; `05b-liquidaciones` lo prueba contra Postgres).
 
 ## 2. Mapa de archivos
 

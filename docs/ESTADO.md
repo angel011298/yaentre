@@ -1,6 +1,6 @@
 # ESTADO — YaEntre
 
-Última actualización: 2026-10-22 · Última fase ejecutada: **G102 (COMPLETADA y DESPLEGADA el 2026-10-22 — marca v1.0 en producción: logo nuevo en encabezados, íconos de app, favicon e imagen de redes; la mascota pasa de Tino a **Chilo** —siempre vestido, 10 poses, hoodie por tema—; tokens de color con dos temas en `@theme inline`; animación con movimiento reducido; íconos del manual. Ver §G102.)**
+Última actualización: 2026-10-24 · Última fase ejecutada: **G103 (COMPLETADA y DESPLEGADA el 2026-10-24 — temporalidad de 12 meses con gracia y extensión para los planes; marketplace de profesores, clases en vivo, regularización, cursos pregrabados, liquidaciones y monitor RESICO detrás de banderas APAGADAS; pila e2e 100 % local. Ver §G103.)**
 
 <details><summary>Historial: G101 (2026-10-17)</summary>
 
@@ -436,6 +436,7 @@ nunca actualizó la línea 3 de este documento.)*
 
 | Fase | Nombre | Estado | Commit | Notas |
 |---|---|---|---|---|
+| G103 | Horarios de profesores, regularización, cursos pregrabados, liquidaciones y temporalidad de 12 meses | **COMPLETADA y DESPLEGADA (2026-10-24) con las banderas apagadas; verificada en producción.** | c994c58 | Temporalidad de 12 meses + gracia + extensión activa para todos; marketplace detrás de `FEATURE_*`. 1 885 pruebas, e2e local 27/27, audit sin altas/críticas. Encender: `docs/CHECKLIST_DEPLOY_HORARIOS_CURSOS.md`. Reporte: `docs/RETORNO_HORARIOS_CURSOS.md`. |
 | G102 | Marca v1.0: logo, Chilo, tokens de color y animación | **COMPLETADA y DESPLEGADA (2026-10-22); verificada en producción.** | f5e46f6 | Handoff en `docs/marca/`. Tokens con dos temas en `@theme inline` (`text-brand`→`text-brand-fg`, `text-streak`→`text-accent-fg`); `Logo` (sin personaje en pagos, legales, correos y panel parental); íconos/favicon/OG con el logo; Chilo = port literal de `OUTFIT()` probado al carácter en 2 160 combinaciones; `Tino` = envoltorio obsoleto; voz en una frase por pantalla. `test:unit` 1289 (local y UTC), `verify:routes` 62/62. |
 | G101 | Todas las carreras UNAM/IPN, sin emojis y mejoras de UX/UI | **COMPLETADA y DESPLEGADA (2026-10-19); verificada en producción.** | 83ee6a6 | Catálogo oficial (`career-catalog.ts`): 128 UNAM (DGAE) + 72 IPN; sincronización `pnpm content:careers` que renombra conservando id/metas/aciertos, crea sin inventar aciertos y retira solo inexistentes sin alumnos. Producción: 200 carreras, metas intactas. `CareerPicker` con búsqueda por carrera o plantel. 165 emojis → `Icon.tsx`; íconos de la app con Tino en SVG. `text-base` = color de fondo en este tema (banner Early Bird ilegible). `test:unit` 1073 (local y UTC), `verify:routes` 62/62, E2E 3/3. |
 | G100 | Admin maestro en cualquier dispositivo, sesión sin rastro y auditoría funcional | **COMPLETADA y DESPLEGADA (2026-10-15, equipo de Vercel `ya-entre`); verificada en producción.** | c3ad5f2, 10a2d8d | 🔴 5 páginas de /admin sin guard propio entregaban su contenido a cualquier sesión de alumno en el cuerpo del 307 (6 correos en usuarios, la bitácora, la cola sin publicar) y con 200 en navegación RSC parcial — medido en local Y en producción; guard en la primera línea de cada página + prueba estática `pages-guard` + comprobación en `verify:routes`. 🔴 Next 16.2.12 → 16.3.8 (3 RCE críticas + SSRF); `pnpm audit` de 42 (3 críticas/15 altas) a 7 (0/1, `braces` sin parche, solo ESLint). Admin aterriza en `/admin` (antes: tablero de alumno sin enlace al panel), insignia de maestro, inicio del panel, «Cerrar sesión» en el panel. Sesión: cookie sin caducidad (antes 400 días), tope 12 h por `amr`, `signOut` LOCAL (antes global), `Clear-Site-Data`, SW sin pantallas, PostHog en sessionStorage. Middleware: el token refrescado nunca llegaba al navegador. Banner de cookies tapaba «Siguiente» del simulador. `test:unit` 1003, `verify:session-no-trace` 49/49, `verify:routes` 62/62, E2E simulador 3/3. |
@@ -533,6 +534,70 @@ nunca actualizó la línea 3 de este documento.)*
 | G2 | Eliminación de la API de pago del pipeline de contenido | COMPLETADA | (G2) | Ver sección dedicada abajo — cero referencias a `ANTHROPIC_API_KEY`/SDK de Anthropic en todo el repo (verificado); pipeline de generación/verificación/clasificación rediseñado para correr vía sesiones de Claude Code, con la misma garantía estructural de antes (el verificador nunca ve la respuesta correcta) ahora por aislamiento de SESIÓN en vez de aislamiento de código. Los 309 reactivos existentes se conservan intactos (generados antes de esta corrección, bajo la arquitectura "capital cero" de F4 — ver sus Notas F4, que documentan honestamente esa relajación de garantía). |
 | G1 | Build resiliente y brecha real de contenido | COMPLETADA | (G1) | Ver sección dedicada abajo — causa raíz del fallo de `pnpm build` (proyecto Supabase pausado, no un bug de código), fix de resiliencia en las páginas públicas, conteos de contenido re-verificados contra la DB real (coinciden exacto con lo ya documentado en F4), tabla de brecha meta-vs-real por institución/área/materia, y resultado real de la suite E2E completa. |
 | F24 | Rastreo de campañas y veredicto final de lanzamiento | COMPLETADA | (F24) | **Fase de cierre de todo el desarrollo.** (1) **Rastreo de conversión de ads**: `src/lib/marketing/pixels.ts` — Meta Pixel + TikTok Pixel, configurables por `NEXT_PUBLIC_META_PIXEL_ID`/`NEXT_PUBLIC_TIKTOK_PIXEL_ID`, inertes sin credencial real (mismo criterio que Sentry/PostHog) Y condicionados a `localStorage['acierta-cookies-consent']==='true'` (F21) — verificado que rechazar cookies deja ambos píxeles sin cargar. 4 eventos: `PageView` (`PixelPageView.tsx`, montado en landing y precios), `CompleteRegistration` (`SignupConversionTracker.tsx` en el layout raíz vía Suspense, detecta el marcador `?signup=1` que `signUpAction` agrega a su redirect — un Server Action no puede devolverle datos al cliente en su rama de éxito), `InitiateCheckout` (`ChoosePlanButton`/`RetryButton`, valor estimado + plan), `Purchase` (`SuccessView`, valor REAL del `Payment` ya confirmado por el webhook, nunca un estimado). (2) **Atribución de campaña persistente**: `proxy.ts` captura utm_source/medium/campaign/content/term + fbclid/ttclid/gclid de la PRIMERA visita (cualquier ruta) en una cookie httpOnly de 90 días que NUNCA se sobreescribe (verificado con `curl`: 1ª visita con UTMs → `Set-Cookie`; 2ª visita con UTMs distintos → sin `Set-Cookie`, se conserva la original); `signUpAction` la persiste en el nuevo campo `UserProfile.acquisitionSource` (JSON, migración `0010`, solo al `create`) para atribuir cualquier compra FUTURA al canal de origen del registro, no solo el registro mismo. (3) **Página de agradecimiento optimizada**: `SuccessView` (pantalla de éxito del checkout) reescrita con lista de "qué sigue" personalizada por plan + refuerzo del valor específico comprado, además del disparo del evento Purchase. (4) **VERIFICACIÓN FORMAL DE LANZAMIENTO** — `docs/LAUNCH_CHECKLIST.md`: recorrido punto por punto de PRD §14 completo (Early Bird + Beta Cerrada + Public Launch) contra el estado REAL de Supabase (no contra lo documentado en fases previas). **Veredicto: el producto NO está listo para lanzar.** Bloqueador principal, verificado en vivo con SQL directo: banco de reactivos en **309 de 1,500 requeridos (20.6%)**, concentrado en solo UNAM Área 1 (183) y Área 2 (126) — **UNAM Áreas 3-4 y las DOS ramas de IPN están en CERO**, pese a que IPN es una de las dos únicas instituciones planeadas para el día 1 del lanzamiento (`CLAUDE.md`). Segundo bloqueador: 1 sola suscripción activa en la base (de prueba, no una venta real) vs. ≥200 licencias Early Bird requeridas; cero beta testers reclutados (`BETA_FEEDBACK.md` vacío, F23); Stripe con llaves placeholder (nunca se ha cobrado un peso real); datos de relleno sin completar en el aviso de privacidad/términos (F21); Supabase real sigue en plan gratuito (duda concreta sobre soportar ≥500 usuarios concurrentes). Todo lo demás — motor adaptativo, simulador, pagos (lógica), seguridad, PWA, gamificación, panel parental, legal, observabilidad — está construido y probado en vivo contra Supabase real sin pendientes de código. 10 tests nuevos (`tests/marketing/attribution.test.ts`). `pnpm typecheck`/`lint`/`build` OK, 442 tests unitarios, 23/23 `test:rls` en vivo. |
+
+## G103 — Horarios de profesores, regularización, cursos pregrabados y temporalidad de acceso (2026-10-24)
+
+Especificaciones: `docs/specs/` (horarios/cursos/temporalidad, marketplace de
+profesores, QR/comisiones). Plan y decisiones técnicas:
+`docs/IMPLEMENTACION_HORARIOS_CURSOS.md`. Reporte final:
+`docs/RETORNO_HORARIOS_CURSOS.md`. Checklist manual: `docs/CHECKLIST_DEPLOY_HORARIOS_CURSOS.md`.
+
+**Qué cambia para quien usa la app hoy (sin bandera):** los planes Pase de
+Temporada y Premium dan **12 meses de calendario** desde la activación (antes:
+hasta la fecha del examen), con **7 días de gracia con acceso** y una
+**extensión de 6 meses** (precio en `ACCESS_DURATION`, decisión abierta de
+Ángel). Avisos en el tablero y correos T−30/T−7/T−1/T0/fin de gracia dentro del
+cron diario existente. Las filas anteriores conservan su `expiresAt`; 0019 solo
+rellena `graceEndsAt`. Además, la portada deja de prometer clases y cursos que
+no existen (Fase 2) y el aviso de cookies ya no tapa el último botón en celular.
+
+**Detrás de banderas de servidor, APAGADAS en producción:**
+`FEATURE_TEACHER_AVAILABILITY` (profesores, disponibilidad semanal, fechas
+bloqueadas, directorio, reserva en un clic con tarjeta guardada, 3DS por
+redirección, doble reserva imposible en la base por restricción de exclusión),
+`FEATURE_REGULARIZACION` (pista y tarifa B separadas, mismo tope 1.5×, abierta
+sin Premium; admisión exige Premium en servidor) y `FEATURE_COURSES` (cursos
+pregrabados: Storage privado, subida firmada con validación de la firma real
+del archivo, inscripción SOLO por webhook, reembolso revoca acceso, casilla del
+art. 56 con texto `TODO-CLO` que bloquea la venta en producción). Liquidaciones
+semanales y monitor RESICO en `/admin` (admin maestro).
+
+**Reglas nuevas (ver CLAUDE.md):** libro de ajustes de liquidaciones (un
+reembolso posterior a un pago se descuenta en la siguiente; la recompra de un
+curso reutiliza la fila de inscripción, así que la deuda no puede vivir ahí);
+`notFound()` en una página bajo `loading.tsx` da un «404 suave»; e2e en pila
+100 % local (`tests/e2e-local/README.md`).
+
+**Verificación:** `pnpm typecheck`/`lint` en verde; `test:unit` **1 885/1 885**
+(local y `TZ=UTC`; línea base 1 289); e2e local **27/27** (5 flujos + liquidaciones
+contra Postgres real + banderas apagadas + capturas, con el log del servidor sin
+errores); `pnpm audit` sin altas ni críticas (parcheadas dos RCE de Next.js que
+afectaban a producción); `security:headers` 12/12 en producción; 54 capturas en
+`docs/screenshots/horarios-cursos/`.
+
+### Despliegue de G103 (2026-10-24)
+
+- **Respaldo previo**: `C:\Users\LENOVO\yaentre-respaldos\g103-pre-migracion-20261024T1147Z.dump`
+  (pg_dump 17, `public` + `app_security`, 34 tablas con datos, legible) y
+  `backups/content-bank.json` (7 380 filas, `0e525c0`).
+- **Migraciones** como `postgres` por la API: `0019` a las **11:48:30 UTC** (relleno de
+  1 fila, verificado; hora fijada en la reversa del archivo), `0020`, `0021`.
+  Verificadas por efecto: RLS sin políticas permisivas en las 12 tablas, sin acceso
+  para `anon`/`authenticated`, buckets privados, políticas de Storage, exclusión e
+  índice parcial; `prisma migrate diff` contra producción sin diferencias de G103.
+- **Deployment vigente**: `dpl_2jSBDu7YyKG26xABuf1dmchsi6sz` (`yaentre-36mtaod4u`),
+  12:23 UTC, commit `c994c58`, `vercel --prod --force --scope ya-entre`. Reversa:
+  `vercel promote dpl_SBJqfTGcrS9sQ3HQKmyi3LCMLS1q --scope ya-entre` (G102).
+- **Banderas** `FEATURE_TEACHER_AVAILABILITY`, `FEATURE_REGULARIZACION`,
+  `FEATURE_COURSES` = `false` en Production.
+- **Humo**: públicas 200; rutas y API de G103 404; `/app` 307; cron 401; webhook sin
+  firma 400; CSS nuevo servido; portada sin clases ni cursos; precios «12 meses»;
+  log en vivo sin errores. Un primer despliegue (`dpl_vXgdks…`, 12:05 UTC) mostró en
+  el log un `AuthError` de `/clases` sin sesión → corregido en `c994c58`.
+- **Hallazgo de coordinación**: la rama `claude/yaentre-settings-review-fevyqz` (sin
+  fusionar) ya aplicó a producción sus migraciones `0019_student_settings_g100` y
+  `0020_hourly_reminders_trigger_g100`; conviven con G103, pero su numeración choca
+  con la de G103: renumerar al fusionar.
 
 ## G102 — Marca v1.0: logo, Chilo, tokens de color y animación (2026-10-22)
 
