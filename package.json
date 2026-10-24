@@ -79,7 +79,7 @@
   "dependencies": {
     "@number-flow/react": "0.6.1",
     "@prisma/client": "5.22.0",
-    "@sentry/nextjs": "10.64.0",
+    "@sentry/nextjs": "10.75.3",
     "@supabase/ssr": "0.12.0",
     "@supabase/supabase-js": "2.110.2",
     "date-fns": "4.1.0",
@@ -87,7 +87,7 @@
     "exceljs": "4.4.0",
     "framer-motion": "12.42.2",
     "katex": "0.17.0",
-    "next": "16.3.8",
+    "next": "16.4.2",
     "posthog-js": "1.399.1",
     "posthog-node": "5.46.1",
     "react": "19.2.4",
@@ -96,7 +96,7 @@
     "resend": "6.17.2",
     "screenfull": "6.0.2",
     "stripe": "22.3.1",
-    "zod": "4.4.3",
+    "zod": "4.6.7",
     "zustand": "5.0.14"
   },
   "devDependencies": {
@@ -111,7 +111,7 @@
     "@vitest/ui": "4.1.10",
     "dotenv": "17.4.2",
     "eslint": "9.39.4",
-    "eslint-config-next": "16.3.8",
+    "eslint-config-next": "16.4.2",
     "jsdom": "29.1.1",
     "mammoth": "1.12.0",
     "pdf-parse": "2.4.5",
@@ -120,6 +120,7 @@
     "tailwindcss": "4.3.2",
     "tsx": "4.23.0",
     "typescript": "5.9.3",
+    "vite": "8.1.6",
     "vitest": "4.1.10"
   },
   "prisma": {
