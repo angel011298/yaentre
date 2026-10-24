@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 import { posthogCspHosts } from "./src/lib/analytics/posthog-hosts";
 
 const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL

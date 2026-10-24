@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { CoursePlayer } from '@/components/courses/CoursePlayer';
-import { requireUser } from '@/lib/auth/guards';
+import { requireUserPage } from '@/lib/auth/guards';
 import { getCourseForLearner } from '@/lib/db/courses';
 
 export const dynamic = 'force-dynamic';
@@ -19,7 +19,7 @@ export default async function AprenderPage({
   params: Promise<{ slug: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { profile } = await requireUser();
+  const { profile } = await requireUserPage('/mis-cursos');
   const { slug } = await params;
   const sp = await searchParams;
   if (!/^[a-z0-9-]{1,80}$/.test(slug)) notFound();

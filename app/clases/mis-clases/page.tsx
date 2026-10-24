@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { StudentClassActions } from '@/components/classes/StudentClassActions';
-import { requireUser } from '@/lib/auth/guards';
+import { requireUserPage } from '@/lib/auth/guards';
 import { listStudentClasses } from '@/lib/db/classes';
 import { formatMexicoDateTime, formatMxnShort } from '@/lib/format/mx';
 import { LEVEL_LABELS } from '@/lib/teachers/level-engine';
@@ -31,7 +31,7 @@ function statusLabel(c: { status: string; paidAt: Date | null; holdExpiresAt: Da
 
 /** G103 — clases del alumno: próximas e historial, con cancelación sin costo hasta 24 h antes. */
 export default async function MisClasesPage() {
-  const { profile } = await requireUser();
+  const { profile } = await requireUserPage('/clases/mis-clases');
   const classes = await listStudentClasses(profile.id);
   const now = new Date().getTime();
   const upcoming = classes.filter((c) => ['BOOKED', 'CONFIRMED', 'PENDING_PAYMENT'].includes(c.status) && c.scheduledAt.getTime() > now);

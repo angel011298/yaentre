@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { StatusPoller } from '@/components/checkout/StatusPoller';
 import { Card } from '@/components/ui/Card';
-import { requireUser } from '@/lib/auth/guards';
+import { requireUserPage } from '@/lib/auth/guards';
 import { prisma } from '@/lib/db/prisma';
 import { readOwnCheckoutSession } from '@/lib/stripe/session-readback';
 
@@ -14,7 +14,7 @@ export default async function CompraCursoPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { profile } = await requireUser();
+  const { profile } = await requireUserPage('/mis-cursos');
   const sp = await searchParams;
   const sessionId = typeof sp.session_id === 'string' ? sp.session_id : '';
   const session = sessionId ? await readOwnCheckoutSession(sessionId, profile.id, 'course_purchase') : null;

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { BookingCalendar } from '@/components/classes/BookingCalendar';
 import { Card } from '@/components/ui/Card';
 import { LinkButton } from '@/components/ui/LinkButton';
-import { requireUser } from '@/lib/auth/guards';
+import { requireUserPage } from '@/lib/auth/guards';
 import { findStudentStripeCustomerId, getBookableTeacher } from '@/lib/db/classes';
 import { hasPremiumAccess } from '@/lib/db/premium-access';
 import { readMarketplaceFlags } from '@/lib/marketplace/flags';
@@ -36,7 +36,7 @@ export default async function TeacherBookingPage({
   params: Promise<{ id: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { profile } = await requireUser();
+  const { profile } = await requireUserPage('/clases');
   const { id } = await params;
   const sp = await searchParams;
   const flags = readMarketplaceFlags();

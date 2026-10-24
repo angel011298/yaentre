@@ -21,6 +21,7 @@ export default defineConfig({
   expect: { timeout: 15_000 },
   reporter: [['list']],
   globalSetup: './tests/e2e-local/support/global-setup.ts',
+  globalTeardown: './tests/e2e-local/support/global-teardown.ts',
   use: {
     baseURL: LOCAL.appUrl,
     locale: 'es-MX',
@@ -41,8 +42,8 @@ export default defineConfig({
       // se fijan al compilar). `E2E_SKIP_BUILD=1` reutiliza el último build.
       command:
         process.env.E2E_SKIP_BUILD === '1'
-          ? 'node tests/e2e-local/support/build-marker.mjs check && pnpm start'
-          : 'node tests/e2e-local/support/build-marker.mjs clear && pnpm build && node tests/e2e-local/support/build-marker.mjs write && pnpm start',
+          ? 'node tests/e2e-local/support/build-marker.mjs check && node tests/e2e-local/support/serve.mjs'
+          : 'node tests/e2e-local/support/build-marker.mjs clear && pnpm build && node tests/e2e-local/support/build-marker.mjs write && node tests/e2e-local/support/serve.mjs',
       url: LOCAL.appUrl,
       env,
       timeout: 900_000,
@@ -53,7 +54,7 @@ export default defineConfig({
     },
     {
       // El MISMO build, en :3001, con las banderas apagadas (06-banderas-apagadas).
-      command: 'node tests/e2e-local/support/wait-build.mjs && pnpm start -p 3001',
+      command: 'node tests/e2e-local/support/wait-build.mjs && node tests/e2e-local/support/serve.mjs -p 3001',
       url: LOCAL.flagsOffUrl,
       env: flagsOffServerEnv(stack),
       timeout: 900_000,

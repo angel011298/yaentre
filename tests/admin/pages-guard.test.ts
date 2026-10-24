@@ -29,11 +29,13 @@ const ZONES: Array<{ prefix: string; guards: RegExp }> = [
   { prefix: 'onboarding', guards: /\b(requireUser|requireOnboarding)\(/ },
   { prefix: 'simulador', guards: /\b(requireOnboarding|requireUser)\(/ },
   // G103 — marketplace. El panel del profesor usa su propio guard (o el de
-  // sesión en la solicitud de alta); clases, cursos y reproductor, el de sesión.
+  // sesión en la solicitud de alta); clases, cursos y reproductor, el de sesión
+  // de PÁGINA, que redirige en vez de lanzar (`requireUserPage`): Next corre la
+  // página aunque el layout responda 404, y un `AuthError` acaba en Sentry.
   { prefix: 'profesor', guards: /\b(getTeacherPageContext|requireUser|requireTeacher)\(/ },
-  { prefix: 'clases', guards: /\b(requireUser|requireVerifiedForPurchase)\(/ },
-  { prefix: 'mis-cursos', guards: /\brequireUser\(/ },
-  { prefix: 'aprender', guards: /\brequireUser\(/ },
+  { prefix: 'clases', guards: /\brequireUserPage\(/ },
+  { prefix: 'mis-cursos', guards: /\brequireUserPage\(/ },
+  { prefix: 'aprender', guards: /\brequireUserPage\(/ },
 ];
 
 function pages(dir: string): string[] {

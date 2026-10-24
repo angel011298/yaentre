@@ -116,6 +116,23 @@ export async function requirePaidPlan(): Promise<
  * comprobación, un tutor que abre /simulador queda atrapado en el asistente
  * de alumno (G10). Todos los llamadores de este guard son rutas de alumno.
  */
+/**
+ * G103 — `requireUser` para PÁGINAS: sin sesión REDIRIGE a `/login` en vez de
+ * lanzar (mismo criterio que `requireOnboarding`, G100). Next ejecuta layout y
+ * página en paralelo: aunque el layout responda 404 (bandera apagada) o
+ * redirija, la página corre, y un `AuthError` sin capturar llega a Sentry por
+ * `onRequestError`. Lo encontró el humo en producción de G103 en `/clases`.
+ * No exige onboarding: el marketplace es para cualquier cuenta registrada.
+ */
+export async function requireUserPage(loginNext: string): Promise<RequireUserResult> {
+  try {
+    return await requireUser();
+  } catch (err) {
+    if (err instanceof AuthError) redirect(`/login?next=${encodeURIComponent(loginNext)}`);
+    throw err;
+  }
+}
+
 export async function requireOnboarding(loginNext = '/app'): Promise<RequireUserResult> {
   let result: RequireUserResult;
   try {

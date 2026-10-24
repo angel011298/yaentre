@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Card } from '@/components/ui/Card';
 import { Icon } from '@/components/ui/Icon';
 import { LinkButton } from '@/components/ui/LinkButton';
-import { requireUser } from '@/lib/auth/guards';
+import { requireUserPage } from '@/lib/auth/guards';
 import { listDirectory } from '@/lib/db/classes';
 import { hasPremiumAccess } from '@/lib/db/premium-access';
 import { formatMxnShort } from '@/lib/format/mx';
@@ -28,7 +28,7 @@ export default async function ClasesDirectoryPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { profile } = await requireUser();
+  const { profile } = await requireUserPage('/clases');
   const sp = await searchParams;
   const flags = readMarketplaceFlags();
   const premium = await hasPremiumAccess(profile.id);

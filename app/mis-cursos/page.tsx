@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@/components/ui/Icon';
-import { requireUser } from '@/lib/auth/guards';
+import { requireUserPage } from '@/lib/auth/guards';
 import { listMyCourses } from '@/lib/db/courses';
 import { signedReadUrls } from '@/lib/courses/storage';
 
@@ -10,7 +10,7 @@ export const metadata = { title: 'Mis cursos' };
 
 /** G103 — cursos del alumno con su avance. El acceso es permanente (también si el curso se archivó). */
 export default async function MisCursosPage() {
-  const { profile } = await requireUser();
+  const { profile } = await requireUserPage('/mis-cursos');
   const enrollments = await listMyCourses(profile.id);
   const thumbs = await signedReadUrls(enrollments.map((e) => e.course.thumbnailPath ?? ''));
 

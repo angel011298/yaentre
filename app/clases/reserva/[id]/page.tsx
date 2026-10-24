@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { StatusPoller } from '@/components/checkout/StatusPoller';
 import { Card } from '@/components/ui/Card';
 import { Icon } from '@/components/ui/Icon';
-import { requireUser } from '@/lib/auth/guards';
+import { requireUserPage } from '@/lib/auth/guards';
 import { getClassForStudent } from '@/lib/db/classes';
 import { formatMexicoDateTime, formatMxnShort } from '@/lib/format/mx';
 import { subjectLabel } from '@/lib/teachers/subject-catalog';
@@ -24,7 +24,7 @@ export default async function ReservaPage({
   params: Promise<{ id: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const { profile } = await requireUser();
+  const { profile } = await requireUserPage('/clases/mis-clases');
   const { id } = await params;
   const sp = await searchParams;
   if (!/^c[a-z0-9]{20,40}$/.test(id)) notFound();
