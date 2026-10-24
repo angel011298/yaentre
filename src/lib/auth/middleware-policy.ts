@@ -29,6 +29,23 @@ export const AUTH_REQUIRED_PREFIXES = [
   '/aprender',
 ];
 
+/**
+ * G103 — los prefijos del marketplace SOLO exigen sesión si su bandera está
+ * encendida. Con la bandera apagada la ruta no existe (el layout da 404), y
+ * redirigir antes a `/login` delataba que existe y cambiaba la conducta de la
+ * app respecto a antes de G103 (lo encontró el e2e de banderas apagadas).
+ */
+export function authRequiredPrefixes(flags: { liveClasses: boolean; regularizacion: boolean; courses: boolean }): string[] {
+  const off = new Set<string>();
+  if (!(flags.liveClasses || flags.regularizacion || flags.courses)) off.add('/profesor');
+  if (!flags.liveClasses) off.add('/clases');
+  if (!flags.courses) {
+    off.add('/mis-cursos');
+    off.add('/aprender');
+  }
+  return AUTH_REQUIRED_PREFIXES.filter((p) => !off.has(p));
+}
+
 /** Prefijos que además exigen el correo verificado. */
 export const VERIFIED_EMAIL_REQUIRED_PREFIXES = ['/checkout'];
 

@@ -331,7 +331,8 @@ function RateCourse({ courseId, initialRating, initialReview }: { courseId: stri
             <label key={n} className="cursor-pointer">
               <input type="radio" name="course-rating" value={n} checked={rating === n} onChange={() => setRating(n)} className="sr-only" />
               <span className={`flex min-h-touch min-w-touch items-center justify-center rounded-md ${rating !== null && n <= rating ? 'text-accent-fg' : 'text-text-muted'}`}>
-                <Icon name="star" className="h-6 w-6" label={`${n} de 5`} />
+                {/* Rellena además de colorear: el color nunca es el único canal (WCAG). */}
+                <Icon name="star" className={`h-6 w-6 ${rating !== null && n <= rating ? 'fill-current' : ''}`} label={`${n} de 5`} />
               </span>
             </label>
           ))}

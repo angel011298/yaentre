@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import * as Sentry from '@sentry/nextjs';
 import { Button } from '@/components/ui/Button';
 
 /**
@@ -11,7 +10,9 @@ import { Button } from '@/components/ui/Button';
  */
 export function SegmentError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
-    Sentry.captureException(error);
+    // Diferido: un import estático metería el SDK en el bundle de cada página
+    // del segmento (incluido el catálogo público), contra lo medido en G62.
+    void import('@sentry/nextjs').then((Sentry) => Sentry.captureException(error)).catch(() => undefined);
   }, [error]);
   return (
     <div className="mx-auto max-w-md space-y-3 py-12 text-center" role="alert">

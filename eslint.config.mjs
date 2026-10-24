@@ -22,6 +22,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Artefactos de Playwright (trazas con JS minificado de terceros).
+    "test-results/**",
+    "playwright-report/**",
     // Marca v1.0: generadores de referencia del handoff de diseño, tal cual
     // llegaron (CommonJS). Las pruebas los usan como oráculo; no son código
     // de la app.

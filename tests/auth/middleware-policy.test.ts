@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   AUTH_REQUIRED_PREFIXES,
+  authRequiredPrefixes,
   VERIFIED_EMAIL_REQUIRED_PREFIXES,
   hasSupabaseAuthCookie,
   isRouterPrefetch,
@@ -158,5 +159,28 @@ describe('G100: el cierre de sesión no pasa por la validación del middleware',
     expect(isSupabaseAuthCookieName('sb-abc-auth-token')).toBe(true);
     expect(isSupabaseAuthCookieName('sb-abc-auth-token.0')).toBe(true);
     expect(isSupabaseAuthCookieName('yaentre_attribution')).toBe(false);
+  });
+});
+
+describe('authRequiredPrefixes (G103)', () => {
+  const all = { liveClasses: true, regularizacion: true, courses: true };
+  const none = { liveClasses: false, regularizacion: false, courses: false };
+
+  it('con todo encendido exige sesión en todo el marketplace', () => {
+    expect(authRequiredPrefixes(all)).toEqual(AUTH_REQUIRED_PREFIXES);
+  });
+
+  it('con todo apagado, ningún prefijo del marketplace redirige a /login (la ruta da 404)', () => {
+    const p = authRequiredPrefixes(none);
+    for (const prefix of ['/profesor', '/clases', '/mis-cursos', '/aprender']) expect(p).not.toContain(prefix);
+    // Lo de antes de G103 sigue protegido.
+    for (const prefix of ['/app', '/onboarding', '/diagnostico', '/checkout', '/tutor', '/admin']) expect(p).toContain(prefix);
+  });
+
+  it('cada bandera abre solo lo suyo', () => {
+    expect(authRequiredPrefixes({ ...none, courses: true })).toEqual(expect.arrayContaining(['/profesor', '/mis-cursos', '/aprender']));
+    expect(authRequiredPrefixes({ ...none, courses: true })).not.toContain('/clases');
+    expect(authRequiredPrefixes({ ...none, liveClasses: true })).toEqual(expect.arrayContaining(['/profesor', '/clases']));
+    expect(authRequiredPrefixes({ ...none, regularizacion: true })).toContain('/profesor');
   });
 });

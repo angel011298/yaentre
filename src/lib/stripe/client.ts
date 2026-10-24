@@ -12,6 +12,26 @@ import Stripe from 'stripe';
  */
 let stripeSingleton: Stripe | null = null;
 
+/**
+ * G103 — SOLO para la pila local de e2e (`pnpm test:e2e:local`): apunta el SDK
+ * a un simulador de Stripe que corre en ESTE equipo. Triple candado: se ignora
+ * si existe `VERCEL_ENV` (siempre definido en Vercel y en el servidor propio),
+ * solo acepta `localhost`/`127.0.0.1` (la llave nunca viaja a otro host) y solo
+ * con una llave de prueba. Fuera de esa pila no cambia nada.
+ */
+export function localStripeApi(env: Record<string, string | undefined> = process.env): { host: string; port: number; protocol: 'http' } | null {
+  const raw = env.STRIPE_E2E_LOCAL_API;
+  if (!raw || env.VERCEL_ENV || !env.STRIPE_SECRET_KEY?.startsWith('sk_test_')) return null;
+  let url: URL;
+  try {
+    url = new URL(raw);
+  } catch {
+    return null;
+  }
+  if (url.protocol !== 'http:' || (url.hostname !== '127.0.0.1' && url.hostname !== 'localhost') || !url.port) return null;
+  return { host: url.hostname, port: Number(url.port), protocol: 'http' };
+}
+
 export function getStripe(): Stripe {
   if (stripeSingleton) return stripeSingleton;
 
@@ -25,6 +45,7 @@ export function getStripe(): Stripe {
     // el SDK use su apiVersion embebida (evita divergencias silenciosas).
     telemetry: false,
     appInfo: { name: 'YaEntre', url: 'https://yaentre.com' },
+    ...(localStripeApi() ?? {}),
   });
 
   return stripeSingleton;

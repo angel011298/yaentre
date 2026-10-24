@@ -74,7 +74,8 @@ test.describe('Recorrido del usuario nuevo', () => {
     await expect(page.getByText(/área o rama/i)).toBeVisible({ timeout: 20_000 });
     await page.getByRole('button', { name: /Físico-Matemáticas|Ingenierías/i }).first().click();
 
-    await expect(page.getByText(/carrera meta/i)).toBeVisible({ timeout: 20_000 });
+    // G101: el paso cambió de título («¿A qué carrera quieres entrar?»).
+    await expect(page.getByRole('heading', { name: /a qué carrera quieres entrar/i })).toBeVisible({ timeout: 20_000 });
     await page.getByRole('button', { name: /Ingeniería|Arquitectura|Física/i }).first().click();
 
     // Último paso: Tino explica el diagnóstico.

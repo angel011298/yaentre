@@ -11,6 +11,7 @@
     "format": "prettier --write .",
     "test:unit": "vitest run",
     "test:e2e": "playwright test",
+    "test:e2e:local": "playwright test -c playwright.local.config.ts",
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "prisma:seed": "prisma db seed",

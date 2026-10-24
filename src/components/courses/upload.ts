@@ -14,20 +14,39 @@ import { confirmCourseUploadAction, requestCourseUploadAction } from '@/app/acti
  */
 export type UploadKind = 'video' | 'preview' | 'thumbnail' | 'resource';
 
-/** Duración real del video, leída del archivo local antes de subirlo. */
+/**
+ * Duración real del video, leída del archivo local antes de subirlo.
+ *
+ * Un WebM grabado con `MediaRecorder` (grabadores de pantalla, la cámara del
+ * navegador) no trae la duración en la cabecera y el navegador la reporta como
+ * `Infinity`. Truco estándar: buscar a un punto enorme obliga al navegador a
+ * recorrer el archivo y emitir `durationchange` con la duración real. Con tope
+ * de 8 s para no colgar la subida.
+ */
 export function readVideoDuration(file: File): Promise<number | null> {
   return new Promise((resolve) => {
     const url = URL.createObjectURL(file);
     const v = document.createElement('video');
+    let settled = false;
+    const finish = (value: number | null) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      URL.revokeObjectURL(url);
+      resolve(value);
+    };
+    const timer = setTimeout(() => finish(null), 8_000);
+    const finite = () => Number.isFinite(v.duration) && v.duration > 0;
     v.preload = 'metadata';
+    v.muted = true;
     v.onloadedmetadata = () => {
-      URL.revokeObjectURL(url);
-      resolve(Number.isFinite(v.duration) && v.duration > 0 ? v.duration : null);
+      if (finite()) return finish(v.duration);
+      v.ondurationchange = () => {
+        if (finite()) finish(v.duration);
+      };
+      v.currentTime = Number.MAX_SAFE_INTEGER;
     };
-    v.onerror = () => {
-      URL.revokeObjectURL(url);
-      resolve(null);
-    };
+    v.onerror = () => finish(null);
     v.src = url;
   });
 }

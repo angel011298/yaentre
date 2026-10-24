@@ -19,13 +19,14 @@ import {
 // Ver docs/Flujo_App_YaEntre_v1.0.md §16.1 (mapa de rutas) y §16.2 (guards).
 // La política vive en un módulo puro para poder probarla (G69).
 import {
-  AUTH_REQUIRED_PREFIXES,
+  authRequiredPrefixes,
   VERIFIED_EMAIL_REQUIRED_PREFIXES,
   hasSupabaseAuthCookie,
   isRouterPrefetch,
   matchesPrefix,
   shouldResolveUser,
 } from '@/lib/auth/middleware-policy';
+import { readMarketplaceFlags } from '@/lib/marketplace/flags';
 import { reportControlFailure } from '@/lib/observability/report';
 
 // F20 tarea 5: límite básico de tasa en las rutas de API. Se excluyen los
@@ -135,6 +136,8 @@ export async function proxy(request: NextRequest) {
   // así que un alumno que pasa 3 h en `/simulador` refresca su sesión en cada
   // `sync` aunque el middleware ya no lo haga por él.
   const hasSessionCookie = hasSupabaseAuthCookie(request.cookies.getAll().map((c) => c.name));
+  // G103: los prefijos del marketplace solo con su bandera encendida.
+  const authRequired = authRequiredPrefixes(readMarketplaceFlags());
 
   if (
     !shouldResolveUser({
@@ -143,7 +146,7 @@ export async function proxy(request: NextRequest) {
       isPrefetch: isRouterPrefetch(request.headers),
     })
   ) {
-    if (matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES) && !hasSessionCookie) {
+    if (matchesPrefix(pathname, authRequired) && !hasSessionCookie) {
       const loginUrl = new URL('/login', request.url);
       loginUrl.searchParams.set('next', `${pathname}${search}`);
       return withAttributionCookie(NextResponse.redirect(loginUrl), request);
@@ -188,7 +191,7 @@ export async function proxy(request: NextRequest) {
     if (sessionExpired) user = null;
   }
 
-  if (matchesPrefix(pathname, AUTH_REQUIRED_PREFIXES) && !user) {
+  if (matchesPrefix(pathname, authRequired) && !user) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('next', `${pathname}${search}`);
     if (sessionExpired) loginUrl.searchParams.set('sesion', 'expirada');

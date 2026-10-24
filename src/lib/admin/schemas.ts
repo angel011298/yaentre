@@ -161,21 +161,21 @@ export const teacherReviewSchema = z.object({
   teacherId: cuidSchema,
   decision: z.enum(['APPROVE', 'REJECT', 'SUSPEND', 'REACTIVATE']),
   reason: reasonSchema,
-});
+}).strict();
 export type TeacherReviewInput = z.input<typeof teacherReviewSchema>;
 
 export const courseReviewSchema = z.object({
   courseId: cuidSchema,
   decision: z.enum(['APPROVE', 'REJECT', 'ARCHIVE']),
   reason: reasonSchema,
-});
+}).strict();
 export type CourseReviewInput = z.input<typeof courseReviewSchema>;
 
 export const reviewModerationSchema = z.object({
   enrollmentId: cuidSchema,
   hidden: z.boolean(),
   reason: reasonSchema,
-});
+}).strict();
 export type ReviewModerationInput = z.input<typeof reviewModerationSchema>;
 
 export const payoutActionSchema = z

@@ -9,8 +9,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: [],
     include: ['tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    // Playwright posee tests/e2e; Vitest no debe recolectar esos specs.
-    exclude: ['node_modules/**', 'tests/e2e/**'],
+    // Playwright posee tests/e2e y tests/e2e-local; Vitest no debe recolectar esos specs.
+    exclude: ['node_modules/**', 'tests/e2e/**', 'tests/e2e-local/**'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

@@ -1037,3 +1037,58 @@ fragmentos; fuera de rango ⇒ draft rechazado).
 Detección de archivos nuevos O modificados por contenido (no por nombre).
 Registros pre-F2b sin hash se "adoptan" al primer escaneo (match por
 fileRef/basename). Fuentes con 0 fragmentos se reprocesan automáticamente.
+
+---
+
+## Addendum G103 (2026-10-24) — Temporalidad, profesores, clases, cursos y liquidaciones
+
+> Fuente de verdad: `prisma/schema.prisma`. Migraciones 0019-0021, 100 % aditivas,
+> aplicadas como `postgres` (el rol de la app no tiene `CREATE` en `public`).
+> Decisiones: `docs/IMPLEMENTACION_HORARIOS_CURSOS.md` §1.
+
+### Temporalidad (`0019_access_temporality_g103.sql`)
+`Subscription` gana `graceEndsAt`, `extendedAt`, `originalExpiresAt`,
+`expiryNoticesSent TEXT[]` (idempotencia de los avisos por correo),
+`extensionConsentAt`/`extensionConsentVersion`. Pase y Premium vencen a los 12
+meses de calendario (hora de México) desde la activación; MONTHLY sigue sin
+`expiresAt`. El acceso es `ACTIVE` con `expiresAt` nulo o futuro, o dentro de
+`graceEndsAt` (`accessibleSubscriptionWhere`). Relleno: `graceEndsAt =
+expiresAt + 7 días` donde era nulo; reversa al pie del archivo.
+
+### Profesores y clases (`0020_teacher_marketplace_g103.sql`)
+- `Teacher` (1:1 con `UserProfile`; CURP/CLABE/RFC privados, enmascarados en la
+  interfaz), `TeacherSubject` (materia × pista), `TeacherAvailability` (bloques
+  semanales en hora de México), `TeacherDateBlock`.
+- `ClassSession`: tarifa congelada al reservar (`finalTariffCents`,
+  `teacherPayCents` 75 %, `commissionCents` 25 %, multiplicadores que el alumno
+  nunca ve), `idempotencyKey` único por intento, `blockedUntil` = fin + 10 min.
+  **Restricción de exclusión** `class_sessions_no_overlap` (`btree_gist`) sobre
+  `tsrange(scheduledAt, blockedUntil)` por profesor para los estados que ocupan
+  horario: la doble reserva es imposible en la base, no solo en el código.
+- `TeacherPayout`: liquidación semanal (lunes-domingo, México) con
+  `classRevenueCents`, `courseRevenueCents`, reserva 15 % / 30 días,
+  `adjustmentCents`, `releasedRetentionCents`. Una vigente por profesor y semana:
+  **índice único parcial** `teacher_payouts_active_week_key` (`WHERE status <>
+  'CANCELLED'`), invisible para Prisma.
+- Enums: `ClassTrack`, `TeacherPaymentRail`, `TeacherLevel`, `TeacherStatus`,
+  `ClassStatus`, `CancelledBy`, `PayoutStatus`, `RetentionStatus`.
+
+### Cursos (`0021_course_marketplace_g103.sql`)
+- `Course`, `CourseModule`, `CourseLesson`, `CourseEnrollment` (único por
+  curso + alumno; precio y reparto congelados al pagar; la recompra tras un
+  reembolso REUTILIZA la fila), `CourseLessonProgress`.
+- CHECKs: precio $99-$9,999 o gratis; `teacherPayCents + commissionCents =
+  pricePaidCents`; calificación 1-5.
+- Storage: buckets PRIVADOS `course-videos` y `teacher-documents`; políticas por
+  funciones `SECURITY DEFINER` (`current_teacher_id`, `can_write_course_object`,
+  `can_read_course_object`): escribe solo el profesor dueño ACTIVO con el curso
+  en edición; lee el dueño, un ADMIN o un inscrito no reembolsado; anónimo solo
+  portada/preview de un curso publicado.
+- `TeacherPayoutAdjustment` (`teacher_payout_adjustments`): libro de ajustes
+  con signo (`REFUND`, `CANCEL_REVERSAL`), acotado a la inclusión de la partida
+  (`sourcePayoutId`), sin llave foránea a la partida para que sobreviva. Las
+  partidas guardan `payoutTeacherCents` (lo acreditado al incluirlas).
+
+Todas las tablas nuevas: RLS habilitada sin políticas permisivas, `REVOKE` a
+`anon`/`authenticated`, `GRANT` a `acierta_app`. La app las lee y escribe solo
+por Prisma detrás de sus guards.

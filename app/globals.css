@@ -429,6 +429,20 @@ body {
   display: none !important;
 }
 
+/* G103: mientras el banner está en la página y nadie ha elegido, la página
+   reserva su alto al final. Sin esto, en un celular el último botón (p. ej.
+   «Agendar clase») quedaba DEBAJO del banner sin poder desplazarse por encima
+   — lo encontró el e2e de reservas. `:has()` lo limita a las páginas que de
+   verdad pintan el banner (el simulador no lo pinta, G100). */
+:root:not([data-cookie-consent="set"]) body:has([data-cookie-banner]) {
+  padding-bottom: 9rem;
+}
+@media (min-width: 640px) {
+  :root:not([data-cookie-consent="set"]) body:has([data-cookie-banner]) {
+    padding-bottom: 5rem;
+  }
+}
+
 /* Accesibilidad: respetar prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   * {
