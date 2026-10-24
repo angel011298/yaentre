@@ -510,6 +510,10 @@ model UserProfile {
   adminFiles        AdminFile[]     @relation("AdminFileUploader")
   adminNotes        AdminNote[]     @relation("AdminNoteAuthor")
 
+  // Marketplace (G103). Relaciones inversas: no agregan columnas a esta tabla.
+  teacher        Teacher?
+  bookedClasses  ClassSession[] @relation("StudentClasses")
+
   createdAt DateTime @default(now())
 
   @@index([userId])
@@ -811,4 +815,296 @@ model AdminNote {
 
   @@index([createdAt])
   @@map("admin_notes")
+}
+
+// ──────────────── MARKETPLACE DE PROFESORES (G103) ────────────────
+//
+// Prerrequisito mínimo de docs/specs/ESPECIFICACION_MARKETPLACE_PROFESORES_CTO.md
+// §2.1 más las extensiones de la spec de horarios/cursos/temporalidad (§1, §2.10,
+// §5). Adaptaciones al repo (docs/RETORNO_HORARIOS_CURSOS.md §4): la identidad
+// es `UserProfile.id` (no `User.id`), las tablas van en snake_case con `@@map`,
+// y nada de esto se lee desde el navegador — RLS sin políticas permisivas.
+// Ningún perfil se borra nunca (se anonimiza, `src/lib/db/account.ts`), así
+// que las relaciones con `user_profiles` son `Restrict`: los registros de dinero
+// no pueden desaparecer en cascada.
+
+enum ClassTrack {
+  ADMISION       // Preparación del examen de admisión UNAM/IPN — requiere Premium
+  REGULARIZACION // Refuerzo de materias escolares — no requiere plan de admisión
+}
+
+enum TeacherPaymentRail {
+  ASIMILADOS         // Carril B (default) — CFDI de nómina, lo opera el contador
+  COMISION_MERCANTIL // Carril A (excepción) — el profesor factura
+}
+
+enum TeacherLevel {
+  INICIAL    // x1.00
+  VERIFICADO // x1.15 — 15+ clases, 4.2+ estrellas, hasta 10 % de cancelaciones
+  DESTACADO  // x1.30 — 50+ clases, 4.5+ estrellas, hasta 5 % de cancelaciones, 3+ meses
+}
+
+enum TeacherStatus {
+  PENDING_REVIEW
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+  REJECTED // G103: solicitud rechazada (puede volver a solicitar)
+}
+
+enum ClassStatus {
+  PENDING_PAYMENT // G103: horario apartado mientras se confirma el cobro
+  BOOKED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW_TEACHER
+  NO_SHOW_STUDENT
+  DISPUTED
+}
+
+enum CancelledBy {
+  STUDENT
+  TEACHER
+  SYSTEM
+}
+
+enum PayoutStatus {
+  PENDING
+  APPROVED
+  TRANSFERRED
+  FAILED
+  CANCELLED
+}
+
+enum RetentionStatus {
+  HELD
+  RELEASED
+  FORFEITED
+}
+
+model Teacher {
+  id            String      @id @default(cuid())
+  userProfileId String      @unique
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Restrict)
+
+  // Perfil público (directorio). Nombre corto y semblanza; nada fiscal.
+  displayName String
+  bio         String? @db.Text
+
+  // Datos de onboarding — PRIVADOS: nunca en logs, Sentry, PostHog ni en una
+  // respuesta pública; enmascarados en la interfaz (`maskTail`).
+  fullName        String
+  curp            String
+  phone           String
+  clabe           String
+  bankName        String
+  rfc             String?
+  canInvoice      Boolean            @default(false)
+  csfDocumentPath String?
+  paymentRail     TeacherPaymentRail @default(ASIMILADOS)
+
+  level           TeacherLevel  @default(INICIAL)
+  levelPromotedAt DateTime?
+  status          TeacherStatus @default(PENDING_REVIEW)
+  reviewNote      String?
+  onboardedAt     DateTime?
+  suspendedAt     DateTime?
+  suspendReason   String?
+
+  contractAcceptedAt        DateTime?
+  contractVersion           String?
+  ndaAcceptedAt             DateTime?
+  recordingPolicyAcceptedAt DateTime?
+  // Condiciones de contenido para cursos (G103), aceptadas al crear el primero.
+  courseTermsAcceptedAt DateTime?
+  courseTermsVersion    String?
+
+  totalClassesGiven Int   @default(0)
+  averageRating     Float @default(0)
+  totalRatings      Int   @default(0)
+  cancellationRate  Float @default(0)
+  monthsActive      Int   @default(0)
+
+  timezone String @default("America/Mexico_City")
+
+  subjects     TeacherSubject[]
+  availability TeacherAvailability[]
+  dateBlocks   TeacherDateBlock[]
+  classes      ClassSession[]
+  payouts      TeacherPayout[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([level])
+  @@index([paymentRail])
+  @@map("teachers")
+}
+
+// La tarifa base NO se guarda aquí: la única fuente es la tabla de
+// `src/lib/teachers/tariff.ts` (una copia por fila se desincronizaría).
+model TeacherSubject {
+  id         String     @id @default(cuid())
+  teacherId  String
+  teacher    Teacher    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  subjectKey String
+  track      ClassTrack @default(ADMISION)
+  createdAt  DateTime   @default(now())
+
+  @@unique([teacherId, subjectKey, track])
+  @@index([subjectKey, track])
+  @@map("teacher_subjects")
+}
+
+// Bloque recurrente semanal, en hora de la Ciudad de México.
+model TeacherAvailability {
+  id        String   @id @default(cuid())
+  teacherId String
+  teacher   Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  dayOfWeek Int // 0 = domingo ... 6 = sábado
+  startTime String // "HH:mm"
+  endTime   String // "HH:mm"
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([teacherId])
+  @@index([dayOfWeek])
+  @@map("teacher_availability")
+}
+
+model TeacherDateBlock {
+  id          String   @id @default(cuid())
+  teacherId   String
+  teacher     Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  blockedDate DateTime @db.Date
+  reason      String?
+  createdAt   DateTime @default(now())
+
+  @@unique([teacherId, blockedDate])
+  @@index([blockedDate])
+  @@map("teacher_date_blocks")
+}
+
+// Doble reserva imposible EN LA BASE: la migración 0020 añade una restricción
+// de exclusión sobre `tsrange(scheduledAt, blockedUntil)` por profesor para
+// los estados que ocupan el horario (invisible para Prisma, como los índices
+// de 0012). `blockedUntil` = inicio + duración + 10 min de margen.
+model ClassSession {
+  id               String      @id @default(cuid())
+  teacherId        String
+  teacher          Teacher     @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+  studentProfileId String
+  student          UserProfile @relation("StudentClasses", fields: [studentProfileId], references: [id], onDelete: Restrict)
+
+  track           ClassTrack @default(ADMISION)
+  subjectKey      String
+  scheduledAt     DateTime
+  durationMinutes Int
+  blockedUntil    DateTime
+
+  // Tarifa congelada al reservar (el alumno nunca ve los multiplicadores).
+  baseTariffCents    Int
+  levelMultiplier    Float
+  durationMultiplier Float
+  advanceMultiplier  Float
+  scheduleMultiplier Float
+  demandMultiplier   Float
+  finalTariffCents   Int
+  capped             Boolean @default(false)
+  commissionCents    Int
+  teacherPayCents    Int
+
+  // Cobro. `idempotencyKey` la manda el cliente por intento: un doble clic no
+  // crea dos reservas ni dos cobros.
+  idempotencyKey          String    @unique
+  stripeCustomerId        String?
+  stripePaymentId         String?   @unique
+  stripeCheckoutSessionId String?   @unique
+  paidAt                  DateTime?
+  holdExpiresAt           DateTime?
+  refundedAt              DateTime?
+  refundedCents           Int       @default(0)
+  stripeRefundId          String?
+
+  // Declaración de mayoría de edad del alumno al reservar (TODO-CLO).
+  studentAdultDeclaredAt  DateTime?
+  adultDeclarationVersion String?
+
+  status             ClassStatus  @default(PENDING_PAYMENT)
+  confirmedAt        DateTime?
+  completedAt        DateTime?
+  cancelledAt        DateTime?
+  cancelledBy        CancelledBy?
+  cancellationReason String?
+
+  studentRating   Int?
+  studentFeedback String?
+  ratedAt         DateTime?
+
+  meetingUrl         String?
+  recordingUrl       String?
+  recordingExpiresAt DateTime?
+
+  payoutId               String?
+  payout                 TeacherPayout? @relation(fields: [payoutId], references: [id], onDelete: SetNull)
+  // Reembolso posterior a la liquidación: se descuenta en ESTA liquidación.
+  refundAdjustedPayoutId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([teacherId, scheduledAt])
+  @@index([studentProfileId])
+  @@index([status])
+  @@index([payoutId])
+  @@map("class_sessions")
+}
+
+model TeacherPayout {
+  id        String  @id @default(cuid())
+  teacherId String
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+
+  periodStart DateTime
+  periodEnd   DateTime
+
+  // Montos en centavos (parte del profesor, 75 %).
+  classRevenueCents      Int @default(0)
+  courseRevenueCents     Int @default(0)
+  grossCents             Int
+  retentionCents         Int
+  adjustmentCents        Int @default(0) // negativo: reembolsos de partidas ya liquidadas
+  releasedRetentionCents Int @default(0) // reservas de liquidaciones anteriores ya liberadas
+  netCents               Int
+  classCount             Int @default(0)
+  enrollmentCount        Int @default(0)
+
+  status        PayoutStatus @default(PENDING)
+  approvedAt    DateTime?
+  approvedBy    String?
+  transferredAt DateTime?
+  speiReference String?
+  failedAt      DateTime?
+  failReason    String?
+
+  // Reserva de desempeño: 15 % retenido 30 días naturales.
+  retentionReleaseAt      DateTime
+  retentionReleasedAt     DateTime?
+  retentionStatus         RetentionStatus @default(HELD)
+  retentionPaidInPayoutId String?
+
+  classes ClassSession[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([teacherId, periodStart])
+  @@index([teacherId])
+  @@index([status])
+  @@index([periodEnd])
+  @@map("teacher_payouts")
 }

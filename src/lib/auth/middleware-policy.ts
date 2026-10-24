@@ -21,6 +21,12 @@ export const AUTH_REQUIRED_PREFIXES = [
   '/checkout',
   '/tutor',
   '/admin',
+  // G103 — marketplace: panel del profesor, clases del alumno, sus cursos y
+  // el reproductor. El catálogo (/cursos) y /regularizacion son públicos.
+  '/profesor',
+  '/clases',
+  '/mis-cursos',
+  '/aprender',
 ];
 
 /** Prefijos que además exigen el correo verificado. */

@@ -47,3 +47,23 @@ export function withUserAdvisoryLock<T>(
     return fn(tx);
   });
 }
+
+/**
+ * G103 — el mismo candado, con una llave con espacio de nombres
+ * (`class-teacher:<id>`), para serializar las reservas de UN profesor. Se toma
+ * dentro de una transacción que ya existe (p. ej. la del webhook, que además
+ * registra el evento): misma sentencia, mismo `$executeRaw` (ver arriba).
+ */
+export async function lockKeyInTx(tx: Prisma.TransactionClient, key: string): Promise<void> {
+  await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${key}::text, 0))`;
+}
+
+export function withKeyedAdvisoryLock<T>(
+  key: string,
+  fn: (tx: Prisma.TransactionClient) => Promise<T>,
+): Promise<T> {
+  return prisma.$transaction(async (tx) => {
+    await lockKeyInTx(tx, key);
+    return fn(tx);
+  });
+}

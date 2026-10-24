@@ -21,6 +21,8 @@ import { resolvePaymentMethod, type ApplyResult } from './webhook';
  *
  * Igual que webhook.ts: aislado de Prisma, con el store inyectado, y la
  * idempotencia por `event.id` dentro de la transacción de cada mutación.
+ * Los metadatos NO se creen a ciegas: el store compara monto, moneda y dueño
+ * contra la base antes de aplicar nada.
  */
 
 export const MARKETPLACE_KINDS = ['access_extension', 'class_booking', 'course_purchase'] as const;
@@ -45,25 +47,53 @@ export interface PaidCheckout {
   metadata: Record<string, string>;
 }
 
-/** Un PaymentIntent (reserva de clase en un clic, sin Checkout). */
-export interface PaymentIntentOutcome {
-  paymentIntentId: string;
+/** Cobro de una clase (por Checkout o por PaymentIntent en un clic). */
+export interface ClassPayment {
+  classSessionId: string;
+  studentProfileId: string | undefined;
+  paymentIntentId: string | null;
   stripeCustomerId: string | null;
-  amountMxn: number;
-  currency: string;
-  metadata: Record<string, string>;
+  amountMxn: number | null;
+  currency: string | null;
 }
+
+export type ClassConfirmOutcome = 'booked' | 'already' | 'conflict' | 'mismatch' | 'not_found';
 
 export interface MarketplaceStore {
   /** Extensión de 6 meses pagada → nueva vigencia. Idempotente. */
   applyAccessExtension(eventId: string, eventType: string, paid: PaidCheckout): Promise<ApplyResult>;
+  /** Cobro de una clase confirmado → BOOKED (o `conflict` si el horario ya no está). */
+  confirmClassBooking(
+    eventId: string,
+    eventType: string,
+    payment: ClassPayment
+  ): Promise<{ result: ApplyResult; outcome: ClassConfirmOutcome | null }>;
+  /** Apartado sin pago (Checkout caducado, tarjeta rechazada) → libera el horario. */
+  releaseClassBooking(eventId: string, eventType: string, classSessionId: string, reason: string): Promise<ApplyResult>;
+  /** Reembolso visto en Stripe. `unknown` = el cobro no es del marketplace. */
+  recordRefund(
+    eventId: string,
+    eventType: string,
+    paymentIntentId: string,
+    refundedCents: number
+  ): Promise<ApplyResult | 'unknown'>;
+  /** Reembolso automático de una clase cobrada sin horario. Nunca lanza. */
+  refundClassPayment(classSessionId: string, paymentIntentId: string): Promise<void>;
 }
 
-export type MarketplaceAction = 'extended' | 'pending' | 'failed' | 'ignored';
+export type MarketplaceAction =
+  | 'extended'
+  | 'booked'
+  | 'refunded_conflict'
+  | 'released'
+  | 'refund_recorded'
+  | 'pending'
+  | 'failed'
+  | 'ignored';
 
 export type MarketplaceHandleResult =
-  | { status: 'duplicate'; type: string; kind: MarketplaceKind }
-  | { status: 'handled'; type: string; kind: MarketplaceKind; action: MarketplaceAction };
+  | { status: 'duplicate'; type: string; kind: MarketplaceKind | 'refund' }
+  | { status: 'handled'; type: string; kind: MarketplaceKind | 'refund'; action: MarketplaceAction };
 
 function idOf(ref: string | { id: string } | null | undefined): string | null {
   if (!ref) return null;
@@ -86,12 +116,25 @@ function toPaidCheckout(event: Stripe.Event, session: Stripe.Checkout.Session, f
 function wrap(
   r: ApplyResult,
   event: Stripe.Event,
-  kind: MarketplaceKind,
+  kind: MarketplaceKind | 'refund',
   action: MarketplaceAction
 ): MarketplaceHandleResult {
   return r === 'duplicate'
     ? { status: 'duplicate', type: event.type, kind }
     : { status: 'handled', type: event.type, kind, action };
+}
+
+async function confirmClass(
+  event: Stripe.Event,
+  payment: ClassPayment,
+  store: MarketplaceStore
+): Promise<MarketplaceHandleResult> {
+  const { result, outcome } = await store.confirmClassBooking(event.id, event.type, payment);
+  if (result === 'applied' && outcome === 'conflict' && payment.paymentIntentId) {
+    await store.refundClassPayment(payment.classSessionId, payment.paymentIntentId);
+    return { status: 'handled', type: event.type, kind: 'class_booking', action: 'refunded_conflict' };
+  }
+  return wrap(result, event, 'class_booking', outcome === 'booked' ? 'booked' : 'ignored');
 }
 
 /**
@@ -110,10 +153,11 @@ export async function handleMarketplaceEvent(
       const kind = marketplaceKindOf(session.metadata);
       if (!kind) return null;
 
+      const paidNow =
+        event.type === 'checkout.session.async_payment_succeeded' ||
+        (event.type === 'checkout.session.completed' && session.payment_status === 'paid');
+
       if (kind === 'access_extension') {
-        const paidNow =
-          event.type === 'checkout.session.async_payment_succeeded' ||
-          (event.type === 'checkout.session.completed' && session.payment_status === 'paid');
         if (paidNow) {
           const forceAsync = event.type === 'checkout.session.async_payment_succeeded';
           const r = await store.applyAccessExtension(event.id, event.type, toPaidCheckout(event, session, forceAsync));
@@ -131,9 +175,71 @@ export async function handleMarketplaceEvent(
         return { status: 'handled', type: event.type, kind, action };
       }
 
-      // Clases y cursos: se añaden en sus fases. Mientras no exista su manejo,
-      // un evento con esa marca se reconoce pero no se aplica.
+      if (kind === 'class_booking') {
+        const md = session.metadata ?? {};
+        if (paidNow) {
+          return confirmClass(
+            event,
+            {
+              classSessionId: md.classSessionId ?? '',
+              studentProfileId: md.studentProfileId,
+              paymentIntentId: idOf(session.payment_intent),
+              stripeCustomerId: idOf(session.customer),
+              amountMxn: session.amount_total ?? null,
+              currency: session.currency ?? null,
+            },
+            store
+          );
+        }
+        if (event.type === 'checkout.session.expired') {
+          const r = await store.releaseClassBooking(event.id, event.type, md.classSessionId ?? '', 'checkout_expired');
+          return wrap(r, event, kind, 'released');
+        }
+        // Las clases solo se cobran con tarjeta: no hay pago asíncrono que esperar.
+        return { status: 'handled', type: event.type, kind, action: 'ignored' };
+      }
+
+      // Cursos: se añade su manejo en su fase.
       return { status: 'handled', type: event.type, kind, action: 'ignored' };
+    }
+
+    case 'payment_intent.succeeded':
+    case 'payment_intent.payment_failed':
+    case 'payment_intent.canceled': {
+      const pi = event.data.object as Stripe.PaymentIntent;
+      if (marketplaceKindOf(pi.metadata) !== 'class_booking') return null;
+      const md = pi.metadata ?? {};
+      if (event.type === 'payment_intent.succeeded') {
+        return confirmClass(
+          event,
+          {
+            classSessionId: md.classSessionId ?? '',
+            studentProfileId: md.studentProfileId,
+            paymentIntentId: pi.id,
+            stripeCustomerId: idOf(pi.customer),
+            amountMxn: pi.amount_received ?? pi.amount,
+            currency: pi.currency,
+          },
+          store
+        );
+      }
+      // Un intento fallido DENTRO de Checkout no es definitivo (el alumno puede
+      // reintentar con otra tarjeta): solo se libera el horario en el flujo de
+      // un clic, donde no hay un segundo intento.
+      if (md.flow !== 'one_click') {
+        return { status: 'handled', type: event.type, kind: 'class_booking', action: 'ignored' };
+      }
+      const r = await store.releaseClassBooking(event.id, event.type, md.classSessionId ?? '', 'payment_failed');
+      return wrap(r, event, 'class_booking', 'released');
+    }
+
+    case 'charge.refunded': {
+      const charge = event.data.object as Stripe.Charge;
+      const pi = idOf(charge.payment_intent);
+      if (!pi) return null;
+      const r = await store.recordRefund(event.id, event.type, pi, charge.amount_refunded ?? 0);
+      if (r === 'unknown') return null;
+      return wrap(r, event, 'refund', 'refund_recorded');
     }
 
     default:

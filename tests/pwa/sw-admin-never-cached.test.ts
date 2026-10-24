@@ -92,6 +92,30 @@ describe('el service worker NUNCA intercepta /admin ni /api/admin', () => {
 });
 
 /**
+ * G103 — el panel del profesor (CLABE/RFC enmascarados, clases de sus alumnos)
+ * y el reproductor de cursos (URLs firmadas de los videos) tampoco se guardan.
+ */
+const MARKETPLACE_PRIVATE = [
+  'https://yaentre.com/profesor',
+  'https://yaentre.com/profesor/disponibilidad',
+  'https://yaentre.com/profesor/cursos/cku0000000000000000000abc',
+  'https://yaentre.com/api/teachers/me/availability',
+  'https://yaentre.com/aprender/algebra-desde-cero',
+];
+
+describe('G103: el service worker NUNCA intercepta el panel del profesor ni el reproductor', () => {
+  for (const url of MARKETPLACE_PRIVATE) {
+    it(`navegación a ${new URL(url).pathname} pasa de largo`, () => {
+      expect(runFetch(url, 'navigate').respondWithCalled).toBe(false);
+    });
+  }
+
+  it('control: el catálogo público de cursos SÍ se intercepta (no se excluye de más)', () => {
+    expect(runFetch('https://yaentre.com/cursos', 'navigate').respondWithCalled).toBe(true);
+  });
+});
+
+/**
  * CONTROL POSITIVO — sin esto, el bloque de arriba pasaría igual de bien si el
  * manejador de `fetch` no existiera, si el worker no se cargara o si
  * `respondWith` nunca se llamara para NADA. Una ruta normal de la app SÍ tiene

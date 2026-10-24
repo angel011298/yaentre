@@ -15,7 +15,7 @@ ALTER TABLE "subscriptions" ADD COLUMN IF NOT EXISTS "extendedAt" TIMESTAMP(3);
 ALTER TABLE "subscriptions" ADD COLUMN IF NOT EXISTS "originalExpiresAt" TIMESTAMP(3);
 ALTER TABLE "subscriptions" ADD COLUMN IF NOT EXISTS "extensionConsentAt" TIMESTAMP(3);
 ALTER TABLE "subscriptions" ADD COLUMN IF NOT EXISTS "extensionConsentVersion" TEXT;
-ALTER TABLE "subscriptions" ADD COLUMN IF NOT EXISTS "expiryNoticesSent" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[];
+ALTER TABLE "subscriptions" ADD COLUMN IF NOT EXISTS "expiryNoticesSent" TEXT[] DEFAULT ARRAY[]::TEXT[];
 
 CREATE INDEX IF NOT EXISTS "subscriptions_status_expiresAt_idx"
   ON "subscriptions"("status", "expiresAt");

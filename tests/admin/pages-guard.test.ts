@@ -28,6 +28,12 @@ const ZONES: Array<{ prefix: string; guards: RegExp }> = [
   { prefix: 'tutor', guards: /\b(requireUser|requireRole|requireParent\w*)\(/ },
   { prefix: 'onboarding', guards: /\b(requireUser|requireOnboarding)\(/ },
   { prefix: 'simulador', guards: /\b(requireOnboarding|requireUser)\(/ },
+  // G103 — marketplace. El panel del profesor usa su propio guard (o el de
+  // sesión en la solicitud de alta); clases, cursos y reproductor, el de sesión.
+  { prefix: 'profesor', guards: /\b(getTeacherPageContext|requireUser|requireTeacher)\(/ },
+  { prefix: 'clases', guards: /\b(requireUser|requireVerifiedForPurchase)\(/ },
+  { prefix: 'mis-cursos', guards: /\brequireUser\(/ },
+  { prefix: 'aprender', guards: /\brequireUser\(/ },
 ];
 
 function pages(dir: string): string[] {

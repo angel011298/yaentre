@@ -31,6 +31,11 @@ export default function robots(): MetadataRoute.Robots {
         '/auth/', // confirmación de correo (con token en la URL)
         '/actualizar-password', // llega con token de recuperación
         '/recuperar-password', // formulario utilitario
+        // G103 — marketplace (privado). /cursos y /regularizacion sí se indexan.
+        '/profesor',
+        '/clases',
+        '/mis-cursos',
+        '/aprender',
       ],
     },
     sitemap: `${site}/sitemap.xml`,

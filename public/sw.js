@@ -102,6 +102,23 @@ function isPrivateAdminPath(pathname) {
   );
 }
 
+/**
+ * G103 — tampoco el panel del profesor ni el reproductor de cursos. El panel
+ * muestra datos bancarios y fiscales (CLABE, RFC, aunque enmascarados) y las
+ * clases de sus alumnos; el reproductor lleva URLs firmadas de los videos.
+ * Nada de eso debe sobrevivir en el disco del navegador al cierre de sesión,
+ * ni siquiera en modo persistente. Mismo trato que /admin: salen del worker
+ * antes de cualquier otra rama.
+ */
+function isPrivateMarketplacePath(pathname) {
+  return (
+    pathname === '/profesor' ||
+    pathname.startsWith('/profesor/') ||
+    pathname.startsWith('/api/teachers/') ||
+    pathname.startsWith('/aprender/')
+  );
+}
+
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
@@ -114,6 +131,7 @@ self.addEventListener('fetch', (event) => {
   // ella. Va primero a propósito, para que ninguna rama posterior pueda
   // reintroducirlos por descuido.
   if (isPrivateAdminPath(url.pathname)) return;
+  if (isPrivateMarketplacePath(url.pathname)) return;
 
   if (request.mode === 'navigate') {
     if (isSimulatorPath(url.pathname)) {

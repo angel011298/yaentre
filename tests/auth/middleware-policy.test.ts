@@ -118,6 +118,15 @@ describe('matchesPrefix', () => {
     expect(matchesPrefix('/precios', AUTH_REQUIRED_PREFIXES)).toBe(false);
   });
 
+  it('G103: las rutas privadas del marketplace exigen sesión; el catálogo público no', () => {
+    for (const p of ['/profesor', '/profesor/disponibilidad', '/clases', '/clases/mis-clases', '/mis-cursos', '/aprender/algebra']) {
+      expect(matchesPrefix(p, AUTH_REQUIRED_PREFIXES), p).toBe(true);
+    }
+    for (const p of ['/cursos', '/cursos/algebra-desde-cero', '/regularizacion', '/profesores-transparencia']) {
+      expect(matchesPrefix(p, AUTH_REQUIRED_PREFIXES), p).toBe(false);
+    }
+  });
+
   it('sin cookie, una ruta protegida sigue redirigiendo a /login', () => {
     // Combinación real del atajo: `shouldResolveUser` dice "no preguntes",
     // pero la redirección debe seguir ocurriendo por ausencia de cookie.

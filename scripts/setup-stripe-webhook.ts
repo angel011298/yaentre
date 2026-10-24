@@ -32,6 +32,13 @@ const WEBHOOK_EVENTS: Stripe.WebhookEndpointCreateParams.EnabledEvent[] = [
   'checkout.session.async_payment_succeeded',
   'checkout.session.async_payment_failed',
   'customer.subscription.deleted',
+  // G103 — marketplace: Checkout caducado de una clase (libera el horario),
+  // cobro de clase en un clic (sin Checkout) y reembolsos de clases/cursos.
+  'checkout.session.expired',
+  'payment_intent.succeeded',
+  'payment_intent.payment_failed',
+  'payment_intent.canceled',
+  'charge.refunded',
 ];
 
 interface CliArgs {
