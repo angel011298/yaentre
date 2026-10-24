@@ -40,7 +40,7 @@ CREATE INDEX IF NOT EXISTS "subscriptions_status_expiresAt_idx"
 --   UPDATE "subscriptions" SET "graceEndsAt" = NULL
 --   WHERE "extendedAt" IS NULL
 --     AND "graceEndsAt" = "expiresAt" + interval '7 days'
---     AND "createdAt" < TIMESTAMP '<hora de aplicación de 0019, UTC>';
+--     AND "createdAt" < TIMESTAMP '2026-10-24 11:48:31';  -- aplicada en producción a las 11:48:30 UTC
 UPDATE "subscriptions"
 SET "graceEndsAt" = "expiresAt" + interval '7 days'
 WHERE "expiresAt" IS NOT NULL AND "graceEndsAt" IS NULL;

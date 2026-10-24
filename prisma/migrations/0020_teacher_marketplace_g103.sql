@@ -363,9 +363,12 @@ DO $$ BEGIN
 EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 
+-- `adjustmentCents` lleva signo y NO se acota: un descuento por reembolso es
+-- negativo, pero cancelar una liquidación cuyo descuento ya se aplicó en otra
+-- devuelve ese dinero con un ajuste POSITIVO (`CANCEL_REVERSAL`, Fase 6).
 DO $$ BEGIN
   ALTER TABLE "teacher_payouts" ADD CONSTRAINT "teacher_payouts_money_chk"
-    CHECK ("grossCents" >= 0 AND "retentionCents" >= 0 AND "adjustmentCents" <= 0 AND "releasedRetentionCents" >= 0);
+    CHECK ("grossCents" >= 0 AND "retentionCents" >= 0 AND "retentionCents" <= "grossCents" AND "releasedRetentionCents" >= 0);
 EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 
