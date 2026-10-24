@@ -2,9 +2,9 @@
   "_manifest": {
     "format": "yaentre-content-backup",
     "version": 1,
-    "exportedAt": "2026-09-16T03:12:23.783Z",
+    "exportedAt": "2026-10-24T11:48:04.296Z",
     "sourceProjectRef": "fumluvvzskhdxcyljbmx",
-    "prismaSchemaSha256": "80967d2c0f4faeac713c3c33bb3a96a26737b19a914c18aad060da1dbd01cfe7",
+    "prismaSchemaSha256": "8d4914ca312da7bf1d5c80e634554e595eebf26f4bef69034562989f1a154c36",
     "models": [
       "Institution",
       "ContentSource",
@@ -26,7 +26,7 @@
       "Level": 2,
       "Exam": 2,
       "Area": 7,
-      "Career": 47,
+      "Career": 200,
       "Subject": 35,
       "Topic": 217,
       "Passage": 18,
@@ -35,7 +35,7 @@
       "QuestionSourceChunk": 480,
       "ExplanationLayer": 4521
     },
-    "totalRows": 7227
+    "totalRows": 7380
   },
   "Institution": [
     {
@@ -700,7 +700,7 @@
     {
       "id": "cmrr1q1o200g511qdtgtix43g",
       "areaId": "cmrr1kuag0097hi3noryol8ww",
-      "name": "Ingeniería en Sistemas Computacionales (ESCOM)",
+      "name": "Ingeniería en Sistemas Computacionales",
       "minAciertos": 97,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -719,7 +719,7 @@
     {
       "id": "cmrr1q1u900g711qdhgzudezb",
       "areaId": "cmrr1kuag0097hi3noryol8ww",
-      "name": "Ingeniería Eléctrica (ESIME)",
+      "name": "Ingeniería Eléctrica",
       "minAciertos": 99,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -738,7 +738,7 @@
     {
       "id": "cmrr1q1xh00g911qdgz2bb5p6",
       "areaId": "cmrr1kuag0097hi3noryol8ww",
-      "name": "Ingeniería Mecánica (ESIME)",
+      "name": "Ingeniería Mecánica",
       "minAciertos": 94,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -776,7 +776,7 @@
     {
       "id": "cmrr1q23r00gd11qdhy92bvyg",
       "areaId": "cmrr1kuag0097hi3noryol8ww",
-      "name": "Ingeniería Civil (ESIA)",
+      "name": "Ingeniería Civil",
       "minAciertos": 70,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -795,7 +795,7 @@
     {
       "id": "cmrr1q26w00gf11qdz7fgnh2o",
       "areaId": "cmrr1kuag0097hi3noryol8ww",
-      "name": "Ingeniería Química (ESIQIE)",
+      "name": "Ingeniería Química Industrial",
       "minAciertos": 94,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -814,7 +814,7 @@
     {
       "id": "cmrr1q2a100gh11qdy9qkunlh",
       "areaId": "cmrr1kuag0097hi3noryol8ww",
-      "name": "Ingeniería Matemática (ESFM)",
+      "name": "Ingeniería Matemática",
       "minAciertos": 95,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -833,7 +833,7 @@
     {
       "id": "cmrr1q2d700gj11qds8uo7ui5",
       "areaId": "cmrr1kuag0097hi3noryol8ww",
-      "name": "Licenciatura en Física y Matemáticas (ESFM)",
+      "name": "Licenciatura en Física y Matemáticas",
       "minAciertos": 104,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -852,7 +852,7 @@
     {
       "id": "cmrr1q2ga00gl11qd7i2myqb4",
       "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
-      "name": "Médico Cirujano y Partero (ESM)",
+      "name": "Médico Cirujano Partero",
       "minAciertos": 109,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "MED",
@@ -871,7 +871,7 @@
     {
       "id": "cmrr1q2jf00gn11qd86vop5rd",
       "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
-      "name": "Licenciatura en Odontología (CICS)",
+      "name": "Licenciatura en Odontología",
       "minAciertos": 115,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -890,7 +890,7 @@
     {
       "id": "cmrr1q2mj00gp11qdx6ur9q0l",
       "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
-      "name": "Licenciatura en Biología (ENCB)",
+      "name": "Licenciatura en Biología",
       "minAciertos": 110,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -909,7 +909,7 @@
     {
       "id": "cmrr1q2po00gr11qdsanzp3v5",
       "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
-      "name": "Químico Farmacéutico Industrial (ENCB)",
+      "name": "Químico Farmacéutico Industrial",
       "minAciertos": 110,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -928,7 +928,7 @@
     {
       "id": "cmrr1q2su00gt11qd552t3mwv",
       "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
-      "name": "Licenciatura en Enfermería y Obstetricia (ESEO)",
+      "name": "Licenciatura en Enfermería y Obstetricia",
       "minAciertos": 111,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -947,7 +947,7 @@
     {
       "id": "cmrr1q2w000gv11qd1aoceitp",
       "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
-      "name": "Licenciatura en Psicología (CICS)",
+      "name": "Licenciatura en Psicología",
       "minAciertos": 93,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -960,24 +960,9 @@
       "acceptanceRate": null
     },
     {
-      "id": "cmrr1q2z400gx11qdj4t5sc1w",
-      "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
-      "name": "Bioquímica Clínica (ENCB)",
-      "minAciertos": 92,
-      "minAciertosYear": 2025,
-      "minAciertosConfidence": "LOW",
-      "sources": [
-        {
-          "url": "",
-          "label": "Estimación previa de CC-08, sin verificación en CC-13 (no se encontró en ninguna de las 2 compilaciones consultadas)"
-        }
-      ],
-      "acceptanceRate": null
-    },
-    {
       "id": "cmrr1q32800gz11qdglc2vp1r",
       "areaId": "cmrr1kv490099hi3ncu8f8wz8",
-      "name": "Administración (CIMA)",
+      "name": "Licenciatura en Administración Industrial",
       "minAciertos": 99,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -996,7 +981,7 @@
     {
       "id": "cmrr1q35e00h111qdqa46hbk1",
       "areaId": "cmrr1kv490099hi3ncu8f8wz8",
-      "name": "Contabilidad (CIMA)",
+      "name": "Contador Público",
       "minAciertos": 97,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -1015,7 +1000,7 @@
     {
       "id": "cmrr1q38k00h311qd4w9nw3ig",
       "areaId": "cmrr1kv490099hi3ncu8f8wz8",
-      "name": "Comercio Internacional (CIMA)",
+      "name": "Licenciatura en Negocios Internacionales",
       "minAciertos": 107,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -1034,7 +1019,7 @@
     {
       "id": "cmrr1q3bq00h511qdo8fdhbby",
       "areaId": "cmrr1kv490099hi3ncu8f8wz8",
-      "name": "Economía (CICS)",
+      "name": "Licenciatura en Economía",
       "minAciertos": 94,
       "minAciertosYear": 2024,
       "minAciertosConfidence": "LOW",
@@ -1053,7 +1038,7 @@
     {
       "id": "cmrr1q3ev00h711qdv04k8s18",
       "areaId": "cmrr1kv490099hi3ncu8f8wz8",
-      "name": "Turismo (CIMA)",
+      "name": "Licenciatura en Turismo",
       "minAciertos": 100,
       "minAciertosYear": 2026,
       "minAciertosConfidence": "LOW",
@@ -1070,16 +1055,2326 @@
       "acceptanceRate": null
     },
     {
-      "id": "cmrr1q3i000h911qd23pngt06",
-      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
-      "name": "Gestión y Dirección de Empresas",
-      "minAciertos": 78,
-      "minAciertosYear": 2025,
-      "minAciertosConfidence": "LOW",
+      "id": "cmvcsfm920001rbyy9ay42q02",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Actuaría",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
       "sources": [
         {
-          "url": "",
-          "label": "Estimación previa de CC-08, sin verificación en CC-13 (no se encontró en ninguna de las 2 compilaciones consultadas)"
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920002rbyy3gil3jgs",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Arquitectura de Paisaje",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920003rbyyar3suvr9",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ciencia de Datos",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920004rbyyckv78kep",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ciencia de Materiales Sustentables",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920005rbyynty2ht2a",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ciencias de la Computación",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920006rbyybquk9jmn",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ciencias de la Tierra",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920007rbyyzmdyr4xb",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Diseño Industrial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920008rbyyq7o4ddwr",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Física Biomédica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm920009rbyylyr06jq8",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Geociencias",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000arbyysm1g5jjv",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Aeroespacial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000brbyydnk84sj5",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Ambiental",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000crbyyumdamafi",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Geofísica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000drbyyvrele8hk",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Geológica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000erbyyk6sgee2w",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Geomática",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000frbyynbele2ox",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Industrial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000grbyy32hh8sim",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Mecatrónica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000hrbyyce2t5lbn",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Mecánica Eléctrica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000irbyye7go1gyl",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Petrolera",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000jrbyycvd9g6hq",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Química",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm92000krbyynzvkj8mb",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería Química Metalúrgica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000lrbyy5v6nuohm",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería de Minas y Metalurgia",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000mrbyyaqz6daq0",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería en Energías Renovables",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000nrbyygl2gri08",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería en Sistemas Biomédicos",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000orbyyfy4wux5l",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Ingeniería en Telecomunicaciones, Sistemas y Electrónica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000prbyy7xzdclcn",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Matemáticas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000qrbyykc211ntj",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Matemáticas Aplicadas y Computación",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000rrbyy6ra9dya7",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Matemáticas para el Desarrollo",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000srbyy8x022hif",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Nanotecnología",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000trbyy933boq03",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Tecnología",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000urbyy9z3xkeon",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Tecnologías para la Información en Ciencias",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfm93000vrbyyzf7y9vyh",
+      "areaId": "cmrr1iuar000ahi3ni1qo8awp",
+      "name": "Urbanismo",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsu000xrbyyk7sw2jdc",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Bioquímica Diagnóstica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsu000yrbyyi9qbj2i4",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ciencia Forense",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsu000zrbyy59vfswm4",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ciencia de la Nutrición Humana",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsu0010rbyydsl9cpnu",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ciencias Agroforestales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsu0011rbyyqmnfo64x",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ciencias Agrogenómicas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsu0012rbyylb4xy1xp",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ciencias Ambientales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv0013rbyy65a2dkdv",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ciencias Genómicas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv0014rbyy2jxm85w4",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Enfermería y Obstetricia",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv0015rbyy55e0zcq6",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Farmacia",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv0016rbyynnzt7mz8",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Fisioterapia",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv0017rbyyltemt0pk",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ingeniería Agrícola",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv0018rbyyapixqpjs",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Ingeniería en Alimentos",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv0019rbyyf2bqmqx8",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Investigación Biomédica Básica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001arbyyyrdhynxb",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Manejo Sustentable de Zonas Costeras",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001brbyy62ou2rb1",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Medicina Veterinaria y Zootecnia",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001crbyybq1tc1fb",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Neurociencias",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001drbyy4k3a0u03",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Nutriología",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001erbyykcoxy71g",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Odontología",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001frbyywivx9uph",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Optometría",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001grbyy7ouvsrnr",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Psicología",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001hrbyyh1ulljgh",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Química",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001irbyy9u6knyr1",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Química Industrial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001jrbyy2ya01ziz",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Química de Alimentos",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001krbyyvjr47na4",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Química e Ingeniería en Materiales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfnsv001lrbyy46c4gez7",
+      "areaId": "cmrr1itjf0006hi3nfy9fid0p",
+      "name": "Órtesis y Prótesis",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001nrbyy0r7zhaj5",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Administración Agropecuaria",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001orbyy5mzkka3r",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Comunicación",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001prbyyspecq20u",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Comunicación y Periodismo",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001qrbyyf3iduq8y",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Desarrollo Comunitario para el Envejecimiento",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001rrbyyxzxf6xtn",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Desarrollo Territorial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001srbyy5unp3g5c",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Economía Industrial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001trbyyehetrqjg",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Estudios Sociales y Gestión Local",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001urbyyxbfifgd3",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Geografía",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001vrbyyjdenaw10",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Geografía Aplicada",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001wrbyyu02wwcrt",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Informática",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001xrbyy0c9qgs27",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Negocios Internacionales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001yrbyy8d18m3mx",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Planificación para el Desarrollo Agropecuario",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l001zrbyy43nkfoj7",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Relaciones Internacionales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l0020rbyyf73c3xny",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Sociología Aplicada",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l0021rbyygafea5si",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Trabajo Social",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfp6l0022rbyyt7gm20l6",
+      "areaId": "cmrr1iuax000chi3nm3t716y5",
+      "name": "Turismo y Desarrollo Sostenible",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt0024rbyywa3iafug",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Administración de Archivos y Gestión Documental",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt0025rbyys4jg1vtu",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Artes Visuales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt0026rbyyrieun607",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Bibliotecología y Estudios de la Información",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt0027rbyyjcvxaop2",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Canto",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt0028rbyykj5j1vrj",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Cinematografía",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt0029rbyy91j9tpc7",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Composición",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt002arbyydxyckytr",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Desarrollo y Gestión Interculturales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqjt002brbyyoxwajh73",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Diseño Gráfico",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002crbyy4zdjq5mh",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Diseño y Comunicación Visual",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002drbyybmo68atn",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Educación Musical",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002erbyyq0hg5vhc",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Enseñanza de Inglés",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002frbyyo7b4i7vd",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Estudios Latinoamericanos",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002grbyykozvq598",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Etnomusicología",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002hrbyyyd7hwqbq",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Geohistoria",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002irbyybq96hfjr",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Historia del Arte",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002jrbyyrapirkut",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Instrumentista",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002krbyyk34plt1w",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Lengua y Literaturas Modernas Alemanas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002lrbyyikm26jxc",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Lengua y Literaturas Modernas Francesas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002mrbyydsohrh8g",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Lengua y Literaturas Modernas Inglesas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002nrbyy4alo4tpv",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Lengua y Literaturas Modernas Italianas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002orbyyy6e0n3ch",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Lengua y Literaturas Modernas Portuguesas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002prbyy60b3k18i",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Letras Clásicas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002qrbyykjhb4tmz",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Lingüística Aplicada",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002rrbyyh0ka2jme",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Literatura Dramática y Teatro",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002srbyy40j41o1u",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Literatura Intercultural",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002trbyy11nzcnyi",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Música y Tecnología Artística",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002urbyy3dr6dr8t",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Pedagogía",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002vrbyyif50r0in",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Piano",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002wrbyy836nl0vv",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Teatro y Actuación",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfqju002xrbyysc8si8xs",
+      "areaId": "cmrr1iu9s0008hi3neosraww9",
+      "name": "Traducción",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://case.unam.mx/oferta-academica",
+          "label": "DGAE UNAM — oferta académica de licenciatura (CASE UNAM) · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf002zrbyysfjiidzm",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniero Arquitecto",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0030rbyy6v29gfx8",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Aeronáutica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0031rbyyvs0z1plw",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Ambiental",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0032rbyynkaojkkg",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Biomédica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0033rbyya9ygal4j",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Bioquímica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0034rbyyk8t067s2",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Biotecnológica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0035rbyyf2zv0ojs",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Biónica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0036rbyyuj6rhrgq",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Farmacéutica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxf0037rbyygx6yh9lq",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Ferroviaria",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg0038rbyywz2cxu4q",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Fotónica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg0039rbyyrt9i6ws8",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Geofísica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003arbyymzsxv56j",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Geológica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003brbyywsuv7jqv",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Industrial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003crbyy08g3530i",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Mecatrónica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003drbyya51pdc2o",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Metalúrgica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003erbyytj70o4er",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Petrolera",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003frbyy8cce0ki3",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Química Petrolera",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003grbyy5s3g4jpl",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Telemática",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003hrbyyhnup3he9",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Textil",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003irbyyp3yo12m1",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería Topográfica y Fotogramétrica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003jrbyyrflfbag8",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Alimentos",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003krbyyugkb35vb",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Computación",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003lrbyy6c290lhi",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Control y Automatización",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003mrbyyubu0mtbb",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Energía",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003nrbyyysw6kg66",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Informática",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003orbyyi5biytsu",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Inteligencia Artificial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003prbyymrs8pmvq",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Metalurgia y Materiales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003qrbyy2lix5pjo",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Meteorología",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003rrbyy6o61wqbw",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Movilidad Urbana",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003srbyyrq18raui",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Negocios Energéticos Sustentables",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003trbyy9xypxj73",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Robótica Industrial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003urbyy7djp5aoo",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Sistemas Ambientales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003vrbyyblsiynlu",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Sistemas Automotrices",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003wrbyyl0zj53wb",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Sistemas Energéticos y Redes Inteligentes",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003xrbyytr60dxmf",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Ingeniería en Transporte",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003yrbyyo6cdoclv",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Licenciatura en Ciencia de Datos",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg003zrbyyhmgjgspq",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Licenciatura en Ciencias de la Informática",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfsxg0040rbyydd10ss7s",
+      "areaId": "cmrr1kuag0097hi3noryol8ww",
+      "name": "Licenciatura en Matemática Algorítmica",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfv4u0042rbyyufh4ougg",
+      "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
+      "name": "Licenciatura en Enfermería",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfv4u0043rbyyqpcwxkmn",
+      "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
+      "name": "Licenciatura en Nutrición",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfv4u0044rbyyfvaaimwp",
+      "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
+      "name": "Licenciatura en Optometría",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfv4u0045rbyy5u0jnvk8",
+      "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
+      "name": "Licenciatura en Trabajo Social",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfv4u0046rbyystzhghfm",
+      "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
+      "name": "Médico Cirujano Homeópata",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfv4u0047rbyy6xokvioz",
+      "areaId": "cmrr1kv5v009bhi3n4pv1ktyh",
+      "name": "Químico Bacteriólogo y Parasitólogo",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc50049rbyyelmv6uiq",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Administración y Desarrollo Empresarial",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004arbyyka5c2lw9",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Archivonomía",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004brbyycwxh0fsz",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Biblioteconomía",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004crbyyd8xpdbtd",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Comercio Internacional",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004drbyyrmu452s9",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Contaduría y Finanzas Públicas",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004erbyyxg5ad8ee",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Mercadotecnia Digital",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004frbyyl85a0jrv",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Negocios Digitales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004grbyyc6elktjv",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Relaciones Comerciales",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
+        }
+      ],
+      "acceptanceRate": null
+    },
+    {
+      "id": "cmvcsfxc5004hrbyy9b8441uz",
+      "areaId": "cmrr1kv490099hi3ncu8f8wz8",
+      "name": "Licenciatura en Turismo Sustentable",
+      "minAciertos": null,
+      "minAciertosYear": null,
+      "minAciertosConfidence": null,
+      "sources": [
+        {
+          "url": "https://www.ipn.mx/oferta-educativa/educacion-superior/",
+          "label": "IPN — oferta educativa de nivel superior · consultada 2026-10-17"
         }
       ],
       "acceptanceRate": null
