@@ -10,3 +10,11 @@
 .env.*.local
 .vercel
 node_modules
+# G103: artefactos locales que nunca deben subir. Las trazas de Playwright
+# guardan lo que se tecleó en cada prueba (contraseñas de prueba de la pila
+# local incluidas) y las respuestas de red.
+test-results
+playwright-report
+.lighthouse-g74
+.claude
+scripts/logs
